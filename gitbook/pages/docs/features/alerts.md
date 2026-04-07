@@ -27,11 +27,11 @@ Create an alert for your Insights and Funnels reports and be notified when r
 4. **Set your alert criteria.** Depending on the report you’re working from, choose between anomaly detection or custom alert types. More details on each criterion type can be found below.
 5. **Set your notification frequency.** Depending on your alert criteria, you can choose a notification frequency spanning from an hour to at most a month. This frequency informs how often *at most* you’ll receive an alert.
     *Note:*
-    - *For time-series reports, alert query frequency (how often we check if your data matches your alert condition) is determined by the time bucket of your report visualization. For instance, if your chart is hourly, the alert will be checked for at an hourly interval.*
-    - *If you have an hourly chart, but set the alert frequency to daily, we’ll check your report for an alert condition match every hour. If we find a match, we’ll send you the alert message and will stop checking your report for a match until the next day.*
+- *For time-series reports, alert query frequency (how often we check if your data matches your alert condition) is determined by the time bucket of your report visualization. For instance, if your chart is hourly, the alert will be checked for at an hourly interval.*
+- *If you have an hourly chart, but set the alert frequency to daily, we’ll check your report for an alert condition match every hour. If we find a match, we’ll send you the alert message and will stop checking your report for a match until the next day.*
 6. **Set your notification delivery preferences.** When alert conditions are met, we can send a notification via email or Slack.
-    - For email, enter the email of the recipient. You can enter any email here, not just Mixpanel users.
-    - For Slack, select any Slack channels you want to send this alert. Private Slack channels are not supported.
+- For email, enter the email of the recipient. You can enter any email here, not just Mixpanel users.
+- For Slack, select any Slack channels you want to send this alert. Private Slack channels are not supported.
 
 {% hint style="info" %}
 In order to send alerts to Slack, you may need to configure the Mixpanel Slack app if you haven’t before. Click "Add Mixpanel to Slack" and follow the prompts on the following screens. You will be brought back to this page when you have added Mixpanel to Slack.
@@ -49,10 +49,10 @@ Webhook Alerts allow you to send alert notifications from Mixpanel to third-part
 2. Under Project Webhooks, click **"+ Add Webhook"**
 
 3. Complete the webhook configuration:
-    - **Name** - Enter a descriptive name for this webhook (e.g., "Production Alerts")
-    - **URL** - Enter the HTTPS endpoint where alert payloads will be sent (e.g., `https://example.com/webhooks/mixpanel`)
-    - **Username** - If your endpoint requires HTTP Basic Authentication, enter the username
-    - **Password**  - Enter the corresponding password for authentication
+- **Name** - Enter a descriptive name for this webhook (e.g., "Production Alerts")
+- **URL** - Enter the HTTPS endpoint where alert payloads will be sent (e.g., `https://example.com/webhooks/mixpanel`)
+- **Username** - If your endpoint requires HTTP Basic Authentication, enter the username
+- **Password**  - Enter the corresponding password for authentication
 4. Click **Test connection** to verify connectivity to your endpoint
 5. Click **Submit** to save the webhook
 

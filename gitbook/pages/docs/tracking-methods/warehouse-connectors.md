@@ -26,37 +26,23 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
 
 {% tabs %}
 {% tab title="BigQuery" %}
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/9u60IdyxIVY"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
         The BigQuery connector works by giving a Mixpanel-managed service account permission to read from BigQuery in your GCP project. You will need:
         - Your GCP Project ID, which you can find in the URL of Google Cloud Console (`https://console.cloud.google.com/bigquery?project=YOUR_GCP_PROJECT`).
-        - Your unique Mixpanel service account ID, which is generated the first time you create a BigQuery connection in the Mixpanel UI
-          (e.g. `project-?????@mixpanel-warehouse-1.iam.gserviceaccount.com`).
-        - A new, empty `mixpanel` dataset in your BigQuery instance (if you are using [Mirror](#mirror)).
+    - Your unique Mixpanel service account ID, which is generated the first time you create a BigQuery connection in the Mixpanel UI
+      (e.g. `project-?????@mixpanel-warehouse-1.iam.gserviceaccount.com`).
+    - A new, empty `mixpanel` dataset in your BigQuery instance (if you are using [Mirror](#mirror)).
         ```jsx
           CREATE SCHEMA `<gcp-project>`.`mixpanel`
             OPTIONS (
@@ -90,38 +76,24 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
 {% endtab %}
 
 {% tab title="Snowflake" %}
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/i-ytJQdojio"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
     To connect to Snowflake, you will need:
-    - Your [Snowflake account identifier](https://docs.snowflake.com/user-guide/admin-account-identifier), which you can find in the
-      URL of your Snowflake account (`https://YOUR_ACCOUNT_NAME.snowflakecomputing.com/`).
-    - A dedicated Mixpanel user account and role. The user account can use either key-pair or password authentication.
-      If using key-pair authentication, Mixpanel will generate a secure key-pair during the connection process. The public
-      key will be provided during the setup process, and the private key will be encrypted and stored securely.
+- Your [Snowflake account identifier](https://docs.snowflake.com/user-guide/admin-account-identifier), which you can find in the
+  URL of your Snowflake account (`https://YOUR_ACCOUNT_NAME.snowflakecomputing.com/`).
+- A dedicated Mixpanel user account and role. The user account can use either key-pair or password authentication.
+  If using key-pair authentication, Mixpanel will generate a secure key-pair during the connection process. The public
+  key will be provided during the setup process, and the private key will be encrypted and stored securely.
       ```jsx
       CREATE ROLE MIXPANEL_ROLE;
       # one of
@@ -130,8 +102,8 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
       # then
       GRANT ROLE MIXPANEL_ROLE TO USER MIXPANEL;
       ```
-    - A Snowflake [WAREHOUSE](https://docs.snowflake.com/en/sql-reference/sql/create-warehouse) Mixpanel will use to unload data.
-      We recommend creating a dedicated warehouse for Mixpanel to avoid impacting other workloads.
+- A Snowflake [WAREHOUSE](https://docs.snowflake.com/en/sql-reference/sql/create-warehouse) Mixpanel will use to unload data.
+  We recommend creating a dedicated warehouse for Mixpanel to avoid impacting other workloads.
       ```jsx
       CREATE WAREHOUSE MIXPANEL_WAREHOUSE WITH
         WAREHOUSE_SIZE = XSMALL # consider increasing for larger datasets
@@ -141,9 +113,9 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
       GRANT USAGE ON MIXPANEL_WAREHOUSE TO ROLE MIXPANEL_ROLE;
       GRANT MONITOR ON MIXPANEL_WAREHOUSE TO ROLE MIXPANEL_ROLE;
       ```
-    - A Snowflake [STORAGE INTEGRATION](https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration) Mixpanel will
-      use to unload data. This integration can optionally restrict STORAGE_ALLOWED_LOCATIONS to the unique Mixpanel-managed bucket
-      created to receive data for this connection.
+- A Snowflake [STORAGE INTEGRATION](https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration) Mixpanel will
+  use to unload data. This integration can optionally restrict STORAGE_ALLOWED_LOCATIONS to the unique Mixpanel-managed bucket
+  created to receive data for this connection.
       ```jsx
       CREATE STORAGE INTEGRATION MIXPANEL_STORAGE_INTEGRATION
         TYPE = EXTERNAL_STAGE
@@ -152,16 +124,16 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
         STORAGE_ALLOWED_LOCATIONS = ("<mixpanel-provided-bucket-name>"); # optional
       GRANT USAGE ON INTEGRATION MIXPANEL_STORAGE_INTEGRATION TO MIXPANEL_ROLE;
       ```
-    - A new, empty `MIXPANEL` [SCHEMA](https://docs.snowflake.com/en/sql-reference/sql/create-schema) the Mixpanel user has the `USAGE`
-      and `CREATE STREAM` permission for (if you are using [Mirror](#mirror)).
+- A new, empty `MIXPANEL` [SCHEMA](https://docs.snowflake.com/en/sql-reference/sql/create-schema) the Mixpanel user has the `USAGE`
+  and `CREATE STREAM` permission for (if you are using [Mirror](#mirror)).
       ```jsx
       CREATE SCHEMA <database>.MIXPANEL;
       GRANT USAGE ON DATABASE <database> TO ROLE MIXPANEL_ROLE;
       GRANT USAGE ON SCHEMA <database>.MIXPANEL TO ROLE MIXPANEL_ROLE;
       GRANT CREATE STREAM ON SCHEMA <database>.MIXPANEL TO ROLE MIXPANEL_ROLE;
       ```
-    - The Mixpanel user needs the `USAGE` and `SELECT` permissions to have read-only access to any tables and views you plan to sync.
-      Adjust this example to fine-tune permissions.
+- The Mixpanel user needs the `USAGE` and `SELECT` permissions to have read-only access to any tables and views you plan to sync.
+  Adjust this example to fine-tune permissions.
       ```jsx
       GRANT USAGE ON DATABASE <database> TO ROLE MIXPANEL_ROLE;
       GRANT USAGE ON ALL SCHEMAS IN DATABASE <database> TO ROLE MIXPANEL_ROLE;
@@ -199,7 +171,7 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
     35.244.19.238
     ```
 
-    - Some users report seeing the following error `ErrorMessage=SQL compilation error: Cannot unload to an inlined external location. Please create a stage first and unload to the stage instead.`. To resolve this error, you may set the following account security setting:
+- Some users report seeing the following error `ErrorMessage=SQL compilation error: Cannot unload to an inlined external location. Please create a stage first and unload to the stage instead.`. To resolve this error, you may set the following account security setting:
 
     ```jsx
     ALTER ACCOUNT SET PREVENT_UNLOAD_TO_INLINE_URL = FALSE;
@@ -209,31 +181,17 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
 {% endtab %}
 
 {% tab title="Databricks" %}
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/Fr-isqO1w2s"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 {% hint style="info" %}
 The connection to Databricks only supports connecting directly to clusters or jobs compute. Connecting directly to SQL warehouses is not supported.
@@ -290,12 +248,12 @@ GRANT MODIFY ON ANY FILE TO `<application_id_or_username>`;
 1. Navigate to **Project Settings**, then select **Warehouse Sources**.
 2. Click on `+ Add Connection` and select **Databricks**.
 3. Fill out the following fields, then click **Create Source**:
-    - **Server Hostname** — The hostname of your Databricks workspace. Find this in your workspace URL, or under your cluster's [JDBC/ODBC settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step).
-    - **Access Token** — The personal access token or service principal token you created above.
-    - **Compute Type** — Select your preferred compute option:
-        - **All-Purpose Compute** — Uses an existing cluster. Faster sync start times, but the cluster stays running after the sync completes until it times out. Best for development.
-        - **Jobs Compute (Beta)** — Creates a dedicated job for each sync. You're only billed for the exact job duration, making it more cost-effective. Syncs take ~5-6 minutes longer to start due to cluster spin-up, and data preview in the Mixpanel UI is not supported. Best for production.
-    - **HTTP Path** — For all-purpose compute, the HTTP path of your cluster. Find this under your cluster's [JDBC/ODBC settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step).
+- **Server Hostname** — The hostname of your Databricks workspace. Find this in your workspace URL, or under your cluster's [JDBC/ODBC settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step).
+- **Access Token** — The personal access token or service principal token you created above.
+- **Compute Type** — Select your preferred compute option:
+    - **All-Purpose Compute** — Uses an existing cluster. Faster sync start times, but the cluster stays running after the sync completes until it times out. Best for development.
+    - **Jobs Compute (Beta)** — Creates a dedicated job for each sync. You're only billed for the exact job duration, making it more cost-effective. Syncs take ~5-6 minutes longer to start due to cluster spin-up, and data preview in the Mixpanel UI is not supported. Best for production.
+- **HTTP Path** — For all-purpose compute, the HTTP path of your cluster. Find this under your cluster's [JDBC/ODBC settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step).
 4. Confirm that the credentials are validated and the source is added.
 
 ### IP Allowlist
@@ -325,51 +283,37 @@ If you are using [IP Access List](https://docs.databricks.com/en/security/networ
 {% endtab %}
 
 {% tab title="Redshift" %}
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/d3LCU5NdQsM"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 Complete the following steps to get your Redshift connector up and running:
 
 1. Navigate to **Project Settings**, then select **Warehouse Sources**.
 2. Click on `+ Add Connection` and select **Redshift**.
 3. You should see a new page to create your Redshift connector. In the first view, fill out the following fields before clicking  `Next`:
-    - **AWS Account ID**  - This is the AWS account ID that can be found in the dropdown in the AWS Redshift Console.
-    - **Cluster ID**  - This is the name of the Redshift cluster.
+- **AWS Account ID**  - This is the AWS account ID that can be found in the dropdown in the AWS Redshift Console.
+- **Cluster ID**  - This is the name of the Redshift cluster.
 4. In the second view, you will need to add the following.
-    - **AWS Region** - The region code in which your Redshift cluster resides.
-    - **S3 Staging Bucket** - This is the name of S3 staging bucket you need to create. We'll use it to extract data from your Redshift tables before importing the data into Mixpanel.
-    - Copy the command generated below in the AWS CLI to create the S3 Staging Bucket with the name you specified.
-    - **Database Name** - Input the name of the Database where the tables you want to import are stored.
-    - (Optional) **Policy Name** - This is an optional name for the policy, which contains role permissions that you need to grant the Mixpanel Service Account. After inputting a policy name, you can either copy-paste the JSON in the AWS UI or copy-paste the inline command line version that we generate and run in the AWS CLI.
-    - **Role Name** - Input the name of the role. After inputting a role name, you can either copy-paste the JSON in the AWS UI or copy-paste the inline command line version that we generate and run in the AWS CLI. Running this command grants the Mixpanel Service Account the necessary permissions to read and export data from your Redshift tables.
-    - Finally, attach the policy you created to the role you created by copy-pasting the command in the AWS CLI.
-    - Then, click `Create Source`.
+- **AWS Region** - The region code in which your Redshift cluster resides.
+- **S3 Staging Bucket** - This is the name of S3 staging bucket you need to create. We'll use it to extract data from your Redshift tables before importing the data into Mixpanel.
+- Copy the command generated below in the AWS CLI to create the S3 Staging Bucket with the name you specified.
+- **Database Name** - Input the name of the Database where the tables you want to import are stored.
+- (Optional) **Policy Name** - This is an optional name for the policy, which contains role permissions that you need to grant the Mixpanel Service Account. After inputting a policy name, you can either copy-paste the JSON in the AWS UI or copy-paste the inline command line version that we generate and run in the AWS CLI.
+- **Role Name** - Input the name of the role. After inputting a role name, you can either copy-paste the JSON in the AWS UI or copy-paste the inline command line version that we generate and run in the AWS CLI. Running this command grants the Mixpanel Service Account the necessary permissions to read and export data from your Redshift tables.
+- Finally, attach the policy you created to the role you created by copy-pasting the command in the AWS CLI.
+- Then, click `Create Source`.
 5. In the third view, you should see a confirmation that your source was created. To establish the source connection, we need to ping your Redshift instance to actually create the service account user.
-    - **Grant Access to Schema** - Enter the name of the schema you want to grant Mixpanel access to.
-    - Copy the command generated and run it in your Redshift worksheet. Once that command is run successfully, the connection will be established, and you will be able to send data from Redshift tables to Mixpanel.
+- **Grant Access to Schema** - Enter the name of the schema you want to grant Mixpanel access to.
+- Copy the command generated and run it in your Redshift worksheet. Once that command is run successfully, the connection will be established, and you will be able to send data from Redshift tables to Mixpanel.
 
 ### IP Allowlist
 If you are using [AWS PrivateLink](https://docs.aws.amazon.com/redshift/latest/mgmt/security-private-link.html) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
@@ -406,21 +350,21 @@ Complete the following steps to get your Postgres connector up and running:
 1. Navigate to **Project Settings**, then select **Warehouse Sources**.
 2. Click on `+ Add Connection` and select **Postgres**.
 3. You should see a new page to create your Postgres connector. Fill out the following fields:
-    - **Server Hostname**  - This is the hostname or IP address of your Postgres database.
-    - **Port**  - This is the port your database server is listening to. The default is `5432`.
-    - **Database** - This is the name of the database you want to connect to.
-    - **User Name** - This is the username you want to connect with. The user should have read-only permissions on your Postgres instance, as Mixpanel only needs to read data. Follow the principle of least privilege by granting access only to the specific schemas and tables you intend to sync.
-    - **Password** - This is the password for the user you want to connect with.
-    - **Postgres SSL Mode** - To keep your data secure, Mixpanel requires encryption for Postgres connections. You can choose between two SSL [modes](https://www.postgresql.org/docs/current/libpq-ssl.html):
-        - **verify-full** (default, recommended) - Verifies both the server certificate and that the hostname matches the certificate.
-        - **verify-ca** - Verifies the server certificate against a trusted certificate authority.
-    - **Server CA Certificate** (Optional) - If your cloud provider doesn't use a public certificate registry (e.g., Google Cloud SQL, Supabase), you can upload a CA bundle as a PEM file to authenticate your server.
-    - **SSH Tunnel** (Optional) - If you need to connect through an SSH tunnel, enable and configure the following:
-        - **Bastion Hostname** - The hostname of your SSH server.
-        - **Bastion Port** - The port your SSH server is listening on.
-        - **SSH Username** - The username for SSH authentication.
-        - **SSH Private Key** - Paste the contents of your private key file. At this time, only non-encrypted private keys are supported.
-    - Then, click `Create Source`.
+- **Server Hostname**  - This is the hostname or IP address of your Postgres database.
+- **Port**  - This is the port your database server is listening to. The default is `5432`.
+- **Database** - This is the name of the database you want to connect to.
+- **User Name** - This is the username you want to connect with. The user should have read-only permissions on your Postgres instance, as Mixpanel only needs to read data. Follow the principle of least privilege by granting access only to the specific schemas and tables you intend to sync.
+- **Password** - This is the password for the user you want to connect with.
+- **Postgres SSL Mode** - To keep your data secure, Mixpanel requires encryption for Postgres connections. You can choose between two SSL [modes](https://www.postgresql.org/docs/current/libpq-ssl.html):
+    - **verify-full** (default, recommended) - Verifies both the server certificate and that the hostname matches the certificate.
+    - **verify-ca** - Verifies the server certificate against a trusted certificate authority.
+- **Server CA Certificate** (Optional) - If your cloud provider doesn't use a public certificate registry (e.g., Google Cloud SQL, Supabase), you can upload a CA bundle as a PEM file to authenticate your server.
+- **SSH Tunnel** (Optional) - If you need to connect through an SSH tunnel, enable and configure the following:
+    - **Bastion Hostname** - The hostname of your SSH server.
+    - **Bastion Port** - The port your SSH server is listening on.
+    - **SSH Username** - The username for SSH authentication.
+    - **SSH Private Key** - Paste the contents of your private key file. At this time, only non-encrypted private keys are supported.
+- Then, click `Create Source`.
 
 {% hint style="warning" %}
 The Postgres connector only supports IPv4 connections. If you are using a database provider like Supabase, you may need to explicitly use an IPv4 connection.
@@ -522,8 +466,8 @@ Source table requirements:
 - History tables are supported only with Mirror Sync mode. Follow these [docs](/docs/tracking-methods/warehouse-connectors#mirror) to set up your source table to be mirror-compatible.
 - The table should have a Timestamp/Date type column signifying the time that the properties on the row become active. This column will need to be supplied as `Start Time`  in the sync configuration.
 - The following data types are NOT supported:
-    - Lists (eg, Snowflake’s ARRAY)
-    - Objects (e,g Snowflake’s OBJECT)
+- Lists (eg, Snowflake’s ARRAY)
+- Objects (e,g Snowflake’s OBJECT)
 
 ### Group Profiles
 

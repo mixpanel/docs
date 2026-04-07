@@ -19,21 +19,21 @@ You can install the Objective-C library by using CocoaPods, Carthage, or Swift P
     gem install cocoapods
     ```
 
-    2. After install CocoaPods, create a local CocoaPods spec mirror by running the following:
+2. After install CocoaPods, create a local CocoaPods spec mirror by running the following:
 
     ```bash
     # Create CocoaPods spec mirror
     pod setup
     ```
 
-    3. Then navigate to your Xcode project directory and create a Podfile by running the following:
+3. Then navigate to your Xcode project directory and create a Podfile by running the following:
 
     ```bash
     # create Podfile in project directory
     pod init
     ```
 
-    4. Open the Podfile that was generated and add the Mixpanel library to your dependencies:
+4. Open the Podfile that was generated and add the Mixpanel library to your dependencies:
 
     ```ruby Ruby
     # add Mixpanel library to dependencies
@@ -42,7 +42,7 @@ You can install the Objective-C library by using CocoaPods, Carthage, or Swift P
     end
     ```
 
-    5. Install the Mixpanel library and create a new Xcode workspace by running the following in the Xcode project directory:
+5. Install the Mixpanel library and create a new Xcode workspace by running the following in the Xcode project directory:
     ```bash
     # install library in your dependencies
     pod install
@@ -61,7 +61,7 @@ Mixpanel supports [Carthage](https://github.com/Carthage/Carthage#quick-start) t
 {% tab title="Swift Package Manager" %}
 1. In Xcode, select File \> Add Packages...
 
-    2. Enter the package URL for [this repository](https://github.com/mixpanel/mixpanel-iphone) and select version v4.0.0 or above.
+2. Enter the package URL for [this repository](https://github.com/mixpanel/mixpanel-iphone) and select version v4.0.0 or above.
 {% endtab %}
 
 {% endtabs %}

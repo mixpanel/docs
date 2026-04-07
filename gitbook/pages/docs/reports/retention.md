@@ -17,31 +17,17 @@ Here are some of the sample questions you can answer in Retention:
 
 ## Quick Start
 
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/W8yqLYuSIaU"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 Building a Retention report follows the same high level steps as building any other report. You can read about report building basics [here](/docs/reports).
 
@@ -97,31 +83,17 @@ You can visualize your metric in a variety of ways. Mixpanel allows you to choos
 
 ### Retention Curve
 
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/iYAKsmgqWZU"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 The retention curve chart displays retention data as both a line chart and a table. Data is identical between the two. The line chart provides a visual representation of users becoming inactive over time, while the table provides a heat map to show which groups have the best retention.
 
@@ -187,41 +159,27 @@ For example played a game for 5 consecutive days since sign-up, or visited the d
 
 These use-cases, use a combination of different retention criteria & measurement types 
 
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/zTkQVsMgPc0"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 - What is the total revenue (or LTV) for new users in the first 7 days? How has this changed over time
-    - Retention Criteria: On or Before
-    - Measurement: Property Sum; 7 Days
+- Retention Criteria: On or Before
+- Measurement: Property Sum; 7 Days
 - What is the average video watch-time for a new subscriber in their first 30 days since subscription? How has this changed over time?
-    - Retention Criteria: On or Before
-    - Measurement: Property Average; 30 Days
+- Retention Criteria: On or Before
+- Measurement: Property Average; 30 Days
 - How many new users have a wordle streak for 5 days or 10 days?
-    - Retention Criteria: Streak Mode
-    - Measurement: Unique Users; 5 days
+- Retention Criteria: Streak Mode
+- Measurement: Unique Users; 5 days
 
 ### Custom Retention Brackets
 
@@ -316,31 +274,17 @@ Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-
 
 ### Frequency View
 
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/KWUJIXeH_SU"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 You can use the Frequency report to learn how frequently users return to use your product or service.
 

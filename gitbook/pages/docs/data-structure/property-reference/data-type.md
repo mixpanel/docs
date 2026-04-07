@@ -62,11 +62,11 @@ List is an iterable data type, which makes them inherently different from non-it
 Let's assume an e-commerce platform has these 3 events:
 
 - Event 1: *PurchaseCompleted*
-    - *List of ProductIDs* = `["P1", "P2", "P4"]`
+- *List of ProductIDs* = `["P1", "P2", "P4"]`
 - Event 2: *PurchaseCompleted*
-    - *List of ProductIDs* = `["P2", "P3", "P4"]`
+- *List of ProductIDs* = `["P2", "P3", "P4"]`
 - Event 3: *PurchaseCompleted*
-    - *List of ProductIDs* = `["P3", "P4"]`
+- *List of ProductIDs* = `["P3", "P4"]`
 
 Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/docs/data-structure/lookup-tables) called *Products* which looks like this:
 
@@ -80,8 +80,8 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
 ### List Breakdown
 
 - Breakdown a list property
-    - **Question:** TOTAL of *PurchaseCompleted* broken down by *"List of ProductIDs"*
-    - **Answer:**
+- **Question:** TOTAL of *PurchaseCompleted* broken down by *"List of ProductIDs"*
+- **Answer:**
 
         | List of ProductIDs | Total |
         | --- | --- |
@@ -89,10 +89,10 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
         | P2 | 2 |
         | P3 | 2 |
         | P4 | 3 |
-    - **What's going on here?** When breaking down, each of the list's contents is evaluated as a single item. So for example, P2 is present in Event 1 and Event 2, so the TOTAL (of the *PurchaseCompleted* event) where "P2" is present is 2.
+- **What's going on here?** When breaking down, each of the list's contents is evaluated as a single item. So for example, P2 is present in Event 1 and Event 2, so the TOTAL (of the *PurchaseCompleted* event) where "P2" is present is 2.
 - Breakdown by [lookup profile property](/docs/data-structure/lookup-tables) that's joined to a list property
-    - **Question:** TOTAL of *PurchaseCompleted* broken down by *"List of ProductIDs"* → *Category*
-    - **Answer:**
+- **Question:** TOTAL of *PurchaseCompleted* broken down by *"List of ProductIDs"* → *Category*
+- **Answer:**
 
         | List of ProductIDs | Total |
         | --- | --- |
@@ -100,10 +100,10 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
         | Clothing - shirt | 2 |
         | Shoes | 2 |
         | Electronics - music | 3 |
-    - **What's going on here?** When breaking down, each of the list's contents is evaluated as a single item after being mapped to the lookup table. So for example, P2 is present in Event 1 and Event 2, and P2 mapped to the lookup table which gets us *Category* = "Clothing - shirt", so the TOTAL (of *PurchaseCompleted* events) where "Clothing - shirt" is present is 2. The thing to note here is that the results are identical to when *PurchaseCompleted* was broken down by *"List of ProductDs"*, except the *ProductIDs* are replaced by *Category*.
+- **What's going on here?** When breaking down, each of the list's contents is evaluated as a single item after being mapped to the lookup table. So for example, P2 is present in Event 1 and Event 2, and P2 mapped to the lookup table which gets us *Category* = "Clothing - shirt", so the TOTAL (of *PurchaseCompleted* events) where "Clothing - shirt" is present is 2. The thing to note here is that the results are identical to when *PurchaseCompleted* was broken down by *"List of ProductDs"*, except the *ProductIDs* are replaced by *Category*.
 - Breakdown by lookup profile property that's joined to a list property AND by the list property itself
-    - **Question:** TOTAL of *PurchaseCompleted* broken down by *"List of ProductIDs"* → *Category* AND *"List of ProductIDs"* (2 breakdowns applied)
-    - **Answer:**
+- **Question:** TOTAL of *PurchaseCompleted* broken down by *"List of ProductIDs"* → *Category* AND *"List of ProductIDs"* (2 breakdowns applied)
+- **Answer:**
 
         | List of ProductIDs.Category | List of ProductIDs | Total |
         | --- | --- | --- |
@@ -121,14 +121,14 @@ Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/d
         |  | P2 | 2 |
         |  | P3 | 2 |
         |  | P4 | 3 |
-    - **What's going on here?** For each breakdown value, Mixpanel recomputes the list breakdown. So for example, TOTAL (*PurchaseCompleted*) with "*List of ProductIDs*" → *Category* = "Shoes" should get us Event 2 and Event 3:When these 2 events are broken down by *"List of ProductIDs"*, we get these results for "Shoes"(*ProductID* = "P3"):
-        - Event 2: *PurchaseCompleted*
-            - *List of ProductIDs* = `["P2", "P3", "P4"]`
-        - Event 3: PurchaseCompleted
-            - *List of ProductIDs* = `["P3", "P4"]`
-        - P2: 1
-        - P3: 2
-        - P4: 2
+- **What's going on here?** For each breakdown value, Mixpanel recomputes the list breakdown. So for example, TOTAL (*PurchaseCompleted*) with "*List of ProductIDs*" → *Category* = "Shoes" should get us Event 2 and Event 3:When these 2 events are broken down by *"List of ProductIDs"*, we get these results for "Shoes"(*ProductID* = "P3"):
+    - Event 2: *PurchaseCompleted*
+        - *List of ProductIDs* = `["P2", "P3", "P4"]`
+    - Event 3: PurchaseCompleted
+        - *List of ProductIDs* = `["P3", "P4"]`
+    - P2: 1
+    - P3: 2
+    - P4: 2
 ### List Filter
 
 When filtering using a list property, you may additionally configure whether all items in the list must match your expression and whether to return all items from a list in your analysis.
@@ -136,89 +136,89 @@ When filtering using a list property, you may additionally configure whether all
 1. **Any in List:** If any item in your list matches your filter criteria, the event will be included.
     
     **Example:**
-    - Products: ["a","b","c","d"]
-    - Filter criteria: "Products" = "a", Any in List
-    - Result: The event is included since at least 1 item in the Products list property is "a".
+- Products: ["a","b","c","d"]
+- Filter criteria: "Products" = "a", Any in List
+- Result: The event is included since at least 1 item in the Products list property is "a".
 
 2. **All in List:** If every item in your list matches your filter criteria, the event will be included.
 
     **Example:**
-    - Products: ["a","b","c","d"]
-    - Filter criteria: "Products" = "a", All in List
-    - Result: The event is not included because not all items in the Products list property is "a"
+- Products: ["a","b","c","d"]
+- Filter criteria: "Products" = "a", All in List
+- Result: The event is not included because not all items in the Products list property is "a"
 
 3. **Include Matching Items:** If the event matches your filter criteria and the list property is included as a breakdown, return only the matching items from the list in the results.
 
     **Example:**
-    - Products: ["a","b","c","d"]
-    - Filter criteria: "Products" = "a", Any in List, Include Matching Items
-    - Result: The event is included since at least 1 item in the Products list property is "a". In the resulting report, only "a" appears as a breakdown segment.
+- Products: ["a","b","c","d"]
+- Filter criteria: "Products" = "a", Any in List, Include Matching Items
+- Result: The event is included since at least 1 item in the Products list property is "a". In the resulting report, only "a" appears as a breakdown segment.
 
 4. **Include All Items:** If the event matches your filter criteria and the list property is included as a breakdown, return all items from the list in the results.
 
     **Example:**
-    - Products: ["a","b","c","d"]
-    - Filter criteria: "Products" = "a", Any in List, Include All Items
-    - Result: The event is included since at least 1 item in the Products list property is "a". In the resulting report, "a", "b", "c", and "d" appears as a breakdown segment.
+- Products: ["a","b","c","d"]
+- Filter criteria: "Products" = "a", Any in List, Include All Items
+- Result: The event is included since at least 1 item in the Products list property is "a". In the resulting report, "a", "b", "c", and "d" appears as a breakdown segment.
 
 **Additional Examples:**
 
 - Filter by any element of a list property
-    - **Question:** TOTAL of *PurchaseCompleted* filtered by
+- **Question:** TOTAL of *PurchaseCompleted* filtered by
 
         | "List of ProductIDs" | Any | = (equals) | "P1" |
         | --- | --- | --- | --- |
-    - **Answer:** *PurchaseCompleted - TOTAL*: 1
-    - **What's going on here?** The "Any" operator filters down events when the filtered value matches ANY item in the list property. So in this example, the only event in which "List of ProductIDs" has "P1" present even once is Event 1, so the total event count for this filter is 1.
+- **Answer:** *PurchaseCompleted - TOTAL*: 1
+- **What's going on here?** The "Any" operator filters down events when the filtered value matches ANY item in the list property. So in this example, the only event in which "List of ProductIDs" has "P1" present even once is Event 1, so the total event count for this filter is 1.
 - Filter by all elements of a list property
-    - **Question**: TOTAL of *PurchaseCompleted* filtered by
+- **Question**: TOTAL of *PurchaseCompleted* filtered by
 
         | "List of ProductIDs" | All | = (equals) | "P1" |
         | --- | --- | --- | --- |
-    - **Answer:** *PurchaseCompleted - TOTAL*: 0
-    - **What's going on here?** The "All" operator filters down events when the filtered value matches ALL of the items in the list property. So in this example, there is no event in which "List of ProductIDs" has all the elements equal to "P1", so the total event count for this filter is 0.
+- **Answer:** *PurchaseCompleted - TOTAL*: 0
+- **What's going on here?** The "All" operator filters down events when the filtered value matches ALL of the items in the list property. So in this example, there is no event in which "List of ProductIDs" has all the elements equal to "P1", so the total event count for this filter is 0.
 - Filter by list property and broken down by list property
-    - **Question:** TOTAL of PurchaseCompleted filtered byBroken down by "List of ProductIDs"
+- **Question:** TOTAL of PurchaseCompleted filtered byBroken down by "List of ProductIDs"
 
         | "List of ProductIDs" | Any | = (equals) | "P1" |
         | --- | --- | --- | --- |
-    - **Answer:**
+- **Answer:**
 
         | List of ProductIDs | Total |
         | --- | --- |
         | P1 | 1 |
         | P2 | 1 |
         | P4 | 1 |
-    - **What is going on here?** There is only 1 event that contains "P1" (Event 1, *"List of ProductIDs"* = ["P1", "P2", "P4"]), so when that one event is broken down by *"List of ProductIDs"*, Mixpanel evaluates each list item individually, thereby getting us:
-        - P1: 1 (1 event)
-        - P2: 1 (1 event)
-        - P4: 1 (1 event)
+- **What is going on here?** There is only 1 event that contains "P1" (Event 1, *"List of ProductIDs"* = ["P1", "P2", "P4"]), so when that one event is broken down by *"List of ProductIDs"*, Mixpanel evaluates each list item individually, thereby getting us:
+    - P1: 1 (1 event)
+    - P2: 1 (1 event)
+    - P4: 1 (1 event)
 - Filter by lookup profile property that is joined to a list property and then broken down by list property
-    - **Question:** TOTAL of *PurchaseCompleted* filtered byBroken down by "List of ProductIDs"
+- **Question:** TOTAL of *PurchaseCompleted* filtered byBroken down by "List of ProductIDs"
 
         | "List of ProductIDs" → Category | Any | = (equals) | "Shoes" |
         | --- | --- | --- | --- |
-    - **Answer:**
+- **Answer:**
 
         | List of ProductIDs | Total |
         | --- | --- |
         | P2 | 1 |
         | P3 | 2 |
         | P4 | 2 |
-    - **What is going on here?** There are 2 events that contain where the *Category* mapping for at least one of the *ProductIDs* in "*List of ProductIDs*" is equal to "Shoes" (i.e. *ProductID* = P3).When these two events are broken down by *"List of ProductIDs"*, Mixpanel evaluates each list item individually, thereby getting us:
-        - Event 2: PurchaseCompleted
-            - List of ProductIDs = ["P2", "P3", "P4"]
-        - Event 3: PurchaseCompleted
-            - List of ProductIDs = ["P3", "P4"]
-        - P2: 1 (1 event)
-        - P3: 2(2 events)
-        - P4: 2 (2 events)
+- **What is going on here?** There are 2 events that contain where the *Category* mapping for at least one of the *ProductIDs* in "*List of ProductIDs*" is equal to "Shoes" (i.e. *ProductID* = P3).When these two events are broken down by *"List of ProductIDs"*, Mixpanel evaluates each list item individually, thereby getting us:
+    - Event 2: PurchaseCompleted
+        - List of ProductIDs = ["P2", "P3", "P4"]
+    - Event 3: PurchaseCompleted
+        - List of ProductIDs = ["P3", "P4"]
+    - P2: 1 (1 event)
+    - P3: 2(2 events)
+    - P4: 2 (2 events)
 - Filter by lookup profile property that is joined to a list property (with multiple matching values) and then broken down by list property
-    - **Question**: TOTAL of *PurchaseCompleted* filtered byBroken down by "List of ProductIDs"
+- **Question**: TOTAL of *PurchaseCompleted* filtered byBroken down by "List of ProductIDs"
 
         | "List of ProductIDs" → Category | Any | ∋ (contains) | "Clothing" |
         | --- | --- | --- | --- |
-    - **Answer:**
+- **Answer:**
 
         | List of ProductIDs | Total |
         | --- | --- |
@@ -226,22 +226,22 @@ When filtering using a list property, you may additionally configure whether all
         | P2 | 2 |
         | P3 | 1 |
         | P4 | 2 |
-    - **What is going on here?** This filter can be read as "for any of the items in *'List of ProductIDs'* , the lookup property *Category* contains the string 'Clothing'". This operation is filtering down to all the events that contain the *Category* mapping for the *ProductID* contains EITHER "Clothing - pants" or "Clothing - shirt", and that gives us 2 events:
-        - Event 1: PurchaseCompleted
-            - List of ProductIDs ["P1","P2","P4"]
-        - Event 2: PurchaseCompleted
-            - List of ProductIDs ["P2","P3","P4"]
-    - Therefore, when those two events are broken down by "List of ProductIDs", Mixpanel evaluates each item of the list individually and we end up getting:
-        - P1: 1
-        - P2: 2
-        - P3: 1
-        - P4: 2
+- **What is going on here?** This filter can be read as "for any of the items in *'List of ProductIDs'* , the lookup property *Category* contains the string 'Clothing'". This operation is filtering down to all the events that contain the *Category* mapping for the *ProductID* contains EITHER "Clothing - pants" or "Clothing - shirt", and that gives us 2 events:
+    - Event 1: PurchaseCompleted
+        - List of ProductIDs ["P1","P2","P4"]
+    - Event 2: PurchaseCompleted
+        - List of ProductIDs ["P2","P3","P4"]
+- Therefore, when those two events are broken down by "List of ProductIDs", Mixpanel evaluates each item of the list individually and we end up getting:
+    - P1: 1
+    - P2: 2
+    - P3: 1
+    - P4: 2
 - Filter by lookup profile property that is joined to a list property (numeric filter) and then broken down by list property
-    - **Question**: TOTAL of *PurchaseCompleted* filtered byBroken down by *"List of ProductIDs"*
+- **Question**: TOTAL of *PurchaseCompleted* filtered byBroken down by *"List of ProductIDs"*
 
         | "List of ProductIDs" → Price (number) | Any | < (less than) | 100 |
         | --- | --- | --- | --- |
-    - **Answer:**
+- **Answer:**
 
         | List of ProductIDs | Total |
         | --- | --- |
@@ -249,15 +249,15 @@ When filtering using a list property, you may additionally configure whether all
         | P2 | 2 |
         | P3 | 1 |
         | P4 | 2 |
-    - **What is going on here?** The filter can be read as "for any item in *'List of ProductIDs',* the lookup property *Price* is less than 100" and it only matches 1 product, and that is P2. Therefore, what this operation is doing is filtering down to all the events that contain P2 as ANY of the values in "List of ProductDs", and that gives us 2 events:Therefore, when those two events are broken down by *"List of ProductIDs"*, Mixpanel evaluates each item of the list individually and we end up getting:
-        - Event 1: *PurchaseCompleted*
-            - *List of ProductIDs* = ["P1", "P2", "P4"]
-        - Event 2: PurchaseCompleted
-            - *List of ProductIDs* = ["P2", "P3", "P4"]
-        - P1: 1
-        - P2: 2
-        - P3: 1
-        - P4: 2
+- **What is going on here?** The filter can be read as "for any item in *'List of ProductIDs',* the lookup property *Price* is less than 100" and it only matches 1 product, and that is P2. Therefore, what this operation is doing is filtering down to all the events that contain P2 as ANY of the values in "List of ProductDs", and that gives us 2 events:Therefore, when those two events are broken down by *"List of ProductIDs"*, Mixpanel evaluates each item of the list individually and we end up getting:
+    - Event 1: *PurchaseCompleted*
+        - *List of ProductIDs* = ["P1", "P2", "P4"]
+    - Event 2: PurchaseCompleted
+        - *List of ProductIDs* = ["P2", "P3", "P4"]
+    - P1: 1
+    - P2: 2
+    - P3: 1
+    - P4: 2
 
 ## List of Objects Property Support
 

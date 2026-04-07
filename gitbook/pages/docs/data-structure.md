@@ -3,34 +3,48 @@
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>All about our Data Model</td>
-      <td><a href="/docs/data-structure/concepts">All about our Data Model</a></td>
+      <td><strong>All about our Data Model</strong></td>
+      <td></td>
+      <td><a href="/docs/data-structure/concepts">/docs/data-structure/concepts</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Events &amp; Properties</td>
-      <td><a href="/docs/data-structure/events-and-properties">Events &amp; Properties</a></td>
+      <td><strong>Events &amp; Properties</strong></td>
+      <td></td>
+      <td><a href="/docs/data-structure/events-and-properties">/docs/data-structure/events-and-properties</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>User Profiles</td>
-      <td><a href="/docs/data-structure/user-profiles">User Profiles</a></td>
+      <td><strong>User Profiles</strong></td>
+      <td></td>
+      <td><a href="/docs/data-structure/user-profiles">/docs/data-structure/user-profiles</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Group Analytics</td>
-      <td><a href="/docs/data-structure/group-analytics">Group Analytics</a></td>
+      <td><strong>Group Analytics</strong></td>
+      <td></td>
+      <td><a href="/docs/data-structure/group-analytics">/docs/data-structure/group-analytics</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Lookup Tables</td>
-      <td><a href="/docs/data-structure/lookup-tables">Lookup Tables</a></td>
+      <td><strong>Lookup Tables</strong></td>
+      <td></td>
+      <td><a href="/docs/data-structure/lookup-tables">/docs/data-structure/lookup-tables</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Property Reference</td>
-      <td><a href="/docs/data-structure/property-reference">Property Reference</a></td>
+      <td><strong>Property Reference</strong></td>
+      <td></td>
+      <td><a href="/docs/data-structure/property-reference">/docs/data-structure/property-reference</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

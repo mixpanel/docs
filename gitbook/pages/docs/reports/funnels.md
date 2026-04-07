@@ -5,26 +5,36 @@ Take a look at these pages to learn about our Funnels Report.
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Overview</td>
-      <td><a href="/docs/reports/funnels/funnels-overview">Overview</a></td>
+      <td><strong>Overview</strong></td>
+      <td></td>
+      <td><a href="/docs/reports/funnels/funnels-overview">/docs/reports/funnels/funnels-overview</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Quickstart</td>
-      <td><a href="/docs/reports/funnels/funnels-quickstart">Quickstart</a></td>
+      <td><strong>Quickstart</strong></td>
+      <td></td>
+      <td><a href="/docs/reports/funnels/funnels-quickstart">/docs/reports/funnels/funnels-quickstart</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Advanced Concepts</td>
-      <td><a href="/docs/reports/funnels/funnels-advanced">Advanced Concepts</a></td>
+      <td><strong>Advanced Concepts</strong></td>
+      <td></td>
+      <td><a href="/docs/reports/funnels/funnels-advanced">/docs/reports/funnels/funnels-advanced</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>FAQ</td>
-      <td><a href="/docs/reports/funnels/funnels-faq">FAQ</a></td>
+      <td><strong>FAQ</strong></td>
+      <td></td>
+      <td><a href="/docs/reports/funnels/funnels-faq">/docs/reports/funnels/funnels-faq</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

@@ -137,15 +137,15 @@ You can also look at the latest value as of a specific time period, or for **any
 - NRR > 100% → Existing customers are being retained and the user base is growing
 - NRR < 100% → Existing customers are a leaky bucket and we are not able to upsell them 
 - Formula:
-    - Current MRR from Existing Biz / Prior MRR
-    - (Prior MRR from Existing Biz + (Upsell MRR - Downgrade MRR) ) / Prior MRR
+- Current MRR from Existing Biz / Prior MRR
+- (Prior MRR from Existing Biz + (Upsell MRR - Downgrade MRR) ) / Prior MRR
 
 ![image](/revenue10.png)
 
 **MRR Churn**: Calculated as the drop in Revenue for existing users (it does not consider upsells). Typically, the target ARR Churn is below 15%. What does this translate to on a monthly basis?
 
 - Formula
-    - 1 - ( (Current MRR from Existing Biz - Upsell MRR) / Prior MRR )
+- 1 - ( (Current MRR from Existing Biz - Upsell MRR) / Prior MRR )
 
 **MRR Growth Rate**: Calculated as the overall growth in MRR (New + Existing Biz)
 
@@ -164,7 +164,7 @@ Ultimately, the Goal is to have (New + Upsell) - Downgrade to be positive, which
 
 ## FAQ
 
-<div className="faqComponent" >
+<div class="faqComponent" >
 
 <details>
 <summary>Can all customers use these features?</summary>
@@ -189,5 +189,3 @@ We do not support profile history for object-type properties. To be able to look
   
   If you have 5 SKUs, send 5 historical properties (SKU_revenue_1, SKU_revenue_2, …, SKU_revenue_5).
 </details>
-
-</div>

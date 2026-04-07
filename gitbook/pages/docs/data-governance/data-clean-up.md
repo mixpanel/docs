@@ -32,59 +32,31 @@ If you use Figma to identify your events, some customers add their links to the 
 
 #### Adding tags to events
 
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/BeW5n9srpQ0"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 ### Using custom events to combine or filter events
 
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/YjlTAaHlUuQ"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 ### Cleaning up user profiles
 
@@ -159,9 +131,9 @@ You may undo Data Deletion requests **for only 7 days after submitting**, after 
 ### Reminders with ETL approach
 
 - For projects created prior to 1 Jan 2023 offset your timestamps
-    - If your project was created prior to 1 Jan 2023, you cannot just clean the data you don't want and re-import it. Your data is stored in project time, so you need to adjust the offset before importing
+- If your project was created prior to 1 Jan 2023, you cannot just clean the data you don't want and re-import it. Your data is stored in project time, so you need to adjust the offset before importing
 - Don’t forget to regenerate $insert_id’s when you ETL
-    - When you submit a deletion request, we hide your data immediately from your project to reduce any privacy concerns. We call this “soft deletion”, an interim phase before our “hard deletion” kicks in (where your data is permanently deleted from our servers) so that you can review the impact of your changes and undo when necessary. If you re-import data while the data is soft deleted **with the same \$insert_id**, our deduplication systems may keep the old (deleted) event and toss the new event. Since this data is soft-deleted, your re-import won’t reflect the data as imported. Thus, when the ETL is done, you should regenerate the $insert_id value if possible, to avoid this possible collision
+- When you submit a deletion request, we hide your data immediately from your project to reduce any privacy concerns. We call this “soft deletion”, an interim phase before our “hard deletion” kicks in (where your data is permanently deleted from our servers) so that you can review the impact of your changes and undo when necessary. If you re-import data while the data is soft deleted **with the same \$insert_id**, our deduplication systems may keep the old (deleted) event and toss the new event. Since this data is soft-deleted, your re-import won’t reflect the data as imported. Thus, when the ETL is done, you should regenerate the $insert_id value if possible, to avoid this possible collision
     
 
 ### Frequently asked questions

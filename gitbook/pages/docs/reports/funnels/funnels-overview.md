@@ -26,20 +26,15 @@ Imagine your product is a B2B messaging application. You might use Funnels to an
 
 <hr></hr>
 <br></br>
-<div className="extendedButtonComponent" >
-<div className="bg-base100 rounded-xl">
-  <h2 className="text-2xl font-medium mb-2 color:bg-purple200">
+<div class="bg-base100 rounded-xl">
+  <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
     Next: Build a Funnels Report
   </h2>
   <p>
     Build your first Funnels report using the Quickstart below.
   </p>
   <br></br>
-  <ExtendedButton
-    title="Funnels Quickstart"
-    link="/docs/reports/funnels/funnels-quickstart"
-  ></ExtendedButton>
-</div>
-</div>
+  <a href="/docs/reports/funnels/funnels-quickstart" class="button primary">Funnels Quickstart</a>
+
 <br></br>
 <br></br>

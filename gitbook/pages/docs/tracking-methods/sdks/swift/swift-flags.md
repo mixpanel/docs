@@ -199,7 +199,7 @@ Mixpanel.mainInstance().flags.getAllVariants { allFlags in
 2. **Review flag configuration**:
   - Make sure your feature flag is enabled
   - Check the flag's rollout percentage
-    - User contexts that are not assigned to the rollout percentage will not receive flags
+- User contexts that are not assigned to the rollout percentage will not receive flags
   - If you are using a targeting cohort, verify on the mixpanel 'Users' page that the user's `distinct_id` is a member of that cohort.
 
 3. **Review SDK parameters**:

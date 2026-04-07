@@ -190,8 +190,8 @@ The resulting **r-value** determines the correlation score displayed on the edge
 - **Matching timestamps**: Data points are aligned by timestamp to ensure proper comparison.
 - **A configurable time window**: The correlation is typically calculated over a specified time range (e.g., the last 30 days)
 - **Some specific aspects to call out:**
-    1. If 2 time-series data have different lengths, correlations are calculated based on the overlapping lengths between the 2 
-    2. All correlations are run on a daily granularity, since event data is available on a daily basis to compute metrics at that granular view.
+1. If 2 time-series data have different lengths, correlations are calculated based on the overlapping lengths between the 2 
+2. All correlations are run on a daily granularity, since event data is available on a daily basis to compute metrics at that granular view.
 
 #### Limitations of Correlation
 

@@ -17,31 +17,17 @@ Here are some of the sample questions you can answer in Flows:
 
 ## Quick Start
 
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/lB9lQ8Xw9-8"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 Building a Flows report follows the same high level steps as building any other report. You can read about report building basics [here](/docs/reports).
 

@@ -85,8 +85,8 @@ exampleUser,
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events page](https://mixpanel.com/report/events).
 
 **More resources:**
-    * Docs: [Read the Go SDK Doc](/docs/tracking-methods/sdks/go/)
-    * Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+* Docs: [Read the Go SDK Doc](/docs/tracking-methods/sdks/go/)
+* Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 {% endtab %}
 
 {% tab title="Ruby" %}
@@ -127,8 +127,8 @@ mixpanel.deliver(delivery);
 🎉 Congratulations, you've tracked your first event! You can see it in Mixpanel via the [Events page](https://mixpanel.com/report/events).
 
 **More resources:**
-    * Docs: [Read the Java SDK Doc](/docs/tracking-methods/sdks/java/)
-    * Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
+* Docs: [Read the Java SDK Doc](/docs/tracking-methods/sdks/java/)
+* Github: [Browse the Open Source SDKs](https://github.com/mixpanel)
 {% endtab %}
 
 {% tab title="React Native" %}
@@ -277,9 +277,8 @@ All of our sample code transparently retries and backoff from rate limit excepti
 
 <hr></hr>
 <br></br>
-<div className="extendedButtonComponent" >
-<div className="bg-base100 rounded-xl">
-  <h2 className="text-2xl font-medium mb-2 color:bg-purple200">
+<div class="bg-base100 rounded-xl">
+  <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
     You're Ready to Start Using Mixpanel
   </h2>
   <p>
@@ -287,18 +286,14 @@ All of our sample code transparently retries and backoff from rate limit excepti
     of our [many templates](/docs/boards/templates).
   </p>
   <br></br>
-  <ExtendedButton
-    title="Open Mixpanel"
-    link="https://mixpanel.com"
-  ></ExtendedButton>
-</div>
-</div>
+  <a href="https://mixpanel.com" class="button primary">Open Mixpanel</a>
+
 <br></br>
 <br></br>
 
 ## FAQ
 
-<div className="faqComponent" >
+<div class="faqComponent" >
 
 <details>
 <summary>Does Mixpanel automatically track page views?</summary>
@@ -322,4 +317,3 @@ If tracking from a mobile device, events may take 1-2 minutes to appear because 
 mobile SDKs buffer events for 1 minute, or when the app transitions to the background, to
 conserve battery life and bandwidth. You can call `.flush()` in the mobile SDKs to manually flush events to Mixpanel.
 </details>
-</div>

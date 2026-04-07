@@ -474,5 +474,5 @@ Key Considerations:
 - For Segment’s client-side Analytics-Swift SDK, you can use Segment’s Plugin Architecture to enrich events with the $mp_replay_id property, ensuring they’re linked to their replays.
 - The Mixpanel Session Replay SDK is separate from the standard Mixpanel tracking SDK. You do not need the regular SDK, but the Replay SDK must be configured with a distinct_id and project token.
 - Events can be linked to replays either by:
-    - Manually attaching the current replay ID to each event
-    - Using server-side stitching after the fact
+- Manually attaching the current replay ID to each event
+- Using server-side stitching after the fact

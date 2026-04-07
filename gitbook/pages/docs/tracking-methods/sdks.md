@@ -9,38 +9,54 @@ If you do not see an SDK in your preferred language, leverage our [HTTP APIs](ht
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Javascript</td>
-      <td><a href="/docs/tracking-methods/sdks/javascript">Javascript</a></td>
+      <td><strong>Javascript</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/javascript">/docs/tracking-methods/sdks/javascript</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>React Native</td>
-      <td><a href="/docs/tracking-methods/sdks/react-native">React Native</a></td>
+      <td><strong>React Native</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/react-native">/docs/tracking-methods/sdks/react-native</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Android</td>
-      <td><a href="/docs/tracking-methods/sdks/android">Android</a></td>
+      <td><strong>Android</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/android">/docs/tracking-methods/sdks/android</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>iOS (Objective-C)</td>
-      <td><a href="/docs/tracking-methods/sdks/ios">iOS (Objective-C)</a></td>
+      <td><strong>iOS (Objective-C)</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/ios">/docs/tracking-methods/sdks/ios</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>iOS (Swift)</td>
-      <td><a href="/docs/tracking-methods/sdks/swift">iOS (Swift)</a></td>
+      <td><strong>iOS (Swift)</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/swift">/docs/tracking-methods/sdks/swift</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Flutter</td>
-      <td><a href="/docs/tracking-methods/sdks/flutter">Flutter</a></td>
+      <td><strong>Flutter</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/flutter">/docs/tracking-methods/sdks/flutter</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Unity</td>
-      <td><a href="/docs/tracking-methods/sdks/unity">Unity</a></td>
+      <td><strong>Unity</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/unity">/docs/tracking-methods/sdks/unity</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -50,34 +66,48 @@ If you do not see an SDK in your preferred language, leverage our [HTTP APIs](ht
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Python</td>
-      <td><a href="/docs/tracking-methods/sdks/python">Python</a></td>
+      <td><strong>Python</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/python">/docs/tracking-methods/sdks/python</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Node.js</td>
-      <td><a href="/docs/tracking-methods/sdks/nodejs">Node.js</a></td>
+      <td><strong>Node.js</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/nodejs">/docs/tracking-methods/sdks/nodejs</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Ruby</td>
-      <td><a href="/docs/tracking-methods/sdks/ruby">Ruby</a></td>
+      <td><strong>Ruby</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/ruby">/docs/tracking-methods/sdks/ruby</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>PHP</td>
-      <td><a href="/docs/tracking-methods/sdks/php">PHP</a></td>
+      <td><strong>PHP</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/php">/docs/tracking-methods/sdks/php</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Go</td>
-      <td><a href="/docs/tracking-methods/sdks/go">Go</a></td>
+      <td><strong>Go</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/go">/docs/tracking-methods/sdks/go</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Java</td>
-      <td><a href="/docs/tracking-methods/sdks/java">Java</a></td>
+      <td><strong>Java</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/java">/docs/tracking-methods/sdks/java</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -87,22 +117,30 @@ If you do not see an SDK in your preferred language, leverage our [HTTP APIs](ht
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Session Replay (Android)</td>
-      <td><a href="/docs/tracking-methods/sdks/android/android-replay">Session Replay (Android)</a></td>
+      <td><strong>Session Replay (Android)</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/android/android-replay">/docs/tracking-methods/sdks/android/android-replay</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Session Replay (Swift)</td>
-      <td><a href="/docs/tracking-methods/sdks/swift/swift-replay">Session Replay (Swift)</a></td>
+      <td><strong>Session Replay (Swift)</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/swift/swift-replay">/docs/tracking-methods/sdks/swift/swift-replay</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Session Replay (React Native)</td>
-      <td><a href="/docs/tracking-methods/sdks/react-native/react-native-replay">Session Replay (React Native)</a></td>
+      <td><strong>Session Replay (React Native)</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/react-native/react-native-replay">/docs/tracking-methods/sdks/react-native/react-native-replay</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -112,14 +150,18 @@ If you do not see an SDK in your preferred language, leverage our [HTTP APIs](ht
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Mixpanel-utils Module↗</td>
-      <td><a href="https://github.com/mixpanel/mixpanel-utils">Mixpanel-utils Module↗</a></td>
+      <td><strong>Mixpanel-utils Module↗</strong></td>
+      <td></td>
+      <td><a href="https://github.com/mixpanel/mixpanel-utils">https://github.com/mixpanel/mixpanel-utils</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

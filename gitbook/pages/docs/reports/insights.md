@@ -13,18 +13,18 @@ Advanced Insights features also allow you to create formulas, compare current da
 Here are some of the sample questions you can answer in Insights:
 
 - Product Analytics
-    - How is my WAU changing over time? (unique users)
-    - How often are my users getting value? (frequency analysis)
-    - What is the distribution of my users across regions/devices etc? (property breakdown)
-    - [Lifecycle analysis](https://mixpanel.com/blog/growth-through-segmentation-lifecycle-analysis-to-understand-your-users/)
+- How is my WAU changing over time? (unique users)
+- How often are my users getting value? (frequency analysis)
+- What is the distribution of my users across regions/devices etc? (property breakdown)
+- [Lifecycle analysis](https://mixpanel.com/blog/growth-through-segmentation-lifecycle-analysis-to-understand-your-users/)
 - B2B (in this case, a messaging application)
-    - How many messages were sent in the US in the past 30 days? (total events, filtered)
-    - How many users had a mobile app session yesterday? (unique events)
-    - How many messages are sent per session? (formulas)
-    - How much revenue was generated on plans purchased in the past year? (property aggregation)
-    - How has the power users cohort grown over the past 6 months? (cohort trends)
+- How many messages were sent in the US in the past 30 days? (total events, filtered)
+- How many users had a mobile app session yesterday? (unique events)
+- How many messages are sent per session? (formulas)
+- How much revenue was generated on plans purchased in the past year? (property aggregation)
+- How has the power users cohort grown over the past 6 months? (cohort trends)
 - Marketing
-    - Which advertising campaigns generate the most checkouts? (property breakdown)
+- Which advertising campaigns generate the most checkouts? (property breakdown)
 
 #### Frequency Analysis
 
@@ -32,31 +32,17 @@ It's important to know what's the natural frequency at which your users use your
 
 ## Quick Start
 
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/Popsy5G4i54"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 ### Step 1: Define your Behavior
 
@@ -144,16 +130,16 @@ If you hit this limit, you can:
 Insights feature multiple visualizations to help you view the query results in the clearest chart type. By default, Insights displays the results on the line chart, which helps you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can choose to get a metric calculated either across the entire time period selected in the date picker or on a time-segmented view of the metric (e.g. daily breakdown).
 
 - Metric calculated across the entire time period
-    - Bar chart
-    - Stacked bar chart
-    - Pie chart
-    - Metric chart
-    - Table chart
+- Bar chart
+- Stacked bar chart
+- Pie chart
+- Metric chart
+- Table chart
 - Metric time-segmented
-    - Line chart
-    - Stacked line chart
-    - Column chart
-    - Stacked Column chart
+- Line chart
+- Stacked line chart
+- Column chart
+- Stacked Column chart
 
 ### Rename an Event within a Report
 
@@ -320,8 +306,8 @@ When you have multiple metrics, or have broken down a metric by a property, you 
 
 Profile metrics allow you to access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Measurement](/docs/reports/insights#measurements) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
 
-{/* <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/dc5e909f2d7f427ca962e493e87894ad" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+{/* <p >
+  <iframe src="https://www.loom.com/embed/dc5e909f2d7f427ca962e493e87894ad" frameborder="0" allowfullscreen></iframe>
 </p> */}
 
 [Link to Demo](https://www.loom.com/share/dc5e909f2d7f427ca962e493e87894ad)
@@ -334,8 +320,8 @@ Learn more about [Annotations](/docs/features/annotations).
 
 ### Measurements
 
-{/* <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/22d760d014234a1eb566f68dda79c58f" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+{/* <p >
+  <iframe src="https://www.loom.com/embed/22d760d014234a1eb566f68dda79c58f" frameborder="0" allowfullscreen></iframe>
 </p> */}
 
 [Link to Demo](https://www.loom.com/share/22d760d014234a1eb566f68dda79c58f)
@@ -476,8 +462,8 @@ Allows you to change the metric being measured. Access by going into the advance
 For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported on each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
 - **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
 
-{/* <p style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-  <iframe src="https://www.loom.com/embed/4d49fe9a64e24fb2b6cac44f86839fd2" frameborder="0" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} allowfullscreen></iframe>
+{/* <p >
+  <iframe src="https://www.loom.com/embed/4d49fe9a64e24fb2b6cac44f86839fd2" frameborder="0" allowfullscreen></iframe>
 </p> */}
 
 [Link to Demo](https://www.loom.com/share/4d49fe9a64e24fb2b6cac44f86839fd2)

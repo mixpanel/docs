@@ -20,8 +20,8 @@ In order to integrate Airship with Mixpanel for anonymous mobile audience identi
 2. Create a cohort in Mixpanel.
 3. Create a Mixpanel [Tag Group within Airship](https://docs.urbanairship.com/guides/tag-groups-walkthrough/#tg-create-tag-group). **For this Integration, we require that you create a Tag Group Key called "mixpanel". Note that Tag Group Keys are case sensitive.**
 4. Export the Cohort from Mixpanel, at which time Mixpanel will wait for a callback to ensure that the request to Airship was received.
-    - A **one-time export** will add the new Airship tag to all users in the Mixpanel cohort at the time of the export. The new tag will be visible in Airship. 
-    - A **dynamic sync** will add or remove a tag for users in the cohort every 15 minutes until the sync is disconnected. This means that every 15 minutes, the tag in Airship will update to reflect the current status of the Mixpanel cohort.
+- A **one-time export** will add the new Airship tag to all users in the Mixpanel cohort at the time of the export. The new tag will be visible in Airship. 
+- A **dynamic sync** will add or remove a tag for users in the cohort every 15 minutes until the sync is disconnected. This means that every 15 minutes, the tag in Airship will update to reflect the current status of the Mixpanel cohort.
 
 ## How does Mixpanel export data to Airship?
 

@@ -6,31 +6,17 @@ This page covers advanced concepts related to funnels, including how their metri
 
 ## Conversion Criteria
 
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/Nk0u-oTOHfo"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 ### Conversion Window
 
@@ -161,8 +147,8 @@ A few things to note about exclusion steps:
     
     Example reports for reference from our demo dataset:
     
-    - [User activity](https://mixpanel.com/s/2it5gE)
-    - [Funnel](https://mixpanel.com/s/2CpCuq)
+- [User activity](https://mixpanel.com/s/2it5gE)
+- [Funnel](https://mixpanel.com/s/2CpCuq)
 2. A user will qualify for each step in the funnel until they track the exclusion step. This means users who tracked the exclusion step are still able to enter the funnel and convert through steps. Use a [cohort](/docs/users/cohorts) filter if you want users who did a particular event at any point excluded from entering the funnel.
 3. There may be any number of exclusion events between steps.
 4. Exclusion steps have the same [two second grace period](/docs/reports/funnels/funnels-faq#how-does-the-funnel-handle-simultaneous-events) as other steps in the funnel.
@@ -425,20 +411,15 @@ Click on the “...” icon besides a step and click "Rename" to rename it.
 
 <hr></hr>
 <br></br>
-<div className="extendedButtonComponent" >
-<div className="bg-base100 rounded-xl">
-  <h2 className="text-2xl font-medium mb-2 color:bg-purple200">
+<div class="bg-base100 rounded-xl">
+  <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
     Next: Frequently Asked Questions
   </h2>
   <p>
     Still got questions? Get answers to the most frequently asked Funnels questions below.
   </p>
   <br></br>
-  <ExtendedButton
-    title="Funnels FAQ"
-    link="/docs/reports/funnels/funnels-faq"
-  ></ExtendedButton>
-</div>
-</div>
+  <a href="/docs/reports/funnels/funnels-faq" class="button primary">Funnels FAQ</a>
+
 <br></br>
 <br></br>

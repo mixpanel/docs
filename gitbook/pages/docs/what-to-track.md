@@ -63,18 +63,11 @@ Want to learn more? [Read our full guide](/docs/tracking-methods/choosing-the-ri
 <hr></hr>
 <br></br>
 
-<div className="extendedButtonComponent" >
-<div className="bg-base100 rounded-xl">
-  <h2 className="text-2xl font-medium mb-2 color:bg-purple200">Next Steps</h2>
+<div class="bg-base100 rounded-xl">
+  <h2 class="text-2xl font-medium mb-2 color:bg-purple200">Next Steps</h2>
   <p>
     Once you've chosen a few events to track first, you're ready to set up
     Mixpanel.
   </p>
   <br></br>
-  <ExtendedButton
-    title="Start Quickstart Guide"
-    link="/docs/quickstart/install-mixpanel"
-  ></ExtendedButton>
-</div>
-
-</div>
+  <a href="/docs/quickstart/install-mixpanel" class="button primary">Start Quickstart Guide</a>

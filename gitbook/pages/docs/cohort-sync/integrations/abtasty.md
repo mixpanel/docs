@@ -100,9 +100,9 @@ With your Custom Properties created, you can now tell Mixpanel how to recognize 
 1.  Navigate to your **Project Settings**.
 2.  Scroll to the **Experiment Event Settings** section.
 3.  Define the mapping for your AB Tasty experiments:
-    * **Experiment Event**: Select the `"Event"` event.
-    * **Experiment Name**: Map this to your new custom property, `AB Tasty Campaign Name`.
-    * **Variant Name**: Map this to your new custom property, `AB Tasty Variation Name`.
+* **Experiment Event**: Select the `"Event"` event.
+* **Experiment Name**: Map this to your new custom property, `AB Tasty Campaign Name`.
+* **Variant Name**: Map this to your new custom property, `AB Tasty Variation Name`.
 4.  **Save** your settings.
 
 ### The Result: Powerful, Automated Analysis

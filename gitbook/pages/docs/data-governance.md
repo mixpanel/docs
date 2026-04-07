@@ -5,34 +5,48 @@ Mixpanel has an extensive suite of data monitoring and management tools, take a 
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Lexicon - Data Dictionary</td>
-      <td><a href="/docs/data-governance/lexicon">Lexicon - Data Dictionary</a></td>
+      <td><strong>Lexicon - Data Dictionary</strong></td>
+      <td></td>
+      <td><a href="/docs/data-governance/lexicon">/docs/data-governance/lexicon</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Data Views &amp; Classification</td>
-      <td><a href="/docs/data-governance/data-views-and-classification">Data Views &amp; Classification</a></td>
+      <td><strong>Data Views &amp; Classification</strong></td>
+      <td></td>
+      <td><a href="/docs/data-governance/data-views-and-classification">/docs/data-governance/data-views-and-classification</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Data Standards</td>
-      <td><a href="/docs/data-governance/data-standards">Data Standards</a></td>
+      <td><strong>Data Standards</strong></td>
+      <td></td>
+      <td><a href="/docs/data-governance/data-standards">/docs/data-governance/data-standards</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Event Approval</td>
-      <td><a href="/docs/data-governance/event-approval">Event Approval</a></td>
+      <td><strong>Event Approval</strong></td>
+      <td></td>
+      <td><a href="/docs/data-governance/event-approval">/docs/data-governance/event-approval</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Data Volume Monitoring</td>
-      <td><a href="/docs/data-governance/data-volume-monitoring">Data Volume Monitoring</a></td>
+      <td><strong>Data Volume Monitoring</strong></td>
+      <td></td>
+      <td><a href="/docs/data-governance/data-volume-monitoring">/docs/data-governance/data-volume-monitoring</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Data Clean-Up</td>
-      <td><a href="/docs/data-governance/data-clean-up">Data Clean-Up</a></td>
+      <td><strong>Data Clean-Up</strong></td>
+      <td></td>
+      <td><a href="/docs/data-governance/data-clean-up">/docs/data-governance/data-clean-up</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

@@ -47,8 +47,8 @@ Note that you cannot have more than 10 uneven (varied) groups.
 ![/12828869626644](/12828869626644.png)
 
 2. Choose to bucket segments, by opening the custom buckets model and clicking Apply
-    - For each segment, choose the operator “is” and select one or more values
-    - “Rest of the World” is auto-generated as **remaining values**
+- For each segment, choose the operator “is” and select one or more values
+- “Rest of the World” is auto-generated as **remaining values**
 
 {% hint style="info" %}
 If two segments have the same value, the first segment will consider the value. Custom buckets are non-overlapping and sum up to 100% by definition
@@ -89,7 +89,7 @@ If two segments have the same value, the first segment will consider the value. 
 2. Go to the overflow and open the custom buckets modal
 3. Since looking for even buckets of “30 mins”, choose **Even Bucketing**
 4. Modify the min and max values of the desired range, and the bucket size, and click apply
-    - Here these buckets are \<50 mins and ≥ 100 mins
+- Here these buckets are \<50 mins and ≥ 100 mins
 
         ![/14342575096724](/14342575096724.png)
 
@@ -218,10 +218,10 @@ If you’re purely looking for just how many people have value “0”, we would
 If you’re looking to get the count of 0, in reference to the other numeric buckets, go ahead and create a **Varied Bucketing** custom buckets modal
 
         - If the numeric values are integers:
-            - Choose Varied bucket values 0, 1, 2…
-            - This would generate buckets: \<0, ≥0 & \<1, ≥1 & \<2, ≥2.
-            - ≥0 & \<1 would be equal to bucket 0
-        - If the numeric values are decimals:
-            - Choose Varied bucket values 0, 0.0001, 1, …
-            - This would generate buckets: \<0, ≥0 & \<0.0001, ≥0.0001 & \<1, ≥1.
-            - ≥0 & \<0.0001 would approximate to bucket 0
+        - Choose Varied bucket values 0, 1, 2…
+        - This would generate buckets: \<0, ≥0 & \<1, ≥1 & \<2, ≥2.
+        - ≥0 & \<1 would be equal to bucket 0
+    - If the numeric values are decimals:
+        - Choose Varied bucket values 0, 0.0001, 1, …
+        - This would generate buckets: \<0, ≥0 & \<0.0001, ≥0.0001 & \<1, ≥1.
+        - ≥0 & \<0.0001 would approximate to bucket 0

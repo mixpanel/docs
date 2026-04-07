@@ -23,9 +23,9 @@ To enable or disable the setting to move board, you will need an admin or own pr
 1. Go to Project Settings
 2. Select Moving Boards from the left hand menu
 3. Select how freely you want boards to be able to be moved: not at all, within the organization, or between organizations.
-    - Not at all: no Board can be moved to any other project, no matter the organization
-    - Within organization: a Board can be moved to any other project in the same organization
-    - Any organization: a Board can be moved to any other project, even one in a different organization
+- Not at all: no Board can be moved to any other project, no matter the organization
+- Within organization: a Board can be moved to any other project in the same organization
+- Any organization: a Board can be moved to any other project, even one in a different organization
   This setting does not affect whether you can move a Board into a project, only whether you can move a Board out of a project.
 
 4. On this page, you can also see who last updated the permissions and when.

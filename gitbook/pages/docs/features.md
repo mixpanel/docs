@@ -3,62 +3,90 @@
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Alerts</td>
-      <td><a href="/docs/features/alerts">Alerts</a></td>
+      <td><strong>Alerts</strong></td>
+      <td></td>
+      <td><a href="/docs/features/alerts">/docs/features/alerts</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Annotations</td>
-      <td><a href="/docs/features/annotations">Annotations</a></td>
+      <td><strong>Annotations</strong></td>
+      <td></td>
+      <td><a href="/docs/features/annotations">/docs/features/annotations</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Embeds</td>
-      <td><a href="/docs/features/embeds">Embeds</a></td>
+      <td><strong>Embeds</strong></td>
+      <td></td>
+      <td><a href="/docs/features/embeds">/docs/features/embeds</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Chart Customization</td>
-      <td><a href="/docs/features/chart-customization">Chart Customization</a></td>
+      <td><strong>Chart Customization</strong></td>
+      <td></td>
+      <td><a href="/docs/features/chart-customization">/docs/features/chart-customization</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Comments</td>
-      <td><a href="/docs/features/comments">Comments</a></td>
+      <td><strong>Comments</strong></td>
+      <td></td>
+      <td><a href="/docs/features/comments">/docs/features/comments</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Custom Buckets</td>
-      <td><a href="/docs/features/custom-buckets">Custom Buckets</a></td>
+      <td><strong>Custom Buckets</strong></td>
+      <td></td>
+      <td><a href="/docs/features/custom-buckets">/docs/features/custom-buckets</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Custom Events</td>
-      <td><a href="/docs/features/custom-events">Custom Events</a></td>
+      <td><strong>Custom Events</strong></td>
+      <td></td>
+      <td><a href="/docs/features/custom-events">/docs/features/custom-events</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Custom Properties</td>
-      <td><a href="/docs/features/custom-properties">Custom Properties</a></td>
+      <td><strong>Custom Properties</strong></td>
+      <td></td>
+      <td><a href="/docs/features/custom-properties">/docs/features/custom-properties</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>MCP Integration</td>
-      <td><a href="/docs/features/mcp">MCP Integration</a></td>
+      <td><strong>MCP Integration</strong></td>
+      <td></td>
+      <td><a href="/docs/features/mcp">/docs/features/mcp</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Saved Metrics &amp; Behaviors</td>
-      <td><a href="/docs/features/saved-metrics-and-behaviors">Saved Metrics &amp; Behaviors</a></td>
+      <td><strong>Saved Metrics &amp; Behaviors</strong></td>
+      <td></td>
+      <td><a href="/docs/features/saved-metrics-and-behaviors">/docs/features/saved-metrics-and-behaviors</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Sessions</td>
-      <td><a href="/docs/features/sessions">Sessions</a></td>
+      <td><strong>Sessions</strong></td>
+      <td></td>
+      <td><a href="/docs/features/sessions">/docs/features/sessions</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Slack Integration</td>
-      <td><a href="/docs/features/slack-integration">Slack Integration</a></td>
+      <td><strong>Slack Integration</strong></td>
+      <td></td>
+      <td><a href="/docs/features/slack-integration">/docs/features/slack-integration</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Spark</td>
-      <td><a href="/docs/features/spark">Spark</a></td>
+      <td><strong>Spark</strong></td>
+      <td></td>
+      <td><a href="/docs/features/spark">/docs/features/spark</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

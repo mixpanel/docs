@@ -64,31 +64,17 @@ In this example, two touchpoints contribute to the successful conversion: the Fa
 
 ### Usage
 
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/142CRsihsTA"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 Step 1 - Add your conversion metric
 
@@ -129,11 +115,11 @@ If you use a Mixpanel js-sdk, we have updated our sdk to track utm parameters mo
 
 Please watch this video to better understand.
 
-{/* <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
+{/* <div >
     <iframe src="https://www.loom.com/embed/1cebcd9687df4046af53ac90980907f7?sid=4d6d0920-8cc2-43f2-8361-bdb5a034969f"
-        frameBorder="0"
-        webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
-        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+        frameborder="0"
+        webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen
+        >
     </iframe>
 </div> */}
 
@@ -153,11 +139,11 @@ Now note, while 3 purchases have been made, only one unique user has been conver
 How will attribution with uniques work?
 There will be 2 options depending on the use-case
 - **Option 1 :** When running attribution on Jack, we want to consider Jack unique on May 10, his last qualifying conversion, and run a lookback window starting at this point and consider all attribution prior to it which influenced the 3 purchases.
-    - So Last Touch for Jack would be : Facebook
-    - When would this option be useful? In-ecomm companies when looking at cost of acquiring a user, you want to consider all the purchases until their last purchase
+- So Last Touch for Jack would be : Facebook
+- When would this option be useful? In-ecomm companies when looking at cost of acquiring a user, you want to consider all the purchases until their last purchase
 - **Option 2:**  Consider Jack unique on May 1, his first qualifying conversion, and run a lookback before it.
-    - So Last Touch for Jack would be: Instagram
-    - When would this option be useful? For acquisition teams looking at getting a user to the experience the first time, you want to consider their first qualifying event
+- So Last Touch for Jack would be: Instagram
+- When would this option be useful? For acquisition teams looking at getting a user to the experience the first time, you want to consider their first qualifying event
 
 Some nuances to note
 - In a time-series chart, the first and last qualifying conversion is within the chart interval. For example if you have a 6M chart with a monthly interval, you’re looking at first and last conversion within a month, NOT 6M
@@ -174,32 +160,32 @@ Once attribution is computed, filtering narrows total conversion events to only 
 
 To make this real, let’s take a scenario -
 - Purchase 1:
-    - 15th Jan: Made purchase (visited via Linkedin ad)
-    - 10th Jan: visited via Google 
+- 15th Jan: Made purchase (visited via Linkedin ad)
+- 10th Jan: visited via Google 
     (Last Touch: Linkedin; All Sources: Linkedin, Google)
 - Purchase 2:
-    - 18th Jan: Made Purchase (came directly)
-    - 12th Jan: visited via Facebook 
+- 18th Jan: Made Purchase (came directly)
+- 12th Jan: visited via Facebook 
     (Last Touch: Direct; 
     All Sources: Direct, Facebook)
 - Purchase 3:
-    - 20th Jan: Made Purchase (came via Google) 
+- 20th Jan: Made Purchase (came via Google) 
     (Last Touch: Google; 
     All Sources: Google)
 
 On 30th Jan, doing some attribution analysis
 - Use-Case 1: I want to look at only Purchases that have come from a non Direct Channel?
-    - Answer: 2 - Purchases 1 & 3
+- Answer: 2 - Purchases 1 & 3
 
 ![image](/Attribution_filtering_1.png)
 
 - Use-Case 2: I want to look at how many Purchases have come via Last Touch Google?
-    - Answer: 1 - Purchase 3
+- Answer: 1 - Purchase 3
 
 ![image](/Attribution_filtering_2.png)
 
 - Use-Case 3: I want to look at how many purchases have come via Google? (can be any touch in the last 30 days)
-    - Answer: 2 - Purchases 1 & 3
+- Answer: 2 - Purchases 1 & 3
 
 ![image](/Attribution_filtering_3.png)
 

@@ -2,8 +2,8 @@
 
 {% hint style="info" %}
 **Note:** The following terms are used in this section: 
-    - "Profiles" is used to refer to both "User Profiles" and "Group Profiles"
-    - "Profile Properties" is used to refer to both "User Profile Properties" and "Group Profile Properties"
+- "Profiles" is used to refer to both "User Profiles" and "Group Profiles"
+- "Profile Properties" is used to refer to both "User Profile Properties" and "Group Profile Properties"
 {% endhint %}
 
 ## Overview

@@ -5,26 +5,36 @@ Take a look at any of these pages for more information about Mixpanel's properti
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Types of Properties</td>
-      <td><a href="/docs/data-structure/property-reference/properties">Types of Properties</a></td>
+      <td><strong>Types of Properties</strong></td>
+      <td></td>
+      <td><a href="/docs/data-structure/property-reference/properties">/docs/data-structure/property-reference/properties</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Supported Data Types</td>
-      <td><a href="/docs/data-structure/property-reference/data-type">Supported Data Types</a></td>
+      <td><strong>Supported Data Types</strong></td>
+      <td></td>
+      <td><a href="/docs/data-structure/property-reference/data-type">/docs/data-structure/property-reference/data-type</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Default Properties</td>
-      <td><a href="/docs/data-structure/property-reference/default-properties">Default Properties</a></td>
+      <td><strong>Default Properties</strong></td>
+      <td></td>
+      <td><a href="/docs/data-structure/property-reference/default-properties">/docs/data-structure/property-reference/default-properties</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Reserved Properties</td>
-      <td><a href="/docs/data-structure/property-reference/reserved-properties">Reserved Properties</a></td>
+      <td><strong>Reserved Properties</strong></td>
+      <td></td>
+      <td><a href="/docs/data-structure/property-reference/reserved-properties">/docs/data-structure/property-reference/reserved-properties</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

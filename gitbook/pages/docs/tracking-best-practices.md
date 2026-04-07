@@ -7,22 +7,30 @@ Take a look at any of these pages for more information about best practices on M
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Tracking Plan</td>
-      <td><a href="/docs/tracking-best-practices/tracking-plan">Tracking Plan</a></td>
+      <td><strong>Tracking Plan</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-best-practices/tracking-plan">/docs/tracking-best-practices/tracking-plan</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Server-side Best Practices</td>
-      <td><a href="/docs/tracking-best-practices/server-side-best-practices">Server-side Best Practices</a></td>
+      <td><strong>Server-side Best Practices</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-best-practices/server-side-best-practices">/docs/tracking-best-practices/server-side-best-practices</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Debugging</td>
-      <td><a href="/docs/tracking-best-practices/debugging">Debugging</a></td>
+      <td><strong>Debugging</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-best-practices/debugging">/docs/tracking-best-practices/debugging</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -32,30 +40,42 @@ Take a look at any of these pages for more information about best practices on M
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Bot Traffic</td>
-      <td><a href="/docs/tracking-best-practices/bot-traffic">Bot Traffic</a></td>
+      <td><strong>Bot Traffic</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-best-practices/bot-traffic">/docs/tracking-best-practices/bot-traffic</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Developer Environments</td>
-      <td><a href="/docs/tracking-best-practices/developer-environments">Developer Environments</a></td>
+      <td><strong>Developer Environments</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-best-practices/developer-environments">/docs/tracking-best-practices/developer-environments</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Geolocation</td>
-      <td><a href="/docs/tracking-best-practices/geolocation">Geolocation</a></td>
+      <td><strong>Geolocation</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-best-practices/geolocation">/docs/tracking-best-practices/geolocation</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Hot Shard Limits</td>
-      <td><a href="/docs/tracking-best-practices/hot-shard-limits">Hot Shard Limits</a></td>
+      <td><strong>Hot Shard Limits</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-best-practices/hot-shard-limits">/docs/tracking-best-practices/hot-shard-limits</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Traffic Attribution</td>
-      <td><a href="/docs/tracking-best-practices/traffic-attribution">Traffic Attribution</a></td>
+      <td><strong>Traffic Attribution</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-best-practices/traffic-attribution">/docs/tracking-best-practices/traffic-attribution</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

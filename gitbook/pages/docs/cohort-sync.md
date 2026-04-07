@@ -24,18 +24,24 @@ Refer to the Cohort Sync Integration Directory below for partner-specific setup 
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Cohort Sync Integrations Directory</td>
-      <td><a href="/docs/cohort-sync/integrations">Cohort Sync Integrations Directory</a></td>
+      <td><strong>Cohort Sync Integrations Directory</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations">/docs/cohort-sync/integrations</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Custom Webhooks</td>
-      <td><a href="/docs/cohort-sync/webhooks">Custom Webhooks</a></td>
+      <td><strong>Custom Webhooks</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/webhooks">/docs/cohort-sync/webhooks</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

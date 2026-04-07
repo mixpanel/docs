@@ -18,11 +18,11 @@ If your ad spend data is already in a data warehouse, you can bring it into Mixp
 
 ### Using the Ad Spend Template
 
-{/* <div style={{position: 'relative', paddingBottom: '64.90384615384616%', height: 0}}>
+{/* <div >
     <iframe src="https://www.loom.com/embed/69dbc98ffeca415aafb10ede7a52b925"
-        frameBorder="0"
-        webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen
-        style={{position: 'absolute', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+        frameborder="0"
+        webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen
+        >
     </iframe>
 </div> */}
 
@@ -123,7 +123,7 @@ In order to follow this guide, you will need:
 
 - Mixpanel project token (can be found in Mixpanel project settings)
 - Mixpanel secret token (can be found in Mixpanel project settings)
-    - This is required to track back-dated events
+- This is required to track back-dated events
 - [Google Ads Developer Token](https://developers.google.com/google-ads/api/docs/first-call/dev-token)
 - An account with [Google Ads](https://ads.google.com/) access to your ad campaigns
 - A Google Cloud Platform project
@@ -138,7 +138,7 @@ Our Google Cloud Function will use the [Google Ads API](https://developers.googl
 - From the ************************************Create credentials************************************ dropdown, create a new ******************************OAuth client ID******************************
 - For **********************************Application type**********************************, select ******************************Web application******************************
 - Add an ************************************************Authorized redirect URIs************************************************ entry for `https://developers.google.com/oauthplayground`
-    - This is only for the next step and can be removed afterwards
+- This is only for the next step and can be removed afterwards
 - ************Create************ the credential
 
 After creating your credential, it will show you its ********************Client ID******************** and **************************Client secret**************************. Take note of those as we will need them for the next step and to access the Google Ads API.
@@ -157,11 +157,11 @@ The credential you created allows Google to track access to the Google Ads API, 
 
 - Go to the [Google OAuth Playground](https://developers.google.com/oauthplayground#step1&scopes=https%3A//www.googleapis.com/auth/adwords&url=https%3A//&content_type=application/json&http_method=GET&useDefaultOauthCred=checked&oauthEndpointSelect=Google&oauthAuthEndpointValue=https%3A//accounts.google.com/o/oauth2/v2/auth&oauthTokenEndpointValue=https%3A//oauth2.googleapis.com/token&includeCredentials=unchecked&accessTokenType=bearer&autoRefreshToken=unchecked&accessType=offline&forceAprovalPrompt=checked&response_type=code)
 - Click the Settings cog in the upper right corner
-    - Set **********************OAuth flow********************** to **********************Server-side**********************
-    - For **********************Access type**********************, select **************Offline**************
-        - This will ensure we get a refresh token, and not just a short-lived access token
-    - Check the ************************************************************Use your own OAuth credentials************************************************************ checkbox
-    - Fill in the ********************Client ID******************** and ****************************Client Secret**************************** from the credential that you created earlier
+- Set **********************OAuth flow********************** to **********************Server-side**********************
+- For **********************Access type**********************, select **************Offline**************
+    - This will ensure we get a refresh token, and not just a short-lived access token
+- Check the ************************************************************Use your own OAuth credentials************************************************************ checkbox
+- Fill in the ********************Client ID******************** and ****************************Client Secret**************************** from the credential that you created earlier
 - In the left hand side, find ****************************Google Ads API****************************, and select it
 
 Once you click the ******************************Authorize APIs****************************** button, it will ask you to sign in with your Google account. Make sure to sign in with the one that has access to your Google Ads account.
@@ -192,7 +192,7 @@ The function will run once a day, export the previous day’s campaign metrics, 
 - In the **********************Environment********************** dropdown, select **************2nd gen**************
 - For ****************************Function name****************************, choose something informative like `mixpanel-ads-google`
 - Open ********************************Runtime, build, connections and security settings******************************** and increase the **********************************Memory allocated********************************** and ********CPUs******** from the defaults
-    - Depending on your ad network volume, you might want to play with these settings to process all of your data. You can always change these after creation.
+- Depending on your ad network volume, you might want to play with these settings to process all of your data. You can always change these after creation.
 - Press ********Next********
 - Select **********************Node.js 18********************** as the **************Runtime**************
 - For ************************Entry point************************, set it to `handler`
@@ -340,17 +340,17 @@ We want the function to run by itself every day so we can regularly inspect the 
 - Click ********************Create job******************** at the top of the page
 - For ********Name********, choose something descriptive such as `gcf-mixpanel-ads-google-daily`
 - In ******Frequency******, put `0 8 * * *`
-    - This is a unix-cron expression that means to run every day at the 8th hour (8:00 AM)
-    - [Google Ads has a short delay](https://support.google.com/google-ads/answer/2544985?hl=en#:~:text=In%20most%20cases%2C%20your%20account%20statistics%20(such%20as%20clicks%2C%20conversions%2C%20and%20impressions)%20are%20delayed%20by%20less%20than%203%20hours) before metrics are available. Choosing a time sufficiently later than midnight ensures that the data will be ready for us to retrieve.
+- This is a unix-cron expression that means to run every day at the 8th hour (8:00 AM)
+- [Google Ads has a short delay](https://support.google.com/google-ads/answer/2544985?hl=en#:~:text=In%20most%20cases%2C%20your%20account%20statistics%20(such%20as%20clicks%2C%20conversions%2C%20and%20impressions)%20are%20delayed%20by%20less%20than%203%20hours) before metrics are available. Choosing a time sufficiently later than midnight ensures that the data will be ready for us to retrieve.
 - Select ******************************************************************Coordinated Universal Time (UTC)****************************************************************** as the ****************Timezone****************
-    - This can also be your local time if you prefer
+- This can also be your local time if you prefer
 - Press ****************Continue****************
 - Select **********HTTP********** as the **********************Target type**********************
 - In ********URL********, paste the URL that you got from your Cloud Function
 - Set the **********************HTTP method********************** to ******GET******
 - In the **********************Auth header********************** dropdown, choose Add OIDC token
 - Select the service account that has access to your Google Cloud Function in the Service account dropdown
-    - This gives Cloud Scheduler the access required to invoke your function on your behalf
+- This gives Cloud Scheduler the access required to invoke your function on your behalf
 - Press ************Create************ to create your new schedule
 
 #### Wrapping up
@@ -368,10 +368,10 @@ In order to follow this guide, you will need:
 
 - Mixpanel project token (can be found in Mixpanel project settings)
 - Mixpanel secret token (can be found in Mixpanel project settings)
-    - This is required to track back-dated events
+- This is required to track back-dated events
 - [Facebook App Access Token](https://developers.facebook.com/docs/facebook-login/guides/access-tokens#apptokens) with the `ads_read` permission
 - Facebook Ad Account ID
-    - You can get this from the Ad account dropdown at the top of [Facebook Ads Manager](https://adsmanager.facebook.com/adsmanager/manage)
+- You can get this from the Ad account dropdown at the top of [Facebook Ads Manager](https://adsmanager.facebook.com/adsmanager/manage)
 - A Google Cloud Platform project
 
 #### Creating the function
@@ -383,7 +383,7 @@ The function will run once a day, export the previous day’s campaign metrics, 
 - In the **********************Environment********************** dropdown, select **************2nd gen**************
 - For ****************************Function name****************************, choose something informative like `mixpanel-ads-facebook`
 - Open ********************************Runtime, build, connections and security settings******************************** and increase the **********************************Memory allocated********************************** and ********CPUs******** from the defaults
-    - Depending on your ad network volume, you might want to play with these settings to process all of your data. You can always change these after creation.
+- Depending on your ad network volume, you might want to play with these settings to process all of your data. You can always change these after creation.
 - Press ********Next********
 - Select **********************Node.js 18********************** as the **************Runtime**************
 - For ************************Entry point************************, set it to `handler`
@@ -518,17 +518,17 @@ We want the function to run by itself every day so we can regularly inspect the 
 - Click ********************Create job******************** at the top of the page
 - For ********Name********, choose something descriptive such as `gcf-mixpanel-ads-facebook-daily`
 - In ******Frequency******, put `0 8 * * *`
-    - This is a unix-cron expression that means to run every day at the 8th hour (8:00 AM)
-    - Some ad networks may have a delay before metrics are available. Choosing a time sufficiently later than midnight ensures that the data will be ready for us to retrieve.
+- This is a unix-cron expression that means to run every day at the 8th hour (8:00 AM)
+- Some ad networks may have a delay before metrics are available. Choosing a time sufficiently later than midnight ensures that the data will be ready for us to retrieve.
 - Select ******************************************************************Coordinated Universal Time (UTC)****************************************************************** as the ****************Timezone****************
-    - This can also be your local time if you prefer
+- This can also be your local time if you prefer
 - Press ****************Continue****************
 - Select **********HTTP********** as the **********************Target type**********************
 - In ********URL********, paste the URL that you got from your Cloud Function
 - Set the **********************HTTP method********************** to ******GET******
 - In the **********************Auth header********************** dropdown, choose Add OIDC token
 - Select the service account that has access to your Google Cloud Function in the Service account dropdown
-    - This gives Cloud Scheduler the access required to invoke your function on your behalf
+- This gives Cloud Scheduler the access required to invoke your function on your behalf
 - Press ************Create************ to create your new schedule
 
 #### Wrapping up

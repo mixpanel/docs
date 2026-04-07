@@ -126,6 +126,6 @@ Be sure to follow these steps in this order, or there will be more downtime for 
 
 7. Deactivate the original SSO application in your IDP
 8. (Optional) Finish setting up SCIM
-    1. In your IDP, establish a Group for the users who have access to the original Organization
-    2. In Mixpanel, edit the SCIM name of the original Organization to match the name of this group
-    3. Configure your IDP to push this group to Mixpanel
+1. In your IDP, establish a Group for the users who have access to the original Organization
+2. In Mixpanel, edit the SCIM name of the original Organization to match the name of this group
+3. Configure your IDP to push this group to Mixpanel

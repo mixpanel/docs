@@ -49,9 +49,9 @@ _Define your own customer events with an approachable setup_
 
 3. Add some code to get your Pixel up and running. This code is a three-part recipe that will:
 
-    - Subscribe to Shopify’s Pixel Event API
-    - Load the Mixpanel SDK snippet that you copied in step 1
-    - Define and track the customer events we’d like to collect (reference the complete property list in [Shopify’s Web Pixel Event API](https://shopify.dev/docs/api/web-pixels-api/standard-events) docs)
+- Subscribe to Shopify’s Pixel Event API
+- Load the Mixpanel SDK snippet that you copied in step 1
+- Define and track the customer events we’d like to collect (reference the complete property list in [Shopify’s Web Pixel Event API](https://shopify.dev/docs/api/web-pixels-api/standard-events) docs)
 
     An outline of this structure looks like this:
 

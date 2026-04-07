@@ -15,110 +15,162 @@ These integrations allow you to send your [Cohorts](/docs/users/cohorts) to othe
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>AB Tasty</td>
-      <td><a href="/docs/cohort-sync/integrations/abtasty">AB Tasty</a></td>
+      <td><strong>AB Tasty</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/abtasty">/docs/cohort-sync/integrations/abtasty</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Airship</td>
-      <td><a href="/docs/cohort-sync/integrations/airship">Airship</a></td>
+      <td><strong>Airship</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/airship">/docs/cohort-sync/integrations/airship</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Appcues</td>
-      <td><a href="/docs/cohort-sync/integrations/appcues">Appcues</a></td>
+      <td><strong>Appcues</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/appcues">/docs/cohort-sync/integrations/appcues</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Apptimize</td>
-      <td><a href="/docs/cohort-sync/integrations/apptimize">Apptimize</a></td>
+      <td><strong>Apptimize</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/apptimize">/docs/cohort-sync/integrations/apptimize</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Braze</td>
-      <td><a href="/docs/cohort-sync/integrations/braze">Braze</a></td>
+      <td><strong>Braze</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/braze">/docs/cohort-sync/integrations/braze</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Chameleon</td>
-      <td><a href="/docs/cohort-sync/integrations/chameleon">Chameleon</a></td>
+      <td><strong>Chameleon</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/chameleon">/docs/cohort-sync/integrations/chameleon</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>CleverTap</td>
-      <td><a href="/docs/cohort-sync/integrations/clevertap">CleverTap</a></td>
+      <td><strong>CleverTap</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/clevertap">/docs/cohort-sync/integrations/clevertap</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Facebook Ads</td>
-      <td><a href="/docs/cohort-sync/integrations/facebook-ads">Facebook Ads</a></td>
+      <td><strong>Facebook Ads</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/facebook-ads">/docs/cohort-sync/integrations/facebook-ads</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Google Ads</td>
-      <td><a href="/docs/cohort-sync/integrations/google-ads">Google Ads</a></td>
+      <td><strong>Google Ads</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/google-ads">/docs/cohort-sync/integrations/google-ads</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Insider</td>
-      <td><a href="/docs/cohort-sync/integrations/insider">Insider</a></td>
+      <td><strong>Insider</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/insider">/docs/cohort-sync/integrations/insider</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Intercom</td>
-      <td><a href="https://www.intercom.com/help/en/articles/299-import-your-mixpanel-contacts">Intercom</a></td>
+      <td><strong>Intercom</strong></td>
+      <td></td>
+      <td><a href="https://www.intercom.com/help/en/articles/299-import-your-mixpanel-contacts">https://www.intercom.com/help/en/articles/299-import-your-mixpanel-contacts</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Iterable</td>
-      <td><a href="/docs/cohort-sync/integrations/iterable">Iterable</a></td>
+      <td><strong>Iterable</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/iterable">/docs/cohort-sync/integrations/iterable</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Kameleoon</td>
-      <td><a href="/docs/cohort-sync/integrations/kameleoon">Kameleoon</a></td>
+      <td><strong>Kameleoon</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/kameleoon">/docs/cohort-sync/integrations/kameleoon</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Leanplum</td>
-      <td><a href="/docs/cohort-sync/integrations/leanplum">Leanplum</a></td>
+      <td><strong>Leanplum</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/leanplum">/docs/cohort-sync/integrations/leanplum</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Mailchimp</td>
-      <td><a href="/docs/cohort-sync/integrations/mailchimp">Mailchimp</a></td>
+      <td><strong>Mailchimp</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/mailchimp">/docs/cohort-sync/integrations/mailchimp</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Marketo</td>
-      <td><a href="/docs/cohort-sync/integrations/marketo">Marketo</a></td>
+      <td><strong>Marketo</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/marketo">/docs/cohort-sync/integrations/marketo</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>MoEngage</td>
-      <td><a href="/docs/cohort-sync/integrations/moengage">MoEngage</a></td>
+      <td><strong>MoEngage</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/moengage">/docs/cohort-sync/integrations/moengage</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>mParticle</td>
-      <td><a href="/docs/cohort-sync/integrations/mparticle">mParticle</a></td>
+      <td><strong>mParticle</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/mparticle">/docs/cohort-sync/integrations/mparticle</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>OneSignal</td>
-      <td><a href="/docs/cohort-sync/integrations/onesignal">OneSignal</a></td>
+      <td><strong>OneSignal</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/onesignal">/docs/cohort-sync/integrations/onesignal</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Salesforce Marketing Cloud</td>
-      <td><a href="/docs/cohort-sync/integrations/salesforce-marketing-cloud">Salesforce Marketing Cloud</a></td>
+      <td><strong>Salesforce Marketing Cloud</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/salesforce-marketing-cloud">/docs/cohort-sync/integrations/salesforce-marketing-cloud</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Segment</td>
-      <td><a href="/docs/cohort-sync/integrations/segment">Segment</a></td>
+      <td><strong>Segment</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/segment">/docs/cohort-sync/integrations/segment</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Taplytics</td>
-      <td><a href="/docs/cohort-sync/integrations/taplytics">Taplytics</a></td>
+      <td><strong>Taplytics</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/taplytics">/docs/cohort-sync/integrations/taplytics</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>VWO</td>
-      <td><a href="/docs/cohort-sync/integrations/vwo">VWO</a></td>
+      <td><strong>VWO</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/vwo">/docs/cohort-sync/integrations/vwo</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>WebEngage</td>
-      <td><a href="/docs/cohort-sync/integrations/webengage">WebEngage</a></td>
+      <td><strong>WebEngage</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/webengage">/docs/cohort-sync/integrations/webengage</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Xtremepush</td>
-      <td><a href="/docs/cohort-sync/integrations/xtremepush">Xtremepush</a></td>
+      <td><strong>Xtremepush</strong></td>
+      <td></td>
+      <td><a href="/docs/cohort-sync/integrations/xtremepush">/docs/cohort-sync/integrations/xtremepush</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

@@ -23,26 +23,36 @@ See our developer guides on implementing Session Replay for these platforms belo
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Web</td>
-      <td><a href="/docs/tracking-methods/sdks/javascript/javascript-replay">Web</a></td>
+      <td><strong>Web</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/javascript/javascript-replay">/docs/tracking-methods/sdks/javascript/javascript-replay</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>iOS</td>
-      <td><a href="/docs/tracking-methods/sdks/swift/swift-replay">iOS</a></td>
+      <td><strong>iOS</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/swift/swift-replay">/docs/tracking-methods/sdks/swift/swift-replay</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Android</td>
-      <td><a href="/docs/tracking-methods/sdks/android/android-replay">Android</a></td>
+      <td><strong>Android</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/android/android-replay">/docs/tracking-methods/sdks/android/android-replay</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>React Native</td>
-      <td><a href="/docs/tracking-methods/sdks/react-native/react-native-replay">React Native</a></td>
+      <td><strong>React Native</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/react-native/react-native-replay">/docs/tracking-methods/sdks/react-native/react-native-replay</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

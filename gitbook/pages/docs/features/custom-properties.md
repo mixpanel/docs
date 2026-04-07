@@ -168,39 +168,25 @@ We apply a seven-day lookback window, so the second event must occur within seve
 
 The video below demonstrates how to create a borrowed property.
 
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/fEh-ObL7EIQ"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 Some key notes
 - Borrowed property creation is limited to Admin & Owner Roles only
 - A project can have a maximum of 20 borrowed properties. Hence, you are encouraged to only create borrowed properties useful to the larger team
 - A borrowed property, once created, is like any other custom property. It can be accessed by all in the project, depending on permissions
 - Borrowing of a property is strictly from the most recent event in the 7-day lookback window. To elaborate
-    - Say on event “purchase”, you want to borrow property “search term” from an event “search product”. If there are multiple events “search product” before “purchase”, the property will be borrowed from the most recent “search product” event where the property is set.
-    - Lookback is also fixed to a 7-day window. Say the “purchase” event occurred on 31st Jan, if the  most recent “search product” occurred on 20th Jan, the borrow functionality will return “search term” = (not set), since this event happened 11 days ago, which is outside the lookback window range.
+- Say on event “purchase”, you want to borrow property “search term” from an event “search product”. If there are multiple events “search product” before “purchase”, the property will be borrowed from the most recent “search product” event where the property is set.
+- Lookback is also fixed to a 7-day window. Say the “purchase” event occurred on 31st Jan, if the  most recent “search product” occurred on 20th Jan, the borrow functionality will return “search term” = (not set), since this event happened 11 days ago, which is outside the lookback window range.
 
 To use a borrowed property with other [functions](/docs/features/custom-properties#functions), you would need to: 
 
@@ -263,7 +249,7 @@ Use the following functions in the **Formula** field to modify your custom prope
 | right | Returns characters from the end of a given string | right(string, num_of_characters)<br /><br />Example:<br />`right("Canada",3)` -> "ada" |
 | mid | Returns characters from the middle of a given string | mid(string, first_index, num_of_characters)<br /><br />Example:<br />`mid("Canada",1,4)` -> "Cana" |
 | split | Splits a string into different parts based on a user-specified delimiter, and lets you select a particular split. Delimiter must be a single ASCII character. To fetch a list of all splits, don't pass a third argument. The first split is accessible by passing n=1 (second with n=2, ...) | split(input string, delimiter, [n: optional]) → string <br /> <br />Examples with 1 split:<br />`split("dwight@dm.com","@",2)` -> "dm.com"<br />`split("dwight@dm.com","@",4)` -> undefined<br />`split("dwight@dm.com","/",2)` -> `dwight@dm.com` <br />`split("empty//string/","/",2)` -> "" <br /> <br />Examples with all splits:<br />`split("dwight@dm.com","@")` -> ["dwight", "dm.com"]<br />`split("a/b/c/d", "/")` -> ["a", "b", "c", "d"]<br />`split("a/b/c/d", "-")` -> ["a/b/c/d"]<br />`split("a//b/c/d", "/")` -> ["a", "", "b", "c", "d"] |
-| let | Define a variable and use it in an expression. This helps keep the custom property definition neat and non-repetitive. Variables are only active within the scope of the LET function. You can nest multiple let functions to define multiple variables. | let(name, definition, expression)<br /><br /><Code style={{display: 'block', whiteSpace: 'pre-wrap'}}>{letExpression}</Code> <br /> _Note: \<price> and \<quantity> are event properties._ |
+| let | Define a variable and use it in an expression. This helps keep the custom property definition neat and non-repetitive. Variables are only active within the scope of the LET function. You can nest multiple let functions to define multiple variables. | let(name, definition, expression)<br /><br /><Code >{letExpression}</Code> <br /> _Note: \<price> and \<quantity> are event properties._ |
 | any | Evaluates to TRUE if the given expression is true for any value in the given list. The expression can refer to the current list element by the given name. | any(name, list, expr) <br /><br /> Example:<br />Let's say you had a list of numbers called priceList= [5,205,178,12,22]<br />`any(X, priceList, X > 300)` -> false.<br />`any(X, priceList, X >= 5 and X < 300)` -> true. |
 | all | Evaluates to TRUE if the given expression is true for all values in the given list. The expression can refer to the current list element by the given name. | all(name, list, expr) <br /><br /> Example:<br />Let's say you had a list of numbers called priceList= [5,205,178,12,22]<br />`all(X, priceList, X > 5 and X < 200)` -> false.<br />`all(X, priceList, X >= 5 and X < 300)` -> true. |
 | filter | Filters the given list to only include items for which the given expression is true. The expression can refer to the current list element by the given name. | filter(name, list, expr) <br /><br /> Example: <br />Let's say you had a list of numbers called priceList= [5,205,178,12,22]<br />`filter(X, priceList, X>100)` -> new shortened list = [205,178] |

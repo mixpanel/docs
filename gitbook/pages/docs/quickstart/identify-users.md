@@ -243,10 +243,8 @@ All of our sample code transparently retries and backoff from rate limit excepti
 <hr></hr>
 <br></br>
 
-<div className="extendedButtonComponent" >
-
-<div className="bg-base100 rounded-xl">
-  <h2 className="text-2xl font-medium mb-2 color:bg-purple200">
+<div class="bg-base100 rounded-xl">
+  <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
     Next: Track Events
   </h2>
   <p>
@@ -254,19 +252,14 @@ All of our sample code transparently retries and backoff from rate limit excepti
     doing in your product.
   </p>
   <br></br>
-  <ExtendedButton
-    title="Track Events in Your Product"
-    link="/docs/quickstart/track-events/"
-  ></ExtendedButton>
-</div>
+  <a href="/docs/quickstart/track-events/" class="button primary">Track Events in Your Product</a>
 
-</div>
 <br></br>
 <br></br>
 
 ## FAQ
 
-<div className="faqComponent" >
+<div class="faqComponent" >
 
 <details>
 <summary>How do I connect events from logged-out to logged-in users?</summary>
@@ -299,5 +292,3 @@ For iOS specifically: Mixpanel does not use IDFA, so it does not require user pe
 through the AppTrackingTransparency(ATT) framework. For more details, refer to our
 [Apple App Developer Privacy Guidance](https://mixpanel.com/legal/app-store-privacy-details).
 </details>
-
-</div>

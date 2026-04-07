@@ -15,14 +15,18 @@ However, to really exercise the power of Mixpanel, you can do a custom implement
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Integration Guide</td>
-      <td><a href="/docs/tracking-methods/integrations/shopify">Integration Guide</a></td>
+      <td><strong>Integration Guide</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/integrations/shopify">/docs/tracking-methods/integrations/shopify</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

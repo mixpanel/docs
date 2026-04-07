@@ -8,7 +8,7 @@ Before starting, make sure you have:
 
 - A Mixpanel account with Admin or Owner access ([sign up](https://www.mixpanel.com/signup) if you don't have one)
 - Access to an AI coding assistant (Claude, ChatGPT, Cursor, etc.)
-    - Be sure to use the most advanced AI model you have access to
+- Be sure to use the most advanced AI model you have access to
 - Your project's code files and a development or staging environment to test the changes
 
 ## Step 1: Get Your Mixpanel Project Token

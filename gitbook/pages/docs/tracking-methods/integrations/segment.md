@@ -225,8 +225,8 @@ In the following code snippet we:
 - Embed the Segment SDK in our app
 - Send an event (`app loaded`) to Segment; this event is forwarded to Mixpanel
 - Embed the Mixpanel SDK in our app
-    - Activate Autocapture to track all track clicks
-    - Ensure that Mixpanel, when loaded looks for Segment’s user and device_ids
+- Activate Autocapture to track all track clicks
+- Ensure that Mixpanel, when loaded looks for Segment’s user and device_ids
 - Register middleware with Segment to ensure that, when Segment loads, it propagates identity data to Mixpanel
 
 {% hint style="info" %}
@@ -308,7 +308,7 @@ Important: the following snippet includes options for both simplified and origin
 	<div class="buttons">
 		<button id="clickMeButton">click me</button>
 		<button id="dontClickMeButton">don't click me</button>
-	</div>
+
 </body>
 </html>
 ```
@@ -320,9 +320,9 @@ This could be due to several reasons:
 * **Storing data in the EU:** A common issue is that the data in Segment is enabled to be sent to an EU endpoint but the Mixpanel data is still being stored outside of the EU. Both endpoints for Segment and Mixpanel need to point to the EU as described [here](https://segment.com/docs/connections/destinations/catalog/mixpanel/#enable-european-union-endpoint). If you have an existing Mixpanel project, you might need to have your data migrated to the EU. Please find further information [here](https://docs.mixpanel.com/docs/privacy/eu-residency#existing-customers).
 
 * **[Cloud implementation vs. device implementation (Only applies to Classic destination; Action is cloud-mode only)](https://segment.com/docs/connections/destinations/#connection-modes):** Segment can be implemented via a cloud-based implementation or as an SDK on the device directly. Device implementation will send the data to Mixpanel directly while the cloud implementation will send it to Segment first. You can confirm your implementation by querying for the Mixpanel library property of the events in your project:
-    - Cloud Mode will show as Mixpanel Library: Segment: analytics.js
+- Cloud Mode will show as Mixpanel Library: Segment: analytics.js
 
-    - Device Mode will show as Mixpanel Library: Segment: web
+- Device Mode will show as Mixpanel Library: Segment: web
 
 * **No user profile data in Mixpanel (Classic destination only)**: [Segment does not track Mixpanel People by default](https://segment.com/docs/connections/destinations/catalog/mixpanel/#people). This is a setting you need to enable in your Segment settings. To enable Mixpanel People, change the “Use Mixpanel People” setting in your Segment Settings UI.
 

@@ -1,30 +1,16 @@
 # Funnels Quickstart
 
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/oG1JQ-M-32k"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 A funnel is a sequence of events done within a defined period of time. A converted user is one who triggers the funnel events, in the specified order, within the defined time period.
 
@@ -93,20 +79,15 @@ You can visualize your metric in a variety of ways. Mixpanel allows you to choos
 
 <hr></hr>
 <br></br>
-<div className="extendedButtonComponent" >
-<div className="bg-base100 rounded-xl">
-  <h2 className="text-2xl font-medium mb-2 color:bg-purple200">
+<div class="bg-base100 rounded-xl">
+  <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
     Next: Advanced Funnels Concept
   </h2>
   <p>
     Explore how funnel metrics are measured and the various configuration options below.
   </p>
   <br></br>
-  <ExtendedButton
-    title="Funnels Advanced Concepts"
-    link="/docs/reports/funnels/funnels-advanced"
-  ></ExtendedButton>
-</div>
-</div>
+  <a href="/docs/reports/funnels/funnels-advanced" class="button primary">Funnels Advanced Concepts</a>
+
 <br></br>
 <br></br>

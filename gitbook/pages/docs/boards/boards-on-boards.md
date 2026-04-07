@@ -13,12 +13,12 @@ To place a Board on Board, you can:
     ![nested.gif](/nested.gif)
     
 - Use the “Move to” option, which is accessible from 3 locations:
-    - From the side navigation, click on the 3 dots next to the desired Board name
-    - From the current Board that is open, click on the 3 dots in the top right in the header menu
+- From the side navigation, click on the 3 dots next to the desired Board name
+- From the current Board that is open, click on the 3 dots in the top right in the header menu
         
         ![move.gif](/move.gif)
         
-    - If a Board is already on a Board and you’d like to move it elsewhere, you can click on the 3 dots in the card menu of the nested Board
+- If a Board is already on a Board and you’d like to move it elsewhere, you can click on the 3 dots in the card menu of the nested Board
         
         ![moveee.gif](/moveee.gif)
         
@@ -37,5 +37,5 @@ To remove a Board from nesting, you can:
 
 - You must have edit access to the parent Board in order to nest or remove another Board under it. This is similar to reports permissions - you cannot add or remove any report or text from a Board if you don’t have edit access.
 - Nesting a Board does not currently affect permissions.
-    - This means parent Board permissions will not override the child Board’s permissions.
-    - Board level permissions will only cascade for reports on a given Board.
+- This means parent Board permissions will not override the child Board’s permissions.
+- Board level permissions will only cascade for reports on a given Board.

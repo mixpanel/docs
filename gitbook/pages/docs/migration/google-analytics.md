@@ -302,11 +302,11 @@ Consequently, for most cases, we recommend starting fresh when migrating from UA
 
 To backfill data, we recommend:
 - If you have a CDP, this should be straightforward
-    - Utilize the CDP's backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
+- Utilize the CDP's backfilling feature, like [Segment Replay](https://segment.com/docs/guides/what-is-replay/), to re-send historical data to Mixpanel
 - For any other implementation method
-    - First, export your data to the data warehouse so you have a record of Universal Analytics
-    - Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/data-structure/events-and-properties) Mixpanel expects
-    - Leverage our [Import API](https://developer.mixpanel.com/reference/import-events) to send us the formatted events from your data warehouse
+- First, export your data to the data warehouse so you have a record of Universal Analytics
+- Once exported, your data warehouse tables can be transformed and modeled into the [event format](/docs/data-structure/events-and-properties) Mixpanel expects
+- Leverage our [Import API](https://developer.mixpanel.com/reference/import-events) to send us the formatted events from your data warehouse
 
 ## Not sure where to start or need help?
 

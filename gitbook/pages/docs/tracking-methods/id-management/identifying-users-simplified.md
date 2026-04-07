@@ -1,10 +1,9 @@
 # Identifying Users (Simplified)
 
-<div className="idManagementBanner">
+<div class="idManagementBanner">
 {% hint style="warning" %}
 The information on this page is for projects on the **Simplified ID Merge API**. [Learn more here](/docs/tracking-methods/id-management/identifying-users-simplified#overview).
 {% endhint %}
-</div>
 
 ## Overview
 

@@ -1,11 +1,10 @@
 # Identifying Users (Original)
 
-<div className="idManagementBanner">
+<div class="idManagementBanner">
 
 {% hint style="warning" %}
 The information on this page is for projects on the **Original ID Merge API**. [Learn more here](/docs/tracking-methods/id-management/identifying-users-original#overview).
 {% endhint %}
-</div>
 
 ## Overview
 

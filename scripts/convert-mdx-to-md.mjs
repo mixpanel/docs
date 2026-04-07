@@ -138,6 +138,185 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
+function jsxHtmlToHtml(src) {
+  // GitBook sanitization is closer to HTML than React/JSX.
+  // Convert common JSX attrs to HTML attrs so blocks like iframes-in-divs survive.
+  return src
+    .replace(/\bclassName=/g, 'class=')
+    .replace(/\ballowFullScreen\b/g, 'allowfullscreen')
+    .replace(/\bframeBorder=/g, 'frameborder=')
+    .replace(/\breferrerPolicy=/g, 'referrerpolicy=');
+}
+
+function stripJsxStyleObjectsAndAttributeBraces(src) {
+  // Remove JSX-only constructs that GitBook doesn't parse (e.g. style={{...}}, width={"100%"}).
+  const lines = src.split('\n');
+  const out = [];
+  let inFence = false;
+  let inStyleObject = false;
+
+  for (let line of lines) {
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+
+    if (inStyleObject) {
+      // End when we see a closing "}}" (possibly with trailing comma/space)
+      if (line.includes('}}')) {
+        inStyleObject = false;
+        // Drop everything up to and including the first "}}" on this line.
+        line = line.replace(/^[\s\S]*?\}\}\s*,?\s*/, '');
+        if (!line.trim()) continue;
+      } else {
+        continue;
+      }
+    }
+
+    // Start of style object can be on the same line or its own line.
+    if (/style=\{\{/.test(line)) {
+      // Remove inline style={{ ... }} if it ends on same line.
+      const inline = line.replace(/style=\{\{[\s\S]*?\}\}\s*/g, '');
+      if (inline !== line) {
+        line = inline;
+      } else {
+        // Otherwise begin skipping subsequent lines until "}}"
+        line = line.replace(/style=\{\{[\s\S]*$/g, '');
+        inStyleObject = true;
+      }
+    }
+
+    // Convert attr={"value"} to attr="value"
+    line = line.replace(/(\s[\w:-]+)=\{(".*?"|'.*?')\}/g, '$1=$2');
+    // Convert boolean JSX attrs like allowfullscreen={true} to allowfullscreen
+    line = line.replace(/(\s[\w:-]+)=\{true\}/g, '$1');
+    // Drop {false} boolean attrs entirely
+    line = line.replace(/(\s[\w:-]+)=\{false\}/g, '');
+
+    out.push(line);
+  }
+
+  return out.join('\n');
+}
+
+function convertExtendedButton(src) {
+  // Convert the custom MDX button component into a GitBook button.
+  // Example:
+  // <ExtendedButton title="Get Started with AI" link="/docs/quickstart/install-with-ai"></ExtendedButton>
+  // Also used as a self-closing tag in some places.
+  src = src.replace(
+    /<ExtendedButton\b([\s\S]*?)>([\s\S]*?)<\/ExtendedButton>/g,
+    (_all, attrs) => {
+      const title = parseJsxAttribute(attrs, 'title') || 'Learn more';
+      const link = parseJsxAttribute(attrs, 'link') || parseJsxAttribute(attrs, 'href');
+      if (!link) return title;
+      return `<a href="${escapeHtml(link)}" class="button primary">${escapeHtml(title)}</a>`;
+    },
+  );
+  src = src.replace(/<ExtendedButton\b([\s\S]*?)\/>/g, (_all, attrs) => {
+    const title = parseJsxAttribute(attrs, 'title') || 'Learn more';
+    const link = parseJsxAttribute(attrs, 'link') || parseJsxAttribute(attrs, 'href');
+    if (!link) return title;
+    return `<a href="${escapeHtml(link)}" class="button primary">${escapeHtml(title)}</a>`;
+  });
+
+  // Remove the known wrapper divs/brs around ExtendedButton used in this repo.
+  src = src.replace(/<div\s+class(Name)?="extendedButtonComponent"[^>]*>\s*/g, '');
+  src = src.replace(/(<a [^>]*class="button (?:primary|secondary)"[^>]*>[\s\S]*?<\/a>)\s*<\/div>/g, '$1');
+  src = src.replace(/^\s*<\/div>\s*$/gm, '');
+  src = src.replace(/^\s*<br\s*\/?>\s*$/gm, '');
+  return src;
+}
+
+function fixAccidentalIndentCodeBlocks(src) {
+  // Some converted files have 4-space indentation before list items, which Markdown treats as code blocks.
+  // We only fix *top-level* list lines (and their immediate wrapped continuations) while outside code fences.
+  const lines = src.split('\n');
+  const out = [];
+  let inFence = false;
+  let prevWasList = false;
+
+  for (const line of lines) {
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      prevWasList = false;
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      prevWasList = false;
+      continue;
+    }
+
+    // De-indent accidental top-level bullets/numbered lists.
+    const bulletFixed = line.replace(/^\s{4}([-*]\s+)/, '$1').replace(/^\s{4}(\d+\.\s+)/, '$1');
+    if (bulletFixed !== line) {
+      out.push(bulletFixed);
+      prevWasList = true;
+      continue;
+    }
+
+    // If we just fixed a list item, also de-indent a single wrapped continuation line.
+    if (prevWasList && /^\s{6,}\S/.test(line)) {
+      out.push(line.replace(/^\s{4}/, ''));
+      prevWasList = true;
+      continue;
+    }
+
+    prevWasList = /^([-*]\s+|\d+\.\s+)/.test(t);
+    out.push(line);
+  }
+
+  return out.join('\n');
+}
+
+function collapseEmptyMultilineDivOpenTags(src) {
+  // After stripping JSX-only attributes, we can end up with:
+  // <div
+  //   
+  // >
+  // Collapse that to a single <div>.
+  const lines = src.split('\n');
+  const out = [];
+  let inFence = false;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+
+    if (t === '<div') {
+      let j = i + 1;
+      while (j < lines.length && lines[j].trim() === '') j++;
+      if (j < lines.length && lines[j].trim() === '>') {
+        out.push('<div>');
+        i = j;
+        continue;
+      }
+    }
+
+    out.push(line);
+  }
+
+  return out.join('\n');
+}
+
 function convertCards(src) {
   // Convert Nextra Cards:
   // <Cards>
@@ -162,15 +341,19 @@ function convertCards(src) {
     out.push('<table data-view="cards">');
     out.push('  <thead>');
     out.push('    <tr>');
-    out.push('      <th>Title</th>');
-    out.push('      <th data-card-target data-type="content-ref">Target</th>');
+    out.push('      <th></th>');
+    out.push('      <th></th>');
+    out.push('      <th data-hidden data-card-target data-type="content-ref"></th>');
+    out.push('      <th data-hidden data-card-cover data-type="files"></th>');
     out.push('    </tr>');
     out.push('  </thead>');
     out.push('  <tbody>');
     for (const r of rows) {
       out.push('    <tr>');
-      out.push(`      <td>${escapeHtml(r.title)}</td>`);
-      out.push(`      <td><a href="${escapeHtml(r.href)}">${escapeHtml(r.title)}</a></td>`);
+      out.push(`      <td><strong>${escapeHtml(r.title)}</strong></td>`);
+      out.push('      <td></td>');
+      out.push(`      <td><a href="${escapeHtml(r.href)}">${escapeHtml(r.href)}</a></td>`);
+      out.push('      <td></td>');
       out.push('    </tr>');
     }
     out.push('  </tbody>');
@@ -394,12 +577,17 @@ function cleanupDanglingJsx(src) {
 function convertOne(src, maps) {
   let out = src;
   out = stripMdxExportsAndImports(out);
+  out = jsxHtmlToHtml(out);
+  out = stripJsxStyleObjectsAndAttributeBraces(out);
+  out = convertExtendedButton(out);
   out = convertCards(out);
   out = convertCallouts(out);
   out = convertExtendedAccordions(out);
   out = convertSteps(out);
   out = convertTabsBlocks(out);
   out = convertExtendedTabs(out, maps);
+  out = fixAccidentalIndentCodeBlocks(out);
+  out = collapseEmptyMultilineDivOpenTags(out);
   out = cleanupDanglingJsx(out);
   return out;
 }

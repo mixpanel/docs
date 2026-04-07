@@ -161,7 +161,7 @@ if (isEnabled) {
 2. **Review flag configuration**: 
   - Make sure your feature flag is enabled
   - Check the flag's rollout percentage
-    - User contexts that are not assigned to the rollout percentage will not be assigned variant values
+- User contexts that are not assigned to the rollout percentage will not be assigned variant values
   - If you are using a targeting cohort, verify on the mixpanel 'Users' page that the user's `distinct_id` is a member of that cohort.
 
 3. **Review SDK parameters**:

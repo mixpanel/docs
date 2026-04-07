@@ -7,39 +7,25 @@ that let you query and visualize the results with just a few clicks.
 Mixpanel is built on three key concepts: [**Events**](#events), [**Users**](#users), and [**Properties**](#properties).
 
 <br></br>
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "64.90384615384616%",
-    height: 0,
-  }}
->
+<div>
   <p>
     <iframe
       src="https://www.youtube-nocookie.com/embed/sRQCfmvh3vg"
-      frameBorder="0"
+      frameborder="0"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
-      allowFullScreen
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "16px",
-      }}
+      allowfullscreen
+      
     ></iframe>
   </p>
-</div>
 
 ## Concepts
 
 Before you get started, you should know three Mixpanel concepts:
 
-    - **Events** are actions that happen in your product
-    - **Users** are the people who use your product
-    - **Properties** are the attributes of your users and events
+- **Events** are actions that happen in your product
+- **Users** are the people who use your product
+- **Properties** are the attributes of your users and events
 
 ### Events
 
@@ -77,21 +63,19 @@ powerful features make it easy to identify trends and new customer insights.
 <br></br>
 <hr></hr>
 
-<div className="extendedButtonComponent" >
-
 ## Next Steps
 
 Now that you understand the basics, **we recommend planning the first events you would like to track**. This will help you understand what you need to get started. Choosing these events should take no more than 5 minutes.
 
 <br></br>
-<ExtendedButton title="Plan Your Tracked Events" link="/docs/what-to-track"></ExtendedButton>
+<a href="/docs/what-to-track" class="button primary">Plan Your Tracked Events</a>
 
 <br></br>
 <br></br>
 <br></br>
 
-<div className="bg-base100 rounded-xl">
-  <h4 className="text-2xl font-medium mb-2 color:bg-purple200">
+<div class="bg-base100 rounded-xl">
+  <h4 class="text-2xl font-medium mb-2 color:bg-purple200">
     Already Know What You Want to Track?
   </h4>
   <p>
@@ -99,7 +83,4 @@ Now that you understand the basics, **we recommend planning the first events you
     start by installing Mixpanel.
   </p>
   <br></br>
-  <ExtendedButton title="Install Mixpanel" link="/docs/quickstart/install-mixpanel" ></ExtendedButton>
-</div>
-
-</div>
+  <a href="/docs/quickstart/install-mixpanel" class="button primary">Install Mixpanel</a>

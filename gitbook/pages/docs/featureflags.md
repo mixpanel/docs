@@ -23,10 +23,10 @@ Feature Flags is a separately priced product add-on. It is currently only offere
 - **Fallback Value** — variant to use when an assignment is unavailable.
 - **Sticky Variants** — the same entity keeps the same variant over time.
 - **Rollout Groups** - the configuration determining which users are in the rollout. This is comprised of:
-    - **Filters** — the targeting configuration that determines whether a subject is eligible for this rollout. Filter types include Cohort and Runtime filters
-    - **Cohort Filter** - a targeting method that uses Mixpanel cohorts to target users or group entities
-    - **Runtime Filter** - a targeting method that checks data available at runtime against a Runtime Property or Runtime Event
-    - **Rollout %** — percentage of the audience that receives the flag if they are eligible for the rollout group
+- **Filters** — the targeting configuration that determines whether a subject is eligible for this rollout. Filter types include Cohort and Runtime filters
+- **Cohort Filter** - a targeting method that uses Mixpanel cohorts to target users or group entities
+- **Runtime Filter** - a targeting method that checks data available at runtime against a Runtime Property or Runtime Event
+- **Rollout %** — percentage of the audience that receives the flag if they are eligible for the rollout group
 - **Runtime Properties** — request-time attributes (e.g., URL path, app version) used to target immediately.
 - **Runtime Events** — event-based targeting (e.g., user clicked button, completed purchase) used to target users immediately after they perform actions.
 - **Assignment vs Exposure** — assignment is deciding the variant; exposure is when your app **uses** that variant to render.
@@ -43,8 +43,8 @@ We support the following types of Flags
 1. **Feature Gate** : Toggle a feature on or off for targeted users or all users. Useful for phased or controlled rollout.
 2. [**Experiment**](/docs/experiments) : Deliver different variant experiences (e.g., layouts, flows, pricing) to a targeted group of users. Enables measuring and analyzing impact.
 3. **Dynamic Config** : Configure features with flexible key-value pairs instead of just on/off. It lets you:
-    - Pass JSON payloads (e.g., `{"cta_text": "Buy now", "discount": 20}`) to customize behavior or UI dynamically
-    - Update values instantly without redeploying code
+- Pass JSON payloads (e.g., `{"cta_text": "Buy now", "discount": 20}`) to customize behavior or UI dynamically
+- Update values instantly without redeploying code
 
 ## Targeting & Identity Management
 
@@ -70,9 +70,9 @@ Variants are served / allocated around the `variant assignment key`
 Variant management includes 3 concepts - 
 - Variants are the experiences to serve. (e.g., `control`, `A`, `B`).
 - Variant split % is the allocation across the variants.
-    - For example, 10% of users in variant A, and 90% in variant B.
+- For example, 10% of users in variant A, and 90% in variant B.
 - Sticky Variants ensures continuity in the variant experience served
-    - If a user is assigned to a sticky variant B, regardless of how variant splits, rollout percentage, or cohort memberships change in the future, the user will continue to see the variant B. 
+- If a user is assigned to a sticky variant B, regardless of how variant splits, rollout percentage, or cohort memberships change in the future, the user will continue to see the variant B. 
 
 {% hint style="info" %}
 Control variant by is always set to non-sticky. This is to ensure this is the only group of users that can move up to other variants if allocation of other variants is increased.
@@ -162,8 +162,8 @@ NOTE: If you do want all users to be sticky and do not anticipate needing to cha
 Let's say we have 2 features: feature A and feature B, and we want these to be non-overlapping in audience targeting.
 In the feature flag B page, in the target audience -
 - Create Rollout Group 1: any user who was exposed to feature flag A
-    - Variant served: control 100% (no new experience, revert to default)
-    - Rollout % : 100%
+- Variant served: control 100% (no new experience, revert to default)
+- Rollout % : 100%
 - Create Rollout Group 2: All users, or any specific users you want for flag B
 
 **5. Are there any limits to variants or rollout group?**
@@ -176,7 +176,7 @@ We recommend establishing light-weight controls without slowing teams.
 
 ### Permissions
 - **Project Role** — you need to have at least an “analyst” role to create and edit feature flags. “Consumer” roles can only view feature flags.
-    - [coming soon] Overall Feature Flag permissions - this setting allows you to give users or teams access to all feature flags. It overrides the permissions set at a per-flag level. For example, you might want your ops-lead team to have edit access to all flags for emergencies. 
+- [coming soon] Overall Feature Flag permissions - this setting allows you to give users or teams access to all feature flags. It overrides the permissions set at a per-flag level. For example, you might want your ops-lead team to have edit access to all flags for emergencies. 
 - **Feature Flag Permissions** — You can manage share settings per flag.. Only editors for a flag will have access to modify a flag generally.
 
 ### Audit Trail
@@ -232,30 +232,42 @@ See our developer guides on implementing feature flags on these platforms below:
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Web</td>
-      <td><a href="/docs/tracking-methods/sdks/javascript/javascript-flags">Web</a></td>
+      <td><strong>Web</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/javascript/javascript-flags">/docs/tracking-methods/sdks/javascript/javascript-flags</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>iOS</td>
-      <td><a href="/docs/tracking-methods/sdks/swift/swift-flags">iOS</a></td>
+      <td><strong>iOS</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/swift/swift-flags">/docs/tracking-methods/sdks/swift/swift-flags</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Android</td>
-      <td><a href="/docs/tracking-methods/sdks/android/android-flags">Android</a></td>
+      <td><strong>Android</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/android/android-flags">/docs/tracking-methods/sdks/android/android-flags</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Flutter</td>
-      <td><a href="/docs/tracking-methods/sdks/flutter/flutter-flags">Flutter</a></td>
+      <td><strong>Flutter</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/flutter/flutter-flags">/docs/tracking-methods/sdks/flutter/flutter-flags</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>React Native (Beta)</td>
-      <td><a href="/docs/tracking-methods/sdks/react-native/react-native-flags">React Native (Beta)</a></td>
+      <td><strong>React Native (Beta)</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/react-native/react-native-flags">/docs/tracking-methods/sdks/react-native/react-native-flags</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -265,30 +277,42 @@ See our developer guides on implementing feature flags on these platforms below:
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Python</td>
-      <td><a href="/docs/tracking-methods/sdks/python/python-flags">Python</a></td>
+      <td><strong>Python</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/python/python-flags">/docs/tracking-methods/sdks/python/python-flags</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Ruby (Beta)</td>
-      <td><a href="/docs/tracking-methods/sdks/ruby/ruby-flags">Ruby (Beta)</a></td>
+      <td><strong>Ruby (Beta)</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/ruby/ruby-flags">/docs/tracking-methods/sdks/ruby/ruby-flags</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Node.js</td>
-      <td><a href="/docs/tracking-methods/sdks/nodejs/nodejs-flags">Node.js</a></td>
+      <td><strong>Node.js</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/nodejs/nodejs-flags">/docs/tracking-methods/sdks/nodejs/nodejs-flags</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Java</td>
-      <td><a href="/docs/tracking-methods/sdks/java/java-flags">Java</a></td>
+      <td><strong>Java</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/java/java-flags">/docs/tracking-methods/sdks/java/java-flags</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Go</td>
-      <td><a href="/docs/tracking-methods/sdks/go/go-flags">Go</a></td>
+      <td><strong>Go</strong></td>
+      <td></td>
+      <td><a href="/docs/tracking-methods/sdks/go/go-flags">/docs/tracking-methods/sdks/go/go-flags</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -303,8 +327,8 @@ If you'd like to see Feature Flags availability in other SDKs, please [reach out
 You have two options - 
 - **Option 1:** Use Mixpanel sdk for purely feature flagging assignment and exposure event `$experiment_started`   
 - **Option 2:** Use mixpanel sdk for only feature flagging assignment, not exposure event
-    - When you initialize the mixpanel feature flag SDK, configure it to not track any `$experiment_started` events directly to Mixpanel.
-    - This way you use the mixpanel SDK to serve the feature flags, but when an end-user sees exposure, they manually use their existing method of tracking events through their CDP to mixpanel to track the $experiment_started event
+- When you initialize the mixpanel feature flag SDK, configure it to not track any `$experiment_started` events directly to Mixpanel.
+- This way you use the mixpanel SDK to serve the feature flags, but when an end-user sees exposure, they manually use their existing method of tracking events through their CDP to mixpanel to track the $experiment_started event
 
 ## Identifying User Exposures
 

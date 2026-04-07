@@ -14,22 +14,30 @@ These integrations allow you to send your [raw data](/docs/data-pipelines#raw) a
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Raw AWS Pipeline</td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/raw-aws-pipeline">Raw AWS Pipeline</a></td>
+      <td><strong>Raw AWS Pipeline</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/old-pipelines/integrations/raw-aws-pipeline">/docs/data-pipelines/old-pipelines/integrations/raw-aws-pipeline</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Raw Azure Pipeline</td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/raw-azure-pipeline">Raw Azure Pipeline</a></td>
+      <td><strong>Raw Azure Pipeline</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/old-pipelines/integrations/raw-azure-pipeline">/docs/data-pipelines/old-pipelines/integrations/raw-azure-pipeline</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Raw GCS Pipeline</td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/raw-gcs-pipeline">Raw GCS Pipeline</a></td>
+      <td><strong>Raw GCS Pipeline</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/old-pipelines/integrations/raw-gcs-pipeline">/docs/data-pipelines/old-pipelines/integrations/raw-gcs-pipeline</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -39,30 +47,42 @@ These integrations allow you to send your [raw data](/docs/data-pipelines#raw) a
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Schematized AWS Pipeline</td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-aws-pipeline">Schematized AWS Pipeline</a></td>
+      <td><strong>Schematized AWS Pipeline</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-aws-pipeline">/docs/data-pipelines/old-pipelines/integrations/schematized-aws-pipeline</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Schematized Azure Pipeline</td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-azure-pipeline">Schematized Azure Pipeline</a></td>
+      <td><strong>Schematized Azure Pipeline</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-azure-pipeline">/docs/data-pipelines/old-pipelines/integrations/schematized-azure-pipeline</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Schematized BigQuery Pipeline</td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-bigquery-pipeline">Schematized BigQuery Pipeline</a></td>
+      <td><strong>Schematized BigQuery Pipeline</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-bigquery-pipeline">/docs/data-pipelines/old-pipelines/integrations/schematized-bigquery-pipeline</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Schematized GCS Pipeline</td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-gcs-pipeline">Schematized GCS Pipeline</a></td>
+      <td><strong>Schematized GCS Pipeline</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-gcs-pipeline">/docs/data-pipelines/old-pipelines/integrations/schematized-gcs-pipeline</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Schematized Snowflake Pipeline</td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-snowflake-pipeline">Schematized Snowflake Pipeline</a></td>
+      <td><strong>Schematized Snowflake Pipeline</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-snowflake-pipeline">/docs/data-pipelines/old-pipelines/integrations/schematized-snowflake-pipeline</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

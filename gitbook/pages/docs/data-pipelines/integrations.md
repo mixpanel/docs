@@ -10,38 +10,54 @@ These integrations allow you to send your Mixpanel data into a data warehouse.
 <table data-view="cards">
   <thead>
     <tr>
-      <th>Title</th>
-      <th data-card-target data-type="content-ref">Target</th>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>AWS S3</td>
-      <td><a href="/docs/data-pipelines/integrations/aws-s3">AWS S3</a></td>
+      <td><strong>AWS S3</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/integrations/aws-s3">/docs/data-pipelines/integrations/aws-s3</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Azure Blob Storage</td>
-      <td><a href="/docs/data-pipelines/integrations/azure-blob-storage">Azure Blob Storage</a></td>
+      <td><strong>Azure Blob Storage</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/integrations/azure-blob-storage">/docs/data-pipelines/integrations/azure-blob-storage</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>BigQuery</td>
-      <td><a href="/docs/data-pipelines/integrations/bigquery">BigQuery</a></td>
+      <td><strong>BigQuery</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/integrations/bigquery">/docs/data-pipelines/integrations/bigquery</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Databricks</td>
-      <td><a href="/docs/data-pipelines/integrations/databricks">Databricks</a></td>
+      <td><strong>Databricks</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/integrations/databricks">/docs/data-pipelines/integrations/databricks</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Google Cloud Storage</td>
-      <td><a href="/docs/data-pipelines/integrations/gcp-gcs">Google Cloud Storage</a></td>
+      <td><strong>Google Cloud Storage</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/integrations/gcp-gcs">/docs/data-pipelines/integrations/gcp-gcs</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Redshift Spectrum</td>
-      <td><a href="/docs/data-pipelines/integrations/redshift-spectrum">Redshift Spectrum</a></td>
+      <td><strong>Redshift Spectrum</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/integrations/redshift-spectrum">/docs/data-pipelines/integrations/redshift-spectrum</a></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Snowflake</td>
-      <td><a href="/docs/data-pipelines/integrations/snowflake">Snowflake</a></td>
+      <td><strong>Snowflake</strong></td>
+      <td></td>
+      <td><a href="/docs/data-pipelines/integrations/snowflake">/docs/data-pipelines/integrations/snowflake</a></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

@@ -6,7 +6,7 @@ This page walks through Mixpanel's native integration with Google Tag Manager (G
 
 Our [video walkthrough](https://user-images.githubusercontent.com/556882/154125933-b584de10-b7fa-4668-b815-7429192d867a.mp4) demonstrates how get started using our GTM template.
 
-<video playsInline controls className='nx-rounded-lg'>
+<video playsInline controls class='nx-rounded-lg'>
   <source
     src='https://user-images.githubusercontent.com/556882/154125933-b584de10-b7fa-4668-b815-7429192d867a.mp4'
     type='video/mp4'
