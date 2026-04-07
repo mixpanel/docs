@@ -462,6 +462,124 @@ function stripExternalLinkIcons(src) {
   );
 }
 
+function promoteMetadataDescriptionToDescription(src) {
+  // Some pages include `metadata: { description: ... }` style frontmatter (from other systems).
+  // GitBook expects a top-level `description:` field. If missing, promote it.
+  const t = String(src);
+  if (!t.startsWith('---\n')) return t;
+  const end = t.indexOf('\n---\n', 4);
+  if (end === -1) return t;
+
+  const fm = t.slice(0, end + '\n---\n'.length);
+  const rest = t.slice(end + '\n---\n'.length);
+
+  if (/^description:\s*/m.test(fm)) return t;
+
+  // Look for a YAML-ish `metadata:` block with an indented `description: ...`
+  const m = fm.match(/^[ \t]*metadata:\s*\n([\s\S]*?)\n---\n/m);
+  if (!m) return t;
+
+  const metaBlock = m[1];
+  const descMatch = metaBlock.match(/^[ \t]+description:\s*["']?(.+?)["']?\s*$/m);
+  if (!descMatch) return t;
+  const desc = descMatch[1].trim();
+  if (!desc) return t;
+
+  const fmWithoutTrailing = fm.replace(/\n---\n$/, '\n');
+  return `${fmWithoutTrailing}description: "${desc.replace(/"/g, '\\"')}"\n---\n${rest}`;
+}
+
+function blankCardsOnlyCollectionPages(src) {
+  // If a page is just a title (+ optional short intro text) plus cards (with internal links),
+  // strip the cards so GitBook shows the auto-generated subpage collection.
+  const t = String(src);
+
+  // Split frontmatter from body.
+  let frontmatter = '';
+  let body = t;
+  if (body.startsWith('---\n')) {
+    const end = body.indexOf('\n---\n', 4);
+    if (end !== -1) {
+      frontmatter = body.slice(0, end + '\n---\n'.length);
+      body = body.slice(end + '\n---\n'.length);
+    }
+  }
+
+  const lines = body.split('\n');
+  const trimmedAll = body.trim();
+  if (!trimmedAll) return t;
+
+  // Find first H1.
+  const firstHeadingIdx = lines.findIndex((l) => l.startsWith('# '));
+  if (firstHeadingIdx === -1) return t;
+  // Only treat it as a collection page if the H1 is the first non-empty line.
+  if (lines.slice(0, firstHeadingIdx).some((l) => l.trim() !== '')) return t;
+
+  // Find the cards table start (first non-empty line after H1/intro).
+  const afterHeading = lines.slice(firstHeadingIdx + 1);
+  const tableStartRel = afterHeading.findIndex((l) => l.trim().startsWith('<table data-view="cards">'));
+  if (tableStartRel === -1) return t;
+  const tableStartIdx = firstHeadingIdx + 1 + tableStartRel;
+
+  // Everything after table must be table-only (no additional non-empty content).
+  const afterTable = lines.slice(tableStartIdx).join('\n').trim();
+  if (!afterTable.startsWith('<table data-view="cards">')) return t;
+  if (!afterTable.endsWith('</table>')) return t;
+
+  // Ensure all links are internal.
+  const hrefs = [];
+  const hrefRe = /<a\s+href="([^"]+)"/g;
+  let m;
+  while ((m = hrefRe.exec(afterTable))) hrefs.push(m[1]);
+  if (hrefs.length === 0) return t;
+  const allInternal = hrefs.every((h) => !/^https?:\/\//i.test(h));
+  if (!allInternal) return t;
+
+  // Decide whether we can safely promote the "intro" to frontmatter description.
+  // GitBook description must be plaintext (no markdown, no GitBook blocks).
+  const betweenLines = lines.slice(firstHeadingIdx + 1, tableStartIdx);
+  const betweenRaw = betweenLines.join('\n').trim();
+
+  const hasDescriptionAlready = frontmatter && /^description:\s*/m.test(frontmatter);
+  let fmOut = frontmatter;
+
+  // Case 1: Pure collection page (no intro content). Keep only H1.
+  if (!betweenRaw) {
+    const keptBody = `${lines[firstHeadingIdx]}\n`;
+    return (fmOut ? `${fmOut}\n${keptBody}` : keptBody).replace(/\n{3,}/g, '\n\n');
+  }
+
+  const isPlaintextIntro =
+    betweenRaw &&
+    // No headings/lists/blocks
+    !/(^|\n)\s*#{2,}\s+/.test(betweenRaw) &&
+    !/(^|\n)\s*[-*]\s+/.test(betweenRaw) &&
+    !/(^|\n)\s*\d+\.\s+/.test(betweenRaw) &&
+    // No GitBook blocks / HTML / MD links / inline formatting
+    !/\{%\s*\w+/.test(betweenRaw) &&
+    !/<[a-z][\s\S]*?>/i.test(betweenRaw) &&
+    !/\[[^\]]+\]\([^)]+\)/.test(betweenRaw) &&
+    !/[*_`]/.test(betweenRaw);
+
+  if (isPlaintextIntro && !hasDescriptionAlready) {
+    const desc = betweenRaw.replace(/\s+/g, ' ').trim();
+    if (desc && desc.length <= 240) {
+      if (fmOut) {
+        fmOut = fmOut.replace(/\n---\n$/, `\ndescription: "${desc.replace(/"/g, '\\"')}"\n---\n`);
+      } else {
+        fmOut = `---\ndescription: "${desc.replace(/"/g, '\\"')}"\n---\n`;
+      }
+    }
+    // Keep only the H1 in the body.
+    const keptBody = `${lines[firstHeadingIdx]}\n`;
+    return (fmOut ? `${fmOut}\n${keptBody}` : keptBody).replace(/\n{3,}/g, '\n\n');
+  }
+
+  // Otherwise, this page has meaningful non-plaintext content (hints/links/headings/etc.).
+  // Keep it as a normal page and keep the cards table too (no auto-collection behavior).
+  return t;
+}
+
 function ensureFrontmatterWithTags(src, tags) {
   const t = String(src);
   if (!tags || tags.length === 0) return t;
@@ -787,6 +905,7 @@ function cleanupDanglingJsx(src) {
 
 function convertOne(src, maps) {
   let out = src;
+  out = promoteMetadataDescriptionToDescription(out);
   out = stripMdxExportsAndImports(out);
   out = jsxHtmlToHtml(out);
   out = stripJsxStyleObjectsAndAttributeBraces(out);
@@ -804,6 +923,7 @@ function convertOne(src, maps) {
   out = stripBrTags(out);
   out = convertBetaMarkersToTags(out);
   out = stripExternalLinkIcons(out);
+  out = blankCardsOnlyCollectionPages(out);
   out = cleanupDanglingJsx(out);
   return out;
 }

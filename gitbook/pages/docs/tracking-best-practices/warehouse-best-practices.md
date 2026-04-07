@@ -7,6 +7,7 @@ metadata:
   description: "Learn best practices for implementing Mixpanel with your data warehouse to maintain high-quality data governance and successful analytics outcomes."
 createdAt: "2023-04-16T17:00:00.000Z"
 updatedAt: "2023-04-16T17:00:00.000Z"
+description: "Learn best practices for implementing Mixpanel with your data warehouse to maintain high-quality data governance and successful analytics outcomes."
 ---
 
 # Warehouse Best Practices
