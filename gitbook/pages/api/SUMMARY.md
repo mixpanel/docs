@@ -2,15 +2,18 @@
 
 * [Developer Platform API](README.md)
 
-## Reference
+## Ingestion API
 
+* [Overview](ingestion-api/overview.md)
+* [Authentication](ingestion-api/authentication.md)
 * ```yaml
+  type: builtin:openapi
   props:
     models: false
-  type: builtin:openapi
+    downloadLink: false
   dependencies:
     spec:
       ref:
         kind: openapi
-        spec: gitbook-petstore
+        spec: ingestion
   ```
