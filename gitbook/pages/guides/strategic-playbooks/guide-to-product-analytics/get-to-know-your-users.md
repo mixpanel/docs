@@ -63,7 +63,7 @@ An example is the **mDAU metric**, which stands for monetizable daily active usa
 >
 > It’s nice to be able to say that you once had a 28% conversion rate, and you increased it to 32%. Progress! But really, 72 out of 100 people used to not convert to the desired action, and now, 68 people still don’t. Ask yourself: What’s the most impactful thing you can do to make those people feel compelled to stick around?”
 > 
-> <div>**Josh Elman**</div>
+> **Josh Elman**
 *VC & Advisor; Former Product Leader at Robinhood, LinkedIn, Twitter*
 
 ## When should I measure DAU/WAU/MAU?
@@ -78,7 +78,7 @@ However, because DAU/WAU/MAU numbers are volatile and don't paint the full pictu
 
 > "We're going to stop talking about monthly or weekly or daily active users because I'm not sure what anyone can do with that information."
 > 
-> <div>**Blake Jorgensen**</div>
+> **Blake Jorgensen**
 *EA's COO and CFO*
 
 If you clearly define what "active" means for your business, DAU/WAU/MAU can be helpful for assessing overall business health. But without a well-defined "active" part of the picture, it becomes a vanity metric. Our advice: DAU/MAU/WAU might be a great opening statement, but it’s never a full story.

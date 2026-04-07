@@ -93,9 +93,8 @@ Looking to level up your product analytics maturity? [Set up a demo today.](http
 
 ### About Product Collective
 
-<div>
 ![Product Collective](../../.gitbook/assets/logos/product-collective-logo.svg)
-<div>
+
 Product Collective is a community serving 30,000+ technology product management professionals. Through its various resources, products and events, Product Collective aims to help product people answer the question, "Am I doing this right?"
 
 Members of Product Collective have access to a host of resources, including a weekly newsletter, a semi-monthly live video Q&A chat series, and an active Slack community. Product Collective also co-hosts one of the top-rated product management podcasts, Rocketship.FM, and organizes one of the top product management conferences series in the world, [INDUSTRY](https://www.industryconference.com/): The Product Conference. Most recently, Product Collective launched INDUSTRY On Demand, a video subscription platform with over 100 hours of educational product management content.
@@ -108,9 +107,8 @@ To help you improve your product analytics strategy, check out these handpicked 
 
 ### About OpenView
 
-<div>
 ![Open View](../../.gitbook/assets/logos/open-view-logo.svg)
-<div>
+
 OpenView is the venture capital firm for expansion stage B2B software companies. Founded in 2006, OpenView invests globally with the mission to improve people's working lives.
 
 OpenView's focused investment approach across sector and stage enables the firm to identify and partner with category-leading business software companies. The firm's focus extends to operational excellence through its dedicated expansion team, who works with portfolio companies on go-to-market, sales and marketing, product led growth, talent, and corporate development projects.

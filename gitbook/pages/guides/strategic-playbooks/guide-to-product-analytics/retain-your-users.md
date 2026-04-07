@@ -73,10 +73,9 @@ And finally, "Where are my users dropping off?" is a good question to ask, but o
 
 ### Industry Example
 
-<div>
 ![Deliveroo](../../.gitbook/assets/logos/deliveroo-logo.svg)
-<div>
-"Deliveroo wants to ensure its restaurant partners are successful, that they get orders and high ROI from using the company's services. We look closely at the conversion funnel from sign up to the first order. For each market, we have targets we want partners to hit, so we know they are reducing churn and increasing conversion. We track how well our restaurant partners are doing on the platform. Are they engaged? Are they taking actions that are good indicators of whether they're going to be successful? How long has it taken them to onboard? We want our partners to be able to go from making the decision to be on Deliveroo to actually taking their first order in a matter of hours, and being able to look at these metrics is what's going to enable us to do that."<div>**Jordan Ng**</div> *Senior Product Manager, Deliveroo*
+
+"Deliveroo wants to ensure its restaurant partners are successful, that they get orders and high ROI from using the company's services. We look closely at the conversion funnel from sign up to the first order. For each market, we have targets we want partners to hit, so we know they are reducing churn and increasing conversion. We track how well our restaurant partners are doing on the platform. Are they engaged? Are they taking actions that are good indicators of whether they're going to be successful? How long has it taken them to onboard? We want our partners to be able to go from making the decision to be on Deliveroo to actually taking their first order in a matter of hours, and being able to look at these metrics is what's going to enable us to do that."**Jordan Ng** *Senior Product Manager, Deliveroo*
 
 ## Why should I measure retention?
 
@@ -107,10 +106,9 @@ Your retention metric should reflect the number of retained users who experience
 
 ### Industry Example
 
-<div>
 ![Deliveroo](../../.gitbook/assets/logos/deliveroo-logo.svg)
-<div>
-"Deliveroo looks at one-week and three-week retention to see if restaurants are engaging with the platform. Are they finding value in using Hub? You don't necessarily need to use Hub to get orders. You could get set up and then completely go on autopilot and your orders can come in. You may not necessarily need to come back to that portal, but we want to help you grow and manage your business. It's an opportunity for us to educate you, give direction, and help you improve your business so we want to measure that engagement and retention."<div>**Jordan Ng**</div> *Senior Product Manager, Deliveroo*
+
+"Deliveroo looks at one-week and three-week retention to see if restaurants are engaging with the platform. Are they finding value in using Hub? You don't necessarily need to use Hub to get orders. You could get set up and then completely go on autopilot and your orders can come in. You may not necessarily need to come back to that portal, but we want to help you grow and manage your business. It's an opportunity for us to educate you, give direction, and help you improve your business so we want to measure that engagement and retention."**Jordan Ng** *Senior Product Manager, Deliveroo*
 
 ## How do I measure retention?
 
@@ -128,19 +126,17 @@ Remember how you identified the user interaction that symbolizes the moment when
 
 ### Expert Perspectives
 
-<div>
 ![Zip Recruiter](../../.gitbook/assets/logos/zip-recruiter-logo.svg)
-<div>
+
 "A good PM builds a value-moment retention report and analyses on a regular cadence. They can make conjectures about how feature releases or product updates impacted retention rate. A great PM breaks down retention data by cohorts to understand what causes churn. They obsess over the users that get the most value, connect with their use cases, and build features specifically for them.
 
-A great PM works with their data science team on a definition that makes sense for the business. They also account for 'happy churn.' Especially with transactional services, some users churn because your service works as intended, which is a good thing."<div>**Akio Bandle**</div> *Senior Product Manager, ZipRecruiter*
+A great PM works with their data science team on a definition that makes sense for the business. They also account for 'happy churn.' Especially with transactional services, some users churn because your service works as intended, which is a good thing."**Akio Bandle** *Senior Product Manager, ZipRecruiter*
 
-<div>
 ![Vrbo](../../.gitbook/assets/logos/vrbo-logo.svg)
-<div>
+
 "A great PM understands the difference between correlation and causation; they can figure out that a higher conversion rate among more intentful visitors is not a signal that they need to drive that particular user behavior, but that it's a function of the way they've built their analysis. They don't go after opportunities based on that information and then find themselves in a position where they have to defend their sizing of that opportunity and why they prioritized that work.
 
-A great product manager needs to see the difference between an actual trend that can be corrected or adjusted... and a data point."<div>**John Meakin**</div> *Lead Statistician, Vrbo, part of Expedia Group*
+A great product manager needs to see the difference between an actual trend that can be corrected or adjusted... and a data point."**John Meakin** *Lead Statistician, Vrbo, part of Expedia Group*
 
 ## Who are my most retained users?
 

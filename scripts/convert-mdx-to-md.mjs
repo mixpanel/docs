@@ -491,6 +491,65 @@ function convertLogoComponentsToGitbookImages(src, { outPath, assetsDirAbs }) {
   return out.join('\n');
 }
 
+function stripUselessDivs(src) {
+  // After JSX attribute stripping, we often end up with bare <div> wrappers that
+  // cause GitBook editor whitespace/weird block nesting. Remove them.
+  const lines = String(src).split('\n');
+  const out = [];
+  let inFence = false;
+  for (let line of lines) {
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+
+    // Drop lines that are only a div wrapper.
+    if (t === '<div>' || t === '</div>') continue;
+
+    // Remove inline div tags but keep their content.
+    line = line.replace(/<\/?div>/g, '');
+    out.push(line);
+  }
+  return out.join('\n').replace(/\n{3,}/g, '\n\n');
+}
+
+function ensureBlankLineAfterStandaloneImages(src) {
+  // GitBook can be picky if an image line is immediately followed by text without a blank line.
+  // Ensure a blank line after any standalone markdown image line.
+  const lines = String(src).split('\n');
+  const out = [];
+  let inFence = false;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+
+    out.push(line);
+    const isStandaloneImage = /^!\[[^\]]*\]\([^)]+\)\s*$/.test(t);
+    if (!isStandaloneImage) continue;
+
+    const next = lines[i + 1];
+    if (typeof next === 'string' && next.trim() !== '') {
+      out.push('');
+    }
+  }
+  return out.join('\n');
+}
+
 function extractStringProp(objText, key) {
   const re = new RegExp(String.raw`\b${key}\s*:\s*(["'])([\s\S]*?)\1`, 'm');
   const m = re.exec(objText);
@@ -1665,6 +1724,8 @@ function convertOne(src, maps, ctx) {
   out = convertSelfGuidedTours(out);
   out = convertNextImageToMarkdown(out);
   out = convertLogoComponentsToGitbookImages(out, ctx);
+  out = ensureBlankLineAfterStandaloneImages(out);
+  out = stripUselessDivs(out);
   out = stripJsxComments(out);
   out = stripStyleTags(out);
   out = convertIframesToEmbeds(out);

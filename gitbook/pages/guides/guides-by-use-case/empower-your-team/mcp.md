@@ -33,7 +33,6 @@ target="_blank" rel="noopener noreferrer" >
 Open Demo in Loom →
 </a>
 </aside>
-
 </section>
 
 ## Before You Begin

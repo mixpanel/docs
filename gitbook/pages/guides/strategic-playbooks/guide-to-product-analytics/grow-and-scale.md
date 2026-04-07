@@ -17,17 +17,15 @@ When you talk about Growth, you are obviously referring to the growth of your co
 
 ## How do you measure growth?
 
-<div>
 ![Andreessen Horowitz](../../.gitbook/assets/logos/andreessen-horowitz-logo.svg)
-<div>
+
 "More often than not, the right combination of metrics for understanding your business' growth won't be the things that are easiest to measure, or even the most favorable. Take user growth month over month. A company can potentially artificially inflate these numbers by investing heavily in acquisition with things like ad buys, excessive marketing outreach, and other awareness plays that might not be sustainable in the long run, or can oversaturate the market. If these are the only channels for acquisition, growth will eventually stagnate or decline—especially if churn grows.
 
-**The best metrics for understanding growth will be aligned with your company's north star metric**, and therefore, will vary widely depending on the specific context. In a luxury jewelry company, for example, a key metric might be the number of items sold over $10k where the buyer is x."<div>**Andrew Chen**</div> *General Partner, Andreessen Horowitz; Board Member, Reforge*
+**The best metrics for understanding growth will be aligned with your company's north star metric**, and therefore, will vary widely depending on the specific context. In a luxury jewelry company, for example, a key metric might be the number of items sold over $10k where the buyer is x."**Andrew Chen** *General Partner, Andreessen Horowitz; Board Member, Reforge*
 
-<div>
 ![Product School](../../.gitbook/assets/logos/product-school-logo.svg)
-<div>
-"User acquisition matters as a growth metric but you also need to focus on retention. **If you're churning users, you're not really growing.** And while companies like Amazon can afford to stay unprofitable for years, your company probably can't. Outrageous success stories are outliers. Don't get dazzled by what works for them. Focus on what works for you. What's 'table stakes' will vary by industry and market, but these days, it's all about UX—especially at the onboarding stage. Make the user jump through hoops to use your app/software, and they will simply hop away."<div>**Carlos González de Villaumbrosia**</div> *CEO, Product School*
+
+"User acquisition matters as a growth metric but you also need to focus on retention. **If you're churning users, you're not really growing.** And while companies like Amazon can afford to stay unprofitable for years, your company probably can't. Outrageous success stories are outliers. Don't get dazzled by what works for them. Focus on what works for you. What's 'table stakes' will vary by industry and market, but these days, it's all about UX—especially at the onboarding stage. Make the user jump through hoops to use your app/software, and they will simply hop away."**Carlos González de Villaumbrosia** *CEO, Product School*
 
 ## How should your growth strategy change as your company matures?
 
@@ -37,10 +35,9 @@ When you find your product-market fit, measuring growth and value becomes even m
 
 ### Growth Strategy Evolution
 
-<div>
 ![Product School](../../.gitbook/assets/logos/product-school-logo.svg)
-<div>
-"When you're a startup, you need to throw a lot of things against the wall and see what sticks. Your approach is often broad—like a shotgun. And then when you start noticing what works, you can become more focused—like a sniper rifle. This is product-market fit. Through trial, error, and experimentation you've found what works and now you can focus on this almost exclusively. When you reach maturity, you can consider expanding again, using your established clout, resources, and expertise to open new avenues and opportunities for growth."<div>**Carlos González de Villaumbrosia**</div> *CEO, Product School*
+
+"When you're a startup, you need to throw a lot of things against the wall and see what sticks. Your approach is often broad—like a shotgun. And then when you start noticing what works, you can become more focused—like a sniper rifle. This is product-market fit. Through trial, error, and experimentation you've found what works and now you can focus on this almost exclusively. When you reach maturity, you can consider expanding again, using your established clout, resources, and expertise to open new avenues and opportunities for growth."**Carlos González de Villaumbrosia** *CEO, Product School*
 
 ## How can a product manager drive growth?
 
@@ -50,20 +47,17 @@ This only comes with having a clear idea of the foundations laid out in this Gui
 
 ### Industry Examples
 
-<div>
 ![Rakuten Viber](../../.gitbook/assets/logos/rakuten-viber-logo.svg)
-<div>
-"The strategy is to try and understand, as soon as possible, what a retained user regularly does and then try to get users who are not retained to form the same habits. Eventually, we want to provide users with the content that will increase retention and encourage them to stay in for a long enough time for others to join. **This is really the network effect.** Because as more people join, eventually the more active or more retained they'll be."<div>**Idan Dadon**</div> *Product Manager, Viber*
 
-<div>
+"The strategy is to try and understand, as soon as possible, what a retained user regularly does and then try to get users who are not retained to form the same habits. Eventually, we want to provide users with the content that will increase retention and encourage them to stay in for a long enough time for others to join. **This is really the network effect.** Because as more people join, eventually the more active or more retained they'll be."**Idan Dadon** *Product Manager, Viber*
+
 ![Vrbo](../../.gitbook/assets/logos/vrbo-logo.svg)
-<div>
-"Let's say five people take a trip but only one goes through the whole planning and booking process. There are four other adults attached to the trip that we (Vrbo) never communicated with. We don't yet have their information. **We aim for organic growth**, by trying to get the other people on the trip—the guests of guests—involved. It's a free/inexpensive acquisition channel instead of having to reach out to a completely unknown person."<div>**Jamie Kapilivsky**</div> *Data Insights, Vrbo, part of Expedia Group*
 
-<div>
+"Let's say five people take a trip but only one goes through the whole planning and booking process. There are four other adults attached to the trip that we (Vrbo) never communicated with. We don't yet have their information. **We aim for organic growth**, by trying to get the other people on the trip—the guests of guests—involved. It's a free/inexpensive acquisition channel instead of having to reach out to a completely unknown person."**Jamie Kapilivsky** *Data Insights, Vrbo, part of Expedia Group*
+
 ![Docusign](../../.gitbook/assets/logos/docusign-logo.svg)
-<div>
-"We have more than 661,000 customers and hundreds of millions of users around the world—we want them all to love the DocuSign experience. **The 'wow…that was easy' reaction cements the positive impression and helps to drive viral growth.** After all, once they see the value of going digital, they rarely go back to paper."<div>**Drew Ashlock**</div> *Lead Product Manager, DocuSign*
+
+"We have more than 661,000 customers and hundreds of millions of users around the world—we want them all to love the DocuSign experience. **The 'wow…that was easy' reaction cements the positive impression and helps to drive viral growth.** After all, once they see the value of going digital, they rarely go back to paper."**Drew Ashlock** *Lead Product Manager, DocuSign*
 
 In this section on growth, we've repeated the importance of educating potential users about the value that your product can bring. The tricky part is that, out in the wild, it is hard to distinguish a potential user from a person who has no use for your product. The previous chapters focused on how to break down users based on behavior since, as a PM, you have the ability to influence user actions (and ultimately find that magic shortcut to value).
 
