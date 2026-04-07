@@ -17,21 +17,18 @@ Additionally, you must have a paid OneSignal plan to use the integration. If you
 Follow these steps to enable the integration with OneSignal:
 
 1. Select **Settings > Integrations** tab in the bottom left navigation bar of Mixpanel.
-
 2. From the Integrations page, select the OneSignal dropdown, and select **Connect**.
 
 {% hint style="info" %}
-If you set a User ID Property, it should be a Mixpanel user property that matches the OneSignal External ID. If you do not select one, Mixpanel will default to using the `$onesignal_user_id` property to match users between OneSignal and Mixpanel. See more about [matching users between OneSignal and Mixpanel](/docs/cohort-sync/integrations/onesignal#matching-users-between-onesignal-and-mixpanel).
+If you set a User ID Property, it should be a Mixpanel user property that matches the OneSignal External ID. If you do not select one, Mixpanel will default to using the `$onesignal_user_id` property to match users between OneSignal and Mixpanel. See more about [matching users between OneSignal and Mixpanel](../../../../../docs/cohort-sync/integrations/onesignal/#matching-users-between-onesignal-and-mixpanel).
 {% endhint %}
 
-![OneSignal 2 Image](/onesignal6.png)
-
-3. You will need to provide two credentials to authorize the connection: **API Key and App ID**. You can find these values in your **OneSignal settings** page. The OneSignal integration will show a **Connected** tag in the UI once the connection succeeds. 
+3. You will need to provide two credentials to authorize the connection: **API Key and App ID**. You can find these values in your **OneSignal settings** page. The OneSignal integration will show a **Connected** tag in the UI once the connection succeeds.
 
 ## Matching Users between OneSignal and Mixpanel
 
 {% hint style="warning" %}
-**Warning:** Projects using the [Simplified ID merge system](/docs/tracking-methods/id-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the section below are primarily applicable to projects on the original ID merge system.
+**Warning:** Projects using the [Simplified ID merge system](../../../../../docs/tracking-methods/id-management/#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the section below are primarily applicable to projects on the original ID merge system.
 {% endhint %}
 
 Mixpanel only exports identified user profiles to match to OneSignal - users without user profile properties (i.e., anonymous users) will not export.
@@ -40,33 +37,30 @@ To match an exported Mixpanel user to OneSignal, the user’s Mixpanel profile m
 
 User profiles without this user property will **not** export to OneSignal - it is a requirement for user matching.
 
-In addition, when our ingestion service detects calls setting this user property, Mixpanel will also auto-alias the value of `$onesignal_user_id` to the user's distinct_id. This ensures that messaging data passed from OneSignal to Mixpanel continues to be attributed to the correct user.
+In addition, when our ingestion service detects calls setting this user property, Mixpanel will also auto-alias the value of `$onesignal_user_id` to the user's distinct\_id. This ensures that messaging data passed from OneSignal to Mixpanel continues to be attributed to the correct user.
 
 ## Export a Cohort
-To export a cohort to OneSignal: 
+
+To export a cohort to OneSignal:
 
 1. Navigate to Cohorts by clicking in the **Data Management** tab and select **Cohorts**.
-
-![OneSignal 3 Image](/onesignal3.png)
-
 2. Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort and click **Export to OneSignal**.
 
-![OneSignal 4 Image](/onesignal4.png)
-
 ## Sync Types
+
 This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
 
 ### One-Time Export
+
 In a one-time export, Mixpanel sends OneSignal a static export of users who currently qualify for the cohort. The cohort data will not be updated in OneSignal after a one-time export.
 
 ### Dynamic Sync
+
 In dynamic sync, Mixpanel initiates sync between a cohort and OneSignal every fifteen minutes. The exported cohort will be updated every fifteen minutes to reflect the most recent list of users in a cohort.
 
 ## Select the Segment in OneSignal
 
 Once the export completes, you will see a Segment reflecting the set of users from your Mixpanel cohort:
-
-![OneSignal 5 Image](/onesignal5.png)
 
 ## OneSignal Events into Mixpanel & MTU exemptions
 
@@ -77,7 +71,8 @@ Events coming from OneSignal are marked with the property `$source`.
 Because OneSignal's event structure follows Mixpanel's naming convention for messaging events, it will have the same exemptions outlined in the MTU calculation guide for which events do not count towards MTU tallies. Message delivery events will not count towards a user being in MTU counts, while message engagement events will.
 
 The following OneSignal events are exempt from MTU calculations:
-- $app_open (App Opened from Push)
-- $campaign_delivery (Message Sent)
-- $campaign_received (Message Received)
-- $campaign_open (Message Opened)
+
+* $app\_open (App Opened from Push)
+* $campaign\_delivery (Message Sent)
+* $campaign\_received (Message Received)
+* $campaign\_open (Message Opened)

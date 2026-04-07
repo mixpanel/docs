@@ -1,11 +1,12 @@
 # Session Replay Privacy Controls
+
 **Last updated January 21st, 2026**
 
 ## Introduction to Session Replay
 
 Mixpanel offers a privacy-first approach to Session Replay, including features such as data masking. Mixpanel's Session Replay privacy controls were designed to assist customers in protecting end user privacy.
 
-Data privacy regulations are rapidly evolving and vary considerably across states and countries. A consistent requirement across many data privacy regulations for website operators is disclosing to end users that their personal information is being collected, often in a privacy notice. Before implementing Session Replay on your website, a best practice is to review your privacy notice with legal counsel to ensure it remains accurate and compliant with data privacy laws. 
+Data privacy regulations are rapidly evolving and vary considerably across states and countries. A consistent requirement across many data privacy regulations for website operators is disclosing to end users that their personal information is being collected, often in a privacy notice. Before implementing Session Replay on your website, a best practice is to review your privacy notice with legal counsel to ensure it remains accurate and compliant with data privacy laws.
 
 ## How does Session Replay work?
 
@@ -15,54 +16,52 @@ Session Replay for Web captures the Document Object Model (DOM) structure and ch
 
 Masking and blocking are slightly different.
 
-Masked data is suppressed client-side, meaning it is not collected in its original form by Mixpanel’s SDK, and the data is not stored on Mixpanel servers. Masked elements have their text replaced with asterisks of the same length [****]. 
+Masked data is suppressed client-side, meaning it is not collected in its original form by Mixpanel’s SDK, and the data is not stored on Mixpanel servers. Masked elements have their text replaced with asterisks of the same length \[\*\*\*\*].
 
-Blocked data is similarly suppressed client-side, meaning it is not collected in its original form by Mixpanel’s SDK, and the data is not stored on Mixpanel servers. However, blocked elements will be rendered with a placeholder element (e.g., an empty box of similar size). 
+Blocked data is similarly suppressed client-side, meaning it is not collected in its original form by Mixpanel’s SDK, and the data is not stored on Mixpanel servers. However, blocked elements will be rendered with a placeholder element (e.g., an empty box of similar size).
 
 Note: interactions (such as mouse-clicks) with blocked and masked elements are still captured by Session Replay for Web.
 
-<div>
-  <img src="/01-masking-vs-blocking.svg" alt="Masking vs Blocking" />
 
-## Configuring Privacy Controls
+
+### Configuring Privacy Controls
 
 By default, Mixpanel masks and/or blocks the most common elements that contain content like input text, non-input text, images, and videos. However, Mixpanel also offers its customers a range of privacy controls to choose to unmask / unblock elements as needed, which are detailed further on this page.
 
-| Element Type | Default State | Customizable |
-| --- | --- | --- |
-| Inputs | Mixpanel masks all user input text by default. When a user enters text into an input field, Mixpanel captures [****] in place of text. | Yes. You can selectively unmask specific inputs using `record_unmask_input_selector`. However, certain [sensitive input types](#always-masked-inputs) cannot be unmasked for security reasons. |
-| Text | By default, Mixpanel masks all non-input text on your webpage. This masked content on your webpage is replaced with [****]. | Yes. You can selectively unmask text elements using `record_unmask_text_selector`, or set `record_mask_all_text: false` to unmask all text by default and then selectively mask specific elements. |
-| Videos and Images | By default, Mixpanel blocks videos and images. These elements will be rendered with a placeholder element (i.e., an empty box of similar size). Note: interactions with blocked elements will still be captured (e.g., mouse-clicks). | Yes. Mixpanel empowers its customers to decide to record images and videos as-is. |
+| Element Type      | Default State                                                                                                                                                                                                                         | Customizable                                                                                                                                                                                                                     |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Inputs            | Mixpanel masks all user input text by default. When a user enters text into an input field, Mixpanel captures \[\*\*\*\*] in place of text.                                                                                           | Yes. You can selectively unmask specific inputs using `record_unmask_input_selector`. However, certain [sensitive input types](session-replay-privacy-controls.md#always-masked-inputs) cannot be unmasked for security reasons. |
+| Text              | By default, Mixpanel masks all non-input text on your webpage. This masked content on your webpage is replaced with \[\*\*\*\*].                                                                                                      | Yes. You can selectively unmask text elements using `record_unmask_text_selector`, or set `record_mask_all_text: false` to unmask all text by default and then selectively mask specific elements.                               |
+| Videos and Images | By default, Mixpanel blocks videos and images. These elements will be rendered with a placeholder element (i.e., an empty box of similar size). Note: interactions with blocked elements will still be captured (e.g., mouse-clicks). | Yes. Mixpanel empowers its customers to decide to record images and videos as-is.                                                                                                                                                |
 
 Other elements not listed in this table are captured by default, and can be blocked at your discretion. You can specify a CSS selector under the config option `record_block_selector` to block all elements which match the selector.
 
-### Text Masking vs Input Masking
+#### Text Masking vs Input Masking
 
 Text masking and input masking are two separate pipelines that are configured independently. Text masking handles visible text inside any HTML element (`<p>`, `<h1>`, `<span>`, `<label>`, `<button>`, etc.), while input masking handles values typed into `<input>`, `<textarea>`, and `<select>` elements.
 
 This means you can configure them independently. For example, you could unmask form labels while keeping input values masked — the label "Full Name" would be visible but the typed value "John Smith" would show as `****`.
 
-<div>
-  <img src="/02-text-vs-input-masking.svg" alt="Text vs Input Masking" />
 
-## Text Masking Configuration
+
+### Text Masking Configuration
 
 Mixpanel provides flexible options for controlling which text elements are masked in your replays.
 
-### Configuration Options
+#### Configuration Options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `record_mask_all_text` | `boolean` | `true` | When `true`, all text is masked by default. Use `record_unmask_text_selector` to selectively reveal specific elements. |
-| `record_mask_text_selector` | `string \| string[]` | `undefined` | CSS selector(s) for elements to mask. Only applies when `record_mask_all_text` is `false`. |
-| `record_unmask_text_selector` | `string \| string[]` | `undefined` | CSS selector(s) for elements to unmask. Only applies when `record_mask_all_text` is `true`. |
-| `record_mask_text_class` | `string \| RegExp` | Common mask classes | CSS class name or regex for elements to mask. Included for backward compatibility. |
+| Option                        | Type                 | Default             | Description                                                                                                            |
+| ----------------------------- | -------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `record_mask_all_text`        | `boolean`            | `true`              | When `true`, all text is masked by default. Use `record_unmask_text_selector` to selectively reveal specific elements. |
+| `record_mask_text_selector`   | `string \| string[]` | `undefined`         | CSS selector(s) for elements to mask. Only applies when `record_mask_all_text` is `false`.                             |
+| `record_unmask_text_selector` | `string \| string[]` | `undefined`         | CSS selector(s) for elements to unmask. Only applies when `record_mask_all_text` is `true`.                            |
+| `record_mask_text_class`      | `string \| RegExp`   | Common mask classes | CSS class name or regex for elements to mask. Included for backward compatibility.                                     |
 
 {% hint style="info" %}
 Selector options accept either a single CSS selector string or an array of selectors. Arrays are joined with commas internally, so `['.header', '.footer']` is equivalent to `'.header, .footer'`.
 {% endhint %}
 
-### Mask All Text (Default Behavior)
+#### Mask All Text (Default Behavior)
 
 By default, `record_mask_all_text` is `true`, meaning all text on the page is masked. To selectively unmask specific elements, use `record_unmask_text_selector`:
 
@@ -74,7 +73,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 });
 ```
 
-### Unmask All Text
+#### Unmask All Text
 
 To show all text by default and selectively mask sensitive areas, set `record_mask_all_text` to `false` and use `record_mask_text_selector`:
 
@@ -87,7 +86,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 });
 ```
 
-### Using CSS Classes
+#### Using CSS Classes
 
 You can also mask elements using the `.mp-mask` CSS class directly in your HTML:
 
@@ -96,19 +95,19 @@ You can also mask elements using the `.mp-mask` CSS class directly in your HTML:
 <p>This text follows regular masking rules</p>
 ```
 
-## Input Masking Configuration
+### Input Masking Configuration
 
 Input masking follows a similar pattern to text masking, with additional security protections for sensitive input types.
 
-### Configuration Options
+#### Configuration Options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `record_mask_all_inputs` | `boolean` | `true` | When `true`, all inputs are masked by default. Use `record_unmask_input_selector` to selectively reveal specific inputs. |
-| `record_mask_input_selector` | `string \| string[]` | `undefined` | CSS selector(s) for inputs to mask. Only applies when `record_mask_all_inputs` is `false`. |
-| `record_unmask_input_selector` | `string \| string[]` | `undefined` | CSS selector(s) for inputs to unmask. Only applies when `record_mask_all_inputs` is `true`. |
+| Option                         | Type                 | Default     | Description                                                                                                              |
+| ------------------------------ | -------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `record_mask_all_inputs`       | `boolean`            | `true`      | When `true`, all inputs are masked by default. Use `record_unmask_input_selector` to selectively reveal specific inputs. |
+| `record_mask_input_selector`   | `string \| string[]` | `undefined` | CSS selector(s) for inputs to mask. Only applies when `record_mask_all_inputs` is `false`.                               |
+| `record_unmask_input_selector` | `string \| string[]` | `undefined` | CSS selector(s) for inputs to unmask. Only applies when `record_mask_all_inputs` is `true`.                              |
 
-### Selectively Unmask Inputs
+#### Selectively Unmask Inputs
 
 To unmask specific input fields while keeping others masked:
 
@@ -120,7 +119,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 });
 ```
 
-### Always Masked Inputs
+#### Always Masked Inputs
 
 {% hint style="warning" %}
 Certain input types are **always masked** regardless of your configuration settings. This is a security measure that cannot be overridden.
@@ -128,18 +127,18 @@ Certain input types are **always masked** regardless of your configuration setti
 
 The following inputs will always be masked:
 
-| Input Type | Reason |
-| --- | --- |
-| `type="password"` | Contains authentication credentials |
-| `type="email"` | Contains personally identifiable information |
-| `type="tel"` | Contains phone numbers |
-| `type="hidden"` | May contain sensitive tokens or data |
+| Input Type                                     | Reason                                                                                                                                                                                |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type="password"`                              | Contains authentication credentials                                                                                                                                                   |
+| `type="email"`                                 | Contains personally identifiable information                                                                                                                                          |
+| `type="tel"`                                   | Contains phone numbers                                                                                                                                                                |
+| `type="hidden"`                                | May contain sensitive tokens or data                                                                                                                                                  |
 | Inputs with non-empty `autocomplete` attribute | The [autocomplete attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/autocomplete) is primarily used for PII fields (name, address, credit card, etc.) |
-| Inputs with `data-rr-is-password` attribute | Used internally when password inputs are transformed (e.g., "Show Password" functionality) |
+| Inputs with `data-rr-is-password` attribute    | Used internally when password inputs are transformed (e.g., "Show Password" functionality)                                                                                            |
 
 Additionally, Mixpanel applies heuristic detection to identify inputs that may contain sensitive data based on their `name` or `id` attributes. Inputs matching patterns associated with credit cards, passwords, social security numbers, and similar sensitive data will be masked.
 
-## Blocking Elements
+### Blocking Elements
 
 To block elements entirely (replacing them with placeholder boxes), use the blocking configuration:
 
@@ -154,15 +153,16 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 <img src="https://example.com/photo.jpg" class="mp-block"/>
 ```
 
-## Configuring Privacy Options via GTM
+### Configuring Privacy Options via GTM
 
 If you're using the Mixpanel GTM template, privacy options like `record_mask_all_text` and `record_block_selector` should be set using a **Custom JavaScript variable** rather than the template's "Set options manually" interface.
 
 The manual interface can pass empty strings or whitespace for selector fields, which are not valid CSS selectors and will cause a runtime error (`Failed to execute 'matches' on 'Element'`). Using a Custom JavaScript variable gives you full control over the config object passed to the SDK.
 
-### Setup
+#### Setup
 
 In GTM, create a new **Variable → Custom JavaScript** and return your privacy configuration alongside your other init options:
+
 ```javascript
 function() {
   return {
@@ -175,9 +175,10 @@ function() {
 
 Then set **Initialization Options** in your Mixpanel init tag to use this variable.
 
-### Common GTM privacy configurations
+#### Common GTM privacy configurations
 
 **Show all text, block nothing extra (testing/low-sensitivity sites)**
+
 ```javascript
 function() {
   return {
@@ -189,6 +190,7 @@ function() {
 ```
 
 **Mask everything except specific elements (default-private approach)**
+
 ```javascript
 function() {
   return {
@@ -201,6 +203,7 @@ function() {
 ```
 
 **Show all text, selectively mask sensitive areas**
+
 ```javascript
 function() {
   return {
@@ -216,7 +219,7 @@ function() {
 
 For the full list of available privacy options, see the sections above.
 
-## How Nesting and Inheritance Works
+### How Nesting and Inheritance Works
 
 Both masking and unmasking selectors propagate through the DOM tree. When checking if an element should be masked, the SDK checks the **element itself and all of its ancestors**.
 
@@ -228,34 +231,34 @@ Both masking and unmasking selectors propagate through the DOM tree. When checki
 **Blocking does NOT support unblocking children.** When an element is blocked, the entire subtree is removed during DOM serialization. The recording engine never traverses inside a blocked element, so children cannot opt out. There is no unblock selector or class.
 {% endhint %}
 
-<div>
-  <img src="/03-nesting-inheritance.svg" alt="Nesting and Inheritance" />
 
-## Quick Reference: Which Config Do I Use?
 
-<div>
-  <img src="/04-configuration-recipes.svg" alt="Configuration Recipes" />
+### Quick Reference: Which Config Do I Use?
 
-## Disabling Replay Collection 
+
+
+### Disabling Replay Collection
 
 Once enabled, Session Replay runs on your website/app until either:
-- The user leaves your website/app
-- The user is inactive for more than 30 minutes
-- You call manually stop a session recording using an SDK method.
+
+* The user leaves your website/app
+* The user is inactive for more than 30 minutes
+* You call manually stop a session recording using an SDK method.
 
 Call `mixpanel.stop_session_recording()` before a user navigates to a restricted area of your site to disable replay collection while the user is in that area. To restart replay collection, call `mixpanel.start_session_recording()` to re-add the plugin.
 
-## Additional Considerations
+### Additional Considerations
+
 WebComponents that utilize HTML attributes may be ingested and stored by Session Replay for Web, regardless of whether they are displayed in an individual recording as text. Customers should utilize the block functionality outlined above to the extent specific areas of a webpage should not be ingested.
 
-## User Opt-Out
+### User Opt-Out
 
-Session Replay follows [standard SDK opt-out setting](/docs/privacy/end-user-data-management#opt-out-users). If a user is opted out of regular SDK tracking, they will also be opted out of Session Replay recording.
+Session Replay follows [standard SDK opt-out setting](../../../../docs/privacy/end-user-data-management/#opt-out-users). If a user is opted out of regular SDK tracking, they will also be opted out of Session Replay recording.
 
-## Data Deletion
+### Data Deletion
 
-Deletion requests for Session Replay for Web use Mixpanel's standard end user management process for events documented [here](/docs/privacy/end-user-data-management).
+Deletion requests for Session Replay for Web use Mixpanel's standard end user management process for events documented [here](../../../../docs/privacy/end-user-data-management/).
 
-## Data Retention
+### Data Retention
 
 Mixpanel retains Session Replays for 30 days from the date the replay is ingested and becomes available for viewing within Mixpanel.

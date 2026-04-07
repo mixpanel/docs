@@ -1,4 +1,4 @@
-# Move Boards: Reuse Boards across different projects
+# Move Boards
 
 ## Overview
 
@@ -17,24 +17,20 @@ This is where Move comes in. With the right permissions, Team A can move copies 
 ### Turning Move Off and On
 
 {% hint style="info" %}
-To enable or disable the setting to move board, you will need an admin or own project role. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+To enable or disable the setting to move board, you will need an admin or own project role. Learn more about [Roles and Permissions](../../../../docs/orgs-and-projects/roles-and-permissions/).
 {% endhint %}
 
 1. Go to Project Settings
 2. Select Moving Boards from the left hand menu
 3. Select how freely you want boards to be able to be moved: not at all, within the organization, or between organizations.
-- Not at all: no Board can be moved to any other project, no matter the organization
-- Within organization: a Board can be moved to any other project in the same organization
-- Any organization: a Board can be moved to any other project, even one in a different organization
-  This setting does not affect whether you can move a Board into a project, only whether you can move a Board out of a project.
+
+* Not at all: no Board can be moved to any other project, no matter the organization
+* Within organization: a Board can be moved to any other project in the same organization
+* Any organization: a Board can be moved to any other project, even one in a different organization This setting does not affect whether you can move a Board into a project, only whether you can move a Board out of a project.
 
 4. On this page, you can also see who last updated the permissions and when.
 
-![Move-screenshot.png](/Move-screenshot.png)
-
 ### Using Move
-
-![Demo_mv_x_proj.gif](/Demo_mv_x_proj.gif)
 
 Step 1: Go to the Board you wish to move.
 
@@ -44,14 +40,14 @@ Step 3a: Enterprise users: select "projects", then select the specific project t
 
 Step 3b: Non-enterprise users: hover over the "Move To" option, and the project menu will appear immediately. From there, you can choose “Move to your Boards” or another location and select your choice.
 
-Step 3c: You can also use Move to use Boards from a demo project in your own. Get your free Mixpanel demo account and click [here](https://mixpanel.com/api/app/demo_project?show-demo-dataset-modal=true) to access the demo datasets. Once you're in, you can set up a new Board easily using a [template](/docs/boards/templates), or you can build a report from scratch. If you like what you see and want to use the analysis in your own project, you can click the button that says "Use this Board." You'll then select the project to which you want to move the board.
+Step 3c: You can also use Move to use Boards from a demo project in your own. Get your free Mixpanel demo account and click [here](https://mixpanel.com/api/app/demo_project?show-demo-dataset-modal=true) to access the demo datasets. Once you're in, you can set up a new Board easily using a [template](../../../../docs/boards/templates/), or you can build a report from scratch. If you like what you see and want to use the analysis in your own project, you can click the button that says "Use this Board." You'll then select the project to which you want to move the board.
 
 Step 4: If there are events and properties used in the old project but not the new project, the affected reports will remain empty or say “no data” until new events and properties are selected.
 
 When a report can't populate, it will display one of two states: a faded out sample report or a “no data” status.
 
-- Charts that show "no data" occur when an event has been tracked in the last 30 days, but a filter or date range result in no data for the report.
-- For the sample report to appear, the report would have to be configured with an event that hasn't existed or at least hasn't been tracked in past 30 days.
+* Charts that show "no data" occur when an event has been tracked in the last 30 days, but a filter or date range result in no data for the report.
+* For the sample report to appear, the report would have to be configured with an event that hasn't existed or at least hasn't been tracked in past 30 days.
 
 For example: a join membership club event happened 100 times yesterday, but 0 so far today. If you create a report for today, it will show “no data”. But if this is day one of the program and it has never been tracked before, it will show a dummy sample report. From this empty state, you can set up your new reports like any other report.
 

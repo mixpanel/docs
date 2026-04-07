@@ -1,8 +1,8 @@
-# Mixpanel SDKs: iOS (Objective-C)
+# iOS (Objective-C)
 
 ## Getting Started
 
-Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=ios).
+Please refer to our [Quickstart Guide](../../../../../docs/quickstart/connect-your-data).
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-iphone/index.html), [Library Source Code](https://github.com/mixpanel/mixpanel-iphone/), and an [Example Application](https://github.com/mixpanel/mixpanel-iphone/tree/master/HelloMixpanel) is documented in our GitHub repo.
 
@@ -12,37 +12,34 @@ You can install the Objective-C library by using CocoaPods, Carthage, or Swift P
 
 {% tabs %}
 {% tab title="CocoaPods" %}
-1. Install CocoaPods by typing the following in your command line:
+1.  Install CocoaPods by typing the following in your command line:
 
     ```bash
     # install CocoaPods
     gem install cocoapods
     ```
-
-2. After install CocoaPods, create a local CocoaPods spec mirror by running the following:
+2.  After install CocoaPods, create a local CocoaPods spec mirror by running the following:
 
     ```bash
     # Create CocoaPods spec mirror
     pod setup
     ```
-
-3. Then navigate to your Xcode project directory and create a Podfile by running the following:
+3.  Then navigate to your Xcode project directory and create a Podfile by running the following:
 
     ```bash
     # create Podfile in project directory
     pod init
     ```
+4.  Open the Podfile that was generated and add the Mixpanel library to your dependencies:
 
-4. Open the Podfile that was generated and add the Mixpanel library to your dependencies:
-
-    ```ruby Ruby
+    ```ruby
     # add Mixpanel library to dependencies
     target 'MyApp' do
       pod 'Mixpanel'
     end
     ```
+5.  Install the Mixpanel library and create a new Xcode workspace by running the following in the Xcode project directory:
 
-5. Install the Mixpanel library and create a new Xcode workspace by running the following in the Xcode project directory:
     ```bash
     # install library in your dependencies
     pod install
@@ -52,23 +49,23 @@ You can install the Objective-C library by using CocoaPods, Carthage, or Swift P
 {% tab title="Carthage" %}
 Mixpanel supports [Carthage](https://github.com/Carthage/Carthage#quick-start) to package your dependencies as a framework. Include the following dependency in your Cartfile:
 
-    ```bash
-    # add Mixpanel library to your dependencies
-    github "mixpanel/mixpanel-iphone"
-    ```
+````
+```bash
+# add Mixpanel library to your dependencies
+github "mixpanel/mixpanel-iphone"
+```
+````
 {% endtab %}
 
 {% tab title="Swift Package Manager" %}
-1. In Xcode, select File \> Add Packages...
-
+1. In Xcode, select File > Add Packages...
 2. Enter the package URL for [this repository](https://github.com/mixpanel/mixpanel-iphone) and select version v4.0.0 or above.
 {% endtab %}
-
 {% endtabs %}
 
 After installing the library, import the library into `AppDelegate.m` and create an instance of Mixpanel using [`sharedInstanceWithToken:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/sharedInstanceWithToken:) with your project token inside [`application:didFinishLaunchingWithOptions:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate#//apple_ref/occ/intfm/UIApplicationDelegate/application:willFinishLaunchingWithOptions:).
 
-```objc Objective-C
+```objc
 //import library to AppDelegate
 #import "Mixpanel/Mixpanel.h"
 
@@ -82,21 +79,22 @@ After installing the library, import the library into `AppDelegate.m` and create
 
 After you create the Mixpanel instance with your project token, you can return to the instance by calling [`sharedInstance`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/sharedInstance).
 
-```objc Objective-C
+```objc
 // Returns to a previously initialized Mixpanel instance
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 ```
+
 ### Library Configuration
 
 {% hint style="warning" %}
-For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/ios#privacy-friendly-tracking).
+For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](../../../../../docs/tracking-methods/sdks/ios/#privacy-friendly-tracking).
 {% endhint %}
 
 The library can be initialized with different configurations. See a complete list of the configuration options [here](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/sharedInstanceWithToken:).
 
 **Example Usage**
 
-```objc Objective-C
+```objc
 //import library to AppDelegate
 #import "Mixpanel/Mixpanel.h"
 
@@ -117,7 +115,8 @@ The [/track endpoint](https://developer.mixpanel.com/reference/track-event) will
 {% endhint %}
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 // send "some_event"
 // with "Plan" event prop set to "Premium"
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
@@ -130,7 +129,8 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 You can track the time it took for an action to occur, such as an image upload or a comment post, using [`timeEvent:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/timeEvent:). This will mark the "start" of your action, which you can then finish with a track call. The time duration is then recorded in the "Duration" property.
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 // start the timer for the event "Image Upload"
@@ -145,12 +145,14 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 ```
 
 ### Flushing Events
-To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. 
+
+To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background.
 
 Call [`flush`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/flush) manually if you want to force a flush at a particular moment.
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 // flush batched events for ingestion immediately
@@ -162,7 +164,8 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 You can update the default flush interval from 60 seconds to another interval using [`flushInterval`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/flushInterval).
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 //set the flush interval to every 120 seconds
@@ -173,7 +176,7 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 The Objective-C SDK is a tracking SDK designed for real-time tracking in a client-side environment. Calling `track:properties:` triggers a request to our [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a timestamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested**.
 
-For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](/docs/tracking-methods/sdks/python) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion.
+For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](../../../../../docs/tracking-methods/sdks/python/) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion.
 
 ## Setting Super Properties
 
@@ -184,7 +187,8 @@ To register super properties, call [`registerSuperProperties:`](https://mixpanel
 Use [`registerSuperPropertiesOnce:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/registerSuperPropertiesOnce:) to register super properties without overwriting existing values.
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 // register "name" as a super property
@@ -200,11 +204,11 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 Our mobile libraries store your super properties in local storage. They will persist so long as the app is installed (between launches and updates). Uninstalling the app will remove that customers super properties.
 
-See more methods related to super properties in the complete library reference [here](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#).
+See more methods related to super properties in the complete library reference [here](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html).
 
 ## Managing User Identity
 
-You can handle the identity of a user using the [`identify:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/identify:) and [`reset`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/reset) methods. Learn more about [identity management](/docs/tracking-methods/id-management/identity-management) and [identifying users](/docs/tracking-methods/id-management/identifying-users).
+You can handle the identity of a user using the [`identify:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/identify:) and [`reset`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/reset) methods. Learn more about [identity management](../../../../../docs/tracking-methods/id-management/identity-management/) and [identifying users](../../../../../docs/tracking-methods/id-management/identifying-users/).
 
 ### Identify
 
@@ -215,7 +219,8 @@ We recommend against calling `.identify()` for anonymous visitors to your site.
 Call [`identify:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/identify:) when you know the identity of the current user, passing in their user ID as an argument. This is typically at account registration and at log in.
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 // your user signs in and tracks a sign in event
@@ -228,10 +233,11 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 ### Call Reset at Logout
 
-Call [`reset`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/reset) to clear data attributed to a user when they logout. This will clear the local storage and allows you to handle [multiple users on a single device](/docs/tracking-methods/id-management/identifying-users-simplified#multiple-users-one-device).
+Call [`reset`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/reset) to clear data attributed to a user when they logout. This will clear the local storage and allows you to handle [multiple users on a single device](../../../../../docs/tracking-methods/id-management/identifying-users-simplified/#multiple-users-one-device).
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 // your user signs out and tracks a log out event
@@ -243,14 +249,16 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 ```
 
 {% hint style="info" %}
-Since v3.6.2, Mixpanel stopped using the IFA(ID for Advertisers) as a distinct_id, meaning calls to reset will generate a new random UUID.
+Since v3.6.2, Mixpanel stopped using the IFA(ID for Advertisers) as a distinct\_id, meaning calls to reset will generate a new random UUID.
 
-    If you want to use IFV(identifierForVendor) as the distinct_id, you can set `MIXPANEL_UNIQUE_DISTINCT_ID=1` in build settings `Preprocessor Macros` on the Mixpanel framework target. The IFV will not change when you call `reset`, but will change upon app uninstalls/reinstalls.
+```
+If you want to use IFV(identifierForVendor) as the distinct_id, you can set `MIXPANEL_UNIQUE_DISTINCT_ID=1` in build settings `Preprocessor Macros` on the Mixpanel framework target. The IFV will not change when you call `reset`, but will change upon app uninstalls/reinstalls.
+```
 {% endhint %}
 
 ## Storing User Profiles
 
-Once your users are identified, create [user profiles](/docs/data-structure/user-profiles) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
+Once your users are identified, create [user profiles](../../../../../docs/data-structure/user-profiles/) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
 
 The Objective-C SDK provides a few methods for setting profile properties under [`MixpanelPeople`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html) accessible via [`.people`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/people). These methods will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
 
@@ -265,7 +273,8 @@ You can set properties on a user profile with [`.people set:`](https://mixpanel.
 If a profile property already exists, it will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 // You must call identify to associate the profile update with the user
@@ -279,6 +288,7 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 ```
 
 ### Other Types of Profile Updates
+
 There are a few other methods for setting profile properties. See a complete reference of the available methods [here](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html)
 
 A few commonly used people methods are highlighted below:
@@ -287,114 +297,122 @@ A few commonly used people methods are highlighted below:
 {% tab title="setOnce:" %}
 The [`.people setOnce:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/setOnce:) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set profile properties without the risk of overwriting existing data.
+````
+Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
-    ```objc Objective-C
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+**Example Usage**
+```objc Objective-C
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
-    // set profile properties for user "12345"
-    [mixpanel identify:@"12345"];
-    [mixpanel.people set:@{@"name": @"Sam"}];
+// set profile properties for user "12345"
+[mixpanel identify:@"12345"];
+[mixpanel.people set:@{@"name": @"Sam"}];
 
-    // will be ignored since "name" already exists
-    [mixpanel.people setOnce:@{@"name": @"Samantha"}];
+// will be ignored since "name" already exists
+[mixpanel.people setOnce:@{@"name": @"Samantha"}];
 
-    // set "location" property since it does not exist
-    [mixpanel.people setOnce:@{@"location": @"global"}];
-    ```
+// set "location" property since it does not exist
+[mixpanel.people setOnce:@{@"location": @"global"}];
+```
+````
 {% endtab %}
 
 {% tab title="append:" %}
 The [`.people append:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/append:) method append values to a list profile property.
 
-    Use this method to add additional values to an existing list property instead of redefining the entire list.
+````
+Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-    **Example Usage**
-    ```objc Objective-C
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+**Example Usage**
+```objc Objective-C
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
-    // set profile properties for user "12345"
-    [mixpanel identify:@"12345"];
-    [mixpanel.people set:@{
-      @"roles": @[@"sales",@"engineer"]
-      }];
+// set profile properties for user "12345"
+[mixpanel identify:@"12345"];
+[mixpanel.people set:@{
+  @"roles": @[@"sales",@"engineer"]
+  }];
 
-    // add "legal" to "roles"
-    [mixpanel.people append:@{
-      @"roles": @"legal"
-    }];
+// add "legal" to "roles"
+[mixpanel.people append:@{
+  @"roles": @"legal"
+}];
 
-    // new "roles" values are ['sales','engineer','legal']
-    ```
+// new "roles" values are ['sales','engineer','legal']
+```
+````
 {% endtab %}
 
 {% tab title="union:" %}
 The [`.people union:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/union:) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+````
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
-    ```objc Objective-C
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+**Example Usage**
+```objc Objective-C
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
-    // set profile properties for user "12345"
-    [mixpanel identify:@"12345"];
-    [mixpanel.people set:@{
-      @"roles": @[@"sales",@"engineer"]
-      }];
+// set profile properties for user "12345"
+[mixpanel identify:@"12345"];
+[mixpanel.people set:@{
+  @"roles": @[@"sales",@"engineer"]
+  }];
 
-    // will be ignored since "engineer" already exists in "roles"
-    [mixpanel.people union:@{
-      @"roles": @"engineer"
-    }];
-    // "roles" = ['sales','engineer']
+// will be ignored since "engineer" already exists in "roles"
+[mixpanel.people union:@{
+  @"roles": @"engineer"
+}];
+// "roles" = ['sales','engineer']
 
-    // add "engineer" to "roles"
-    // append: allows duplicates
-    [mixpanel.people append:@{
-      @"roles": @"engineer"
-    }];
-    // "roles" = ['sales','engineer','engineer']
+// add "engineer" to "roles"
+// append: allows duplicates
+[mixpanel.people append:@{
+  @"roles": @"engineer"
+}];
+// "roles" = ['sales','engineer','engineer']
 
-    ```
+```
+````
 {% endtab %}
 
 {% tab title="increment:by" %}
 The [`.people increment:by`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/increment:by:) method increments a numeric property by a whole number.
 
-    Use this method to add to or subtract from your numeric property based on its current value.
+````
+Use this method to add to or subtract from your numeric property based on its current value.
 
-    **Example Usage**
-    ```objc Objective-C
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+**Example Usage**
+```objc Objective-C
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
-    // set profile properties for user "12345"
-    [mixpanel identify:@"12345"];
-    [mixpanel.people set:@{
-      @"age": @25
-      }];
+// set profile properties for user "12345"
+[mixpanel identify:@"12345"];
+[mixpanel.people set:@{
+  @"age": @25
+  }];
 
-    // increment "age" by 2
-    [mixpanel.people increment:@"age" by:@2];
+// increment "age" by 2
+[mixpanel.people increment:@"age" by:@2];
 
-    // use negative number to decrement
-    //decrement "age" by 5
-    [mixpanel.people increment:@"age" by:@-5];
-    ```
+// use negative number to decrement
+//decrement "age" by 5
+[mixpanel.people increment:@"age" by:@-5];
+```
+````
 {% endtab %}
-
 {% endtabs %}
 
 ## Group Analytics
 
 {% hint style="info" %}
-Read more about [Group Analytics](/docs/data-structure/group-analytics) before proceeding. You will need to have the [group key defined in your project settings](/docs/data-structure/group-analytics#group-keys-in-project-settings) first.
+Read more about [Group Analytics](../../../../../docs/data-structure/group-analytics/) before proceeding. You will need to have the [group key defined in your project settings](../../../../../docs/data-structure/group-analytics/#group-keys-in-project-settings) first.
 {% endhint %}
 
 Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
 
 A group is identified by the `group_key` and `group_id`.
+
 * `group_key` is the event property that connects event data to a group. (e.g. `company`)
 * `group_id` is the identifier for a specific group. (e.g. `mixpanel`,`company_a`,`company_b`, etc.)
 
@@ -402,12 +420,13 @@ The Objective-C SDK provides a few method for adding individual users to a group
 
 ### Adding Users to a Group
 
-[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
+[All events must have the group key as an event property in order to be attributed to a group](../../../../../docs/data-structure/group-analytics/#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
 
 Call the [`setGroup:groupID:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/setGroup:groupID:) to register the current user to a group, which would add the `group_key` as an event property set to the `group_id` value to all events moving forward.
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 // assign the current user to the "mixpanel" company group
@@ -424,12 +443,13 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 **Multiple Groups**
 
-[An event can be attributed to multiple groups](/docs/data-structure/group-analytics#attribute-events-to-multiple-groups) by passing in the `group_key` value as a list of multiple `group_id` values.
+[An event can be attributed to multiple groups](../../../../../docs/data-structure/group-analytics/#attribute-events-to-multiple-groups) by passing in the `group_key` value as a list of multiple `group_id` values.
 
 Call [`setGroup:groupIDs:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/setGroup:groupIDs:) to add additional `group_id`s to an existing list.
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 // assign the current user to the "mixpanel" company group
@@ -450,7 +470,8 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 To connect group information to a user profile, include the `group_key` and `group_id` as a user profile property using the `set` call.
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 // You must call identify to associate the profile update with the user
@@ -462,12 +483,14 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 ```
 
 ### Setting Group Profile Properties
-Create a group profiles by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
+
+Create a group profiles by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee\_count", and "subscription".
 
 To set group profile properties, specify the group that needs to be updated by calling [`getGroup:groupID`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/getGroup:groupID:), then set the group properties by chaining the [`set:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/set:) method, which will trigger a request to the [/groups API endpoint](https://developer.mixpanel.com/reference/group-set-property).
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 // assign the current user to the "mixpanel" company group
@@ -489,107 +512,114 @@ A few commonly used group methods are highlighted below:
 {% tab title="setOnce:" %}
 The [`getGroup:groupID setOnce:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/setOnce:) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set group profile properties without the risk of overwriting existing data.
+````
+Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
-    ```objc Objective-C
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+**Example Usage**
+```objc Objective-C
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
-    // assign the current user to the "mixpanel" company group
-    [mixpanel setGroup:@"company" groupIDs:@"mixpanel"];
+// assign the current user to the "mixpanel" company group
+[mixpanel setGroup:@"company" groupIDs:@"mixpanel"];
 
-    // set group profile properties
-    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
-      @"name": @"Mixpanel"
-      }];
+// set group profile properties
+[[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
+  @"name": @"Mixpanel"
+  }];
 
-    // ignored since "name" is already exists
-    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] setOnce:@{
-          @"name": @"mp"}];
-    
-    // set "country" group prop since it does not exist
-    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] setOnce:@{
-          @"country": @"us"}];
+// ignored since "name" is already exists
+[[mixpanel getGroup:@"company" groupID:@"mixpanel"] setOnce:@{
+      @"name": @"mp"}];
 
-    ```
+// set "country" group prop since it does not exist
+[[mixpanel getGroup:@"company" groupID:@"mixpanel"] setOnce:@{
+      @"country": @"us"}];
+
+```
+````
 {% endtab %}
 
 {% tab title="unset:" %}
 The [`getGroup:groupID unset:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/unset:) method removes a group property from a group profile.
 
-    Use this method to delete unwanted group profile properties from a specific group profile.
+````
+Use this method to delete unwanted group profile properties from a specific group profile.
 
-    **Example Usage**
-    ```objc Objective-C
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+**Example Usage**
+```objc Objective-C
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
-    // assign the current user to the "mixpanel" company group
-    [mixpanel setGroup:@"company" groupIDs:@"mixpanel"];
+// assign the current user to the "mixpanel" company group
+[mixpanel setGroup:@"company" groupIDs:@"mixpanel"];
 
-    // set group profile properties
-    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
-      @"name": @"Mixpanel",
-      @"employee_count": @100
-      }];
+// set group profile properties
+[[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
+  @"name": @"Mixpanel",
+  @"employee_count": @100
+  }];
 
-    // delete "employee_count" from the group profile
-    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] unset:@"employee_count"];
+// delete "employee_count" from the group profile
+[[mixpanel getGroup:@"company" groupID:@"mixpanel"] unset:@"employee_count"];
 
-    // The group only has the "name" property remaining
-    ```
+// The group only has the "name" property remaining
+```
+````
 {% endtab %}
 
 {% tab title="union:values:" %}
 The [`getGroup:groupID union:values:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/union:values:) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+````
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
-    ```objc Objective-C
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+**Example Usage**
+```objc Objective-C
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
-    // assign the current user to the "mixpanel" company group
-    [mixpanel setGroup:@"company" groupIDs:@"mixpanel"];
+// assign the current user to the "mixpanel" company group
+[mixpanel setGroup:@"company" groupIDs:@"mixpanel"];
 
-    // set group profile properties
-    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
-      @"name": @"Mixpanel",
-      @"features": @[@"reports",@"alerts",@"cohorts"],
-      }];
+// set group profile properties
+[[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
+  @"name": @"Mixpanel",
+  @"features": @[@"reports",@"alerts",@"cohorts"],
+  }];
 
-    // add "data pipeline" to "features" prop
-    // ignore "alert" since it is a duplicate value
-    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] union: @"features"
-          values: @[@"data pipeline",@"alert"]];
-    ```
+// add "data pipeline" to "features" prop
+// ignore "alert" since it is a duplicate value
+[[mixpanel getGroup:@"company" groupID:@"mixpanel"] union: @"features"
+      values: @[@"data pipeline",@"alert"]];
+```
+````
 {% endtab %}
 
 {% tab title="remove:value:" %}
 The [`getGroup:groupID remove:value:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/remove:value:) method removes a value from a list-valued group profile property.
 
-    Use this method to remove specific values from a list without affecting all of the other values in the list.
+````
+Use this method to remove specific values from a list without affecting all of the other values in the list.
 
-    **Example Usage**
-    ```objc Objective-C
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+**Example Usage**
+```objc Objective-C
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
-    // assign the current user to the "mixpanel" company group
-    [mixpanel setGroup:@"company" groupIDs:@"mixpanel"];
+// assign the current user to the "mixpanel" company group
+[mixpanel setGroup:@"company" groupIDs:@"mixpanel"];
 
-    // set group profile properties
-    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
-      @"name": @"Mixpanel",
-      @"features": @[@"reports",@"alerts",@"cohorts"],
-      }];
+// set group profile properties
+[[mixpanel getGroup:@"company" groupID:@"mixpanel"] set:@{
+  @"name": @"Mixpanel",
+  @"features": @[@"reports",@"alerts",@"cohorts"],
+  }];
 
-    //remove "alert" from "features"
-    [[mixpanel getGroup:@"company" groupID:@"mixpanel"] remove: @"features" 
-          value: @"alert"];
-    
-    // "features" = ["reports","cohorts"]
-    ```
+//remove "alert" from "features"
+[[mixpanel getGroup:@"company" groupID:@"mixpanel"] remove: @"features" 
+      value: @"alert"];
+
+// "features" = ["reports","cohorts"]
+```
+````
 {% endtab %}
-
 {% endtabs %}
 
 ## Debug Mode
@@ -597,7 +627,8 @@ The [`getGroup:groupID remove:value:`](https://mixpanel.github.io/mixpanel-iphon
 Enable debug mode by setting the [`enableLogging`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/enableLogging) flag to `YES`.
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 // enable debug logging
 [Mixpanel sharedInstance].enableLogging = YES;
 ```
@@ -609,11 +640,9 @@ Alternatively, you can add the following Preprocessor Macros in Build Settings:
 
 If you're using CocoaPods, you'll need to add this to the Pod target instead of your main app project's target:
 
-![image](/230696566-ee7da1ce-0f45-4da1-9083-e5d05f0b2603.png)
-
 You can also add this to your Podfile to ensure everyone on your team will always have logging enabled:
 
-```ruby Ruby
+```ruby
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
@@ -630,18 +659,22 @@ post_install do |installer|
   end
 end
 ```
-Learn more about [debugging](/docs/tracking-best-practices/debugging).
+
+Learn more about [debugging](../../../../../docs/tracking-best-practices/debugging/).
 
 ## Privacy-Friendly Tracking
+
 You have control over the data you send to Mixpanel. The Objective-C SDK provide methods to help you protect user data.
 
-Learn more about [Privacy](/docs/privacy/overview).
+Learn more about [Privacy](../../../../../docs/privacy/overview/).
 
 ### Opt Out of Tracking
+
 The Objective-C SDK is initialized with tracking enabled by default. Use the [`optOutTracking`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/optOutTracking) method to opt the user out of data tracking and local storage for the current Mixpanel instance.
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
 //send "some_event"
@@ -660,7 +693,8 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 You can initialize the library with users opted out of tracking by default using the [`optOutTrackingDefault`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/sharedInstanceWithToken:trackAutomaticEvents:optOutTrackingByDefault:) configuration. Once the user is ready to be tracked, call [`optInTracking`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/optInTracking) to start tracking.
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 // create Mixpanel instance with users opt out of tracking by default
 // SDK is prevented from sending data
 Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_PROJECT_TOKEN" 
@@ -678,9 +712,9 @@ Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_PROJECT_TOKEN"
 
 ### EU Data Residency
 
-Route data to Mixpanel's EU servers by setting the `serverURL` flag after initializing the Mixpanel instance. 
+Route data to Mixpanel's EU servers by setting the `serverURL` flag after initializing the Mixpanel instance.
 
-```objc Objective-C
+```objc
 // set request URL to Mixpanel's EU domain
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 self.mixpanel.serverURL = @"https://api-eu.mixpanel.com";
@@ -688,9 +722,9 @@ self.mixpanel.serverURL = @"https://api-eu.mixpanel.com";
 
 ### India Data Residency
 
-Route data to Mixpanel's India servers by setting the `serverURL` flag after initializing the Mixpanel instance. 
+Route data to Mixpanel's India servers by setting the `serverURL` flag after initializing the Mixpanel instance.
 
-```objc Objective-C
+```objc
 // set request URL to Mixpanel's India domain
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
 self.mixpanel.serverURL = @"https://api-in.mixpanel.com";
@@ -701,7 +735,8 @@ self.mixpanel.serverURL = @"https://api-in.mixpanel.com";
 The Objective-C SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, set the [`useIPAddressForGeoLocation`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/useIPAddressForGeoLocation) flag to `NO`.
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 // disable geolocation
 [Mixpanel sharedInstance].useIPAddressForGeoLocation = NO;
 ```
@@ -713,18 +748,20 @@ Mixpanel's mobile SDKs have a legacy feature to automatically collect common mob
 Ensure autotracked mobile events are disabled by setting `trackAutomaticEvents` to `NO` during initialization.
 
 **Example Usage**
-```objc Objective-C
+
+```objc
 //initialize Mixpanel with autotrack disabled
 [Mixpanel sharedInstanceWithToken:@"YOUR_PROJECT_TOKEN" trackAutomaticEvents:NO];
 ```
 
-| Raw Name | Display Name | Description |
-| --- | --- | --- |
-| $ae_first_open | First App Open | Tracks the first time the user has opened the app. This event is retriggered if the user reinstalls the app or clears local storage. A user property First App Open Date (`$ae_first_app_open_date`) is tracked to indicate the date when app was first opened. |
-| $ae_updated | App Updated | Executes when a user updates the app from the previous version. A Version Updated (`$ae_updated_version`) property is tracked to store the new app version. |
-| $ae_crashed | App Crashed | Executes when Mixpanel receives either an exception or a signal that indicated the app has crashed. A Crash Reason (`$ae_crashed_reason`) property is tracked to help identify the type of crash. |
-| $ae_session | App Session | Executes when a user spends more than 10 seconds in the app. A Session Length (`$ae_session_length`) property is tracked to reflect the number of seconds user spent in the session. In addition, there are two user properties tracked: Total App Sessions (`$ae_total_app_sessions`) and Total App Session Length (`$ae_total_app_session_length`). |
-| $ae_iap | In App Purchase (IAP) | Executes when a user conducts an in-app purchase through your app. Mixpanel provides three properties for this event: Product Name (`$ae_iap_name`), Product Quantity (`$ae_iap_quantity`), and Product Price (`$ae_iap_price`). |
+| Raw Name         | Display Name          | Description                                                                                                                                                                                                                                                                                                                                           |
+| ---------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| $ae\_first\_open | First App Open        | Tracks the first time the user has opened the app. This event is retriggered if the user reinstalls the app or clears local storage. A user property First App Open Date (`$ae_first_app_open_date`) is tracked to indicate the date when app was first opened.                                                                                       |
+| $ae\_updated     | App Updated           | Executes when a user updates the app from the previous version. A Version Updated (`$ae_updated_version`) property is tracked to store the new app version.                                                                                                                                                                                           |
+| $ae\_crashed     | App Crashed           | Executes when Mixpanel receives either an exception or a signal that indicated the app has crashed. A Crash Reason (`$ae_crashed_reason`) property is tracked to help identify the type of crash.                                                                                                                                                     |
+| $ae\_session     | App Session           | Executes when a user spends more than 10 seconds in the app. A Session Length (`$ae_session_length`) property is tracked to reflect the number of seconds user spent in the session. In addition, there are two user properties tracked: Total App Sessions (`$ae_total_app_sessions`) and Total App Session Length (`$ae_total_app_session_length`). |
+| $ae\_iap         | In App Purchase (IAP) | Executes when a user conducts an in-app purchase through your app. Mixpanel provides three properties for this event: Product Name (`$ae_iap_name`), Product Quantity (`$ae_iap_quantity`), and Product Price (`$ae_iap_price`).                                                                                                                      |
 
 ## Release History
+
 [See All Releases](https://github.com/mixpanel/mixpanel-iphone/releases).

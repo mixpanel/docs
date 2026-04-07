@@ -1,16 +1,18 @@
-# Debugging: Validate your data and troubleshoot your implementation
+# Debugging
 
 This document walks through best practices for data validation and debugging your Mixpanel implementation.
 
 ## Before You Debug
 
 ### Create a Test Project
-Mixpanel recommends that you create a [separate development Mixpanel project](/docs/best-practices/developer-environments#separate-development-data) to validate your event data. This ensures that your testing data does not contaminate your production environment. 
+
+Mixpanel recommends that you create a [separate development Mixpanel project](../../../../docs/best-practices/developer-environments/#separate-development-data) to validate your event data. This ensures that your testing data does not contaminate your production environment.
 
 ### Send Events
-Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](/docs/quickstart/connect-your-data?sdk=javascript), [Server](/docs/quickstart/connect-your-data?sdk=python), and [Mobile](/docs/quickstart/connect-your-data?sdk=ios). We have a simple [HTTP API](/docs/quickstart/connect-your-data?sdk=httpapi) for any languages we don't support.
 
-🎉 Congratulations, you're ready to debug! Theres are two primary places to inspect your raw events as they flow into your Mixpanel project: Events and User Profiles. 
+Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](../../../../docs/quickstart/connect-your-data), [Server](../../../../docs/quickstart/connect-your-data), and [Mobile](../../../../docs/quickstart/connect-your-data). We have a simple [HTTP API](../../../../docs/quickstart/connect-your-data) for any languages we don't support.
+
+🎉 Congratulations, you're ready to debug! Theres are two primary places to inspect your raw events as they flow into your Mixpanel project: Events and User Profiles.
 
 ### Debugging with Events
 
@@ -19,20 +21,17 @@ Use the [Events](https://mixpanel.com/report/events) view (formerly called "Live
 With Events, you can see a feed of events along with all of their properties coming into Mixpanel.
 
 ### Find Yourself
-The next step to validating your events is to manually trigger some of those events on your own device. After you have fired some events, navigate to Events and search or filter using any user-level information you know is available in the event's raw payload. Search by `$user_id`, `$device_id`, `distinct_id`, or user property values. If you are using Mixpanel's JavaScript SDK, you can use [`mixpanel.get_distinct_id`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelget_distinct_id) to return your own distinct_id in your browser console and copy the distinct_id value into the Events search bar.
 
-![Events Filter](/events-filter.png)
+The next step to validating your events is to manually trigger some of those events on your own device. After you have fired some events, navigate to Events and search or filter using any user-level information you know is available in the event's raw payload. Search by `$user_id`, `$device_id`, `distinct_id`, or user property values. If you are using Mixpanel's JavaScript SDK, you can use [`mixpanel.get_distinct_id`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelget_distinct_id) to return your own distinct\_id in your browser console and copy the distinct\_id value into the Events search bar.
 
 Once you have identified one of your own events in Events, you can inspect all of the properties that were sent with your event by clicking on > to expand it. Toggle between the _Your Properties_ and _Mixpanel Properties_ tabs to determine which properties are custom to your Mixpanel implementation and which are sent default by Mixpanel. Toggle _JSON mode_ to view the complete JSON object Mixpanel received from the calls you sent. We recommend checking that:
 
 1. Events are triggered as expected and requests are successful.
-2. Events contain all of the expected properties and event property values, including distinct_id. Keep in mind that event properties should reflect the value **at the time of the event,** whereas user properties reflect the most recent value.
+2. Events contain all of the expected properties and event property values, including distinct\_id. Keep in mind that event properties should reflect the value **at the time of the event,** whereas user properties reflect the most recent value.
 3. Property values are sent with the expected data type.
 4. Event and property names are in the correct taxonomy and casing **(Mixpanel is CaSe Sensitive)**
 
 To locate your User Profile from Events, click the User icon on the left to view your User Profile.
-
-![View User Profile in Events](/view-profile.png)
 
 ### Debugging with User Profiles
 
@@ -42,45 +41,45 @@ User Profiles allow you to see the events feed and all user properties for a spe
 2. Whether the expected events are appearing in the Activity Feed correctly and in order. For example, if you only trigger an event onces but two instances of the event appear in the event stream, you should check your initialization and the logic triggering the event for errors.
 3. If user property names are in the correct taxonomy and casing **(Mixpanel is CaSe Sensitive)**
 
-![User Profile](/user-profile.png)
-
 ## Missing or Incomplete Events
 
 ### Enable Debug Mode
 
-If you are using one of Mixpanel's client-side SDKs, you can enable debug mode to confirm that requests are sending to Mixpanel: 
+If you are using one of Mixpanel's client-side SDKs, you can enable debug mode to confirm that requests are sending to Mixpanel:
 
-- [JavaScript Debug Mode](/docs/tracking-methods/sdks/javascript#debug-mode)
-- [iOS - Objective-C Debugging and Logging](/docs/tracking-methods/sdks/ios#debugging-and-logging)
-- [iOS - Swift Debugging and Logging](/docs/tracking-methods/sdks/swift#debugging-and-logging)
-- [Android - Debugging and Logging](/docs/tracking-methods/sdks/android#debugging-and-logging)
-- [React Native - Debugging and Logging](/docs/tracking-methods/sdks/react-native#debugging-and-logging)
-- [Flutter - Debugging and Logging](/docs/tracking-methods/sdks/flutter#debugging-and-logging)
+* [JavaScript Debug Mode](../../../../docs/tracking-methods/sdks/javascript/#debug-mode)
+* [iOS - Objective-C Debugging and Logging](../../../../docs/tracking-methods/sdks/ios/#debugging-and-logging)
+* [iOS - Swift Debugging and Logging](../../../../docs/tracking-methods/sdks/swift/#debugging-and-logging)
+* [Android - Debugging and Logging](../../../../docs/tracking-methods/sdks/android/#debugging-and-logging)
+* [React Native - Debugging and Logging](../../../../docs/tracking-methods/sdks/react-native/#debugging-and-logging)
+* [Flutter - Debugging and Logging](../../../../docs/tracking-methods/sdks/flutter/#debugging-and-logging)
 
 ### Debugging with the Browser Console (Web)
 
-If you're using Mixpanel in a web application, you can use your browser's developer console to view Mixpanel API calls being made from each page. 
+If you're using Mixpanel in a web application, you can use your browser's developer console to view Mixpanel API calls being made from each page.
 
-1. On your website, [enable debug mode](/docs/tracking-methods/sdks/javascript#debug-mode).
-2. Open your browser's developer console and navigate to the Network > Fetch/XHR tab. 
+1. On your website, [enable debug mode](../../../../docs/tracking-methods/sdks/javascript/#debug-mode).
+2. Open your browser's developer console and navigate to the Network > Fetch/XHR tab.
 3. Perform an action that triggers the `mixpanel.track` call.
 4. Look for requests to the Mixpanel API and troubleshoot any error messages.
-- If your project has US Data Residency, look for a request triggered to `api.mixpanel.com/track`.
-- If your project has [EU Data Residency](/docs/privacy/eu-residency), look for a request triggered to  `api-eu.mixpanel.com/track`.
-- If your project has [India Data Residency](/docs/privacy/in-residency), look for a request triggered to  `api-in.mixpanel.com/track`.
-6. If the request is successful, check that the "token" in the data payload matches the token in your [Project Settings](/docs/orgs-and-projects/managing-projects#access-keys). From here, you can then validate that the event was directed to the right project token and using Events, and confirm that the data is arriving correctly in Mixpanel.
+
+* If your project has US Data Residency, look for a request triggered to `api.mixpanel.com/track`.
+* If your project has [EU Data Residency](../../../../docs/privacy/eu-residency/), look for a request triggered to `api-eu.mixpanel.com/track`.
+* If your project has [India Data Residency](../../../../docs/privacy/in-residency/), look for a request triggered to `api-in.mixpanel.com/track`.
+
+6. If the request is successful, check that the "token" in the data payload matches the token in your [Project Settings](../../../../docs/orgs-and-projects/managing-projects/#access-keys). From here, you can then validate that the event was directed to the right project token and using Events, and confirm that the data is arriving correctly in Mixpanel.
 
 ### Ensure you are using the API host that matches your project's data residency
 
-If you are using a Mixpanel SDK, you *must* configure it to talk to the correct api host depending on your project's data residency. Refer to the SDK documentation for how to configure the API host.
+If you are using a Mixpanel SDK, you _must_ configure it to talk to the correct api host depending on your project's data residency. Refer to the SDK documentation for how to configure the API host.
 
-| Data Residency | API Host |
-|---|---|
-| US Data Residency | `api.mixpanel.com` (default) |
-| [EU Data Residency](/docs/privacy/eu-residency) | `api-eu.mixpanel.com` |
-| [India Data Residency](/docs/privacy/in-residency) | `api-in.mixpanel.com` |
+| Data Residency                                                 | API Host                     |
+| -------------------------------------------------------------- | ---------------------------- |
+| US Data Residency                                              | `api.mixpanel.com` (default) |
+| [EU Data Residency](../../../../docs/privacy/eu-residency/)    | `api-eu.mixpanel.com`        |
+| [India Data Residency](../../../../docs/privacy/in-residency/) | `api-in.mixpanel.com`        |
 
-**⚠️ Important:** Projects with India Data Residency *must* configure SDKs with the `api-in.mixpanel.com` host or events will be rejected and will be missing from your project.
+**⚠️ Important:** Projects with India Data Residency _must_ configure SDKs with the `api-in.mixpanel.com` host or events will be rejected and will be missing from your project.
 
 ### Customize Flush Interval (Mobile)
 
@@ -96,19 +95,19 @@ Shorten or lengthen the flush interval to send data to Mixpanel on a more or les
 
 On Android, both Event and People calls are put into a queue that gets flushed to Mixpanel according to either time or size. If the bulk upload limit of 40 records is not reached, the default flush interval is 60 seconds.
 
-You can also flush manually with public [`void flush()`](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#flush()). One common use case is to call flush before the application is completely shut down to ensure that all of Events are sent to Mixpanel.
+You can also flush manually with public [`void flush()`](http://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.html#flush\(\)). One common use case is to call flush before the application is completely shut down to ensure that all of Events are sent to Mixpanel.
 
 #### Unity
 
-On Unity, you can configure the interval at which data is flushed to Mixpanel. The default time is that data gets flushed every 60 seconds. 
+On Unity, you can configure the interval at which data is flushed to Mixpanel. The default time is that data gets flushed every 60 seconds.
 
-You can also flush manually with public `void flush()`. 
+You can also flush manually with public `void flush()`.
 
 ### Check for Hidden Events and Properties
 
 #### Hidden in Lexicon
 
-Project Owner and Admin users can hide events, event properties, and user profile properties in your [Mixpanel project through Lexicon](/docs/data-governance/lexicon#hide-events-and-properties). Check Lexicon to review if the event or property may be hidden.
+Project Owner and Admin users can hide events, event properties, and user profile properties in your [Mixpanel project through Lexicon](../../../../docs/data-governance/lexicon/#hide-events-and-properties). Check Lexicon to review if the event or property may be hidden.
 
 #### Inactive Events and Properties
 
@@ -127,8 +126,9 @@ An "origin" refers to the combination of the protocol (HTTP or HTTPS), domain (e
 By default, browsers block web pages from making requests to a different domain, protocol, or port than the one the page originated from (this is called the **same-origin policy**). This helps protect users from **cross-site scripting (XSS)** and other malicious attacks.
 
 However, there are legitimate scenarios where a website might need to request resources from another domain. For example:
-- A front-end app (like a React or Angular app) might need to get data from an API hosted on a different domain.
-- A website might want to load images or resources hosted elsewhere.
+
+* A front-end app (like a React or Angular app) might need to get data from an API hosted on a different domain.
+* A website might want to load images or resources hosted elsewhere.
 
 In such cases, the server from the other domain has to explicitly allow these requests through a process called **CORS**.
 
@@ -136,17 +136,15 @@ In such cases, the server from the other domain has to explicitly allow these re
 
 1. CORS Configuration
 
-Ensure your proxy is properly configured to handle CORS. This includes adding the appropriate Access-Control-Allow-Headers, such as Authorization, in the preflight response.
-Verify that Access-Control-Allow-Origin is set to allow requests from your client’s domain.
+Ensure your proxy is properly configured to handle CORS. This includes adding the appropriate Access-Control-Allow-Headers, such as Authorization, in the preflight response. Verify that Access-Control-Allow-Origin is set to allow requests from your client’s domain.
 
 2. Proxy Adjustments
 
-Reconfigure your proxy to forward all necessary headers, including Authorization, Content-Type, and Content-Encoding, to the /record endpoint.
-If you’re encountering a 415 Unsupported Media Type error, it’s likely the Content-Type and Content-Encoding headers are being blocked or not forwarded correctly.
+Reconfigure your proxy to forward all necessary headers, including Authorization, Content-Type, and Content-Encoding, to the /record endpoint. If you’re encountering a 415 Unsupported Media Type error, it’s likely the Content-Type and Content-Encoding headers are being blocked or not forwarded correctly.
 
 3. Initialization Setup
 
-Make sure you’re initializing Mixpanel correctly for session replay by including the recommended options in your mixpanel.init() call, such as track_pageview and persistence.
+Make sure you’re initializing Mixpanel correctly for session replay by including the recommended options in your mixpanel.init() call, such as track\_pageview and persistence.
 
 4. Content Security Policy (CSP)
 
@@ -158,8 +156,7 @@ If possible, switching back to the default Mixpanel endpoints could resolve thes
 
 6. Debugging Tips
 
-Use your browser’s developer tools to inspect network requests to the record endpoint. Look for errors like CORS rejections or HTTP status codes (e.g., 415).
-Compare successful requests to the default Mixpanel endpoints with those sent through your proxy to identify any discrepancies.
+Use your browser’s developer tools to inspect network requests to the record endpoint. Look for errors like CORS rejections or HTTP status codes (e.g., 415). Compare successful requests to the default Mixpanel endpoints with those sent through your proxy to identify any discrepancies.
 
 ## Data Discrepancies
 
@@ -169,12 +166,12 @@ Mixpanel reports calculate data in different ways. While the Insights report may
 
 With discrepancies within the Mixpanel interface, it's important to look out for:
 
-- Comparisons between unique user count vs. total event count? In funnels; Are you using unique, total conversions or session conversions?
-- Differences in properties - E.g. event property vs. user property vs. custom property
+* Comparisons between unique user count vs. total event count? In funnels; Are you using unique, total conversions or session conversions?
+* Differences in properties - E.g. event property vs. user property vs. custom property
 
-If you took a screenshot of a report a while ago and the data has changed since then, you can check if any user properties have been used in the report as they change over time, while event properties hold constant. You can also check if you have imported data or if data was ingested later by breaking down a report by the property mp_processing_time_ms. 
+If you took a screenshot of a report a while ago and the data has changed since then, you can check if any user properties have been used in the report as they change over time, while event properties hold constant. You can also check if you have imported data or if data was ingested later by breaking down a report by the property mp\_processing\_time\_ms.
 
-A good way to start is to remove all filtering from the reports to check if the underlying data is the same, then re-add them and see when the discrepancy occurs. Likely the culprit will be a filter or a breakdown. 
+A good way to start is to remove all filtering from the reports to check if the underlying data is the same, then re-add them and see when the discrepancy occurs. Likely the culprit will be a filter or a breakdown.
 
 ### Discrepancies between Mixpanel and other sources
 
@@ -182,56 +179,56 @@ Two systems will always track data differently due to their nature. It might ver
 
 ### Ad Blockers and Do Not Track Settings
 
-Client-Side Tracking can be unreliable, you may lose events for 30-50% of your users. You can resolve this by [sending events through a proxy](/docs/tracking-methods/sdks/javascript), but it requires a bit more effort. We [recommend](/docs/debugging/overview#client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
+Client-Side Tracking can be unreliable, you may lose events for 30-50% of your users. You can resolve this by [sending events through a proxy](../../../../docs/tracking-methods/sdks/javascript/), but it requires a bit more effort. We [recommend](../../../../docs/debugging/overview/#client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
 ### Different Timezones
 
-Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By default, Mixpanel displays events times in US Pacific Time but this is adjustable in [Project Settings](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects). Navigate to your Project Settings to determine what timezone your Mixpanel events are displayed in.
+Mixpanel records all events in Coordinated Universal Time (UTC) at intake. By default, Mixpanel displays events times in US Pacific Time but this is adjustable in [Project Settings](../../../../docs/orgs-and-projects/managing-projects/#manage-timezones-for-projects). Navigate to your Project Settings to determine what timezone your Mixpanel events are displayed in.
 
-- Are event timezones tracked in the same way?
+* Are event timezones tracked in the same way?
 
 ### Different Queries
 
-- Are both systems looking at the same event and the same time frame?
-- Are any filters applied to the query? Does the discrepancy persist if you remove them?
-- Are you looking at event or user properties?
+* Are both systems looking at the same event and the same time frame?
+* Are any filters applied to the query? Does the discrepancy persist if you remove them?
+* Are you looking at event or user properties?
 
 ### Different Calculations
 
-- Some of our reports have calculations applied, such as Funnels or Retention. Does the same calculation apply to the data in your other source?
+* Some of our reports have calculations applied, such as Funnels or Retention. Does the same calculation apply to the data in your other source?
 
 ### Client-Side vs. Server-Side Tracking
 
-- Client-side integrations are more vulnerable to data tracking issues due to ad blockers and DNT settings
-- Mixpanel's SDKs needs to be loaded to trigger the first event
+* Client-side integrations are more vulnerable to data tracking issues due to ad blockers and DNT settings
+* Mixpanel's SDKs needs to be loaded to trigger the first event
 
 ### Different Triggers to Track Data
 
-- Are both systems using the same triggers to track events? For example, the First App Open event in Mixpanel will trigger when our SDK has loaded, other systems might trigger a comparable event earlier.
-- The event definitions might be different - Think of a button click on the client-side triggering the event in one system vs. an API call triggering the event in the other system.
+* Are both systems using the same triggers to track events? For example, the First App Open event in Mixpanel will trigger when our SDK has loaded, other systems might trigger a comparable event earlier.
+* The event definitions might be different - Think of a button click on the client-side triggering the event in one system vs. an API call triggering the event in the other system.
 
 ### Delayed Ingestion
 
-- Mixpanel accepts data that has been triggered a while ago, either via mobile SDKs or event import. You can check the $import property and the mp_processing_time_ms to confirm when data has been ingested.
-- Mixpanel events older than 5 days sent to our /track endpoint will not be ingested, but other systems might accept these events (e.g. Firebase). Check how old an event was at point of ingestion in the other system to confirm.
-- If the same report with the same date range returns different metrics from one day to the next, this typically indicates that late-arriving data were not yet ingested at the time of the previous view. This can occur when data are imported retroactively or when other ingestion delays occur.
+* Mixpanel accepts data that has been triggered a while ago, either via mobile SDKs or event import. You can check the $import property and the mp\_processing\_time\_ms to confirm when data has been ingested.
+* Mixpanel events older than 5 days sent to our /track endpoint will not be ingested, but other systems might accept these events (e.g. Firebase). Check how old an event was at point of ingestion in the other system to confirm.
+* If the same report with the same date range returns different metrics from one day to the next, this typically indicates that late-arriving data were not yet ingested at the time of the previous view. This can occur when data are imported retroactively or when other ingestion delays occur.
 
 ### Cohort Export
 
-A cohort might show more in Mixpanel than what is actually being exported to the partner. You can find out more about [troubleshooting this here](/docs/cohort-sync/webhooks).
+A cohort might show more in Mixpanel than what is actually being exported to the partner. You can find out more about [troubleshooting this here](../../../../docs/cohort-sync/webhooks/).
 
 ### Debugging Discrepancies
 
 To debug, please make sure that you are looking at data in both systems like this:
 
-- data that is triggered at the same point of the user journey
-- at the same time frame and timezone
-- with the same filtering for the query of the data
-- at the same unit (unique user count, total event count or session count)
+* data that is triggered at the same point of the user journey
+* at the same time frame and timezone
+* with the same filtering for the query of the data
+* at the same unit (unique user count, total event count or session count)
 
 Once you have established this, we recommend drilling down into the data, for example into one day that shows the biggest discrepancies. You can also drill down into specific segments such as country to identify users that have been tracked in one system, but not the other. The goal is to confirm which users are present in one system but not the other, to understand a pattern.
 
-You can also compare the total event count versus the unique user count in the affected systems. If the totals match, but the unique user count shows discrepancies, it likely points to an ID management issue. 
+You can also compare the total event count versus the unique user count in the affected systems. If the totals match, but the unique user count shows discrepancies, it likely points to an ID management issue.
 
 A 'last resort' to get to the bottom of things is to implement your own server-side tracking of the data. This will be more reliable as it’s less prone to issues and is independent of Mixpanel and other systems. It would give you a source of truth to compare any other system to and go from there. While this is resource-intense, it’s a good way to get to a source of truth.
 
@@ -241,9 +238,9 @@ The first step here would be to check if you are tracking with a cloud-mode or d
 
 If the discrepancy is between Mixpanel and another source, but you're tracking via Segment in cloud-mode, you can do the following to troubleshoot:
 
-- If Segment and Mixpanel show the same data, we recommend reaching out to Segment Support, as this likely points to an issue with Segment tracking.
-- If Mixpanel and Segment don’t show the same data, and both have a discrepancy with a third source, we also recommend reaching out to Segment Support to troubleshoot the discrepancy between the 3rd party and Segment. In Mixpanel, you can check for specific distinct_ids that should have events in Mixpanel, or specific events that should be in Mixpanel but might’ve been ingested with a different distinct_id.
+* If Segment and Mixpanel show the same data, we recommend reaching out to Segment Support, as this likely points to an issue with Segment tracking.
+* If Mixpanel and Segment don’t show the same data, and both have a discrepancy with a third source, we also recommend reaching out to Segment Support to troubleshoot the discrepancy between the 3rd party and Segment. In Mixpanel, you can check for specific distinct\_ids that should have events in Mixpanel, or specific events that should be in Mixpanel but might’ve been ingested with a different distinct\_id.
 
-If the discrepancy is between Segment and Mixpanel only, keep in mind that device-mode tracking will send the data to Mixpanel directly. If there are discrepancies, you can check for data by searching for specific events, or specific distinct_ids, depending on what you have available from Segment, as it might be that the data has been ingested but allocated to the wrong distinct_id.
+If the discrepancy is between Segment and Mixpanel only, keep in mind that device-mode tracking will send the data to Mixpanel directly. If there are discrepancies, you can check for data by searching for specific events, or specific distinct\_ids, depending on what you have available from Segment, as it might be that the data has been ingested but allocated to the wrong distinct\_id.
 
 If you are tracking via cloud-mode, data will be sent from Segment to Mixpanel. It would basically be the same approach as above, whereas you’d need information from Segment Support when data has been sent. If in cloud-mode, then the issue is the communication between the two systems and Segment would need to provide information on when and how data has been sent.

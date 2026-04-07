@@ -15,10 +15,7 @@ The Mailchimp integration requires initial configuration through your Mailchimp 
 Follow these steps to enable the integration with Mailchimp:
 
 1. Select **Settings > Integrations** tab in the bottom left navigation bar of Mixpanel.
-
 2. From the Integrations page, select the Mailchimp dropdown, and select **Connect**.
-
-![mailchimp 2 Image](/mailchimp2.png)
 
 You will need to provide an API key (referred to as an Authorization token in Mailchimp) to authorize the connection. Mailchimp will provide this token during the integration initialization flow.
 
@@ -26,7 +23,7 @@ You will need to provide an API key (referred to as an Authorization token in Ma
 
 ## Matching Users between Mailchimp and Mixpanel
 
-> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
+> **Warning:** Projects using the [simplified ID merge system](../../../../../docs/tracking-methods/id-management/#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
 
 Mixpanel only exports identified user profiles to match to Mailchimp - users without user profile properties (i.e. anonymous users) will not export.
 
@@ -40,23 +37,21 @@ Select the cohort that you want to export. Click on the three-dot icon on the ri
 
 Click **Export to > Mailchimp**. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![mailchimp 3 Image](/mailchimp3.png)
-
 ## Sync Types
 
 This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
 
 ### One-Time Export
+
 In a one-time export, Mixpanel sends Mailchimp a static export of users who currently qualify for the cohort. The cohort data will not be updated in Mailchimp after a one-time export.
 
 ### Dynamic Sync
+
 In dynamic sync, Mixpanel initiates sync between a cohort and Mailchimp every 2 hours. The exported cohort will be updated every two hours to reflect the most recent list of users in a cohort.
 
 ## Observe the Audience in Mailchimp
 
 Once the export completes, you will see updates in your Mailchimp dashboard reflecting your synced audience:
-
-![mailchimp 4 Image](/mailchimp4.png)
 
 ## MTU exemptions
 
@@ -66,8 +61,8 @@ Mixpanel will exempt certain messaging outreach events from MTU calculations, me
 
 The following events are exempt from MTU calculations:
 
-- Mailchimp - Opened Campaign
-- Mailchimp - Clicked Campaign Url
-- Mailchimp - Sent To
-- Mailchimp - Unsubscribed
-- Mailchimp - Bounced
+* Mailchimp - Opened Campaign
+* Mailchimp - Clicked Campaign Url
+* Mailchimp - Sent To
+* Mailchimp - Unsubscribed
+* Mailchimp - Bounced

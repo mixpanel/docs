@@ -1,13 +1,13 @@
-# Export Methods: Export raw data and reports from Mixpanel
+# Export Methods
 
 ## Overview
 
 This page provides a high-level overview of your options for exporting event data, profile data, and formatted report data.
 
-You can export data from your project using a variety of methods, including lightweight CSVs generated from the UI, large volume raw data export from our APIs, and data syncs to external destinations through [Cohort Syncs](/docs/cohort-sync) and [Data Pipelines](/docs/data-pipelines).
+You can export data from your project using a variety of methods, including lightweight CSVs generated from the UI, large volume raw data export from our APIs, and data syncs to external destinations through [Cohort Syncs](../../../docs/cohort-sync/) and [Data Pipelines](../../../docs/data-pipelines/).
 
 {% hint style="info" %}
-For GDPR/CCPA-compliant exports, please [see the End User Data Management page](https://docs.mixpanel.com/docs/privacy/end-user-data-management).
+For GDPR/CCPA-compliant exports, please [see the End User Data Management page](https://docs.mixpanel.com/docs/privacy/end-user-data-management).
 {% endhint %}
 
 ## Exporting Events
@@ -41,7 +41,7 @@ Example payload:
 
 ```
 
-The exported payloads are raw events, containing timestamps as they are stored in your project. For projects created before 1 Jan 2023, your event timestamp is stored in your local project timezone at the time of ingestion. For projects created after 1 Jan 2023, your event timestamp is stored in UTC timezone. Learn more about managing your project timezone [here](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects).
+The exported payloads are raw events, containing timestamps as they are stored in your project. For projects created before 1 Jan 2023, your event timestamp is stored in your local project timezone at the time of ingestion. For projects created after 1 Jan 2023, your event timestamp is stored in UTC timezone. Learn more about managing your project timezone [here](../../../docs/orgs-and-projects/managing-projects/#manage-timezones-for-projects).
 
 ### CSV Events Export
 
@@ -54,8 +54,6 @@ You may export small batches of events as a CSV for use in quick analysis by nav
 By default, only the columns that are shown in the UI will be exported. You can click the “Edit Columns” button to modify the properties columns shown in the Events table.
 
 Select the option to include “All event properties” if you are interested in all of the event properties.
-
-![image](/event-csv-export-settings.png)
 
 ## Exporting Profiles
 
@@ -114,19 +112,15 @@ Sample payload:
 }
 ```
 
-By default, all profile properties are returned. Use the output_properties parameter to specify specific profile properties to return.
+By default, all profile properties are returned. Use the output\_properties parameter to specify specific profile properties to return.
 
 Example: `output_properties=["$last_name", "$email", "Total Spent"]`
 
 You may export specific cohorts by using the `filter_by_cohort` parameter. You may find the `cohort_id` in the UI next to your cohort or by using the [cohorts-list API](https://developer.mixpanel.com/reference/cohorts-list).
 
-![image](/cohort-id-viz.png)
-
 #### Group Profile Export via API
 
-You can also leverage the [Engage API](https://developer.mixpanel.com/reference/engage-query) to export Group Profiles. To do so, provide  the `data_group_id` parameter in your Engage API request. You can find the `data_group_id` for your group keys in your project settings.
-
-![image](/data_group_id_project_settings.png)
+You can also leverage the [Engage API](https://developer.mixpanel.com/reference/engage-query) to export Group Profiles. To do so, provide the `data_group_id` parameter in your Engage API request. You can find the `data_group_id` for your group keys in your project settings.
 
 ### CSV User Profile Export
 
@@ -138,8 +132,6 @@ Only the columns shown in the UI will be exported in the CSV. You may modify the
 
 To export Group Profiles as a CSV, switch the group key to your group of choice by clicking the “Analyze Uniques by” button in the top left of the UI
 
-![image](/switch_group_key.png)
-
 ## Exporting Reports
 
 {% hint style="info" %}
@@ -147,6 +139,7 @@ Users with a Growth or Enterprise plan can use our Query API to export formatted
 {% endhint %}
 
 ### Downloading Reports via the UI
+
 You can download any reports as a CSV, PNG, or PDF by clicking the "..." button in the top right corner of the report UI, and then selecting "Export".
 
 **Enterprise plan customers:** When you export a CSV from an Insights report in Bar, Stacked Bar, Pie, Table, or Metric view, you can export up to 50,000 rows of data. For all other views and reports, you can export up to 10,000 rows. If a report exceeds these limits, the export returns only the first rows in ascending order, up to the applicable limit.
@@ -155,10 +148,10 @@ You can download any reports as a CSV, PNG, or PDF by clicking the "..." button 
 
 ### Exporting Reports via API
 
-You may use our [Query API](https://developer.mixpanel.com/reference/query-api) to export the formatted results that you see in our web app. Learn more about the [Insights API](https://developer.mixpanel.com/reference/insights-query), [Funnels API](https://developer.mixpanel.com/reference/funnels-query), and [Retention API](https://developer.mixpanel.com/reference/retention-query). 
+You may use our [Query API](https://developer.mixpanel.com/reference/query-api) to export the formatted results that you see in our web app. Learn more about the [Insights API](https://developer.mixpanel.com/reference/insights-query), [Funnels API](https://developer.mixpanel.com/reference/funnels-query), and [Retention API](https://developer.mixpanel.com/reference/retention-query).
 
 The Flows report cannot be exported using API. Please use the export method from the UI outlined above.
 
 ## Export Integrations
 
-You can sync your Mixpanel data to your other destinations using our native connectors. Learn more about the [Data Pipeline](/docs/data-pipelines) for warehouse syncs and [Cohort Syncs](/docs/cohort-sync) for audience targeting.
+You can sync your Mixpanel data to your other destinations using our native connectors. Learn more about the [Data Pipeline](../../../docs/data-pipelines/) for warehouse syncs and [Cohort Syncs](../../../docs/cohort-sync/) for audience targeting.

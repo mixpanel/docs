@@ -1,8 +1,8 @@
-# Summary
+# Table of contents
 
 ## INTRO
 
-* [What is Mixpanel?](what-is-mixpanel.md)
+* [What is Mixpanel?](README.md)
 * [What to Track](what-to-track.md)
 * [Quickstart](quickstart.md)
   * [Install Mixpanel](quickstart/install-mixpanel.md)
@@ -10,7 +10,7 @@
   * [Capture Events](quickstart/capture-events.md)
     * [Track Events](quickstart/capture-events/track-events.md)
     * [Autocapture](quickstart/capture-events/autocapture.md)
-* [Install with AI](quickstart/install-with-ai.md)
+  * [Install with AI](intro/quickstart/install-with-ai.md)
 
 ## DATA IN
 
@@ -52,7 +52,7 @@
     * [Amazon S3](tracking-methods/integrations/amazon-s3.md)
     * [Amazon Kafka](tracking-methods/integrations/aws-kafka.md)
     * [CMS & E-Commerce](tracking-methods/integrations/cms-ecommerce.md)
-    * [Customer.io](https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel&utm_medium=partner)
+    * [Customer.io](https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel\&utm_medium=partner)
     * [Freshpaint](tracking-methods/integrations/freshpaint.md)
     * [Google Cloud Storage](tracking-methods/integrations/google-cloud-storage.md)
     * [Google Pubsub](tracking-methods/integrations/google-pubsub.md)
@@ -73,7 +73,6 @@
   * [ID Management](tracking-methods/id-management.md)
     * [Identifying Users](tracking-methods/id-management/identifying-users-simplified.md)
     * [Migrating to Simplified ID Merge](tracking-methods/id-management/migrating-to-simplified-id-merge-system.md)
-
 * [Data Structure](data-structure.md)
   * [Data Model](data-structure/concepts.md)
   * [Events & Properties](data-structure/events-and-properties.md)
@@ -87,12 +86,10 @@
     * [Supported Properties Data Type](data-structure/property-reference/data-type.md)
     * [Default Properties](data-structure/property-reference/default-properties.md)
     * [Reserved Properties](data-structure/property-reference/reserved-properties.md)
-
 * [Migration](migration.md)
   * [Adobe Analytics](migration/adobe-analytics.md)
   * [Amplitude](migration/amplitude.md)
   * [Google Analytics](migration/google-analytics.md)
-
 * [Best Practices](tracking-best-practices.md)
   * [Bot Traffic](tracking-best-practices/bot-traffic.md)
   * [Debugging](tracking-best-practices/debugging.md)
@@ -118,17 +115,14 @@
     * [Impact](reports/apps/impact.md)
     * [Signal](reports/apps/signal.md)
     * [JQL](reports/apps/jql.md)
-
 * [Boards](boards.md)
   * [Sharing and Permission](boards/sharing-and-permission.md)
   * [Templates](boards/templates.md)
   * [Boards on Boards](boards/boards-on-boards.md)
   * [Public Boards](boards/public-boards.md)
   * [Move Boards](boards/move-boards.md)
-
 * [Feature Flags](featureflags.md)
   * [Runtime Events](featureflags/runtime-events.md)
-
 * [Experiments](experiments.md)
 * [Metric Trees](metric_tree.md)
 * [Users](users.md)
@@ -162,7 +156,6 @@
   * [Organizations](orgs-and-projects/organizations.md)
   * [Managing Projects](orgs-and-projects/managing-projects.md)
   * [Roles & Permissions](orgs-and-projects/roles-and-permissions.md)
-
 * [Data Governance](data-governance.md)
   * [Lexicon](data-governance/lexicon.md)
   * [Data Views & Classification](data-governance/data-views-and-classification.md)
@@ -171,7 +164,6 @@
   * [Data Volume Monitoring](data-governance/data-volume-monitoring.md)
   * [Warehouse Sync Monitoring](data-governance/warehouse-sync-monitoring.md)
   * [Data Clean-Up](data-governance/data-clean-up.md)
-
 * [Access Security](access-security.md)
   * [Login Methods](access-security/login-methods.md)
   * [Two-Factor Authentication](access-security/two-factor-authentication.md)
@@ -180,7 +172,6 @@
     * [JumpCloud](access-security/single-sign-on/jumpcloud.md)
     * [Okta](access-security/single-sign-on/okta.md)
     * [Shared SSO](access-security/single-sign-on/shared-sso.md)
-
 * [Privacy](privacy.md)
   * [Protecting User Data](privacy/protecting-user-data.md)
   * [Legal Hub](https://mixpanel.com/legal/privacy-policy)
@@ -188,7 +179,6 @@
   * [EU Residency](privacy/eu-residency.md)
   * [India Residency](privacy/in-residency.md)
   * [End User Data Management](privacy/end-user-data-management.md)
-
 * [Pricing](pricing.md)
   * [MTU Billing](pricing/legacy-mtu-billing.md)
   * [Startup Program](pricing/startup-program.md)
@@ -218,7 +208,6 @@
       * [Schematized Azure Pipeline](data-pipelines/old-pipelines/integrations/schematized-azure-pipeline.md)
       * [Schematized GCS Pipeline](data-pipelines/old-pipelines/integrations/schematized-gcs-pipeline.md)
       * [Schematized Snowflake Pipeline](data-pipelines/old-pipelines/integrations/schematized-snowflake-pipeline.md)
-
 * [Cohort Sync](cohort-sync.md)
   * [Webhooks](cohort-sync/webhooks.md)
   * [Build an Integration](cohort-sync/build-an-integration.md)
@@ -257,4 +246,3 @@
 * [Get Help](https://mixpanel.com/get-support)
 * [Response Times](response-times.md)
 * [Hire an Expert](https://mixpanel.com/partners/experts/matchmaking)
-

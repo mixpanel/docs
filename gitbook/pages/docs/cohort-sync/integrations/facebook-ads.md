@@ -15,15 +15,8 @@ You must be a Mixpanel project admin to use the Facebook Ads data integration.
 Follow these steps to enable the integration with Facebook Ads:
 
 1. Select **Settings > Integrations** tab in the bottom left navigation bar of Mixpanel.
-
 2. From the Integrations page, click the **Facebook Ads** dropdown.
-
-![Facebook 2 Image](/facebook2.png)
-
 3. Select your Facebook Ad Account ID and your connector name and also choose user property where you're storing device advertising ID (optional)
-
-![Facebook Connector Image](/facebook_connector.png)
-
 4. The Facebook Ads integration page will show a green export icon and details about the integration after it is connected. To disable the connector, select the **Facebook Ads** dropdown and click **Disconnect**.
 
 ## Export a Cohort
@@ -31,12 +24,8 @@ Follow these steps to enable the integration with Facebook Ads:
 To export a cohort to Facebook Ads:
 
 1. Navigate to Cohorts by clicking in the **Data Management** tab and select **Cohorts**.
-
 2. Select the cohort that you want to export. Click on the three dot icon on the right side of the cohort.
-
 3. Click **Export to Facebook**. Select either a one-time sync or a dynamic sync. Click **Start Sync**.
-
-![Facebook 3 Image](/facebook3.png)
 
 ## Sync Types
 
@@ -56,15 +45,13 @@ You must log in to Facebook Business Manager to use the Mixpanel Cohort in Faceb
 
 Click on **Audiences**.
 
-![Facebook 4 Image](/facebook4.png)
-
 The Mixpanel Cohort is available in the Audience list. Cohorts are exported to Facebook Ads as `mixpanel_<Cohort Name>_<Cohort ID>`.
 
 ## Data Requirement
 
 Meta uses _email addresses_ as the primary identifier to match users in your cohort with users in their system. If an email address is not available, Meta may instead attempt to match using other identifiers such as a _phone number_, _first and last name_, or a _device advertising ID_ (depending on your connection setup).
 
-To use this integration, each user profile must include either an _email address_ or a _device advertising ID_. In addition to the email (if present), your system will send the following user profile properties (if available): first name, last name, phone number, advertising ID, and distinct_id. No other user properties will be exported.
+To use this integration, each user profile must include either an _email address_ or a _device advertising ID_. In addition to the email (if present), your system will send the following user profile properties (if available): first name, last name, phone number, advertising ID, and distinct\_id. No other user properties will be exported.
 
 If Meta is unable to match a cohort member with a user in their system, that member will be excluded from the resulting Meta audience. A lower count in the Meta audience compared to your cohort indicates that some users could not be matched.
 

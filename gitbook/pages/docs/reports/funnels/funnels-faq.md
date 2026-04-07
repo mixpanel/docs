@@ -1,4 +1,4 @@
-# Funnels FAQ
+# FAQ
 
 #### Why is my user shown as dropped off even though they've just completed the full funnel today?
 
@@ -6,11 +6,11 @@ Assuming that the user performed all actions in the funnel, on their first try, 
 
 #### Can users do other actions during the funnel?
 
-Users can complete the steps you designate in your funnel in loose order. Loose order means that a customer can engage in other actions in between funnel steps, as long as they complete all the funnel steps in order. See the [Ordering](/docs/reports/funnels/funnels-advanced#ordering) section for more information.
+Users can complete the steps you designate in your funnel in loose order. Loose order means that a customer can engage in other actions in between funnel steps, as long as they complete all the funnel steps in order. See the [Ordering](../../../../../docs/reports/funnels/funnels-advanced/#ordering) section for more information.
 
 #### Why do I get differing numbers when comparing Funnels and Insights?
 
-Funnels and Insights are fundamentally different when it comes to counting events. A Funnels report expects users to convert through a series of events within a specified time period, with additional logic around re-entries and filtering. An Insight metric is giving the actual count of users or events. 
+Funnels and Insights are fundamentally different when it comes to counting events. A Funnels report expects users to convert through a series of events within a specified time period, with additional logic around re-entries and filtering. An Insight metric is giving the actual count of users or events.
 
 For example, let's say we are looking at a Funnel from Step 1 → Step 2. In the Funnel report, the user will need to enter the report at "Step 1" and then track "Step 2" within the conversion window. If they don't do both of those things, "Step 2" will not be counted in the report. An Insight metric, on the other hand, will count the "Step 2" event without those criteria being met.
 
@@ -24,7 +24,7 @@ Custom events allow multiple events to count towards the same step in the funnel
 
 **Step 2:** Event C
 
-This allows users to make multiple paths to the same end goal. Learn more about creating custom events [here](/docs/features/custom-events).
+This allows users to make multiple paths to the same end goal. Learn more about creating custom events [here](../../../../../docs/features/custom-events/).
 
 #### Why are there only 200 segments in my Funnels breakdown report?
 
@@ -40,11 +40,11 @@ What does this mean in terms of your funnel? In a funnel with step A → B, if a
 
 #### What is the difference between Inline Filtering and Global Filtering?
 
-You can use both inline and global filters to decide which users and events to include in a funnel. Inline filters apply pre-query to a specified step while global filters apply post-query based on the [property attribution](/docs/reports/funnels/funnels-advanced#property-attribution) selected. 
+You can use both inline and global filters to decide which users and events to include in a funnel. Inline filters apply pre-query to a specified step while global filters apply post-query based on the [property attribution](../../../../../docs/reports/funnels/funnels-advanced/#property-attribution) selected.
 
 At a high level, an inline filter query will filter for the funnel entry for the user that meets that filter criteria. With a global filter, the user will enter the funnel the first time that they track Step 1. That entry will then be filtered based on the global filter criteria.
 
-See the [Filters](/docs/reports/funnels/funnels-advanced#filters) for more information.
+See the [Filters](../../../../../docs/reports/funnels/funnels-advanced/#filters) for more information.
 
 #### Why do the Line chart (by day) and Table (with a day breakdown) show different numbers for the same funnel?
 
@@ -61,8 +61,6 @@ For example, let's say we have a sock drawer with 20 socks, 10 blue and 10 red. 
 This is applied to funnels by considering the total number of users who enter the funnel to be a finite population of size N, out of which a subset of users convert (K). We then estimate the probability of getting k conversions in a particular segment (given that there were n users who entered the funnel in that segment) if users in that particular segment were picked at random from the overall user set. The higher the probability, the higher likelihood that variations we see in conversion rate are due to random chance.
 
 To calculate the actual p-value, we estimate the hypergeometric cumulative distribution function (CDF) for N, K, n.
-
-![funnels_statsig.png](/funnels_statsig.png)
 
 In the CDF, the value of any point (X) represents the probability that a random draw would result in fewer conversions P(k < X). 1 - P(k < X) represents the probability that a random draw would result in more conversions P(k >= X).
 

@@ -1,9 +1,3 @@
----
-tags:
-  - tag: beta
-    primary: true
----
-
 # Install with AI
 
 This guide will help you add Mixpanel analytics to your app or website using AI assistance, even if you're not a developer. The Mixpanel Installation Wizard creates step-by-step instructions that you can give to AI coding tools like Claude, ChatGPT, or Cursor.
@@ -12,28 +6,29 @@ This guide will help you add Mixpanel analytics to your app or website using AI 
 
 Before starting, make sure you have:
 
-- A Mixpanel account with Admin or Owner access ([sign up](https://www.mixpanel.com/signup) if you don't have one)
-- Access to an AI coding assistant (Claude, ChatGPT, Cursor, etc.)
-- Be sure to use the most advanced AI model you have access to
-- Your project's code files and a development or staging environment to test the changes
+* A Mixpanel account with Admin or Owner access ([sign up](https://www.mixpanel.com/signup) if you don't have one)
+* Access to an AI coding assistant (Claude, ChatGPT, Cursor, etc.)
+* Be sure to use the most advanced AI model you have access to
+* Your project's code files and a development or staging environment to test the changes
 
 ## Step 1: Get Your Mixpanel Project Token
 
 1. Log into your [Mixpanel account](https://www.mixpanel.com/login)
 2. Go to your [project settings](https://www.mixpanel.com/settings/project) (gear icon in the bottom left)
 3. Click on "Overview" in the left sidebar
-4. Scroll down to Access Keys section and copy your "Project Token" - it looks like a long string of letters and numbers
+4.  Scroll down to Access Keys section and copy your "Project Token" - it looks like a long string of letters and numbers
 
     (You will need to be an Admin or Owner in your project)
-
 5. Keep this handy - you'll need it in the next step
 
 ## Step 2: Create Your AI Instructions
 
 1. Simply paste this command in your terminal:
+
 ```
 npx @mixpanel/mixpanel-wizard
 ```
+
 2. Go through and answer a few quick questions and it will then create a customized installation guide
 
 ### Choose Your Settings
@@ -44,36 +39,36 @@ You'll need to pick three things:
 
 This depends on what type of app or website you're building:
 
-- **`javascript`**
-- **`react-native`**
-- **`ios-swift`**
-- **`ios-objective-c`**
-- **`android`**
-- **`python`**
-- **`nodejs`**
-- **`flutter`**
-- **`unity`**
-- **`go`**
-- **`ruby`**
-- **`php`**
-- **`java`**
+* **`javascript`**
+* **`react-native`**
+* **`ios-swift`**
+* **`ios-objective-c`**
+* **`android`**
+* **`python`**
+* **`nodejs`**
+* **`flutter`**
+* **`unity`**
+* **`go`**
+* **`ruby`**
+* **`php`**
+* **`java`**
 
-*Don't see your platform? Check with a developer or choose the closest match.*
+_Don't see your platform? Check with a developer or choose the closest match._
 
 **B. Choose Your Event Type**
 
 This determines what kinds of user actions you'll track:
 
-- **`ai`** - Best for AI-powered features (chatbots, AI tools, ML features)
-- **`ecommerce`** - Best for online stores and shopping apps
-- **`default`** - Good general-purpose events for most other apps
+* **`ai`** - Best for AI-powered features (chatbots, AI tools, ML features)
+* **`ecommerce`** - Best for online stores and shopping apps
+* **`default`** - Good general-purpose events for most other apps
 
 **C. Decide on Extra Features**
 
-- **Autocapture** - Automatically tracks clicks and page views (JavaScript SDK only)
-- **Session Replay** - Records user sessions for debugging (JavaScript, iOS Swift, Android SDKs only)
+* **Autocapture** - Automatically tracks clicks and page views (JavaScript SDK only)
+* **Session Replay** - Records user sessions for debugging (JavaScript, iOS Swift, Android SDKs only)
 
-*Recommendation: Enable both if they're available for your platform*
+_Recommendation: Enable both if they're available for your platform_
 
 ## Step 3: Give Instructions to Your AI Assistant
 
@@ -92,9 +87,9 @@ Let's set up Mixpanel.
 
 The AI will:
 
-- Follow the generated setup instructions
-- Install the necessary code
-- Set up tracking for your chosen events
+* Follow the generated setup instructions
+* Install the necessary code
+* Set up tracking for your chosen events
 
 ## Step 4: Test Your Installation
 
@@ -114,21 +109,21 @@ Depending on your event type, you should see:
 
 **For AI events:**
 
-- "Launch AI" when AI features are used
-- "AI Prompt Sent" when users send prompts
-- "AI Response Sent" when AI responds
+* "Launch AI" when AI features are used
+* "AI Prompt Sent" when users send prompts
+* "AI Response Sent" when AI responds
 
 **For E-commerce events:**
 
-- "Product Viewed" when products are viewed
-- "Add to Cart" when items are added to cart
-- "Purchase" when transactions complete
+* "Product Viewed" when products are viewed
+* "Add to Cart" when items are added to cart
+* "Purchase" when transactions complete
 
 **For Default events:**
 
-- "Sign Up" for new user registrations
-- "Page View" for page visits
-- "Search" for search queries
+* "Sign Up" for new user registrations
+* "Page View" for page visits
+* "Search" for search queries
 
 ## Troubleshooting
 
@@ -155,10 +150,10 @@ Depending on your event type, you should see:
 
 Once you see events flowing into your Mixpanel dashboard, you're all set! You can now:
 
-- View real-time user activity
-- Create reports and dashboards
-- Set up alerts for important events
-- Analyze user behavior patterns
+* View real-time user activity
+* Create reports and dashboards
+* Set up alerts for important events
+* Analyze user behavior patterns
 
 The AI has set up all the technical details for you - now you can focus on understanding your users and growing your product.
 
@@ -200,35 +195,35 @@ The wizard generates a `MIXPANEL_INSTALLATION_INSTRUCTIONS.txt` file containing:
 3. **Step 3: Event Tracking** - Implementation examples and event templates
 4. **Best Practices** - Security guidelines and recommendations
 
-Simply provide the prompt from MIXPANEL_INSTALLATION_INSTRUCTIONS.txt to your AI coding agent.
+Simply provide the prompt from MIXPANEL\_INSTALLATION\_INSTRUCTIONS.txt to your AI coding agent.
 
 ## Event Templates
 
 ### Default Events
 
-- **Sign Up**: Track new user acquisition with signup method and UTM parameters
-- **Sign In**: Monitor user login events with authentication method tracking
-- **Page View**: Track page/screen views with URL and title information
-- **Search**: Capture search queries and result counts
-- **Error**: Monitor application errors with error types and messages
-- **Purchase**: Track completed transactions with revenue and currency data
-- **Conversion**: Monitor key value moments specific to your product type
+* **Sign Up**: Track new user acquisition with signup method and UTM parameters
+* **Sign In**: Monitor user login events with authentication method tracking
+* **Page View**: Track page/screen views with URL and title information
+* **Search**: Capture search queries and result counts
+* **Error**: Monitor application errors with error types and messages
+* **Purchase**: Track completed transactions with revenue and currency data
+* **Conversion**: Monitor key value moments specific to your product type
 
 ### AI Events
 
-- **Launch AI**: Track AI feature engagement and measure adoption patterns
-- **AI Prompt Sent and Prompt Text**: Capture user prompts and analyze engagement intent
-- **AI Response Sent**: Monitor AI outputs with cost, token usage, and response time metrics
-- **API Error**: Track AI feature errors and monitor failure rates
-- **User Feedback**: Collect user sentiment and feedback on AI interactions
-- **AI Dismissed**: Monitor AI feature disengagement points
-- **Conversion Event**: Measure how AI features influence key business outcomes
+* **Launch AI**: Track AI feature engagement and measure adoption patterns
+* **AI Prompt Sent and Prompt Text**: Capture user prompts and analyze engagement intent
+* **AI Response Sent**: Monitor AI outputs with cost, token usage, and response time metrics
+* **API Error**: Track AI feature errors and monitor failure rates
+* **User Feedback**: Collect user sentiment and feedback on AI interactions
+* **AI Dismissed**: Monitor AI feature disengagement points
+* **Conversion Event**: Measure how AI features influence key business outcomes
 
 ### E-commerce Events
 
-- **Purchase**: Track completed transactions with cart contents and total price
-- **Add to Cart**: Monitor shopping behavior with cart items and product categories
-- **Product Viewed**: Track product engagement across the purchasing funnel
-- **Ad Data**: Monitor advertising spend and cost data for ROI calculations
+* **Purchase**: Track completed transactions with cart contents and total price
+* **Add to Cart**: Monitor shopping behavior with cart items and product categories
+* **Product Viewed**: Track product engagement across the purchasing funnel
+* **Ad Data**: Monitor advertising spend and cost data for ROI calculations
 
 **⚠️ Important**: This tool generates AI-optimized installation instructions. Always review and test the generated code before deploying to production. Human oversight is strongly recommended for all integrations.

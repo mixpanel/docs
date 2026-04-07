@@ -13,28 +13,17 @@ You must be a Mixpanel project admin to use the Google Ads data integration.
 Follow these steps to enable the integration with Google Ads:
 
 1. Select **Settings > Integrations** tab in the bottom left navigation bar of Mixpanel.
-
 2. From the Integrations page, select the Google Ads dropdown, and select **Sign In with Google**.
-
-![GoogleAds 2 Image](/googleads2.png)
-
 3. Enter your connector name, Google Customer ID and also choose user property where you’re storing device advertising ID (optional)
-
-![GoogleAds Connector Image](/googleads_connector.png)
-
 4. The Google Ads integration page shows a green export icon and details about the integration after it is connected.
 
 ## Export a Cohort
 
 To export a cohort to Google Ads, navigate to Cohorts by clicking in the **Data Management** tab and select **Cohorts**.
 
-![GoogleAds 3 Image](/googleads3.png)
-
 Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort.
 
 Click **Export to Google Ads**. Select either one-time sync or dynamic sync. Click **Start Sync**.
-
-![GoogleAds 4 Image](/googleads4.png)
 
 ## Sync Types
 
@@ -54,17 +43,13 @@ You must log in to Google Business Manager to use the Mixpanel Cohort in Google 
 
 Click on **Tools & Settings** and launch Audience Manager.
 
-![GoogleAds 5 Image](/googleads5.png)
-
 The Mixpanel Cohort is available under Audience Manager. Cohorts are exported to Google Ads as `mixpanel*<Cohort Name>*<Cohort ID>`.
-
-![GoogleAds 6 Image](/googleads6.png)
 
 ## Data Requirements
 
 Google Ads matches users from your Mixpanel cohort to users in its system primarily using _email addresses_. If an email address is not available, Google Ads can instead attempt to match users using other identifiers — such as a _phone number_, _first and last name_, or a _device advertising ID_, depending on how you configure the connection.
 
-To use this integration, your Mixpanel user profiles must include either an _email address_ or a _device advertising ID_. Along with those identifiers, Mixpanel also sends the following user properties (if available): first name, last name, phone number, advertising ID, and distinct_id. No other user properties are exported.
+To use this integration, your Mixpanel user profiles must include either an _email address_ or a _device advertising ID_. Along with those identifiers, Mixpanel also sends the following user properties (if available): first name, last name, phone number, advertising ID, and distinct\_id. No other user properties are exported.
 
 If Google Ads cannot match a cohort member with a user in its system, that member will be excluded from the Google Ads audience. A lower number of users in Google Audiences compared to your Mixpanel cohort means some users could not be matched.
 

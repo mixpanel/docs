@@ -10,14 +10,14 @@ The source code for this extension lives [here](https://github.com/mixpanel/shee
 
 ## Install the plugin
 
-Visit the [Sheets ⇔ Mixpanel Google Workspace Marketplace page](https://workspace.google.com/marketplace/app/sheets_%E2%87%94_mixpanel/1078767167468) to install the extension. Learn more about the permissions requested [here](/docs/tracking-methods/integrations/google-sheets#permissions).
+Visit the [Sheets ⇔ Mixpanel Google Workspace Marketplace page](https://workspace.google.com/marketplace/app/sheets_%E2%87%94_mixpanel/1078767167468) to install the extension. Learn more about the permissions requested [here](../../../../../docs/tracking-methods/integrations/google-sheets/#permissions).
 
 After installing, you will see the Sheets ⇔ Mixpanel dropdown under "extensions" in any Google Sheet. This module provides two modes, which are exposed in the main menu:
 
-<img src="/gsheets-main-menu.png" alt="gsheets-main-menu" />
 
-- **Sheet → Mixpanel:** import event/user/group/table data from the current sheet.
-- **Mixpanel → Sheet:** export reports or cohort data from your mixpanel project
+
+* **Sheet → Mixpanel:** import event/user/group/table data from the current sheet.
+* **Mixpanel → Sheet:** export reports or cohort data from your mixpanel project
 
 Each UI has a simple user interface, and is essentially a form you fill out that contains the necessary details to carry out your desired result.
 
@@ -27,67 +27,70 @@ Each UI has a simple user interface, and is essentially a form you fill out that
 
 Once you choose the type of data you are importing, you will use the visual mapper to connect the column headers from your sheet to the required fields for the type of mixpanel data you are importing:
 
-<img src="/gsheets-mapping.png" alt="gsheets-mapping" />
 
-Here is a summary of Mixpanel's [data model](/docs/data-structure/concepts) and [required fields for event data](/docs/data-structure/concepts#anatomy-of-an-event):
-- **event name:** what to call each event in mixpanel
-- **distinct_id:** the unique user identifier to whom the event is attributed (learn more [here](/docs/tracking-methods/id-management#distinct-id))
-- **time:** a valid date or time; if the sheet recognizes your chosen column as a 'date' or time', it should work as intended
-- **insert_id:** a value used to deduplicate records (optional)
+
+Here is a summary of Mixpanel's [data model](../../../../../docs/data-structure/concepts/) and [required fields for event data](../../../../../docs/data-structure/concepts/#anatomy-of-an-event):
+
+* **event name:** what to call each event in mixpanel
+* **distinct\_id:** the unique user identifier to whom the event is attributed (learn more [here](../../../../../docs/tracking-methods/id-management/#distinct-id))
+* **time:** a valid date or time; if the sheet recognizes your chosen column as a 'date' or time', it should work as intended
+* **insert\_id:** a value used to deduplicate records (optional)
 
 All other columns in your spreadsheet will get sent as properties (event, user, or group).
 
-You will also need to provide the following details found in your [project settings](/docs/orgs-and-projects/managing-projects#project-details):
-- **project_id**
-- **project_token**
-- **project_region** (data residency)
-- **project_secret** (or [Service Account](https://developer.mixpanel.com/reference/service-accounts))
+You will also need to provide the following details found in your [project settings](../../../../../docs/orgs-and-projects/managing-projects/#project-details):
+
+* **project\_id**
+* **project\_token**
+* **project\_region** (data residency)
+* **project\_secret** (or [Service Account](https://developer.mixpanel.com/reference/service-accounts))
 
 {% hint style="warning" %}
 Note: since v1.12 syncs are not supported for events.
 {% endhint %}
 
-Next, learn about [runs and syncs](/docs/tracking-methods/integrations/google-sheets#runs-and-syncs) below.
+Next, learn about [runs and syncs](../../../../../docs/tracking-methods/integrations/google-sheets/#runs-and-syncs) below.
 
 ## Export to Google Sheet
 
 **Mixpanel → Sheet** queries your Mixpanel project for a report or cohort and makes the results available in a new Sheet.
 
-This will replicate the functionality when [exporting a CSV file from the Mixpanel UI](/docs/export-methods#exporting-reports).
+This will replicate the functionality when [exporting a CSV file from the Mixpanel UI](../../../../../docs/export-methods/#exporting-reports).
 
 There are a number of parameters needed to fetch a CSV from mixpanel. The simplest way to gather those parameters is to paste the URL of the report/cohort you wish to sync from your Mixpanel project, and the app should parse for them automatically:
 
-<img src="/gsheets-parse.gif" alt="gsheets-parse" />
+
 
 In case the URL does not contain all the values you need, the UI requires:
-- A [Service Account](https://developer.mixpanel.com/reference/service-accounts) (consumer or higher permission)
-- A report URL with `mixpanel.com` or `eu.mixpanel.com` (to resolve data residency)
-- your [project_id](/docs/orgs-and-projects/managing-projects#viewing-project-information)
-- your [workspace_id](https://developer.mixpanel.com/reference/query-api-authentication#:~:text=Projects%20with%20Data,a%20request%20parameter.)
-- [report_id](https://developer.mixpanel.com/reference/insights-query#:~:text=The%20ID%20of%20your%20Insights%20report%20can%20be%20found%20from%20the%20url%3A%20https%3A//mixpanel.com/report/1/insights%23report/%3CYOUR_BOOKMARK_ID%3E/example%2Dreport) OR [cohort_id](https://developer.mixpanel.com/reference/cohorts-list)
+
+* A [Service Account](https://developer.mixpanel.com/reference/service-accounts) (consumer or higher permission)
+* A report URL with `mixpanel.com` or `eu.mixpanel.com` (to resolve data residency)
+* your [project\_id](../../../../../docs/orgs-and-projects/managing-projects/#viewing-project-information)
+* your [workspace\_id](https://developer.mixpanel.com/reference/query-api-authentication)
+* [report\_id](https://developer.mixpanel.com/reference/insights-query) OR [cohort\_id](https://developer.mixpanel.com/reference/cohorts-list)
 
 {% hint style="warning" %}
 Note: since v1.12 insights, funnels, & retention are the only supported reports.
 {% endhint %}
 
-Next, learn about [runs and syncs](/docs/tracking-methods/integrations/google-sheets#runs-and-syncs) below.
+Next, learn about [runs and syncs](../../../../../docs/tracking-methods/integrations/google-sheets/#runs-and-syncs) below.
 
 ## Runs and Syncs
 
 Each UI has a similar user interface for you to input your details with four key actions at the bottom:
 
-<img src="/gsheets-four-actions.png" alt="gsheets-four-actions" />
 
-- **Run:** run the current configuration once; results are display in the UI
-- **Sync:** run the current configuration every hour; run receipts are stored in a log sheet
-- **Save:** store the current configuration
-- **Clear:** delete this sheet's sync and reload the UI
+
+* **Run:** run the current configuration once; results are display in the UI
+* **Sync:** run the current configuration every hour; run receipts are stored in a log sheet
+* **Save:** store the current configuration
+* **Clear:** delete this sheet's sync and reload the UI
 
 You may only have one sync active per sheet at a time. If you are planning to sync data from your sheet to Mixpanel, it is recommended that you do a "run" first.
 
 Once created, syncs will run on an hourly schedule; they can also be manually triggered from the main menu by choosing **Sync Now!**:
 
-<img src="/gsheets-sync-now.png" alt="gsheets-sync-now" />
+
 
 {% hint style="warning" %}
 Note: since v1.12 syncs are not supported for events.
@@ -105,9 +108,9 @@ The app is free to use and does not contain ads, nor will any data collected by 
 
 Using the principle of least-privilege, Sheets™ ⇔ Mixpanel requests access to three sensitive scopes to support application functionality, which are explained below:
 
-- `https://www.googleapis.com/auth/script.container.ui` is used to draw a dynamic UI which maps the columns headers of your currently active Google Sheet™ into dropdowns in the extension interface.
-- `https://www.googleapis.com/auth/script.scriptapp` is used to support scheduled hourly "sync" functionality so the pipeline you've configured in the UI can run automatically.
-- `https://www.googleapis.com/auth/script.external_request` is used to send your mapped data to mixpanel and to request your report/cohort data from mixpanel.
+* `https://www.googleapis.com/auth/script.container.ui` is used to draw a dynamic UI which maps the columns headers of your currently active Google Sheet™ into dropdowns in the extension interface.
+* `https://www.googleapis.com/auth/script.scriptapp` is used to support scheduled hourly "sync" functionality so the pipeline you've configured in the UI can run automatically.
+* `https://www.googleapis.com/auth/script.external_request` is used to send your mapped data to mixpanel and to request your report/cohort data from mixpanel.
 
 No other sensitive scopes are requested by the application.
 
@@ -117,7 +120,7 @@ No other sensitive scopes are requested by the application.
 
 A recurring sync that is not exporting data despite a functional manual sync may be indicative of a stale trigger caused by the extension entering a bad state (could be caused by a number of reason originating in your local Google Workspace instance).
 
-As a troubleshooting step please navigate to [Apps Script > My Triggers from your Google Workspace]( https://script.google.com/home/triggers), delete the existing Mixpanel Sheets extension trigger, then try creating a new recurring sync to generate a new trigger.
+As a troubleshooting step please navigate to [Apps Script > My Triggers from your Google Workspace](https://script.google.com/home/triggers), delete the existing Mixpanel Sheets extension trigger, then try creating a new recurring sync to generate a new trigger.
 
 **2. Why is my sync failing to authenticate even though I entered the correct Mixpanel credentials?**
 

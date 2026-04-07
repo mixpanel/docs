@@ -10,36 +10,27 @@ Comments are available on all report types and on boards. Each report or board h
 
 {% stepper %}
 {% step %}
-## Open the Comments panel.
+### Open the Comments panel.
 
 Select the **Comments** icon in the report or board header to open the comments side panel.
-
-![comments1](/comments1.png)
 {% endstep %}
 
 {% step %}
-## Start a new thread.
+### Start a new thread.
 
 Click the comment composer at the top of the panel to start a new thread. Type your message and press **Enter** (or click the send button) to post.
-
-![comments2](/comments2.png)
 {% endstep %}
 
 {% step %}
-## Reply to an existing thread.
+### Reply to an existing thread.
 
 Click on any existing comment to expand the thread and add a reply. Threads keep related discussion grouped together so conversations stay organized.
-
-![comments3](/comments3.png)
 {% endstep %}
-
 {% endstepper %}
 
 ## @Mentions
 
 Tag teammates in a comment by typing `@` followed by their name or clicking the `@` symbol underneath the composer box. Mentioned users will receive a notification in the notification center and, if configured, via email or slack.
-
-![comments4](/comments4.png)
 
 ## Reactions
 
@@ -49,8 +40,6 @@ React to any comment with emoji reactions. Hover over a comment and click the re
 
 Mark a thread as resolved when the discussion is complete. Resolved threads are hidden by default but can be viewed by toggling the **Show resolved** filter in the comments panel.
 
-![comments5](/comments5.png)
-
 This is useful for tracking action items — once a question about a metric change is answered or an issue is addressed, resolve the thread to keep the panel focused on active discussions.
 
 ## Notification Center
@@ -59,13 +48,11 @@ The Notification Center keeps you informed about comment activity across all you
 
 New notifications are indicated by a red bubble on the comment icon.
 
-![comments6](/comments6.png)
-
 You will receive notifications when:
 
-- Someone **@mentions** you in a comment
-- Someone **replies** to a thread you are participating in
-- Someone **replies** to a thread you are subscribed to
+* Someone **@mentions** you in a comment
+* Someone **replies** to a thread you are participating in
+* Someone **replies** to a thread you are subscribed to
 
 Each notification links directly to the relevant report or board, so you can jump straight to the conversation with one click.
 
@@ -76,8 +63,6 @@ Unread notifications are indicated by a badge count on the bell icon. Notificati
 ## Enabling and Disabling Comments
 
 The report owner can enable or disable comments on reports. The toggle is located in the caret menu within the report's comment tab.
-
-![comments7](/comments7.png)
 
 When comments are disabled, existing comments are preserved but hidden and no new comments can be added. Comments on boards are always enabled for users with the appropriate permissions.
 

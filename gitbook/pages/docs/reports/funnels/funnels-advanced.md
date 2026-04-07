@@ -1,4 +1,4 @@
-# Funnels Advanced Concepts
+# Advanced
 
 ## Overview
 
@@ -14,9 +14,7 @@ The Conversion Window determines how much time a user has to convert through all
 
 By default, all customers have 7 days to complete a funnel from the timestamp they perform the Step 1 event. To adjust this conversion window, click on the words 7 **days** in the conversion criteria. You will be able to adjust both the unit of time and the amount.
 
-![/Screen_Shot_2021-12-15_at_11.12.25_AM.png](/Screen_Shot_2021-12-15_at_11.12.25_AM.png)
-
-The maximum amount of time you can choose for the conversion window is 366 days, or otherwise equivalent (12 months, 52 weeks, etc). For session-based conversion windows, the maximum is 12 sessions. 
+The maximum amount of time you can choose for the conversion window is 366 days, or otherwise equivalent (12 months, 52 weeks, etc). For session-based conversion windows, the maximum is 12 sessions.
 
 Keep in mind that the conversion window starts on the first instance of the Step 1 event per funnel entry, and will not be updated by later instances of the same event in the same funnel entry.
 
@@ -27,9 +25,9 @@ For example, let's say a user tracks the following:
 3. Event B at 1:45 pm
 4. Event C at 2:15 pm
 
-You create a Funnel looking at A → B → C, with a conversion window of 1 hour. 
+You create a Funnel looking at A → B → C, with a conversion window of 1 hour.
 
-This user enters the funnel when they first track Event A at 1:00 pm. They convert through Event B at 1:45 pm, and then time-out of the funnel. They do not show as converting through Event C since Event C took place more than 1 hour after the entry event at 1:00 pm. 
+This user enters the funnel when they first track Event A at 1:00 pm. They convert through Event B at 1:45 pm, and then time-out of the funnel. They do not show as converting through Event C since Event C took place more than 1 hour after the entry event at 1:00 pm.
 
 The second instance of Event A at 1:30 pm does not reset the conversion window timer. Event B and Event C would need to be completed within 1 hour from the first Event A tracked for the user to be counted as converted.
 
@@ -39,12 +37,10 @@ When **Optimized Re-entry** mode is enabled, we actively evaluate all funnel ent
 
 If any user funnel entries within the report date range result in a conversion, we count the user as converted.
 
-![image](/funnel_reentry.png)
-
 **Scenario 1**
 
-- Funnel Steps: A -> B
-- Event Stream: A -> Conversion Window Ends for A Ends -> A^ -> B
+* Funnel Steps: A -> B
+* Event Stream: A -> Conversion Window Ends for A Ends -> A^ -> B
 
 **Default Mode**
 
@@ -56,8 +52,8 @@ We treat A^ → B as a valid conversion because A^ initiates a new funnel which 
 
 **Scenario 2**
 
-- Funnel: A -> B
-- Event Stream: A -> A^ -> Conversion Window for A Ends -> B
+* Funnel: A -> B
+* Event Stream: A -> A^ -> Conversion Window for A Ends -> B
 
 **Default Mode**
 
@@ -65,13 +61,14 @@ Since A^ took place while the funnel entry triggered by A was still active, we i
 
 **Optimized Reentry Mode**
 
-We treat A^ as a new funnel entry and restart the funnel history. When B occurs, it completes the new funnel A^ → B, which we count as a conversion. The conversion rate would be 50% from the successful conversion for A^ and the drop-off for A. (A′^ / [A + A^])
+We treat A^ as a new funnel entry and restart the funnel history. When B occurs, it completes the new funnel A^ → B, which we count as a conversion. The conversion rate would be 50% from the successful conversion for A^ and the drop-off for A. (A′^ / \[A + A^])
 
-**PLEASE NOTE:** 
-1. For [Unique aggregation](/docs/reports/funnels/funnels-advanced#counting-methods) during a date range with multiple funnel conversions, we consider the first converted funnel only. For example in scenario A → B → A^ → B^, there are 2 user funnels converted: A → B and A^ → B^. We only consider the first A → B as the user conversion.
-2. In a multi-step steps funnel, we only consider the first step for re-entries. For every subsequent step, we pick the first instance of the step. 
-3. For the first step in a funnel, if there are multiple entries prior to step 2, we consider the most recent entry. For example, in scenario A → A^ → A^^ → B where all actions happen within the conversion window, A^^ → B would be recorded as the funnel. 
-4. For all other counting types - [TTC](/docs/reports/funnels/funnels-advanced#time-to-convert), [Property Sum](/docs/reports/funnels/funnels-advanced#property-sum), we compute these based on the funnels selected to optimize maximum conversions. For example, in scenario A → A^ → A^^ → B where all actions happen within the conversion window, in the Optimized Reentry mode TTC would be calculated for A^^ → B. However in the Default mode, TTC would be calculated for A → B.
+**PLEASE NOTE:**
+
+1. For [Unique aggregation](../../../../../docs/reports/funnels/funnels-advanced/#counting-methods) during a date range with multiple funnel conversions, we consider the first converted funnel only. For example in scenario A → B → A^ → B^, there are 2 user funnels converted: A → B and A^ → B^. We only consider the first A → B as the user conversion.
+2. In a multi-step steps funnel, we only consider the first step for re-entries. For every subsequent step, we pick the first instance of the step.
+3. For the first step in a funnel, if there are multiple entries prior to step 2, we consider the most recent entry. For example, in scenario A → A^ → A^^ → B where all actions happen within the conversion window, A^^ → B would be recorded as the funnel.
+4. For all other counting types - [TTC](../../../../../docs/reports/funnels/funnels-advanced/#time-to-convert), [Property Sum](../../../../../docs/reports/funnels/funnels-advanced/#property-sum), we compute these based on the funnels selected to optimize maximum conversions. For example, in scenario A → A^ → A^^ → B where all actions happen within the conversion window, in the Optimized Reentry mode TTC would be calculated for A^^ → B. However in the Default mode, TTC would be calculated for A → B.
 
 ### Ordering
 
@@ -96,13 +93,11 @@ A good example of this could be a job application flow, where a user must input 
 
 To switch to **Any Order**, expand the “Advanced” menu in the Conversion Criteria and toggle on “Any Order”.
 
-When you switch to **Any Order,** you have the option to anchor specific steps in your funnel by clicking on the step number. 
+When you switch to **Any Order,** you have the option to anchor specific steps in your funnel by clicking on the step number.
 
-A step will either appear with a number beside it, indicating where it must fall in the funnel, or with an asterisk (*), indicating that it can be performed in any order before the next anchored step.
+A step will either appear with a number beside it, indicating where it must fall in the funnel, or with an asterisk (\*), indicating that it can be performed in any order before the next anchored step.
 
-If you have selected any order for your funnels steps, you have the option to select **Top paths** from the drop-down visualization list to view a [Sankey visualization](/docs/reports/flows#sankey-chart) of how your users are performing the steps in your funnel.
-
-![/funnels_any.png](/funnels_any.png)
+If you have selected any order for your funnels steps, you have the option to select **Top paths** from the drop-down visualization list to view a [Sankey visualization](../../../../../docs/reports/flows/#sankey-chart) of how your users are performing the steps in your funnel.
 
 ### Hold Property Constant
 
@@ -114,34 +109,33 @@ Since all the events must have the property, you can only select event propertie
 
 The way entry values are determined when "Holding Property Constant" depends on the selected counting method:
 
-- **Uniques:** With “Uniques” counting method, users will only enter the funnel once, on the first time they do Step 1. Mixpanel will hold constant the property value from the first Step 1 event.
-- **Totals or Sessions:** “Totals” and “Sessions” counting methods allow users to re-enter the funnel. Mixpanel will hold the property constant that is set with each new re-entry at the Step 1 event. This means the user can enter multiple times with different property values.
+* **Uniques:** With “Uniques” counting method, users will only enter the funnel once, on the first time they do Step 1. Mixpanel will hold constant the property value from the first Step 1 event.
+* **Totals or Sessions:** “Totals” and “Sessions” counting methods allow users to re-enter the funnel. Mixpanel will hold the property constant that is set with each new re-entry at the Step 1 event. This means the user can enter multiple times with different property values.
 
 To hold a property constant in your funnel, expand the “Advanced” menu and click “Holding property constant”.
 
-![/funnels_hold.png](/funnels_hold.png)
-
 ## Exclusion Steps (Exclude users who did…)
 
-Exclusion steps operate as a “did not do” filter for funnels. This provides the ability to create a funnel where users are excluded from converting if they track a specific event between the funnel steps. 
+Exclusion steps operate as a “did not do” filter for funnels. This provides the ability to create a funnel where users are excluded from converting if they track a specific event between the funnel steps.
 
 A few things to note about exclusion steps:
 
-1. An exclusion step can be placed between any steps in the funnel. It cannot be the first or last step.
-    
+1.  An exclusion step can be placed between any steps in the funnel. It cannot be the first or last step.
+
     Example scenario: The user tracks (1) Event A → (2) Event A → (3) Event A → (4) Event B
-    
+
     Totals conversion funnel looking at A → B, with Exclusion Step: Event A
-    
-    The user enters the funnel when they track (1). They then drop-off when they track (2) since Event A is excluded. With the totals conversion criteria, the user will re-enter the funnel at (3) and then convert with (4). Overall, there will be two entries and one conversion. 
-    
+
+    The user enters the funnel when they track (1). They then drop-off when they track (2) since Event A is excluded. With the totals conversion criteria, the user will re-enter the funnel at (3) and then convert with (4). Overall, there will be two entries and one conversion.
+
     Example reports for reference from our demo dataset:
-    
-- [User activity](https://mixpanel.com/s/2it5gE)
-- [Funnel](https://mixpanel.com/s/2CpCuq)
-2. A user will qualify for each step in the funnel until they track the exclusion step. This means users who tracked the exclusion step are still able to enter the funnel and convert through steps. Use a [cohort](/docs/users/cohorts) filter if you want users who did a particular event at any point excluded from entering the funnel.
+
+* [User activity](https://mixpanel.com/s/2it5gE)
+* [Funnel](https://mixpanel.com/s/2CpCuq)
+
+2. A user will qualify for each step in the funnel until they track the exclusion step. This means users who tracked the exclusion step are still able to enter the funnel and convert through steps. Use a [cohort](../../../../../docs/users/cohorts/) filter if you want users who did a particular event at any point excluded from entering the funnel.
 3. There may be any number of exclusion events between steps.
-4. Exclusion steps have the same [two second grace period](/docs/reports/funnels/funnels-faq#how-does-the-funnel-handle-simultaneous-events) as other steps in the funnel.
+4. Exclusion steps have the same [two second grace period](../../../../../docs/reports/funnels/funnels-faq/#how-does-the-funnel-handle-simultaneous-events) as other steps in the funnel.
 
 As an example, let's say you want to understand if users who add additional products to their cart and checking out are less likely to complete a purchase. To answer this question, you could create a funnel with four steps:
 
@@ -155,11 +149,9 @@ Step 4: Purchase Completed
 
 You can exclude users who did another “Product Added” event between Step 2 and Step 3 to see how that affects your funnel's conversion rate.
 
-To add an exclusion step in your funnel, expand the “Advanced” menu and click “Exclude users who did…”. 
+To add an exclusion step in your funnel, expand the “Advanced” menu and click “Exclude users who did…”.
 
 Select an event from the list and choose whether you would like the event to be excluded between all steps, or between specific steps. Click the Filter icon beside the step to filter that event by an event or user profile property.
-
-![/exclude_2.png](/exclude_2.png)
 
 ## Saved Funnel Behaviors
 
@@ -167,9 +159,7 @@ You can save the Funnel Behavior you built and reuse them in other reports. This
 
 Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the saved behavior and the measurements of the behavior.
 
-![/saved-funnel-behavior1.png](/saved-funnel-behavior1.png)
-
-Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
+Learn more about [Saved Metrics and Behaviors](../../../../../docs/features/saved-metrics-and-behaviors/).
 
 ## Counting Methods and Measurements
 
@@ -177,22 +167,22 @@ You have a variety of options to measure your funnel behavior.
 
 ### Counting Methods
 
-| Counting Method | Description  |
-|-----------------|--------------|
-| Uniques         | Users will enter the funnel the first time that they track Step 1 in the time period selected. When a breakdown is applied, they can enter up to once per segment. |
-| Totals          | Users can re-enter a totals funnel after they have exited their previous attempt through the funnel. Users exit in three ways: successful conversion through the funnel, time out of the [conversion window](/docs/reports/funnels/funnels-advanced#conversion-window), or track an [exclusion step](http://localhost:3000/docs/reports/funnels/funnels-advanced#exclusion-steps-exclude-users-who-did).          |
-| Sessions        | Users can enter the funnel in each session that qualifies.             |
+| Counting Method | Description                                                                                                                                                                                                                                                                                                                                                                                                             |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Uniques         | Users will enter the funnel the first time that they track Step 1 in the time period selected. When a breakdown is applied, they can enter up to once per segment.                                                                                                                                                                                                                                                      |
+| Totals          | Users can re-enter a totals funnel after they have exited their previous attempt through the funnel. Users exit in three ways: successful conversion through the funnel, time out of the [conversion window](../../../../../docs/reports/funnels/funnels-advanced/#conversion-window), or track an [exclusion step](http://localhost:3000/docs/reports/funnels/funnels-advanced#exclusion-steps-exclude-users-who-did). |
+| Sessions        | Users can enter the funnel in each session that qualifies.                                                                                                                                                                                                                                                                                                                                                              |
 
 ### Measurements
 
-| Measurements      | Description | Counting Method |
-|-------------------|-------------|-----------------|
-| Conversion Rate   | The rate at which funnels are completed for the selected steps of the funnel.        | Uniques (default), Totals, or Sessions.             |
-| Unique Users      | The number of users who completed the selected steps of the funnel.            | Uniques                |
-| Total Conversions | The total number of funnels that have reached the selected step of the funnel.             | Totals                |
-| Total Sessions    | The total number of unique users sessions that reached the selected step of the funnel            | Sessions                |
-| Time to Convert   | Allows for selection of an aggregation: Average, Median, Percentile, Min and Max. Measures the aggregated time to convert for the selected steps of the funnel. See more [here](/docs/reports/funnels/funnels-advanced#time-to-convert-measurement).             | Totals                |
-| Property Sum      | Sums up a chosen property value for each step of the funnel, and measures the total amount of the property converted for the selected step of the funnel. See more [here](/docs/reports/funnels/funnels-advanced#property-sum).           | Totals                |
+| Measurements      | Description                                                                                                                                                                                                                                                         | Counting Method                         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| Conversion Rate   | The rate at which funnels are completed for the selected steps of the funnel.                                                                                                                                                                                       | Uniques (default), Totals, or Sessions. |
+| Unique Users      | The number of users who completed the selected steps of the funnel.                                                                                                                                                                                                 | Uniques                                 |
+| Total Conversions | The total number of funnels that have reached the selected step of the funnel.                                                                                                                                                                                      | Totals                                  |
+| Total Sessions    | The total number of unique users sessions that reached the selected step of the funnel                                                                                                                                                                              | Sessions                                |
+| Time to Convert   | Allows for selection of an aggregation: Average, Median, Percentile, Min and Max. Measures the aggregated time to convert for the selected steps of the funnel. See more [here](../../../../../docs/reports/funnels/funnels-advanced/#time-to-convert-measurement). | Totals                                  |
+| Property Sum      | Sums up a chosen property value for each step of the funnel, and measures the total amount of the property converted for the selected step of the funnel. See more [here](../../../../../docs/reports/funnels/funnels-advanced/#property-sum).                      | Totals                                  |
 
 ### Step Selection
 
@@ -200,35 +190,27 @@ You can select which step of the funnel you would like to measure. By default th
 
 When measuring “Unique Users”, “Total Conversions” or “Total Sessions”, you can select “Entering Funnel” in order to get a top-of-funnel count. Similarly, if you would like to get the bottom-of-funnel count, you can choose “All Steps”.
 
-![step selection](/step-selection.png)
-
 ## Time to Convert
 
 ### Time to Convert Measurement
 
 You can select a Time to Convert aggregation to see how quickly or slowly your funnel converts. You can see this as a summarized value by selecting “Metric” or “Bar” visualizations, or you can see it as a trend using the “Line” visualization. You can also see the time to convert for a particular chosen step selection. (Note: Our percentiles are calculated using an approximate algorithm and when this algorithm is run on small/sparse datasets, the results can be non-deterministic, i.e. the results can differ by a small amount across runs.)
 
-![toc_measurement.png](/toc_measurement.png)
-
 ### Time to Convert Breakdown
 
-You can select the Time to Convert breakdown to see a distribution of time users took across the funnel or  between any two steps. The steps selected in the breakdown are independent of the step of the metric you are measuring, for example, you can measure the overall conversion rate broken down by Time to Convert between Steps 1 and 2.
+You can select the Time to Convert breakdown to see a distribution of time users took across the funnel or between any two steps. The steps selected in the breakdown are independent of the step of the metric you are measuring, for example, you can measure the overall conversion rate broken down by Time to Convert between Steps 1 and 2.
 
 Time to Convert works like any other property in that you can filter to specific range of times or customize the bucketing of the breakdown. You can't use it as a inline filter since it is used to filter funnels which have been measured rather than changing the per step conversion window.
 
 You can can see a distribution of the conversions time to convert by using the Time to Convert breakdown in combination with measuring total conversion. You can also use this to see how other metrics such as conversion rate are affected based on how quickly users convert on a particular step range.
 
-![toc_breakdown.png](/toc_breakdown.png)
-
 ## Property Sum
 
 This measurement type allows you to visualize a numeric event property through a funnel. Instead of seeing how many users move through your flow, you can select an event property that exists on each step of the funnel. Mixpanel will sum up the total value of this property at each stage of the funnel and visualize the total amount converted, or the drop-off at each step if “Funnel Steps” visualization is selected. For example, this could be used to visualize the revenue across the funnel steps.
 
-**Note**: For many e-commerce flows, you will want to pair property sum with [hold property constant](/docs/reports/funnels/funnels-advanced#hold-property-constant) on item ID so you can track each individual item.
+**Note**: For many e-commerce flows, you will want to pair property sum with [hold property constant](../../../../../docs/reports/funnels/funnels-advanced/#hold-property-constant) on item ID so you can track each individual item.
 
-To use property sum, select property sum from the measurement menu, and select a numeric property. 
-
-![funnels_property_sum.png](/funnels_property_sum.png)
+To use property sum, select property sum from the measurement menu, and select a numeric property.
 
 ## Behavioral Properties
 
@@ -236,17 +218,17 @@ Behavioral properties allow you to use your user’s activity and use it as a pr
 
 In funnels, the behavioral property is computed in the time range between 2 steps in your funnel. You can specify which steps in the funnel this applies to. The step selection is separate from the overall funnel measurement, for example, you can measure overall conversion rate but breakdown by the frequency of an event between Step 1 and 2.
 
-The behavioral properties will only count the events in between the chosen range. The event that original satisfied the funnel definition does not count towards the behavioral property between steps. 
+The behavioral properties will only count the events in between the chosen range. The event that original satisfied the funnel definition does not count towards the behavioral property between steps.
 
 For example, if a user performs “Step 1 → Step 2”:
-- Frequency: “0 times” — there is no extra “Step 1” event, so the frequency will be “0 times”
+
+* Frequency: “0 times” — there is no extra “Step 1” event, so the frequency will be “0 times”
 
 For example, if a user performs “Step 1 → Step 1 → Step 2”:
-- Frequency: “1 time” — we will count the second “Step 1” event so the frequency will be “1 time”
 
-See [here](/docs/features/computed-properties#behavioral-properties) for more information about behavioral properties.
+* Frequency: “1 time” — we will count the second “Step 1” event so the frequency will be “1 time”
 
-![funnels_behavioral_props.png](/funnels_behavioral_props.png)
+See [here](../../../../../docs/features/computed-properties/#behavioral-properties) for more information about behavioral properties.
 
 ### Frequency per User
 
@@ -258,15 +240,13 @@ User the Aggregate Property per User to see the aggregation on an event property
 
 ## Attributed by Breakdown
 
-You can select the "Attributed by…" breakdown to attribute credit for the funnel to touchpoints along the user journey. The attribution is calculated on the first step of the funnel. See the [Attribution doc](/docs/features/attribution) for more information.
+You can select the "Attributed by…" breakdown to attribute credit for the funnel to touchpoints along the user journey. The attribution is calculated on the first step of the funnel. See the [Attribution doc](../../../../../docs/features/attribution/) for more information.
 
 ## Comparison Events
 
-You can select multiple events at a particular step in a funnel, and Mixpanel will compute a segmented funnel that shows what percent of users reached each of these comparison events. 
+You can select multiple events at a particular step in a funnel, and Mixpanel will compute a segmented funnel that shows what percent of users reached each of these comparison events.
 
 To do this, click on the ”…” menu and select “Event Comparison”
-
-![funnels_comparison.png](/funnels_comparison.png)
 
 ## Breakdowns
 
@@ -281,9 +261,9 @@ For example, let's say a user tracks the following:
 3. Add to Cart
 4. Browse Product, item = shoes
 
-The funnel looks at Browse Product → Add to Cart, with a breakdown on "item" set to attribute the funnel on the value of "Step 1". 
+The funnel looks at Browse Product → Add to Cart, with a breakdown on "item" set to attribute the funnel on the value of "Step 1".
 
-This user would enter the funnel when they first track "Browse Product" with "item = shirt". The second "Browse Product" event is not counted as a new entry since the user has not exited the current funnel attempt. They then convert on event 3, when they track "Add to Cart". With the breakdown applied on "item", they will re-enter the funnel when they track "Browse Product" with the new item value of "shoes". 
+This user would enter the funnel when they first track "Browse Product" with "item = shirt". The second "Browse Product" event is not counted as a new entry since the user has not exited the current funnel attempt. They then convert on event 3, when they track "Add to Cart". With the breakdown applied on "item", they will re-enter the funnel when they track "Browse Product" with the new item value of "shoes".
 
 Overall, the funnel would show two entries, "shirt" and "shoes", with one conversion on "shirt".
 
@@ -291,14 +271,12 @@ Overall, the funnel would show two entries, "shirt" and "shoes", with one conver
 
 Statistical significance in funnels validates an increase or decrease in conversion rate for a property or cohort segment. It attempts to identify random chance with respect to overall conversion. A p-value indicating statistical significance is calculated in the overview table when you choose a property or cohort to group by.
 
-In statistical hypothesis testing, the p-value or probability value is the probability that the variation in a segment's conversion rate, compared to the overall conversion rate, is not driven by random chance. This value is shown for every segment by default. To learn more about how this is calculated, click [here](/docs/reports/funnels/funnels-faq#how-does-mixpanel-calculate-statistical-significance).
+In statistical hypothesis testing, the p-value or probability value is the probability that the variation in a segment's conversion rate, compared to the overall conversion rate, is not driven by random chance. This value is shown for every segment by default. To learn more about how this is calculated, click [here](../../../../../docs/reports/funnels/funnels-faq/#how-does-mixpanel-calculate-statistical-significance).
 
 In order to clarify this statistical significance, the segmentation chart shows the confidence level of each segment. Confidence level is defined as 1 - p.
 
-- \> 0.95 = statistically significant, indicated in green. This variation in conversion rate is likely **not** driven by random chance.
-- \< 0.95 = not statistically significant, indicated in red. This variation in conversion rate is likely driven by random chance.
-
-![funnels_significance.png](/funnels_significance.png)
+* \> 0.95 = statistically significant, indicated in green. This variation in conversion rate is likely **not** driven by random chance.
+* < 0.95 = not statistically significant, indicated in red. This variation in conversion rate is likely driven by random chance.
 
 Scrolling further down the table takes you to the statistically insignificant segments. If a segment has less than 30 samples, the p-value is not shown, as the sample size is too low to detect differences from the overall population. This is indicated by “Insufficient samples”.
 
@@ -316,23 +294,17 @@ Inline filters allow you to apply event or user property filters to each step of
 
 Inline filters are performed pre-query. Thus, these filters will impact your funnel's conversion by removing events that don't qualify from consideration of being included in a funnel calculation.
 
-![funnels_filter1.png](/funnels_filter1.png)
-
 Let's illustrate this with some examples.
 
 Consider a three-step funnel where a user must View Item → Add to Cart → Purchase, all within a one-hour conversion window.
 
 As you can see in the below activity feed, this user's first "View Item" event happens more than one hour before they "Add to Cart", so they would drop off after the initial "View Item". As such, the funnel would show one entry with no conversions.
 
-![funnels_filter2.png](/funnels_filter2.png)
-
 However, if you put an **inline filter on the "View Item" event with "Browser = Safari"**, then users will only enter the funnel with "View Item" events on Safari browsers.
 
-Below we see the same user's activity stream where their first "View Item" is with the Chrome browser, and thus this user's first "View Item" event **is not** included in a funnels calculation. 
+Below we see the same user's activity stream where their first "View Item" is with the Chrome browser, and thus this user's first "View Item" event **is not** included in a funnels calculation.
 
 They have a second "View Item" that is using Safari, and this event qualifies them to enter into the funnel. Each of their subsequent steps happens within the conversion window, and this user reaches full conversion to the end of the funnel.
-
-![funnels_filter3.png](/funnels_filter3.png)
 
 If we were to take it further and place an inline filter on each and every step in this funnel, so that all steps must be completed with events where Browser = Safari, then this user would only convert to the second step of "Add to Cart". This is because the "Purchase" event doesn't have a browser set.
 
@@ -344,8 +316,6 @@ For example, let's use the same three-step funnel where a user must View Item �
 
 In the below example, the same user's funnel entry would be their first "View Item" event, with a "Browser = Chrome" since this is the first defined property value. When the global filter is applied, the entire entry is filtered out since it doesn't meet the filter criteria. This means the report would show no users entering the funnel at "View Item".
 
-![funnels_filter4.png](/funnels_filter4.png)
-
 ## Property Attribution
 
 ### First Step Defined vs Last Step Defined
@@ -354,27 +324,21 @@ Event property values can vary from step to step in your funnel, you can choose 
 
 To access this feature, filter or breakdown by a property in the funnel chart below the query builder. Click on **Step 1** to select either “Last Step Defined”, “First Step Defined”, or a specific step number. Your selected choice will determine which step of your funnel determines the property value for the whole funnel.
 
-![funnels_attribution1.png](/funnels_attribution1.png)
-
 ### First Step Defined Attribution and Forwardfilling
 
-By default, Mixpanel “forwardfills” [event properties](/docs/data-structure/events-and-properties) in instances where properties are sent in earlier steps of a Funnel but not sent in subsequent steps of the same funnel. This means that the property that is present in early steps of a funnel is appended to the later steps of the funnel where it was previously absent.
+By default, Mixpanel “forwardfills” [event properties](../../../../../docs/data-structure/events-and-properties/) in instances where properties are sent in earlier steps of a Funnel but not sent in subsequent steps of the same funnel. This means that the property that is present in early steps of a funnel is appended to the later steps of the funnel where it was previously absent.
 
 Select **First Step Defined** to attribute the first property value to the whole funnel, regardless of whether the property value changes in subsequent steps. First Step Defined is not the same as the first step of the funnel, rather it is the first time the property is given a non-null defined value.
 
 For example, say that the user is shopping on your website and you want to track a funnel from Page View → View Item → Add to Cart → Checkout, with a breakdown on "color". With "First Step Defined", the first color will be applied to the entire funnel, in this case, "red" seen on View Item.
 
-![funnels_attribution2.png](/funnels_attribution2.png)
-
 ### Last Step Defined Attribution
 
-By default, Mixpanel “backfills” [event properties](/docs/data-structure/events-and-properties) in instances where properties are sent in later steps of a Funnel but not sent in the earlier steps of the same funnel. This means that the property that is present in later steps of a funnel is appended to the earlier steps of the funnel where it was previously absent.
+By default, Mixpanel “backfills” [event properties](../../../../../docs/data-structure/events-and-properties/) in instances where properties are sent in later steps of a Funnel but not sent in the earlier steps of the same funnel. This means that the property that is present in later steps of a funnel is appended to the earlier steps of the funnel where it was previously absent.
 
 Select **Last Step Defined** to attribute the last property value to the whole funnel, regardless of the property value in previous steps. Last Step Defined is not the same as the last step of the funnel, rather it is the last time the property is given a non-null defined value.
 
 For example, say that the user is shopping on your website and you want to track a funnel from Page View → View Item → Add to Cart → Checkout, with a breakdown on "color". With "Last Step Defined", the last defined color value will be applied to the entire funnel, in this case "blue" seen on Add to Cart.
-
-![funnels_attribution3.png](/funnels_attribution3.png)
 
 ### Per-Step Attribution
 
@@ -382,10 +346,10 @@ You can choose to attribute a property value from any step to the whole funnel b
 
 ## View as Flow
 
-You can click into any funnel step and select “View as Flow”. This takes you to the [flows](/docs/reports/flows) report and lets you see:
+You can click into any funnel step and select “View as Flow”. This takes you to the [flows](../../../../../docs/reports/flows/) report and lets you see:
 
-- What events did users do before or after converting?
-- What events did the users who dropped off do instead?
+* What events did users do before or after converting?
+* What events did the users who dropped off do instead?
 
 For example, you might use this to discover that most users who dropped off are hitting a specific bug in your platform. You can then fix the bug and revisit your funnel to see if there's been an improvement.
 
@@ -393,14 +357,12 @@ For example, you might use this to discover that most users who dropped off are 
 
 Click on the “...” icon besides a step and click "Rename" to rename it.
 
-{/* Next Section */}
+{/\* Next Section \*/}
 
-<hr></hr>
-<div class="bg-base100 rounded-xl">
-  <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
-    Next: Frequently Asked Questions
-  </h2>
-  <p>
-    Still got questions? Get answers to the most frequently asked Funnels questions below.
-  </p>
-  <a href="/docs/reports/funnels/funnels-faq" class="button primary">Funnels FAQ</a>
+***
+
+### Next: Frequently Asked Questions
+
+Still got questions? Get answers to the most frequently asked Funnels questions below.
+
+<a href="../../../../../docs/reports/funnels/funnels-faq/" class="button primary">Funnels FAQ</a>

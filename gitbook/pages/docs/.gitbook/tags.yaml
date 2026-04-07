@@ -1,0 +1,4 @@
+- tag: beta
+  label: Beta
+  icon: flask
+  color: $primary

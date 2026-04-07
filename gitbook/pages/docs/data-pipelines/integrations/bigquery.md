@@ -8,9 +8,7 @@ This guide describes how Mixpanel exports your data into a customer-managed [Goo
 
 ## Design
 
-![image](/230698685-c02cb9a1-d66f-42a7-8063-8e78b79e7b1f.png)
-
-For events data, we create a single table called `mp_master_event` and store all external properties inside the `properties` column in JSON type. Users can extract properties using JSON functions. See [Query Data](#query-data) for more details.
+For events data, we create a single table called `mp_master_event` and store all external properties inside the `properties` column in JSON type. Users can extract properties using JSON functions. See [Query Data](bigquery.md#query-data) for more details.
 
 For user profiles and identity mappings, we create new tables `mp_people_data_*` and `mp_identity_mappings_data_*` with a random suffix every time and then update views `mp_people_data_view` and `mp_identity_mappings_data_view` accordingly to use the latest table. Always use the views instead of the actual tables, as we do not immediately delete old tables, and you may end up using outdated data.
 
@@ -26,8 +24,6 @@ Please follow these steps to share permissions with Mixpanel and create json pip
 
 Create a dataset in your BigQuery to store the Mixpanel data.
 
-![image](/230698727-1216833e-8321-46de-a388-8b554a00938c.png)
-
 ### Step 2: Grant Permissions to Mixpanel
 
 > **Note:** If your organization uses [domain restriction constraint](https://cloud.google.com/resource-manager/docs/organization-policy/restricting-domains) you will have to update the policy to allow Mixpanel domain `mixpanel.com` and Google Workspace customer ID: `C00m5wrjz`.
@@ -36,30 +32,26 @@ Mixpanel requires two permissions to manage the dataset:
 
 **BigQuery Job User**
 
-- Navigate to **IAM & Admin** in your Google Cloud Console.
-- Click **+ ADD** to add principals
-- Add new principal `export-upload@mixpanel-prod-1.iam.gserviceaccount.com` and set the role as `BigQuery Job User`
-- Click the **Save** button.
-
-![image](/230698732-4dadbccf-1eeb-4e64-a6c7-8926eb49e5cc.png)
+* Navigate to **IAM & Admin** in your Google Cloud Console.
+* Click **+ ADD** to add principals
+* Add new principal `export-upload@mixpanel-prod-1.iam.gserviceaccount.com` and set the role as `BigQuery Job User`
+* Click the **Save** button.
 
 **BigQuery Data Owner**
 
-- Go to **BigQuery** in your Google Cloud Console.
-- Open the dataset intended for Mixpanel exports.
-- Click on **Sharing** and **Permissions** in the drop down.
-- In the Data Permissions window, click on **Add Principal**
-- Add new principal `export-upload@mixpanel-prod-1.iam.gserviceaccount.com` and set the role as `BigQuery Data Owner`, and save.
-
-![image](/230698735-972aedb5-1352-4ebc-82c4-ef075679779b.png)
+* Go to **BigQuery** in your Google Cloud Console.
+* Open the dataset intended for Mixpanel exports.
+* Click on **Sharing** and **Permissions** in the drop down.
+* In the Data Permissions window, click on **Add Principal**
+* Add new principal `export-upload@mixpanel-prod-1.iam.gserviceaccount.com` and set the role as `BigQuery Data Owner`, and save.
 
 ### Step 3: Provide Necessary Details for Pipeline Creation
 
-Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline) to create data pipeline via UI. You need to provide specific details to enable authentication and data export to BigQuery.
+Refer to [Step 2: Creating the Pipeline](../../../../../docs/data-pipelines/#step-2-creating-the-pipeline) to create data pipeline via UI. You need to provide specific details to enable authentication and data export to BigQuery.
 
-- **GCP project ID**: The project ID where BigQuery dataset is present
-- **Dataset name**: Dataset created on the GCP project to which Mixpanel needs to export data
-- **GCP region**: The region used for BigQuery
+* **GCP project ID**: The project ID where BigQuery dataset is present
+* **Dataset name**: Dataset created on the GCP project to which Mixpanel needs to export data
+* **GCP region**: The region used for BigQuery
 
 ## Partitioning
 
@@ -124,4 +116,5 @@ This query demonstrates how to effectively use conditional logic and JSON functi
 `US, US_CENTRAL_1, US_EAST_1, US_WEST_1, US_WEST_2, US_EAST_4, NORTH_AMERICA_NORTHEAST_1, SOUTH_AMERICA_EAST_1, EU, EUROPE_NORTH_1, EUROPE_WEST_2, EUROPE_WEST_3, EUROPE_WEST_4, EUROPE_WEST_6, ASIA_SOUTH_1, ASIA_EAST_1, ASIA_EAST_2, ASIA_NORTHEAST_1, ASIA_NORTHEAST_2, ASIA_NORTHEAST_3, ASIA_SOUTHEAST_1, ASIA_SOUTHEAST_2, AUSTRALIA_SOUTHEAST_1`
 
 ### VPC Service Controls
+
 IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-controls/docs/use-access-levels#limitations_of_using_access_levels_with) for BigQuery because Mixpanel's infrastructure runs on GCP, and inter-project communication in Google Cloud routes through internal Google IPs rather than public IPs. Instead, configure an ingress rule to allow access based on other attributes such as the project or service account. The Mixpanel project is `745258754925` for US, `848893383328` for EU, and `1054291822741` for IN. The service account is `export-upload@mixpanel-prod-1.iam.gserviceaccount.com`.

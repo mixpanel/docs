@@ -1,8 +1,8 @@
-# Mixpanel SDKs: React Native
+# React Native
 
 ## Getting Started
 
-Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=reactnative).
+Please refer to our [Quickstart Guide](../../../../../docs/quickstart/connect-your-data).
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html), [Library Source Code](https://github.com/mixpanel/mixpanel-react-native), and an [Example Application](https://github.com/mixpanel/mixpanel-react-native/tree/master/Samples) is documented in our GitHub repo.
 
@@ -24,7 +24,7 @@ pod install
 Since Xcode 12.5, there is a known swift compile issue, please refer to [this workaround](https://github.com/mixpanel/mixpanel-react-native/issues/43#issuecomment-829599732). However the compile issue has been resolved in Xcode 13.2.1+, there is no extra step required as long as you upgrade to Xcode 13.2.1+.
 {% endhint %}
 
-After installation, import the `Mixpanel` class from the SDK, create an instance of Mixpanel using your [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens), then initialize by calling [`.init()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#:~:text=init(token%2C%20trackAutomaticEvents%2C%20Optional)).
+After installation, import the `Mixpanel` class from the SDK, create an instance of Mixpanel using your [project token](../../../../../docs/orgs-and-projects/managing-projects/#find-your-project-tokens), then initialize by calling [`.init()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html).
 
 ```javascript
 //import Mixpanel class from the SDK
@@ -42,7 +42,7 @@ mixpanel.init();
 ### Library Configuration
 
 {% hint style="warning" %}
-For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/react-native#privacy-friendly-tracking).
+For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](../../../../../docs/tracking-methods/sdks/react-native/#privacy-friendly-tracking).
 {% endhint %}
 
 The Mixpanel object can be initialized with different configurations. See below for a list of configuration options.
@@ -80,7 +80,7 @@ The Mixpanel React Native SDK supports Expo, React Native for Web, and other pla
 
 To enable Javascript Mode:
 
-1. Install [`AsyncStorage`](https://react-native-async-storage.github.io/async-storage/) which is used to persist data. If this is unavailable in your target environment, you can import/define a different storage class. Please refer to [`this documentation.`](https://github.com/mixpanel/mixpanel-react-native/tree/master?tab=readme-ov-file#expo-and-react-native-for-web-support-302-and-above)
+1. Install [`AsyncStorage`](https://react-native-async-storage.github.io/async-storage/) which is used to persist data. If this is unavailable in your target environment, you can import/define a different storage class. Please refer to [`this documentation.`](https://github.com/mixpanel/mixpanel-react-native/tree/master?tab=readme-ov-file#expo-and-react-native-for-web-support-302-and-above)
 
 ```bash
 npm install @react-native-async-storage/async-storage
@@ -107,11 +107,13 @@ mixpanel.init();
 ```
 
 When using Javascript Mode:
-* [Legacy Automatically Tracked Events](/docs/tracking-methods/sdks/android#legacy-automatically-tracked-events) are not supported
+
+* [Legacy Automatically Tracked Events](../../../../../docs/tracking-methods/sdks/android/#legacy-automatically-tracked-events) are not supported
 * Javascript Mode does not have the same default properties as Native Mode
 * Data does not automatically flush when the app is backgrounded. Be sure to call [`.flush()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#flush) more frequently for key events
 
 ## Sending Events
+
 Use the [`.track()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#track) method to send an event by providing the event name and any event properties. This will trigger a request to the [/track API endpoint](https://developer.mixpanel.com/reference/track-event) to ingest the event into your project.
 
 {% hint style="info" %}
@@ -119,17 +121,20 @@ The [/track endpoint](https://developer.mixpanel.com/reference/track-event) will
 {% endhint %}
 
 **Example Usage**
+
 ```javascript
 // track "some_event" with "some property" set to "some_value"
 mixpanel.track('some_event', {
   some_property: 'some_value'
 });
 ```
+
 ### Timing Events
 
 You can track the time it took for an action to occur, such as an image upload or a comment post, using [`.timeEvent()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#timeEvent). This will mark the "start" of your action, which will be timed until you finish with a track call. The time duration is then recorded in the "Duration" property.
 
 **Example Usage**
+
 ```javascript
 // start the timer for the event "Image Upload"
 mixpanel.timeEvent("Image Upload");
@@ -142,12 +147,14 @@ mixpanel.track("Image Upload");
 ```
 
 ### Flushing Events
-To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. 
+
+To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background.
 
 Call [`.flush()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#flush) manually if you want to force a flush at a particular moment.
 
 **Example Usage**
-```javascript Javascript
+
+```javascript
 // flush queued events immediately
 mixpanel.flush();
 ```
@@ -157,17 +164,20 @@ mixpanel.flush();
 By default, Mixpanel will flush events immediately if a batch reaches 50 events. Use the [`.setFlushBatchSize()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#setFlushBatchSize) method to adjust the batch size limit for flushing.
 
 **Example Usage**
-```javascript Javascript
+
+```javascript
 // flush if event batch size reaches 100
 mixpanel.setFlushBatchSize(100);
 ```
 
 #### Importing Historical Events
+
 The React Native SDK is a tracking SDK designed for real-time tracking in a client-side environment. Calling `track()` triggers a request to our [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a timestamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested**.
 
-For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](/docs/tracking-methods/sdks/python) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion.
+For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](../../../../../docs/tracking-methods/sdks/python/) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion.
 
 ## Setting Super Properties
+
 Super properties are global event properties that you define once and apply to all events.
 
 To register super properties, call [`.registerSuperProperties()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#registerSuperProperties).
@@ -175,6 +185,7 @@ To register super properties, call [`.registerSuperProperties()`](https://mixpan
 Use [`.registerSuperPropertiesOnce()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#registerSuperPropertiesOnce) to register super properties without overwriting existing values.
 
 **Example Usage**
+
 ```javascript
 // register "name" as a super property
 mixpanel.registerSuperProperties({
@@ -197,6 +208,7 @@ mixpanel.track('registration');
 If you have properties you'd like all events to include, you can also set the super properties when initializing the Mixpanel object.
 
 **Example Usage**
+
 ```javascript
 // define super properties as a key-value pair
 const superProperties = {
@@ -223,9 +235,11 @@ Our mobile libraries store your super properties in local storage. They will per
 See more methods related to super properties in the complete library reference [here](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html).
 
 ## Managing User Identity
-You can handle the identity of a user using the [`.identify()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#identify) and [`.reset()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#reset) methods. Learn more about [identity management](/docs/tracking-methods/id-management/identity-management) and [identifying users](/docs/tracking-methods/id-management/identifying-users).
+
+You can handle the identity of a user using the [`.identify()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#identify) and [`.reset()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#reset) methods. Learn more about [identity management](../../../../../docs/tracking-methods/id-management/identity-management/) and [identifying users](../../../../../docs/tracking-methods/id-management/identifying-users/).
 
 ### Identify
+
 {% hint style="warning" %}
 We recommend against calling `.identify()` for anonymous visitors to your site.
 {% endhint %}
@@ -233,6 +247,7 @@ We recommend against calling `.identify()` for anonymous visitors to your site.
 Call [`.identify()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#identify) when you know the identity of the current user, passing in their user ID as an argument. This is typically at account registration and at log in.
 
 **Example Usage**
+
 ```javascript
 // your user signs in and tracks a sign in event
 mixpanel.track('sign in');
@@ -243,10 +258,12 @@ mixpanel.identify('12345');
 ```
 
 ### Call Reset at Logout
-Call [`.reset()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#reset) to clear data attributed to a user when they logout. This will clear the local storage and allows you to handle [multiple users on a single device](/docs/tracking-methods/id-management/identifying-users-simplified#multiple-users-one-device). 
+
+Call [`.reset()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#reset) to clear data attributed to a user when they logout. This will clear the local storage and allows you to handle [multiple users on a single device](../../../../../docs/tracking-methods/id-management/identifying-users-simplified/#multiple-users-one-device).
 
 **Example Usage**
-```javascript Javascript
+
+```javascript
 // your user logs out and tracks a log out event
 mixpanel.track('log out');
 
@@ -255,7 +272,8 @@ mixpanel.reset();
 ```
 
 ## Storing User Profiles
-Once your users are identified, create [user profiles](/docs/data-structure/user-profiles) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
+
+Once your users are identified, create [user profiles](../../../../../docs/data-structure/user-profiles/) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
 
 The React Native SDK provides a few methods for setting profile properties under the [`People`](https://mixpanel.github.io/mixpanel-react-native/People.html) class accessible via [`.getPeople()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#getPeople). These methods will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
 
@@ -270,7 +288,8 @@ Set profile properties on a user profile by calling the [`.getPeople().set()`](h
 If a profile property already exists, it will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
 
 **Example Usage**
-```javascript Javascript
+
+```javascript
 // You must call identify to associate the profile update with the user
 // Create "plan" profile prop for user "12345"
 mixpanel.identify('12345');
@@ -288,6 +307,7 @@ mixpanel.getPeople().set(properties);
 ```
 
 ### Other Types of Profile Updates
+
 There are a few other methods for setting profile properties. See a complete reference of the available methods [here](https://mixpanel.github.io/mixpanel-react-native/People.html).
 
 A few commonly used people methods are highlighted below:
@@ -296,118 +316,127 @@ A few commonly used people methods are highlighted below:
 {% tab title=".setOnce()" %}
 The [`.getPeople().setOnce()`](https://mixpanel.github.io/mixpanel-react-native/People.html#setOnce) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set profile properties without the risk of overwriting existing data.
+````
+Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
-    ```javascript
-    // set profile properties for user "1234"
-    mixpanel.identify('1234');
-    let properties = {name: 'Sam'};
-    mixpanel.getPeople().set(properties);
-    
-    // will be ignored since "name" already exists
-    mixpanel.getPeople().setOnce('name', 'Samantha');
+**Example Usage**
+```javascript
+// set profile properties for user "1234"
+mixpanel.identify('1234');
+let properties = {name: 'Sam'};
+mixpanel.getPeople().set(properties);
 
-    // "email" will be set since it does not exist
-    mixpanel.getPeople().setOnce('email', 'test@mail.com');
-    ```
+// will be ignored since "name" already exists
+mixpanel.getPeople().setOnce('name', 'Samantha');
+
+// "email" will be set since it does not exist
+mixpanel.getPeople().setOnce('email', 'test@mail.com');
+```
+````
 {% endtab %}
 
 {% tab title=".append()" %}
 The [`.getPeople().append()`](https://mixpanel.github.io/mixpanel-react-native/People.html#append) method append values to a list profile property.
 
-    Use this method to add additional values to an existing list property instead of redefining the entire list.
+````
+Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-    **Example Usage**
-    ```javascript
-    // set profile properties for user "1234"
-    mixpanel.identify('1234');
-    let properties = {
-        name: 'Sam',
-        roles: ['sales','engineer']
-    }
-    mixpanel.getPeople().set(properties);
-    
-    // add "legal" to "roles"
-    // new "roles" value is ['sales','engineer','legal']
-    mixpanel.getPeople().append('roles', 'legal');
+**Example Usage**
+```javascript
+// set profile properties for user "1234"
+mixpanel.identify('1234');
+let properties = {
+    name: 'Sam',
+    roles: ['sales','engineer']
+}
+mixpanel.getPeople().set(properties);
 
-    // .append() allows duplicates
-    // new "roles" value is ['sales','engineer','legal','legal']
-    mixpanel.getPeople().append('roles', 'legal');
-    ```
+// add "legal" to "roles"
+// new "roles" value is ['sales','engineer','legal']
+mixpanel.getPeople().append('roles', 'legal');
+
+// .append() allows duplicates
+// new "roles" value is ['sales','engineer','legal','legal']
+mixpanel.getPeople().append('roles', 'legal');
+```
+````
 {% endtab %}
 
 {% tab title=".union()" %}
 The [`.getPeople().union()`](https://mixpanel.github.io/mixpanel-react-native/People.html#union) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+````
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
-    ```javascript
-    // set profile properties for user "1234"
-    mixpanel.identify('1234');
-    let properties = {
-        name: 'Sam',
-        roles: ['sales','engineer']
-    }
-    mixpanel.getPeople().set(properties);
-    
-    
-    // add "engineer" to "roles"
-    // will be ignored since "engineer" already exists in "roles"
-    mixpanel.getPeople().union('roles', 'engineer');
+**Example Usage**
+```javascript
+// set profile properties for user "1234"
+mixpanel.identify('1234');
+let properties = {
+    name: 'Sam',
+    roles: ['sales','engineer']
+}
+mixpanel.getPeople().set(properties);
 
-    // add "legal" to "roles" since it does not exist
-    mixpanel.getPeople().union('roles', 'legal');
-    ```
+
+// add "engineer" to "roles"
+// will be ignored since "engineer" already exists in "roles"
+mixpanel.getPeople().union('roles', 'engineer');
+
+// add "legal" to "roles" since it does not exist
+mixpanel.getPeople().union('roles', 'legal');
+```
+````
 {% endtab %}
 
 {% tab title=".increment()" %}
 The [`.getPeople().increment()`](https://mixpanel.github.io/mixpanel-react-native/People.html#increment) method increments a numeric property by a whole number.
 
-    Use this method to add to or subtract from your numeric property based on its current value.
+````
+Use this method to add to or subtract from your numeric property based on its current value.
 
-    **Example Usage**
-    ```javascript
-      // set profile properties for user "1234"
-      mixpanel.identify('1234');
-      let properties = {
-          name: 'Sam',
-          age: 25,
-      }
+**Example Usage**
+```javascript
+  // set profile properties for user "1234"
+  mixpanel.identify('1234');
+  let properties = {
+      name: 'Sam',
+      age: 25,
+  }
 
-      // increment "age" by 2
-      mixpanel.getPeople().increment('age',2);
-      
-      // use negative number to decrement
-      // decrement "age" by 5
-      mixpanel.getPeople().increment('age',-5);
-      ```
+  // increment "age" by 2
+  mixpanel.getPeople().increment('age',2);
+  
+  // use negative number to decrement
+  // decrement "age" by 5
+  mixpanel.getPeople().increment('age',-5);
+  ```
+````
 {% endtab %}
-
 {% endtabs %}
 
 ## Group Analytics
 
 {% hint style="info" %}
-Read more about [Group Analytics](/docs/data-structure/group-analytics) before proceeding. You will need to have the [group key defined in your project settings](/docs/data-structure/group-analytics#group-keys-in-project-settings) first.
+Read more about [Group Analytics](../../../../../docs/data-structure/group-analytics/) before proceeding. You will need to have the [group key defined in your project settings](../../../../../docs/data-structure/group-analytics/#group-keys-in-project-settings) first.
 {% endhint %}
 
-Mixpanel [Group Analytics](/docs/data-structure/group-analytics) is a paid add-on that allows behavioral data analysis by groups (e.g. company, team), as opposed to individual users.
+Mixpanel [Group Analytics](../../../../../docs/data-structure/group-analytics/) is a paid add-on that allows behavioral data analysis by groups (e.g. company, team), as opposed to individual users.
 
 A group is identified by the `group_key` and `group_id`.
+
 * `group_key` is the event property that connects event data to a group. (e.g. `company`)
 * `group_id` is the identifier for a specific group. (e.g. `mixpanel`,`company_a`,`company_b`, etc.)
 
 The React Native SDK provides a few method for adding individual users to a group and setting group profile properties.
 
 ### Adding Users to a Group
-[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
 
-Call the [`.setGroup()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#setGroup) method to register the current user to a group, which would add the `group_key` as an event property set to the `group_id` value to all events moving forward. 
+[All events must have the group key as an event property in order to be attributed to a group](../../../../../docs/data-structure/group-analytics/#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
 
-```javascript Javascript
+Call the [`.setGroup()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#setGroup) method to register the current user to a group, which would add the `group_key` as an event property set to the `group_id` value to all events moving forward.
+
+```javascript
 // assign the current user to the "mixpanel" company group
 mixpanel.setGroup('company', 'mixpanel');
  
@@ -423,11 +452,12 @@ mixpanel.track('some_event',{
 
 **Multiple Groups**
 
-[An event can be attributed to multiple groups](/docs/data-structure/group-analytics#attribute-events-to-multiple-groups) by passing in the `group_key` value as a list of multiple `group_id` values.
+[An event can be attributed to multiple groups](../../../../../docs/data-structure/group-analytics/#attribute-events-to-multiple-groups) by passing in the `group_key` value as a list of multiple `group_id` values.
 
 Call [`.addGroup()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#addGroup) to add additional `group_id`s to an existing list.
 
 **Example Usage**
+
 ```javascript
 // assign the current user to the "mixpanel" company group
 // events will contain 'company' prop set to ["mixpanel"]
@@ -447,7 +477,8 @@ mixpanel.track('some_event');
 To connect group information to a user profile, include the `group_key` and `group_id` as a user profile property using the `getPeople().set()` call.
 
 **Example Usage**
-```javascript Javascript
+
+```javascript
 // You must call identify to associate the profile update with the user
 // Create "plan" profile prop for user "12345"
 mixpanel.identify('12345');
@@ -459,11 +490,13 @@ mixpanel.getPeople().set('company', 'mixpanel');
 ```
 
 ### Setting Group Profile Properties
-Create a group profiles by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
+
+Create a group profiles by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee\_count", and "subscription".
 
 To set group profile properties, specify the group that needs to be updated by calling [`.getGroup()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#getGroup), then set the group properties by chaining the [`.set()`](https://mixpanel.github.io/mixpanel-react-native/MixpanelGroup.html#set) method, which will trigger a request to the [/groups API endpoint](https://developer.mixpanel.com/reference/group-set-property).
 
 **Example Usage**
+
 ```javascript
 // assign the current user to the "mixpanel" company group
 mixpanel.setGroup('company', 'mixpanel');
@@ -474,6 +507,7 @@ mixpanel.getGroup('company','mixpanel').set('size',100);
 ```
 
 ### Other Group Profile Methods
+
 See all of the methods under the Group class [here](https://mixpanel.github.io/mixpanel-react-native/MixpanelGroup.html).
 
 A few commonly used group methods are highlighted below:
@@ -482,107 +516,114 @@ A few commonly used group methods are highlighted below:
 {% tab title=".setOnce()" %}
 The [`.getGroup().setOnce()`](https://mixpanel.github.io/mixpanel-react-native/MixpanelGroup.html#setOnce) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set group profile properties without the risk of overwriting existing data.
+````
+Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
-    ```javascript
-    // assign the current user to the "mixpanel" company group
-    mixpanel.setGroup('company', 'mixpanel');
+**Example Usage**
+```javascript
+// assign the current user to the "mixpanel" company group
+mixpanel.setGroup('company', 'mixpanel');
 
-    // set group profile properties
-    let properties = {
-        name: 'Mixpanel',
-    };
-    mixpanel.getGroup('company','mixpanel').set(properties);
+// set group profile properties
+let properties = {
+    name: 'Mixpanel',
+};
+mixpanel.getGroup('company','mixpanel').set(properties);
 
-    // ignored since "name" is already exists
-    mixpanel.getGroup('company','mixpanel').setOnce({
-        name: 'mp'
-    });
+// ignored since "name" is already exists
+mixpanel.getGroup('company','mixpanel').setOnce({
+    name: 'mp'
+});
 
-    // set "location" group prop since it does not exist
-    mixpanel.getGroup('company','mixpanel').setOnce({
-      location: 'us'
-    });
-    ```
+// set "location" group prop since it does not exist
+mixpanel.getGroup('company','mixpanel').setOnce({
+  location: 'us'
+});
+```
+````
 {% endtab %}
 
 {% tab title=".unset()" %}
 The [`.getGroup().unset()`](https://mixpanel.github.io/mixpanel-react-native/MixpanelGroup.html#unset) method removes a group property from a group profile.
 
-    Use this method to delete unwanted group profile properties from a specific group profile.
+````
+Use this method to delete unwanted group profile properties from a specific group profile.
 
-    **Example Usage**
-    ```javascript
-    // assign the current user to the "mixpanel" company group
-    mixpanel.setGroup('company', 'mixpanel');
+**Example Usage**
+```javascript
+// assign the current user to the "mixpanel" company group
+mixpanel.setGroup('company', 'mixpanel');
 
-    // set group profile properties
-    let properties = {
-        name: 'Mixpanel',
-        employee_count: 100
-    };
-    mixpanel.getGroup('company','mixpanel').set(properties);
+// set group profile properties
+let properties = {
+    name: 'Mixpanel',
+    employee_count: 100
+};
+mixpanel.getGroup('company','mixpanel').set(properties);
 
-    // delete "employee_count" from the group profile
-    mixpanel.getGroup('company','mixpanel').unset('employee_count');
+// delete "employee_count" from the group profile
+mixpanel.getGroup('company','mixpanel').unset('employee_count');
 
-    // only "name" remains as group profile prop
-    ```
+// only "name" remains as group profile prop
+```
+````
 {% endtab %}
 
 {% tab title=".union()" %}
 The [`.getGroup().union()`](https://mixpanel.github.io/mixpanel-react-native/MixpanelGroup.html#union) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list group profile property that only contains unique values without duplicates.
+````
+Use this method to create a list group profile property that only contains unique values without duplicates.
 
-    **Example Usage**
-    ```javascript
-    // assign the current user to the "mixpanel" company group
-    mixpanel.setGroup('company', 'mixpanel');
+**Example Usage**
+```javascript
+// assign the current user to the "mixpanel" company group
+mixpanel.setGroup('company', 'mixpanel');
 
-    // set group profile properties
-    let properties = {
-        name: 'Mixpanel',
-        features: ['reports','alerts','cohorts'],
-    };
-    mixpanel.getGroup('company','mixpanel').set(properties);
+// set group profile properties
+let properties = {
+    name: 'Mixpanel',
+    features: ['reports','alerts','cohorts'],
+};
+mixpanel.getGroup('company','mixpanel').set(properties);
 
-    // add "data pipeline" to the "features" prop
-    // ignore "alert" since it is a duplicate value
-    mixpanel.getGroup('company','mixpanel').union('features', [
-        'data pipeline',
-        'alert'
-        ]);
+// add "data pipeline" to the "features" prop
+// ignore "alert" since it is a duplicate value
+mixpanel.getGroup('company','mixpanel').union('features', [
+    'data pipeline',
+    'alert'
+    ]);
 
-    //remove "alert" from "features"
-    mixpanel.getGroup('company','mixpanel').remove('features', 'alert');
-    ```
+//remove "alert" from "features"
+mixpanel.getGroup('company','mixpanel').remove('features', 'alert');
+```
+````
 {% endtab %}
 
 {% tab title=".remove()" %}
 The [`.getGroup().remove()`](https://mixpanel.github.io/mixpanel-react-native/MixpanelGroup.html#remove) method removes a value from a list-valued group profile property.
 
-    Use this method to remove specific values from a list without affecting all of the other values in the list.
+````
+Use this method to remove specific values from a list without affecting all of the other values in the list.
 
-    **Example Usage**
-    ```javascript
-    // assign the current user to the "mixpanel" company group
-    mixpanel.setGroup('company', 'mixpanel');
+**Example Usage**
+```javascript
+// assign the current user to the "mixpanel" company group
+mixpanel.setGroup('company', 'mixpanel');
 
-    // set group profile properties
-    let properties = {
-        name: 'Mixpanel',
-        features: ['reports','alerts','cohorts'],
-    };
-    mixpanel.getGroup('company','mixpanel').set(properties);
+// set group profile properties
+let properties = {
+    name: 'Mixpanel',
+    features: ['reports','alerts','cohorts'],
+};
+mixpanel.getGroup('company','mixpanel').set(properties);
 
-    //remove "alert" from "features"
-    // features now contain ["reports","cohorts"]
-    mixpanel.getGroup('company','mixpanel').remove('features', 'alert');
-    ```
+//remove "alert" from "features"
+// features now contain ["reports","cohorts"]
+mixpanel.getGroup('company','mixpanel').remove('features', 'alert');
+```
+````
 {% endtab %}
-
 {% endtabs %}
 
 ## Debug Mode
@@ -600,17 +641,20 @@ Remove this parameter before going into production.
 mixpanel.setLoggingEnabled(true);
 ```
 
-Learn more about [debugging](/docs/tracking-best-practices/debugging).
+Learn more about [debugging](../../../../../docs/tracking-best-practices/debugging/).
 
 ## Privacy-Friendly Tracking
+
 You have control over the data you send to Mixpanel. The React Native SDK provide methods to help you protect user data.
 
-Learn more about [Privacy](/docs/privacy/overview).
+Learn more about [Privacy](../../../../../docs/privacy/overview/).
 
 ### Opt Out of Tracking
+
 The React Native SDK is initialized with tracking enabled by default. Use the [`.optOutTracking()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#optOutTracking) method to opt the user out of data tracking and local storage for the current Mixpanel instance.
 
 **Example Usage**
+
 ```javascript
 //send "some_event"
 mixpanel.track('some_event');
@@ -656,22 +700,26 @@ mixpanel.track('some_other_event');
 ```
 
 ### EU Data Residency
+
 Route data to Mixpanel's EU servers by calling `.setServerURL()` to set the `serverURL` to `https://api-eu.mixpanel.com` after initializing the client.
 
-Learn more about [EU Data Residency](/docs/privacy/eu-residency).
+Learn more about [EU Data Residency](../../../../../docs/privacy/eu-residency/).
 
 **Example Usage**
+
 ```javascript
 // set the Mixpanel instance to send data using Mixpanel's EU domain
 mixpanel.setServerURL('https://api-eu.mixpanel.com');
 ```
 
 ### India Data Residency
+
 Route data to Mixpanel's India servers by calling `.setServerURL()` to set the `serverURL` to `https://api-in.mixpanel.com` after initializing the client.
 
-Learn more about [India Data Residency](/docs/privacy/in-residency).
+Learn more about [India Data Residency](../../../../../docs/privacy/in-residency/).
 
 **Example Usage**
+
 ```javascript
 // set the Mixpanel instance to send data using Mixpanel's EU domain
 mixpanel.setServerURL('https://api-in.mixpanel.com');
@@ -681,9 +729,10 @@ mixpanel.setServerURL('https://api-in.mixpanel.com');
 
 The React Native SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, call the [`setUseIpAddressForGeolocation()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#setUseIpAddressForGeolocation) method with a value of `false`.
 
-Learn more about [geolocation](/docs/tracking-best-practices/geolocation).
+Learn more about [geolocation](../../../../../docs/tracking-best-practices/geolocation/).
 
 **Example Usage**
+
 ```javascript
  // disable IP address for geolocation parsing
 mixpanel.setUseIpAddressForGeolocation(false);
@@ -723,4 +772,5 @@ mixpanel.init();
 ```
 
 ## Release History
+
 [See All Releases](https://github.com/mixpanel/mixpanel-react-native/releases).

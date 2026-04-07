@@ -1,271 +1,303 @@
 # Supported Properties Data Type
 
 ## Overview
+
 Mixpanel supports five data types for properties: String, Numeric, Boolean, Date and List. By choosing the most suitable data type for your properties, you're able to apply a set of operators that are most relevant to your properties in Mixpanel reports, giving you richer insights into your data.
 
 ### String
 
-- Alphanumeric value e.g. Plan Type = "Free", Artist Name = "Bruno Mars".
-- String properties have a limit of 255 bytes. 
-- Different [character encodings](https://en.wikipedia.org/wiki/Character_encoding) require different number of bytes to represent a single character.
-- Mixpanel will treat any property value that does not match any other data type as a String.
+* Alphanumeric value e.g. Plan Type = "Free", Artist Name = "Bruno Mars".
+* String properties have a limit of 255 bytes.
+* Different [character encodings](https://en.wikipedia.org/wiki/Character_encoding) require different number of bytes to represent a single character.
+* Mixpanel will treat any property value that does not match any other data type as a String.
 
 ### Numeric
 
-- Numeric (integer or decimal) value e.g. Cost = 15.00, Quantity = 5.
-- You can apply operators such as sum, median and percentile on numeric properties.
+* Numeric (integer or decimal) value e.g. Cost = 15.00, Quantity = 5.
+* You can apply operators such as sum, median and percentile on numeric properties.
 
 ### Boolean
 
-- Mixpanel treats properties as boolean if the value is either the JSON constant `true` or `false`; e.g. Favorite = true, Bookmarked = false.
-- On Mixpanel, you can typecast any non-boolean property to boolean.
-- "false", 0, null, undefined, empty string and `not set` will be typecasted to boolean `false`.
-- "true" and any set value that is not 0 or empty string will be typecasted to boolean `true`.
+* Mixpanel treats properties as boolean if the value is either the JSON constant `true` or `false`; e.g. Favorite = true, Bookmarked = false.
+* On Mixpanel, you can typecast any non-boolean property to boolean.
+* "false", 0, null, undefined, empty string and `not set` will be typecasted to boolean `false`.
+* "true" and any set value that is not 0 or empty string will be typecasted to boolean `true`.
 
 ### Date
 
-- An ISO formatted date `YYYY-MM-DDTHH:MM:SS` in UTC e.g. Last Purchase = "2022-10-30T13:30:25", Last Login = "2022-10-29". Note that all timestamps need to be sent in UTC timezone in an ISO format.
-- Mixpanel treats unix timestamps as Numeric property, however, you can typecast it to Date data type.
-- Timestamps are ingested with [millisecond precision](https://docs.mixpanel.com/changelogs/2022-11-07-millisecond), but exported with second precision.
-- You can break down your results by the "Time" event property and breakdown by Hour, Day, Week, Month, Quarter, Year, Hour of Day, or Day of Week.
-
-![/breakdown_by_date.gif](/breakdown_by_date.gif)
+* An ISO formatted date `YYYY-MM-DDTHH:MM:SS` in UTC e.g. Last Purchase = "2022-10-30T13:30:25", Last Login = "2022-10-29". Note that all timestamps need to be sent in UTC timezone in an ISO format.
+* Mixpanel treats unix timestamps as Numeric property, however, you can typecast it to Date data type.
+* Timestamps are ingested with [millisecond precision](https://docs.mixpanel.com/changelogs/2022-11-07-millisecond), but exported with second precision.
+* You can break down your results by the "Time" event property and breakdown by Hour, Day, Week, Month, Quarter, Year, Hour of Day, or Day of Week.
 
 ### List
 
-- A list of values as a JSON array e.g. Favorite Genres = `["Folk","Alternative"]` or Favorite Numbers = `[1,5,10.0]`
-- Limits of a List property: Event Property = 8KB, User Profile Property = 256KB
-- Each item in a list would be further limited by their data type's limits; example: a list of strings would be limited by 255 bytes per string. Also refer to [List of Objects](/docs/data-structure/property-reference/data-type#list-of-objects-property-support) covered below.
-- Mixpanel lists are not ordered (i.e. position of values in a list are not significant in Mixpanel reports) and are useful for grouping or analyzing similar values across events. Read more details on [List Property Support](/docs/data-structure/property-reference/data-type#list-property-support) in reports.
-- Note: Editing of list properties is not supported directly within the Mixpanel UI. To modify list properties, you must use the [Mixpanel API](https://developer.mixpanel.com/reference/profile-set) or one of our SDKs.
+* A list of values as a JSON array e.g. Favorite Genres = `["Folk","Alternative"]` or Favorite Numbers = `[1,5,10.0]`
+* Limits of a List property: Event Property = 8KB, User Profile Property = 256KB
+* Each item in a list would be further limited by their data type's limits; example: a list of strings would be limited by 255 bytes per string. Also refer to [List of Objects](../../../../../docs/data-structure/property-reference/data-type/#list-of-objects-property-support) covered below.
+* Mixpanel lists are not ordered (i.e. position of values in a list are not significant in Mixpanel reports) and are useful for grouping or analyzing similar values across events. Read more details on [List Property Support](../../../../../docs/data-structure/property-reference/data-type/#list-property-support) in reports.
+* Note: Editing of list properties is not supported directly within the Mixpanel UI. To modify list properties, you must use the [Mixpanel API](https://developer.mixpanel.com/reference/profile-set) or one of our SDKs.
 
 ### Object
+
 {% hint style="info" %}
 Mixpanel supports object in a limited capacity. We recommend using the five non-object data types for most use cases as they are fully supported in the UI.
 {% endhint %}
 
-- Arbitrarily-nested groups of JSON key-value pairs e.g. Experiments = `{"Exp Onboarding":"Quick","Exp Checkout":"Without Coupon"}`
-- Limits of a Object property: Event Property = 8KB, User Profile Property = 256KB, max 255 keys per nested object with a max nesting depth of 3
-- Mainly supported in core reports (i.e. Insights, Funnels, Flows, Retention, Users / Cohorts, Events) as filters and breakdowns. Property Names (ie keys) within an object are not supported in Lexicon.
+* Arbitrarily-nested groups of JSON key-value pairs e.g. Experiments = `{"Exp Onboarding":"Quick","Exp Checkout":"Without Coupon"}`
+* Limits of a Object property: Event Property = 8KB, User Profile Property = 256KB, max 255 keys per nested object with a max nesting depth of 3
+* Mainly supported in core reports (i.e. Insights, Funnels, Flows, Retention, Users / Cohorts, Events) as filters and breakdowns. Property Names (ie keys) within an object are not supported in Lexicon.
 
 ### List of Objects
 
-- A JSON array of 1 level JSON objects with each object having similar sets of key-value pairs e.g. Cart = `[{"Brand":"Puma","Category":"Jacket","Price":30}, {"Brand":"Adidas","Category":"Hats","Price":15}]`
-- Limits of a List of Objects: Event Property = 8KB, User Profile Property = 256KB, max 255 keys and no nesting; average list size = 50 objects
-- Mainly supported in core reports (i.e. Insights, Funnels, Flows, Retention, Users / Cohorts, Events) as filters and breakdowns. Property Names (ie keys) within an object are not supported in Lexicon.
+* A JSON array of 1 level JSON objects with each object having similar sets of key-value pairs e.g. Cart = `[{"Brand":"Puma","Category":"Jacket","Price":30}, {"Brand":"Adidas","Category":"Hats","Price":15}]`
+* Limits of a List of Objects: Event Property = 8KB, User Profile Property = 256KB, max 255 keys and no nesting; average list size = 50 objects
+* Mainly supported in core reports (i.e. Insights, Funnels, Flows, Retention, Users / Cohorts, Events) as filters and breakdowns. Property Names (ie keys) within an object are not supported in Lexicon.
 
 ## List Property Support
 
 List is an iterable data type, which makes them inherently different from non-iterable data types (ie: strings, numbers, time). This section highlights a few scenarios on how list properties behave within Mixpanel. The examples used here are from the Insights report, but the principles of how filter and breakdowns work with list properties remain the same across reports.
 
 ### Sample Scenario
+
 Let's assume an e-commerce platform has these 3 events:
 
-- Event 1: *PurchaseCompleted*
-- *List of ProductIDs* = `["P1", "P2", "P4"]`
-- Event 2: *PurchaseCompleted*
-- *List of ProductIDs* = `["P2", "P3", "P4"]`
-- Event 3: *PurchaseCompleted*
-- *List of ProductIDs* = `["P3", "P4"]`
+* Event 1: _PurchaseCompleted_
+* _List of ProductIDs_ = `["P1", "P2", "P4"]`
+* Event 2: _PurchaseCompleted_
+* _List of ProductIDs_ = `["P2", "P3", "P4"]`
+* Event 3: _PurchaseCompleted_
+* _List of ProductIDs_ = `["P3", "P4"]`
 
-Now let's assume that *"List of ProductIDs"* is mapped to a [lookup table](/docs/data-structure/lookup-tables) called *Products* which looks like this:
+Now let's assume that _"List of ProductIDs"_ is mapped to a [lookup table](../../../../../docs/data-structure/lookup-tables/) called _Products_ which looks like this:
 
-| ProductID | Category | Price |
-| --- | --- | --- |
-| P1 | Clothing - pants | 100 |
-| P2 | Clothing - shirt | 54 |
-| P3 | Shoes | 109 |
-| P4 | Electronics - music | 199 |
+| ProductID | Category            | Price |
+| --------- | ------------------- | ----- |
+| P1        | Clothing - pants    | 100   |
+| P2        | Clothing - shirt    | 54    |
+| P3        | Shoes               | 109   |
+| P4        | Electronics - music | 199   |
 
 ### List Breakdown
 
-- Breakdown a list property
-- **Question:** TOTAL of *PurchaseCompleted* broken down by *"List of ProductIDs"*
-- **Answer:**
+* Breakdown a list property
+* **Question:** TOTAL of _PurchaseCompleted_ broken down by _"List of ProductIDs"_
+*   **Answer:**
 
-        | List of ProductIDs | Total |
-        | --- | --- |
-        | P1 | 1 |
-        | P2 | 2 |
-        | P3 | 2 |
-        | P4 | 3 |
-- **What's going on here?** When breaking down, each of the list's contents is evaluated as a single item. So for example, P2 is present in Event 1 and Event 2, so the TOTAL (of the *PurchaseCompleted* event) where "P2" is present is 2.
-- Breakdown by [lookup profile property](/docs/data-structure/lookup-tables) that's joined to a list property
-- **Question:** TOTAL of *PurchaseCompleted* broken down by *"List of ProductIDs"* → *Category*
-- **Answer:**
+    ```
+      | List of ProductIDs | Total |
+      | --- | --- |
+      | P1 | 1 |
+      | P2 | 2 |
+      | P3 | 2 |
+      | P4 | 3 |
+    ```
+* **What's going on here?** When breaking down, each of the list's contents is evaluated as a single item. So for example, P2 is present in Event 1 and Event 2, so the TOTAL (of the _PurchaseCompleted_ event) where "P2" is present is 2.
+* Breakdown by [lookup profile property](../../../../../docs/data-structure/lookup-tables/) that's joined to a list property
+* **Question:** TOTAL of _PurchaseCompleted_ broken down by _"List of ProductIDs"_ → _Category_
+*   **Answer:**
 
-        | List of ProductIDs | Total |
-        | --- | --- |
-        | Clothing - pants | 1 |
-        | Clothing - shirt | 2 |
-        | Shoes | 2 |
-        | Electronics - music | 3 |
-- **What's going on here?** When breaking down, each of the list's contents is evaluated as a single item after being mapped to the lookup table. So for example, P2 is present in Event 1 and Event 2, and P2 mapped to the lookup table which gets us *Category* = "Clothing - shirt", so the TOTAL (of *PurchaseCompleted* events) where "Clothing - shirt" is present is 2. The thing to note here is that the results are identical to when *PurchaseCompleted* was broken down by *"List of ProductDs"*, except the *ProductIDs* are replaced by *Category*.
-- Breakdown by lookup profile property that's joined to a list property AND by the list property itself
-- **Question:** TOTAL of *PurchaseCompleted* broken down by *"List of ProductIDs"* → *Category* AND *"List of ProductIDs"* (2 breakdowns applied)
-- **Answer:**
+    ```
+      | List of ProductIDs | Total |
+      | --- | --- |
+      | Clothing - pants | 1 |
+      | Clothing - shirt | 2 |
+      | Shoes | 2 |
+      | Electronics - music | 3 |
+    ```
+* **What's going on here?** When breaking down, each of the list's contents is evaluated as a single item after being mapped to the lookup table. So for example, P2 is present in Event 1 and Event 2, and P2 mapped to the lookup table which gets us _Category_ = "Clothing - shirt", so the TOTAL (of _PurchaseCompleted_ events) where "Clothing - shirt" is present is 2. The thing to note here is that the results are identical to when _PurchaseCompleted_ was broken down by _"List of ProductDs"_, except the _ProductIDs_ are replaced by _Category_.
+* Breakdown by lookup profile property that's joined to a list property AND by the list property itself
+* **Question:** TOTAL of _PurchaseCompleted_ broken down by _"List of ProductIDs"_ → _Category_ AND _"List of ProductIDs"_ (2 breakdowns applied)
+*   **Answer:**
 
-        | List of ProductIDs.Category | List of ProductIDs | Total |
-        | --- | --- | --- |
-        | Clothing - pants | P1 | 1 |
-        |  | P2 | 1 |
-        |  | P4 | 1 |
-        | Clothing - shirt | P1 | 1 |
-        |  | P2 | 2 |
-        |  | P3 | 1 |
-        |  | P4 | 2 |
-        | Shoes | P2 | 1 |
-        |  | P3 | 2 |
-        |  | P4 | 2 |
-        | Electronics - music | P1 | 1 |
-        |  | P2 | 2 |
-        |  | P3 | 2 |
-        |  | P4 | 3 |
-- **What's going on here?** For each breakdown value, Mixpanel recomputes the list breakdown. So for example, TOTAL (*PurchaseCompleted*) with "*List of ProductIDs*" → *Category* = "Shoes" should get us Event 2 and Event 3:When these 2 events are broken down by *"List of ProductIDs"*, we get these results for "Shoes"(*ProductID* = "P3"):
-    - Event 2: *PurchaseCompleted*
-        - *List of ProductIDs* = `["P2", "P3", "P4"]`
-    - Event 3: PurchaseCompleted
-        - *List of ProductIDs* = `["P3", "P4"]`
-    - P2: 1
-    - P3: 2
-    - P4: 2
+    ```
+      | List of ProductIDs.Category | List of ProductIDs | Total |
+      | --- | --- | --- |
+      | Clothing - pants | P1 | 1 |
+      |  | P2 | 1 |
+      |  | P4 | 1 |
+      | Clothing - shirt | P1 | 1 |
+      |  | P2 | 2 |
+      |  | P3 | 1 |
+      |  | P4 | 2 |
+      | Shoes | P2 | 1 |
+      |  | P3 | 2 |
+      |  | P4 | 2 |
+      | Electronics - music | P1 | 1 |
+      |  | P2 | 2 |
+      |  | P3 | 2 |
+      |  | P4 | 3 |
+    ```
+* **What's going on here?** For each breakdown value, Mixpanel recomputes the list breakdown. So for example, TOTAL (_PurchaseCompleted_) with "_List of ProductIDs_" → _Category_ = "Shoes" should get us Event 2 and Event 3:When these 2 events are broken down by _"List of ProductIDs"_, we get these results for "Shoes"(_ProductID_ = "P3"):
+  * Event 2: _PurchaseCompleted_
+    * _List of ProductIDs_ = `["P2", "P3", "P4"]`
+  * Event 3: PurchaseCompleted
+    * _List of ProductIDs_ = `["P3", "P4"]`
+  * P2: 1
+  * P3: 2
+  * P4: 2
+
 ### List Filter
 
 When filtering using a list property, you may additionally configure whether all items in the list must match your expression and whether to return all items from a list in your analysis.
 
-1. **Any in List:** If any item in your list matches your filter criteria, the event will be included.
-    
-    **Example:**
-- Products: ["a","b","c","d"]
-- Filter criteria: "Products" = "a", Any in List
-- Result: The event is included since at least 1 item in the Products list property is "a".
-
-2. **All in List:** If every item in your list matches your filter criteria, the event will be included.
+1.  **Any in List:** If any item in your list matches your filter criteria, the event will be included.
 
     **Example:**
-- Products: ["a","b","c","d"]
-- Filter criteria: "Products" = "a", All in List
-- Result: The event is not included because not all items in the Products list property is "a"
 
-3. **Include Matching Items:** If the event matches your filter criteria and the list property is included as a breakdown, return only the matching items from the list in the results.
+* Products: \["a","b","c","d"]
+* Filter criteria: "Products" = "a", Any in List
+* Result: The event is included since at least 1 item in the Products list property is "a".
 
-    **Example:**
-- Products: ["a","b","c","d"]
-- Filter criteria: "Products" = "a", Any in List, Include Matching Items
-- Result: The event is included since at least 1 item in the Products list property is "a". In the resulting report, only "a" appears as a breakdown segment.
-
-4. **Include All Items:** If the event matches your filter criteria and the list property is included as a breakdown, return all items from the list in the results.
+2.  **All in List:** If every item in your list matches your filter criteria, the event will be included.
 
     **Example:**
-- Products: ["a","b","c","d"]
-- Filter criteria: "Products" = "a", Any in List, Include All Items
-- Result: The event is included since at least 1 item in the Products list property is "a". In the resulting report, "a", "b", "c", and "d" appears as a breakdown segment.
+
+* Products: \["a","b","c","d"]
+* Filter criteria: "Products" = "a", All in List
+* Result: The event is not included because not all items in the Products list property is "a"
+
+3.  **Include Matching Items:** If the event matches your filter criteria and the list property is included as a breakdown, return only the matching items from the list in the results.
+
+    **Example:**
+
+* Products: \["a","b","c","d"]
+* Filter criteria: "Products" = "a", Any in List, Include Matching Items
+* Result: The event is included since at least 1 item in the Products list property is "a". In the resulting report, only "a" appears as a breakdown segment.
+
+4.  **Include All Items:** If the event matches your filter criteria and the list property is included as a breakdown, return all items from the list in the results.
+
+    **Example:**
+
+* Products: \["a","b","c","d"]
+* Filter criteria: "Products" = "a", Any in List, Include All Items
+* Result: The event is included since at least 1 item in the Products list property is "a". In the resulting report, "a", "b", "c", and "d" appears as a breakdown segment.
 
 **Additional Examples:**
 
-- Filter by any element of a list property
-- **Question:** TOTAL of *PurchaseCompleted* filtered by
+* Filter by any element of a list property
+*   **Question:** TOTAL of _PurchaseCompleted_ filtered by
 
-        | "List of ProductIDs" | Any | = (equals) | "P1" |
-        | --- | --- | --- | --- |
-- **Answer:** *PurchaseCompleted - TOTAL*: 1
-- **What's going on here?** The "Any" operator filters down events when the filtered value matches ANY item in the list property. So in this example, the only event in which "List of ProductIDs" has "P1" present even once is Event 1, so the total event count for this filter is 1.
-- Filter by all elements of a list property
-- **Question**: TOTAL of *PurchaseCompleted* filtered by
+    ```
+      | "List of ProductIDs" | Any | = (equals) | "P1" |
+      | --- | --- | --- | --- |
+    ```
+* **Answer:** _PurchaseCompleted - TOTAL_: 1
+* **What's going on here?** The "Any" operator filters down events when the filtered value matches ANY item in the list property. So in this example, the only event in which "List of ProductIDs" has "P1" present even once is Event 1, so the total event count for this filter is 1.
+* Filter by all elements of a list property
+*   **Question**: TOTAL of _PurchaseCompleted_ filtered by
 
-        | "List of ProductIDs" | All | = (equals) | "P1" |
-        | --- | --- | --- | --- |
-- **Answer:** *PurchaseCompleted - TOTAL*: 0
-- **What's going on here?** The "All" operator filters down events when the filtered value matches ALL of the items in the list property. So in this example, there is no event in which "List of ProductIDs" has all the elements equal to "P1", so the total event count for this filter is 0.
-- Filter by list property and broken down by list property
-- **Question:** TOTAL of PurchaseCompleted filtered byBroken down by "List of ProductIDs"
+    ```
+      | "List of ProductIDs" | All | = (equals) | "P1" |
+      | --- | --- | --- | --- |
+    ```
+* **Answer:** _PurchaseCompleted - TOTAL_: 0
+* **What's going on here?** The "All" operator filters down events when the filtered value matches ALL of the items in the list property. So in this example, there is no event in which "List of ProductIDs" has all the elements equal to "P1", so the total event count for this filter is 0.
+* Filter by list property and broken down by list property
+*   **Question:** TOTAL of PurchaseCompleted filtered byBroken down by "List of ProductIDs"
 
-        | "List of ProductIDs" | Any | = (equals) | "P1" |
-        | --- | --- | --- | --- |
-- **Answer:**
+    ```
+      | "List of ProductIDs" | Any | = (equals) | "P1" |
+      | --- | --- | --- | --- |
+    ```
+*   **Answer:**
 
-        | List of ProductIDs | Total |
-        | --- | --- |
-        | P1 | 1 |
-        | P2 | 1 |
-        | P4 | 1 |
-- **What is going on here?** There is only 1 event that contains "P1" (Event 1, *"List of ProductIDs"* = ["P1", "P2", "P4"]), so when that one event is broken down by *"List of ProductIDs"*, Mixpanel evaluates each list item individually, thereby getting us:
-    - P1: 1 (1 event)
-    - P2: 1 (1 event)
-    - P4: 1 (1 event)
-- Filter by lookup profile property that is joined to a list property and then broken down by list property
-- **Question:** TOTAL of *PurchaseCompleted* filtered byBroken down by "List of ProductIDs"
+    ```
+      | List of ProductIDs | Total |
+      | --- | --- |
+      | P1 | 1 |
+      | P2 | 1 |
+      | P4 | 1 |
+    ```
+* **What is going on here?** There is only 1 event that contains "P1" (Event 1, _"List of ProductIDs"_ = \["P1", "P2", "P4"]), so when that one event is broken down by _"List of ProductIDs"_, Mixpanel evaluates each list item individually, thereby getting us:
+  * P1: 1 (1 event)
+  * P2: 1 (1 event)
+  * P4: 1 (1 event)
+* Filter by lookup profile property that is joined to a list property and then broken down by list property
+*   **Question:** TOTAL of _PurchaseCompleted_ filtered byBroken down by "List of ProductIDs"
 
-        | "List of ProductIDs" → Category | Any | = (equals) | "Shoes" |
-        | --- | --- | --- | --- |
-- **Answer:**
+    ```
+      | "List of ProductIDs" → Category | Any | = (equals) | "Shoes" |
+      | --- | --- | --- | --- |
+    ```
+*   **Answer:**
 
-        | List of ProductIDs | Total |
-        | --- | --- |
-        | P2 | 1 |
-        | P3 | 2 |
-        | P4 | 2 |
-- **What is going on here?** There are 2 events that contain where the *Category* mapping for at least one of the *ProductIDs* in "*List of ProductIDs*" is equal to "Shoes" (i.e. *ProductID* = P3).When these two events are broken down by *"List of ProductIDs"*, Mixpanel evaluates each list item individually, thereby getting us:
-    - Event 2: PurchaseCompleted
-        - List of ProductIDs = ["P2", "P3", "P4"]
-    - Event 3: PurchaseCompleted
-        - List of ProductIDs = ["P3", "P4"]
-    - P2: 1 (1 event)
-    - P3: 2(2 events)
-    - P4: 2 (2 events)
-- Filter by lookup profile property that is joined to a list property (with multiple matching values) and then broken down by list property
-- **Question**: TOTAL of *PurchaseCompleted* filtered byBroken down by "List of ProductIDs"
+    ```
+      | List of ProductIDs | Total |
+      | --- | --- |
+      | P2 | 1 |
+      | P3 | 2 |
+      | P4 | 2 |
+    ```
+* **What is going on here?** There are 2 events that contain where the _Category_ mapping for at least one of the _ProductIDs_ in "_List of ProductIDs_" is equal to "Shoes" (i.e. _ProductID_ = P3).When these two events are broken down by _"List of ProductIDs"_, Mixpanel evaluates each list item individually, thereby getting us:
+  * Event 2: PurchaseCompleted
+    * List of ProductIDs = \["P2", "P3", "P4"]
+  * Event 3: PurchaseCompleted
+    * List of ProductIDs = \["P3", "P4"]
+  * P2: 1 (1 event)
+  * P3: 2(2 events)
+  * P4: 2 (2 events)
+* Filter by lookup profile property that is joined to a list property (with multiple matching values) and then broken down by list property
+*   **Question**: TOTAL of _PurchaseCompleted_ filtered byBroken down by "List of ProductIDs"
 
-        | "List of ProductIDs" → Category | Any | ∋ (contains) | "Clothing" |
-        | --- | --- | --- | --- |
-- **Answer:**
+    ```
+      | "List of ProductIDs" → Category | Any | ∋ (contains) | "Clothing" |
+      | --- | --- | --- | --- |
+    ```
+*   **Answer:**
 
-        | List of ProductIDs | Total |
-        | --- | --- |
-        | P1 | 1 |
-        | P2 | 2 |
-        | P3 | 1 |
-        | P4 | 2 |
-- **What is going on here?** This filter can be read as "for any of the items in *'List of ProductIDs'* , the lookup property *Category* contains the string 'Clothing'". This operation is filtering down to all the events that contain the *Category* mapping for the *ProductID* contains EITHER "Clothing - pants" or "Clothing - shirt", and that gives us 2 events:
-    - Event 1: PurchaseCompleted
-        - List of ProductIDs ["P1","P2","P4"]
-    - Event 2: PurchaseCompleted
-        - List of ProductIDs ["P2","P3","P4"]
-- Therefore, when those two events are broken down by "List of ProductIDs", Mixpanel evaluates each item of the list individually and we end up getting:
-    - P1: 1
-    - P2: 2
-    - P3: 1
-    - P4: 2
-- Filter by lookup profile property that is joined to a list property (numeric filter) and then broken down by list property
-- **Question**: TOTAL of *PurchaseCompleted* filtered byBroken down by *"List of ProductIDs"*
+    ```
+      | List of ProductIDs | Total |
+      | --- | --- |
+      | P1 | 1 |
+      | P2 | 2 |
+      | P3 | 1 |
+      | P4 | 2 |
+    ```
+* **What is going on here?** This filter can be read as "for any of the items in _'List of ProductIDs'_ , the lookup property _Category_ contains the string 'Clothing'". This operation is filtering down to all the events that contain the _Category_ mapping for the _ProductID_ contains EITHER "Clothing - pants" or "Clothing - shirt", and that gives us 2 events:
+  * Event 1: PurchaseCompleted
+    * List of ProductIDs \["P1","P2","P4"]
+  * Event 2: PurchaseCompleted
+    * List of ProductIDs \["P2","P3","P4"]
+* Therefore, when those two events are broken down by "List of ProductIDs", Mixpanel evaluates each item of the list individually and we end up getting:
+  * P1: 1
+  * P2: 2
+  * P3: 1
+  * P4: 2
+* Filter by lookup profile property that is joined to a list property (numeric filter) and then broken down by list property
+*   **Question**: TOTAL of _PurchaseCompleted_ filtered byBroken down by _"List of ProductIDs"_
 
-        | "List of ProductIDs" → Price (number) | Any | < (less than) | 100 |
-        | --- | --- | --- | --- |
-- **Answer:**
+    ```
+      | "List of ProductIDs" → Price (number) | Any | < (less than) | 100 |
+      | --- | --- | --- | --- |
+    ```
+*   **Answer:**
 
-        | List of ProductIDs | Total |
-        | --- | --- |
-        | P1 | 1 |
-        | P2 | 2 |
-        | P3 | 1 |
-        | P4 | 2 |
-- **What is going on here?** The filter can be read as "for any item in *'List of ProductIDs',* the lookup property *Price* is less than 100" and it only matches 1 product, and that is P2. Therefore, what this operation is doing is filtering down to all the events that contain P2 as ANY of the values in "List of ProductDs", and that gives us 2 events:Therefore, when those two events are broken down by *"List of ProductIDs"*, Mixpanel evaluates each item of the list individually and we end up getting:
-    - Event 1: *PurchaseCompleted*
-        - *List of ProductIDs* = ["P1", "P2", "P4"]
-    - Event 2: PurchaseCompleted
-        - *List of ProductIDs* = ["P2", "P3", "P4"]
-    - P1: 1
-    - P2: 2
-    - P3: 1
-    - P4: 2
+    ```
+      | List of ProductIDs | Total |
+      | --- | --- |
+      | P1 | 1 |
+      | P2 | 2 |
+      | P3 | 1 |
+      | P4 | 2 |
+    ```
+* **What is going on here?** The filter can be read as "for any item in _'List of ProductIDs',_ the lookup property _Price_ is less than 100" and it only matches 1 product, and that is P2. Therefore, what this operation is doing is filtering down to all the events that contain P2 as ANY of the values in "List of ProductDs", and that gives us 2 events:Therefore, when those two events are broken down by _"List of ProductIDs"_, Mixpanel evaluates each item of the list individually and we end up getting:
+  * Event 1: _PurchaseCompleted_
+    * _List of ProductIDs_ = \["P1", "P2", "P4"]
+  * Event 2: PurchaseCompleted
+    * _List of ProductIDs_ = \["P2", "P3", "P4"]
+  * P1: 1
+  * P2: 2
+  * P3: 1
+  * P4: 2
 
 ## List of Objects Property Support
 
 List of objects is a List property where all items contained are Objects. List of objects are generally useful when tracking a list of complex things. Some examples:
 
-- items in a cart
-- search results
-- images in a slideshow
+* items in a cart
+* search results
+* images in a slideshow
 
 In each case, the object will have multiple properties, such as "price" and "brand" for items in a cart.
 
@@ -288,13 +320,12 @@ In each case, the object will have multiple properties, such as "price" and "bra
 ```
 
 ### Breakdown and Filter
-List of objects can be used like other properties in Mixpanel. Upon selecting a list of objects property, you will be prompted to select another property common to the objects in the list. Usage in measurements, filters, and breakdowns follows the same behavior as other [list properties](/docs/data-structure/property-reference/data-type#list-property-support).
+
+List of objects can be used like other properties in Mixpanel. Upon selecting a list of objects property, you will be prompted to select another property common to the objects in the list. Usage in measurements, filters, and breakdowns follows the same behavior as other [list properties](../../../../../docs/data-structure/property-reference/data-type/#list-property-support).
 
 ### Property Computation
 
-We provide a few convenient property computation after a list of objects property is selected. This does a computation on the property, and works similarly to [custom properties](/docs/features/custom-properties).
-
-![list computed properties](/list-computed-properties.png)
+We provide a few convenient property computation after a list of objects property is selected. This does a computation on the property, and works similarly to [custom properties](../../../../../docs/features/custom-properties/).
 
 #### Size
 
@@ -318,9 +349,9 @@ Undefined values are seen when one or more of the events being measured in a que
 
 There are several reasons why you might see "undefined" values throughout Mixpanel reports when segmenting:
 
-- ***The specific property you are segmenting by is not always sent along with the event you are analyzing. ***For example, let’s say you are segmenting the event “App Open” by the property “Account type” If there are instances where App Open fires without the Account type property getting sent with it, these will be categorized as “undefined” when you segment by Account type. Another common example is UTM parameters - “undefined” represents users who fired an event without any UTM in the URL that brought the user to your site.
-- When segmenting an event by a User Profile property, ***you’ll see “undefined” if there are User Profile profiles that do not contain that property or if the event was triggered by a user without a User Profile at all.*** For example, let’s say you’re segmenting the event “Song Play” by the User Profile property “Favorite Genre.” If there are profiles that have triggered Song Play but don’t have the Favorite Genre property, that value will be “undefined.” Triggers of Song Play by users without a User Profile will also show up under “undefined.”
-- ***For geolocation data (City, Region, Country), the user’s IP could not be mapped to a location, or their IP was not included with the request.*** For JavaScript implementations, City, Region, and Country are [default properties](/docs/data-structure/property-reference/default-properties). However, if the IP address of the user is not in Mixpanel’s geolocation database and can’t be mapped to a city, region, or country, they will be “undefined” in reports. For server-side implementations, City, Region, and Country can be “undefined” if the IP address is not included with the request. [Read more about how Mixpanel maps IP to location.](/docs/tracking-best-practices/geolocation)
+* \*\*\*The specific property you are segmenting by is not always sent along with the event you are analyzing. \*\*\*For example, let’s say you are segmenting the event “App Open” by the property “Account type” If there are instances where App Open fires without the Account type property getting sent with it, these will be categorized as “undefined” when you segment by Account type. Another common example is UTM parameters - “undefined” represents users who fired an event without any UTM in the URL that brought the user to your site.
+* When segmenting an event by a User Profile property, _**you’ll see “undefined” if there are User Profile profiles that do not contain that property or if the event was triggered by a user without a User Profile at all.**_ For example, let’s say you’re segmenting the event “Song Play” by the User Profile property “Favorite Genre.” If there are profiles that have triggered Song Play but don’t have the Favorite Genre property, that value will be “undefined.” Triggers of Song Play by users without a User Profile will also show up under “undefined.”
+* _**For geolocation data (City, Region, Country), the user’s IP could not be mapped to a location, or their IP was not included with the request.**_ For JavaScript implementations, City, Region, and Country are [default properties](../../../../../docs/data-structure/property-reference/default-properties/). However, if the IP address of the user is not in Mixpanel’s geolocation database and can’t be mapped to a city, region, or country, they will be “undefined” in reports. For server-side implementations, City, Region, and Country can be “undefined” if the IP address is not included with the request. [Read more about how Mixpanel maps IP to location.](../../../../../docs/tracking-best-practices/geolocation/)
 
 **Null**
 

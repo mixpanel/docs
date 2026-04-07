@@ -1,33 +1,28 @@
 # Google Pubsub
 
-This guide demonstrates how to plug Mixpanel into an event collection pipeline hosted in Google Cloud. Once set up, your events will route to Mixpanel and be available in real-time for analytics. This approach is serverless and open-source, and takes ~5 minutes to set up.
+## Google Pubsub
 
-Note: if you are on AWS, this approach is very similar using Kinesis and AWS Lambda.
-![image](/230694918-71c5be55-a04f-4915-9de4-cf3ac8724937.png)
+This guide demonstrates how to plug Mixpanel into an event collection pipeline hosted in Google Cloud. Once set up, your events will route to Mixpanel and be available in real-time for analytics. This approach is serverless and open-source, and takes \~5 minutes to set up.
 
+Note: if you are on AWS, this approach is very similar using Kinesis and AWS Lambda.&#x20;
 
-## Step 1: Create a Cloud Pub/Sub Topic
+### Step 1: Create a Cloud Pub/Sub Topic
+
 (You can skip this step if you already have a Pub/Sub topic with events flowing through it.)
 
 Create a [new Pub/Sub Topic](https://console.cloud.google.com/cloudpubsub/topic). All events that will ultimately route to Mixpanel will flow through this Pub/Sub topic.
 
-![image](/230694928-a155186e-33cf-4302-90b0-0cdf1324e66d.png)
+#### Step 2a: Add a Cloud Function Trigger to your Pub/Sub Topic
 
-### Step 2a: Add a Cloud Function Trigger to your Pub/Sub Topic
 In this step, we set up a Cloud Function to trigger whenever events are pushed to your Pub/Sub topic. [Google's documentation](https://cloud.google.com/functions/docs/calling/pubsub) goes into full detail on how this trigger works.
 
 From your newly created topic, click `+Trigger Cloud Function`. Give the Cloud Function a name and Save.
 
-![image](/230694959-ec45da0e-571f-4a9d-88e5-3b0338e0e826.png)
+#### Step 2b: Write the Cloud Function
 
-
-![image](/230694939-ccaaff07-1a57-4dc4-a8c3-8f88ea1e581c.png)
-
-
-### Step 2b: Write the Cloud Function
 Switch the runtime to `Python3.9` and change the entrypoint from `hello_pubsub` to `main`. Paste the code below for main.py and requirements.txt.
 
-```python main.py
+```python
 import base64
 from datetime import date
 import gzip
@@ -84,21 +79,22 @@ def main(event, context):
             }
         )
 ```
-```text requirements.txt
+
+```
 requests
 ```
 
 This code does a very simple passthrough of events from the incoming Pubsub message into Mixpanel's [Import API](https://developer.mixpanel.com/reference/import-events). You can use this function to transform events from your Pub/Sub topic into Mixpanel's format before sending them to our Import API.
 
-## Step 3: Test with sample events
+### Step 3: Test with sample events
+
 Now messages published to our Pubsub topic will trigger an invocation of the function and route events to Mixpanel. Let's give it a try by manually sending a message via the PubSub UI.
 
-On the topic page, navigate to `Messages -> Publish message`.
-![image](/230695002-37659b46-07d4-4b22-8591-65cb7aef5d5d.png)
-
+On the topic page, navigate to `Messages -> Publish message`.&#x20;
 
 Then paste in the following events as the message body.
-```json events
+
+```json
 {"event": "test_event", "properties": {"distinct_id": "Sunrostern", "$insert_id": "28096095", "title": "Creator Giveaway for Publishing Notes", "url": "https://www.viewert.com", "score": "1", "time": 1628315585}}
 {"event": "test_event", "properties": {"distinct_id": "feross", "$insert_id": "28059483", "title": "`at` Method for Relative Indexing", "url": "https://v8.dev/features/at-method", "score": "1", "time": 1628074042}}
 {"event": "test_event", "properties": {"distinct_id": "prostoalex", "$insert_id": "28069645", "title": "Home Classrooms Became a Necessity During Covid. Now They\u2019re a Selling Point", "url": "https://www.wsj.com/articles/home-classrooms-covid-real-estate-11628100036", "score": "1", "time": 1628135271}}
@@ -113,17 +109,17 @@ Then paste in the following events as the message body.
 
 Once you `Publish`, the function will trigger and pass the above payload to the Cloud Function. Within a minute, you should see an `Import succeeded` log line in the Cloud Function logs.
 
-You can then navigate to the [Events](http://mixpanel.com/report/live) page to see the events in Mixpanel.
-![image](/230695027-ed9f09e9-1df2-46b2-a477-1013aa25e298.png)
+You can then navigate to the [Events](http://mixpanel.com/report/live) page to see the events in Mixpanel.&#x20;
 
+### Step 4: Connecting your production pipeline
 
-## Step 4: Connecting your production pipeline
 At this point, you can route events from your production Pub/Sub topic through a Cloud Function in a similar manner as described above. Simplify modify the Cloud Function to transform events from your internal event format into the format expected by Mixpanel. This is also a good point to strip any PII.
 
 Once connected, this will result in a steady stream of events being sent to Mixpanel. Happy streaming!
 
-# Error Handling
-In rare instances, Mixpanel's \/import API may return a 429 or 5XX error. These can be safely retried. We recommend an exponential backoff with jitter strategy, as written in the sample code above. PubSub can be configured to perform exponential backoff if the function itself times out.
+## Error Handling
+
+In rare instances, Mixpanel's /import API may return a 429 or 5XX error. These can be safely retried. We recommend an exponential backoff with jitter strategy, as written in the sample code above. PubSub can be configured to perform exponential backoff if the function itself times out.
 
 If the payload is malformed, our API might return a 400 error. In this case, the item cannot be ingested and this error should not be retried. Enqueue these messages onto a dead-letter-queue for inspection later on. This might happen while initially testing the connector, but should be rare in production, assuming the shape of data flowing through the pipeline remains consistent.
 

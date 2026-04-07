@@ -13,15 +13,11 @@ You must be a Mixpanel project admin to enable the Leanplum integration.
 ## Enable the Integration
 
 1. Select **Settings > Integrations** tab in the bottom left navigation bar of Mixpanel.
-
 2. From the Integrations page, select the Leanplum dropdown, and select **Connect**.
-
-![Leanplum 2 Image](/leanplum2.png)
-
 3. The connection uses a Basic Authorization Username/Password system. You will need to provide two credentials to authorize the connection:
 
-- Username: Leanplum App ID
-- Password: Leanplum API Secret
+* Username: Leanplum App ID
+* Password: Leanplum API Secret
 
 You can find these values in your Leanplum settings page, and under the Mixpanel section in "Partner Integrations".
 
@@ -29,15 +25,15 @@ You can find these values in your Leanplum settings page, and under the Mixpanel
 
 ## Matching Users Between Leanplum and Mixpanel
 
-> **Warning:** Projects using the [simplified ID merge system](/docs/tracking-methods/id-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
+> **Warning:** Projects using the [simplified ID merge system](../../../../../docs/tracking-methods/id-management/#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
 
 Mixpanel only exports identified user profiles to match to Leanplum - users without user profile properties (i.e. anonymous users) will not export.
 
-If you use a different system of user identifiers for Mixpanel's distinct_id as compared to Leanplum's user ID, the user's Mixpanel profile must contain a user property, `$leanplum_user_id`, whose value is a string representing that person's user ID in Leanplum. Use this joining key if your user identifiers in Mixpanel are different from the identifiers used in Leanplum (for example, if you identify Mixpanel users on internal user ID, but identify Leanplum users on device ID).
+If you use a different system of user identifiers for Mixpanel's distinct\_id as compared to Leanplum's user ID, the user's Mixpanel profile must contain a user property, `$leanplum_user_id`, whose value is a string representing that person's user ID in Leanplum. Use this joining key if your user identifiers in Mixpanel are different from the identifiers used in Leanplum (for example, if you identify Mixpanel users on internal user ID, but identify Leanplum users on device ID).
 
-In addition, when our ingestion service detects calls setting this user property, Mixpanel will also auto-alias the value of `$leanplum_user_id` to the user's distinct_id. This ensures that messaging data passed from Leanplum to Mixpanel still attributes to the correct user.
+In addition, when our ingestion service detects calls setting this user property, Mixpanel will also auto-alias the value of `$leanplum_user_id` to the user's distinct\_id. This ensures that messaging data passed from Leanplum to Mixpanel still attributes to the correct user.
 
-If you use the same system of user identifiers in both tools, meaning a user has the same ID string in both products, you do **not** have to declare `$leanplum_user_id`. The users' Mixpanel distinct_id will still be sent in the cohort export, and Leanplum will attempt to match users on this value instead.
+If you use the same system of user identifiers in both tools, meaning a user has the same ID string in both products, you do **not** have to declare `$leanplum_user_id`. The users' Mixpanel distinct\_id will still be sent in the cohort export, and Leanplum will attempt to match users on this value instead.
 
 Note that exports are used solely for matching user identities between products - the integration will not send the full set of a user's profile properties to Leanplum.
 
@@ -49,23 +45,21 @@ Select the cohort that you want to export. Click on the three-dot icon on the ri
 
 Click Export to > Insider. Select either one-time sync or dynamic sync. Click Start Sync.
 
-![Leanplum 3 Image](/leanplum3.png)
-
 ## Sync Types
 
 This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export. In case of dynamic sync, we compute a diff of users added and removed from the cohort's current state compared to the cohort state present on Leanplum and send the diff over to Leanplum to apply these changes.
 
 ### One-Time Export
+
 In a one-time export, Mixpanel sends Leanplum a static export of users who currently qualify for the cohort. The cohort data will not be updated in Leanplum after a one-time export.
 
 ### Dynamic Sync
+
 In dynamic sync, Mixpanel exports the cohort to Leanplum every 15 minutes. The exported cohort will be updated every 15 minutes to reflect the most recent list of users in a cohort.
 
 ## Select the Audience in Leanplum
 
 Once the export completes, you will see an Audience reflecting the set of users from your Mixpanel cohort. (e.g. "Recent Signups who haven't hit a Value Moment")
-
-![Leanplum 4 Image](/leanplum4.png)
 
 ## Leanplum events into Mixpanel & MTU exemptions
 
@@ -77,12 +71,12 @@ Mixpanel will exempt certain messaging outreach events from MTU calculations, me
 
 The following events are exempt from MTU calculations:
 
-- (Leanplum) Campaign Enter
-- (Leanplum) Push Notification Send
-- (Leanplum) Push Notification Bounce
-- (Leanplum) Email Send
-- (Leanplum) Email Delivered
-- (Leanplum) Email Bounce
-- (Leanplum) Email Marked as spam
-- (Leanplum) Email Unsubscribed
-- (Leanplum) A/B test
+* (Leanplum) Campaign Enter
+* (Leanplum) Push Notification Send
+* (Leanplum) Push Notification Bounce
+* (Leanplum) Email Send
+* (Leanplum) Email Delivered
+* (Leanplum) Email Bounce
+* (Leanplum) Email Marked as spam
+* (Leanplum) Email Unsubscribed
+* (Leanplum) A/B test
