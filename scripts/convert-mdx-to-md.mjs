@@ -1090,6 +1090,7 @@ function convertSelfGuidedTours(src, { outPath, assetsDirAbs, copiedRootHrefs } 
       out.push('  <thead>');
       out.push('    <tr>');
       out.push('      <th></th>');
+      out.push('      <th></th>');
       out.push('      <th data-hidden data-card-target data-type="content-ref"></th>');
       out.push('      <th data-hidden data-card-cover data-type="files"></th>');
       out.push('    </tr>');
@@ -1097,16 +1098,18 @@ function convertSelfGuidedTours(src, { outPath, assetsDirAbs, copiedRootHrefs } 
       out.push('  <tbody>');
       for (const r of rows) {
         out.push('    <tr>');
-        out.push('      <td>');
-        out.push(`        <strong>${escapeHtml(r.title)}</strong>`);
-        if (r.blurb) out.push(`        <br />${escapeHtml(r.blurb)}`);
-        out.push('      </td>');
+        out.push(`      <td><strong>${escapeHtml(r.title)}</strong></td>`);
+        out.push(`      <td>${escapeHtml(r.blurb || '')}</td>`);
         out.push(
           r.url
             ? `      <td><a href="${escapeHtml(r.url)}">${escapeHtml(r.url)}</a></td>`
             : '      <td></td>',
         );
-        out.push(r.cover ? `      <td>${escapeHtml(r.cover)}</td>` : '      <td></td>');
+        out.push(
+          r.cover
+            ? `      <td><a href="${escapeHtml(r.cover)}">${escapeHtml(r.cover)}</a></td>`
+            : '      <td></td>',
+        );
         out.push('    </tr>');
       }
       out.push('  </tbody>');
