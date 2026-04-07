@@ -60,7 +60,7 @@ async function listFilesRecursive(dir) {
     const full = path.join(dir, it.name);
     if (it.isDirectory()) {
       out.push(...(await listFilesRecursive(full)));
-    } else if (it.isFile() && full.endsWith('.mdx')) {
+    } else if (it.isFile() && (full.endsWith('.mdx') || full.endsWith('.md'))) {
       out.push(full);
     }
   }
@@ -419,7 +419,7 @@ async function main() {
     await fs.mkdir(path.dirname(outPath), { recursive: true });
 
     const src = await fs.readFile(file, 'utf8');
-    const converted = convertOne(src, maps);
+    const converted = file.toLowerCase().endsWith('.mdx') ? convertOne(src, maps) : src;
     await fs.writeFile(outPath, converted, 'utf8');
   }
 
