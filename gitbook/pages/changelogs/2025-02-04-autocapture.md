@@ -1,0 +1,21 @@
+---
+title: "Introducing Autocapture from Mixpanel"
+slug: "changelog-2025-02-04-autocapture"
+hidden: false
+createdAt: "2025-02-04T06:59:02.165Z"
+updatedAt: "2025-02-04T06:59:02.165Z"
+date: "2025-02-04"
+thumbnail: "/changelog/auto-capture.png"
+description: "Introducing Autocapture from Mixpanel! With just a single code snippet, you can now track common events without custom code, enabling you to get started with analytics in <2 minutes."
+isAnnouncement: true
+---
+
+# Set up analytics in minutes with Autocapture
+_2025-02-04_
+![](.gitbook/assets/changelog/auto-capture.png)
+
+Introducing Autocapture from Mixpanel! With just a single code snippet, you can now track common events like pageviews, button clicks, and form fills without custom code, enabling you to get started with analytics in less than 2 minutes.
+
+Mixpanel’s Autocapture is a great starting point for analytics, getting you to critical user insights quickly. It’s also designed to work well in tandem with precision tracking — so you can go deeper and add more refined tracking over time.
+
+Learn more about Autocapture and setting it up in Mixpanel [here](https://docs.mixpanel.com/docs/tracking-methods/autocapture).

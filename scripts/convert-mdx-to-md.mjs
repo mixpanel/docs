@@ -51,6 +51,101 @@ async function cleanupExtraneousConvertedMarkdown({ outDirAbs, expectedRelMdPath
   }
 }
 
+function parseFrontmatter(md) {
+  const s = String(md);
+  if (!s.startsWith('---\n')) return { fm: {}, body: s };
+  const end = s.indexOf('\n---\n', 4);
+  if (end === -1) return { fm: {}, body: s };
+  const raw = s.slice(4, end).trim();
+  const body = s.slice(end + '\n---\n'.length);
+  const fm = {};
+  for (const line of raw.split('\n')) {
+    const m = line.match(/^([A-Za-z0-9_:-]+)\s*:\s*(.*)\s*$/);
+    if (!m) continue;
+    const key = m[1];
+    let val = m[2];
+    if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+      val = val.slice(1, -1);
+    }
+    fm[key] = val;
+  }
+  return { fm, body };
+}
+
+function firstNonEmptyLine(text) {
+  for (const line of String(text).split('\n')) {
+    const t = line.trim();
+    if (t) return t;
+  }
+  return '';
+}
+
+async function generateChangelogsReadmeAndSummary(outDirAbs) {
+  const all = await listFilesRecursive(outDirAbs);
+  const posts = [];
+  for (const f of all) {
+    if (!f.toLowerCase().endsWith('.md')) continue;
+    const rel = toPosixPath(path.relative(outDirAbs, f));
+    if (rel.startsWith('.gitbook/')) continue;
+    if (rel === 'README.md' || rel === 'SUMMARY.md') continue;
+    if (rel.includes('/')) continue;
+    const md = await fs.readFile(f, 'utf8');
+    const { fm, body } = parseFrontmatter(md);
+    const title = (fm.title || '').trim();
+    const date = (fm.date || '').trim();
+    const thumb = (fm.thumbnail || '').trim();
+    const desc = (fm.description || '').trim() || firstNonEmptyLine(body.replace(/^#.*$/m, ''));
+    posts.push({ rel, title, date, thumb, desc });
+  }
+
+  posts.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+
+  const byYear = new Map();
+  for (const p of posts) {
+    const y = (p.date || '').slice(0, 4) || 'Unknown';
+    if (!byYear.has(y)) byYear.set(y, []);
+    byYear.get(y).push(p);
+  }
+  const years = Array.from(byYear.keys()).sort((a, b) => b.localeCompare(a));
+
+  let summary = '# Table of contents\n\n';
+  summary += '* [Changelog](README.md)\n\n';
+  for (const y of years) {
+    summary += `## ${y}\n\n`;
+    for (const p of byYear.get(y)) {
+      const label = p.title || p.rel.replace(/\.md$/i, '');
+      summary += `* [${label}](${p.rel})\n`;
+    }
+    summary += '\n';
+  }
+
+  let readme = '# Changelog\n\n';
+  readme += '{% updates format="full" %}\n';
+  for (const p of posts) {
+    if (!p.date) continue;
+    readme += `{% update date="${escapeHtml(p.date)}" %}\n`;
+    readme += `## ${p.title || p.rel.replace(/\.md$/i, '')}\n\n`;
+    if (p.desc) readme += `${p.desc}\n\n`;
+    if (p.thumb) {
+      const relFromRoot = p.thumb.replace(/^\/+/, '');
+      const candidate = path.join(outDirAbs, '.gitbook', 'assets', relFromRoot);
+      const assetRel = `.gitbook/assets/${relFromRoot}`;
+      try {
+        await fs.stat(candidate);
+        readme += `![](${assetRel})\n\n`;
+      } catch {
+        readme += `![](${p.thumb})\n\n`;
+      }
+    }
+    readme += `<a class="button secondary" href="./${escapeHtml(p.rel)}">Read more</a>\n`;
+    readme += '{% endupdate %}\n\n';
+  }
+  readme += '{% endupdates %}\n';
+
+  await fs.writeFile(path.join(outDirAbs, 'SUMMARY.md'), summary, 'utf8');
+  await fs.writeFile(path.join(outDirAbs, 'README.md'), readme, 'utf8');
+}
+
 async function readConstantsMaps() {
   // Keep it simple: parse the few exported maps we use for ExtendedTabs titles.
   const file = path.join(ROOT, 'utils/constants.ts');
@@ -2186,6 +2281,11 @@ async function main() {
   }
 
   await cleanupExtraneousConvertedMarkdown({ outDirAbs: outDir, expectedRelMdPaths });
+
+  // Space-level index generation
+  if (path.basename(outDir) === 'changelogs') {
+    await generateChangelogsReadmeAndSummary(outDir);
+  }
 
   process.stdout.write(`Converted ${files.length} files from ${args.inDir} -> ${args.outDir}\n`);
 }

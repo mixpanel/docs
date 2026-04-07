@@ -1,0 +1,19 @@
+---
+title: "Expand Event Images in Context Panel"
+slug: "changelog-2025-08-22-image-expansion"
+hidden: false
+createdAt: "2025-08-22T10:00:00.000Z"
+updatedAt: "2025-08-22T10:00:00.000Z"
+date: "2025-08-22"
+thumbnail: "/changelog/image-expansion.gif"
+description: "Expand images in Query Builder's context panel for a clearer view when hovering over event names."
+isAnnouncement: false
+---
+
+# Expand Event Images in Context Panel
+_2025-08-22_
+![](.gitbook/assets/changelog/image-expansion.gif)
+
+Expand images in Query Builder's context panel for a clearer view. When hovering over the event name, you can click associated images to easily view without leaving Query Builder.
+
+Whether you're validating an event property or reviewing metadata details, expanded images give you the full picture without breaking your flow. No more switching tabs or guessing from a thumbnail.

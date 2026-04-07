@@ -1,0 +1,31 @@
+---
+title: "Feature Flags: Target users using real-time behavior with Runtime Events"
+slug: "changelog-2026-03-03-feature-flags-runtime-events"
+hidden: false
+createdAt: "2026-03-16T00:00:00.000Z"
+updatedAt: "2026-03-16T00:00:00.000Z"
+date: "2026-03-03"
+description: "Target feature variants based on what users do, not just who they are."
+---
+# Feature Flags: Target users using real-time behavior with Runtime Events
+_2026-03-03_
+
+Target feature variants based on what users do, not just who they are.
+ 
+Mixpanel Feature Flags supports several targeting options, including cohorts (audiences based on behavior or attributes) and runtime properties (conditions like OS, app version, or browser).
+ 
+With Runtime Events, you can **target users based on specific Mixpanel events in real time**. When a user triggers a designated event, they receive the active variant on the next flag evaluation, without waiting for a cohort refresh.
+ 
+This unlocks serving features based on time-sensitive, behavior-driven patterns such as:
+- **Onboarding flows:** Show tutorial content after a user completes their first action
+- **Progressive feature unlocking:** Unlock advanced features after users complete key milestones
+- **Conditional promotions:** Display special offers after a user makes their first purchase
+- **Behavior-gated experiments:** Run experiments only on users who have demonstrated engagement
+ 
+You can also fine-tune Runtime Events with optional settings like First Time triggers (with session vs. indefinite duration) and event property filters (for example, triggering only on purchases over a certain amount or specific page paths).
+ 
+**Availability:** Runtime Events are designed for client-side SDKs that can monitor events in real time. Server-side implementations are not supported.
+- **Web SDK:** available now
+- **Mobile SDKs:** coming soon
+ 
+[Learn more →](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/featureflags/runtime-events)

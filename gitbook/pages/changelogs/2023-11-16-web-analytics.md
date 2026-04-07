@@ -1,0 +1,20 @@
+---
+title: "Track your Web Analytics on one Board"
+slug: "changelog-2023-11-16-web-analytics"
+hidden: false
+createdAt: "2023-11-16T14:59:02.165Z"
+updatedAt: "2023-11-16T14:59:02.165Z"
+date: "2023-11-16"
+---
+
+[Link to Demo](https://www.loom.com/share/a8940230695943ecb743dda421fef673)
+
+Our new Web Analytics Template gets you up and running with all your core website performance metrics in just a few seconds. You’ll be able to make informed decisions about what to highlight, improve, or remove from your site to build a more engaging & relevant user experience.  
+
+Simply select your Page View event and Page Title property (note: these are automatically tracked if you implemented Mixpanel with the Javascript SDK) and you’ll get everything you need:
+
+- User Metrics: understand more about the users that visit your website (how many new users, how many returning users, where are they from, and more)
+- Session Metrics: track all the key session metrics (session start/end, bounce rate, average session duration, what source did they come from, and more)
+- Page Metrics: find which pages provide the most valuable and engaging content to users (page exits, average page views per user, and more)
+
+Checkout the Web Analytics Template for yourself on one of our demo datasets: https://mixpanel.com/project/3018488/view/3536632/app/boards#id=6020908

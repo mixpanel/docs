@@ -1,0 +1,17 @@
+---
+title: "Save and Reuse Funnel and Retention Behavior definitions"
+slug: "changelog-2024-04-03-save-funnel-retention-behaviors"
+hidden: false
+createdAt: "2024-04-03T18:59:02.165Z"
+updatedAt: "2024-04-03T18:59:02.165Z"
+date: "2024-04-03"
+# video: "https://www.loom.com/embed/e84c62b2454d496b960fb0fdb09b9785"
+---
+
+[Link to Demo](https://www.loom.com/share/e84c62b2454d496b960fb0fdb09b9785)
+
+You can now save a funnel or retention behavior definition, and reuse it across your reports. This allows you standardize on a definition and feel confident in not missing any changes if you need to update a definition. This also saves time from not having to redefine your funnel or retention behavior for every report.
+
+Note that the [behavior](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports#behaviors) is saved, and not the [metric](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports#metrics), so you can use the same funnel to in your conversion rate metric, as well as your time to convert metric.
+
+You can save and share your behavior definitions just like a custom event or custom property. You'll be able to see all saved behaviors in Lexicon. See [docs](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/saved-behaviors) for more information on saved behaviors.

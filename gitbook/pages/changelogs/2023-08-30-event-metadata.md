@@ -1,0 +1,22 @@
+---
+title: "Manage implementations more easily with event metadata"
+slug: "changelog-2023-08-30-event-metadata"
+hidden: false
+createdAt: "2023-08-30T14:59:02.165Z"
+updatedAt: "2023-08-30T14:59:02.165Z"
+date: "2023-08-30"
+---
+
+[Link to Demo](https://www.loom.com/share/d68d2f2f213144d8817d414eddd88f46?sid=04b74494-7aea-4eb7-aeb3-943e41ac7ec3)
+
+Our latest data governance improvement makes it easier to investigate and fix data discrepancies, with peace of mind that you’re not disrupting your team’s workflows.
+
+You can now see event usage context in Lexicon, such as:
+
+- Who first queried an event?
+- When was it first tracked?
+- Which people queried it most recently? When?
+
+With this event metadata, data teams can not only sort events to identify your highest volume / least queried events, but also identify relevant stakeholders to confirm whether this event is still necessary. 
+
+Less fear of disrupting the team, less time spent cleaning data.

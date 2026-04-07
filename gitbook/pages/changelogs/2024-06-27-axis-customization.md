@@ -1,0 +1,28 @@
+---
+title: "Axis Customization"
+slug: "changelog-2024-06-27-axis-customization"
+hidden: false
+createdAt: "2024-06-27T16:50:45.397Z"
+updatedAt: "2024-06-27T16:50:45.397Z"
+date: "2024-06-27"
+thumbnail: "/changelog/axis-customization.png"
+# video: "https://www.loom.com/share/70a6b9f7a5104f9481dcde54f1c292be?sid=e8706d41-320d-45ea-afb9-3f579438175c"
+description: "You can now customize the axes of your charts. Using this, you can build better dashboards and tell the story you want more easily. Any changes you make can be saved and will be reflected on the dashboard. To access these new options, go to the 'Chart' tab of the query builder."
+---
+
+# Axis Customization
+_2024-06-27_
+![](.gitbook/assets/changelog/axis-customization.png)
+
+You can now customize the axes of your charts. Using this, you can build better dashboards and tell the story you want more easily. Any changes you make can be saved and will be reflected on the dashboard. To access these new options, go to the "Chart" tab of the query builder.
+
+You'll be able to:
+
+- create a secondary y axis on the right hand side to show data of different scales
+- determine the axis thresholds, so you can zoom in or out
+- add labels to make what you're measuring more clear
+- determine the unit and decimal precision of your axes
+
+You can learn more in documentation [here](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/chart-customization#axis-customization)
+
+<VideoButtonWithModal src="https://www.loom.com/embed/70a6b9f7a5104f9481dcde54f1c292be?sid=e8706d41-320d-45ea-afb9-3f579438175c" />
