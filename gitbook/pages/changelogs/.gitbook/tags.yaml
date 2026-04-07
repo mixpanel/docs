@@ -1,0 +1,8 @@
+- tag: announcement
+  label: Announcement
+  icon: bullhorn
+  color: $primary
+- tag: update
+  label: Update
+  icon: rocket
+  color: $info
