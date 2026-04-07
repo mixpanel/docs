@@ -137,6 +137,29 @@ function rewriteDocsHrefToRelative(href, absOutFile, absOutRoot) {
   return hash ? `${relative}#${hash}` : relative;
 }
 
+function rewriteGuidesHrefToRelative(href, absOutFile, absOutRoot) {
+  const raw = String(href || '').trim();
+  if (!raw) return raw;
+
+  // Rewrite internal guides routes:
+  // - /guides/foo/bar
+  // - https://mixpanel.com/guides/foo/bar
+  let u = raw;
+  if (u.startsWith('https://mixpanel.com/guides/')) u = u.replace('https://mixpanel.com', '');
+  if (!u.startsWith('/guides/')) return raw;
+
+  const [pathPart, hash = ''] = u.split('#');
+  let relPath = pathPart.replace(/^\/guides\//, '').replace(/\/$/, '');
+  if (!relPath) return raw;
+  if (!relPath.endsWith('.md')) relPath = `${relPath}.md`;
+
+  const absTarget = path.join(absOutRoot, relPath);
+  const fromDir = path.dirname(absOutFile);
+  let relative = toPosixPath(path.relative(fromDir, absTarget));
+  if (!relative.startsWith('.')) relative = `./${relative}`;
+  return hash ? `${relative}#${hash}` : relative;
+}
+
 function rewriteInternalDocsLinks(src, absOutFile, absOutRoot) {
   let out = String(src);
 
@@ -146,15 +169,30 @@ function rewriteInternalDocsLinks(src, absOutFile, absOutRoot) {
     return `](${rewritten})`;
   });
 
+  // Markdown links: [text](/guides/foo/bar#anchor)
+  out = out.replace(/\]\((\/guides\/[^)\s]+)\)/g, (all, href) => {
+    const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, absOutRoot);
+    return `](${rewritten})`;
+  });
+
   // Markdown links to mixpanel.com/docs
   out = out.replace(/\]\((https:\/\/mixpanel\.com\/docs\/[^)\s]+)\)/g, (all, href) => {
     const rewritten = rewriteDocsHrefToRelative(href, absOutFile, absOutRoot);
     return `](${rewritten})`;
   });
 
+  // Markdown links to mixpanel.com/guides
+  out = out.replace(/\]\((https:\/\/mixpanel\.com\/guides\/[^)\s]+)\)/g, (all, href) => {
+    const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, absOutRoot);
+    return `](${rewritten})`;
+  });
+
   // HTML links: rewrite href attr regardless of other attributes.
   out = out.replace(/<a\b([^>]*?)\shref="([^"]+)"([^>]*)>/g, (all, pre, href, post) => {
     let rewritten = rewriteDocsHrefToRelative(href, absOutFile, absOutRoot);
+    if (rewritten === href) {
+      rewritten = rewriteGuidesHrefToRelative(href, absOutFile, absOutRoot);
+    }
 
     // Also rewrite known moved targets even if they are already relative.
     // Example: ./quickstart/install-with-ai.md -> ./intro/quickstart/install-with-ai.md
@@ -178,6 +216,11 @@ function rewriteInternalDocsLinks(src, absOutFile, absOutRoot) {
   // Plaintext patterns like "...( /docs/foo/bar )" or "report(/docs/foo)" (not markdown links).
   out = out.replace(/\((\/docs\/[^)\s]+)\)/g, (all, href) => {
     const rewritten = rewriteDocsHrefToRelative(href, absOutFile, absOutRoot);
+    return `(${rewritten})`;
+  });
+
+  out = out.replace(/\((\/guides\/[^)\s]+)\)/g, (all, href) => {
+    const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, absOutRoot);
     return `(${rewritten})`;
   });
 
@@ -402,12 +445,22 @@ function convertIframesToEmbeds(src) {
   // <iframe src="..."></iframe> => {% embed url="..." %}
   //
   // Do this before we strip wrapper divs in other conversions; then we can clean up leftover empty tags.
-  return src.replace(/<iframe\b([\s\S]*?)>([\s\S]*?)<\/iframe>/gi, (_all, attrs) => {
+  let out = src.replace(/<iframe\b([\s\S]*?)>([\s\S]*?)<\/iframe>/gi, (_all, attrs) => {
     const raw = parseJsxAttribute(attrs, 'src');
     const url = normalizeEmbedUrl(raw);
     if (!url) return '';
     return `{% embed url="${escapeHtml(url)}" %}`;
   });
+
+  // Self-closing JSX iframes: <iframe ... />
+  out = out.replace(/<iframe\b([\s\S]*?)\/>/gi, (_all, attrs) => {
+    const raw = parseJsxAttribute(attrs, 'src');
+    const url = normalizeEmbedUrl(raw);
+    if (!url) return '';
+    return `{% embed url="${escapeHtml(url)}" %}`;
+  });
+
+  return out;
 }
 
 function convertExtendedButton(src) {
