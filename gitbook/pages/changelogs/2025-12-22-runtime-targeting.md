@@ -12,6 +12,7 @@ isAnnouncement: false
 
 # Feature Flagging: Runtime Targeting
 _2025-12-22_
+
 ![](.gitbook/assets/changelog/runtime.png)
 
 Use Runtime Targeting to evaluate feature flags using a live evaluation context, without storing data in Mixpanel.

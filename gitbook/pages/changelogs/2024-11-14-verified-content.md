@@ -12,6 +12,7 @@ isAnnouncement: false
 
 # Add verification tags to your data
 _2024-11-14_
+
 ![](.gitbook/assets/changelog/verified-content.png)
 
 Introducing Verified Content!

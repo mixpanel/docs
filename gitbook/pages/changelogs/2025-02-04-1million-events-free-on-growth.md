@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # No more feature limits. Get 1M monthly events free on Mixpanel’s Growth plan.
 _2025-02-04_
+
 ![](.gitbook/assets/changelog/1million-free-events.png)
 
 No more getting stuck on arbitrary feature limits—get 1M monthly events free on Mixpanel’s Growth plan by simply putting down a credit card. Powerful analytics, unlimited reports, 20K session replays, cohorts for behavioral segmentation, and more… now starting at the affordable price of free.

@@ -21,4 +21,5 @@ A classic example is Facebook’s “aha" moment, which was “adding 10 friends
 
 In our own example, you can dig into what actions a user does within 7 days after signup that lead them to watch more videos long term.
 The result we find is that the more channels they subscribe to, the more likely they are to retain. This insight can drive a strategy to create an experience that prompts users to subscribe to popular channels when they first signup.
+
 ![changelog Image](.gitbook/assets/changelog/retentionbp.png)

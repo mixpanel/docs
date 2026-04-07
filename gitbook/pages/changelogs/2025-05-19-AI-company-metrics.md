@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Track key AI metrics
 _2025-05-19_
+
 ![](.gitbook/assets/changelog/analytics-for-ai-template.png)
 
 When building AI products and features, we want to help you measure impact and effectiveness. You need clear answers to questions like:

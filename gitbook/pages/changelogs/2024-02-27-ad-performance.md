@@ -9,6 +9,7 @@ date: "2024-02-27"
 Note: this is our latest offering for [Mixpanel Marketing Analytics](https://mixpanel.com/m/mixpanel-marketing-analytics/)
 
 Ad-performance metrics are key to help marketers adjust their marketing spend and create the most return on investment. On a daily basis, it’s important to measure ROAS, CPC, CPM and ad-spend — and now, Mixpanel has made it quick and easy to bring this data into Mixpanel. 
+
 ![changelog Image](.gitbook/assets/changelog/addatatable.png)
 
 Our solution was built based on two key market trends:

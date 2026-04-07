@@ -11,6 +11,7 @@ description: "Now when switch between Boards or reports, you will always see the
 
 # Know where you are with a persistent navigation panel
 _2024-06-18_
+
 ![](.gitbook/assets/changelog/persistent-nav.png)
 
 Now when switch between Boards or reports, you will always see the side navigation panel and keep your context. Your current Board will also be highlighted on the side as you're viewing a report within a Board. You'll be able to see where you are with respect to your Boards, and easily create a new Board, search, or go to Home.

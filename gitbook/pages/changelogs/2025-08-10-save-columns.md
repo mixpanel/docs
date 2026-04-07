@@ -12,6 +12,7 @@ isAnnouncement: false
 
 # Save Column Widths in Tables
 _2025-08-10_
+
 ![](.gitbook/assets/changelog/column-widths.png)
 
 Create stakeholder-ready reports that are polished and clear. You can now save custom column widths for the segments in table visualizations so your data always looks the way you want it to.

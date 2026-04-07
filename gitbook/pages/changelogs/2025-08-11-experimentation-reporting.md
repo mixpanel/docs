@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Experimentation Reporting 2.0 - Trusted Insights, Maximum Impact
 _2025-08-11_
+
 ![](.gitbook/assets/changelog/experimentation_reporting.webp)
 
 With Mixpanel’s new Experimentation Reports, you can monitor every experiment with any Mixpanel Metric — business, performance, or behavioral — and ensure you’re making decisions based on statistically significant results.

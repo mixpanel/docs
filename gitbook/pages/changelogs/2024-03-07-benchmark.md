@@ -7,6 +7,7 @@ updatedAt: "2024-03-07T14:59:02.165Z"
 date: "2024-03-07"
 thumbnail: "/benchmarks-changelog.png"
 ---
+
 ![changelog Image](.gitbook/assets/benchmarks-changelog.png)
 
 Find out what good versus great performance looks like and put your own performance in perspective. Try out our new Company KPIs template to see how your key metrics in 2023 directly measure up to those of your peers. Simply click "New board", select "Use a Template", and pick the Company KPIs template - Benchmarks 2024 edition. After inputting your signup and value moment events, you'll see your last year's growth, retention, stickiness, and engagement metrics next to your industry's benchmarks. Use these to shape your product plans and visions for 2024.

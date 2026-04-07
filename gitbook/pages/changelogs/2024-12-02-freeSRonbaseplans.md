@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Session Replay is now available on Free and Growth plans
 _2024-12-02_
+
 ![](.gitbook/assets/changelog/session-replay-all-plans.png)
 
 Session Replay is now available on Free and Growth plans!

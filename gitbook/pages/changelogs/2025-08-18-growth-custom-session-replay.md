@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Growth customers can now buy custom volumes of session replay
 _2025-08-18_
+
 ![](.gitbook/assets/changelog/growth-custom-session-replay.png)
 
 Growth customers can now buy custom volumes of Session Replay in addition to their 20k free replays!

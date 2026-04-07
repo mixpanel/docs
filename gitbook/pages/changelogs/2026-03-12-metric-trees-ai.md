@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Metric Trees: Build your first draft instantly with AI
 _2026-03-12_
+
 ![](.gitbook/assets/ai-for-metric-trees-v2.png)
 
 Metric Trees are a structured way to map how your business actually grows, connecting your north star metric to the bets, drivers, and inputs that move it. [Learn more about Metric Trees →](https://mixpanel.com/blog/mixpanel-metric-trees/)

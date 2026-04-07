@@ -12,6 +12,7 @@ isAnnouncement: false
 
 # SSO, Data Views, and Sensitive Data Classification Are Now Available on All Growth Plans
 _2026-02-24_
+
 ![](.gitbook/assets/changelog/growth-security-features.png)
 
 Growth customers now have access to powerful security and governance capabilities that give teams more control, protection, and flexibility as they scale.

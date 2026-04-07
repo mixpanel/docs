@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Session Replay Frustration Signals
 _2025-11-14_
+
 ![](.gitbook/assets/nov_sr_changelog_rage.png)
 
 ## Find user friction fast—view frustration signals in replays and analyze them in your reports

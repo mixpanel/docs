@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Session Replay: Heatmap Comparisons
 _2025-11-14_
+
 ![](.gitbook/assets/nov_sr_changelog_hmcomparisons.png)
 
 ## See engagement differences at a glance with side-by-side heatmap comparisons

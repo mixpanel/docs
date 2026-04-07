@@ -13,6 +13,7 @@ isAnnouncement: false
 
 # An easier way to navigate
 _2025-04-16_
+
 ![](.gitbook/assets/changelog/global-sidenav.png)
 
 We’ve reorganized Mixpanel’s navigation into a persistent left-side panel to make getting around simpler and more intuitive. Here’s what’s new:

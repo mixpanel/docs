@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Connect Your LLM Metrics to Mixpanel with Langfuse
 _2025-11-04_
+
 ![](.gitbook/assets/changelog/mixpanel-langfuse-integration.png)
 
 We're excited to announce our integration with [Langfuse](https://langfuse.com), the open-source LLM engineering platform. Now you can automatically sync your AI application metrics from Langfuse directly into Mixpanel.

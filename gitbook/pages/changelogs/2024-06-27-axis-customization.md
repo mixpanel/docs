@@ -12,6 +12,7 @@ description: "You can now customize the axes of your charts. Using this, you can
 
 # Axis Customization
 _2024-06-27_
+
 ![](.gitbook/assets/changelog/axis-customization.png)
 
 You can now customize the axes of your charts. Using this, you can build better dashboards and tell the story you want more easily. Any changes you make can be saved and will be reflected on the dashboard. To access these new options, go to the "Chart" tab of the query builder.

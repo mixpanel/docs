@@ -13,6 +13,7 @@ isAnnouncement: false
 
 # Filter at item level
 _2025-11-13_
+
 ![](.gitbook/assets/changelog/segment-coloring.png)
 
 Mixpanel now allows you to choose “Matching items” to filter and aggregate only the list elements that meet your condition. Previously, when filtering on list properties like cart, filters used to apply to the entire list — not the individual items inside it. For example, if you filtered for cart.category = Garden, Mixpanel would include the entire cart’s revenue if just one item was from Garden, even if the rest were not.

@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Annotations, Now with Tags & Filters
 _2025-09-17_
+
 ![](.gitbook/assets/changelog/annotations-tags.png)
 
 Annotations let you add time-stamped notes so you can see metrics with context that matters to you. We’ve seen teams add valuable context about everything from product launches, marketing campaigns, outages, to holidays. 

@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Set up analytics in minutes with Autocapture
 _2025-02-04_
+
 ![](.gitbook/assets/changelog/auto-capture.png)
 
 Introducing Autocapture from Mixpanel! With just a single code snippet, you can now track common events like pageviews, button clicks, and form fills without custom code, enabling you to get started with analytics in less than 2 minutes.

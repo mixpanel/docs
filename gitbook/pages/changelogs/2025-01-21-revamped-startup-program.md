@@ -12,6 +12,7 @@ isAnnouncement: false
 
 # Mixpanel for Startups now provides over $150k in value
 _2025-01-21_
+
 ![](.gitbook/assets/changelog/revamped-startup-program.png)
 
 The [Mixpanel for Startups](https://mixpanel.com/startups/) program has been revamped to ensure founders and product teams have the tools they need to build and scale, from day one. 

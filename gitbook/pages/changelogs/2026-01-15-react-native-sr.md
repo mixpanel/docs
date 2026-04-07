@@ -12,6 +12,7 @@ isAnnouncement: false
 
 # 📱 Session Replay is now available for React Native
 _2025-01-15_
+
 ![](.gitbook/assets/rn-sr-ga.png)
 
 Now you can replay user sessions for React Native apps, bringing Session Replay to your cross-platform mobile development workflow. With React Native Session Replay, you can:

@@ -12,6 +12,7 @@ isAnnouncement: false
 
 # Pin Filters to Boards
 _2024-12-19_
+
 ![](.gitbook/assets/changelog/pinned-filters-settings-2.png)
 
 Mixpanel has new customization options for the filters applied to your Boards. These Board-wide filter settings give you more control and flexibility over how people interact with your Boards.

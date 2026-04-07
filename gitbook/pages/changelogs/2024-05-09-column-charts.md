@@ -13,6 +13,7 @@ isAnnouncement: true
 
 # Column Chart Visualization
 _2024-05-09_
+
 ![](.gitbook/assets/changelog/column-chart.png)
 
 You can now view your time series as a column or stacked column chart in Insights report. You can use Column charts to:

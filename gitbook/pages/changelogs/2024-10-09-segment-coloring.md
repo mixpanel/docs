@@ -12,6 +12,7 @@ description: "Mixpanel now allows you to select the colors of various segments i
 
 # Choose colors for your segments
 _2024-10-09_
+
 ![](.gitbook/assets/changelog/segment-coloring.png)
 
 Mixpanel now allows you to select the colors of various segments in your reports. You can choose the color for a particular segment by clicking the legend at the top of the chart. Choose between colors that exist in the theme, or choose an entirely separate color.

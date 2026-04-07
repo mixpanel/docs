@@ -12,6 +12,7 @@ isAnnouncement: false
 
 # Mixpanel Model Context Protocol (MCP) Beta
 _2025-09-10_
+
 ![](.gitbook/assets/changelog/changelog-mcp-beta.png)
 
 What if you could talk to your data using natural language? Now you can with Mixpanel MCP Server beta, democratizing analytics access across your entire organization.

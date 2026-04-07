@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Session Replay AI Summaries
 _2025-11-14_
+
 ![](.gitbook/assets/nov_sr_changelog_ai.png)
 
 ## Let AI do the watching for you with accurate summaries that help you understand the "why" instantly

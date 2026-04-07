@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Mixpanel in your language
 _2024-09-23_
+
 ![](.gitbook/assets/changelog/localization.png)
 
 Mixpanel is now available to use in additional languages, including Français, Español, Português, 한국어, 日本語, 繁體中文, 简体中文, and Bahasa Indonesia. You can choose your language from the settings menu in the top right of the page.

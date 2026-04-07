@@ -12,6 +12,7 @@ description: "You choose date ranges that are specified up to the minute. If the
 
 # Pick time ranges down to the minute
 _2024-07-17_
+
 ![](.gitbook/assets/changelog/minute-granularity.png)
 
 You choose date ranges that are specified up to the minute. If there's a metric that you want to drill in on for only a few hours, you can set your time range and see only that exact range. This saves you work from having to create a detailed time filter or custom property to do the same thing. Use this new feature to:

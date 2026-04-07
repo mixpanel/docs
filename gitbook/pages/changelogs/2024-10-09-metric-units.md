@@ -12,6 +12,7 @@ description: "Mixpanel now allows you to set the units for each of your metrics.
 
 # Set units for your metrics
 _2024-10-09_
+
 ![](.gitbook/assets/changelog/metric-units.png)
 
 Mixpanel now allows you to set the units for each of your metrics. You can set the unit, the precision, and whether or not you want an abbreviated value. This gets updated for tooltips as well as in the table below the chart.

@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # India Data Residency for Mixpanel
 _2024-10-09_
+
 ![](.gitbook/assets/changelog/mixpanel-india-data-residency.png)
 
 Like our EU Data Residency, Mixpanel's India Data Residency helps you process, protect, and manage personal data securely and according to local requirements.

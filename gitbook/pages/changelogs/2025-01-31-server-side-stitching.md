@@ -13,6 +13,7 @@ isAnnouncement: true
 
 # Watch replays for any event — even backend events
 _2025-01-31_
+
 ![](.gitbook/assets/changelog/server-side-stitching.png)
 
 ### **Watch replays for any event—even server-side**

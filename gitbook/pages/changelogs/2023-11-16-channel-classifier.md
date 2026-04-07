@@ -19,6 +19,7 @@ There are many directions you can go with a simple breakdown of channels, and no
 1. Add a new Breakdown and select “Create Custom”
 2. Select “Insert Example” in the next menu, and choose “Channel Classifier”
 3. Make any edits you need to channel definitions, change the title to “Channels”, and click save
+
 ![changelog Image](.gitbook/assets/changelog/channelclassifier.gif)
 
 This initial setup needs to happen once so that all members of your organization can access the *Channels* property. 

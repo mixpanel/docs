@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Mixpanel MCP: Talk to Your Data
 _2026-03-24_
+
 ![](.gitbook/assets/changelog/changelog-mcp-launch.png)
 
 Mixpanel MCP brings your product data into the AI tools you already use - Claude, ChatGPT, Gemini, Cursor, Notion, and more. Ask questions in natural language, get answers backed by real data, and take action without switching context.

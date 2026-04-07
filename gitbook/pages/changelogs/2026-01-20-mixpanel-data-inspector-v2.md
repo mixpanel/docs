@@ -13,6 +13,7 @@ tags: [browser-extension, data-inspector, debugging, event-tracking, implementat
 
 # Mixpanel Data Inspector Browser Extension
 _2026-01-20_
+
 ![](.gitbook/assets/changelog/browser-extension.png)
 
 The Mixpanel Data Inspector Browser Extension is now available for all [JavaScript SDK users](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/sdks/javascript), making it easier to debug issues and validate your Mixpanel implementation in real time, right in your browser. The extension can also now be used in each Chrome's DevTools window, enabling continuous usage even if the page refreshes.

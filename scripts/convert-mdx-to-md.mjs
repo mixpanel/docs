@@ -771,6 +771,36 @@ function ensureBlankLineAfterStandaloneImages(src) {
   return out.join('\n');
 }
 
+function ensureBlankLineBeforeStandaloneImages(src) {
+  // Ensure a blank line before any standalone markdown image line.
+  const lines = String(src).split('\n');
+  const out = [];
+  let inFence = false;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+
+    const isStandaloneImage = /^!\[[^\]]*\]\([^)]+\)\s*$/.test(t);
+    if (isStandaloneImage) {
+      const prev = out.length ? out[out.length - 1] : '';
+      if (typeof prev === 'string' && prev.trim() !== '') {
+        out.push('');
+      }
+    }
+    out.push(line);
+  }
+  return out.join('\n');
+}
+
 function convertLogoTablesToColumns(src, { outPath, assetsDirAbs }) {
   // Convert:
   // <div className={style.logoTable}>
@@ -927,7 +957,10 @@ function convertChangelogPostHeader(src) {
 
       if (title) out.push(`# ${title}`);
       if (date) out.push(`_${date}_`);
-      if (image) out.push(`![](${image})`);
+      if (image) {
+        out.push('');
+        out.push(`![](${image})`);
+      }
       out.push('');
       continue;
     }
@@ -2202,6 +2235,7 @@ function convertOne(src, maps, ctx) {
   out = convertSelfGuidedTours(out);
   out = convertNextImageToMarkdown(out);
   out = convertLogoComponentsToGitbookImages(out, ctx);
+  out = ensureBlankLineBeforeStandaloneImages(out);
   out = ensureBlankLineAfterStandaloneImages(out);
   out = convertLogoSpeakerToMarkdown(out);
   out = stripUselessDivs(out);

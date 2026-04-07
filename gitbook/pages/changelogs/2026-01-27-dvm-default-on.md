@@ -12,6 +12,7 @@ isAnnouncement: false
 
 # Data Volume Monitoring Default On for New Enterprise Customers
 _2026-01-27_
+
 ![](.gitbook/assets/changelog/dvm-default-on.png)
 
 New Enterprise accounts now have Data Volume Monitoring (DMV) enabled by default. Enterprise projects automatically monitor event volume, detect sudden or significant spikes, and notify admins so they can take corrective action quickly. No manual setup is required during project.

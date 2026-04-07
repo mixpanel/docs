@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Saved Metrics
 _2025-08-05_
+
 ![](.gitbook/assets/changelog/saved_metrics.png)
 
 Saved Metrics lets you standardize and reuse your KPIs throughout Mixpanel. No more data inconsistencies or wasted effort. Saved Metrics empowers your entire organization to define your most important metrics.

@@ -13,6 +13,7 @@ isAnnouncement: true
 
 # Mixpanel Session Replay is Now Available
 _2024-10-09_
+
 ![](.gitbook/assets/changelog/session-replay.png)
 
 Mixpanel Session Replay is officially out of beta!

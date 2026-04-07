@@ -11,6 +11,7 @@ description: "Two new features built for B2B account analysis are now available 
 
 # New features for enhanced B2B account analytics!
 _2025-02-10_
+
 ![](/changelog/B2B - Summary.png)
 
 [Two new features built for B2B analysis](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/group-analytics#how-is-b2b-company-analytics-different-than-group-analytics) are now available for customers with the [Group Analytics](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/group-analytics) add-on! You can now improve adoption and reduce churn risk by monitoring strategic accounts with out-of-the-box **Account Profiles** and **Activation Metrics**.

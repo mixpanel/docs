@@ -12,6 +12,7 @@ description: "You can now set the color theme of your charts in Mixpanel. We hav
 
 # Color Themes
 _2024-06-27_
+
 ![](.gitbook/assets/changelog/color-themes.png)
 
 You can now set the color theme of your charts in Mixpanel. We have a few preset themes for you, but you can also create and save your own theme. You use a different theme for every report, and even have a dashboard with reports using different themes. You'll also be able to set a project wide default for color themes.

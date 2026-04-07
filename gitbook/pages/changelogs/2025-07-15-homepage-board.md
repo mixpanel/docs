@@ -12,6 +12,7 @@ isAnnouncement: false
 
 # Customize Your Project Homepage
 _2025-07-15_
+
 ![](.gitbook/assets/changelog/homepage-board.png)
 
 Tailor your Mixpanel experience to suit the needs of your organization. Now, project admins can set any Board in the project as the default project homepage. This means a personalized and productive start for every employee logging into Mixpanel. 

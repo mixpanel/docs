@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Metric Trees
 _2025-08-11_
+
 ![](.gitbook/assets/changelog/latest_metric_trees.gif)
 
 Metric Trees gives you a complete picture of what drives success, helping you make data backed decisions in the context of your growth strategy.

@@ -12,6 +12,7 @@ isAnnouncement: false
 
 # Postgres Connectors now in Public Beta
 _2026-02-24_
+
 ![](.gitbook/assets/changelog/postgres-connector-changelog.png)
 
 ## New: Postgres Connector (Public Beta)

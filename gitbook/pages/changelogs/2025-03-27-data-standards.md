@@ -13,6 +13,7 @@ isAnnouncement: true
 
 # Enforce better governance with Data Standards
 _2025-03-27_
+
 ![](.gitbook/assets/changelog/data-standards.png)
 
 ### **Enforce better governance with Data Standards**

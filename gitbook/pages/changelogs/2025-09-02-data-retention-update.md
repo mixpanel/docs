@@ -11,6 +11,7 @@ description: "New default Billing and Data Retention policies for simpler pricin
 
 # Updated Billing & Data Retention: Simpler Pricing, Enhanced Privacy
 _2025-08-18_
+
 ![](.gitbook/assets/changelog/billing-data-retention.png)
 
 We're making two important updates to improve your Mixpanel experience:

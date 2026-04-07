@@ -13,6 +13,7 @@ tags: [browser-extension, data-inspector, debugging, event-tracking, implementat
 
 # Mixpanel Data Inspector Browser Extension
 _2025-09-26_
+
 ![](.gitbook/assets/changelog/browser-extension.png)
 
 Validate your Mixpanel tracking implementation with a new browser extension that provides real-time visibility into events being sent from your website.

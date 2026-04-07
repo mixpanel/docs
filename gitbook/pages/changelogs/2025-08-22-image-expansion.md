@@ -12,6 +12,7 @@ isAnnouncement: false
 
 # Expand Event Images in Context Panel
 _2025-08-22_
+
 ![](.gitbook/assets/changelog/image-expansion.gif)
 
 Expand images in Query Builder's context panel for a clearer view. When hovering over the event name, you can click associated images to easily view without leaving Query Builder.

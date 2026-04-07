@@ -13,6 +13,7 @@ tags: [session-replay, lexicon, event-metadata, data-governance, query-builder, 
 
 # Session Replay automatically appears in Event Metadata
 _2025-09-22_
+
 ![](.gitbook/assets/changelog/session-replay-in-lexicon.png)
 
 Event details now include relevant Session Replays directly in Query Builder, Lexicon, and Event pages.

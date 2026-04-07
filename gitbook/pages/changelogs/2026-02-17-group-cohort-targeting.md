@@ -12,6 +12,7 @@ isAnnouncement: false
 
 # Feature Flags — Group Cohort Targeting
 _2026-02-17_
+
 ![](.gitbook/assets/changelog/data-group-cohort-targeting.png)
 
 Feature flag rollout groups can now target **group cohorts** — cohorts built on a group key dimension such as Company, Organization, or any custom group entity.

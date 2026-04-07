@@ -6,6 +6,7 @@ createdAt: "2023-09-07T14:59:02.165Z"
 updatedAt: "2023-09-07T14:59:02.165Z"
 date: "2023-09-07"
 ---
+
 ![changelog Image](.gitbook/assets/changelog/Starter-Animated.gif)
 
 Now when creating a new project, you will be prompted to view your automatically generated 🌱Starter Board. You’ll be greeted by empty reports, but they won’t stay that way for long. Starter Board automatically populates when you connect data to the new project. This means that once data is flowing, you can get things going by answering key questions about your active users in seconds.

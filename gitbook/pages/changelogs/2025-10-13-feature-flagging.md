@@ -12,6 +12,7 @@ isAnnouncement: true
 
 # Feature Flagging — Precision control for every rollout
 _2025-10-13_
+
 ![](.gitbook/assets/changelog/feature_flags.png)
 
 Feature flagging gives teams fine-grained control over who sees what and when — so you can test new features safely, measure their impact, and roll out with confidence.
