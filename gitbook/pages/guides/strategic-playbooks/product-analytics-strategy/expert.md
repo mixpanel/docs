@@ -1,12 +1,13 @@
-# Expert
+# Stage 4: Expert
 
 ## Stage 04
 
 In this section:
-- [Introduction to Expert product analytics maturity](#introduction)
-- [Common markers of Expert stage](#common-markers-of-expert-stage)
-- [Example of Expert product analytics maturity](#example-of-expert-product-analytics-maturity)
-- [How to move on from Expert](#how-to-move-on-from-expert)
+
+* [Introduction to Expert product analytics maturity](expert.md#introduction)
+* [Common markers of Expert stage](expert.md#common-markers-of-expert-stage)
+* [Example of Expert product analytics maturity](expert.md#example-of-expert-product-analytics-maturity)
+* [How to move on from Expert](expert.md#how-to-move-on-from-expert)
 
 ## Introduction
 
@@ -18,14 +19,12 @@ In this stage, you go from a gym membership to also hiring a personal trainer to
 
 No product development decision is made without the use of product analytics.
 
-![](../../.gitbook/assets/expert-chart.jpg)
-
 {% hint style="info" %}
 **Explore Mixpanel**
 
 See how product and growth teams use Mixpanel's powerful reports to answer any question.
 
-[Try It With Sample Data](https://mixpanel.com/register/?next=%2Fget-started%2F%3Fexplore%3Dtrue&link=aypas)
+[Try It With Sample Data](https://mixpanel.com/register/?next=%2Fget-started%2F%3Fexplore%3Dtrue\&link=aypas)
 {% endhint %}
 
 ## Common markers of Expert stage
@@ -40,12 +39,12 @@ At its core, building out robust product analytics capabilities is about more th
 
 Consider the questions that can be answered in the Expert stage:
 
-- What's my product's equivalent of Facebook's "7 friends in 10 days"?
-- How do various combinations of user behaviors and user attributes affect engagement and retention?
-- How do marketing launches cause changes in specific user behaviors or my primary metrics?
-- How quickly do users reach my activation metric? What actions are likely to convert activated users to power users?
-- How do all my A/B tests affect key metrics over time, and which of them are worth continuing?
-- How many times do users repeat a given step in a funnel before moving on to the next step, and how does that affect conversion rates?
+* What's my product's equivalent of Facebook's "7 friends in 10 days"?
+* How do various combinations of user behaviors and user attributes affect engagement and retention?
+* How do marketing launches cause changes in specific user behaviors or my primary metrics?
+* How quickly do users reach my activation metric? What actions are likely to convert activated users to power users?
+* How do all my A/B tests affect key metrics over time, and which of them are worth continuing?
+* How many times do users repeat a given step in a funnel before moving on to the next step, and how does that affect conversion rates?
 
 At this level, the latest advancements in experimentation and impact reporting are implemented.
 
@@ -67,4 +66,4 @@ Employees must be kept up-to-date with changes in your product analytics platfor
 
 Now that you've reached the Expert stage, learn how to maintain your analytics maturity, implement best practices, and leverage Mixpanel to its fullest potential.
 
-[Read Conclusion →](./finale.md)
+[Read Conclusion →](finale.md)

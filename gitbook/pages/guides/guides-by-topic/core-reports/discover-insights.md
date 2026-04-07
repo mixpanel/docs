@@ -1,9 +1,8 @@
 # Discover Insights
 
-[Insights](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/insights) is a powerful and flexible reporting tool that allows you to easily slice and dice user behavior on your platforms. You can analyze events, cohorts and user profiles, and display the data in a wide variety of chart types.
+[Insights](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/analysis/reports/insights) is a powerful and flexible reporting tool that allows you to easily slice and dice user behavior on your platforms. You can analyze events, cohorts and user profiles, and display the data in a wide variety of chart types.
 
-<p >
-  {% embed url="https://www.youtube.com/watch?v=scBPtq7B81Y" %}
+{% embed url="https://www.youtube.com/watch?v=scBPtq7B81Y" %}
 
 To follow along the tutorials in this section, we've created [this board](https://mixpanel.com/project/3018488/view/3536632/app/boards/#id=6350535) in our demo project that you can copy into your own project. As you open the linked board, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range.
 
@@ -13,37 +12,35 @@ To follow along the tutorials in this section, we've created [this board](https:
 
 You can use Insights to see what events users are doing on your site, and visualize this in a variety of ways, e.g. in a bar chart to see the total number of times they have done this over a period of time, or in a line chart to see the trend across time. The following video walks through examples of how you can do this, as well as how you can also use Insights to see the breakdown your logged in Users across their different attributes etc.
 
-<p >
-  {% embed url="https://www.youtube.com/watch?v=Q0fmB14Iwfw" %}
+{% embed url="https://www.youtube.com/watch?v=Q0fmB14Iwfw" %}
 
 The following video looks at how you can leverage filters and breakdowns to hone in on specific data subsets that you care about or to dive deeper and segment your users by their different event or user attributes.
 
-<p >
-  {% embed url="https://www.youtube.com/watch?v=DRHOI4YNg14" %}
+{% embed url="https://www.youtube.com/watch?v=DRHOI4YNg14" %}
 
 ## Formula, Custom Events and Properties and Custom Buckets
-There are times where you'd like to create ratios of different events, for example, the proportion of users who are searching for a product for the first time. You can do this using [formulas](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/insights#formulas). And if these are common formulas that members of your team will use time and again, it may make sense to save and share these formulas, so that people need not rebuild the formula from scratch every time and can rely on the same standard definition when defining key metrics. 
+
+There are times where you'd like to create ratios of different events, for example, the proportion of users who are searching for a product for the first time. You can do this using [formulas](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/analysis/reports/insights#formulas). And if these are common formulas that members of your team will use time and again, it may make sense to save and share these formulas, so that people need not rebuild the formula from scratch every time and can rely on the same standard definition when defining key metrics.
 
 Similarly, there might be times where you might want to combine certain events, for example because you:
-- Have a collection of key events that you want to track together as a single metric
-- Have an event that you want to filter based on a specific property
-You can do so using [custom events](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/custom-events).
 
-You might also want to modify existing properties on the fly. One common use case for this is marketers grouping UTM sources into default marketing channels (e.g. Facebook, Instagram, TikTok = Social). You can do this via [custom properties](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/custom-properties). For the most commonly used custom properties, we have also built [custom buckets](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/insights#custom-bucketing) for you to seamlessly modify your segments within the UI itself.
+* Have a collection of key events that you want to track together as a single metric
+* Have an event that you want to filter based on a specific property You can do so using [custom events](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/analysis/features/custom-events).
+
+You might also want to modify existing properties on the fly. One common use case for this is marketers grouping UTM sources into default marketing channels (e.g. Facebook, Instagram, TikTok = Social). You can do this via [custom properties](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/analysis/features/custom-properties). For the most commonly used custom properties, we have also built [custom buckets](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/analysis/reports/insights#custom-bucketing) for you to seamlessly modify your segments within the UI itself.
 
 The following video looks at how you can leverage formulas, custom events and properties, and custom buckets in more detail.
 
-<p >
-  {% embed url="https://www.youtube.com/watch?v=jQ2gJsb83E8" %}
+{% embed url="https://www.youtube.com/watch?v=jQ2gJsb83E8" %}
 
 ## Behavioral Breakdowns
+
 Other more advanced questions that Insights can help answer include: how you can segment your users not just by who they are (i.e. user attributes), but what they do. This is a common ask from product managers - to be able to understand for example the number of times users typically view a product before purchasing. Or more simply, you might be interested in looking at what the distribution of your cart value per user is, or the distinct number of days a month that a user might come to your site to make a purchase. The following video walks through some of these examples:
 
-<p >
-  {% embed url="https://www.youtube.com/watch?v=v_SKV3080yg" %}
+{% embed url="https://www.youtube.com/watch?v=v_SKV3080yg" %}
 
 ## Creating Alerts
-Once you've created a report for a key metric you want to track for instance, you can create an [alert](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/alerts) to monitor how they perform, either by setting explicit thresholds, or setting up automatic anomaly detections. This video walks through how you can set up such alerts to your email or Slack.
 
-<p >
-  {% embed url="https://www.youtube.com/watch?v=tqrqIkCjoWw" %}
+Once you've created a report for a key metric you want to track for instance, you can create an [alert](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/analysis/features/alerts) to monitor how they perform, either by setting explicit thresholds, or setting up automatic anomaly detections. This video walks through how you can set up such alerts to your email or Slack.
+
+{% embed url="https://www.youtube.com/watch?v=tqrqIkCjoWw" %}

@@ -1,4 +1,4 @@
-# Ensuring Data Quality in Mixpanel
+# Ensure Data Quality
 
 Poor data quality leads to misleading insights and wasted effort. The fastest way to prevent this is to treat QA and auditing as a required step in your Mixpanel implementation, not an optional one.
 
@@ -7,22 +7,24 @@ The steps below are the must-do practices for every team to keep insights accura
 ## Always Use Separate Projects
 
 From day one, set up **two projects** in Mixpanel:
-- **Development Project** → used for testing event tracking, identity management, and property values
-- **Production Project** → where only clean, validated data is ingested
+
+* **Development Project** → used for testing event tracking, identity management, and property values
+* **Production Project** → where only clean, validated data is ingested
 
 This separation ensures:
-1.  Developers can experiment safely without polluting your production dataset
-2.  Data teams have confidence that every event in production has been tested
 
-- ✅ **Do** enforce a rule: *“Nothing hits production until it passes QA.”*
-- ❌ **Do not** shortcut by sending test events to production.  
+1. Developers can experiment safely without polluting your production dataset
+2. Data teams have confidence that every event in production has been tested
+
+* ✅ **Do** enforce a rule: _“Nothing hits production until it passes QA.”_
+* ❌ **Do not** shortcut by sending test events to production.
 
 ## QA Before You Launch
 
 QA is not optional. Every implementation should pass through **two levels of QA** before production:
 
-- Code-Level QA (developer focus)
-- User Flows QA (product & data team focus)
+* Code-Level QA (developer focus)
+* User Flows QA (product & data team focus)
 
 ### Code-Level QA (developer focus)
 
@@ -33,22 +35,24 @@ Steps to take:
 1. Trigger events in the development app/site.
 2. Inspect the network calls or SDK logs.
 3. Confirm the following:
-- Event names match your tracking plan
-- Properties have expected values
-- No API errors are returned
+
+* Event names match your tracking plan
+* Properties have expected values
+* No API errors are returned
 
 #### Enable Debug Mode
 
-Developers should [enable debug mode](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/debugging#enable-debug-mode) to review requests and confirm the payloads sent to Mixpanel.
+Developers should [enable debug mode](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-in/tracking-best-practices/debugging#enable-debug-mode) to review requests and confirm the payloads sent to Mixpanel.
 
-- Web: view logs in the browser console
-- Mobile: view logs in Xcode (iOS) or Android Studio (Android)
+* Web: view logs in the browser console
+* Mobile: view logs in Xcode (iOS) or Android Studio (Android)
 
 Debug Mode surfaces:
-- Client-side errors
-- API ingestion errors
-- Successful ingestion
-- Payloads in the ingestion requests
+
+* Client-side errors
+* API ingestion errors
+* Successful ingestion
+* Payloads in the ingestion requests
 
 ### User Flows QA (product and data team focus)
 
@@ -59,15 +63,16 @@ Steps to take:
 1. Walk through real flows in your app (sign up, purchase, upgrade, etc.)
 2. Confirm events fire as expected at each step.
 3. Check Mixpanel UI:
-- [Events](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/debugging#debugging-with-events) appear in reports
-- [User profiles](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/debugging#debugging-with-user-profiles) are created or updated correctly
-- [Identity stitching](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management/identifying-users-simplified) works when a user moves from anonymous to known
+
+* [Events](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-in/tracking-best-practices/debugging#debugging-with-events) appear in reports
+* [User profiles](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-in/tracking-best-practices/debugging#debugging-with-user-profiles) are created or updated correctly
+* [Identity stitching](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-in/tracking-methods/id-management/identifying-users-simplified) works when a user moves from anonymous to known
 
 {% hint style="info" %}
-**Pro tip**: Involve non-developers in your User Flows QA. Product managers and data analysts often catch issues developers miss because they think in terms of *business flows* rather than code.
+**Pro tip**: Involve non-developers in your User Flows QA. Product managers and data analysts often catch issues developers miss because they think in terms of _business flows_ rather than code.
 {% endhint %}
 
-Learn more about [QA workflows](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/debugging).
+Learn more about [QA workflows](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-in/tracking-best-practices/debugging).
 
 ## Audit Regularly
 
@@ -77,14 +82,14 @@ Even if you QA perfectly before launch, things break. Code changes, new features
 
 Schedule audits quarterly or alongside product releases to check for:
 
-- Missing or duplicate events
-- Unexpected property values
-- Identity stitching anomalies (e.g. multiple profiles for the same user)
+* Missing or duplicate events
+* Unexpected property values
+* Identity stitching anomalies (e.g. multiple profiles for the same user)
 
 **Tools to Help**
 
-- [Lexicon](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon): to validate event/property naming
-- [Events report](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/debugging#debugging-with-events): to spot-test events in real time
+* [Lexicon](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/admin/data-governance/lexicon): to validate event/property naming
+* [Events report](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-in/tracking-best-practices/debugging#debugging-with-events): to spot-test events in real time
 
 {% hint style="info" %}
 **Pro tip**: Treat auditing like regression testing; it is not about fixing what is broken now, but preventing broken data from piling up unnoticed.
@@ -92,9 +97,9 @@ Schedule audits quarterly or alongside product releases to check for:
 
 ## Key Takeaways
 
-- **Two projects, always**: Development + Production
-- **QA before production**: Run both code-level and user flow QA
-- **Use Debug Mode**: Catch ingestion issues instantly
-- **Audit often**: Data quality is not set-and-forget
+* **Two projects, always**: Development + Production
+* **QA before production**: Run both code-level and user flow QA
+* **Use Debug Mode**: Catch ingestion issues instantly
+* **Audit often**: Data quality is not set-and-forget
 
-Learn more about [best practices for debugging](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/debugging).
+Learn more about [best practices for debugging](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-in/tracking-best-practices/debugging).

@@ -1,4 +1,4 @@
-# Drive Product Innovation with Mixpanel Experiments
+# Engage Your Users
 
 Experimentation is how modern product teams make decisions with confidence. Instead of guessing, you test changes with real users, measure the impact, and move forward knowing what works. Mixpanel makes it possible to plan, run, and analyze experiments in one place.
 
@@ -8,9 +8,9 @@ This guide shows you the best practices. Follow these steps to set up better exp
 
 Making product changes without data is risky. Experimentation helps you:
 
-- **Reduce risk**: Test with a subset of users before rolling out broadly.
-- **Learn faster**: Use data to validate ideas and iterate quickly.
-- **Discover surprises**: Sometimes tests uncover unexpected insights.
+* **Reduce risk**: Test with a subset of users before rolling out broadly.
+* **Learn faster**: Use data to validate ideas and iterate quickly.
+* **Discover surprises**: Sometimes tests uncover unexpected insights.
 
 Leading companies like [Step](https://mixpanel.com/customers/how-step-boosted-direct-deposits-by-14-with-mixpanels-experimentation/) use Mixpanel to build a culture of experimentation, moving quickly without losing customer trust.
 
@@ -22,21 +22,15 @@ Before you dive into best practices, take a quick look at how experimentation wo
 
 {% columns %}
 {% column width="58.33%" %}
-
 {% embed url="https://www.youtube.com/watch?v=LZfIPCXcIPE" %}
-
 {% endcolumn %}
 
 {% column width="41.67%" %}
-
-### Mixpanel Experiments
-      
+#### Mixpanel Experiments
 
 In this 3-minute overview, learn how Mixpanel Experiments helps you reduce risk, learn faster, and discover surprises.
-      
 
 [Open in YouTube →](https://youtu.be/LZfIPCXcIPE)
-
 {% endcolumn %}
 {% endcolumns %}
 
@@ -46,9 +40,9 @@ Good experiments start with good planning. Skip this step, and your analysis wil
 
 ### Write a strong hypothesis
 
-Format: *If [change], then [impact], because [reason].*
+Format: _If \[change], then \[impact], because \[reason]._
 
-Example: *If we shorten the onboarding flow from 3 steps to 2, activation will increase by 15% because new users will encounter less friction.*
+Example: _If we shorten the onboarding flow from 3 steps to 2, activation will increase by 15% because new users will encounter less friction._
 
 {% hint style="info" %}
 **Pro tip**: Keep hypotheses tied to a real user or business problem with measurable outcomes, not just a “gut feeling”.
@@ -56,11 +50,11 @@ Example: *If we shorten the onboarding flow from 3 steps to 2, activation will i
 
 ### Choose the right metrics
 
-- **Primary metric**: The outcome that defines success (e.g. conversion rate).
-- **Guardrails**: Protect against unintended damage (e.g. churn, CSAT).
-- **Secondary metrics**: Add context but do not drive the decision.
+* **Primary metric**: The outcome that defines success (e.g. conversion rate).
+* **Guardrails**: Protect against unintended damage (e.g. churn, CSAT).
+* **Secondary metrics**: Add context but do not drive the decision.
 
-Define metrics *before* launch. Adding them later biases results.
+Define metrics _before_ launch. Adding them later biases results.
 
 ### Keep it simple
 
@@ -74,16 +68,17 @@ Testing too many things at once makes it impossible to know which change worked.
 
 Mixpanel supports the following models. Pick the right one up front:
 
-- **Frequentist**: Best for small lifts (< 2%). Wait until your full sample size is reached before calling results.
-- **Sequential**: Best for big, obvious changes (10%+). Let' you monitor results as data comes in and stop the experiment earlier.
+* **Frequentist**: Best for small lifts (< 2%). Wait until your full sample size is reached before calling results.
+* **Sequential**: Best for big, obvious changes (10%+). Let' you monitor results as data comes in and stop the experiment earlier.
 
 {% hint style="info" %}
 **Pro tip**: If you expect only a tiny lift (like 1%), choose Frequentist as you will need maximum rigor.
 {% endhint %}
 
 **Rule of thumb**
-- Frequentist → accuracy matters most + expected lift is low
-- Sequential → speed matters most + expected lift is high
+
+* Frequentist → accuracy matters most + expected lift is low
+* Sequential → speed matters most + expected lift is high
 
 Learn more about [Experiment Model Types](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/experiments#experiment-model-types).
 
@@ -91,27 +86,26 @@ Learn more about [Experiment Model Types](https://app.gitbook.com/s/qGpd1uH02qXO
 
 Mixpanel's [Experiment Report](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/experiments) gives you three key signals:
 
-- **Lift**: % change between control and variant.
-- **P-value**: How confident you can be that the result is not random (≤0.05 is usually significant).
-- **Confidence interval**: The likely range of the true impact.
+* **Lift**: % change between control and variant.
+* **P-value**: How confident you can be that the result is not random (≤0.05 is usually significant).
+* **Confidence interval**: The likely range of the true impact.
 
 How to interpret:
 
 {% stepper %}
 {% step %}
-## Start with the P-value.
+### Start with the P-value.
 
 This is your first and most important check.
 
-**If the P-value is > 0.05**: The result is *not statistically significant*. This means the difference you see is very likely due to random chance. You should *not implement the change*, even if the lift looks promising, because you can't be confident it's a real improvement.
+**If the P-value is > 0.05**: The result is _not statistically significant_. This means the difference you see is very likely due to random chance. You should _not implement the change_, even if the lift looks promising, because you can't be confident it's a real improvement.
 {% endstep %}
 
 {% step %}
-## Next, look at Lift and the Confidence Interval.
+### Next, look at Lift and the Confidence Interval.
 
 Only if the p-value is ≤ 0.05 do you move to these metrics. They tell you about the size and range of the true impact.
 {% endstep %}
-
 {% endstepper %}
 
 If your primary metric improves and the results are significant, you can trust it. If results are inconclusive, you still learned something. Revisit your hypothesis or run a follow-up. Use segmentation (new vs. returning users, geos, etc.) to understand nuances.
@@ -124,10 +118,10 @@ Do not treat inconclusive results as failures; they provide valuable clues, even
 
 The most impactful teams do not stop at analysis; they act.
 
-- **Decide**: Ship the winning variant, revert, or run a follow-up.
-- **Document**: Capture the outcome in your Experiment Report.
-- **Share**: Use Boards to communicate decisions and learnings with stakeholders.
-- **Repeat**: Every experiment, win or lose, should inform your product strategy.
+* **Decide**: Ship the winning variant, revert, or run a follow-up.
+* **Document**: Capture the outcome in your Experiment Report.
+* **Share**: Use Boards to communicate decisions and learnings with stakeholders.
+* **Repeat**: Every experiment, win or lose, should inform your product strategy.
 
 {% hint style="info" %}
 **Pro tip**:Always explain why you made your decision, not just what you decided. This builds institutional knowledge.
@@ -139,10 +133,10 @@ The most impactful teams do not stop at analysis; they act.
 
 Stay alert to these common mistakes:
 
-- **Ending too early**: Always run until your experiment criteria (e.g. sample size or statistical boundary) is met.
-- **Overcomplicating**: Too many variants or changes muddy results.
-- **Ignoring guardrails**: Success on one metric can hide damage elsewhere.
-- **Underestimating sample size**: Small samples make results unreliable.
+* **Ending too early**: Always run until your experiment criteria (e.g. sample size or statistical boundary) is met.
+* **Overcomplicating**: Too many variants or changes muddy results.
+* **Ignoring guardrails**: Success on one metric can hide damage elsewhere.
+* **Underestimating sample size**: Small samples make results unreliable.
 
 Avoid declaring a test a success at the first sign of movement; early spikes often disappear as more data arrives.
 
@@ -152,10 +146,10 @@ Avoid declaring a test a success at the first sign of movement; early spikes oft
 
 Experimentation works best when it is part of your culture.
 
-- **Secure leadership buy-in**: Leaders should model data-driven decisions.
-- **Create psychological safety**: Failed experiments = valuable learnings.
-- **Share openly**: Publish results so others can benefit.
-- **Use Mixpanel tools**: Boards and saved metrics keep experiments transparent and consistent.
+* **Secure leadership buy-in**: Leaders should model data-driven decisions.
+* **Create psychological safety**: Failed experiments = valuable learnings.
+* **Share openly**: Publish results so others can benefit.
+* **Use Mixpanel tools**: Boards and saved metrics keep experiments transparent and consistent.
 
 {% hint style="info" %}
 **Pro tip**: Share at least one experiment outcome (good or bad) in every team meeting—it normalizes learning.
@@ -165,9 +159,10 @@ Experimentation works best when it is part of your culture.
 
 ## Key Takeaways
 
-Experimentation in Mixpanel lets you move faster, mitigate risk, and make more strategic decisions. 
+Experimentation in Mixpanel lets you move faster, mitigate risk, and make more strategic decisions.
 
 To get started:
+
 1. **Begin testing your hypotheses with Mixpanel Experiments.** Use experiments to validate ideas with real user data before making broad product decisions.
 2. **Share learnings widely.** Make results visible to other teams so everyone benefits.
 3. **Treat experimentation as a repeatable process**, not a one-off.

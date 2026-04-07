@@ -1,34 +1,33 @@
 ---
-title: "Get to Know Your Users"
-description: "Learn how to segment users effectively using behavioral data and understand DAU, WAU, and MAU metrics for better product decisions."
+title: Get to Know Your Users
+description: >-
+  Learn how to segment users effectively using behavioral data and understand
+  DAU, WAU, and MAU metrics for better product decisions.
 ---
 
-# Get to Know Your Users
+# Chapter. 2: Get to Know Your Users
 
 ## Questions answered
-- [What's user segmentation in product analytics?](#whats-user-segmentation-in-product-analytics)
-- [What's DAU/WAU/MAU?](#whats-dauwaumau)
-- [When should I measure DAU/WAU/MAU?](#when-should-i-measure-dauwaumau)
-- [How can I measure my DAU/WAU/MAU count?](#how-can-i-measure-my-dauwaumau-count)
-- [When it comes to measuring active usage, what's the difference between a good PM and a great PM?](#when-it-comes-to-measuring-active-usage-whats-the-difference-between-a-good-pm-and-a-great-pm)
+
+* [What's user segmentation in product analytics?](get-to-know-your-users.md#whats-user-segmentation-in-product-analytics)
+* [What's DAU/WAU/MAU?](get-to-know-your-users.md#whats-dauwaumau)
+* [When should I measure DAU/WAU/MAU?](get-to-know-your-users.md#when-should-i-measure-dauwaumau)
+* [How can I measure my DAU/WAU/MAU count?](get-to-know-your-users.md#how-can-i-measure-my-dauwaumau-count)
+* [When it comes to measuring active usage, what's the difference between a good PM and a great PM?](get-to-know-your-users.md#when-it-comes-to-measuring-active-usage-whats-the-difference-between-a-good-pm-and-a-great-pm)
 
 ## What's user segmentation in product analytics?
 
-If there's one thing that product managers, regardless of their industry and location, 100% agree on, it is that **to build great products, you need to understand your users**. 
+If there's one thing that product managers, regardless of their industry and location, 100% agree on, it is that **to build great products, you need to understand your users**.
 
 One of the first things that product managers do when they get into product analytics is to look at different user actions and then segment them by country, hoping to find some magical distinction. Are users in South Korea more active than in Mongolia? Such data is curious and potentially useful for marketing. But when it comes to making product decisions, **data on what users actually do in your product (behavioral data) speaks volumes more about who people actually are than their demographics**.
 
 Such insights are more actionable, because in-product behavior can be "nudged"—and changed—more easily than demographics.
-
-![](../../.gitbook/assets/pa-user-chart.png)
 
 User segmentation in product analytics is grouping users based on their demographics or behavior in order to establish a baseline for analysis.
 
 **Mixpanel was built to help product managers understand user behavior. However, it lets you easily organize and analyze any user segment — behavioral (event-based) or demographic (profile-based).**
 
 ## How does it work?
-
-![](../../.gitbook/assets/pa-event-based.jpg)
 
 In Mixpanel, each data point is connected to a single user through a unique ID. **Events** are interactions between a user and your product. These are things users do, like signing up, adding items to cart, liking and following. **Profiles** store information about who your users are, like where they live (geo), and what email they use to log in.
 
@@ -37,9 +36,10 @@ In Mixpanel, each data point is connected to a single user through a unique ID. 
 Not all behavioral insights are equally actionable. Take DAU (daily active users), WAU (weekly active users), and MAU (monthly active users), the industry's most popular product metrics. These metrics are used to draw a simple distinction: **are my users active or not?**
 
 If you know what "active" means for your business, getting this data is easy with product analytics. Below, we explain:
-- How to define and measure DAU/WAU/MAU
-- The pitfalls of measuring active usage
-- When to use DAU/WAU/MAU (and when not to)
+
+* How to define and measure DAU/WAU/MAU
+* The pitfalls of measuring active usage
+* When to use DAU/WAU/MAU (and when not to)
 
 ### Defining "active usage"
 
@@ -58,13 +58,12 @@ Even though "active usage" should ideally be tied to "value moments" in your pro
 An example is the **mDAU metric**, which stands for monetizable daily active usage. Twitter defines monetizable active users as "users who logged in or were otherwise authenticated and accessed Twitter on any given day through twitter.com or Twitter applications that are able to show ads."<sup>3</sup> This metric doesn't reflect the product's value moments for Twitter users (which could be when a user learns "what's happening" — through retweets, replies "@", or follows) and shouldn't be top of mind when building a value-first product. However, it's an important KPI for tracking the value of Twitter for advertisers.
 
 > "As a builder turned investor and advisor, I've learned that it's easy to get lost in numbers that can fake you out—things like clicks, downloads, DAU. But at the end of the day, your job is to focus on what these numbers tell you about users who are most likely to stick. The core of any product strategy is the answer to the question:
-> 
+>
 > 'How many times did users perform a core action on the expected cycle?'
 >
 > It’s nice to be able to say that you once had a 28% conversion rate, and you increased it to 32%. Progress! But really, 72 out of 100 people used to not convert to the desired action, and now, 68 people still don’t. Ask yourself: What’s the most impactful thing you can do to make those people feel compelled to stick around?”
-> 
-> **Josh Elman**
-*VC & Advisor; Former Product Leader at Robinhood, LinkedIn, Twitter*
+>
+> **Josh Elman** _VC & Advisor; Former Product Leader at Robinhood, LinkedIn, Twitter_
 
 ## When should I measure DAU/WAU/MAU?
 
@@ -77,9 +76,8 @@ Alongside other metrics like LTV (lifetime value), churn, and ARR (annual recurr
 However, because DAU/WAU/MAU numbers are volatile and don't paint the full picture, some companies are dropping them in favor of more meaningful metrics. For example, Microsoft made the call to stop sharing monthly active counts for Xbox Live. This year, Electronic Arts followed suit.
 
 > "We're going to stop talking about monthly or weekly or daily active users because I'm not sure what anyone can do with that information."
-> 
-> **Blake Jorgensen**
-*EA's COO and CFO*
+>
+> **Blake Jorgensen** _EA's COO and CFO_
 
 If you clearly define what "active" means for your business, DAU/WAU/MAU can be helpful for assessing overall business health. But without a well-defined "active" part of the picture, it becomes a vanity metric. Our advice: DAU/MAU/WAU might be a great opening statement, but it’s never a full story.
 
@@ -120,11 +118,8 @@ If you see growth or decline in active users, there's not much you can do except
 **A great PM** finds what user actions correlate with the "A" in their DAU, and makes product adjustments to encourage those actions early on and in more users.
 
 {% hint style="info" %}
-2. Tardi, Carla. Monthly active users (MAU) (2015, April 6). Investopedia.
-  https://www.investopedia.com/terms/m/monthly-active-user-mau.asp
-
-  3. Twitter Q1 2019 Earnings Report.
-  https://s22.q4cdn.com/826641620/files/doc_financials/2019/q1/Q1-2019-Slide-Presentation.pdf
+2. Tardi, Carla. Monthly active users (MAU) (2015, April 6). Investopedia. https://www.investopedia.com/terms/m/monthly-active-user-mau.asp
+3. Twitter Q1 2019 Earnings Report. https://s22.q4cdn.com/826641620/files/doc\_financials/2019/q1/Q1-2019-Slide-Presentation.pdf
 {% endhint %}
 
 ## Next Steps
@@ -133,4 +128,4 @@ If you see growth or decline in active users, there's not much you can do except
 
 Now that you understand user segmentation and active usage metrics, the next chapter dives deeper into analyzing different levels of user engagement.
 
-[Read Chapter 3 →](./analyze-user-engagement.md)
+[Read Chapter 3 →](analyze-user-engagement.md)

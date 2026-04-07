@@ -1,12 +1,13 @@
-# Intermediate
+# Stage 2: Intermediate
 
 ## Stage 02
 
 In this section:
-- [Introduction to Intermediate product analytics maturity](#introduction)
-- [Common markers of Intermediate stage](#common-markers-of-intermediate-stage)
-- [Example of Intermediate product analytics maturity](#example-of-intermediate-product-analytics-maturity)
-- [How to move on from Intermediate](#how-to-move-on-from-intermediate)
+
+* [Introduction to Intermediate product analytics maturity](intermediate.md#introduction)
+* [Common markers of Intermediate stage](intermediate.md#common-markers-of-intermediate-stage)
+* [Example of Intermediate product analytics maturity](intermediate.md#example-of-intermediate-product-analytics-maturity)
+* [How to move on from Intermediate](intermediate.md#how-to-move-on-from-intermediate)
 
 ## Introduction
 
@@ -18,23 +19,17 @@ At this point, you recognize that product analytics is important, but aren't qui
 You're using data to inform product decisions, but not yet to propel them forward in an iterative or systematic way.
 {% endhint %}
 
-![](../../.gitbook/assets/intermediate-chart.jpg)
-
 You're beginning to use product analysis on a regular basis, but don't know how to use it as a driver for product development.
 
 {% columns %}
-{% column width="2/12" %}
-
+{% column %}
 ![Empower](../../.gitbook/assets/logos/empower-logo.svg)
-
 {% endcolumn %}
-{% column width="10/12" %}
 
+{% column %}
 "Think about how you can include your product analytics tool in the day-to-day and week-to-week operating of your business. It will make your team's analytics and experimentation muscles that much stronger."
 
-**Vince Maniago**
-*VP of Product Management, Empower*
-
+**Vince Maniago** _VP of Product Management, Empower_
 {% endcolumn %}
 {% endcolumns %}
 
@@ -47,7 +42,7 @@ Bringing your product analytics activity to the next level requires a fundamenta
 
 See how product and growth teams use Mixpanel's powerful reports to answer any question.
 
-[Try It With Sample Data](https://mixpanel.com/register/?next=%2Fget-started%2F%3Fexplore%3Dtrue&link=aypas)
+[Try It With Sample Data](https://mixpanel.com/register/?next=%2Fget-started%2F%3Fexplore%3Dtrue\&link=aypas)
 {% endhint %}
 
 ## Common markers of Intermediate stage
@@ -62,10 +57,10 @@ However, codeless implementations can lead to serious issues down the line— [m
 
 In this stage, you can assess what's happening to your product:
 
-- How many daily/weekly/monthly active users does my product have?
-- What is the average retention rate of all my users?
-- Where in my funnel do users drop off?
-- What are the most common user journeys?
+* How many daily/weekly/monthly active users does my product have?
+* What is the average retention rate of all my users?
+* Where in my funnel do users drop off?
+* What are the most common user journeys?
 
 In this stage, you can assess what's happening to your product:
 
@@ -89,4 +84,4 @@ To move to the Advanced stage, you'll need to acquire buy-in for data democracy,
 
 Now that you're regularly using product analytics, the next stage focuses on creating a comprehensive data strategy and integrating analytics into your product development workflow.
 
-[Read Stage 03: Advanced →](./advanced.md)
+[Read Stage 03: Advanced →](advanced.md)

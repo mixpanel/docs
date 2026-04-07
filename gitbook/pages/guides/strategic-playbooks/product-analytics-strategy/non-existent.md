@@ -1,11 +1,13 @@
-# Non-Existent
+# Stage 0: Non-Existent
 
 ## In this section:
-- [Introduction to Non-Existent product analytics maturity](#introduction)
-- [Example of Non-Existent product analytics maturity](#example-of-non-existent-product-analytics-maturity)
-- [How to move on from Non-Existent](#how-to-move-on-from-non-existent)
+
+* [Introduction to Non-Existent product analytics maturity](non-existent.md#introduction)
+* [Example of Non-Existent product analytics maturity](non-existent.md#example-of-non-existent-product-analytics-maturity)
+* [How to move on from Non-Existent](non-existent.md#how-to-move-on-from-non-existent)
 
 ## Introduction
+
 The "first" stage of product analytic maturity covers businesses that have no existing product analytics capabilities.
 
 {% hint style="info" %}
@@ -13,8 +15,6 @@ Product analytics is non-existent, and development is guided by something other 
 {% endhint %}
 
 It's not that these companies don't have product analytics tools available to them. It's just that the discipline isn't there. They want to work out — they just haven't purchased the dumbbells yet.
-
-![](../../.gitbook/assets/non-existent-chart.jpg)
 
 Many startups or non-digitally native businesses believe they have to reach a certain threshold of data in order for it to be valuable or necessary to uncover insights.
 
@@ -31,17 +31,17 @@ In Stage 0 of the product analytics maturity process, the product may still be i
 
 See how product and growth teams use Mixpanel's powerful reports to answer any question.
 
-[Try It With Sample Data](https://mixpanel.com/register/?next=%2Fget-started%2F%3Fexplore%3Dtrue&link=aypas)
+[Try It With Sample Data](https://mixpanel.com/register/?next=%2Fget-started%2F%3Fexplore%3Dtrue\&link=aypas)
 {% endhint %}
 
 ## How to move on from Non-Existent
 
 Start defining the questions you would want answered:
 
-- How many rides does the average user take a week?
-- On what days of the week are most users taking rides?
-- What behaviors lead users to buy a package of rides or to refer a friend?
-- How long is the average ride and how does it vary by city?
+* How many rides does the average user take a week?
+* On what days of the week are most users taking rides?
+* What behaviors lead users to buy a package of rides or to refer a friend?
+* How long is the average ride and how does it vary by city?
 
 There's no way to use data well without first having data to use.
 
@@ -53,4 +53,4 @@ No company is too small to prepare to collect, organize, and analyze data — it
 
 Now that you understand the importance of product analytics, the next stage focuses on starting to track high-level metrics and basic user behaviors.
 
-[Read Stage 01: Novice →](./novice.md)
+[Read Stage 01: Novice →](novice.md)

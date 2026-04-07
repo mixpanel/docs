@@ -1,14 +1,16 @@
-# Advanced
+# Stage 3: Advanced
 
 ## Stage 03
 
 In this section:
-- [Introduction to Advanced product analytics maturity](#introduction)
-- [Common markers of Advanced stage](#common-markers-of-advanced-stage)
-- [Example of Advanced product analytics maturity](#example-of-advanced-product-analytics-maturity)
-- [How to move on from Advanced](#how-to-move-on-from-advanced)
+
+* [Introduction to Advanced product analytics maturity](advanced.md#introduction)
+* [Common markers of Advanced stage](advanced.md#common-markers-of-advanced-stage)
+* [Example of Advanced product analytics maturity](advanced.md#example-of-advanced-product-analytics-maturity)
+* [How to move on from Advanced](advanced.md#how-to-move-on-from-advanced)
 
 ## Introduction
+
 In the Advanced stage of product analytics maturity, data is your compass for most decisions. This analysis is driving your product development because you're constantly considering what works, for who, and why.
 
 You've gotten in shape with your dumbbells and bench press and mile-long runs. Now it's time to join a gym. Something that allows you to choose the equipment or exercise that will strengthen the muscle group of your choice and/or lead to greater endurance.
@@ -16,8 +18,6 @@ You've gotten in shape with your dumbbells and bench press and mile-long runs. N
 {% hint style="info" %}
 Most (or all) decisions are made with product analytics in mind, and are supported by real-time data. All teams have access to product data, and your Product, Engineering, and Design teams will rely on it heavily.
 {% endhint %}
-
-![](../../.gitbook/assets/advanced-chart.jpg)
 
 ## Common markers of Advanced stage
 
@@ -30,7 +30,7 @@ The automation means you can more easily pull product analytics into your decisi
 
 See how product and growth teams use Mixpanel's powerful reports to answer any question.
 
-[Try It With Sample Data](https://mixpanel.com/register/?next=%2Fget-started%2F%3Fexplore%3Dtrue&link=aypas)
+[Try It With Sample Data](https://mixpanel.com/register/?next=%2Fget-started%2F%3Fexplore%3Dtrue\&link=aypas)
 {% endhint %}
 
 ## Example of Advanced product analytics maturity
@@ -39,11 +39,11 @@ See how product and growth teams use Mixpanel's powerful reports to answer any q
 
 In the Advanced stage, you can assess what's happening to your product and identify factors contributing to these patterns:
 
-- What combination of user attributes (like device or region) lead to the highest product retention rates?
-- Who are my power users and how does their usage differ from that of casual users?
-- What sequences of actions lead my users to upgrade their membership?
-- Which in-product actions correlate most strongly with high retention, a plan upgrade, or any other goal?
-- How do engagement and retention vary by company or account?
+* What combination of user attributes (like device or region) lead to the highest product retention rates?
+* Who are my power users and how does their usage differ from that of casual users?
+* What sequences of actions lead my users to upgrade their membership?
+* Which in-product actions correlate most strongly with high retention, a plan upgrade, or any other goal?
+* How do engagement and retention vary by company or account?
 
 In this stage, businesses not only have a solid grasp on how to collect and utilize data, but analytics is woven into the fabric of their culture. Employees are curious, ask questions, and are encouraged to use tools to make iterative improvements.
 
@@ -71,4 +71,4 @@ To achieve the Expert stage, all parts of the process need to be automated by a 
 
 Now that analytics is deeply integrated into your product decisions, the next stage focuses on automating all workflows and using advanced techniques like machine learning to unlock deeper insights.
 
-[Read Stage 04: Expert →](./expert.md)
+[Read Stage 04: Expert →](expert.md)

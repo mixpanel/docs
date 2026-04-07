@@ -1,8 +1,8 @@
-# Summary
+# Table of contents
 
 ## DISCOVER
 
-* [Mixpanel Introduction](mixpanel-introduction.md)
+* [Mixpanel Introduction](README.md)
 * [Self-Guided Tours](self-guided-tours.md)
 * [What's New?](https://mixpanel.com/changelogs)
 
@@ -18,13 +18,11 @@
     * [Explore Data with AI](guides-by-use-case/empower-your-team/mcp.md)
     * [Close Strategy-Execution Gap](guides-by-use-case/empower-your-team/close-strategy-execution-gap.md)
     * [See Replays](guides-by-use-case/empower-your-team/see-replays.md)
-
 * [Guides by Workflow](guides-by-workflow/build-tracking-strategy.md)
   * [Build Tracking Strategy](guides-by-workflow/build-tracking-strategy.md)
   * [Ensure Data Quality](guides-by-workflow/ensure-data-quality.md)
   * [Manage PII & Data Privacy](guides-by-workflow/data-privacy.md)
   * [Sync with Mirror](guides-by-workflow/sync-with-mirror.md)
-
 * [Guides by Topic](guides-by-topic/continuous-innovation.md)
   * [Continuous Innovation](guides-by-topic/continuous-innovation.md)
   * [Data Governance](guides-by-topic/govern-data.md)
@@ -40,8 +38,7 @@
 ## PLAYBOOKS
 
 * [Benchmarks](benchmarks.md)
-
-* [Strategic Playbooks](strategic-playbooks.md)
+* [Strategic Playbooks](playbooks/strategic-playbooks/README.md)
   * [Guide to Product Analytics](strategic-playbooks/guide-to-product-analytics/intro.md)
     * [Introduction](strategic-playbooks/guide-to-product-analytics/intro.md)
     * [Chapter. 1: Measure Value](strategic-playbooks/guide-to-product-analytics/measure-value.md)
@@ -50,7 +47,6 @@
     * [Chapter. 4: Retain Your Users](strategic-playbooks/guide-to-product-analytics/retain-your-users.md)
     * [Chapter. 5: Grow and Scale](strategic-playbooks/guide-to-product-analytics/grow-and-scale.md)
     * [Conclusion](strategic-playbooks/guide-to-product-analytics/conclusion.md)
-
   * [Product Analytics Strategy](strategic-playbooks/product-analytics-strategy/get-started.md)
     * [Introduction](strategic-playbooks/product-analytics-strategy/get-started.md)
     * [Stage 0: Non-Existent](strategic-playbooks/product-analytics-strategy/non-existent.md)
@@ -59,7 +55,6 @@
     * [Stage 3: Advanced](strategic-playbooks/product-analytics-strategy/advanced.md)
     * [Stage 4: Expert](strategic-playbooks/product-analytics-strategy/expert.md)
     * [Conclusion](strategic-playbooks/product-analytics-strategy/finale.md)
-
   * [Onboarding Playbook](strategic-playbooks/onboarding-playbook.md)
     * [Plan](strategic-playbooks/onboarding-playbook/plan/setup.md)
       * [Setup](strategic-playbooks/onboarding-playbook/plan/setup.md)
@@ -74,8 +69,5 @@
       * [Train Users](strategic-playbooks/onboarding-playbook/launch/train-users.md)
       * [Drive Adoption](strategic-playbooks/onboarding-playbook/launch/drive-adoption.md)
     * [Beyond Onboarding](strategic-playbooks/onboarding-playbook/beyond-onboarding.md)
-
 * [Project Migration Playbook](strategic-playbooks/project-migration.md)
-
 * [Glossary](glossary.md)
-

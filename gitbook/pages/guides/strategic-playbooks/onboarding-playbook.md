@@ -1,28 +1,26 @@
 # Onboarding Playbook
 
-<p >
-  {% embed url="https://www.youtube.com/watch?v=b_cIqQ5vgSI" %}
+{% embed url="https://www.youtube.com/watch?v=b_cIqQ5vgSI" %}
 
 ## Methodology
 
 We recommend an iterative 3-step sprint approach to implementing Mixpanel, with each sprint ranging between 1 to 3 weeks. Once you've completed the onboarding, this same process should be repeated in subsequent sprints where you refine and expand your Mixpanel tracking.
 
-![image](/tutorials/plan-implement-launch-sprint.png "Plan, Implement, Launch")
-
 ### Step 1: Plan
-[Plan](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/plan/setup): If you have not defined your metrics and KPIs (*what you should measure*) that align to your company or product objectives, and need guidance, this section of the tutorials should help you. We will go through how to map these metrics and what the best practices are for defining your events and properties in a [Tracking Plan](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/best-practices/create-a-tracking-plan). We’ll also cover setting up your Mixpanel [Organization](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/orgs-and-projects/organizations) and [Projects](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/orgs-and-projects/managing-projects), especially if this is your first time [signing up](https://mixpanel.com/register).
+
+[Plan](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/plan/setup): If you have not defined your metrics and KPIs (_what you should measure_) that align to your company or product objectives, and need guidance, this section of the tutorials should help you. We will go through how to map these metrics and what the best practices are for defining your events and properties in a [Tracking Plan](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/best-practices/create-a-tracking-plan). We’ll also cover setting up your Mixpanel [Organization](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/admin/orgs-and-projects/organizations) and [Projects](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/admin/orgs-and-projects/managing-projects), especially if this is your first time [signing up](https://mixpanel.com/register).
 
 ### Step 2: Implement
+
 [Implement](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/implement/send-your-data): We will guide you through sending your first data into Mixpanel, and the best practices around Quality Assurance Testing and how to audit your data. We will also show you how to establish a data governance framework to keep your Mixpanel implementation clean, concise, and consistent.
 
 ### Step 3: Launch
-[Launch](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/launch/create-boards): Once your data is in Mixpanel, we will teach you how to create your first Mixpanel [Boards](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/boards), walking through each Mixpanel Core Report ([Insights](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/insights), [Funnels](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/funnels/funnels-overview), [Flows](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/flows), and [Retention](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/retention)) to help you start gaining insights; and finally, guiding you to define user [Cohorts](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/users/cohorts) to help you track and monitor your key users.
+
+[Launch](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/launch/create-boards): Once your data is in Mixpanel, we will teach you how to create your first Mixpanel [Boards](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/boards), walking through each Mixpanel Core Report ([Insights](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/analysis/reports/insights), [Funnels](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/analysis/reports/funnels/funnels-overview), [Flows](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/analysis/reports/flows), and [Retention](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/analysis/reports/retention)) to help you start gaining insights; and finally, guiding you to define user [Cohorts](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/analysis/users/cohorts) to help you track and monitor your key users.
 
 ## Goals, Objectives, and Stakeholders
 
 As you plan for Mixpanel onboarding, here are some key pointers to help you succeed.
-
-![image](/tutorials/onboarding-goals-objectives.png "Onboarding Goals and Objectives")
 
 1. Set a target go-live date; working backwards, plan your sprints and scope your implementation accordingly.
 2. Start with your critical use cases or user journeys that you want to gain insights on in order to help you meet your business / product goals.
@@ -30,15 +28,13 @@ As you plan for Mixpanel onboarding, here are some key pointers to help you succ
 4. Scope your implementation, **key is to start small**: Select your top 2 to 3 critical use cases, start with your primary platform - the one with the most user base, and identify any potential 3rd-party integrations with Mixpanel that may be required.
 5. Appoint key stakeholders that will drive a successful onboarding process.
 
-![image](/tutorials/onboarding-stakeholders.png "Onboarding Stakeholders")
-
-- **Executive Sponsor** - helps align teams on organizational goals and priorities, drives adoption of Mixpanel across the organization
-- **Program / Project Manager** - point of contact for any Mixpanel implementation project, defines and aligns product use cases, coordinates planning, deployment, and user adoption
-- **Technical Lead** - responsible for technical implementation work (development, QA, integration), resolves technical issues
-- **Project Team** - works with Program / Project Manager to help identify and define use cases (KPIs , data schema, etc.)
+* **Executive Sponsor** - helps align teams on organizational goals and priorities, drives adoption of Mixpanel across the organization
+* **Program / Project Manager** - point of contact for any Mixpanel implementation project, defines and aligns product use cases, coordinates planning, deployment, and user adoption
+* **Technical Lead** - responsible for technical implementation work (development, QA, integration), resolves technical issues
+* **Project Team** - works with Program / Project Manager to help identify and define use cases (KPIs , data schema, etc.)
 
 ## Getting Help
 
-If you have any questions, do reach out to our [Mixpanel Support](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/response-times#contacting-mixpanel-support) team who are always ready to lend their product expertise and share tips to help you get the most out of your Mixpanel experience.
+If you have any questions, do reach out to our [Mixpanel Support](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/support/response-times#contacting-mixpanel-support) team who are always ready to lend their product expertise and share tips to help you get the most out of your Mixpanel experience.
 
-We also have an active [Mixpanel Community Slack](https://www.mixpanel.com/community-slack), where you can ask other experienced Mixpanel users for help. Do refer to the [General guidelines](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/community/guidelines#general-guidelines).
+We also have an active [Mixpanel Community Slack](https://www.mixpanel.com/community-slack), where you can ask other experienced Mixpanel users for help. Do refer to the [General guidelines](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/support/community/guidelines#general-guidelines).

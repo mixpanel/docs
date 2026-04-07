@@ -1,12 +1,13 @@
-# Novice
+# Stage 1: Novice
 
 ## Stage 01
 
 In this section:
-- [Introduction to Novice product analytics maturity](#introduction)
-- [Common markers of Novice stage](#common-markers-of-novice-stage)
-- [Example of Novice product analytics maturity](#example-of-novice-product-analytics-maturity)
-- [How to move on from Novice](#how-to-move-on-from-novice)
+
+* [Introduction to Novice product analytics maturity](novice.md#introduction)
+* [Common markers of Novice stage](novice.md#common-markers-of-novice-stage)
+* [Example of Novice product analytics maturity](novice.md#example-of-novice-product-analytics-maturity)
+* [How to move on from Novice](novice.md#how-to-move-on-from-novice)
 
 ## Introduction
 
@@ -18,8 +19,6 @@ The downside is that the questions you're answering are limited and provide an i
 If you're in this stage, the good news is that you're committed to using data to some extent to guide your product — if only in response to something breaking.
 {% endhint %}
 
-![](../../.gitbook/assets/novice-chart.jpg)
-
 This is a starting point for companies that are new to data adoption.
 
 Using data, even generic data, to influence product development will benefit your company. But there are limitations to being in this stage.
@@ -29,7 +28,7 @@ Using data, even generic data, to influence product development will benefit you
 
 See how product and growth teams use Mixpanel's powerful reports to answer any question.
 
-[Try It With Sample Data](https://mixpanel.com/register/?next=%2Fget-started%2F%3Fexplore%3Dtrue&link=aypas)
+[Try It With Sample Data](https://mixpanel.com/register/?next=%2Fget-started%2F%3Fexplore%3Dtrue\&link=aypas)
 {% endhint %}
 
 ## Common markers of Novice Stage
@@ -42,10 +41,10 @@ Comfortable with Google Analytics or other marketing analytics tools, many busin
 
 [Marketing analytics](https://mixpanel.com/blog/the-difference-between-product-analytics-and-marketing-analytics-and-why-you-need-both/) tell only the first part of the story: the traffic to your product and where users come from. Other questions you might ask in the Novice stage include:
 
-- What's my conversion rate to the product?
-- What acquisition channels are driving traffic?
-- What pages have the highest views?
-- What's my overall traffic?
+* What's my conversion rate to the product?
+* What acquisition channels are driving traffic?
+* What pages have the highest views?
+* What's my overall traffic?
 
 Marketing analytics help you understand how you attract and convert customers. Product analytics solutions help you understand how users engage with your product and what makes them retain.
 
@@ -77,4 +76,4 @@ If you found out that most users sign up on weekends, find out how this varies b
 
 Now that you're tracking basic metrics, the next stage focuses on gathering more comprehensive data and beginning to use it more strategically in your product decisions.
 
-[Read Stage 02: Intermediate →](./intermediate.md)
+[Read Stage 02: Intermediate →](intermediate.md)

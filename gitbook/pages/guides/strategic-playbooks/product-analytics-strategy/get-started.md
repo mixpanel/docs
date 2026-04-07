@@ -1,4 +1,4 @@
-# Advance Your Product Analytics Strategy
+# Product Analytics Strategy
 
 You already know that product analytics is critical to innovation and growth.
 
@@ -6,9 +6,9 @@ Maybe you're a disciple of the product-led growth school of thought, or you harb
 
 Product analytics maturity means:
 
-- Collecting the right data
-- Asking the right questions
-- Using data for cross-functional product decision making
+* Collecting the right data
+* Asking the right questions
+* Using data for cross-functional product decision making
 
 More than anything, it means directing your attention toward specific success metrics for your product. Product analytics will help you identify hidden trends in user behavior, uncover product flows that lead to churn, and get real-time insight into product usage.
 
@@ -17,18 +17,14 @@ But first, you have to assess your own capabilities and product analytics goals.
 At Mixpanel, we've consulted thousands of companies—from bootstrapped startups to leaders in tech. We know what "good" looks like, and we've developed a formula to get companies to "great."
 
 {% columns %}
-{% column width="2/12" %}
-
+{% column %}
 ![Product Collective](../../.gitbook/assets/logos/product-collective-logo.svg)
-
 {% endcolumn %}
-{% column width="10/12" %}
 
+{% column %}
 "Every product person wants to make data-driven decisions. But to do so, you must have the right data, ask the right questions, and use the right tools. That's having true product analytics maturity"
 
-**Mike Belsito**
-*Co-Founder, Product Collective*
-
+**Mike Belsito** _Co-Founder, Product Collective_
 {% endcolumn %}
 {% endcolumns %}
 
@@ -40,24 +36,20 @@ By assessing your product analytics maturity, you'll see the possibility (and be
 
 This guide helps you determine:
 
-- Your current product analytics maturity
-- Where you want to land on the maturity scale
-- What you need to do to get there
-- Why it all matters to product and company growth
+* Your current product analytics maturity
+* Where you want to land on the maturity scale
+* What you need to do to get there
+* Why it all matters to product and company growth
 
 {% columns %}
-{% column width="2/12" %}
-
+{% column %}
 ![Open View](../../.gitbook/assets/logos/open-view-logo.svg)
-
 {% endcolumn %}
-{% column width="10/12" %}
 
+{% column %}
 "Without data on how the user is moving through your product, you won't grasp where they're unlocking the most value. Without those insights, your team and product devolve into conjecture and building for the vocal minority. Once you've started that, it's impossible to scale."
 
-**Sam Richard**
-*Director of Growth, OpenView*
-
+**Sam Richard** _Director of Growth, OpenView_
 {% endcolumn %}
 {% endcolumns %}
 
@@ -66,7 +58,7 @@ This guide helps you determine:
 
 See how product and growth teams use Mixpanel's powerful reports to answer any question.
 
-[Try It With Sample Data](https://mixpanel.com/register/?next=%2Fget-started%2F%3Fexplore%3Dtrue&link=aypas)
+[Try It With Sample Data](https://mixpanel.com/register/?next=%2Fget-started%2F%3Fexplore%3Dtrue\&link=aypas)
 {% endhint %}
 
 ## What is product analytics maturity?
@@ -78,8 +70,6 @@ Product analytics maturity refers to where a company stands in the product analy
 ### What makes a company more mature in product analytics?
 
 At its core, product analytics is made up of four pillars: data collection, depth of analysis, collaboration, and product metrics.
-
-![](../../.gitbook/assets/intro-chart.jpg)
 
 Your product analytics maturity determines your capability within each of these areas—and ultimately how you're relying on your data to make product decisions. Throughout the guide, we'll be using a fictional company (a ridesharing app) to help you understand what this looks like in practice.
 
@@ -123,11 +113,11 @@ Integrating product analytics into your organization's workflows means everyone 
 
 Jump to the section that best represents your level of product analytics maturity:
 
-- [Stage 00: Non-Existent](./non-existent.md)
-- [Stage 01: Novice](./novice.md)
-- [Stage 02: Intermediate](./intermediate.md)
-- [Stage 03: Advanced](./advanced.md)
-- [Stage 04: Expert](./expert.md)
+* [Stage 00: Non-Existent](non-existent.md)
+* [Stage 01: Novice](novice.md)
+* [Stage 02: Intermediate](intermediate.md)
+* [Stage 03: Advanced](advanced.md)
+* [Stage 04: Expert](expert.md)
 
 ## Where do you stand?
 
@@ -141,4 +131,4 @@ Use this matrix as a guide to understand the characteristics of your product ana
 
 Begin your journey by understanding where your organization currently stands in the product analytics maturity model.
 
-[Read Stage 00: Non-Existent →](./non-existent.md)
+[Read Stage 00: Non-Existent →](non-existent.md)
