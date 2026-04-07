@@ -10,43 +10,39 @@ Heatmaps and Session Replay combine the “what” and the “why” of user beh
 
 - Heatmaps show where users click and focus attention.
 
-<section id="video" aria-label="Mixpanel Heatmaps video" >
-<div>
-    <div >
-        {% embed url="https://www.youtube.com/watch?v=af7D3exv610" %}
+{% columns %}
+{% column width="58.33%" %}
+{% embed url="https://www.youtube.com/watch?v=af7D3exv610" %}
+{% endcolumn %}
 
-    <aside >
-      <h2 >**Mixpanel Heatmaps**</h2>
-      <p>
+{% column width="41.67%" %}
+### Mixpanel Heatmaps
+      
+
         In this 4-minute overview, learn how Mixpanel Heatmaps helps you visually pinpoint user friction and high engagement areas on your website, allowing you to instantly see where users are clicking and where they are getting stuck.
-      </p>
-      <a href="https://youtu.be/af7D3exv610"
-         target="_blank" rel="noopener noreferrer" >
-        Open in YouTube →
-      </a>
-    </aside>
+      
 
-</section>
+      [Open in YouTube →](https://youtu.be/af7D3exv610)
+{% endcolumn %}
+{% endcolumns %}
 
 - Session Replay shows how they move through your product in real time.
 
-<section id="video" aria-label="Mixpanel Session Replay video" >
-<div>
-    <div >
-        {% embed url="https://www.youtube.com/watch?v=eig_Ta-0yZc" %}
+{% columns %}
+{% column width="58.33%" %}
+{% embed url="https://www.youtube.com/watch?v=eig_Ta-0yZc" %}
+{% endcolumn %}
 
-    <aside >
-      <h2 >**Mixpanel Session Replay**</h2>
-      <p>
+{% column width="41.67%" %}
+### Mixpanel Session Replay
+      
+
         In this 7-minute overview, discover how Mixpanel Session Replay unifies analytics and user behavior. Learn to seamlessly jump from your data to real user interactions to instantly diagnose friction and errors. The video also walks you through the incredibly easy, single-snippet implementation to accelerate your product's growth.
-      </p>
-      <a href="https://youtu.be/eig_Ta-0yZc"
-         target="_blank" rel="noopener noreferrer" >
-        Open in YouTube →
-      </a>
-    </aside>
+      
 
-</section>
+      [Open in YouTube →](https://youtu.be/eig_Ta-0yZc)
+{% endcolumn %}
+{% endcolumns %}
 
 Together, they help you understand not just *what* happened, but *why*.
 

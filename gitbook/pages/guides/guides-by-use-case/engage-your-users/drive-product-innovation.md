@@ -20,23 +20,21 @@ Leading companies like [Step](https://mixpanel.com/customers/how-step-boosted-di
 
 Before you dive into best practices, take a quick look at how experimentation works inside Mixpanel.
 
-<section id="video" aria-label="Mixpanel Experiments video" >
-<div>
-    <div >
-        {% embed url="https://www.youtube.com/watch?v=LZfIPCXcIPE" %}
+{% columns %}
+{% column width="58.33%" %}
+{% embed url="https://www.youtube.com/watch?v=LZfIPCXcIPE" %}
+{% endcolumn %}
 
-    <aside >
-      <h2 >**Mixpanel Experiments**</h2>
-      <p>
+{% column width="41.67%" %}
+### Mixpanel Experiments
+      
+
         In this 3-minute overview, learn how Mixpanel Experiments helps you reduce risk, learn faster, and discover surprises.
-      </p>
-      <a href="https://youtu.be/LZfIPCXcIPE"
-         target="_blank" rel="noopener noreferrer" >
-        Open in YouTube →
-      </a>
-    </aside>
+      
 
-</section>
+      [Open in YouTube →](https://youtu.be/LZfIPCXcIPE)
+{% endcolumn %}
+{% endcolumns %}
 
 ## Setting Up Experiments the Right Way
 

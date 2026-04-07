@@ -463,6 +463,228 @@ function convertIframesToEmbeds(src) {
   return out;
 }
 
+function basicHtmlToMarkdown(src) {
+  let out = String(src);
+
+  // Links
+  out = out.replace(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, (_all, href, text) => {
+    const t = String(text).replace(/<[^>]+>/g, '').trim();
+    return `[${t || href}](${href})`;
+  });
+
+  // Headings (common in guides asides)
+  out = out.replace(/<h2\b[^>]*>([\s\S]*?)<\/h2>/gi, (_all, inner) => {
+    const t = String(inner).replace(/<[^>]+>/g, '').replace(/\*\*/g, '').trim();
+    return `### ${t}`;
+  });
+  out = out.replace(/<h3\b[^>]*>([\s\S]*?)<\/h3>/gi, (_all, inner) => {
+    const t = String(inner).replace(/<[^>]+>/g, '').replace(/\*\*/g, '').trim();
+    return `### ${t}`;
+  });
+
+  // Paragraph-like wrappers
+  out = out.replace(/<\/?p\b[^>]*>/gi, '\n');
+  out = out.replace(/<\/?aside\b[^>]*>/gi, '\n');
+
+  // Strip div/section wrappers (structure handled by caller)
+  out = out.replace(/<\/?div\b[^>]*>/gi, '\n');
+
+  // Any remaining tags: drop
+  out = out.replace(/<[^>]+>/g, '');
+
+  // Normalize whitespace
+  out = out.replace(/\n{3,}/g, '\n\n').trim();
+  return out;
+}
+
+function spanToPercent(span) {
+  const s = Math.max(1, Math.min(12, Number(span) || 0));
+  const pct = (s / 12) * 100;
+  // Keep stable-ish formatting; GitBook accepts strings like "58.33%".
+  return `${pct.toFixed(2).replace(/\.00$/, '')}%`;
+}
+
+function pickSpanPairFromPx(leftPx, rightPx) {
+  const l = Number(leftPx);
+  const r = Number(rightPx);
+  if (!Number.isFinite(l) || !Number.isFinite(r) || l <= 0 || r <= 0) {
+    return { leftSpan: 6, rightSpan: 6 };
+  }
+  const total = l + r;
+  const left = Math.round((l / total) * 12);
+  const leftSpan = Math.max(1, Math.min(11, left));
+  const rightSpan = 12 - leftSpan;
+  return { leftSpan, rightSpan };
+}
+
+function extractFirstPxFromStyleDivOpenTag(openTag) {
+  // Extract first px value from common style bits like flex: '1 1 420px', minWidth: '280px'
+  const m = openTag.match(/(\d+(?:\.\d+)?)px/i);
+  return m ? Number(m[1]) : null;
+}
+
+function convertSectionAsideToColumns(src) {
+  // Convert a section that pairs an embed (left) with an aside (right) into GitBook columns.
+  // This matches patterns used in Guides like:
+  // <section ...>
+  //   ... {% embed url="..." %} ...
+  //   <aside>...</aside>
+  // </section>
+  return String(src).replace(/<section\b[\s\S]*?>[\s\S]*?<\/section>/gi, (sectionBlock) => {
+    const embedMatch = sectionBlock.match(/\{%\s*embed\s+url="[^"]+"\s*%\}/i);
+    const asideMatch = sectionBlock.match(/<aside\b[\s\S]*?>[\s\S]*?<\/aside>/i);
+    if (!embedMatch || !asideMatch) return sectionBlock;
+
+    const embed = embedMatch[0].trim();
+    const asideMd = basicHtmlToMarkdown(asideMatch[0]);
+
+    // Default: 7/12 + 5/12 split for media + text.
+    const leftWidth = spanToPercent(7);
+    const rightWidth = spanToPercent(5);
+
+    return [
+      '{% columns %}',
+      `{% column width="${leftWidth}" %}`,
+      embed,
+      '{% endcolumn %}',
+      '',
+      `{% column width="${rightWidth}" %}`,
+      asideMd,
+      '{% endcolumn %}',
+      '{% endcolumns %}',
+    ]
+      .join('\n')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+  });
+}
+
+function findMatchingClosingDivIndex(s, openIdx) {
+  // openIdx points at '<div'
+  const OPEN = '<div';
+  const CLOSE = '</div>';
+  let idx = openIdx;
+  let depth = 0;
+  while (idx < s.length) {
+    const nextOpen = s.indexOf(OPEN, idx);
+    const nextClose = s.indexOf(CLOSE, idx);
+    if (nextClose === -1) return -1;
+    if (nextOpen !== -1 && nextOpen < nextClose) {
+      depth += 1;
+      idx = nextOpen + OPEN.length;
+      continue;
+    }
+    depth -= 1;
+    idx = nextClose + CLOSE.length;
+    if (depth === 0) return idx;
+  }
+  return -1;
+}
+
+function extractFirstTwoStyledChildDivs(inner) {
+  const OPEN = '<div';
+  const res = [];
+  let i = 0;
+  while (i < inner.length && res.length < 2) {
+    const openIdx = inner.indexOf(OPEN, i);
+    if (openIdx === -1) break;
+    const tagEnd = inner.indexOf('>', openIdx);
+    if (tagEnd === -1) break;
+    const openTag = inner.slice(openIdx, tagEnd + 1);
+    if (!/style=\{\{/.test(openTag)) {
+      i = tagEnd + 1;
+      continue;
+    }
+    const closeIdx = findMatchingClosingDivIndex(inner, openIdx);
+    if (closeIdx === -1) break;
+    const whole = inner.slice(openIdx, closeIdx);
+    // Extract body between first '>' and last '</div>'
+    const bodyStart = whole.indexOf('>') + 1;
+    const bodyEnd = whole.lastIndexOf('</div>');
+    const body = bodyEnd > bodyStart ? whole.slice(bodyStart, bodyEnd) : '';
+    res.push({ body: body.trim(), openTag });
+    i = closeIdx;
+  }
+  return res.length === 2 ? res : null;
+}
+
+function convertFlexDivsToColumns(src) {
+  // Convert common Guides pattern:
+  // <div style={{ display: 'flex', ... }}>
+  //   <div style={{ flex: ... }}>...</div>
+  //   <div style={{ flex: ... }}>...</div>
+  // </div>
+  //
+  // into GitBook columns with the two child div bodies.
+  const s = String(src);
+  let out = '';
+  let i = 0;
+  while (i < s.length) {
+    const openIdx = s.indexOf('<div', i);
+    if (openIdx === -1) {
+      out += s.slice(i);
+      break;
+    }
+    const tagEnd = s.indexOf('>', openIdx);
+    if (tagEnd === -1) {
+      out += s.slice(i);
+      break;
+    }
+    const openTag = s.slice(openIdx, tagEnd + 1);
+    const isFlex =
+      /style=\{\{[\s\S]*?display\s*:\s*['"]flex['"][\s\S]*?\}\}/.test(openTag) ||
+      /style=\{\{[\s\S]*?display\s*:\s*"flex"[\s\S]*?\}\}/.test(openTag);
+    if (!isFlex) {
+      out += s.slice(i, tagEnd + 1);
+      i = tagEnd + 1;
+      continue;
+    }
+
+    const closeIdx = findMatchingClosingDivIndex(s, openIdx);
+    if (closeIdx === -1) {
+      out += s.slice(i, tagEnd + 1);
+      i = tagEnd + 1;
+      continue;
+    }
+    const whole = s.slice(openIdx, closeIdx);
+    const bodyStart = whole.indexOf('>') + 1;
+    const bodyEnd = whole.lastIndexOf('</div>');
+    const inner = bodyEnd > bodyStart ? whole.slice(bodyStart, bodyEnd) : '';
+    const children = extractFirstTwoStyledChildDivs(inner);
+    if (!children) {
+      out += s.slice(i, closeIdx);
+      i = closeIdx;
+      continue;
+    }
+
+    const leftPx = extractFirstPxFromStyleDivOpenTag(children[0].openTag) ?? 420;
+    const rightPx = extractFirstPxFromStyleDivOpenTag(children[1].openTag) ?? 300;
+    const { leftSpan, rightSpan } = pickSpanPairFromPx(leftPx, rightPx);
+    const leftWidth = spanToPercent(leftSpan);
+    const rightWidth = spanToPercent(rightSpan);
+
+    // Keep child content mostly as-is; downstream converters will clean styles/links/etc.
+    const columns = [
+      '{% columns %}',
+      `{% column width="${leftWidth}" %}`,
+      children[0].body,
+      '{% endcolumn %}',
+      '',
+      `{% column width="${rightWidth}" %}`,
+      children[1].body,
+      '{% endcolumn %}',
+      '{% endcolumns %}',
+    ]
+      .join('\n')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+
+    out += s.slice(i, openIdx) + columns;
+    i = closeIdx;
+  }
+  return out;
+}
+
 function convertExtendedButton(src) {
   // Convert the custom MDX button component into a GitBook button.
   // Example:
@@ -1097,9 +1319,11 @@ function convertOne(src, maps) {
   out = promoteMetadataDescriptionToDescription(out);
   out = stripMdxExportsAndImports(out);
   out = jsxHtmlToHtml(out);
+  out = convertFlexDivsToColumns(out);
   out = stripJsxStyleObjectsAndAttributeBraces(out);
   out = stripJsxComments(out);
   out = convertIframesToEmbeds(out);
+  out = convertSectionAsideToColumns(out);
   out = convertExtendedButton(out);
   out = convertCards(out);
   out = convertCallouts(out);

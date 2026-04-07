@@ -10,40 +10,39 @@ Mixpanel is a **digital analytics platform** that helps teams continuously impro
 
 ## See Mixpanel in Action
 
-<section id="video" aria-label="Mixpanel overview video" >
-<div>
-    <div >
-        {% embed url="https://www.youtube.com/watch?v=sRQCfmvh3vg" %}
+{% columns %}
+{% column width="58.33%" %}
+{% embed url="https://www.youtube.com/watch?v=sRQCfmvh3vg" %}
+{% endcolumn %}
 
-    <aside >
-      <h2 >**Mixpanel Overview**</h2>
-      <p>
+{% column width="41.67%" %}
+### Mixpanel Overview
+      
+
         In this 5-minute overview, learn how Mixpanel powers the continuous innovation loop––from observation to impact.
-      </p>
-      <a href="https://youtu.be/sRQCfmvh3vg"
-         target="_blank" rel="noopener noreferrer" >
-        Open in YouTube →
-      </a>
-    </aside>
+      
 
-</section>
+      [Open in YouTube →](https://youtu.be/sRQCfmvh3vg)
+{% endcolumn %}
+{% endcolumns %}
 
 ---
 
 ## Mixpanel Features That Power Continuous Innovation
 
-<div >
-  <div >
-
+{% columns %}
+{% column width="58.33%" %}
 Mixpanel is built around a simple but powerful framework for continuous improvement: **Observe → Analyze → Decide → Act (OADA)**.
 
 Each stage in the OADA framework connects directly to Mixpanel’s tools, helping you move from data to observation to action–—all in one platform.
+{% endcolumn %}
 
-  <div >
-
+{% column width="41.67%" %}
 ![OADA Loop diagram](/oada-loop-simple-wide-fcf9fa.png)
 
 *The cycle of continuous innovation.*
+{% endcolumn %}
+{% endcolumns %}
 
 | 👀 **Observe** | 📊 **Analyze** | 💡 **Decide** | 🚀 **Act** |
 |---|---|---|---|
