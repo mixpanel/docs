@@ -1,3 +1,23 @@
+---
+description: Get all the latest updates in your inbox.
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: false
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+---
+
 # Changelog
 
 {% updates format="full" %}
@@ -6,7 +26,7 @@
 
 Monitor security, troubleshoot issues, and maintain compliance with activity tracking for your organization and projects.
 
-<a class="button secondary" href="./2026-04-06-audit-logs.md">Read more</a>
+<a href="2026-04-06-audit-logs.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-03-24" tags="announcement" %}
@@ -16,7 +36,7 @@ Connect Mixpanel to Claude, ChatGPT, Gemini, Cursor, Notion, and more. Ask produ
 
 ![](.gitbook/assets/changelog/changelog-mcp-launch.png)
 
-<a class="button secondary" href="./2026-03-24-mixpanel-mcp.md">Read more</a>
+<a href="2026-03-24-mixpanel-mcp.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-03-13" tags="update" %}
@@ -24,7 +44,7 @@ Connect Mixpanel to Claude, ChatGPT, Gemini, Cursor, Notion, and more. Ask produ
 
 Feature Flags and Experiments are now supported in Go (server-side) and Flutter (client-side) SDKs.
 
-<a class="button secondary" href="./2026-03-13-go-flutter-feature-flags.md">Read more</a>
+<a href="2026-03-13-go-flutter-feature-flags.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-03-12" tags="announcement" %}
@@ -34,7 +54,7 @@ Enter your website, add context, and generate a structured Metric Tree tailored 
 
 ![](.gitbook/assets/ai-for-metric-trees-v2.png)
 
-<a class="button secondary" href="./2026-03-12-metric-trees-ai.md">Read more</a>
+<a href="2026-03-12-metric-trees-ai.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-03-03" tags="update" %}
@@ -42,7 +62,7 @@ Enter your website, add context, and generate a structured Metric Tree tailored 
 
 Target feature variants based on what users do, not just who they are.
 
-<a class="button secondary" href="./2026-03-03-runtime-events.md">Read more</a>
+<a href="2026-03-03-runtime-events.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-02-27" tags="update" %}
@@ -50,7 +70,7 @@ Target feature variants based on what users do, not just who they are.
 
 See which feature flags a user was exposed to — and which variant they saw — directly on their profile.
 
-<a class="button secondary" href="./2026-02-27-feature-flags-user-profiles.md">Read more</a>
+<a href="2026-02-27-feature-flags-user-profiles.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-02-26" tags="update" %}
@@ -58,7 +78,7 @@ See which feature flags a user was exposed to — and which variant they saw —
 
 Starting April 2026, we will be deprecating support for legacy TLS 1.0 and 1.1 protocols and adopting CNSA 2.0 cryptographic algorithms across our APIs and web app.
 
-<a class="button secondary" href="./2026-02-26-tls1011-deprecation.md">Read more</a>
+<a href="2026-02-26-tls1011-deprecation.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-02-24" tags="update" %}
@@ -66,7 +86,7 @@ Starting April 2026, we will be deprecating support for legacy TLS 1.0 and 1.1 p
 
 We’ve introduced AI-Powered Event Suggestions for Templates to help streamline the process of mapping your events to templates, reducing guesswork and saving time during setup.
 
-<a class="button secondary" href="./2026-02-24-ai-event-suggestions.md">Read more</a>
+<a href="2026-02-24-ai-event-suggestions.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-02-24" tags="update" %}
@@ -76,7 +96,7 @@ Growth customers now have access to powerful security and governance capabilitie
 
 ![](.gitbook/assets/changelog/growth-security-features.png)
 
-<a class="button secondary" href="./2026-02-24-growth-plan-sso-data-views.md">Read more</a>
+<a href="2026-02-24-growth-plan-sso-data-views.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-02-24" tags="update" %}
@@ -86,7 +106,7 @@ We’re pleased to announce the Postgres Connector, now available in Public Beta
 
 ![](.gitbook/assets/changelog/postgres-connector-changelog.png)
 
-<a class="button secondary" href="./2026-02-24-postgres-connector.md">Read more</a>
+<a href="2026-02-24-postgres-connector.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-02-20" tags="update" %}
@@ -94,7 +114,7 @@ We’re pleased to announce the Postgres Connector, now available in Public Beta
 
 Starting July 2026, we will be fully retiring the legacy US-to-EU Data Forwarding Service for EU Projects
 
-<a class="button secondary" href="./2026-02-20-eu-forwarding-deprecation.md">Read more</a>
+<a href="2026-02-20-eu-forwarding-deprecation.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-02-17" tags="update" %}
@@ -104,7 +124,7 @@ Target via group cohorts — cohorts of companies, organizations, or any data gr
 
 ![](.gitbook/assets/changelog/data-group-cohort-targeting.png)
 
-<a class="button secondary" href="./2026-02-17-group-cohort-targeting.md">Read more</a>
+<a href="2026-02-17-group-cohort-targeting.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-01-30" tags="update" %}
@@ -112,7 +132,7 @@ Target via group cohorts — cohorts of companies, organizations, or any data gr
 
 Custom Alerts can now send notifications via webhooks, enabling you to integrate Mixpanel alerts with any third-party platform or custom system in your stack.
 
-<a class="button secondary" href="./2026-01-30-webhook-alert.md">Read more</a>
+<a href="2026-01-30-webhook-alert.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-01-28" tags="update" %}
@@ -120,7 +140,7 @@ Custom Alerts can now send notifications via webhooks, enabling you to integrate
 
 A new timeline visualization for annotations that shows how different event types align across your data, with interactive exploration and tag-based filtering.
 
-<a class="button secondary" href="./2026-01-28-annotations-timeline.md">Read more</a>
+<a href="2026-01-28-annotations-timeline.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-01-27" tags="update" %}
@@ -130,7 +150,7 @@ Data Volume Monitoring is now on be default for new enterprise customers. Enterp
 
 ![](.gitbook/assets/changelog/dvm-default-on.png)
 
-<a class="button secondary" href="./2026-01-27-dvm-default-on.md">Read more</a>
+<a href="2026-01-27-dvm-default-on.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-01-26" tags="update" %}
@@ -138,7 +158,7 @@ Data Volume Monitoring is now on be default for new enterprise customers. Enterp
 
 Starting April 2026, we will be fully retiring the /decide endpoint, which we began deprecating in 2022. Newer SDK versions no longer rely on it.
 
-<a class="button secondary" href="./2026-01-26-decide-deprecation.md">Read more</a>
+<a href="2026-01-26-decide-deprecation.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2026-01-20" tags="update" %}
@@ -148,7 +168,7 @@ Debug and validate your Mixpanel tracking implementation directly in your browse
 
 ![](.gitbook/assets/changelog/browser-extension.png)
 
-<a class="button secondary" href="./2026-01-20-mixpanel-data-inspector-v2.md">Read more</a>
+<a href="2026-01-20-mixpanel-data-inspector-v2.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-12-22" tags="update" %}
@@ -158,7 +178,7 @@ Target feature rollouts using live application context evaluated at runtime.
 
 ![](.gitbook/assets/changelog/runtime.png)
 
-<a class="button secondary" href="./2025-12-22-runtime-targeting.md">Read more</a>
+<a href="2025-12-22-runtime-targeting.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-12-17" tags="update" %}
@@ -166,7 +186,7 @@ Target feature rollouts using live application context evaluated at runtime.
 
 Updated Guardrails for Insights Reports, covering Date Range constraints for 'All Events' and Line/Column charts, as well as Metric Block Limits.
 
-<a class="button secondary" href="./2025-12-17-date-range-limits.md">Read more</a>
+<a href="2025-12-17-date-range-limits.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-12-11" tags="update" %}
@@ -174,7 +194,7 @@ Updated Guardrails for Insights Reports, covering Date Range constraints for 'Al
 
 Target feature rollouts using live application context evaluated at runtime.
 
-<a class="button secondary" href="./2025-12-11-dynamic-config.md">Read more</a>
+<a href="2025-12-11-dynamic-config.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-11-20" tags="update" %}
@@ -184,7 +204,7 @@ MCP Support for India and EU Projects
 
 ![](.gitbook/assets/changelog/MCP-region.png)
 
-<a class="button secondary" href="./2025-11-20-mcp-in-eu.md">Read more</a>
+<a href="2025-11-20-mcp-in-eu.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-11-20" tags="update" %}
@@ -194,7 +214,7 @@ Select between Dynamic and Manual Segments in your reports to control how breakd
 
 ![](.gitbook/assets/changelog/topn.png)
 
-<a class="button secondary" href="./2025-11-20-topn.md">Read more</a>
+<a href="2025-11-20-topn.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-11-14" tags="announcement" %}
@@ -204,7 +224,7 @@ Let AI do the watching for you with accurate summaries that help you understand 
 
 ![](.gitbook/assets/nov_sr_changelog_ai.png)
 
-<a class="button secondary" href="./2025-11-14-session-replay-ai-summaries.md">Read more</a>
+<a href="2025-11-14-session-replay-ai-summaries.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-11-14" tags="announcement" %}
@@ -214,7 +234,7 @@ Find user friction fast—view frustration signals in replays and analyze them i
 
 ![](.gitbook/assets/nov_sr_changelog_rage.png)
 
-<a class="button secondary" href="./2025-11-14-session-replay-frustration-signals.md">Read more</a>
+<a href="2025-11-14-session-replay-frustration-signals.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-11-14" tags="announcement" %}
@@ -224,7 +244,7 @@ See engagement differences at a glance with side-by-side heatmap comparisons.
 
 ![](.gitbook/assets/nov_sr_changelog_hmcomparisons.png)
 
-<a class="button secondary" href="./2025-11-14-session-replay-heatmap-comparison.md">Read more</a>
+<a href="2025-11-14-session-replay-heatmap-comparison.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-11-13" tags="update" %}
@@ -234,7 +254,7 @@ Mixpanel now allows you to select the colors of various segments in your reports
 
 ![](.gitbook/assets/changelog/segment-coloring.png)
 
-<a class="button secondary" href="./2025-11-13-filter-at-item-level.md">Read more</a>
+<a href="2025-11-13-filter-at-item-level.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-11-04" tags="announcement" %}
@@ -244,7 +264,7 @@ We're excited to announce our integration with Langfuse, the open-source LLM eng
 
 ![](.gitbook/assets/changelog/mixpanel-langfuse-integration.png)
 
-<a class="button secondary" href="./2025-11-04-langfuse-integration.md">Read more</a>
+<a href="2025-11-04-langfuse-integration.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-10-13" tags="announcement" %}
@@ -254,7 +274,7 @@ Safely test new features, measure impact, and roll out to the right users — wi
 
 ![](.gitbook/assets/changelog/feature_flags.png)
 
-<a class="button secondary" href="./2025-10-13-feature-flagging.md">Read more</a>
+<a href="2025-10-13-feature-flagging.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-09-26" tags="update" %}
@@ -264,7 +284,7 @@ Debug and validate your Mixpanel tracking implementation with real-time event mo
 
 ![](.gitbook/assets/changelog/browser-extension.png)
 
-<a class="button secondary" href="./2025-09-26-mixpanel-data-inspector.md">Read more</a>
+<a href="2025-09-26-mixpanel-data-inspector.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-09-22" tags="update" %}
@@ -274,7 +294,7 @@ Review your metrics against different layers of context using Annotation tags an
 
 ![](.gitbook/assets/changelog/session-replay-in-lexicon.png)
 
-<a class="button secondary" href="./2025-09-22-session-replay-in-lexicon.md">Read more</a>
+<a href="2025-09-22-session-replay-in-lexicon.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-09-17" tags="announcement" %}
@@ -284,7 +304,7 @@ Review your metrics against different layers of context using Annotation tags an
 
 ![](.gitbook/assets/changelog/annotations-tags.png)
 
-<a class="button secondary" href="./2025-09-17-annotations.md">Read more</a>
+<a href="2025-09-17-annotations.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-09-10" tags="update" %}
@@ -294,7 +314,7 @@ Talk to your Mixpanel data using natural language. The MCP Server enables AI too
 
 ![](.gitbook/assets/changelog/changelog-mcp-beta.png)
 
-<a class="button secondary" href="./2025-09-10-mixpanel-mcp.md">Read more</a>
+<a href="2025-09-10-mixpanel-mcp.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-09-08" tags="update" %}
@@ -304,7 +324,7 @@ You can find your Cohorts in Lexicon, alongside your other saved definitions lik
 
 ![](.gitbook/assets/changelog/cohorts-change.png)
 
-<a class="button secondary" href="./2025-09-08-cohorts-in-lexicon.md">Read more</a>
+<a href="2025-09-08-cohorts-in-lexicon.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-09-02" tags="update" %}
@@ -314,7 +334,7 @@ New default Billing and Data Retention policies for simpler pricing and and enha
 
 ![](.gitbook/assets/changelog/billing-data-retention.png)
 
-<a class="button secondary" href="./2025-09-02-data-retention-update.md">Read more</a>
+<a href="2025-09-02-data-retention-update.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-08-22" tags="update" %}
@@ -324,7 +344,7 @@ Expand images in Query Builder's context panel for a clearer view when hovering 
 
 ![](.gitbook/assets/changelog/image-expansion.gif)
 
-<a class="button secondary" href="./2025-08-22-image-expansion.md">Read more</a>
+<a href="2025-08-22-image-expansion.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-08-18" tags="announcement" %}
@@ -334,7 +354,7 @@ Growth customers can now purchase up to 500K monthly / 6M annual replays directl
 
 ![](.gitbook/assets/changelog/growth-custom-session-replay.png)
 
-<a class="button secondary" href="./2025-08-18-growth-custom-session-replay.md">Read more</a>
+<a href="2025-08-18-growth-custom-session-replay.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-08-13" tags="update" %}
@@ -344,7 +364,7 @@ Now you can replay user sessions for web and mobile (iOS + Android), all in one 
 
 ![](.gitbook/assets/changelog/mobile-sr.png)
 
-<a class="button secondary" href="./2025-08-13-mobile-sr.md">Read more</a>
+<a href="2025-08-13-mobile-sr.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-08-11" tags="announcement" %}
@@ -354,7 +374,7 @@ Confidently ship features your users love, with our fully revamped experimentati
 
 ![](.gitbook/assets/changelog/experimentation_reporting.webp)
 
-<a class="button secondary" href="./2025-08-11-experimentation-reporting.md">Read more</a>
+<a href="2025-08-11-experimentation-reporting.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-08-11" tags="announcement" %}
@@ -364,7 +384,7 @@ Turn strategy into action: Align teams to business goals with a context-rich, in
 
 ![](.gitbook/assets/changelog/latest_metric_trees.gif)
 
-<a class="button secondary" href="./2025-08-11-metric-trees.md">Read more</a>
+<a href="2025-08-11-metric-trees.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-08-10" tags="update" %}
@@ -374,7 +394,7 @@ Save custom column widths in Report and Board tables
 
 ![](.gitbook/assets/changelog/column-widths.png)
 
-<a class="button secondary" href="./2025-08-10-save-columns.md">Read more</a>
+<a href="2025-08-10-save-columns.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-08-05" tags="announcement" %}
@@ -384,15 +404,15 @@ A new way to define and standardize your KPIs in Mixpanel.
 
 ![](.gitbook/assets/changelog/saved_metrics.png)
 
-<a class="button secondary" href="./2025-08-05-saved-metrics.md">Read more</a>
+<a href="2025-08-05-saved-metrics.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-07-30" tags="update" %}
 ## Heatmaps for Web
 
-Now available in Mixpanel: Heatmaps, a better  way to visually understand your customers.
+Now available in Mixpanel: Heatmaps, a better way to visually understand your customers.
 
-<a class="button secondary" href="./2025-07-30-heatmaps.md">Read more</a>
+<a href="2025-07-30-heatmaps.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-07-15" tags="update" %}
@@ -402,7 +422,7 @@ Tailor your Mixpanel experience to suit the needs of your organization. Now, pro
 
 ![](.gitbook/assets/changelog/homepage-board.png)
 
-<a class="button secondary" href="./2025-07-15-homepage-board.md">Read more</a>
+<a href="2025-07-15-homepage-board.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-05-19" tags="announcement" %}
@@ -412,7 +432,7 @@ Mixpanel’s AI Company KPIs template helps you determine which AI metrics to tr
 
 ![](.gitbook/assets/changelog/analytics-for-ai-template.png)
 
-<a class="button secondary" href="./2025-05-19-AI-company-metrics.md">Read more</a>
+<a href="2025-05-19-AI-company-metrics.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-04-22" tags="update" %}
@@ -420,7 +440,7 @@ Mixpanel’s AI Company KPIs template helps you determine which AI metrics to tr
 
 Mixpanel's new funnel re-entry mode guarantees the ability to find a funnel conversion if a conversion exists, irrespective of if it's the user's first or fifth attempt to enter the funnel.
 
-<a class="button secondary" href="./2025-04-22-optimized-funnel-reetnry.md">Read more</a>
+<a href="2025-04-22-optimized-funnel-reetnry.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-04-16" tags="update" %}
@@ -430,7 +450,7 @@ Mixpanel's new navigation makes it easier to get around and stay in the zone, al
 
 ![](.gitbook/assets/changelog/global-sidenav.png)
 
-<a class="button secondary" href="./2025-04-16-global-sidenav.md">Read more</a>
+<a href="2025-04-16-global-sidenav.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-03-27" tags="announcement" %}
@@ -440,7 +460,7 @@ Data Standards helps you keep your data organized and understandable, by enforci
 
 ![](.gitbook/assets/changelog/data-standards.png)
 
-<a class="button secondary" href="./2025-03-27-data-standards.md">Read more</a>
+<a href="2025-03-27-data-standards.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-03-25" tags="announcement" %}
@@ -450,7 +470,7 @@ Mirror is a new mode on Warehouse Connectors that keeps Mixpanel in perfect sync
 
 ![](.gitbook/assets/changelog/Mirror-Mode-2468x1480.webp)
 
-<a class="button secondary" href="./2025-02-25-mirror-redshift.md">Read more</a>
+<a href="2025-02-25-mirror-redshift.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-02-10" tags="update" %}
@@ -458,9 +478,9 @@ Mirror is a new mode on Warehouse Connectors that keeps Mixpanel in perfect sync
 
 Two new features built for B2B account analysis are now available for customers with the Group Analytics add-on! You can now improve adoption and reduce churn risk by monitoring strategic accounts with out-of-the-box Account Profiles and activation metrics.
 
-![](.gitbook/assets/changelog/B2B - Summary.png)
+!\[]\(.gitbook/assets/changelog/B2B - Summary.png)
 
-<a class="button secondary" href="./2025-02-10-b2b-company-analytics.md">Read more</a>
+<a href="2025-02-10-b2b-company-analytics.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-02-04" tags="announcement" %}
@@ -470,7 +490,7 @@ No more feature limits. Get 1M monthly events free on Mixpanel’s Growth plan. 
 
 ![](.gitbook/assets/changelog/1million-free-events.png)
 
-<a class="button secondary" href="./2025-02-04-1million-events-free-on-growth.md">Read more</a>
+<a href="2025-02-04-1million-events-free-on-growth.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-02-04" tags="announcement" %}
@@ -480,7 +500,7 @@ Introducing Autocapture from Mixpanel! With just a single code snippet, you can 
 
 ![](.gitbook/assets/changelog/auto-capture.png)
 
-<a class="button secondary" href="./2025-02-04-autocapture.md">Read more</a>
+<a href="2025-02-04-autocapture.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-01-31" tags="announcement" %}
@@ -490,7 +510,7 @@ Session Replays now work for all your data, not just client-side or front-end ev
 
 ![](.gitbook/assets/changelog/server-side-stitching.png)
 
-<a class="button secondary" href="./2025-01-31-server-side-stitching.md">Read more</a>
+<a href="2025-01-31-server-side-stitching.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-01-21" tags="update" %}
@@ -500,7 +520,7 @@ The revamped startup program offers eligible companies with complete access to M
 
 ![](.gitbook/assets/changelog/revamped-startup-program.png)
 
-<a class="button secondary" href="./2025-01-21-revamped-startup-program.md">Read more</a>
+<a href="2025-01-21-revamped-startup-program.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2025-01-15" tags="update" %}
@@ -510,7 +530,7 @@ Now you can replay user sessions for React Native apps, bringing Session Replay 
 
 ![](.gitbook/assets/rn-sr-ga.png)
 
-<a class="button secondary" href="./2026-01-15-react-native-sr.md">Read more</a>
+<a href="2026-01-15-react-native-sr.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-12-19" tags="update" %}
@@ -520,7 +540,7 @@ You can now customize how filters appear on Boards with new settings. Pin a filt
 
 ![](.gitbook/assets/changelog/pinned-filters-settings-2.png)
 
-<a class="button secondary" href="./2025-01-10-pinned-filters.md">Read more</a>
+<a href="2025-01-10-pinned-filters.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-12-02" tags="announcement" %}
@@ -530,7 +550,7 @@ Session Replay is now available on all of our latest plans! Customers can update
 
 ![](.gitbook/assets/changelog/session-replay-all-plans.png)
 
-<a class="button secondary" href="./2024-12-02-freeSRonbaseplans.md">Read more</a>
+<a href="2024-12-02-freeSRonbaseplans.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-11-14" tags="update" %}
@@ -540,7 +560,7 @@ Governors can now designate metrics, events, and formulas as Verified, adding a 
 
 ![](.gitbook/assets/changelog/verified-content.png)
 
-<a class="button secondary" href="./2024-11-14-verified-content.md">Read more</a>
+<a href="2024-11-14-verified-content.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-10-11" tags="announcement" %}
@@ -550,7 +570,7 @@ Like our EU Data Residency, Mixpanel's India Data Residency helps you process, p
 
 ![](.gitbook/assets/changelog/mixpanel-india-data-residency.png)
 
-<a class="button secondary" href="./2024-10-11-india-data-residency.md">Read more</a>
+<a href="2024-10-11-india-data-residency.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-10-09" tags="update" %}
@@ -560,7 +580,7 @@ Mixpanel now allows you to set the units for each of your metrics. You can set t
 
 ![](.gitbook/assets/changelog/metric-units.png)
 
-<a class="button secondary" href="./2024-10-09-metric-units.md">Read more</a>
+<a href="2024-10-09-metric-units.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-10-09" tags="update" %}
@@ -570,7 +590,7 @@ Mixpanel now allows you to select the colors of various segments in your reports
 
 ![](.gitbook/assets/changelog/segment-coloring.png)
 
-<a class="button secondary" href="./2024-10-09-segment-coloring.md">Read more</a>
+<a href="2024-10-09-segment-coloring.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-10-08" tags="announcement" %}
@@ -578,7 +598,7 @@ Mixpanel now allows you to select the colors of various segments in your reports
 
 Mixpanel now helps you analyze the impact of your product and marketing initiatives on your key company revenue metrics.
 
-<a class="button secondary" href="./2024-10-08-revenue-analytics.md">Read more</a>
+<a href="2024-10-08-revenue-analytics.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-09-23" tags="announcement" %}
@@ -588,7 +608,7 @@ Mixpanel is now available to use in additional languages, including Français, E
 
 ![](.gitbook/assets/changelog/localization.png)
 
-<a class="button secondary" href="./2024-09-23-mixpanel-in-your-language.md">Read more</a>
+<a href="2024-09-23-mixpanel-in-your-language.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-09-11" tags="announcement" %}
@@ -598,7 +618,7 @@ Mixpanel Session Replay is officially out of beta! Quickly pinpoint drop-offs in
 
 ![](.gitbook/assets/changelog/session-replay.png)
 
-<a class="button secondary" href="./2024-09-11-session-replay.md">Read more</a>
+<a href="2024-09-11-session-replay.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-07-17" tags="update" %}
@@ -608,7 +628,7 @@ You choose date ranges that are specified up to the minute. If there's a metric 
 
 ![](.gitbook/assets/changelog/minute-granularity.png)
 
-<a class="button secondary" href="./2024-07-17-minute-time-picker.md">Read more</a>
+<a href="2024-07-17-minute-time-picker.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-06-27" tags="update" %}
@@ -618,7 +638,7 @@ You can now customize the axes of your charts. Using this, you can build better 
 
 ![](.gitbook/assets/changelog/axis-customization.png)
 
-<a class="button secondary" href="./2024-06-27-axis-customization.md">Read more</a>
+<a href="2024-06-27-axis-customization.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-06-27" tags="update" %}
@@ -628,7 +648,7 @@ You can now set the color theme of your charts in Mixpanel. We have a few preset
 
 ![](.gitbook/assets/changelog/color-themes.png)
 
-<a class="button secondary" href="./2024-06-27-color-themes.md">Read more</a>
+<a href="2024-06-27-color-themes.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-06-18" tags="announcement" %}
@@ -638,7 +658,7 @@ Mirror is a new mode on Warehouse Connectors that keeps Mixpanel in perfect sync
 
 ![](.gitbook/assets/changelog/mirror-mode-hero.webp)
 
-<a class="button secondary" href="./2024-06-18-mirror-warehouse.md">Read more</a>
+<a href="2024-06-18-mirror-warehouse.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-06-18" tags="update" %}
@@ -648,7 +668,7 @@ Now when switch between Boards or reports, you will always see the side navigati
 
 ![](.gitbook/assets/changelog/persistent-nav.png)
 
-<a class="button secondary" href="./2024-06-18-persistent-navigation.md">Read more</a>
+<a href="2024-06-18-persistent-navigation.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-05-09" tags="announcement" %}
@@ -658,7 +678,7 @@ You can now view your time series as a column or stacked column chart in Insight
 
 ![](.gitbook/assets/changelog/analysis-hero.webp)
 
-<a class="button secondary" href="./2024-05-09-column-charts.md">Read more</a>
+<a href="2024-05-09-column-charts.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-05-09" tags="update" %}
@@ -668,7 +688,7 @@ Home is the new landing experience in Mixpanel. It’s for you to jump back into
 
 ![](.gitbook/assets/changelog/home-preview.png)
 
-<a class="button secondary" href="./2024-05-09-home.md">Read more</a>
+<a href="2024-05-09-home.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-04-08" tags="update" %}
@@ -676,7 +696,7 @@ Home is the new landing experience in Mixpanel. It’s for you to jump back into
 
 [Link to Demo](https://www.loom.com/share/3407a37ce1634f51b94b380c40c96306)
 
-<a class="button secondary" href="./2024-04-18-ai-chatbot-search-in-docs.md">Read more</a>
+<a href="2024-04-18-ai-chatbot-search-in-docs.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-04-03" tags="update" %}
@@ -684,7 +704,7 @@ Home is the new landing experience in Mixpanel. It’s for you to jump back into
 
 [Link to Demo](https://www.loom.com/share/81c25f63005d4d0da8d06c1558ac1c70)
 
-<a class="button secondary" href="./2024-04-03-plot-metrics-in-insights.md">Read more</a>
+<a href="2024-04-03-plot-metrics-in-insights.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-04-03" tags="update" %}
@@ -692,7 +712,7 @@ Home is the new landing experience in Mixpanel. It’s for you to jump back into
 
 [Link to Demo](https://www.loom.com/share/e84c62b2454d496b960fb0fdb09b9785)
 
-<a class="button secondary" href="./2024-04-03-save-funnel-retention-behaviors.md">Read more</a>
+<a href="2024-04-03-save-funnel-retention-behaviors.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-03-27" tags="update" %}
@@ -702,7 +722,7 @@ Home is the new landing experience in Mixpanel. It’s for you to jump back into
 
 ![](.gitbook/assets/changelog/spark-changelog.png)
 
-<a class="button secondary" href="./2024-03-27-spark.md">Read more</a>
+<a href="2024-03-27-spark.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-03-14" tags="update" %}
@@ -710,7 +730,7 @@ Home is the new landing experience in Mixpanel. It’s for you to jump back into
 
 [Link to Demo](https://www.loom.com/share/d45c325a7ee544a9965e90c3a5127257?sid=0cc8f226-72a4-4817-bd6d-13732a3b4237)
 
-<a class="button secondary" href="./2024-03-14-borrowed-properties.md">Read more</a>
+<a href="2024-03-14-borrowed-properties.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-03-11" tags="update" %}
@@ -718,7 +738,7 @@ Home is the new landing experience in Mixpanel. It’s for you to jump back into
 
 [Link to Demo](https://www.loom.com/share/dd4042654e6f46039d011a680fe93948)
 
-<a class="button secondary" href="./2024-03-11-retention-behaviors.md">Read more</a>
+<a href="2024-03-11-retention-behaviors.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-03-11" tags="update" %}
@@ -728,7 +748,7 @@ Boards are a useful tool to collect a series of reports in one place, but they s
 
 ![](.gitbook/assets/changelog/subscribetoboards.png)
 
-<a class="button secondary" href="./2024-03-11-sub-to-boards.md">Read more</a>
+<a href="2024-03-11-sub-to-boards.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-03-07" tags="update" %}
@@ -738,7 +758,7 @@ Boards are a useful tool to collect a series of reports in one place, but they s
 
 ![](.gitbook/assets/benchmarks-changelog.png)
 
-<a class="button secondary" href="./2024-03-07-benchmark.md">Read more</a>
+<a href="2024-03-07-benchmark.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-03-05" tags="update" %}
@@ -746,7 +766,7 @@ Boards are a useful tool to collect a series of reports in one place, but they s
 
 [Link to Demo](https://www.loom.com/share/0284fcd216c74397966996fbb558b053)
 
-<a class="button secondary" href="./2024-03-05-funnels-alerts.md">Read more</a>
+<a href="2024-03-05-funnels-alerts.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-03-05" tags="update" %}
@@ -754,7 +774,7 @@ Boards are a useful tool to collect a series of reports in one place, but they s
 
 [Link to Demo](https://www.loom.com/share/e6e9806db88b448bb82044033ac052cf)
 
-<a class="button secondary" href="./2024-03-05-funnels-behaviors.md">Read more</a>
+<a href="2024-03-05-funnels-behaviors.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-03-05" tags="update" %}
@@ -762,7 +782,7 @@ Boards are a useful tool to collect a series of reports in one place, but they s
 
 [Link to Demo](https://www.loom.com/share/5150be7a7b194de0ac538ff85c35c3ce)
 
-<a class="button secondary" href="./2024-03-05-funnels-ttc.md">Read more</a>
+<a href="2024-03-05-funnels-ttc.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-03-05" tags="update" %}
@@ -770,7 +790,7 @@ Boards are a useful tool to collect a series of reports in one place, but they s
 
 [Link to Demo](https://www.loom.com/share/e041e17a02d4429b84304ba0ce1345dc)
 
-<a class="button secondary" href="./2024-03-05-revenue-conversion.md">Read more</a>
+<a href="2024-03-05-revenue-conversion.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-03-05" tags="update" %}
@@ -780,7 +800,7 @@ Mixpanel now supports the ability to set the timeframe of your visualization by 
 
 ![](.gitbook/assets/changelog/xtd.png)
 
-<a class="button secondary" href="./2024-03-05-xtd.md">Read more</a>
+<a href="2024-03-05-xtd.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-02-27" tags="update" %}
@@ -788,7 +808,7 @@ Mixpanel now supports the ability to set the timeframe of your visualization by 
 
 Note: this is our latest offering for [Mixpanel Marketing Analytics](https://mixpanel.com/m/mixpanel-marketing-analytics/)
 
-<a class="button secondary" href="./2024-02-27-ad-performance.md">Read more</a>
+<a href="2024-02-27-ad-performance.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-02-13" tags="update" %}
@@ -796,7 +816,7 @@ Note: this is our latest offering for [Mixpanel Marketing Analytics](https://mix
 
 Mixpanel's funnels and retention reports are where you can see user behavior through a series of events. With our next set of changes, we are making funnels and retention reports more powerful, while making them easier to use and keeping our controls in a place consistent with insights.
 
-<a class="button secondary" href="./2024-02-13-new-funnels-retention.md">Read more</a>
+<a href="2024-02-13-new-funnels-retention.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-02-08" tags="update" %}
@@ -804,7 +824,7 @@ Mixpanel's funnels and retention reports are where you can see user behavior thr
 
 [Link to Demo](https://www.loom.com/share/eae9ce08b2e94104afe2f41b634d82ea)
 
-<a class="button secondary" href="./2024-02-08-data-volume-monitoring.md">Read more</a>
+<a href="2024-02-08-data-volume-monitoring.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-01-26" tags="update" %}
@@ -812,7 +832,7 @@ Mixpanel's funnels and retention reports are where you can see user behavior thr
 
 Event Approval now supports notifications for new properties on existing events, in addition to notifications for newly tracked events. You can turn on new property detection in project settings. For more information, check out our [docs](https://docs.mixpanel.com/docs/data-governance/event-approval).
 
-<a class="button secondary" href="./2024-01-25-new-property-detection.md">Read more</a>
+<a href="2024-01-25-new-property-detection.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2024-01-17" tags="update" %}
@@ -820,7 +840,7 @@ Event Approval now supports notifications for new properties on existing events,
 
 [Link to Demo](https://www.loom.com/share/2ebb3ec708334fd69e27130cf6bfc3db)
 
-<a class="button secondary" href="./2024-01-17-new-menus.md">Read more</a>
+<a href="2024-01-17-new-menus.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-11-22" tags="update" %}
@@ -828,7 +848,7 @@ Event Approval now supports notifications for new properties on existing events,
 
 [Link to Demo](https://www.loom.com/share/f7e0cbde17d04c6eac858f3d7e69aacf?sid=ef579161-ad52-46f4-96e9-a5ad2c500dcf)
 
-<a class="button secondary" href="./2023-11-22-event-context.md">Read more</a>
+<a href="2023-11-22-event-context.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-11-16" tags="update" %}
@@ -836,7 +856,7 @@ Event Approval now supports notifications for new properties on existing events,
 
 [Link to Demo](https://www.loom.com/share/0e773e307f574f398e5a3609462cfa01)
 
-<a class="button secondary" href="./2023-11-16-channel-classifier.md">Read more</a>
+<a href="2023-11-16-channel-classifier.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-11-16" tags="update" %}
@@ -844,7 +864,7 @@ Event Approval now supports notifications for new properties on existing events,
 
 [Link to Demo](https://www.loom.com/share/19461fe6014c48c3806721e735daac30?sid=3b6a69c3-3618-4300-8ce8-25d437ba32d4)
 
-<a class="button secondary" href="./2023-11-16-duration.md">Read more</a>
+<a href="2023-11-16-duration.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-11-16" tags="update" %}
@@ -852,7 +872,7 @@ Event Approval now supports notifications for new properties on existing events,
 
 [Link to Demo](https://www.loom.com/share/a8940230695943ecb743dda421fef673)
 
-<a class="button secondary" href="./2023-11-16-web-analytics.md">Read more</a>
+<a href="2023-11-16-web-analytics.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-11-09" tags="update" %}
@@ -860,15 +880,15 @@ Event Approval now supports notifications for new properties on existing events,
 
 [Link to Demo](https://www.loom.com/share/8579c1ac4e2a4b06a0a12e4416b07918?sid=7a3ccce7-5513-455f-8397-fb1269c807f1)
 
-<a class="button secondary" href="./2023-11-09-saved-formulas.md">Read more</a>
+<a href="2023-11-09-saved-formulas.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-11-07" tags="update" %}
 ## Lookup Tables Import now supported with Warehouse Connectors
 
-Today, all customers can use Warehouse Connectors to import Lookup Tables from their warehouse. For a list of supported warehouses, check out this [list](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/warehouse-connectors). This capability allows you to periodically enrich Mixpanel with data from your source-of-truth.
+Today, all customers can use Warehouse Connectors to import Lookup Tables from their warehouse. For a list of supported warehouses, check out this [list](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-in/tracking-methods/warehouse-connectors). This capability allows you to periodically enrich Mixpanel with data from your source-of-truth.
 
-<a class="button secondary" href="./2023-11-07-lookup-tables-warehouse-connectors.md">Read more</a>
+<a href="2023-11-07-lookup-tables-warehouse-connectors.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-11-07" tags="update" %}
@@ -876,15 +896,15 @@ Today, all customers can use Warehouse Connectors to import Lookup Tables from t
 
 [Link to Demo](https://www.loom.com/share/56a21b31e75342498317cbb6f31285eb?sid=5cd6c82c-87d4-48c3-9f19-1e44b8327923)
 
-<a class="button secondary" href="./2023-11-08-databricks-connector.md">Read more</a>
+<a href="2023-11-08-databricks-connector.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-11-02" tags="update" %}
 ## Count a Unique user towards one segment
 
-In the past, when breaking down an event counted by *Uniques*, you often came across this question: why is the sum of users in segments not equating the the overall uniques?
+In the past, when breaking down an event counted by _Uniques_, you often came across this question: why is the sum of users in segments not equating the the overall uniques?
 
-<a class="button secondary" href="./2023-11-02-uniques.md">Read more</a>
+<a href="2023-11-02-uniques.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-10-20" tags="update" %}
@@ -892,7 +912,7 @@ In the past, when breaking down an event counted by *Uniques*, you often came ac
 
 [Link to Demo](https://www.loom.com/share/9d992239e7ba498a99ae3442cd639b8d?sid=abff6216-3323-4811-9d67-bb31037d87c9)
 
-<a class="button secondary" href="./2023-10-20-report-iteration-workflow.md">Read more</a>
+<a href="2023-10-20-report-iteration-workflow.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-10-04" tags="update" %}
@@ -900,7 +920,7 @@ In the past, when breaking down an event counted by *Uniques*, you often came ac
 
 [Link to Demo](https://www.loom.com/share/76f4658dd850457e9634c706ee0d9430?sid=2cc72a2a-ca9b-406e-80d3-86500a29f48e)
 
-<a class="button secondary" href="./2023-10-04-redshift-connnector.md">Read more</a>
+<a href="2023-10-04-redshift-connnector.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-09-25" tags="update" %}
@@ -908,7 +928,7 @@ In the past, when breaking down an event counted by *Uniques*, you often came ac
 
 [Link to Demo](https://www.loom.com/share/f0d467f6b10247838f2edac6e8e4fca4)
 
-<a class="button secondary" href="./2023-09-25-2023-insights.md">Read more</a>
+<a href="2023-09-25-2023-insights.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-09-25" tags="update" %}
@@ -916,7 +936,7 @@ In the past, when breaking down an event counted by *Uniques*, you often came ac
 
 Profiles have always been a powerful tool to slice & dice your user-base to learn key insights about where your users are from, what browser they’re using, or any other property. The new functionality we’ve added to Profiles allows for more depth of analysis - specifically, you can compare these metrics alongside other events in the same view.
 
-<a class="button secondary" href="./2023-09-25-profiles.md">Read more</a>
+<a href="2023-09-25-profiles.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-09-19" tags="update" %}
@@ -924,7 +944,7 @@ Profiles have always been a powerful tool to slice & dice your user-base to lear
 
 Formulas have forever been an integral part of Mixpanel to create new metrics (Bounce Rate, Conversion) from existing data — and now, we’ve improved the usability of Formulas to help you encounter less roadblocks and speed up your analysis workflow.
 
-<a class="button secondary" href="./2023-09-19-formulas.md">Read more</a>
+<a href="2023-09-19-formulas.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-09-19" tags="update" %}
@@ -932,7 +952,7 @@ Formulas have forever been an integral part of Mixpanel to create new metrics (B
 
 It’s now possible to hide or unhide events from your visualization so you can focus on the metrics that matter.
 
-<a class="button secondary" href="./2023-09-19-hideunhide.md">Read more</a>
+<a href="2023-09-19-hideunhide.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-09-07" tags="update" %}
@@ -940,7 +960,7 @@ It’s now possible to hide or unhide events from your visualization so you can 
 
 ![changelog Image](.gitbook/assets/changelog/Starter-Animated.gif)
 
-<a class="button secondary" href="./2023-09-07-starter-board.md">Read more</a>
+<a href="2023-09-07-starter-board.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-09-07" tags="update" %}
@@ -948,7 +968,7 @@ It’s now possible to hide or unhide events from your visualization so you can 
 
 Templates are supposed to make your life easier, but we heard that figuring out how to access templates was confusing and difficult. So we’ve rolled out phase one of our plan to make finding templates easier, starting with when you click the New Board button.
 
-<a class="button secondary" href="./2023-09-07-template-discovery.md">Read more</a>
+<a href="2023-09-07-template-discovery.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-09-05" tags="update" %}
@@ -956,7 +976,7 @@ Templates are supposed to make your life easier, but we heard that figuring out 
 
 You can now use Warehouse Connectors to import User and Group tables from your warehouse. With this capability, you can extend source-of-truth data about users and groups into Mixpanel for analysis.
 
-<a class="button secondary" href="./2023-09-05-warehouse-connectors-users-groups.md">Read more</a>
+<a href="2023-09-05-warehouse-connectors-users-groups.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-08-30" tags="update" %}
@@ -964,7 +984,7 @@ You can now use Warehouse Connectors to import User and Group tables from your w
 
 [Link to Demo](https://www.loom.com/share/d68d2f2f213144d8817d414eddd88f46?sid=04b74494-7aea-4eb7-aeb3-943e41ac7ec3)
 
-<a class="button secondary" href="./2023-08-30-event-metadata.md">Read more</a>
+<a href="2023-08-30-event-metadata.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-08-29" tags="update" %}
@@ -972,7 +992,7 @@ You can now use Warehouse Connectors to import User and Group tables from your w
 
 You can now nest Boards within other Boards for more flexible, contextual organization of your analyses.
 
-<a class="button secondary" href="./2023-08-29-boards-on-boards.md">Read more</a>
+<a href="2023-08-29-boards-on-boards.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-08-14" tags="update" %}
@@ -980,7 +1000,7 @@ You can now nest Boards within other Boards for more flexible, contextual organi
 
 Your users will experience a multitude of touchpoints along their journey to a conversion moment like signup or purchase. But, how do you know which touchpoints are valuable - should you invest more budget in certain ads, or, are there certain banners on your website that get lots of clicks?
 
-<a class="button secondary" href="./2023-08-14-attribution-insights.md">Read more</a>
+<a href="2023-08-14-attribution-insights.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-08-10" tags="update" %}
@@ -988,7 +1008,7 @@ Your users will experience a multitude of touchpoints along their journey to a c
 
 [Link to Demo](https://www.loom.com/share/04f4ea75310744cdab477e1b47684db3?sid=ae77291d-d61a-4f91-9be0-887206896b18)
 
-<a class="button secondary" href="./2023-08-10-warehouse-connectors.md">Read more</a>
+<a href="2023-08-10-warehouse-connectors.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-08-02" tags="update" %}
@@ -996,7 +1016,7 @@ Your users will experience a multitude of touchpoints along their journey to a c
 
 We’re excited to announce that we have released a new design for Boards without data. Now when a report can’t populate, it will display one of two states: a faded out sample report or a “no data” status.
 
-<a class="button secondary" href="./2023-08-02-empty-states.md">Read more</a>
+<a href="2023-08-02-empty-states.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-07-27" tags="update" %}
@@ -1004,7 +1024,7 @@ We’re excited to announce that we have released a new design for Boards withou
 
 Introducing Move, a powerful new feature that allows you to move Boards from one project to another, or one organization to another. Simply hover over the menu icon in the top right corner and mouse over “Move to” to move a Board to a new project.
 
-<a class="button secondary" href="./2023-07-27-move.md">Read more</a>
+<a href="2023-07-27-move.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-06-16" tags="update" %}
@@ -1012,7 +1032,7 @@ Introducing Move, a powerful new feature that allows you to move Boards from one
 
 For ecommerce companies, understanding the purchase behavior of your users is vital when creating any revenue-driving strategy — whether that’s through website changes, marketing tactics, or product offerings.
 
-<a class="button secondary" href="./2023-06-16-cart-analysis.md">Read more</a>
+<a href="2023-06-16-cart-analysis.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-06-07" tags="update" %}
@@ -1020,15 +1040,15 @@ For ecommerce companies, understanding the purchase behavior of your users is vi
 
 [Link to Demo](https://www.loom.com/share/c0cc228cb4bc4e6c8ce25084178f8d30)
 
-<a class="button secondary" href="./2023-06-07-behavioral-breakdowns.md">Read more</a>
+<a href="2023-06-07-behavioral-breakdowns.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-06-06" tags="update" %}
 ## Track key ad metrics
 
-![ad_spend](https://github.com/mixpanel/docs/assets/130083255/1d171623-615f-4b47-a54d-883306fcd30c)
+![ad\_spend](https://github.com/mixpanel/docs/assets/130083255/1d171623-615f-4b47-a54d-883306fcd30c)
 
-<a class="button secondary" href="./2023-06-06-ad-data.md">Read more</a>
+<a href="2023-06-06-ad-data.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-06-06" tags="update" %}
@@ -1036,7 +1056,7 @@ For ecommerce companies, understanding the purchase behavior of your users is vi
 
 ![webtracking](https://github.com/mixpanel/docs/assets/130083255/799423bf-aeec-431d-bbe1-08ad9e6ac9d9)
 
-<a class="button secondary" href="./2023-06-06-web-tracking.md">Read more</a>
+<a href="2023-06-06-web-tracking.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-06-01" tags="update" %}
@@ -1044,7 +1064,7 @@ For ecommerce companies, understanding the purchase behavior of your users is vi
 
 [Link to Demo](https://www.loom.com/share/afa48331dd3f44deb3f4e63327bf2389)
 
-<a class="button secondary" href="./2023-06-01-event-approval.md">Read more</a>
+<a href="2023-06-01-event-approval.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-05-05" tags="update" %}
@@ -1052,7 +1072,7 @@ For ecommerce companies, understanding the purchase behavior of your users is vi
 
 [Anomaly Detection Demo](https://www.loom.com/share/572a0f59d22e43069ba0c3bc1b4210f4)
 
-<a class="button secondary" href="./2023-05-05-anomaly-detection-and-root-cause-analysis.md">Read more</a>
+<a href="2023-05-05-anomaly-detection-and-root-cause-analysis.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-04-14" tags="update" %}
@@ -1060,7 +1080,7 @@ For ecommerce companies, understanding the purchase behavior of your users is vi
 
 Our new Discover feature makes it easier to explore popular analyses to springboard your own work. The Discover page automatically surfaces top analyses and creators and provides more search controls to filter reports & Boards.
 
-<a class="button secondary" href="./2023-04-14-discover.md">Read more</a>
+<a href="2023-04-14-discover.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-04-06" tags="update" %}
@@ -1068,7 +1088,7 @@ Our new Discover feature makes it easier to explore popular analyses to springbo
 
 With Mixpanel’s revamped Tables report, you can compare your key metrics side-by-side to understand how your segments are performing.
 
-<a class="button secondary" href="./2023-04-06-tables.md">Read more</a>
+<a href="2023-04-06-tables.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-03-29" tags="update" %}
@@ -1076,7 +1096,7 @@ With Mixpanel’s revamped Tables report, you can compare your key metrics side-
 
 We’ve revamped Custom Alerts to make it easier for you to notify your team when a metric significantly changes.
 
-<a class="button secondary" href="./2023-03-29-custom-alerts.md">Read more</a>
+<a href="2023-03-29-custom-alerts.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-03-28" tags="update" %}
@@ -1084,7 +1104,7 @@ We’ve revamped Custom Alerts to make it easier for you to notify your team whe
 
 Introducing **Custom Buckets**, a super simple way to group existing breakdowns to form meaningful segments. This added power can help you explore new, complex questions about your product usage by slicing & dicing like never before - all on the fly in an easy-to-use interface. Here are a few types of analysis you can build with Custom Buckets:
 
-<a class="button secondary" href="./2023-03-28-custom-buckets.md">Read more</a>
+<a href="2023-03-28-custom-buckets.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-02-28" tags="update" %}
@@ -1092,7 +1112,7 @@ Introducing **Custom Buckets**, a super simple way to group existing breakdowns 
 
 Our new Calendar Retention setting allows our users to define retention on their own terms - now, you can switch your retention calculations from a rolling time window to calendar interval in just one click. Whether you want to align your retention data to internal records or other analysis tools, you can now create a reliable retention analysis that you and your team can trust to be accurate with your business’s needs.
 
-<a class="button secondary" href="./2023-02-28-retention-calendar-interval.md">Read more</a>
+<a href="2023-02-28-retention-calendar-interval.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-01-31" tags="update" %}
@@ -1100,7 +1120,7 @@ Our new Calendar Retention setting allows our users to define retention on their
 
 ![changelog Image](.gitbook/assets/changelog-2023-01-31-embed.gif)
 
-<a class="button secondary" href="./2023-01-31-embed.md">Read more</a>
+<a href="2023-01-31-embed.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-01-23" tags="update" %}
@@ -1108,7 +1128,7 @@ Our new Calendar Retention setting allows our users to define retention on their
 
 Back in March of 2022, we upgraded Mixpanel’s user insights analysis with View Users - a simple way to discover who’s contributing to a point on a chart or metric. Since then, Mixpanelers have leveraged this feature to learn more about their users who are driving product growth or stagnation.
 
-<a class="button secondary" href="./2023-01-23-users-flows.md">Read more</a>
+<a href="2023-01-23-users-flows.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2023-01-18" tags="update" %}
@@ -1116,7 +1136,7 @@ Back in March of 2022, we upgraded Mixpanel’s user insights analysis with View
 
 If you’re a fan of visualizing data in table format, you can now save your table to a Board and preserve your analysis. To leverage this new capability, simply add a table to your Board or switch an existing Insights chart into its table format.
 
-<a class="button secondary" href="./2023-01-18-table-boards.md">Read more</a>
+<a href="2023-01-18-table-boards.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2022-12-13" tags="update" %}
@@ -1124,7 +1144,7 @@ If you’re a fan of visualizing data in table format, you can now save your tab
 
 We’re excited to introduce Mixpanel Boards, a new collaborative workspace that replaces our existing dashboards. Unlike an inflexible dashboard that only shows product metrics, Boards empowers teams to share complete context, dig into the data, and make better product decisions together. **What's included in Boards:**
 
-<a class="button secondary" href="./2022-12-13-boards.md">Read more</a>
+<a href="2022-12-13-boards.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2022-12-01" tags="update" %}
@@ -1132,7 +1152,7 @@ We’re excited to introduce Mixpanel Boards, a new collaborative workspace that
 
 [Perfecting Mixpanel’s workflows are a top priority for us](https://mixpanel.com/blog/mixpanel-product-polish-updates-user-friction/), and that’s why our customers appreciate our best-in-class design when answering their everyday product questions. We take pride in focusing on the small, but vital incremental improvements that help Mixpanel become faster, more intuitive, and an overall joyous experience for our users.
 
-<a class="button secondary" href="./2022-12-01-improvements.md">Read more</a>
+<a href="2022-12-01-improvements.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2022-11-07" tags="update" %}
@@ -1140,7 +1160,7 @@ We’re excited to introduce Mixpanel Boards, a new collaborative workspace that
 
 Say hello to accurate event ordering with Millisecond Precision. Now, even if you have multiple events happening within the same second, Mixpanel has the power to decipher the exact sequence in which those events occurred.
 
-<a class="button secondary" href="./2022-11-07-millisecond.md">Read more</a>
+<a href="2022-11-07-millisecond.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2022-11-03" tags="update" %}
@@ -1148,7 +1168,7 @@ Say hello to accurate event ordering with Millisecond Precision. Now, even if yo
 
 We’ve added two updates to session tracking in Mixpanel for more flexibility when defining your sessions and a simpler process to slice and dice this data. With Property Based Sessions and Sessions Properties, you can take advantage of a whole new way to analyze how users engage with your product:
 
-<a class="button secondary" href="./2022-11-03-session-improvements.md">Read more</a>
+<a href="2022-11-03-session-improvements.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2022-07-08" tags="update" %}
@@ -1156,7 +1176,7 @@ We’ve added two updates to session tracking in Mixpanel for more flexibility w
 
 Mixpanel’s charts and tables both provide a unique way to view data and capture insights. But, sometimes you’re only in need of the table. Or, you need both the chart and table for a holistic analysis. That’s why we’ve introduced **Layout Controls** and **Visual Grouped** Sort to give you control over the orientation of your report.
 
-<a class="button secondary" href="./2022-07-08-reorient.md">Read more</a>
+<a href="2022-07-08-reorient.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2022-07-01" tags="update" %}
@@ -1164,7 +1184,7 @@ Mixpanel’s charts and tables both provide a unique way to view data and captur
 
 Making sense of your data just got a whole lot easier. In just two clicks, you can now View Users contributing to any event, at any point in time, across Insights, Funnels, and Retention reports. Save this list as a cohort. Export it as a CSV. And just like that, you have the data to find groups of users experiencing friction or dig deeper into what specific users are driving feature adoption. You can expect View Users to help:
 
-<a class="button secondary" href="./2022-07-01-view-users.md">Read more</a>
+<a href="2022-07-01-view-users.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2022-06-16" tags="update" %}
@@ -1172,7 +1192,7 @@ Making sense of your data just got a whole lot easier. In just two clicks, you c
 
 Undo mistakes, shift query blocks and switch reports with lightning speed. Now, Mixpanel workflows are even faster with tools to quickly build, rebuild, and explore your reports.
 
-<a class="button secondary" href="./2022-06-16-faster-workflow.md">Read more</a>
+<a href="2022-06-16-faster-workflow.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2022-05-31" tags="update" %}
@@ -1180,7 +1200,7 @@ Undo mistakes, shift query blocks and switch reports with lightning speed. Now, 
 
 We’ve boosted Flows so you can better see which actions affect conversion. You can seamlessly switch from Funnels to Flows now, carrying over criteria like excluded steps, and you can break down paths by conversion & drop-off — all in a single, smooth visualization.
 
-<a class="button secondary" href="./2022-05-31-improve-conversion-flow.md">Read more</a>
+<a href="2022-05-31-improve-conversion-flow.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2022-05-24" tags="update" %}
@@ -1188,7 +1208,7 @@ We’ve boosted Flows so you can better see which actions affect conversion. You
 
 You can now use Lexicon descriptions for group profile properties, helping you add more context to your metrics. No more guesswork about what a property means.
 
-<a class="button secondary" href="./2022-05-24-lexicon-context.md">Read more</a>
+<a href="2022-05-24-lexicon-context.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2022-04-18" tags="update" %}
@@ -1196,7 +1216,7 @@ You can now use Lexicon descriptions for group profile properties, helping you a
 
 With our improved relative comparisons, you can now calculate & visualize metrics for specific segments relative to others. We’ve also enhanced time comparisons, adding visualizations like comparing percent change over baseline or plotting metrics like YoY.
 
-<a class="button secondary" href="./2022-04-18-relative-comparison.md">Read more</a>
+<a href="2022-04-18-relative-comparison.md" class="button secondary">Read more</a>
 {% endupdate %}
 
 {% update date="2022-03-29" tags="update" %}
@@ -1204,7 +1224,6 @@ With our improved relative comparisons, you can now calculate & visualize metric
 
 You can now add text to dashboards, making it easier to share the context behind your analysis or tell a compelling story around your data. Sometimes, a word is worth a thousand pictures.
 
-<a class="button secondary" href="./2022-03-29-text-boards.md">Read more</a>
+<a href="2022-03-29-text-boards.md" class="button secondary">Read more</a>
 {% endupdate %}
-
 {% endupdates %}
