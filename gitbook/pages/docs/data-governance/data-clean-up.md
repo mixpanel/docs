@@ -32,31 +32,11 @@ If you use Figma to identify your events, some customers add their links to the 
 
 #### Adding tags to events
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/BeW5n9srpQ0"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=BeW5n9srpQ0" %}
 
 ### Using custom events to combine or filter events
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/YjlTAaHlUuQ"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=YjlTAaHlUuQ" %}
 
 ### Cleaning up user profiles
 

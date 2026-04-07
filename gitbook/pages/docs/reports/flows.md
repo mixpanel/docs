@@ -17,17 +17,7 @@ Here are some of the sample questions you can answer in Flows:
 
 ## Quick Start
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/lB9lQ8Xw9-8"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=lB9lQ8Xw9-8" %}
 
 Building a Flows report follows the same high level steps as building any other report. You can read about report building basics [here](/docs/reports).
 

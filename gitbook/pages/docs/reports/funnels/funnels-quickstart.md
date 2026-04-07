@@ -1,16 +1,6 @@
 # Funnels Quickstart
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/oG1JQ-M-32k"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=oG1JQ-M-32k" %}
 
 A funnel is a sequence of events done within a defined period of time. A converted user is one who triggers the funnel events, in the specified order, within the defined time period.
 

@@ -205,6 +205,33 @@ function stripJsxStyleObjectsAndAttributeBraces(src) {
   return out.join('\n');
 }
 
+function normalizeEmbedUrl(url) {
+  const u = String(url || '').trim();
+  if (!u) return '';
+
+  // YouTube embed -> watch URL (GitBook embed prefers normal URLs).
+  // Examples:
+  // - https://www.youtube-nocookie.com/embed/<id>
+  // - https://www.youtube.com/embed/<id>
+  const yt = u.match(/https?:\/\/(?:www\.)?(?:youtube-nocookie\.com|youtube\.com)\/embed\/([^?/#]+)(?:[?#].*)?$/i);
+  if (yt) return `https://www.youtube.com/watch?v=${yt[1]}`;
+
+  return u;
+}
+
+function convertIframesToEmbeds(src) {
+  // Convert iframes into GitBook embeds:
+  // <iframe src="..."></iframe> => {% embed url="..." %}
+  //
+  // Do this before we strip wrapper divs in other conversions; then we can clean up leftover empty tags.
+  return src.replace(/<iframe\b([\s\S]*?)>([\s\S]*?)<\/iframe>/gi, (_all, attrs) => {
+    const raw = parseJsxAttribute(attrs, 'src');
+    const url = normalizeEmbedUrl(raw);
+    if (!url) return '';
+    return `{% embed url="${escapeHtml(url)}" %}`;
+  });
+}
+
 function convertExtendedButton(src) {
   // Convert the custom MDX button component into a GitBook button.
   // Example:
@@ -256,8 +283,11 @@ function fixAccidentalIndentCodeBlocks(src) {
       continue;
     }
 
-    // De-indent accidental top-level bullets/numbered lists.
-    const bulletFixed = line.replace(/^\s{4}([-*]\s+)/, '$1').replace(/^\s{4}(\d+\.\s+)/, '$1');
+    // De-indent accidental top-level blocks (lists, GitBook blocks) caused by JSX formatting.
+    const bulletFixed = line
+      .replace(/^\s{4}([-*]\s+)/, '$1')
+      .replace(/^\s{4}(\d+\.\s+)/, '$1')
+      .replace(/^\s{4}(\{%\s*(?:embed|hint|tabs|tab|stepper|step|updates|update|openapi)\b)/, '$1');
     if (bulletFixed !== line) {
       out.push(bulletFixed);
       prevWasList = true;
@@ -309,6 +339,38 @@ function collapseEmptyMultilineDivOpenTags(src) {
         i = j;
         continue;
       }
+    }
+
+    out.push(line);
+  }
+
+  return out.join('\n');
+}
+
+function dropNowEmptyIframeWrappers(src) {
+  // After iframe->embed, some pages have leftover <div><p> wrappers that were
+  // only used for styling. Prefer clean markdown around the embed.
+  const lines = src.split('\n');
+  const out = [];
+  let inFence = false;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+
+    if (t === '<div>' || t === '<p>' || t === '</p>' || t === '</div>') {
+      // Only drop these if they're adjacent to an embed block nearby.
+      const window = lines.slice(Math.max(0, i - 2), Math.min(lines.length, i + 3)).join('\n');
+      if (/\{%\s*embed\s+url=/.test(window)) continue;
     }
 
     out.push(line);
@@ -579,6 +641,7 @@ function convertOne(src, maps) {
   out = stripMdxExportsAndImports(out);
   out = jsxHtmlToHtml(out);
   out = stripJsxStyleObjectsAndAttributeBraces(out);
+  out = convertIframesToEmbeds(out);
   out = convertExtendedButton(out);
   out = convertCards(out);
   out = convertCallouts(out);
@@ -588,6 +651,7 @@ function convertOne(src, maps) {
   out = convertExtendedTabs(out, maps);
   out = fixAccidentalIndentCodeBlocks(out);
   out = collapseEmptyMultilineDivOpenTags(out);
+  out = dropNowEmptyIframeWrappers(out);
   out = cleanupDanglingJsx(out);
   return out;
 }

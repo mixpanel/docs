@@ -19,11 +19,7 @@ If your ad spend data is already in a data warehouse, you can bring it into Mixp
 ### Using the Ad Spend Template
 
 {/* <div >
-    <iframe src="https://www.loom.com/embed/69dbc98ffeca415aafb10ede7a52b925"
-        frameborder="0"
-        webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen
-        >
-    </iframe>
+{% embed url="https://www.loom.com/embed/69dbc98ffeca415aafb10ede7a52b925" %}
 </div> */}
 
 [Link to Demo](https://www.loom.com/share/69dbc98ffeca415aafb10ede7a52b925)

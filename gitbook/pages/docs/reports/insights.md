@@ -32,17 +32,7 @@ It's important to know what's the natural frequency at which your users use your
 
 ## Quick Start
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/Popsy5G4i54"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=Popsy5G4i54" %}
 
 ### Step 1: Define your Behavior
 
@@ -307,7 +297,7 @@ When you have multiple metrics, or have broken down a metric by a property, you 
 Profile metrics allow you to access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Measurement](/docs/reports/insights#measurements) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
 
 {/* <p >
-  <iframe src="https://www.loom.com/embed/dc5e909f2d7f427ca962e493e87894ad" frameborder="0" allowfullscreen></iframe>
+  {% embed url="https://www.loom.com/embed/dc5e909f2d7f427ca962e493e87894ad" %}
 </p> */}
 
 [Link to Demo](https://www.loom.com/share/dc5e909f2d7f427ca962e493e87894ad)
@@ -321,7 +311,7 @@ Learn more about [Annotations](/docs/features/annotations).
 ### Measurements
 
 {/* <p >
-  <iframe src="https://www.loom.com/embed/22d760d014234a1eb566f68dda79c58f" frameborder="0" allowfullscreen></iframe>
+  {% embed url="https://www.loom.com/embed/22d760d014234a1eb566f68dda79c58f" %}
 </p> */}
 
 [Link to Demo](https://www.loom.com/share/22d760d014234a1eb566f68dda79c58f)
@@ -463,7 +453,7 @@ For example, if you make a rolling analysis query for the past 30 days, Mixpanel
 - **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
 
 {/* <p >
-  <iframe src="https://www.loom.com/embed/4d49fe9a64e24fb2b6cac44f86839fd2" frameborder="0" allowfullscreen></iframe>
+  {% embed url="https://www.loom.com/embed/4d49fe9a64e24fb2b6cac44f86839fd2" %}
 </p> */}
 
 [Link to Demo](https://www.loom.com/share/4d49fe9a64e24fb2b6cac44f86839fd2)

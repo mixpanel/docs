@@ -21,17 +21,7 @@ Here are some of the sample questions you can answer in Impact:
 
 ## Quick Start
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/wH-dzEn02rw"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=wH-dzEn02rw" %}
 
 ### Step 1: Select a launch event
 

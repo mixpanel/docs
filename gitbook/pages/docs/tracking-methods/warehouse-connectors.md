@@ -26,17 +26,7 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
 
 {% tabs %}
 {% tab title="BigQuery" %}
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/9u60IdyxIVY"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=9u60IdyxIVY" %}
 
         The BigQuery connector works by giving a Mixpanel-managed service account permission to read from BigQuery in your GCP project. You will need:
         - Your GCP Project ID, which you can find in the URL of Google Cloud Console (`https://console.cloud.google.com/bigquery?project=YOUR_GCP_PROJECT`).
@@ -76,17 +66,7 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
 {% endtab %}
 
 {% tab title="Snowflake" %}
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/i-ytJQdojio"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=i-ytJQdojio" %}
 
     To connect to Snowflake, you will need:
 - Your [Snowflake account identifier](https://docs.snowflake.com/user-guide/admin-account-identifier), which you can find in the
@@ -181,17 +161,7 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
 {% endtab %}
 
 {% tab title="Databricks" %}
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/Fr-isqO1w2s"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=Fr-isqO1w2s" %}
 
 {% hint style="info" %}
 The connection to Databricks only supports connecting directly to clusters or jobs compute. Connecting directly to SQL warehouses is not supported.
@@ -283,17 +253,7 @@ If you are using [IP Access List](https://docs.databricks.com/en/security/networ
 {% endtab %}
 
 {% tab title="Redshift" %}
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/d3LCU5NdQsM"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=d3LCU5NdQsM" %}
 
 Complete the following steps to get your Redshift connector up and running:
 

@@ -12,17 +12,7 @@ Boards can be used to keep your whole company on top of your KPIs. Additionally,
 
 Create personal boards or project boards and share them with your team to help you and your colleagues understand and stay on top of your metrics.
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/cOsqfBtGI5U"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=cOsqfBtGI5U" %}
 
 ## Quick Start
 

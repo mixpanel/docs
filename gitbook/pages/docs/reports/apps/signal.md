@@ -26,17 +26,7 @@ This information can be used in future product decisions. By knowing that those 
 
 ## Quick Start
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/sF36C9RUNRo"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=sF36C9RUNRo" %}
 
 By default, Mixpanel will build a query to show how your top 50 events correlate with 2nd week retention in the last quarter for all users. This translates to, “How do the top events correlate with two week retention in the last quarter for all users?"
 

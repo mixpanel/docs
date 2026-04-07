@@ -6,17 +6,7 @@ Mixpanel has a native extension for Google Sheets that enables you to import CSV
 
 The source code for this extension lives [here](https://github.com/mixpanel/sheets).
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/45ZBaJg-oe4"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=45ZBaJg-oe4" %}
 
 ## Install the plugin
 

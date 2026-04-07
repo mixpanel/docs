@@ -168,17 +168,7 @@ We apply a seven-day lookback window, so the second event must occur within seve
 
 The video below demonstrates how to create a borrowed property.
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/fEh-ObL7EIQ"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=fEh-ObL7EIQ" %}
 
 Some key notes
 - Borrowed property creation is limited to Admin & Owner Roles only

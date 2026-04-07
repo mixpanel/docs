@@ -6,17 +6,7 @@ This page covers advanced concepts related to funnels, including how their metri
 
 ## Conversion Criteria
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/Nk0u-oTOHfo"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=Nk0u-oTOHfo" %}
 
 ### Conversion Window
 

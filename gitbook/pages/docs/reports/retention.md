@@ -17,17 +17,7 @@ Here are some of the sample questions you can answer in Retention:
 
 ## Quick Start
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/W8yqLYuSIaU"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=W8yqLYuSIaU" %}
 
 Building a Retention report follows the same high level steps as building any other report. You can read about report building basics [here](/docs/reports).
 
@@ -83,17 +73,7 @@ You can visualize your metric in a variety of ways. Mixpanel allows you to choos
 
 ### Retention Curve
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/iYAKsmgqWZU"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=iYAKsmgqWZU" %}
 
 The retention curve chart displays retention data as both a line chart and a table. Data is identical between the two. The line chart provides a visual representation of users becoming inactive over time, while the table provides a heat map to show which groups have the best retention.
 
@@ -159,17 +139,7 @@ For example played a game for 5 consecutive days since sign-up, or visited the d
 
 These use-cases, use a combination of different retention criteria & measurement types 
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/zTkQVsMgPc0"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=zTkQVsMgPc0" %}
 
 - What is the total revenue (or LTV) for new users in the first 7 days? How has this changed over time
 - Retention Criteria: On or Before
@@ -274,17 +244,7 @@ Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-
 
 ### Frequency View
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/KWUJIXeH_SU"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=KWUJIXeH_SU" %}
 
 You can use the Frequency report to learn how frequently users return to use your product or service.
 

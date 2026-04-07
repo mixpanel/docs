@@ -64,17 +64,7 @@ In this example, two touchpoints contribute to the successful conversion: the Fa
 
 ### Usage
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/142CRsihsTA"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=142CRsihsTA" %}
 
 Step 1 - Add your conversion metric
 
@@ -116,11 +106,7 @@ If you use a Mixpanel js-sdk, we have updated our sdk to track utm parameters mo
 Please watch this video to better understand.
 
 {/* <div >
-    <iframe src="https://www.loom.com/embed/1cebcd9687df4046af53ac90980907f7?sid=4d6d0920-8cc2-43f2-8361-bdb5a034969f"
-        frameborder="0"
-        webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen
-        >
-    </iframe>
+{% embed url="https://www.loom.com/embed/1cebcd9687df4046af53ac90980907f7?sid=4d6d0920-8cc2-43f2-8361-bdb5a034969f" %}
 </div> */}
 
 [Link to Demo](https://www.loom.com/share/1cebcd9687df4046af53ac90980907f7)

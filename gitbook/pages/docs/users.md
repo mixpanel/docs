@@ -29,17 +29,7 @@ A cohort is a group of users who share a certain set of properties or have perfo
 
 Learn more about Cohorts [here](/docs/users/cohorts).
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/AQ2-HPG7Jrw"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=AQ2-HPG7Jrw" %}
 
 ### Modifying Table Columns
 

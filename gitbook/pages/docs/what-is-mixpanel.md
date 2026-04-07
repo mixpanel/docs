@@ -7,17 +7,7 @@ that let you query and visualize the results with just a few clicks.
 Mixpanel is built on three key concepts: [**Events**](#events), [**Users**](#users), and [**Properties**](#properties).
 
 <br></br>
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/sRQCfmvh3vg"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=sRQCfmvh3vg" %}
 
 ## Concepts
 

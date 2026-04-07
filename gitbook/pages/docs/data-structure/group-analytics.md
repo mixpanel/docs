@@ -10,17 +10,7 @@ Mixpanel Group Analytics allows behavioral data analysis at a customized group l
 
 Historically, Mixpanel grouped events by a single identifier called the distinct_id. This ultimately grouped events by the individual user. Group Analytics allows you to establish an event property other than the distinct_id, such as company ID, account ID, project ID, or billing ID, as an identifier by which to analyze your data.
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/jrIiwhdHCdg"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=jrIiwhdHCdg" %}
 
 ### Data Modeling
 

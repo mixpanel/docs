@@ -7,17 +7,7 @@ tags: [lexicon, data-governance, data-dictionary, event-definitions, event-prope
 
 ## Overview
 
-<div>
-  <p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/lAToFlwXHEU"
-      frameborder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowfullscreen
-      
-    ></iframe>
-  </p>
+{% embed url="https://www.youtube.com/watch?v=lAToFlwXHEU" %}
 
 Lexicon is a data dictionary that stores descriptions of events and their properties. Project owners and admins can add/manage descriptions for all events and properties and organize data for clarity and discoverability. Event and property definitions help your entire team understand what your data means, so everyone stays on the same page.
 
