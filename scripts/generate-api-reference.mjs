@@ -372,6 +372,31 @@ function rewriteCrossSpaceLinksDeepInPlace(node) {
   return node;
 }
 
+/** Collect lowercased operationIds from the source OpenAPI file for a GitBook spec name (e.g. `ingestion`). */
+async function loadOperationIdSet(specName) {
+  const specPath = path.join(ROOT, 'openapi', 'src', `${specName}.openapi.yaml`);
+  let raw;
+  try {
+    raw = await fs.readFile(specPath, 'utf8');
+  } catch {
+    return new Set();
+  }
+  const root = YAML.parse(raw) || {};
+  const ids = new Set();
+  const paths = root.paths || {};
+  for (const methods of Object.values(paths)) {
+    if (!methods || typeof methods !== 'object') continue;
+    for (const key of Object.keys(methods)) {
+      if (!OPENAPI_OPERATION_METHODS.has(String(key).toLowerCase())) continue;
+      const op = methods[key];
+      if (op && typeof op.operationId === 'string' && op.operationId.trim()) {
+        ids.add(op.operationId.trim().toLowerCase());
+      }
+    }
+  }
+  return ids;
+}
+
 async function copyOpenapiSpecs() {
   const srcDir = path.join(ROOT, 'openapi', 'src');
   const outDir = path.join(ROOT, 'gitbook', 'openapi');
@@ -866,6 +891,9 @@ async function main() {
     if (!isRoot) summary += `## ${top}\n\n`;
     const topSeg = isRoot ? '' : slugifySegment(top);
     const specName = openapiByTopTitle.get(top) || '';
+    const opIdSet = specName ? await loadOperationIdSet(specName) : null;
+    /** Reference pages under subfolders whose slug is not an OpenAPI operationId (e.g. tag-only docs). */
+    const openapiOrphans = [];
 
     const topDirOrder = await readOrderYaml(path.join(topDir, '_order.yaml'));
     for (const item of topDirOrder) {
@@ -909,11 +937,8 @@ async function main() {
       try {
         const stDir = await fs.stat(dirAbs);
         if (stDir.isDirectory()) {
-          // For OpenAPI-driven groups, don't emit per-endpoint pages in the TOC.
-          // GitBook will auto-generate tag pages from the spec.
-          if (specName) continue;
-
-          // Copy all md in subtree in deterministic order via its _order.yaml
+          // Copy all md in subtree in deterministic order via its _order.yaml.
+          // OpenAPI-backed sections still need files on disk; GitBook only embeds the spec in SUMMARY.
           const subOrder = await readOrderYaml(path.join(dirAbs, '_order.yaml'));
           const copied = [];
           for (const sub of subOrder) {
@@ -929,7 +954,13 @@ async function main() {
             copied.push({ outRel, fm, sub });
           }
 
-          if (isRoot && copied.length) {
+          if (specName && opIdSet && copied.length) {
+            for (const c of copied) {
+              if (!opIdSet.has(String(c.sub).toLowerCase())) {
+                openapiOrphans.push(c);
+              }
+            }
+          } else if (isRoot && copied.length) {
             // Root space (e.g. Mixpanel APIs): list every subpage in SUMMARY so GitBook export includes them.
             const groupLabel = humanizeSlug(item);
             const firstLink = copied[0].outRel;
@@ -960,6 +991,10 @@ async function main() {
       summary += '        kind: openapi\n';
       summary += `        spec: ${specName}\n`;
       summary += '  ```\n';
+      for (const { outRel, fm, sub } of openapiOrphans) {
+        const label = (fm?.title || '').trim() || humanizeSlug(sub);
+        summary += `* [${label}](${outRel})\n`;
+      }
     }
 
     if (!isRoot) summary += '\n';

@@ -1,7 +1,7 @@
 # Create Alias
 
 <Callout icon="📘" theme="info">
-  The `$create_alias` event payload is only useful for projects using the Original ID Merge system and the Legacy ID Management System; it has no functionality in the Simplified ID Merge system. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management#identity-merge-apis) for more information.
+  The `$create_alias` event payload is only useful for projects using the Original ID Merge system and the Legacy ID Management System; it has no functionality in the Simplified ID Merge system. Please review [this section of our documentation](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management#identity-merge-apis) for more information.
 </Callout>
 
 <Callout icon="📘" theme="info">
@@ -14,7 +14,7 @@ Mixpanel supports adding an alias to a distinct id. An alias is a new value that
 
 <Image alt="960" border={false} src="https://files.readme.io/d16f1d3-ID_management_alias_3-HTTP.png" title="Identity Management - Alias" />
 
-**Required[Event Object](https://docs.mixpanel.com/docs/tracking/reference/data-model#anatomy-of-an-event) attributes**
+**Required[Event Object](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking/reference/data-model#anatomy-of-an-event) attributes**
 
 <table>
   <thead>

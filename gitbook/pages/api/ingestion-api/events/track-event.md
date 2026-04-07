@@ -16,7 +16,7 @@ Typically, we recommend using /import for server-side integrations as it is more
 
 ## Limits
 
-The limits for track are the same as /import, [see here](https://developer.mixpanel.com/reference/import-events#rate-limits).
+The limits for track are the same as /import, [see here](https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/import-events#rate-limits).
 
 Each event has the following size limits:
 

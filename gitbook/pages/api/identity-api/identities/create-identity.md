@@ -1,7 +1,7 @@
 # Create Identity
 
 <Callout icon="📘" theme="info">
-  The `$identify` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management#identity-merge-apis) for more information.
+  The `$identify` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management#identity-merge-apis) for more information.
 </Callout>
 
 <Callout icon="📘" theme="info">
@@ -27,7 +27,7 @@ curl --request POST \
 **Identify Criteria:**
 ![](https://files.readme.io/d0066f0-ID_management_identify_3-HTTP.png)
 
-**Required[Event Object](https://docs.mixpanel.com/docs/tracking/reference/data-model#anatomy-of-an-event) attributes**
+**Required[Event Object](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking/reference/data-model#anatomy-of-an-event) attributes**
 
 | Event Object property         | Type                                                                                                        | Description                                                                                                                                                                                     |
 | :---------------------------- | :---------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

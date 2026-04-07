@@ -23,9 +23,9 @@ We also support `Content-Encoding: gzip` to reduce network egress.
 
 ## Authentication
 
- `/import` requires an Owner or Admin [Service Account](https://developer.mixpanel.com/reference/service-accounts). project\_id, service account username, and service account password are required to authenticate a request.
+ `/import` requires an Owner or Admin [Service Account](https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/service-accounts). project\_id, service account username, and service account password are required to authenticate a request.
 
-`/import` also supports [Project Token](https://developer.mixpanel.com/reference/project-token) as an authentication method. You can provide your token as the basic auth username value with an empty password. If project\_id is not specified, the request will be authenticated using the provided token.
+`/import` also supports [Project Token](https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/project-token) as an authentication method. You can provide your token as the basic auth username value with an empty password. If project\_id is not specified, the request will be authenticated using the provided token.
 
 ## Validation
 
@@ -198,4 +198,4 @@ We truncate all strings down to 255 characters. Here's what we recommend for the
 
 ## Guides
 
-See our Cloud Ingestion guides for example usage of this API to integrate with  [Google Pub/Sub](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-pubsub), [Amazon S3](https://docs.mixpanel.com/docs/tracking-methods/integrations/amazon-s3), or [Google Cloud Storage](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-cloud-storage).
+See our Cloud Ingestion guides for example usage of this API to integrate with  [Google Pub/Sub](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/integrations/google-pubsub), [Amazon S3](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/integrations/amazon-s3), or [Google Cloud Storage](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/integrations/google-cloud-storage).

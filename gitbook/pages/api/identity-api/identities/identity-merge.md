@@ -1,7 +1,7 @@
 # Merge Identities
 
 <Callout icon="📘" theme="info">
-  The `$merge` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management#identity-merge-apis) for more information.
+  The `$merge` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management#identity-merge-apis) for more information.
 </Callout>
 
 <Callout icon="❗️" theme="error">

@@ -1,10 +1,10 @@
 # Custom JQL Query
 
-> ❗️JQL is currently in maintenance mode. We recommend discontinuing use of JQL and using an [alternate method](https://docs.mixpanel.com/docs/export-methods) to get the data you need. Below are alternatives for common use cases and you need help deciding the best method for you, reach out to [support](mixpanel.com/get-support). 
+> ❗️JQL is currently in maintenance mode. We recommend discontinuing use of JQL and using an [alternate method](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/export-methods) to get the data you need. Below are alternatives for common use cases and you need help deciding the best method for you, reach out to [support](mixpanel.com/get-support). 
 >
-> * Raw Event export: [Export API](https://developer.mixpanel.com/reference/raw-data-export-api) or [Data Pipelines](https://docs.mixpanel.com/docs/data-pipelines)
-> * User Profile export: [Engage Query API](https://developer.mixpanel.com/reference/engage-query) or [Data Pipelines](https://docs.mixpanel.com/docs/data-pipelines)
-> * Other reporting: [Query API](https://developer.mixpanel.com/reference/query-api) or in-app [Core Reports](https://docs.mixpanel.com/docs/reports)
+> * Raw Event export: [Export API](https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/raw-data-export-api) or [Data Pipelines](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-pipelines)
+> * User Profile export: [Engage Query API](https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/engage-query) or [Data Pipelines](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-pipelines)
+> * Other reporting: [Query API](https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/query-api) or in-app [Core Reports](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports)
 
 The HTTP API is the lowest-level way to use JQL. At its core, the API is very simple: you write a script, and you post it to an API endpoint with some authentication parameters.
 

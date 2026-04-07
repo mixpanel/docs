@@ -23,6 +23,9 @@
         kind: openapi
         spec: ingestion
   ```
+* [Event Deduplication](ingestion-api/events/event-deduplication.md)
+* [Group Profile Limits](ingestion-api/group-profiles/limits-1.md)
+* [User Profile Limits](ingestion-api/user-profiles/user-profile-limits.md)
 
 ## Identity API
 
@@ -53,6 +56,7 @@
         kind: openapi
         spec: query
   ```
+* [Additional Information](query-api/jql/jql-additional-info.md)
 
 ## Event Export API
 
@@ -138,6 +142,9 @@
         kind: openapi
         spec: annotations
   ```
+* [Delete Annotation](annotations-api/delete-annotation/delete-annotation-1.md)
+* [Get Annotation](annotations-api/retrieve-annotations/get-annotation-1.md)
+* [Patch Annotation](annotations-api/patch-annotation/patch-annotation-1.md)
 
 ## GDPR API
 
@@ -153,6 +160,7 @@
         kind: openapi
         spec: gdpr
   ```
+* [Create a Retrieval](gdpr-api/create-a-retrieval/create-retrieval-1.md)
 
 ## Warehouse Connectors API
 
