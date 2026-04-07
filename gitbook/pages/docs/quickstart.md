@@ -30,4 +30,4 @@
 ### [BETA] Set up Mixpanel at the speed of AI
 Install Mixpanel faster and easier than ever with the AI code editor integration. The Mixpanel Installation Wizard is an interactive CLI tool that generates customized, AI-optimized SDK installation instructions for developers integrating Mixpanel analytics. It creates step-by-step guides that can be directly fed to AI coding assistants like Cursor or Claude Code to automate the integration process.
 
-<a href="./quickstart/install-with-ai.md" class="button primary">Get Started with AI</a>
+<a href="./intro/quickstart/install-with-ai.md" class="button primary">Get Started with AI</a>
