@@ -1,4 +1,10 @@
-# Install with AI [BETA]
+---
+tags:
+  - tag: beta
+    primary: true
+---
+
+# Install with AI
 
 This guide will help you add Mixpanel analytics to your app or website using AI assistance, even if you're not a developer. The Mixpanel Installation Wizard creates step-by-step instructions that you can give to AI coding tools like Claude, ChatGPT, or Cursor.
 

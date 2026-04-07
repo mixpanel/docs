@@ -10,7 +10,7 @@
   * [Capture Events](quickstart/capture-events.md)
     * [Track Events](quickstart/capture-events/track-events.md)
     * [Autocapture](quickstart/capture-events/autocapture.md)
-  * [Install with AI [BETA]](quickstart/install-with-ai.md)
+* [Install with AI](quickstart/install-with-ai.md)
 
 ## DATA IN
 
@@ -21,7 +21,7 @@
       * [Session Replay (Javascript)](tracking-methods/sdks/javascript/javascript-replay.md)
       * [Feature Flags (Javascript)](tracking-methods/sdks/javascript/javascript-flags.md)
     * [React Native](tracking-methods/sdks/react-native.md)
-      * [Feature Flags (React Native) (Beta)](tracking-methods/sdks/react-native/react-native-flags.md)
+      * [Feature Flags (React Native)](tracking-methods/sdks/react-native/react-native-flags.md)
       * [Session Replay (React Native)](tracking-methods/sdks/react-native/react-native-replay.md)
     * [Android](tracking-methods/sdks/android.md)
       * [Session Replay (Android)](tracking-methods/sdks/android/android-replay.md)
@@ -44,7 +44,7 @@
       * [Feature Flags (Go)](tracking-methods/sdks/go/go-flags.md)
     * [Java](tracking-methods/sdks/java/index.md)
       * [Feature Flags (Java)](tracking-methods/sdks/java/java-flags.md)
-    * [Mixpanel-utils↗](https://github.com/mixpanel/mixpanel-utils)
+    * [Mixpanel-utils](https://github.com/mixpanel/mixpanel-utils)
   * [Autocapture](tracking-methods/autocapture.md)
   * [Warehouse Connectors](tracking-methods/warehouse-connectors.md)
   * [Integrations](tracking-methods/integrations.md)
@@ -52,7 +52,7 @@
     * [Amazon S3](tracking-methods/integrations/amazon-s3.md)
     * [Amazon Kafka](tracking-methods/integrations/aws-kafka.md)
     * [CMS & E-Commerce](tracking-methods/integrations/cms-ecommerce.md)
-    * [Customer.io ↗](https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel&utm_medium=partner)
+    * [Customer.io](https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel&utm_medium=partner)
     * [Freshpaint](tracking-methods/integrations/freshpaint.md)
     * [Google Cloud Storage](tracking-methods/integrations/google-cloud-storage.md)
     * [Google Pubsub](tracking-methods/integrations/google-pubsub.md)
@@ -183,7 +183,7 @@
 
 * [Privacy](privacy.md)
   * [Protecting User Data](privacy/protecting-user-data.md)
-  * [Legal Hub ↗](https://mixpanel.com/legal/privacy-policy)
+  * [Legal Hub](https://mixpanel.com/legal/privacy-policy)
   * [GDPR Compliance](privacy/gdpr-compliance.md)
   * [EU Residency](privacy/eu-residency.md)
   * [India Residency](privacy/in-residency.md)
@@ -233,7 +233,7 @@
     * [Facebook Ads](cohort-sync/integrations/facebook-ads.md)
     * [Google Ads](cohort-sync/integrations/google-ads.md)
     * [Insider](cohort-sync/integrations/insider.md)
-    * [Intercom ↗](https://www.intercom.com/help/en/articles/299-import-your-mixpanel-contacts)
+    * [Intercom](https://www.intercom.com/help/en/articles/299-import-your-mixpanel-contacts)
     * [Iterable](cohort-sync/integrations/iterable.md)
     * [Kameleoon](cohort-sync/integrations/kameleoon.md)
     * [Leanplum](cohort-sync/integrations/leanplum.md)
@@ -252,9 +252,9 @@
 ## SUPPORT
 
 * [Community](community.md)
-  * [Join Slack ↗](https://www.mixpanel.com/community-slack)
+  * [Join Slack](https://www.mixpanel.com/community-slack)
   * [Guidelines](community/guidelines.md)
-* [Get Help ↗](https://mixpanel.com/get-support)
+* [Get Help](https://mixpanel.com/get-support)
 * [Response Times](response-times.md)
-* [Hire an Expert ↗](https://mixpanel.com/partners/experts/matchmaking)
+* [Hire an Expert](https://mixpanel.com/partners/experts/matchmaking)
 

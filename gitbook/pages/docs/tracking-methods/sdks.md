@@ -158,7 +158,7 @@ If you do not see an SDK in your preferred language, leverage our [HTTP APIs](ht
   </thead>
   <tbody>
     <tr>
-      <td><strong>Mixpanel-utils Module↗</strong></td>
+      <td><strong>Mixpanel-utils Module</strong></td>
       <td></td>
       <td><a href="https://github.com/mixpanel/mixpanel-utils">https://github.com/mixpanel/mixpanel-utils</a></td>
       <td></td>

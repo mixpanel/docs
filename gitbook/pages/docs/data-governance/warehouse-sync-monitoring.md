@@ -1,4 +1,10 @@
-# Warehouse Sync Monitoring (Beta)
+---
+tags:
+  - tag: beta
+    primary: true
+---
+
+# Warehouse Sync Monitoring
 
 ## Overview
 

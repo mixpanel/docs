@@ -139,7 +139,7 @@ you're looking for [reach out to us](https://mixpanel.com/get-support).
       <td></td>
     </tr>
     <tr>
-      <td><strong>Vendo for Shopify ↗</strong></td>
+      <td><strong>Vendo for Shopify</strong></td>
       <td></td>
       <td><a href="https://apps.shopify.com/vendo?utm_source=mixpanel&amp;utm_medium=partner">https://apps.shopify.com/vendo?utm_source=mixpanel&amp;utm_medium=partner</a></td>
       <td></td>

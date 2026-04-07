@@ -53,6 +53,48 @@ async function readConstantsMaps() {
   return maps;
 }
 
+const metaCache = new Map();
+
+async function readMetaMapForDir(absDir) {
+  if (metaCache.has(absDir)) return metaCache.get(absDir);
+
+  const candidates = [path.join(absDir, '_meta.ts'), path.join(absDir, '_meta.tsx')];
+  let src = null;
+  for (const c of candidates) {
+    try {
+      src = await fs.readFile(c, 'utf8');
+      break;
+    } catch {
+      // continue
+    }
+  }
+  if (!src) {
+    metaCache.set(absDir, new Map());
+    return metaCache.get(absDir);
+  }
+
+  const map = new Map();
+
+  // Match `"slug": "Title"`
+  const simpleRe = /["']([^"']+)["']\s*:\s*["']([^"']+)["']\s*,?/g;
+  let m;
+  while ((m = simpleRe.exec(src))) {
+    map.set(m[1], m[2]);
+  }
+
+  // Match `"slug": { title: "Title", ... }`
+  const objRe = /["']([^"']+)["']\s*:\s*\{([\s\S]*?)\}\s*,?/g;
+  while ((m = objRe.exec(src))) {
+    const slug = m[1];
+    const body = m[2];
+    const titleMatch = body.match(/title\s*:\s*["']([^"']+)["']/);
+    if (titleMatch) map.set(slug, titleMatch[1]);
+  }
+
+  metaCache.set(absDir, map);
+  return map;
+}
+
 async function listFilesRecursive(dir) {
   const out = [];
   const items = await fs.readdir(dir, { withFileTypes: true });
@@ -411,6 +453,82 @@ function stripBrTags(src) {
   return out.join('\n').replace(/\n{3,}/g, '\n\n');
 }
 
+function stripExternalLinkIcons(src) {
+  // GitBook adds its own external link indicator; remove "↗" from link text.
+  // Only adjust markdown links where destination is http(s).
+  return String(src).replace(
+    /\[([^\]]*?)\s*↗\s*\]\((https?:\/\/[^)]+)\)/g,
+    (_all, text, url) => `[${text.trim()}](${url})`,
+  );
+}
+
+function ensureFrontmatterWithTags(src, tags) {
+  const t = String(src);
+  if (!tags || tags.length === 0) return t;
+
+  const fmStart = t.startsWith('---\n');
+  if (!fmStart) {
+    const tagLines = tags
+      .map((tag) => (typeof tag === 'string' ? `  - ${tag}` : `  - tag: ${tag.tag}\n    primary: ${tag.primary ? 'true' : 'false'}`))
+      .join('\n');
+    return `---\ntags:\n${tagLines}\n---\n\n${t}`;
+  }
+
+  const endIdx = t.indexOf('\n---\n', 4);
+  if (endIdx === -1) return t;
+
+  const fmBlock = t.slice(0, endIdx + '\n---\n'.length);
+  const rest = t.slice(endIdx + '\n---\n'.length);
+
+  // If tags already exist, leave as-is.
+  if (/^tags:\s*$/m.test(fmBlock) || /^tags:\s*\[/m.test(fmBlock)) return t;
+
+  const insertion = (() => {
+    const tagLines = tags
+      .map((tag) => (typeof tag === 'string' ? `  - ${tag}` : `  - tag: ${tag.tag}\n    primary: ${tag.primary ? 'true' : 'false'}`))
+      .join('\n');
+    return `tags:\n${tagLines}\n`;
+  })();
+
+  const fmWithoutTrailing = fmBlock.replace(/\n---\n$/, '\n');
+  return `${fmWithoutTrailing}${insertion}---\n${rest}`;
+}
+
+function convertBetaMarkersToTags(src) {
+  // Convert visible "beta" markers in the H1 into GitBook frontmatter tags.
+  // Examples:
+  // - "# Install with AI [BETA]" => tag beta (primary), title becomes "# Install with AI"
+  // - "# Foo (Beta)" => tag beta (primary), title becomes "# Foo"
+  const lines = String(src).split('\n');
+  const firstHeadingIdx = lines.findIndex((l) => l.startsWith('# '));
+  if (firstHeadingIdx === -1) return src;
+
+  const h = lines[firstHeadingIdx];
+  const m = h.match(/^#\s+(.+?)\s*(\[(?:BETA|beta)\]|\((?:BETA|Beta|beta)\))\s*$/);
+  if (!m) return src;
+
+  const cleanTitle = m[1].trim();
+  lines[firstHeadingIdx] = `# ${cleanTitle}`;
+  const updated = lines.join('\n');
+  return ensureFrontmatterWithTags(updated, [{ tag: 'beta', primary: true }]);
+}
+
+async function tagBetaByMeta(out, absInputFile, absInDir) {
+  // Use the sidebar/TOC label from the nearest _meta.ts/_meta.tsx as the source of truth.
+  const rel = path.relative(absInDir, absInputFile);
+  const dirRel = path.dirname(rel);
+  const slug = path.basename(rel).replace(/\.(mdx|md)$/i, '');
+  const metaDir = path.join(absInDir, dirRel);
+  const meta = await readMetaMapForDir(metaDir);
+  const tocTitle = meta.get(slug) || '';
+  if (!tocTitle) return out;
+
+  if (/\b(beta)\b/i.test(tocTitle) || /\[beta\]/i.test(tocTitle)) {
+    return ensureFrontmatterWithTags(out, [{ tag: 'beta', primary: true }]);
+  }
+  return out;
+}
+
 function convertCards(src) {
   // Convert Nextra Cards:
   // <Cards>
@@ -423,9 +541,10 @@ function convertCards(src) {
     let m;
     while ((m = cardRe.exec(inner))) {
       const attrs = m[1] || '';
-      const title = parseJsxAttribute(attrs, 'title');
+      const titleRaw = parseJsxAttribute(attrs, 'title');
       const href = parseJsxAttribute(attrs, 'href');
-      if (!title || !href) continue;
+      if (!titleRaw || !href) continue;
+      const title = titleRaw.replace(/\s*↗\s*/g, '').trim();
       rows.push({ title, href });
     }
 
@@ -685,6 +804,8 @@ function convertOne(src, maps) {
   out = collapseEmptyMultilineDivOpenTags(out);
   out = dropNowEmptyIframeWrappers(out);
   out = stripBrTags(out);
+  out = convertBetaMarkersToTags(out);
+  out = stripExternalLinkIcons(out);
   out = cleanupDanglingJsx(out);
   return out;
 }
@@ -704,7 +825,8 @@ async function main() {
     await fs.mkdir(path.dirname(outPath), { recursive: true });
 
     const src = await fs.readFile(file, 'utf8');
-    const converted = file.toLowerCase().endsWith('.mdx') ? convertOne(src, maps) : src;
+    let converted = file.toLowerCase().endsWith('.mdx') ? convertOne(src, maps) : src;
+    converted = await tagBetaByMeta(converted, file, inDir);
     await fs.writeFile(outPath, converted, 'utf8');
   }
 
