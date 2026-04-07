@@ -141,9 +141,11 @@ Subscriptions will send the board on a recurring schedule. You can choose a dail
 To create a Subscription:
 
 1. Select **Subscribe** from the header at the top right of the board. You can see a list of existing subscriptions for the board here as well. Select "Create New".
+
   ![/subscribe1.png](.gitbook/assets/subscribe1.png)
 
 2. Fill out the resulting form, selecting the desired email recipients or Slack channel, as well as the sending frequency (daily, weekly, or monthly).
+
   ![/subscribe2.png](.gitbook/assets/subscribe2.png)
 
   - Any email address will receive the email, whether or not they are internal or external to your organization
@@ -151,6 +153,7 @@ To create a Subscription:
 3. Click "Subscribe".
 
 ### Seeing All Subscriptions
+
 ![/subscribe3.png](.gitbook/assets/subscribe3.png)
 
 You can access this by clicking the "Subscribe" button at the top right of the board. Then select "View All".

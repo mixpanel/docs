@@ -61,6 +61,7 @@ For an existing Organization in Mixpanel, go to Organization Settings > Access S
 ![SSO Create Admin Organization Image](../../.gitbook/assets/sso_create_admin_org2.png)
 
 The new Admin Organization will be listed in the left nav in Organization Settings.
+
 ![SSO Admin Organization Navigation Image](../../.gitbook/assets/sso_admin_org_nav.png)
 
 ### 2. [Set up SSO](../single-sign-on.md) for the Admin Organization

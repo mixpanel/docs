@@ -62,6 +62,7 @@ Before configuring the Experiment Settings, you must first parse the campaign an
 Navigate to **Lexicon** in your Mixpanel project and create the two custom properties below.
 
 #### A. Campaign Custom Property
+
 ![Screenshot 2025-06-17 at 1 49 40 PM](https://github.com/user-attachments/assets/add85567-80d5-4a11-b05c-0934a5365b28)
 
 This property uses a REGEX function to extract the campaign name.
@@ -77,6 +78,7 @@ This property uses a REGEX function to extract the campaign name.
 > **How it works:** This formula reads the `"AB Tasty"` property and extracts only the text that exists *between* the first and second ID brackets (e.g., `[12345]` and `[67890]`).
 
 #### B. Variation Custom Property
+
 ![Screenshot 2025-06-17 at 1 49 16 PM](https://github.com/user-attachments/assets/fd48158a-a436-48bc-9d2b-f4cb9931f2e6)
 
 This property uses a nested SPLIT function to isolate the variation name.

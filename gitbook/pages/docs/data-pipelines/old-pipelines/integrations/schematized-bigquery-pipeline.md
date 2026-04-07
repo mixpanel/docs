@@ -102,6 +102,7 @@ We recommend exporting Mixpanel data into customer-managed BigQuery, for this th
      * Go to **IAM &Admin** in your Google Cloud Console.
      * Click **+ ADD** to add principals
      * Add new principal "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Job User", and save.
+
 ![image](../../../.gitbook/assets/230698732-4dadbccf-1eeb-4e64-a6c7-8926eb49e5cc.png)
     
    **BigQuery Data Owner**
@@ -110,6 +111,7 @@ We recommend exporting Mixpanel data into customer-managed BigQuery, for this th
      * Click on **sharing** and **permissions** in the drop down. 
      * In the Data Permissions window click on **Add Principal** 
      * Add new principal "export-upload@mixpanel-prod-1.iam.gserviceaccount.com" and set role as "BigQuery Data Owner", and save.    
+
 ![image](../../../.gitbook/assets/230698735-972aedb5-1352-4ebc-82c4-ef075679779b.png)
 
 3. You need to pass this dataset and gcp project id as params when you [create your pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline)

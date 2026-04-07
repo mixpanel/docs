@@ -2,6 +2,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import YAML from 'yaml';
 
+import { convertCallouts } from './convert-mdx-to-md.mjs';
+
 const ROOT = path.resolve(process.cwd());
 
 /** OpenAPI path item operation keys only (exclude parameters, servers, $ref, etc.). */
@@ -364,7 +366,8 @@ function labelFromVariableDescription(varDef, value) {
   const desc = String(varDef?.description || '');
   const val = String(value).trim();
   for (const line of desc.split('\n')) {
-    const m = line.match(/\*\s*`([^`]+)`\s*[-–]\s*(.+)/);
+    const t = line.trim();
+    const m = t.match(/^\*\s*`([^`]+)`\s*[-–]\s*(.+)$/);
     if (m && String(m[1]).trim() === val) return m[2].trim();
   }
   return val;
@@ -393,16 +396,14 @@ function expandOneServerEntry(entry) {
         : [];
   if (!vals.length) return [entry];
 
-  const baseDesc = String(entry.description || '')
-    .trim()
-    .replace(/\s*\.\s*$/, '');
   const out = [];
   for (const val of vals) {
     const label = labelFromVariableDescription(varDef, val);
     const resolvedUrl = url.replace(new RegExp(`\\{${name}\\}`, 'g'), String(val));
+    // Per-region line only (matches bullets under `variables.*.description`); no base summary prefix.
     out.push({
       url: resolvedUrl,
-      description: baseDesc ? `${baseDesc} — ${label}` : label,
+      description: label,
     });
   }
   return out;
@@ -842,6 +843,7 @@ async function main() {
         const src = await fs.readFile(absIn, 'utf8');
         const { fm, body } = parseFrontmatter(src);
         let out = ensureH1(body, fm.title);
+        out = convertCallouts(out);
         out = rewriteRefLinks(out, {
           absOutFile: outAbs,
           outRootAbs: outRoot,

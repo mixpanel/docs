@@ -11,11 +11,11 @@ info:
     url: https://mixpanel.com/get-support
 servers:
   - url: https://data.mixpanel.com/api/2.0
-    description: Mixpanel's data export server — The default (US) servers used for most projects
+    description: The default (US) servers used for most projects
   - url: https://data-eu.mixpanel.com/api/2.0
-    description: Mixpanel's data export server — EU servers if you are enrolled in EU Data Residency
+    description: EU servers if you are enrolled in EU Data Residency
   - url: https://data-in.mixpanel.com/api/2.0
-    description: Mixpanel's data export server — India servers if you are enrolled in India Data Residency
+    description: India servers if you are enrolled in India Data Residency
 security:
   - ServiceAccount: []
   - ProjectSecret: []

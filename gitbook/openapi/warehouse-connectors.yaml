@@ -14,11 +14,11 @@ info:
     url: https://mixpanel.com/get-support
 servers:
   - url: https://mixpanel.com/api/app
-    description: Mixpanel's application API server — The default (US) servers used for most projects
+    description: The default (US) servers used for most projects
   - url: https://eu.mixpanel.com/api/app
-    description: Mixpanel's application API server — EU servers if you are enrolled in EU Data Residency
+    description: EU servers if you are enrolled in EU Data Residency
   - url: https://in.mixpanel.com/api/app
-    description: Mixpanel's application API server — India servers if you are enrolled in India Data Residency
+    description: India servers if you are enrolled in India Data Residency
 security:
   - ServiceAccount: []
 tags:

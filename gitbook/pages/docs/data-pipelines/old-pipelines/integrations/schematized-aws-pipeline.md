@@ -7,6 +7,7 @@ Customers on an Enterprise or Growth plan can access Data Pipeline as an add-on 
 Mixpanel's [Schematized Export Pipeline](../schematized-export-pipeline.md) lets you export your Mixpanel data directly into an S3 bucket, allowing the use of Glue to query it. To set up the Mixpanel AWS pipeline, you must configure AWS to receive the exported data, then [create a pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline) to export the data.
 
 ## Design
+
 ![image](../../../.gitbook/assets/230698348-abb2656e-fe2a-4d9c-ad61-8f80793e9c07.png)
 
 Mixpanel applies [transformation rules](../schematized-export-pipeline.md#transformation-rules) to make the data compatible with data warehouses and then transfers the transformed data to your S3 bucket. You can then choose to use a Glue crawler to create the schema out of the transformed data or let Mixpanel to directly create the schema in your glue database. Having the data and the glue schema in place, you can use SQL with multiple AWS products, including [Amazon Athena](https://aws.amazon.com/athena/) and [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html), to query the imported data. 

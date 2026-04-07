@@ -137,9 +137,11 @@ Some integrations have common pause reasons (e.g. [Facebook's authentication pau
 To find more details on Failure errors, you can click in the Cohort within the Integrations page to display errors.
 
 1. Under the integration section, select the cohort:
+
 ![image](https://user-images.githubusercontent.com/13734965/233539867-3bd94f9f-b50c-4939-9eb9-5879e0b2e8cf.png)
 
 2. If an error is available, you will see the “View Error” button:
+
 ![image](https://user-images.githubusercontent.com/13734965/233539900-58b14423-bdfd-4fb7-98ff-17576d54a5d8.png)
 
 3. Click on the “View Error” button to get more details.

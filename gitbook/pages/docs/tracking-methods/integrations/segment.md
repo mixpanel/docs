@@ -125,6 +125,7 @@ To include the `messageId` from the sample Segment payload as a Mixpanel event p
 
 {% hint style="info" %}
 By default, the track preset takes the entire `properties` object from the Segment payload and uses it to generate "Event Properties" for the Mixpanel event payload. To edit the event properties mapping, you will need to manually define each property key-value pairs manually. 
+
 ![segment_mapping_properties_edit](../../.gitbook/assets/segment_mapping_properties_edit.png)
 {% endhint %}    
 
@@ -184,6 +185,7 @@ Example Group Profile/Group Profile Properties created from the group method abo
 In order to use Group Profile Properties when analyzing User Profiles, the user profile must have the Group Key/Group ID Value as a profile property.
 
 Declare the Group Key in the identify method as a profile property (trait):
+
 ![5identify](https://github.com/mixpanel/docs/assets/97630035/41cc54c4-2e52-4e77-833d-cc178d1fb107)
 
 **5. Add Group Key as an Event Property to Events**
@@ -204,6 +206,7 @@ For debugging purposes, it can be useful to see exactly what Segment is sending 
 <img width="1080" alt="debugger screenshot" src="https://github.com/mixpanel/docs/assets/97630035/6ee0bbcd-8bf2-4f86-83a7-b0a3c39108e4" />
 
 Click the “Validate” button in the top right corner and choose “Mixpanel” as the destination. After the event has been sent, you can click to view the request from Segment to grab the data payload:
+
 ![pasted image 0 (1)](https://github.com/mixpanel/docs/assets/97630035/0344decc-dc96-4569-ac3d-cc530c63bdb3)
 
 You can then copy the data payload and decode it in a [base64 decoder](https://www.base64decode.org/) to see the JSON event that was sent to Mixpanel.

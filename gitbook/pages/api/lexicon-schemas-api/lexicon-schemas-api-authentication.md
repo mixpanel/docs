@@ -2,11 +2,11 @@
 
 ## Service Account
 
-<Callout icon="📘" theme="info">
-  Roles & Permissions
+{% hint style="info" %}
+Roles & Permissions
 
   To modify (create, edit, delete) a schema, the Service Account must have the role of admin or owner.
-</Callout>
+{% endhint %}
 
 [Service Account Authentication Details](../mixpanel-apis/authentication/service-accounts.md)
 

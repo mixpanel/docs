@@ -11,11 +11,11 @@ info:
     url: https://mixpanel.com/get-support
 servers:
   - url: https://api.mixpanel.com
-    description: Mixpanel's data collection server — The default (US) servers used for most projects
+    description: The default (US) servers used for most projects
   - url: https://api-eu.mixpanel.com
-    description: Mixpanel's data collection server — EU servers if you are enrolled in EU Data Residency
+    description: EU servers if you are enrolled in EU Data Residency
   - url: https://api-in.mixpanel.com
-    description: Mixpanel's data collection server — India servers if you are enrolled in India Data Residency
+    description: India servers if you are enrolled in India Data Residency
 tags:
   - name: Identities
     description: Register or merge users with a new identity.

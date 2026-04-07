@@ -1,8 +1,8 @@
-<Callout icon="❗️" theme="error">
-  Deprecation Warning
+{% hint style="danger" %}
+Deprecation Warning
 
   API authentication via request signature is an outdated authentication. The documentation below has been included for your reference. Please migrate existing code to use Service Account authentication.
-</Callout>
+{% endhint %}
 
 Request signature authentication is the process of creating an encrypted token unique to a set of request parameters and their values. It was useful when requests were made insecurely or needed to be expirable. However, superior and more simplistic security practices have made this approach obsolete.
 

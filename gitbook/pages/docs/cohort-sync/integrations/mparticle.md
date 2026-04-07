@@ -18,11 +18,13 @@ This connection requires setup on both mParticle and Mixpanel.
 1. Log into your mParticle workspace.
 2. Navigate to **Data Platform > Setup > Inputs**.
 3. Select the **Feed** input type and search for **Mixpanel Cohorts**.
+
    ![mParticle 1 Image](../../.gitbook/assets/mparticle1.png)
 
 - Set Input Protection Level to Only Update Profiles to ensure only existing profiles can be updated and no new profiles will be created from cohort syncs.
 
 4. Save and copy your **Webhook URL**.
+
    ![mParticle 2 Image](../../.gitbook/assets/mparticle2.png)
 
 ### Mixpanel Setup
@@ -33,6 +35,7 @@ Mixpanel uses your mParticle API token to send data to the following endpoint:
 1. In Mixpanel, select **Integrations** under the **Data Management** tab in the top navigation bar.
 2. Find **mParticle** in the list, click **Connect**, and paste your **mParticle Webhook URL** into the box.
 3. Click **Continue** to establish the connection.
+
    ![mParticle 5 Image](../../.gitbook/assets/mparticle5.png)
 
 ---
@@ -47,6 +50,7 @@ To export a Mixpanel cohort to mParticle:
    - **One-Time Export:** A static snapshot of the cohort is sent immediately.
    - **Recurring (Dynamic) Sync:** Mixpanel will automatically update the audience in mParticle as users enter or exit the criteria.
 4. Click **Start Sync**.
+
    ![mParticle 6 Image](../../.gitbook/assets/mparticle6.png)
 
 ---
@@ -156,12 +160,14 @@ Once the export begins, you can verify the data flow in mParticle:
 
 1. Navigate to **Data Platform > Trends** (or Live Stream if you are using dev data).
 2. Select your Mixpanel input feed in the inputs dropdown to see of user profile updates received from the mixpanel cohort sync.
+
    ![mParticle 3 Image](../../.gitbook/assets/mparticle3.png)
 
 ### User specific validation (requires org setup and user permission for user profile lookup)
 
 1. In your Mixpanel cohort grab the Mparticle User id
 2. Go to mParticle > Customer 360 > User Profiles and search the user
+
    ![mParticle 4 Image](../../.gitbook/assets/mparticle4.png)
 
 3. Check that the user has a user attribute with the name of your cohort.

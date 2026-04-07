@@ -169,6 +169,7 @@ Take note of the **************************Refresh token************************
 The last piece of information we will need is the Client Customer ID. It is the ID of your Google Ads user account, which we will need to know where to pull campaign data from.
 
 Log into [Google Ads](https://ads.google.com/), and note the numbers at the top right of the screen under your display name.
+
 ![Untitled](https://github.com/mixpanel/docs/assets/2077899/baae1f78-2640-4552-b470-71d0d00ae60f)
 
 It should look something like: `123-456-7890`.

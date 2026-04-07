@@ -1,8 +1,8 @@
 # Service Accounts
 
-<Callout icon="👍" theme="okay">
-  Recommended Authentication
-</Callout>
+{% hint style="info" %}
+Recommended Authentication
+{% endhint %}
 
 A service account is a special type of Mixpanel user intended to represent a non-human entity such as a script or back end service. Similar to a normal user it can be granted access to any number of projects and workspaces within an organization. Permissions are set by defining the role of the service account for each project or workspace. A service account can only belong to one organization.
 

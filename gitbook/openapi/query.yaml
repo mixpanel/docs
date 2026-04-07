@@ -11,11 +11,11 @@ info:
   version: 1.0.0
 servers:
   - url: https://mixpanel.com/api/query
-    description: Mixpanel's calculated data API — The default (US) servers used for most projects
+    description: The default (US) servers used for most projects
   - url: https://eu.mixpanel.com/api/query
-    description: Mixpanel's calculated data API — EU servers if you are enrolled in EU Data Residency
+    description: EU servers if you are enrolled in EU Data Residency
   - url: https://in.mixpanel.com/api/query
-    description: Mixpanel's calculated data API — India servers if you are enrolled in India Data Residency
+    description: India servers if you are enrolled in India Data Residency
 security:
   - ServiceAccount: []
   - ProjectSecret: []

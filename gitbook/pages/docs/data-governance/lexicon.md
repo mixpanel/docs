@@ -146,9 +146,11 @@ By dropping an event, you can intercept and drop incoming events. Mixpanel will 
 To drop an event in Lexicon:
 
 1. Select an event to drop. The Drop icon appears.
+
 ![Lexicon Drop Events](../.gitbook/assets/lexicon-drop-events.png)
 
 2. Click Drop. A “Confirm dropping your event(s)” warning indicates you cannot recover the data associated with the event.
+
 ![Lexicon Drop Events Warning](../.gitbook/assets/lexicon-drop-events-warning.png)
 
 3. Click Drop. The status of the event indicates **Dropped**.
@@ -160,6 +162,7 @@ You can undrop events and properties when you decide you need them again.
 To undrop an event:
 
 1. Select a dropped event. The “Status” column indicates if an event is dropped.
+
 ![Lexicon Undrop Events](../.gitbook/assets/lexicon-undrop-events.png)
 
 2. Click **Undrop**. The “Status” column no longer contains “Dropped”.
@@ -171,6 +174,7 @@ By dropping a property, you can intercept and drop incoming property. Mixpanel w
 To drop a property in Lexicon:
 
 1. Select a property to drop. The Drop icon appears.
+
 ![Lexicon Drop Properties](../.gitbook/assets/lexicon-drop-properties.png)
 
 2. Click **Drop**. A warning indicates that you cannot recover the data that you choose to drop. Click Drop to confirm. The status of the property will indicate Dropped.
@@ -178,6 +182,7 @@ To drop a property in Lexicon:
 **Undropping Properties**
 
 1. Select a dropped property. The “Status” column indicates if a property is dropped.
+
 ![Lexicon Undrop Properties](../.gitbook/assets/lexicon-undrop-properties.png)
 
 2. Click **Undrop**. The “Status” column no longer contains “Dropped”.
@@ -203,9 +208,11 @@ If you wish to use a hidden entity in your report, you may manually select the e
 To hide an event or property:
 
 1. Select one or more visible events, event properties, or profile properties. The “Hide” icon appears. You can check the “Status” field to determine whether an event or property is visible or hidden.
+
 ![Lexicon Hide Events](../.gitbook/assets/hide-events.png)
 
 2. Select **Hide**. A message appears to allow you to confirm hiding the event(s). After you select **Hide**, the event or property status changes to “Hidden”.
+
 ![Lexicon Hide Events Warning](../.gitbook/assets/lexicon-hide-events2.png)
 
 Another option for hiding an event, property, or property value is to let it inactivate until it is hidden in report dropdown menus. Mixpanel’s report dropdown menus hide events that have not been fired within the last 30 days. Event properties and property values that have not been sent to your project in 28 days are hidden from dropdown menus.
@@ -216,6 +223,7 @@ To show an event or property:
 
 1. Select one or more hidden events, event properties, or profile properties. The “Unhide” icon appears. You can check the “Status” field to determine whether an event or property is visible or hidden.
 2. Select **Unhide**. After you select **Unhide**, the event or property status changes to “Visible”.
+
 ![Lexicon Show Events and Properties](../.gitbook/assets/show-events-and-properties.png)
 
 ## Merging Data
@@ -245,6 +253,7 @@ To merge events:
 
 1. Select the events to merge. The “Merge” icon appears.
 2. Click Merge. The “Merge Events” window appears. It shows the events you selected and explains that merging the selected events combines them into a single event, which does not affect the raw data.
+
 ![Lexicon Merge Events](../.gitbook/assets/lexicon-merge-events.png)
 
 3. In the “MERGE SELECTED EVENTS INTO…” section, specify which event Mixpanel should consider as the new unique event.
@@ -255,6 +264,7 @@ To merge events:
 To unmerge events:
 
 1. Select the merged event to unmerge. The “Unmerge” icon appears.
+
 ![Lexicon Unmerge Events](../.gitbook/assets/unmerge-events.png)
 
 2. Click Unmerge. The merged event appears as the original two distinct events.
@@ -265,6 +275,7 @@ To merge properties:
 
 1. Select the properties to merge. The “Merge” icon appears.
 2. Click Merge. The “Merge Properties” window appears. It shows the properties you selected and explains that merging the selected properties combines them into a single property, which does not affect the raw data.
+
 ![Lexicon Merge Events](../.gitbook/assets/merge-properties.png)
 
 3. In the “MERGE SELECTED PROPERTIES INTO…” section, specify which property Mixpanel should recognize as the newly merged property name.

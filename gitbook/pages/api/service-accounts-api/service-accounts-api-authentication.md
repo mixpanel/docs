@@ -2,11 +2,11 @@
 
 ## Service Account
 
-<Callout icon="📘" theme="info">
-  Roles & Permissions
+{% hint style="info" %}
+Roles & Permissions
 
   To modify (create, delete) a service account, the service account used for authentication must have the role of admin or owner.
-</Callout>
+{% endhint %}
 
 [Service Account Authentication Details](../mixpanel-apis/authentication/service-accounts.md#service-accounts)
 
