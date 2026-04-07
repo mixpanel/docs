@@ -1064,6 +1064,7 @@ function convertSelfGuidedTours(src, { outPath, assetsDirAbs, copiedRootHrefs } 
 
       const rows = objs
         .map((obj) => {
+          const badge = extractStringProp(obj, 'badge').trim();
           const title = extractStringProp(obj, 'title').trim();
           const blurb = extractStringProp(obj, 'blurb').trim();
           const img = extractStringProp(obj, 'img').trim();
@@ -1080,7 +1081,7 @@ function convertSelfGuidedTours(src, { outPath, assetsDirAbs, copiedRootHrefs } 
 
           const cover = rewriteRootAssetHrefToRelative(img, { outPath, assetsDirAbs, copiedRootHrefs });
           if (!title) return null;
-          return { title, blurb, url, cover };
+          return { badge, title, blurb, url, cover };
         })
         .filter(Boolean);
 
@@ -1091,6 +1092,7 @@ function convertSelfGuidedTours(src, { outPath, assetsDirAbs, copiedRootHrefs } 
       out.push('    <tr>');
       out.push('      <th></th>');
       out.push('      <th></th>');
+      out.push('      <th data-hidden data-type="select"></th>');
       out.push('      <th data-hidden data-card-target data-type="content-ref"></th>');
       out.push('      <th data-hidden data-card-cover data-type="files"></th>');
       out.push('    </tr>');
@@ -1100,6 +1102,7 @@ function convertSelfGuidedTours(src, { outPath, assetsDirAbs, copiedRootHrefs } 
         out.push('    <tr>');
         out.push(`      <td><strong>${escapeHtml(r.title)}</strong></td>`);
         out.push(`      <td>${escapeHtml(r.blurb || '')}</td>`);
+        out.push(`      <td>${escapeHtml(r.badge || '')}</td>`);
         out.push(
           r.url
             ? `      <td><a href="${escapeHtml(r.url)}">${escapeHtml(r.url)}</a></td>`
@@ -1122,6 +1125,30 @@ function convertSelfGuidedTours(src, { outPath, assetsDirAbs, copiedRootHrefs } 
   }
 
   return out.join('\n');
+}
+
+function convertSelfGuidedToursCtaToButton(src) {
+  let out = String(src);
+  // Convert custom CTA anchor used on self-guided tours into a standard GitBook primary button.
+  out = out.replace(/<a\b([\s\S]*?\bclass="[^"]*\bsgt-cta\b[^"]*"[\s\S]*?)>([\s\S]*?)<\/a>/gi, (_all, attrs, inner) => {
+    const href = attrs.match(/\bhref=(["'])([\s\S]*?)\1/i)?.[2]?.trim() || '';
+    let text = String(inner || '')
+      .replace(/<span\b[^>]*>[\s\S]*?<\/span>/gi, '')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (!text) text = 'Learn more';
+    return `<a href="${escapeHtml(href)}" class="button primary">${escapeHtml(text)}</a>`;
+  });
+
+  // Handle wrappers where opening <div> remains without an explicit close in transformed output.
+  out = out.replace(/<div\b[^>]*>\s*(<a\b[^>]*\bclass="button primary"[^>]*>[\s\S]*?<\/a>)/gi, '$1');
+  // Drop no-longer-needed wrapper div around the CTA button.
+  out = out.replace(
+    /<div\b[^>]*>\s*(<a\b[^>]*\bclass="button primary"[^>]*>[\s\S]*?<\/a>)\s*<\/div>/gi,
+    '$1',
+  );
+  return out;
 }
 
 function convertNextImageToMarkdown(src) {
@@ -2289,6 +2316,7 @@ function convertOne(src, maps, ctx) {
   out = stripUselessDivs(out);
   out = stripJsxComments(out);
   out = stripStyleTags(out);
+  out = convertSelfGuidedToursCtaToButton(out);
   out = stripFaqComponentWrappers(out);
   out = convertIframesToEmbeds(out);
   out = convertSectionAsideToColumns(out);
