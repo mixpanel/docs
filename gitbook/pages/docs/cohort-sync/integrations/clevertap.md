@@ -17,7 +17,7 @@ To enable the integration with CleverTap:
 
 2. From the Integrations page, select the CleverTap dropdown, and select **Connect**.
 
-![CleverTap 2 Image](/clevertap2.png)
+![CleverTap 2 Image](../../.gitbook/assets/clevertap2.png)
 
 3. Specify a **Connector Name** and enter the CleverTap **Project ID**, **Passcode**, and **Data center** details to authorize the connection.
 
@@ -42,7 +42,7 @@ To export a Cohort to CleverTap:
 
 Click **Export to > CleverTap**. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![CleverTap 3 Image](/clevertap3.png)
+![CleverTap 3 Image](../../.gitbook/assets/clevertap3.png)
 
 ## Sync Types
 This integration supports two types of exports: one-time export and recurring sync. When you generate a one-time export or recurring sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
@@ -51,7 +51,7 @@ This integration supports two types of exports: one-time export and recurring sy
 
 Once the export completes, you will see a segment reflecting the set of users from your Mixpanel cohort in the CleverTap's Segments dashboard. The Type column under the Segments list page for the exported cohort is displayed as `Partner - Mixpanel`:
 
-![CleverTap 4 Image](/clevertap4.png)
+![CleverTap 4 Image](../../.gitbook/assets/clevertap4.png)
 
 You can also refer to CleverTap's [Mixpanel Import (Cohort)](https://docs.clevertap.com/docs/mixpanel-integration) documentation.
 

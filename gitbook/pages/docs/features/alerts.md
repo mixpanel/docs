@@ -20,13 +20,13 @@ Create an alert for your Insights and Funnels reports and be notified when r
 1. **Save your report**, click the 3 dots icon, go to Alerts, and select Create Alert.
 *Note: You won't be able to create alerts if the report has unsaved changes. Save your report before setting up the alert.*
 
-![](/246672717-c15123a9-d73e-4c7f-84b9-3891731fc708.png)
+![](../.gitbook/assets/246672717-c15123a9-d73e-4c7f-84b9-3891731fc708.png)
 
 2. **Enter a name** for your alert.
 3. If your report has more than one event, select an event to track. If your report has a breakdown applied, either select a segment to alert on, or select any segment to be alerted when any segment matches the alert criteria.
 4. **Set your alert criteria.** Depending on the report you’re working from, choose between anomaly detection or custom alert types. More details on each criterion type can be found below.
 5. **Set your notification frequency.** Depending on your alert criteria, you can choose a notification frequency spanning from an hour to at most a month. This frequency informs how often *at most* you’ll receive an alert.
-    *Note:*
+*Note:*
 - *For time-series reports, alert query frequency (how often we check if your data matches your alert condition) is determined by the time bucket of your report visualization. For instance, if your chart is hourly, the alert will be checked for at an hourly interval.*
 - *If you have an hourly chart, but set the alert frequency to daily, we’ll check your report for an alert condition match every hour. If we find a match, we’ll send you the alert message and will stop checking your report for a match until the next day.*
 6. **Set your notification delivery preferences.** When alert conditions are met, we can send a notification via email or Slack.
@@ -37,7 +37,7 @@ Create an alert for your Insights and Funnels reports and be notified when r
 In order to send alerts to Slack, you may need to configure the Mixpanel Slack app if you haven’t before. Click "Add Mixpanel to Slack" and follow the prompts on the following screens. You will be brought back to this page when you have added Mixpanel to Slack.
 {% endhint %}
 
-![](/255713687-91a2bb99-3a79-43d4-9d97-3b397aab0305.png)
+![](../.gitbook/assets/255713687-91a2bb99-3a79-43d4-9d97-3b397aab0305.png)
 
 ## Webhook Alerts
 Webhook Alerts allow you to send alert notifications from Mixpanel to third-party platforms via HTTP webhooks. When a configured alert is triggered, Mixpanel will automatically send a payload containing alert details to your specified endpoint.
@@ -64,7 +64,7 @@ Once you've created a webhook, you can use it to receive alert notifications:
 2. Locate the **via Webhook** dropdown
 3. Select your webhook from the available options
 
-![image.png](/webhookalert2.png)
+![image.png](../.gitbook/assets/webhookalert2.png)
 
 4. Complete the rest of your alert configuration and save
 
@@ -117,8 +117,8 @@ You can view and manage all alerts under your personal settings.
 1. Click on **the gear icon** in the top right of Mixpanel and under "Organization Settings" **select "Personal Settings".
 2. Within your personal settings, select the **Alerts** tab to view your custom alerts and automatic insights.
 
-    **to delete:** If you hover over an alert you have created, you can see a **trash icon** which you can click to delete the alert.
-    **to modify:** Click on the title of the alert to edit details.
+**to delete:** If you hover over an alert you have created, you can see a **trash icon** which you can click to delete the alert.
+**to modify:** Click on the title of the alert to edit details.
 
 ![image](https://github.com/mixpanel/docs/assets/130006730/be35a381-b090-4fd4-86e0-7281dd291d64)
 
@@ -140,7 +140,7 @@ Custom Threshold alerts monitor your metrics and notify you when the metric reac
 - **Increases by more than**: Available in line chart reports. The alert will compare the current value with the previous value (frequency set by the report time-series setting). If the new value has increased by the custom amount or percentage over the previous value, you will be sent an alert.
 - **Decreases by more than**: Available in line chart reports. The alert will compare the current value with the previous value (frequency set by the report time-series setting). If the new value has decreased by the custom amount or percentage below the previous value, you will be sent an alert.
 
-![](/255714489-2a4921bb-0fd7-44f9-a6ba-5a88ee14358a.png)
+![](../.gitbook/assets/255714489-2a4921bb-0fd7-44f9-a6ba-5a88ee14358a.png)
 
 ### Anomaly Detection
 
@@ -160,7 +160,7 @@ Anomaly Detection alerts automatically monitor your metrics and notify you when 
 
 1. Click the **3 dots icon**, go to **Alerts** and select **Create Alert**
 2. In the alert creation modal, select **Anomaly Detection** as the alert type.
-    *Note: If Anomaly Detection is not available, it means it is not supported for your report or chart type. Please refer to the "Before you begin" section of this help doc for more information.*
+*Note: If Anomaly Detection is not available, it means it is not supported for your report or chart type. Please refer to the "Before you begin" section of this help doc for more information.*
 
 3. Optionally, adjust the settings to tune the sensitivity of your alert. Higher confidence intervals typically result in a wider expected range and thus fewer alerts triggered. Use the alert preview to fine-tune the settings based on the context and confidence required.
 4. Configure the alert delivery settings and save.
@@ -191,7 +191,7 @@ Mixpanel's Root Cause Analysis (RCA) feature analyzes the properties of unexpect
 
 RCA Boards can be generated from alert trigger messages delivered via Slack or email. Each alert is uniquely tied to one Root Cause Analysis Board that can be accessed and edited by anyone in your organization. With this one-to-one pairing, it is easier to collaborate since edits made by one teammate can be seen by others. 
 
-![alert_rca](/alert_rca.png)
+![alert_rca](../.gitbook/assets/alert_rca.png)
 
 {% hint style="info" %}
 Each alert is tied to one Root Cause Analysis Board that can be accessed and edited by anyone in your organization. Duplicate the board if you wish to make independent edits. If the original Board is deleted, another can be generated from the alert trigger message.
@@ -207,6 +207,6 @@ Here are the key features and components of the RCA Board:
 - Each segmented report is filtered by a date range to enable point-in-time exploration of the data surrounding the data point. For example, if you set an alert on a last 30-day report, the reports on the RCA board will be filtered by a custom date range spanning 30 days. Using a custom date range instead of a fixed number of days ensures that the time range remains consistent for future explorations.
 - To provide additional context, we include links to the original report where you ran RCA. In the case where you ran RCA from an alert, we include a link to the report where the alert was initially set up and a link to the custom alert settings. This allows you to refer back to the report, make adjustments to the alert criteria if necessary, and compare the data with the RCA Board.
 
-![alert_rca_board](/alert_rca_board.gif)
+![alert_rca_board](../.gitbook/assets/alert_rca_board.gif)
 
 By leveraging the Root Cause Analysis feature in Mixpanel, you can gain in-depth insights to quickly understand the factors driving anomalies. This empowers you to take targeted actions, resolve issues, and capitalize on opportunities effectively.

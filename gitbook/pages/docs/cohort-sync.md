@@ -23,23 +23,23 @@ Refer to the Cohort Sync Integration Directory below for partner-specific setup 
 
 <table data-view="cards">
   <thead>
-    <tr>
-      <th></th>
-      <th data-hidden data-card-target data-type="content-ref"></th>
-      <th data-hidden data-card-cover data-type="files"></th>
-    </tr>
+<tr>
+<th></th>
+<th data-hidden data-card-target data-type="content-ref"></th>
+<th data-hidden data-card-cover data-type="files"></th>
+</tr>
   </thead>
   <tbody>
-    <tr>
-      <td><strong>Cohort Sync Integrations Directory</strong></td>
-      <td><a href="./cohort-sync/integrations.md">./cohort-sync/integrations.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Custom Webhooks</strong></td>
-      <td><a href="./cohort-sync/webhooks.md">./cohort-sync/webhooks.md</a></td>
-      <td></td>
-    </tr>
+<tr>
+<td><strong>Cohort Sync Integrations Directory</strong></td>
+<td><a href="./cohort-sync/integrations.md">./cohort-sync/integrations.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Custom Webhooks</strong></td>
+<td><a href="./cohort-sync/webhooks.md">./cohort-sync/webhooks.md</a></td>
+<td></td>
+</tr>
   </tbody>
 </table>
 
@@ -138,8 +138,10 @@ To find more details on Failure errors, you can click in the Cohort within the I
 
 1. Under the integration section, select the cohort:
 ![image](https://user-images.githubusercontent.com/13734965/233539867-3bd94f9f-b50c-4939-9eb9-5879e0b2e8cf.png)
+
 2. If an error is available, you will see the “View Error” button:
 ![image](https://user-images.githubusercontent.com/13734965/233539900-58b14423-bdfd-4fb7-98ff-17576d54a5d8.png)
+
 3. Click on the “View Error” button to get more details.
 
 Currently the “View Error” button will only display if there is an error available. In the case that you do not see a “View Error” button but the sync did not finish successfully, you can reach out to the Support team to help get more details on the error.
@@ -149,4 +151,4 @@ If your recurring cohort syncs are taking more time than expected, we recommend 
 
 In general, if you see the cumulative user count of all cohorts synced under a connection breach ~5 million, we would recommend that you create a new connection.
 
-![image](/cohort_sync_delay.png)
+![image](.gitbook/assets/cohort_sync_delay.png)

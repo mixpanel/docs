@@ -55,7 +55,7 @@ By default, only the columns that are shown in the UI will be exported. You can 
 
 Select the option to include “All event properties” if you are interested in all of the event properties.
 
-![image](/event-csv-export-settings.png)
+![image](.gitbook/assets/event-csv-export-settings.png)
 
 ## Exporting Profiles
 
@@ -120,13 +120,13 @@ Example: `output_properties=["$last_name", "$email", "Total Spent"]`
 
 You may export specific cohorts by using the `filter_by_cohort` parameter. You may find the `cohort_id` in the UI next to your cohort or by using the [cohorts-list API](https://developer.mixpanel.com/reference/cohorts-list).
 
-![image](/cohort-id-viz.png)
+![image](.gitbook/assets/cohort-id-viz.png)
 
 #### Group Profile Export via API
 
 You can also leverage the [Engage API](https://developer.mixpanel.com/reference/engage-query) to export Group Profiles. To do so, provide  the `data_group_id` parameter in your Engage API request. You can find the `data_group_id` for your group keys in your project settings.
 
-![image](/data_group_id_project_settings.png)
+![image](.gitbook/assets/data_group_id_project_settings.png)
 
 ### CSV User Profile Export
 
@@ -138,7 +138,7 @@ Only the columns shown in the UI will be exported in the CSV. You may modify the
 
 To export Group Profiles as a CSV, switch the group key to your group of choice by clicking the “Analyze Uniques by” button in the top left of the UI
 
-![image](/switch_group_key.png)
+![image](.gitbook/assets/switch_group_key.png)
 
 ## Exporting Reports
 

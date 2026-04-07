@@ -245,7 +245,7 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 {% hint style="info" %}
 Since v3.6.2, Mixpanel stopped using the IFA(ID for Advertisers) as a distinct_id, meaning calls to reset will generate a new random UUID.
 
-    If you want to use IFV(identifierForVendor) as the distinct_id, you can set `MIXPANEL_UNIQUE_DISTINCT_ID=1` in build settings `Preprocessor Macros` on the Mixpanel framework target. The IFV will not change when you call `reset`, but will change upon app uninstalls/reinstalls.
+If you want to use IFV(identifierForVendor) as the distinct_id, you can set `MIXPANEL_UNIQUE_DISTINCT_ID=1` in build settings `Preprocessor Macros` on the Mixpanel framework target. The IFV will not change when you call `reset`, but will change upon app uninstalls/reinstalls.
 {% endhint %}
 
 ## Storing User Profiles
@@ -287,9 +287,9 @@ A few commonly used people methods are highlighted below:
 {% tab title="setOnce:" %}
 The [`.people setOnce:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/setOnce:) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set profile properties without the risk of overwriting existing data.
+Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     ```objc Objective-C
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
@@ -308,9 +308,9 @@ The [`.people setOnce:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixp
 {% tab title="append:" %}
 The [`.people append:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/append:) method append values to a list profile property.
 
-    Use this method to add additional values to an existing list property instead of redefining the entire list.
+Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-    **Example Usage**
+**Example Usage**
     ```objc Objective-C
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
@@ -332,9 +332,9 @@ The [`.people append:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpa
 {% tab title="union:" %}
 The [`.people union:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/union:) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
     ```objc Objective-C
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
@@ -363,9 +363,9 @@ The [`.people union:`](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpan
 {% tab title="increment:by" %}
 The [`.people increment:by`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelPeople.html#//api/name/increment:by:) method increments a numeric property by a whole number.
 
-    Use this method to add to or subtract from your numeric property based on its current value.
+Use this method to add to or subtract from your numeric property based on its current value.
 
-    **Example Usage**
+**Example Usage**
     ```objc Objective-C
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
@@ -489,9 +489,9 @@ A few commonly used group methods are highlighted below:
 {% tab title="setOnce:" %}
 The [`getGroup:groupID setOnce:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/setOnce:) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set group profile properties without the risk of overwriting existing data.
+Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     ```objc Objective-C
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
@@ -517,9 +517,9 @@ The [`getGroup:groupID setOnce:`](https://mixpanel.github.io/mixpanel-iphone/Cla
 {% tab title="unset:" %}
 The [`getGroup:groupID unset:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/unset:) method removes a group property from a group profile.
 
-    Use this method to delete unwanted group profile properties from a specific group profile.
+Use this method to delete unwanted group profile properties from a specific group profile.
 
-    **Example Usage**
+**Example Usage**
     ```objc Objective-C
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
@@ -542,9 +542,9 @@ The [`getGroup:groupID unset:`](https://mixpanel.github.io/mixpanel-iphone/Class
 {% tab title="union:values:" %}
 The [`getGroup:groupID union:values:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/union:values:) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
     ```objc Objective-C
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
@@ -567,9 +567,9 @@ The [`getGroup:groupID union:values:`](https://mixpanel.github.io/mixpanel-iphon
 {% tab title="remove:value:" %}
 The [`getGroup:groupID remove:value:`](https://mixpanel.github.io/mixpanel-iphone/Classes/MixpanelGroup.html#//api/name/remove:value:) method removes a value from a list-valued group profile property.
 
-    Use this method to remove specific values from a list without affecting all of the other values in the list.
+Use this method to remove specific values from a list without affecting all of the other values in the list.
 
-    **Example Usage**
+**Example Usage**
     ```objc Objective-C
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
@@ -609,7 +609,7 @@ Alternatively, you can add the following Preprocessor Macros in Build Settings:
 
 If you're using CocoaPods, you'll need to add this to the Pod target instead of your main app project's target:
 
-![image](/230696566-ee7da1ce-0f45-4da1-9083-e5d05f0b2603.png)
+![image](../../.gitbook/assets/230696566-ee7da1ce-0f45-4da1-9083-e5d05f0b2603.png)
 
 You can also add this to your Podfile to ensure everyone on your team will always have logging enabled:
 

@@ -25,11 +25,11 @@ You can enable this feature at a project level to receive alerts via e-mail or S
 
 ![image](/tutorials/event-approval.png "Events Approval")
 
-For more details, refer to our documentation on [Event Approval](../../../data-governance/event-approval.md).
+For more details, refer to our documentation on [Event Approval](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/event-approval).
 
 ## Lexicon: Data Clean Up
 
-Mixpanel's data dictionary is called Lexicon. It contains metadata about your events and properties, as well as, other Mixpanel UI element created along the way, such as [Custom Events](../../../features/custom-events.md), [Custom Properties](../../../features/custom-properties.md), [Lookup Tables](../../../data-structure/lookup-tables.md), and [Formulas](/changelogs/2023-11-09-saved-formulas).
+Mixpanel's data dictionary is called Lexicon. It contains metadata about your events and properties, as well as, other Mixpanel UI element created along the way, such as [Custom Events](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/custom-events), [Custom Properties](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/custom-properties), [Lookup Tables](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/lookup-tables), and [Formulas](/changelogs/2023-11-09-saved-formulas).
 
 ![image](/tutorials/events-metadata.png "Events Metadata")
 
@@ -55,13 +55,13 @@ Lexicon also includes tools that allow you to fix or manage events and propertie
 - Manage existing Custom Events, Custom Properties, and saved Formulas
 - Manage Data Classifications for sensitive properties
 
-For more information about these features, refer to our documentation on [Lexicon](../../../data-governance/lexicon.md).
+For more information about these features, refer to our documentation on [Lexicon](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon).
 
 ## Implementation Monitoring Dashboard
 
-In our [QA and Data Audit](../../../tutorials/implement/qa-data-audit.md#mixpanel-monitoring-dashboard) section, we introduced a [Mixpanel Monitoring Dashboard](https://mixpanel.com/project/3018488/view/3536632/app/boards/#id=6350211) to help you audit your data at a higher-level. You should continue to leverage on this Board to continue monitoring your project by adding additional reports or textual and image elements that document or explain your data governance standards and control processes.
+In our [QA and Data Audit](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/implement/qa-data-audit#mixpanel-monitoring-dashboard) section, we introduced a [Mixpanel Monitoring Dashboard](https://mixpanel.com/project/3018488/view/3536632/app/boards/#id=6350211) to help you audit your data at a higher-level. You should continue to leverage on this Board to continue monitoring your project by adding additional reports or textual and image elements that document or explain your data governance standards and control processes.
 
 <p >
   {% embed url="https://www.youtube.com/watch?v=0Uc4lodA9Ok" %}
 
-Also check out our other [Board Examples](../../../boards/templates.md#other-examples) especially built by our Customer Success team to help you further improve upon data governance and data troubleshooting.
+Also check out our other [Board Examples](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/boards/templates#other-examples) especially built by our Customer Success team to help you further improve upon data governance and data troubleshooting.

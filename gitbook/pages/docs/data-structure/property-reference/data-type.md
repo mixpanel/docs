@@ -29,7 +29,7 @@ Mixpanel supports five data types for properties: String, Numeric, Boolean, Date
 - Timestamps are ingested with [millisecond precision](https://docs.mixpanel.com/changelogs/2022-11-07-millisecond), but exported with second precision.
 - You can break down your results by the "Time" event property and breakdown by Hour, Day, Week, Month, Quarter, Year, Hour of Day, or Day of Week.
 
-![/breakdown_by_date.gif](/breakdown_by_date.gif)
+![/breakdown_by_date.gif](../../.gitbook/assets/breakdown_by_date.gif)
 
 ### List
 
@@ -135,28 +135,28 @@ When filtering using a list property, you may additionally configure whether all
 
 1. **Any in List:** If any item in your list matches your filter criteria, the event will be included.
     
-    **Example:**
+**Example:**
 - Products: ["a","b","c","d"]
 - Filter criteria: "Products" = "a", Any in List
 - Result: The event is included since at least 1 item in the Products list property is "a".
 
 2. **All in List:** If every item in your list matches your filter criteria, the event will be included.
 
-    **Example:**
+**Example:**
 - Products: ["a","b","c","d"]
 - Filter criteria: "Products" = "a", All in List
 - Result: The event is not included because not all items in the Products list property is "a"
 
 3. **Include Matching Items:** If the event matches your filter criteria and the list property is included as a breakdown, return only the matching items from the list in the results.
 
-    **Example:**
+**Example:**
 - Products: ["a","b","c","d"]
 - Filter criteria: "Products" = "a", Any in List, Include Matching Items
 - Result: The event is included since at least 1 item in the Products list property is "a". In the resulting report, only "a" appears as a breakdown segment.
 
 4. **Include All Items:** If the event matches your filter criteria and the list property is included as a breakdown, return all items from the list in the results.
 
-    **Example:**
+**Example:**
 - Products: ["a","b","c","d"]
 - Filter criteria: "Products" = "a", Any in List, Include All Items
 - Result: The event is included since at least 1 item in the Products list property is "a". In the resulting report, "a", "b", "c", and "d" appears as a breakdown segment.
@@ -294,7 +294,7 @@ List of objects can be used like other properties in Mixpanel. Upon selecting a 
 
 We provide a few convenient property computation after a list of objects property is selected. This does a computation on the property, and works similarly to [custom properties](../../features/custom-properties.md).
 
-![list computed properties](/list-computed-properties.png)
+![list computed properties](../../.gitbook/assets/list-computed-properties.png)
 
 #### Size
 

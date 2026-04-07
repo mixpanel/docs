@@ -4,7 +4,7 @@
 
 Saved Metrics and Behaviors allow you to define and standardize key measurements and user actions across your product/business. By saving these definitions, you ensure consistency, reusability, and accuracy across your reporting and analysis.
 
-![](/saved-metrics-and-behaviors1.png)
+![](../.gitbook/assets/saved-metrics-and-behaviors1.png)
 
 ## Saved Metrics
 
@@ -24,7 +24,7 @@ Behaviors fall into one of three types: **Simple**, **Funnel**, or **Retention**
 
 **Simple Behaviors** are an "or" list of one or more events. These are useful when you have multiple events that need to be looked at together to measure a specific behavior. For example, below is a simple behavior for all product page interactions:
 
-![](/saved-metrics-and-behaviors8.png)
+![](../.gitbook/assets/saved-metrics-and-behaviors8.png)
 
 **Simple Behaviors versus Custom Events**
 
@@ -41,7 +41,7 @@ Learn more about the [Funnels report](../reports/funnels.md).
 
 Funnel Behaviors define a sequence of events completed within a specified time frame. For example, save a behavior for the "Product Viewed through Purchased" Funnels.
 
-![](/saved-metrics-and-behaviors9.png)
+![](../.gitbook/assets/saved-metrics-and-behaviors9.png)
 
 ### Retention Behaviors
 
@@ -51,7 +51,7 @@ Learn more about the [Retention report](../reports/retention.md).
 
 Retention Behaviors look at when a user did an event, then came back to do the same or another event within a window of time. For example, we can save a behavior for our monthly returning purchasers.
 
-![](/saved-metrics-and-behaviors10.png)
+![](../.gitbook/assets/saved-metrics-and-behaviors10.png)
 
 ## Use Cases
 You can use Saved Metrics and Saved Behaviors independently or combine them. Below are example use cases for each: 
@@ -74,13 +74,13 @@ You can use Saved Metrics and Saved Behaviors independently or combine them. Bel
 
 Click on the three dots menu next to the metric name. Select either **Save Metric** or **Saved Behavior**. You will be prompted to add a name and description.
 
-![](/saved-metrics-and-behaviors2.png)
+![](../.gitbook/assets/saved-metrics-and-behaviors2.png)
 
 ## Sharing
 
 By default, saved metrics and behaviors are private to you. After saving, you will be prompted to share.
 
-![](/saved-metrics-and-behaviors3.png)
+![](../.gitbook/assets/saved-metrics-and-behaviors3.png)
 
 **Permissions**
 
@@ -101,14 +101,14 @@ When you click “Select Metric” to populate your report, you will see all eve
 
 From an Insights report, you can select metrics and behaviors of all types. From Funnels and Retention reports, you will see only metrics and behaviors for that report type.
 
-![](/saved-metrics-and-behaviors4.png)
+![](../.gitbook/assets/saved-metrics-and-behaviors4.png)
 
 ## Updating Definitions
 Saved metrics or behaviors definitions may change over time. Mixpanel enables you to easily update these definitions and apply the changes across all reports that use them.
 
 After selecting a saved metric or behavior, you can modify the definition in the Query Builder. You will see a dotted line around the metric or behavior icon if the definition has been modified from the last saved state. Click the three-dot menu to make updates.
 
-![](/saved-metrics-and-behaviors5.png)
+![](../.gitbook/assets/saved-metrics-and-behaviors5.png)
 
 - **Push Changes:** This applies your new definition to the original saved metric/behavior. All reports using this metric/behavior will be updated with the new definition.
 - **Save as New:** Creates a new metric with this new definition. The originally saved metric definition will not be affected.
@@ -120,7 +120,7 @@ You can view all Saved Metrics and Behaviors in your project, add descriptions t
 
 From the Lexicon, click the "Metrics" tab to access all [Saved Metrics](./saved-metrics-and-behaviors.md#saved-metrics) and [Formulas](../reports/insights.md#formulas). Click the Behaviors tab to access all [Saved Behaviors](./saved-metrics-and-behaviors.md#saved-behaviors).
 
-![](/saved-metrics-and-behaviors6.png)
+![](../.gitbook/assets/saved-metrics-and-behaviors6.png)
 
 Click on the name of the definition you want to modify or delete. From the detail page, you will see all the options to customize the metric, including:
 - **Permissions:** Click "Share" to modify the metrics share settings.
@@ -128,4 +128,4 @@ Click on the name of the definition you want to modify or delete. From the detai
 - **Display Customizations:** Modify details about how this metric and its data appear by default.
 - **Delete:** Remove a saved metric from the project. Note, any reports using that saved metric will retain the definition, but be displayed in an unsaved state.
 
-![](/saved-metrics-and-behaviors7.png)
+![](../.gitbook/assets/saved-metrics-and-behaviors7.png)

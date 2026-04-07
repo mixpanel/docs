@@ -14,7 +14,7 @@ You can view Annotations directly on time-series charts and in the Annotations s
 
 Select the **Annotations** tab (above the query builder) and click the “+” button to add a new annotation.
 
-![annotations2](/annotations2.png)
+![annotations2](../.gitbook/assets/annotations2.png)
 {% endstep %}
 
 {% step %}
@@ -24,7 +24,7 @@ Charts with time intervals (such as line, stacked line, column, and stacked colu
 
 Hover over the horizontal axis to locate the time interval, then click the “+” button to create an annotation for that point in time.
 
-![annotations1](/annotations1.png)
+![annotations1](../.gitbook/assets/annotations1.png)
 
 You can also switch over to the [Annotation Timeline](./annotations.md#annotations-timeline) to see all annotations within the date range and create a new annotation.
 {% endstep %}
@@ -34,7 +34,7 @@ You can also switch over to the [Annotation Timeline](./annotations.md#annotatio
 
 Add one or more tags to categorize the annotation.
 
-![annotations3](/annotations3.png)
+![annotations3](../.gitbook/assets/annotations3.png)
 
 {% hint style="info" %}
 Use tags consistently (e.g., Launches, Outages, Holidays, and even Team names) so it is easy to filter and spot patterns.
@@ -49,7 +49,7 @@ Annotations appear as markers directly on the chart. Hover over a marker to view
 
 For example, in the chart below, you can see 1 annotation in March, 4 in May, and 2 in July.
 
-![annotations4](/annotations4.png)
+![annotations4](../.gitbook/assets/annotations4.png)
 
 ### Annotations Side-panel
 
@@ -61,7 +61,7 @@ From the side panel, you can:
 - **Sort** by date
 - **Filter** Annotations by tags
 
-![annotations5](/annotations5.png)
+![annotations5](../.gitbook/assets/annotations5.png)
 
 When you save a report, Mixpanel also saves your current annotation filters. The report will then display only the annotations that match your selected tag filters.
 
@@ -75,13 +75,13 @@ From the timeline, you can:
 - **Hide/Show** annotations
 - **Filter** Annotations by tags
 
-![annotations7](/annotations7.png)
+![annotations7](../.gitbook/assets/annotations7.png)
 
 ## Editing and Deleting Annotations
 
 Hover over any existing annotations to see available actions. Click on the "pencil" button to edit the description and add/remove tags. Click the "trash" button to delete the annotation.
 
-![annotations6](/annotations6.png)
+![annotations6](../.gitbook/assets/annotations6.png)
 
 {% hint style="warning" %}
 Annotations apply globally across the project. Any edits or deletions affect not only the current report but all reports in the project.

@@ -22,15 +22,15 @@ Below are a few examples:
 
 **Filter by users who watched more than 10 videos in the last 7 days**
 
-![/cohort_example_1.gif](/cohort_example_1.gif)
+![/cohort_example_1.gif](../.gitbook/assets/cohort_example_1.gif)
 
 **Filter to only users who watched a video for the very first time in the past 30 days**
 
-![/cohort_example_2.gif](/cohort_example_2.gif)
+![/cohort_example_2.gif](../.gitbook/assets/cohort_example_2.gif)
 
 **Chaining cohorts together using the AND/OR operators**
 
-![/cohort_example_3.gif](/cohort_example_3.gif)
+![/cohort_example_3.gif](../.gitbook/assets/cohort_example_3.gif)
 
 You can also access the builder directly from the query builder in any of our reports, by clicking Create Custom > Cohort. This will create a temporary cohort that only persists for your analysis session.
 
@@ -47,15 +47,15 @@ Cohorts can also be created and managed in [Lexicon](../data-governance/lexicon.
 ### Creating a Cohort with Changing User Properties
 With historical user or group properties, you can optionally Add Time and Measurement to specify the time-range over which to search for the property value
 
-![image](/historical_cohort_1.webp)
+![image](../.gitbook/assets/historical_cohort_1.webp)
  
 This brings up time selector options.
 
-![image](/historical_cohort_2.webp)
+![image](../.gitbook/assets/historical_cohort_2.webp)
 
 To go back to the default of using the latest value of the historical property, you can Remove Time and Measurement.
 
-![image](/historical_cohort_3.webp)
+![image](../.gitbook/assets/historical_cohort_3.webp)
 
 ### Creating a Cohort via a CSV
 
@@ -65,15 +65,15 @@ We will [use the CSV to update users in bulk](../data-structure/user-profiles.md
 
 For example, if you have a list of 1,000 distinct_id values to group into a Cohort, create a CSV file with two columns: one containing the distinct_id values and another containing a user property value that identifies cohort membership (e.g. `inCohort == "yes"`). Exclude column headers from the CSV, as you will define them during the upload process in the CSV upload wizard within the UI.
 
-![cohort_csv1.png](/cohort_csv1.png)
+![cohort_csv1.png](../.gitbook/assets/cohort_csv1.png)
 
 After you create the CSV, go to the **Users** tab, click **Add/Edit Profile**, select **Import from CSV**, and upload your file.
 
-![cohort_csv2.png](/cohort_csv2.png)
+![cohort_csv2.png](../.gitbook/assets/cohort_csv2.png)
 
 Next, define the property names for each column in the CSV uploaded. Assign "$distinct_id" as the property name for the column containing the distinct_id values, and choose a property name for the column containing the user property value. Once you verify that the column assignment is correct, click **Import Profiles**.
 
-![cohort_csv3.png](/cohort_csv3.png)
+![cohort_csv3.png](../.gitbook/assets/cohort_csv3.png)
 
 {% hint style="warning" %}
 If your CSV includes a `$distinct_id` value that does not match an existing user in your project, the system will create a new user with that distinct_id.
@@ -81,7 +81,7 @@ If your CSV includes a `$distinct_id` value that does not match an existing user
 
 Finally, use the newly uploaded user property to define your Cohort.
 
-![cohort_csv4.png](/cohort_csv4.png)
+![cohort_csv4.png](../.gitbook/assets/cohort_csv4.png)
 
 Note that Cohorts created using this method are static; they will not update over time, as the associated user property remains unchanged.
 

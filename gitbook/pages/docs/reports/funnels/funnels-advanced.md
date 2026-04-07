@@ -14,7 +14,7 @@ The Conversion Window determines how much time a user has to convert through all
 
 By default, all customers have 7 days to complete a funnel from the timestamp they perform the Step 1 event. To adjust this conversion window, click on the words 7 **days** in the conversion criteria. You will be able to adjust both the unit of time and the amount.
 
-![/Screen_Shot_2021-12-15_at_11.12.25_AM.png](/Screen_Shot_2021-12-15_at_11.12.25_AM.png)
+![/Screen_Shot_2021-12-15_at_11.12.25_AM.png](../../.gitbook/assets/Screen_Shot_2021-12-15_at_11.12.25_AM.png)
 
 The maximum amount of time you can choose for the conversion window is 366 days, or otherwise equivalent (12 months, 52 weeks, etc). For session-based conversion windows, the maximum is 12 sessions. 
 
@@ -39,7 +39,7 @@ When **Optimized Re-entry** mode is enabled, we actively evaluate all funnel ent
 
 If any user funnel entries within the report date range result in a conversion, we count the user as converted.
 
-![image](/funnel_reentry.png)
+![image](../../.gitbook/assets/funnel_reentry.png)
 
 **Scenario 1**
 
@@ -102,7 +102,7 @@ A step will either appear with a number beside it, indicating where it must fall
 
 If you have selected any order for your funnels steps, you have the option to select **Top paths** from the drop-down visualization list to view a [Sankey visualization](../flows.md#sankey-chart) of how your users are performing the steps in your funnel.
 
-![/funnels_any.png](/funnels_any.png)
+![/funnels_any.png](../../.gitbook/assets/funnels_any.png)
 
 ### Hold Property Constant
 
@@ -119,7 +119,7 @@ The way entry values are determined when "Holding Property Constant" depends on 
 
 To hold a property constant in your funnel, expand the “Advanced” menu and click “Holding property constant”.
 
-![/funnels_hold.png](/funnels_hold.png)
+![/funnels_hold.png](../../.gitbook/assets/funnels_hold.png)
 
 ## Exclusion Steps (Exclude users who did…)
 
@@ -129,13 +129,13 @@ A few things to note about exclusion steps:
 
 1. An exclusion step can be placed between any steps in the funnel. It cannot be the first or last step.
     
-    Example scenario: The user tracks (1) Event A → (2) Event A → (3) Event A → (4) Event B
+Example scenario: The user tracks (1) Event A → (2) Event A → (3) Event A → (4) Event B
     
-    Totals conversion funnel looking at A → B, with Exclusion Step: Event A
+Totals conversion funnel looking at A → B, with Exclusion Step: Event A
     
-    The user enters the funnel when they track (1). They then drop-off when they track (2) since Event A is excluded. With the totals conversion criteria, the user will re-enter the funnel at (3) and then convert with (4). Overall, there will be two entries and one conversion. 
+The user enters the funnel when they track (1). They then drop-off when they track (2) since Event A is excluded. With the totals conversion criteria, the user will re-enter the funnel at (3) and then convert with (4). Overall, there will be two entries and one conversion. 
     
-    Example reports for reference from our demo dataset:
+Example reports for reference from our demo dataset:
     
 - [User activity](https://mixpanel.com/s/2it5gE)
 - [Funnel](https://mixpanel.com/s/2CpCuq)
@@ -159,7 +159,7 @@ To add an exclusion step in your funnel, expand the “Advanced” menu and clic
 
 Select an event from the list and choose whether you would like the event to be excluded between all steps, or between specific steps. Click the Filter icon beside the step to filter that event by an event or user profile property.
 
-![/exclude_2.png](/exclude_2.png)
+![/exclude_2.png](../../.gitbook/assets/exclude_2.png)
 
 ## Saved Funnel Behaviors
 
@@ -167,7 +167,7 @@ You can save the Funnel Behavior you built and reuse them in other reports. This
 
 Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the saved behavior and the measurements of the behavior.
 
-![/saved-funnel-behavior1.png](/saved-funnel-behavior1.png)
+![/saved-funnel-behavior1.png](../../.gitbook/assets/saved-funnel-behavior1.png)
 
 Learn more about [Saved Metrics and Behaviors](../../features/saved-metrics-and-behaviors.md).
 
@@ -200,7 +200,7 @@ You can select which step of the funnel you would like to measure. By default th
 
 When measuring “Unique Users”, “Total Conversions” or “Total Sessions”, you can select “Entering Funnel” in order to get a top-of-funnel count. Similarly, if you would like to get the bottom-of-funnel count, you can choose “All Steps”.
 
-![step selection](/step-selection.png)
+![step selection](../../.gitbook/assets/step-selection.png)
 
 ## Time to Convert
 
@@ -208,7 +208,7 @@ When measuring “Unique Users”, “Total Conversions” or “Total Sessions�
 
 You can select a Time to Convert aggregation to see how quickly or slowly your funnel converts. You can see this as a summarized value by selecting “Metric” or “Bar” visualizations, or you can see it as a trend using the “Line” visualization. You can also see the time to convert for a particular chosen step selection. (Note: Our percentiles are calculated using an approximate algorithm and when this algorithm is run on small/sparse datasets, the results can be non-deterministic, i.e. the results can differ by a small amount across runs.)
 
-![toc_measurement.png](/toc_measurement.png)
+![toc_measurement.png](../../.gitbook/assets/toc_measurement.png)
 
 ### Time to Convert Breakdown
 
@@ -218,7 +218,7 @@ Time to Convert works like any other property in that you can filter to specific
 
 You can can see a distribution of the conversions time to convert by using the Time to Convert breakdown in combination with measuring total conversion. You can also use this to see how other metrics such as conversion rate are affected based on how quickly users convert on a particular step range.
 
-![toc_breakdown.png](/toc_breakdown.png)
+![toc_breakdown.png](../../.gitbook/assets/toc_breakdown.png)
 
 ## Property Sum
 
@@ -228,7 +228,7 @@ This measurement type allows you to visualize a numeric event property through a
 
 To use property sum, select property sum from the measurement menu, and select a numeric property. 
 
-![funnels_property_sum.png](/funnels_property_sum.png)
+![funnels_property_sum.png](../../.gitbook/assets/funnels_property_sum.png)
 
 ## Behavioral Properties
 
@@ -246,7 +246,7 @@ For example, if a user performs “Step 1 → Step 1 → Step 2”:
 
 See [here](../../features/computed-properties.md#behavioral-properties) for more information about behavioral properties.
 
-![funnels_behavioral_props.png](/funnels_behavioral_props.png)
+![funnels_behavioral_props.png](../../.gitbook/assets/funnels_behavioral_props.png)
 
 ### Frequency per User
 
@@ -266,7 +266,7 @@ You can select multiple events at a particular step in a funnel, and Mixpanel wi
 
 To do this, click on the ”…” menu and select “Event Comparison”
 
-![funnels_comparison.png](/funnels_comparison.png)
+![funnels_comparison.png](../../.gitbook/assets/funnels_comparison.png)
 
 ## Breakdowns
 
@@ -298,7 +298,7 @@ In order to clarify this statistical significance, the segmentation chart shows 
 - \> 0.95 = statistically significant, indicated in green. This variation in conversion rate is likely **not** driven by random chance.
 - \< 0.95 = not statistically significant, indicated in red. This variation in conversion rate is likely driven by random chance.
 
-![funnels_significance.png](/funnels_significance.png)
+![funnels_significance.png](../../.gitbook/assets/funnels_significance.png)
 
 Scrolling further down the table takes you to the statistically insignificant segments. If a segment has less than 30 samples, the p-value is not shown, as the sample size is too low to detect differences from the overall population. This is indicated by “Insufficient samples”.
 
@@ -316,7 +316,7 @@ Inline filters allow you to apply event or user property filters to each step of
 
 Inline filters are performed pre-query. Thus, these filters will impact your funnel's conversion by removing events that don't qualify from consideration of being included in a funnel calculation.
 
-![funnels_filter1.png](/funnels_filter1.png)
+![funnels_filter1.png](../../.gitbook/assets/funnels_filter1.png)
 
 Let's illustrate this with some examples.
 
@@ -324,7 +324,7 @@ Consider a three-step funnel where a user must View Item → Add to Cart → Pur
 
 As you can see in the below activity feed, this user's first "View Item" event happens more than one hour before they "Add to Cart", so they would drop off after the initial "View Item". As such, the funnel would show one entry with no conversions.
 
-![funnels_filter2.png](/funnels_filter2.png)
+![funnels_filter2.png](../../.gitbook/assets/funnels_filter2.png)
 
 However, if you put an **inline filter on the "View Item" event with "Browser = Safari"**, then users will only enter the funnel with "View Item" events on Safari browsers.
 
@@ -332,7 +332,7 @@ Below we see the same user's activity stream where their first "View Item" is wi
 
 They have a second "View Item" that is using Safari, and this event qualifies them to enter into the funnel. Each of their subsequent steps happens within the conversion window, and this user reaches full conversion to the end of the funnel.
 
-![funnels_filter3.png](/funnels_filter3.png)
+![funnels_filter3.png](../../.gitbook/assets/funnels_filter3.png)
 
 If we were to take it further and place an inline filter on each and every step in this funnel, so that all steps must be completed with events where Browser = Safari, then this user would only convert to the second step of "Add to Cart". This is because the "Purchase" event doesn't have a browser set.
 
@@ -344,7 +344,7 @@ For example, let's use the same three-step funnel where a user must View Item �
 
 In the below example, the same user's funnel entry would be their first "View Item" event, with a "Browser = Chrome" since this is the first defined property value. When the global filter is applied, the entire entry is filtered out since it doesn't meet the filter criteria. This means the report would show no users entering the funnel at "View Item".
 
-![funnels_filter4.png](/funnels_filter4.png)
+![funnels_filter4.png](../../.gitbook/assets/funnels_filter4.png)
 
 ## Property Attribution
 
@@ -354,7 +354,7 @@ Event property values can vary from step to step in your funnel, you can choose 
 
 To access this feature, filter or breakdown by a property in the funnel chart below the query builder. Click on **Step 1** to select either “Last Step Defined”, “First Step Defined”, or a specific step number. Your selected choice will determine which step of your funnel determines the property value for the whole funnel.
 
-![funnels_attribution1.png](/funnels_attribution1.png)
+![funnels_attribution1.png](../../.gitbook/assets/funnels_attribution1.png)
 
 ### First Step Defined Attribution and Forwardfilling
 
@@ -364,7 +364,7 @@ Select **First Step Defined** to attribute the first property value to the whole
 
 For example, say that the user is shopping on your website and you want to track a funnel from Page View → View Item → Add to Cart → Checkout, with a breakdown on "color". With "First Step Defined", the first color will be applied to the entire funnel, in this case, "red" seen on View Item.
 
-![funnels_attribution2.png](/funnels_attribution2.png)
+![funnels_attribution2.png](../../.gitbook/assets/funnels_attribution2.png)
 
 ### Last Step Defined Attribution
 
@@ -374,7 +374,7 @@ Select **Last Step Defined** to attribute the last property value to the whole f
 
 For example, say that the user is shopping on your website and you want to track a funnel from Page View → View Item → Add to Cart → Checkout, with a breakdown on "color". With "Last Step Defined", the last defined color value will be applied to the entire funnel, in this case "blue" seen on Add to Cart.
 
-![funnels_attribution3.png](/funnels_attribution3.png)
+![funnels_attribution3.png](../../.gitbook/assets/funnels_attribution3.png)
 
 ### Per-Step Attribution
 
@@ -396,9 +396,9 @@ Click on the “...” icon besides a step and click "Rename" to rename it.
 <hr></hr>
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
-    Next: Frequently Asked Questions
+Next: Frequently Asked Questions
   </h2>
   <p>
-    Still got questions? Get answers to the most frequently asked Funnels questions below.
+Still got questions? Get answers to the most frequently asked Funnels questions below.
   </p>
   <a href="./funnels-faq.md" class="button primary">Funnels FAQ</a>

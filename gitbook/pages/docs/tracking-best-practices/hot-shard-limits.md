@@ -68,11 +68,11 @@ The process can be broken down into 3 main steps:
 ### Reviewing hot shard data in your project
 A great starting point for the analysis would be to create a copy of [this board](https://mixpanel.com/project/3187769/view/3699049/app/boards#id=7145081) from our demo project into the affected project. As you open the board linked above, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range. Only projects with US residency will be able to copy the board directly. Projects with EU and IN residency will need to recreate the reports manually.
 
-![Screenshot use this board](/tracking_id_limits_copy_board.png)
+![Screenshot use this board](../.gitbook/assets/tracking_id_limits_copy_board.png)
 
 The board eases the process of identifying the data marked as coming from a hot shard. Essentially, it helps you create reports to break down that data by the main `distinct_id` values affected as well as the event names. For example, you can see reports pointing to the main `distinct_id` values (by volume) generating the hot shard.
 
-![Sample hot shard report](/tracking_id_limits_sample_report.png)
+![Sample hot shard report](../.gitbook/assets/tracking_id_limits_sample_report.png)
 
 ### Changing your implementation
 Once you have identified the cluster of `distinct_id` values related to the issue, it would be time to review your implementation and inspect the reason why a set of these IDs are getting a higher than usual number of events. In general terms, you will often find these main scenarios:

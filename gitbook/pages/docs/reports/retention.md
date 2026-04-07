@@ -2,7 +2,7 @@
 
 ## Overview
 
-![/Screen_Shot_2021-05-27_at_7.49.12_AM.png](/Screen_Shot_2021-05-27_at_7.49.12_AM.png)
+![/Screen_Shot_2021-05-27_at_7.49.12_AM.png](../.gitbook/assets/Screen_Shot_2021-05-27_at_7.49.12_AM.png)
 
 The Retention report in Mixpanel is designed to assess user engagement over a specified period of time. Retention of your users is critical to achieving product-market fit and sustainable long-term growth, and this report will help you understand how long users continue to come back and find value from your product.
 
@@ -25,7 +25,7 @@ Building a Retention report follows the same high level steps as building any ot
 
 The Retention Behavior is the basic building block of a Retention report. A Retention Behavior is doing an event and then coming back to do another event. In this case, since we want to know retention after signup, choose "Sign Up Completed" in the first event slot. Then, we want to know if users are coming back and using the product, so choose "Any Event" in the second event slot. At this point, your query should look like this:
 
-![/retention_beta_1.png](/retention_beta_1.png)
+![/retention_beta_1.png](../.gitbook/assets/retention_beta_1.png)
 
 You can save the Retention Behavior you built and reuse them in other reports. Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the saved behavior and the measurements of the behavior.
 
@@ -41,7 +41,7 @@ There are 4 types of measurement
 - Property Sum: Total sum of property within a window  (eg.  total video watch duration)
 - Property Average: Average across users of sum of property within window (eg average watch time per user)
 
-![/Updated_retention_measurements.png](/Updated_retention_measurements.png)
+![/Updated_retention_measurements.png](../.gitbook/assets/Updated_retention_measurements.png)
 
 Your Retention Behavior combined with the measurement forms a Metric. You can save the Retention Metric you built and reuse them in other reports (such as the Insights report). Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the saved behavior and the measurements of the behavior.
 
@@ -51,13 +51,13 @@ Learn more about [Saved Metrics and Behaviors](../features/saved-metrics-and-beh
 
 Filters exclude unwanted data. In this case, we only care about events performed on Chrome browser. Therefore, add a "Browser" filter, where Browser equals "Chrome". At this point, your query should look like this:
 
-![/Retention_Filter.png](/Retention_Filter.png)
+![/Retention_Filter.png](../.gitbook/assets/Retention_Filter.png)
 
 ### Step 4: Choose Breakdowns
 
 Breakdowns segment data into groups. In this case, we want to break our report down based on the browser version they are using to Sign Up. Therefore, add an "Browser Version" breakdown. At this point, your query should look like this:
 
-![/Retention_Breakdown.png](/Retention_Breakdown.png)
+![/Retention_Breakdown.png](../.gitbook/assets/Retention_Breakdown.png)
 
 ### Step 5: Choose Visualization
 
@@ -67,7 +67,7 @@ You can visualize your metric in a variety of ways. Mixpanel allows you to choos
 - Line - see how your metric is trending over time. Used to see a particular retention group rate is trending over time.
 - Metric - see a summary view of your metric
 
-![/retention_beta_5.png](/retention_beta_5.png)
+![/retention_beta_5.png](../.gitbook/assets/retention_beta_5.png)
 
 ## Basic Features
 
@@ -77,7 +77,7 @@ You can visualize your metric in a variety of ways. Mixpanel allows you to choos
 
 The retention curve chart displays retention data as both a line chart and a table. Data is identical between the two. The line chart provides a visual representation of users becoming inactive over time, while the table provides a heat map to show which groups have the best retention.
 
-![/Screen_Shot_2021-05-27_at_7.49.12_AM.png](/Screen_Shot_2021-05-27_at_7.49.12_AM.png)
+![/Screen_Shot_2021-05-27_at_7.49.12_AM.png](../.gitbook/assets/Screen_Shot_2021-05-27_at_7.49.12_AM.png)
 
 **Incomplete Buckets**
 Boxes with an asterisk (\*) indicate that the data is still in flux and not set yet because the time is still ongoing. Hover over a box to see when the last qualifying date for that bucket will occur.
@@ -87,7 +87,7 @@ Each box within a row is assigned a shade of purple. The shading gets darker the
 
 ### Line chart
 
-![/Retention Line Chart](/Retention_Trend.png)
+![/Retention Line Chart](../.gitbook/assets/Retention_Trend.png)
 
 Select **Line** from the visualization drop-down list to see how your retention metrics are changing over time. You can see how your retention rate or number of users retained is trending. You can see this trend for any of the retention time unit buckets. You can change between the different time unit buckets (i.e. < 1 Day, Day 1, Day 2, ...) to see if your retention metrics are improving or declining along your retention curve.
 
@@ -103,7 +103,7 @@ For example, if you are bucketing based on your "Item Purchased" event and creat
 
 ### Retention Criteria
 
-![/Updated_retention_criteria.png](/Updated_retention_criteria.png)
+![/Updated_retention_criteria.png](../.gitbook/assets/Updated_retention_criteria.png)
 
 #### 'On or After' time interval
 
@@ -167,21 +167,21 @@ Typical "exact day" retention buckets don't quite solve for this use case becaus
 
 **Free trials:** If you want to understand how many users come back to use the product during a 7-day free trial and also who came back and kept using the product in the 30 days after the free trial is up, you could do something like this:
 
-![Retention 7 30](/Retention_7_30.png)
+![Retention 7 30](../.gitbook/assets/Retention_7_30.png)
 
 **In between cadences:** Are you somewhere in between a DAU or WAU product? You can group daily buckets to understand how your users retain every 3 days (bi-weekly).
 
-![Retention 3 3](/Retention_3_3.png)
+![Retention 3 3](../.gitbook/assets/Retention_3_3.png)
 
 #### Setting Custom Brackets
 
 First, go into the time unit drop-down in the Retention query builder and select **Custom**
 
-![Setting Custom Buckets](/Retention_Setting_Custom.png)
+![Setting Custom Buckets](../.gitbook/assets/Retention_Setting_Custom.png)
 
 Then, select the size of each bracket for the given time unit. In this example, we are selecting the number of days that are in each custom bracket. Apply.
 
-![Retention 3 3](/Retention_3_3.png)
+![Retention 3 3](../.gitbook/assets/Retention_3_3.png)
 
 Each of these intervals is its own retention bucket, and if the user does the "come back and did B" event anytime inside that bucket they are counted as retained. Now I will be able to understand what percent of users come back to play at least one game in any day between day 15 and day 30 from signing up.
 
@@ -189,11 +189,11 @@ Each of these intervals is its own retention bucket, and if the user does the "c
 
 You can go into advanced menu under Retention Criteria to switch the retention mode from the default rolling time windows to calendar defined time windows. This aligns the retention calculation so that all users entering within a time bucket get calculated together.
 
-![/13599603833876.png](/13599603833876.png)
+![/13599603833876.png](../.gitbook/assets/13599603833876.png)
 
 This may be useful in scenarios where you want to check engagement on a strict day basis, OR if you want to check retention of your user base for the entire month and when they return, regardless of when in the month they first entered or when in the next month they returned.
 
-![/13599765981076.png](/13599765981076.png)
+![/13599765981076.png](../.gitbook/assets/13599765981076.png)
 
 In the above example, we're looking at retention on a calendar week basis.
 
@@ -250,7 +250,7 @@ You can use the Frequency report to learn how frequently users return to use you
 
 To generate Frequency reports, click **Reports**, **Retention,** and select the **Frequency** option under the toggle for retention.
 
-![/Screen_Shot_2022-07-05_at_4.41.04_PM.png](/Screen_Shot_2022-07-05_at_4.41.04_PM.png)
+![/Screen_Shot_2022-07-05_at_4.41.04_PM.png](../.gitbook/assets/Screen_Shot_2022-07-05_at_4.41.04_PM.png)
 
 Mixpanel groups unique users in time-incremented buckets when they first complete an action, and then groups those same users in subsequent buckets when they return and perform the same or different actions.
 
@@ -280,11 +280,11 @@ When you create an unsegmented retention query (i.e. a retention query that is n
 
 In other words, we will calculate the retention of each and every cohort based upon the selected birth interval unit (day/week/month cadence that the user performed the A action) and then summarize it into one line by taking the average of all complete buckets. You can see the retention of each individual interval by expanding the Average Retention column:
 
-![/intervalized_retention.png](/intervalized_retention.png)
+![/intervalized_retention.png](../.gitbook/assets/intervalized_retention.png)
 
 Segmented queries are now calculated with that same intervalized average method, but for each particular property value or cohort segment. You can now expand out any particular segment's name in a retention query to see the retention of each day, week, or month interval within that segment:
 
-![/segemented_intervalized_retention.png](/segemented_intervalized_retention.png)
+![/segemented_intervalized_retention.png](../.gitbook/assets/segemented_intervalized_retention.png)
 
 Intervalized averages to segmented retention queries have two key advantages:
 

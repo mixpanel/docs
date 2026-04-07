@@ -12,7 +12,7 @@ If you prefer not to build and maintain your data pipelines, consider using [Ven
 
 Create a [new Cloud Function](https://console.cloud.google.com/functions/add), set the trigger to `HTTPS`, and check the box to Allow Unauthenticated Invocations, since this will be called from Stripe. Copy the URL, which should look something like `https://<zone>-<your-gcp-project>.cloudfunctions.net/stripe-demo`.
 
-![](/stripe_cloud_functions_setup.png)
+![](../../.gitbook/assets/stripe_cloud_functions_setup.png)
 
 Paste in the following code, which accepts Stripe's webhook format, and forwards it to Mixpanel's `/import` API:
 
@@ -65,7 +65,7 @@ Create a [Stripe Webhook](https://dashboard.stripe.com/webhooks/create) and past
 
 We recommend selecting all events, since it affords the most flexibility and you can filter them down easily in Mixpanel. 
 
-![](/stripe_cloud_functions_screenshot.png)
+![](../../.gitbook/assets/stripe_cloud_functions_screenshot.png)
 
 🎉 Congrats: you now have a fully functioning Stripe -> Mixpanel integration!
 

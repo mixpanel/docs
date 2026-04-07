@@ -1,6 +1,6 @@
 # Check Your Implementation
 
-As a best practice, we recommend that you minimally setup two Mixpanel projects, one for **Development** data and another for **Production** data. If you have not done so, refer to the [Development and Production Project Setup](../../../tutorials/plan/setup.md#development-and-production-project-setup) section.
+As a best practice, we recommend that you minimally setup two Mixpanel projects, one for **Development** data and another for **Production** data. If you have not done so, refer to the [Development and Production Project Setup](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/plan/setup#development-and-production-project-setup) section.
 
 You should implement and test all your tracking using the development project; and before pushing live data to your production project, you should conduct Quality Assurance (QA) tests to ensure correctness, consistency, and accuracy.
 
@@ -17,7 +17,7 @@ There are generally two levels of Quality Assurance tests that your teams should
 
 Mixpanel provides the following tools that enable you to conduct QA:
 
-1. Debug Mode - Mixpanel Client-Side SDKs can be configured to [Enable Debug Mode](../../../debugging/overview.md#enable-debug-mode) which logs any Mixpanel client-side calls to the browser console or development platforms (eg Xcode, Android Studio). 
+1. Debug Mode - Mixpanel Client-Side SDKs can be configured to [Enable Debug Mode](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/debugging/overview#enable-debug-mode) which logs any Mixpanel client-side calls to the browser console or development platforms (eg Xcode, Android Studio). 
 
    Outside of the Client-Side SDKs, development teams should consider including code to handle error responses thrown by our Server-Side SDKs, APIs, or by the other tools you use to send data to Mixpanel (eg CDP, Reverse ETL or Cloud Ingestion scripts).
 
@@ -30,15 +30,15 @@ Mixpanel provides the following tools that enable you to conduct QA:
    - Examine the Identity Cluster to see all the Distinct IDs linked to a user
    - Search and validate all User Profile Properties and their values
    - Use the Activity Feed section to search through all events with the most recent one listed on top
-   - For customers using [Group Analytics](../../../data-structure/advanced/group-analytics.md), this same report can also be used to view group profile properties and events underneath a Group ID
+   - For customers using [Group Analytics](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/advanced/group-analytics), this same report can also be used to view group profile properties and events underneath a Group ID
 
    ![image](/tutorials/profile-activity-feed.png "Profile Activity Feed")
 
-   Note: The User Profile Activity Feed report is the only report with query-time identity management merging. All other reports in Mixpanel may still show separate Distinct IDs while merging is still being processed. Refer to this [FAQ](../../../tracking-methods/id-management/identifying-users-simplified.md#faq) for more details.
+   Note: The User Profile Activity Feed report is the only report with query-time identity management merging. All other reports in Mixpanel may still show separate Distinct IDs while merging is still being processed. Refer to this [FAQ](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management/identifying-users-simplified#faq) for more details.
 
-4. Lexicon - Mixpanel's **Lexicon** contains all the metadata about your events and properties. It also contains other metadata about [Custom Events](../../../features/custom-events.md), [Custom Properties](../../../features/custom-properties.md), [Lookup Tables](../../../data-structure/lookup-tables.md), and [Formulas](/changelogs/2023-11-09-saved-formulas) that you would eventually create in the Mixpanel UI.
+4. Lexicon - Mixpanel's **Lexicon** contains all the metadata about your events and properties. It also contains other metadata about [Custom Events](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/custom-events), [Custom Properties](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/custom-properties), [Lookup Tables](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/lookup-tables), and [Formulas](/changelogs/2023-11-09-saved-formulas) that you would eventually create in the Mixpanel UI.
 
-   Lexicon can be used to check naming consistencies across your events and properties and also ensure that you are not sending any event or property that you should not be tracking. We will cover Lexicon in greater detail under [Establish Governance](../../../tutorials/implement/establish-governance.md#lexicon-overview-and-data-clean-up) section; should you need more information refer to our documentation on [Lexicon](../../../data-governance/lexicon.md).
+   Lexicon can be used to check naming consistencies across your events and properties and also ensure that you are not sending any event or property that you should not be tracking. We will cover Lexicon in greater detail under [Establish Governance](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/implement/establish-governance#lexicon-overview-and-data-clean-up) section; should you need more information refer to our documentation on [Lexicon](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon).
 
    ![image](/tutorials/lexicon-events-properties.png "Lexicon Events and Properties")
 

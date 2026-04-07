@@ -18,11 +18,11 @@ Follow these steps to enable the integration with Facebook Ads:
 
 2. From the Integrations page, click the **Facebook Ads** dropdown.
 
-![Facebook 2 Image](/facebook2.png)
+![Facebook 2 Image](../../.gitbook/assets/facebook2.png)
 
 3. Select your Facebook Ad Account ID and your connector name and also choose user property where you're storing device advertising ID (optional)
 
-![Facebook Connector Image](/facebook_connector.png)
+![Facebook Connector Image](../../.gitbook/assets/facebook_connector.png)
 
 4. The Facebook Ads integration page will show a green export icon and details about the integration after it is connected. To disable the connector, select the **Facebook Ads** dropdown and click **Disconnect**.
 
@@ -36,7 +36,7 @@ To export a cohort to Facebook Ads:
 
 3. Click **Export to Facebook**. Select either a one-time sync or a dynamic sync. Click **Start Sync**.
 
-![Facebook 3 Image](/facebook3.png)
+![Facebook 3 Image](../../.gitbook/assets/facebook3.png)
 
 ## Sync Types
 
@@ -56,7 +56,7 @@ You must log in to Facebook Business Manager to use the Mixpanel Cohort in Faceb
 
 Click on **Audiences**.
 
-![Facebook 4 Image](/facebook4.png)
+![Facebook 4 Image](../../.gitbook/assets/facebook4.png)
 
 The Mixpanel Cohort is available in the Audience list. Cohorts are exported to Facebook Ads as `mixpanel_<Cohort Name>_<Cohort ID>`.
 

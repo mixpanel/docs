@@ -23,12 +23,12 @@ Before rollout, remind stakeholders that this phase turns your tracking plan int
 For deployment, confirm that you’ve:
 
 - [Completed QA](../../../guides-by-use-case/ensuring-data-quality.md) in your staging project.
-- Prepared your [production project](../../../orgs-and-projects/managing-projects.md#creating-projects).
-- [Enabled tracking](../../../quickstart/capture-events/track-events.md) in your production project.
+- Prepared your [production project](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/orgs-and-projects/managing-projects#creating-projects).
+- [Enabled tracking](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/quickstart/capture-events/track-events) in your production project.
 - Triggered historical backfilling (if necessary).
 - Monitored live data for any potential anomalies.
-- Implemented your [data governance strategy](../../../data-governance.md).
-- [Granted production access](../../../orgs-and-projects/roles-and-permissions.md#invite-users) to the correct users.
+- Implemented your [data governance strategy](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance).
+- [Granted production access](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/orgs-and-projects/roles-and-permissions#invite-users) to the correct users.
 
 For a detailed, step-by-step version of this list, check out the full [Mixpanel Production Deployment Checklist](https://docs.google.com/spreadsheets/d/12FJDLLTpOgw-5B4_EoA9coUkp6eM1kKAwr2mAgiNrds/edit?gid=751571839#gid=751571839). It covers everything from validation in staging to go-live monitoring.
 

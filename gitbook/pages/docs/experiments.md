@@ -3,7 +3,7 @@
 {% hint style="info" %}
 The Experiment Report is a separately priced product add-on. It is currently only offered to those on the Enterprise Plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 
-    Customers who have not purchased the Experiment add-on will be able to create up to 3 experiments per project. Please note that creation is irreversible, so you would not be able to delete experiments. If you are interested in exploring the features fully, you can request a trial from your account team.
+Customers who have not purchased the Experiment add-on will be able to create up to 3 experiments per project. Please note that creation is irreversible, so you would not be able to delete experiments. If you are interested in exploring the features fully, you can request a trial from your account team.
 {% endhint %}
 
 ## Why Experiment?
@@ -19,7 +19,7 @@ Before getting started with experiments:
 
 ## Overview & Workflow
 
-![image](/exp_overview.png)
+![image](.gitbook/assets/exp_overview.png)
 
 The Experiment report analyzes how one variant impacts your metrics versus other variant(s), helping you decide which variant should be rolled out more broadly. To access Experiments, click on the **Experiments** tab in the navigation panel, or **Create New > Experiment**.
 
@@ -109,7 +109,7 @@ Hover over a value in a metric row to see more detail behind the numbers and to 
 
 Statistical significance (p-value) helps you determine whether your experiment results are likely to hold true for the full rollout, giving you confidence in your decisions.
 
-![image](/exp_stat_sig.png)
+![image](.gitbook/assets/exp_stat_sig.png)
 
 #### Statistical Significance Calculation
 
@@ -331,7 +331,7 @@ CUPED works best when pre-experiment and post-experiment metrics are strongly co
 
 ## Looking under the hood - How does the analysis engine work?
 
-![image](/exp_under_hood.png)
+![image](.gitbook/assets/exp_under_hood.png)
 
 The Experiment report behavior is powered by [borrowed properties](./features/custom-properties.md#borrowed-properties). 
 
@@ -354,33 +354,33 @@ An example track call would look like this:
 
 You can specify the event and property that should be used as the exposure event, name, and variant in the project settings in the Overview tab under 'Experiment Event Settings'. This allows you to use an experiment event that you're already tracking, for example, via a 3rd party feature flagging tool. Note, only string properties should be used for the 'Name' and 'Variant'.
 
-![image](/exp_settings_rescale.png)
+![image](.gitbook/assets/exp_settings_rescale.png)
 
 ### When to track an exposure event? 
 - An exposure event  ONLY needs to be sent the first time a user is exposed to an experiment, as long as the user is always in the initial bucketed variant. Exposure events don’t have to be sent subsequently in new sessions.
 - If a user is part of multiple experiments, send a corresponding exposure event for each experiment.
 - Send exposure event only when a user is actually exposed, not at the start of a session.
     
-    For example, if you want to run an experiment on the payment page of a ride-sharing app, you only really care about users who open the app, book a ride, and then reach the payment page. Users who only open the app and do other activities shouldn't be considered in the sample size. So exposure event should ideally be implemented to track only once the payment page is reached. 
+For example, if you want to run an experiment on the payment page of a ride-sharing app, you only really care about users who open the app, book a ride, and then reach the payment page. Users who only open the app and do other activities shouldn't be considered in the sample size. So exposure event should ideally be implemented to track only once the payment page is reached. 
     
 - Send exposure details and not the assignment.
     
-    For example, you begin an experiment on 1st Aug, and 1M users are ‘assigned’ to the control and variant. You do not want to send an ‘exposure’ event for all these users right away, as they have only been assigned to the experiment.  It’s possible that some user gets exposed on 4th Aug and some on 8th Aug. You would want to track $experiment_started at the exposure for accurate analysis.
+For example, you begin an experiment on 1st Aug, and 1M users are ‘assigned’ to the control and variant. You do not want to send an ‘exposure’ event for all these users right away, as they have only been assigned to the experiment.  It’s possible that some user gets exposed on 4th Aug and some on 8th Aug. You would want to track $experiment_started at the exposure for accurate analysis.
 
 ### FAQs
 1. If a user switches variants mid-experiment, how do we calculate the impact on metrics? 
     
-    We break a user and their associated behavior into fractional parts for analysis. We consider the initial behavior part of the first variant, then once the variant changes, we consider the rest of the behavior for analysis towards the new variant. 
+We break a user and their associated behavior into fractional parts for analysis. We consider the initial behavior part of the first variant, then once the variant changes, we consider the rest of the behavior for analysis towards the new variant. 
     
 2. If a user is part of multiple experiments, how do we calculate the impact of a single experiment?
     
-    We consider the complete user’s behavior for every experiment that they are a part of. 
+We consider the complete user’s behavior for every experiment that they are a part of. 
     
-    We believe this will still give accurate results for a particular experiment, as the users have been randomly allocated. So there should be enough similar users, ie, part of multiple experiments, across both control and variants for a particular experiment. 
+We believe this will still give accurate results for a particular experiment, as the users have been randomly allocated. So there should be enough similar users, ie, part of multiple experiments, across both control and variants for a particular experiment. 
     
 3. For what time duration do we associate the user being exposed to an experiment to impact metrics? 
     
-    After the most recent experiment exposure for a user, we consider that user’s behavior as ‘exposed’ to an experiment for a max of 90 days.
+After the most recent experiment exposure for a user, we consider that user’s behavior as ‘exposed’ to an experiment for a max of 90 days.
 
 ## Experimentation Pricing FAQ
 {% hint style="info" %}
@@ -468,4 +468,4 @@ Once the experiment is ready to review, you can choose to 'End Analysis'. Use th
 ### Experiment Management
 You can manage all your experiments via the Experiments Home tab. You can customize which columns you’d like to see. 
 
-![image](/exp_management.png)
+![image](.gitbook/assets/exp_management.png)

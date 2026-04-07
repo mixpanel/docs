@@ -245,7 +245,7 @@ Mixpanel.mainInstance().reset()
 {% hint style="info" %}
 Since v2.7.7, Mixpanel stopped using the IFA(ID for Advertisers) as a distinct_id, meaning calls to reset will generate a new random UUID.
 
-    If you want to use IFV(identifierForVendor) as the distinct_id, you can set `MIXPANEL_UNIQUE_DISTINCT_ID` in build settings `Active Compilation Conditions` on the Mixpanel framework target. The IFV will not change when you call `reset`, but will change upon app uninstalls/reinstalls.
+If you want to use IFV(identifierForVendor) as the distinct_id, you can set `MIXPANEL_UNIQUE_DISTINCT_ID` in build settings `Active Compilation Conditions` on the Mixpanel framework target. The IFV will not change when you call `reset`, but will change upon app uninstalls/reinstalls.
 {% endhint %}
 
 ### Custom Device ID Generation
@@ -330,9 +330,9 @@ A few commonly used people methods are highlighted below:
 {% tab title="setOnce()" %}
 The [`setOnce(properties:)`](https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:8Mixpanel6PeopleC7setOnce10propertiesySDySSAA0A4Type_pG_tF) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set profile properties without the risk of overwriting existing data.
+Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     ```swift Swift
     /// set profile properties for user "12345"
     Mixpanel.mainInstance().identify(distinctId: "12345")
@@ -349,9 +349,9 @@ The [`setOnce(properties:)`](https://mixpanel.github.io/mixpanel-swift/Classes/P
 {% tab title="append()" %}
 The [`append(properties:)`](https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:8Mixpanel6PeopleC6append10propertiesySDySSAA0A4Type_pG_tF) method append values to a list profile property.
 
-    Use this method to add additional values to an existing list property instead of redefining the entire list.
+Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-    **Example Usage**
+**Example Usage**
     ```swift Swift
     /// set profile properties for user "12345"
     Mixpanel.mainInstance().identify(distinctId: "12345")
@@ -376,9 +376,9 @@ The [`append(properties:)`](https://mixpanel.github.io/mixpanel-swift/Classes/Pe
 {% tab title="union()" %}
 The [`union(properties:)`](https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:8Mixpanel6PeopleC5union10propertiesySDySSAA0A4Type_pG_tF) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
     ```swift Swift
     /// set profile properties for user "12345"
     Mixpanel.mainInstance().identify(distinctId: "12345")
@@ -402,9 +402,9 @@ The [`union(properties:)`](https://mixpanel.github.io/mixpanel-swift/Classes/Peo
 {% tab title="increment()" %}
 The [`increment(property:by:)`](https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:8Mixpanel6PeopleC9increment8property2byySS_SdtF) method increments a numeric property by a whole number.
 
-    Use this method to add to or subtract from your numeric property based on its current value.
+Use this method to add to or subtract from your numeric property based on its current value.
 
-    **Example Usage**
+**Example Usage**
     ```swift Swift
     /// set profile properties for user "12345"
     Mixpanel.mainInstance().identify(distinctId: "12345")
@@ -518,9 +518,9 @@ A few commonly used group methods are highlighted below:
 {% tab title="setOnce()" %}
 The [`setOnce(properties:)`](https://mixpanel.github.io/mixpanel-swift/Classes/Group.html#/s:8Mixpanel5GroupC7setOnce10propertiesySDySSAA0A4Type_pG_tF) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set group profile properties without the risk of overwriting existing data.
+Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     ```swift Swift
     /// assign the current user to the "mixpanel" company group
     Mixpanel.mainInstance().setGroup(groupKey: "company", groupID: ["mixpanel"])
@@ -542,9 +542,9 @@ The [`setOnce(properties:)`](https://mixpanel.github.io/mixpanel-swift/Classes/G
 {% tab title="unset()" %}
 The [`unset(property:)`](https://mixpanel.github.io/mixpanel-swift/Classes/Group.html#/s:8Mixpanel5GroupC5unset8propertyySS_tF) method removes a group property from a group profile.
 
-    Use this method to delete unwanted group profile properties from a specific group profile.
+Use this method to delete unwanted group profile properties from a specific group profile.
 
-    **Example Usage**
+**Example Usage**
     ```swift Swift
     /// assign the current user to the "mixpanel" company group
     Mixpanel.mainInstance().setGroup(groupKey: "company", groupID: ["mixpanel"])
@@ -565,9 +565,9 @@ The [`unset(property:)`](https://mixpanel.github.io/mixpanel-swift/Classes/Group
 {% tab title="union()" %}
 The [`union(key:values:)`](https://mixpanel.github.io/mixpanel-swift/Classes/Group.html#/s:8Mixpanel5GroupC5union3key6valuesySS_SayAA0A4Type_pGtF) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
     ```swift Swift
     /// assign the current user to the "mixpanel" company group
     Mixpanel.mainInstance().setGroup(groupKey: "company", groupID: ["mixpanel"])
@@ -588,9 +588,9 @@ The [`union(key:values:)`](https://mixpanel.github.io/mixpanel-swift/Classes/Gro
 {% tab title="remove()" %}
 The [`remove(key:value:)`](https://mixpanel.github.io/mixpanel-swift/Classes/Group.html#/s:8Mixpanel5GroupC6remove3key5valueySS_AA0A4Type_ptF) method removes a value from a list-valued group profile property.
 
-    Use this method to remove specific values from a list without affecting all of the other values in the list.
+Use this method to remove specific values from a list without affecting all of the other values in the list.
 
-    **Example Usage**
+**Example Usage**
     ```swift Swift
     /// assign the current user to the "mixpanel" company group
     Mixpanel.mainInstance().setGroup(groupKey: "company", groupID: ["mixpanel"])

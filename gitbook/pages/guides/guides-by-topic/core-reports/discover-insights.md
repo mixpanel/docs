@@ -1,6 +1,6 @@
 # Discover Insights
 
-[Insights](../../reports/insights.md) is a powerful and flexible reporting tool that allows you to easily slice and dice user behavior on your platforms. You can analyze events, cohorts and user profiles, and display the data in a wide variety of chart types.
+[Insights](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/insights) is a powerful and flexible reporting tool that allows you to easily slice and dice user behavior on your platforms. You can analyze events, cohorts and user profiles, and display the data in a wide variety of chart types.
 
 <p >
   {% embed url="https://www.youtube.com/watch?v=scBPtq7B81Y" %}
@@ -22,14 +22,14 @@ The following video looks at how you can leverage filters and breakdowns to hone
   {% embed url="https://www.youtube.com/watch?v=DRHOI4YNg14" %}
 
 ## Formula, Custom Events and Properties and Custom Buckets
-There are times where you'd like to create ratios of different events, for example, the proportion of users who are searching for a product for the first time. You can do this using [formulas](../../reports/insights.md#formulas). And if these are common formulas that members of your team will use time and again, it may make sense to save and share these formulas, so that people need not rebuild the formula from scratch every time and can rely on the same standard definition when defining key metrics. 
+There are times where you'd like to create ratios of different events, for example, the proportion of users who are searching for a product for the first time. You can do this using [formulas](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/insights#formulas). And if these are common formulas that members of your team will use time and again, it may make sense to save and share these formulas, so that people need not rebuild the formula from scratch every time and can rely on the same standard definition when defining key metrics. 
 
 Similarly, there might be times where you might want to combine certain events, for example because you:
 - Have a collection of key events that you want to track together as a single metric
 - Have an event that you want to filter based on a specific property
-You can do so using [custom events](../../features/custom-events.md).
+You can do so using [custom events](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/custom-events).
 
-You might also want to modify existing properties on the fly. One common use case for this is marketers grouping UTM sources into default marketing channels (e.g. Facebook, Instagram, TikTok = Social). You can do this via [custom properties](../../features/custom-properties.md). For the most commonly used custom properties, we have also built [custom buckets](../../reports/insights.md#custom-bucketing) for you to seamlessly modify your segments within the UI itself.
+You might also want to modify existing properties on the fly. One common use case for this is marketers grouping UTM sources into default marketing channels (e.g. Facebook, Instagram, TikTok = Social). You can do this via [custom properties](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/custom-properties). For the most commonly used custom properties, we have also built [custom buckets](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/insights#custom-bucketing) for you to seamlessly modify your segments within the UI itself.
 
 The following video looks at how you can leverage formulas, custom events and properties, and custom buckets in more detail.
 
@@ -43,7 +43,7 @@ Other more advanced questions that Insights can help answer include: how you can
   {% embed url="https://www.youtube.com/watch?v=v_SKV3080yg" %}
 
 ## Creating Alerts
-Once you've created a report for a key metric you want to track for instance, you can create an [alert](../../features/alerts.md) to monitor how they perform, either by setting explicit thresholds, or setting up automatic anomaly detections. This video walks through how you can set up such alerts to your email or Slack.
+Once you've created a report for a key metric you want to track for instance, you can create an [alert](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/alerts) to monitor how they perform, either by setting explicit thresholds, or setting up automatic anomaly detections. This video walks through how you can set up such alerts to your email or Slack.
 
 <p >
   {% embed url="https://www.youtube.com/watch?v=tqrqIkCjoWw" %}

@@ -16,27 +16,27 @@ _Automatically collect customer events with minimal steps_
 
 2. Go to your Store Dashboard > Sales Channels > Online Store > Theme and click “Edit code”
 
-    ![](/shopify_store_channel.png)
+![](../../.gitbook/assets/shopify_store_channel.png)
 
 3. Open the theme.liquid file and scroll down to the closing `</head>` tag
     
-    ![](/shopify_theme_editor.png)
+![](../../.gitbook/assets/shopify_theme_editor.png)
     
 4. Paste the code snippet you just copied to add Mixpanel’s SDK (we’re almost there—we just need to do one more thing to enable it)
     
-    ![](/shopify_code_snippet_1.png)
+![](../../.gitbook/assets/shopify_code_snippet_1.png)
 
 5. Go to your Mixpanel Dashboard > Project Settings and copy your Project Token under Access Keys
 
-    ![](/access_keys_project_token.png)
+![](../../.gitbook/assets/access_keys_project_token.png)
 
 6. Back in your Shopify `theme.liquid` file, enable Mixpanel’s SDK by adding your Project Token to the `mixpanel.init` code (wrapped in `script` tags). Altogether, it should look like this:
     
-    ![](/shopify_code_snippet_2.png)
+![](../../.gitbook/assets/shopify_code_snippet_2.png)
 
 7. Confirm the configuration in your Mixpanel Project and enjoy a data pipeline flowing with `[Auto]` tracked events!
 
-    ![](/autotracked_events.png)
+![](../../.gitbook/assets/autotracked_events.png)
 
 ## Mixpanel SDK + [Shopify Web Pixel](https://shopify.dev/docs/api/web-pixels-api#custom-web-pixels)    
 _Define your own customer events with an approachable setup_
@@ -45,7 +45,7 @@ _Define your own customer events with an approachable setup_
 
 2. Go to your Shopify Store > Settings > [Customer Events](https://admin.shopify.com/settings/customer_events), click “Add custom Pixel”, and name your Pixel something snazzy
 
-    ![](/shopify_web_pixel.png)
+![](../../.gitbook/assets/shopify_web_pixel.png)
 
 3. Add some code to get your Pixel up and running. This code is a three-part recipe that will:
 
@@ -53,7 +53,7 @@ _Define your own customer events with an approachable setup_
 - Load the Mixpanel SDK snippet that you copied in step 1
 - Define and track the customer events we’d like to collect (reference the complete property list in [Shopify’s Web Pixel Event API](https://shopify.dev/docs/api/web-pixels-api/standard-events) docs)
 
-    An outline of this structure looks like this:
+An outline of this structure looks like this:
 
     ```javascript
     // Subscribe to Shopify Pixel Event API (https://shopify.dev/docs/api/web-pixels-api/standard-events)
@@ -73,7 +73,7 @@ _Define your own customer events with an approachable setup_
     });
     ```
 
-    Putting this recipe to work, here’s an example of how to track `product_viewed` events:
+Putting this recipe to work, here’s an example of how to track `product_viewed` events:
     
     ```javascript
     // Subscribe to Shopify Pixel Event API
@@ -94,7 +94,7 @@ _Define your own customer events with an approachable setup_
     });
     ```
 
-    And, another example of gathering `checkout_completed` events:
+And, another example of gathering `checkout_completed` events:
 
     ```javascript
     // Subscribe to Shopify Pixel Event API
@@ -129,15 +129,16 @@ _Define your own customer events with an approachable setup_
     ```
 4. Click “Test” to confirm the Shopify Web Pixel API is connected (next, we’ll confirm Mixpanel is receiving those events from Shopify)
 
-    ![](/shopify_web_pixel_test.png)
+![](../../.gitbook/assets/shopify_web_pixel_test.png)
 
 5. Connect the Pixel to release it into the wild
 
-    ![](/shopify_pixel_connect.png)
+![](../../.gitbook/assets/shopify_pixel_connect.png)
 
 6. Visit your Shopify storefront and trigger your custom events 
 
 7. Verify data is flowing into your Mixpanel dashboard and enjoy tracking custom conversions  in real time! 🎉
 
-    ![](/shopify_events_in_MXP_1.png)
-    ![](/shopify_events_in_MXP_2.png)
+![](../../.gitbook/assets/shopify_events_in_MXP_1.png)
+
+![](../../.gitbook/assets/shopify_events_in_MXP_2.png)

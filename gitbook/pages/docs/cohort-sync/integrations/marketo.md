@@ -26,7 +26,7 @@ To send a Mixpanel Cohort to Marketo:
 
 2. Navigate to Cohorts in Mixpanel by clicking in the **Data Management** tab and select **Cohorts**.
 
-![Marketo 1 Image](/marketo1.png)
+![Marketo 1 Image](../../.gitbook/assets/marketo1.png)
 
 3. Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort.
 

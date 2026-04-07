@@ -8,8 +8,8 @@ Our [video walkthrough](https://user-images.githubusercontent.com/556882/1541259
 
 <video playsInline controls class='nx-rounded-lg'>
   <source
-    src='https://user-images.githubusercontent.com/556882/154125933-b584de10-b7fa-4668-b815-7429192d867a.mp4'
-    type='video/mp4'
+src='https://user-images.githubusercontent.com/556882/154125933-b584de10-b7fa-4668-b815-7429192d867a.mp4'
+type='video/mp4'
   />
 </video>
 

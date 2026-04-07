@@ -14,18 +14,18 @@ However, to really exercise the power of Mixpanel, you can do a custom implement
 ## Shopify
 <table data-view="cards">
   <thead>
-    <tr>
-      <th></th>
-      <th data-hidden data-card-target data-type="content-ref"></th>
-      <th data-hidden data-card-cover data-type="files"></th>
-    </tr>
+<tr>
+<th></th>
+<th data-hidden data-card-target data-type="content-ref"></th>
+<th data-hidden data-card-cover data-type="files"></th>
+</tr>
   </thead>
   <tbody>
-    <tr>
-      <td><strong>Integration Guide</strong></td>
-      <td><a href="./shopify.md">./shopify.md</a></td>
-      <td></td>
-    </tr>
+<tr>
+<td><strong>Integration Guide</strong></td>
+<td><a href="./shopify.md">./shopify.md</a></td>
+<td></td>
+</tr>
   </tbody>
 </table>
 

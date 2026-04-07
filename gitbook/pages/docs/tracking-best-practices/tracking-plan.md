@@ -1,7 +1,7 @@
 # Create A Tracking Plan
 
 {% hint style="info" %}
-Read the detailed [guide on creating a tracking plan](/guides/plan/tracking-strategy).
+Read the detailed [guide on creating a tracking plan](https://app.gitbook.com/s/T5M6sZZR1LgkJeivZBt6/plan/tracking-strategy).
 {% endhint %}
 
 ## Overview

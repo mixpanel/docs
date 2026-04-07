@@ -2,7 +2,7 @@
 
 ## Overview
 
-![/funnels_result_header.png](/funnels_result_header.png)
+![/funnels_result_header.png](../../.gitbook/assets/funnels_result_header.png)
 
 Mixpanel's Funnels allows you to examine how end-users perform events in a series. Funnels calculate and display conversions from one event to another within a particular time window. This allows you to identify where your users drop off, what segments convert the most, and other important facets of the user journey.
 
@@ -21,9 +21,9 @@ Imagine your product is a B2B messaging application. You might use Funnels to an
 <hr></hr>
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
-    Next: Build a Funnels Report
+Next: Build a Funnels Report
   </h2>
   <p>
-    Build your first Funnels report using the Quickstart below.
+Build your first Funnels report using the Quickstart below.
   </p>
   <a href="./funnels-quickstart.md" class="button primary">Funnels Quickstart</a>

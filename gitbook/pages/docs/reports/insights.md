@@ -2,7 +2,7 @@
 
 ## Overview
 
-![Insights Overview Image](/overview.png)
+![Insights Overview Image](../.gitbook/assets/overview.png)
 
 Insights is a powerful and flexible tool designed to visualize trends and compositions within your data. You can analyze events, cohorts, and user profiles, and display the data in a wide variety of chart types.
 
@@ -40,7 +40,7 @@ Metrics are the basic building blocks of an Insights report, and consists of pro
 
 To select an event and start with an event-based simple behavior metric, choose "Events" in the left column of the metrics menu, then select the events you want to measure. This creates a simple behavior.
 
-![Choose Events](/choose-events.png)
+![Choose Events](../.gitbook/assets/choose-events.png)
 
 You can save the behavior you built and reuse them in other reports. Learn more about [Saved Metrics and Behaviors](../features/saved-metrics-and-behaviors.md).
 
@@ -50,7 +50,7 @@ Once you've selected your behavior, you can choose how to measure that behavior.
 
 Depending on the type of behavior selected, Insights will default to a different measurement. If you're measuring a Simple Behavior (events), Insights will default to measuring the number of unique users who have done that event.
 
-![Choose Measurement](/choose-measurement.png)
+![Choose Measurement](../.gitbook/assets/choose-measurement.png)
 
 You can save the metric you built and reuse it in other reports. Select the "..." button in the top right corner of the metric, then click "Save Metric". Note that saving a metric and saving a behavior are different; a saved behavior consists of the events/Funnels/Retention, while a saved metric consists of the saved behavior and the measurements of the behavior.
 
@@ -60,19 +60,19 @@ Learn more about [Saved Metrics and Behaviors](../features/saved-metrics-and-beh
 
 Filters exclude unwanted data. In this case, we only care about events performed on the iOS platform. Therefore, add an "Operating System" filter, where OS equals "iOS". At this point, your query should look like this:
 
-![Choose Filters](/choose-filters.png)
+![Choose Filters](../.gitbook/assets/choose-filters.png)
 
 ### Step 4: Choose Breakdowns
 
 Breakdowns segment data into groups. In this case, we want to count sign-ups based on users in different cities. Therefore, add a "City" breakdown. At this point, your query should look like this:
 
-![Choose Breakdowns](/choose-breakdowns.png)
+![Choose Breakdowns](../.gitbook/assets/choose-breakdowns.png)
 
 ### Step 5: Change Visualization
 
 Choosing a different chart can help you visualize data better. Line charts help you see a trend, but other charts will help you see the aggregate value.
 
-![Change Visualization](/change-visualization.png)
+![Change Visualization](../.gitbook/assets/change-visualization.png)
 
 ### Step 6: Analyze Results
 
@@ -105,7 +105,7 @@ You can save the metric and behaviors you built and reuse them in other analysis
 
 Learn more about [Saved Metrics and Behavior](../features/saved-metrics-and-behaviors.md).
 
-![Insights Saved Behaviors](/insights-saved-behavior.png)
+![Insights Saved Behaviors](../.gitbook/assets/insights-saved-behavior.png)
 
 #### Metric Limits
 Insight reports are limited to 40 metric/behavior blocks. This includes all metric and behavior blocks, such as hidden metrics and formulas.
@@ -141,7 +141,7 @@ Click on the "three dots" icon beside an event and click Rename to rename it. Th
 
 When you view a bar chart, you have four different sorting options: A-Z Ascending, Z-A Descending, Value Ascending, or Value Descending. To switch the sorting view, select the **Events** or **property name** column header in the upper left hand of the results and then select which sorting order you would like to see.
 
-![Sorting Bar Chart](/sorting-bar-chart.png)
+![Sorting Bar Chart](../.gitbook/assets/sorting-bar-chart.png)
 
 #### Line chart
 
@@ -149,7 +149,7 @@ Line charts in Insights are accompanied by a table of values that gives users an
 
 Click on a column header to sort by that column. Click the header again to reverse the sorting order. For example, the table below is sorted by event counts on August 2nd:
 
-![Sorting Line Chart](/sorting-line-chart-1.png)
+![Sorting Line Chart](../.gitbook/assets/sorting-line-chart-1.png)
 
 Results that are segmented (from one or more "group by" clauses in your query) have four different sorting options when you click on the "segment column" headers:
 
@@ -160,11 +160,11 @@ Results that are segmented (from one or more "group by" clauses in your query) h
 
 When sorting by segments, the sort is carried out from left to right.
 
-![Sorting Line Chart](/sorting-line-chart-2.gif)
+![Sorting Line Chart](../.gitbook/assets/sorting-line-chart-2.gif)
 
 Clicking on the "Average" data column performs a flat sort across all segments:
 
-![Sorting Line Chart](/sorting-line-chart-3.png)
+![Sorting Line Chart](../.gitbook/assets/sorting-line-chart-3.png)
 
 #### Table chart
 Tables are useful to see the precise values of your data and to quickly scan multiple metrics per segment. In general, tables work similarly to the rest of Insights, with a few extra features.
@@ -206,7 +206,7 @@ Hierarchy is defined by the breakdown order in the query panel.
 
 Dynamic Segments let you decide how many segments to display per breakdown in your report. With Dynamic Segments, the segments selected in the report will change based on your latest data and the current sort order. Manual Segments let you choose specific segments that will always display in the report, regardless of the data or sorting. 
 
-![image](/dynamic_segments.png)
+![image](../.gitbook/assets/dynamic_segments.png)
 
 When using Dynamic Segments, you can select the number of segments to display from the column headers. 
 
@@ -245,7 +245,7 @@ You can also use numbers as constants in a formula. Multiply a ratio by 100 to d
 
 Click the **Metrics** button, then select Formula.. Each event in the query shows a letter next to it, which indicates its variable name. Use these letters in combination with the operators to calculate a more advanced query. For example, you can use the DAU, WAU, and MAU functions in Formulas to calculate the stickiness of your product:
 
-![Formulas 1](/advanced-formulas-1.png)
+![Formulas 1](../.gitbook/assets/advanced-formulas-1.png)
 
 To note, you cannot nest a formula metric when constructing another formula.
 
@@ -257,7 +257,7 @@ Users on an Enterprise or Growth plan can save Formulas for reuse. Free users ca
 
 Use existing events to create calculated formulas, like Bounce Rate & % Active Users, that can be saved and reused by others within the project.
 
-![saveformula.gif](/saveformula.png)
+![saveformula.gif](../.gitbook/assets/saveformula.png)
 
 Some nuances to note:
 - Once you save a formula, A,B,C refer to what’s **within** the saved formula modal
@@ -274,7 +274,7 @@ To access and re-use saved formulas, click on “+Formula”, and then see the l
 Insights will automatically group your high-cardinality segments into buckets. Buckets can be edited by using the "Custom Buckets" option in the overflow menu:
 You can choose "Even" to get buckets of uniform size, and you can choose "Varied" to get buckets of different sizes. This helps with organizing outliers, or with drilling deeper into particular ranges.
 
-![Bucketing](/advanced-bucketing.png)
+![Bucketing](../.gitbook/assets/advanced-bucketing.png)
 
 ### Time Period Comparisons
 
@@ -284,13 +284,13 @@ Note that if a data point for a previous year falls on a weekend, the data point
 
 Click on the **Compare to past** button at the top of your Insights graph and select the time period you wish to compare to. You can also select a custom date range.
 
-![Time Period Comparison](/advanced-time-period-comparison.gif)
+![Time Period Comparison](../.gitbook/assets/advanced-time-period-comparison.gif)
 
 ### Value Comparisons
 
 When you have multiple metrics, or have broken down a metric by a property, you can compare them against each and the relative value. Click on **Compare** -> **Overall**. This works for all measurements. For a "totals" measurement, you can see the percentage that a particular segment makes up. For non-sumable aggregations, it compares the segment value to the whole, unsegmented value.
 
-![Value Setting](/advanced-value-comparison.png)
+![Value Setting](../.gitbook/assets/advanced-value-comparison.png)
 
 ### Profile Analysis
 
@@ -314,7 +314,7 @@ The following measurements are only available in Insights, and are separated int
 
 Select the measurement you want to use to calculate results by clicking on **Unique Users** and selecting an option from the drop-down. You can calculate based on events, users, event property value, event property value per user, and sessions.
 
-![Measurements 1](/advanced-data-functions-1.png)
+![Measurements 1](../.gitbook/assets/advanced-data-functions-1.png)
 
 The following functions have additional aggregation options which you will be prompted to select:
 
@@ -328,7 +328,7 @@ These functions provide additional aggregation options following the initial cal
 
 Selecting any of these functions gives you the option to choose different ways to aggregate this data. The default aggregation is **Average**, which you can click on to select a different option such as distribution, median, 25/75/90th percentiles, minimum, and maximum.
 
-![Measurements 2](/advanced-data-functions-2.png)
+![Measurements 2](../.gitbook/assets/advanced-data-functions-2.png)
 
 If the measurement you select calculates based on property (“Event Property Values” or “Event Property Values Per User”), you will be prompted to select an event property. You can find more information about each measurement and how they are calculated below:
 
@@ -346,7 +346,7 @@ DAU, WAU, and MAU are accessed through the advanced settings of unique users. Se
 
 If you select the DAU, WAU, or MAU function for a date range that includes the current day, the query will take the end of the current day as the end of the query’s time segment (even though it’s in the future). For example, today is April 25th, and it’s 4:22 PM. If you make a query to show WAU and you select “current day” as your date range, the query will return the count of unique users between April 19 at 12:00:00 AM and April 25 at 11:59:59.
 
-![Measurements 3](/advanced-data-functions-3.png)
+![Measurements 3](../.gitbook/assets/advanced-data-functions-3.png)
 
 | Function Name | Events Calculation | Profiles Calculation |
 | --- | --- | --- |
@@ -380,11 +380,11 @@ When you apply a breakdown to a metric, by default, Mixpanel tells you how many 
 
 By default, Mixpanel answers the question: per segment, tell me the number of unique users, DON'T tell me how the 2441 users are distributed across the various pages with a user being counted only towards one segment, which will require assigning a user to one segment even if they contributed towards multiple segments.
 
-![image](/uniques_default.png)
+![image](../.gitbook/assets/uniques_default.png)
 
 There are some cases though, where you want to know how the 2441 users are distributed, generally either by their first or last action. For example, based on the last page (segment) a user saw, tell me the distribution of users. You can enable this now via the advanced control for Uniques, by choosing which segment to associate a user to: either the first segment or the last segment in the chart date range (7D in the below image)
 
-![image](/uniques_count_once.png)
+![image](../.gitbook/assets/uniques_count_once.png)
 
 To note - in a line chart, there are two concepts of time period: chart date range (3M below) and time interval (weekly interval below). When advanced controls are used in a line chart, it assigns a segment based on the first/last segment for each time interval, NOT across all time intervals in the chart range.
 #### Aggregate Property
@@ -438,7 +438,7 @@ Here are some use cases that are now possible with "Distinct count" of property 
 
 Allows you to change the metric being measured. Access by going into the advanced section of the measurement menu.
 
-![Rolling and Cumulative](/rolling-cumulative.png)
+![Rolling and Cumulative](../.gitbook/assets/rolling-cumulative.png)
 
 - **Rolling Average:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month, or quarter) for each data point in the graph.
 For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported on each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
@@ -456,14 +456,14 @@ See this [video walkthrough](https://www.loom.com/share/5568e266532b4804a1c2d36d
 
 Click on a chart segment in Insights and view the raw events that made up that metric. You will be redirected to the Events page.
 
-![View Events](/advanced-view-events.gif)
+![View Events](../.gitbook/assets/advanced-view-events.gif)
 
 ### View Sample Events
 
 You can hover over any event and in the context panel, you now have the ability to "View Sample Events", which redirects you to the Events page with the 100 most recent samples of that hovered event:
 You can see a few samples of an event to help you decide whether that's the right event you want for your analysis or which property you should use for filters/breakdowns.
 
-![View Sample Events](/advanced-view-sample-events.gif)
+![View Sample Events](../.gitbook/assets/advanced-view-sample-events.gif)
 
 ### Date Range Guardrails
 

@@ -9,4 +9,4 @@ A **Project** is a container for your product's analytics data, including saved 
 
 A **Team** is a group of users in your organization that shares the same project access permission, which makes it easier to manage roles and permissions for a group of users. A team contains a roster of users, the projects they are assigned to, the role permission in each project, Data View access, and Classified Data access.
 
-![Organization Overview 1 Image](/organization_overview.png)
+![Organization Overview 1 Image](.gitbook/assets/organization_overview.png)

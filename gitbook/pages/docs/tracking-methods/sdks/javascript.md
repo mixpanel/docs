@@ -19,7 +19,7 @@ The easiest way to install the library is to load it from our CDN to your websit
         </script>
         ```
 
-        Within the `script` tags, create an instance of the Mixpanel object by calling [`.init()`](https://github.com/mixpanel/mixpanel-js/blob/475b2c6853dd49ffc625daac3925bf37940ec390/doc/readme.io/javascript-full-api-reference.md#mixpanelinit) using your [project token](../../orgs-and-projects/managing-projects.md#find-your-project-tokens) in your JS file. Any methods called from this object will target your project.
+Within the `script` tags, create an instance of the Mixpanel object by calling [`.init()`](https://github.com/mixpanel/mixpanel-js/blob/475b2c6853dd49ffc625daac3925bf37940ec390/doc/readme.io/javascript-full-api-reference.md#mixpanelinit) using your [project token](../../orgs-and-projects/managing-projects.md#find-your-project-tokens) in your JS file. Any methods called from this object will target your project.
 
         ```javascript
         // Create an instance of the Mixpanel object
@@ -31,7 +31,7 @@ The easiest way to install the library is to load it from our CDN to your websit
         });
         ```
 
-        Altogether, with your particular library configuration, the code snippet should follow this basic structure:
+Altogether, with your particular library configuration, the code snippet should follow this basic structure:
 
         ```html
         <!-- Paste this right before your closing head tag -->
@@ -54,7 +54,7 @@ The easiest way to install the library is to load it from our CDN to your websit
 The JS library is named `mixpanel-browser` in NPM and Yarn. This is to distinguish it from our server-side Node.js library, which is available as `mixpanel`.
 {% endhint %}
 
-        The library is available as a package [on NPM](https://www.npmjs.com/package/mixpanel-browser) and [on Yarn](https://classic.yarnpkg.com/en/package/mixpanel-browser). Open your CLI, and run the following command in your root directory to install the library.
+The library is available as a package [on NPM](https://www.npmjs.com/package/mixpanel-browser) and [on Yarn](https://classic.yarnpkg.com/en/package/mixpanel-browser). Open your CLI, and run the following command in your root directory to install the library.
 
         ```bash
         # via npm
@@ -64,7 +64,7 @@ The JS library is named `mixpanel-browser` in NPM and Yarn. This is to distingui
         yarn add mixpanel-browser
         ```
 
-        After installation, import the Mixpanel class in your JS file and create the Mixpanel object using your project token.
+After installation, import the Mixpanel class in your JS file and create the Mixpanel object using your project token.
 
         ```javascript
         // import mixpanel class from the library
@@ -526,9 +526,9 @@ A few commonly used people methods are highlighted below:
 {% tab title=".set_once()" %}
 The [`.people.set_once()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleset_once) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set profile properties without the risk of overwriting existing data.
+Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     ```javascript
     // set profile properties for user "1234"
     mixpanel.identify('1234');
@@ -548,9 +548,9 @@ The [`.people.set_once()`](https://github.com/mixpanel/mixpanel-js/blob/master/d
 {% tab title=".append()" %}
 The [`.people.append()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleappend) method append values to a list profile property.
 
-    Use this method to add additional values to an existing list property instead of redefining the entire list.
+Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-    **Example Usage**
+**Example Usage**
     ```javascript
     // set profile properties for user "1234"
     mixpanel.identify('1234');
@@ -572,9 +572,9 @@ The [`.people.append()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc
 {% tab title=".union()" %}
 The [`.people.union()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleunion) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
     ```javascript
     // set profile properties for user "1234"
     mixpanel.identify('1234');
@@ -594,9 +594,9 @@ The [`.people.union()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/
 {% tab title=".increment()" %}
 The [`.people.increment()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelpeopleincrement) method increments a numeric property by a whole number.
 
-    Use this method to add to or subtract from your numeric property based on its current value.
+Use this method to add to or subtract from your numeric property based on its current value.
 
-    **Example Usage**
+**Example Usage**
     ```javascript
     // set profile properties for user "1234"
     mixpanel.identify('1234');
@@ -711,9 +711,9 @@ A few commonly used group methods are highlighted below:
 {% tab title=".set_once()" %}
 The [`.group.set_once()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupset_once) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set group profile properties without the risk of overwriting existing data.
+Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     ```javascript
     // assign the current user to the "mixpanel" company group
     mixpanel.set_group('company', 'mixpanel');
@@ -735,9 +735,9 @@ The [`.group.set_once()`](https://github.com/mixpanel/mixpanel-js/blob/master/do
 {% tab title=".unset()" %}
 The [`.group.unset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupunset) method removes a group property from a group profile.
 
-    Use this method to delete unwanted group profile properties from a specific group profile.
+Use this method to delete unwanted group profile properties from a specific group profile.
 
-    **Example Usage**
+**Example Usage**
     ```javascript
     // assign the current user to the "mixpanel" company group
     mixpanel.set_group('company', 'mixpanel');
@@ -758,9 +758,9 @@ The [`.group.unset()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/r
 {% tab title=".union()" %}
 The [`.group.union()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupunion) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list group profile property that only contains unique values without duplicates.
+Use this method to create a list group profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
     ```javascript
     // assign the current user to the "mixpanel" company group
     mixpanel.set_group('company', 'mixpanel');
@@ -783,9 +783,9 @@ The [`.group.union()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/r
 {% tab title=".remove()" %}
 The [`.group.remove()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelgroupremove) method removes a value from a list-valued group profile property.
 
-    Use this method to remove specific values from a list without affecting all of the other values in the list.
+Use this method to remove specific values from a list without affecting all of the other values in the list.
 
-    **Example Usage**
+**Example Usage**
     ```javascript
     // assign the current user to the "mixpanel" company group
     mixpanel.set_group('company', 'mixpanel');

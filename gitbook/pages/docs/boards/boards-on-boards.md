@@ -10,17 +10,17 @@ To place a Board on Board, you can:
 
 - Drag and drop directly from the side navigation. For permissions, see limitations below.
     
-    ![nested.gif](/nested.gif)
+![nested.gif](../.gitbook/assets/nested.gif)
     
 - Use the “Move to” option, which is accessible from 3 locations:
 - From the side navigation, click on the 3 dots next to the desired Board name
 - From the current Board that is open, click on the 3 dots in the top right in the header menu
         
-        ![move.gif](/move.gif)
+![move.gif](../.gitbook/assets/move.gif)
         
 - If a Board is already on a Board and you’d like to move it elsewhere, you can click on the 3 dots in the card menu of the nested Board
         
-        ![moveee.gif](/moveee.gif)
+![moveee.gif](../.gitbook/assets/moveee.gif)
         
 
 To remove a Board from nesting, you can:

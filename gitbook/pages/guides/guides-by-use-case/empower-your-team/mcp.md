@@ -37,7 +37,7 @@ Open Demo in Loom →
 
 ## Before You Begin
 You’ll need:
-- MCP set up in your AI interface of choice. Review [Mixpanel MCP Integration](../../features/mcp.md) for setup instructions.
+- MCP set up in your AI interface of choice. Review [Mixpanel MCP Integration](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/mcp) for setup instructions.
 - Access to a Mixpanel project with reasonably stable event definitions.
 - Any external context you want to analyze (CSVs, calendars, internal docs, benchmarks).
 
@@ -61,7 +61,7 @@ MCP reads your Mixpanel schema and reasons about how intent maps to your data �
 
 It doesn’t just answer the question you asked. MCP proactively suggests *other relevant events and properties* you may not have considered.
 
-This mirrors the value of [Lexicon](../../data-governance/lexicon.md) at its best: Instead of needing to know exactly what to look for, the AI helps surface adjacent signals that are often just as important.
+This mirrors the value of [Lexicon](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon) at its best: Instead of needing to know exactly what to look for, the AI helps surface adjacent signals that are often just as important.
 
 {% hint style="warning" %}
 **Pitfall:** MCP helps interpret data — it doesn’t fix structural issues. When structural issues are found, pause and invest in [data governance](../../guides-by-topic/govern-data.md) first.
@@ -169,7 +169,7 @@ These issues come up most often when teams treat MCP as a shortcut instead of a 
 - **Treating MCP as only a report builder**: Its biggest value is as an exploration and synthesis layer. But it can also create boards, manage Lexicon metadata, and triage data quality at scale — so don't limit it to analysis alone.
 - **Asking under-specified questions**: MCP is powerful, but clarity of intent still matters. Specify the behavior, the population, the timeframe, and the shape of the answer you need.
 - **Using MCP to paper over unclear instrumentation**: MCP helps interpret data — it doesn’t fix structural issues. When this comes up, pause and invest in [data governance](../../guides-by-topic/govern-data.md) first (clear event definitions, ownership, and approval workflows) before relying on MCP for analysis.
-- **Using MCP without clear data-use guardrails**: Only connect MCP to Mixpanel projects and external sources that comply with your organization’s security, privacy, and data-sharing policies, and be intentional about which data is exposed to AI tools. For detailed guidance, see [Mixpanel’s MCP security and compliance considerations](../../features/mcp.md#security--compliance-considerations).
+- **Using MCP without clear data-use guardrails**: Only connect MCP to Mixpanel projects and external sources that comply with your organization’s security, privacy, and data-sharing policies, and be intentional about which data is exposed to AI tools. For detailed guidance, see [Mixpanel’s MCP security and compliance considerations](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/mcp#security--compliance-considerations).
 
 ## Key Takeaways
 - MCP can both query Mixpanel and write back to it. Create boards, update Lexicon, and triage data quality issues, all from your AI tool.
@@ -177,4 +177,4 @@ These issues come up most often when teams treat MCP as a shortcut instead of a 
 - Use MCP to explore and validate. Use Mixpanel to formalize and share.
 - The best teams use MCP to move faster from "What happened?" to "What should we do about it?"
 
-👉 **Next step**: Review the [Mixpanel MCP Integration](../../features/mcp.md) documentation to set up the integration correctly and understand how to connect Mixpanel MCP to your AI tools with confidence.
+👉 **Next step**: Review the [Mixpanel MCP Integration](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/mcp) documentation to set up the integration correctly and understand how to connect Mixpanel MCP to your AI tools with confidence.

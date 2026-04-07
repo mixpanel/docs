@@ -21,7 +21,7 @@ Establish a shared understanding of Mixpanel’s purpose, value, and core workfl
 
 1. Share Mixpanel's overview resources like the [Mixpanel Introduction](../../../mixpanel-introduction.md).
 
-2. Encourage teams to explore the [Docs home page](../../../what-is-mixpanel.md) for guided discovery.
+2. Encourage teams to explore the [Docs home page](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/what-is-mixpanel) for guided discovery.
 
 3. Highlight the [Mixpanel Community](https://community.mixpanel.com/) for Q&A and inspiration from peers.
 
@@ -41,8 +41,8 @@ Different teams use Mixpanel differently; PMs ask questions, engineers instrumen
 
 1. Identify each team's Mixpanel use cases.
 2. Pair each with relevant public resources (Docs, Community posts, blogs). Here are a few to get you started:
-- **PMs & Analysts:** [Insights](../../../reports/insights.md), [Funnels](../../../reports/funnels.md), [Retention](../../../reports/retention.md), [Cohorts](../../../users/cohorts.md), [Experiments](../../../experiments.md).
-- **Engineers:** [SDK setup](../../../quickstart/install-mixpanel.md), [Event tracking](../../../quickstart/capture-events.md), [Feature Flags](../../../featureflags.md).
+- **PMs & Analysts:** [Insights](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/insights), [Funnels](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/funnels), [Retention](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/retention), [Cohorts](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/users/cohorts), [Experiments](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/experiments).
+- **Engineers:** [SDK setup](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/quickstart/install-mixpanel), [Event tracking](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/quickstart/capture-events), [Feature Flags](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/featureflags).
 
 {% hint style="info" %}
 **Pro tip:** Create internal “office hours” where each team shares how they are using Mixpanel and what they have learned.

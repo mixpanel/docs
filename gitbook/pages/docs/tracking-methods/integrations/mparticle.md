@@ -39,7 +39,7 @@ Add Mixpanel as a downstream destination in your [Connections Workflow](https://
 | External Identity Type| `string` | Customer Id | This is the identifier sent to Mixpanel to be used as a user's distinct ID. mParticle recommends using the `mparticle ID` for brand new implementations, which works in hand with the default [Profile Conversion Strategy](https://docs.mparticle.com/guides/idsync/profile-conversion-strategy/). This identifier acts as the distinct ID within mParticle to track pre- and post-identified activity. [More information on mParticle's IDSync](https://docs.mparticle.com/guides/idsync/use-cases/).|
 | Target Server   | `string` | Standard Server | Configure to match your [Mixpanel server residency](../../privacy/eu-residency.md). |
 
-![mparticle_output_mapping](/mparticle_output_mapping.png)
+![mparticle_output_mapping](../../.gitbook/assets/mparticle_output_mapping.png)
 
 #### Add Mixpanel Output to your connection
 
@@ -182,15 +182,15 @@ By default, mParticle does not have a way to map audiences to Mixpanel. Instead,
 
 5. Verify the size of the audience. You may need to wait until your audience has finished calculating, as shown by the percentage marker under audience. Smaller audience sizes (< 100k) may not preview.
 
-![mparticle_audience_count](/mparticle_audience_count.png)
+![mparticle_audience_count](../../.gitbook/assets/mparticle_audience_count.png)
 
 *mParticle will add a user property called "SegmentMembership" to audience members' user profiles in Mixpanel*
 
-![mixpanel_audience_property](/mixpanel_audience_property.png)
+![mixpanel_audience_property](../../.gitbook/assets/mixpanel_audience_property.png)
 
 6. Create a cohort in Mixpanel looking for the audience ID or name if you specified that in your setup.
 
-![mixpanel_mparticle_cohort](/mixpanel_mparticle_cohort.png)
+![mixpanel_mparticle_cohort](../../.gitbook/assets/mixpanel_mparticle_cohort.png)
 
 ## Debugging
 
@@ -206,7 +206,7 @@ Here, you can filter by source and examine the JSON data for specific events or 
 
 Access the Live Stream page under **Data Platform > Live Stream** using the left navigation.
 
-![live_stream](/mparticle_live_stream.png)
+![live_stream](../../.gitbook/assets/mparticle_live_stream.png)
 
 ### Event Forwarding
 
@@ -216,7 +216,7 @@ Access the Event Forwarding page under **Data Platform > Event Forwarding** usin
 
 Here, you can select your input(s) and any number of outputs to compare events ingested by mParticle and forwarded to Mixpanel to determine any unexpected discrepancies or errors. You can also [add filters to your connections](https://docs.mparticle.com/guides/platform-guide/data-filter/) to control which data goes into Mixpanel.
 
-![event_forwarding](/mparticle_event_forwarding.png)
+![event_forwarding](../../.gitbook/assets/mparticle_event_forwarding.png)
 
 ### Logger
 
@@ -240,9 +240,9 @@ window.mParticle = {
 This could be due to several reasons:
 * **Storing data in the EU:** A common issue is that the data in mParticle is enabled to be sent to an EU endpoint, but the Mixpanel data is still being stored outside of the EU. Both endpoints for mParticle and Mixpanel need to point to the EU. Check your Mixpanel data residency in your project settings, and set your mParticle residency under `output configuration > Mixpanel Target Server`.
 
-![Mixpanel Residency](/mixpanel_data_residency.png) 
+![Mixpanel Residency](../../.gitbook/assets/mixpanel_data_residency.png) 
 
-![mParticle Residency](/mparticle_data_residency.png)
+![mParticle Residency](../../.gitbook/assets/mparticle_data_residency.png)
 
 * **Project Token mismatch:** Please ensure the project token on your mParticle output matches the token in your Mixpanel project
 

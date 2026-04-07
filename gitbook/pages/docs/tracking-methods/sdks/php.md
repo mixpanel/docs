@@ -24,7 +24,7 @@ You can get the library using [Composer](http://getcomposer.org/) by including t
         }
         ```
 
-        Once the library is installed, create an instance of the Mixpanel class with the [`getInstance()`](https://mixpanel.github.io/mixpanel-php/classes/Mixpanel.html#method_getInstance) method using [your project token](https://docs.mixpanel.com/docs/orgs-and-projects/managing-projects#find-your-project-tokens). 
+Once the library is installed, create an instance of the Mixpanel class with the [`getInstance()`](https://mixpanel.github.io/mixpanel-php/classes/Mixpanel.html#method_getInstance) method using [your project token](https://docs.mixpanel.com/docs/orgs-and-projects/managing-projects#find-your-project-tokens). 
 
         ```php
         <?php
@@ -121,9 +121,9 @@ Mixpanel groups events sent with different distinct_ids, presenting them in repo
 {% tab title="Original API" %}
 If you have [Original ID Merge enabled](../id-management.md#identity-merge-apis), send your anonymous events with an anonymous ID that you generate. Then merge your anonymous ID and your chosen user ID by calling the [`identify()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelEvents.html#method_identify) method once they are known (typically at registration and login). This will send an [`$identify`](../id-management/identifying-users-original.md#identify) event containing both IDs and merge them under one identity cluster.
 
-        Learn more about [server-side ID management for project on Original ID Merge API](../id-management/identifying-users-original.md#server-side-identity-management).
+Learn more about [server-side ID management for project on Original ID Merge API](../id-management/identifying-users-original.md#server-side-identity-management).
 
-        **Example Usage**
+**Example Usage**
         ```php
         <?php
         // import dependencies
@@ -142,11 +142,11 @@ If you have [Original ID Merge enabled](../id-management.md#identity-merge-apis)
 {% tab title="Simplified API" %}
 If you have [Simplified ID Merge](../id-management.md#identity-merge-apis) enabled, send your event anonymous events with an anonymous ID set to the `$device_id`. Then call [`identify()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelEvents.html#method_identify) while providing your chosen user ID once they are known (typically at registration and login). This will set your chosen user ID as the `$user_id` for events moving forward.
         
-        When a `$user_id` and a `$device_id` is detected in the same event for the first time, it triggers a merge of the 2 IDs.
+When a `$user_id` and a `$device_id` is detected in the same event for the first time, it triggers a merge of the 2 IDs.
 
-        Learn more about [server-side ID management for project on Original ID Merge API](../id-management/identifying-users-simplified.md#server-side-identity-management).
+Learn more about [server-side ID management for project on Original ID Merge API](../id-management/identifying-users-simplified.md#server-side-identity-management).
 
-        **Example Usage**
+**Example Usage**
         ```php
         <?php
         // import dependencies
@@ -215,9 +215,9 @@ A few commonly used people methods are highlighted below:
 {% tab title="setOnce()" %}
 The [`setOnce()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelPeople.html#method_setOnce) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set profile properties without the risk of overwriting existing data.
+Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
 
     ```php
     // create an instance of the Mixpanel class
@@ -243,9 +243,9 @@ The [`setOnce()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_Mixp
 {% tab title="append()" %}
 The [`append()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelPeople.html#method_append) method append values to a list profile property.
 
-    Use this method to add additional values to an existing list property instead of redefining the entire list.
+Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-    **Example Usage**
+**Example Usage**
 
     ```php
     // create an instance of the Mixpanel class
@@ -270,9 +270,9 @@ The [`append()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_Mixpa
 {% tab title="increment()" %}
 The [`increment()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelPeople.html#method_increment) method increments a numeric property by a whole number.
 
-    Use this method to add to or subtract from your numeric property based on its current value.
+Use this method to add to or subtract from your numeric property based on its current value.
 
-    **Example Usage**
+**Example Usage**
   
     ```php
     // create an instance of the Mixpanel class

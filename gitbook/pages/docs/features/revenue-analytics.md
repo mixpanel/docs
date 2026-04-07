@@ -54,25 +54,25 @@ Revenue Analytics can help answer the following example questions for transactio
 
 **Total Revenue**: Calculated as the Sum of Revenue made across all purchases.
 
-![image](/revenue1.png)
+![image](../.gitbook/assets/revenue1.png)
 
 **Average Order Value (AOV)**: Calculated as Total Revenue over the Total Number of Purchases. See [this example in our demo project](https://mixpanel.com/s/3VdgsS).
 
-![image](/revenue2.png)
+![image](../.gitbook/assets/revenue2.png)
 
 **Life Time Value (LTV)**: Calculated as the cumulative spend from users since they landed on the platform. Often you look at spending in the first 30 or 60 days by the expected lifetime (2 years, 3 years, etc).
 
-![image](/revenue3.png)
+![image](../.gitbook/assets/revenue3.png)
 
 This report shows the cumulative revenue of new users (identified by the Sign Up event) by cohort over their lifetime (5 days, 30 days, 60 days). It leverages the Property Sum feature of the [Retention report](../reports/retention.md) to look at retained users' cumulative spending.
 
 **Average Revenue Per User (ARPU)**: Calculated as the Sum of Revenue over time divided by the number of Unique Users. See [this example in our demo project](https://mixpanel.com/s/300OIR).
 
-![image](/revenue4.png)
+![image](../.gitbook/assets/revenue4.png)
 
 **Customer Acquisition Cost (CAC)**: Calculated as the Total Acquisition Costs over the Number of New Customers Acquired. In other words, how much money do we have to spend to acquire a user? A good acquisition strategy would lead to a LTV/CAC value above 1. See [this example in our demo project](https://mixpanel.com/s/2TZJlX).
 
-![image](/revenue5.png)
+![image](../.gitbook/assets/revenue5.png)
 
 The report above leverages Mixpanel's [Ad Spend data model](../tracking-methods/integrations/ad-spend.md).
 
@@ -112,7 +112,7 @@ Revenue Analytics makes use of two new computed properties to create subscriptio
 - 5 → 20 = Upgrade (positive to more positive)
 - 5 → 5  = Flat (no change)
 
-![image](/revenue6.png)
+![image](../.gitbook/assets/revenue6.png)
 
 {% hint style="info" %}
 The Recurring Revenue Change and Recurring Revenue Change Type computed properties requires the use of [Historical Profile Values](../data-structure/user-profiles.md#importing-historical-profile-values) imported via [Warehouse Connectors](../tracking-methods/warehouse-connectors.md).
@@ -122,15 +122,15 @@ When creating a Revenue Metric (e.g. incremental MRR in the last month), there a
 
 1. **Time** lets you analyze based on the past number of months, which allows you to determine “What should today's value be compared versus 1 month ago?”, for example.
 
-![image](/revenue7.png)
+![image](../.gitbook/assets/revenue7.png)
 
 2. **Change Type** enables you to look at the incremental revenue for different types of accounts, whether New, Upsell, Downgrade, or Churn.
 
-![image](/revenue8.png)
+![image](../.gitbook/assets/revenue8.png)
 
 You can also look at the latest value as of a specific time period, or for **any** value during the time period. For example, you might want to answer: show me all customers who were on a free plan in the last 12 months, even if they are on a priced plan, now.
 
-![image](/revenue9.png)
+![image](../.gitbook/assets/revenue9.png)
 
 **Net Revenue Retention (NRR)**: Calculated as the percentage change in revenue base.
 
@@ -140,7 +140,7 @@ You can also look at the latest value as of a specific time period, or for **any
 - Current MRR from Existing Biz / Prior MRR
 - (Prior MRR from Existing Biz + (Upsell MRR - Downgrade MRR) ) / Prior MRR
 
-![image](/revenue10.png)
+![image](../.gitbook/assets/revenue10.png)
 
 **MRR Churn**: Calculated as the drop in Revenue for existing users (it does not consider upsells). Typically, the target ARR Churn is below 15%. What does this translate to on a monthly basis?
 
@@ -151,7 +151,7 @@ You can also look at the latest value as of a specific time period, or for **any
 
 - Current MRR / Prior MRR
 
-![image](/revenue11.png)
+![image](../.gitbook/assets/revenue11.png)
 
 **MRR by Revenue Type**: Calculated based on the following:
 
@@ -163,8 +163,6 @@ You can also look at the latest value as of a specific time period, or for **any
 Ultimately, the Goal is to have (New + Upsell) - Downgrade to be positive, which means recurring revenue is growing.
 
 ## FAQ
-
-<div class="faqComponent" >
 
 <details>
 <summary>Can all customers use these features?</summary>

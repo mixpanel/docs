@@ -1,10 +1,10 @@
 # Overview
 
-If you have already created your tracking plan and know what you want to track, the next step is to start implementing. However, if you have not done so, it's good to catch-up reading on [Plan](../../../tutorials/plan/setup.md) first.
+If you have already created your tracking plan and know what you want to track, the next step is to start implementing. However, if you have not done so, it's good to catch-up reading on [Plan](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/plan/setup) first.
 
-- [x] [Send Your Data](../../../tutorials/implement/send-your-data.md#send-your-data-implement-your-tracking-plan) - walkthrough the different ways you can send data into Mixpanel and guide you on choosing the most suitable approach. 
-- [x] [QA and Data Audit](../../../tutorials/implement/qa-data-audit.md) - covers QA *(Quality Assurance testing)* and auditing of your implementation before you send live data into your Mixpanel production project. 
-- [x] [Establish Governance](../../../tutorials/implement/establish-governance.md) - guide you in establishing good data governance practices beyond the initial onboarding to you keep your implementation clean, concise and consistent.
+- [x] [Send Your Data](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/implement/send-your-data#send-your-data-implement-your-tracking-plan) - walkthrough the different ways you can send data into Mixpanel and guide you on choosing the most suitable approach. 
+- [x] [QA and Data Audit](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/implement/qa-data-audit) - covers QA *(Quality Assurance testing)* and auditing of your implementation before you send live data into your Mixpanel production project. 
+- [x] [Establish Governance](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/implement/establish-governance) - guide you in establishing good data governance practices beyond the initial onboarding to you keep your implementation clean, concise and consistent.
 
 # Send Your Data: Implement Your Tracking Plan
 
@@ -35,21 +35,21 @@ This table provides a quick overview of the different approaches:
 
 ### SDKs: Client-Side vs Proxy vs Server-Side
 
-Mixpanel supports a wide range of [Client-Side](../../../tracking-methods/choosing-the-right-method.md#client-side-tracking) and [Server-Side](../../../tracking-methods/choosing-the-right-method.md#server-side-tracking) SDKs.
+Mixpanel supports a wide range of [Client-Side](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/choosing-the-right-method#client-side-tracking) and [Server-Side](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/choosing-the-right-method#server-side-tracking) SDKs.
 
 In general, we recommend utilizing Client-Side SDKs if you have limited development resources, no existing data collection infrastructure, or have no reliable method to track clickstream data. Whilst they might be initially the easiest to set up, ad-blockers can impact your ability to track data accurately. Furthermore, it can be difficult to keep metrics consistent when utilizing client-side SDKs across multiple platforms such as across both a website and mobile app.
 
 <p >
   {% embed url="https://www.youtube.com/watch?v=FL7wGgfTVoo" %}
 
-Alternatively, you may want to consider using Server-Side SDKs, which are not susceptible to ad blockers, and provide more consistency when tracking users across platforms. It does require some custom code to track your anonymous (non-logged in) users. Do refer to our documentation for [Server-Side Best Practices](../../../tracking-best-practices/server-side-best-practices.md).
+Alternatively, you may want to consider using Server-Side SDKs, which are not susceptible to ad blockers, and provide more consistency when tracking users across platforms. It does require some custom code to track your anonymous (non-logged in) users. Do refer to our documentation for [Server-Side Best Practices](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/server-side-best-practices).
 
 <p >
   {% embed url="https://www.youtube.com/watch?v=tmGWU6R2-g8" %}
 
-As an in-between, consider client-side tracking via a proxy. This will help [reduce the likelihood of ad-blockers impacting your tracking](https://www.youtube.com/watch?v=8Pv6tmRfqr8), while allowing you to automatically capture certain default client-side properties. For more details, please see [this article](../../../tracking-methods/sdks/javascript.md#tracking-via-proxy) on how to set up a proxy.
+As an in-between, consider client-side tracking via a proxy. This will help [reduce the likelihood of ad-blockers impacting your tracking](https://www.youtube.com/watch?v=8Pv6tmRfqr8), while allowing you to automatically capture certain default client-side properties. For more details, please see [this article](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/sdks/javascript#tracking-via-proxy) on how to set up a proxy.
 
-A full list of Mixpanel SDKs can be found in our [documentation](../../../tracking-methods/choosing-the-right-method.md).
+A full list of Mixpanel SDKs can be found in our [documentation](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/choosing-the-right-method).
 
 ### Customer Data Platforms (CDP)
 
@@ -62,8 +62,8 @@ Please refer to the documentation by your respective CDP provider for more infor
 
 ### Data Warehouses
 
-If your data is already stored in a data warehouse, our [Warehouse Connectors](../../../tracking-methods/warehouse-connectors.md) allows you to import different [Table Types](../../../tracking-methods/warehouse-connectors.md#table-types) that map to Events, User Profiles, Group Profiles, and Lookup Tables 
-in your Mixpanel project. It also provides various [Sync Modes](../../../tracking-methods/warehouse-connectors.md#sync-modes) such as Mirror, Append, Full, and One-Time syncs to ensure that your data in Mixpanel matches your trusted data source.
+If your data is already stored in a data warehouse, our [Warehouse Connectors](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/warehouse-connectors) allows you to import different [Table Types](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/warehouse-connectors#table-types) that map to Events, User Profiles, Group Profiles, and Lookup Tables 
+in your Mixpanel project. It also provides various [Sync Modes](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/warehouse-connectors#sync-modes) such as Mirror, Append, Full, and One-Time syncs to ensure that your data in Mixpanel matches your trusted data source.
 
 <p >
   {% embed url="https://www.youtube.com/watch?v=3miXogffar0" %}
@@ -72,7 +72,7 @@ Another option to send data from your data warehouse to Mixpanel would be to uti
 
 ### Event Streaming / Cloud Ingestion
 
-If your company already has an existing event stream pipeline, you could use it to send data into Mixpanel as you receive it. You can refer to our documentation for examples on how to setup a pipeline from [Amazon S3](../../../tracking-methods/integrations/amazon-s3.md), [Google Cloud Storage](../../../tracking-methods/integrations/google-cloud-storage.md), [Google Pubsub](../../../tracking-methods/integrations/google-pubsub.md).
+If your company already has an existing event stream pipeline, you could use it to send data into Mixpanel as you receive it. You can refer to our documentation for examples on how to setup a pipeline from [Amazon S3](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/integrations/amazon-s3), [Google Cloud Storage](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/integrations/google-cloud-storage), [Google Pubsub](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/integrations/google-pubsub).
 
 <p >
   {% embed url="https://www.youtube.com/watch?v=S9HJrVr1an0" %}
@@ -86,7 +86,7 @@ If you would like to send data directly to Mixpanel servers without the need of 
 
 ## Identity Management Best Practices
 
-> Note: This section explains identity management using the Simplified Identity Management setting. If you are unsure, do refer to the [Setup](../../../tutorials/plan/setup.md#simplified-identity-management) section to check your organization and project settings.
+> Note: This section explains identity management using the Simplified Identity Management setting. If you are unsure, do refer to the [Setup](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/plan/setup#simplified-identity-management) section to check your organization and project settings.
 
 As users navigate through your website or application, it is common for them to move between anonymous (logged out) to identified (logged in) states. Users can also use multiple devices or platforms that you may provide for your product. As such, it is crucial that you ensure correct identity management throughout in order to accurately track your users.
 
@@ -102,14 +102,14 @@ In the following video, we walkthrough how you should manage identifying your us
 
 Do note that the mixpanel.identify() call does not create a User Profile in Mixpanel. The people.set() method is the required call to set user properties on a user profile. However, the people.set() call also requires an identify() call at some point in the same session, so that Mixpanel knows which User ID to associate the profile properties to. If there is no identify() call in a user’s session where people.set() is called, we store the user profile properties locally until that user hits an identify() call. 
 
-For more detailed user flows and FAQs refer to our documentation on [Identifying Users](../../../tracking-methods/id-management/identifying-users.md).
+For more detailed user flows and FAQs refer to our documentation on [Identifying Users](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management/identifying-users).
 
 ## Backfilling Historical Data 
 
 If you've previously collected data in other systems and wish to analyze it in Mixpanel, you have the option to backfill it into Mixpanel. We recommend backfilling a year’s worth (or less) of historical data. 
 
-Given that different systems may adopt different data models, it's essential to understand [Mixpanel Data Model](../../../plan/tracking-strategy.md#the-mixpanel-data-model) and identify any required data transformations before backfilling the data into Mixpanel. For detailed guidance on migrating data from platforms such as Amplitude and Google Analytics, refer to our guide [here](../../../migration/overview.md). 
+Given that different systems may adopt different data models, it's essential to understand [Mixpanel Data Model](../../../plan/tracking-strategy.md#the-mixpanel-data-model) and identify any required data transformations before backfilling the data into Mixpanel. For detailed guidance on migrating data from platforms such as Amplitude and Google Analytics, refer to our guide [here](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/migration/overview). 
 
-If your historical data is stored in a data warehouse, you can import it into Mixpanel through [Mixpanel Warehouse Connector](../../../tracking-methods/warehouse-connectors.md). 
+If your historical data is stored in a data warehouse, you can import it into Mixpanel through [Mixpanel Warehouse Connector](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/warehouse-connectors). 
 
 Alternatively, if your historical data is stored in a system without Mixpanel native support for migration, you can still import it into Mixpanel via Mixpanel APIs. Learn more about this option [here](../../../implement/send-your-data.md#direct-api-ingestion).

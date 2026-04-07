@@ -18,11 +18,11 @@ Follow these steps to enable the integration with Apptimize:
 
 2. From the Integrations page, select the Apptimize dropdown, and select **Connect**.
 
-![Apptimize 2 Image](/apptimize2.png)
+![Apptimize 2 Image](../../.gitbook/assets/apptimize2.png)
 
 3. You will need to provide an Apptimize Token (generated from the Apptimize dashboard) to authorize the connection. To generate an Apptimize token, go to the Tokens page on Apptimize Dashboard and click “New Token”. Give the token a memorable name and click Generate.
 
-![Apptimize 3 Image](/apptimize3.png)
+![Apptimize 3 Image](../../.gitbook/assets/apptimize3.png)
 
 4. Use the Apptimize token to authorize the Mixpanel integration.
 
@@ -60,4 +60,4 @@ In recurring sync, Mixpanel initiates sync between a cohort and Apptimize every 
 
 Once the export completes, you will see your cohorts appear in your Apptimize Groups page.
 
-![Apptimize 4 Image](/apptimize4.png)
+![Apptimize 4 Image](../../.gitbook/assets/apptimize4.png)

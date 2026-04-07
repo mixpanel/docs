@@ -1,6 +1,6 @@
 # Track User Retention
 
-Our [Retention](../../reports/retention.md) report in Mixpanel is designed to help you assess user engagement over a specified period of time. Have you achieved product market fit? Are your users returning over time or churning? Which cohort of users come back and what drives them to?
+Our [Retention](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/retention) report in Mixpanel is designed to help you assess user engagement over a specified period of time. Have you achieved product market fit? Are your users returning over time or churning? Which cohort of users come back and what drives them to?
 
 <p >
   {% embed url="https://www.youtube.com/watch?v=9AM6fOH91Z4" %}

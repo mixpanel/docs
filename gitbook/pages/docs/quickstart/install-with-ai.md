@@ -24,7 +24,7 @@ Before starting, make sure you have:
 3. Click on "Overview" in the left sidebar
 4. Scroll down to Access Keys section and copy your "Project Token" - it looks like a long string of letters and numbers
 
-    (You will need to be an Admin or Owner in your project)
+(You will need to be an Admin or Owner in your project)
 
 5. Keep this handy - you'll need it in the next step
 

@@ -62,7 +62,7 @@ This is applied to funnels by considering the total number of users who enter th
 
 To calculate the actual p-value, we estimate the hypergeometric cumulative distribution function (CDF) for N, K, n.
 
-![funnels_statsig.png](/funnels_statsig.png)
+![funnels_statsig.png](../../.gitbook/assets/funnels_statsig.png)
 
 In the CDF, the value of any point (X) represents the probability that a random draw would result in fewer conversions P(k < X). 1 - P(k < X) represents the probability that a random draw would result in more conversions P(k >= X).
 

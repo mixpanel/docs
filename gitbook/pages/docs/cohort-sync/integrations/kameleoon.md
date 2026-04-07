@@ -16,7 +16,7 @@ You must be a Mixpanel project admin to enable the Kameleoon integration.
 
 2. From the Integrations page, select the Kameleoon dropdown, and select **Connect**.
 
-![Kameleoon 2 Image](/kameleoon2.png)
+![Kameleoon 2 Image](../../.gitbook/assets/kameleoon2.png)
 
 3. The connection uses one credential to authorize, "API Key". Supply an **API token** generated from your Kameleoon settings page to establish the connection.
 
@@ -52,7 +52,7 @@ In dynamic sync, Mixpanel initiates sync between a cohort and Kameleoon every tw
 
 Once the export completes, you will see a Segment reflecting the set of users from your Mixpanel cohort in Kameleoon's Segment editor, as custom data (e.g. "Song Sharers"):
 
-![Kameleoon 3 Image](/kameleoon3.png)
+![Kameleoon 3 Image](../../.gitbook/assets/kameleoon3.png)
 
 ## Kameleoon Data into Mixpanel
 

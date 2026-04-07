@@ -6,7 +6,7 @@ Computed Properties are a specialized type of property that Mixpanel calculates 
 
 You can find Computed Properties labeled with the 'Computed' tag in the query builder.
 
-![/computed_properties](/computed_properties.png)
+![/computed_properties](../.gitbook/assets/computed_properties.png)
 
 ## Behavioral Properties
 
@@ -130,11 +130,11 @@ There will be 2 options depending on the use-case
 Some nuances to note
 - In a time-series chart, the first and last qualifying conversion is within the chart interval. For example if you have a 6M chart with a monthly interval, you’re looking at first and last conversion within a month, NOT 6M
 
-![image](/Attribution_uniques_1.png)
+![image](../.gitbook/assets/Attribution_uniques_1.png)
 
 - In non-time series charts, the chart interval and the qualifying conversion interval are the same. If your chart is for 6M, the first and last conversion is also seen within the 6M period
 
-![image](/Attribution_uniques_2.png)
+![image](../.gitbook/assets/Attribution_uniques_2.png)
 
 **3. What does filtering do in attribution?**
 
@@ -144,32 +144,32 @@ To make this real, let’s take a scenario -
 - Purchase 1:
 - 15th Jan: Made purchase (visited via Linkedin ad)
 - 10th Jan: visited via Google 
-    (Last Touch: Linkedin; All Sources: Linkedin, Google)
+(Last Touch: Linkedin; All Sources: Linkedin, Google)
 - Purchase 2:
 - 18th Jan: Made Purchase (came directly)
 - 12th Jan: visited via Facebook 
-    (Last Touch: Direct; 
-    All Sources: Direct, Facebook)
+(Last Touch: Direct; 
+All Sources: Direct, Facebook)
 - Purchase 3:
 - 20th Jan: Made Purchase (came via Google) 
-    (Last Touch: Google; 
-    All Sources: Google)
+(Last Touch: Google; 
+All Sources: Google)
 
 On 30th Jan, doing some attribution analysis
 - Use-Case 1: I want to look at only Purchases that have come from a non Direct Channel?
 - Answer: 2 - Purchases 1 & 3
 
-![image](/Attribution_filtering_1.png)
+![image](../.gitbook/assets/Attribution_filtering_1.png)
 
 - Use-Case 2: I want to look at how many Purchases have come via Last Touch Google?
 - Answer: 1 - Purchase 3
 
-![image](/Attribution_filtering_2.png)
+![image](../.gitbook/assets/Attribution_filtering_2.png)
 
 - Use-Case 3: I want to look at how many purchases have come via Google? (can be any touch in the last 30 days)
 - Answer: 2 - Purchases 1 & 3
 
-![image](/Attribution_filtering_3.png)
+![image](../.gitbook/assets/Attribution_filtering_3.png)
 
 NOTE: You can apply a filter on an attribution property only after an attribution breakdown has been applied. Read above for steps to turn on an attribution analysis
 - Step 1: Turn on Attribution analysis by going to the breakdown section and choosing `Attributed by..` and property `XYZ`

@@ -10,7 +10,7 @@ Mixpanel’s Impact report measures the effects of product or marketing launches
 
 To access **Impact**, go to the Applications section in the top right of the top navigation, then select **Impact**.
 
-![/11036831782164](/11036831782164.png)
+![/11036831782164](../../.gitbook/assets/11036831782164.png)
 
 ## Use Cases
 
@@ -95,7 +95,7 @@ You can see how frequently users in each group perform the metric event, both be
 
 The chart also contains average lines for non-adopters and adopters both before and after day zero (or launch), and the unobserved counterfactual of the adopters (UCA), formerly called projected adopters, average after day zero.
 
-![/Screen_Shot_2019-12-09_at_2.05.03_PM_copy.png](/Screen_Shot_2019-12-09_at_2.05.03_PM_copy.png)
+![/Screen_Shot_2019-12-09_at_2.05.03_PM_copy.png](../../.gitbook/assets/Screen_Shot_2019-12-09_at_2.05.03_PM_copy.png)
 
 ### Impact Table
 
@@ -103,7 +103,7 @@ The Impact Table summarizes the results of the Impact chart.  It displays the a
 
 The table is broken down into three sections: “Pre-Launch”, “Post-Launch”, and “Impact”.
 
-![/Screen_Shot_2019-12-09_at_2.05.52_PM.png](/Screen_Shot_2019-12-09_at_2.05.52_PM.png)
+![/Screen_Shot_2019-12-09_at_2.05.52_PM.png](../../.gitbook/assets/Screen_Shot_2019-12-09_at_2.05.52_PM.png)
 
 The Impact Table compares users that performed the launch event and those that did not. For both groups of users, Mixpanel calculates the average number of times per day that users performed the metric event before the launch, after the launch, and the difference between the two (the delta).
 
@@ -203,7 +203,7 @@ To learn more about Causal Impact in detail, read this [Mixpanel Whitepaper](ht
 
 Click **View Causal Impact** to use the propensity matching model.
 
-![/Screen_Shot_2020-01-10_at_11.19.41_AM.png](/Screen_Shot_2020-01-10_at_11.19.41_AM.png)
+![/Screen_Shot_2020-01-10_at_11.19.41_AM.png](../../.gitbook/assets/Screen_Shot_2020-01-10_at_11.19.41_AM.png)
 
 Please note that Causal Impact can take up to a few minutes to calculate results. Causal Impact requires at least 200 total samples and a minimum of 10 features. Each stratum must contain at least 3 treated (adopter) and 3 control (non-adopter) units.
 

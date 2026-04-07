@@ -26,19 +26,19 @@ Enter the Mixpanel project where the integration is to be performed, then:
 If you set a User ID Property, it should be a Mixpanel user property that matches the Braze External ID. If you do not select one, Mixpanel will default to using the `$braze_external_id` property to match users between Braze and Mixpanel. See more about [matching users between Braze and Mixpanel](./braze.md#matching-mixpanel-and-braze-users).
 {% endhint %}
 
-![Braze 2 Image](/braze2.png)
+![Braze 2 Image](../../.gitbook/assets/braze2.png)
 
 If you've set up a Connection already, you have the option of reconnecting the existing Connection.
 
-![Braze 3 Image](/braze3.png)
+![Braze 3 Image](../../.gitbook/assets/braze3.png)
 
 You also have the option of adding a new Connection by clicking the dropdown on the left hand side of the row, and clicking "**+ Add Connection**".
 
-![Braze 4 Image](/braze4.png)
+![Braze 4 Image](../../.gitbook/assets/braze4.png)
 
 3. Enter the Data Import Key and select a Braze Instance. Note Braze hosts their application on [multiple clusters throughout the US and EU](https://www.braze.com/docs/partners/isv_partners/cohort_import/).
 
-![Braze 5 Image](/braze5.png)
+![Braze 5 Image](../../.gitbook/assets/braze5.png)
 
 4. Click **Continue** to complete the process.
 
@@ -48,15 +48,15 @@ To export a Mixpanel cohort, you must create a cohort. To export a Mixpanel coho
 
 1. Click **Data Management** at the top of Mixpanel. Navigate to **Cohorts**.
 
-![Braze 6 Image](/braze6.png)
+![Braze 6 Image](../../.gitbook/assets/braze6.png)
 
 2. Select the cohort to send to Braze. Select **Export to Braze**. If you have multiple Connections, they will be differentiated by the Connection Name in the parentheses after the Integration Name.
 
-![Braze 7 Image](/braze7.png)
+![Braze 7 Image](../../.gitbook/assets/braze7.png)
 
 3. Select a One-time export or a Dynamic sync. Click Begin Sync.
 
-![Braze 8 Image](/braze8.png)
+![Braze 8 Image](../../.gitbook/assets/braze8.png)
 
 ## Use the Mixpanel Cohort to Create a Segment in Braze
 
@@ -66,27 +66,27 @@ In order to build a Braze Segment after importing a cohort:
 
 1. Select **Segments** tab under **Engagement**.
 
-![Braze 9 Image](/braze9.png)
+![Braze 9 Image](../../.gitbook/assets/braze9.png)
 
 2. Click **Create Segment**.
 
-![Braze 10 Image](/braze10.png)
+![Braze 10 Image](../../.gitbook/assets/braze10.png)
 
 3. After naming the Segment, click Select Filter from the dropdown.
 
-![Braze 11 Image](/braze11.png)
+![Braze 11 Image](../../.gitbook/assets/braze11.png)
 
 4. Select "Mixpanel Cohorts".
 
-![Braze 12 Image](/braze12.png)
+![Braze 12 Image](../../.gitbook/assets/braze12.png)
 
 5. Select the “includes” value from the dropdown. Click **Search for a value** from the dropdown.
 
-![Braze 13 Image](/braze13.png)
+![Braze 13 Image](../../.gitbook/assets/braze13.png)
 
 6. The exported Mixpanel cohort is visible in the dropdown. Select the cohort.
 
-![Braze 14 Image](/braze14.png)
+![Braze 14 Image](../../.gitbook/assets/braze14.png)
 
 7. Click Save.
 

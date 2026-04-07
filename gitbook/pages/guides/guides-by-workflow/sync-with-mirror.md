@@ -1,15 +1,15 @@
 # Eliminate Data Drift Between Your Warehouse and Mixpanel Using Mirror
 
-When your warehouse is the source of truth, you need Mixpanel to stay in sync with it — not just ingest a snapshot and drift. [Mirror sync mode](../tracking-methods/warehouse-connectors.md#mirror) does that by tracking every change in your warehouse (new rows, updates, and deletions) and reflecting them in Mixpanel automatically. The result is a Mixpanel project that always matches your warehouse, without manual reconciliation.
+When your warehouse is the source of truth, you need Mixpanel to stay in sync with it — not just ingest a snapshot and drift. [Mirror sync mode](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/warehouse-connectors#mirror) does that by tracking every change in your warehouse (new rows, updates, and deletions) and reflecting them in Mixpanel automatically. The result is a Mixpanel project that always matches your warehouse, without manual reconciliation.
 
 Getting there takes more than pointing a connector at a table. How you model your data, which sync mode you choose, and how you map identifiers all determine whether your analytics hold up under real-world conditions.
 
 ## Before You Start
 
-Mirror is one of several sync modes in [Warehouse Connectors](../tracking-methods/warehouse-connectors.md). It uses Change Data Capture (CDC) to detect and replicate changes, which means every row update or deletion in your source counts as a billable event in Mixpanel. That makes data modeling decisions consequential — not just for accuracy, but for cost.
+Mirror is one of several sync modes in [Warehouse Connectors](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/warehouse-connectors). It uses Change Data Capture (CDC) to detect and replicate changes, which means every row update or deletion in your source counts as a billable event in Mixpanel. That makes data modeling decisions consequential — not just for accuracy, but for cost.
 
 You'll need:
-- Access to a [supported warehouse](../tracking-methods/warehouse-connectors.md#step-1-connect-a-warehouse), such as Snowflake, BigQuery, Databricks, or Redshift
+- Access to a [supported warehouse](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/warehouse-connectors#step-1-connect-a-warehouse), such as Snowflake, BigQuery, Databricks, or Redshift
 - Read-only credentials (SELECT access) scoped to the tables you intend to sync
 - A clear picture of what each warehouse table represents — event log, current profile state, or historical state changes
 
@@ -54,7 +54,7 @@ There's a soft limit of 5,000 distinct event names in Mixpanel. Exceeding it mak
 
 \* *User ID or Device ID is technically optional in connector setup, but without one, events can't be linked to a user profile or attributed to a consistent identity.*
 
-Each event supports a maximum of 255 properties. Property names longer than 255 characters are truncated. For [data type](../data-structure/property-reference/data-type.md) details and a full list of [events and properties limits](../data-structure/events-and-properties.md#what-are-the-limits-of-events-and-properties), refer to the Mixpanel docs.
+Each event supports a maximum of 255 properties. Property names longer than 255 characters are truncated. For [data type](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/property-reference/data-type) details and a full list of [events and properties limits](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/events-and-properties#what-are-the-limits-of-events-and-properties), refer to the Mixpanel docs.
 
 {% hint style="warning" %}
 **Pitfall**: Adding a new column to a source table triggers a full resync of every row in that table. For large datasets, that's a significant spike in billable event volume. Plan schema changes intentionally and time them to avoid unexpected cost.
@@ -62,7 +62,7 @@ Each event supports a maximum of 255 properties. Property names longer than 255 
 
 ## Phase 3: Set Up Profiles and Profile History
 
-[User Profiles](../data-structure/user-profiles.md) and [Group Profiles](../data-structure/group-analytics.md#group-profiles) capture the current state of a person or group. They're mutable by design — you can update them any time, and they join retroactively with all past events sharing the same identifier. That means you don't need to track events and profiles in lockstep; Mixpanel applies the current state at query time.
+[User Profiles](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/user-profiles) and [Group Profiles](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/group-analytics#group-profiles) capture the current state of a person or group. They're mutable by design — you can update them any time, and they join retroactively with all past events sharing the same identifier. That means you don't need to track events and profiles in lockstep; Mixpanel applies the current state at query time.
 
 For most current-state profile tables, Full Sync is the right mode. Use Mirror when you need to track how profile properties changed over time.
 
@@ -92,14 +92,14 @@ Only track properties that change at a manageable frequency and matter for analy
 
 ## Phase 4: Map Identities Consistently
 
-The [`distinct_id`](../tracking-methods/id-management.md) is the primary join key in Mixpanel. It connects events to user profiles and drives all core analyses — Funnels, Retention, and unique user counts.
+The [`distinct_id`](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management) is the primary join key in Mixpanel. It connects events to user profiles and drives all core analyses — Funnels, Retention, and unique user counts.
 
 In a warehouse-native setup, you define this mapping. The column you map to `distinct_id` in your Events table must contain the exact same values as the primary key in your User Profiles table. If they don't match, events and profiles won't join, and your analyses will fragment.
 
-For group-level analysis using [Group Analytics](../data-structure/group-analytics.md), the Group Key (e.g. `account_id`) plays the same role — make sure it's consistent across event and group profile tables.
+For group-level analysis using [Group Analytics](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/group-analytics), the Group Key (e.g. `account_id`) plays the same role — make sure it's consistent across event and group profile tables.
 
 {% hint style="info" %}
-**Pro tip**: Unlike client-side SDK tracking, Mirror doesn't handle ID bridging automatically. [Validate your identity mapping](../tracking-methods/id-management.md) before your first sync, not after. A mismatch across millions of rows is expensive to fix.
+**Pro tip**: Unlike client-side SDK tracking, Mirror doesn't handle ID bridging automatically. [Validate your identity mapping](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management) before your first sync, not after. A mismatch across millions of rows is expensive to fix.
 {% endhint %}
 
 ## Phase 5: Configure Sync Frequency and Monitor Health
@@ -112,7 +112,7 @@ If your data pipeline runs on a schedule, the Advanced Sync API lets you trigger
 
 Once live, monitor regularly:
 - **Sync status**: Check for failures, delays, or mapping errors. Sync success is your primary signal for data parity.
-- **Event volume alerts**: Set automated alerts in [Data Volume Monitoring](../data-governance/data-volume-monitoring.md) to catch unexpected spikes. These often signal an upstream warehouse issue or an unplanned schema change triggering a resync.
+- **Event volume alerts**: Set automated alerts in [Data Volume Monitoring](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-volume-monitoring) to catch unexpected spikes. These often signal an upstream warehouse issue or an unplanned schema change triggering a resync.
 
 ## Key Takeaways
 - Mirror uses CDC to reflect every warehouse change — new rows, updates, and deletions — but every change counts as a billable event, so modeling decisions directly affect cost.

@@ -39,7 +39,7 @@ Steps to take:
 
 #### Enable Debug Mode
 
-Developers should [enable debug mode](../tracking-best-practices/debugging.md#enable-debug-mode) to review requests and confirm the payloads sent to Mixpanel.
+Developers should [enable debug mode](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/debugging#enable-debug-mode) to review requests and confirm the payloads sent to Mixpanel.
 
 - Web: view logs in the browser console
 - Mobile: view logs in Xcode (iOS) or Android Studio (Android)
@@ -59,15 +59,15 @@ Steps to take:
 1. Walk through real flows in your app (sign up, purchase, upgrade, etc.)
 2. Confirm events fire as expected at each step.
 3. Check Mixpanel UI:
-- [Events](../tracking-best-practices/debugging.md#debugging-with-events) appear in reports
-- [User profiles](../tracking-best-practices/debugging.md#debugging-with-user-profiles) are created or updated correctly
-- [Identity stitching](../tracking-methods/id-management/identifying-users-simplified.md) works when a user moves from anonymous to known
+- [Events](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/debugging#debugging-with-events) appear in reports
+- [User profiles](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/debugging#debugging-with-user-profiles) are created or updated correctly
+- [Identity stitching](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management/identifying-users-simplified) works when a user moves from anonymous to known
 
 {% hint style="info" %}
 **Pro tip**: Involve non-developers in your User Flows QA. Product managers and data analysts often catch issues developers miss because they think in terms of *business flows* rather than code.
 {% endhint %}
 
-Learn more about [QA workflows](../tracking-best-practices/debugging.md).
+Learn more about [QA workflows](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/debugging).
 
 ## Audit Regularly
 
@@ -83,8 +83,8 @@ Schedule audits quarterly or alongside product releases to check for:
 
 **Tools to Help**
 
-- [Lexicon](../data-governance/lexicon.md): to validate event/property naming
-- [Events report](../tracking-best-practices/debugging.md#debugging-with-events): to spot-test events in real time
+- [Lexicon](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon): to validate event/property naming
+- [Events report](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/debugging#debugging-with-events): to spot-test events in real time
 
 {% hint style="info" %}
 **Pro tip**: Treat auditing like regression testing; it is not about fixing what is broken now, but preventing broken data from piling up unnoticed.
@@ -97,4 +97,4 @@ Schedule audits quarterly or alongside product releases to check for:
 - **Use Debug Mode**: Catch ingestion issues instantly
 - **Audit often**: Data quality is not set-and-forget
 
-Learn more about [best practices for debugging](../tracking-best-practices/debugging.md).
+Learn more about [best practices for debugging](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/debugging).

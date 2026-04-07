@@ -30,11 +30,11 @@ To enable or disable the setting to move board, you will need an admin or own pr
 
 4. On this page, you can also see who last updated the permissions and when.
 
-![Move-screenshot.png](/Move-screenshot.png)
+![Move-screenshot.png](../.gitbook/assets/Move-screenshot.png)
 
 ### Using Move
 
-![Demo_mv_x_proj.gif](/Demo_mv_x_proj.gif)
+![Demo_mv_x_proj.gif](../.gitbook/assets/Demo_mv_x_proj.gif)
 
 Step 1: Go to the Board you wish to move.
 

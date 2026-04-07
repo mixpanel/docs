@@ -59,7 +59,7 @@ Want to learn more? [Read our full guide](./tracking-methods/choosing-the-right-
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">Next Steps</h2>
   <p>
-    Once you've chosen a few events to track first, you're ready to set up
-    Mixpanel.
+Once you've chosen a few events to track first, you're ready to set up
+Mixpanel.
   </p>
   <a href="./quickstart/install-mixpanel.md" class="button primary">Start Quickstart Guide</a>

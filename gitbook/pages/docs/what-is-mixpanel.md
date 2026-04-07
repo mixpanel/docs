@@ -22,7 +22,7 @@ An event is a data point that represents an interaction between a user and your 
 
 Imagine you run a cafe where customers can purchase a coffee via an app. Each purchase is an event that can be tracked in Mixpanel.
 
-![image](/event-1.svg)
+![image](.gitbook/assets/event-1.svg)
 
 ### Users
 
@@ -30,7 +30,7 @@ On the other side of an event is a user — the specific individual who complete
 
 Each user has a unique identifier that you can use to track their activity. This identifier can be an email address, a username, or a unique ID. Mixpanel uses a unique ID to identify users.
 
-![image](/events-and-users.svg)
+![image](.gitbook/assets/events-and-users.svg)
 
 ### Properties
 
@@ -38,11 +38,11 @@ You can track additional information about **users** and **events**. These detai
 
 An **Event Property** describes an event. For a coffee purchase, the event would be _Purchased Item_ and the event properties could be _type_ (in this case a Coffee) and _price_ (in this case $2.50).
 
-![image](/event.svg)
+![image](.gitbook/assets/event.svg)
 
 A **User Property** describes a User. This could be their name, email, age, etc.
 
-![image](/user-profile.svg)
+![image](.gitbook/assets/user-profile.svg)
 
 Properties allow you to create groups of users (aka [cohorts](./users/cohorts.md)) and also enable you to filter for certain events or users. These
 powerful features make it easy to identify trends and new customer insights.
@@ -57,10 +57,10 @@ Now that you understand the basics, **we recommend planning the first events you
 
 <div class="bg-base100 rounded-xl">
   <h4 class="text-2xl font-medium mb-2 color:bg-purple200">
-    Already Know What You Want to Track?
+Already Know What You Want to Track?
   </h4>
   <p>
-    If you already know the events you want to track, you can skip planning and
-    start by installing Mixpanel.
+If you already know the events you want to track, you can skip planning and
+start by installing Mixpanel.
   </p>
   <a href="./quickstart/install-mixpanel.md" class="button primary">Install Mixpanel</a>

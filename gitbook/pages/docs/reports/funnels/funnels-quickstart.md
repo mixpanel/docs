@@ -10,7 +10,7 @@ A Funnel Behavior is the basic building block of the Funnels report. A Funnel Be
 
 For example,  let's say your signup flow contains five steps. Within the funnel definition, you can add one event for each step, in the following order: “Product Viewed” → “Product Added” → “Checkout Started” → “Purchase Completed”. At this point, your query should look like this.
 
-![/funnels_beta_1.png](/funnels_beta_1.png)
+![/funnels_beta_1.png](../../.gitbook/assets/funnels_beta_1.png)
 
 You can save the Funnel Behavior you built and reuse them in other reports. Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the saved behavior and the measurements of the behavior.
 
@@ -24,7 +24,7 @@ After your Funnel Behavior is defined, you can choose how you want to measure th
 **Advanced** - See [Counting Method and Measurements](./funnels-advanced.md#counting-methods-and-measurements) section for more information on the measurements.
 {% endhint %}
 
-![/funnels_beta_2.png](/funnels_beta_2.png)
+![/funnels_beta_2.png](../../.gitbook/assets/funnels_beta_2.png)
 
 Your Funnel Behavior combined with the measurement forms a Metric. You can save the Funnels Metric you built and reuse them in other reports (such as the Insights report). Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metrics consists of the saved behavior and the measurements of the behavior.
 
@@ -38,7 +38,7 @@ In this case, we only care about events performed on the iOS platform. Therefore
 **Advanced** - See [Filter](./funnels-advanced.md#filters) section for more information on the filters.
 {% endhint %}
 
-![/funnels_beta_3.png](/funnels_beta_3.png)
+![/funnels_beta_3.png](../../.gitbook/assets/funnels_beta_3.png)
 
 ## Step 4: Choose Breakdowns
 
@@ -48,7 +48,7 @@ Breakdowns segment data into groups. In this case, we want to break our funnel d
 **Advanced** - See [Breakdowns](./funnels-advanced.md#breakdowns) section for more information on the breakdowns.
 {% endhint %}
 
-![/funnels_beta_4.png](/funnels_beta_4.png)
+![/funnels_beta_4.png](../../.gitbook/assets/funnels_beta_4.png)
 
 ## Step 5: Choose Visualization
 
@@ -59,14 +59,14 @@ You can visualize your metric in a variety of ways. Mixpanel allows you to choos
 - Bar - see a summary view of your metric
 - Metric - see a summary view of your metric
 
-![/funnels_beta_5.png](/funnels_beta_5.png)
+![/funnels_beta_5.png](../../.gitbook/assets/funnels_beta_5.png)
 
 <hr></hr>
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
-    Next: Advanced Funnels Concept
+Next: Advanced Funnels Concept
   </h2>
   <p>
-    Explore how funnel metrics are measured and the various configuration options below.
+Explore how funnel metrics are measured and the various configuration options below.
   </p>
   <a href="./funnels-advanced.md" class="button primary">Funnels Advanced Concepts</a>

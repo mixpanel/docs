@@ -28,11 +28,11 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
 {% tab title="BigQuery" %}
 {% embed url="https://www.youtube.com/watch?v=9u60IdyxIVY" %}
 
-        The BigQuery connector works by giving a Mixpanel-managed service account permission to read from BigQuery in your GCP project. You will need:
+The BigQuery connector works by giving a Mixpanel-managed service account permission to read from BigQuery in your GCP project. You will need:
         - Your GCP Project ID, which you can find in the URL of Google Cloud Console (`https://console.cloud.google.com/bigquery?project=YOUR_GCP_PROJECT`).
     - Your unique Mixpanel service account ID, which is generated the first time you create a BigQuery connection in the Mixpanel UI
-      (e.g. `project-?????@mixpanel-warehouse-1.iam.gserviceaccount.com`).
-    - A new, empty `mixpanel` dataset in your BigQuery instance (if you are using [Mirror](#mirror)).
+(e.g. `project-?????@mixpanel-warehouse-1.iam.gserviceaccount.com`).
+        - A new, empty `mixpanel` dataset in your BigQuery instance (if you are using [Mirror](#mirror)).
         ```jsx
           CREATE SCHEMA `<gcp-project>`.`mixpanel`
             OPTIONS (
@@ -41,7 +41,7 @@ Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report
             );
         ```
 
-        Grant the Mixpanel service the following permissions:
+Grant the Mixpanel service the following permissions:
         - `roles/bigquery.jobUser` - Allows Mixpanel to run BigQuery jobs to unload data.
           ```jsx
           gcloud projects add-iam-policy-binding --member serviceAccount:<mixpanel-service-account> --role roles/bigquery.jobUser
@@ -68,12 +68,12 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
 {% tab title="Snowflake" %}
 {% embed url="https://www.youtube.com/watch?v=i-ytJQdojio" %}
 
-    To connect to Snowflake, you will need:
+To connect to Snowflake, you will need:
 - Your [Snowflake account identifier](https://docs.snowflake.com/user-guide/admin-account-identifier), which you can find in the
-  URL of your Snowflake account (`https://YOUR_ACCOUNT_NAME.snowflakecomputing.com/`).
+URL of your Snowflake account (`https://YOUR_ACCOUNT_NAME.snowflakecomputing.com/`).
 - A dedicated Mixpanel user account and role. The user account can use either key-pair or password authentication.
-  If using key-pair authentication, Mixpanel will generate a secure key-pair during the connection process. The public
-  key will be provided during the setup process, and the private key will be encrypted and stored securely.
+If using key-pair authentication, Mixpanel will generate a secure key-pair during the connection process. The public
+key will be provided during the setup process, and the private key will be encrypted and stored securely.
       ```jsx
       CREATE ROLE MIXPANEL_ROLE;
       # one of
@@ -83,7 +83,7 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
       GRANT ROLE MIXPANEL_ROLE TO USER MIXPANEL;
       ```
 - A Snowflake [WAREHOUSE](https://docs.snowflake.com/en/sql-reference/sql/create-warehouse) Mixpanel will use to unload data.
-  We recommend creating a dedicated warehouse for Mixpanel to avoid impacting other workloads.
+We recommend creating a dedicated warehouse for Mixpanel to avoid impacting other workloads.
       ```jsx
       CREATE WAREHOUSE MIXPANEL_WAREHOUSE WITH
         WAREHOUSE_SIZE = XSMALL # consider increasing for larger datasets
@@ -94,8 +94,8 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
       GRANT MONITOR ON MIXPANEL_WAREHOUSE TO ROLE MIXPANEL_ROLE;
       ```
 - A Snowflake [STORAGE INTEGRATION](https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration) Mixpanel will
-  use to unload data. This integration can optionally restrict STORAGE_ALLOWED_LOCATIONS to the unique Mixpanel-managed bucket
-  created to receive data for this connection.
+use to unload data. This integration can optionally restrict STORAGE_ALLOWED_LOCATIONS to the unique Mixpanel-managed bucket
+created to receive data for this connection.
       ```jsx
       CREATE STORAGE INTEGRATION MIXPANEL_STORAGE_INTEGRATION
         TYPE = EXTERNAL_STAGE
@@ -105,7 +105,7 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
       GRANT USAGE ON INTEGRATION MIXPANEL_STORAGE_INTEGRATION TO MIXPANEL_ROLE;
       ```
 - A new, empty `MIXPANEL` [SCHEMA](https://docs.snowflake.com/en/sql-reference/sql/create-schema) the Mixpanel user has the `USAGE`
-  and `CREATE STREAM` permission for (if you are using [Mirror](#mirror)).
+and `CREATE STREAM` permission for (if you are using [Mirror](#mirror)).
       ```jsx
       CREATE SCHEMA <database>.MIXPANEL;
       GRANT USAGE ON DATABASE <database> TO ROLE MIXPANEL_ROLE;
@@ -113,7 +113,7 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
       GRANT CREATE STREAM ON SCHEMA <database>.MIXPANEL TO ROLE MIXPANEL_ROLE;
       ```
 - The Mixpanel user needs the `USAGE` and `SELECT` permissions to have read-only access to any tables and views you plan to sync.
-  Adjust this example to fine-tune permissions.
+Adjust this example to fine-tune permissions.
       ```jsx
       GRANT USAGE ON DATABASE <database> TO ROLE MIXPANEL_ROLE;
       GRANT USAGE ON ALL SCHEMAS IN DATABASE <database> TO ROLE MIXPANEL_ROLE;
@@ -126,25 +126,25 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
       GRANT SELECT ON FUTURE MATERIALIZED VIEWS IN DATABASE <database> TO ROLE MIXPANEL_ROLE;
       ```
 
-    ### IP Allowlist
+### IP Allowlist
 
-    If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-guide/network-policies) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
+If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-guide/network-policies) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
 
-    **US**
+**US**
     ```jsx
     34.31.112.201
     35.184.21.33
     35.225.176.74
     ```
 
-    **EU**
+**EU**
     ```jsx
     34.147.68.192
     35.204.164.122
     35.204.177.251
     ```
 
-    **IN**
+**IN**
     ```jsx
     34.47.224.29
     34.93.42.83
@@ -157,7 +157,7 @@ IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-cont
     ALTER ACCOUNT SET PREVENT_UNLOAD_TO_INLINE_URL = FALSE;
     ```
 
-    See the [Snowflake documentation on this setting](https://docs.snowflake.com/en/sql-reference/parameters#prevent-unload-to-inline-url) before making the change.
+See the [Snowflake documentation on this setting](https://docs.snowflake.com/en/sql-reference/parameters#prevent-unload-to-inline-url) before making the change.
 {% endtab %}
 
 {% tab title="Databricks" %}

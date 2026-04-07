@@ -85,11 +85,11 @@ Mixpanel supports the following models. Pick the right one up front:
 - Frequentist → accuracy matters most + expected lift is low
 - Sequential → speed matters most + expected lift is high
 
-Learn more about [Experiment Model Types](../../reports/experiments.md#experiment-model-types).
+Learn more about [Experiment Model Types](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/experiments#experiment-model-types).
 
 ## Reading Results with Confidence
 
-Mixpanel's [Experiment Report](../../reports/experiments.md) gives you three key signals:
+Mixpanel's [Experiment Report](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/experiments) gives you three key signals:
 
 - **Lift**: % change between control and variant.
 - **P-value**: How confident you can be that the result is not random (≤0.05 is usually significant).
@@ -172,4 +172,4 @@ To get started:
 2. **Share learnings widely.** Make results visible to other teams so everyone benefits.
 3. **Treat experimentation as a repeatable process**, not a one-off.
 
-Learn more about the [Experiments Report](../../reports/experiments.md).
+Learn more about the [Experiments Report](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/experiments).

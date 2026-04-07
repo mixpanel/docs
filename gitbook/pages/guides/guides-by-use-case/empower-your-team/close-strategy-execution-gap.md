@@ -16,7 +16,7 @@ The process of moving from corporate vision to tangible results often devolves i
 - **Absence of Clear Accountability:** When the connection between a team's work and a top-line outcome is vague, performance reviews default to subjective activity reports, shielding low-impact projects from scrutiny.
 - **Failure to Measure Outcomes Over Activities:** Teams naturally measure what’s easy (features shipped, tickets closed), creating a **"culture of activity"** where being busy is mistaken for making progress.
 
-The Metric Tree is the architectural solution designed to systematically address these root causes by forcing leadership to move from **ambiguity to precision**. You can learn more about [Metric Trees in Mixpanel here](../../metric_tree.md).
+The Metric Tree is the architectural solution designed to systematically address these root causes by forcing leadership to move from **ambiguity to precision**. You can learn more about [Metric Trees in Mixpanel here](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/metric_tree).
 
 ## 1. Design Your Value Architecture
 Before your organization can operationalize Metric Trees, you need to design the *value architecture* that defines how your business creates and measures impact. This step turns strategy into a quantifiable model every team can trace back to the North Star.

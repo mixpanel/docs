@@ -22,33 +22,33 @@ See our developer guides on implementing Session Replay for these platforms belo
 
 <table data-view="cards">
   <thead>
-    <tr>
-      <th></th>
-      <th data-hidden data-card-target data-type="content-ref"></th>
-      <th data-hidden data-card-cover data-type="files"></th>
-    </tr>
+<tr>
+<th></th>
+<th data-hidden data-card-target data-type="content-ref"></th>
+<th data-hidden data-card-cover data-type="files"></th>
+</tr>
   </thead>
   <tbody>
-    <tr>
-      <td><strong>Web</strong></td>
-      <td><a href="./tracking-methods/sdks/javascript/javascript-replay.md">./tracking-methods/sdks/javascript/javascript-replay.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>iOS</strong></td>
-      <td><a href="./tracking-methods/sdks/swift/swift-replay.md">./tracking-methods/sdks/swift/swift-replay.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Android</strong></td>
-      <td><a href="./tracking-methods/sdks/android/android-replay.md">./tracking-methods/sdks/android/android-replay.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>React Native</strong></td>
-      <td><a href="./tracking-methods/sdks/react-native/react-native-replay.md">./tracking-methods/sdks/react-native/react-native-replay.md</a></td>
-      <td></td>
-    </tr>
+<tr>
+<td><strong>Web</strong></td>
+<td><a href="./tracking-methods/sdks/javascript/javascript-replay.md">./tracking-methods/sdks/javascript/javascript-replay.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>iOS</strong></td>
+<td><a href="./tracking-methods/sdks/swift/swift-replay.md">./tracking-methods/sdks/swift/swift-replay.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Android</strong></td>
+<td><a href="./tracking-methods/sdks/android/android-replay.md">./tracking-methods/sdks/android/android-replay.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>React Native</strong></td>
+<td><a href="./tracking-methods/sdks/react-native/react-native-replay.md">./tracking-methods/sdks/react-native/react-native-replay.md</a></td>
+<td></td>
+</tr>
   </tbody>
 </table>
 
@@ -60,13 +60,13 @@ UI Controls is currently available for Web. Support for iOS, Android, React Nati
 
 With UI Controls, teams can manage Session Replay sampling directly from the Mixpanel UI — no code changes or redeployment required. This is available exclusively to customers with the paid Session Replay Add-On. Changes made in the UI take effect within an hour.
 
-![remoteSettingsTab](/remoteSettingsTab.png)
+![remoteSettingsTab](.gitbook/assets/remoteSettingsTab.png)
 
 ### Baseline Sampling Rate
 
 Set a global sampling rate that applies to all SDK initializations. This is the default capture rate before any conditional rules are applied. For example, you might set a baseline of 1% to capture a small portion of all traffic.
 
-![remoteSettingsGlobal](/remoteSettingsGlobal.png)
+![remoteSettingsGlobal](.gitbook/assets/remoteSettingsGlobal.png)
 
 ### Conditional Rules
 
@@ -74,7 +74,7 @@ Layer rules on top of the baseline rate using any event, property, or URL you're
 
 For example, you can sample 1% of all sessions globally, but capture 100% of SDK initializations where `checkout_error` fires or where users land on your pricing page.
 
-![remoteSettingsConditional](/remoteSettingsConditional.png)
+![remoteSettingsConditional](.gitbook/assets/remoteSettingsConditional.png)
 
 ### Prerequisites
 
@@ -109,17 +109,17 @@ Reports entry point is currently supported for Event, Funnel, and User Profile m
 
 Click any point on a chart for Event, Funnel, and User Profile, and select "View Replays" to view replays that show that event being fired. From here, you will be taken to our Replay Player.
 
-![replayReportEntry](/replayReportEntryPoint.png)
+![replayReportEntry](.gitbook/assets/replayReportEntryPoint.png)
 
 ### From User Profile page
 
 In any user's profile page, Click the "View Replays" button to watch replays from that user. From here, you will be taken to our Replay Player.
 
-![replayProfileEntry](/replayProfileEntryPoint.png)
+![replayProfileEntry](.gitbook/assets/replayProfileEntryPoint.png)
 
 ### Replay Player
 
-![replayHeroImageWithPrivacy](/replayHeroImageWithPrivacy.png)
+![replayHeroImageWithPrivacy](.gitbook/assets/replayHeroImageWithPrivacy.png)
 
 The Replay Player allows you to watch replays, as well as:
 

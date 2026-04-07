@@ -18,7 +18,7 @@ implementation "com.mixpanel.android:mixpanel-android:7.+"
 
 Once you've updated your `build.gradle` file, force Android Studio to sync with your new configuration by clicking the "Sync Project with Gradle Files" icon at the top of the window.
 
-![image](/android_install_image.png) 
+![image](../../.gitbook/assets/android_install_image.png) 
 
 This should download the .aar dependency at which point you'll have access to the Mixpanel library API calls. If it cannot find the dependency, you should make sure you've specified `mavenCentral()` as a repository in your `build.gradle`.
 
@@ -339,9 +339,9 @@ A few commonly used people methods are highlighted below:
 {% tab title=".setOnce()" %}
 The [`.getPeople().setOnce()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#setOnce(org.json.JSONObject)) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set profile properties without the risk of overwriting existing data.
+Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     ```java Java
     // set profile properties for user "1234"
     JSONObject props = new JSONObject();
@@ -361,9 +361,9 @@ The [`.getPeople().setOnce()`](https://mixpanel.github.io/mixpanel-android/com/m
 {% tab title=".append()" %}
 The [`.getPeople().append()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#append(java.lang.String,java.lang.Object)) method append values to a list profile property.
 
-    Use this method to add additional values to an existing list property instead of redefining the entire list.
+Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-    **Example Usage**
+**Example Usage**
     ```java Java
     // set profile properties for user "1234"
     JSONObject props = new JSONObject();
@@ -387,9 +387,9 @@ The [`.getPeople().append()`](https://mixpanel.github.io/mixpanel-android/com/mi
 {% tab title=".union()" %}
 The [`.getPeople().union()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#union(java.lang.String,org.json.JSONArray)) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
     ```java Java
     // set profile properties for user "1234"
     JSONObject props = new JSONObject();
@@ -413,9 +413,9 @@ The [`.getPeople().union()`](https://mixpanel.github.io/mixpanel-android/com/mix
 {% tab title=".increment()" %}
 The [`.getPeople().increment()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#increment(java.lang.String,double)) method increments a numeric property by a whole number.
 
-    Use this method to add to or subtract from your numeric property based on its current value.
+Use this method to add to or subtract from your numeric property based on its current value.
 
-    **Example Usage**
+**Example Usage**
     ```java Java
     // set profile properties for user "1234"
     JSONObject props = new JSONObject();
@@ -535,9 +535,9 @@ A few commonly used group methods are highlighted below:
 {% tab title=".setOnce()" %}
 The [`.getGroup().setOnce()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html#setOnce(org.json.JSONObject)) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set group profile properties without the risk of overwriting existing data.
+Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     ```java Java
     // assign the current user to the "mixpanel" company group
     mixpanel.setGroup('company', 'mixpanel');
@@ -559,9 +559,9 @@ The [`.getGroup().setOnce()`](https://mixpanel.github.io/mixpanel-android/com/mi
 {% tab title=".unset()" %}
 The [`.getGroup().unset()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html#unset(java.lang.String)) method removes a group property from a group profile.
 
-    Use this method to delete unwanted group profile properties from a specific group profile.
+Use this method to delete unwanted group profile properties from a specific group profile.
 
-    **Example Usage**
+**Example Usage**
     ```java Java
     // assign the current user to the "mixpanel" company group
     mixpanel.setGroup('company', 'mixpanel');
@@ -583,9 +583,9 @@ The [`.getGroup().unset()`](https://mixpanel.github.io/mixpanel-android/com/mixp
 {% tab title=".union()" %}
 The [`.getGroup().union()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html#union(java.lang.String,org.json.JSONArray)) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list group profile property that only contains unique values without duplicates.
+Use this method to create a list group profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
     ```java Java
     // assign the current user to the "mixpanel" company group
     mixpanel.setGroup('company', 'mixpanel');
@@ -610,9 +610,9 @@ The [`.getGroup().union()`](https://mixpanel.github.io/mixpanel-android/com/mixp
 {% tab title=".remove()" %}
 The [`.getGroup().remove()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.Group.html#remove(java.lang.String,java.lang.Object)) method removes a value from a list-valued group profile property.
 
-    Use this method to remove specific values from a list without affecting all of the other values in the list.
+Use this method to remove specific values from a list without affecting all of the other values in the list.
 
-    **Example Usage**
+**Example Usage**
     ```java Java
     // assign the current user to the "mixpanel" company group
     mixpanel.setGroup('company', 'mixpanel');

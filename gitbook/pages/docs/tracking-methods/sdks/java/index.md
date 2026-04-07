@@ -155,9 +155,9 @@ A few commonly used people methods are highlighted below:
 {% tab title="setOnce()" %}
 The [`MessageBuilder.setOnce()`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MixpanelAPI.People.html#setOnce(org.json.JSONObject)) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set profile properties without the risk of overwriting existing data.
+Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     ```java Java
     // import classes from the library
     import com.mixpanel.mixpanelapi.MessageBuilder;
@@ -190,9 +190,9 @@ The [`MessageBuilder.setOnce()`](https://mixpanel.github.io/mixpanel-android/com
 {% tab title="append()" %}
 The [`MessageBuilder.append()`](https://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#append-java.lang.String-org.json.JSONObject-) method append values to a list profile property.
 
-    Use this method to add additional values to an existing list property instead of redefining the entire list.
+Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-    **Example Usage**
+**Example Usage**
     ```java Java
     // import classes from the library
     import com.mixpanel.mixpanelapi.MessageBuilder;
@@ -232,9 +232,9 @@ The [`MessageBuilder.append()`](https://mixpanel.github.io/mixpanel-java/com/mix
 {% tab title="union()" %}
 The [`MessageBuilder.union()`](https://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#union-java.lang.String-java.util.Map-) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
     ```java Java
     // import classes from the library
     import com.mixpanel.mixpanelapi.MessageBuilder;
@@ -273,9 +273,9 @@ The [`MessageBuilder.union()`](https://mixpanel.github.io/mixpanel-java/com/mixp
 {% tab title="increment()" %}
 The [`MessageBuilder.increment()`](https://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#increment-java.lang.String-java.util.Map-) method increments a numeric property by a whole number.
 
-    Use this method to add to or subtract from your numeric property based on its current value.
+Use this method to add to or subtract from your numeric property based on its current value.
 
-    **Example Usage**
+**Example Usage**
     ```java Java
     // import classes from the library
     import com.mixpanel.mixpanelapi.MessageBuilder;
@@ -435,9 +435,9 @@ A few commonly used group methods are highlighted below:
 {% tab title=".groupSetOnce()" %}
 The [`MessageBuilder.groupSetOnce()`](https://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#groupSetOnce-java.lang.String-java.lang.String-org.json.JSONObject-) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set group profile properties without the risk of overwriting existing data.
+Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     
     ```java
     import com.mixpanel.mixpanelapi.MessageBuilder;
@@ -484,9 +484,9 @@ The [`MessageBuilder.groupSetOnce()`](https://mixpanel.github.io/mixpanel-java/c
 {% tab title=".groupUnset()" %}
 The [`MessageBuilder.groupUnset()`](https://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#groupUnset-java.lang.String-java.lang.String-java.util.Collection-) method removes a group property from a group profile.
 
-    Use this method to delete unwanted group profile properties from a specific group profile.
+Use this method to delete unwanted group profile properties from a specific group profile.
 
-    **Example Usage**
+**Example Usage**
     ```java Java
     import com.mixpanel.mixpanelapi.MessageBuilder;
     import com.mixpanel.mixpanelapi.MixpanelAPI;
@@ -523,9 +523,9 @@ The [`MessageBuilder.groupUnset()`](https://mixpanel.github.io/mixpanel-java/com
 {% tab title=".groupUnion()" %}
 The [`MessageBuilder.groupUnion()`](https://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#groupUnion-java.lang.String-java.lang.String-java.util.Map-) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list group profile property that only contains unique values without duplicates.
+Use this method to create a list group profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
 
     ```java Java
     import com.mixpanel.mixpanelapi.MessageBuilder;
@@ -567,9 +567,9 @@ The [`MessageBuilder.groupUnion()`](https://mixpanel.github.io/mixpanel-java/com
 {% tab title=".groupRemove()" %}
 The [`groupRemove()`](https://mixpanel.github.io/mixpanel-java/com/mixpanel/mixpanelapi/MessageBuilder.html#groupRemove-java.lang.String-java.lang.String-org.json.JSONObject-) method removes a value from a list-valued group profile property.
 
-    Use this method to remove specific values from a list without affecting all of the other values in the list.
+Use this method to remove specific values from a list without affecting all of the other values in the list.
 
-    **Example Usage**
+**Example Usage**
     ```java Java
     import com.mixpanel.mixpanelapi.MessageBuilder;
     import com.mixpanel.mixpanelapi.MixpanelAPI;

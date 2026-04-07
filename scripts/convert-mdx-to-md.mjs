@@ -12,6 +12,14 @@ import process from 'node:process';
 
 const ROOT = path.resolve(process.cwd());
 
+// GitBook Space bases for cross-space linking (Git Sync).
+// These are intentionally hard-coded for this repo.
+const GITBOOK_SPACE_BASE = {
+  docs: 'https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/',
+  guides: 'https://app.gitbook.com/s/T5M6sZZR1LgkJeivZBt6/',
+  troubleshooting: 'https://app.gitbook.com/s/j2N0ULQkDlAGcEm3cnYO/',
+};
+
 function parseArgs(argv) {
   const args = {
     inDir: 'pages/docs',
@@ -177,50 +185,93 @@ function rewriteGuidesHrefToRelative(href, absOutFile, absOutRoot) {
   return hash ? `${relative}#${hash}` : relative;
 }
 
+function rewriteCrossSpaceHref(href, { fromSection }) {
+  const raw = String(href || '').trim();
+  if (!raw) return raw;
+
+  let u = raw;
+  if (u.startsWith('https://mixpanel.com/docs/')) u = u.replace('https://mixpanel.com', '');
+  if (u.startsWith('https://mixpanel.com/guides/')) u = u.replace('https://mixpanel.com', '');
+
+  const [pathPart, hash = ''] = u.split('#');
+
+  if (pathPart.startsWith('/docs/')) {
+    let rel = pathPart.replace(/^\/docs\//, '').replace(/\/$/, '');
+    if (!rel) return raw;
+    rel = rel.replace(/\.md$/i, '');
+    const base = GITBOOK_SPACE_BASE.docs;
+    return `${base}${rel}${hash ? `#${hash}` : ''}`;
+  }
+  if (pathPart.startsWith('/guides/')) {
+    let rel = pathPart.replace(/^\/guides\//, '').replace(/\/$/, '');
+    if (!rel) return raw;
+    rel = rel.replace(/\.md$/i, '');
+    const base = GITBOOK_SPACE_BASE.guides;
+    return `${base}${rel}${hash ? `#${hash}` : ''}`;
+  }
+  if (pathPart.startsWith('/troubleshooting/')) {
+    let rel = pathPart.replace(/^\/troubleshooting\//, '').replace(/\/$/, '');
+    if (!rel) return raw;
+    rel = rel.replace(/\.md$/i, '');
+    const base = GITBOOK_SPACE_BASE.troubleshooting;
+    return `${base}${rel}${hash ? `#${hash}` : ''}`;
+  }
+
+  return raw;
+}
+
 function rewriteInternalDocsLinks(src, absOutFile, absOutRoot) {
   let out = String(src);
   const rootBase = path.basename(absOutRoot);
   const docsOutRoot = rootBase === 'docs' ? absOutRoot : path.join(path.dirname(absOutRoot), 'docs');
   const guidesOutRoot = rootBase === 'guides' ? absOutRoot : path.join(path.dirname(absOutRoot), 'guides');
-  const isCrossSpace = rootBase !== 'docs' && rootBase !== 'guides';
+  const fromSection =
+    rootBase === 'docs' || rootBase === 'guides' || rootBase === 'troubleshooting' ? rootBase : '';
 
   // Markdown links: [text](/docs/foo/bar#anchor)
   out = out.replace(/\]\((\/docs\/[^)\s]+)\)/g, (all, href) => {
-    if (isCrossSpace) return all;
+    if (fromSection && fromSection !== 'docs') return `](${rewriteCrossSpaceHref(href, { fromSection })})`;
     const rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     return `](${rewritten})`;
   });
 
   // Markdown links: [text](/guides/foo/bar#anchor)
   out = out.replace(/\]\((\/guides\/[^)\s]+)\)/g, (all, href) => {
-    if (isCrossSpace) return all;
+    if (fromSection && fromSection !== 'guides') return `](${rewriteCrossSpaceHref(href, { fromSection })})`;
     const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, guidesOutRoot);
     return `](${rewritten})`;
   });
 
   // Markdown links to mixpanel.com/docs
   out = out.replace(/\]\((https:\/\/mixpanel\.com\/docs\/[^)\s]+)\)/g, (all, href) => {
-    if (isCrossSpace) return all.replace('https://mixpanel.com', '');
+    if (fromSection && fromSection !== 'docs') return `](${rewriteCrossSpaceHref(href, { fromSection })})`;
     const rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     return `](${rewritten})`;
   });
 
   // Markdown links to mixpanel.com/guides
   out = out.replace(/\]\((https:\/\/mixpanel\.com\/guides\/[^)\s]+)\)/g, (all, href) => {
-    if (isCrossSpace) return all.replace('https://mixpanel.com', '');
+    if (fromSection && fromSection !== 'guides') return `](${rewriteCrossSpaceHref(href, { fromSection })})`;
     const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, guidesOutRoot);
     return `](${rewritten})`;
   });
 
   // HTML links: rewrite href attr regardless of other attributes.
   out = out.replace(/<a\b([^>]*?)\shref="([^"]+)"([^>]*)>/g, (all, pre, href, post) => {
-    if (isCrossSpace) {
-      // For cross-space, keep /docs and /guides hrefs (strip mixpanel.com prefix only).
-      let h = href;
-      if (h.startsWith('https://mixpanel.com/docs/')) h = h.replace('https://mixpanel.com', '');
-      if (h.startsWith('https://mixpanel.com/guides/')) h = h.replace('https://mixpanel.com', '');
-      return `<a${pre} href="${escapeHtml(h)}"${post}>`;
-    }
+    if (fromSection && fromSection !== 'docs' && (href.startsWith('/docs/') || href.startsWith('https://mixpanel.com/docs/')))
+      return `<a${pre} href="${escapeHtml(rewriteCrossSpaceHref(href, { fromSection }))}"${post}>`;
+    if (
+      fromSection &&
+      fromSection !== 'guides' &&
+      (href.startsWith('/guides/') || href.startsWith('https://mixpanel.com/guides/'))
+    )
+      return `<a${pre} href="${escapeHtml(rewriteCrossSpaceHref(href, { fromSection }))}"${post}>`;
+    if (
+      fromSection &&
+      fromSection !== 'troubleshooting' &&
+      (href.startsWith('/troubleshooting/') || href.startsWith('https://mixpanel.com/troubleshooting/'))
+    )
+      return `<a${pre} href="${escapeHtml(rewriteCrossSpaceHref(href, { fromSection }))}"${post}>`;
 
     let rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     if (rewritten === href) {
@@ -242,20 +293,20 @@ function rewriteInternalDocsLinks(src, absOutFile, absOutRoot) {
 
   // In cards we currently echo the href as visible text; rewrite that too.
   out = out.replace(/>(\/docs\/[^<]+)<\/a>/g, (all, text) => {
-    if (isCrossSpace) return all;
+    if (fromSection && fromSection !== 'docs') return `>${escapeHtml(rewriteCrossSpaceHref(text, { fromSection }))}</a>`;
     const rewritten = rewriteDocsHrefToRelative(text, absOutFile, docsOutRoot);
     return `>${escapeHtml(rewritten)}</a>`;
   });
 
   // Plaintext patterns like "...( /docs/foo/bar )" or "report(/docs/foo)" (not markdown links).
   out = out.replace(/\((\/docs\/[^)\s]+)\)/g, (all, href) => {
-    if (isCrossSpace) return all;
+    if (fromSection && fromSection !== 'docs') return `(${rewriteCrossSpaceHref(href, { fromSection })})`;
     const rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     return `(${rewritten})`;
   });
 
   out = out.replace(/\((\/guides\/[^)\s]+)\)/g, (all, href) => {
-    if (isCrossSpace) return all;
+    if (fromSection && fromSection !== 'guides') return `(${rewriteCrossSpaceHref(href, { fromSection })})`;
     const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, guidesOutRoot);
     return `(${rewritten})`;
   });

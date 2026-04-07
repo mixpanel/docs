@@ -14,13 +14,13 @@ Custom properties let you combine existing properties into new properties on the
 {% step %}
 ## Click the plus button to the right of the search bar, then select either “Custom Event Property” or “Custom User Property” to open the property builder.
 
-![image](/1_create_a_custom_property.png)
+![image](../.gitbook/assets/1_create_a_custom_property.png)
 {% endstep %}
 
 {% step %}
 ## Give your property a name.
 
-![image](/2_assign_a_name.png)
+![image](../.gitbook/assets/2_assign_a_name.png)
 {% endstep %}
 
 {% step %}
@@ -125,37 +125,37 @@ In this demonstration, we present an event called **"Purchase Completed"**, whic
 {% step %}
 ## Purchase Completed does not have “Search term”.
 
-![image](/purchase_completed.png)
+![image](../.gitbook/assets/purchase_completed.png)
 {% endstep %}
 
 {% step %}
 ## Products Searched does have “Search term”.
 
-![image](/products_searched.png)
+![image](../.gitbook/assets/products_searched.png)
 {% endstep %}
 
 {% step %}
 ## Create a custom event property.
 
-![image](/1_create_custom_event_property.png)
+![image](../.gitbook/assets/1_create_custom_event_property.png)
 {% endstep %}
 
 {% step %}
 ## Add a borrowed property.
 
-![image](/2_add_borrowed_property.png)
+![image](../.gitbook/assets/2_add_borrowed_property.png)
 {% endstep %}
 
 {% step %}
 ## Select an event to borrow from.
 
-![image](/3_select_products_searched.png)
+![image](../.gitbook/assets/3_select_products_searched.png)
 {% endstep %}
 
 {% step %}
 ## Select the property to borrow.
 
-![image](/4_select_search_terms.png)
+![image](../.gitbook/assets/4_select_search_terms.png)
 {% endstep %}
 
 {% endstepper %}
@@ -192,82 +192,3 @@ To use a borrowed property with other [functions](./custom-properties.md#functio
 ## Reference
 
 ### Functions
-
-// define a variable "spend" and use it in an expression
-
-let(
-  spend, <price> * <quantity>,
-  ifs(
-    spend < 50, "no discount",
-    spend < 200, "gold discount",
-    spend > 200, "platinum discount",
-    TRUE, "invalid"
-  )
-)
-`.trim()
-
-Use the following functions in the **Formula** field to modify your custom property:
-
-| Function | Definition | Syntax & Example |
-| --- | --- | --- |
-| if | Evaluates if an expression is true or false. | if(condition, value if true, value if false) Example: `if(A=="Facebook" or A=="Twitter", "Social", A)` |
-| ifs | Runs multiple checks and returns a value corresponding to the first true result. If no conditions are true, undefined is returned. | ifs(condition1, value1, condition2, value2, …) Example: `ifs( A<60,"Less than 1 hour",` `A<120, "More than 1 hour but less than 2 hours",` `A>=120, "More than 2 hours")` |
-| not | Returns values that are not true. | not(condition) Example:`not(A == "Facebook")` |
-| and | Returns true if both conditions are met. Else, returns false. | x and y Example:`if(A=="San Francisco" and B=="Chrome", "Valid user", "Invalid User")` |
-| or | Returns true if either condition is met. Else, returns false. | x or y Example:`if(A=="San Francisco" or B=="Chrome", "Valid user", "Invalid User")` |
-| in | Returns true if the first condition is contained in the second condition. | x in condition Example:`if("Facebook" in A, "Facebook Corporation", A)` This can also be used to check against a list of values:`if(A in ["Chrome","Firefox","Edge"],"Acceptable browser","Unsupported browser")` |
-| boolean | Casts the argument to a boolean. | boolean(value)->false, boolean(alternate value)-> true Example:`boolean(A)` |
-| number | Casts the argument to a number. | number(value to cast) Example:`number(A)` |
-| string | Casts the argument to a string. | string(value to cast)Example:`string(A)` |
-| defined | Determines if a value exists. If a property is not defined on a parent event or profile, this will return false, otherwise this will return true. | defined(variable to check for existence) Example:`defined(A)` |
-| has_prefix | Determines whether a string starts with another string. This comparison is case-insensitive. | has_prefix(string to check, prefix)Example:`has_prefix(A, "United")` |
-| has_suffix | Determines whether a string ends with another string. This comparison is case-insensitive. | has_suffix(string to check, suffix)Example:`has_suffix(A,"States")` |
-| min | Determines the minimum value between two numbers. | min(number, number)Example:`min(A,B)` |
-| max | Determines the maximum value between two numbers. | max(number, number)Example:`max(A,B)` |
-| floor | Returns the largest integer that is smaller than or equal to the input (ie: rounds down to the nearest integer). | floor(number)Example:`floor(A)` |
-| ceil | Returns the smallest integer value greater than or equal to the input (ie: rounds up to the nearest integer). | ceil(number)Example:`ceil(A)` |
-| round | Returns the nearest integer value of the input value. | round(number)Example:`round(A)` |
-| upper | Cast string property values to uppercase. | upper(string property)Example:`upper(A); upper("hello")` -> "HELLO" |
-| lower | Cast string property values to lowercase. | lower(string property)Example:`lower(A); lower("FacEBook")` -> "facebook" |
-|parse_url()| Extracts the part of the url that is specified: domain(google) or full_domain(google.co.uk) | parse_url(string property, "domain") or parse_url(string property, "full_domain") Example: parse_url(A,"domain") |
-| regex_extract | If haystack is a string and pattern matches at least one substring, extracts the result from the first pattern match in haystack. The result is a string equal to the entire regex match, or if a capture group is specified, only that portion of the match. We use the PCRE2 regex engine. | regex_extract(haystack, pattern, &lt;optional capture group#&gt;)Example:`regex_extract("iPhone5.1","iPhone(...)",1)` ->5.1 |
-| regex_match | Returns true if the pattern matches any part of the string. We use the PCRE2 regex engine. | regex_match(haystack, pattern)Example:`regex_match("zzhaystackzz", "ha(..)ack")` -> true // Use (?-i) for case-sensitive matching: `regex_match("HAYSTACK", "(?-i)haystack")` -> false |
-| regex_replace | Replaces the parts of a string that match a regular expression with a different string. We use the PCRE2 regex engine. | regex_replace(haystack, pattern, replacement)Example:// convert currency string to number: `regex_replace("$1,234,567", "[^.0-9]\*", ""))` -> `1234567` |
-| datedif | Subtract two dates. Units:D: days.M:  months.Y: yearsMD:  days remaining after subtracting whole months.YM:  months remaining after subtracting whole years.YD:  days, assuming start_date and end_date are within 1 year.Use TODAY() for current day. |datedif(start_date,end_date,unit)Example:`datedif(registration_date,TODAY(), "M")` -> 5 |
-| len | Returns the length of the string or the list. | len(string) or len(list)Example:`len("Canada")` -> 6 |
-| left | Returns characters from the beginning of a given string. | left(string, num_of_characters)Example:`left("Canada",3)` -> "Can" |
-| right | Returns characters from the end of a given string | right(string, num_of_characters)Example:`right("Canada",3)` -> "ada" |
-| mid | Returns characters from the middle of a given string | mid(string, first_index, num_of_characters)Example:`mid("Canada",1,4)` -> "Cana" |
-| split | Splits a string into different parts based on a user-specified delimiter, and lets you select a particular split. Delimiter must be a single ASCII character. To fetch a list of all splits, don't pass a third argument. The first split is accessible by passing n=1 (second with n=2, ...) | split(input string, delimiter, [n: optional]) → string Examples with 1 split:`split("dwight@dm.com","@",2)` -> "dm.com"`split("dwight@dm.com","@",4)` -> undefined`split("dwight@dm.com","/",2)` -> `dwight@dm.com` `split("empty//string/","/",2)` -> "" Examples with all splits:`split("dwight@dm.com","@")` -> ["dwight", "dm.com"]`split("a/b/c/d", "/")` -> ["a", "b", "c", "d"]`split("a/b/c/d", "-")` -> ["a/b/c/d"]`split("a//b/c/d", "/")` -> ["a", "", "b", "c", "d"] |
-| let | Define a variable and use it in an expression. This helps keep the custom property definition neat and non-repetitive. Variables are only active within the scope of the LET function. You can nest multiple let functions to define multiple variables. | let(name, definition, expression)<Code >{letExpression}</Code> _Note: \<price> and \<quantity> are event properties._ |
-| any | Evaluates to TRUE if the given expression is true for any value in the given list. The expression can refer to the current list element by the given name. | any(name, list, expr) Example:Let's say you had a list of numbers called priceList= [5,205,178,12,22]`any(X, priceList, X > 300)` -> false.`any(X, priceList, X >= 5 and X < 300)` -> true. |
-| all | Evaluates to TRUE if the given expression is true for all values in the given list. The expression can refer to the current list element by the given name. | all(name, list, expr) Example:Let's say you had a list of numbers called priceList= [5,205,178,12,22]`all(X, priceList, X > 5 and X < 200)` -> false.`all(X, priceList, X >= 5 and X < 300)` -> true. |
-| filter | Filters the given list to only include items for which the given expression is true. The expression can refer to the current list element by the given name. | filter(name, list, expr) Example: Let's say you had a list of numbers called priceList= [5,205,178,12,22]`filter(X, priceList, X>100)` -> new shortened list = [205,178] |
-| map | Transforms each value in the given list using the given expression. The expression can refer to the current list element by the given name. | map(name, list, expr) Example:Let's say you had a list of states = ["Georgia","Florida","Texas"]`map(X, states, lower(X))` -> ["georgia","florida","texas"] |
-| sum | Sums all numbers in the given list. Non-numeric items in the list are ignored. | sum(list) Example:Let's say you had a list of numbers called priceList= [5,205,178,12,22]`sum(priceList)` -> 422.`sum(filter(X, priceList, X>100))` -> 383, because `filter(X,priceList, X>100)` -> [205,178] and `sum([205,178])` -> 383. |
-
-### Numeric Operators
-
-Use the following numeric operators in the **Formula** field to modify your custom property using:
-
-- `+`: Addition. Operator can also be used to create string concatenation, for example: `"string_to_concatenate" + your string property`
-- `-`: Subtraction
-- `*`: Multiplication
-- `/`: Division
-- `%`: Modulo
-
-### Comparison Operators
-
-Use the following comparison operators in the **Formula** field to modify your custom property:
-
-- `<`: The first number is strictly less than the second number.
-- `>`: The first number is strictly greater than the second number.
-- `>=`: The first number is greater than or equal to the second number.
-- `<=`: The first number is less than or equal to the second number.
-- `==`: The first argument is equal to the second argument. If both arguments are strings, the comparison is case-insensitive.
-- `!=`: The first argument is not equal to the second argument. If both arguments are strings, the comparison is case-insensitive.
-
-### Constants
-- `false`: Represents the literal value of boolean false.
-- `true`: Represents the literal value of boolean true.
-- `undefined`: Represents the literal value of cases that aren't defined.

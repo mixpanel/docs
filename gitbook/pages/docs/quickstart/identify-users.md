@@ -237,17 +237,15 @@ All of our sample code transparently retries and backoff from rate limit excepti
 
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
-    Next: Track Events
+Next: Track Events
   </h2>
   <p>
-    Once you've implemented `identify`, it's time to track what your users are
-    doing in your product.
+Once you've implemented `identify`, it's time to track what your users are
+doing in your product.
   </p>
   <a href="./track-events.md" class="button primary">Track Events in Your Product</a>
 
 ## FAQ
-
-<div class="faqComponent" >
 
 <details>
 <summary>How do I connect events from logged-out to logged-in users?</summary>

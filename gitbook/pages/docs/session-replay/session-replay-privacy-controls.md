@@ -21,7 +21,6 @@ Blocked data is similarly suppressed client-side, meaning it is not collected in
 
 Note: interactions (such as mouse-clicks) with blocked and masked elements are still captured by Session Replay for Web.
 
-<div>
   <img src="/01-masking-vs-blocking.svg" alt="Masking vs Blocking" />
 
 ## Configuring Privacy Controls
@@ -42,7 +41,6 @@ Text masking and input masking are two separate pipelines that are configured in
 
 This means you can configure them independently. For example, you could unmask form labels while keeping input values masked — the label "Full Name" would be visible but the typed value "John Smith" would show as `****`.
 
-<div>
   <img src="/02-text-vs-input-masking.svg" alt="Text vs Input Masking" />
 
 ## Text Masking Configuration
@@ -228,12 +226,10 @@ Both masking and unmasking selectors propagate through the DOM tree. When checki
 **Blocking does NOT support unblocking children.** When an element is blocked, the entire subtree is removed during DOM serialization. The recording engine never traverses inside a blocked element, so children cannot opt out. There is no unblock selector or class.
 {% endhint %}
 
-<div>
   <img src="/03-nesting-inheritance.svg" alt="Nesting and Inheritance" />
 
 ## Quick Reference: Which Config Do I Use?
 
-<div>
   <img src="/04-configuration-recipes.svg" alt="Configuration Recipes" />
 
 ## Disabling Replay Collection 

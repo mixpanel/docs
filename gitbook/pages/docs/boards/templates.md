@@ -2,8 +2,8 @@
 
 <video playsInline controls autoPlay class='nx-rounded-lg'>
   <source
-    src='https://storage.googleapis.com/cdn-mxpnl-com/site_media/videos/board-template-demo-studio-q.mp4'
-    type='video/mp4'
+src='https://storage.googleapis.com/cdn-mxpnl-com/site_media/videos/board-template-demo-studio-q.mp4'
+type='video/mp4'
   />
 </video>
 

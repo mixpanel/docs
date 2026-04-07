@@ -106,13 +106,13 @@ Once your governance structure is in place, you can use Mixpanel’s built-in to
 With this foundation set, Lexicon becomes the trusted single source of truth for how data is used across teams. 
 
 **Steps to take**
-- **Audit Data**: Audit all events and properties in [Lexicon](../data-governance/lexicon.md). Add clear descriptions, categories, and owners for every event and property.
+- **Audit Data**: Audit all events and properties in [Lexicon](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon). Add clear descriptions, categories, and owners for every event and property.
 - **Select Naming Convention**: Choose one naming format—`snake_case` is recommended—and enforce it.
-- **Enforce Data Standards**: Enable naming and description requirements in [Data Standards](../data-governance/data-standards.md) to enforce your formatting and documentation rules.
-- **Tag Events**: [Tag events](../data-governance/lexicon.md#lexicon-event-details) by domain or team to make ownership and accountability clear.
-- **Approve Events**: Turn on [Event Approval](../data-governance/event-approval.md) to review unexpected tracking before it’s added to your Mixpanel project.
-- **Hide Data**: [Hide](../data-governance/lexicon.md#hiding-data) deprecated or unused events to prevent less-frequently used items from cluttering your events and properties menu, or from being considered in your reports. 
-- **Drop Data**: For data that should no longer be available at all, consider [dropping it](../data-governance/lexicon.md#dropping-data).
+- **Enforce Data Standards**: Enable naming and description requirements in [Data Standards](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-standards) to enforce your formatting and documentation rules.
+- **Tag Events**: [Tag events](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon#lexicon-event-details) by domain or team to make ownership and accountability clear.
+- **Approve Events**: Turn on [Event Approval](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/event-approval) to review unexpected tracking before it’s added to your Mixpanel project.
+- **Hide Data**: [Hide](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon#hiding-data) deprecated or unused events to prevent less-frequently used items from cluttering your events and properties menu, or from being considered in your reports. 
+- **Drop Data**: For data that should no longer be available at all, consider [dropping it](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon#dropping-data).
 
 Prefer a guided walkthrough of these features? Check out our self-guided tours on how to [Govern & Maintain Data Quality](../self-guided-tours.md#govern--maintain-data-quality).
 
@@ -129,7 +129,7 @@ While updating a display name in Mixpanel doesn’t alter the raw event or prope
 
 When renaming raw events or properties:
 - **Communicate and document the change** before implementation so that all impacted teams (analysts, PMs, engineers) are aware of what’s changing and why.
-- **Use Mixpanel tools** like [Lexicon to merge events](../data-governance/lexicon.md#merging-data) or [custom events to logically combine historical and new data](../features/custom-events.md). The merge function in Lexicon can consolidate events or properties that represent the same underlying data, while custom events can group distinct raw events into a single analytical concept.
+- **Use Mixpanel tools** like [Lexicon to merge events](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon#merging-data) or [custom events to logically combine historical and new data](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/custom-events). The merge function in Lexicon can consolidate events or properties that represent the same underlying data, while custom events can group distinct raw events into a single analytical concept.
 - **Update related dashboards and reports** to reference the new names, verifying that historical trends remain intact.
 - **Record the update** in your governance log or internal documentation, including details on what was changed, the rationale, and which reports were reviewed.
 
@@ -159,7 +159,7 @@ These ongoing, focused reviews make cleanup part of your regular analytics rhyth
 To support ongoing governance, regularly review both event and user properties as part of your data evolution workflows. Keeping properties organized ensures data remains accurate, relevant, and easier to analyze across teams.
 
 **Steps to take**
-- Periodically review [user profile properties](../data-structure/user-profiles.md) and [event properties](../data-structure/events-and-properties.md) in Mixpanel to identify fields that are outdated, redundant, or unused.
+- Periodically review [user profile properties](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/user-profiles) and [event properties](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/events-and-properties) in Mixpanel to identify fields that are outdated, redundant, or unused.
 - Remove properties that are no longer relevant to your analysis, and keep active ones clearly defined.
 Ensure that commonly used properties—like plan type, device, or lifecycle stage—are standardized across your product and data sources.
 - Document property standards in your governance wiki to make onboarding and troubleshooting easier.
@@ -172,7 +172,7 @@ Routine property maintenance ensures your data stays clean, queries remain effic
 ### Keep Training and Documentation Alive
 Sustainable governance relies on shared understanding. Governance processes, naming conventions, and tracking standards only work when everyone knows how and why to follow them. 
 
-Training and accessible documentation, using resources like the [Mixpanel Tracking Plan templates](../tracking-best-practices/tracking-plan.md#translate-flows-into-events--properties), keep your entire organization aligned—especially as new people join and product tracking evolves.
+Training and accessible documentation, using resources like the [Mixpanel Tracking Plan templates](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/tracking-plan#translate-flows-into-events--properties), keep your entire organization aligned—especially as new people join and product tracking evolves.
 
 **Steps to take**
 - Document your standards and review process in a central wiki that all data contributors can access.
@@ -188,8 +188,8 @@ Even teams with strong data practices can run into issues that erode trust or sl
 | Pitfall | Impact | Quick Fix |
 | --- | --- | --- |
 | Unclear ownership | Confusion over who approves or maintains tracking, leading to delays and inconsistent standards. | Establish clear governance roles and document responsibilities. |
-| Inconsistent naming | Harder to find and interpret data across teams. | Enforce naming standards using [Data Standards](../data-governance/data-standards.md) and [Lexicon](../data-governance/lexicon.md) descriptions. |
-| Lack of cleanup process | Outdated or duplicate events clutter reports and reduce trust. | Schedule periodic reviews and [hide](../data-governance/lexicon.md#hiding-data) or [drop](../data-governance/lexicon.md#dropping-data) deprecated data. |
+| Inconsistent naming | Harder to find and interpret data across teams. | Enforce naming standards using [Data Standards](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-standards) and [Lexicon](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon) descriptions. |
+| Lack of cleanup process | Outdated or duplicate events clutter reports and reduce trust. | Schedule periodic reviews and [hide](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon#hiding-data) or [drop](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon#dropping-data) deprecated data. |
 | No documentation or training | New team members repeat mistakes or create data drift. | Centralize governance docs and include data standards in onboarding. |
 
 ## Key Takeaways
@@ -200,7 +200,7 @@ Even teams with strong data practices can run into issues that erode trust or sl
 - Maintain and evolve governance processes through feedback loops and continuous improvement as your business grows.
 - Keep training and documentation alive to ensure teams stay aligned on how data is defined, tracked, and used.
 
-👉 **Next step**: Explore Mixpanel’s [Data Governance documentation](../data-governance.md) to learn more about the tools and workflows that help you manage data quality, consistency, and trust across your workspace.
+👉 **Next step**: Explore Mixpanel’s [Data Governance documentation](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance) to learn more about the tools and workflows that help you manage data quality, consistency, and trust across your workspace.
 
 📖 **Want to go deeper on governance strategy?** 
 If you're building or formalizing a data governance program—not just configuring Mixpanel, but aligning your organization around data quality—check out the [Data Governance for the Modern Enterprise](https://thesignalprod.wpenginepowered.com/wp-content/uploads/2025/10/Data-Governance-for-Modern-Enterprise.pdf) eBook. It covers how modern data teams establish ownership, define standards, and create accountability at scale.

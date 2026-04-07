@@ -10,11 +10,11 @@ The Mixpanel application for Slack will also automatically unfurl a preview of 
 
 To enable the integration, log in to both Mixpanel and Slack, then click [here](https://mixpanel.com/slack/oauth?slack_v2=true) to authorize the Slack workspace:
 
-![/Screen_Shot_2020-06-15_at_10.41.00_PM.png](/Screen_Shot_2020-06-15_at_10.41.00_PM.png)
+![/Screen_Shot_2020-06-15_at_10.41.00_PM.png](../.gitbook/assets/Screen_Shot_2020-06-15_at_10.41.00_PM.png)
 
 After clicking allow, you'll return to Mixpanel, where you'll see a success banner:
 
-![/Screen_Shot_2020-06-15_at_10.42.06_PM.png](/Screen_Shot_2020-06-15_at_10.42.06_PM.png)
+![/Screen_Shot_2020-06-15_at_10.42.06_PM.png](../.gitbook/assets/Screen_Shot_2020-06-15_at_10.42.06_PM.png)
 
 At this point, Mixpanel is a part of your Slack workspace, and any Mixpanel links you send in Slack will unfurl with metadata, and if applicable a chart preview.
 
@@ -24,7 +24,7 @@ Once at least one member of your Mixpanel organization has set up the Mixpanel I
 
 Once you've set up the integration, Mixpanel links pasted in Slack will unfurl. Most links will provide some basic link metadata, and links to Insights, Flows, Funnels, or Retention reports will also include a chart preview, for example:
 
-![/slack_app_demo.png](/slack_app_demo.png)
+![/slack_app_demo.png](../.gitbook/assets/slack_app_demo.png)
 
 ## Permissions
 

@@ -14,7 +14,7 @@ Note that backfilling historical data can have significant impact on your billin
 
 #### Loading historical data via Mixpanel BigQuery Warehouse Connector 
 
-![image](/ga4_overview.png)
+![image](../.gitbook/assets/ga4_overview.png)
 
 At a high-level, the migration consists of 4 steps:
 1. Set up a new Mixpanel project which is on [Simplified ID Merge system](../tracking-methods/id-management.md#identity-merge-apis). 
@@ -81,7 +81,7 @@ Under sync settings select One Time to backfill the data or Append to bring in n
 
 Preview the events and associated event properties to ensure the data looks as expected then select Create to import the data into Mixpanel. 
 
-![image](/ga4_events.png)
+![image](../.gitbook/assets/ga4_events.png)
 
 Navigate to [Project Settings → Warehouse Data](https://mixpanel.com/report/settings/%23project%2F%24project_id%24%2Fwarehousedata/) and click +User Table.
 
@@ -95,7 +95,7 @@ GA4 Append syncs use BigQuery's change history ([time travel](https://docs.cloud
 
 Preview the users and associated user properties to ensure the data looks as expected then select Create to import the data into Mixpanel. Once the import is complete, navigate to the Users tab and ensure the profiles have been imported as expected. 
 
-![image](/ga4_users.png)
+![image](../.gitbook/assets/ga4_users.png)
 
 ##### Post-migration data validation
 You can use our [Lexicon](../data-governance/lexicon.md) or Events page to check that your data has successfully been ingested. However, if your historical events are older than 30 days, they will not show up on Lexicon, Events page or in the event dropdown menu across all reports. In this case, you can leverage our [Insights report](../reports/insights.md) to validate the historical events, by selecting the import time frame and filtering by the following default properties: 
@@ -107,7 +107,7 @@ You can use our [Lexicon](../data-governance/lexicon.md) or Events page to check
 
 Please filter by tracked name, $warehouse_import_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs:
 
-![image](/ga4_event_validation.png)
+![image](../.gitbook/assets/ga4_event_validation.png)
 
 ### Track forward looking real-time data
 

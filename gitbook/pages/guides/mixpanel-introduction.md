@@ -54,9 +54,9 @@ Each stage in the OADA framework connects directly to Mixpanel’s tools, helpin
 
 | 👀 **Observe** | 📊 **Analyze** | 💡 **Decide** | 🚀 **Act** |
 |---|---|---|---|
-| See what’s happening in your product with [Session Replay](./session-replay.md), [Heatmaps](./session-replay/heatmaps.md), [Autocapture](./tracking-methods/autocapture.md), and [Alerts](./features/alerts.md). | Explore [Insights](./reports/insights.md), [Funnels](./reports/funnels.md), [Flows](./reports/flows.md), [Retention](./reports/retention.md), and [Cohorts](./users/cohorts.md) to find what moves your metrics. | Align on what to change next with [Metric Trees](./metric_tree.md), [Boards](./boards.md), [Annotations](./features/annotations.md), and shared insights. | Measure impact with [Experiments](./experiments.md) and ship improvements with [Feature Flags](./featureflags.md). |
+| See what’s happening in your product with [Session Replay](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/session-replay), [Heatmaps](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/session-replay/heatmaps), [Autocapture](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/autocapture), and [Alerts](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/alerts). | Explore [Insights](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/insights), [Funnels](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/funnels), [Flows](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/flows), [Retention](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/retention), and [Cohorts](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/users/cohorts) to find what moves your metrics. | Align on what to change next with [Metric Trees](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/metric_tree), [Boards](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/boards), [Annotations](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/annotations), and shared insights. | Measure impact with [Experiments](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/experiments) and ship improvements with [Feature Flags](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/featureflags). |
 
-All of this is powered by Mixpanel’s modern data foundation—–bringing together AI-assisted analysis through features like [MCP Server](./features/mcp.md), robust [data governance](./data-governance.md) for accuracy and trust, and built-in collaboration tools that help teams move from insight to action faster.
+All of this is powered by Mixpanel’s modern data foundation—–bringing together AI-assisted analysis through features like [MCP Server](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/mcp), robust [data governance](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance) for accuracy and trust, and built-in collaboration tools that help teams move from insight to action faster.
 
 **Learn more:** [Go deeper on the OADA Loop →](./guides-by-topic/continuous-innovation.md)
 
@@ -70,13 +70,13 @@ An event represents something a **user** does (like *Signed Up*, *Viewed a Produ
 
 Alongside events, Mixpanel also tracks **user profiles**––records that represent individual people. These profiles store demographic attributes known as **user properties** (like name, email, or signup date), which help you understand who your users are and analyze behavior at the individual level.
 
-Optionally, you can analyze data at the group level using [Group Analytics](./data-structure/group-analytics.md).
+Optionally, you can analyze data at the group level using [Group Analytics](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/group-analytics).
 
 ![Data Model](.gitbook/assets/Data_Model_with_Group_Analytics.png)
 
 Together, these events and properties form a flexible data model that mirrors how people actually use your product. Once instrumented, you can analyze this data instantly—–without writing SQL or waiting on an analyst.
 
-**Learn more:** [Dive deeper into how Mixpanel structures data →](./data-structure/concepts.md)
+**Learn more:** [Dive deeper into how Mixpanel structures data →](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/concepts)
 
 ---
 

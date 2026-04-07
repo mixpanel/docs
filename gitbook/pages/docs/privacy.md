@@ -34,4 +34,4 @@ See Mixpanel’s [Managing Personal Information](./privacy/protecting-user-data.
 ### Authentication
 Authentication occurs via a user-specific OAuth token with a scope that only includes the following deletion and retrieval APIs. Users can retrieve this token from their [Account Settings](https://mixpanel.com/settings/account#data-privacy) by selecting their initials in the top right of Mixpanel and selecting **Profile & Preferences**, and then the Data & Privacy tab. The OAuth token has a one-year expiry. It should be passed in the Authentication header. Users are eligible to generate an OAuth token if they are the [project owner](./orgs-and-projects/roles-and-permissions.md#project-roles), or if they are a project owner or admin of a project that supports [team member roles](./orgs-and-projects/roles-and-permissions.md#project-roles).
 
-![](/Personal-Data-and-Privacy-Settings.png)
+![](.gitbook/assets/Personal-Data-and-Privacy-Settings.png)

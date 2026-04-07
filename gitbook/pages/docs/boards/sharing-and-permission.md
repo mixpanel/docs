@@ -21,11 +21,11 @@ Sharing and permissions are set at the board level, and all reports saved on a b
 
 To share a board, and therefore all reports contained within it, click the Share button at the top right of the board. From here, sharing works as before, but remember, sharing a board shares all of that board's other reports as well. 
 
-![/GIF3__light_.gif](/GIF3__light_.gif)
+![/GIF3__light_.gif](../.gitbook/assets/GIF3__light_.gif)
 
 Both reports and boards can also be shared via the "Copy URL" button at the top right. Clicking this button will immediately copy the short link to the report or board, so you can quickly paste it into your application of choice.
 
-![/Screen_Shot_2021-11-08_at_11.01.00_AM.png](/Screen_Shot_2021-11-08_at_11.01.00_AM.png)
+![/Screen_Shot_2021-11-08_at_11.01.00_AM.png](../.gitbook/assets/Screen_Shot_2021-11-08_at_11.01.00_AM.png)
 
 So long as the recipient has access to the project, they will be able to see the shared report or board. However, unless they have specifically given Editor permissions, they will only be able to view it, not edit it.
 
@@ -41,4 +41,4 @@ As with sharing, setting a user's permission level on a board will give them the
 
 Every report in Mixpanel has a board where it was originally saved to. This is called the original board. However, in the interest of being able to use the same report across a variety of boards and sharing the same insight across your team and company, Mixpanel has introduced the concept of a "linked report". A linked report is denoted by the arrow in the icon of the report. Any time an existing report is added to a board or a copy is made, a linked report is made. Any changes to the report will get reflected in all of the linked reports associated with the report.
 
-![/Screen_Shot_2022-07-11_at_6.06.58_PM.png](/Screen_Shot_2022-07-11_at_6.06.58_PM.png)
+![/Screen_Shot_2022-07-11_at_6.06.58_PM.png](../.gitbook/assets/Screen_Shot_2022-07-11_at_6.06.58_PM.png)

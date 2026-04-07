@@ -13,7 +13,7 @@ You can create a custom event containing "Ad Conversion" and "Ad Impression," an
 
 ## Create a Custom Event
 
-![image](/custom_event_qb.png)
+![image](../.gitbook/assets/custom_event_qb.png)
 
 1. Open the Metrics menu by clicking "Select Metrics" in an Insights report, or clicking "Select Step/Events" in the Funnels/Retention/Flows report.
 2. Select "Create New", then choose "Custom Event" in the right column.

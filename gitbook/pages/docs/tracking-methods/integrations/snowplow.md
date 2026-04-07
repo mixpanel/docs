@@ -7,7 +7,7 @@ If you already use Snowplow to collect event data, it's easy to route that data 
 
 Below we show the architecture of a Snowplow pipeline from their [documentation](https://docs.snowplowanalytics.com/docs/fundamentals).
 
-![image](/230695089-ad29a224-0f8e-425a-88a5-f34be4600628.png)
+![image](../../.gitbook/assets/230695089-ad29a224-0f8e-425a-88a5-f34be4600628.png)
 
 ## How the Integration Works
 

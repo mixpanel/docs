@@ -417,140 +417,138 @@ next step.**
 
 <table data-view="cards">
   <thead>
-    <tr>
-      <th></th>
-      <th data-hidden data-card-target data-type="content-ref"></th>
-      <th data-hidden data-card-cover data-type="files"></th>
-    </tr>
+<tr>
+<th></th>
+<th data-hidden data-card-target data-type="content-ref"></th>
+<th data-hidden data-card-cover data-type="files"></th>
+</tr>
   </thead>
   <tbody>
-    <tr>
-      <td><strong>Segment</strong></td>
-      <td><a href="../tracking-methods/integrations/segment.md">../tracking-methods/integrations/segment.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Google Tag Manager</strong></td>
-      <td><a href="../tracking-methods/integrations/google-tag-manager.md">../tracking-methods/integrations/google-tag-manager.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Ad Spend</strong></td>
-      <td><a href="../tracking-methods/integrations/ad-spend.md">../tracking-methods/integrations/ad-spend.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Amazon S3</strong></td>
-      <td><a href="../tracking-methods/integrations/amazon-s3.md">../tracking-methods/integrations/amazon-s3.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Amazon Kafka</strong></td>
-      <td><a href="../tracking-methods/integrations/aws-kafka.md">../tracking-methods/integrations/aws-kafka.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>CMS &amp; E-Commerce</strong></td>
-      <td><a href="../tracking-methods/integrations/cms-ecommerce.md">../tracking-methods/integrations/cms-ecommerce.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Customer.io</strong></td>
-      <td><a href="https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel&amp;amp;utm_medium=partner">https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel&amp;utm_medium=partner</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Freshpaint</strong></td>
-      <td><a href="../tracking-methods/integrations/freshpaint.md">../tracking-methods/integrations/freshpaint.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Google Cloud Storage</strong></td>
-      <td><a href="../tracking-methods/integrations/google-cloud-storage.md">../tracking-methods/integrations/google-cloud-storage.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Google Pubsub</strong></td>
-      <td><a href="../tracking-methods/integrations/google-pubsub.md">../tracking-methods/integrations/google-pubsub.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Google Sheets</strong></td>
-      <td><a href="../tracking-methods/integrations/google-sheets.md">../tracking-methods/integrations/google-sheets.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Langfuse</strong></td>
-      <td><a href="../tracking-methods/integrations/langfuse.md">../tracking-methods/integrations/langfuse.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>LaunchDarkly</strong></td>
-      <td><a href="../tracking-methods/integrations/launchdarkly.md">../tracking-methods/integrations/launchdarkly.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>mParticle</strong></td>
-      <td><a href="../tracking-methods/integrations/mparticle.md">../tracking-methods/integrations/mparticle.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Next.js</strong></td>
-      <td><a href="../tracking-methods/integrations/nextjs.md">../tracking-methods/integrations/nextjs.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Mobile Attribution Tracking</strong></td>
-      <td><a href="../tracking-methods/integrations/mobile-attribution-tracking.md">../tracking-methods/integrations/mobile-attribution-tracking.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Rudderstack</strong></td>
-      <td><a href="../tracking-methods/integrations/rudderstack.md">../tracking-methods/integrations/rudderstack.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Shopify</strong></td>
-      <td><a href="../tracking-methods/integrations/shopify.md">../tracking-methods/integrations/shopify.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Vendo for Shopify</strong></td>
-      <td><a href="https://apps.shopify.com/vendo?utm_source=mixpanel&amp;amp;utm_medium=partner">https://apps.shopify.com/vendo?utm_source=mixpanel&amp;utm_medium=partner</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Snowplow</strong></td>
-      <td><a href="../tracking-methods/integrations/snowplow.md">../tracking-methods/integrations/snowplow.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Stripe</strong></td>
-      <td><a href="../tracking-methods/integrations/stripe.md">../tracking-methods/integrations/stripe.md</a></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><strong>Tealium</strong></td>
-      <td><a href="../tracking-methods/integrations/tealium.md">../tracking-methods/integrations/tealium.md</a></td>
-      <td></td>
-    </tr>
+<tr>
+<td><strong>Segment</strong></td>
+<td><a href="../tracking-methods/integrations/segment.md">../tracking-methods/integrations/segment.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Google Tag Manager</strong></td>
+<td><a href="../tracking-methods/integrations/google-tag-manager.md">../tracking-methods/integrations/google-tag-manager.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Ad Spend</strong></td>
+<td><a href="../tracking-methods/integrations/ad-spend.md">../tracking-methods/integrations/ad-spend.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Amazon S3</strong></td>
+<td><a href="../tracking-methods/integrations/amazon-s3.md">../tracking-methods/integrations/amazon-s3.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Amazon Kafka</strong></td>
+<td><a href="../tracking-methods/integrations/aws-kafka.md">../tracking-methods/integrations/aws-kafka.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>CMS &amp; E-Commerce</strong></td>
+<td><a href="../tracking-methods/integrations/cms-ecommerce.md">../tracking-methods/integrations/cms-ecommerce.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Customer.io</strong></td>
+<td><a href="https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel&amp;amp;utm_medium=partner">https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel&amp;utm_medium=partner</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Freshpaint</strong></td>
+<td><a href="../tracking-methods/integrations/freshpaint.md">../tracking-methods/integrations/freshpaint.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Google Cloud Storage</strong></td>
+<td><a href="../tracking-methods/integrations/google-cloud-storage.md">../tracking-methods/integrations/google-cloud-storage.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Google Pubsub</strong></td>
+<td><a href="../tracking-methods/integrations/google-pubsub.md">../tracking-methods/integrations/google-pubsub.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Google Sheets</strong></td>
+<td><a href="../tracking-methods/integrations/google-sheets.md">../tracking-methods/integrations/google-sheets.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Langfuse</strong></td>
+<td><a href="../tracking-methods/integrations/langfuse.md">../tracking-methods/integrations/langfuse.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>LaunchDarkly</strong></td>
+<td><a href="../tracking-methods/integrations/launchdarkly.md">../tracking-methods/integrations/launchdarkly.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>mParticle</strong></td>
+<td><a href="../tracking-methods/integrations/mparticle.md">../tracking-methods/integrations/mparticle.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Next.js</strong></td>
+<td><a href="../tracking-methods/integrations/nextjs.md">../tracking-methods/integrations/nextjs.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Mobile Attribution Tracking</strong></td>
+<td><a href="../tracking-methods/integrations/mobile-attribution-tracking.md">../tracking-methods/integrations/mobile-attribution-tracking.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Rudderstack</strong></td>
+<td><a href="../tracking-methods/integrations/rudderstack.md">../tracking-methods/integrations/rudderstack.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Shopify</strong></td>
+<td><a href="../tracking-methods/integrations/shopify.md">../tracking-methods/integrations/shopify.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Vendo for Shopify</strong></td>
+<td><a href="https://apps.shopify.com/vendo?utm_source=mixpanel&amp;amp;utm_medium=partner">https://apps.shopify.com/vendo?utm_source=mixpanel&amp;utm_medium=partner</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Snowplow</strong></td>
+<td><a href="../tracking-methods/integrations/snowplow.md">../tracking-methods/integrations/snowplow.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Stripe</strong></td>
+<td><a href="../tracking-methods/integrations/stripe.md">../tracking-methods/integrations/stripe.md</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Tealium</strong></td>
+<td><a href="../tracking-methods/integrations/tealium.md">../tracking-methods/integrations/tealium.md</a></td>
+<td></td>
+</tr>
   </tbody>
 </table>
 
 <hr></hr>
 <div class="bg-base100 rounded-xl">
-    <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
-      Next: Identify Your Users
-    </h2>
-    <p>
-      With Mixpanel installed, you’re now ready to identify the users who use
-      your product.
-    </p>
-    <a href="./identify-users.md" class="button primary">Identify Your Users</a>
+<h2 class="text-2xl font-medium mb-2 color:bg-purple200">
+Next: Identify Your Users
+</h2>
+<p>
+With Mixpanel installed, you’re now ready to identify the users who use
+your product.
+</p>
+<a href="./identify-users.md" class="button primary">Identify Your Users</a>
 
 ## FAQ
-
-<div class="faqComponent" >
 
 <details>
 <summary>Does Mixpanel automatically track page views?</summary>

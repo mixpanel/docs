@@ -28,9 +28,9 @@ Targeting by Mixpanel cohorts and sticky variants are not supported in Local Eva
 {% endhint %}
 
 - The SDK is configured with a `local_flags_config` object that specifies parameters:
-    1) `api_host` - If your project is in the EU/IN region, this should be set to route to `api-eu.mixpanel.com`/`api-in.mixpanel.com` respectively.
-    2) `enable_polling` - This should be set to `true` to enable polling for new flag configurations.
-    3) `polling_interval_in_seconds` - This is the interval in seconds at which the SDK will poll Mixpanel servers for feature flag configurations.
+1) `api_host` - If your project is in the EU/IN region, this should be set to route to `api-eu.mixpanel.com`/`api-in.mixpanel.com` respectively.
+2) `enable_polling` - This should be set to `true` to enable polling for new flag configurations.
+3) `polling_interval_in_seconds` - This is the interval in seconds at which the SDK will poll Mixpanel servers for feature flag configurations.
 
 - The SDK will continue to poll for the lifetime of the SDK instance or until stopped.
 

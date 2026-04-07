@@ -17,7 +17,7 @@ new metrics and KPIs
 
 ## Keeping Up with Mixpanel
 
-- Join our active [Mixpanel Community Slack](https://www.mixpanel.com/community-slack), where you can ask other experienced Mixpanel users for help. Do refer to the [General guidelines](../../community/guidelines.md#general-guidelines).
+- Join our active [Mixpanel Community Slack](https://www.mixpanel.com/community-slack), where you can ask other experienced Mixpanel users for help. Do refer to the [General guidelines](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/community/guidelines#general-guidelines).
 
 - Subscribe to our monthly product newsletter to receive updates on our latest product releases or read our [Changelog](https://docs.mixpanel.com/changelogs).
 
@@ -27,4 +27,4 @@ Should you have any feedback you want to share, simply click [Submit Feedback](h
 
 ![image](/tutorials/submit-feedback.png "Submit Feedback")
 
-If you have any questions, do reach out to our [Mixpanel Support](../../response-times.md#contacting-mixpanel-support) team who are always ready to lend their product expertise and share tips to help you get the most out of your Mixpanel experience.
+If you have any questions, do reach out to our [Mixpanel Support](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/response-times#contacting-mixpanel-support) team who are always ready to lend their product expertise and share tips to help you get the most out of your Mixpanel experience.

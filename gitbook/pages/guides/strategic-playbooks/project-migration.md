@@ -111,18 +111,18 @@ curl --request GET \
 If you choose to export a subset of events to bring over to your new project, you can leverage the `event` or `where` parameters to query for the specific event data you’re looking to migrate.
 
 ## Step 4: Transform Data
-Upload the exported event data to your storage object, the process here may vary depending on the data warehouse you use. Our [warehouse connector](../tracking-methods/warehouse-connectors.md) supports integrations with BigQuery, Snowflake, Databricks, and Redshift.
+Upload the exported event data to your storage object, the process here may vary depending on the data warehouse you use. Our [warehouse connector](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/warehouse-connectors) supports integrations with BigQuery, Snowflake, Databricks, and Redshift.
 
 Checklist before running transformations:
 
-- [ ]  Compare the timezones from your existing projects to the new project to determine any [**timezone offsets**](../orgs-and-projects/managing-projects.md#manage-timezones-for-projects) that are necessary
-- [ ]  Understand if any transformations are required to uniquely [**identify**](../tracking-methods/id-management.md) your users
+- [ ]  Compare the timezones from your existing projects to the new project to determine any [**timezone offsets**](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/orgs-and-projects/managing-projects#manage-timezones-for-projects) that are necessary
+- [ ]  Understand if any transformations are required to uniquely [**identify**](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management) your users
 - [ ]  Determine a To/From **Date**
 
 Optionally:
 
-- [ ]  Add a [group identifier](../data-structure/group-analytics.md#group-by-a-custom-identifier) if you’re looking to backfill analysis on a group analytics key.
-- [ ]  Add a super property to utilize [data views](../data-governance/data-views-and-classification.md) to leverage access to a subset of data for a group of users within a single Mixpanel project.
+- [ ]  Add a [group identifier](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/group-analytics#group-by-a-custom-identifier) if you’re looking to backfill analysis on a group analytics key.
+- [ ]  Add a super property to utilize [data views](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-views-and-classification) to leverage access to a subset of data for a group of users within a single Mixpanel project.
 
 Begin here and add in transformations and filters to support the table or view that will be leveraged to pull in data from your data warehouse. 
 
@@ -275,7 +275,7 @@ if __name__ == "__main__":
 
 This step is optional if you would like to migrate historical user properties into your new project. 
 
-If you have our [Data Pipelines add-on](../data-pipelines.md) you can use the user table in your data warehouse.
+If you have our [Data Pipelines add-on](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-pipelines) you can use the user table in your data warehouse.
 
 If you do not have access to this user profile data outside of Mixpanel, you can utilize the python script below to export user profile data.
 
@@ -405,7 +405,7 @@ Saved entities, such as reports, boards, custom events, custom properties, cohor
 💡 **Best Practices:**
 - **Prioritize Key Entities:** Focus on migrating the most important and frequently used entities first to ensure critical business functions continue uninterrupted.
 - **Collaborate with Stakeholders:** Involve key stakeholders throughout the migration process to ensure that their needs are met and that the migrated entities align with their expectations.
-- **Boards & Reports**: Utilize [Move](../boards/move-boards.md) to transfer saved boards and reports across the same region (i.e. US, EU data centers). Permissions are managed by group admins allowing Boards to be moved across Projects or Organizations, depending on your use case.
+- **Boards & Reports**: Utilize [Move](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/boards/move-boards) to transfer saved boards and reports across the same region (i.e. US, EU data centers). Permissions are managed by group admins allowing Boards to be moved across Projects or Organizations, depending on your use case.
     - Move does not support the migration of custom events, custom properties, cohorts, and lexicon metadata. This would need to be done manually. Review these lists with stakeholders and decide if any of these saved entities would need to be recreated in the new project to set your end users up for success.
     - Lexicon metadata can be [retrieved](https://developer.mixpanel.com/reference/list-all-schemas-for-project) from existing projects and [recreated](https://developer.mixpanel.com/reference/upload-schemas-for-project) in the new project via our Lexicon Schemas API.
 

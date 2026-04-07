@@ -18,7 +18,7 @@ Follow these steps to enable the integration with Appcues:
 
 2. From the Integrations page, select the Chameleon dropdown, and select **Connect**.
 
-![Chameleon 2 Image](/chameleon2.png)
+![Chameleon 2 Image](../../.gitbook/assets/chameleon2.png)
 
 3. The connection uses one credential to authorize, "API Key". Supply an API key generated from the [Mixpanel-specific integration page within your Chameleon dashboard](https://app.trychameleon.com/settings/integrations/mixpanel) to establish the connection.
 
@@ -38,7 +38,7 @@ Select the cohort that you want to export. Click on the three-dot icon on the ri
 
 Click Export to > Apptimize. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![Chameleon 3 Image](/chameleon3.png)
+![Chameleon 3 Image](../../.gitbook/assets/chameleon3.png)
 
 ## Sync Types
 
@@ -60,7 +60,7 @@ More ideal use cases are instead around tours and surveys where the tour isn't t
 
 Once the export completes, you will see a Segment reflecting the set of users from your Mixpanel cohort in the Chameleon Segment tab (via the builder), selecting for "Mixpanel Cohorts" as the Segment filter (e.g. "Users who haven't hit a Value Moment"):
 
-![Chameleon 4 Image](/chameleon4.png)
+![Chameleon 4 Image](../../.gitbook/assets/chameleon4.png)
 
 ## Chameleon events in Mixpanel
 

@@ -20,7 +20,7 @@ Notifications are sent once per day. If multiple spikes or drops are found for a
 
 Only Project Admins or Owners can enable this setting, and it's only available on Enterprise plans. 
 
-![data-volume-monitoring-settings](/data-governance/data-volume-monitoring-settings.png)
+![data-volume-monitoring-settings](../.gitbook/assets/data-governance/data-volume-monitoring-settings.png)
 
 ### Notes
 - Data Volume Monitoring begins as soon as it is enabled, but it may take 24 hours to run for the first time

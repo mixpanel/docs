@@ -18,7 +18,7 @@ You must be a Mixpanel project admin to enable the MoEngage integration.
 If you set a User ID Property, it should be a Mixpanel user property that matches the MoEngage External ID. If you do not select one, Mixpanel will default to using the `$moengage_user_id` property to match users between MoEngage and Mixpanel. See more about [matching users between MoEngage and Mixpanel](./moengage.md#matching-users-between-moengage-and-mixpanel).
 {% endhint %}
 
-![Moengage 2 Image](/moengage2.png)
+![Moengage 2 Image](../../.gitbook/assets/moengage2.png)
 
 3. The connection uses a Basic Authorization Username/Password system. You will need to provide two credentials to authorize the connection:
 
@@ -31,7 +31,7 @@ You will additionally provide one credential to authorize the cohort exports:
 
 You can find these values in your MoEngage settings page - note that MoEngage App ID is used in both the Username and MOE-APPKEY fields.
 
-![Moengage 3 Image](/moengage3.png)
+![Moengage 3 Image](../../.gitbook/assets/moengage3.png)
 
 4. The MoEngage integration will show a **Connected** tag in the UI once the connection succeeds.
 
@@ -55,11 +55,11 @@ To export a cohort to MoEngage:
 
 1. Navigate to Cohorts by clicking **Cohorts** under the **Data Management** tab in the top navigation bar.
 
-![Moengage 4 Image](/moengage4.png)
+![Moengage 4 Image](../../.gitbook/assets/moengage4.png)
 
 2. Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort and click **Export to MoEngage**.
 
-![Moengage 5 Image](/moengage5.png)
+![Moengage 5 Image](../../.gitbook/assets/moengage5.png)
 
 3. Click **Start Sync**.
 
@@ -79,7 +79,7 @@ In dynamic sync, Mixpanel initiates sync between a cohort and MoEngage every 15 
 
 Once the export completes, you will see a custom segment reflecting the set of users from your Mixpanel cohort (e.g. "Power Users"):
 
-![Moengage 6 Image](/moengage6.png)
+![Moengage 6 Image](../../.gitbook/assets/moengage6.png)
 
 ## MoEngage Events into Mixpanel & MTU exemptions
 

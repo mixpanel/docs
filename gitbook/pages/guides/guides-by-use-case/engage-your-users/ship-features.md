@@ -22,9 +22,9 @@ Steps to take:
 
 Make sure to initialize the library with the config option `flags: true`.
 
-- [JavaScript SDK flags setup →](../../tracking-methods/sdks/javascript/javascript-flags.md) 
-- [iOS / Swift SDK flags setup →](../../tracking-methods/sdks/swift/swift-flags.md)
-- [Android SDK flags setup →](../../tracking-methods/sdks/android/android-flags.md)
+- [JavaScript SDK flags setup →](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/sdks/javascript/javascript-flags) 
+- [iOS / Swift SDK flags setup →](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/sdks/swift/swift-flags)
+- [Android SDK flags setup →](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/sdks/android/android-flags)
 {% endstep %}
 
 {% step %}
@@ -59,7 +59,7 @@ Common rollout types:
 - **Feature Gate**: Keep a kill switch ready for instant rollback.
 
 {% hint style="info" %}
-**Pro tip:** Combine a phased rollout with [alerts](../../features/alerts.md) on key metrics—like conversion or retention—to catch regressions early.
+**Pro tip:** Combine a phased rollout with [alerts](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/alerts) on key metrics—like conversion or retention—to catch regressions early.
 {% endhint %}
 
 ---
@@ -110,7 +110,7 @@ When your app loads, the Mixpanel SDK automatically fetches active flags and eva
 
 ![Experiments_and_FF.png](../../.gitbook/assets/Experiments_and_FF.png)
 
-[📖 Full Feature Flags documentation →](../../featureflags.md)
+[📖 Full Feature Flags documentation →](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/featureflags)
 
 ---
 
@@ -119,13 +119,13 @@ When your app loads, the Mixpanel SDK automatically fetches active flags and eva
 After launch, use Mixpanel analytics to determine whether to expand, iterate, or revert.
 
 **Tools to Help**
-- [Insights](../../reports/insights.md): Measure adoption and engagement by variant.
-- [Funnels](../../reports/funnels/funnels-overview.md): Track conversion rates between control and variant users.
-- [Boards](../../boards.md): Create a shared rollout dashboard with annotations and alerts.
-- [Session Replay](../../session-replay.md): Watch user interactions to diagnose UX issues.
+- [Insights](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/insights): Measure adoption and engagement by variant.
+- [Funnels](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/funnels/funnels-overview): Track conversion rates between control and variant users.
+- [Boards](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/boards): Create a shared rollout dashboard with annotations and alerts.
+- [Session Replay](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/session-replay): Watch user interactions to diagnose UX issues.
 
 {% hint style="info" %}
-**Pro tip:** Use [borrowed properties](../../features/custom-properties.md#borrowed-properties) or [cohorts](../../users/cohorts.md) to track downstream behavior for users exposed to each variant.
+**Pro tip:** Use [borrowed properties](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/custom-properties#borrowed-properties) or [cohorts](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/users/cohorts) to track downstream behavior for users exposed to each variant.
 {% endhint %}
 
  👉 **Do this next:** Validate exposure counts and cohort membership before scaling.
@@ -155,4 +155,4 @@ Feature flags are powerful, but unmanaged flags become “flag debt.” Maintain
 - Monitor adoption and performance with built-in analytics to decide when to expand or revert.
 - Govern and clean up flags regularly to prevent confusion and keep your implementation scalable.
 
-📚 **Go deeper:** [Feature Flags overview in Mixpanel Docs](../../featureflags.md)
+📚 **Go deeper:** [Feature Flags overview in Mixpanel Docs](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/featureflags)

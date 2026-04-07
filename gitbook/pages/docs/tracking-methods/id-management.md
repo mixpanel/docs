@@ -44,7 +44,7 @@ Without identity management, a user who accesses your product from multiple devi
 
 ### With ID Management
 
-![with_id_management](/with_id_management.png)
+![with_id_management](../.gitbook/assets/with_id_management.png)
 
 1. A user accesses your product on the website through a computer. The Javascript SDK automatically generates a Distinct ID for them, with the value of `123`.
 2. When the user registers for an account, your implementation makes an identify call, using their login `charlie` as the User ID. This triggers an ID merge, resulting in an ID cluster containing both `charlie` and `123`, which will map to the same user in Mixpanel.
@@ -69,11 +69,11 @@ Simplified ID Merge API is the default for new organizations created from April 
 
 You can set the default Identity Merge API version for your projects in the Organization Settings:
 
-![Untitled](/Tracking/id-merge-org-settings.png)
+![Untitled](../.gitbook/assets/Tracking/id-merge-org-settings.png)
 
 For new projects without any data in it, you can switch the Identity Merge API version for the project in the Project Settings:
 
-![Untitled](/Tracking/id-merge-project-settings.png)
+![Untitled](../.gitbook/assets/Tracking/id-merge-project-settings.png)
 
 Once there are any data in your project, your Identity API version cannot be changed.
 

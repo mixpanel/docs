@@ -139,9 +139,9 @@ A few commonly used people methods are highlighted below:
 {% tab title="people_set_once()" %}
 The [`people_set_once()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.people_set_once) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set profile properties without the risk of overwriting existing data.
+Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     ```python
     mp = Mixpanel('YOUR_PROJECT_TOKEN')
 
@@ -165,9 +165,9 @@ The [`people_set_once()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.M
 {% tab title="people_append()" %}
 The [`people_append()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.people_append) method append values to a list profile property.
 
-    Use this method to add additional values to an existing list property instead of redefining the entire list.
+Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-    **Example Usage**
+**Example Usage**
     ```python
     mp = Mixpanel('YOUR_PROJECT_TOKEN')
 
@@ -194,9 +194,9 @@ The [`people_append()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mix
 {% tab title="people_union()" %}
 The [`people_union()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.people_union) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
     ```python
     mp = Mixpanel('YOUR_PROJECT_TOKEN')
 
@@ -217,9 +217,9 @@ The [`people_union()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixp
 {% tab title="people_increment()" %}
 The [`people_increment()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.people_increment) method increments a numeric property by a whole number.
 
-    Use this method to add to or subtract from your numeric property based on its current value.
+Use this method to add to or subtract from your numeric property based on its current value.
 
-    **Example Usage**
+**Example Usage**
     ```python
     mp = Mixpanel('YOUR_PROJECT_TOKEN')
 
@@ -332,9 +332,9 @@ A few commonly used group methods are highlighted below:
 {% tab title="group_set_once()" %}
 The [`group_set_once()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.group_set) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set group profile properties without the risk of overwriting existing data.
+Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     ```python
     mp = Mixpanel('YOUR_PROJECT_TOKEN')
 
@@ -359,9 +359,9 @@ The [`group_set_once()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mi
 {% tab title="group_unset()" %}
 The [`group_unset()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.group_unset) method removes a group property from a group profile.
 
-    Use this method to delete unwanted group profile properties from a specific group profile.
+Use this method to delete unwanted group profile properties from a specific group profile.
 
-    **Example Usage**
+**Example Usage**
     ```python 
     mp = Mixpanel('YOUR_PROJECT_TOKEN')
 
@@ -383,9 +383,9 @@ The [`group_unset()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpa
 {% tab title="group_union()" %}
 The [`group_union()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.group_union) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list group profile property that only contains unique values without duplicates.
+Use this method to create a list group profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
     ```python
     mp = Mixpanel('YOUR_PROJECT_TOKEN')
 
@@ -406,9 +406,9 @@ The [`group_union()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpa
 {% tab title="group_remove()" %}
 The [`group_remove()`](https://mixpanel.github.io/mixpanel-python/#mixpanel.Mixpanel.group_remove) method removes a value from a list-valued group profile property.
 
-    Use this method to remove specific values from a list without affecting all of the other values in the list.
+Use this method to remove specific values from a list without affecting all of the other values in the list.
 
-    **Example Usage**
+**Example Usage**
     ```python
     mp = Mixpanel('YOUR_PROJECT_TOKEN')
 

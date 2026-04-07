@@ -1,5 +1,5 @@
 # Build User Flows
-Use [Flows](../../reports/flows.md) to help you identify the most frequent paths taken by users both to or from any event. It helps you understand how your users sequentially perform events in your product, and when they are most likely to drop off.
+Use [Flows](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/flows) to help you identify the most frequent paths taken by users both to or from any event. It helps you understand how your users sequentially perform events in your product, and when they are most likely to drop off.
 
 <p >
   {% embed url="https://www.youtube.com/watch?v=0eLiOGmeo0A" %}
@@ -9,4 +9,4 @@ To follow along this tutorial, create a copy of [this board](https://mixpanel.co
 ![Screenshot use this board](../../.gitbook/assets/tracking_id_limits_copy_board.png)
 
 ## Top Paths
-Another way to visualize your flows is by seeing the [Top Paths](../../reports/flows.md#top-paths). Condense the user flows down to unique paths on each row. This visualization is great for understanding the most common paths users take, though they may not be similar.
+Another way to visualize your flows is by seeing the [Top Paths](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/flows#top-paths). Condense the user flows down to unique paths on each row. This visualization is great for understanding the most common paths users take, though they may not be similar.

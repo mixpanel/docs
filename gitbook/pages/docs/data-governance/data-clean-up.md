@@ -83,7 +83,7 @@ You can use the Data Deletion tool in these scenarios:
 Data Deletion is irreversible. Exercise caution when using this feature.
 {% endhint %}
 
-![image](/data-deletion1.png)
+![image](../.gitbook/assets/data-deletion1.png)
 
 Once you've identified the problematic data, and confirmed you want to delete:
 1. Navigate to the **Lexicon > Data Governance > Data Deletion**
@@ -102,7 +102,7 @@ During this intermediate 7 day period, we will automatically hide the data in yo
 
 You may undo Data Deletion requests **for only 7 days after submitting**, after which deletions become permanent. To do so, take the following steps: 
 
-![image](/data-deletion2.png)
+![image](../.gitbook/assets/data-deletion2.png)
 
 1. Navigate to the **Lexicon > Data Governance > Data Deletion**
 2. Locate the Deletion request you wish to undo in the table

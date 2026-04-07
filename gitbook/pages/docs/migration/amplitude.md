@@ -147,11 +147,11 @@ Once you've transformed your data in your data warehouse, you can set up the [Mi
 
 You can learn more about event mappings [here](../tracking-methods/warehouse-connectors.md#events). Here's an example of mappings for event table:
 
-![image](/amp_event_warehouse_connector.png)
+![image](../.gitbook/assets/amp_event_warehouse_connector.png)
 
 You can learn more about user mappings [here](../tracking-methods/warehouse-connectors.md#user-profiles). Here's an example of mappings for user table: 
 
-![image](/amp_user_warehouse_connector.png)
+![image](../.gitbook/assets/amp_user_warehouse_connector.png)
 
 ##### Post-migration data validation
 You can use our [Lexicon](../data-governance/lexicon.md) or Events page to check that your data has successfully been ingested. However, if your historical events are older than 30 days, they will not show up on Lexicon, Events page or in the event dropdown menu across all reports. In this case, you can leverage our [Insights report](../reports/insights.md) to validate the historical events, by selecting the import time frame and filtering by the following default properties: 
@@ -163,7 +163,7 @@ You can use our [Lexicon](../data-governance/lexicon.md) or Events page to check
 
 Please filter by tracked name, $warehouse_import_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs:
 
-![image](/amp_event_validation.png)
+![image](../.gitbook/assets/amp_event_validation.png)
 
 ## Identifying your implementation method
 

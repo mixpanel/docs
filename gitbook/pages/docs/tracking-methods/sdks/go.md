@@ -148,9 +148,9 @@ A few commonly used people methods are highlighted below:
 {% tab title="PeopleSetOnce()" %}
 The [`PeopleSetOnce()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#ApiClient.PeopleSetOnce) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set profile properties without the risk of overwriting existing data.
+Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
 
     ```go
 	ctx := context.Background()
@@ -195,9 +195,9 @@ The [`PeopleSetOnce()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#ApiCl
 {% tab title="PeopleAppendListProperty()" %}
 The [`PeopleAppendListProperty()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#ApiClient.PeopleAppendListProperty) method append values to a list profile property.
 
-    Use this method to add additional values to an existing list property instead of redefining the entire list.
+Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-    **Example Usage**
+**Example Usage**
 
     ```go
 	ctx := context.Background()
@@ -236,9 +236,9 @@ The [`PeopleAppendListProperty()`](https://pkg.go.dev/github.com/mixpanel/mixpan
 {% tab title="PeopleUnionProperty()" %}
 The [`PeopleUnionProperty()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#ApiClient.PeopleUnionProperty) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
 
     ```go
     ctx := context.Background()
@@ -266,9 +266,9 @@ The [`PeopleUnionProperty()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go
 {% tab title="PeopleIncrement()" %}
 The [`PeopleIncrement()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#ApiClient.PeopleIncrement) method increments a numeric property by a whole number.
 
-    Use this method to add to or subtract from your numeric property based on its current value.
+Use this method to add to or subtract from your numeric property based on its current value.
 
-    **Example Usage**
+**Example Usage**
 
     ```go
     // initialize Mixpanel
@@ -412,9 +412,9 @@ A few commonly used group methods are highlighted below:
 {% tab title="GroupSetOnce()" %}
 The [`GroupSetOnce()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#ApiClient.GroupSetOnce) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set group profile properties without the risk of overwriting existing data.
+Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
 
     ```go
 	ctx := context.Background()
@@ -441,9 +441,9 @@ The [`GroupSetOnce()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#ApiCli
 {% tab title="GroupDeleteProperty()" %}
 The [`GroupDeleteProperty()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#ApiClient.GroupDeleteProperty) method removes a group property from a group profile.
 
-    Use this method to delete unwanted group profile properties from a specific group profile.
+Use this method to delete unwanted group profile properties from a specific group profile.
 
-    **Example Usage**
+**Example Usage**
 
     ```go
     ctx := context.Background()
@@ -465,9 +465,9 @@ The [`GroupDeleteProperty()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go
 {% tab title="GroupUnionListProperty()" %}
 The [`GroupUnionListProperty()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#ApiClient.GroupUnionListProperty) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list group profile property that only contains unique values without duplicates.
+Use this method to create a list group profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
 
     ```go
     ctx := context.Background()
@@ -490,9 +490,9 @@ The [`GroupUnionListProperty()`](https://pkg.go.dev/github.com/mixpanel/mixpanel
 {% tab title="GroupRemoveListProperty()" %}
 The [`GroupRemoveListProperty()`](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#ApiClient.GroupRemoveListProperty) method removes a value from a list-valued group profile property.
 
-    Use this method to remove specific values from a list without affecting all of the other values in the list.
+Use this method to remove specific values from a list without affecting all of the other values in the list.
 
-    **Example Usage**
+**Example Usage**
 
     ```go 
     ctx := context.Background()

@@ -23,7 +23,7 @@ For customers new to product analytics, we'd like to recommend a simple RAE fram
 
 ![image](/tutorials/rae-framework.png "RAE Framework")
 
-If you're further along in your analytics journey, you can progress to using [Mixpanel's Focus Metric Framework](../../../best-practices/analytics-strategy/overview.md#adopting-a-measurement-framework) which provides a more granular approach to tracking success metrics.
+If you're further along in your analytics journey, you can progress to using [Mixpanel's Focus Metric Framework](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/best-practices/analytics-strategy/overview#adopting-a-measurement-framework) which provides a more granular approach to tracking success metrics.
 
 ### Measure your Product's Value
 
@@ -53,7 +53,7 @@ For more details on Measuring Value read [Chapter 1 of The Guide to Product Anal
 <p >
   {% embed url="https://www.youtube.com/watch?v=TrbIFgMILFE" %}
 
-Reach is important because it represents the maximum amount of users who could reasonably become [active](../../../tutorials/plan/framework.md#activate-your-users) and [engaged](../../../tutorials/plan/framework.md#increase-level-of-user-engagement), whether organically or through re-engagement campaigns. The goal is to focus on retaining your Reach, and in order to do that, you need to track:
+Reach is important because it represents the maximum amount of users who could reasonably become [active](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/plan/framework#activate-your-users) and [engaged](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/plan/framework#increase-level-of-user-engagement), whether organically or through re-engagement campaigns. The goal is to focus on retaining your Reach, and in order to do that, you need to track:
 
 - Rate of activating your New Users - getting them to value as quickly as possible
 - Percentage of Non-Activated to Activated Users - eliminating the barriers causing non-activation

@@ -20,13 +20,13 @@ The measurement tells the metric how to evaluate the behaviors. Some examples of
 
 Depending on the behavior, certain measurements may be not be possible. For example, you cannot use the conversion rate measurement when the metric only has a single event.  The measurement is chosen at the bottom left area of the metric.
 
-![measurement](/report-measurement.png)
+![measurement](.gitbook/assets/report-measurement.png)
 
 ## Visualizations
 
 You can change the type of visualization by clicking the dropdown in the upper right corner of the report. The options available will depend on the type of report that you started with. In this case, we switched to a bar view, allowing us to see the total number of "login" events across the entire time range, broken down by the "Platform" property.
 
-![/Screen_Shot_2022-07-11_at_3.07.02_PM.png](/Screen_Shot_2022-07-11_at_3.07.02_PM.png)
+![/Screen_Shot_2022-07-11_at_3.07.02_PM.png](.gitbook/assets/Screen_Shot_2022-07-11_at_3.07.02_PM.png)
 
 ## Filters
 
@@ -36,7 +36,7 @@ Filters are used to narrow events or behaviors that qualify for analysis. For ex
 
 A global filter applies to the entire report. Filter by properties or cohorts by clicking the **Filter** button. This will filter the results of the entire report to show only data with that property or cohort.
 
-![image](/global-filter.png)
+![image](.gitbook/assets/global-filter.png)
 
 ### Inline Filters
 
@@ -82,7 +82,7 @@ This feature is useful for determining if a group factor, such as browser type, 
 
 Select the **Breakdown** button, and select the property or cohort you want to breakdown your results by.
 
-![image](/report-breakdown.png)
+![image](.gitbook/assets/report-breakdown.png)
 
 For cohorts, you will be shown groups of users both in and not in the cohort in your results.
 
@@ -96,7 +96,7 @@ By default, the event menu shows all events, except for [hidden events](./data-
 
 If you organize your events using [tags](./data-governance/lexicon.md) in Lexicon, the tags will show up as filtering options in the event menu. When you select a tag, a list of events that share the same tag appears:
 
-![/Untitled__1_.png](/Untitled__1_.png)
+![/Untitled__1_.png](.gitbook/assets/Untitled__1_.png)
 
 ## Properties Menu
 
@@ -111,7 +111,7 @@ You can select the following filtering options to show a subset of the propertie
 - Select "cohorts" to show only the [Cohorts](./users/cohorts.md).
 - If you set up [Group Analytics](./data-structure/advanced/group-analytics.md), the Group keys will show up individually under their display names. You can select any Group key to show only the Group properties relevant to the selected Group key:
 
-    ![/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png](/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png)
+![/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png](.gitbook/assets/Mixpanel__project_3____Mixpanel_2021-11-18_12-00-58.png)
 
 ### Understanding Prefixes in the Menu
 
@@ -119,27 +119,27 @@ The events and properties in the menu are prefixed to provide additional context
 
 - Event properties are not prefixed (except in [User report's menu](./reports.md)):
 
-    ![/Screen_Shot_2021-11-18_at_12.26.25_PM.png](/Screen_Shot_2021-11-18_at_12.26.25_PM.png)
+![/Screen_Shot_2021-11-18_at_12.26.25_PM.png](.gitbook/assets/Screen_Shot_2021-11-18_at_12.26.25_PM.png)
 
 - User properties are prefixed by "User": "User" prefix is removed in [User report's menu](./reports.md) or once you filter the menu by "user properties".
 
-    ![/Screen_Shot_2021-11-18_at_12.25.13_PM.png](/Screen_Shot_2021-11-18_at_12.25.13_PM.png)
+![/Screen_Shot_2021-11-18_at_12.25.13_PM.png](.gitbook/assets/Screen_Shot_2021-11-18_at_12.25.13_PM.png)
 
 - Cohorts are prefixed by "In Cohort": "In Cohort" prefix is removed once you filter the menu by "cohorts".
 
-    ![/Mixpanel__project_3____Mixpanel_2021-11-18_12-36-35.png](/Mixpanel__project_3____Mixpanel_2021-11-18_12-36-35.png)
+![/Mixpanel__project_3____Mixpanel_2021-11-18_12-36-35.png](.gitbook/assets/Mixpanel__project_3____Mixpanel_2021-11-18_12-36-35.png)
 
 - Group profile properties are prefixed by the Group key display name: Group key prefix is removed once you filter the menu by a specific Group key.
 
-    ![/Screen_Shot_2021-11-18_at_12.37.54_PM.png](/Screen_Shot_2021-11-18_at_12.37.54_PM.png)
+![/Screen_Shot_2021-11-18_at_12.37.54_PM.png](.gitbook/assets/Screen_Shot_2021-11-18_at_12.37.54_PM.png)
 
 - [Lookup properties](./data-structure/lookup-tables.md) are prefixed by the mapped property. Let's say "Timezone" is mapped to a Lookup Table that contains "UTC Offset" and "UTC Offset (DST)", these lookup properties will be prefixed by "Timezone"
 
-    ![/Screen_Shot_2021-11-18_at_12.29.00_PM.png](/Screen_Shot_2021-11-18_at_12.29.00_PM.png)
+![/Screen_Shot_2021-11-18_at_12.29.00_PM.png](.gitbook/assets/Screen_Shot_2021-11-18_at_12.29.00_PM.png)
 
 - Lookup properties can also be prefixed by both "User" and the mapped property to indicate that they are lookup properties of a user property
 
-    ![/Screen_Shot_2021-11-18_at_12.29.06_PM.png](/Screen_Shot_2021-11-18_at_12.29.06_PM.png)
+![/Screen_Shot_2021-11-18_at_12.29.06_PM.png](.gitbook/assets/Screen_Shot_2021-11-18_at_12.29.06_PM.png)
 
 ### Duplicating Metrics
 
@@ -153,7 +153,7 @@ Determine the time range of a query by clicking on the date range selector. The 
 
 All dates and times in Mixpanel reflect the project timezone. The default on most reports is “Last 30 days” (displayed as "30D"), but there are a variety of pre-set options, as well as the option to select a custom date range.
 
-![date rate](/date-range.png)
+![date rate](.gitbook/assets/date-range.png)
 
 For these date ranges, the output shows results from the last complete 30 days, plus any results from the current incomplete day.
 
@@ -179,17 +179,17 @@ Selecting **Custom** on the date range selector opens up some additional optio
 
 “In the last” allows you to select a rolling time range similar to the default “last 30 days” but you have the flexibility to choose the time value and scale, either days, weeks, or months.
 
-![/Screen_Shot_2022-07-11_at_3.17.05_PM.png](/Screen_Shot_2022-07-11_at_3.17.05_PM.png)
+![/Screen_Shot_2022-07-11_at_3.17.05_PM.png](.gitbook/assets/Screen_Shot_2022-07-11_at_3.17.05_PM.png)
 
 If you need to, you can click on the **+ Ending** button and shift back the desired time window by a selected amount of days. So for instance in the example below, we are still looking at a 2-week window that is shifted by 7 days back. This is a rolling date range and if this report is saved as a bookmark or added to a dashboard the actual dates will continue to update to show this relative time period vs. Today.
 
-![/Screen_Shot_2022-07-11_at_3.18.03_PM.png](/Screen_Shot_2022-07-11_at_3.18.03_PM.png)
+![/Screen_Shot_2022-07-11_at_3.18.03_PM.png](.gitbook/assets/Screen_Shot_2022-07-11_at_3.18.03_PM.png)
 
 ### Fixed
 
 “Fixed” allows you to select two dates to query between or a select particular day to query by entering the same start & end date. If you save this report as a bookmark or add it to the dashboard, the date range selection will always persist.
 
-![/Screen_Shot_2022-07-11_at_3.21.03_PM.png](/Screen_Shot_2022-07-11_at_3.21.03_PM.png)
+![/Screen_Shot_2022-07-11_at_3.21.03_PM.png](.gitbook/assets/Screen_Shot_2022-07-11_at_3.21.03_PM.png)
 
 ### Since
 
@@ -202,7 +202,7 @@ To Date respects start of week and start of quarter settings under project setti
 
 ### Minute Level Granularity
 
-![minute level granularity](/enable-minute-granularity.png)
+![minute level granularity](.gitbook/assets/enable-minute-granularity.png)
 
 Enable hourly and minute level granularity by going to the advanced submenu under "custom" date range selection. This enables you to select time ranges up to the minute. You can also use this for the "Last" time range, to monitor only the past few hours or minutes. When doing time series using minutely or hourly intervals, there is a lower time range limit supported.
 
@@ -219,23 +219,23 @@ Comparisons allow you to compare metrics, or broken down segments of metrics aga
 
 Compare to past allows for comparing a metric against itself on a different time period. You are able to compare against the previous day, week, month, quarter and year. You are also able choose a custom time comparison window.
 
-![/compare_to_past.png](/compare_to_past.png)
+![/compare_to_past.png](.gitbook/assets/compare_to_past.png)
 
 By default, Mixpanel will visualize the values for both time periods. If you wish to see the lift of the current time period against the past time period, you can select the "Percent Change over Baseline" option to see the lift of your metric over time.
 
-![/compare_to_past_lift.png](/compare_to_past_lift.png)
+![/compare_to_past_lift.png](.gitbook/assets/compare_to_past_lift.png)
 
 ### Compare to Segment
 
 Compare to segment allows you to set a property value as a baseline and see how every other property compares.
 
-![/compare_to_segment.png](/compare_to_segment.png)
+![/compare_to_segment.png](.gitbook/assets/compare_to_segment.png)
 
 ### Compare to Overall
 
 Compare to overall allows you compare each segment value and see what proportion it makes of the overall value.
 
-![/compare_to_overall.png](/compare_to_overall.png)
+![/compare_to_overall.png](.gitbook/assets/compare_to_overall.png)
 
 #### Supported Charts
 
@@ -264,13 +264,13 @@ When you are satisfied with the analysis, and decide that this is something that
 
 All reports are saved to a Board, which inherits the sharing settings and permissions applied to that Board. Learn more about saving, sharing, and permission for your reports and Boards [here](./boards/sharing-and-permission.md).
 
-![/Screen_Shot_2022-07-08_at_5.40.30_PM.png](/Screen_Shot_2022-07-08_at_5.40.30_PM.png)
+![/Screen_Shot_2022-07-08_at_5.40.30_PM.png](.gitbook/assets/Screen_Shot_2022-07-08_at_5.40.30_PM.png)
 
 ## Typecasting
 
 Mixpanel allows you to force Properties into another [data type](https://help.mixpanel.com/hc/en-us/articles/115004547063) by using the **"Data Type"** option in the overflow menu for property filters and breakdowns.
 
-![/Kapture_2022-01-04_at_11.38.41.gif](/Kapture_2022-01-04_at_11.38.41.gif)
+![/Kapture_2022-01-04_at_11.38.41.gif](.gitbook/assets/Kapture_2022-01-04_at_11.38.41.gif)
 
 Typecasting is helpful when one of your properties is a number but is sent to Mixpanel as a string and you want to see histogram data for that property. Or if one of your properties is a unix timestamp and got sent as a number, and you want it to be treated as a date Property instead.
 
@@ -292,7 +292,7 @@ View Users can help you:
 - Save these users as a cohort.
 - Export these users to a CSV file.
 
-![/View_Users_Insights_gif.gif](/View_Users_Insights_gif.gif)
+![/View_Users_Insights_gif.gif](.gitbook/assets/View_Users_Insights_gif.gif)
 
 ## Segment Limits and Ordering
 
@@ -351,7 +351,7 @@ For multi-segmentation or multi-breakdowns, we define top N segments based on th
 
 You will see a banner at the top of your report indicating that results were truncated, what limit was applied and what CSV export limit is available.
 
-![image](/Segment_limits.png)
+![image](.gitbook/assets/Segment_limits.png)
 
 ## Query Time Sampling
 
@@ -365,7 +365,7 @@ Query-time sampling allows you to query a subset of users and shorten the time i
 
 From the report in which you would like to use sampling, click the **lightning bolt** in the upper right corner of the query builder.
 
-![/13109650264596](/13109650264596.png)
+![/13109650264596](.gitbook/assets/13109650264596.png)
 
 This will enable sampling on the report and will be indicated by the lightning bolt symbol turning blue. The percentage of the total that is included in the query calculations will be indicated in the top right corner of the query builder.
 
@@ -408,15 +408,15 @@ While this highlights the default server cache behavior, you can always refresh 
 
 To refresh the query results cache, navigate to the report, click the three dots overflow menu at the top of the report, select **Refresh Data**.
 
-![public/Refresh_Data_Report.png](/Refresh_Data_Report.png)
+![public/Refresh_Data_Report.png](.gitbook/assets/Refresh_Data_Report.png)
 
 To refresh the query results' cache in a Board, click the three dots overflow menu at the top of the Board, and select **Refresh Data**.
 
-![public/Refresh_Data_Board.png](/Refresh_Data_Board.png)
+![public/Refresh_Data_Board.png](.gitbook/assets/Refresh_Data_Board.png)
 
 To refresh the query results' cache in a Board card, click the three dots overflow menu at the top of the card, and select **Refresh Data**. 
 
-![public/Refresh_Data_Board_Card.png](/Refresh_Data_Board_Card.png)
+![public/Refresh_Data_Board_Card.png](.gitbook/assets/Refresh_Data_Board_Card.png)
 
 ## Find Interesting Segments
 
@@ -436,7 +436,7 @@ User properties are not yet supported.
 
 View the top and bottom converting segments in your funnel by clicking the **Find interesting segments** button at the bottom of the segmentation chart.
 
-![/10038188905364](/10038188905364.png)
+![/10038188905364](.gitbook/assets/10038188905364.png)
 
 Rather than searching through multiple property breakdowns to find significant data, this feature automatically identifies this data for you. Mixpanel combs through your event properties and cohorts to show you which of those segments convert higher or lower than average, and are therefore statistically significant.
 
@@ -468,7 +468,7 @@ Mixpanel automatically compares the currently selected date period to the previo
 
 View the top and bottom converting segments in your retention report by clicking the **Find interesting segments** button at the bottom of the retention chart. This feature is not currently available for Frequency Retention.
 
-![/10037069627156](/10037069627156.png)
+![/10037069627156](.gitbook/assets/10037069627156.png)
 
 Rather than searching through multiple segment breakdowns to find significant data, this feature automatically identifies that data for you. Mixpanel combs through your event properties and cohorts and shows you which of those segments retain at a higher or lower rate than average.
 

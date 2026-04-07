@@ -7,7 +7,7 @@ To achieve this balance, we recommend adhering to **four core principles** that 
 - **Data Minimization**: Track only what supports your KPIs and product decision-making. If a specific data point or property doesn't drive insight, do not collect it.
 - **Pseudonymization by Default**: Use stable internal identifiers (like `user_id`) rather than emails or phone numbers. If internal IDs are identifying, hash or encrypt them before sending.
 - **Purpose Alignment**: Design tracking around meaningful "value moments" rather than exhaustive behavioral capture. Data collected without a specific purpose is almost always a liability.
-- **Shared Responsibility**: While Mixpanel provides governance tools like [Data Views](../data-governance/data-views-and-classification.md#data-views-overview), [Data Classification](../data-governance/data-views-and-classification.md#data-classification), [Data Deletion](../data-governance/data-clean-up.md), and [privacy features](../privacy.md), you determine what enters the system to align with your regulatory requirements.
+- **Shared Responsibility**: While Mixpanel provides governance tools like [Data Views](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-views-and-classification#data-views-overview), [Data Classification](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-views-and-classification#data-classification), [Data Deletion](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-clean-up), and [privacy features](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/privacy), you determine what enters the system to align with your regulatory requirements.
 
 Below is a simple three-step framework for deciding what data to collect, identifying any sensitive data involved, and ensuring it’s handled safely.
 
@@ -26,7 +26,7 @@ PII can appear in several forms:
 - **Highly sensitive data**: Government IDs, payment card details, authentication secrets.
 
 ### Classifying Data Risk
-While Mixpanel captures data through [events](../data-structure/events-and-properties.md), [user profiles](../data-structure/user-profiles.md), and (optionally) [group profiles](../data-structure/group-analytics.md), the privacy risk lies almost entirely in the properties you attach to them. Use this matrix to classify your data before adding it to your tracking plan.
+While Mixpanel captures data through [events](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/events-and-properties), [user profiles](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/user-profiles), and (optionally) [group profiles](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/group-analytics), the privacy risk lies almost entirely in the properties you attach to them. Use this matrix to classify your data before adding it to your tracking plan.
 
 | Risk Level | Common Examples | Best Practice |
 |---|---|---|
@@ -36,14 +36,14 @@ While Mixpanel captures data through [events](../data-structure/events-and-prope
 
 ### Tracking Do's
 - **DO use internal IDs**: Use non-personally identifiable internal IDs (like `user_id` or `account_id`) whenever possible. If an internal ID reveals identity, hash or encrypt it before sending.
-- **DO maintain a [tracking plan](../tracking-best-practices/tracking-plan.md#translate-flows-into-events--properties)**: Document definitions, data types, business purposes, and PII flags for every event and property you intend to collect.
+- **DO maintain a [tracking plan](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/tracking-plan#translate-flows-into-events--properties)**: Document definitions, data types, business purposes, and PII flags for every event and property you intend to collect.
 - **DO track value moments**: Map events directly to KPIs—such as activation, engagement, monetization, or retention—rather than tracking every possible click.
 
 ### Tracking Don'ts
 - **DON'T send high-sensitivity data**: Never send government ID numbers, payment data, or credentials.
 - **DON'T rely on email/phone as IDs**: Treat emails and phone numbers as optional properties for communication, not as your primary stable user identifier.
 - **DON'T send unreviewed free-text**: Avoid free-text fields (like form inputs) that may contain unintentional PII.
-- **DON'T send raw identifiers in Session Replay**: [Mask](../session-replay/session-replay-privacy-controls.md#how-does-masking-and-blocking-work-what-are-the-high-level-technical-details) or redact input fields where appropriate.
+- **DON'T send raw identifiers in Session Replay**: [Mask](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/session-replay/session-replay-privacy-controls#how-does-masking-and-blocking-work-what-are-the-high-level-technical-details) or redact input fields where appropriate.
 
 ### Handling "Must-Have" PII
 Mixpanel’s stance is that you should avoid sending highly sensitive data entirely. If you must send PII (like an email for targeting), ensure it has a legitimate business purpose approved by your compliance team, and mark it as "Classified" immediately.
@@ -55,7 +55,7 @@ Once you have defined what data to collect, you must ensure it is accessed safel
 {% step %}
 ## Classify Sensitive Properties
 
-[Data Classification](../data-governance/data-views-and-classification.md#data-classification) is your first line of defense. It is a simple toggle that marks a property as "Classified."
+[Data Classification](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-views-and-classification#data-classification) is your first line of defense. It is a simple toggle that marks a property as "Classified."
 - **Action**: Review your tracking plan and mark any property containing identifiers (e.g. `$email`, `$ip`) or sensitive business data as classified.
 - **Effect**: This does not stop data collection, but it tags the data so you can enforce policies on who views it.
 {% endstep %}
@@ -63,7 +63,7 @@ Once you have defined what data to collect, you must ensure it is accessed safel
 {% step %}
 ## Curate Data Views
 
-Instead of giving every user access to raw data, use [Data Views](../data-governance/data-views-and-classification.md#data-views-overview) to create governed subsets of data relevant to their specific role. This allows you to "curate" a safe environment rather than just restricting access.
+Instead of giving every user access to raw data, use [Data Views](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-views-and-classification#data-views-overview) to create governed subsets of data relevant to their specific role. This allows you to "curate" a safe environment rather than just restricting access.
 
 - **Create a "Broad-Access" View**: Exclude classified PII (like email or Device ID) from the default view used by Product Managers and Analysts. This prevents accidental exposure while maintaining full analytical power.
 - **Create Regional Views**: Filter events by geography (e.g. `city` or `region`) to create specific views (like "EU Data Only") that align with local data residency and compliance requirements.
@@ -83,17 +83,17 @@ Privacy and strong governance depend on how you plan your organizational setting
 {% step %}
 ## Operationalize Compliance
 
-Mixpanel includes specific [features to support compliance](../privacy.md) with GDPR, CCPA, and other similar frameworks, helping you operationalize privacy requirements without manual workarounds.
+Mixpanel includes specific [features to support compliance](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/privacy) with GDPR, CCPA, and other similar frameworks, helping you operationalize privacy requirements without manual workarounds.
 
-- **[Data Retention](../privacy/gdpr-compliance.md#data-retention-policy)**: Set up policies to automatically purge older data that is no longer needed for analysis.
-- **[User Deletion API](../privacy/gdpr-compliance.md#right-to-erasure)**: Integrate the Deletion API to delete all user-related data programmatically upon request (e.g. "Right to be Forgotten").
-- **[Opt-out Settings](../privacy/protecting-user-data.md#opting-users-out-of-tracking)**: Ensure your SDK implementation respects user consent flags and local requirements.
+- **[Data Retention](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/privacy/gdpr-compliance#data-retention-policy)**: Set up policies to automatically purge older data that is no longer needed for analysis.
+- **[User Deletion API](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/privacy/gdpr-compliance#right-to-erasure)**: Integrate the Deletion API to delete all user-related data programmatically upon request (e.g. "Right to be Forgotten").
+- **[Opt-out Settings](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/privacy/protecting-user-data#opting-users-out-of-tracking)**: Ensure your SDK implementation respects user consent flags and local requirements.
 {% endstep %}
 
 {% step %}
 ## Document in Lexicon
 
-Use [Lexicon](../data-governance/lexicon.md) as your single source of truth. Document the privacy posture of each field—explicitly stating its business purpose and which Data Views it belongs to—so new team members understand how to handle it safely.
+Use [Lexicon](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon) as your single source of truth. Document the privacy posture of each field—explicitly stating its business purpose and which Data Views it belongs to—so new team members understand how to handle it safely.
 {% endstep %}
 
 {% endstepper %}
@@ -115,19 +115,19 @@ Schedule quarterly or semi-annual reviews to catch issues early. Your review che
 ## Remediation Workflow
 
 If you discover unexpected PII, follow a structured remediation flow immediately:
-- **Stop Ingestion**: [Drop](../data-governance/lexicon.md#dropping-data) the event or property at ingestion to stop the leak.
-- **Restrict Access**: Immediately reclassify the property and restrict access using [Data Views](../data-governance/data-views-and-classification.md#data-views-overview) and [Data Classification](../data-governance/data-views-and-classification.md#data-classification).
-- **Notify & Update**: Inform relevant stakeholders (including Legal/Compliance) and update your [tracking documentation](../tracking-best-practices/tracking-plan.md#translate-flows-into-events--properties) to prevent recurrence.
+- **Stop Ingestion**: [Drop](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon#dropping-data) the event or property at ingestion to stop the leak.
+- **Restrict Access**: Immediately reclassify the property and restrict access using [Data Views](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-views-and-classification#data-views-overview) and [Data Classification](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-views-and-classification#data-classification).
+- **Notify & Update**: Inform relevant stakeholders (including Legal/Compliance) and update your [tracking documentation](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/tracking-plan#translate-flows-into-events--properties) to prevent recurrence.
 {% endstep %}
 
 {% step %}
 ## Governance Toolkit
 
 Leverage Mixpanel’s tools to automate maintenance and cleanup:
-- **Visibility Control**: [Hide](../data-governance/lexicon.md#hiding-data) data in Lexicon that is no longer needed to keep the project clean without permanently deleting it.
-- **Configuration Updates**: Update [Data Classification](../data-governance/data-views-and-classification.md#data-classification) and [Data Views](../data-governance/data-views-and-classification.md#data-views-overview) as your data evolves to ensure new properties are governed correctly.
-- **Project Data Deletion**: Use Mixpanel's [Data Deletion](../data-governance/data-clean-up.md#2-deleting-problematic-data) feature to permanently remove specific events or properties that contain accidental PII or are no longer valid.
-- **Lexicon Updates**: Keep [Lexicon](../data-governance/lexicon.md) descriptions up to date so the "safe" status of every metric is clear to all users.
+- **Visibility Control**: [Hide](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon#hiding-data) data in Lexicon that is no longer needed to keep the project clean without permanently deleting it.
+- **Configuration Updates**: Update [Data Classification](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-views-and-classification#data-classification) and [Data Views](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-views-and-classification#data-views-overview) as your data evolves to ensure new properties are governed correctly.
+- **Project Data Deletion**: Use Mixpanel's [Data Deletion](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-clean-up#2-deleting-problematic-data) feature to permanently remove specific events or properties that contain accidental PII or are no longer valid.
+- **Lexicon Updates**: Keep [Lexicon](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon) descriptions up to date so the "safe" status of every metric is clear to all users.
 {% endstep %}
 
 {% endstepper %}

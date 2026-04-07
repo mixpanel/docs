@@ -15,13 +15,13 @@ Example use-cases include:
 
 Add a property in Breakdown, then select the **Customize Buckets** option from the overflow menu
 
-![/14342458665748](/14342458665748.png)
+![/14342458665748](../.gitbook/assets/14342458665748.png)
 
 Depending on your added property data type - string vs numeric, you will see a different custom buckets modal, designed based on the data-type use-cases **(more detail below)**
 
 Once you define your segment buckets, click **Apply.** Only then will the custom buckets reflect in the visualization. You will also see the custom buckets as an under-item on the property
 
-![/14342458667924](/14342458667924.png)
+![/14342458667924](../.gitbook/assets/14342458667924.png)
 
 To modify the segment buckets, click on the **under-item** and the custom buckets model will open. Once you’ve made the changes, click **Apply**
 
@@ -44,7 +44,7 @@ Note that you cannot have more than 10 uneven (varied) groups.
 
 1. Add a breakdown - Country. Below is the default you will see
 
-![/12828869626644](/12828869626644.png)
+![/12828869626644](../.gitbook/assets/12828869626644.png)
 
 2. Choose to bucket segments, by opening the custom buckets model and clicking Apply
 - For each segment, choose the operator “is” and select one or more values
@@ -54,18 +54,18 @@ Note that you cannot have more than 10 uneven (varied) groups.
 If two segments have the same value, the first segment will consider the value. Custom buckets are non-overlapping and sum up to 100% by definition
 {% endhint %}
 
-![/14342715436052](/14342715436052.png)
+![/14342715436052](../.gitbook/assets/14342715436052.png)
 
-![/12828860042132](/12828860042132.png)
+![/12828860042132](../.gitbook/assets/12828860042132.png)
 
 #### Rename Custom Buckets Segment
 
 1. On the same line of the segment, choose to rename it using the pencil icon
 2. Click Apply after creating and naming your segments as desired
 
-![/14342752741140](/14342752741140.png)
+![/14342752741140](../.gitbook/assets/14342752741140.png)
 
-![/12828869956628](/12828869956628.png)
+![/12828869956628](../.gitbook/assets/12828869956628.png)
 
 ## Numeric Property Use Cases
 
@@ -82,18 +82,18 @@ If two segments have the same value, the first segment will consider the value. 
 - Every numeric property is **auto-bucketed into even-sized buckets by default without using custom buckets.
 - In the example below, the range of duration leads to a default bucket size of 10mins.
 
-![/14342489051028](/14342489051028.png)
+![/14342489051028](../.gitbook/assets/14342489051028.png)
 
-![/12828860268692](/12828860268692.png)
+![/12828860268692](../.gitbook/assets/12828860268692.png)
 
 2. Go to the overflow and open the custom buckets modal
 3. Since looking for even buckets of “30 mins”, choose **Even Bucketing**
 4. Modify the min and max values of the desired range, and the bucket size, and click apply
 - Here these buckets are \<50 mins and ≥ 100 mins
 
-        ![/14342575096724](/14342575096724.png)
+![/14342575096724](../.gitbook/assets/14342575096724.png)
 
-        ![/12828860573204](/12828860573204.png)
+![/12828860573204](../.gitbook/assets/12828860573204.png)
 
 {% hint style="info" %}
 Both a lower-end and upper-end bucket will be auto-generated to ensure your breakdown always adds up to 100%
@@ -106,9 +106,9 @@ Both a lower-end and upper-end bucket will be auto-generated to ensure your brea
 2. Since looking for specific buckets with varied bucket ranges, choose **Varied Bucketing**
 3. Enter the ‘segment’ breakpoint values in each row and click apply. You can preview the bucket as you enter values in the line item below
 
-![/14342546138516](/14342546138516.png)
+![/14342546138516](../.gitbook/assets/14342546138516.png)
 
-![/12828860758676](/12828860758676.png)
+![/12828860758676](../.gitbook/assets/12828860758676.png)
 
 {% hint style="info" %}
 Both a lower-end and upper-end bucket will be auto-generated to ensure your breakdown always adds up to 100%
@@ -121,9 +121,9 @@ Both a lower-end and upper-end bucket will be auto-generated to ensure your brea
 1. Open the custom buckets modal
 2. Since looking for “No bucketing”, choose **None —** This lays out all the numeric property values as-is
 
-![/14342547991956](/14342547991956.png)
+![/14342547991956](../.gitbook/assets/14342547991956.png)
 
-![/12833587659028](/12833587659028.png)
+![/12833587659028](../.gitbook/assets/12833587659028.png)
 
 ## Typecasting Property Use Cases
 
@@ -143,18 +143,18 @@ Both a lower-end and upper-end bucket will be auto-generated to ensure your brea
 Only typecasted data types show as an under-item. If the data type was the same as ingested, no under-item for data type will be seen
 {% endhint %}
 
-        ![/14342634016660](/14342634016660.png)
+![/14342634016660](../.gitbook/assets/14342634016660.png)
 
-        ![/12833644608148](/12833644608148.png)
+![/12833644608148](../.gitbook/assets/12833644608148.png)
 
 4. Post changing data type, open the custom buckets modal. This will now open a modal meant for string property data type
 5. Follow the steps as elaborated for the String property use-case above, and achieve the goal
 
-    ![/14342637801748](/14342637801748.png)
+![/14342637801748](../.gitbook/assets/14342637801748.png)
 
-    ![/14342707763604](/14342707763604.png)
+![/14342707763604](../.gitbook/assets/14342707763604.png)
 
-    ![/12833899595284](/12833899595284.png)
+![/12833899595284](../.gitbook/assets/12833899595284.png)
 
 ### FAQ
 
@@ -180,7 +180,7 @@ No, breakdowns are fundamentally designed to sum up to 100%. To ensure your anal
 
 If you really need to answer a question like this, the right way here is to create these as two metrics leveraging [inline filters](../reports.md) and NOT use breakdowns.
 
-![/12834111393684](/12834111393684.png)
+![/12834111393684](../.gitbook/assets/12834111393684.png)
 
 **Will Custom Bucket still be available if I typecasted the property?**
 
@@ -196,7 +196,7 @@ No, (not set) is not included in the remaining values.
 - (remaining values): refers to ‘set’ values that just don’t fall into any of your defined segments
 - (not set) refers to the events where a property value has not been set at tracking/ ingestion. For example, a new video (MixFun) has been added, but during tracking, you forget to send the name of this video. So the count of this video is being tracked, but it’s being associated with a property value (not set) vs (MixFun)
 
-        More details can be found in [this help doc](./advanced.md#undefined-and-null-properties)
+More details can be found in [this help doc](./advanced.md#undefined-and-null-properties)
 
 **What is the difference between (not set) and (non-numeric values)?**
 
@@ -209,7 +209,7 @@ These values will auto-generate under (remaining values). So just select what sh
 
 For example — the (remaining values) below is not equal to US or India
 
-![/12834082079380](/12834082079380.png)
+![/12834082079380](../.gitbook/assets/12834082079380.png)
 
 **How do I get a bucket of just 0 for numeric properties?**
 

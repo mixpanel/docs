@@ -104,7 +104,7 @@ To get started, click on **Add/Edit Profile** from the [Users](https://mixpanel
 
 > **Note**: For customers with [Group Analytics](./group-analytics.md) make sure you first choose either **User** or the **[Group Key](./group-analytics.md#group-keys-in-project-settings) name** depending on which type of profile you wish to import.
 
-![/Screen_Shot_2021-12-01_at_11.44.03_AM.png](/Screen_Shot_2021-12-01_at_11.44.03_AM.png)
+![/Screen_Shot_2021-12-01_at_11.44.03_AM.png](../.gitbook/assets/Screen_Shot_2021-12-01_at_11.44.03_AM.png)
 
 ### Create/Update a Single Profile
 
@@ -116,7 +116,7 @@ The most important column is `$distinct_id` for user profiles (or `$group_id` f
 
 After `$distinct_id`, you can add additional properties to the profile by pressing the **"+ Add Property"** button. Mixpanel will help autocomplete profile properties that you may want to set.
 
-![/Screen_Shot_2021-12-01_at_12.20.27_PM.png](/Screen_Shot_2021-12-01_at_12.20.27_PM.png)
+![/Screen_Shot_2021-12-01_at_12.20.27_PM.png](../.gitbook/assets/Screen_Shot_2021-12-01_at_12.20.27_PM.png)
 
 We recommend using the `$name` (or `$first_name`, `$last_name`), `$email`, and `$phone` [Reserved Profile Properties](./property-reference/reserved-properties.md#reserved-profile-properties)) if you're uploading a user's name, email, or phone. Mixpanel shows these properties by default in various parts of our UI and are used for [Cohort Syncs](../cohort-sync.md) as well.
 
@@ -145,7 +145,7 @@ If you do not assign an identifier column, Mixpanel will use your `$email` colum
 
 You'll have the opportunity to look through all columns in the CSV to preview their values. In this step, you must **uncheck all columns that you DO NOT wish to import**. You must also choose the associated Mixpanel profile property that each CSV column will be associated with. When you're done selecting the columns, and mapping their associated properties, press the **Import profiles** button to proceed.
 
-![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
+![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](../.gitbook/assets/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
 
 ## Importing Historical Profile Values
 
@@ -161,11 +161,11 @@ Historical properties can be used anywhere that regular profile properties can b
 
 For eg, when you apply breakdown by historical plan-type property, the property value will be picked based on the time of the event, instead of the current property value.
 
-![image](/historical_property_value.webp)
+![image](../.gitbook/assets/historical_property_value.webp)
 
 When you hover over a historical property, the context menu that pops up will show that the property was sourced from a history table, as well as the name of the source. This means that the value of the property used in charts can vary over time.
 
-![image](/dropdown_historical_property.webp)
+![image](../.gitbook/assets/dropdown_historical_property.webp)
 
 ### Historic Profile Data Modeling
 
@@ -173,13 +173,13 @@ When the data is imported from the warehouse, aside from having it available in 
 
 **Hidden event**: under the hood, the data is modeled through events, linked in a special way, and attribution is used to obtain the value the profile had at a certain point in time. The name of the event takes after the name of the table/view we read from in the warehouse connector, so if the table name is `company_plan_history`, the event will be named `company_plan_history` too (by default it's hidden). 
 
-![image](/historic_profile_property_source.png)
+![image](../.gitbook/assets/historic_profile_property_source.png)
 
 The event time follows the start time entries in the table, so if you have an entry for say January 1st, there will also be this event with that same time in the project. This is used for attribution. Say you have 2 entries in the table for plan values, January 1st with a value of "plan1" and an entry on June 1st with a value of "plan" 2. If you were to create a report for this user based on the historic property, any event between Jan 1st and Jun 1st would have the "plan1" value, and any event after Jun 1 would have "plan2".
 
 **Profile View**: if you navigate to the profile view of a specific user (or group) that has historic profile data, you will see the property to the left of the screen and, when you hover, you'll see a button to view the changes over time. Once clicked, you will be shown a list of the values the property has had through time.
 
-![image](/historic_profile_property_profile_view.png)
+![image](../.gitbook/assets/historic_profile_property_profile_view.png)
 
 For billing details, read the warehouse connectors [billing FAQ section on People/Group updates](../tracking-methods/warehouse-connectors#what-actions-impact-billing-for-warehouse-connectors).
 

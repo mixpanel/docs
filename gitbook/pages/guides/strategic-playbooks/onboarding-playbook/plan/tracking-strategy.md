@@ -1,6 +1,6 @@
 # Build Your Tracking Strategy
 
-It's important to first understand Mixpanel's Data Model and then create a Tracking Plan using this model to define the actions or behaviors that you want to track in order to measure your metrics and KPIs. This ensures that your data is structured to maximize Mixpanel's analytics capabilities. If you have not thought about your metrics and KPIs, now is a good time to read up on [Analytics Framework](../../../tutorials/plan/framework.md).
+It's important to first understand Mixpanel's Data Model and then create a Tracking Plan using this model to define the actions or behaviors that you want to track in order to measure your metrics and KPIs. This ensures that your data is structured to maximize Mixpanel's analytics capabilities. If you have not thought about your metrics and KPIs, now is a good time to read up on [Analytics Framework](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/plan/framework).
 
 ## The Mixpanel Data Model
 
@@ -19,7 +19,7 @@ Events represent interactions between the user and your product and are fundamen
 
 It's important to only track events that align to the metrics you want to measure, and always include relevant event properties that will enable you to drill deeper into the analysis.
 
-For more details and examples refer to our documentation on [Events and Properties](../../../data-structure/events-and-properties.md).
+For more details and examples refer to our documentation on [Events and Properties](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/events-and-properties).
 
 ### Demographics: User Profile and User Properties
 
@@ -36,7 +36,7 @@ As a best practice, think of event properties that you track under events which 
 <p >
   {% embed url="https://www.youtube.com/watch?v=8QgRNGqOl8A" %}
 
-For more details and examples refer to our documentation on [User Profiles](../../../data-structure/user-profiles.md).
+For more details and examples refer to our documentation on [User Profiles](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/user-profiles).
 
 ### Special Types of Properties 
 
@@ -48,17 +48,17 @@ Examples:
 - App User ID - useful to have in all events where user is logged in for identity management troubleshooting
 - Subscription / User Type - useful for tracking change in subscriptions or user types over time in different events
 - Favorite Genre - useful in comparing a user's favorite genre against other music genres they played, and how they change their favorite
-- App Source - useful when you are tracking multiple apps into one single Mixpanel project, which can be used for data segregation (see [Data Views](../../../data-governance/data-views-and-classification.md#data-views-overview))
+- App Source - useful when you are tracking multiple apps into one single Mixpanel project, which can be used for data segregation (see [Data Views](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/data-views-and-classification#data-views-overview))
 
 Mixpanel's client-side SDKs provide a method that allows you to register / save the property in a cookie or local storage and auto-appends it in subsequent event tracking calls.
 
-For more details and examples refer to our documentation on [Super Properties](../../../tracking-methods/sdks/javascript.md#super-properties).
+For more details and examples refer to our documentation on [Super Properties](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/sdks/javascript#super-properties).
 
 #### Default Mixpanel Properties
 
 These are event or user properties that Mixpanel auto-populate with a value if available, either through using our client-side SDKs or through information received when data is being ingested into our servers. These properties are typically useful when you are interested in general locations *(Country, Region, City)*, device level information *(OS, Browser, Model, App Version)*, or Marketing Attribution Parameters *(UTM tags, Google / Facebook Click ID)* but you do not wish to instrument code to manually track them.
 
-Refer to the list of [Default Properties](../../../data-structure/property-reference.md#default-properties) and [Tracking UTM Parameters](../../../tracking-methods/sdks/javascript.md#tracking-utm-parameters) for more information.
+Refer to the list of [Default Properties](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/property-reference#default-properties) and [Tracking UTM Parameters](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/sdks/javascript#tracking-utm-parameters) for more information.
 
 #### Reserved Mixpanel Properties
 
@@ -66,16 +66,16 @@ Mixpanel reserves certain property names for special use cases and system proces
 
 Examples:
 - time - event property used to denote the timestamp of events, auto-populated by client-side SDKs
-- mp_original_distinct_id - event property used in [hot shard](../../../debugging/distinct-id-limits.md#what-is-a-hot-shard) detection
+- mp_original_distinct_id - event property used in [hot shard](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/debugging/distinct-id-limits#what-is-a-hot-shard) detection
 - $email - user property containing user's e-mail exported as part of cohort exports, manually-populated as part of your codes
 
-Refer to the list of [Reserved Event Properties](../../../data-structure/events-and-properties.md#reserved-event-properties) and [Reserved User Properties](../../../data-structure/user-profiles.md#reserved-user-properties) in our documentation for their usage.
+Refer to the list of [Reserved Event Properties](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/events-and-properties#reserved-event-properties) and [Reserved User Properties](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/user-profiles#reserved-user-properties) in our documentation for their usage.
 
 > Note: Both default and reserved Mixpanel properties are typically prefixed with `mp_` or `$` sign. It is a best practice to avoid naming your own properties with such prefixes to avoid confusion.
 
 ### Property Data Types
 
-Mixpanel supports five data types for properties: String, Numeric, Boolean, Date and List. You should choose the most suitable data type for your properties, since each type has a specific set of [operations](../../../reports/insights.md#insights-data-functions-operators-and-calculations) that enables richer analysis *(eg numeric data types allows for aggregated)*.
+Mixpanel supports five data types for properties: String, Numeric, Boolean, Date and List. You should choose the most suitable data type for your properties, since each type has a specific set of [operations](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/insights#insights-data-functions-operators-and-calculations) that enables richer analysis *(eg numeric data types allows for aggregated)*.
 
 - String - useful in capturing textual values *(supports double-byte characters)*
 - Numeric - meant for whole numbers or decimals where numeric calculations are expected to be performed *(supports up to 16 decimals)*
@@ -83,15 +83,15 @@ Mixpanel supports five data types for properties: String, Numeric, Boolean, Date
 - Date - used to capture both date and/or timestamp, example: Jun 20, 2009 14:20:30
 - List - meant for capturing an array / collection of similar or related values, example: ["Shoes", "Clothing", "Cosmetics"]
 
-A property's default data type can be [typecast](../../../reports.md#typecasting) to another data type in Mixpanel reports. However, it's always an important best practice that you keep a property's data type consistent during implementation to avoid any confusion.
+A property's default data type can be [typecast](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports#typecasting) to another data type in Mixpanel reports. However, it's always an important best practice that you keep a property's data type consistent during implementation to avoid any confusion.
 
-Mixpanel also supports object and [list of objects](../../../features/advanced.md#list-of-objects-property-support) data types for specific use cases like in e-commerce. It is highly encourage that you use the five primary data types as they are fully supported in the Mixpanel UI.
+Mixpanel also supports object and [list of objects](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/advanced#list-of-objects-property-support) data types for specific use cases like in e-commerce. It is highly encourage that you use the five primary data types as they are fully supported in the Mixpanel UI.
 
-For more details and examples refer to our documentation on [Supported Dta Types](../../../data-structure/property-reference.md#supported-data-types).
+For more details and examples refer to our documentation on [Supported Dta Types](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/property-reference#supported-data-types).
 
 ### Group Level Behaviors and Demographics
 
-> Note: read this section only if you have [Group Analytics](../../../data-structure/advanced/group-analytics.md) add-on.
+> Note: read this section only if you have [Group Analytics](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/advanced/group-analytics) add-on.
 
 Mixpanel's core behavioral data analysis is at the individual user level; there are however, use cases where behavioral data needs to be analyzed at a customized group level *(eg company, subscription, account)*. An add-on Group Analytics package available to customers on [Growth](https://mixpanel.com/pricing/) and [Enterprise plans](https://mixpanel.com/pricing/) enables this functionality.
 
@@ -103,13 +103,13 @@ Mixpanel's core behavioral data analysis is at the individual user level; there 
 <p >
   {% embed url="https://www.youtube.com/watch?v=yk-Y-VFItXE" %}
 
-Keep in mind that not every business necessarily has use cases that may require group level analysis; refer to our documentation on [Group Analytics](../../../data-structure/advanced/group-analytics.md) for more information. 
+Keep in mind that not every business necessarily has use cases that may require group level analysis; refer to our documentation on [Group Analytics](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/advanced/group-analytics) for more information. 
 
 ### More Resources
 
 For more information about Mixpanel's Data Model:
 - Checkout our [Mixpanel Data Model Board](https://mixpanel.com/project/3187769/view/3699049/app/boards#id=6813751) in the demo project for a hands-on experience with how it works
-- Read about Mixpanel [Infrastructure](../../../how-it-works/infrastructure.md)
+- Read about Mixpanel [Infrastructure](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/how-it-works/infrastructure)
 
 ## Creating a Tracking Plan
 
@@ -124,7 +124,7 @@ Now that you have an understanding of Mixpanel's Data Model, let's walk you thro
 1. Prioritize on the key user journeys that are pertinent to the metrics and KPIs you want to measure. 
 
    For example, a sign up journey will be important when measuring metrics related to newly acquired user *(part of Reach)*. 
-   If you used the [RAE Framework](../../../tutorials/plan/framework.md#the-rae-framework), make sure you cover the journeys that will help you track and measure your Reach, Activation, and Engagement.
+   If you used the [RAE Framework](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/plan/framework#the-rae-framework), make sure you cover the journeys that will help you track and measure your Reach, Activation, and Engagement.
 
 2. Map the key actions within these journeys into events and capture event properties to provide additional information about the action. As you define your events, think about whether certain event properties should be global / super properties and user properties. 
 
@@ -157,7 +157,7 @@ To get all signup starts via the ideal state structure, the user only needs to q
 
    Having specific questions (eg hypothesis, influencing factors, current / target numbers) around the metrics you're measuring also helps you decide on the events and properties to include. Think of the answers you want to arrived at, and how an action (event), an information of an action (event properties), or a recent state (user property) can help lead you to that answer.
 
-3. As you map your events and properties, it's also important to ensure that you have factored [identifying users](../../../tracking-methods/id-management/identifying-users.md) in your product *(eg website, app, devices)*. 
+3. As you map your events and properties, it's also important to ensure that you have factored [identifying users](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management/identifying-users) in your product *(eg website, app, devices)*. 
 
    For instance, when a user goes from being anonymous, to completing the sign-up or registration process or simply logging in with a valid user account, you would want to properly identify the user with their user ID as the Distinct ID. This would ensure that events triggered across devices, while the user is anonymous, are tied to their events when they are logged in. 
 
@@ -168,7 +168,7 @@ To get all signup starts via the ideal state structure, the user only needs to q
    Here are guidelines to help you think through:
    - Mixpanel is case-sensitive *(eg `sign_up_completed` vs `Sign Up Completed` are considered two separate events)*, Mixpanel generally recommends keeping a consistent snake_case naming convention
    - When naming events and properties, avoid abbreviations or specific jargons that may not be immediately or easily understandable, also avoid prefixes `mp_` and `$` sign
-   - Use the appropriate [property data types](../../../tutorials/plan/tracking-strategy.md#property-data-types) and ensure that values within properties are consistent *(eg `subscription_type` = "Premium" vs "premium" vs "Paid" are considered different values)
+   - Use the appropriate [property data types](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tutorials/plan/tracking-strategy#property-data-types) and ensure that values within properties are consistent *(eg `subscription_type` = "Premium" vs "premium" vs "Paid" are considered different values)
    - If certain property values *(eg null, N/A, "" - empty string)* are essentially considered unavailable, Mixpanel generally recommends that for those instances the property should not be sent with the event or user profile.
 
 5. Document your events and properties in a tracking plan, access and make a copy of the [blank Tracking Plan template here](https://docs.google.com/spreadsheets/d/1ZdOZ6TMtRPxy7qRxiLsvH9HWcHJM6nZydWKoThRxFKc/edit#gid=1641519238). Keep your tracking plan as a living and shared document that is continuously updated with any implementation or product changes.

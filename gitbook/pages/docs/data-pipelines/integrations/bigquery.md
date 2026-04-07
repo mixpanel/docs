@@ -8,7 +8,7 @@ This guide describes how Mixpanel exports your data into a customer-managed [Goo
 
 ## Design
 
-![image](/230698685-c02cb9a1-d66f-42a7-8063-8e78b79e7b1f.png)
+![image](../../.gitbook/assets/230698685-c02cb9a1-d66f-42a7-8063-8e78b79e7b1f.png)
 
 For events data, we create a single table called `mp_master_event` and store all external properties inside the `properties` column in JSON type. Users can extract properties using JSON functions. See [Query Data](#query-data) for more details.
 
@@ -26,7 +26,7 @@ Please follow these steps to share permissions with Mixpanel and create json pip
 
 Create a dataset in your BigQuery to store the Mixpanel data.
 
-![image](/230698727-1216833e-8321-46de-a388-8b554a00938c.png)
+![image](../../.gitbook/assets/230698727-1216833e-8321-46de-a388-8b554a00938c.png)
 
 ### Step 2: Grant Permissions to Mixpanel
 
@@ -41,7 +41,7 @@ Mixpanel requires two permissions to manage the dataset:
 - Add new principal `export-upload@mixpanel-prod-1.iam.gserviceaccount.com` and set the role as `BigQuery Job User`
 - Click the **Save** button.
 
-![image](/230698732-4dadbccf-1eeb-4e64-a6c7-8926eb49e5cc.png)
+![image](../../.gitbook/assets/230698732-4dadbccf-1eeb-4e64-a6c7-8926eb49e5cc.png)
 
 **BigQuery Data Owner**
 
@@ -51,7 +51,7 @@ Mixpanel requires two permissions to manage the dataset:
 - In the Data Permissions window, click on **Add Principal**
 - Add new principal `export-upload@mixpanel-prod-1.iam.gserviceaccount.com` and set the role as `BigQuery Data Owner`, and save.
 
-![image](/230698735-972aedb5-1352-4ebc-82c4-ef075679779b.png)
+![image](../../.gitbook/assets/230698735-972aedb5-1352-4ebc-82c4-ef075679779b.png)
 
 ### Step 3: Provide Necessary Details for Pipeline Creation
 

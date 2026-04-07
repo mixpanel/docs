@@ -25,32 +25,32 @@ Follow these steps to configure Vendo for sending Google Ads to Mixpanel. The in
 
 1. Under Data Import, create a new connection.
 
-![vendo1](/vendo1.png)
+![vendo1](../../.gitbook/assets/vendo1.png)
 
 2. Select the data source you’d like to integrate to Mixpanel.
 
-![vendo1](/vendo2.png)
+![vendo1](../../.gitbook/assets/vendo2.png)
 
 3. Click "Connect App".
 
-![vendo1](/vendo3.png)
+![vendo1](../../.gitbook/assets/vendo3.png)
 
 4. Complete the authentication for the data source.
 
-![vendo1](/vendo4.png)
+![vendo1](../../.gitbook/assets/vendo4.png)
 
 5. Configure the source.
 
-![vendo1](/vendo5.png)
+![vendo1](../../.gitbook/assets/vendo5.png)
 
 6. Set Mixpanel as the downstream destination.
 
-![vendo1](/vendo6.png)
+![vendo1](../../.gitbook/assets/vendo6.png)
 
 7. Provide the details for your target Mixpanel project. These can be found in your project settings.
 
-![vendo1](/vendo7.png)
+![vendo1](../../.gitbook/assets/vendo7.png)
 
 8. Finalize the connection settings. Provide a name for the integration and optionally provide the start date if you are importing historical data.
 
-![vendo1](/vendo8.png)
+![vendo1](../../.gitbook/assets/vendo8.png)

@@ -8,7 +8,7 @@ Mixpanel's JSON pipelines enable direct export of your Mixpanel data into an S3 
 
 ## Design
 
-![image](/dad7fe54-caf6-4952-bedc-90da7a4650da.png)
+![image](../../.gitbook/assets/dad7fe54-caf6-4952-bedc-90da7a4650da.png)
 
 Mixpanel exports data to your S3 bucket and simultaneously updates the necessary schema in the AWS Glue Data Catalog. This allows seamless integration with [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html) for querying your data.
 
@@ -28,7 +28,7 @@ Mixpanel writes and updates schemas in your Glue instance, ensuring that new dat
 - Click **Databases** in the sidebar, then **Add database**.
 - Name your database and click **Create database**.
 
-![image](/230698403-de71ee8f-03c2-4528-abd7-94be5a5d1e30.png)
+![image](../../.gitbook/assets/230698403-de71ee8f-03c2-4528-abd7-94be5a5d1e30.png)
 
 ### Step 2: Create Data Modification Policy
 
@@ -197,8 +197,9 @@ Use the steps below, and refer to [IAM in Redshift Serverless](https://docs.aws.
 
 Create a new Redshift database or utilize an existing one. Here is how to create a new Redshift database:
 
-![image](/48198342-27dc-43b1-bab8-434b31f97e34.png)
-![image](/0867f1d8-3649-4f9e-b0d2-9a3b73cfbe97.png)
+![image](../../.gitbook/assets/48198342-27dc-43b1-bab8-434b31f97e34.png)
+
+![image](../../.gitbook/assets/0867f1d8-3649-4f9e-b0d2-9a3b73cfbe97.png)
 
 ### Step 5: Grant Privilege to Database User
 

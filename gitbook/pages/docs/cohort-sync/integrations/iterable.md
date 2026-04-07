@@ -12,11 +12,11 @@ You must be a Mixpanel project admin to use the Iterable data integration.
 
 To enable the integration, select Integrations under the Data Management tab in the top navigation bar.
 
-![iterable 1 Image](/iterable1.png)
+![iterable 1 Image](../../.gitbook/assets/iterable1.png)
 
 From the Integrations page, select the Insider dropdown, and select **Connect**.
 
-![iterable 2 Image](/iterable2.png)
+![iterable 2 Image](../../.gitbook/assets/iterable2.png)
 
 The Iterable integration page will show a green export icon and details about the integration after it is connected.
 
@@ -32,7 +32,7 @@ Select the cohort that you want to export. Click on the three-dot icon on the ri
 
 Click Export to > Iterable. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![iterable 3 Image](/iterable3.png)
+![iterable 3 Image](../../.gitbook/assets/iterable3.png)
 
 ## Sync Types
 
@@ -50,7 +50,7 @@ You must log in to Iterable to use the Mixpanel Cohorts to send campaigns.
 
 The Mixpanel Cohort is available in the Audience list. Mixpanel exports cohort data as `mixpanel_<Cohort Name>_<Cohort ID>`.
 
-![iterable 4 Image](/Iterable4.png)
+![iterable 4 Image](../../.gitbook/assets/Iterable4.png)
 
 ## Matching Users between Mixpanel and Iterable
 
@@ -58,7 +58,7 @@ The Mixpanel Cohort is available in the Audience list. Mixpanel exports cohort d
 
 The best way to match users from Mixpanel to Iterable is to grab the value displayed as `userId` in Iterable and store it as a profile property for the user in Mixpanel under the name `$iterable_user_id`. This also prevents Iterable from overwriting the Iterable User ID with the Mixpanel Distinct ID upon cohort sync from Mixpanel. For context, the value you should store as `$iterable_user_id` in the Mixpanel profile would look like this in Iterable:
 
-![Iterable's user ID](/iterable_user_id.png)
+![Iterable's user ID](../../.gitbook/assets/iterable_user_id.png)
 
 Iterable uses an email address to match users from the cohort with users from their system. The integration will fail if an email address is not sent. In order to use this integration, you must set email as a user profile property.
 

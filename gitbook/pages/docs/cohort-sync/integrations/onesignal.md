@@ -24,7 +24,7 @@ Follow these steps to enable the integration with OneSignal:
 If you set a User ID Property, it should be a Mixpanel user property that matches the OneSignal External ID. If you do not select one, Mixpanel will default to using the `$onesignal_user_id` property to match users between OneSignal and Mixpanel. See more about [matching users between OneSignal and Mixpanel](./onesignal.md#matching-users-between-onesignal-and-mixpanel).
 {% endhint %}
 
-![OneSignal 2 Image](/onesignal6.png)
+![OneSignal 2 Image](../../.gitbook/assets/onesignal6.png)
 
 3. You will need to provide two credentials to authorize the connection: **API Key and App ID**. You can find these values in your **OneSignal settings** page. The OneSignal integration will show a **Connected** tag in the UI once the connection succeeds. 
 
@@ -47,11 +47,11 @@ To export a cohort to OneSignal:
 
 1. Navigate to Cohorts by clicking in the **Data Management** tab and select **Cohorts**.
 
-![OneSignal 3 Image](/onesignal3.png)
+![OneSignal 3 Image](../../.gitbook/assets/onesignal3.png)
 
 2. Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort and click **Export to OneSignal**.
 
-![OneSignal 4 Image](/onesignal4.png)
+![OneSignal 4 Image](../../.gitbook/assets/onesignal4.png)
 
 ## Sync Types
 This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
@@ -66,7 +66,7 @@ In dynamic sync, Mixpanel initiates sync between a cohort and OneSignal every fi
 
 Once the export completes, you will see a Segment reflecting the set of users from your Mixpanel cohort:
 
-![OneSignal 5 Image](/onesignal5.png)
+![OneSignal 5 Image](../../.gitbook/assets/onesignal5.png)
 
 ## OneSignal Events into Mixpanel & MTU exemptions
 

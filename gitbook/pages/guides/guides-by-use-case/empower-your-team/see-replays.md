@@ -1,6 +1,6 @@
 # Turn Clicks into Clarity: Best Practices for Heatmaps & Session Replay
 
-Discover what users really experience—and turn those insights into action. This Guide shows you how to use [Heatmaps](../../session-replay/heatmaps.md) and [Session Replay](../../session-replay.md) together to quickly spot friction, understand behavior, and drive better product decisions.
+Discover what users really experience—and turn those insights into action. This Guide shows you how to use [Heatmaps](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/session-replay/heatmaps) and [Session Replay](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/session-replay) together to quickly spot friction, understand behavior, and drive better product decisions.
 
 ---
 
@@ -101,7 +101,7 @@ Heatmaps are your first stop when you want to **see interaction trends at scale.
 **Pro tip:** Use *Click Maps* for precision and *Traditional Heatmaps* for broader engagement patterns. Click Maps provide precise insights on dynamic pages with modals or dropdowns.
 {% endhint %}
 
-Learn more about [Click Maps and Traditional Heatmaps](../../session-replay/heatmaps.md#overview).
+Learn more about [Click Maps and Traditional Heatmaps](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/session-replay/heatmaps#overview).
 
 ---
 
@@ -158,7 +158,7 @@ Session Replay gives full visibility into user behavior—but it also introduces
 - Test across devices, especially for mobile SDKs and embedded web views.
 - Review your company's privacy notice and legal compliance before roll-out.
 
-Learn more about [Session Replay Privacy Controls](../../session-replay/session-replay-privacy-controls.md).
+Learn more about [Session Replay Privacy Controls](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/session-replay/session-replay-privacy-controls).
 
 ---
 
@@ -195,9 +195,9 @@ Ensure what you are tracking capture key behaviors so you can validate results a
 
 **Strengthen your workflow with related features:**
 
-- [Annotations](../../features/annotations.md): Add notes to your reports to document findings and experiments.
-- [Alerts](../../features/alerts.md): Set notifications for spikes or drops in engagement or friction.
-- [Experiments](../../experiments.md): Validate your hypotheses by testing product changes and measuring lift.
+- [Annotations](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/annotations): Add notes to your reports to document findings and experiments.
+- [Alerts](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/alerts): Set notifications for spikes or drops in engagement or friction.
+- [Experiments](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/experiments): Validate your hypotheses by testing product changes and measuring lift.
 
 ---
 
@@ -209,4 +209,4 @@ Ensure what you are tracking capture key behaviors so you can validate results a
 - Safeguard user privacy during implementation and QA.
 - Turn your findings into shared, actionable insights.
 
-📚 **Go deeper:** Explore the Mixpanel Docs on [Heatmaps](../../session-replay/heatmaps.md) and [Session Replay](../../session-replay.md).
+📚 **Go deeper:** Explore the Mixpanel Docs on [Heatmaps](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/session-replay/heatmaps) and [Session Replay](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/session-replay).

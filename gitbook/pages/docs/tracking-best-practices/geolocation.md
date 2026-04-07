@@ -40,7 +40,7 @@ In summary, here is the order of operations:
 IP address is an approximation of location. For more granular precision, [set your location using latitude and longitude](./geolocation.md#define-latitude-and-longitude).
 {% endhint %}
 
-![geolocation_parsing.png](/geolocation_parsing.png)
+![geolocation_parsing.png](../.gitbook/assets/geolocation_parsing.png)
   
 ## Manual Geolocation Tracking
 

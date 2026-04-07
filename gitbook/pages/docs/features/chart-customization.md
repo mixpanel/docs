@@ -16,7 +16,7 @@ Axis customization is available for all visualizations with a y-axis. The suppor
 
 ### Left & Right Y-Axis
 
-![Left Axis](/left-axis.png)
+![Left Axis](../.gitbook/assets/left-axis.png)
 
 For each of the left and right y-axes, you have access to several customizations:
 
@@ -29,7 +29,7 @@ For each of the left and right y-axes, you have access to several customizations
 
 ### X-Axis
 
-![X Axis](/x-axis.png)
+![X Axis](../.gitbook/assets/x-axis.png)
 
 For the x-axis, you have access to the follow customizations:
 
@@ -38,13 +38,13 @@ For the x-axis, you have access to the follow customizations:
 
 ### Axis Assignment
 
-![Axis Assigment](/axis-assignment.png)
+![Axis Assigment](../.gitbook/assets/axis-assignment.png)
 
 For every metric in your report, they by default assigned to the left y-axis. To visualize correlation between different metrics on different scales, it can be useful to use a secondary y-axis on the right. You can select the left or right buttons for each metric to choose which axis the metric is assigned to.
 
 ## Metric Units
 
-![Metric Unit](/metric-unit.png)
+![Metric Unit](../.gitbook/assets/metric-unit.png)
 
 You will find unit configuration in the bottom left of every metric block. This space allows you to configure various aspects of a metric. These selections will update in the chart, tooltip, and the table below the chart. This is saveable to your report, and it will in turn persist to the board view.
 
@@ -55,13 +55,13 @@ Available configurations:
 
 ### Units on Formula
 
-![Formula Unit](/lexicon-formula-unit.png)
+![Formula Unit](../.gitbook/assets/lexicon-formula-unit.png)
 
 For any formula, you can save the unit configuration associated with it. In the example above, this formula is a percentage based metric. The `%` unit is saved to this formula. Any future usage of this formula across all reports will automatically use the `%` unit.
 
 ### Units on Numeric Properties
 
-![Numeric Property Unit](/lexicon-property-unit.png)
+![Numeric Property Unit](../.gitbook/assets/lexicon-property-unit.png)
 
 In lexicon, for any numeric property you can save the unit configuration associated with it. For example, if you have a `price` property that you know is in `$`. You can set this, and any future usage of this property in measurements will default to using `$` so this no longer needs to be set on every usage.
 
@@ -73,17 +73,17 @@ Currently, theme and color customization is available only for customers on our 
 
 ### Selecting a Theme
 
-![Select Theme](/theme-select-1-updated.png)
+![Select Theme](../.gitbook/assets/theme-select-1-updated.png)
 
 When creating a Mixpanel report, look for the "Chart" tab in the query builder panel. This is located in the top right of the page by default. After selecting "Chart", go to the "Theme" section.
 
-![Select Theme](/theme-select-2.png)
+![Select Theme](../.gitbook/assets/theme-select-2.png)
 
 You'll see the current default theme, along with other theme options. You can select any of the available themes to apply to your report. You can also [create](./chart-customization.md#creating-&-editing-a-theme) a theme.
 
 ### Creating & Editing a Theme
 
-![Create Theme](/theme-create.png)
+![Create Theme](../.gitbook/assets/theme-create.png)
 
 Hit "New" in the theme section to create a theme. You will be able to create a theme using the currently selected theme as the starting point. You are able to make these modifications to a theme:
 - selecting a color in the theme, then typing in a color hex code, or using the color picker to select the color
@@ -93,7 +93,7 @@ Hit "New" in the theme section to create a theme. You will be able to create a t
 
 Once you are satisfied with the theme, you can press "Apply" to apply the theme for only this report. You can also choose to [save](./chart-customization.md#saving-a-theme) your theme to reuse in other reports.
 
-![Edit Theme](/theme-edit.png)
+![Edit Theme](../.gitbook/assets/theme-edit.png)
 
 When in the theme panel, for any saved theme that you have access to, select the overflow in the top right of the theme, then select "Edit". You'll be able to make any edits to the theme. When ready, select "Update Theme" to completing editing the theme.
 
@@ -101,26 +101,26 @@ When in the theme panel, for any saved theme that you have access to, select the
 
 After creating or making modifications to a theme, select "Save Theme".
 
-![Save Theme](/theme-save.png)
+![Save Theme](../.gitbook/assets/theme-save.png)
 
 You'll be able to see the colors of the theme in light and dark mode. After giving the theme a name, you can save your theme. You can also choose to give other users in your project access to your theme. Choose "Viewer" if you wish other users to have access to your theme, but not to modify it. Choose "Editor" if you wish other users to have full access to your theme.
 
 ### Deleting a Theme
 
-![Delete Theme](/theme-delete.png)
+![Delete Theme](../.gitbook/assets/theme-delete.png)
 
 When in the theme panel, for any theme that you have access to, select the overflow in the top right of the theme, then select "Delete". You'll be prompted to confirm, and then the theme will be deleted. Any existing report that was using the theme will continue using the same colors of the theme, as if it were using an unsaved theme.
 
 ### Setting a Project Default Theme
 
-![Project Default Theme](/theme-customization-default.png)
+![Project Default Theme](../.gitbook/assets/theme-customization-default.png)
 
 You can set a theme as the default theme for a project. This means that any report that has not configured a theme and any new report created will use the chosen theme going forward. By default, every project uses the "Mixpanel" theme. In "Project Settings", under "Overview", go to "Color Theme Settings" and hit the edit icon. Then select your desired theme and press save.
 
 ## Segment Coloring
 
-![Segment Color](/segment-coloring-1.png)
+![Segment Color](../.gitbook/assets/segment-coloring-1.png)
 
 Select a segment from the legend and set the color for that segment. By default, Mixpanel will automatically assign a color for the segment, but you have the option to choose a color from the current theme, or choosing a color from outside the theme. You are able to select the segment from the legend in either Boards or in report.
 
-![Segment Color](/segment-coloring-2.png)
+![Segment Color](../.gitbook/assets/segment-coloring-2.png)

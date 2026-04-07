@@ -6,15 +6,15 @@
 
 ## Before You Begin
 
-Revenue analytics in Mixpanel requires Warehouse Connectors. To analyze revenue, you will need to sync your billing or transactional data (for example, from your payment platform or internal finance systems) into Mixpanel using [Warehouse Connectors](../../tracking-methods/warehouse-connectors.md).
+Revenue analytics in Mixpanel requires Warehouse Connectors. To analyze revenue, you will need to sync your billing or transactional data (for example, from your payment platform or internal finance systems) into Mixpanel using [Warehouse Connectors](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/warehouse-connectors).
 
 After your warehouse is connected, set up the data structure that fits your business model:
-- **Transactional revenue** (e.g. one-time purchases, orders): Use [Mirror](../../tracking-methods/warehouse-connectors.md#mirror) to bring purchase events from your warehouse into Mixpanel. Mirror automatically syncs new transactions on a scheduled cadence. 
-- **Subscription-based revenue** (e.g. recurring plans, renewals): Use [Profile History](../../tracking-methods/warehouse-connectors.md#user-profiles) to track subscription changes, upgrades, and cancellations over time.
+- **Transactional revenue** (e.g. one-time purchases, orders): Use [Mirror](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/warehouse-connectors#mirror) to bring purchase events from your warehouse into Mixpanel. Mirror automatically syncs new transactions on a scheduled cadence. 
+- **Subscription-based revenue** (e.g. recurring plans, renewals): Use [Profile History](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/warehouse-connectors#user-profiles) to track subscription changes, upgrades, and cancellations over time.
 
 Once your data source is connected, you can link behavioral data (from Mixpanel events) with business data (from Mirror, Profile History, and Warehouse Connectors) to understand how user actions drive revenue outcomes.
 
-📖 [Set up Warehouse Connectors →](../../tracking-methods/warehouse-connectors.md#step-1-connect-a-warehouse)
+📖 [Set up Warehouse Connectors →](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/warehouse-connectors#step-1-connect-a-warehouse)
 
 {% hint style="info" %}
 **Pro tip:** Make sure your revenue tables include shared identifiers such as `user_id` or `account_id` so Mixpanel can link purchases back to user actions.
@@ -92,7 +92,7 @@ Note: Warehouse Connector data updates on a scheduled sync (not in real time), s
 **Pro tip:** Ask a finance or data engineer to confirm that your daily imports are up to date and correctly formatted.
 {% endhint %}
 
-📖 [Learn more about data validation →](../../tracking-best-practices/debugging.md)
+📖 [Learn more about data validation →](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/debugging)
 
 ---
 
@@ -110,9 +110,9 @@ Tracking ARPU helps you understand how much revenue each active user generates d
 
 **Tools to Help**
 
-- [Insights](../../reports/insights.md): Visualize ARPU trends and spot spikes or dips after product or pricing changes.
-- [Funnels](../../reports/funnels/funnels-overview.md): See how user behaviors along the purchase path affect downstream revenue.
-- [Cohorts](../../users/cohorts.md): Compare high-value cohorts (e.g. annual plan users) with lower-value ones to identify drivers of growth.
+- [Insights](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/insights): Visualize ARPU trends and spot spikes or dips after product or pricing changes.
+- [Funnels](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/reports/funnels/funnels-overview): See how user behaviors along the purchase path affect downstream revenue.
+- [Cohorts](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/users/cohorts): Compare high-value cohorts (e.g. annual plan users) with lower-value ones to identify drivers of growth.
 
 **Example:** Explore how ARPU looks in practice in our [E-commerce demo project](https://mixpanel.com/s/300OIR). This sample dashboard uses an **Insights** report to calculate revenue per user over time, helping teams visualize revenue trends in real Mixpanel data.
 
@@ -127,9 +127,9 @@ ARPU is just one approach to revenue analysis.
 
 Revenue analytics is only valuable if it drives decisions. Once you have identified what moves the needle, turn insights into action across teams.
 
-- Share [Boards](../../boards.md) with product and growth teams to align on revenue drivers.
-- Set up [Alerts](../../features/alerts.md) to notify you of significant revenue drops or spikes.
-- Add [Annotations](../../features/annotations.md) to track launches, pricing changes, or campaigns that may explain revenue shifts.
+- Share [Boards](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/boards) with product and growth teams to align on revenue drivers.
+- Set up [Alerts](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/alerts) to notify you of significant revenue drops or spikes.
+- Add [Annotations](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/annotations) to track launches, pricing changes, or campaigns that may explain revenue shifts.
 
 {% hint style="info" %}
 **Pro tip:** When you notice a revenue dip or spike, dig into which user actions changed around the same time—and share those findings with product or marketing so they can act on them quickly.  Set up a quarterly review to ensure data stays current and your insights remain actionable.

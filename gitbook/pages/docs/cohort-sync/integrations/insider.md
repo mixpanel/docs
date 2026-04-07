@@ -18,7 +18,7 @@ You must be a Mixpanel project admin to enable the Insider integration.
 If you set a User ID Property, it should be a Mixpanel user property that matches the email or phone number set in Insider.
 {% endhint %}
 
-![insider 2 Image](/insider2.png)
+![insider 2 Image](../../.gitbook/assets/insider2.png)
 
 3. The Insider integration will show a **Connected** tag in the UI once the connection succeeds.
 
@@ -38,7 +38,7 @@ Select the cohort that you want to export. Click on the three-dot icon on the ri
 
 Click Export to > Insider. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-![insider 3 Image](/insider3.png)
+![insider 3 Image](../../.gitbook/assets/insider3.png)
 
 ## Sync Types
 
@@ -54,4 +54,4 @@ In dynamic sync, Mixpanel initiates sync between a cohort and Insider every 15 m
 
 Once the export completes, you will see a custom segment reflecting the set of users from your Mixpanel cohort. (e.g. "7days-cart-abandoners")
 
-![insider 4 Image](/insider4.png)
+![insider 4 Image](../../.gitbook/assets/insider4.png)

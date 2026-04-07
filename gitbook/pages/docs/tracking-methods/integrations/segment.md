@@ -43,19 +43,19 @@ Below is a high-level summary of the steps to setup the Mixpanel destination:
 
 1. In Segment, click the **Catalog** tab, filter for **Destinations**, and select Mixpanel to add the destination.
 
-![segment_catalog](/segment_catalog_destination.png)
+![segment_catalog](../../.gitbook/assets/segment_catalog_destination.png)
 
 2. Select a Segment source to stream to the destination.
 
-![segment_source](/segment_source.png)
+![segment_source](../../.gitbook/assets/segment_source.png)
 
 3. Set a name for the destination then choose a framework. We recommend **Actions** destination. ([Learn more about the framework options](https://segment.com/blog/mixpanel-actions-vs-classic-destinations-in-segment/))
 
-![segment_action_select](/segment_action_select.png)
+![segment_action_select](../../.gitbook/assets/segment_action_select.png)
 
 4. Provide your Mixpanel project credentials in the Basic Settings, then click the toggle at the bottom to enable the destination. The project credentials are found in [your project settings](https://mixpanel.com/settings/project/).
 
-![segment_enable_setting](/segment_enable_setting.png)
+![segment_enable_setting](../../.gitbook/assets/segment_enable_setting.png)
 
 ## Data Mapping
 
@@ -87,7 +87,7 @@ You can customize the preset actions mapping or create new mappings to further c
 
 To edit an existing mapping, click the "..." button in the actions table. To create a new mapping, click the "New Mapping" button in the top right of the UI.
 
-![segment_mapping](/segment_mapping.png)
+![segment_mapping](../../.gitbook/assets/segment_mapping.png)
 
 Editing or creating new mappings is done in 4 steps.
 
@@ -97,7 +97,7 @@ Define the [conditions](https://segment.com/docs/connections/destinations/action
 
 Let's say you want to create a mapping that is triggered for any events tracked on Android. In this case, we can set the condition to **Event Type** equal `Track` and **Event Property** `platform` equal `android`:
 
-![segment_condition](/segment_condition.png)
+![segment_condition](../../.gitbook/assets/segment_condition.png)
 
 **2. Sample Payload**
 
@@ -107,7 +107,7 @@ Ensure that this example payload matches the condition you set above so that the
 
 Since we're creating a mapping for any events tracked on Android, we insert a test event payload that includes the property `platform` set to `android`:
 
-![segment_sample_payload](/segment_sample_payload.png)
+![segment_sample_payload](../../.gitbook/assets/segment_sample_payload.png)
 
 **3. Edit Mapping**
 
@@ -117,15 +117,15 @@ On the left side of the UI, you can configure the output value using the availab
 
 If we want to append "ANDROID" to the names of events coming from this Android actions mapping, specify this in the Event Name row on the left-hand side:
 
-![segment_mapping_name](/segment_mapping_name.png)
+![segment_mapping_name](../../.gitbook/assets/segment_mapping_name.png)
 
 To include the `messageId` from the sample Segment payload as a Mixpanel event property called "Segment Message ID", edit the Event Properties mapping:
 
-![segment_mapping_properties](/segment_mapping_properties.png)
+![segment_mapping_properties](../../.gitbook/assets/segment_mapping_properties.png)
 
 {% hint style="info" %}
 By default, the track preset takes the entire `properties` object from the Segment payload and uses it to generate "Event Properties" for the Mixpanel event payload. To edit the event properties mapping, you will need to manually define each property key-value pairs manually. 
-    ![segment_mapping_properties_edit](/segment_mapping_properties_edit.png)
+![segment_mapping_properties_edit](../../.gitbook/assets/segment_mapping_properties_edit.png)
 {% endhint %}    
 
 **4. Preview Payload**
@@ -136,7 +136,7 @@ Once you are done with configuring the mapping, preview how your sample payload 
 Note that while the Event Content tab is helpful for showing how your properties are getting mapped through the Action, your payload will go through additional processing before getting ingested in Mixpanel. Send the test payload to destination in order to preview how your event will appear inside your project.
 {% endhint %}
 
-![segment_test_event](/segment_test_event.png)
+![segment_test_event](../../.gitbook/assets/segment_test_event.png)
 
 ## Implementing Group Analytics using Segment
 There are 4 parts to implementing Group Analytics via Segment. Learn more about [Group Analytics here](../../data-structure/group-analytics.md) and the Segment Group Spec here.
@@ -159,7 +159,7 @@ Additionally, make sure the "Group ID" is mapped to the value of the groupId.
 
 Since we set the group key to `company_id` earlier, we manually enter it as the Group Key in the mapping. The `groupId` is the default key that Segment uses as the identifier for a group, so we map it to the Group ID.
 
-![segment_group_mapping](/segment_group_mapping.png)
+![segment_group_mapping](../../.gitbook/assets/segment_group_mapping.png)
 
 **3. Create Group Profiles**
 
@@ -344,7 +344,7 @@ In analytics.js, a Page call is included in the initialization snippet by defaul
 
 For the Preset Action, the default Event Name mapping for page call is `Viewed {name}`. To consolidate event names (e.g. "Page Viewed" or "Loaded a Page"), modify the Event Name mapping.
 
-![segment_page_name_mapping](/segment_page_name_mapping.png)
+![segment_page_name_mapping](../../.gitbook/assets/segment_page_name_mapping.png)
 
 **5. How can I filter for events that originate from Segment in my project?**
 

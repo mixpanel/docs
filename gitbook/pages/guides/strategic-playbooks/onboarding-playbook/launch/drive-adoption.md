@@ -51,8 +51,8 @@ Adoption isn't a one-time event—it's a practice. The goal is to weave Mixpanel
 **Here is how to sustain it:**
 
 - **Celebrate data wins.** Highlight teams that made impactful decisions using Mixpanel.
-- **Automate reminders.** Use [alerts](../../../features/alerts.md) to deliver insights automatically.
-- **Document learnings.** Add [annotations](../../../features/annotations.md) to track what happened when metrics changed.
+- **Automate reminders.** Use [alerts](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/alerts) to deliver insights automatically.
+- **Document learnings.** Add [annotations](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/features/annotations) to track what happened when metrics changed.
 - **Review usage trends.** Periodically review Mixpanel usage to see which reports or dashboards are most valuable.
 
 {% hint style="warning" %}

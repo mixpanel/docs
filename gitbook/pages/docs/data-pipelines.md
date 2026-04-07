@@ -63,19 +63,19 @@ After configuring your destination, initiate data export in **Integrations** pag
 {% step %}
 ## Click the settings button and select Integrations.
 
-![create_pipeline1](/create_pipeline1.png)
+![create_pipeline1](.gitbook/assets/create_pipeline1.png)
 {% endstep %}
 
 {% step %}
 ## Select the provider of your warehouse destination, and click "+ Create Pipeline".
 
-![create_pipeline2](/create_pipeline2.png)
+![create_pipeline2](.gitbook/assets/create_pipeline2.png)
 {% endstep %}
 
 {% step %}
 ## Provide the details of your destination to create the pipeline.
 
-![create_pipeline3](/create_pipeline3.png)
+![create_pipeline3](.gitbook/assets/create_pipeline3.png)
 {% endstep %}
 
 {% endstepper %}

@@ -67,7 +67,7 @@ You can see your MTU consumption in your Organization Settings:
 
 To view detailed historical data usage, or download a CSV of usage from the last 12 months for each project, click on “View Historical Usage” in the top right of Plan Details & Billing.
 
-![Plan Details and Billing](/mtu-usage-details.png)
+![Plan Details and Billing](../.gitbook/assets/mtu-usage-details.png)
 
 View the top events contributing towards your MTU count by creating a monthly Insights report and querying $all_mtu_events which filters out event names excluded from Mixpanel's MTU calculation and applying a breakdown by “Event Name” (example report)
 
@@ -83,7 +83,7 @@ For example, let’s say you are on a Growth plan including 1,000 MTUs:
 
 We recommend upgrading to a pricing plan that fits all your traffic. View the additional data rate for your paid plan in Organization Settings > Plan Details & Billing:
 
-![Additional Data Rate](/additional-data-rate.png)
+![Additional Data Rate](../.gitbook/assets/additional-data-rate.png)
 
 ## What caused an unexpected spike in my MTU count?
 

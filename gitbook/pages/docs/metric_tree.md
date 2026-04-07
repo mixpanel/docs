@@ -9,7 +9,7 @@ Mixpanel Metric Tree is a "live" logical decision-making framework used to repre
 
 It is one space that simultaneously depicts both quantitative and qualitative data along with additional context, making it possible to discuss insights as a team across functions and make data-driven decisions together.
 
-![image](/metrictree1.png)
+![image](.gitbook/assets/metrictree1.png)
 
 ## Use Cases
 - Data-driven decision: Clearly articulate what’s working vs not by looking at how your input metrics and initiatives are impacting your top business outcomes
@@ -27,7 +27,7 @@ The idea is to think through your strategy and the various hypotheses without co
 - Add empty state metric cards to the tree. To create a metric card, choose `Metric` from the toolbar below.
 - You can name these metric cards and link the connections. You can also add strategy cards to show the initiatives in place
 
-![image](/metrictree2.png)
+![image](.gitbook/assets/metrictree2.png)
 
 #### Option: Build with AI
 Don't know where to start? Skip the blank canvas and let AI draft your first metric tree. When creating a new tree, click "Build with AI" under one of the two available starter templates.
@@ -61,7 +61,7 @@ Click on connect metric, and connect the metric card to the metric with data. Th
 **NOTE**: We highly recommend saving metrics in the metric tree, especially those on the higher levels, so others on the project use only these standardized, verified metrics. Saved Metrics has additional abilities, such as adding owners to it.
 {% endhint %}
 
-![image](/metrictree3.png)
+![image](.gitbook/assets/metrictree3.png)
 
 ### Step 3: Add more context to your metrics 
 Make your tree more actionable for yourself and the team by adding context to it - whether it is pinned content with some interesting deep dive reports, or examining correlation and finding interesting insights to add to the logbook. You can learn more [here](./metric_tree.md#customize-each-metric).
@@ -89,7 +89,7 @@ For example, if I wanted a QoQ view instead of YoY, I would select:
 - **Compare to:** Previous quarter
 - **Interval:** week; Interval determines the number of data points you have displayed in the metric line chart
 
-![image](/metrictree4.png)
+![image](.gitbook/assets/metrictree4.png)
 
 {% hint style="info" %}
 - You can change the default time comparison settings for your tree, i.e, all metrics, by clicking on `Apply to All Metrics` after setting up the right time ranges for one metric
@@ -105,19 +105,19 @@ For any eligible metric, you can click on the owner icon and assign an owner
 You can assign an owner only to a [saved metric](./features/saved-metrics-and-behaviors.md)
 {% endhint %}
 
-![image](/metrictree5.png)
+![image](.gitbook/assets/metrictree5.png)
 
 ## Pin contextual reports & boards to the metric, to enable deep-dive
 
 Click on a metric. When the query panel opens, navigate to the Context tab. Within the Context tab, pin reports and board in the ‘Pinned’ tab
 
-![image](/metrictree6.png)
+![image](.gitbook/assets/metrictree6.png)
 
 ## Add important insights to the logbook for future reference 
 
 Click on a metric. When the query panel opens, navigate to the Context tab. Within the Context tab, add entries into the ‘Logbook’ tab
 
-![image](/metrictree7.png)
+![image](.gitbook/assets/metrictree7.png)
 
 ## FAQ
 
@@ -134,7 +134,7 @@ This means the generated tree is a starting hypothesis, not a data-validated mod
 
 For example, if you want to look at how the metric tree looked at the end of Q1, i.e, March 2025, you could set "As of 31 March 2025". All the metrics in the metric tree which are based on last 30 Days, or the last 3 months etc, will look at measuring the value of last 30D as of 31 March 2025, i.e, 2-31 March 2025, instead of last 30D as of today.
 
-![image](/metrictree8.png)
+![image](.gitbook/assets/metrictree8.png)
 
 ### What does Filtering a tree do? 
 
@@ -158,7 +158,7 @@ No, it doesn’t have to. We generally ask people to start a tree at L2 or L3 le
 ### What is correlation? How do I access it?  
 Access the 3-dot overflow menu on the top right of the metric tree. Click on Show/ Hide > Show Correlation. Correlation numbers should show up across all the edges, i.e the connection between two metric cards.  
 
-![image](/metrictree9.png)
+![image](.gitbook/assets/metrictree9.png)
 
 Mixpanel shows Pearson Correlation Coefficient. It measures the strength and direction of a linear relationship between two time-series data sets. It produces a value between **-1 and 1**
 

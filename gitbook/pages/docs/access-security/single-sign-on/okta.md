@@ -37,11 +37,11 @@ B. If you create a custom app, you must fill the form found in the **Configure S
 
 The following screenshot highlights what you should place in the fields:
 
-![Okta Config SAML 1 Image](/okta_config_1.png)
+![Okta Config SAML 1 Image](../../.gitbook/assets/okta_config_1.png)
 
 To add the Requestable SSO URLs field, navigate to Advanced Settings: 
 
-![Okta Config SAML 2 Image](/okta_config_2.png)
+![Okta Config SAML 2 Image](../../.gitbook/assets/okta_config_2.png)
 
 Additionally, it is required that you use `email` as an attribute statement, other attributes we recommend include `firstName` and `lastName`.
 
@@ -51,7 +51,7 @@ Additionally, it is required that you use `email` as an attribute statement, oth
 | lastName   | user.lastName  |
 | email      | user.email     |
 
-![Okta Config SAML 2 Image](/okta_config_3.png)
+![Okta Config SAML 2 Image](../../.gitbook/assets/okta_config_3.png)
 
 ### Obtain Information From Okta
 
@@ -61,7 +61,7 @@ To access this information, first select the select the Mixpanel app under the *
 
 In the right **About** column under the **SAML Setup** section, click **View SAML setup instructions**.
 
-![Okta Info 1 Image](/Admin/Okta/okta_saml_setup_instructions_fixed.png)
+![Okta Info 1 Image](../../.gitbook/assets/Admin/Okta/okta_saml_setup_instructions_fixed.png)
 
 #### Public Certificate
 
@@ -69,11 +69,11 @@ The X.509 certificate allows users signing in through a third-party identity pro
 
 Click **Download Certificate** in the second entry to download your certificate.
 
-![Okta Info 2 Image](/okta_info2.png)
+![Okta Info 2 Image](../../.gitbook/assets/okta_info2.png)
 
 You can also find the Public Certificate in the **Sign On** tab of the **Mixpanel** app. Scroll down to the **SAML Signing Certificates** section. Click **Actions** for the SHA-2 certificate and **Download certificate**. 
 
-![Okta Certificate Download Image](/Admin/Okta/okta_download_certificate.png)
+![Okta Certificate Download Image](../../.gitbook/assets/Admin/Okta/okta_download_certificate.png)
 
 If you Public Certificate is expired or compromised, click **Generate new certificate** to generate a new certificate to upload in Mixpanel.
 
@@ -81,13 +81,13 @@ If you Public Certificate is expired or compromised, click **Generate new certif
 
 Your Authentication URL is in the third entry labeled **Redirect Login URL**.
 
-![Okta Info 3 Image](/okta_info3.png)
+![Okta Info 3 Image](../../.gitbook/assets/okta_info3.png)
 
 #### Issuer URL
 
 You will find your Issuer URL in the third entry labeled **Identity Provider Issuer**.
 
-![Okta Info 4 Image](/okta_info4.png)
+![Okta Info 4 Image](../../.gitbook/assets/okta_info4.png)
 
 ### Enable SSO
 
@@ -106,7 +106,7 @@ The following prerequisites must be met to set up SCIM provisioning:
 - The `Username` value in Okta must be an email address with a domain that you've claimed.
 - You need to have generated a SCIM OAuth token to use with the app. This token is located in **SCIM** menu of the **Access Security** tab in your Organization Settings. You will need to be an Organization Owner or Admin to access this.
 
-![Okta SCIM 1 Image](/Admin/Okta/sso_scim_token_updated_2024.png)
+![Okta SCIM 1 Image](../../.gitbook/assets/Admin/Okta/sso_scim_token_updated_2024.png)
 
 The following provisioning features are supported:
 
@@ -131,13 +131,13 @@ Note that it is advised you turn on **IDP Managed Access** if you are using SCIM
 
 1. Click the **Configure API Integration** button in Okta to begin.
 
-![Okta SCIM 2 Image](/okta_scim2.png)
+![Okta SCIM 2 Image](../../.gitbook/assets/okta_scim2.png)
 
 2. Check the **Enable API Integration** box, then enter your SCIM token.
 
 Select the supported features (Create / Update / Deactivate) you wish to enable:
 
-![Okta SCIM 3 Image](/okta_scim3.png)
+![Okta SCIM 3 Image](../../.gitbook/assets/okta_scim3.png)
 
 3. The following profile attributes are required to be sent from Okta to Mixpanel:
 - Username
@@ -145,11 +145,11 @@ Select the supported features (Create / Update / Deactivate) you wish to enable:
 - Family name
 - Primary email
 
-![Okta SCIM 4 Image](/okta_scim4.png)
+![Okta SCIM 4 Image](../../.gitbook/assets/okta_scim4.png)
 
 4. Select and assign the users you wish to provision:
 
-![Okta SCIM 5 Image](/okta_scim5.png)
+![Okta SCIM 5 Image](../../.gitbook/assets/okta_scim5.png)
 
 #### Troubleshooting
 

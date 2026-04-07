@@ -271,17 +271,15 @@ All of our sample code transparently retries and backoff from rate limit excepti
 <hr></hr>
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
-    You're Ready to Start Using Mixpanel
+You're Ready to Start Using Mixpanel
   </h2>
   <p>
-    It's time to create your first [report](../../reports.md) or use one
-    of our [many templates](../../boards/templates.md).
+It's time to create your first [report](../../reports.md) or use one
+of our [many templates](../../boards/templates.md).
   </p>
   <a href="https://mixpanel.com" class="button primary">Open Mixpanel</a>
 
 ## FAQ
-
-<div class="faqComponent" >
 
 <details>
 <summary>Does Mixpanel automatically track page views?</summary>

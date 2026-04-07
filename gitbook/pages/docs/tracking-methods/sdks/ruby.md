@@ -127,9 +127,9 @@ A few commonly used people methods are highlighted below:
 {% tab title="set_once()" %}
 The [`set_once()`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-set_once) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set profile properties without the risk of overwriting existing data.
+Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
 
     ```ruby
     # create an instance of the Mixpanel class
@@ -156,9 +156,9 @@ The [`set_once()`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html
 {% tab title="append()" %}
 The [`append()`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-append) method append values to a list profile property.
 
-    Use this method to add additional values to an existing list property instead of redefining the entire list.
+Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-    **Example Usage**
+**Example Usage**
 
     ```ruby
     # create an instance of the Mixpanel class
@@ -188,9 +188,9 @@ The [`append()`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#m
 {% tab title="union()" %}
 The [`union()`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-union) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
 
     ```ruby
     # create an instance of the Mixpanel class
@@ -214,9 +214,9 @@ The [`union()`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#me
 {% tab title="increment()" %}
 The [`increment()`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/People.html#method-i-increment) method increments a numeric property by a whole number.
 
-    Use this method to add to or subtract from your numeric property based on its current value.
+Use this method to add to or subtract from your numeric property based on its current value.
 
-    **Example Usage**
+**Example Usage**
   
     ```ruby
     # create an instance of the Mixpanel class
@@ -332,9 +332,9 @@ A few commonly used group methods are highlighted below:
 {% tab title="set_once()" %}
 The [`set_once()`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/Groups.html#method-i-set_once) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set group profile properties without the risk of overwriting existing data.
+Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
 
     ```ruby
     tracker = Mixpanel::Tracker.new(YOUR_MIXPANEL_TOKEN)
@@ -360,9 +360,9 @@ The [`set_once()`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/Groups.html
 {% tab title="unset()" %}
 The [`unset()`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/Groups.html#method-i-unset) method removes a group property from a group profile.
 
-    Use this method to delete unwanted group profile properties from a specific group profile.
+Use this method to delete unwanted group profile properties from a specific group profile.
 
-    **Example Usage**
+**Example Usage**
 
     ```ruby 
     tracker = Mixpanel::Tracker.new(YOUR_MIXPANEL_TOKEN)
@@ -383,9 +383,9 @@ The [`unset()`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/Groups.html#me
 {% tab title="union()" %}
 The [`union()`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/Groups.html#method-i-union) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list group profile property that only contains unique values without duplicates.
+Use this method to create a list group profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
 
     ```ruby 
     tracker = Mixpanel::Tracker.new(YOUR_MIXPANEL_TOKEN)
@@ -407,9 +407,9 @@ The [`union()`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/Groups.html#me
 {% tab title="remove()" %}
 The [`remove()`](https://mixpanel.github.io/mixpanel-ruby/Mixpanel/Groups.html#method-i-remove) method removes a value from a list-valued group profile property.
 
-    Use this method to remove specific values from a list without affecting all of the other values in the list.
+Use this method to remove specific values from a list without affecting all of the other values in the list.
 
-    **Example Usage**
+**Example Usage**
 
     ```ruby 
     tracker = Mixpanel::Tracker.new(YOUR_MIXPANEL_TOKEN)

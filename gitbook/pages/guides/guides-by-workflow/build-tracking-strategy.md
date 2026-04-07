@@ -8,7 +8,7 @@ This guide details how to create a tracking strategy that enables your team to c
 
 A tracking strategy is a plan for deciding **which events and properties to capture, how to name them, and how to manage them over time**.
 
-In Mixpanel, this means using the [data model](../data-structure/concepts.md) (events, users, and properties) intentionally, so your data is structured for the KPIs that matter most to your business.
+In Mixpanel, this means using the [data model](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/concepts) (events, users, and properties) intentionally, so your data is structured for the KPIs that matter most to your business.
 
 A tracking strategy is not just about what you log; it is about creating a shared framework so product, engineering, and analytics teams can trust the data and use it to answer business questions.
 
@@ -23,7 +23,7 @@ Events are the backbone of Mixpanel. Start by mapping out the key user actions t
 - ✅ **Do** choose events that represent meaningful behaviors connected to business goals.
 - ❌ **Do not** track every click or interaction simply because it is possible, since doing so can clutter your analysis.
 
-Learn more about [Events](../data-structure/events-and-properties.md).
+Learn more about [Events](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/events-and-properties).
 
 ### Use Event Properties to Add Context
 
@@ -39,13 +39,13 @@ Properties like `plan_type`, `payment_method`, or `device` can help keep your ev
 {% step %}
 ## Use consistent data types for predictable analysis.
 
-Consistency in [data types](../data-structure/property-reference/data-type.md) (e.g. string, numeric, or Boolean) ensures your metrics are accurate and comparable over time. For example, if a property is sometimes a string and sometimes a number, queries can break and charts can become unreliable.
+Consistency in [data types](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/property-reference/data-type) (e.g. string, numeric, or Boolean) ensures your metrics are accurate and comparable over time. For example, if a property is sometimes a string and sometimes a number, queries can break and charts can become unreliable.
 {% endstep %}
 
 {% step %}
 ## Attach session-level context as super properties.
 
-Promoting context like app version, device type, or campaign source to a [super property](../tracking-methods/sdks/javascript.md#setting-super-properties) auto-attaches it to every event, which saves engineering effort and guarantees important context is always available in your analysis.
+Promoting context like app version, device type, or campaign source to a [super property](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/sdks/javascript#setting-super-properties) auto-attaches it to every event, which saves engineering effort and guarantees important context is always available in your analysis.
 {% endstep %}
 
 {% endstepper %}
@@ -60,7 +60,7 @@ Events capture behavior, while user profiles capture who the user is today (e.g.
 
 For example, a user property for `current_country = Singapore` can be compared with an event geolocation property showing where they logged in previously. A user who travels often may track events in different locations despite their current location being somewhere else.
 
-Learn more about [User Profiles](../data-structure/user-profiles.md).
+Learn more about [User Profiles](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/user-profiles).
 
 ### Tips for Choosing Properties
 
@@ -120,10 +120,10 @@ Your strategy only works if it is shared and enforced. Keep a **living tracking 
 
 **Tools to Help with Data Governance**
 
-- [Tracking Plan Template](../tracking-best-practices/tracking-plan.md): Organize event names, properties, and owners in one place.
-- [Lexicon](../data-governance/lexicon.md): Add descriptions, assign owners, and hide deprecated events right in Mixpanel.
+- [Tracking Plan Template](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-best-practices/tracking-plan): Organize event names, properties, and owners in one place.
+- [Lexicon](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance/lexicon): Add descriptions, assign owners, and hide deprecated events right in Mixpanel.
 
-Learn more about [Data Governance](../data-governance.md).
+Learn more about [Data Governance](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-governance).
 
 ## Key Takeaways
 

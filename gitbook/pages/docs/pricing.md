@@ -46,7 +46,7 @@ If you are currently tracking data, you can see your events’ consumption in yo
 
 From here, you can quickly view this billing period’s usage on the right side of the screen as well as the historical one by clicking the “View Historical Usage” link:
 
-![Events Usage](/events-usage.png)
+![Events Usage](.gitbook/assets/events-usage.png)
 
 ### Group Analytics Add-On
 
@@ -78,7 +78,7 @@ You can only update billing information if you have “Owner” or “Billing Ad
 - Click on the gear icon at the upper-right corner of the purple menu at Mixpanel and then select “Organization Settings”.
 - Then select at the left-hand menu “Plan Details & Billing” and click on “Manage Billing & Payment” as shown below.
 
-![Manage Billing & Payment](/manage-billing-and-payment.png)
+![Manage Billing & Payment](.gitbook/assets/manage-billing-and-payment.png)
 
 ### Troubleshoot payment issues
 
@@ -86,15 +86,15 @@ If you received a notification that your payment did not go through (via email, 
 
 1. Click on “Update the Payment Method” at the notification:
    
-![Update Payment Method](/update-payment-method.png)
+![Update Payment Method](.gitbook/assets/update-payment-method.png)
 
 2. Edit the credit card used clicking on the “edit-pencil” icon:
    
-![Edit Payment Method](/edit-payment-method.png)
+![Edit Payment Method](.gitbook/assets/edit-payment-method.png)
 
 3. Click on “Rerun payment”:
    
-![Rerun Payment](/rerun-payment.png)
+![Rerun Payment](.gitbook/assets/rerun-payment.png)
 
 If the payment is successful, you will see a success message in the bottom left corner, and an error icon should no longer appear next to your payment information. Note: this can take up to a few minutes to process. You may check back later and it will not interrupt processing. If you and your bank are unable to resolve the issue, please reach out to our Support team.
 
@@ -108,7 +108,7 @@ To submit a downgrade request:
 2. Click "Switch to Free" at the bottom of the Plan Details & Billing section.
 3. When you click Submit, a request will be sent to Mixpanel's Billing Team for processing.
    
-![Switch to Free](/switch-to-free.png)
+![Switch to Free](.gitbook/assets/switch-to-free.png)
 
 ## FAQs
 

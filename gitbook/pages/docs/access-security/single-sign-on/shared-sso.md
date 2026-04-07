@@ -20,7 +20,7 @@ An "Admin" Organization is different from a regular Organization in that it will
 
 An Admin Organization can have multiple Linked Organizations which will share SSO settings. A regular Organization can only be linked to one Admin Organization.
 
-![SSO Admin Organization Image](/sso_view_admin_org.png)
+![SSO Admin Organization Image](../../.gitbook/assets/sso_view_admin_org.png)
 
 ## How It Works
 
@@ -56,12 +56,12 @@ If you already use Azure for SSO with Mixpanel, you must [remove existing SSO co
 
 For an existing Organization in Mixpanel, go to Organization Settings > Access Security > Shared SSO.
 
-![SSO Create Admin Organization Image](/sso_create_admin_org1.png)
+![SSO Create Admin Organization Image](../../.gitbook/assets/sso_create_admin_org1.png)
 
-![SSO Create Admin Organization Image](/sso_create_admin_org2.png)
+![SSO Create Admin Organization Image](../../.gitbook/assets/sso_create_admin_org2.png)
 
 The new Admin Organization will be listed in the left nav in Organization Settings.
-![SSO Admin Organization Navigation Image](/sso_admin_org_nav.png)
+![SSO Admin Organization Navigation Image](../../.gitbook/assets/sso_admin_org_nav.png)
 
 ### 2. [Set up SSO](../single-sign-on.md) for the Admin Organization
 
@@ -75,11 +75,11 @@ Any existing SSO settings in the "Linked" Organization will be ignored after thi
 
 Start by generating a linking code in the new Admin Organization. In the "Linked Organizations" section, click "Link Organization", then copy the generated linking code.
 
-![SSO Generate Linking Code Image](/sso_generate_linking_code.png)
+![SSO Generate Linking Code Image](../../.gitbook/assets/sso_generate_linking_code.png)
 
 Then complete the linking by entering the linking code in the Organization to be linked.
 
-![SSO Enter Linking Code Image](/sso_enter_linking_code.png)
+![SSO Enter Linking Code Image](../../.gitbook/assets/sso_enter_linking_code.png)
 
 The Organizations are now linked. The Linked Organization will now follow the SSO settings and claimed domains from the Admin Org.
 
@@ -87,13 +87,13 @@ The Organizations are now linked. The Linked Organization will now follow the SS
 
 Once your organizations are linked, you can then transfer any domains you might have claimed from the Linked Organization to the Admin Organization. Go to domain claiming on the Linked Organization and click the “Transfer domain” button for all the domains you want to transfer.
 
-![SSO Domain Transfer Image](/sso_domain_transfer_image.png)
+![SSO Domain Transfer Image](../../.gitbook/assets/sso_domain_transfer_image.png)
 
 ### 5. (Optional) Set up [SCIM](../single-sign-on.md#scim)
 
 The configurable "SCIM Name" for the Linked Organization must match a group in your IDP. Members of the matching group will be added to the Linked Organization.
 
-![SSO Linked Organizations Image](/sso_linked_orgs.png)
+![SSO Linked Organizations Image](../../.gitbook/assets/sso_linked_orgs.png)
 
 ## SCIM With Shared SSO
 

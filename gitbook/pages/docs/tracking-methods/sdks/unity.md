@@ -41,7 +41,7 @@ Alternatively you can go to the [releases page](https://github.com/mixpanel/mixp
 
 After installing the package, open the unity project settings menu for Mixpanel (Edit -> Project Settings -> Mixpanel), then enter [your project token](../../orgs-and-projects/managing-projects.md#find-your-project-tokens) into the Token and Debug Token input fields within the inspector to initialize Mixpanel:
 
-![image](/230697675-388145e0-bd47-42b9-8276-3be22d157529.png)
+![image](../../.gitbook/assets/230697675-388145e0-bd47-42b9-8276-3be22d157529.png)
 
 Please note if you prefer to initialize Mixpanel manually, you can select the Manual Initialization in the settings and call [`Mixpanel.Init()`](https://github.com/mixpanel/mixpanel-unity/blob/ec303c5bdacd00303a8b814a9806cfb05882c719/Mixpanel/MixpanelAPI.cs#L27) to initialize.
 
@@ -206,9 +206,9 @@ A few commonly used people methods are highlighted below:
 {% tab title=".SetOnce()" %}
 The [`.People.SetOnce()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#a4f4dab80df0a2095e1901ca0262a41c3) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set profile properties without the risk of overwriting existing data.
+Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     ```csharp
     // set profile properties for user "1234"
     Mixpanel.Identify('1234');
@@ -225,9 +225,9 @@ The [`.People.SetOnce()`](https://mixpanel.github.io/mixpanel-unity/api-referenc
 {% tab title=".Append()" %}
 The [`.People.Append()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#ace6b6040fef2bb51f07f911b71c3e685) method append values to a list profile property.
 
-    Use this method to add additional values to an existing list property instead of redefining the entire list.
+Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-    **Example Usage**
+**Example Usage**
     ```csharp
     // set profile properties for user "1234"
     Mixpanel.Identify('1234');
@@ -250,9 +250,9 @@ The [`.People.Append()`](https://mixpanel.github.io/mixpanel-unity/api-reference
 {% tab title=".Union()" %}
 The [`.People.Union()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#a5c19ffb9ca7f705e06e9c0de15a84e31) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
     ```csharp
     // set profile properties for user "1234"
     Mixpanel.Identify('1234');
@@ -275,9 +275,9 @@ The [`.People.Union()`](https://mixpanel.github.io/mixpanel-unity/api-reference/
 {% tab title=".Increment()" %}
 The [`.People.Increment()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#ab32b74ea1d409527d689ae9cdf9c3bf1) method increments a numeric property by a whole number.
 
-    Use this method to add to or subtract from your numeric property based on its current value.
+Use this method to add to or subtract from your numeric property based on its current value.
 
-    **Example Usage**
+**Example Usage**
     ```csharp
     // set profile properties for user "1234"
     Mixpanel.Identify('1234');

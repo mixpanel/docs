@@ -224,9 +224,9 @@ A few commonly used people methods are highlighted below:
 {% tab title=".setOnce()" %}
 The [`.getPeople().setOnce()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/People/setOnce.html) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set profile properties without the risk of overwriting existing data.
+Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     ```dart
     // set profile properties for user "1234"
     mixpanel.identify('1234');
@@ -243,9 +243,9 @@ The [`.getPeople().setOnce()`](https://mixpanel.github.io/mixpanel-flutter/mixpa
 {% tab title=".append()" %}
 The [`.getPeople().append()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/People/append.html) method append values to a list profile property.
 
-    Use this method to add additional values to an existing list property instead of redefining the entire list.
+Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-    **Example Usage**
+**Example Usage**
     ```dart
     // set profile properties for user "1234"
     mixpanel.identify('1234');
@@ -267,9 +267,9 @@ The [`.getPeople().append()`](https://mixpanel.github.io/mixpanel-flutter/mixpan
 {% tab title=".union()" %}
 The [`.getPeople().union()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/People/union.html) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list profile property that only contains unique values without duplicates.
+Use this method to create a list profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
     ```dart
     // set profile properties for user "1234"
     mixpanel.identify('1234');
@@ -291,9 +291,9 @@ The [`.getPeople().union()`](https://mixpanel.github.io/mixpanel-flutter/mixpane
 {% tab title=".increment()" %}
 The [`.getPeople().increment()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/People/increment.html) method increments a numeric property by a whole number.
 
-    Use this method to add to or subtract from your numeric property based on its current value.
+Use this method to add to or subtract from your numeric property based on its current value.
 
-    **Example Usage**
+**Example Usage**
     ```dart
     // set profile properties for user "1234"
     mixpanel.identify('1234');
@@ -406,9 +406,9 @@ A few commonly used group methods are highlighted below:
 {% tab title=".setOnce()" %}
 The [`.getGroup().setOnce()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/MixpanelGroup/setOnce.html) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-    Use this method if you want to set group profile properties without the risk of overwriting existing data.
+Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-    **Example Usage**
+**Example Usage**
     ```dart
     // assign the current user to the "mixpanel" company group
     mixpanel.setGroup('company', 'mixpanel');
@@ -427,9 +427,9 @@ The [`.getGroup().setOnce()`](https://mixpanel.github.io/mixpanel-flutter/mixpan
 {% tab title=".unset()" %}
 The [`.getGroup().unset()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/MixpanelGroup/unset.html) method removes a group property from a group profile.
 
-    Use this method to delete unwanted group profile properties from a specific group profile.
+Use this method to delete unwanted group profile properties from a specific group profile.
 
-    **Example Usage**
+**Example Usage**
     ```dart 
     // assign the current user to the "mixpanel" company group
     mixpanel.setGroup('company', 'mixpanel');
@@ -448,9 +448,9 @@ The [`.getGroup().unset()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel
 {% tab title=".union()" %}
 The [`.getGroup().union()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/MixpanelGroup/union.html) method append new values to a list property, excluding duplicates.
 
-    Use this method to create a list group profile property that only contains unique values without duplicates.
+Use this method to create a list group profile property that only contains unique values without duplicates.
 
-    **Example Usage**
+**Example Usage**
     ```dart
     // assign the current user to the "mixpanel" company group
     mixpanel.setGroup('company', 'mixpanel');
@@ -470,9 +470,9 @@ The [`.getGroup().union()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel
 {% tab title=".remove()" %}
 The [`.getGroup().remove()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/MixpanelGroup/remove.html) method removes a value from a list-valued group profile property.
 
-    Use this method to remove specific values from a list without affecting all of the other values in the list.
+Use this method to remove specific values from a list without affecting all of the other values in the list.
 
-    **Example Usage**
+**Example Usage**
     ```dart
     // assign the current user to the "mixpanel" company group
     mixpanel.setGroup('company', 'mixpanel');

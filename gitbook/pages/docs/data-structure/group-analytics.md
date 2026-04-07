@@ -42,7 +42,7 @@ To access a group profile:
 
 2. Click on the group identifier you want to analyze on.
 
-![/group_analytics_navigation.png](/group_analytics_navigation.png)
+![/group_analytics_navigation.png](../.gitbook/assets/group_analytics_navigation.png)
 
 3. Groups profiles will populate the Users report.
 
@@ -54,17 +54,17 @@ By default, Metrics aggregates at the user-level. To change the identifier used 
 2. Click the “Users” dropdown within the Metric
 3. Select a Group. The report will now display results grouped by the newly selected group identifier.
 
-![](/saved_behavior_group_identifier.png)
+![](../.gitbook/assets/saved_behavior_group_identifier.png)
 
 When your [Insights report](../reports/insights.md) includes multiple Metrics, you can individually toggle the identifier for each one.
 
 For example, you can create an Insights report that shows Signups by unique Users and by unique Companies.
 
-![](/saved-metrics-and-behaviors11.png)
+![](../.gitbook/assets/saved-metrics-and-behaviors11.png)
 
 Similarly, you can build a report that displays Conversion Rates per User and per Company.
 
-![](/saved-metrics-and-behaviors12.png)
+![](../.gitbook/assets/saved-metrics-and-behaviors12.png)
 
 ### B2B Company Analytics
 
@@ -86,7 +86,7 @@ To access this page, click on Users/ Companies → Company Profile.
 
 Note: This is only available if you have [set up a B2B Company Key](./group-analytics.md#setup-b2b-company-key), an option available in the Group Analytics package.
 
-![image](/B2B_Company_Profiles.webp) 
+![image](../.gitbook/assets/B2B_Company_Profiles.webp) 
 
 #### Activation Metrics 
 
@@ -96,7 +96,7 @@ For example, a question you may have is 'What is the number of trial accounts th
 
 We have a computed property in both breakdown and filter, called the **“Number of users who did…”**, available in the Group Analytics add-on, which enables you to answer these types of questions as it allows you to break down account activity by the number of active users.
 
-![image](/B2B_Activation_1.webp)
+![image](../.gitbook/assets/B2B_Activation_1.webp)
 
 When using **“Number of users who did…”** as a breakdown, we show you how many downloads came from different types of account health.
 For example, 605 downloads came from accounts with zero active users. ~1.5 downloads in the last 30 days came from accounts with two active users. Where an “active user” is defined by both the activity (e.g., event as such document created) and frequency of the activity (e.g., performing the event ≥1 time).
@@ -106,4 +106,4 @@ In a line chart, we look for activity per interval.
 For example, in the below daily chart, we’re looking for activity qualification per day (i.e., an active user is one who has created at least one document on that day). 
 The chart below shows that on Aug 19th, 35 accounts downloaded a document. Of the 35 accounts, 32 had one active user, 2 had two active users, and 1 had twenty-eight active users. Since most downloads originated from accounts with only one active user, we can conclude there is no correlation between account document downloaded activity and account health.
 
-![image](/B2B_Activation_2.webp)
+![image](../.gitbook/assets/B2B_Activation_2.webp)

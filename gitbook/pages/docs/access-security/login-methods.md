@@ -10,7 +10,7 @@ If you do not see the magic link email in your inbox/junk/spam mailbox, you may 
 
 By default, Mixpanel users authenticate in a password-less manner using Magic Link. After entering your email and clicking continue in the log in screen, we send an email to your inbox that contains a Magic Link, which will log you in directly.
 
-![image](/magic-link.png)
+![image](../.gitbook/assets/magic-link.png)
 
 ## Password Login
 {% hint style="warning" %}
@@ -25,7 +25,7 @@ To set a password for your account:
 3. Navigate to “Your Profile”
 4. Click the pencil icon to set your password.
 
-![image](/personal-profile-setting.png)
+![image](../.gitbook/assets/personal-profile-setting.png)
 
 ## Organization-wide Access Settings
 Additional access security requirements may be configured across an Organization that impacts how a user logs in to Mixpanel. Organization Owners and Admins can require users who are inside of their organization to use 2FA, and force any users with an email from a claimed domain to use SSO for login.

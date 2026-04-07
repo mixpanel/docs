@@ -14,7 +14,7 @@ You will need to be in the **Organization Owner** or **Admin role** to access th
 
 To access SSO settings in Mixpanel, navigate to your **Organization Settings** located under the gear icon at the top-right navigation. Then click on the **Access Security** tab.
 
-![SSO Org Setting Image](/sso_org_setting.png)
+![SSO Org Setting Image](../.gitbook/assets/sso_org_setting.png)
 
 ## Claim a Domain
 
@@ -30,19 +30,19 @@ A single domain can be claimed by only one single Mixpanel organization. If you 
 
 To claim a domain, click **Access Security** in your Organization Settings.
 
-![SSO Access Security Image](/sso_access_security.png)
+![SSO Access Security Image](../.gitbook/assets/sso_access_security.png)
 
 Click **Domain Claiming** in the Access Security menu.
 
-![SSO Domain Claiming Image](/sso_domain_claiming.png)
+![SSO Domain Claiming Image](../.gitbook/assets/sso_domain_claiming.png)
 
 Click **Add a Domain** found in Domain Claiming sub-menu. You will be prompted to enter your Mixpanel password.
 
-![SSO Add Domain Image](/sso_add_domain.png)
+![SSO Add Domain Image](../.gitbook/assets/sso_add_domain.png)
 
 Enter the domain you wish to claim in the pop-up modal. Click **Submit Claim**.
 
-![SSO Submit Claim Image](/sso_submit_claim.png)
+![SSO Submit Claim Image](../.gitbook/assets/sso_submit_claim.png)
 
 ### Check Verification Status
 
@@ -50,7 +50,7 @@ It may take up to 24 hours for Mixpanel to verify ownership after you claim a do
 
 The claimed domain are listed in the Domain Claiming menu. It will appear as pending until it is successfully verified.
 
-![SSO Check Verification Status Image](/sso_check_verification_status.png)
+![SSO Check Verification Status Image](../.gitbook/assets/sso_check_verification_status.png)
 
 It will indicate as verified after Mixpanel verifies the domain.
 
@@ -94,7 +94,7 @@ It is possible to set up Mixpanel SSO with IDPs not listed above. [Contact suppo
  
 You likely will need to provide your IDP with a postback URL. The postback URL is accessible from the **Access Security** menu. To obtain your postback URL, navigate to Access Security in your Organization Settings and toggle on the Single Sign-On button.
   
-![SSO Postback URL Image](/sso_postback_url.png)
+![SSO Postback URL Image](../.gitbook/assets/sso_postback_url.png)
 
 ## SAML Certificate
 
@@ -121,7 +121,7 @@ We recommend enabling IDP Managed Access for most customers.
 
 Enable the feature in the Access Security tab of your Organization Settings. Toggle on **IDP Managed Access** at the bottom. The toggle is purple when enabled.
   
-![SSO IDP Managed Access Image](/sso_idp_managed_access.png)
+![SSO IDP Managed Access Image](../.gitbook/assets/sso_idp_managed_access.png)
 
 ## Just in Time Provisioning
 
@@ -133,7 +133,7 @@ Users added using through the IDP will have first names and last names populated
 
 To give these provisioned users default access to projects, invite **All Users in the Organization** to the project.
 
-![image](/sso_jit_all_users_invite.png)
+![image](../.gitbook/assets/sso_jit_all_users_invite.png)
 
 ## SCIM
 
@@ -147,7 +147,7 @@ You can find the official SCIM spec subset that Mixpanel implements [here](https
 The SCIM endpoint affects only users whose email has a domain in the list of your verified claimed domains.
 {% endhint %}
  
-![SSO SCIM Image](/sso_scim.png)
+![SSO SCIM Image](../.gitbook/assets/sso_scim.png)
   
 While you can hit the SCIM endpoints directly, the most common use case would to be use it for auto-provisioning within an IDP that has an integration with Mixpanel provisioning. This will let your IDP and Mixpanel stay in sync - when you assign users to Mixpanel in your IDP, they will be provisioned in Mixpanel, and optionally you can deprovision users within Mixpanel who lose access in your IDP. IDPs that currently have an auto-provisioning integration with Mixpanel are Okta, OneLogin and Azure.
 
@@ -159,7 +159,7 @@ We recommend enabling **IDP Managed Access** when using SCIM; otherwise, your ID
 
 If you need to remove all of your SSO configuration, you can do so with the "Remove SSO Configuration" button. This option is available if you had previously configured SSO and then disabled SSO. This will clear the settings and SAML certificate, as well as entries that facilitate the SSO process.
 
-![SSO Remove Configuration](/sso_remove_config.png)
+![SSO Remove Configuration](../.gitbook/assets/sso_remove_config.png)
 
 {% hint style="warning" %}
 Removing SSO Configuration is permanent and cannot be undone.
