@@ -94,9 +94,11 @@ function humanizeSlug(slug) {
 }
 
 function buildSlugIndex(refRootAbs) {
-  // Index slugs to output-relative paths, based on basenames and dir names.
+  // Index slugs to output-relative paths, matching generate-api-reference output layout.
   // Used for rewriting (ref:slug) links.
+  // `Mixpanel APIs` content lives at the API space root (README, authentication/, …), not under mixpanel-apis/.
   const index = new Map();
+  const ROOT_TOP = 'Mixpanel APIs';
 
   const add = (slug, relPath) => {
     if (!slug) return;
@@ -108,10 +110,15 @@ function buildSlugIndex(refRootAbs) {
     for (const item of order) {
       const fileAbs = path.join(absDir, `${item}.md`);
       const dirAbs = path.join(absDir, item);
+      const isMixpanelApisFolder = item === ROOT_TOP && absDir === refRootAbs;
       try {
         const st = await fs.stat(fileAbs);
         if (st.isFile()) {
-          add(item, toPosix(path.join(outRelDir, `${item}.md`)));
+          let relPath = path.join(outRelDir, `${item}.md`);
+          if (path.basename(absDir) === ROOT_TOP && item === 'overview') {
+            relPath = path.join(outRelDir, 'README.md');
+          }
+          add(item, toPosix(relPath));
           continue;
         }
       } catch {}
@@ -119,14 +126,16 @@ function buildSlugIndex(refRootAbs) {
         const st = await fs.stat(dirAbs);
         if (st.isDirectory()) {
           const seg = slugifySegment(item);
-          // Map directory slug to its first page if possible.
           const childOrder = await readOrderYaml(path.join(dirAbs, '_order.yaml'));
+          const nextOut = isMixpanelApisFolder ? '' : path.join(outRelDir, seg);
           if (childOrder.length) {
-            add(item, toPosix(path.join(outRelDir, seg, `${childOrder[0]}.md`)));
+            let firstFile = `${childOrder[0]}.md`;
+            if (isMixpanelApisFolder && childOrder[0] === 'overview') firstFile = 'README.md';
+            add(item, toPosix(path.join(nextOut, firstFile)));
           } else {
-            add(item, toPosix(path.join(outRelDir, seg)));
+            add(item, toPosix(path.join(nextOut, seg)));
           }
-          await walkDir(dirAbs, path.join(outRelDir, seg));
+          await walkDir(dirAbs, nextOut);
         }
       } catch {}
     }
@@ -147,8 +156,9 @@ function rewriteRefLinks(md, { absOutFile, outRootAbs, slugIndex, localDirAbs })
     if (!targetRel) return `](ref:${slug}${hash || ''})`;
     const absTarget = path.join(outRootAbs, targetRel);
     const fromDir = path.dirname(absOutFile);
-    let rel = toPosix(path.relative(fromDir, absTarget));
-    if (!rel.startsWith('.')) rel = `./${rel}`;
+    // Do not prefix with `./` — GitBook often fails to resolve `./events/page.md` from nested pages;
+    // `path.relative` already yields `events/page.md` or `../other/page.md` as needed.
+    const rel = toPosix(path.relative(fromDir, absTarget));
     return `](${rel}${hash || ''})`;
   });
 }

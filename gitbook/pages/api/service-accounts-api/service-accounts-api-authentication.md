@@ -8,7 +8,7 @@
   To modify (create, delete) a service account, the service account used for authentication must have the role of admin or owner.
 </Callout>
 
-[Service Account Authentication Details](../mixpanel-apis/authentication/service-accounts.md#service-accounts)
+[Service Account Authentication Details](../authentication/service-accounts.md#service-accounts)
 
 ```sh
 curl --request GET \

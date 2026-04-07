@@ -1,6 +1,6 @@
 # Segmentation Expressions
 
-Segmentation Expressions are used in [Query API](./query-api/query-api.md) and [Raw Data Export API](raw-data-export-api) to allow for more specificity when querying your data.
+Segmentation Expressions are used in [Query API](query-api/query-api.md) and [Raw Data Export API](raw-data-export-api) to allow for more specificity when querying your data.
 
 The power of segmentation comes from the ability to define custom expressions based on property names in the where and on parameters. An expression consists of a property, combined with one or more operators that can perform mathematical operations, logical operations, or typecasts. Expression are then applied in the where and on parameters of the segmentation API. The full grammar for expressions is given here:
 

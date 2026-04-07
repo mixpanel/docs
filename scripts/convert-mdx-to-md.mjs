@@ -2334,6 +2334,20 @@ async function main() {
 
   await cleanupExtraneousConvertedMarkdown({ outDirAbs: outDir, expectedRelMdPaths });
 
+  // GitBook docs space home is README.md (see SUMMARY), but MDX source is `what-is-mixpanel.mdx` →
+  // `what-is-mixpanel.md`. Keep README in sync so internal links (including button hrefs) match the
+  // converted page and resolve within `gitbook/pages/docs/`.
+  if (path.basename(outDir) === 'docs') {
+    const wis = path.join(outDir, 'what-is-mixpanel.md');
+    const readme = path.join(outDir, 'README.md');
+    try {
+      await fs.access(wis);
+      await fs.copyFile(wis, readme);
+    } catch {
+      // what-is-mixpanel absent; leave existing README untouched.
+    }
+  }
+
   // Space-level index generation
   if (path.basename(outDir) === 'changelogs') {
     await generateChangelogsReadmeAndSummary(outDir);

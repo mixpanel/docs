@@ -2,7 +2,7 @@
 
 ## Service Account
 
-[Service Account Authentication Details](../mixpanel-apis/authentication/service-accounts.md)
+[Service Account Authentication Details](../authentication/service-accounts.md)
 
 Note that when you use Service Account authentication, you must specify the project\_id as a query parameter. E.g. `https://data.mixpanel.com/api/2.0/export?project_id=12345`
 
@@ -12,4 +12,4 @@ Note that when you use Service Account authentication, you must specify the proj
 
 ## Project Secret
 
-[Project Secret Authentication Details](../mixpanel-apis/authentication/project-secret.md)
+[Project Secret Authentication Details](../authentication/project-secret.md)

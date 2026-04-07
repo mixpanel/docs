@@ -8,7 +8,7 @@
   To modify (create, edit, delete) a schema, the Service Account must have the role of admin or owner.
 </Callout>
 
-[Service Account Authentication Details](../mixpanel-apis/authentication/service-accounts.md)
+[Service Account Authentication Details](../authentication/service-accounts.md)
 
 **Projects with[Classified Data](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/admin/data-governance/data-views-data-classification#data-classification)**
 

@@ -2,7 +2,7 @@
 
 ## Service Account
 
-[Service Account Authentication Details](../mixpanel-apis/authentication/service-accounts.md)
+[Service Account Authentication Details](../authentication/service-accounts.md)
 
 <Callout icon="👍" theme="okay">
   This is the preferred authentication method for Query API.

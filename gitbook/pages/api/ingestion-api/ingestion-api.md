@@ -8,8 +8,8 @@ See our [Client-Side vs Server-Side Tracking](https://app.gitbook.com/s/qGpd1uH0
 
 ## Ingestion HTTP APIs
 
-* [Events](./events/import-events.md) 
+* [Events](events/import-events.md) 
 * [Identities](../identity-api/identities/create-identity.md) 
-* [User Profiles](./user-profiles/profile-set.md) 
-* [Group Profiles](./group-profiles/group-set-property.md) 
-* [Lookup Tables](./lookup-tables/list-lookup-tables.md)
+* [User Profiles](user-profiles/profile-set.md) 
+* [Group Profiles](group-profiles/group-set-property.md) 
+* [Lookup Tables](lookup-tables/list-lookup-tables.md)
