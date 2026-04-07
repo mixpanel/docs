@@ -233,15 +233,9 @@ All of our sample code transparently retries and backoff from rate limit excepti
 
 🎉 Congratulations, you've tracked your first user! You can see them in Mixpanel via the [Users page](https://mixpanel.com/report/users).
 
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-
 {/* Next Section */}
 
 <hr></hr>
-<br></br>
 
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
@@ -251,11 +245,7 @@ All of our sample code transparently retries and backoff from rate limit excepti
     Once you've implemented `identify`, it's time to track what your users are
     doing in your product.
   </p>
-  <br></br>
   <a href="/docs/quickstart/track-events/" class="button primary">Track Events in Your Product</a>
-
-<br></br>
-<br></br>
 
 ## FAQ
 

@@ -18,14 +18,9 @@ Imagine your product is a B2B messaging application. You might use Funnels to an
 - What departments complete the payment funnel most often?
 - Why did the successful users purchase?
 
-<br></br>
-<br></br>
-<br></br>
-
 {/* Next Section */}
 
 <hr></hr>
-<br></br>
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
     Next: Build a Funnels Report
@@ -33,8 +28,4 @@ Imagine your product is a B2B messaging application. You might use Funnels to an
   <p>
     Build your first Funnels report using the Quickstart below.
   </p>
-  <br></br>
   <a href="/docs/reports/funnels/funnels-quickstart" class="button primary">Funnels Quickstart</a>
-
-<br></br>
-<br></br>

@@ -379,6 +379,38 @@ function dropNowEmptyIframeWrappers(src) {
   return out.join('\n');
 }
 
+function stripBrTags(src) {
+  // GitBook has good default spacing; remove manual <br> tags.
+  // Only do this outside code fences.
+  const lines = src.split('\n');
+  const out = [];
+  let inFence = false;
+
+  for (let line of lines) {
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+
+    // Drop lines that are only <br> variants.
+    if (/^<br\s*\/?>\s*(?:<\/br>)?\s*$/.test(t) || /^<br><\/br>$/.test(t) || /^<br\s*><\/br\s*>$/.test(t)) {
+      continue;
+    }
+
+    // Remove inline <br> variants.
+    line = line.replace(/<br\s*\/?>\s*(?:<\/br>)?/gi, '');
+    out.push(line);
+  }
+
+  return out.join('\n').replace(/\n{3,}/g, '\n\n');
+}
+
 function convertCards(src) {
   // Convert Nextra Cards:
   // <Cards>
@@ -652,6 +684,7 @@ function convertOne(src, maps) {
   out = fixAccidentalIndentCodeBlocks(out);
   out = collapseEmptyMultilineDivOpenTags(out);
   out = dropNowEmptyIframeWrappers(out);
+  out = stripBrTags(out);
   out = cleanupDanglingJsx(out);
   return out;
 }

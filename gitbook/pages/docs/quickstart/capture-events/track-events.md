@@ -268,15 +268,9 @@ All of our sample code transparently retries and backoff from rate limit excepti
 
 {% endtabs %}
 
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-
 {/* Next Section */}
 
 <hr></hr>
-<br></br>
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
     You're Ready to Start Using Mixpanel
@@ -285,11 +279,7 @@ All of our sample code transparently retries and backoff from rate limit excepti
     It's time to create your first [report](/docs/reports) or use one
     of our [many templates](/docs/boards/templates).
   </p>
-  <br></br>
   <a href="https://mixpanel.com" class="button primary">Open Mixpanel</a>
-
-<br></br>
-<br></br>
 
 ## FAQ
 

@@ -54,14 +54,9 @@ using a reverse proxy.
 
 Want to learn more? [Read our full guide](/docs/tracking-methods/choosing-the-right-method/) on choosing the right method for tracking.
 
-<br></br>
-<br></br>
-<br></br>
-
 {/* Next Section */}
 
 <hr></hr>
-<br></br>
 
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">Next Steps</h2>
@@ -69,5 +64,4 @@ Want to learn more? [Read our full guide](/docs/tracking-methods/choosing-the-ri
     Once you've chosen a few events to track first, you're ready to set up
     Mixpanel.
   </p>
-  <br></br>
   <a href="/docs/quickstart/install-mixpanel" class="button primary">Start Quickstart Guide</a>

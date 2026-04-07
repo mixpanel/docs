@@ -329,8 +329,8 @@ The following functions have additional aggregation options which you will be pr
 | Function | Aggregation options |
 | --- | --- |
 | Frequency per User | Total Per User |
-| Aggregate Property | Sum<br />Average<br />Median<br />[Distinct Count](https://www.loom.com/share/7d0e42f847c24b3c8720d5b6a6bedeb4)<br />Percentiles (P25,P75,P90,P99)<br />Minimum<br />Maximum |
-| Aggregate Property per User | Sum<br />Average<br />Distinct value count<br />Minimum<br />Maximum |
+| Aggregate Property | SumAverageMedian[Distinct Count](https://www.loom.com/share/7d0e42f847c24b3c8720d5b6a6bedeb4)Percentiles (P25,P75,P90,P99)MinimumMaximum |
+| Aggregate Property per User | SumAverageDistinct value countMinimumMaximum |
 
 These functions provide additional aggregation options following the initial calculation because they are “per user” calculations. “Per user” calculations first calculate the value per user, which is an unhelpful query in its raw form, but becomes useful when you perform an aggregation on that calculation.
 
@@ -344,8 +344,8 @@ If the measurement you select calculates based on property (“Event Property Va
 
 | Function Name | Events Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Total Events | Total count of [event] performed.<br />Example: How many times did my users watch a video? | N/A |
-| Frequency per User | The number of events performed per user.<br />Example: How many videos were watched per user?<br />Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Total Events | Total count of [event] performed.Example: How many times did my users watch a video? | N/A |
+| Frequency per User | The number of events performed per user.Example: How many videos were watched per user?Aggregation options: Average, distribution, median, percentiles, minimum, maximum | N/A |
 
 #### Users
 
@@ -358,11 +358,11 @@ If you select the DAU, WAU, or MAU function for a date range that includes the c
 
 | Function Name | Events Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Total | N/A | Total count of user profiles. <br /><br />**Example**: What's my total number of users? |
-| Unique Users | The number of users who performed [event] or are a part of the cohort.<br /><br />**Example**: What's the count of users who watched a video? | N/A |
-| Daily Active Users (DAU) | The number of users who performed [event] within the last 24 hours.<br /><br />**Example**: What's the count of users who watched a video on the last day? | N/A |
-| Weekly Active Users (WAU) | The number of users who performed [event] within the last 7 days.<br /><br />**Example**: What's the count of users who watched a video in the week? | N/A |
-| Monthly Active Users (MAU) | The number of users who performed [event] within the last 30 days.<br /><br />**Example**: What's the count of users who watched a video in the last month? | N/A |
+| Total | N/A | Total count of user profiles. **Example**: What's my total number of users? |
+| Unique Users | The number of users who performed [event] or are a part of the cohort.**Example**: What's the count of users who watched a video? | N/A |
+| Daily Active Users (DAU) | The number of users who performed [event] within the last 24 hours.**Example**: What's the count of users who watched a video on the last day? | N/A |
+| Weekly Active Users (WAU) | The number of users who performed [event] within the last 7 days.**Example**: What's the count of users who watched a video in the week? | N/A |
+| Monthly Active Users (MAU) | The number of users who performed [event] within the last 30 days.**Example**: What's the count of users who watched a video in the last month? | N/A |
 
 **Example of MAU** 
 
@@ -399,29 +399,29 @@ To note - in a line chart, there are two concepts of time period: chart date ran
 
 | Function Name | Events Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Sum | The total of a numeric property value across all instances of [event].<br /><br />**Example**: What's the total number of minutes of videos watched? | The total of a numeric property value across all user profiles.<br />Example: What's the total revenue across all users? |
-| Average | Average of a numeric property value across all instances of [event].<br /><br />**Example**: What's the average number of minutes per video watched? | Average of a numeric property value across all user profiles.<br />Example: What's the average revenue across all users? |
-| Distinct count | Calculates the unique count of property values across all instances of [event].<br /><br />**Example**: How many unique songs were played in the last 30 days? | Calculates the unique count of property values across all profiles.<br />Example: How many unique countries were our video watchers from? |
-| Median | Median of a numeric property value across all instances of [event].<br /><br />**Example**: What's the median number of minutes per video watched? | Median of a numeric property value across all user profiles.<br />Example: What's the median revenue across all users? |
-| Percentiles (25/75/90/99) | The 25/75/90/99th percentile of a numeric property value across all instances of [event].<br /><br />**Example**: What's the 25th percentile number of minutes of videos watched? | The 25/75/90/99th percentile of a numeric property value across all user profiles.<br />Example: What's the 25th percentile revenue across all users? |
-| Minimum | Minimum of a numeric property value across all instances of [event].<br /><br />**Example**: What's the minimum number of minutes per video watched? | Minimum of a numeric property value across all user profiles.<br />Example: What's the minimum revenue across all users? |
-| Maximum | Maximum of a numeric property value across all instances of [event].<br /><br />**Example**: What's the maximum number of minutes per video watched? | Maximum of a numeric property value across all user profiles.<br />Example: What's the maximum revenue across all users? |
+| Sum | The total of a numeric property value across all instances of [event].**Example**: What's the total number of minutes of videos watched? | The total of a numeric property value across all user profiles.Example: What's the total revenue across all users? |
+| Average | Average of a numeric property value across all instances of [event].**Example**: What's the average number of minutes per video watched? | Average of a numeric property value across all user profiles.Example: What's the average revenue across all users? |
+| Distinct count | Calculates the unique count of property values across all instances of [event].**Example**: How many unique songs were played in the last 30 days? | Calculates the unique count of property values across all profiles.Example: How many unique countries were our video watchers from? |
+| Median | Median of a numeric property value across all instances of [event].**Example**: What's the median number of minutes per video watched? | Median of a numeric property value across all user profiles.Example: What's the median revenue across all users? |
+| Percentiles (25/75/90/99) | The 25/75/90/99th percentile of a numeric property value across all instances of [event].**Example**: What's the 25th percentile number of minutes of videos watched? | The 25/75/90/99th percentile of a numeric property value across all user profiles.Example: What's the 25th percentile revenue across all users? |
+| Minimum | Minimum of a numeric property value across all instances of [event].**Example**: What's the minimum number of minutes per video watched? | Minimum of a numeric property value across all user profiles.Example: What's the minimum revenue across all users? |
+| Maximum | Maximum of a numeric property value across all instances of [event].**Example**: What's the maximum number of minutes per video watched? | Maximum of a numeric property value across all user profiles.Example: What's the maximum revenue across all users? |
 
 #### Aggregate Property per User
 
 | Function Name | Events Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Sum | The total of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the total number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
-| Average | Average of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the average number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
-| Distinct count | The number of distinct property values per user.<br /><br />**Example**: How many different videos did each user watch?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
-| Minimum | Minimum of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the minimum number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
-| Maximum | Maximum of a numeric property value across all instances of [event] per user.<br /><br />**Example**: What's the maximum number of hours of videos watched per user?<br />**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Sum | The total of a numeric property value across all instances of [event] per user.**Example**: What's the total number of hours of videos watched per user?**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Average | Average of a numeric property value across all instances of [event] per user.**Example**: What's the average number of hours of videos watched per user?**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Distinct count | The number of distinct property values per user.**Example**: How many different videos did each user watch?**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Minimum | Minimum of a numeric property value across all instances of [event] per user.**Example**: What's the minimum number of hours of videos watched per user?**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
+| Maximum | Maximum of a numeric property value across all instances of [event] per user.**Example**: What's the maximum number of hours of videos watched per user?**Aggregation options**: Average, distribution, median, percentiles, minimum, maximum | N/A |
 
 #### Total Sessions
 
 | Function Name | Events Calculation | Profiles Calculation |
 | --- | --- | --- |
-| Sessions with event | The number of sessions that contain [event].<br /><br />**Example**: What's the total number of sessions in which users watched a video? | N/A |
+| Sessions with event | The number of sessions that contain [event].**Example**: What's the total number of sessions in which users watched a video? | N/A |
 
 #### Additional Aggregation Option Examples
 
@@ -448,7 +448,7 @@ Allows you to change the metric being measured. Access by going into the advance
 
 ![Rolling and Cumulative](/rolling-cumulative.png)
 
-- **Rolling Average:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month, or quarter) for each data point in the graph.<br />
+- **Rolling Average:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month, or quarter) for each data point in the graph.
 For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported on each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
 - **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
 

@@ -186,10 +186,10 @@ Currently, there are seven config options:
 
 | Option | Description | Default | 
 | --- | --- | --- |
-| `wifiOnly` | When `true`, replay events will only be flushed to the server when the device has a WiFi connection. If there is no wifi, flushes are skipped and the events remain in the in-memory queue until wifi is restored (or until the queue reaches its limit and the oldest events are evicted to make room for newer events). <br/> When `false`, replay events will be flushed with any network connection, including cellular. | `true` |
+| `wifiOnly` | When `true`, replay events will only be flushed to the server when the device has a WiFi connection. If there is no wifi, flushes are skipped and the events remain in the in-memory queue until wifi is restored (or until the queue reaches its limit and the oldest events are evicted to make room for newer events). When `false`, replay events will be flushed with any network connection, including cellular. | `true` |
 | `autoMaskedViews` | This is a `Set` of enum options for the types of views that should be masked by the SDK automatically. | `[.image, .text, .web, .map]` |
 | `autoStartRecording` | This is a boolean value that determines whether or not recording begins automatically upon initialization and when returning to the foreground. | `true` |
-| `recordingSessionsPercent` | This is a value between `0.0` and `100.0` (default) that controls the sampling rate for automatically triggered session replays. <br/> At `0.0` no sessions will be recorded. At `100.0` all sessions will be recorded.  | `100.0` |
+| `recordingSessionsPercent` | This is a value between `0.0` and `100.0` (default) that controls the sampling rate for automatically triggered session replays. At `0.0` no sessions will be recorded. At `100.0` all sessions will be recorded.  | `100.0` |
 | `flushInterval` | Specifies the flush interval (in seconds) at which session replay events are sent to the Mixpanel server. | `10` |
 | `enableLogging` | This is a boolean value that determines whether or not debugging logs are printed to the console. | `false` |
 | `remoteSettingsMode` | Setting for handling remote configuration during SDK initialization. Can be `disabled`, `fallback`, `strict`. | `disabled` |

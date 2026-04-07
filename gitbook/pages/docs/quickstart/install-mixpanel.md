@@ -415,10 +415,6 @@ next step.**
 
 {% endtabs %}
 
-<br></br>
-<br></br>
-<br></br>
-
 {/* Next Section */}
 
 # Integration / Framework Guides
@@ -568,14 +564,9 @@ next step.**
   </tbody>
 </table>
 
-<br></br>
-<br></br>
-<br></br>
-
 {/* Next Section */}
 
 <hr></hr>
-<br></br>
 <div class="bg-base100 rounded-xl">
     <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
       Next: Identify Your Users
@@ -584,11 +575,7 @@ next step.**
       With Mixpanel installed, you’re now ready to identify the users who use
       your product.
     </p>
-    <br></br>
     <a href="/docs/quickstart/identify-users/" class="button primary">Identify Your Users</a>
-
-<br></br>
-<br></br>
 
 ## FAQ
 

@@ -6,7 +6,6 @@ that let you query and visualize the results with just a few clicks.
 
 Mixpanel is built on three key concepts: [**Events**](#events), [**Users**](#users), and [**Properties**](#properties).
 
-<br></br>
 {% embed url="https://www.youtube.com/watch?v=sRQCfmvh3vg" %}
 
 ## Concepts
@@ -48,21 +47,13 @@ A **User Property** describes a User. This could be their name, email, age, etc.
 Properties allow you to create groups of users (aka [cohorts](/docs/users/cohorts)) and also enable you to filter for certain events or users. These
 powerful features make it easy to identify trends and new customer insights.
 
-<br></br>
-<br></br>
-<br></br>
 <hr></hr>
 
 ## Next Steps
 
 Now that you understand the basics, **we recommend planning the first events you would like to track**. This will help you understand what you need to get started. Choosing these events should take no more than 5 minutes.
 
-<br></br>
 <a href="/docs/what-to-track" class="button primary">Plan Your Tracked Events</a>
-
-<br></br>
-<br></br>
-<br></br>
 
 <div class="bg-base100 rounded-xl">
   <h4 class="text-2xl font-medium mb-2 color:bg-purple200">
@@ -72,5 +63,4 @@ Now that you understand the basics, **we recommend planning the first events you
     If you already know the events you want to track, you can skip planning and
     start by installing Mixpanel.
   </p>
-  <br></br>
   <a href="/docs/quickstart/install-mixpanel" class="button primary">Install Mixpanel</a>

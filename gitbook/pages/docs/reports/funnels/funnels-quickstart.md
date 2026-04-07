@@ -61,14 +61,9 @@ You can visualize your metric in a variety of ways. Mixpanel allows you to choos
 
 ![/funnels_beta_5.png](/funnels_beta_5.png)
 
-<br></br>
-<br></br>
-<br></br>
-
 {/* Next Section */}
 
 <hr></hr>
-<br></br>
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
     Next: Advanced Funnels Concept
@@ -76,8 +71,4 @@ You can visualize your metric in a variety of ways. Mixpanel allows you to choos
   <p>
     Explore how funnel metrics are measured and the various configuration options below.
   </p>
-  <br></br>
   <a href="/docs/reports/funnels/funnels-advanced" class="button primary">Funnels Advanced Concepts</a>
-
-<br></br>
-<br></br>

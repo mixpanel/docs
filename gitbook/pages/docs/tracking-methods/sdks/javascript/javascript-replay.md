@@ -146,18 +146,18 @@ mixpanel.init(
 
 | Option | Description | Default |
 | --- | --- | --- |
-| `record_block_class` | CSS class name or regular expression for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `new RegExp('^(mp-block\|fs-exclude\|amp-block\|rr-block\|ph-no-capture)$')` <br/> (common industry block classes) |
+| `record_block_class` | CSS class name or regular expression for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `new RegExp('^(mp-block\|fs-exclude\|amp-block\|rr-block\|ph-no-capture)$')` (common industry block classes) |
 | `record_block_selector` | CSS selector for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `"img, video"` |
-| `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a contiguous replay. A new replay collection will start when active again. | `1800000`<br/>(30 minutes) |
+| `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a contiguous replay. A new replay collection will start when active again. | `1800000`(30 minutes) |
 | `record_mask_all_text` | When `true`, all text is masked by default. Use `record_unmask_text_selector` to selectively reveal elements. | `true` |
 | `record_mask_text_selector` | CSS selector or array of selectors for elements to mask. Only applies when `record_mask_all_text` is `false`. | `undefined` |
 | `record_unmask_text_selector` | CSS selector or array of selectors for elements to unmask. Only applies when `record_mask_all_text` is `true`. | `undefined` |
-| `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. Included for backward compatibility. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` <br/> (common industry mask classes) |
+| `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. Included for backward compatibility. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` (common industry mask classes) |
 | `record_mask_all_inputs` | When `true`, all inputs are masked by default. Use `record_unmask_input_selector` to selectively reveal inputs. Note: [certain input types](/docs/session-replay/session-replay-privacy-controls#always-masked-inputs) are always masked regardless of this setting. | `true` |
 | `record_mask_input_selector` | CSS selector or array of selectors for inputs to mask. Only applies when `record_mask_all_inputs` is `false`. | `undefined` |
 | `record_unmask_input_selector` | CSS selector or array of selectors for inputs to unmask. Only applies when `record_mask_all_inputs` is `true`. | `undefined` |
-| `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`<br/>(24 hours) |
-| `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`<br/>(0 seconds) |
+| `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`(24 hours) |
+| `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`(0 seconds) |
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
 | `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
 | `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. You can learn more [here](/docs/session-replay/heatmaps). | `false` |

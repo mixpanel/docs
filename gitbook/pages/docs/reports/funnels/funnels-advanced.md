@@ -393,14 +393,9 @@ For example, you might use this to discover that most users who dropped off are 
 
 Click on the “...” icon besides a step and click "Rename" to rename it.
 
-<br></br>
-<br></br>
-<br></br>
-
 {/* Next Section */}
 
 <hr></hr>
-<br></br>
 <div class="bg-base100 rounded-xl">
   <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
     Next: Frequently Asked Questions
@@ -408,8 +403,4 @@ Click on the “...” icon besides a step and click "Rename" to rename it.
   <p>
     Still got questions? Get answers to the most frequently asked Funnels questions below.
   </p>
-  <br></br>
   <a href="/docs/reports/funnels/funnels-faq" class="button primary">Funnels FAQ</a>
-
-<br></br>
-<br></br>
