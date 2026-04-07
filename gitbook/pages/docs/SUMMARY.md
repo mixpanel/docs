@@ -10,7 +10,7 @@
   * [Capture Events](quickstart/capture-events.md)
     * [Track Events](quickstart/capture-events/track-events.md)
     * [Autocapture](quickstart/capture-events/autocapture.md)
-  * [Install with AI](intro/quickstart/install-with-ai.md)
+  * [Install with AI](quickstart/install-with-ai.md)
 
 ## DATA IN
 

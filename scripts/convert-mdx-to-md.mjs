@@ -405,7 +405,26 @@ function rewriteInternalDocsLinks(src, absOutFile, absOutRoot) {
     return `(${rewritten})`;
   });
 
+  // Markdown inside raw HTML blocks is not parsed (e.g. [text](url) inside <p> stays literal).
+  out = convertMarkdownLinksToHtmlInsidePTags(out);
+
   return out;
+}
+
+/**
+ * Turn [label](href) into <a href="...">label</a> inside <p>...</p> so GitBook renders links
+ * after MDX-to-HTML conversion (same issue affects <div>-wrapped paragraphs).
+ */
+function convertMarkdownLinksToHtmlInsidePTags(src) {
+  return String(src).replace(/<p([^>]*)>([\s\S]*?)<\/p>/gi, (all, attrs, inner) => {
+    if (!/\]\([^)]+\)/.test(inner)) return all;
+    if (/<\s*(p|div|h[1-6]|ul|ol|table|pre|blockquote)\b/i.test(inner)) return all;
+    const fixed = inner.replace(/\[([^\]]*)\]\(([^)]+)\)/g, (_m, text, href) => {
+      return `<a href="${escapeHtml(String(href))}">${escapeHtml(String(text))}</a>`;
+    });
+    if (fixed === inner) return all;
+    return `<p${attrs}>${fixed}</p>`;
+  });
 }
 
 async function listFilesRecursive(dir) {

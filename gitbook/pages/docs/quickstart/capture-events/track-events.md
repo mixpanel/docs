@@ -274,8 +274,8 @@ All of our sample code transparently retries and backoff from rate limit excepti
 You're Ready to Start Using Mixpanel
   </h2>
   <p>
-It's time to create your first [report](../../reports.md) or use one
-of our [many templates](../../boards/templates.md).
+It's time to create your first <a href="../../reports.md">report</a> or use one
+of our <a href="../../boards/templates.md">many templates</a>.
   </p>
   <a href="https://mixpanel.com" class="button primary">Open Mixpanel</a>
 
