@@ -6,6 +6,8 @@ Computed Properties are a specialized type of property that Mixpanel calculates 
 
 You can find Computed Properties labeled with the 'Computed' tag in the query builder.
 
+![/computed_properties](/computed_properties.png)
+
 ## Behavioral Properties
 
 Behavioral properties allow you to use your user's activity and use it as a property in your other analysis. A behavioral property is a virtual property, meaning it's not a property that you are explicitly tracking, but a property that Mixpanel can compute and allow you to use in analysis.
@@ -35,7 +37,6 @@ In funnels, the behavioral property is computed in the time range between 2 step
 In retention, the behavioral property is computed in the chosen time range after the entry event, up until the expiration window. For example, there may be a 7-day window in which we're looking for an event. Even if the retaining action happens before the 7 days are up, we continue to count additional events.
 
 ## Duration
-
 The duration property returns the duration between 2 instances of an event. This works best for events that occur continuously during a session such as Page View or Screen View. Users that did not track the same event again will appear in the "Did not convert" segment.
 
 ## Attribution
@@ -44,10 +45,9 @@ The duration property returns the duration between 2 instances of an event. This
 Users on an Enterprise or Growth plan can access the Attribution feature. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 {% endhint %}
 
-Attribution helps teams attribute conversion credit to the touchpoints in a user journey, whether it's to the first or last touch (single-touch attribution models) or to multiple touchpoints using a multi-touch attribution model like U-shape or Linear.
+Attribution helps teams attribute conversion credit to the touchpoints in a user journey, whether it's to the first or last touch (single-touch attribution models) or to multiple touchpoints using a multi-touch attribution model like U-shape or Linear. 
 
 Consider the following example user journey:
-
 1. A user sees an ad for a product on Facebook
 2. The user clicks on the ad and is taken to the product page on the company's website
 3. The user adds the product to their cart and begins the checkout process
@@ -57,10 +57,10 @@ Consider the following example user journey:
 
 In this example, two touchpoints contribute to the successful conversion: the Facebook ad and the Instagram ad. Using an attribution model, we can assign different weights to these touchpoints to determine their relative importance in the conversion.
 
-* Using a linear attribution model, we could assign a weight of 0.5 to each touchpoint, meaning that both the Facebook ad and the Instagram ad contributed equally to the conversion
-* Using a J shaped attribution model, we could assign a weight of 0.75 to Facebook ad, and 0.25 to the Instagram ad
-* Using last touch model, the complete conversion can be attributed to the Instagram ad
-* Using first touch model, the complete conversion can be attributed to the Facebook ad
+- Using a linear attribution model, we could assign a weight of 0.5 to each touchpoint, meaning that both the Facebook ad and the Instagram ad contributed equally to the conversion
+- Using a J shaped attribution model, we could assign a weight of 0.75 to Facebook ad, and 0.25 to the Instagram ad
+- Using last touch model, the complete conversion can be attributed to the Instagram ad
+- Using first touch model, the complete conversion can be attributed to the Facebook ad
 
 ### Usage
 
@@ -72,31 +72,32 @@ Step 2 - Attribution makes sense only when distributing the conversion metric ac
 
 Step 3 - In the second layer that opens up, choose the property you want to break-down by (eg. UTM medium). You can also choose a custom property to breakdown here, for example marketing channel which generally is a combination of UTM medium, UTM source and referrer.
 
-Step 4 - You have a working attribution model. By default, Mixpanel will assign the metric the Last touch model with a 30 day lookback window. To change the model, head to the metric section
+Step 4 - You have a working attribution model.  By default, Mixpanel will assign the metric the Last touch model with a 30 day lookback window. To change the model, head to the metric section
 
 Step 5 - If you want to include only certain channels or touchpoints in your attribution analysis, you can filter touchpoints from the breakdown overflow menu. A use-case for this is excluding organic touchpoints from attribution analysis.
 
-👉🏽 NOTE: if you are running attribution predominantly on UTM\_medium, UTM\_source, UTM\_campaign, make sure you’re tracking UTM parameters as event properties on every user touchpoint. If you use a Mixpanel js-sdk, we have updated our sdk to track utm parameters more effectively to support multi-touch attribution models.
+👉🏽 NOTE: if you are running attribution predominantly on UTM_medium, UTM_source, UTM_campaign, make sure you’re tracking UTM parameters as event properties on every user touchpoint.
+If you use a Mixpanel js-sdk, we have updated our sdk to track utm parameters more effectively to support multi-touch attribution models.
 
 ### Attribution Models
 
-* First Touch - Gives 100% credit to the first touchpoint within the attribution lookback window
-* Last Touch - Gives 100% credit to the last touchpoint within the attribution lookback window
-* Linear - Gives equal credit to every touchpoint seen leading up to a conversion within the attribution lookback window
-* Participation - Gives 100% credit to every unique touchpoint seen within attribution window. The total number of conversions is inflated compared to other attribution models. For example with 5 property values, each would receive 100% credit showing 5 conversions.
-* Time-Decay - The weight of each channel depends on the amount of time that passed between the touch point initiation and the eventual conversion. This model follows an exponential decay with a 7 day half-life parameter.
-* U-shaped - Gives 40% credit to the first touchpoint, 40% credit to the last touchpoint, and divides the remaining 20% to any touch points in between. With 2 touchpoints, the credit is normalized (50%, 50%). With 6 touch points the middle 4 touch points would share the 20% (40%, 5%, 5%, 5%, 5%, 40%).
-* J-shaped - Gives 20% credit to the first touchpoint, 60% credit to the last touchpoint, and divides the remaining 20% to any touch points in between. With 2 touchpoints, the credit is normalized (25%, 75%). With 6 touch points the middle 4 touch points would share the 20% (20%, 5%, 5%, 5%, 5%, 60%).
-* Inverse J-shaped - Gives 60% credit to the first touchpoint, 20% credit to the last touchpoint, and divides the remaining 20% to any touch points in between. With 2 touchpoints, the credit is normalized (75%, 25%). With 6 touch points the middle 4 touch points would share the 20% (60%, 5%, 5%, 5%, 5%, 20%).
-* Custom - Customize the weight to be given to the first and last touchpoint, and all other touchpoints in between based on your use-case.
+- First Touch -  Gives 100% credit to the first touchpoint within the attribution lookback window
+- Last Touch - Gives 100% credit to the last touchpoint within the attribution lookback window
+- Linear - Gives equal credit to every touchpoint seen leading up to a conversion within the attribution lookback window
+- Participation - Gives 100% credit to every unique touchpoint seen within attribution window. The total number of conversions is inflated compared to other attribution models. For example with 5 property values, each would receive 100% credit showing 5 conversions.
+- Time-Decay - The weight of each channel depends on the amount of time that passed between the touch point initiation and the eventual conversion. This model follows an exponential decay with a 7 day half-life parameter.
+- U-shaped - Gives 40% credit to the first touchpoint, 40% credit to the last touchpoint, and divides the remaining 20% to any touch points in between. With 2 touchpoints, the credit is normalized (50%, 50%). With 6 touch points the middle 4 touch points would share the 20% (40%, 5%, 5%, 5%, 5%, 40%).
+- J-shaped - Gives 20% credit to the first touchpoint, 60% credit to the last touchpoint, and divides the remaining 20% to any touch points in between. With 2 touchpoints, the credit is normalized (25%, 75%). With 6 touch points the middle 4 touch points would share the 20% (20%, 5%, 5%, 5%, 5%, 60%).
+- Inverse J-shaped - Gives 60% credit to the first touchpoint, 20% credit to the last touchpoint, and divides the remaining 20% to any touch points in between. With 2 touchpoints, the credit is normalized (75%, 25%). With 6 touch points the middle 4 touch points would share the 20% (60%, 5%, 5%, 5%, 5%, 20%).
+- Custom - Customize the weight to be given to the first and last touchpoint, and all other touchpoints in between based on your use-case.
 
 ### Glossary
 
-* **User journey:** Consists of touchpoints and the conversion event. It is possible for a conversion event to have no corresponding touchpoints (eg. utm parameters). In this case we consider it a ‘direct’ conversion
-* **Conversion**: The primary event you are interested in analyzing with multi-touch attribution models. Typically some final value generating interaction such as “Signup” or “Upgrade” or “Payment”.
-* **Touchpoint**: These are actions (events) a user’s taken or exposed to along the journey before doing the conversion event. \[Eg. does event A → B → C → D (conversion event) in a 7 day period; For a lookback window of 7 days, A, B, C are all considered touchpoints]
-* **Attributed by property:** This is the property on a touchpoint event that we use for the attribution model. The canonical example is utm\_source
-* **Lookback window:** The time window where a user's events with this attribution property are counted towards the calculation. The window ends when the conversion metric happens.
+- **User journey:** Consists of touchpoints and the conversion event. It is possible for a conversion event to have no corresponding touchpoints (eg. utm parameters). In this case we consider it a ‘direct’ conversion
+- **Conversion**: The primary event you are interested in analyzing with multi-touch attribution models. Typically some final value generating interaction such as “Signup” or “Upgrade” or “Payment”.
+- **Touchpoint**: These are actions (events) a user’s taken or exposed to along the journey before doing the conversion event.  [Eg. does event A → B → C → D (conversion event) in a 7 day period; For a lookback window of 7 days, A, B, C are all considered touchpoints]
+- **Attributed by property:** This is the property on a touchpoint event that we use for the attribution model. The canonical example is utm_source
+- **Lookback window:** The time window where a user's events with this attribution property are counted towards the calculation. The window ends when the conversion metric happens.
 
 ### Attribution FAQ
 
@@ -104,11 +105,9 @@ Step 5 - If you want to include only certain channels or touchpoints in your att
 
 Please watch this video to better understand.
 
-{/\*
-
+{/* <div >
 {% embed url="https://www.loom.com/embed/1cebcd9687df4046af53ac90980907f7?sid=4d6d0920-8cc2-43f2-8361-bdb5a034969f" %}
-
-\*/}
+</div> */}
 
 [Link to Demo](https://www.loom.com/share/1cebcd9687df4046af53ac90980907f7)
 
@@ -117,61 +116,73 @@ Please watch this video to better understand.
 We need one single conversion event which we can use to “qualify” a user unique.
 
 For example: between May 1 and May 15, Jack made 3 purchases
-
-* May 1: Purchase 1: Computer \[came from instagram]
-* May 7: Purchase 2: Laptop \[came from instagram]
-* May 10: Purchase 3: TV \[came from facebook]
+- May 1: Purchase 1: Computer [came from instagram]
+- May 7: Purchase 2: Laptop [came from instagram]
+- May 10: Purchase 3: TV [came from facebook]
 
 Now note, while 3 purchases have been made, only one unique user has been converted
 
-How will attribution with uniques work? There will be 2 options depending on the use-case
-
-* **Option 1 :** When running attribution on Jack, we want to consider Jack unique on May 10, his last qualifying conversion, and run a lookback window starting at this point and consider all attribution prior to it which influenced the 3 purchases.
-* So Last Touch for Jack would be : Facebook
-* When would this option be useful? In-ecomm companies when looking at cost of acquiring a user, you want to consider all the purchases until their last purchase
-* **Option 2:** Consider Jack unique on May 1, his first qualifying conversion, and run a lookback before it.
-* So Last Touch for Jack would be: Instagram
-* When would this option be useful? For acquisition teams looking at getting a user to the experience the first time, you want to consider their first qualifying event
+How will attribution with uniques work?
+There will be 2 options depending on the use-case
+- **Option 1 :** When running attribution on Jack, we want to consider Jack unique on May 10, his last qualifying conversion, and run a lookback window starting at this point and consider all attribution prior to it which influenced the 3 purchases.
+- So Last Touch for Jack would be : Facebook
+- When would this option be useful? In-ecomm companies when looking at cost of acquiring a user, you want to consider all the purchases until their last purchase
+- **Option 2:**  Consider Jack unique on May 1, his first qualifying conversion, and run a lookback before it.
+- So Last Touch for Jack would be: Instagram
+- When would this option be useful? For acquisition teams looking at getting a user to the experience the first time, you want to consider their first qualifying event
 
 Some nuances to note
+- In a time-series chart, the first and last qualifying conversion is within the chart interval. For example if you have a 6M chart with a monthly interval, you’re looking at first and last conversion within a month, NOT 6M
 
-* In a time-series chart, the first and last qualifying conversion is within the chart interval. For example if you have a 6M chart with a monthly interval, you’re looking at first and last conversion within a month, NOT 6M
-* In non-time series charts, the chart interval and the qualifying conversion interval are the same. If your chart is for 6M, the first and last conversion is also seen within the 6M period
+![image](/Attribution_uniques_1.png)
+
+- In non-time series charts, the chart interval and the qualifying conversion interval are the same. If your chart is for 6M, the first and last conversion is also seen within the 6M period
+
+![image](/Attribution_uniques_2.png)
 
 **3. What does filtering do in attribution?**
 
 Once attribution is computed, filtering narrows total conversion events to only include/exclude those with the associated attribution property.
 
 To make this real, let’s take a scenario -
-
-* Purchase 1:
-* 15th Jan: Made purchase (visited via Linkedin ad)
-* 10th Jan: visited via Google (Last Touch: Linkedin; All Sources: Linkedin, Google)
-* Purchase 2:
-* 18th Jan: Made Purchase (came directly)
-* 12th Jan: visited via Facebook (Last Touch: Direct; All Sources: Direct, Facebook)
-* Purchase 3:
-* 20th Jan: Made Purchase (came via Google) (Last Touch: Google; All Sources: Google)
+- Purchase 1:
+- 15th Jan: Made purchase (visited via Linkedin ad)
+- 10th Jan: visited via Google 
+    (Last Touch: Linkedin; All Sources: Linkedin, Google)
+- Purchase 2:
+- 18th Jan: Made Purchase (came directly)
+- 12th Jan: visited via Facebook 
+    (Last Touch: Direct; 
+    All Sources: Direct, Facebook)
+- Purchase 3:
+- 20th Jan: Made Purchase (came via Google) 
+    (Last Touch: Google; 
+    All Sources: Google)
 
 On 30th Jan, doing some attribution analysis
+- Use-Case 1: I want to look at only Purchases that have come from a non Direct Channel?
+- Answer: 2 - Purchases 1 & 3
 
-* Use-Case 1: I want to look at only Purchases that have come from a non Direct Channel?
-* Answer: 2 - Purchases 1 & 3
-* Use-Case 2: I want to look at how many Purchases have come via Last Touch Google?
-* Answer: 1 - Purchase 3
-* Use-Case 3: I want to look at how many purchases have come via Google? (can be any touch in the last 30 days)
-* Answer: 2 - Purchases 1 & 3
+![image](/Attribution_filtering_1.png)
+
+- Use-Case 2: I want to look at how many Purchases have come via Last Touch Google?
+- Answer: 1 - Purchase 3
+
+![image](/Attribution_filtering_2.png)
+
+- Use-Case 3: I want to look at how many purchases have come via Google? (can be any touch in the last 30 days)
+- Answer: 2 - Purchases 1 & 3
+
+![image](/Attribution_filtering_3.png)
 
 NOTE: You can apply a filter on an attribution property only after an attribution breakdown has been applied. Read above for steps to turn on an attribution analysis
-
-* Step 1: Turn on Attribution analysis by going to the breakdown section and choosing `Attributed by..` and property `XYZ`
-* Step 2 (a): Once attribution model has been applied, go to the filter section and choose the computed property `Attributed by XXX`. You can apply an attribution filter only on the property used in the attribution breakdown
-* Step 2 (b): Once attribution model has been applied, click on the chart bar and filter/exclude the segments as needed
+- Step 1: Turn on Attribution analysis by going to the breakdown section and choosing `Attributed by..` and property `XYZ`
+- Step 2 (a): Once attribution model has been applied, go to the filter section and choose the computed property `Attributed by XXX`. You can apply an attribution filter only on the property used in the attribution breakdown
+- Step 2 (b): Once attribution model has been applied, click on the chart bar and filter/exclude the segments as needed
 
 **4. What does the "(not set)" attribution segment mean?**
 
 You may see a "(not set)" segment in your report when using the Attribution feature. This occurs when the attribution property is missing from all events being evaluated for the user.
 
 ## Funnels-specific Computed Properties
-
-The [Funnel report](../../../../docs/reports/funnels/funnels-overview/) support two unique computed properties. The [Time to Convert property](../../../../docs/reports/funnels/funnels-advanced/#time-to-convert) returns the time in seconds needed to convert between funnels steps, and the [Property Sum property](../../../../docs/reports/funnels/funnels-advanced/#property-sum) allows you to sum up a numeric property as a user moves through funnel steps.
+The [Funnel report](../reports/funnels/funnels-overview.md) support two unique computed properties. The [Time to Convert property](../reports/funnels/funnels-advanced.md#time-to-convert) returns the time in seconds needed to convert between funnels steps, and the [Property Sum property](../reports/funnels/funnels-advanced.md#property-sum) allows you to sum up a numeric property as a user moves through funnel steps.

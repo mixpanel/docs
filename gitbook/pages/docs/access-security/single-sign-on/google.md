@@ -2,7 +2,7 @@
 
 ## Overview
 
-Before using this document, read the [general Mixpanel SSO set-up instructions](/docs/access-security/single-sign-on).
+Before using this document, read the [general Mixpanel SSO set-up instructions](../single-sign-on.md).
 
 You have two setup options in order to use Single Sign-On (SSO) for Mixpanel through Google Workspace IDP:
 
@@ -12,7 +12,7 @@ B.  If you have a more custom setup, follow Google Workspace's documentation on 
 
 ### Configure SSO in Mixpanel
 
-Follow the [general SSO set-up instructions](/docs/access-security/single-sign-on).
+Follow the [general SSO set-up instructions](../single-sign-on.md).
 
 Make sure to collect your postback URL and successfully claim your domain.
 

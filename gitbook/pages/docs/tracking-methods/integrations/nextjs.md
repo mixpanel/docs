@@ -5,7 +5,7 @@
 
    a. Create a `.env.local` file in the root of your Next.js project (note: for production use `.env.production`).
 
-   b. Then, add your Mixpanel [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
+   b. Then, add your Mixpanel [project token](../../orgs-and-projects/managing-projects.md#find-your-project-tokens).
 
    ```javascript
    // Paste in your token

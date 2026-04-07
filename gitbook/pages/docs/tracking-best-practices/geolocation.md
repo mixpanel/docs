@@ -1,15 +1,13 @@
-# Geolocation
+# Geolocation: IP address and location properties
 
 ## Overview
-
 Mixpanel automatically appends geolocation to your events and profiles. Geolocation consists of the following properties:
+- `$region`
+- `$city`
+- `mp_country_code` (for event data)
+- `$country_code` (for profile data)
 
-* `$region`
-* `$city`
-* `mp_country_code` (for event data)
-* `$country_code` (for profile data)
-
-These geolocation properties are [Default Properties](../../../../docs/data-structure/property-reference/#default-properties) of [Mixpanel's Ingestion APIs](https://developer.mixpanel.com/reference/ingestion-api) and [Client-side SDKs](../../../../docs/tracking-methods/choosing-the-right-method/#client-side-tracking).
+These geolocation properties are [Default Properties](../data-structure/property-reference.md#default-properties) of [Mixpanel's Ingestion APIs](https://developer.mixpanel.com/reference/ingestion-api) and [Client-side SDKs](../tracking-methods/choosing-the-right-method.md#client-side-tracking). 
 
 They are also Reserved Properties that Mixpanel uses for special processing or for specific system features. These properties, when populated, will affect the way Mixpanel processes your data (e.g., appearing in the special areas in the UI).
 
@@ -17,17 +15,17 @@ They are also Reserved Properties that Mixpanel uses for special processing or f
 
 By default, geolocation properties are set using the IP address of the location where the request was made.
 
-For **event data**, the geolocation event properties are derived from the IP address of the client-device or server that sent the event [track/import request](https://developer.mixpanel.com/reference/import-events). (e.g. calling [.track()](../../../../docs/tracking-methods/sdks/javascript/#track-events))
+For **event data**, the geolocation event properties are derived from the IP address of the client-device or server that sent the event [track/import request](https://developer.mixpanel.com/reference/import-events). (e.g. calling [.track()](../tracking-methods/sdks/javascript.md#track-events))
 
-For **profile data**, the geolocation profile properties are derived from the IP address of the client-device or server that sent the [profile update request](https://developer.mixpanel.com/reference/profile-set). (e.g., calling [.people.set()](../../../../docs/tracking-methods/sdks/javascript/#setting-profile-properties))
+For **profile data**, the geolocation profile properties are derived from the IP address of the client-device or server that sent the [profile update request](https://developer.mixpanel.com/reference/profile-set). (e.g., calling [.people.set()](../tracking-methods/sdks/javascript.md#setting-profile-properties))
 
 {% hint style="info" %}
-Every time you set profile properties, the geolocation properties are overwritten with the location of the profile set request. Learn how to ignore geolocation when setting profile properties [here](../../../../docs/tracking-best-practices/geolocation/#ignore-ip-address).
+Every time you set profile properties, the geolocation properties are overwritten with the location of the profile set request. Learn how to ignore geolocation when setting profile properties [here](./geolocation.md#ignore-ip-address).
 {% endhint %}
 
 ### IP address Parsing
 
-While the IP address is used to generate the geolocation properties, the IP address values themselves are not stored. Under the hood, we take the IP address of the request and parse it through [Maxmind](https://www.maxmind.com/en/geoip-demo) to generate the Country, Region, and City values. Afterward, these geolocation values are attached to your data, and the IP address value is discarded from the payload prior to ingestion into your project.
+While the IP address is used to generate the geolocation properties, the IP address values themselves are not stored. Under the hood, we take the IP address of the request and parse it through [Maxmind](https://www.maxmind.com/en/geoip-demo) to generate the Country, Region, and City values. Afterward, these geolocation values are attached to your data, and the IP address value is discarded from the payload prior to ingestion into your project.  
 
 In summary, here is the order of operations:
 
@@ -39,16 +37,18 @@ In summary, here is the order of operations:
 6. The payload, which includes the geolocation properties without the IP address, enters the queue for ingestion into the project.
 
 {% hint style="info" %}
-IP address is an approximation of location. For more granular precision, [set your location using latitude and longitude](../../../../docs/tracking-best-practices/geolocation/#define-latitude-and-longitude).
+IP address is an approximation of location. For more granular precision, [set your location using latitude and longitude](./geolocation.md#define-latitude-and-longitude).
 {% endhint %}
 
+![geolocation_parsing.png](/geolocation_parsing.png)
+  
 ## Manual Geolocation Tracking
 
 It is possible to override the default geolocation tracking behavior of our ingestion APIs. This is helpful in certain scenarios, for example:
 
-* **Server-side implementation**: Since the default geolocation is derived from the IP address of the request, data sent from the server-side will appear with geolocation set to the location of the server instead of the location of your users.
-* **Precise Location**: IP address is an approximation of location. Some use cases require additional precision.
-* **Geolocation information already exists**: If you have a database of your users' locations, you may want to leverage your database as a source of truth instead of relying on the geolocation parsing mechanism.
+- **Server-side implementation**: Since the default geolocation is derived from the IP address of the request, data sent from the server-side will appear with geolocation set to the location of the server instead of the location of your users.
+- **Precise Location**: IP address is an approximation of location. Some use cases require additional precision.
+- **Geolocation information already exists**: If you have a database of your users' locations, you may want to leverage your database as a source of truth instead of relying on the geolocation parsing mechanism. 
 
 There are 3 ways to manually set the geolocation properties in your Mixpanel payloads: define the geolocation properties, define the Latitude/Longitude, or define the IP address.
 
@@ -74,7 +74,6 @@ You can manually define the country, city, and region geolocation properties in 
 ```
 
 **Example Profile**
-
 ```
 //set profile location to San Francisco, California, USA
 {
@@ -90,13 +89,11 @@ You can manually define the country, city, and region geolocation properties in 
 ```
 
 ### Define Latitude and Longitude
-
-If you have access to Latitude and Longitude information, you can specify `$latitude` and `$longitude` in the payload so that Mixpanel will use these properties (instead of the IP address) to infer the closest city.
+If you have access to Latitude and Longitude information, you can specify `$latitude` and `$longitude` in the payload so that Mixpanel will use these properties (instead of the IP address) to infer the closest city. 
 
 **Example Event**
 
 On events, the event properties must be named `$latitude` and `$longitude`, and the values should be in floating-point decimal degrees.
-
 ```
 {
     "event": "Signed Up",
@@ -142,14 +139,12 @@ Note that `ip` is used for event payloads, and `$ip` is used for profile payload
 {% endhint %}
 
 If you're tracking from your servers, you need to set the `ip` property of the events to the _client's_ IP address. Most server frameworks provide this out of the box.
-
 * [Django](https://docs.djangoproject.com/en/4.1/ref/request-response/#django.http.HttpRequest.META) exposes this in the request object with `request.META['REMOTE_ADDR']`.
 * [Flask](https://flask.palletsprojects.com/en/2.2.x/api/?highlight=remote_addr#flask.Request.remote_addr) exposes this as `request.remote_addr`.
 * [Go](https://pkg.go.dev/net/http#Request) exposes this as the `RemoteAddr` field on the http.Request struct.
 * [Nginx](http://nginx.org/en/docs/http/ngx_http_log_module.html) exposes this as `$remote_addr`.
 
 **Events**
-
 ```
 //manually set the IP address of the event to 136.24.0.114
 {
@@ -163,7 +158,6 @@ If you're tracking from your servers, you need to set the `ip` property of the e
 ```
 
 **Users**
-
 ```
 // set location of the profile to 136.24.0.114
 // note that $ip is outside of the $set object
@@ -211,4 +205,4 @@ For example, your user may log in to your app in the US, which sets the profile 
 
 **2. I know for a fact that one of my users is located in a certain country, but they are appearing in an entirely different continent in Mixpanel. What's wrong?**
 
-This can happen for a variety of reasons. Some users may have privacy settings or VPNs that mask their true location. Mixpanel uses the IP address of the request for geolocation parsing, so if a user is masking their location, we would have no way of distinguishing it. If you know the geolocation of your users, consider [manually defining the geolocation properties in your data](../../../../docs/tracking-best-practices/geolocation/#manual-geolocation-tracking).
+This can happen for a variety of reasons. Some users may have privacy settings or VPNs that mask their true location. Mixpanel uses the IP address of the request for geolocation parsing, so if a user is masking their location, we would have no way of distinguishing it. If you know the geolocation of your users, consider [manually defining the geolocation properties in your data](./geolocation.md#manual-geolocation-tracking).

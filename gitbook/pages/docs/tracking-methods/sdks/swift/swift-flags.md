@@ -2,16 +2,16 @@
 
 ## Overview
 
-This developer guide will assist you in configuring your iOS/macOS platform for Feature Flags using the [Mixpanel Swift SDK](/docs/tracking-methods/sdks/swift). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
+This developer guide will assist you in configuring your iOS/macOS platform for Feature Flags using the [Mixpanel Swift SDK](../swift.md). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
 
-For complete Swift SDK documentation, see the [Swift SDK guide](/docs/tracking-methods/sdks/swift).
+For complete Swift SDK documentation, see the [Swift SDK guide](../swift.md).
 
 ## Prerequisites
 
 Before implementing Feature Flags, ensure:
 
-- You are on an Enterprise subscription plan and have the latest version of the SDK installed (minimum supported version is [`v5.1.3`](https://github.com/mixpanel/mixpanel-swift/releases/tag/v5.1.3)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
-- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+- You are on an Enterprise subscription plan and have the latest version of the SDK installed (minimum supported version is [`v5.1.3`](https://github.com/mixpanel/mixpanel-swift/releases/tag/v5.1.3)). If not, please follow [this doc](../../../quickstart/install-mixpanel.md) to install the SDK.
+- You have your Project Token from your [Mixpanel Project Settings](../../../orgs-and-projects/managing-projects.md#find-your-project-tokens)
 
 ## Flag Initialization
 
@@ -195,7 +195,7 @@ Mixpanel.mainInstance().flags.getAllVariants { allFlags in
 ### What if I'm not receiving any flags on SDK initialization?
 
 1. **Check your project token**:
-  - Ensure you're using the correct project token from your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+  - Ensure you're using the correct project token from your [Mixpanel project settings](../../../orgs-and-projects/managing-projects.md#find-your-project-tokens)
 2. **Review flag configuration**:
   - Make sure your feature flag is enabled
   - Check the flag's rollout percentage

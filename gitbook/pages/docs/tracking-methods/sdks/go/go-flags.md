@@ -2,19 +2,19 @@
 
 ## Overview
 
-This developer guide will assist you in configuring your server-side Go platform for [Feature Flags](/docs/featureflags) using the [Mixpanel Go SDK](/docs/tracking-methods/sdks/go). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
+This developer guide will assist you in configuring your server-side Go platform for [Feature Flags](../../../featureflags.md) using the [Mixpanel Go SDK](../go.md). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
 
 ## Prerequisites
 
-Before implementing [Feature Flags](/docs/featureflags), ensure:
+Before implementing [Feature Flags](../../../featureflags.md), ensure:
 
-- You are on an Enterprise subscription plan and have the [Mixpanel Go SDK](https://github.com/mixpanel/mixpanel-go) installed. If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK. The minimum supported version is [`v2.0.0`](https://github.com/mixpanel/mixpanel-go/releases/tag/v2.0.0)
+- You are on an Enterprise subscription plan and have the [Mixpanel Go SDK](https://github.com/mixpanel/mixpanel-go) installed. If not, please follow [this doc](../../../quickstart/install-mixpanel.md) to install the SDK. The minimum supported version is [`v2.0.0`](https://github.com/mixpanel/mixpanel-go/releases/tag/v2.0.0)
 
 ```bash
 go get github.com/mixpanel/mixpanel-go@v2.0.0
 ```
 
-- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+- You have your Project Token from your [Mixpanel Project Settings](../../../orgs-and-projects/managing-projects.md#find-your-project-tokens)
 
 ## Flag Evaluation Scenarios
 

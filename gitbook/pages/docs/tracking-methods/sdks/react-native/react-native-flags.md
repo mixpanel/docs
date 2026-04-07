@@ -12,18 +12,18 @@ Feature Flags for React Native is currently in **Beta**. Install the beta SDK ve
 
 ## Overview
 
-This developer guide will assist you in configuring your React Native application for Feature Flags using the [Mixpanel React Native SDK](/docs/tracking-methods/sdks/react-native). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
+This developer guide will assist you in configuring your React Native application for Feature Flags using the [Mixpanel React Native SDK](../react-native.md). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
 
 Feature Flags in the React Native SDK work across iOS, Android, Expo, and React Native Web platforms.
 
-For complete React Native SDK documentation, see the [React Native SDK guide](/docs/tracking-methods/sdks/react-native).
+For complete React Native SDK documentation, see the [React Native SDK guide](../react-native.md).
 
 ## Prerequisites
 
 Before implementing Feature Flags, ensure:
 
 - You are on an Enterprise subscription plan and have the beta version of the SDK installed (minimum supported version is `v3.2.0-beta.3`). Install via: `npm install mixpanel-react-native@beta`
-- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+- You have your Project Token from your [Mixpanel Project Settings](../../../orgs-and-projects/managing-projects.md#find-your-project-tokens)
 - For iOS native apps, run `cd ios && pod install` after installing the beta SDK
 
 {% hint style="info" %}
@@ -286,7 +286,7 @@ The React Native SDK supports both camelCase and snake_case method names, aligne
 ### What if I'm not receiving any flags on SDK initialization?
 
 1. **Check your project token**:
-  - Ensure you're using the correct project token from your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+  - Ensure you're using the correct project token from your [Mixpanel project settings](../../../orgs-and-projects/managing-projects.md#find-your-project-tokens)
 2. **Review flag configuration**:
   - Make sure your feature flag is enabled
   - Check the flag's rollout percentage

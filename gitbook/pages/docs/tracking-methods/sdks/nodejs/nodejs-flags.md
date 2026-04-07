@@ -2,14 +2,14 @@
 
 ## Overview
 
-This developer guide will assist you in configuring your server-side Node.js platform for [Feature Flags](/docs/featureflags) using the [Mixpanel Node.js SDK](/docs/tracking-methods/sdks/nodejs). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
+This developer guide will assist you in configuring your server-side Node.js platform for [Feature Flags](../../../featureflags.md) using the [Mixpanel Node.js SDK](../nodejs.md). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
 
 ## Prerequisites
 
-Before implementing [Feature Flags](/docs/featureflags), ensure:
+Before implementing [Feature Flags](../../../featureflags.md), ensure:
 
-- You are on an Enterprise subscription plan and have the [Mixpanel Node.js SDK](https://github.com/mixpanel/mixpanel-node) installed. If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK. The minimum supported version is [v0.20.0](https://www.npmjs.com/package/mixpanel)
-- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+- You are on an Enterprise subscription plan and have the [Mixpanel Node.js SDK](https://github.com/mixpanel/mixpanel-node) installed. If not, please follow [this doc](../../../quickstart/install-mixpanel.md) to install the SDK. The minimum supported version is [v0.20.0](https://www.npmjs.com/package/mixpanel)
+- You have your Project Token from your [Mixpanel Project Settings](../../../orgs-and-projects/managing-projects.md#find-your-project-tokens)
 
 ## Flag Evaluation Scenarios
 

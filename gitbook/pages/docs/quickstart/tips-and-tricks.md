@@ -1,6 +1,6 @@
 # Tips and Tricks
 
-You can use Mixpanel's SDKs to track events from your website, web application, or backend servers. We [recommend](/docs/tracking-methods/choosing-the-right-method) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
+You can use Mixpanel's SDKs to track events from your website, web application, or backend servers. We [recommend](../tracking-methods/choosing-the-right-method.md) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
 Note: You'll need your Project Token to authenticate, which you can get [here](https://mixpanel.com/settings/project).
 
@@ -14,7 +14,7 @@ Note: You'll need your Project Token to authenticate, which you can get [here](h
 Yes, if you pass `track_pageview: true` in the `mixpanel.init()` call,
    Mixpanel will automatically track a "Page View" event every time a new 
    page is loaded. 
-   Learn more [here](/docs/tracking-methods/sdks/javascript#tracking-page-views).
+   Learn more [here](../tracking-methods/sdks/javascript.md#tracking-page-views).
 </details>
 
 <details>
@@ -23,7 +23,7 @@ Yes, if you pass `track_pageview: true` in the `mixpanel.init()` call,
 If tracking from web, make sure you've disabled ad blockers and your Do Not Track (DNT) 
   browser settings are set to false when testing your JavaScript implementation. If 
   the DNT setting is set to true, then Mixpanel won't collect information from that Mixpanel 
-  instance. We also recommend [setting up a proxy server](/docs/tracking-methods/sdks/javascript#tracking-via-proxy) 
+  instance. We also recommend [setting up a proxy server](../tracking-methods/sdks/javascript.md#tracking-via-proxy) 
   so that you don't lose events due to ad-blockers.
 
   If tracking from a mobile device, events may take 1-2 minutes to appear because Mixpanel's 
@@ -36,7 +36,7 @@ If tracking from web, make sure you've disabled ad blockers and your Do Not Trac
 
 If a user opts out of tracking, you can call the `.optOutTracking()` method on any of our 
   client-side SDKs; this prevents any subsequent data being tracked from that user's device. 
-  Learn more [here](/docs/privacy/protecting-user-data).
+  Learn more [here](../privacy/protecting-user-data.md).
 
   For iOS specifically: Mixpanel does not use IDFA, so it does not require user permission 
   through the AppTrackingTransparency(ATT) framework. For more details, refer to our 
@@ -69,6 +69,6 @@ If tracking client-side, just call `.identify(<user_id>)` when a user logs in an
  when they log out. Mixpanel will automatically stitch the user journey across
   logged out and logged in.
 
-  If tracking server-side, check out our [server-side best practices guide](/docs/best-practices/server-side-best-practices). 
-  For more information, read our comprehensive guide on [Identifying Users](/docs/tracking-methods/id-management/identifying-users).
+  If tracking server-side, check out our [server-side best practices guide](../best-practices/server-side-best-practices.md). 
+  For more information, read our comprehensive guide on [Identifying Users](../tracking-methods/id-management/identifying-users.md).
 </details>

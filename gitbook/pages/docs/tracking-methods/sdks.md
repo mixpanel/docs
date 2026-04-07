@@ -17,37 +17,37 @@ If you do not see an SDK in your preferred language, leverage our [HTTP APIs](ht
   <tbody>
     <tr>
       <td><strong>Javascript</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/javascript">/docs/tracking-methods/sdks/javascript</a></td>
+      <td><a href="./sdks/javascript.md">./sdks/javascript.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>React Native</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/react-native">/docs/tracking-methods/sdks/react-native</a></td>
+      <td><a href="./sdks/react-native.md">./sdks/react-native.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Android</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/android">/docs/tracking-methods/sdks/android</a></td>
+      <td><a href="./sdks/android.md">./sdks/android.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>iOS (Objective-C)</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/ios">/docs/tracking-methods/sdks/ios</a></td>
+      <td><a href="./sdks/ios.md">./sdks/ios.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>iOS (Swift)</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/swift">/docs/tracking-methods/sdks/swift</a></td>
+      <td><a href="./sdks/swift.md">./sdks/swift.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Flutter</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/flutter">/docs/tracking-methods/sdks/flutter</a></td>
+      <td><a href="./sdks/flutter.md">./sdks/flutter.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Unity</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/unity">/docs/tracking-methods/sdks/unity</a></td>
+      <td><a href="./sdks/unity.md">./sdks/unity.md</a></td>
       <td></td>
     </tr>
   </tbody>
@@ -66,32 +66,32 @@ If you do not see an SDK in your preferred language, leverage our [HTTP APIs](ht
   <tbody>
     <tr>
       <td><strong>Python</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/python">/docs/tracking-methods/sdks/python</a></td>
+      <td><a href="./sdks/python.md">./sdks/python.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Node.js</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/nodejs">/docs/tracking-methods/sdks/nodejs</a></td>
+      <td><a href="./sdks/nodejs.md">./sdks/nodejs.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Ruby</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/ruby">/docs/tracking-methods/sdks/ruby</a></td>
+      <td><a href="./sdks/ruby.md">./sdks/ruby.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>PHP</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/php">/docs/tracking-methods/sdks/php</a></td>
+      <td><a href="./sdks/php.md">./sdks/php.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Go</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/go">/docs/tracking-methods/sdks/go</a></td>
+      <td><a href="./sdks/go.md">./sdks/go.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Java</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/java">/docs/tracking-methods/sdks/java</a></td>
+      <td><a href="./sdks/java.md">./sdks/java.md</a></td>
       <td></td>
     </tr>
   </tbody>
@@ -110,17 +110,17 @@ If you do not see an SDK in your preferred language, leverage our [HTTP APIs](ht
   <tbody>
     <tr>
       <td><strong>Session Replay (Android)</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/android/android-replay">/docs/tracking-methods/sdks/android/android-replay</a></td>
+      <td><a href="./sdks/android/android-replay.md">./sdks/android/android-replay.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Session Replay (Swift)</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/swift/swift-replay">/docs/tracking-methods/sdks/swift/swift-replay</a></td>
+      <td><a href="./sdks/swift/swift-replay.md">./sdks/swift/swift-replay.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Session Replay (React Native)</strong></td>
-      <td><a href="/docs/tracking-methods/sdks/react-native/react-native-replay">/docs/tracking-methods/sdks/react-native/react-native-replay</a></td>
+      <td><a href="./sdks/react-native/react-native-replay.md">./sdks/react-native/react-native-replay.md</a></td>
       <td></td>
     </tr>
   </tbody>

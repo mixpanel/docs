@@ -15,15 +15,20 @@ You must be a Mixpanel project admin to enable the Appcues integration.
 Follow these steps to enable the integration with Appcues:
 
 1. Select **Settings > Integrations** tab in the bottom left navigation bar of Mixpanel.
+
 2. From the Integrations page, select the Appcues dropdown, and select **Connect**.
+
+![Appcues 2 Image](/appcues2.png)
+
 3. The connection uses one credential to authorize, API Key. Supply an **API token** generated from your **Appcues settings page** to establish the connection.
-4. The Appcues integration will show a **Connected** tag in the UI once the connection establishes.
+
+3. The Appcues integration will show a **Connected** tag in the UI once the connection establishes.
 
 ## Matching Users between Appcues and Mixpanel
 
 Mixpanel only exports identified user profiles (users with at least 1 set profile properties) to match to Appcues - users without user profiles (i.e. anonymous users) will not export.
 
-The integration requires that you use the same system of identifiers for both tools, meaning the value you pass to `mixpanel.identify("internal_user_id")` will have the same value as you pass to `appcues.identify("internal_user_id")`. Appcues will attempt to match users from inbound cohorts based on their Mixpanel distinct\_id.
+The integration requires that you use the same system of identifiers for both tools, meaning the value you pass to `mixpanel.identify("internal_user_id")` will have the same value as you pass to `appcues.identify("internal_user_id")`. Appcues will attempt to match users from inbound cohorts based on their Mixpanel distinct_id.
 
 ## Export a Cohort
 
@@ -32,6 +37,8 @@ To export a cohort to Appcues, navigate to Cohorts by clicking in the **Data Man
 Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort.
 
 Click Export to > Appcues. Select either one-time sync or dynamic sync. Click **Start Sync**.
+
+![Appcues 3 Image](/appcues3.png)
 
 ## Sync Types
 
@@ -54,6 +61,8 @@ More ideal use cases are instead around tours and surveys where the tour isn't t
 ## Select the Segment in Appcues
 
 Once the export completes, you will see a Segment reflecting the set of users from your Mixpanel cohort in the Appcues Segment tab, under Custom Properties in the dropdown (e.g. "Volume Buyers"):
+
+![Appcues 4 Image](/appcues4.png)
 
 ## Appcues events into Mixpanel
 

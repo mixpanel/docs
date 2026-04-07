@@ -1,19 +1,18 @@
 # Login Methods
 
 ## Overview
-
 Users must authenticate themselves through a login process to access Mixpanel. Mixpanel supports multiple login methods.
 
 ## Magic Link Login
-
 {% hint style="info" %}
 If you do not see the magic link email in your inbox/junk/spam mailbox, you may need to create an account or your account may be associated with a different email address.
 {% endhint %}
 
 By default, Mixpanel users authenticate in a password-less manner using Magic Link. After entering your email and clicking continue in the log in screen, we send an email to your inbox that contains a Magic Link, which will log you in directly.
 
-## Password Login
+![image](/magic-link.png)
 
+## Password Login
 {% hint style="warning" %}
 Once you set a password, the magic link login option will be permanently disabled for your account.
 {% endhint %}
@@ -21,21 +20,21 @@ Once you set a password, the magic link login option will be permanently disable
 You can set a password for your user account if you prefer to log in by providing an email and password instead of the Magic Link.
 
 To set a password for your account:
-
 1. Click the settings button (gear icon) in the top right corner of the UI
 2. Select “Personal Settings”
 3. Navigate to “Your Profile”
 4. Click the pencil icon to set your password.
 
-## Organization-wide Access Settings
+![image](/personal-profile-setting.png)
 
+## Organization-wide Access Settings
 Additional access security requirements may be configured across an Organization that impacts how a user logs in to Mixpanel. Organization Owners and Admins can require users who are inside of their organization to use 2FA, and force any users with an email from a claimed domain to use SSO for login.
 
 **Two-Factor Authentication**: Whenever users sign in with a username and password, they also need to enter a security code generated on their mobile device. Users do not need a security code when signing in through the organization's identity provider (SSO).
 
 **Single Sign-On**: Enable users of your organization to log in with single sign-on. Can also require users to login using SSO and assign roles/permissions via IdP.
 
-Read more about Two-Factor Authentication [here](../../../../docs/access-security/two-factor-authentication/) and Single Sign-On [here](../../../../docs/access-security/single-sign-on/).
+Read more about Two-Factor Authentication [here](./two-factor-authentication.md) and Single Sign-On [here](./single-sign-on.md).
 
 ## FAQ
 
@@ -47,4 +46,4 @@ If you are not seeing the email even after checking spam and resending the email
 
 **Why don't I see my team's data and reports?**
 
-If you signed up via an invitation from a teammate, it is possible that the invitation was sent with the incorrect access permission. Reach out to your teammate and have them follow [these instructions](../../../../docs/orgs-and-projects/roles-and-permissions/#invite-users) to grant you access.
+If you signed up via an invitation from a teammate, it is possible that the invitation was sent with the incorrect access permission. Reach out to your teammate and have them follow [these instructions](../orgs-and-projects/roles-and-permissions.md#invite-users) to grant you access.

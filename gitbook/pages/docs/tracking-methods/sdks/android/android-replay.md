@@ -2,23 +2,23 @@
 
 ## Overview
 
-This developer guide will assist you in configuring your Android app for [Session Replay](/docs/session-replay) using the [Session Replay SDK (Android)](/docs/tracking-methods/sdks/android/android-replay). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
+This developer guide will assist you in configuring your Android app for [Session Replay](../../../session-replay.md) using the [Session Replay SDK (Android)](./android-replay.md). Learn more about [viewing captured Replays in your project here](../../../session-replay.md).
 
 {% hint style="info" %}
 Mobile Session Replay is generally available (GA) to customers on all plans and in all regions.
 {% endhint %}
 
 ## Best Practices
-Session Replay provides powerful insights into user behavior, but it also introduces risks, especially on mobile. These risks are not unique to Mixpanel; they are common across the entire session replay product category. Because SDKs run on end-user devices and screen content may include sensitive data, we recommend implementing / testing Session Replay carefully. Be especially cautious with masking, edge-case testing, and rollout strategies. For more information on risk categories and best practices, read more [here](/docs/session-replay#best-practices)
+Session Replay provides powerful insights into user behavior, but it also introduces risks, especially on mobile. These risks are not unique to Mixpanel; they are common across the entire session replay product category. Because SDKs run on end-user devices and screen content may include sensitive data, we recommend implementing / testing Session Replay carefully. Be especially cautious with masking, edge-case testing, and rollout strategies. For more information on risk categories and best practices, read more [here](../../../session-replay.md#best-practices)
 
 ## Prerequisite
-You are already a Mixpanel customer and have the latest version of the [Mixpanel Android SDK](/docs/tracking-methods/sdks/android) installed (minimum supported version is [`v8.0.2`](https://github.com/mixpanel/mixpanel-android/releases/tag/v8.0.2)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+You are already a Mixpanel customer and have the latest version of the [Mixpanel Android SDK](../android.md) installed (minimum supported version is [`v8.0.2`](https://github.com/mixpanel/mixpanel-android/releases/tag/v8.0.2)). If not, please follow [this doc](../../../quickstart/install-mixpanel.md) to install the SDK.
 
 The Session Replay SDK requires a minimum Android API version of 21 or higher.
 
 ## Installation
 
-You can integrate the [Mixpanel Android Session Replay SDK](/docs/tracking-methods/sdks/android/android-replay) into your Android project using Maven Central.
+You can integrate the [Mixpanel Android Session Replay SDK](./android-replay.md) into your Android project using Maven Central.
 
 ### Add to your project
 
@@ -38,7 +38,7 @@ Replace `VERSION_NAME` with the latest version available on [Maven Central](http
 
 ### Initialize
 
-You should have the main Mixpanel Android SDK installed (minimum version `v8.0.2`), if not, please refer to [Prerequisite](/docs/tracking-methods/sdks/android).
+You should have the main Mixpanel Android SDK installed (minimum version `v8.0.2`), if not, please refer to [Prerequisite](../android.md).
 
 Initialize the `MPSessionReplay` SDK in your `Application` class:
 
@@ -250,7 +250,7 @@ It works by inferring the Replay that an event belong using the Distinct ID and 
 
 For example, let's say a user with Distinct ID "ABC" has a Replay recorded from 1-2pm. Two hours later, an event was sent from your warehouse with a timestamp of 1:35pm with Distinct ID "ABC". Server-Side Stitching will infer that the event should belong in the same Replay.
 
-To ensure Server-Side Stitching works, call [`identify()`](/docs/tracking-methods/sdks/android#identify) from the client-side using our SDK with the user's `$user_id`. This guarantees that events generated from both the client-side and server-side share the same Distinct ID. Learn more about [identifying users](/docs/tracking-methods/id-management).
+To ensure Server-Side Stitching works, call [`identify()`](../android.md#identify) from the client-side using our SDK with the user's `$user_id`. This guarantees that events generated from both the client-side and server-side share the same Distinct ID. Learn more about [identifying users](../../id-management.md).
 
 ## Debugging
 
@@ -260,7 +260,7 @@ To ensure Server-Side Stitching works, call [`identify()`](/docs/tracking-method
 
 To check your implementation, select **Session Replay** from the side navigation in your Mixpanel project to see whether replays are being captured and appearing as expected. When a capture begins, a "Session Recording Checkpoint" event (`$mp_session_record`) also appears in your project; you can use this to verify that Session Replay is implemented correctly.
 
-If you are using the [recommended sampling method](/docs/tracking-methods/sdks/android/android-replay#sampling) to capture your Replays but having trouble finding the Replays in your project, try calling `.startRecording()` manually and see if the `$mp_session_record` event appears. If it does appear but you are still struggling to locate your Replays, you may want to increase your sampling rate.
+If you are using the [recommended sampling method](./android-replay.md#sampling) to capture your Replays but having trouble finding the Replays in your project, try calling `.startRecording()` manually and see if the `$mp_session_record` event appears. If it does appear but you are still struggling to locate your Replays, you may want to increase your sampling rate.
 
 ---
 
@@ -280,7 +280,7 @@ Please [submit a request to our Support team](https://mixpanel.com/get-support) 
 
 ## Privacy
 
-Mixpanel offers a privacy-first approach to Session Replay, including features such as data masking. Mixpanel's Session Replay privacy controls were designed to assist customers in protecting end user privacy. Read more [here](/docs/session-replay/session-replay-privacy-controls).
+Mixpanel offers a privacy-first approach to Session Replay, including features such as data masking. Mixpanel's Session Replay privacy controls were designed to assist customers in protecting end user privacy. Read more [here](../../../session-replay/session-replay-privacy-controls.md).
 
 ### User Data
 
@@ -288,7 +288,7 @@ The Mixpanel SDK will always mask all inputs. To protect end-user privacy, input
 
 By default, all text, images, and WebViews are also masked.
 
-You can unmask these elements at your own discretion using the [`autoMaskedViews` config option described above](/docs/tracking-methods/sdks/android/android-replay#additional-configuration-options).
+You can unmask these elements at your own discretion using the [`autoMaskedViews` config option described above](./android-replay.md#additional-configuration-options).
 
 Along with other data, the SDK respects all Do Not Track (DNT) settings as well as manual opt-out for any replay data. 
 
@@ -355,17 +355,17 @@ However, Session Replay is not a literal video recording of your end-user's scre
 
 The Mixpanel SDK will always mask all inputs. By default, all text, images, and WebViews on a page.
 
-Additionally, you can customize how you leverage our SDK to fully control (1) where to record and (2) whom to record. Consider the [manual capture example scenarios](/docs/tracking-methods/sdks/android/android-replay#manual-capture), [SDK configuration options](/docs/tracking-methods/sdks/android/android-replay#additional-configuration-options), and [manual view masking example](/docs/tracking-methods/sdks/android/android-replay#mark-views-as-sensitive) provided above to customize the replay capture of your implementation.
+Additionally, you can customize how you leverage our SDK to fully control (1) where to record and (2) whom to record. Consider the [manual capture example scenarios](./android-replay.md#manual-capture), [SDK configuration options](./android-replay.md#additional-configuration-options), and [manual view masking example](./android-replay.md#mark-views-as-sensitive) provided above to customize the replay capture of your implementation.
 
 #### How can I estimate how many Replays I will generate?
 
-If you already use Mixpanel, the [Session Start events](/docs/features/sessions) are a way to estimate the rough amount of replays you might expect. This is especially true if you use timeout-based query sessions. However, because our sessions are defined at query time, we cannot guarantee these metrics will be directly correlated.
+If you already use Mixpanel, the [Session Start events](../../../features/sessions.md) are a way to estimate the rough amount of replays you might expect. This is especially true if you use timeout-based query sessions. However, because our sessions are defined at query time, we cannot guarantee these metrics will be directly correlated.
 
 When you enable Session Replay, use the above proxy metric to determine a starting sampling percentage, which will determine how many replays will be sent. You can always adjust this as you go to calibrate to the right level.
 
 #### How does Session Replay affect my app's bandwidth consumption?
 
-The bandwidth impact of Session Replay depends on the setting of the [`wifiOnly` parameter](/docs/tracking-methods/sdks/android/android-replay#additional-configuration-options).
+The bandwidth impact of Session Replay depends on the setting of the [`wifiOnly` parameter](./android-replay.md#additional-configuration-options).
 
 By default, `wifiOnly` is set to `true`, which means replay events are only flushed to the server when the device has a wifi connection. If there is no wifi, flushes are skipped, and the events remain in the in-memory queue until WiFi is restored. This ensures no additional cellular data is used, preventing users from incurring additional data charges.
 

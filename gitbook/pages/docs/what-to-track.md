@@ -52,7 +52,7 @@ your tracking server-side.
 If you're only tracking on the client-side, you're missing out on a lot of data, even if you're
 using a reverse proxy.
 
-Want to learn more? [Read our full guide](/docs/tracking-methods/choosing-the-right-method/) on choosing the right method for tracking.
+Want to learn more? [Read our full guide](./tracking-methods/choosing-the-right-method.md) on choosing the right method for tracking.
 
 {/* Next Section */}
 
@@ -64,4 +64,4 @@ Want to learn more? [Read our full guide](/docs/tracking-methods/choosing-the-ri
     Once you've chosen a few events to track first, you're ready to set up
     Mixpanel.
   </p>
-  <a href="/docs/quickstart/install-mixpanel" class="button primary">Start Quickstart Guide</a>
+  <a href="./quickstart/install-mixpanel.md" class="button primary">Start Quickstart Guide</a>

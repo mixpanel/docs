@@ -15,15 +15,20 @@ You must be a Mixpanel project admin to enable the Chameleon integration.
 Follow these steps to enable the integration with Appcues:
 
 1. Select **Settings > Integrations** tab in the bottom left navigation bar of Mixpanel.
+
 2. From the Integrations page, select the Chameleon dropdown, and select **Connect**.
+
+![Chameleon 2 Image](/chameleon2.png)
+
 3. The connection uses one credential to authorize, "API Key". Supply an API key generated from the [Mixpanel-specific integration page within your Chameleon dashboard](https://app.trychameleon.com/settings/integrations/mixpanel) to establish the connection.
+
 4. The Chameleon integration will show a **Connected** tag in the UI once the connection establishes.
 
 ## Matching Users Between Chameleon and Mixpanel
 
 Mixpanel only exports identified user profiles to match to Chameleon - users without user profile properties (i.e. anonymous users) will not export.
 
-The integration requires that you use the same system of identifiers for both tools, meaning the value you pass to `mixpanel.identify("internal_user_id")` will have the same value as you pass to `chmln.identify("internal_user_id")`. Chameleon will attempt to match users from inbound cohorts based on their Mixpanel distinct\_id.
+The integration requires that you use the same system of identifiers for both tools, meaning the value you pass to `mixpanel.identify("internal_user_id")` will have the same value as you pass to `chmln.identify("internal_user_id")`. Chameleon will attempt to match users from inbound cohorts based on their Mixpanel distinct_id.
 
 ## Export a Cohort
 
@@ -33,16 +38,16 @@ Select the cohort that you want to export. Click on the three-dot icon on the ri
 
 Click Export to > Apptimize. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
+![Chameleon 3 Image](/chameleon3.png)
+
 ## Sync Types
 
 This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
 
 ### One-Time Export
-
 In a one-time export, Mixpanel sends Chameleon a static export of users who currently qualify for the cohort. The cohort data will not be updated in Chameleon after a one-time export.
 
 ### Dynamic Sync
-
 In dynamic sync, Mixpanel initiates sync between a cohort and Chameleon every two hours. The exported cohort will be updated every day to reflect the most recent list of users in a cohort.
 
 ## Ideal vs. Non-Recommended Use Cases
@@ -54,6 +59,8 @@ More ideal use cases are instead around tours and surveys where the tour isn't t
 ## Select the Segment in Chameleon
 
 Once the export completes, you will see a Segment reflecting the set of users from your Mixpanel cohort in the Chameleon Segment tab (via the builder), selecting for "Mixpanel Cohorts" as the Segment filter (e.g. "Users who haven't hit a Value Moment"):
+
+![Chameleon 4 Image](/chameleon4.png)
 
 ## Chameleon events in Mixpanel
 

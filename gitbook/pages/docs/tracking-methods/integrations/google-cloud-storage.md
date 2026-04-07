@@ -1,6 +1,8 @@
 # Google Cloud Storage
 
-This guide demonstrates how to set up a serverless ingest pipeline from a Google Cloud Storage bucket into Mixpanel. Once this is set up, you can simply upload files containing events into the designated GCS bucket and the events will be ingested into Mixpanel, both one-time and on a recurring basis. Setup should take \~10 minutes.
+This guide demonstrates how to set up a serverless ingest pipeline from a Google Cloud Storage bucket into Mixpanel. Once this is set up, you can simply upload files containing events into the designated GCS bucket and the events will be ingested into Mixpanel, both one-time and on a recurring basis. Setup should take ~10 minutes.
+
+![image](/gcs-integration-architecture.png)
 
 Note: This guide assumes you are running in Google Cloud Platform, and have the necessary IAM Access to have Cloud Functions read from GCS.
 
@@ -14,16 +16,19 @@ You can create the bucket in any region, though we recommend `us-central` for hi
 
 ### Step 2a: Setup the Cloud Function
 
-Create a [new Cloud Function](https://console.cloud.google.com/functions/add).
-
+Create a [new Cloud Function](https://console.cloud.google.com/functions/add). 
 * Set the trigger to `Cloud Storage`, the Event Type to `Finalize/Create` and the bucket name to the bucket created in step 2. This means that any object uploaded to this bucket will trigger an invocation of this Cloud Function.
 * Set Memory to 1GiB, Timeout to 300, and Instances to 20
 
-### Step 2b: Write the Cloud Function
+![image](/230694797-af63de4f-7f10-4325-ad62-204a0ab66dea.png)
 
+
+### Step 2b: Write the Cloud Function
 Switch the runtime to `Python3.9` and change the entrypoint from `hello_gcs` to `main`. Paste the code below for `main.py` and `requirements.txt`.
 
-```python
+![image](/230694808-424dc8ed-f650-40a6-9893-f141e5033701.png)
+
+```python main.py
 from datetime import date
 import gzip
 import json
@@ -123,8 +128,7 @@ def main(request, context):
         )
     )
 ```
-
-```
+```text requirements.txt
 google-cloud-storage
 requests
 ```
@@ -139,16 +143,22 @@ Let's test the connection with some [sample events](https://storage.googleapis.c
 
 `gsutil cp gs://mixpanel-sample-data/10-events.json gs://<YOUR-BUCKET>/`
 
-Monitor the logs of your Cloud Function; you should see an `Import Complete` log line within a minute.
+Monitor the logs of your Cloud Function; you should see an `Import Complete` log line within a minute. 
+
+![image](/230694850-de50a891-8a38-48ee-907d-4f23d1f1f22c.png)
 
 If you navigate to Stackdriver logs, you will see a more detailed log that includes the filename being imported and the first error encountered (if any).
 
+![image](/230694856-1cae32ec-8672-4ef6-b00d-4e885fd5388d.png)
+
 Finally, let's confirm that the events made it into Mixpanel. Head to the [Events](https://mixpanel.com/report/live) page, pick `test_event` in the event picker, and you should see the events you just imported.
 
-## Step 4: Import more data
+![image](/230694863-7ef80f4b-ce7b-484b-bd8a-b248cfe024ef.png)
 
-We're now ready for an import of your own data. If your data is not already in the Mixpanel format, this is a good time to write a transformation step to run as part of the Cloud Function. We recommend testing locally as you iterate on your data transformation logic, as it's much quicker than redeploying the Cloud Function. The [Overview](../../../../../docs/quickstart/connect-your-data) page has sample code and data to test locally.
+
+## Step 4: Import more data
+We're now ready for an import of your own data. If your data is not already in the Mixpanel format, this is a good time to write a transformation step to run as part of the Cloud Function. We recommend testing locally as you iterate on your data transformation logic, as it's much quicker than redeploying the Cloud Function. The [Overview](../../quickstart/connect-your-data?sdk=httpapi.md) page has sample code and data to test locally.
 
 Once you're ready and have tested with a few small files, you can upload all the files for your import to your GCS bucket, and the import will kick off. This pipeline can be made recurring by uploading files to the GCS bucket periodically.
 
-We recommend partitioning files in GCS to \~200MB of JSON for optimal performance.
+We recommend partitioning files in GCS to ~200MB of JSON for optimal performance.

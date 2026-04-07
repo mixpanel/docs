@@ -15,17 +15,17 @@ Take a look at any of these pages for more information about best practices on M
   <tbody>
     <tr>
       <td><strong>Tracking Plan</strong></td>
-      <td><a href="/docs/tracking-best-practices/tracking-plan">/docs/tracking-best-practices/tracking-plan</a></td>
+      <td><a href="./tracking-best-practices/tracking-plan.md">./tracking-best-practices/tracking-plan.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Server-side Best Practices</strong></td>
-      <td><a href="/docs/tracking-best-practices/server-side-best-practices">/docs/tracking-best-practices/server-side-best-practices</a></td>
+      <td><a href="./tracking-best-practices/server-side-best-practices.md">./tracking-best-practices/server-side-best-practices.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Debugging</strong></td>
-      <td><a href="/docs/tracking-best-practices/debugging">/docs/tracking-best-practices/debugging</a></td>
+      <td><a href="./tracking-best-practices/debugging.md">./tracking-best-practices/debugging.md</a></td>
       <td></td>
     </tr>
   </tbody>
@@ -44,27 +44,27 @@ Take a look at any of these pages for more information about best practices on M
   <tbody>
     <tr>
       <td><strong>Bot Traffic</strong></td>
-      <td><a href="/docs/tracking-best-practices/bot-traffic">/docs/tracking-best-practices/bot-traffic</a></td>
+      <td><a href="./tracking-best-practices/bot-traffic.md">./tracking-best-practices/bot-traffic.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Developer Environments</strong></td>
-      <td><a href="/docs/tracking-best-practices/developer-environments">/docs/tracking-best-practices/developer-environments</a></td>
+      <td><a href="./tracking-best-practices/developer-environments.md">./tracking-best-practices/developer-environments.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Geolocation</strong></td>
-      <td><a href="/docs/tracking-best-practices/geolocation">/docs/tracking-best-practices/geolocation</a></td>
+      <td><a href="./tracking-best-practices/geolocation.md">./tracking-best-practices/geolocation.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Hot Shard Limits</strong></td>
-      <td><a href="/docs/tracking-best-practices/hot-shard-limits">/docs/tracking-best-practices/hot-shard-limits</a></td>
+      <td><a href="./tracking-best-practices/hot-shard-limits.md">./tracking-best-practices/hot-shard-limits.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Traffic Attribution</strong></td>
-      <td><a href="/docs/tracking-best-practices/traffic-attribution">/docs/tracking-best-practices/traffic-attribution</a></td>
+      <td><a href="./tracking-best-practices/traffic-attribution.md">./tracking-best-practices/traffic-attribution.md</a></td>
       <td></td>
     </tr>
   </tbody>

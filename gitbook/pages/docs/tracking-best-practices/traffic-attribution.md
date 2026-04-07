@@ -2,11 +2,11 @@
 
 ## Web Attribution
 
-When setting up your Mixpanel implementation, one issue of particular interest is tracking users by their original source of traffic. By default, Mixpanel does some of this tracking for you on the web in the form of several [default properties](/docs/data-structure/property-reference/default-properties).
+When setting up your Mixpanel implementation, one issue of particular interest is tracking users by their original source of traffic. By default, Mixpanel does some of this tracking for you on the web in the form of several [default properties](../data-structure/property-reference/default-properties.md).
 
 ### UTM Properties
 
-Mixpanel's JavaScript library tracks all [UTM tags](/docs/tracking-methods/sdks/javascript#track-utm-tags) by default. This allows you to segment key actions by relevant campaign information using [attribution models](/docs/features/attribution), so that you can quantify the effectiveness of specific campaigns.
+Mixpanel's JavaScript library tracks all [UTM tags](../tracking-methods/sdks/javascript.md#track-utm-tags) by default. This allows you to segment key actions by relevant campaign information using [attribution models](../features/attribution.md), so that you can quantify the effectiveness of specific campaigns.
 
 Mixpanel's JavaScript library will also track initial_utm_parameters as a profile property, based on the first-ever visit. This is helpful because knowing which acquisition channel originally brought a user to your site allows you to attribute purchases or other key events accurately.
 
@@ -21,13 +21,13 @@ Mixpanel's JavaScript library will also track initial_utm_parameters as a profil
 - utm_marketing_tactic: targeting criteria applied to a campaign, for example: remarketing, prospecting
 - Initial UTM: tracks the first time a user reaches any of the above parameters
 
-UTM parameters are by default persisted across events as [Super Properties](/docs/tracking-methods/sdks/javascript#setting-super-properties). To opt in to the recommended modern behavior most compatible with our [attribution models](/docs/features/attribution), use the SDK initialization option `{stop_utm_persistence: true}` to disable UTM param persistence (refer to our [Release Notes](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.52.0) in GitHub).
+UTM parameters are by default persisted across events as [Super Properties](../tracking-methods/sdks/javascript.md#setting-super-properties). To opt in to the recommended modern behavior most compatible with our [attribution models](../features/attribution.md), use the SDK initialization option `{stop_utm_persistence: true}` to disable UTM param persistence (refer to our [Release Notes](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.52.0) in GitHub).
 
 #### Organic Traffic
 
 If a user arrives at your landing page organically, no UTM tags will be parsed because the URL does not contain them. As a result, the UTM property will be absent from the events and will appear as "(not set)" when used as a breakdown in a report. You can interpret a "(not set)" value for any UTM property as indicating organic or direct traffic.
 
-Learn more about falsy values [here](/docs/data-structure/property-reference/data-type#undefined-and-null).
+Learn more about falsy values [here](../data-structure/property-reference/data-type.md#undefined-and-null).
 
 ### Initial Referrer and Initial Referring Domain Properties
 
@@ -49,7 +49,7 @@ For Android, Google provides a [Play Install Referrer Library](https://developer
 
 For iOS, users enter the Apple App Store carrying data about where they came from, but the App Store strips that data once the user arrives in the store. Therefore, users who download your application don’t come with any data showing where they were before arriving at the App Store.
 
-To track channel attribution on iOS, you'll need to use a [mobile attribution tool](/docs/tracking-methods/integrations/mobile-attribution-tracking). You can see a list of the partners we integrate with on our [tech partners page](https://mixpanel.com/partners/integrations?categories=attribution-deep-linking).
+To track channel attribution on iOS, you'll need to use a [mobile attribution tool](../tracking-methods/integrations/mobile-attribution-tracking.md). You can see a list of the partners we integrate with on our [tech partners page](https://mixpanel.com/partners/integrations?categories=attribution-deep-linking).
 
 ## Server-Side Attribution
 

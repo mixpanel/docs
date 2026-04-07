@@ -172,7 +172,7 @@ The Service Principal needs permission to use the SQL Warehouse to execute queri
 
 ### Step 7: Configure Mixpanel Integration
 
-Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline) to create data pipeline via UI. You'll need to provide:
+Refer to [Step 2: Creating the Pipeline](../../data-pipelines.md#step-2-creating-the-pipeline) to create data pipeline via UI. You'll need to provide:
 
 - **Server Hostname** (from Step 6)
 - **HTTP Path** (from Step 6)

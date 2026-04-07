@@ -1,19 +1,21 @@
-# Data Model
+# Data Model: How Mixpanel data is organized
 
 ## Overview
 
-Mixpanel data is stored and isolated within a [project](../../../../docs/orgs-and-projects/managing-projects/). At this time, you cannot query data across multiple projects. Mixpanel supports a few different categories of data that can be used for analysis: events, user profiles, group profiles, and lookup tables. In data warehouse parlance, events make up the fact table while user profiles, group profiles, and lookup tables are dimension tables.
+Mixpanel data is stored and isolated within a [project](../orgs-and-projects/managing-projects.md). At this time, you cannot query data across multiple projects. Mixpanel supports a few different categories of data that can be used for analysis: events, user profiles, group profiles, and lookup tables. In data warehouse parlance, events make up the fact table while user profiles, group profiles, and lookup tables are dimension tables.
 
-| Types              | Description                                                                                                                                                                                                                                                                                                                                                                                                |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Events**         | Events describe actions that take place within your product. An event contains properties that describe the action. Events can also be joined with user profiles, group profiles, and lookup tables to enrich the data. [Learn more about event properties](../../../../docs/data-structure/events-and-properties/)                                                                                        |
-| **User Profiles**  | A user profile is a key/value store that holds state about a user. User profiles are joined to events on `event.distinct_id = user_profile.distinct_id`. [Learn more about profile properties](../../../../docs/data-structure/user-profiles/)                                                                                                                                                             |
-| **Group Profiles** | A group profile is a key/value store that holds state about members of your group. Group profiles are joined to Events on your chosen _group key_. For example, if you create a new group key for `company_id` your events will be joined on `event.company_id = group_profile.company_id`. [Learn more about group analytics](../../../../docs/data-structure/group-analytics/)                           |
-| **Lookup Tables**  | A lookup table is a key/value store that holds state about an entity. Lookup tables are joined to events (and other profiles) on your chosen join key. For example, if you create a lookup table for "Songs" and specify the join key as `song_id`, your events will be joined on `event.song_id = lookup_table.song_id`. [Learn more about lookup tables](../../../../docs/data-structure/lookup-tables/) |
+![Data Model Overview](/Data_Model_Overview.png) 
+
+| Types | Description |
+|----------|-------------------|
+| **Events** | Events describe actions that take place within your product. An event contains properties that describe the action. Events can also be joined with user profiles, group profiles, and lookup tables to enrich the data. [Learn more about event properties](./events-and-properties.md) |
+| **User Profiles** | A user profile is a key/value store that holds state about a user. User profiles are joined to events on `event.distinct_id = user_profile.distinct_id`. [Learn more about profile properties](./user-profiles.md) |
+| **Group Profiles** | A group profile is a key/value store that holds state about members of your group. Group profiles are joined to Events on your chosen _group key_. For example, if you create a new group key for `company_id` your events will be joined on `event.company_id = group_profile.company_id`. [Learn more about group analytics](./group-analytics.md) |
+| **Lookup Tables** | A lookup table is a key/value store that holds state about an entity. Lookup tables are joined to events (and other profiles) on your chosen join key. For example, if you create a lookup table for "Songs" and specify the join key as `song_id`, your events will be joined on `event.song_id = lookup_table.song_id`. [Learn more about lookup tables](./lookup-tables.md) |
 
 ### Event Property vs User Profile Property
 
-An event property is a detail about an event. Event properties are incredibly important, as they provide the necessary context about events to ensure valuable analytics. Properties also facilitate the dissection of data, allowing for more detailed insight into event-driven data. Once tracked, events and their properties are immutable, meaning they cannot be changed.
+An event property is a detail about an event.  Event properties are incredibly important, as they provide the necessary context about events to ensure valuable analytics. Properties also facilitate the dissection of data, allowing for more detailed insight into event-driven data. Once tracked, events and their properties are immutable, meaning they cannot be changed.
 
 Profile Properties give you detail about a certain user overall. In other words, Profile Properties describe your users as they exist in this moment. A user profile property could be a static value, such as a first name, or be something more likely to change, like the date of last login or the number of songs a user has played.
 
@@ -21,19 +23,20 @@ For example, while an Event Property or Super Property tells you whether a user 
 
 ## Example
 
-Imagine you work on a music streaming product and you want to answer questions like:
+Imagine you work on a music streaming product and you want to answer questions like: 
 
-* What are the most popular songs and artists this week?
-* What is the distribution of number of songs played per week by user?
-* Which experiment performed better in an A/B test to drive a higher conversion rate from Free to Premium accounts?
+- What are the most popular songs and artists this week?
+- What is the distribution of number of songs played per week by user?
+- Which experiment performed better in an A/B test to drive a higher conversion rate from Free to Premium accounts?
 
-You want to analyze uniques by both users _and_ accounts so you create a group key for `account_id`. You also want to augment your events with details about songs being played so you create a "Songs" lookup table and specify the join key as `song_id`. Your data model will look like this:
+You want to analyze uniques by both users *and* accounts so you create a group key for `account_id`. You also want to augment your events with details about songs being played so you create a "Songs" lookup table and specify the join key as `song_id`. Your data model will look like this:
 
-Your Mixpanel data is made up of **events** and **profiles**, each of which is comprised of **properties**. Events are data points in a time-series database. Profiles are key-value stores.
+![Data Model Example](/datamodel.png)
+
+Your Mixpanel data is made up of **events** and **profiles**, each of which is comprised of **properties**.  Events are data points in a time-series database. Profiles are key-value stores.
 
 ## Anatomy of an Event
-
-The following event represents the fact that user `john.doe@gmail.com` played the song\_id of `0wwPcA6wtMf6HUMpIRdeP7` on Tuesday, September 29, at 2020 8:42:11 PM GMT on a machine with IP 203.0.113.9.
+The following event represents the fact that user `john.doe@gmail.com` played the song_id of `0wwPcA6wtMf6HUMpIRdeP7` on Tuesday, September 29, at 2020 8:42:11 PM GMT on a machine with IP 203.0.113.9.
 
 ```json
 {
@@ -81,17 +84,16 @@ The following event represents the fact that user `john.doe@gmail.com` played th
 ```
 
 ## User Profiles, Group Profiles & Lookup Tables
-
 All three are key/value stores that augment your event data with additional metadata about entities. The differences are whether the join key is customizable and whether events are copied and indexed by the join key.
 
-[**User profiles**](../../../../docs/data-structure/user-profiles/) are joined to events via `distinct_id` which is the default indexing for Events.
+**[User profiles](./user-profiles.md)** are joined to events via `distinct_id` which is the default indexing for Events. 
 
-[**Group profiles**](../../../../docs/data-structure/group-analytics/) are joined to events via an event property you specify as a group key. Once you create a new group key, we will add an additional index for your events on that property. This allows you to do funnels or retention by that property instead of by `distinct_id`.
+**[Group profiles](./group-analytics.md)** are joined to events via an event property you specify as a group key. Once you create a new group key, we will add an additional index for your events on that property. This allows you to do funnels or retention by that property instead of by `distinct_id`.
 
-[**Lookup tables**](../../../../docs/data-structure/lookup-tables/) are joined to events and user profiles using the join key that you specify. Unlike group profiles, your events are _not_ indexed by the join key. You can use lookup table properties to do filtering, breakdowns, etc but you can't do things like funnels analysis using the join key for uniques. Note: Currently, group profile properties cannot be lookup table keys.
+**[Lookup tables](./lookup-tables.md)** are joined to events and user profiles using the join key that you specify. Unlike group profiles, your events are *not* indexed by the join key. You can use lookup table properties to do filtering, breakdowns, etc but you can't do things like funnels analysis using the join key for uniques. Note: Currently, group profile properties cannot be lookup table keys.
 
-| Profile Type   | Can Specify Join Key | Can Use Join Key For Uniques Analysis | Can Be Referenced From Other Profiles |
-| -------------- | -------------------- | ------------------------------------- | ------------------------------------- |
-| User Profiles  | ❌                    | ✅                                     | ❌                                     |
-| Group Profiles | ✅                    | ✅                                     | ❌                                     |
-| Lookup Tables  | ✅                    | ❌                                     | ✅                                     |
+| Profile Type | Can Specify Join Key | Can Use Join Key For Uniques Analysis | Can Be Referenced From Other Profiles |
+|---|---|---|---|
+| User Profiles | ❌ |  ✅  | ❌ |
+| Group Profiles |  ✅  |  ✅  | ❌ |
+| Lookup Tables |  ✅  | ❌ |  ✅  |

@@ -3,11 +3,11 @@
 {% hint style="info" %}
 This page highlights integrations that send Mixpanel data to data warehouses.
   Learn more about [integrations that import data from other destinations into
-  Mixpanel](/docs/tracking-methods/integrations) and [integrations that export
-  cohorts for audience targeting](/docs/cohort-sync/integrations).
+  Mixpanel](../../tracking-methods/integrations.md) and [integrations that export
+  cohorts for audience targeting](../../cohort-sync/integrations.md).
 {% endhint %}
 
-These integrations allow you to send your [raw data](/docs/data-pipelines#raw) and [schematized data](/docs/data-pipelines#schematized) to your cloud storage bucket or data warehouse. You may review our complete integrations directory [here](https://mixpanel.com/partners/integrations). If you don't see what you're looking for [reach out to us](https://mixpanel.com/get-support).
+These integrations allow you to send your [raw data](../../data-pipelines.md#raw) and [schematized data](../../data-pipelines.md#schematized) to your cloud storage bucket or data warehouse. You may review our complete integrations directory [here](https://mixpanel.com/partners/integrations). If you don't see what you're looking for [reach out to us](https://mixpanel.com/get-support).
 
 ## Raw Pipelines
 
@@ -22,17 +22,17 @@ These integrations allow you to send your [raw data](/docs/data-pipelines#raw) a
   <tbody>
     <tr>
       <td><strong>Raw AWS Pipeline</strong></td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/raw-aws-pipeline">/docs/data-pipelines/old-pipelines/integrations/raw-aws-pipeline</a></td>
+      <td><a href="./integrations/raw-aws-pipeline.md">./integrations/raw-aws-pipeline.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Raw Azure Pipeline</strong></td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/raw-azure-pipeline">/docs/data-pipelines/old-pipelines/integrations/raw-azure-pipeline</a></td>
+      <td><a href="./integrations/raw-azure-pipeline.md">./integrations/raw-azure-pipeline.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Raw GCS Pipeline</strong></td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/raw-gcs-pipeline">/docs/data-pipelines/old-pipelines/integrations/raw-gcs-pipeline</a></td>
+      <td><a href="./integrations/raw-gcs-pipeline.md">./integrations/raw-gcs-pipeline.md</a></td>
       <td></td>
     </tr>
   </tbody>
@@ -51,27 +51,27 @@ These integrations allow you to send your [raw data](/docs/data-pipelines#raw) a
   <tbody>
     <tr>
       <td><strong>Schematized AWS Pipeline</strong></td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-aws-pipeline">/docs/data-pipelines/old-pipelines/integrations/schematized-aws-pipeline</a></td>
+      <td><a href="./integrations/schematized-aws-pipeline.md">./integrations/schematized-aws-pipeline.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Schematized Azure Pipeline</strong></td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-azure-pipeline">/docs/data-pipelines/old-pipelines/integrations/schematized-azure-pipeline</a></td>
+      <td><a href="./integrations/schematized-azure-pipeline.md">./integrations/schematized-azure-pipeline.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Schematized BigQuery Pipeline</strong></td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-bigquery-pipeline">/docs/data-pipelines/old-pipelines/integrations/schematized-bigquery-pipeline</a></td>
+      <td><a href="./integrations/schematized-bigquery-pipeline.md">./integrations/schematized-bigquery-pipeline.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Schematized GCS Pipeline</strong></td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-gcs-pipeline">/docs/data-pipelines/old-pipelines/integrations/schematized-gcs-pipeline</a></td>
+      <td><a href="./integrations/schematized-gcs-pipeline.md">./integrations/schematized-gcs-pipeline.md</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Schematized Snowflake Pipeline</strong></td>
-      <td><a href="/docs/data-pipelines/old-pipelines/integrations/schematized-snowflake-pipeline">/docs/data-pipelines/old-pipelines/integrations/schematized-snowflake-pipeline</a></td>
+      <td><a href="./integrations/schematized-snowflake-pipeline.md">./integrations/schematized-snowflake-pipeline.md</a></td>
       <td></td>
     </tr>
   </tbody>

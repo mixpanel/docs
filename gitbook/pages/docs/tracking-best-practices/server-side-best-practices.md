@@ -1,6 +1,6 @@
 # Server-Side Best Practices
 
-This document gives tips for implementing scalable, maintainable server-side tracking. If you're just getting started, check out the [quickstart](/docs/quickstart/connect-your-data).
+This document gives tips for implementing scalable, maintainable server-side tracking. If you're just getting started, check out the [quickstart](../quickstart/connect-your-data.md).
 
 ## Tracking Browser, Device, and OS
 Mixpanel's Web and Mobile SDKs parse `User-Agent` into a set of properties about the user's browser, device, and OS. This doesn't happen automatically with server-side tracking, but it's easy to add these properties yourself.
@@ -73,7 +73,7 @@ def track_to_mp(request, event_name, properties):
 ## Tracking Geolocation (Server-side)
 By default, Mixpanel uses the IP address of the request to set geolocation properties. If you're tracking from your server, you need to override the IP property of your events and profile updates from your server's IP address to the client's IP address.
 
-Read our full guide on [managing geolocation](/docs/tracking-best-practices/geolocation).
+Read our full guide on [managing geolocation](./geolocation.md).
 
 ## Tracking Page Views
 Page view tracking must be done manually for server-side implementations. Here are some general guidelines for tracking page views.
@@ -89,4 +89,4 @@ Page view tracking must be done manually for server-side implementations. Here a
 ## Identifying Users
 Mixpanel's server-side SDKs and HTTP API do not generate IDs automatically, meaning your server is responsible for generating IDs and maintaining ID persistence.
 
-Read our full guide on [Server-side ID Management](/docs/tracking-methods/id-management/identifying-users-simplified#server-side-identity-management).
+Read our full guide on [Server-side ID Management](../tracking-methods/id-management/identifying-users-simplified.md#server-side-identity-management).

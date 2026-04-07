@@ -2,16 +2,16 @@
 
 ## Overview
 
-This developer guide will assist you in configuring your Android platform for Feature Flags using the [Mixpanel Android SDK](/docs/tracking-methods/sdks/android). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
+This developer guide will assist you in configuring your Android platform for Feature Flags using the [Mixpanel Android SDK](../android.md). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
 
-For complete Android SDK documentation, see the [Android SDK guide](/docs/tracking-methods/sdks/android).
+For complete Android SDK documentation, see the [Android SDK guide](../android.md).
 
 ## Prerequisites
 
 Before implementing Feature Flags, ensure:
 
-- You are on an Enterprise subscription plan  and have the latest version of the SDK installed (minimum supported version is [`v8.2.4`](https://github.com/mixpanel/mixpanel-android/releases/tag/v8.2.4)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
-- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+- You are on an Enterprise subscription plan  and have the latest version of the SDK installed (minimum supported version is [`v8.2.4`](https://github.com/mixpanel/mixpanel-android/releases/tag/v8.2.4)). If not, please follow [this doc](../../../quickstart/install-mixpanel.md) to install the SDK.
+- You have your Project Token from your [Mixpanel Project Settings](../../../orgs-and-projects/managing-projects.md#find-your-project-tokens)
 
 ## Flag Initialization
 
@@ -229,7 +229,7 @@ mixpanel.flags.getAllVariants(new FlagCompletionCallback<Map<String, MixpanelFla
 ### What if I'm not receiving any flags on SDK initialization?
 
 1. **Check your project token**:
-  - Ensure you're using the correct project token from your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+  - Ensure you're using the correct project token from your [Mixpanel project settings](../../../orgs-and-projects/managing-projects.md#find-your-project-tokens)
 2. **Review flag configuration**:
   - Make sure your feature flag is enabled
   - Check the flag's rollout percentage

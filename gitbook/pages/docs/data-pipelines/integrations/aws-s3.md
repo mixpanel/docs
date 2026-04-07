@@ -4,7 +4,7 @@
 Customers on an Enterprise or Growth plan can access Data Pipeline as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 {% endhint %}
 
-Mixpanel allows you to export events and people data into AWS S3 through [Json Pipelines](/docs/data-pipelines)
+Mixpanel allows you to export events and people data into AWS S3 through [Json Pipelines](../../data-pipelines.md)
 
 ## Setting S3 Permissions
 
@@ -121,7 +121,7 @@ This setup utilizes an external ID to prevent [the confused deputy problem](http
 
 ### Step 4: Provide Mixpanel with S3 Details
 
-Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline)
+Refer to [Step 2: Creating the Pipeline](../../data-pipelines.md#step-2-creating-the-pipeline)
 to create data pipeline via UI. It is essential to provide specific details to ensure that Mixpanel can accurately direct the data exports to your S3 bucket:
 
 - **Bucket**: Specify the S3 bucket where Mixpanel data should be exported.

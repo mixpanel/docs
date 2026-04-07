@@ -1,6 +1,6 @@
 # Company Analytics
 
-You can use Mixpanel's SDKs to track events from your website, web application, or backend servers. We [recommend](/docs/tracking-methods/choosing-the-right-method) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
+You can use Mixpanel's SDKs to track events from your website, web application, or backend servers. We [recommend](../tracking-methods/choosing-the-right-method.md) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
 Note: You'll need your Project Token to authenticate, which you can get [here](https://mixpanel.com/settings/project).
 

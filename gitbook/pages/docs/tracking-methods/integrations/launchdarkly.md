@@ -12,7 +12,7 @@ Doing this involves sending impression events from LaunchDarkly to Mixpanel and 
 
 In order to perform its analyses, Mixpanel needs impression events. These events tell Mixpanel which user was exposed to which variant at which time. 
 
-These events must be called `$experiment_started` and must have the `Experiment name` and `Variant name` properties -- Mixpanel recognizes these events and uses them to autopopulate the Experiments report(/docs/reports/apps/experiments).
+These events must be called `$experiment_started` and must have the `Experiment name` and `Variant name` properties -- Mixpanel recognizes these events and uses them to autopopulate the Experiments report(../../reports/apps/experiments.md).
 ```json
 {
   "event": "$experiment_started",
@@ -26,7 +26,7 @@ These events must be called `$experiment_started` and must have the `Experiment 
 ```
 
 LaunchDarkly does not export this by default, so there are two options:
-1. Pay to [export](https://docs.launchdarkly.com/home/getting-started) from LaunchDarkly to Pubsub. If you go this route, you will need to write some code that pulls from PubSub and pushes to Mixpanel. We have a sample guide [here](/docs/tracking-methods/integrations/google-pubsub). This is server-side, so will likely be more accurate, but requires more work to integrate.
+1. Pay to [export](https://docs.launchdarkly.com/home/getting-started) from LaunchDarkly to Pubsub. If you go this route, you will need to write some code that pulls from PubSub and pushes to Mixpanel. We have a sample guide [here](./google-pubsub.md). This is server-side, so will likely be more accurate, but requires more work to integrate.
 2. Log assignments with wrapper code (see [below](#logging-assignments-with-wrapper-code)). This is more convenient, but can be less reliable due to the limitations of client-side tracking.
 
 
@@ -73,7 +73,7 @@ function checkFeatureEnabled(experimentKey, defaultValue) {
 It is possible that an engineer on your team could call this new function before showing the new feature to the user. Be sure that the assignment event is only sent once the user experiences the feature you are experimenting on.
 
 ## Using the events in Mixpanel
-If you track events according to the above spec, you can use the [Experiments report](/docs/reports/apps/experiments) to get a bird's eye view of all experiments you have running.
+If you track events according to the above spec, you can use the [Experiments report](../../reports/apps/experiments.md) to get a bird's eye view of all experiments you have running.
 
-You can also build [cohorts](/docs/users/cohorts) of users in each variant, and then filter/breakdown by those cohorts in any report in Mixpanel.
+You can also build [cohorts](../../users/cohorts.md) of users in each variant, and then filter/breakdown by those cohorts in any report in Mixpanel.
 

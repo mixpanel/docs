@@ -1,9 +1,9 @@
 # JQL: Create custom queries using Javascript code
 
-> ❗️JQL is currently in maintenance mode. We recommend discontinuing use of JQL and using an [alternate method](/docs/export-methods) to get the data you need. Below are alternatives for common use cases and you need help deciding the best method for you, reach out to [support](https://mixpanel.com/contact-us/support).
-> - Raw Event export: [Export API](https://developer.mixpanel.com/reference/raw-data-export-api) or [Data Pipelines](/docs/data-pipelines)
-> - User Profile export: [Engage Query API](https://developer.mixpanel.com/reference/engage-query) or [Data Pipelines](/docs/data-pipelines)
-> - Other reporting: [Query API](https://developer.mixpanel.com/reference/query-api) or in-app [Core Reports](/docs/reports)
+> ❗️JQL is currently in maintenance mode. We recommend discontinuing use of JQL and using an [alternate method](../../export-methods.md) to get the data you need. Below are alternatives for common use cases and you need help deciding the best method for you, reach out to [support](https://mixpanel.com/contact-us/support).
+> - Raw Event export: [Export API](https://developer.mixpanel.com/reference/raw-data-export-api) or [Data Pipelines](../../data-pipelines.md)
+> - User Profile export: [Engage Query API](https://developer.mixpanel.com/reference/engage-query) or [Data Pipelines](../../data-pipelines.md)
+> - Other reporting: [Query API](https://developer.mixpanel.com/reference/query-api) or in-app [Core Reports](../../reports.md)
 >  
 > ❗️JQL is a self-serve tool. If you choose JQL, your developer team will be responsible to write and maintain the query logic.
 

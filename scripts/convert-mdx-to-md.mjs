@@ -95,6 +95,77 @@ async function readMetaMapForDir(absDir) {
   return map;
 }
 
+function toPosixPath(p) {
+  return p.split(path.sep).join('/');
+}
+
+function rewriteDocsHrefToRelative(href, absOutFile, absOutRoot) {
+  const raw = String(href || '').trim();
+  if (!raw) return raw;
+
+  // Only rewrite internal docs routes.
+  // Supported:
+  // - /docs/foo/bar
+  // - https://mixpanel.com/docs/foo/bar
+  let u = raw;
+  if (u.startsWith('https://mixpanel.com/docs/')) u = u.replace('https://mixpanel.com', '');
+  if (!u.startsWith('/docs/')) return raw;
+
+  // Split off hash fragment.
+  const [pathPart, hash = ''] = u.split('#');
+  let relPath = pathPart.replace(/^\/docs\//, '').replace(/\/$/, '');
+  if (!relPath) return raw;
+
+  // Map to file path under output root.
+  // Most pages are written as <slug>.md at the same relative location.
+  if (!relPath.endsWith('.md')) relPath = `${relPath}.md`;
+  const absTarget = path.join(absOutRoot, relPath);
+
+  // Compute relative from current output file.
+  const fromDir = path.dirname(absOutFile);
+  let relative = path.relative(fromDir, absTarget);
+  relative = toPosixPath(relative);
+  if (!relative.startsWith('.')) relative = `./${relative}`;
+
+  return hash ? `${relative}#${hash}` : relative;
+}
+
+function rewriteInternalDocsLinks(src, absOutFile, absOutRoot) {
+  let out = String(src);
+
+  // Markdown links: [text](/docs/foo/bar#anchor)
+  out = out.replace(/\]\((\/docs\/[^)\s]+)\)/g, (all, href) => {
+    const rewritten = rewriteDocsHrefToRelative(href, absOutFile, absOutRoot);
+    return `](${rewritten})`;
+  });
+
+  // Markdown links to mixpanel.com/docs
+  out = out.replace(/\]\((https:\/\/mixpanel\.com\/docs\/[^)\s]+)\)/g, (all, href) => {
+    const rewritten = rewriteDocsHrefToRelative(href, absOutFile, absOutRoot);
+    return `](${rewritten})`;
+  });
+
+  // HTML links: rewrite href attr regardless of other attributes.
+  out = out.replace(/<a\b([^>]*?)\shref="([^"]+)"([^>]*)>/g, (all, pre, href, post) => {
+    const rewritten = rewriteDocsHrefToRelative(href, absOutFile, absOutRoot);
+    return `<a${pre} href="${escapeHtml(rewritten)}"${post}>`;
+  });
+
+  // In cards we currently echo the href as visible text; rewrite that too.
+  out = out.replace(/>(\/docs\/[^<]+)<\/a>/g, (all, text) => {
+    const rewritten = rewriteDocsHrefToRelative(text, absOutFile, absOutRoot);
+    return `>${escapeHtml(rewritten)}</a>`;
+  });
+
+  // Plaintext patterns like "...( /docs/foo/bar )" or "report(/docs/foo)" (not markdown links).
+  out = out.replace(/\((\/docs\/[^)\s]+)\)/g, (all, href) => {
+    const rewritten = rewriteDocsHrefToRelative(href, absOutFile, absOutRoot);
+    return `(${rewritten})`;
+  });
+
+  return out;
+}
+
 async function listFilesRecursive(dir) {
   const out = [];
   const items = await fs.readdir(dir, { withFileTypes: true });
@@ -944,6 +1015,7 @@ async function main() {
 
     const src = await fs.readFile(file, 'utf8');
     let converted = file.toLowerCase().endsWith('.mdx') ? convertOne(src, maps) : src;
+    converted = rewriteInternalDocsLinks(converted, outPath, outDir);
     converted = await tagBetaByMeta(converted, file, inDir);
     await fs.writeFile(outPath, converted, 'utf8');
   }

@@ -16,7 +16,7 @@
     </tr>
     <tr>
       <td><strong>Guidelines</strong></td>
-      <td><a href="/docs/community/guidelines">/docs/community/guidelines</a></td>
+      <td><a href="./community/guidelines.md">./community/guidelines.md</a></td>
       <td></td>
     </tr>
   </tbody>

@@ -3,7 +3,7 @@
 <div class="idManagementBanner">
 
 {% hint style="warning" %}
-The information on this page is for projects on the **Original ID Merge API**. [Learn more here](/docs/tracking-methods/id-management/identifying-users-original#overview).
+The information on this page is for projects on the **Original ID Merge API**. [Learn more here](./identifying-users-original.md#overview).
 {% endhint %}
 
 ## Overview
@@ -13,9 +13,9 @@ The information on this page is for projects on the **Original ID Merge API**. [
 
   The information on this page are for projects using the **Original ID Merge API**. You can check your Identity Merge API by navigating to [your project settings](https://mixpanel.com/settings/project/id-management). 
   
-  For projects using Simplified ID Merge API, please refer to this documentation [here](/docs/tracking-methods/id-management/identifying-users-simplified).
+  For projects using Simplified ID Merge API, please refer to this documentation [here](./identifying-users-simplified.md).
 
-  Learn more about the different ID Merge APIs [here](/docs/tracking-methods/id-management#identity-merge-apis).
+  Learn more about the different ID Merge APIs [here](../id-management.md#identity-merge-apis).
 {% endhint %}
 
 Mixpanel supports stitching user behavior pre-login (eg: traffic from your website, docs, blog) and post-login (once the user has signed up). This helps answer questions like:
@@ -28,7 +28,7 @@ This system is called ID Merge. In this guide, we walk through how to identify u
 
 ## Mechanism
 
-The **Original ID Merge API** uses three special events to link various user identifiers and sets the [distinct_id](/docs/tracking-methods/id-management#distinct-id) for your events; these events are namely: `$identify`, `$create_alias`, and `$merge`.
+The **Original ID Merge API** uses three special events to link various user identifiers and sets the [distinct_id](../id-management.md#distinct-id) for your events; these events are namely: `$identify`, `$create_alias`, and `$merge`.
 
 ### $identify
 
@@ -181,7 +181,7 @@ By calling `.reset()` only when there is an explicit intent to change to a new u
 
 You can track the user's unique identifier as a super property via `.register()` and user property via `.people.set()` as soon as it is available in the app i.e. on a successful sign-up / login or when an app is re-opened in a logged in state. In the cases when ID Merge is not implemented properly, you can rely on these properties for troubleshooting purposes.
 
-See the SDK reference on [registering super properties](/docs/tracking-methods/sdks/javascript#super-properties) and [setting profile properties](/docs/tracking-methods/sdks/javascript#setting-profile-properties).
+See the SDK reference on [registering super properties](../sdks/javascript.md#super-properties) and [setting profile properties](../sdks/javascript.md#setting-profile-properties).
 
 **Avoid creating profiles for anonymous users**
 
@@ -215,13 +215,13 @@ We recommend using an ID that is unique to each user and does not change, for ex
 
 **How long does it take for an ID merge mapping to take effect?**
 
-For debugging purposes, the Activity Feed view of a single user is updated in real-time (less than 1 minute delay). You can get to the Activity Feed by navigating to [Users](/docs/users) and selecting a given user.
+For debugging purposes, the Activity Feed view of a single user is updated in real-time (less than 1 minute delay). You can get to the Activity Feed by navigating to [Users](../../users.md) and selecting a given user.
 
 It may take up to 24 hours for this mapping to propagate to all other parts of the system. This means that, in some cases, when analyzing a funnel that spans pre-login and post-login behavior in real-time, some may be shown as dropped-off, even though they've performed the conversion event.
 
 **How does this relate to User Profiles?**
 
-[User Profiles](/docs/data-structure/user-profiles) are set directly on `$distinct_id`s. We recommend waiting until after a user is identified before setting user profile properties.
+[User Profiles](../../data-structure/user-profiles.md) are set directly on `$distinct_id`s. We recommend waiting until after a user is identified before setting user profile properties.
 
 **Is it possible to merge two Identified IDs?**
 
@@ -231,7 +231,7 @@ It is possible using the [$merge API event](https://developer.mixpanel.com/refer
 
 Attribution providers (like Appsflyer, Adjust, and Branch) use Mixpanel's SDK properly to set `$device_id` to whichever ID they use for attribution.
 
-For cohort syncs out to 3rd-party systems, we recommend designating a user property with the identifier of the user in that third-party system. More details are in our [integrations docs](/docs/cohort-sync/integrations); for example, see our [doc on exporting cohorts to Braze](/docs/cohort-sync/integrations/braze#matching-mixpanel-and-braze-users). If those integrations are bidirectional (eg: they send events back to Mixpanel), it's best to ensure that the user ID in both Mixpanel and the 3rd-party system is the same so that those events are sent to the correct user.
+For cohort syncs out to 3rd-party systems, we recommend designating a user property with the identifier of the user in that third-party system. More details are in our [integrations docs](../../cohort-sync/integrations.md); for example, see our [doc on exporting cohorts to Braze](../../cohort-sync/integrations/braze.md#matching-mixpanel-and-braze-users). If those integrations are bidirectional (eg: they send events back to Mixpanel), it's best to ensure that the user ID in both Mixpanel and the 3rd-party system is the same so that those events are sent to the correct user.
 
 **What is the status of Mixpanel's legacy `alias` method?**
 

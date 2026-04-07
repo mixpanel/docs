@@ -4,7 +4,7 @@
 Customers on an Enterprise or Growth plan can access Data Pipeline as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 {% endhint %}
 
-Mixpanel allows you to export events and people data directly into an Azure Blob Storage instance through [Json Pipelines](/docs/data-pipelines).
+Mixpanel allows you to export events and people data directly into an Azure Blob Storage instance through [Json Pipelines](../../data-pipelines.md).
 
 ## Setting Blob Storage Permissions
 
@@ -36,6 +36,6 @@ Next, navigate to the Blob Storage container you wish to use, and assign the `"S
 
 ### Step 3: Provide Mixpanel with Access Details
 
-Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline) to create data pipeline via UI. You need to provide specific details to enable authentication and data export to Azure Blob Storage. For authentication, supply the `Client Id`, `Client Secret`, and `Tenant Id`. These credentials are crucial for Mixpanel to operate as the Service Principal and ensure secure authentication without exposing broader Azure resources.
+Refer to [Step 2: Creating the Pipeline](../../data-pipelines.md#step-2-creating-the-pipeline) to create data pipeline via UI. You need to provide specific details to enable authentication and data export to Azure Blob Storage. For authentication, supply the `Client Id`, `Client Secret`, and `Tenant Id`. These credentials are crucial for Mixpanel to operate as the Service Principal and ensure secure authentication without exposing broader Azure resources.
 
 Additionally, to define the export destination, you must provide the `Storage Account` and `Container Name`. These details identify the exact location within Azure where your data will be exported.

@@ -58,7 +58,7 @@ If you're not using Composer for your package management, you can browse and dow
 ### Library Configuration
 
 {% hint style="warning" %}
-For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/php#privacy-friendly-tracking).
+For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](./php.md#privacy-friendly-tracking).
 {% endhint %}
 
 The Mixpanel class can be initialized with different configurations. See a complete list of the configuration options and default values [here](https://mixpanel.github.io/mixpanel-php/classes/Mixpanel.html).
@@ -106,12 +106,12 @@ $mp->track("button clicked", array(
 //you can call identify so it's included in events during that script execution
 ?>
 ```
-Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_code`) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your data center. [Learn more about Geolocation best practices](/docs/tracking-best-practices/geolocation).
+Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_code`) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your data center. [Learn more about Geolocation best practices](../../tracking-best-practices/geolocation.md).
 
 ### Importing Historical Events
 The PHP SDK is a tracking SDK designed for real-time tracking in a server-side environment. Calling the `track()` method triggers a request to our [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a timestamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested.**
 
-For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](/docs/tracking-methods/sdks/python) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion. 
+For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](./python.md) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion. 
 
 ## Managing User Identity
 
@@ -119,9 +119,9 @@ Mixpanel groups events sent with different distinct_ids, presenting them in repo
 
 {% tabs %}
 {% tab title="Original API" %}
-If you have [Original ID Merge enabled](/docs/tracking-methods/id-management#identity-merge-apis), send your anonymous events with an anonymous ID that you generate. Then merge your anonymous ID and your chosen user ID by calling the [`identify()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelEvents.html#method_identify) method once they are known (typically at registration and login). This will send an [`$identify`](/docs/tracking-methods/id-management/identifying-users-original#identify) event containing both IDs and merge them under one identity cluster.
+If you have [Original ID Merge enabled](../id-management.md#identity-merge-apis), send your anonymous events with an anonymous ID that you generate. Then merge your anonymous ID and your chosen user ID by calling the [`identify()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelEvents.html#method_identify) method once they are known (typically at registration and login). This will send an [`$identify`](../id-management/identifying-users-original.md#identify) event containing both IDs and merge them under one identity cluster.
 
-        Learn more about [server-side ID management for project on Original ID Merge API](/docs/tracking-methods/id-management/identifying-users-original#server-side-identity-management).
+        Learn more about [server-side ID management for project on Original ID Merge API](../id-management/identifying-users-original.md#server-side-identity-management).
 
         **Example Usage**
         ```php
@@ -140,11 +140,11 @@ If you have [Original ID Merge enabled](/docs/tracking-methods/id-management#ide
 {% endtab %}
 
 {% tab title="Simplified API" %}
-If you have [Simplified ID Merge](/docs/tracking-methods/id-management#identity-merge-apis) enabled, send your event anonymous events with an anonymous ID set to the `$device_id`. Then call [`identify()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelEvents.html#method_identify) while providing your chosen user ID once they are known (typically at registration and login). This will set your chosen user ID as the `$user_id` for events moving forward.
+If you have [Simplified ID Merge](../id-management.md#identity-merge-apis) enabled, send your event anonymous events with an anonymous ID set to the `$device_id`. Then call [`identify()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelEvents.html#method_identify) while providing your chosen user ID once they are known (typically at registration and login). This will set your chosen user ID as the `$user_id` for events moving forward.
         
         When a `$user_id` and a `$device_id` is detected in the same event for the first time, it triggers a merge of the 2 IDs.
 
-        Learn more about [server-side ID management for project on Original ID Merge API](/docs/tracking-methods/id-management/identifying-users-simplified#server-side-identity-management).
+        Learn more about [server-side ID management for project on Original ID Merge API](../id-management/identifying-users-simplified.md#server-side-identity-management).
 
         **Example Usage**
         ```php
@@ -173,11 +173,11 @@ If you have [Simplified ID Merge](/docs/tracking-methods/id-management#identity-
 {% endtabs %}
 
 ## Storing User Profiles
-Once your users are identified, create [user profiles](/docs/data-structure/user-profiles) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
+Once your users are identified, create [user profiles](../../data-structure/user-profiles.md) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
 
 The PHP SDK provides a few methods for setting profile properties, which will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
 
-Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_code`) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your data center. [Learn more about best practices for geolocation](/docs/tracking-best-practices/geolocation).
+Mixpanel determines default geolocation data (`$city`, `$region`, `mp_country_code`) using the IP address on the incoming request. As all server-side calls will likely originate from the same IP (that is, the IP of your server), this can have the unintended effect of setting the location of all of your users to the location of your data center. [Learn more about best practices for geolocation](../../tracking-best-practices/geolocation.md).
 
 ### Setting Profile Properties
 The Mixpanel class has a public property called [`$people`](https://mixpanel.github.io/mixpanel-php/classes/Mixpanel.html#property_people) that exposes an instance of [`Producers_MixpanelPeople`](https://mixpanel.github.io/mixpanel-php/classes/Producers_MixpanelPeople.html) that you can use to make profile updates.
@@ -298,7 +298,7 @@ The [`increment()`](https://mixpanel.github.io/mixpanel-php/classes/Producers_Mi
 ## Group Analytics
 
 {% hint style="info" %}
-Read more about [Group Analytics](/docs/data-structure/group-analytics) before proceeding. You will need to have the [group key defined in your project settings](/docs/data-structure/group-analytics#group-keys-in-project-settings) first.
+Read more about [Group Analytics](../../data-structure/group-analytics.md) before proceeding. You will need to have the [group key defined in your project settings](../../data-structure/group-analytics.md#group-keys-in-project-settings) first.
 {% endhint %}
 
 Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
@@ -309,7 +309,7 @@ A group is identified by the `group_key` and `group_id`.
 
 ### Sending Group Identifiers With Events
 
-[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
+[All events must have the group key as an event property in order to be attributed to a group](../../data-structure/group-analytics.md#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
 
 To send group identifiers with your events, set the `group_key` as an event property with the `group_id` as the value.
 
@@ -333,7 +333,7 @@ $mp->track("some_event", array(
 
 **Multiple Groups**
 
-[An event can be attributed to multiple groups](/docs/data-structure/group-analytics#attribute-events-to-multiple-groups) by passing in the `group_key` value as a list of multiple `group_id` values.
+[An event can be attributed to multiple groups](../../data-structure/group-analytics.md#attribute-events-to-multiple-groups) by passing in the `group_key` value as a list of multiple `group_id` values.
 
  **Example Usage**
 

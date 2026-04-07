@@ -2,13 +2,13 @@
 
 ## Overview
 
-This developer guide will assist you in configuring your web platform for [Session Replay](/docs/session-replay) using the [Mixpanel JavaScript SDK](/docs/tracking-methods/sdks/javascript). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
+This developer guide will assist you in configuring your web platform for [Session Replay](../../../session-replay.md) using the [Mixpanel JavaScript SDK](../javascript.md). Learn more about [viewing captured Replays in your project here](../../../session-replay.md).
 
 By default, Session Replay is disabled and will not be loaded into your application until explicitly enabled. In most cases, implementation is extremely simple, requiring only a single line of code to be changed.
 
 ## Prerequisite
 
-You are a Mixpanel customer and have the latest version of the Mixpanel Javascript SDK installed (minimum supported version is [`v2.50.0`](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.50.0)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+You are a Mixpanel customer and have the latest version of the Mixpanel Javascript SDK installed (minimum supported version is [`v2.50.0`](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.50.0)). If not, please follow [this doc](../../../quickstart/install-mixpanel.md) to install the SDK.
 
 ## Capturing Replays
 
@@ -153,17 +153,17 @@ mixpanel.init(
 | `record_mask_text_selector` | CSS selector or array of selectors for elements to mask. Only applies when `record_mask_all_text` is `false`. | `undefined` |
 | `record_unmask_text_selector` | CSS selector or array of selectors for elements to unmask. Only applies when `record_mask_all_text` is `true`. | `undefined` |
 | `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. Included for backward compatibility. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` (common industry mask classes) |
-| `record_mask_all_inputs` | When `true`, all inputs are masked by default. Use `record_unmask_input_selector` to selectively reveal inputs. Note: [certain input types](/docs/session-replay/session-replay-privacy-controls#always-masked-inputs) are always masked regardless of this setting. | `true` |
+| `record_mask_all_inputs` | When `true`, all inputs are masked by default. Use `record_unmask_input_selector` to selectively reveal inputs. Note: [certain input types](../../../session-replay/session-replay-privacy-controls.md#always-masked-inputs) are always masked regardless of this setting. | `true` |
 | `record_mask_input_selector` | CSS selector or array of selectors for inputs to mask. Only applies when `record_mask_all_inputs` is `false`. | `undefined` |
 | `record_unmask_input_selector` | CSS selector or array of selectors for inputs to unmask. Only applies when `record_mask_all_inputs` is `true`. | `undefined` |
 | `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`(24 hours) |
 | `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`(0 seconds) |
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
 | `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
-| `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. You can learn more [here](/docs/session-replay/heatmaps). | `false` |
+| `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. You can learn more [here](../../../session-replay/heatmaps.md). | `false` |
 | `record_console` | When true, Mixpanel will record console logs, warnings, and errors as part of the replay. | `true` |
-| `record_network` | When true, Mixpanel will record network requests as part of the replay. See [Network Recording](/docs/tracking-methods/sdks/javascript/javascript-replay#network-recording) for details. | `false` |
-| `record_network_options` | Configuration for network recording behavior, including which headers/bodies to capture. See [Network Recording Options](/docs/tracking-methods/sdks/javascript/javascript-replay#network-recording-options). | `{}` |
+| `record_network` | When true, Mixpanel will record network requests as part of the replay. See [Network Recording](./javascript-replay.md#network-recording) for details. | `false` |
+| `record_network_options` | Configuration for network recording behavior, including which headers/bodies to capture. See [Network Recording Options](./javascript-replay.md#network-recording-options). | `{}` |
 | `remote_settings_mode` | Setting for handling remote configuration during SDK initialization. Can be `disabled`, `fallback`, `strict`. | `disabled` |
 
 Note: Canvas recording (record_canvas) utilizes [rrweb's](https://github.com/rrweb-io/rrweb) UNSAFE_replayCanvas option, which is experimental and not fully supported. We recommend testing thoroughly before deploying to production.
@@ -380,7 +380,7 @@ It works by inferring the Replay that an event belong using the Distinct ID and 
 
 For example, let's say a user with Distinct ID "ABC" has a Replay recorded from 1-2pm. Two hours later, an event was sent from your warehouse with a timestamp of 1:35pm with Distinct ID "ABC". Server-side Stitching will infer that the event should belong in the same Replay.
 
-To ensure Server-Side Stitching works, call [`identify()`](/docs/tracking-methods/sdks/javascript#identify) from the client-side using our SDK with the user's `$user_id`. This guarantees that events generated from both the client-side and server-side share the same Distinct ID. Learn more about [identifying users](/docs/tracking-methods/id-management).
+To ensure Server-Side Stitching works, call [`identify()`](../javascript.md#identify) from the client-side using our SDK with the user's `$user_id`. This guarantees that events generated from both the client-side and server-side share the same Distinct ID. Learn more about [identifying users](../../id-management.md).
 
 ## Replay URL
 
@@ -428,7 +428,7 @@ Events generated by `record_heatmap_data` (clicks, rage clicks, dead clicks) are
 
 ### Alternative: Using Autocapture for Heatmaps
 
-If you use [Autocapture](/docs/tracking-methods/autocapture) to track clicks, you can leverage these clicks to populate Heatmaps without enabling `record_heatmap_data`. Autocapture also supports rage and dead click detection.
+If you use [Autocapture](../../autocapture.md) to track clicks, you can leverage these clicks to populate Heatmaps without enabling `record_heatmap_data`. Autocapture also supports rage and dead click detection.
 
 **Example Usage**
 
@@ -456,7 +456,7 @@ Clicks captured by Autocapture are billable events that are counted against your
 
 To check your implementation, select **Session Replay** from the side navigation in your Mixpanel project to see whether replays are being captured and appearing as expected. When a capture begins, a "Session Recording Checkpoint" event (`$mp_session_record`) also appears in your project; you can use this to verify that Session Replay is implemented correctly.
 
-If you are using the [recommended sampling method](/docs/tracking-methods/sdks/javascript/javascript-replay#sampling) to capture your Replays but having trouble finding the Replays in your project, try calling `start_session_recording()` manually and see if the `$mp_session_record` event appears. If it does appear but you are still struggling to locate your Replays, you may want to increase your sampling rate.
+If you are using the [recommended sampling method](./javascript-replay.md#sampling) to capture your Replays but having trouble finding the Replays in your project, try calling `start_session_recording()` manually and see if the `$mp_session_record` event appears. If it does appear but you are still struggling to locate your Replays, you may want to increase your sampling rate.
 
 If you are still struggling to implement, [submit a request to our Support team](https://mixpanel.com/get-support) for more assistance.
 
@@ -464,7 +464,7 @@ If you are still struggling to implement, [submit a request to our Support team]
 
 You can use Session Replay with customer data platforms (CDPs), such as [Segment](https://segment.com/) and [mParticle](https://www.mparticle.com/).
 
-In order to use Session Replay, your app must have the [Mixpanel Javascript SDK installed](/docs/tracking-methods/sdks/javascript#installing-the-library) with [Session Replay enabled](/docs/tracking-methods/sdks/javascript/javascript-replay#capturing-replays).
+In order to use Session Replay, your app must have the [Mixpanel Javascript SDK installed](../javascript.md#installing-the-library) with [Session Replay enabled](./javascript-replay.md#capturing-replays).
 
 Once you have included the Mixpanel SDK in your app add the following code snippets in order to connect your CDP's data stream with Mixpanel's Session Replay.
 
@@ -560,7 +560,7 @@ mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
 
 ### Google Tag Manager
 
-You can use session replay with Google Tag Manager (GTM). First, make sure you have the [Mixpanel GTM Template](/docs/tracking-methods/integrations/google-tag-manager) installed in your workspace.
+You can use session replay with Google Tag Manager (GTM). First, make sure you have the [Mixpanel GTM Template](../../integrations/google-tag-manager.md) installed in your workspace.
 
 Once that is added, you can add a new Mixpanel tag to your workspace which turns on Session Replay by following these instructions:
 
@@ -569,7 +569,7 @@ Once that is added, you can add a new Mixpanel tag to your workspace which turns
 - For `Tag Type` choose `init` from the dropdown
 - For `Initialization` choose `Set Options Manually`
 - In the `Option key` / `Option value` dropdown, ensure you choose `record_sessions_percent` and the value should be a number between 1 and 100.
-- This is also where you can configure other [Session Replay options](/docs/tracking-methods/sdks/javascript#init-options) like `record_block_class` etc...
+- This is also where you can configure other [Session Replay options](../javascript.md#init-options) like `record_block_class` etc...
 - For the `Triggering` section, you'll want to choose something [early in the GTM lifecycle](https://support.google.com/tagmanager/answer/7679319?hl=en); typically this is `Initialization - All Pages` or `Consent Initialization - All Pages` to ensure that Session Replay starts recording as soon as the GTM container is initialized.
 - Save + Deploy this template to your website and you should be up and going with session replay
 
@@ -579,13 +579,13 @@ Here's a screenshot of a working session replay tag for a visual comparison:
 
 ## Privacy
 
-Mixpanel offers a privacy-first approach to Session Replay, including features such as data masking. Mixpanel's Session Replay privacy controls were designed to assist customers in protecting end user privacy. Read more [here](/docs/session-replay/session-replay-privacy-controls).
+Mixpanel offers a privacy-first approach to Session Replay, including features such as data masking. Mixpanel's Session Replay privacy controls were designed to assist customers in protecting end user privacy. Read more [here](../../../session-replay/session-replay-privacy-controls.md).
 
 ### User Data
 
 By default, all text and inputs on a page are masked. You can selectively unmask elements using `record_unmask_text_selector` and `record_unmask_input_selector`, or change the default behavior using `record_mask_all_text` and `record_mask_all_inputs`.
 
-Note that [certain sensitive input types](/docs/session-replay/session-replay-privacy-controls#always-masked-inputs) (password, email, tel, hidden, and inputs with autocomplete attributes) are always masked regardless of your configuration.
+Note that [certain sensitive input types](../../../session-replay/session-replay-privacy-controls.md#always-masked-inputs) (password, email, tel, hidden, and inputs with autocomplete attributes) are always masked regardless of your configuration.
 
 Along with other data, the SDK respects all Do Not Track (DNT) settings as well as manual opt-out for any replay data. 
 
@@ -615,11 +615,11 @@ Some consent management platforms (like Cookiebot) require cookie or storage key
 
 #### Can I prevent Session Replay from recording sensitive content?
 
-By default, all on-screen text and input elements are masked in replays. You can selectively unmask elements using `record_unmask_text_selector` and `record_unmask_input_selector`. Additionally, [certain sensitive input types](/docs/session-replay/session-replay-privacy-controls#always-masked-inputs) are always masked regardless of configuration. Consider the [manual capture example scenarios](/docs/tracking-methods/sdks/javascript/javascript-replay#example-scenarios) and [init options](/docs/tracking-methods/sdks/javascript/javascript-replay#init-options) provided above to customize the replay capture of your implementation.
+By default, all on-screen text and input elements are masked in replays. You can selectively unmask elements using `record_unmask_text_selector` and `record_unmask_input_selector`. Additionally, [certain sensitive input types](../../../session-replay/session-replay-privacy-controls.md#always-masked-inputs) are always masked regardless of configuration. Consider the [manual capture example scenarios](./javascript-replay.md#example-scenarios) and [init options](./javascript-replay.md#init-options) provided above to customize the replay capture of your implementation.
 
 #### How can I estimate how many Replays I will generate?
 
-If you already use Mixpanel, the [Session Start events](/docs/features/sessions) are a way to estimate the rough amount of replays you might expect. This is especially true if you use timeout-based query sessions. However, because our sessions are defined at query time, we cannot guarantee these metrics will be directly correlated.
+If you already use Mixpanel, the [Session Start events](../../../features/sessions.md) are a way to estimate the rough amount of replays you might expect. This is especially true if you use timeout-based query sessions. However, because our sessions are defined at query time, we cannot guarantee these metrics will be directly correlated.
 
 When you enable Session Replay, use the above proxy metric to determine a starting sampling percentage, which will determine how many replays will be sent. You can always adjust this as you go to calibrate to the right level.
 

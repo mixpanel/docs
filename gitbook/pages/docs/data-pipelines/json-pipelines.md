@@ -10,7 +10,7 @@ This documentation is intended for users with intermediate or advanced knowledge
 
 ## Create JSON Pipelines
 
-Follow the instructions here in the [Overview](/docs/data-pipelines).
+Follow the instructions here in the [Overview](../data-pipelines.md).
 
 ## Destination and Date Range Restrictions
 
@@ -84,13 +84,13 @@ User profiles are exported to a single table or directory named `mp_people_data`
 
 ## User Identity Resolution
 
-Exports from projects with [ID merge enabled](/docs/tracking-methods/id-management/identifying-users#how-do-i-switch-between-the-simplified-and-original-api) will need to use the identity mapping table to replicate the user counts seen in UI reporting. Mixpanel resolves multiple identifiers for an individual into one identifier for reporting unique user counts. Learn more about how Mixpanel resolves IDs [here](/docs/tracking-methods/id-management/identifying-users#example-user-flows).
+Exports from projects with [ID merge enabled](../tracking-methods/id-management/identifying-users.md#how-do-i-switch-between-the-simplified-and-original-api) will need to use the identity mapping table to replicate the user counts seen in UI reporting. Mixpanel resolves multiple identifiers for an individual into one identifier for reporting unique user counts. Learn more about how Mixpanel resolves IDs [here](../tracking-methods/id-management/identifying-users.md#example-user-flows).
 
 Pipelines export event data as they appear when Mixpanel ingests them. Data sent before an alias event carries the original user identifier, not the resolved one. Use the identity mappings table to accurately count unique users. This will allow you to recreate the identity cluster that Mixpanel creates.
 
 Note: Use the `resolved_distinct_id` from the identity mappings table instead of the non-resolved `distinct_id` when available. If there is no resolved `distinct_id`, use the `distinct_id` from the existing people or events table.
 
-Examples of querying the identity mapping table are available for [BigQuery](/docs/data-pipelines/integrations/bigquery#query-identity-mappings) and [Snowflake](/docs/data-pipelines/integrations/snowflake#query-identity-mappings).
+Examples of querying the identity mapping table are available for [BigQuery](./integrations/bigquery.md#query-identity-mappings) and [Snowflake](./integrations/snowflake.md#query-identity-mappings).
 
 ## Incremental Pipelines
 
@@ -112,7 +112,7 @@ As of 10 September 2025, all JSON pipelines in all regions (US/EU/IN) have been 
 - **Storage location file structure changes**: Previous behavior of sync would replace files for a day when the day was re-synced. No sync means Mixpanel will no longer coalesce files for days when sync runs so files are no longer updated/removed. Incremental pipelines will instead add a new file with events seen in each day for each run of the pipeline meaning more small files are expected.
 - **Pipelines logs reset**: Once your pipeline is migrated, the logging available in the UI will be reset so past jobs log lines will no longer be available. Only the new incremental jobs will be visible going forward.
 - **Predicable deletion behavior**:  In rare cases, the sync functionality meant that Mixpanel could re-sync days for which data was deleted, allowing the pipeline to also remove that data from your data warehouse. Sync keeping your warehouse in line with deletions was not guaranteed behavior however. The removal of sync means this unreliable behavior has been removed and as such, warehouse data owners are responsible for the deletion of all data on the warehouse side.
-- **More pre-shuffled distinct IDs in data**: The faster export and removal of late syncs for data can lead to more events exported with their original `distinct_id` as opposed to the resolved identifier seen in Mixpanel after we’ve shuffled the data. These discrepancies are expected in pipelines on both the old and new behavior, and can be resolved using the ID mappings table exported from identity pipelines outlined in [our docs here](/docs/data-pipelines/json-pipelines#user-identity-resolution).
+- **More pre-shuffled distinct IDs in data**: The faster export and removal of late syncs for data can lead to more events exported with their original `distinct_id` as opposed to the resolved identifier seen in Mixpanel after we’ve shuffled the data. These discrepancies are expected in pipelines on both the old and new behavior, and can be resolved using the ID mappings table exported from identity pipelines outlined in [our docs here](./json-pipelines.md#user-identity-resolution).
 
 ## FAQs
 

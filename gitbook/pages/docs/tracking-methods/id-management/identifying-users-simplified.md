@@ -2,7 +2,7 @@
 
 <div class="idManagementBanner">
 {% hint style="warning" %}
-The information on this page is for projects on the **Simplified ID Merge API**. [Learn more here](/docs/tracking-methods/id-management/identifying-users-simplified#overview).
+The information on this page is for projects on the **Simplified ID Merge API**. [Learn more here](./identifying-users-simplified.md#overview).
 {% endhint %}
 
 ## Overview
@@ -12,9 +12,9 @@ The information on this page is for projects on the **Simplified ID Merge API**.
 
   The information on this page is for projects using the **Simplified ID Merge API**. You can check your Identity Merge API by navigating to [your project settings](https://mixpanel.com/settings/project/id-management).
 
-  For projects using Original ID Merge API, please refer to this documentation [here](/docs/tracking-methods/id-management/identifying-users-original).
+  For projects using Original ID Merge API, please refer to this documentation [here](./identifying-users-original.md).
 
-  Learn more about the different ID Merge APIs [here](/docs/tracking-methods/id-management#identity-merge-apis).
+  Learn more about the different ID Merge APIs [here](../id-management.md#identity-merge-apis).
 {% endhint %}
 
 Mixpanel supports stitching user behavior pre-login (eg: traffic from your website, docs, blog) and post-login (once the user has signed up). This helps answer questions like:
@@ -31,7 +31,7 @@ The **Simplified ID Merge API** uses the `$device_id` and `$user_id` event prope
 
 ### distinct_id
 
-The `distinct_id` property (learn more [here](/docs/tracking-methods/id-management#distinct-id) ) is the identifier property that Mixpanel uses to determine the uniqueness of your users.
+The `distinct_id` property (learn more [here](../id-management.md#distinct-id) ) is the identifier property that Mixpanel uses to determine the uniqueness of your users.
 
 ### $device_id
 
@@ -53,7 +53,7 @@ If an event contains a `$user_id`, the value of the `$user_id` will be set as th
 
 If using our Web/Mobile SDKs or a CDP like Segment or Rudderstack, there are only 2 steps to identity management:
 1. Call `.identify(<user_id>)` when a user signs up or logs in, passing in the user's known identifier (eg: their ID from your database).
-2. Send at least one event after the `.identify()` call. This is necessary to get the `$user_id` and `$device_id` to merge. Learn more about [the merge mechanism above](/docs/tracking-methods/id-management/identifying-users-simplified#mechanism).
+2. Send at least one event after the `.identify()` call. This is necessary to get the `$user_id` and `$device_id` to merge. Learn more about [the merge mechanism above](./identifying-users-simplified.md#mechanism).
 3. Call `.reset()` when a user logs out.
 
 - Any events prior to calling `.identify()` are considered anonymous events. Mixpanel's SDKs will generate a `$device_id` to associate these events to the same anonymous user. By calling `.identify(<user_id>)` when a user signs up or logs in, you're telling Mixpanel that `$device_id` belongs to a known user with ID `user_id`.
@@ -204,7 +204,7 @@ By calling `.reset()` at logout or when a user enters an unauthenticated-state (
 
 You can track the user's unique identifier as a super property via `.register()` and user property via `.people.set()` as soon as it is available in the app i.e. on a successful sign-up / login or when an app is re-opened in a logged in state. In the cases when ID Merge is not implemented properly, you can rely on these properties for troubleshooting purposes.
 
-See the SDK reference on [registering super properties](/docs/tracking-methods/sdks/javascript#super-properties) and [setting profile properties](/docs/tracking-methods/sdks/javascript#setting-profile-properties).
+See the SDK reference on [registering super properties](../sdks/javascript.md#super-properties) and [setting profile properties](../sdks/javascript.md#setting-profile-properties).
 
 **Avoid creating profiles for anonymous users**
 
@@ -230,13 +230,13 @@ We recommend using an ID that is unique to each user and does not change, for ex
 
 **How long does it take for the `$device_id` -> `$user_id` mapping to take effect?**
 
-For debugging purposes, the Activity Feed view of a single user is updated in real-time (less than 1 minute delay). You can get to the Activity Feed by navigating to [Users](/docs/users) and selecting a given user.
+For debugging purposes, the Activity Feed view of a single user is updated in real-time (less than 1 minute delay). You can get to the Activity Feed by navigating to [Users](../../users.md) and selecting a given user.
 
 It may take up to 24 hours for this mapping to propagate to all other parts of the system. This means that, in some cases, when analyzing a funnel that spans pre-login and post-login behavior in real-time, some may be shown as dropped-off, even though they've performed the conversion event.
 
 **How does this relate to User Profiles?**
 
-[User Profiles](/docs/data-structure/user-profiles) are set directly on `$distinct_id`s, not on `$user_id`s or `$device_id`s. We recommend waiting until after a user is identified before setting user profile properties.
+[User Profiles](../../data-structure/user-profiles.md) are set directly on `$distinct_id`s, not on `$user_id`s or `$device_id`s. We recommend waiting until after a user is identified before setting user profile properties.
 
 It is possible to set user profile properties for unidentified users by sending the profile updates to `$distinct_id=$device:<device-id>`. However, user profile properties are not preserved when `$device_id`s are linked to `$user_id`s, so any properties set before the IDs became linked will need to be set again using `$distinct_id=<user-id>` once the user is identified.
 
@@ -248,7 +248,7 @@ It is not possible to merge 2 `$user_id`s together using the Simplified API. We 
 
 Attribution providers (like Appsflyer, Adjust, and Branch) use Mixpanel's SDK properly to set `$device_id` to whichever ID they use for attribution.
 
-For cohort syncs out to 3rd-party systems, we recommend designating a user property with the identifier of the user in that third-party system. More details are in our [integrations docs](/docs/cohort-sync/integrations); for example, see our [doc on exporting cohorts to Braze](/docs/cohort-sync/integrations/braze#matching-mixpanel-and-braze-users). If those integrations are bidirectional (eg: they send events back to Mixpanel), it's best to ensure that the user ID in both Mixpanel and the 3rd-party system is the same so that those events are sent to the correct user.
+For cohort syncs out to 3rd-party systems, we recommend designating a user property with the identifier of the user in that third-party system. More details are in our [integrations docs](../../cohort-sync/integrations.md); for example, see our [doc on exporting cohorts to Braze](../../cohort-sync/integrations/braze.md#matching-mixpanel-and-braze-users). If those integrations are bidirectional (eg: they send events back to Mixpanel), it's best to ensure that the user ID in both Mixpanel and the 3rd-party system is the same so that those events are sent to the correct user.
 
 **What is the status of Mixpanel's legacy `alias` method?**
 

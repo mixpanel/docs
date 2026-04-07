@@ -1,13 +1,13 @@
 # CMS & E-Commerce
 
-It's easy to integrate Mixpanel in CMS or E-Commerce sites with minimal code. Most approaches require adding our [Javascript snippet](/docs/quickstart/connect-your-data), which will automatically track all pageviews, and then customizing with additional `.track()` calls to track custom events.
+It's easy to integrate Mixpanel in CMS or E-Commerce sites with minimal code. Most approaches require adding our [Javascript snippet](../../quickstart/connect-your-data.md), which will automatically track all pageviews, and then customizing with additional `.track()` calls to track custom events.
 
 ## Wordpress
 Though Mixpanel does not have an official plugin to support WordPress, there are plenty of options for getting Mixpanel set up on your WordPress site.
 
 There are a variety of third-party options available that will automatically send data from your WordPress blog to your Mixpanel implementation. Some popular options include [third-party plugins](https://wordpress.org/plugins/tags/mixpanel/). Most of these third-party plugins essentially just track page loads, which means you would be tracking some data, but not really fully utilizing the potential of Mixpanel. Though none are officially supported by Mixpanel, they might be worth checking out if you’re looking for a quick and simple solution.
 
-However, to really exercise the power of Mixpanel, you can do a custom implementation, integrating Mixpanel the same way as any other platform by following the [JavaScript API integration steps](/docs/tracking-methods/sdks/javascript).
+However, to really exercise the power of Mixpanel, you can do a custom implementation, integrating Mixpanel the same way as any other platform by following the [JavaScript API integration steps](../sdks/javascript.md).
 
 [One option is to build a child theme in WordPress](https://codex.wordpress.org/Child_Themes) to be able to track events beyond page views. For example, if you have a plugin for a contact form in the page, you could modify the plugin to add the JavaScript specific to the Event within the form.
 
@@ -23,13 +23,13 @@ However, to really exercise the power of Mixpanel, you can do a custom implement
   <tbody>
     <tr>
       <td><strong>Integration Guide</strong></td>
-      <td><a href="/docs/tracking-methods/integrations/shopify">/docs/tracking-methods/integrations/shopify</a></td>
+      <td><a href="./shopify.md">./shopify.md</a></td>
       <td></td>
     </tr>
   </tbody>
 </table>
 
-Even though the integration process is largely the same as the regular [JavaScript API Integration](/docs/tracking-methods/sdks/javascript), there are a few things specific to Shopify that you’ll want to account for.
+Even though the integration process is largely the same as the regular [JavaScript API Integration](../sdks/javascript.md), there are a few things specific to Shopify that you’ll want to account for.
 
 To start, add the Mixpanel JavaScript snippet into the tag of your theme.liquid page. Then, once the library has been successfully loaded, implement `mixpanel.track()` calls wherever you see fit.
 
@@ -37,9 +37,9 @@ Mixpanel users who have successfully implemented on a Shopify site [have some gr
 
 While Shopify is strict about preventing arbitrary scripts from running in the checkout flow, you can easily capture customer events and conversions by integrating the Mixpanel Javascript SDK with the Shopify Web Pixel API. 
 
-Reference our [Guide to Integrating Mixpanel Javascript SDK with Shopify](/docs/tracking-methods/integrations/shopify) for a detailed walkthrough.
+Reference our [Guide to Integrating Mixpanel Javascript SDK with Shopify](./shopify.md) for a detailed walkthrough.
 
 If you are looking for a no-code solution, check out the [Vendo app by Growth Analytics Marketing](https://mixpanel.com/partners/integrations/vendo) (a Mixpanel solution and technology partner), available in the Shopify app store. Vendo automatically sends data from your Shopify store front-end and back-end to your Mixpanel project. Vendo offers a 30-day free trial and a free plan.
 
 ## PrestaShop
-To get up and running with Mixpanel on a PrestaShop site, paste the [Mixpanel JavaScript snippet](/docs/tracking-methods/sdks/javascript) in the header.tpl file between `{literal} {/literal}` tags. Once you’ve successfully initialized the Mixpanel library, add mixpanel.track calls per the standard JavaScript integration documentation.
+To get up and running with Mixpanel on a PrestaShop site, paste the [Mixpanel JavaScript snippet](../sdks/javascript.md) in the header.tpl file between `{literal} {/literal}` tags. Once you’ve successfully initialized the Mixpanel library, add mixpanel.track calls per the standard JavaScript integration documentation.

@@ -95,7 +95,7 @@ The Mixpanel Data Inspector is a browser extension that provides real-time visib
 ## Troubleshooting
 
 ### Events Not Appearing
-- **Verify SDK implementation:** Ensure Mixpanel SDK is properly installed and configured. See [JavaScript SDK documentation](/docs/tracking-methods/sdks/javascript) for installation methods.
+- **Verify SDK implementation:** Ensure Mixpanel SDK is properly installed and configured. See [JavaScript SDK documentation](./sdks/javascript.md) for installation methods.
 - **Check browser console:** Look for JavaScript errors that might prevent tracking
 - **Refresh the page:** Some events only fire during page initialization
 - **Disable ad blockers:** Ad blockers may prevent events from being sent to Mixpanel servers

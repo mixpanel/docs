@@ -9,12 +9,12 @@ In this doc, we give step-by-step guidance on how to bring your advertising netw
 **NOTE:** If you are a Marketer reading this, we encourage you to share this with your dev team to get this one-time setup done. This should not take more than a couple of hours.
 
 {% hint style="info" %}
-If you prefer not to build and maintain your data pipelines, consider using [Vendo](/docs/tracking-methods/integrations/vendo). The Vendo integration with Mixpanel allows seamless integration of advertising data from Google, Meta, and other ad platforms into Mixpanel without the need for custom development. Learn more [here](https://www.vendodata.com/integrations/mixpanel).
+If you prefer not to build and maintain your data pipelines, consider using [Vendo](./vendo.md). The Vendo integration with Mixpanel allows seamless integration of advertising data from Google, Meta, and other ad platforms into Mixpanel without the need for custom development. Learn more [here](https://www.vendodata.com/integrations/mixpanel).
 {% endhint %}
 
 ## Importing via Warehouse Connectors
 
-If your ad spend data is already in a data warehouse, you can bring it into Mixpanel using [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors) — no custom code or cloud functions required.
+If your ad spend data is already in a data warehouse, you can bring it into Mixpanel using [Warehouse Connectors](../warehouse-connectors.md) — no custom code or cloud functions required.
 
 ### Using the Ad Spend Template
 
@@ -68,9 +68,9 @@ The crux of this How To guide is turning the data exported by Ad Networks into e
 
 **Best Practices**
 
-- **Only include base metrics** cost, clicks, and impressions. We don’t need to send derived metrics like Cost-per-click, because Mixpanel’s [Custom Properties](/docs/features/custom-properties) and Formulas allow us to calculate and alter derived metrics on the fly.
+- **Only include base metrics** cost, clicks, and impressions. We don’t need to send derived metrics like Cost-per-click, because Mixpanel’s [Custom Properties](../../features/custom-properties.md) and Formulas allow us to calculate and alter derived metrics on the fly.
 - **Matching client side properties:** if you are using a Mixpanel client-side SDK to track user behaviors, you will want to model
- additional campaign metadata (source, medium, campaign, etc...) as `utm_source`, `utm_medium` etc... this matches the way mixpanel's SDKs [capture UTM params by default](/docs/tracking-methods/sdks/javascript#tracking-utm-parameters)
+ additional campaign metadata (source, medium, campaign, etc...) as `utm_source`, `utm_medium` etc... this matches the way mixpanel's SDKs [capture UTM params by default](../sdks/javascript.md#tracking-utm-parameters)
 - **No Distinct ID:** You’ll notice that our event has no Distinct ID. This is because ad performance data isn’t tied to any particular user. **This is the key difference from behavioral events.** By omitting it, we are ensuring that these events do not get erroneously included in reporting that intend to analyze user behavior such as Funnels, Retentions, Flows, unique user counts, “did not do” cohorts, etc.
 - **Event properties are aggregated:** You’ll notice the Ad-Data event in this example is scheduled to trigger only once a day. Properties are aggregated counts of all clicks through the day, all impressions through the day, all ad-spend through the day. Reason for this is ad-networks only export data at an aggregate level (without user details) and at fixed intervals (lowest granularity is generally a day)
 - **Include an Insert ID:** It’s recommended to include the Insert ID property for these kinds of events. This allows you to send the campaign data to Mixpanel more than once for a particular segment without duplicating the data in reports.

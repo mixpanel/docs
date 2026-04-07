@@ -1,10 +1,9 @@
-# User Profiles
+# User Profile: Demographic attributes for your users
 
 {% hint style="info" %}
-**Note:** The following terms are used in this section:
-
-* "Profiles" is used to refer to both "User Profiles" and "Group Profiles"
-* "Profile Properties" is used to refer to both "User Profile Properties" and "Group Profile Properties"
+**Note:** The following terms are used in this section: 
+- "Profiles" is used to refer to both "User Profiles" and "Group Profiles"
+- "Profile Properties" is used to refer to both "User Profile Properties" and "Group Profile Properties"
 {% endhint %}
 
 ## Overview
@@ -13,27 +12,27 @@ User Profiles let you enrich events with demographic attributes (i.e. user prope
 
 A user profile has a set of user properties associated with a given user. Under the hood, Mixpanel stores user data for your project in a table wherein each row of user profile contain columns of user properties (e.g. Name, Email, Department) that can be updated:
 
-| **Distinct ID** | **Name** | **Email**          | **Department** |
-| --------------- | -------- | ------------------ | -------------- |
-| 123             | Alice    | `alice@linear.app` | Engineering    |
-| 456             | Bob      | `bob@notion.so`    | Product        |
-| 789             | Carol    | `carol@figma.com`  | Design         |
+| **Distinct ID** | **Name** | **Email** | **Department** |
+| --------------- | -------- | --------- | -------------- |
+| 123 | Alice | `alice@linear.app` | Engineering |
+| 456 | Bob | `bob@notion.so` | Product |
+| 789 | Carol | `carol@figma.com` | Design |
 
-User profiles are joined onto your events based on their [**Distinct ID**](../../../../docs/tracking-methods/id-management/identifying-users/#what-is-distinct-id) (Mixpanel's identifier for a user). This lets you join the events performed by a user with user properties describing them. Thus, it is very important that you use the same Distinct ID for both the events and user profile for the same user.
+User profiles are joined onto your events based on their **[Distinct ID](../tracking-methods/id-management/identifying-users.md#what-is-distinct-id)** (Mixpanel's identifier for a user). This lets you join the events performed by a user with user properties describing them. Thus, it is very important that you use the same Distinct ID for both the events and user profile for the same user.
 
-For more information about user profiles refer to the documentation on [The Mixpanel Data Model](../../../../docs/tutorials/plan/tracking-strategy/#the-mixpanel-data-model).
+For more information about user profiles refer to the documentation on [The Mixpanel Data Model](../tutorials/plan/tracking-strategy.md#the-mixpanel-data-model). 
 
 {% hint style="info" %}
-**Note:** If you have [Group Analytics](../../../../docs/data-structure/group-analytics/) as an add-on, this section also applies to [Group Profiles](../../../../docs/data-structure/group-analytics/#group-profiles).
+**Note:** If you have [Group Analytics](./group-analytics.md) as an add-on, this section also applies to [Group Profiles](./group-analytics.md#group-profiles).
 {% endhint %}
 
 ## Importing Profiles via API
 
-You can create or update User Profiles in similar ways you track events: from our [SDKs](../../../../docs/tracking-methods/sdks/javascript/#storing-user-profiles), via our [HTTP Engage API](https://developer.mixpanel.com/reference/profile-set), [Warehouse Connectors](../../../../docs/tracking-methods/warehouse-connectors/#user-profiles), or via our integrations partners.
+You can create or update User Profiles in similar ways you track events: from our [SDKs](../tracking-methods/sdks/javascript.md#storing-user-profiles), via our [HTTP Engage API](https://developer.mixpanel.com/reference/profile-set), [Warehouse Connectors](../tracking-methods/warehouse-connectors.md#user-profiles), or via our integrations partners.
 
-Similarly for [Group Profiles](../../../../docs/data-structure/group-analytics/#group-profiles), they can be created or updated using our [SDKs](../../../../docs/tracking-methods/sdks/javascript/#creating-group-profiles), via our [HTTP Groups API](https://developer.mixpanel.com/reference/group-set-property), [Warehouse Connectors](../../../../docs/tracking-methods/warehouse-connectors/#group-profiles), or via our integration partners.
+Similarly for [Group Profiles](./group-analytics.md#group-profiles), they can be created or updated using our [SDKs](../tracking-methods/sdks/javascript.md#creating-group-profiles), via our [HTTP Groups API](https://developer.mixpanel.com/reference/group-set-property), [Warehouse Connectors](../tracking-methods/warehouse-connectors.md#group-profiles), or via our integration partners.
 
-We recommend tracking profiles from as close as possible to the source of truth, which is usually your application database or your CRM. One typical approach (especially for [Server-Side Tracking](../../../../docs/tracking-methods/choosing-the-right-method/#server-side-tracking)) is to run an hourly or daily script on your servers that pulls the list of profiles from your database and pushes them to Mixpanel.
+We recommend tracking profiles from as close as possible to the source of truth, which is usually your application database or your CRM. One typical approach (especially for [Server-Side Tracking](../tracking-methods/choosing-the-right-method.md#server-side-tracking)) is to run an hourly or daily script on your servers that pulls the list of profiles from your database and pushes them to Mixpanel.
 
 ### Operators
 
@@ -41,23 +40,22 @@ The [HTTP Engage API](https://developer.mixpanel.com/reference/profile-set) and 
 
 **Setting profile property**
 
-* `$set` - Sets a profile property or updates a profile property value (if it already exists).
-* `$set_once` - Sets a profile property only if they do not yet exist on Mixpanel. This ensures that the previous profile property value is not overwritten.
+- `$set` - Sets a profile property or updates a profile property value (if it already exists).
+- `$set_once` - Sets a profile property only if they do not yet exist on Mixpanel. This ensures that the previous profile property value is not overwritten.
 
 **Updating numeric profile property**
 
-* `$add` - Increments or decrements a numeric user profile property _(not supported in group profiles)_. To increment, pass in a positive numeric value, and to decrement pass in a negative numeric value. If the property does not yet exist, it will set the value passed in as the initial value.
+- `$add` - Increments or decrements a numeric user profile property *(not supported in group profiles)*. To increment, pass in a positive numeric value, and to decrement pass in a negative numeric value. If the property does not yet exist, it will set the value passed in as the initial value.
 
 **Updating list profile property**
 
-* `$union` - Merges a given value or list into a [List](../../../../docs/data-structure/property-reference/data-type/#list) data type profile property and ensures there are no duplicate values.
-* `$append` - Appends a value to the end of a [List](../../../../docs/data-structure/property-reference/data-type/#list) data type user profile property _(not supported in group profiles)_. Does not check for duplicate values.
-* `$remove` - Removes a value from a [List](../../../../docs/data-structure/property-reference/data-type/#list) data type profile property.
+- `$union` - Merges a given value or list into a [List](./property-reference/data-type.md#list) data type profile property and ensures there are no duplicate values.
+- `$append` - Appends a value to the end of a [List](./property-reference/data-type.md#list) data type user profile property *(not supported in group profiles)*. Does not check for duplicate values.
+- `$remove` - Removes a value from a [List](./property-reference/data-type.md#list) data type profile property.
 
 **Removing profile properties**
-
-* `$unset` - Removes a profile property from the profile.
-* `$delete` - Removes all profile properties from the profile.
+- `$unset` - Removes a profile property from the profile.
+- `$delete` - Removes all profile properties from the profile.
 
 Here's some sample code to get you started, utilizing the `$set` operator to update user profiles:
 
@@ -102,31 +100,34 @@ print(resp.json())
 
 ## Importing Profiles via the UI
 
-To get started, click on **Add/Edit Profile** from the [Users](https://mixpanel.com/report/users) page and follow the workflow below.
+To get started, click on **Add/Edit Profile** from the [Users](https://mixpanel.com/report/users) page and follow the workflow below.
 
-> **Note**: For customers with [Group Analytics](../../../../docs/data-structure/group-analytics/) make sure you first choose either **User** or the [**Group Key**](../../../../docs/data-structure/group-analytics/#group-keys-in-project-settings) **name** depending on which type of profile you wish to import.
+> **Note**: For customers with [Group Analytics](./group-analytics.md) make sure you first choose either **User** or the **[Group Key](./group-analytics.md#group-keys-in-project-settings) name** depending on which type of profile you wish to import.
+
+![/Screen_Shot_2021-12-01_at_11.44.03_AM.png](/Screen_Shot_2021-12-01_at_11.44.03_AM.png)
 
 ### Create/Update a Single Profile
 
 **Set an Identifier Column**
 
-The most important column is `$distinct_id` for user profiles (or `$group_id` for [Group Profiles](../../../../docs/data-structure/group-analytics/#group-profiles)). The value needs to match the `distinct_id` property's value (or the value for the [Group Key](../../../../docs/data-structure/group-analytics/#implementation)'s Group ID) that you're sending on your events.
+The most important column is `$distinct_id` for user profiles (or `$group_id` for [Group Profiles](./group-analytics.md#group-profiles)). The value needs to match the `distinct_id` property's value (or the value for the [Group Key](./group-analytics.md#implementation)'s Group ID) that you're sending on your events.
 
 **Add Additional Properties**
 
-After `$distinct_id`, you can add additional properties to the profile by pressing the **"+ Add Property"** button. Mixpanel will help autocomplete profile properties that you may want to set.
+After `$distinct_id`, you can add additional properties to the profile by pressing the **"+ Add Property"** button. Mixpanel will help autocomplete profile properties that you may want to set.
 
-We recommend using the `$name` (or `$first_name`, `$last_name`), `$email`, and `$phone` [Reserved Profile Properties](../../../../docs/data-structure/property-reference/reserved-properties/#reserved-profile-properties)) if you're uploading a user's name, email, or phone. Mixpanel shows these properties by default in various parts of our UI and are used for [Cohort Syncs](../../../../docs/cohort-sync/) as well.
+![/Screen_Shot_2021-12-01_at_12.20.27_PM.png](/Screen_Shot_2021-12-01_at_12.20.27_PM.png)
+
+We recommend using the `$name` (or `$first_name`, `$last_name`), `$email`, and `$phone` [Reserved Profile Properties](./property-reference/reserved-properties.md#reserved-profile-properties)) if you're uploading a user's name, email, or phone. Mixpanel shows these properties by default in various parts of our UI and are used for [Cohort Syncs](../cohort-sync.md) as well.
 
 ### Bulk Import from CSV
 
-When preparing the CSV that you want to upload as profiles, you should **not** include column headers (e.g., $name, $email, etc.). Instead, you’ll identify column headers through the CSV upload wizard in the Mixpanel UI.
+When preparing the CSV that you want to upload as profiles, you should **not** include column headers (e.g., \$name, \$email,  etc.). Instead, you’ll identify column headers through the CSV upload wizard in the Mixpanel UI.
 
 **Note**:
-
-* If you import profiles using `$distinct_id` (or `$group_id`) values that already exist, those profiles will be updated with the additional profile properties. On the other hand, if you upload a profile that has the same email address or the same name as another existing profile, but a different `$distinct_id` (or `$group_id`), you will be uploading duplicates - they will not be combined.
-* If you upload a CSV with new information for existing properties on existing profiles, the existing property values will be overwritten. If the new information is for new properties on existing profiles, it will be added as additional properties for the profiles.
-* The maximum size for your CSV should be 1M rows.
+- If you import profiles using `$distinct_id` (or `$group_id`) values that already exist, those profiles will be updated with the additional profile properties. On the other hand, if you upload a profile that has the same email address or the same name as another existing profile, but a different `$distinct_id` (or `$group_id`), you will be uploading duplicates - they will not be combined.
+- If you upload a CSV with new information for existing properties on existing profiles, the existing property values will be overwritten. If the new information is for new properties on existing profiles, it will be added as additional properties for the profiles. 
+- The maximum size for your CSV should be 1M rows.
 
 #### Upload Your CSV
 
@@ -134,7 +135,7 @@ Go to the **Import from CSV** tab and select your prepared CSV to begin the proc
 
 #### Choose an Identifier Column
 
-The most important column in your CSV is the `$distinct_id` for user profiles (or `$group_id` for [Group Profiles](../../../../docs/data-structure/group-analytics/#group-profiles)). The value needs to match the `distinct_id` property's value (or the value for the [Group Key](../../../../docs/data-structure/group-analytics/#implementation)'s Group ID) that you're sending on your events.
+The most important column in your CSV is the `$distinct_id` for user profiles (or `$group_id` for [Group Profiles](./group-analytics.md#group-profiles)). The value needs to match the `distinct_id` property's value (or the value for the [Group Key](./group-analytics.md#implementation)'s Group ID) that you're sending on your events.
 
 The import module will preview the column values from your CSV on the right, corresponding to the property name you are currently defining.
 
@@ -144,39 +145,49 @@ If you do not assign an identifier column, Mixpanel will use your `$email` colum
 
 You'll have the opportunity to look through all columns in the CSV to preview their values. In this step, you must **uncheck all columns that you DO NOT wish to import**. You must also choose the associated Mixpanel profile property that each CSV column will be associated with. When you're done selecting the columns, and mapping their associated properties, press the **Import profiles** button to proceed.
 
+![/Screen_Shot_2021-12-01_at_12.24.00_PM.png](/Screen_Shot_2021-12-01_at_12.24.00_PM.png)
+
 ## Importing Historical Profile Values
 
 {% hint style="info" %}
-Historical profiles requires the use of [Warehouse Connectors](../../../../docs/tracking-methods/warehouse-connectors/) paid add-on to ingest historical properties.
+Historical profiles requires the use of [Warehouse Connectors](../tracking-methods/warehouse-connectors.md) paid add-on to ingest historical properties.
 {% endhint %}
 
 Historical profiles layer on additional capabilities by capturing changes in each property over time instead of just the latest value.
 
-See here for more on how to [import](../../../../docs/tracking-methods/warehouse-connectors/#user-profiles) historical properties via Warehouse connectors.
+See here for more on how to [import](../tracking-methods/warehouse-connectors.md#user-profiles) historical properties via Warehouse connectors.
 
 Historical properties can be used anywhere that regular profile properties can be used.
 
 For eg, when you apply breakdown by historical plan-type property, the property value will be picked based on the time of the event, instead of the current property value.
 
+![image](/historical_property_value.webp)
+
 When you hover over a historical property, the context menu that pops up will show that the property was sourced from a history table, as well as the name of the source. This means that the value of the property used in charts can vary over time.
+
+![image](/dropdown_historical_property.webp)
 
 ### Historic Profile Data Modeling
 
 When the data is imported from the warehouse, aside from having it available in dropdowns for query, you can see the raw data in two (2) separate areas.
 
-**Hidden event**: under the hood, the data is modeled through events, linked in a special way, and attribution is used to obtain the value the profile had at a certain point in time. The name of the event takes after the name of the table/view we read from in the warehouse connector, so if the table name is `company_plan_history`, the event will be named `company_plan_history` too (by default it's hidden).
+**Hidden event**: under the hood, the data is modeled through events, linked in a special way, and attribution is used to obtain the value the profile had at a certain point in time. The name of the event takes after the name of the table/view we read from in the warehouse connector, so if the table name is `company_plan_history`, the event will be named `company_plan_history` too (by default it's hidden). 
+
+![image](/historic_profile_property_source.png)
 
 The event time follows the start time entries in the table, so if you have an entry for say January 1st, there will also be this event with that same time in the project. This is used for attribution. Say you have 2 entries in the table for plan values, January 1st with a value of "plan1" and an entry on June 1st with a value of "plan" 2. If you were to create a report for this user based on the historic property, any event between Jan 1st and Jun 1st would have the "plan1" value, and any event after Jun 1 would have "plan2".
 
 **Profile View**: if you navigate to the profile view of a specific user (or group) that has historic profile data, you will see the property to the left of the screen and, when you hover, you'll see a button to view the changes over time. Once clicked, you will be shown a list of the values the property has had through time.
 
-For billing details, read the warehouse connectors [billing FAQ section on People/Group updates](../tracking-methods/warehouse-connectors/#what-actions-impact-billing-for-warehouse-connectors).
+![image](/historic_profile_property_profile_view.png)
+
+For billing details, read the warehouse connectors [billing FAQ section on People/Group updates](../tracking-methods/warehouse-connectors#what-actions-impact-billing-for-warehouse-connectors).
 
 ## Deleting Profiles
 
 User Profiles can be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our [Engage API](https://developer.mixpanel.com/reference/delete-profile). We also provide a `people_delete` method in the mixpanel-utils library [here](https://github.com/mixpanel/mixpanel-utils#people-delete).
 
-Similarly, [Group Profiles](../../../../docs/data-structure/group-analytics/#group-profiles) can also be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our [Groups API](https://developer.mixpanel.com/reference/delete-group).
+Similarly, [Group Profiles](./group-analytics.md#group-profiles) can also be deleted either via the [Users](https://mixpanel.com/report/users) page or programmatically via our [Groups API](https://developer.mixpanel.com/reference/delete-group).
 
 {% hint style="info" %}
 Deleting a user profile removes only the user property data. It does not delete the user's tracked events; instead, those events continue to appear in your project as if they were tracked by anonymous users without user profile properties.
@@ -185,72 +196,57 @@ Deleting a user profile removes only the user property data. It does not delete 
 ## FAQ
 
 ### What should I send as a User Property vs an Event Property?
-
-We recommend primarily using User Properties to track demographic attributes of the user, like their name, email, and domain. Most other properties are better tracked as [Event Properties](../../../../docs/data-structure/events-and-properties/).
+We recommend primarily using User Properties to track demographic attributes of the user, like their name, email, and domain. Most other properties are better tracked as [Event Properties](./events-and-properties.md).
 
 That said, User Properties are as flexible as any other properties in Mixpanel, so you can send arbitrary JSON.
 
 ### How does Mixpanel join Events and User Profiles?
-
-Mixpanel stores Events and User Profiles in two separate tables under the hood. These two tables are joined at query-time, rather than ingestion-time. This means that when you make a report in our UI that uses User Profiles, we run a query that joins the Events table with the User Profiles table. This has two implications:
+Mixpanel stores Events and User Profiles in two separate tables under the hood. These two tables are joined at query-time, rather than ingestion-time. This means that when you make a report in our UI that uses User Profiles, we run a query that joins the Events table with the User Profiles table.  This has two implications:
 
 * If you track User Profiles after you track events, they'll still join retroactively with all past events. This means that you don't need to worry about tracking Events and User Profiles in lockstep with each other. As long as they have the same values for Distinct ID, they'll join with each other.
 * All Events join with the latest state of a User Profile, rather than its state at a point in time. If there are aspects of a user's state that change over time (for example, their plan type), we recommend tracking that as a property on their events, so that you can analyze that change over time.
 
 ### How can I update User Properties?
-
 User Profiles are mutable; Mixpanel only stores the latest value of each profile property. We have methods to update profile properties via our [HTTP API](https://developer.mixpanel.com/reference/profile-set).
 
 ### Why are empty profiles created when I import profiles from a CSV?
-
-This may occur if you set the incorrect column from your CSV as the `$distinct_id` during your import. You can see which column was erroneously set as the `$distinct_id` by checking the distinct\_id value set on these empty profiles. As a best practice, always check the sample values shown in the import module for each selected profile property.
+This may occur if you set the incorrect column from your CSV as the `$distinct_id` during your import. You can see which column was erroneously set as the `$distinct_id` by checking the distinct_id value set on these empty profiles. As a best practice, always check the sample values shown in the import module for each selected profile property.
 
 ### How do I bulk delete profiles?
-
 We recommend deleting profiles programmatically via our [Engage API](https://developer.mixpanel.com/reference/delete-profile). We also provide a `people_delete` method in the mixpanel-utils library [here](https://github.com/mixpanel/mixpanel-utils#people-delete).
 
 ### What are the limits of User Properties?
-
-Each User Profile can contain up to 2000 properties. User property names can be at most 255 characters in length (longer names are truncated). User property values are limited based on data type, refer to these limits under [Supported Data Types](../../../../docs/data-structure/property-reference/data-type/).
+Each User Profile can contain up to 2000 properties. User property names can be at most 255 characters in length (longer names are truncated). User property values are limited based on data type, refer to these limits under [Supported Data Types](./property-reference/data-type.md).
 
 Attempts to add more than 2000 user properties for a user profile will fail. You can remove User Properties using the [$unset](https://developer.mixpanel.com/reference/profile-delete-property) engage operation if you find yourself close to the 2000 per profile limit.
 
 ### How can I send User Profiles if I use Segment?
-
 Mixpanel is 100% compatible with Segment; just follow Segment's best practices. If you call the [`analytics.identify()`](https://segment.com/docs/connections/spec/identify/) method, Segment will create a User Profile in Mixpanel. You can learn more about our integration in Segment's [docs](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/#identify-user).
 
-### What does the "Updated at" ($last\_seen) property mean?
-
-User Profiles are mutable, which means new ones can be added and existing ones can be updated or deleted. Mixpanel automatically maintains an "Updated at" (`$last_seen`) property, which contains the last timestamp that a user profile was updated. "Updated at" does not change if the user does a new event; it only changes when the profile is updated. "Updated at" also does not change for profile updates made via the UI or if the `$ignore_time` parameter is set to `true` (see example from [PHP SDK](../../../../docs/tracking-methods/sdks/php/#setting-profile-properties)).
+### What does the "Updated at" ($last_seen) property mean?
+User Profiles are mutable, which means new ones can be added and existing ones can be updated or deleted. Mixpanel automatically maintains an "Updated at" (`$last_seen`) property, which contains the last timestamp that a user profile was updated. "Updated at" does not change if the user does a new event; it only changes when the profile is updated. "Updated at" also does not change for profile updates made via the UI or if the `$ignore_time` parameter is set to `true` (see example from [PHP SDK](../tracking-methods/sdks/php.md#setting-profile-properties)).
 
 ### Where can I learn more about Group Profiles?
-
-You can get an overview of how Group Profiles relate to Mixpanel's Data Model under the section [Group Level Behaviors and Demographics](../../../../docs/tutorials/plan/tracking-strategy/#group-level-behaviours-and-demographics) in our tutorials. A more detailed explanation of [Group Profiles](../../../../docs/data-structure/group-analytics/#group-profiles) is documented under our [Group Analytics](../../../../docs/data-structure/group-analytics/) page.
+You can get an overview of how Group Profiles relate to Mixpanel's Data Model under the section [Group Level Behaviors and Demographics](../tutorials/plan/tracking-strategy.md#group-level-behaviours-and-demographics) in our tutorials. A more detailed explanation of [Group Profiles](./group-analytics.md#group-profiles) is documented under our [Group Analytics](./group-analytics.md) page.
 
 ### How are end times applied to the historical property?
-
 The end time will be inferred from the next event sent with a higher `Start Timestamp`. If you do not have an updated value for a property and simply want it to become inactive at a certain timestamp, please set up your DWH table to set undefined for the property at the time that it becomes inactive/expires.
 
 ### How do I set the initial set of profile properties for the user?
-
-Historical profile properties can only be imported through a Warehouse Connector sync. For more information about the connectors and which are supported, see our \[docs]/docs/tracking-methods/warehouse-connectors). There is currently no other method to import historical profile properties or set defaults. To set initial values, please ensure that your warehouse table has the rows covering the historical period you want to analyze.
+Historical profile properties can only be imported through a Warehouse Connector sync. For more information about the connectors and which are supported, see our [docs]/docs/tracking-methods/warehouse-connectors). There is currently no other method to import historical profile properties or set defaults. To set initial values, please ensure that your warehouse table has the rows covering the historical period you want to analyze.
 
 ### What if I have the same property name sent as a regular profile property as well as a historic property?
-
 If a regular profile property shares a name with an historic property, the two properties will be treated as distinct and separate entities (they will not be de-dupped).
 
 ### What if I have the same property name sent through multiple WH syncs?
-
-If both syncs are regular user tables and they refer to the same Distinct ID(s), they will be de-dupped and only the latest value will be retained. If both syncs are historical user tables, we will have a warning popup if the conflict can be detected at sync creation time and you will have the option of renaming one of the columns. If one sync is for regular user table and the other for a historical one, see [here](../../../../docs/data-structure/user-profiles/#what-if-i-have-the-same-property-name-sent-as-a-regular-profile-property-as-well-as-a-historic-property).
+If both syncs are regular user tables and they refer to the same Distinct ID(s), they will be de-dupped and only the latest value will be retained. If both syncs are historical user tables, we will have a warning popup if the conflict can be detected at sync creation time and you will have the option of renaming one of the columns. If one sync is for regular user table and the other for a historical one, see [here](./user-profiles.md#what-if-i-have-the-same-property-name-sent-as-a-regular-profile-property-as-well-as-a-historic-property).
 
 ### I deleted my historical user table Warehouse sync and data but there are still empty user profiles!
-
-All the historical props will be deleted from the profile but the profile itself remains, along with any non-historical properties. This is to prevent accidentally deleting profile data sent through API/UI/CSV that might have been merged into the profile data sent via the Warehouse sync. To delete profiles yourself, please use this [guide](https://developer.mixpanel.com/reference/delete-profile).
+All the historical props will be deleted from the profile but the profile itself remains, along with any non-historical properties. This is to prevent accidentally deleting profile data sent through API/UI/CSV that might have been merged into the profile data sent via the Warehouse sync. 
+To delete profiles yourself, please use this [guide](https://developer.mixpanel.com/reference/delete-profile).
 
 ### What is the frequency of updates that are supported?
-
 The feature supports updates at the rate of about one change per day for each user. It is meant to cover use-cases like plan type changes, MRR etc which are slowly changing dimensions. It is not intended for more frequent changes like game score updates.
 
 ## How are historic profile properties calculated within custom properties?
-
 You can use historic user and group properties within custom properties; when used in a custom property, the value used will always be based on the time of the event.

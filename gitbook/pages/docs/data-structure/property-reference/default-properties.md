@@ -1,11 +1,11 @@
 # Default Properties: Automatically collected properties
-Mixpanel's [Data Ingestion APIs](https://developer.mixpanel.com/reference/ingestion-api) and [Client-Side SDKs](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) automatically collect certain properties on every event or user profile. Do also note that some Customer Data Platforms (CDPs) that integrate with Mixpanel may also map their own properties to Mixpanel default properties. This document describes what those properties mean.
+Mixpanel's [Data Ingestion APIs](https://developer.mixpanel.com/reference/ingestion-api) and [Client-Side SDKs](../../tracking-methods/choosing-the-right-method.md#client-side-tracking) automatically collect certain properties on every event or user profile. Do also note that some Customer Data Platforms (CDPs) that integrate with Mixpanel may also map their own properties to Mixpanel default properties. This document describes what those properties mean.
 
 ## Ingestion APIs
 
 Mixpanel’s ingestion APIs can collect user geolocation data (City, Region, Country) as properties if IP address is present. Our client-side SDKs by default pull the user’s IP address when sending data to our ingestion APIs. The IP address is then cross-referenced against a local copy of MaxMind’s ([third-party IP geolocator](https://www.maxmind.com/en/home)) GeoIP database to estimate geolocation data. Mixpanel does not store the IP address and is discarded once geolocation data is derived.
 
-To disable capturing of geolocation properties (i.e. City, Region, Country) refer to the respective SDKs or API documentation. For a quick reference, refer to examples on [disabling geolocation on client-side SDKs](/docs/privacy/protecting-user-data#disabling-geolocation) and [server-side best practice on tracking geolocation](/docs/best-practices/server-side-best-practices#tracking-geolocation-server-side). Note that there is currently no means to selectively disable one or two of the three geolocation properties.
+To disable capturing of geolocation properties (i.e. City, Region, Country) refer to the respective SDKs or API documentation. For a quick reference, refer to examples on [disabling geolocation on client-side SDKs](../../privacy/protecting-user-data.md#disabling-geolocation) and [server-side best practice on tracking geolocation](../../best-practices/server-side-best-practices.md#tracking-geolocation-server-side). Note that there is currently no means to selectively disable one or two of the three geolocation properties.
 
 ### Event Properties
 
@@ -22,29 +22,29 @@ To disable capturing of geolocation properties (i.e. City, Region, Country) refe
 
 ### User Properties
 
-Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself (via [\$set](https://developer.mixpanel.com/reference/profile-set) or [\$set_once](https://developer.mixpanel.com/reference/profile-set-property-once) operations). Please, refer to this article to [understand how to send or update profile properties](/docs/data-structure/user-profiles).
+Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself (via [\$set](https://developer.mixpanel.com/reference/profile-set) or [\$set_once](https://developer.mixpanel.com/reference/profile-set-property-once) operations). Please, refer to this article to [understand how to send or update profile properties](../user-profiles.md).
 
 | **Raw Name** | **Display Name** | **Description** |
 | ------------ | ---------------- | --------------- |
 | $city | City | The city of the user parsed from the IP property or the Latitude and Longitude properties. |
 | $region | Region | The region (state or province) of the user parsed from the IP property or the Latitude and Longitude properties. |
 | $country_code | Country Code | The country of the user parsed from the IP property or the Latitude and Longitude properties. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI. |
-| $geo_source | Geo Source | Set to "reverse_geocoding" if profile geolocation properties (Country Code, Region, and City) were determined through [Latitude and Longitude](/docs/best-practices/server-side-best-practices#tracking-geolocation-latitude-and-longitude). |
+| $geo_source | Geo Source | Set to "reverse_geocoding" if profile geolocation properties (Country Code, Region, and City) were determined through [Latitude and Longitude](../../best-practices/server-side-best-practices.md#tracking-geolocation-latitude-and-longitude). |
 | $timezone | Timezone | Timezone of the user parsed from the IP property or the Latitude and Longitude properties. |
-| $last_seen | Updated at | The last time a user profile property was set or updated **(this should not be set manually)**. Passing `$ignore_time` as `true`, typically for server-side updates, will skip updating the $last_seen property. See example [here](/docs/tracking-methods/sdks/php#setting-profile-properties). |
+| $last_seen | Updated at | The last time a user profile property was set or updated **(this should not be set manually)**. Passing `$ignore_time` as `true`, typically for server-side updates, will skip updating the $last_seen property. See example [here](../../tracking-methods/sdks/php.md#setting-profile-properties). |
 
 ## Client-side SDKs
 
 Note that the following SDKs wrap around our other SDKs; and as such, would also inherit the appropriate default properties from these wrapped SDKs indicated in the tables below:
-- [React Native](/docs/tracking-methods/sdks/react-native) wraps around Android and Swift SDK; `mp_lib` will be set to `react-native` with `$lib_version` set as React Native's library version.
-- [Flutter](/docs/tracking-methods/sdks/flutter) wraps around Javascript, Android, and Swift SDK; `mp_lib` will be set to `flutter` with `$lib_version` set as the Flutter's library version.
+- [React Native](../../tracking-methods/sdks/react-native.md) wraps around Android and Swift SDK; `mp_lib` will be set to `react-native` with `$lib_version` set as React Native's library version.
+- [Flutter](../../tracking-methods/sdks/flutter.md) wraps around Javascript, Android, and Swift SDK; `mp_lib` will be set to `flutter` with `$lib_version` set as the Flutter's library version.
 
 ### Event Properties
 
-| **Raw Name** | **Display Name** | **Description** *Scroll right to see more columns -->* | **[Javascript](/docs/tracking-methods/sdks/javascript)** | **[Android](/docs/tracking-methods/sdks/android)** | **iOS [Objective-C](/docs/tracking-methods/sdks/ios) / [Swift](/docs/tracking-methods/sdks/swift)** | **[Unity](/docs/tracking-methods/sdks/unity)** | 
+| **Raw Name** | **Display Name** | **Description** *Scroll right to see more columns -->* | **[Javascript](../../tracking-methods/sdks/javascript.md)** | **[Android](../../tracking-methods/sdks/android.md)** | **iOS [Objective-C](../../tracking-methods/sdks/ios.md) / [Swift](../../tracking-methods/sdks/swift.md)** | **[Unity](../../tracking-methods/sdks/unity.md)** | 
 | -------- | ------------ | ----------- | :-----------: | :-----------: | :-----------: | :-----------: |
-| $device_id | Device ID | Autogenerated ID that is local to the device. Calling reset() regenerates this value. More details [here](/docs/tracking-methods/identifying-users). | ✅ | ✅ | ✅ | ❌ |
-| $user_id | User ID | The identified ID of the user. Calling identify() sets this. More details [here](/docs/tracking-methods/identifying-users). | ✅ | ✅ | ✅ | ❌ |
+| $device_id | Device ID | Autogenerated ID that is local to the device. Calling reset() regenerates this value. More details [here](../../tracking-methods/identifying-users.md). | ✅ | ✅ | ✅ | ❌ |
+| $user_id | User ID | The identified ID of the user. Calling identify() sets this. More details [here](../../tracking-methods/identifying-users.md). | ✅ | ✅ | ✅ | ❌ |
 | $insert_id | Insert ID | A unique identifier for the event, used to deduplicate events that are accidentally sent multiple times. More details [here](https://developer.mixpanel.com/reference/import-events#propertiesinsert_id). | ✅ | ✅ | ✅ | ✅ | 
 | mp_lib | Mixpanel Library | The Mixpanel library that sent the event. | `web` | `android` | `iphone` / `swift` | `unity` |
 | $lib_version | Library Version | Mixpanel library version. | ✅ | ✅ | ✅ | ✅ | 
@@ -66,7 +66,7 @@ $referrer | Referrer | Referring URL including your own domain. Might not be pre
 | $referring_domain | Referring Domain | Referring domain including your own domain. Might not be present if document.referrer does not return a value. As opposed to \$initial_referrer and \$initial_referring_domain, this property will be omitted if the user lands directly or the referring website adds the rel="noreferrer" parameter. | ✅ | ❌ | ❌ | ❌ | 
 | $search_engine | Search Engine | The search engine that the customer used when they arrived at your domain. | ✅ | ❌ | ❌ | ❌ |
 | mp_keyword | Search Keyword | Search keywords detected on the referrer from a search engine to your domain. This property is only collected when search keywords are included in a URL. | ✅ | ❌ | ❌ | ❌ |
-| utm_source, utm_medium, etc. | UTM Parameters | UTM tags derived from the URL a customer clicked to arrive at your domain. Each UTM will be collected under its own property. More details [here](/docs/tracking-methods/sdks/javascript#tracking-utm-parameters). | ✅ | ❌ | ❌ | ❌ |
+| utm_source, utm_medium, etc. | UTM Parameters | UTM tags derived from the URL a customer clicked to arrive at your domain. Each UTM will be collected under its own property. More details [here](../../tracking-methods/sdks/javascript.md#tracking-utm-parameters). | ✅ | ❌ | ❌ | ❌ |
 | $manufacturer | Manufacturer | Device manufacturer. | ❌ | ✅ | ✅ | ✅ |
 | $brand | Brand | Device brand. | ❌ | ✅ | ❌ | ❌ |
 | $model | Model | The model of the device. | ❌ | ✅ | ✅ | ✅ |
@@ -83,9 +83,9 @@ $referrer | Referrer | Referring URL including your own domain. Might not be pre
 
 ### User Properties
 
-Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself (via [\$set](https://developer.mixpanel.com/reference/profile-set) or [\$set_once](https://developer.mixpanel.com/reference/profile-set-property-once) operations). Please, refer to this article to [understand how to send or update profile properties](/docs/data-structure/user-profiles).
+Do note that Mixpanel's default user properties are only updated when you send or update at least one property yourself (via [\$set](https://developer.mixpanel.com/reference/profile-set) or [\$set_once](https://developer.mixpanel.com/reference/profile-set-property-once) operations). Please, refer to this article to [understand how to send or update profile properties](../user-profiles.md).
 
-| **Raw Name** | **Display Name** | **Description**  *Scroll right to see more columns -->* | **[Javascript](/docs/tracking-methods/sdks/javascript)** | **[Android](/docs/tracking-methods/sdks/android)** | **iOS [Objective-C](/docs/tracking-methods/sdks/ios) / [Swift](/docs/tracking-methods/sdks/swift)** | **[Unity](/docs/tracking-methods/sdks/unity)** | 
+| **Raw Name** | **Display Name** | **Description**  *Scroll right to see more columns -->* | **[Javascript](../../tracking-methods/sdks/javascript.md)** | **[Android](../../tracking-methods/sdks/android.md)** | **iOS [Objective-C](../../tracking-methods/sdks/ios.md) / [Swift](../../tracking-methods/sdks/swift.md)** | **[Unity](../../tracking-methods/sdks/unity.md)** | 
 | -------- | ------------ | ----------- | :-----------: | :-----------: | :-----------: | :-----------: |
 | $lib_version | Library Version | Last used Mixpanel library version (also applies to React Native and Flutter wrapper SDKs). | ❌ | ❌ | ❌ | ✅ |
 | $android_lib_version | Android Lib Version | Last used Mixpanel Android / Unity library version. | ❌ | ✅ | ❌ | ✅ |
@@ -103,7 +103,7 @@ Do note that Mixpanel's default user properties are only updated when you send o
 | $ios_app_version | iOS App Version | The version of the build that identifies an iteration of the iOS app ([CFBundleVersion](https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleversion)). | ❌ | ❌ | ✅ | ❌ |
 | $initial_referrer | Initial Referrer | Referring URL when the user first arrived on your site. Defaults to "$direct" if the user is not referred. | ✅ | ❌ | ❌ | ❌ | 
 | $initial_referring_domain | Initial Referring Domain | Referring domain at first arrival. Defaults to "$direct" if the user is not referred. | ✅ | ❌ | ❌ | ❌ | 
-| initial_utm_source, initial_utm_medium, etc. | Initial UTM Parameters | UTM tags seen for the first time from the URL a customer clicked to arrive at your domain. Each UTM will be collected under its own property. More details [here](/docs/tracking-methods/sdks/javascript#tracking-utm-parameters). | ✅ | ❌ | ❌ | ❌ |
+| initial_utm_source, initial_utm_medium, etc. | Initial UTM Parameters | UTM tags seen for the first time from the URL a customer clicked to arrive at your domain. Each UTM will be collected under its own property. More details [here](../../tracking-methods/sdks/javascript.md#tracking-utm-parameters). | ✅ | ❌ | ❌ | ❌ |
 | $android_manufacturer | Android Manufacturer | Android device manufacturer. | ❌ | ✅ | ❌ | ❌ |
 | $android_brand | Android Brand | Android device brand. | ❌ | ✅ | ❌ | ❌ |
 | $android_model | Android Model | The model of the Android device. | ❌ | ✅ | ❌ | ✅ |

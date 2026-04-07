@@ -7,7 +7,7 @@ Autocapture allows you to capture information about your website with minimal se
 ## Availability
 
 Autocapture is available on all plans.
-Autocapture is currently available for web only via Mixpanel’s [Javascript SDK](/docs/tracking-methods/sdks/javascript). To turn it on, ensure you have the config `{autocapture: true}` set in the SDK.
+Autocapture is currently available for web only via Mixpanel’s [Javascript SDK](./sdks/javascript.md). To turn it on, ensure you have the config `{autocapture: true}` set in the SDK.
 
 ## Autocapture events
 
@@ -29,12 +29,12 @@ Autocapture events will all be tracked as events that start with `$mp_`  and wil
 
 A dead click is when a user clicks an interactive element but the click produces no visible response within a certain timeframe. Dead clicks often indicate broken functionality, unresponsive UI elements, or poor user experience. Dead clicks are tracked as `[Auto] Dead Click` events.
 
-By default, Mixpanel considers a click on an interactive element to be a dead click if there are no responses withing 0.5 seconds. You can configure these qualifying criteria to something that best suits your application by overriding the defaults in the [Javascript SDK](/docs/tracking-methods/sdks/javascript).
+By default, Mixpanel considers a click on an interactive element to be a dead click if there are no responses withing 0.5 seconds. You can configure these qualifying criteria to something that best suits your application by overriding the defaults in the [Javascript SDK](./sdks/javascript.md).
 
 ### Rage Clicks
 A rage click is when a user clicks on the same spot on your webpage in quick succession. It happens because the user expects something to happen, but nothing does — so they click again and again, showing they are frustrated. Rage clicks are tracked as `[Auto] Rage Click` events.
 
-By default, Mixpanel considers 4 clicks within a second and between 30 pixels apart as a rage click. You can configure these qualifying criteria to something that best suits your application by overriding the defaults in the [Javascript SDK](/docs/tracking-methods/sdks/javascript).
+By default, Mixpanel considers 4 clicks within a second and between 30 pixels apart as a rage click. You can configure these qualifying criteria to something that best suits your application by overriding the defaults in the [Javascript SDK](./sdks/javascript.md).
 
 ## Autocapture vs Precision Tracking
 There are two ways to capture events:

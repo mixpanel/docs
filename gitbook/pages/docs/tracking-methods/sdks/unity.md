@@ -1,8 +1,8 @@
-# Unity
+# Mixpanel SDKs: Unity
 
 ## Getting Started
 
-Please refer to our [Quickstart Guide](../../../../../docs/quickstart/connect-your-data).
+Please refer to our [Quickstart Guide](../../quickstart/connect-your-data?sdk=unity.md).
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-unity/api-reference/annotated.html), [Library Source Code](https://github.com/mixpanel/mixpanel-unity), and an [Example Application](https://github.com/mixpanel/mixpanel-unity#examples) is documented in our GitHub repo.
 
@@ -13,14 +13,14 @@ Unity SDK does not currently support Simplified ID Merge.
 ## Installing the Library
 
 {% hint style="warning" %}
-For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](../../../../../docs/tracking-methods/sdks/unity/#privacy-friendly-tracking).
+For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](./unity.md#privacy-friendly-tracking).
 {% endhint %}
 
 This library can be installed using the unity package manager system with git. We support Unity 2018.3 and above. For older versions of Unity, you need to have .NET 4.x Equivalent selected as the scripting runtime version in your editor settings.
 
 To install the library in your Unity project, declare it as a dependency in the `./Packages/manifest.json` file of your project:
 
-```json
+```json JSON
 {
   ...
   "dependencies": {
@@ -39,7 +39,9 @@ Then open Unity and the library should download automatically along with any oth
 Alternatively you can go to the [releases page](https://github.com/mixpanel/mixpanel-unity/releases) and download the `.unitypackage` file and manually install the package using Unity.
 {% endhint %}
 
-After installing the package, open the unity project settings menu for Mixpanel (Edit -> Project Settings -> Mixpanel), then enter [your project token](../../../../../docs/orgs-and-projects/managing-projects/#find-your-project-tokens) into the Token and Debug Token input fields within the inspector to initialize Mixpanel:
+After installing the package, open the unity project settings menu for Mixpanel (Edit -> Project Settings -> Mixpanel), then enter [your project token](../../orgs-and-projects/managing-projects.md#find-your-project-tokens) into the Token and Debug Token input fields within the inspector to initialize Mixpanel:
+
+![image](/230697675-388145e0-bd47-42b9-8276-3be22d157529.png)
 
 Please note if you prefer to initialize Mixpanel manually, you can select the Manual Initialization in the settings and call [`Mixpanel.Init()`](https://github.com/mixpanel/mixpanel-unity/blob/ec303c5bdacd00303a8b814a9806cfb05882c719/Mixpanel/MixpanelAPI.cs#L27) to initialize.
 
@@ -62,7 +64,6 @@ The [/track endpoint](https://developer.mixpanel.com/reference/track-event) will
 {% endhint %}
 
 **Example Usage**
-
 ```csharp
 // define event properties
 var props = new Value();
@@ -78,7 +79,6 @@ Mixpanel.Track("some_event", props);
 You can track the time it took for an action to occur, such as an image upload or a comment post, using [`Mixpanel.StartTimedEvent()`](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#ab1a62f4c9b0e28915dfdc57e7810bc78) This will mark the "start" of your action, which you can then finish with a track call. The time duration is then recorded in the "Duration" property.
 
 **Example Usage**
-
 ```csharp
 // start the timer for the event "Image Upload"
 Mixpanel.StartTimedEvent("Image Upload");
@@ -90,38 +90,36 @@ Mixpanel.Track("Image Upload");
 ```
 
 ### Flushing Events
-
 To preserve battery life and customer bandwidth, the Mixpanel library doesn’t send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background.
 
 Call Mixpanel.Flush() manually if you want to force a flush at a particular moment.
 
 **Example Usage**
-
 ```csharp
 Upload queued data to the Mixpanel server
 Mixpanel.Flush();
 ```
 
-**Flush Interval** You can update the default flush interval from 60 seconds to another interval by setting a new `Flush Interval` value in Edit -> Project Settings -> Mixpanel.
+**Flush Interval**
+You can update the default flush interval from 60 seconds to another interval by setting a new `Flush Interval` value in Edit -> Project Settings -> Mixpanel.
 
 #### Importing Historical Events
 
 The Unity SDK is a tracking SDK designed for real-time tracking in a client-side environment. Calling `Mixpanel.Track()` triggers a request to our [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a timestamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested**.
 
-For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](../../../../../docs/tracking-methods/sdks/python/) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion.
+For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](./python.md) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion.
 
 ## Setting Super Properties
 
 Super properties are global event properties that you define once and apply to all events.
 
-To make things easier, you can register these properties as **super properties**. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](../../../../../docs/data-structure/property-reference/).
+To make things easier, you can register these properties as **super properties**. If you do, we will automatically include them with all tracked events. Super properties are saved to device storage, and will persist across invocations of your app. Mixpanel already stores some information as super properties by default; see a full list of Mixpanel default properties [here](../../data-structure/property-reference.md).
 
 To register super properties, call [`Mixpanel.Register()`](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#acf2fccd7625dfb2a15ef54fcaf8ddfe4).
 
 Use [`Mixpanel.RegisterOnce()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#a148783e1cfca22df973a6a6b0eba1641) to register super properties without overwriting existing values.
 
 **Example Usage**
-
 ```csharp
 // register "name" as a super property
 Mixpanel.Register("name", "Sam");
@@ -140,7 +138,7 @@ See more methods related to super properties in the complete library reference [
 
 ## Managing User Identity
 
-You can handle the identity of a user using the [`Mixpanel.Identify()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#a4636a50f2f4e36895f56a6101e527720) and [`Mixpanel.Reset()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#af80b55f985b94780ec983dc6c1210d6b) methods. Learn more about [identity management](../../../../../docs/tracking-methods/id-management/identity-management/) and [identifying users](../../../../../docs/tracking-methods/id-management/identifying-users/).
+You can handle the identity of a user using the [`Mixpanel.Identify()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#a4636a50f2f4e36895f56a6101e527720) and [`Mixpanel.Reset()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#af80b55f985b94780ec983dc6c1210d6b) methods. Learn more about [identity management](../id-management/identity-management.md) and [identifying users](../id-management/identifying-users.md).
 
 ### Identify
 
@@ -151,7 +149,6 @@ We recommend against calling `Mixpanel.Identify()` for anonymous visitors to you
 Call [`Mixpanel.Identify()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#a4636a50f2f4e36895f56a6101e527720) when you know the identity of the current user, passing in their user ID as an argument. This is typically at account registration and at log in.
 
 **Example Usage**
-
 ```csharp
 // user logs in and tracks a sign in event
  Mixpanel.Track('sign in');
@@ -163,10 +160,9 @@ Mixpanel.Identify('12345');
 
 ### Call Reset at Logout
 
-Call [`Mixpanel.Reset()`](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#af80b55f985b94780ec983dc6c1210d6b) to clear data attributed to a user when they logout. This will clear the local storage and allows you to handle [multiple users on a single device](../../../../../docs/tracking-methods/id-management/identifying-users-simplified/#multiple-users-one-device).
+Call [`Mixpanel.Reset()`](http://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#af80b55f985b94780ec983dc6c1210d6b) to clear data attributed to a user when they logout. This will clear the local storage and allows you to handle [multiple users on a single device](../id-management/identifying-users-simplified.md#multiple-users-one-device).
 
 **Example Usage**
-
 ```csharp
 // your user logs out and tracks a log out event
 Mixpanel.Track('log out');
@@ -176,8 +172,7 @@ Mixpanel.Reset();
 ```
 
 ## Storing User Profiles
-
-Once your users are identified, create [user profiles](../../../../../docs/data-structure/user-profiles/) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
+Once your users are identified, create [user profiles](../../data-structure/user-profiles.md) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
 
 The Unity SDK provides a few methods for setting profile properties under the [`People`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html) class. These methods will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
 
@@ -192,7 +187,6 @@ Set profile properties on a user profile by calling the [`Mixpanel.People.Set`](
 If a profile property already exists, it will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
 
 **Example Usage**
-
 ```csharp
 // You must call identify to associate the profile update with the user
 // Sets user's "Plan" attribute to "Premium"
@@ -208,130 +202,120 @@ Mixpanel.People.Set("Plan", "Enterprise");
 There are a few other methods for setting profile properties. See a complete reference of the available methods [here](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html)
 
 A few commonly used people methods are highlighted below:
-
 {% tabs %}
 {% tab title=".SetOnce()" %}
 The [`.People.SetOnce()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#a4f4dab80df0a2095e1901ca0262a41c3) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-````
-Use this method if you want to set profile properties without the risk of overwriting existing data.
+    Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-**Example Usage**
-```csharp
-// set profile properties for user "1234"
-Mixpanel.Identify('1234');
-Mixpanel.People.Set('name':'sam');
+    **Example Usage**
+    ```csharp
+    // set profile properties for user "1234"
+    Mixpanel.Identify('1234');
+    Mixpanel.People.Set('name':'sam');
 
-// will be ignored since "name" already exists
-Mixpanel.People.SetOnce('name', 'samantha');
+    // will be ignored since "name" already exists
+    Mixpanel.People.SetOnce('name', 'samantha');
 
-// set "location" group prop since it does not exist
-Mixpanel.People.SetOnce('location', 'us');
-```
-````
+    // set "location" group prop since it does not exist
+    Mixpanel.People.SetOnce('location', 'us');
+    ```
 {% endtab %}
 
 {% tab title=".Append()" %}
 The [`.People.Append()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#ace6b6040fef2bb51f07f911b71c3e685) method append values to a list profile property.
 
-````
-Use this method to add additional values to an existing list property instead of redefining the entire list.
+    Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-**Example Usage**
-```csharp
-// set profile properties for user "1234"
-Mixpanel.Identify('1234');
-var roles = new string[] {'sales','engineer'};
-Mixpanel.People.Set({
-    'name':'sam',
-    'roles': roles
-});
+    **Example Usage**
+    ```csharp
+    // set profile properties for user "1234"
+    Mixpanel.Identify('1234');
+    var roles = new string[] {'sales','engineer'};
+    Mixpanel.People.Set({
+        'name':'sam',
+        'roles': roles
+    });
 
-// add "legal" to "roles"  
-// new role values are ['sales','engineer','legal']
-Mixpanel.People.Append('roles', 'legal');
+    // add "legal" to "roles"  
+    // new role values are ['sales','engineer','legal']
+    Mixpanel.People.Append('roles', 'legal');
 
-// .append() allows duplicates
-// new "roles" values are ['sales','engineer','legal', 'legal']
-Mixpanel.People.Append('roles', 'legal');
-```
-````
+    // .append() allows duplicates
+    // new "roles" values are ['sales','engineer','legal', 'legal']
+    Mixpanel.People.Append('roles', 'legal');
+    ```
 {% endtab %}
 
 {% tab title=".Union()" %}
 The [`.People.Union()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#a5c19ffb9ca7f705e06e9c0de15a84e31) method append new values to a list property, excluding duplicates.
 
-````
-Use this method to create a list profile property that only contains unique values without duplicates.
+    Use this method to create a list profile property that only contains unique values without duplicates.
 
-**Example Usage**
-```csharp
-// set profile properties for user "1234"
-Mixpanel.Identify('1234');
-var roles = new string[] {'sales','engineer'};
-Mixpanel.People.Set({
-    'name':'sam',
-    'roles': roles
-});
+    **Example Usage**
+    ```csharp
+    // set profile properties for user "1234"
+    Mixpanel.Identify('1234');
+    var roles = new string[] {'sales','engineer'};
+    Mixpanel.People.Set({
+        'name':'sam',
+        'roles': roles
+    });
 
-// append "engineer" to "roles"
-// will be ignored since "engineer" already exists in "roles"
-Mixpanel.People.Union('roles', 'engineer');
+    // append "engineer" to "roles"
+    // will be ignored since "engineer" already exists in "roles"
+    Mixpanel.People.Union('roles', 'engineer');
 
-// append "legal" to "roles"
-// new role values are ['sales','engineer','legal']
-Mixpanel.People.Union('roles', 'legal');
-```
-````
+    // append "legal" to "roles"
+    // new role values are ['sales','engineer','legal']
+    Mixpanel.People.Union('roles', 'legal');
+    ```
 {% endtab %}
 
 {% tab title=".Increment()" %}
 The [`.People.Increment()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel_1_1_people.html#ab32b74ea1d409527d689ae9cdf9c3bf1) method increments a numeric property by a whole number.
 
-````
-Use this method to add to or subtract from your numeric property based on its current value.
+    Use this method to add to or subtract from your numeric property based on its current value.
 
-**Example Usage**
-```csharp
-// set profile properties for user "1234"
-Mixpanel.Identify('1234');
-Mixpanel.People.Set({
-    'name':'sam',
-    'age': 25
-});
+    **Example Usage**
+    ```csharp
+    // set profile properties for user "1234"
+    Mixpanel.Identify('1234');
+    Mixpanel.People.Set({
+        'name':'sam',
+        'age': 25
+    });
 
-// increment "age" by 2
-Mixpanel.People.Increment('age',2);
+    // increment "age" by 2
+    Mixpanel.People.Increment('age',2);
 
-// use negative number to decrement
-// decrement "age" by 5
-Mixpanel.People.Increment('age',-5);
-```
-````
+    // use negative number to decrement
+    // decrement "age" by 5
+    Mixpanel.People.Increment('age',-5);
+    ```
 {% endtab %}
+
 {% endtabs %}
 
 ## Group Analytics
 
 {% hint style="info" %}
-Read more about [Group Analytics](../../../../../docs/data-structure/group-analytics/) before proceeding. You will need to have the [group key defined in your project settings](../../../../../docs/data-structure/group-analytics/#group-keys-in-project-settings) first.
+Read more about [Group Analytics](../../data-structure/group-analytics.md) before proceeding. You will need to have the [group key defined in your project settings](../../data-structure/group-analytics.md#group-keys-in-project-settings) first.
 {% endhint %}
 
 Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
 
 A group is identified by the `group_key` and `group_id`.
-
 * `group_key` is the event property that connects event data to a group. (e.g. `company`)
 * `group_id` is the identifier for a specific group. (e.g. `mixpanel`,`company_a`,`company_b`, etc.)
 
 ### Sending Group Identifiers With Events
 
-[All events must have the group key as an event property in order to be attributed to a group](../../../../../docs/data-structure/group-analytics/#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
+[All events must have the group key as an event property in order to be attributed to a group](../../data-structure/group-analytics.md#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
 
 To send group identifiers with your events, set the `group_key` as an event property with the `group_id` as the value.
 
 **Example Usage**
-
 ```csharp
 // set group key "company" as event prop
 // with "mixpanel" as value
@@ -345,10 +329,9 @@ Mixpanel.Track("some_event", props);
 
 **Multiple Groups**
 
-[An event can be attributed to multiple groups](../../../../../docs/data-structure/group-analytics/#attribute-events-to-multiple-groups) by passing in the `group_key` value as a list of multiple `group_id` values.
+[An event can be attributed to multiple groups](../../data-structure/group-analytics.md#attribute-events-to-multiple-groups) by passing in the `group_key` value as a list of multiple `group_id` values.
 
 **Example Usage**
-
 ```csharp
 // set group key "company" as event prop
 // with "mp-eu" and "mp-us" as value
@@ -378,14 +361,13 @@ Mixpanel.People.Set("company", "mixpanel");
 
 You have control over the data you send to Mixpanel. The Unity SDK provide methods to help you protect user data.
 
-Learn more about [Privacy](../../../../../docs/privacy/overview/).
+Learn more about [Privacy](../../privacy/overview.md).
 
 ### Opt Out of Tracking
 
 The Unity SDK is initialized with tracking enabled by default. Use the `.OptOutTracking()` method to opt the user out of data tracking and local storage for the current Mixpanel instance.
 
 **Example Usage**
-
 ```csharp
 //send "some_event"
 Mixpanel.Track("some_event");
@@ -403,7 +385,6 @@ Mixpanel.Track("some_event");
 You can initialize the library with users opted out of tracking by default using the `IsTracking` configuration. Once the user is ready to be tracked, call `.optInTracking()` to start tracking.
 
 **Example Usage**
-
 ```csharp
 // turn off tracking
 MixpanelStorage.IsTracking = false;

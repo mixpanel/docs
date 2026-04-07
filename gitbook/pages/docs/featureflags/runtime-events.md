@@ -1,4 +1,4 @@
-# Runtime Events
+# Runtime Events: Target Users Based on Behavior
 
 {% hint style="info" %}
 Runtime Events is part of Feature Flags, a separately priced product add-on available to organizations on the Enterprise Plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
@@ -6,7 +6,7 @@ Runtime Events is part of Feature Flags, a separately priced product add-on avai
 
 ## Overview
 
-**Runtime Events** let you target users immediately based on actions they perform, not just who they are. Instead of targeting [cohorts](../../../../docs/users/cohorts/) or [properties](../../../../docs/featureflags/#runtime-properties), you can trigger feature variants when users complete specific events tracked with `mixpanel.track()`.
+**Runtime Events** let you target users immediately based on actions they perform, not just who they are. Instead of targeting [cohorts](../users/cohorts.md) or [properties](../featureflags.md#runtime-properties), you can trigger feature variants when users complete specific events tracked with `mixpanel.track()`.
 
 **Traditional targeting**: "Show this variant to premium users"
 
@@ -16,10 +16,10 @@ Runtime Events is part of Feature Flags, a separately priced product add-on avai
 
 Runtime Events are ideal for behavior-driven experiences:
 
-* **Onboarding flows**: Show tutorial content after a user completes their first action
-* **Progressive feature unlocking**: Unlock advanced features after users complete key milestones
-* **Conditional promotions**: Display special offers after a user makes their first purchase
-* **Behavior-gated experiments**: Run experiments only on users who have demonstrated engagement
+- **Onboarding flows**: Show tutorial content after a user completes their first action
+- **Progressive feature unlocking**: Unlock advanced features after users complete key milestones
+- **Conditional promotions**: Display special offers after a user makes their first purchase
+- **Behavior-gated experiments**: Run experiments only on users who have demonstrated engagement
 
 ## How Runtime Events Work
 
@@ -29,12 +29,12 @@ Think of Runtime Events as a "tripwire" that activates once. Here's the flow:
 
 1. User requests flag evaluation from your app
 2. The flag service recognizes the user hasn't triggered the event yet
-3. The SDK watches for the specified event
+4. The SDK watches for the specified event
 
 ### When the Event Occurs
 
 1. User performs the tracked event (e.g., "Purchase Complete")
-2. The SDK reports the event to Mixpanel
+3. The SDK reports the event to Mixpanel
 
 ### After the Event
 
@@ -48,21 +48,21 @@ To add a Runtime Event targeting rule to your feature flag:
 
 {% stepper %}
 {% step %}
-#### Navigate to Rollout Groups
+### Navigate to Rollout Groups
 
 Open your feature flag and scroll to the **Rollout Groups** section. Click on a rollout group card or create a new one.
 
-#### Add a Runtime Event Filter
+### Add a Runtime Event Filter
 
 In the Rollout Group editor, click **"+ Add"**, then select **"Runtime Event"**. A new filter box for configuring runtime events will appear.
 
-#### Select the Event
+### Select the Event
 
 Click on the event dropdown (shows "Select Event" initially) and choose the Mixpanel event you want to trigger on. This can be any event tracked via `mixpanel.track()`.
 
 For example: `Purchase`, `Sign Up Complete`, `Dashboard Viewed`
 
-#### Configure Time Window
+### Configure Time Window
 
 The **"While Flag Enabled"** dropdown controls when events count toward activation. Currently, only events that occur while the flag is enabled will activate the variant.
 
@@ -70,33 +70,30 @@ The **"While Flag Enabled"** dropdown controls when events count toward activati
 Only events that occur **after** the flag is enabled count toward activation. Historical events from before the flag was created or enabled are not counted.
 {% endhint %}
 
-#### (Optional) Add First Time Filter
+### (Optional) Add First Time Filter
 
 Click the overflow menu (**...**) and select **"First Time"** to make this a first-time event trigger.
 
 When enabled, a second row appears showing:
-
-* **"for the"** `First Time` **"until"** `[Duration]`
+- **"for the"** `First Time` **"until"** `[Duration]`
 
 The **Duration** dropdown offers:
+- **End of Session**: Variant expires when the user's session ends
+- **Indefinitely**: Variant persists in subsequent sessions
 
-* **End of Session**: Variant expires when the user's session ends
-* **Indefinitely**: Variant persists in subsequent sessions
-
-#### (Optional) Add Property Filters
+### (Optional) Add Property Filters
 
 Click **"+ Filter"** to add conditions on event properties. This lets you target more specific behaviors.
 
 For example:
+- Event: `Purchase` where `amount > 100` (only high-value purchases)
+- Event: `Page View` where `page_path contains '/checkout'` (only checkout views)
 
-* Event: `Purchase` where `amount > 100` (only high-value purchases)
-* Event: `Page View` where `page_path contains '/checkout'` (only checkout views)
-
-#### Assign Variants
+### Assign Variants
 
 On the right side of the rollout card, configure which variant users receive when they trigger the event. You can set variant splits (e.g., 50% variant A, 50% variant B) just like standard targeting.
 
-#### Save the Flag
+### Save the Flag
 
 Click **Save** to activate your configuration. The SDK will begin watching for the specified event.
 {% endstep %}
@@ -122,6 +119,6 @@ The variant activates on the next call to `getVariant` or `isEnabled` after the 
 
 ## Related Documentation
 
-* [Feature Flags Overview](../../../../docs/featureflags/)
-* [Experiments](../../../../docs/experiments/)
-* [Cohorts](../../../../docs/cohorts/)
+- [Feature Flags Overview](../featureflags.md)
+- [Experiments](../experiments.md)
+- [Cohorts](../cohorts.md)

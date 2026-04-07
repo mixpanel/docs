@@ -3,7 +3,6 @@
 ## Types of data clean-up
 
 Usually, data "clean-up" comes in two primary forms:
-
 1. Cleaning up data mess that accumulates naturally over time
 2. Deleting problematic data stemming from acute issues (e.g. implementation bugs, bot traffic, PII)
 
@@ -19,11 +18,11 @@ In this section, we will look at tips and tricks on how to clean up messy data w
 
 #### Dropping events that are not queried
 
-[Lexicon](../../../../docs/data-governance/lexicon/) is our data dictionary in Mixpanel, and is where project owners and admins can add / manage descriptions for all events and properties to organize your data.
+[Lexicon](./lexicon.md) is our data dictionary in Mixpanel, and is where project owners and admins can add / manage descriptions for all events and properties to organize your data.
 
-* Order by volume descending. Are your users querying events with large volume? If not, you might want to think about dropping these events. Dropping events means that they will no longer be ingested in Mixpanel. This is especially helpful for apps, since you don’t need to release new app versions and wait for users to download the latest versions for the code change to take effect (we still recommend that you clean up the code on the backend though!).
-* Sometimes, customers may still want these large volume events because they rely on them downstream (via data pipelines). But if you’re not querying the events in Mixpanel itself, you shouldn’t send it in - if you’re on the [events plan](../../../../docs/pricing/#monthly-events-calculation), this increases your utilization; also, this clutters up the UI for users who don’t need to see it there. You could hide the event in the UI in Lexicon, but our recommended approach is to not send this data into Mixpanel at all.
-* If you’re leveraging our SDKs and want to continue doing so for ease of leveraging our ID management and default properties, an alternative is to route events from [Mixpanel’s SDKs via a proxy in your own domain](../../../../docs/tracking-methods/sdks/javascript/). This way, you get to push the events required for backend analyses directly into your warehouse, and send only the events users query in our UI to Mixpanel
+- Order by volume descending. Are your users querying events with large volume? If not, you might want to think about dropping these events. Dropping events means that they will no longer be ingested in Mixpanel. This is especially helpful for apps, since you don’t need to release new app versions and wait for users to download the latest versions for the code change to take effect (we still recommend that you clean up the code on the backend though!).
+- Sometimes, customers may still want these large volume events because they rely on them downstream (via data pipelines). But if you’re not querying the events in Mixpanel itself, you shouldn’t send it in - if you’re on the [events plan](../pricing.md#monthly-events-calculation), this increases your utilization; also, this clutters up the UI for users who don’t need to see it there. You could hide the event in the UI in Lexicon, but our recommended approach is to not send this data into Mixpanel at all.
+- If you’re leveraging our SDKs and want to continue doing so for ease of leveraging our ID management and default properties, an alternative is to route events from [Mixpanel’s SDKs via a proxy in your own domain](../tracking-methods/sdks/javascript.md). This way, you get to push the events required for backend analyses directly into your warehouse, and send only the events users query in our UI to Mixpanel
 
 #### Cleaning up display names and adding descriptions for events
 
@@ -41,44 +40,42 @@ If you use Figma to identify your events, some customers add their links to the 
 
 ### Cleaning up user profiles
 
-If you want to clean up old user profile properties that are no longer being used, you can use our [Engage API](https://developer.mixpanel.com/reference/profile-delete-property) to remove these old user properties. We also provide a ‘people\_unset’ method in the Mixpanel-utils Library [here](https://github.com/mixpanel/mixpanel-utils#unset-properties).
+If you want to clean up old user profile properties that are no longer being used, you can use our [Engage API](https://developer.mixpanel.com/reference/profile-delete-property) to remove these old user properties. We also provide a ‘people_unset’ method in the Mixpanel-utils Library [here](https://github.com/mixpanel/mixpanel-utils#unset-properties).
 
 ## 2. Deleting problematic data
 
 Data Deletion allows you to delete noisy or sensitive data from your Mixpanel project, helping you maintain the integrity of your analytics project, and preserve a clear view of user behavior.
 
 You might find this useful if you:
-
-* accidentally send Personal Identifiable Information (PII) in a property
-* have implementation issues leading to duplicated data
-* experience bot traffic issues that clutter an important event
+- accidentally send Personal Identifiable Information (PII) in a property
+- have implementation issues leading to duplicated data
+- experience bot traffic issues that clutter an important event
 
 In addition to permanently deleting the chosen data from our servers, we will immediately hide the data in your project so your users don’t accidentally view or analyze incorrect/sensitive data.
 
-Unlike [**Hiding Events**](https://mixpanel.com/blog/now-you-can-hide-events-and-properties/) or [**Data Views**](https://docs.mixpanel.com/docs/data-governance/data-views-and-classification), Data Deletion affects your entire project, and can allow you to remove a subset of problematic events from an otherwise useful event.
+Unlike **[Hiding Events](https://mixpanel.com/blog/now-you-can-hide-events-and-properties/)** or **[Data Views](https://docs.mixpanel.com/docs/data-governance/data-views-and-classification)**, Data Deletion affects your entire project, and can allow you to remove a subset of problematic events from an otherwise useful event.
 
 ### Is data deletion right for my problem?
 
-Data Deletion is a severe action with permanent consequences. Thus, we recommend it only in a few scenarios:
+Data Deletion is a severe action with permanent consequences. Thus, we recommend it only in a few scenarios: 
 
-| Scenario                                                                                                                               | Recommendation                                                                                                                                                                                                                                                                              |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Bot attack sent spam events I don’t want to consider in my analysis                                                                    | Yes, use Data Deletion with targeted event property filters to delete spam event data.                                                                                                                                                                                                      |
-| Due to an implementation issue, duplicate events were ingested                                                                         | Yes, use Data Deletion with targeted event property filters to delete duplicate event data.                                                                                                                                                                                                 |
-| Due to an implementation issue, events were sent with wrong timestamp                                                                  | Yes, use Data Deletion with targeted event property filters to delete affected data, and then re-upload with corrected timestamps. Please refer to our 'Reminders with ETL Approach' section on this page as you proceed                                                                    |
-| We have sensitive data that we accidentally ingested that we legally cannot have and need to urgently delete                           | Yes, use Data Deletion with targeted event property filters to delete events with sensitive data. You can then re-upload data without sensitive PII data included. Please refer to our 'Reminders with ETL Approach' section on this page as you proceed                                    |
-| I no longer want an event/ property entirely, as it’s no longer relevant to my team                                                    | No, we recommend you actually use [Dropping and Hiding Data](https://docs.mixpanel.com/docs/data-governance/lexicon#dropping-and-hiding-data) instead, as these will hide the events from your team, without using up your limited Data Deletion requests.                                  |
+| Scenario | Recommendation |
+| --- | --- |
+| Bot attack sent spam events I don’t want to consider in my analysis | Yes, use Data Deletion with targeted event property filters to delete spam event data. |
+| Due to an implementation issue, duplicate events were ingested | Yes, use Data Deletion with targeted event property filters to delete duplicate event data. |
+| Due to an implementation issue, events were sent with wrong timestamp | Yes, use Data Deletion with targeted event property filters to delete affected data, and then re-upload with corrected timestamps. Please refer to our 'Reminders with ETL Approach' section on this page as you proceed |
+| We have sensitive data that we accidentally ingested that we legally cannot have and need to urgently delete | Yes, use Data Deletion with targeted event property filters to delete events with sensitive data. You can then re-upload data without sensitive PII data included. Please refer to our 'Reminders with ETL Approach' section on this page as you proceed |
+| I no longer want an event/ property entirely, as it’s no longer relevant to my team | No, we recommend you actually use [Dropping and Hiding Data](https://docs.mixpanel.com/docs/data-governance/lexicon#dropping-and-hiding-data) instead, as these will hide the events from your team, without using up your limited Data Deletion requests. |
 | I don’t need to legally delete some events with sensitive data, but I don’t want some of my users to be able to see the sensitive data | No, we recommend you use [Mark Properties as Classified](https://docs.mixpanel.com/docs/data-governance/data-views-and-classification#mark-properties-as-classified-data) to remove the data from the analysis experience for certain user types, while keeping accessible for other users. |
-| I want to delete data associated with a specific distinct ID                                                                           | No, we recommend you use our [Distinct ID Deletion API](https://developer.mixpanel.com/reference/create-deletion), as Data Deletion does not support Distinct ID as a filtering criteria                                                                                                    |
+| I want to delete data associated with a specific distinct ID | No, we recommend you use our [Distinct ID Deletion API](https://developer.mixpanel.com/reference/create-deletion), as Data Deletion does not support Distinct ID as a filtering criteria |
 
 ### Who can use Data Deletion?
 
-You can use the Data Deletion tool in these scenarios:
-
-* Your Mixpanel role is Owner or Admin
-* Your data does not extend beyond the past 180 days (event time, not ingestion time)
-* Your event volumes are below 5 billion events per month, any month over the trailing 3 months
-* Your project has not had more than 10 deletes over the past calendar month
+You can use the Data Deletion tool in these scenarios: 
+- Your Mixpanel role is Owner or Admin
+- Your data does not extend beyond the past 180 days (event time, not ingestion time)
+- Your event volumes are below 5 billion events per month, any month over the trailing 3 months
+- Your project has not had more than 10 deletes over the past calendar month 
 
 ### How to use
 
@@ -86,8 +83,9 @@ You can use the Data Deletion tool in these scenarios:
 Data Deletion is irreversible. Exercise caution when using this feature.
 {% endhint %}
 
-Once you've identified the problematic data, and confirmed you want to delete:
+![image](/data-deletion1.png)
 
+Once you've identified the problematic data, and confirmed you want to delete:
 1. Navigate to the **Lexicon > Data Governance > Data Deletion**
 2. Click ‘Request an Event Deletion’
 3. Select which event you want to delete
@@ -102,7 +100,9 @@ During this intermediate 7 day period, we will automatically hide the data in yo
 
 ### Undoing data deletion
 
-You may undo Data Deletion requests **for only 7 days after submitting**, after which deletions become permanent. To do so, take the following steps:
+You may undo Data Deletion requests **for only 7 days after submitting**, after which deletions become permanent. To do so, take the following steps: 
+
+![image](/data-deletion2.png)
 
 1. Navigate to the **Lexicon > Data Governance > Data Deletion**
 2. Locate the Deletion request you wish to undo in the table
@@ -110,27 +110,30 @@ You may undo Data Deletion requests **for only 7 days after submitting**, after 
 
 ### Reminders with ETL approach
 
-* For projects created prior to 1 Jan 2023 offset your timestamps
-* If your project was created prior to 1 Jan 2023, you cannot just clean the data you don't want and re-import it. Your data is stored in project time, so you need to adjust the offset before importing
-* Don’t forget to regenerate $insert\_id’s when you ETL
-* When you submit a deletion request, we hide your data immediately from your project to reduce any privacy concerns. We call this “soft deletion”, an interim phase before our “hard deletion” kicks in (where your data is permanently deleted from our servers) so that you can review the impact of your changes and undo when necessary. If you re-import data while the data is soft deleted **with the same $insert\_id**, our deduplication systems may keep the old (deleted) event and toss the new event. Since this data is soft-deleted, your re-import won’t reflect the data as imported. Thus, when the ETL is done, you should regenerate the $insert\_id value if possible, to avoid this possible collision
+- For projects created prior to 1 Jan 2023 offset your timestamps
+- If your project was created prior to 1 Jan 2023, you cannot just clean the data you don't want and re-import it. Your data is stored in project time, so you need to adjust the offset before importing
+- Don’t forget to regenerate $insert_id’s when you ETL
+- When you submit a deletion request, we hide your data immediately from your project to reduce any privacy concerns. We call this “soft deletion”, an interim phase before our “hard deletion” kicks in (where your data is permanently deleted from our servers) so that you can review the impact of your changes and undo when necessary. If you re-import data while the data is soft deleted **with the same \$insert_id**, our deduplication systems may keep the old (deleted) event and toss the new event. Since this data is soft-deleted, your re-import won’t reflect the data as imported. Thus, when the ETL is done, you should regenerate the $insert_id value if possible, to avoid this possible collision
+    
 
 ### Frequently asked questions
 
-_**How does Data Deletion impact billing?**_
+***How does Data Deletion impact billing?***
 
 Billing behavior for successfully deleted events depends on your plan:
 
-* Legacy event timestamp billing — Deleted events are excluded from the current month's usage calculation.
-* Ingestion timestamp billing — Deleted events are still counted toward your usage for the month.
-
-_**Do you support property deletion?**_
+- Legacy event timestamp billing 
+  — Deleted events are excluded from the current month's usage calculation.
+- Ingestion timestamp billing 
+  — Deleted events are still counted toward your usage for the month.
+    
+***Do you support property deletion?***
 
 Not as of now. If you have events with properties you want to delete, you should do an Extract, Transform, Load approach. The goal would be to run a raw export on the event and then delete the bad imported data. Once this data has been transformed, re-import the data into the project. Then, call this event something slightly different and then hide the original one
-
+    
 Please refer to 'Reminders with ETL Approach' section as you proceed, and submit feedback (accessible in-app with our help menu) if this is a blocker for you and your team
 
 ### Other resources
 
-* [Event Approval](../../../../changelogs/2023-06-01-event-approval/)
-* [Recovering from a hot shard](../../../../docs/debugging/distinct-id-limits/)
+- [Event Approval](/changelogs/2023-06-01-event-approval)
+- [Recovering from a hot shard](../debugging/distinct-id-limits.md)

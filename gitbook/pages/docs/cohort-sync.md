@@ -2,14 +2,14 @@
 
 ## Overview
 
-Cohort Sync is a feature in Mixpanel that allows you to export dynamic groups of users (called [Cohorts](../../../docs/users/cohorts/)) who meet specific behavioral or property-based criteria, to external tools and platforms. This enables you to seamlessly connect your analytics insights with marketing automation, engagement, and advertising platforms such as Braze, Facebook Ads, Google Ads, and more.
+Cohort Sync is a feature in Mixpanel that allows you to export dynamic groups of users (called [Cohorts](./users/cohorts.md)) who meet specific behavioral or property-based criteria, to external tools and platforms. This enables you to seamlessly connect your analytics insights with marketing automation, engagement, and advertising platforms such as Braze, Facebook Ads, Google Ads, and more.
 
 With Cohort Sync, you can:
 
-* Automatically and continuously sync user cohorts to third-party destinations, ensuring that your external tools always have the most up-to-date audience segments.
-* Choose from various sync cadences, including one-time, scheduled (hourly or daily), and real-time syncs, depending on your use case and the requirements of the destination platform.
-* Use these synced cohorts for targeted messaging, re-engagement campaigns, lookalike audience creation, and personalized user experiences in downstream platforms.
-* Reduce manual effort and maintenance, as the sync process is automated and updates as users enter or exit the cohort in Mixpanel.
+- Automatically and continuously sync user cohorts to third-party destinations, ensuring that your external tools always have the most up-to-date audience segments.
+- Choose from various sync cadences, including one-time, scheduled (hourly or daily), and real-time syncs, depending on your use case and the requirements of the destination platform.
+- Use these synced cohorts for targeted messaging, re-engagement campaigns, lookalike audience creation, and personalized user experiences in downstream platforms.
+- Reduce manual effort and maintenance, as the sync process is automated and updates as users enter or exit the cohort in Mixpanel.
 
 The value of Cohort Sync lies in its ability to bridge analytics and action: you can quickly act on user insights by targeting the right users in the right channels, improving campaign effectiveness and operational efficiency. This integration is especially useful for marketing, product, and growth teams who want to leverage behavioral data for personalized outreach and engagement without manual data exports or engineering support
 
@@ -21,7 +21,27 @@ Before you can use Cohort Sync to export Mixpanel cohorts, you must establish a 
 
 Refer to the Cohort Sync Integration Directory below for partner-specific setup guides, or use the Custom Webhooks guide to export cohorts to destinations without a native integration.
 
-<table data-view="cards"><thead><tr><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td><strong>Cohort Sync Integrations Directory</strong></td><td><a href="../../../docs/cohort-sync/integrations/">integrations</a></td><td></td></tr><tr><td><strong>Custom Webhooks</strong></td><td><a href="../../../docs/cohort-sync/webhooks/">webhooks</a></td><td></td></tr></tbody></table>
+<table data-view="cards">
+  <thead>
+    <tr>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Cohort Sync Integrations Directory</strong></td>
+      <td><a href="./cohort-sync/integrations.md">./cohort-sync/integrations.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Custom Webhooks</strong></td>
+      <td><a href="./cohort-sync/webhooks.md">./cohort-sync/webhooks.md</a></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
 
 ### Initialize Cohort Sync
 
@@ -29,22 +49,26 @@ Once a connection has been established between your Mixpanel project and your Co
 
 {% stepper %}
 {% step %}
-### Navigate to Lexicon and select "Cohorts" in the left-hand sidebar.
+## Navigate to Lexicon and select "Cohorts" in the left-hand sidebar.
+
 {% endstep %}
 
 {% step %}
-### Click the "..." button next to the Cohort you want to sync, and select "Export to...".
+## Click the "..." button next to the Cohort you want to sync, and select "Export to...".
+
 {% endstep %}
 
 {% step %}
-### Select one of your connections to open the export modal.
+## Select one of your connections to open the export modal.
+
 {% endstep %}
 
 {% step %}
-### Choose a one-time export or a recurring export.
+## Choose a one-time export or a recurring export.
 
-Learn more about the [types of syncs](../../../docs/cohort-sync/webhooks/#sync).
+Learn more about the [types of syncs](./cohort-sync/webhooks.md#sync).
 {% endstep %}
+
 {% endstepper %}
 
 ## Limits
@@ -82,13 +106,13 @@ Sometimes, you may find that the number of users shown in your cohort in Mixpane
 
 ### Discrepancies in user count
 
-If you see a discrepancy between the count of your users in a Mixpanel cohort and in the integration partner, the first thing to check is if all your users were eligible to be exported. To match users in both systems, we require a partner ID, e.g. `$braze_external_id` for Braze cohort exports. You can easily confirm this by querying for your cohort in the User report, then adding the filter `$braze_external_id` is set. This will show all eligible users that can be exported from Mixpanel to Braze.
+If you see a discrepancy between the count of your users in a Mixpanel cohort and in the integration partner, the first thing to check is if all your users were eligible to be exported. To match users in both systems, we require a partner ID, e.g. `$braze_external_id` for Braze cohort exports. You can easily confirm this by querying for your cohort in the User report, then adding the filter `$braze_external_id` is set. This will show all eligible users that can be exported from Mixpanel to Braze. 
 
 When accessing the "View in Explore" option, you will see the required partner ID added by default for the following integrations:
 
 ABTasty, Airship, Blitzllama, Braze, Clevertap, Flagship, Insider, Iterable, Kameleoon, LaunchDarkly, Leanplum, Moengage, OneSignal, Optimize, Pushwoosh, SalesforceMC, Segment, VWO, Xtremepush
 
-It is also added by default to any integration where the join key is not the $distinct\_id. The added partner ID filter will show up as a [custom property](../../../docs/features/custom-properties/) called "Defined Properties Required for Cohort Selection" whose properties will appear when hovering over the property:
+It is also added by default to any integration where the join key is not the $distinct_id. The added partner ID filter will show up as a [custom property](./features/custom-properties.md) called "Defined Properties Required for Cohort Selection" whose properties will appear when hovering over the property:
 
 ![image](https://user-images.githubusercontent.com/13734965/233539618-3ac2c97e-d3fd-4c44-8dc3-847ecdfe50bb.png)
 
@@ -98,7 +122,7 @@ To find out which and how many users have been exported from your cohort to the 
 
 ![image](https://user-images.githubusercontent.com/13734965/233539646-5057fdb4-5c15-412a-8390-1bed8d44f136.png)
 
-You will find a summary of the total count of users exported and removed and a CSV download button. In the CSV, you can find the list of distinct\_ids of the users in the export and an operation column. This operation column can contain one of three values; add when the user profile was newly added to the cohort, remove when the user was removed from the cohort and no-op when the user remains in the cohort. In the column next to the distinct\_id, you will see the partner ID for that user. If the numbers between Mixpanel and the integration partner mismatch, you can confirm if a user has been exported by looking at the CSV file.
+You will find a summary of the total count of users exported and removed and a CSV download button. In the CSV, you can find the list of distinct_ids of the users in the export and an operation column. This operation column can contain one of three values; add when the user profile was newly added to the cohort, remove when the user was removed from the cohort and no-op when the user remains in the cohort. In the column next to the distinct_id, you will see the partner ID for that user. If the numbers between Mixpanel and the integration partner mismatch, you can confirm if a user has been exported by looking at the CSV file. 
 
 ### Export is paused
 
@@ -106,20 +130,23 @@ If you notice your cohorts are not being exported, you can view the reason for t
 
 ![image](https://user-images.githubusercontent.com/13734965/233539691-d36370b1-880a-4aa6-a64c-399175c02388.png)
 
-Some integrations have common pause reasons (e.g. [Facebook's authentication pause](../../../docs/cohort-sync/integrations/facebook-ads/#troubleshooting-errors)). You can usually resolve the paused reason on your side by confirming the authorization for the integration is still valid, and dis- and reconnecting.
+Some integrations have common pause reasons (e.g. [Facebook's authentication pause](./cohort-sync/integrations/facebook-ads.md#troubleshooting-errors)). You can usually resolve the paused reason on your side by confirming the authorization for the integration is still valid, and dis- and reconnecting. 
 
 ### View sync error
 
 To find more details on Failure errors, you can click in the Cohort within the Integrations page to display errors.
 
-1. Under the integration section, select the cohort: ![image](https://user-images.githubusercontent.com/13734965/233539867-3bd94f9f-b50c-4939-9eb9-5879e0b2e8cf.png)
-2. If an error is available, you will see the “View Error” button: ![image](https://user-images.githubusercontent.com/13734965/233539900-58b14423-bdfd-4fb7-98ff-17576d54a5d8.png)
+1. Under the integration section, select the cohort:
+![image](https://user-images.githubusercontent.com/13734965/233539867-3bd94f9f-b50c-4939-9eb9-5879e0b2e8cf.png)
+2. If an error is available, you will see the “View Error” button:
+![image](https://user-images.githubusercontent.com/13734965/233539900-58b14423-bdfd-4fb7-98ff-17576d54a5d8.png)
 3. Click on the “View Error” button to get more details.
 
 Currently the “View Error” button will only display if there is an error available. In the case that you do not see a “View Error” button but the sync did not finish successfully, you can reach out to the Support team to help get more details on the error.
 
 ### Delay in Sync
-
 If your recurring cohort syncs are taking more time than expected, we recommend creating multiple connections and spreading your syncs across them. Cohort syncs under one connection are executed in a sequential order; to increase parallelism, you should create multiple connections covering different types of sync.
 
-In general, if you see the cumulative user count of all cohorts synced under a connection breach \~5 million, we would recommend that you create a new connection.
+In general, if you see the cumulative user count of all cohorts synced under a connection breach ~5 million, we would recommend that you create a new connection.
+
+![image](/cohort_sync_delay.png)

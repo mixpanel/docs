@@ -126,7 +126,7 @@ mixpanel.optInTracking();
 {% endtabs %}
 
 ## Disabling Geolocation
-Mixpanel's Web and Mobile libraries use IP addresses to enrich events with geographic information like city, country, and region. Mixpanel does not store IP addresses, but rather, only uses IPs to assign [geolocation properties to data upon ingestion](/docs/tracking-best-practices/geolocation). You can disable this using the following configuration options in each of our SDKs:
+Mixpanel's Web and Mobile libraries use IP addresses to enrich events with geographic information like city, country, and region. Mixpanel does not store IP addresses, but rather, only uses IPs to assign [geolocation properties to data upon ingestion](../tracking-best-practices/geolocation.md). You can disable this using the following configuration options in each of our SDKs:
 
 {% tabs %}
 {% tab title="Javascript" %}
@@ -161,7 +161,7 @@ setUseIpAddressForGeolocation(false)
 
 {% endtabs %}
 
-You can also disable geolocation for individual payloads by setting the `ip` property value to 0. Learn more about ignoring IP addresses [here](/docs/tracking-best-practices/geolocation#ignore-ip-address).
+You can also disable geolocation for individual payloads by setting the `ip` property value to 0. Learn more about ignoring IP addresses [here](../tracking-best-practices/geolocation.md#ignore-ip-address).
 
 ## Anonymizing Users
 Mixpanel does not know, or need to know, any identifying information about users (like email or phone number). Mixpanel only needs to know that a set of events was performed by a particular user ID. You choose the ID and how you want to send that to Mixpanel.
@@ -169,7 +169,7 @@ Mixpanel does not know, or need to know, any identifying information about users
 If you want to analyze aggregate user behavior without being able to drill down into any particular user, we recommend generating a hash of some unique ID of the user and using that hash as the user's ID when you call the `.identify()` method in our SDKs.
 
 ## Blacklisting Default Properties
-Our JavaScript library [automatically captures default properties](/docs/data-structure/property-reference/default-properties) to help enrich your data, but you can choose to prevent the setting of default properties using the property_blacklist config option. To prevent default event properties from being sent, specify a list of properties to blacklist on library load, for example:
+Our JavaScript library [automatically captures default properties](../data-structure/property-reference/default-properties.md) to help enrich your data, but you can choose to prevent the setting of default properties using the property_blacklist config option. To prevent default event properties from being sent, specify a list of properties to blacklist on library load, for example:
 
 ```javascript Javascript
 mixpanel.init("YOUR_TOKEN", {
@@ -190,4 +190,4 @@ Yes, Mixpanel provides tools for handling user data requests. However, it is imp
 
 **What happens to previously collected data when a user opts out?**
 
-When a user is opted out of tracking, no subsequent data moving forward is sent to Mixpanel for that user. This means that future events won't be tracked or available in Mixpanel. However, data previously collected will remain in your project until the data retention period has passed, a data deletion is performed for that user's data, or a GDPR deletion is requested and performed. Learn more about [Data Deletion](/docs/data-governance/data-clean-up#2-deleting-problematic-data) and [GDPR Deletion requests](/docs/privacy/end-user-data-management).
+When a user is opted out of tracking, no subsequent data moving forward is sent to Mixpanel for that user. This means that future events won't be tracked or available in Mixpanel. However, data previously collected will remain in your project until the data retention period has passed, a data deletion is performed for that user's data, or a GDPR deletion is requested and performed. Learn more about [Data Deletion](../data-governance/data-clean-up.md#2-deleting-problematic-data) and [GDPR Deletion requests](./end-user-data-management.md).

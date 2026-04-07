@@ -1,4 +1,4 @@
-# Impact
+# Impact: Measure the effect of a launch on your KPIs
 
 {% hint style="info" %}
 Users on an Growth or Enterprise plan can access the Impact report. See our [pricing page](https://mixpanel.com/pricing/) for more details.
@@ -8,14 +8,16 @@ Users on an Growth or Enterprise plan can access the Impact report. See our [pri
 
 Mixpanel’s Impact report measures the effects of product or marketing launches on your key metrics. Impact calculates the user adoption of the launch, the impact of the launch on an important event, and the differences between users that adopt the launch and those that do not.
 
-To access **Impact**, go to the Applications section in the top right of the top navigation, then select **Impact**.
+To access **Impact**, go to the Applications section in the top right of the top navigation, then select **Impact**.
+
+![/11036831782164](/11036831782164.png)
 
 ## Use Cases
 
 Here are some of the sample questions you can answer in Impact:
 
-* How is the adoption of my feature changing over time?
-* Did my feature launch have an effect on the rate of another key value moment?
+- How is the adoption of my feature changing over time?
+- Did my feature launch have an effect on the rate of another key value moment?
 
 ## Quick Start
 
@@ -27,25 +29,25 @@ To build an Impact query, first select a launch event. This is the event that yo
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/8ed06dad-4567-4fb0-8200-32d6a51cae0b)
 
-Select the start date of this launch event. Add any additional filters to narrow the launch event parameters by clicking the **... dropdown** and selecting the **Add filter**.
+Select the start date of this launch event. Add any additional filters to narrow the launch event parameters by clicking the **... dropdown** and selecting the **Add filter**.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/b1ed7f9e-eea4-49ea-a80d-fb3c776b16a3)
 
 ### Step 2: Select metric events
 
-Select a metric event by clicking the **Add** button under **IMPACTED EVENTS**. You are measuring the impact of the launch event on this metric event. Add additional filters to narrow the impacted event parameters.
+Select a metric event by clicking the **Add** button under **IMPACTED EVENTS**. You are measuring the impact of the launch event on this metric event. Add additional filters to narrow the impacted event parameters.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/d728738d-4869-4144-994f-05422772347c)
 
 ### Step 3: Add breakdown (optional)
 
-Breakdown impacted events further by clicking the **… icon**, selecting **Add Aggregation**, then selecting an event property, such as “Amount”. This will add up the value of this property for all of the times this event happened in this time range. All aggregate properties are typecast to numeric properties in order to calculate the sum of that property. For example, aggregate the property “Amount” under the event “Process Payment” to analyze revenue.
+Breakdown impacted events further by clicking the **… icon**, selecting **Add Aggregation**, then selecting an event property, such as “Amount”. This will add up the value of this property for all of the times this event happened in this time range. All aggregate properties are typecast to numeric properties in order to calculate the sum of that property. For example, aggregate the property “Amount” under the event “Process Payment” to analyze revenue.
 
 ![gif](https://github.com/mixpanel/docs/assets/2077899/c341da61-a5c2-4b3f-aa0e-c23e8116e4d9)
 
 ### Step 4: Select user group
 
-Under **USER DEFINITION** select whether you would like to count users who did **only the impacted event** or **any event**.
+Under **USER DEFINITION** select whether you would like to count users who did **only the impacted event** or **any event**.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/6d10e2bd-0167-4d09-b456-8aabbf49694d)
 
@@ -65,45 +67,49 @@ Adopters are users that have done the launch event. Non-adopters are users that 
 
 The Adoption Rate is the number of users that perform the launch event divided by the total user count:
 
-$%,adoption = average\left( (adopters) \over (adopters + non,adopters) \right)$
+$\%\,adoption = average\left( (adopters) \over (adopters + non\,adopters) \right)$
 
 ### Impact Chart
 
-The Impact Chart shows how the rate of metric event occurrence changes over time.  The y-axis of the chart is the average number of the metric event count and the x-axis is time spanning 30 days.
+The Impact Chart shows how the rate of metric event occurrence changes over time.  The y-axis of the chart is the average number of the metric event count and the x-axis is time spanning 30 days.
 
-Unlike other Mixpanel charts, the Impact Chart displays time in relative time, not calendar time.  The chart centers around the first day that the launch event is available, or “day zero”. The chart displays the 15 days before and after day zero.
+Unlike other Mixpanel charts, the Impact Chart displays time in relative time, not calendar time.  The chart centers around the first day that the launch event is available, or “day zero”. The chart displays the 15 days before and after day zero.
 
 ![image](https://github.com/mixpanel/docs/assets/2077899/3e1ebe51-eeaf-4322-bd44-04ca02518094)
 
-Every user in the report can have a different day zero.  For users in the adopter group, day zero is the first day that they perform the launch event.  For users in the non-adopter group, day zero is the day the first adopter performed the launch event (which is most likely the launch day of the feature).
+Every user in the report can have a different day zero.  For users in the adopter group, day zero is the first day that they perform the launch event.  For users in the non-adopter group, day zero is the day the first adopter performed the launch event (which is most likely the launch day of the feature).
 
 Each data point on the chart is calculated as follows:
 
-$metric,event,rate = { (metric,event,count) \over (total,user,count)}$
+$metric\,event\,rate = { (metric\,event\,count) \over (total\,user\,count)}$
 
 Each point on the line is the average number of times users in the group did the metric event on that relative day.
 
-For example, if 10 adopters did the launch event for the first time five days ago, and they then did the metric event a total of 30 times today.  The +5 days point on the adopter line would read 3. The math would be as follows:
+For example, if 10 adopters did the launch event for the first time five days ago, and they then did the metric event a total of 30 times today.  The +5 days point on the adopter line would read 3. The math would be as follows:
 
-* 30 = The number of metric events performed by the adopters on day 5
-* 10 = The number of users who did the launch event 5 days before the first day
-* 3 = 30/10
+- 30 = The number of metric events performed by the adopters on day 5
+- 10 = The number of users who did the launch event 5 days before the first day
+- 3 = 30/10
 
 You can see how frequently users in each group perform the metric event, both before and after the launch.
 
-The chart also contains average lines for non-adopters and adopters both before and after day zero (or launch), and the unobserved counterfactual of the adopters (UCA), formerly called projected adopters, average after day zero.
+The chart also contains average lines for non-adopters and adopters both before and after day zero (or launch), and the unobserved counterfactual of the adopters (UCA), formerly called projected adopters, average after day zero.
+
+![/Screen_Shot_2019-12-09_at_2.05.03_PM_copy.png](/Screen_Shot_2019-12-09_at_2.05.03_PM_copy.png)
 
 ### Impact Table
 
-The Impact Table summarizes the results of the Impact chart.  It displays the average rate at which users in the adopter and non-adopter groups performed the metric event over the course of the 15 days before and after launch.
+The Impact Table summarizes the results of the Impact chart.  It displays the average rate at which users in the adopter and non-adopter groups performed the metric event over the course of the 15 days before and after launch.
 
 The table is broken down into three sections: “Pre-Launch”, “Post-Launch”, and “Impact”.
+
+![/Screen_Shot_2019-12-09_at_2.05.52_PM.png](/Screen_Shot_2019-12-09_at_2.05.52_PM.png)
 
 The Impact Table compares users that performed the launch event and those that did not. For both groups of users, Mixpanel calculates the average number of times per day that users performed the metric event before the launch, after the launch, and the difference between the two (the delta).
 
 The average number of times that users performed the metric event before the launch is calculated by:
 
-$group,average,value = average\left( (group,metric,event,count \div group,user,count) \over (day,count) \right)$
+$group\,average\,value = average\left( (group\,metric\,event\,count \div group\,user\,count) \over (day\,count) \right)$
 
 The average rate is calculated before the first day of the launch event, after the launch event, and the report also displays the difference between those rates. These values are reported in the three sections of the table.
 
@@ -115,7 +121,7 @@ The Pre-Launch section contains columns for adopters, non-adopters, and the rela
 
 The relative delta is calculated using the equation:
 
-$relative,delta= { (adopter,average - non,adopter,average) \over (non,adopter,average)}$
+$relative\,delta= { (adopter\,average - non\,adopter\,average) \over (non\,adopter\,average)}$
 
 ### Post-Launch
 
@@ -123,11 +129,11 @@ The Post-Launch section contains columns for actual adopters, non-adopters, unob
 
 The UCA value is the projected behavior of adopters if the launch event never happened. This calculation controls for any difference between the adopters and non-adopters that is not a result of the launch event. This value is calculated by the following, where NA is non-adopters, pre is pre-launch, and post is post-launch:
 
-$UCA=\mu\_{NA,post} + ({\mu\_{NA,post}\*\Delta\_{relative,pre})}$
+$UCA=\mu_{NA\,post} + ({\mu_{NA\,post}*\Delta_{relative\,pre})}$
 
 The relative delta is calculated using the equation:
 
-$relative,delta= { (adopter,average - non,adopter,average) \over (non,adopter,average)}$
+$relative\,delta= { (adopter\,average - non\,adopter\,average) \over (non\,adopter\,average)}$
 
 ### Impact
 
@@ -135,13 +141,13 @@ The Impact section of the table contains the final calculations that indicate if
 
 The delta is the difference between the UCA and adopters in the post-launch period. The relative delta divides that value by the UCA.
 
-Confidence indicates the statistical significance of report calculations. [See below for details on the calculation of confidence](../../../../../docs/reports/apps/impact/#confidence-calculation).
+Confidence indicates the statistical significance of report calculations. [See below for details on the calculation of confidence](./impact.md#confidence-calculation).
 
 ### Interpret the Results
 
-In general, when the overall delta is positive, and the confidence score is 95% or more, it indicates a successful launch.  The most successful launches will see the rate at which adopters perform the metric event increase post-launch, while the same rate for the non-adopters remains relatively constant.
+In general, when the overall delta is positive, and the confidence score is 95% or more, it indicates a successful launch.  The most successful launches will see the rate at which adopters perform the metric event increase post-launch, while the same rate for the non-adopters remains relatively constant.
 
-In the Impact Chart, look at the average gap in usage between the adopters and non-adopters.  Typically, it is preferable for the increase in the gap to be mostly driven by an increase in the rate at which adopters perform the metric event, rather than a decrease in the rate at which non-adopters perform it.
+In the Impact Chart, look at the average gap in usage between the adopters and non-adopters.  Typically, it is preferable for the increase in the gap to be mostly driven by an increase in the rate at which adopters perform the metric event, rather than a decrease in the rate at which non-adopters perform it.
 
 ### Confidence Calculation
 
@@ -151,51 +157,53 @@ The confidence is calculated as a confidence interval using a cumulative distrib
 
 The confidence variables are as follow:
 
-* **X** = The number of events per day performed by adopters in the pre-launch period.
-* **Y** = The number of events per day performed by adopters in the post-launch period.
-* **A** = The number of events per day performed by non-adopters in their pre-launch period.
-* **B** = The number of events per day performed by non-adopters in their post-launch period.
-* **Y - X** = The difference in number of events per day performed by adopters between post-launch and pre-launch periods.
-* **B - A** = The difference in number of events per day performed by non-adopters between the post-launch and pre-launch periods.
-* The mean of **Y - X** over time is denoted by:
+- **X** = The number of events per day performed by adopters in the pre-launch period.
+- **Y** = The number of events per day performed by adopters in the post-launch period.
+- **A** = The number of events per day performed by non-adopters in their pre-launch period.
+- **B** = The number of events per day performed by non-adopters in their post-launch period.
+- **Y - X** = The difference in number of events per day performed by adopters between post-launch and pre-launch periods.
+- **B - A** = The difference in number of events per day performed by non-adopters between the post-launch and pre-launch periods.
+- The mean of **Y - X** over time is denoted by:
 
-$\mu\_{Y-X}$
+$\mu_{Y-X}$
 
-* The mean of of **B - A** over time is denoted by:
+- The mean of of **B - A** over time is denoted by:
 
-$\mu\_{B-A}$
+$\mu_{B-A}$
 
-* The standard deviation of **Y - X** over time is denoted by:
+- The standard deviation of **Y - X** over time is denoted by:
 
-$\sigma\_{Y-X}$
+$\sigma_{Y-X}$
 
-* The standard deviation of **B - A** over time is denoted by:
+- The standard deviation of **B - A** over time is denoted by:
 
-$\sigma\_{B-A}$
+$\sigma_{B-A}$
 
 With the variables assigned, the calculations for confidence are as follow:
 
-$\mu\_{final} = \mu\_{Y-X} - \mu\_{B-A}$
+$\mu_{final} = \mu_{Y-X} - \mu_{B-A}$
 
-$\sigma\_{final} =\sqrt\{{\sigma\_{Y-X}^2 \over N\_{Y-X\}} - {\sigma\_{B-A}^2 \over N\_{B-A\}}}$
+$\sigma_{final} =\sqrt{{\sigma_{Y-X}^2 \over N_{Y-X}} - {\sigma_{B-A}^2 \over N_{B-A}}}$
 
-$z\_{score} = \left|\mu\_{final} \over \sigma\_{final}\right|$
+$z_{score} = \left|\mu_{final} \over \sigma_{final}\right|$
 
-$p\_{value} = 1-cdf(z\_{score})$
+$p_{value} = 1-cdf(z_{score})$
 
-$confidence = 1 - p\_{value}$
+$confidence = 1 - p_{value}$
 
 ### Causal Impact
 
-Causal impact uses propensity score methods (a class of causal inference techniques) to refine Impact report results by controlling for self-selection bias.  Self-selection bias refers to the tendency of active users to be likely to use your new feature and to perform the impacted metrics, independent of the launch.
+Causal impact uses propensity score methods (a class of causal inference techniques) to refine Impact report results by controlling for self-selection bias.  Self-selection bias refers to the tendency of active users to be likely to use your new feature and to perform the impacted metrics, independent of the launch.
 
 Propensity score methods control for self-selection bias by simulating what would occur in a hypothetical, randomized A/B test.
 
 Propensity scores are estimated using L2-regularized logistic regression. Features are selected via chi-square feature selection, zero-imputed for missing values, and users without any feature data are excluded.
 
-To learn more about Causal Impact in detail, read this [Mixpanel Whitepaper](https://storage.googleapis.com/cdn-mxpnl-com/site_media/pdf/Mixpanel_Causal_Inference_Whitepaper.pdf).
+To learn more about Causal Impact in detail, read this [Mixpanel Whitepaper](https://storage.googleapis.com/cdn-mxpnl-com/site_media/pdf/Mixpanel_Causal_Inference_Whitepaper.pdf).
 
-Click **View Causal Impact** to use the propensity matching model.
+Click **View Causal Impact** to use the propensity matching model.
+
+![/Screen_Shot_2020-01-10_at_11.19.41_AM.png](/Screen_Shot_2020-01-10_at_11.19.41_AM.png)
 
 Please note that Causal Impact can take up to a few minutes to calculate results. Causal Impact requires at least 200 total samples and a minimum of 10 features. Each stratum must contain at least 3 treated (adopter) and 3 control (non-adopter) units.
 
@@ -203,13 +211,13 @@ Please note that Causal Impact can take up to a few minutes to calculate results
 
 Propensity score stratification addresses self-selection bias by comparing adopters and non-adopters who are equally as likely to perform the launch event.
 
-Users are broken into 10 subclasses after the propensity matching model runs. The 10 subclasses are deciles based on the logit of the estimated propensity score, and weights across subclasses are based on subclass size. Each subclass contains adopters and non-adopters that have a similar likelihood of performing the launch event.  Mixpanel determines the rate at which the adopters and non-adopters performed the impacted metric, and calculates the difference for each subgroup.
+Users are broken into 10 subclasses after the propensity matching model runs. The 10 subclasses are deciles based on the logit of the estimated propensity score, and weights across subclasses are based on subclass size. Each subclass contains adopters and non-adopters that have a similar likelihood of performing the launch event.  Mixpanel determines the rate at which the adopters and non-adopters performed the impacted metric, and calculates the difference for each subgroup.
 
-Lastly, we average those values across all 10 subclasses to produce the Average Treatment Effect, or ATE.  The ATE indicates, on average across all users, how many more or less times per day the newly launched feature led to users to performing the impacted metric.
+Lastly, we average those values across all 10 subclasses to produce the Average Treatment Effect, or ATE.  The ATE indicates, on average across all users, how many more or less times per day the newly launched feature led to users to performing the impacted metric.
 
 ### Causal Impact Chart
 
-The Causal Impact chart plots the ATE on each Impacted Metric.  The dark line shows the ATE, and the surrounding box shows the 95% confidence interval bounds of the ATE.
+The Causal Impact chart plots the ATE on each Impacted Metric.  The dark line shows the ATE, and the surrounding box shows the 95% confidence interval bounds of the ATE.
 
 When the confidence interval does not include 0, it indicates that the positive or negative effect of the launch event is statistically significant.
 
@@ -219,7 +227,7 @@ The Causal Impact Table provides additional detail on the treatment effects on t
 
 For each impacted metric, the table displays the ATE, the ATT (the average treatment effect on the treated), the 95% confidence interval (CI) bounds for those, and the number of adopters and non-adopters in the calculation.
 
-Click the caret to expand the impacted metric row into the 10 subclasses considered.  For each subclass, Mixpanel displays the number of matched adopters in the subclass, number of matched non-adopters in the subclass, and the [rates at which each performed the impacted metric](../../../../../docs/reports/apps/impact/).  The Delta column shows the difference between those rates.
+Click the caret to expand the impacted metric row into the 10 subclasses considered.  For each subclass, Mixpanel displays the number of matched adopters in the subclass, number of matched non-adopters in the subclass, and the [rates at which each performed the impacted metric](./impact.md).  The Delta column shows the difference between those rates.
 
 Note that these values can differ from those reported in the Adoption and Impact Trends charts because Causal Impact only considers users that can be found to have similar propensity to perform the launch event to other users.
 

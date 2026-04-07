@@ -4,51 +4,47 @@
 
 Installing Mixpanel is easy. This guide will show you how to do it with our SDKs.
 
-Already collect product data? Connect your [**Data Warehouse**](../../../../docs/tracking-methods/warehouse-connectors/) or via [**3rd Party Integrations**](../../../../docs/tracking-methods/integrations/).
+Already collect product data? Connect your
+**[Data Warehouse](../tracking-methods/warehouse-connectors.md)** or via
+**[3rd Party Integrations](../tracking-methods/integrations.md)**.
 
 ## Code
 
-Choose from the methods below. Not sure how to choose? [Read our guide](../../../../docs/tracking-methods/choosing-the-right-method/).
+Choose from the methods below. Not sure how to choose? [Read our guide](../tracking-methods/choosing-the-right-method.md).
 
-{/\* TABS \*/}
+{/* TABS */}
 
 {% tabs %}
 {% tab title="Javascript" %}
-**Install the SDK**
+##### Install the SDK
 
 {% tabs %}
 {% tab title="snippet" %}
-````html
+```html
 	<!-- Paste this right before your closing </head> tag -->
 	<script type="text/javascript">
 	  (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split( " "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for ( var d = {}, e = ["get_group"].concat( Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
 	</script>
 	```
+{% endtab %}
 
-</div>
-
-<div data-gb-custom-block data-tag="tab" data-title='npm'>
-
+{% tab title="npm" %}
 ```text
 	npm install --save mixpanel-browser
 	```
+{% endtab %}
 
-</div>
-
-<div data-gb-custom-block data-tag="tab" data-title='yarn'>
-
+{% tab title="yarn" %}
 ```text
 	yarn add mixpanel-browser
 	```
+{% endtab %}
 
-</div>
-
-</div>
-
+{% endtabs %}
 ##### Configure the SDK
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
 
-You can learn more about configuring Session Replay and Heatmaps [here](/docs/tracking-methods/sdks/javascript/javascript-replay).
+You can learn more about configuring Session Replay and Heatmaps [here](../tracking-methods/sdks/javascript/javascript-replay.md).
 
 ```js Javascript
 //Import Mixpanel SDK (only required for npm and yarn)
@@ -62,55 +58,46 @@ mixpanel.init("YOUR_TOKEN", {
   record_sessions_percent: 100, //records 100% of all sessions
   record_heatmap_data: true,
 });
-````
+```
 {% endtab %}
 
 {% tab title="Python" %}
-**Install the SDK**
-
-```shell
+##### Install the SDK
+```shell Python
 pip install mixpanel
 ```
-
-**Configure the SDK**
-
+##### Configure the SDK
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
-
-```python
+```python Python
 from mixpanel import Mixpanel
 
 mp = Mixpanel("YOUR_TOKEN")
 
-```
+````
+{% endtab %}
 
-\{% endtab %\}
-
-\{% tab title="PHP" %\}
-
-**Install the SDK**
+{% tab title="PHP" %}
+##### Install the SDK
 
 **Install with Composer**
 
 1. Add mixpanel/mixpanel-php as a dependency and run composer update:
 
-```shell
+```shell php
 "require": {
     ...
     "mixpanel/mixpanel-php" : "2.*"
     ...
 }
 ```
-
 **Install Manually**
 
 1. [Download the Mixpanel PHP Library](https://github.com/mixpanel/mixpanel-php/archive/master.zip)
 2. Extract the zip file to a directory called "mixpanel-php" in your project root
 
-**Configure the SDK**
-
+##### Configure the SDK
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
-
-```shell
+```shell php
 <?php
 // import Mixpanel
 require 'mixpanel-php/lib/Mixpanel.php';
@@ -119,23 +106,20 @@ require 'mixpanel-php/lib/Mixpanel.php';
 $mp = Mixpanel::getInstance("YOUR_TOKEN");
 
 ?>
-```
+````
+{% endtab %}
 
-\{% endtab %\}
-
-\{% tab title="Node.js" %\}
-
-**Install the SDK**
-
-```shell
+{% tab title="Node.js" %}
+##### Install the SDK
+```shell Node.js
 npm install mixpanel
-```
+````
 
-**Configure the SDK**
+##### Configure the SDK
 
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
 
-```js
+```js Node.js
 // Grab the Mixpanel factory
 var Mixpanel = require("mixpanel");
 
@@ -145,17 +129,13 @@ var mixpanel = Mixpanel.init("YOUR_TOKEN");
 {% endtab %}
 
 {% tab title="Go" %}
-**Install the SDK**
-
-```shell
+##### Install the SDK
+```shell Go
 go get github.com/mixpanel/mixpanel-go
 ```
-
-**Configure the SDK**
-
+##### Configure the SDK
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
-
-```shell
+```shell Go
 package main
 
 import (
@@ -168,23 +148,20 @@ ctx := context.Background()
 mp := mixpanel.NewApiClient("YOUR_TOKEN")
 }
 
-```
+````
+{% endtab %}
 
-\{% endtab %\}
-
-\{% tab title="Ruby" %\}
-
-**Install the SDK**
-
-```shell
+{% tab title="Ruby" %}
+##### Install the SDK
+```shell Ruby
 gem install mixpanel-ruby
-```
+````
 
-**Configure the SDK**
+##### Configure the SDK
 
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
 
-```ruby
+```ruby Ruby
 require 'mixpanel-ruby'
 
 mp = Mixpanel::Tracker.new(YOUR_TOKEN)
@@ -192,9 +169,8 @@ mp = Mixpanel::Tracker.new(YOUR_TOKEN)
 {% endtab %}
 
 {% tab title="Java" %}
-**Install the SDK**
-
-```xml
+##### Install the SDK
+```xml Java
 <!--Include the following in your project's pom.xml-->
 <dependency>
   <groupId>com.mixpanel</groupId>
@@ -202,12 +178,9 @@ mp = Mixpanel::Tracker.new(YOUR_TOKEN)
   <version>1.4.4</version>
 </dependency>
 ```
-
-**Configure the SDK**
-
+##### Configure the SDK
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
-
-```java
+```java Java
 //Import Mixpanel API
 import com.mixpanel.mixpanelapi.MessageBuilder;
 import com.mixpanel.mixpanelapi.MixpanelAPI;
@@ -221,8 +194,7 @@ MessageBuilder messageBuilder = new MessageBuilder('YOUR_TOKEN');
 {% endtab %}
 
 {% tab title="React Native" %}
-**Install the SDK**
-
+##### Install the SDK
 Under your app's root directory, run:
 
 ```
@@ -237,14 +209,11 @@ Under your application's iOS folder, run:
 
 pod install
 
-```
+````
 
 Note: For XCode 12.5+, there is a known compile issue, please refer to this [workaround](https://github.com/mixpanel/mixpanel-react-native/issues/43#issuecomment-829599732).
-
-**Configure the SDK**
-
+##### Configure the SDK
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
-
 ```javascript
 //Import Mixpanel API
 import { Mixpanel } from "mixpanel-react-native";
@@ -253,21 +222,18 @@ import { Mixpanel } from "mixpanel-react-native";
 const trackAutomaticEvents = false;
 const mixpanel = new Mixpanel("YOUR_TOKEN", trackAutomaticEvents);
 mixpanel.init();
-```
+````
+{% endtab %}
 
-\{% endtab %\}
-
-\{% tab title="Flutter" %\}
-
-**Install the SDK**
-
+{% tab title="Flutter" %}
+##### Install the SDK
 Add `mixpanel_flutter: ^2.0.0` to your package's pubspec.yaml file and run:
 
 ```
 flutter pub get
 ```
 
-**Configure the SDK**
+##### Configure the SDK
 
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
 
@@ -291,26 +257,30 @@ class _YourClassState extends State<YourClass> {
 {% endtab %}
 
 {% tab title="iOS (Objective-C)" %}
-**Install the SDK**
-
+##### Install the SDK
 {% tabs %}
 {% tab title="Swift Package Manager" %}
-Note: Swift Package Manager requires Xcode 12+ 1. In Xcode, select File > Swift Packages > Add Package Dependency. 2. Follow the prompts using the URL for this repository and must select a version greater than or equal to v4.0.0
+Note: Swift Package Manager requires Xcode 12+ 1. In Xcode, select File >
+  Swift Packages > Add Package Dependency. 2. Follow the prompts using the URL
+  for this repository and must select a version greater than or equal to v4.0.0
 {% endtab %}
 
 {% tab title="Cocoapods" %}
-1. Create a Podfile in your Xcode project directory by running `pod init` in your terminal, edit the Podfile generated, and add the following line: `pod 'Mixpanel'`. 2. Run `pod install` in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in your terminal.
+1. Create a Podfile in your Xcode project directory by running `pod init` in
+  your terminal, edit the Podfile generated, and add the following line: `pod
+  'Mixpanel'`. 2. Run `pod install` in your Xcode project directory. CocoaPods
+  should download and install the Mixpanel library, and create a new Xcode
+  workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in
+  your terminal.
 {% endtab %}
 
 {% tab title="Carthage" %}
 Add `github "mixpanel/mixpanel-iphone"` to your Cartfile.
 {% endtab %}
+
 {% endtabs %}
-
-**Configure the SDK**
-
+##### Configure the SDK
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
-
 ```objc
 #import "Mixpanel/Mixpanel.h"
 
@@ -322,30 +292,29 @@ Replace `YOUR_TOKEN` with your project token. You can find your token [here](htt
   ...
   }
 
-```
+````
+{% endtab %}
 
-\{% endtab %\}
-
-\{% tab title="iOS (Swift)" %\}
-
-**Install the SDK**
-
-\{% tabs %\} \{% tab title="Swift Package Manager" %\} Note: Swift Package Manager requires Xcode 12+
-
+{% tab title="iOS (Swift)" %}
+##### Install the SDK
+{% tabs %}
+{% tab title="Swift Package Manager" %}
+Note: Swift Package Manager requires Xcode 12+
 1. In Xcode, select File > Swift Packages > Add Package Dependency.
-2. Paste the URL `https://github.com/mixpanel/mixpanel-swift` and a minimum semantic version of v2.8.0. \{% endtab %\}
+2. Paste the URL `https://github.com/mixpanel/mixpanel-swift` and a minimum semantic version of v2.8.0.
+{% endtab %}
 
-\{% tab title="Cocoapods" %\}
+{% tab title="Cocoapods" %}
+1. Create a Podfile in your Xcode project directory by running `pod init` in your terminal, edit the Podfile generated, and add the following line: `pod 'Mixpanel-swift'`.
+2. Run `pod install` in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in your terminal.
+{% endtab %}
 
-1. Create a Podfile in your Xcode project directory by running `pod init` in your terminal, edit the Podfile generated, and add the following line: `pod 'Mixpanel-swift'`.
-2. Run `pod install` in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in your terminal. \{% endtab %\}
+{% tab title="Carthage" %}
+Add `github "mixpanel/mixpanel-swift"` to your Cartfile.
+{% endtab %}
 
-\{% tab title="Carthage" %\} Add `github "mixpanel/mixpanel-swift"` to your Cartfile. \{% endtab %\}
-
-\{% endtabs %\}
-
-**Configure the SDK**
-
+{% endtabs %}
+##### Configure the SDK
 1. Import Mixpanel into `AppDelegate.swift`
 2. Initialize Mixpanel within `application:didFinishLaunchingWithOptions` as seen below
 
@@ -361,17 +330,15 @@ func application(_ application: UIApplication,
     Mixpanel.initialize(token: "YOUR_TOKEN", trackAutomaticEvents: false)
     ...
 }
-```
+````
+{% endtab %}
 
-\{% endtab %\}
-
-\{% tab title="Android" %\}
-
-**Install the SDK**
-
+{% tab title="Android" %}
+##### Install the SDK
 Add `implementation 'com.mixpanel.android:mixpanel-android:7.+'` as a dependency to your `build.gradle` file.
 
-Once you've updated `build.gradle`, you can force Android Studio to sync with your new configuration by clicking the Sync Project with Gradle Files icon at the top of the window: ![Sync Android With Gradle](https://storage.googleapis.com/cdn-mxpnl-com/static/readme/android-sync-gradle.png)
+Once you've updated `build.gradle`, you can force Android Studio to sync with your new configuration by clicking the Sync Project with Gradle Files icon at the top of the window:
+![Sync Android With Gradle](https://storage.googleapis.com/cdn-mxpnl-com/static/readme/android-sync-gradle.png)
 
 If it cannot find the dependency, you should make sure you've specified `mavenCentral()` as a repository in `build.gradle`.
 
@@ -388,7 +355,7 @@ Next, add the following permissions in your AndroidManifest.xml:
 <uses-permission android:name="android.permission.BLUETOOTH" />
 ```
 
-**Configure the SDK**
+##### Configure the SDK
 
 Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
 
@@ -412,19 +379,21 @@ public class MainActivity extends ActionBarActivity {
 {% endtab %}
 
 {% tab title="Unity" %}
-**Install the SDK**
-
+##### Install the SDK
 Add `https://github.com/mixpanel/mixpanel-unity.git#master` to the dependencies section of `com.mixpanel.unity`.
 
 Alternatively, you can download and install the .unitypackage file from our [releases page](https://github.com/mixpanel/mixpanel-unity/releases).
 
-**Configure the SDK**
+##### Configure the SDK
 
-To initialize the library, first open the unity project settings menu for Mixpanel. (Edit -> Project Settings -> Mixpanel) Then, enter your project token into the Token and Debug Token input fields within the inspector. You can find your token [here](https://mixpanel.com/settings/project).
+To initialize the library, first open the unity project settings menu for Mixpanel. (Edit -> Project Settings -> Mixpanel)
+Then, enter your project token into the Token and Debug Token input fields within the inspector.
+You can find your token [here](https://mixpanel.com/settings/project).
 
-![unity\_screenshots](https://user-images.githubusercontent.com/36679208/152408022-62440f50-04c7-4ff3-b331-02d3d3122c9e.jpg)
+![unity_screenshots](https://user-images.githubusercontent.com/36679208/152408022-62440f50-04c7-4ff3-b331-02d3d3122c9e.jpg)
 
-Note: If you prefer to initialize Mixpanel manually, you can select the `Manual Initialization` in the settings and call `Mixpanel.Init()` to initialize.
+Note: If you prefer to initialize Mixpanel manually, you can select the `Manual Initialization` in the settings and
+call `Mixpanel.Init()` to initialize.
 
 To use mixpanel, add the following sample code to a part of your application:
 
@@ -436,42 +405,169 @@ You're
 {% endtab %}
 
 {% tab title="HTTP API" %}
-**Install the SDK**
+##### Install the SDK
 
-No install required
+  No install required
 
-Using the HTTP API does not require an installation. **You're ready to move to the next step.**
+Using the HTTP API does not require an installation. **You're ready to move to the
+next step.**
 {% endtab %}
+
 {% endtabs %}
 
-{/\* Next Section \*/}
+{/* Next Section */}
 
-## Integration / Framework Guides
+# Integration / Framework Guides
 
-<table data-view="cards"><thead><tr><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td><strong>Segment</strong></td><td><a href="../../../../docs/tracking-methods/integrations/segment/">segment</a></td><td></td></tr><tr><td><strong>Google Tag Manager</strong></td><td><a href="../../../../docs/tracking-methods/integrations/google-tag-manager/">google-tag-manager</a></td><td></td></tr><tr><td><strong>Ad Spend</strong></td><td><a href="../../../../docs/tracking-methods/integrations/ad-spend/">ad-spend</a></td><td></td></tr><tr><td><strong>Amazon S3</strong></td><td><a href="../../../../docs/tracking-methods/integrations/amazon-s3/">amazon-s3</a></td><td></td></tr><tr><td><strong>Amazon Kafka</strong></td><td><a href="../../../../docs/tracking-methods/integrations/aws-kafka/">aws-kafka</a></td><td></td></tr><tr><td><strong>CMS &#x26; E-Commerce</strong></td><td><a href="../../../../docs/tracking-methods/integrations/cms-ecommerce/">cms-ecommerce</a></td><td></td></tr><tr><td><strong>Customer.io</strong></td><td><a href="https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel&#x26;utm_medium=partner">https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel&#x26;utm_medium=partner</a></td><td></td></tr><tr><td><strong>Freshpaint</strong></td><td><a href="../../../../docs/tracking-methods/integrations/freshpaint/">freshpaint</a></td><td></td></tr><tr><td><strong>Google Cloud Storage</strong></td><td><a href="../../../../docs/tracking-methods/integrations/google-cloud-storage/">google-cloud-storage</a></td><td></td></tr><tr><td><strong>Google Pubsub</strong></td><td><a href="../../../../docs/tracking-methods/integrations/google-pubsub/">google-pubsub</a></td><td></td></tr><tr><td><strong>Google Sheets</strong></td><td><a href="../../../../docs/tracking-methods/integrations/google-sheets/">google-sheets</a></td><td></td></tr><tr><td><strong>Langfuse</strong></td><td><a href="../../../../docs/tracking-methods/integrations/langfuse/">langfuse</a></td><td></td></tr><tr><td><strong>LaunchDarkly</strong></td><td><a href="../../../../docs/tracking-methods/integrations/launchdarkly/">launchdarkly</a></td><td></td></tr><tr><td><strong>mParticle</strong></td><td><a href="../../../../docs/tracking-methods/integrations/mparticle/">mparticle</a></td><td></td></tr><tr><td><strong>Next.js</strong></td><td><a href="../../../../docs/tracking-methods/integrations/nextjs/">nextjs</a></td><td></td></tr><tr><td><strong>Mobile Attribution Tracking</strong></td><td><a href="../../../../docs/tracking-methods/integrations/mobile-attribution-tracking/">mobile-attribution-tracking</a></td><td></td></tr><tr><td><strong>Rudderstack</strong></td><td><a href="../../../../docs/tracking-methods/integrations/rudderstack/">rudderstack</a></td><td></td></tr><tr><td><strong>Shopify</strong></td><td><a href="../../../../docs/tracking-methods/integrations/shopify/">shopify</a></td><td></td></tr><tr><td><strong>Vendo for Shopify</strong></td><td><a href="https://apps.shopify.com/vendo?utm_source=mixpanel&#x26;utm_medium=partner">https://apps.shopify.com/vendo?utm_source=mixpanel&#x26;utm_medium=partner</a></td><td></td></tr><tr><td><strong>Snowplow</strong></td><td><a href="../../../../docs/tracking-methods/integrations/snowplow/">snowplow</a></td><td></td></tr><tr><td><strong>Stripe</strong></td><td><a href="../../../../docs/tracking-methods/integrations/stripe/">stripe</a></td><td></td></tr><tr><td><strong>Tealium</strong></td><td><a href="../../../../docs/tracking-methods/integrations/tealium/">tealium</a></td><td></td></tr></tbody></table>
+<table data-view="cards">
+  <thead>
+    <tr>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Segment</strong></td>
+      <td><a href="../tracking-methods/integrations/segment.md">../tracking-methods/integrations/segment.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Google Tag Manager</strong></td>
+      <td><a href="../tracking-methods/integrations/google-tag-manager.md">../tracking-methods/integrations/google-tag-manager.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Ad Spend</strong></td>
+      <td><a href="../tracking-methods/integrations/ad-spend.md">../tracking-methods/integrations/ad-spend.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Amazon S3</strong></td>
+      <td><a href="../tracking-methods/integrations/amazon-s3.md">../tracking-methods/integrations/amazon-s3.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Amazon Kafka</strong></td>
+      <td><a href="../tracking-methods/integrations/aws-kafka.md">../tracking-methods/integrations/aws-kafka.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>CMS &amp; E-Commerce</strong></td>
+      <td><a href="../tracking-methods/integrations/cms-ecommerce.md">../tracking-methods/integrations/cms-ecommerce.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Customer.io</strong></td>
+      <td><a href="https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel&amp;amp;utm_medium=partner">https://customer.io/docs/cdp/destinations/connections/mixpanel?utm_source=mixpanel&amp;utm_medium=partner</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Freshpaint</strong></td>
+      <td><a href="../tracking-methods/integrations/freshpaint.md">../tracking-methods/integrations/freshpaint.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Google Cloud Storage</strong></td>
+      <td><a href="../tracking-methods/integrations/google-cloud-storage.md">../tracking-methods/integrations/google-cloud-storage.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Google Pubsub</strong></td>
+      <td><a href="../tracking-methods/integrations/google-pubsub.md">../tracking-methods/integrations/google-pubsub.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Google Sheets</strong></td>
+      <td><a href="../tracking-methods/integrations/google-sheets.md">../tracking-methods/integrations/google-sheets.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Langfuse</strong></td>
+      <td><a href="../tracking-methods/integrations/langfuse.md">../tracking-methods/integrations/langfuse.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>LaunchDarkly</strong></td>
+      <td><a href="../tracking-methods/integrations/launchdarkly.md">../tracking-methods/integrations/launchdarkly.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>mParticle</strong></td>
+      <td><a href="../tracking-methods/integrations/mparticle.md">../tracking-methods/integrations/mparticle.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Next.js</strong></td>
+      <td><a href="../tracking-methods/integrations/nextjs.md">../tracking-methods/integrations/nextjs.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Mobile Attribution Tracking</strong></td>
+      <td><a href="../tracking-methods/integrations/mobile-attribution-tracking.md">../tracking-methods/integrations/mobile-attribution-tracking.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Rudderstack</strong></td>
+      <td><a href="../tracking-methods/integrations/rudderstack.md">../tracking-methods/integrations/rudderstack.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Shopify</strong></td>
+      <td><a href="../tracking-methods/integrations/shopify.md">../tracking-methods/integrations/shopify.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Vendo for Shopify</strong></td>
+      <td><a href="https://apps.shopify.com/vendo?utm_source=mixpanel&amp;amp;utm_medium=partner">https://apps.shopify.com/vendo?utm_source=mixpanel&amp;utm_medium=partner</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Snowplow</strong></td>
+      <td><a href="../tracking-methods/integrations/snowplow.md">../tracking-methods/integrations/snowplow.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Stripe</strong></td>
+      <td><a href="../tracking-methods/integrations/stripe.md">../tracking-methods/integrations/stripe.md</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Tealium</strong></td>
+      <td><a href="../tracking-methods/integrations/tealium.md">../tracking-methods/integrations/tealium.md</a></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
 
-{/\* Next Section \*/}
+{/* Next Section */}
 
-***
+<hr></hr>
+<div class="bg-base100 rounded-xl">
+    <h2 class="text-2xl font-medium mb-2 color:bg-purple200">
+      Next: Identify Your Users
+    </h2>
+    <p>
+      With Mixpanel installed, you’re now ready to identify the users who use
+      your product.
+    </p>
+    <a href="./identify-users.md" class="button primary">Identify Your Users</a>
 
-### Next: Identify Your Users
+## FAQ
 
-With Mixpanel installed, you’re now ready to identify the users who use your product.
-
-<a href="../../../../docs/quickstart/identify-users/" class="button primary">Identify Your Users</a>
-
-### FAQ
+<div class="faqComponent" >
 
 <details>
-
 <summary>Does Mixpanel automatically track page views?</summary>
 
-Yes, if you pass `track_pageview: true` in the `mixpanel.init()` call, Mixpanel will automatically track a "Page View" event every time a new page is loaded. Learn more [here](../../../../docs/tracking-methods/sdks/javascript/#tracking-page-views).
-
+Yes, if you pass `track_pageview: true` in the `mixpanel.init()` call,
+  Mixpanel will automatically track a "Page View" event every time a new page is
+  loaded. Learn more
+  [here](../tracking-methods/sdks/javascript.md#tracking-page-views).
 </details>
 
 <details>
-
 <summary>What are the recommended web configuration options?</summary>
 
 When tracking on web, we recommend using localStorage, as this is more reliable:
@@ -481,25 +577,26 @@ mixpanel.set_config({ persistence: "localStorage" });
 ```
 
 Please note that cross-subdomain tracking is not possible when using local storage. If your implementation requires cross-subdomain tracking, remove the persistence flag and use the default "cookie" persistence option.
-
 </details>
 
 <details>
-
 <summary>Does Mixpanel use third-party cookies?</summary>
 
-No, our Mixpanel JavaScript SDK does not set or use any third-party cookies. If you wish to disable cookies entirely, you can set the disable\_persistence option to true when initializing your Mixpanel JS instance. Note that disabling persistence will disable the use of super properties and anonymous -> identified user tracking.
-
+No, our Mixpanel JavaScript SDK does not set or use any third-party cookies.
+  If you wish to disable cookies entirely, you can set the disable_persistence
+  option to true when initializing your Mixpanel JS instance. Note that
+  disabling persistence will disable the use of super properties and anonymous
+  -> identified user tracking.
 </details>
 
 <details>
-
 <summary>How can I track in a privacy compliant way?</summary>
 
-If a user opts out of tracking, you can call the `.optOutTracking()` method on any of our client-side SDKs; this prevents any subsequent data being tracked from that user's device. Learn more [here](../../../../docs/privacy/protecting-user-data/).
+If a user opts out of tracking, you can call the `.optOutTracking()` method on any of our 
+  client-side SDKs; this prevents any subsequent data being tracked from that user's device. 
+  Learn more [here](../privacy/protecting-user-data.md).
 
-For iOS specifically: Mixpanel does not use IDFA, so it does not require user permission through the AppTrackingTransparency(ATT) framework. For more details, refer to our [Apple App Developer Privacy Guidance](https://mixpanel.com/legal/app-store-privacy-details).
-
+For iOS specifically: Mixpanel does not use IDFA, so it does not require user permission
+through the AppTrackingTransparency(ATT) framework. For more details, refer to our
+[Apple App Developer Privacy Guidance](https://mixpanel.com/legal/app-store-privacy-details).
 </details>
-{% endtab %}
-{% endtabs %}

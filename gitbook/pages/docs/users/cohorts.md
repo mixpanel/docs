@@ -1,9 +1,8 @@
-# Cohorts
+# Cohorts: Group users by demographic and behavior
 
 Cohorts are groups of users that share a certain set of properties or who perform a similar sequence of events. Mixpanel lets you visually define cohorts, view the list of users that comprise them, compare them in your analysis, and share them with the rest of your company.
 
 Here are some examples of cohorts you can create in Mixpanel:
-
 * US Users: Users who are from the US
 * New Users: Users who signed up in the past month
 * Power Users: Users who used your app on 5 out of the last 7 days
@@ -11,68 +10,82 @@ Here are some examples of cohorts you can create in Mixpanel:
 
 ## Creating Cohorts
 
-You can create cohorts via any of our report visualizations or explicitly using the cohort builder.
+You can create cohorts via any of our report visualizations or explicitly using the cohort builder. 
 
 ### Creating a Cohort via a Report
-
 Click any bar or point in an Insights, Funnels, or Retention report and select "View Users". The side panel will show the list of users that belong to that bar or point you selected. You can save that group of users as a cohort.
 
 ### Creating a Cohort via the Cohort Builder
-
 The [Cohort Builder](https://mixpanel.com/report/users) lets you define cohorts based on a precise set of conditions. These conditions are either of the form "Users who did `<event>` more/less than `<some threshold>`" or "Users where `<profile property>` is equal to/more/less than `<value>`". You can save these conditions as the definition for your Cohort.
-
-Below are a few examples:
+ 
+Below are a few examples: 
 
 **Filter by users who watched more than 10 videos in the last 7 days**
 
+![/cohort_example_1.gif](/cohort_example_1.gif)
+
 **Filter to only users who watched a video for the very first time in the past 30 days**
 
+![/cohort_example_2.gif](/cohort_example_2.gif)
+
 **Chaining cohorts together using the AND/OR operators**
+
+![/cohort_example_3.gif](/cohort_example_3.gif)
 
 You can also access the builder directly from the query builder in any of our reports, by clicking Create Custom > Cohort. This will create a temporary cohort that only persists for your analysis session.
 
 #### Note on cohorts whose filters contain user properties
-
 Because user profile properties only store the most recent value, cohorts involving user profile properties will use the current value for those properties (even if the value changed over time).
 
-For example, suppose the cohort’s filter criteria is: users where user\[“City”] == “SF” and “Did Event: Order Ride 3 times in Last 7 days”.
+For example, suppose the cohort’s filter criteria is: users where user[“City”] == “SF” and “Did Event: Order Ride 3 times in Last 7 days”.
 
-Mixpanel computes the above over the last 30 days and then groups the set of users who have property user\[“City”] == “SF” as of right now and intersect that with the daily cohort of users who did Order Ride 3 times in the last 7 days.
+Mixpanel computes the above over the last 30 days and then groups the set of users who have property user[“City”] == “SF” as of right now and intersect that with the daily cohort of users who did Order Ride 3 times in the last 7 days.
 
 ### Creating a Cohort via Lexicon
-
-Cohorts can also be created and managed in [Lexicon](../../../../docs/data-governance/lexicon/). In Lexicon, you can see all your saved cohorts alongside your other saved definitions like metrics, custom events, and custom properties.
+Cohorts can also be created and managed in [Lexicon](../data-governance/lexicon.md). In Lexicon, you can see all your saved cohorts alongside your other saved definitions like metrics, custom events, and custom properties.
 
 ### Creating a Cohort with Changing User Properties
-
 With historical user or group properties, you can optionally Add Time and Measurement to specify the time-range over which to search for the property value
 
+![image](/historical_cohort_1.webp)
+ 
 This brings up time selector options.
+
+![image](/historical_cohort_2.webp)
 
 To go back to the default of using the latest value of the historical property, you can Remove Time and Measurement.
 
+![image](/historical_cohort_3.webp)
+
 ### Creating a Cohort via a CSV
 
-You can create a Cohort by uploading a CSV. This method is useful when grouping Mixpanel users who cannot be easily identified through specific behaviors or user properties. (e.g. when you have a list of distinct\_ids to include in a Cohort and they were randomly selected)
+You can create a Cohort by uploading a CSV. This method is useful when grouping Mixpanel users who cannot be easily identified through specific behaviors or user properties. (e.g. when you have a list of distinct_ids to include in a Cohort and they were randomly selected)
 
-We will [use the CSV to update users in bulk](../../../../docs/data-structure/user-profiles/#bulk-import-from-csv) by adding a user property that indicates their Cohort membership. Afterward, we will use this property to define the Cohort.
+We will [use the CSV to update users in bulk](../data-structure/user-profiles.md#bulk-import-from-csv) by adding a user property that indicates their Cohort membership. Afterward, we will use this property to define the Cohort.
 
-For example, if you have a list of 1,000 distinct\_id values to group into a Cohort, create a CSV file with two columns: one containing the distinct\_id values and another containing a user property value that identifies cohort membership (e.g. `inCohort == "yes"`). Exclude column headers from the CSV, as you will define them during the upload process in the CSV upload wizard within the UI.
+For example, if you have a list of 1,000 distinct_id values to group into a Cohort, create a CSV file with two columns: one containing the distinct_id values and another containing a user property value that identifies cohort membership (e.g. `inCohort == "yes"`). Exclude column headers from the CSV, as you will define them during the upload process in the CSV upload wizard within the UI.
+
+![cohort_csv1.png](/cohort_csv1.png)
 
 After you create the CSV, go to the **Users** tab, click **Add/Edit Profile**, select **Import from CSV**, and upload your file.
 
-Next, define the property names for each column in the CSV uploaded. Assign "$distinct\_id" as the property name for the column containing the distinct\_id values, and choose a property name for the column containing the user property value. Once you verify that the column assignment is correct, click **Import Profiles**.
+![cohort_csv2.png](/cohort_csv2.png)
+
+Next, define the property names for each column in the CSV uploaded. Assign "$distinct_id" as the property name for the column containing the distinct_id values, and choose a property name for the column containing the user property value. Once you verify that the column assignment is correct, click **Import Profiles**.
+
+![cohort_csv3.png](/cohort_csv3.png)
 
 {% hint style="warning" %}
-If your CSV includes a `$distinct_id` value that does not match an existing user in your project, the system will create a new user with that distinct\_id.
+If your CSV includes a `$distinct_id` value that does not match an existing user in your project, the system will create a new user with that distinct_id.
 {% endhint %}
 
 Finally, use the newly uploaded user property to define your Cohort.
 
+![cohort_csv4.png](/cohort_csv4.png)
+
 Note that Cohorts created using this method are static; they will not update over time, as the associated user property remains unchanged.
 
 ## Using Cohorts in Analysis
-
 You can visualize how cohorts size over time, use cohorts to filter your reports, or compare how cohorts perform a metric.
 
 ### Visualizing Cohort Size Over Time
@@ -96,14 +109,12 @@ When breaking down metrics by multiple cohorts, events are evaluated independent
 {% endhint %}
 
 Cohorts are computed dynamically at the time that you use them in a query. Suppose you make a funnels report that filters down to the New Users cohort. Under the hood, Mixpanel does the following:
-
 1. Run a query to compute the set of users who are in the cohort as of right now (the time that the query is run).
 2. Run a query to compute the set of users who converted in the funnel, filtering down to the list produced in Step 1.
 
 This has a few implications. First, it means every time you run a query that uses the cohort, the cohort is freshly computed vs being a static snapshot of users. Second, it means that the set of users who are in the cohort are users that are in the cohort as of _right now_; it's _not_ a rolling window of users that have ever been in the cohort.
 
 ### Cohorts and Time
-
 A common question that customers want to answer is how certain user behavior impact downstream behavior. Should you use cohorts or funnels to answer the question of how many users watch a comedy video and then subscribe? Cohorts and filters will give you different answers.
 
 For example, consider this report: [https://mixpanel.com/s/4AuMRi](https://mixpanel.com/s/4AuMRi)
@@ -111,8 +122,7 @@ For example, consider this report: [https://mixpanel.com/s/4AuMRi](https://mixpa
 For the cohort on Jan 1, I'm looking at the users who watched a comedy video in the last 30 days before Dec 25 and who then subscribed over the same period of time. However, for the funnel on Dec 25, I'm looking at the users who watched a comedy video on Dec 25, and who have then also subscribed anytime within the next 30 day period from Dec 25. This means that if a user subsequently subscribes on Jan 3, the funnel chart can change to take that conversion into account. In this case, if you care about the conversion window, i.e. the amount of time that a user has in order to count as a conversion, using funnels would give you a more accurate answer.
 
 ## Manage Your Cohorts
-
-You can view and manage all cohorts created by you or your teammates within your project by navigating to [**Lexicon**](../../../../docs/data-governance/lexicon/) and selecting **Cohorts** from the left-hand sidebar.
+You can view and manage all cohorts created by you or your teammates within your project by navigating to [**Lexicon**](../data-governance/lexicon.md) and selecting **Cohorts** from the left-hand sidebar.
 
 ### Saving and Sharing Cohorts
 
@@ -128,7 +138,7 @@ We recommend sharing a core set of cohorts across your organization to ensure al
 
 ### Exporting Cohorts
 
-You can download the list of users in any Cohort as a CSV via the Cohort Builder. You can also push Cohorts to native 3rd-party destinations like Segment or Braze using [Cohort Sync](../../../../docs/cohort-sync/), or to any other destinations using [Custom Webhooks](../../../../docs/cohort-sync/webhooks/).
+You can download the list of users in any Cohort as a CSV via the Cohort Builder. You can also push Cohorts to native 3rd-party destinations like Segment or Braze using [Cohort Sync](../cohort-sync.md), or to any other destinations using [Custom Webhooks](../cohort-sync/webhooks.md).
 
 ### Deleting Unused Cohorts
 
@@ -138,19 +148,18 @@ You can delete any Cohorts from your project by navigating to **Lexicon > Cohort
 
 ### How can I create cohorts based on dropped-off or retained users?
 
-There are two ways to create such cohorts.
+There are two ways to create such cohorts. 
 
-The first way would be to create a Funnels report and click the respective segments in order to find the retained/dropped-off users. You can then click “View Users”, followed by “Create Cohort”. Here is a Funnels report to play with: https://mixpanel.com/s/8JY6o
+The first way would be to create a Funnels report and click the respective segments in order to find the retained/dropped-off users. You can then click “View Users”, followed by “Create Cohort”. Here is a Funnels report to play with: https://mixpanel.com/s/8JY6o 
 
-The second way would be to use the Users page to create cohorts. For example, if you would like to find users who “watch video” and _then_ “like video”. You can create the cohort in the Users page. Here is the cohort for reference: https://mixpanel.com/project/3187764/view/3699044/app/users#T9bjQw9kLb7c
+The second way would be to use the Users page to create cohorts. For example, if you would like to find users who “watch video” and *then* “like video”. You can create the cohort in the Users page. Here is the cohort for reference: https://mixpanel.com/project/3187764/view/3699044/app/users#T9bjQw9kLb7c
 
 If you would like to find those who have dropped off, you could switch “did” to “did not do”. Here is the cohort for reference: https://mixpanel.com/project/3187764/view/3699044/app/users#Umm8E4JZxLSe
 
-### I created two cohorts, Cohort AA: for users watched videos the last 30 days, and Cohort B: for users who liked videos in the last 30 days. I want to find out the users who did not watch videos AND did not like videos in the last 30 days. How do I create such a cohort?
+### I created two cohorts, Cohort AA: for users watched videos the last 30 days, and Cohort B: for users who liked videos in the last 30 days. I want to find out the users who did not watch videos AND did not like videos in the last 30 days. How do I create such a cohort? 
 
-You can do so by using the “AND” operator. Here is a cohort for reference: https://mixpanel.com/project/3187764/view/3699044/app/users#Tc76sqFRzbao
+You can do so by using the “AND” operator. Here is a cohort for reference: https://mixpanel.com/project/3187764/view/3699044/app/users#Tc76sqFRzbao 
 
 If you were to select multiple cohorts in the filter ([example](https://mixpanel.com/project/3187764/view/3699044/app/users#wPx5FmFoiHtD)), we will filter by cohort A OR cohort B. Therefore, it is still possible for the following cases to occur:
-
-* User is not in Cohort A (fulfils the criteria), but is in Cohort B
-* User is not in Cohort B (fulfils the criteria), but is in Cohort A
+- User is not in Cohort A (fulfils the criteria), but is in Cohort B
+- User is not in Cohort B (fulfils the criteria), but is in Cohort A

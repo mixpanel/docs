@@ -1,8 +1,8 @@
-# Flutter
+# Mixpanel SDKs: Flutter
 
 ## Getting Started
 
-Please refer to our [Quickstart Guide](../../../../../docs/quickstart/connect-your-data).
+Please refer to our [Quickstart Guide](../../quickstart/connect-your-data?sdk=flutter.md).
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-flutter), [Library Source Code](https://github.com/mixpanel/mixpanel-flutter), and an [Example Application](https://github.com/mixpanel/mixpanel-flutter/tree/main/example) is documented in our GitHub repo.
 
@@ -23,7 +23,7 @@ Once you added the library to your dependencies, use the command line to install
 $ flutter pub get
 ```
 
-After the installation, import the package in your Dart code, then initialize the SDK with the [`Mixpanel.init()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/init.html) using your [project token](../../../../../docs/orgs-and-projects/managing-projects/#find-your-project-tokens).
+After the installation, import the package in your Dart code, then initialize the SDK with the [`Mixpanel.init()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/init.html) using your [project token](../../orgs-and-projects/managing-projects.md#find-your-project-tokens).
 
 ```dart
 // import the library
@@ -59,7 +59,7 @@ Add the following snippet to your `web/index.html` inside the `<head></head>` ta
 ### Library Configuration
 
 {% hint style="warning" %}
-For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](../../../../../docs/tracking-methods/sdks/flutter/#privacy-friendly-tracking).
+For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](./flutter.md#privacy-friendly-tracking).
 {% endhint %}
 
 The Mixpanel instance can be customized with different configurations. The [`Mixpanel.init()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/init.html) method accepts arguments that sets some configurations on your instance upon initialization.
@@ -87,7 +87,6 @@ The [/track endpoint](https://developer.mixpanel.com/reference/track-event) will
 {% endhint %}
 
 **Example Usage**
-
 ```dart
 //Track 'some_event' with "plan" event prop
 mixpanel.track('some_event', {'plan': 'premium'});
@@ -114,7 +113,6 @@ To preserve battery life and customer bandwidth, the Mixpanel library doesn’t 
 Call [`.flush()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/flush.html) manually if you want to force a flush at a particular moment.
 
 **Example Usage**
-
 ```dart
 // flush batched events for ingestion immediately
 mixpanel.flush();
@@ -124,7 +122,7 @@ mixpanel.flush();
 
 The Flutter SDK is a tracking SDK designed for real-time tracking in a client-side environment. Calling `.track()` triggers a request to our [/track API endpoint](https://developer.mixpanel.com/reference/track-event), which will validate for events with a timestamp that is within the last 5 days of the request. **Events older than 5 days will not be ingested**.
 
-For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](../../../../../docs/tracking-methods/sdks/python/) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion.
+For bulk import of historical events older than 5 days, we will need to use the [/import API endpoint](https://developer.mixpanel.com/reference/import-events) which is optimized for scripting and supports ingesting historical data. We recommend the [Python SDK](./python.md) (see the [`.import_data()`](https://mixpanel.github.io/mixpanel-python/#primary-interface) function) and [mixpanel-utils module](https://github.com/mixpanel/mixpanel-utils) (see the [`import_events()`](https://github.com/mixpanel/mixpanel-utils?tab=readme-ov-file#import-events) function) which both leverages the /import API for event ingestion.
 
 ## Setting Super Properties
 
@@ -135,7 +133,6 @@ To register super properties, call [`.registerSuperProperties()`](https://mixpan
 Use [`.registerSuperPropertiesOnce()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/registerSuperPropertiesOnce.html) to register super properties without overwriting existing values.
 
 **Example Usage**
-
 ```dart
 // register a "name" super property
 mixpanel.registerSuperProperties({'name': 'sam'});
@@ -157,7 +154,7 @@ See more methods related to super properties in the complete library reference [
 
 ## Managing User Identity
 
-You can handle the identity of a user using the [`.identify()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/identify.html) and [`.reset()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/reset.html) methods. Learn more about [identity management](../../../../../docs/tracking-methods/id-management/identity-management/) and [identifying users](../../../../../docs/tracking-methods/id-management/identifying-users/).
+You can handle the identity of a user using the [`.identify()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/identify.html) and [`.reset()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/reset.html) methods. Learn more about [identity management](../id-management/identity-management.md) and [identifying users](../id-management/identifying-users.md).
 
 ### Identify
 
@@ -168,7 +165,6 @@ We recommend against calling `.identify()` for anonymous visitors to your site.
 Call [`.identify()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/identify.html) when you know the identity of the current user, passing in their user ID as an argument. This is typically at account registration and at log in.
 
 **Example Usage**
-
 ```dart
 // user logs in and tracks a sign in event
 mixpanel.track('sign in');
@@ -180,10 +176,9 @@ mixpanel.identify('12345');
 
 ### Call Reset at Logout
 
-Call [`.reset()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/reset.html) to clear data attributed to a user when they logout. This will clear the local storage and allows you to handle [multiple users on a single device](../../../../../docs/tracking-methods/id-management/identifying-users-simplified/#multiple-users-one-device).
+Call [`.reset()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/reset.html) to clear data attributed to a user when they logout. This will clear the local storage and allows you to handle [multiple users on a single device](../id-management/identifying-users-simplified.md#multiple-users-one-device). 
 
 **Example Usage**
-
 ```dart
 // your user logs out and tracks a log out event
 mixpanel.track('log out');
@@ -194,7 +189,7 @@ mixpanel.reset();
 
 ## Storing User Profiles
 
-Once your users are identified, create [user profiles](../../../../../docs/data-structure/user-profiles/) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
+Once your users are identified, create [user profiles](../../data-structure/user-profiles.md) by setting profile properties to describe them. Example profile properties include "name", "email", "company", and any other demographic details about the user.
 
 The Flutter SDK provides a few methods for setting profile properties under the [`People`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/People-class.html) class accessible via [`.getPeople()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/getPeople.html). These methods will trigger requests to the [/engage API endpoint](https://developer.mixpanel.com/reference/profile-set).
 
@@ -209,7 +204,6 @@ Set profile properties on a user profile by calling the [`.getPeople().set()`](h
 If a profile property already exists, it will be overwritten with the latest value provided in the method. If a profile property does not exist, it will be added to the profile.
 
 **Example Usage**
-
 ```dart
 // You must call identify to associate the profile update with the user
 // Sets user's "Plan" attribute to "Premium"
@@ -230,112 +224,104 @@ A few commonly used people methods are highlighted below:
 {% tab title=".setOnce()" %}
 The [`.getPeople().setOnce()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/People/setOnce.html) method set profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-````
-Use this method if you want to set profile properties without the risk of overwriting existing data.
+    Use this method if you want to set profile properties without the risk of overwriting existing data.
 
-**Example Usage**
-```dart
-// set profile properties for user "1234"
-mixpanel.identify('1234');
-mixpanel.getPeople().set('name':'sam');
+    **Example Usage**
+    ```dart
+    // set profile properties for user "1234"
+    mixpanel.identify('1234');
+    mixpanel.getPeople().set('name':'sam');
 
-// will be ignored since "name" already exists
-mixpanel.getPeople().setOnce('name', 'samantha');
+    // will be ignored since "name" already exists
+    mixpanel.getPeople().setOnce('name', 'samantha');
 
-// set "location" user prop since it does not exist
-mixpanel.getPeople().setOnce('location', 'us');
-```
-````
+    // set "location" user prop since it does not exist
+    mixpanel.getPeople().setOnce('location', 'us');
+    ```
 {% endtab %}
 
 {% tab title=".append()" %}
 The [`.getPeople().append()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/People/append.html) method append values to a list profile property.
 
-````
-Use this method to add additional values to an existing list property instead of redefining the entire list.
+    Use this method to add additional values to an existing list property instead of redefining the entire list.
 
-**Example Usage**
-```dart
-// set profile properties for user "1234"
-mixpanel.identify('1234');
-mixpanel.getPeople().set({
-    'name':'sam',
-    'roles': ['sales','engineer']
-});
+    **Example Usage**
+    ```dart
+    // set profile properties for user "1234"
+    mixpanel.identify('1234');
+    mixpanel.getPeople().set({
+        'name':'sam',
+        'roles': ['sales','engineer']
+    });
 
-// add "legal" to "roles"  
-// new role values are ['sales','engineer','legal']
-mixpanel.getPeople().append('roles', 'legal');
+    // add "legal" to "roles"  
+    // new role values are ['sales','engineer','legal']
+    mixpanel.getPeople().append('roles', 'legal');
 
-// .append() allows duplicates
-// new "roles" values are ['sales','engineer','legal', 'legal']
-mixpanel.getPeople().append('roles', 'legal');
-```
-````
+    // .append() allows duplicates
+    // new "roles" values are ['sales','engineer','legal', 'legal']
+    mixpanel.getPeople().append('roles', 'legal');
+    ```
 {% endtab %}
 
 {% tab title=".union()" %}
 The [`.getPeople().union()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/People/union.html) method append new values to a list property, excluding duplicates.
 
-````
-Use this method to create a list profile property that only contains unique values without duplicates.
+    Use this method to create a list profile property that only contains unique values without duplicates.
 
-**Example Usage**
-```dart
-// set profile properties for user "1234"
-mixpanel.identify('1234');
-mixpanel.getPeople().set({
-    'name':'sam',
-    'roles': ['sales','engineer']
-});
+    **Example Usage**
+    ```dart
+    // set profile properties for user "1234"
+    mixpanel.identify('1234');
+    mixpanel.getPeople().set({
+        'name':'sam',
+        'roles': ['sales','engineer']
+    });
 
-// append "engineer" to "roles"
-// will be ignored since "engineer" already exists in "roles"
-mixpanel.getPeople().union('roles', 'engineer');
+    // append "engineer" to "roles"
+    // will be ignored since "engineer" already exists in "roles"
+    mixpanel.getPeople().union('roles', 'engineer');
 
-// append "legal" to "roles"
-// new role values are ['sales','engineer','legal']
-mixpanel.getPeople().union('roles', 'legal');
-```
-````
+    // append "legal" to "roles"
+    // new role values are ['sales','engineer','legal']
+    mixpanel.getPeople().union('roles', 'legal');
+    ```
 {% endtab %}
 
 {% tab title=".increment()" %}
 The [`.getPeople().increment()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/People/increment.html) method increments a numeric property by a whole number.
 
-````
-Use this method to add to or subtract from your numeric property based on its current value.
+    Use this method to add to or subtract from your numeric property based on its current value.
 
-**Example Usage**
-```dart
-// set profile properties for user "1234"
-mixpanel.identify('1234');
-mixpanel.getPeople().set({
-    'name':'sam',
-    'age': 25
-});
+    **Example Usage**
+    ```dart
+    // set profile properties for user "1234"
+    mixpanel.identify('1234');
+    mixpanel.getPeople().set({
+        'name':'sam',
+        'age': 25
+    });
 
-// increment "age" by 2
-mixpanel.getPeople().increment('age',2);
+    // increment "age" by 2
+    mixpanel.getPeople().increment('age',2);
 
-// use negative number to decrement
-// decrement "age" by 5
-mixpanel.getPeople().increment('age',-5);
-```
-````
+    // use negative number to decrement
+    // decrement "age" by 5
+    mixpanel.getPeople().increment('age',-5);
+    ```
 {% endtab %}
+
 {% endtabs %}
 
 ## Group Analytics
 
 {% hint style="info" %}
-Read more about [Group Analytics](../../../../../docs/data-structure/group-analytics/) before proceeding. You will need to have the [group key defined in your project settings](../../../../../docs/data-structure/group-analytics/#group-keys-in-project-settings) first.
+Read more about [Group Analytics](../../data-structure/group-analytics.md) before proceeding. You will need to have the [group key defined in your project settings](../../data-structure/group-analytics.md#group-keys-in-project-settings) first.
 {% endhint %}
 
 Mixpanel Group Analytics is a paid add-on that allows behavioral data analysis by selected groups, as opposed to individual users.
 
 A group is identified by the `group_key` and `group_id`.
-
 * `group_key` is the event property that connects event data to a group. (e.g. `company`)
 * `group_id` is the identifier for a specific group. (e.g. `mixpanel`,`company_a`,`company_b`, etc.)
 
@@ -343,12 +329,11 @@ The Android SDK provides a few method for adding individual users to a group and
 
 ### Adding Users to a Group
 
-[All events must have the group key as an event property in order to be attributed to a group](../../../../../docs/data-structure/group-analytics/#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
+[All events must have the group key as an event property in order to be attributed to a group](../../data-structure/group-analytics.md#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
 
 Call the [`.setGroup()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/setGroup.html) method to register the current user to a group, which would add the `group_key` as an event property set to the `group_id` value to all events moving forward.
 
 **Example Usage**
-
 ```dart
 // assign the current user to the "mixpanel" company group
 mixpanel.setGroup('company', 'mixpanel');
@@ -363,12 +348,11 @@ mixpanel.track('some_event', {'company':'mixpanel'});
 
 **Multiple Groups**
 
-[An event can be attributed to multiple groups](../../../../../docs/data-structure/group-analytics/#attribute-events-to-multiple-groups) by passing in the `group_key` value as a list of multiple `group_id` values.
+[An event can be attributed to multiple groups](../../data-structure/group-analytics.md#attribute-events-to-multiple-groups) by passing in the `group_key` value as a list of multiple `group_id` values.
 
 Call [`.addGroup()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/addGroup.html) to add additional `group_id`s to an existing list.
 
 **Example Usage**
-
 ```dart
 // assign the current user to the "mixpanel" company group
 // events will contain 'company' prop set to ["mixpanel"]
@@ -398,12 +382,11 @@ mixpanel.getPeople().set("company", "mixpanel");
 
 ### Setting Group Profile Properties
 
-Create a group profiles by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee\_count", and "subscription".
+Create a group profiles by setting group properties, similar to a user profile. For example, you may want to describe a company group with properties such as "ARR", "employee_count", and "subscription".
 
 To set group profile properties, specify the group that needs to be updated by calling [`.getGroup()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/getGroup.html), then set the group properties by chaining the [`.set()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/MixpanelGroup/set.html) method, which will trigger a request to the [/groups API endpoint](https://developer.mixpanel.com/reference/group-set-property).
 
 **Example Usage**
-
 ```dart
 // assign the current user to the "mixpanel" company group
 mixpanel.setGroup('company', 'mixpanel');
@@ -423,93 +406,86 @@ A few commonly used group methods are highlighted below:
 {% tab title=".setOnce()" %}
 The [`.getGroup().setOnce()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/MixpanelGroup/setOnce.html) method set group profile properties only if they do not exist yet. If it is setting a profile property that already exists, it will be ignored.
 
-````
-Use this method if you want to set group profile properties without the risk of overwriting existing data.
+    Use this method if you want to set group profile properties without the risk of overwriting existing data.
 
-**Example Usage**
-```dart
-// assign the current user to the "mixpanel" company group
-mixpanel.setGroup('company', 'mixpanel');
+    **Example Usage**
+    ```dart
+    // assign the current user to the "mixpanel" company group
+    mixpanel.setGroup('company', 'mixpanel');
 
-// set group profile properties
-mixpanel.getGroup('company','mixpanel').set('name', 'Mixpanel');
+    // set group profile properties
+    mixpanel.getGroup('company','mixpanel').set('name', 'Mixpanel');
 
-// ignored since "name" is already exists
-mixpanel.getGroup('company','mixpanel').setOnce('name','mp');
+    // ignored since "name" is already exists
+    mixpanel.getGroup('company','mixpanel').setOnce('name','mp');
 
-// set "location" group prop since it does not exist
-mixpanel.getGroup('company','mixpanel').setOnce('location','us');
-```
-````
+    // set "location" group prop since it does not exist
+    mixpanel.getGroup('company','mixpanel').setOnce('location','us');
+    ```
 {% endtab %}
 
 {% tab title=".unset()" %}
 The [`.getGroup().unset()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/MixpanelGroup/unset.html) method removes a group property from a group profile.
 
-````
-Use this method to delete unwanted group profile properties from a specific group profile.
+    Use this method to delete unwanted group profile properties from a specific group profile.
 
-**Example Usage**
-```dart 
-// assign the current user to the "mixpanel" company group
-mixpanel.setGroup('company', 'mixpanel');
+    **Example Usage**
+    ```dart 
+    // assign the current user to the "mixpanel" company group
+    mixpanel.setGroup('company', 'mixpanel');
 
-// set group profile properties
-mixpanel.getGroup('company','mixpanel').set('name', 'Mixpanel');
-mixpanel.getGroup('company','mixpanel').set('employee_count', 100);
+    // set group profile properties
+    mixpanel.getGroup('company','mixpanel').set('name', 'Mixpanel');
+    mixpanel.getGroup('company','mixpanel').set('employee_count', 100);
 
-// delete "employee_count" from the group profile
-mixpanel.getGroup('company','mixpanel').unset('employee_count');
+    // delete "employee_count" from the group profile
+    mixpanel.getGroup('company','mixpanel').unset('employee_count');
 
-// only "name" remains as a group prop
-```
-````
+    // only "name" remains as a group prop
+    ```
 {% endtab %}
 
 {% tab title=".union()" %}
 The [`.getGroup().union()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/MixpanelGroup/union.html) method append new values to a list property, excluding duplicates.
 
-````
-Use this method to create a list group profile property that only contains unique values without duplicates.
+    Use this method to create a list group profile property that only contains unique values without duplicates.
 
-**Example Usage**
-```dart
-// assign the current user to the "mixpanel" company group
-mixpanel.setGroup('company', 'mixpanel');
+    **Example Usage**
+    ```dart
+    // assign the current user to the "mixpanel" company group
+    mixpanel.setGroup('company', 'mixpanel');
 
-// set group profile properties
-mixpanel.getGroup('company','mixpanel').set('features', ['reports','alerts','cohorts']);
+    // set group profile properties
+    mixpanel.getGroup('company','mixpanel').set('features', ['reports','alerts','cohorts']);
 
-// add "data pipeline" to "features" prop
-// ignore "alert" since it is a duplicate value
-mixpanel.getGroup('company','mixpanel').union('features', [
-    'data pipeline',
-    'alerts'
-    ]);
-```
-````
+    // add "data pipeline" to "features" prop
+    // ignore "alert" since it is a duplicate value
+    mixpanel.getGroup('company','mixpanel').union('features', [
+        'data pipeline',
+        'alerts'
+        ]);
+    ```
 {% endtab %}
 
 {% tab title=".remove()" %}
 The [`.getGroup().remove()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/MixpanelGroup/remove.html) method removes a value from a list-valued group profile property.
 
-````
-Use this method to remove specific values from a list without affecting all of the other values in the list.
+    Use this method to remove specific values from a list without affecting all of the other values in the list.
 
-**Example Usage**
-```dart
-// assign the current user to the "mixpanel" company group
-mixpanel.setGroup('company', 'mixpanel');
+    **Example Usage**
+    ```dart
+    // assign the current user to the "mixpanel" company group
+    mixpanel.setGroup('company', 'mixpanel');
 
-// set group profile properties
-mixpanel.getGroup('company','mixpanel').set('features', ['reports','alerts','cohorts']);
-
-//remove "alerts" from "features"
-// "features" now contain ["reports","cohorts"]
-mixpanel.getGroup('company','mixpanel').remove('features', 'alerts');
-```
-````
+    // set group profile properties
+    mixpanel.getGroup('company','mixpanel').set('features', ['reports','alerts','cohorts']);
+    
+    //remove "alerts" from "features"
+    // "features" now contain ["reports","cohorts"]
+    mixpanel.getGroup('company','mixpanel').remove('features', 'alerts');
+    ```
 {% endtab %}
+
 {% endtabs %}
 
 ## Debug Mode
@@ -517,26 +493,23 @@ mixpanel.getGroup('company','mixpanel').remove('features', 'alerts');
 To enable debug mode, call [`.setLoggingEnabled()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/setLoggingEnabled.html) with `true`.
 
 **Example Usage**
-
 ```dart
 // enable debug logs
 mixpanel.setLoggingEnabled(true);
 ```
 
-Learn more about [debugging](../../../../../docs/tracking-best-practices/debugging/).
+Learn more about [debugging](../../tracking-best-practices/debugging.md).
 
 ## Privacy-Friendly Tracking
-
 You have control over the data you send to Mixpanel. The Flutter SDK provide methods to help you protect user data.
 
-Learn more about [Privacy](../../../../../docs/privacy/overview/).
+Learn more about [Privacy](../../privacy/overview.md).
 
 ### Opt Out of Tracking
 
 The Android SDK is initialized with tracking enabled by default. Use the [`.optOutTracking()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/optOutTracking.html) method to opt the user out of data tracking and local storage for the current Mixpanel instance.
 
 **Example Usage**
-
 ```dart
 //send "some_event"
 mixpanel.track('some_event');
@@ -548,13 +521,11 @@ mixpanel.optOutTracking();
 // this track call will not work
 mixpanel.track('some_other_event');
 ```
-
 **Opt Out by Default**
 
 You can initialize the library with users opted out of tracking by default using the `optOutTrackingDefault` configuration. Once the user is ready to be tracked, call [`.optInTracking()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/optInTracking.html) to start tracking.
 
 **Example Usage**
-
 ```dart
 ...
 // initialize Mixpanel with users opt out of tracking by default
@@ -564,13 +535,11 @@ mixpanel = await Mixpanel.init("YOUR_PROJECT_TOKEN", trackAutomaticEvents: false
 mixpanel.optInTracking();
 ...
 ```
-
 ### EU Data Residency
 
 Route data to Mixpanel's EU servers by setting the `serverURL` property after initializing the client.
 
 **Example Usage**
-
 ```dart
 // set request URL to Mixpanel's EU domain
 mixpanel.setServerURL("https://api-eu.mixpanel.com");
@@ -581,7 +550,6 @@ mixpanel.setServerURL("https://api-eu.mixpanel.com");
 Route data to Mixpanel's India servers by setting the `serverURL` property after initializing the client.
 
 **Example Usage**
-
 ```dart
 // set request URL to Mixpanel's India domain
 mixpanel.setServerURL("https://api-in.mixpanel.com");
@@ -592,19 +560,18 @@ mixpanel.setServerURL("https://api-in.mixpanel.com");
 The Flutter SDK parse the request IP address to generate geolocation properties for events and profiles. To disable geolocation, call [`.setUseIpAddressForGeolocation()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/setUseIpAddressForGeolocation.html) with `false`.
 
 **Example Usage**
-
 ```dart
 // disable geolocation from IP parsing
 mixpanel.setUseIpAddressForGeolocation(false);
 ```
 
-Learn more about [geolocation](../../../../../docs/tracking-best-practices/geolocation/).
+Learn more about [geolocation](../../tracking-best-practices/geolocation.md).
 
 ## Legacy Automatically Tracked Events
 
-Mixpanel's SDKs have a legacy feature to automatically collect common mobile events. We don't recommend enabling this, as these events rely on client-side state and can be unreliable compared to tracking server-side. You can still enable this feature by turning the flag `trackAutomaticEvents: true` when initializing Mixpanel. More details [here](https://github.com/mixpanel/mixpanel-flutter?tab=readme-ov-file#2-initialize-mixpanel).
+Mixpanel's SDKs have a legacy feature to automatically collect common mobile events. We don't recommend enabling this, as these events rely on client-side state and can be unreliable compared to tracking server-side. You can still enable this feature by turning the flag `trackAutomaticEvents: true` when initializing Mixpanel. More details [here](https://github.com/mixpanel/mixpanel-flutter?tab=readme-ov-file#2-initialize-mixpanel). 
 
-You can see a list of events tracked automatically for [iOS here](../../../../../docs/tracking-methods/sdks/swift/#legacy-automatically-tracked-events) and [Android here](../../../../../docs/tracking-methods/sdks/android/#legacy-automatically-tracked-events).
+You can see a list of events tracked automatically for [iOS here](./swift.md#legacy-automatically-tracked-events) and [Android here](./android.md#legacy-automatically-tracked-events).
 
 ## Tracking Via Proxy
 
@@ -612,12 +579,13 @@ This guide demonstrates how to route events from Mixpanel's Flutter SDKs via a p
 
 There are two steps: setting up a proxy server and pointing the SDK at your server.
 
-**Step 1: Set up a proxy server** The simplest way is to use our [sample nginx config](https://github.com/mixpanel/tracking-proxy). This config redirects any calls made to your proxy server to Mixpanel.
+**Step 1: Set up a proxy server**
+The simplest way is to use our [sample nginx config](https://github.com/mixpanel/tracking-proxy). This config redirects any calls made to your proxy server to Mixpanel.
 
-**Step 2: Point Flutter SDK at your server** Add the following line, replacing `YOUR_PROXY_DOMAIN` with your proxy server's domain.
+**Step 2: Point Flutter SDK at your server**
+Add the following line, replacing `YOUR_PROXY_DOMAIN` with your proxy server's domain.
 
 **Example Usage**
-
 ```dart
 // route data to your proxy server
 mixpanel.setServerURL("https://<YOUR_PROXY_DOMAIN>");
@@ -626,7 +594,6 @@ mixpanel.setServerURL("https://<YOUR_PROXY_DOMAIN>");
 Specifically for Flutter Web, add your proxy server to the `mixpanel.init` call:
 
 **Example Usage**
-
 ```js
 mixpanel.init("<YOUR_PROJECT_TOKEN>", {api_host: "https://<YOUR_PROXY_DOMAIN>"});
 ```

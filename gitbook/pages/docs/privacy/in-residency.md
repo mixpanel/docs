@@ -30,7 +30,7 @@ No data will be ingested to your India data residency project unless your SDK is
 | [Data Pipelines API](https://developer.mixpanel.com/reference/create-warehouse-pipeline) | `data.mixpanel.com/api/2.0/nessie` | `data-in.mixpanel.com/api/2.0/nessie` |
 | [Lexicon Schemas API](https://developer.mixpanel.com/reference/lexicon-schemas-api) | `mixpanel.com/api/app/projects` | `in.mixpanel.com/api/app/projects` |
 
-You can find where your data is stored under Project Settings > Data Residency for existing projects. Additionally, projects stored in the India will have a URL that starts with 'in.mixpanel.com', whereas projects stored in the US will have a 'mixpanel.com' URL. If the wrong Data Residency location was chosen before implementation, you will need to create a new project with the applicable data storage option and migrate all your existing data. Mixpanel cannot assist with migrating an existing project with the wrong residency location. You can find out more about creating a new project [here](/docs/orgs-and-projects/managing-projects#creating-projects).
+You can find where your data is stored under Project Settings > Data Residency for existing projects. Additionally, projects stored in the India will have a URL that starts with 'in.mixpanel.com', whereas projects stored in the US will have a 'mixpanel.com' URL. If the wrong Data Residency location was chosen before implementation, you will need to create a new project with the applicable data storage option and migrate all your existing data. Mixpanel cannot assist with migrating an existing project with the wrong residency location. You can find out more about creating a new project [here](../orgs-and-projects/managing-projects.md#creating-projects).
 
 ## Using Our SDKs
 
@@ -38,16 +38,16 @@ Next, you'll need to set the server location to India when initializing the Mixp
 **This is required for all SDKs.** No data will be ingested to your India data residency project unless your SDK is sending data to the India endpoint.
 You can find instructions for the required config settings for each SDK below:
 
-- [JavaScript](/docs/tracking-methods/sdks/javascript#india-data-residency)
-- [Objective-C](/docs/tracking-methods/sdks/ios#india-data-residency)
-- [Swift](/docs/tracking-methods/sdks/swift#india-data-residency)
-- [Android](/docs/tracking-methods/sdks/android#india-data-residency)
-- [Python](/docs/tracking-methods/sdks/python#india-data-residency)
-- [Java](/docs/tracking-methods/sdks/java#india-data-residency)
-- [Ruby](/docs/tracking-methods/sdks/ruby#india-data-residency)
-- [Node.js](/docs/tracking-methods/sdks/nodejs#india-data-residency)
-- [React Native](/docs/tracking-methods/sdks/react-native#india-data-residency)
-- [Flutter](/docs/tracking-methods/sdks/flutter#india-data-residency)
+- [JavaScript](../tracking-methods/sdks/javascript.md#india-data-residency)
+- [Objective-C](../tracking-methods/sdks/ios.md#india-data-residency)
+- [Swift](../tracking-methods/sdks/swift.md#india-data-residency)
+- [Android](../tracking-methods/sdks/android.md#india-data-residency)
+- [Python](../tracking-methods/sdks/python.md#india-data-residency)
+- [Java](../tracking-methods/sdks/java.md#india-data-residency)
+- [Ruby](../tracking-methods/sdks/ruby.md#india-data-residency)
+- [Node.js](../tracking-methods/sdks/nodejs.md#india-data-residency)
+- [React Native](../tracking-methods/sdks/react-native.md#india-data-residency)
+- [Flutter](../tracking-methods/sdks/flutter.md#india-data-residency)
 
 ## Log in via SSO
 If you want the IdP initiated flow to direct to [in.mixpanel.com](https://in.mixpanel.com/), prepend the "in." subdomain to your postback URL. For example, `mixpanel.com/security/login/1` would need to be changed to `in.mixpanel.com/security/login/1`.
