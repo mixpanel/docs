@@ -94,8 +94,9 @@ async function generateChangelogsReadmeAndSummary(outDirAbs) {
     const title = (fm.title || '').trim();
     const date = (fm.date || '').trim();
     const thumb = (fm.thumbnail || '').trim();
+    const isAnnouncement = String(fm.isAnnouncement || '').trim().toLowerCase() === 'true';
     const desc = (fm.description || '').trim() || firstNonEmptyLine(body.replace(/^#.*$/m, ''));
-    posts.push({ rel, title, date, thumb, desc });
+    posts.push({ rel, title, date, thumb, desc, isAnnouncement });
   }
 
   posts.sort((a, b) => String(b.date).localeCompare(String(a.date)));
@@ -123,7 +124,8 @@ async function generateChangelogsReadmeAndSummary(outDirAbs) {
   readme += '{% updates format="full" %}\n';
   for (const p of posts) {
     if (!p.date) continue;
-    readme += `{% update date="${escapeHtml(p.date)}" %}\n`;
+    const tags = p.isAnnouncement ? 'announcement' : 'update';
+    readme += `{% update date="${escapeHtml(p.date)}" tags="${tags}" %}\n`;
     readme += `## ${p.title || p.rel.replace(/\.md$/i, '')}\n\n`;
     if (p.desc) readme += `${p.desc}\n\n`;
     if (p.thumb) {
@@ -2223,7 +2225,23 @@ function convertOne(src, maps, ctx) {
   out = stripExternalLinkIcons(out);
   out = blankCardsOnlyCollectionPages(out);
   out = cleanupDanglingJsx(out);
-  return out;
+  if (String(out).trim()) return out;
+
+  // Fallback: if the conversion pipeline accidentally blanked the page,
+  // emit a minimal safe conversion instead of an empty file.
+  let fb = stripMdxExportsAndImports(src);
+  fb = convertChangelogPostHeader(fb);
+  fb = jsxHtmlToHtml(fb);
+  fb = stripJsxStyleObjectsAndAttributeBraces(fb);
+  fb = stripJsxComments(fb);
+  fb = stripStyleTags(fb);
+  fb = stripFaqComponentWrappers(fb);
+  fb = convertIframesToEmbeds(fb);
+  fb = convertCallouts(fb);
+  fb = convertExtendedAccordions(fb);
+  fb = stripBrTags(fb);
+  fb = cleanupDanglingJsx(fb);
+  return fb;
 }
 
 async function main() {

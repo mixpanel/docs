@@ -4,6 +4,7 @@
 
 ## 2026
 
+* [Audit Log: Track activity across your organization and projects](2026-04-06-audit-logs.md)
 * [Mixpanel MCP: Talk to Your Data](2026-03-24-mixpanel-mcp.md)
 * [Feature Flags + Experiments: Now on Go and Flutter](2026-03-13-go-flutter-feature-flags.md)
 * [Metric Trees: Build your first draft instantly with AI](2026-03-12-metric-trees-ai.md)
