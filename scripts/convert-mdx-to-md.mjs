@@ -20,10 +20,27 @@ function parseArgs(argv) {
 
   for (let i = 2; i < argv.length; i++) {
     const a = argv[i];
-    if (a === '--in' && argv[i + 1]) args.inDir = argv[++i];
+    if ((a === '--in' || a === '--src') && argv[i + 1]) args.inDir = argv[++i];
     else if (a === '--out' && argv[i + 1]) args.outDir = argv[++i];
   }
   return args;
+}
+
+async function cleanupExtraneousConvertedMarkdown({ outDirAbs, expectedRelMdPaths }) {
+  // When a previous run wrote the wrong section into this outDir, we want a safe cleanup.
+  // We only delete markdown pages (.md) that are NOT part of the expected conversion output,
+  // excluding any GitBook-managed files under .gitbook/.
+  const outFiles = await listFilesRecursive(outDirAbs);
+  for (const f of outFiles) {
+    if (!f.toLowerCase().endsWith('.md')) continue;
+    const rel = toPosixPath(path.relative(outDirAbs, f));
+    if (!rel) continue;
+    if (rel.startsWith('.gitbook/')) continue;
+    if (rel === 'SUMMARY.md' || rel === 'README.md') continue;
+    if (!expectedRelMdPaths.has(rel)) {
+      await fs.unlink(f);
+    }
+  }
 }
 
 async function readConstantsMaps() {
@@ -372,6 +389,10 @@ function stripJsxStyleObjectsAndAttributeBraces(src) {
     line = line.replace(/(\s[\w:-]+)=\{true\}/g, '$1');
     // Drop {false} boolean attrs entirely
     line = line.replace(/(\s[\w:-]+)=\{false\}/g, '');
+    // Drop JSX expression attrs that GitBook can't interpret (keep converter-critical ones elsewhere).
+    // This is intentionally narrow to avoid breaking MDX constructs we convert later.
+    line = line.replace(/\sclass=\{[^}]+\}/g, '');
+    line = line.replace(/\sid=\{[^}]+\}/g, '');
 
     out.push(line);
   }
@@ -424,6 +445,277 @@ function stripJsxComments(src) {
     out.push(line);
   }
   return out.join('\n').replace(/\n{3,}/g, '\n\n');
+}
+
+function humanizeComponentName(name) {
+  return String(name)
+    .replace(/Logo$/, '')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .trim();
+}
+
+function kebabFromComponentName(comp) {
+  // AviraLogo -> avira-logo
+  return String(comp)
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/_+/g, '-')
+    .toLowerCase();
+}
+
+function convertLogoComponentsToGitbookImages(src, { outPath, assetsDirAbs }) {
+  // Replace JSX logo components like <AviraLogo /> with markdown images pointing to .gitbook/assets.
+  // Only do this outside code fences.
+  const lines = String(src).split('\n');
+  const out = [];
+  let inFence = false;
+  for (let line of lines) {
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+
+    line = line.replace(/<([A-Za-z0-9]+Logo)\s*\/>/g, (_all, comp) => {
+      const filename = `${kebabFromComponentName(comp)}.svg`;
+      const rel = toPosixPath(path.relative(path.dirname(outPath), path.join(assetsDirAbs, filename)));
+      const href = rel.startsWith('.') ? rel : `./${rel}`;
+      return `![${humanizeComponentName(comp)}](${href})`;
+    });
+    out.push(line);
+  }
+  return out.join('\n');
+}
+
+function extractStringProp(objText, key) {
+  const re = new RegExp(String.raw`\b${key}\s*:\s*(["'])([\s\S]*?)\1`, 'm');
+  const m = re.exec(objText);
+  return m ? m[2] : '';
+}
+
+function convertSelfGuidedTours(src) {
+  // Convert <SelfGuidedTours cards={[ ... ]} /> into a GitBook cards table.
+  // This intentionally ignores the interactive overlay behavior and links directly to Navattic capture URLs.
+  const lines = String(src).split('\n');
+  const out = [];
+  let i = 0;
+  let inFence = false;
+
+  while (i < lines.length) {
+    const line = lines[i];
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      i++;
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      i++;
+      continue;
+    }
+
+    if (/^<SelfGuidedTours\b/.test(t)) {
+      // Collect until a closing "/>".
+      let block = line + '\n';
+      i++;
+      while (i < lines.length && !/\/>\s*$/.test(lines[i])) {
+        block += lines[i] + '\n';
+        i++;
+      }
+      if (i < lines.length) {
+        block += lines[i] + '\n';
+        i++;
+      }
+
+      const cardsStart = block.indexOf('cards={[');
+      if (cardsStart === -1) {
+        out.push(block.trimEnd());
+        continue;
+      }
+      const arrText = block.slice(cardsStart);
+      const open = arrText.indexOf('[');
+      const close = arrText.lastIndexOf(']');
+      if (open === -1 || close === -1 || close <= open) {
+        out.push(block.trimEnd());
+        continue;
+      }
+      const inner = arrText.slice(open + 1, close);
+
+      const objs = [];
+      let depth = 0;
+      let cur = '';
+      for (let j = 0; j < inner.length; j++) {
+        const ch = inner[j];
+        if (ch === '{') {
+          if (depth === 0) cur = '';
+          depth++;
+        }
+        if (depth > 0) cur += ch;
+        if (ch === '}') {
+          depth--;
+          if (depth === 0) objs.push(cur);
+        }
+      }
+
+      const rows = objs
+        .map((obj) => {
+          const title = extractStringProp(obj, 'title').trim();
+          const blurb = extractStringProp(obj, 'blurb').trim();
+          const img = extractStringProp(obj, 'img').trim();
+          const href = extractStringProp(obj, 'href').trim();
+          const navatticOpen = extractStringProp(obj, 'navatticOpen').trim();
+
+          const url = href
+            ? href
+            : navatticOpen
+              ? navatticOpen.startsWith('http')
+                ? navatticOpen
+                : `https://capture.navattic.com/${navatticOpen}`
+              : '';
+
+          if (!title) return null;
+          const titleCell = url ? `[${title}](${url})` : title;
+          const cell = blurb ? `${titleCell}\n\n${blurb}` : titleCell;
+          return { cell, url, img };
+        })
+        .filter(Boolean);
+
+      if (!rows.length) continue;
+
+      out.push('<table data-view="cards">');
+      out.push('<thead><tr><th></th><th class="hidden"></th><th class="hidden"></th></tr></thead>');
+      out.push('<tbody>');
+      for (const r of rows) {
+        out.push('<tr>');
+        out.push(`<td>\n\n${escapeHtml(r.cell)}\n\n</td>`);
+        out.push(`<td class="hidden">${escapeHtml(r.url || '')}</td>`);
+        out.push(`<td class="hidden">${escapeHtml(r.img || '')}</td>`);
+        out.push('</tr>');
+      }
+      out.push('</tbody>');
+      out.push('</table>');
+      continue;
+    }
+
+    out.push(line);
+    i++;
+  }
+
+  return out.join('\n');
+}
+
+function convertNextImageToMarkdown(src) {
+  // Convert simple <Image src="..." /> uses to markdown images.
+  const lines = String(src).split('\n');
+  const out = [];
+  let inFence = false;
+  for (let line of lines) {
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+    line = line.replace(/<Image\b[^>]*\bsrc=(["'])([^"']+)\1[^>]*\/>/g, (_all, _q, srcVal) => `![](${srcVal})`);
+    out.push(line);
+  }
+  return out.join('\n');
+}
+
+function extractSvgMapFromLogoTsx(logoTsx) {
+  const map = new Map();
+  const re =
+    /export function\s+([A-Za-z0-9_]+Logo)\s*\(\)\s*\{\s*return\s*\(\s*(<svg[\s\S]*?<\/svg>)\s*\);\s*\}/g;
+  let m;
+  while ((m = re.exec(String(logoTsx)))) {
+    const name = m[1];
+    let svg = m[2];
+    // Normalize a few JSX-isms to plain SVG/HTML.
+    svg = svg.replace(/\bclassName=/g, 'class=');
+    svg = svg.replace(/\bclipPath=/g, 'clip-path=');
+    svg = svg.replace(/\bfillRule=/g, 'fill-rule=');
+    svg = svg.replace(/\bclipRule=/g, 'clip-rule=');
+    svg = svg.replace(/\bstrokeWidth=/g, 'stroke-width=');
+    svg = svg.replace(/\bstrokeLinecap=/g, 'stroke-linecap=');
+    svg = svg.replace(/\bstrokeLinejoin=/g, 'stroke-linejoin=');
+    map.set(name, svg.trim() + '\n');
+  }
+  return map;
+}
+
+async function ensureGitbookLogoAssets({ inDirAbs, outDirAbs }) {
+  const files = await listFilesRecursive(inDirAbs);
+  const used = new Set();
+  for (const f of files) {
+    if (!f.toLowerCase().endsWith('.mdx')) continue;
+    const src = await fs.readFile(f, 'utf8');
+    const re = /<([A-Za-z0-9]+Logo)\s*\/>/g;
+    let m;
+    while ((m = re.exec(src))) used.add(m[1]);
+  }
+  if (!used.size) return { assetsDirAbs: path.join(outDirAbs, '.gitbook', 'assets', 'logos'), used };
+
+  const logoFile = path.join(ROOT, 'components', 'svg', 'Logo.tsx');
+  let logoTsx = '';
+  try {
+    logoTsx = await fs.readFile(logoFile, 'utf8');
+  } catch {
+    return { assetsDirAbs: path.join(outDirAbs, '.gitbook', 'assets', 'logos'), used };
+  }
+
+  const svgMap = extractSvgMapFromLogoTsx(logoTsx);
+  const assetsDirAbs = path.join(outDirAbs, '.gitbook', 'assets', 'logos');
+  await fs.mkdir(assetsDirAbs, { recursive: true });
+
+  for (const comp of used) {
+    const svg = svgMap.get(comp);
+    if (!svg) continue;
+    const filename = `${kebabFromComponentName(comp)}.svg`;
+    const outPath = path.join(assetsDirAbs, filename);
+    await fs.writeFile(outPath, svg, 'utf8');
+  }
+
+  return { assetsDirAbs, used };
+}
+
+function stripStyleTags(src) {
+  // Drop <style ...> ... </style> blocks (unsupported in GitBook markdown rendering).
+  const lines = String(src).split('\n');
+  const out = [];
+  let inFence = false;
+  let skipping = false;
+  for (const line of lines) {
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+    if (skipping) {
+      if (t.includes('</style>')) skipping = false;
+      continue;
+    }
+    if (/^<style\b/i.test(t)) {
+      if (!t.includes('</style>')) skipping = true;
+      continue;
+    }
+    out.push(line);
+  }
+  return out.join('\n');
 }
 
 function normalizeEmbedUrl(url) {
@@ -545,11 +837,15 @@ function convertSectionAsideToColumns(src) {
     return [
       '{% columns %}',
       `{% column width="${leftWidth}" %}`,
+      '',
       embed,
+      '',
       '{% endcolumn %}',
       '',
       `{% column width="${rightWidth}" %}`,
+      '',
       asideMd,
+      '',
       '{% endcolumn %}',
       '{% endcolumns %}',
     ]
@@ -667,11 +963,15 @@ function convertFlexDivsToColumns(src) {
     const columns = [
       '{% columns %}',
       `{% column width="${leftWidth}" %}`,
+      '',
       children[0].body,
+      '',
       '{% endcolumn %}',
       '',
       `{% column width="${rightWidth}" %}`,
+      '',
       children[1].body,
+      '',
       '{% endcolumn %}',
       '{% endcolumns %}',
     ]
@@ -745,6 +1045,21 @@ function fixAccidentalIndentCodeBlocks(src) {
       out.push(bulletFixed);
       prevWasList = true;
       continue;
+    }
+
+    // De-indent accidental prose indentation (common after HTML->markdown conversions).
+    // Avoid touching lists / blockquotes / tables / code fences.
+    if (/^\s{4,}\S/.test(line)) {
+      const trimmed = line.trimStart();
+      const isSpecial =
+        /^([-*]\s+|\d+\.\s+|>|\|)/.test(trimmed) ||
+        trimmed.startsWith('```') ||
+        trimmed.startsWith('{%');
+      if (!isSpecial) {
+        out.push(trimmed);
+        prevWasList = false;
+        continue;
+      }
     }
 
     // If we just fixed a list item, also de-indent a single wrapped continuation line.
@@ -1283,10 +1598,16 @@ function convertExtendedTabs(src, maps) {
 }
 
 function stripMdxExportsAndImports(src) {
-  // Remove MDX/TS import/export lines at top-level (but keep code fences intact).
+  // Remove MDX/TS import/export blocks at top-level (but keep code fences intact).
+  // Handles multiline imports like:
+  // import {
+  //   A,
+  // } from 'x';
   const lines = src.split('\n');
   const kept = [];
   let inFence = false;
+  let skippingImport = false;
+  let skippingExport = false;
   for (const line of lines) {
     const t = line.trim();
     if (t.startsWith('```')) {
@@ -1295,8 +1616,28 @@ function stripMdxExportsAndImports(src) {
       continue;
     }
     if (!inFence) {
-      if (t.startsWith('import ')) continue;
-      if (t.startsWith('export ')) continue;
+      if (skippingImport) {
+        // End when we hit a semicolon OR a from-clause line (semicolon optional).
+        if (t.includes(';') || /\bfrom\s+['"][^'"]+['"]\s*;?\s*$/.test(t) || t === '};') skippingImport = false;
+        continue;
+      }
+      if (skippingExport) {
+        if (t.endsWith(';') || t === '};' || t === '}' || t === '});') skippingExport = false;
+        continue;
+      }
+      if (t.startsWith('import ')) {
+        // Drop single-line imports even when semicolons are omitted.
+        if (/\bfrom\s+['"][^'"]+['"]\s*;?\s*$/.test(t)) continue;
+        // Otherwise start skipping until terminator.
+        if (!t.endsWith(';')) skippingImport = true;
+        continue;
+      }
+      if (t.startsWith('export ')) {
+        if (!t.endsWith(';')) skippingExport = true;
+        continue;
+      }
+      // Also drop trailing "from 'x';" lines that can remain if the leading `import {` was removed.
+      if ((t.startsWith('} from ') || t.startsWith('}from ')) && t.endsWith(';')) continue;
     }
     kept.push(line);
   }
@@ -1314,14 +1655,18 @@ function cleanupDanglingJsx(src) {
   return src.replace(/\n{3,}/g, '\n\n').trim() + '\n';
 }
 
-function convertOne(src, maps) {
+function convertOne(src, maps, ctx) {
   let out = src;
   out = promoteMetadataDescriptionToDescription(out);
   out = stripMdxExportsAndImports(out);
   out = jsxHtmlToHtml(out);
   out = convertFlexDivsToColumns(out);
   out = stripJsxStyleObjectsAndAttributeBraces(out);
+  out = convertSelfGuidedTours(out);
+  out = convertNextImageToMarkdown(out);
+  out = convertLogoComponentsToGitbookImages(out, ctx);
   out = stripJsxComments(out);
+  out = stripStyleTags(out);
   out = convertIframesToEmbeds(out);
   out = convertSectionAsideToColumns(out);
   out = convertExtendedButton(out);
@@ -1348,8 +1693,18 @@ async function main() {
   const outDir = path.resolve(ROOT, args.outDir);
 
   const maps = await readConstantsMaps();
+  const { assetsDirAbs } = await ensureGitbookLogoAssets({ inDirAbs: inDir, outDirAbs: outDir });
   const files = await listFilesRecursive(inDir);
   await fs.mkdir(outDir, { recursive: true });
+
+  const expectedRelMdPaths = new Set(
+    files
+      .filter((f) => {
+        const lower = f.toLowerCase();
+        return lower.endsWith('.mdx') || lower.endsWith('.md');
+      })
+      .map((f) => toPosixPath(path.relative(inDir, f).replace(/\.mdx$/i, '.md'))),
+  );
 
   for (const file of files) {
     const rel = path.relative(inDir, file);
@@ -1357,11 +1712,15 @@ async function main() {
     await fs.mkdir(path.dirname(outPath), { recursive: true });
 
     const src = await fs.readFile(file, 'utf8');
-    let converted = file.toLowerCase().endsWith('.mdx') ? convertOne(src, maps) : src;
+    let converted = file.toLowerCase().endsWith('.mdx')
+      ? convertOne(src, maps, { outPath, assetsDirAbs })
+      : src;
     converted = rewriteInternalDocsLinks(converted, outPath, outDir);
     converted = await tagBetaByMeta(converted, file, inDir);
     await fs.writeFile(outPath, converted, 'utf8');
   }
+
+  await cleanupExtraneousConvertedMarkdown({ outDirAbs: outDir, expectedRelMdPaths });
 
   process.stdout.write(`Converted ${files.length} files from ${args.inDir} -> ${args.outDir}\n`);
 }

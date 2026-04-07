@@ -22,17 +22,21 @@ Before you dive into best practices, take a quick look at how experimentation wo
 
 {% columns %}
 {% column width="58.33%" %}
+
 {% embed url="https://www.youtube.com/watch?v=LZfIPCXcIPE" %}
+
 {% endcolumn %}
 
 {% column width="41.67%" %}
+
 ### Mixpanel Experiments
       
 
-        In this 3-minute overview, learn how Mixpanel Experiments helps you reduce risk, learn faster, and discover surprises.
+In this 3-minute overview, learn how Mixpanel Experiments helps you reduce risk, learn faster, and discover surprises.
       
 
-      [Open in YouTube →](https://youtu.be/LZfIPCXcIPE)
+[Open in YouTube →](https://youtu.be/LZfIPCXcIPE)
+
 {% endcolumn %}
 {% endcolumns %}
 

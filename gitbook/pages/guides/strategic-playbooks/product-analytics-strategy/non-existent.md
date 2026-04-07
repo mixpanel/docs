@@ -14,7 +14,7 @@ Product analytics is non-existent, and development is guided by something other 
 
 It's not that these companies don't have product analytics tools available to them. It's just that the discipline isn't there. They want to work out — they just haven't purchased the dumbbells yet.
 
-<Image src="/non-existent-chart.jpg" />
+![](/non-existent-chart.jpg)
 
 Many startups or non-digitally native businesses believe they have to reach a certain threshold of data in order for it to be valuable or necessary to uncover insights.
 

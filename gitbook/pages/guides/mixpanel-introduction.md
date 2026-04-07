@@ -12,17 +12,21 @@ Mixpanel is a **digital analytics platform** that helps teams continuously impro
 
 {% columns %}
 {% column width="58.33%" %}
+
 {% embed url="https://www.youtube.com/watch?v=sRQCfmvh3vg" %}
+
 {% endcolumn %}
 
 {% column width="41.67%" %}
+
 ### Mixpanel Overview
       
 
-        In this 5-minute overview, learn how Mixpanel powers the continuous innovation loop––from observation to impact.
+In this 5-minute overview, learn how Mixpanel powers the continuous innovation loop––from observation to impact.
       
 
-      [Open in YouTube →](https://youtu.be/sRQCfmvh3vg)
+[Open in YouTube →](https://youtu.be/sRQCfmvh3vg)
+
 {% endcolumn %}
 {% endcolumns %}
 
@@ -32,15 +36,19 @@ Mixpanel is a **digital analytics platform** that helps teams continuously impro
 
 {% columns %}
 {% column width="58.33%" %}
+
 Mixpanel is built around a simple but powerful framework for continuous improvement: **Observe → Analyze → Decide → Act (OADA)**.
 
 Each stage in the OADA framework connects directly to Mixpanel’s tools, helping you move from data to observation to action–—all in one platform.
+
 {% endcolumn %}
 
 {% column width="41.67%" %}
+
 ![OADA Loop diagram](/oada-loop-simple-wide-fcf9fa.png)
 
 *The cycle of continuous innovation.*
+
 {% endcolumn %}
 {% endcolumns %}
 

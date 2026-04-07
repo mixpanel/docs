@@ -1,6 +1,3 @@
-EmpowerLogo,
-} from '../../../../components/svg/Logo';
-
 # Intermediate
 
 ## Stage 02
@@ -21,15 +18,15 @@ At this point, you recognize that product analytics is important, but aren't qui
 You're using data to inform product decisions, but not yet to propel them forward in an iterative or systematic way.
 {% endhint %}
 
-<Image src="/intermediate-chart.jpg" />
+![](/intermediate-chart.jpg)
 
 You're beginning to use product analysis on a regular basis, but don't know how to use it as a driver for product development.
 
-<div class={style.logoTable}>
-    <EmpowerLogo />
-    <div class={style.logoText}>
-        "Think about how you can include your product analytics tool in the day-to-day and week-to-week operating of your business. It will make your team's analytics and experimentation muscles that much stronger."
-        <div class={style.logoSpeaker}>**Vince Maniago**</div> *VP of Product Management, Empower*
+<div>
+![Empower](../../.gitbook/assets/logos/empower-logo.svg)
+<div>
+"Think about how you can include your product analytics tool in the day-to-day and week-to-week operating of your business. It will make your team's analytics and experimentation muscles that much stronger."
+<div>**Vince Maniago**</div> *VP of Product Management, Empower*
 
 Businesses have a lot of information on their hands — but to get the most out of it, they rely on analysts to uncover meaningful insights. Individuals and teams are empowered to look at data but not to run analysis; instead, they are trained to send questions to the queue. This can lead to bottlenecks in getting necessary information to Product, Design, and other departments.
 

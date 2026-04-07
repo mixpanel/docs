@@ -17,7 +17,7 @@ You've gotten in shape with your dumbbells and bench press and mile-long runs. N
 Most (or all) decisions are made with product analytics in mind, and are supported by real-time data. All teams have access to product data, and your Product, Engineering, and Design teams will rely on it heavily.
 {% endhint %}
 
-<Image src="/advanced-chart.jpg" />
+![](/advanced-chart.jpg)
 
 ## Common markers of Advanced stage
 

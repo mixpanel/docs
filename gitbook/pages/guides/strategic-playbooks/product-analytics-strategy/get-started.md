@@ -1,7 +1,3 @@
-OpenViewLogo,
-    ProductCollectiveLogo,
-} from '../../../../components/svg/Logo';
-
 # Advance Your Product Analytics Strategy
 
 You already know that product analytics is critical to innovation and growth.
@@ -20,11 +16,11 @@ But first, you have to assess your own capabilities and product analytics goals.
 
 At Mixpanel, we've consulted thousands of companies—from bootstrapped startups to leaders in tech. We know what "good" looks like, and we've developed a formula to get companies to "great."
 
-<div class={style.logoTable}>
-    <ProductCollectiveLogo />
-    <div class={style.logoText}>
-        "Every product person wants to make data-driven decisions. But to do so, you must have the right data, ask the right questions, and use the right tools. That's having true product analytics maturity"
-        <div class={style.logoSpeaker}>**Mike Belsito**</div> *Co-Founder, Product Collective*
+<div>
+![Product Collective](../../.gitbook/assets/logos/product-collective-logo.svg)
+<div>
+"Every product person wants to make data-driven decisions. But to do so, you must have the right data, ask the right questions, and use the right tools. That's having true product analytics maturity"
+<div>**Mike Belsito**</div> *Co-Founder, Product Collective*
 
 ## What will you learn here?
 
@@ -39,11 +35,11 @@ This guide helps you determine:
 - What you need to do to get there
 - Why it all matters to product and company growth
 
-<div class={style.logoTable}>
-    <OpenViewLogo />
-    <div class={style.logoText}>
-        "Without data on how the user is moving through your product, you won't grasp where they're unlocking the most value. Without those insights, your team and product devolve into conjecture and building for the vocal minority. Once you've started that, it's impossible to scale."
-        <div class={style.logoSpeaker}>**Sam Richard**</div> *Director of Growth, OpenView*
+<div>
+![Open View](../../.gitbook/assets/logos/open-view-logo.svg)
+<div>
+"Without data on how the user is moving through your product, you won't grasp where they're unlocking the most value. Without those insights, your team and product devolve into conjecture and building for the vocal minority. Once you've started that, it's impossible to scale."
+<div>**Sam Richard**</div> *Director of Growth, OpenView*
 
 {% hint style="info" %}
 **Explore Mixpanel**
@@ -63,7 +59,7 @@ Product analytics maturity refers to where a company stands in the product analy
 
 At its core, product analytics is made up of four pillars: data collection, depth of analysis, collaboration, and product metrics.
 
-<Image src="/intro-chart.jpg" />
+![](/intro-chart.jpg)
 
 Your product analytics maturity determines your capability within each of these areas—and ultimately how you're relying on your data to make product decisions. Throughout the guide, we'll be using a fictional company (a ridesharing app) to help you understand what this looks like in practice.
 

@@ -12,17 +12,21 @@ Heatmaps and Session Replay combine the “what” and the “why” of user beh
 
 {% columns %}
 {% column width="58.33%" %}
+
 {% embed url="https://www.youtube.com/watch?v=af7D3exv610" %}
+
 {% endcolumn %}
 
 {% column width="41.67%" %}
+
 ### Mixpanel Heatmaps
       
 
-        In this 4-minute overview, learn how Mixpanel Heatmaps helps you visually pinpoint user friction and high engagement areas on your website, allowing you to instantly see where users are clicking and where they are getting stuck.
+In this 4-minute overview, learn how Mixpanel Heatmaps helps you visually pinpoint user friction and high engagement areas on your website, allowing you to instantly see where users are clicking and where they are getting stuck.
       
 
-      [Open in YouTube →](https://youtu.be/af7D3exv610)
+[Open in YouTube →](https://youtu.be/af7D3exv610)
+
 {% endcolumn %}
 {% endcolumns %}
 
@@ -30,17 +34,21 @@ Heatmaps and Session Replay combine the “what” and the “why” of user beh
 
 {% columns %}
 {% column width="58.33%" %}
+
 {% embed url="https://www.youtube.com/watch?v=eig_Ta-0yZc" %}
+
 {% endcolumn %}
 
 {% column width="41.67%" %}
+
 ### Mixpanel Session Replay
       
 
-        In this 7-minute overview, discover how Mixpanel Session Replay unifies analytics and user behavior. Learn to seamlessly jump from your data to real user interactions to instantly diagnose friction and errors. The video also walks you through the incredibly easy, single-snippet implementation to accelerate your product's growth.
+In this 7-minute overview, discover how Mixpanel Session Replay unifies analytics and user behavior. Learn to seamlessly jump from your data to real user interactions to instantly diagnose friction and errors. The video also walks you through the incredibly easy, single-snippet implementation to accelerate your product's growth.
       
 
-      [Open in YouTube →](https://youtu.be/eig_Ta-0yZc)
+[Open in YouTube →](https://youtu.be/eig_Ta-0yZc)
+
 {% endcolumn %}
 {% endcolumns %}
 

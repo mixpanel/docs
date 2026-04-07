@@ -3,18 +3,6 @@ title: "Measure Value: The Foundation of Product Analytics"
 description: "Learn how to identify, measure, and track the core value your product brings to users through effective product analytics."
 ---
 
-    AviraLogo,
-    B1Logo,
-    DocusignLogo,
-    MadpawsLogo,
-    RakutenViberLogo,
-    ReforgeLogo,
-    TataPlayLogo,
-    TheWeatherCompanyLogo,
-    VrboLogo,
-    ZipRecruiterLogo,
-} from '../../../../components/svg/Logo';
-
 # Measure Value: The Foundation of Product Analytics
 
 ## Questions answered
@@ -36,7 +24,7 @@ But you probably already know why. Depending on your product, your customers usu
 
 To understand your product's value, you need to step back and ask: *"What are my users hoping to do with my product? And what is my product really about?"*
 
-<Image src="/pa-value-chart1.png" />
+![](/pa-value-chart1.png)
 
 If you look at the most successful digital products today, they have one thing in common: **they make it easier, cheaper, or more convenient for people to live their lives and get what they want**. 
 
@@ -64,10 +52,10 @@ These profit models, or different ways of getting money in exchange for value in
 
 ### On monetization post-COVID-19
 
-<div class={style.logoTable}>
-    <B1Logo />
-    <div class={style.logoText}>
-        "While the fundamentals of monetization are unlikely to change, Covid-19 has two significant implications for how companies think about pricing and monetization in the near and medium term:At the heart of monetization strategy is always a deep understanding of customer willingness to pay, and how it differs for different customer segments and use cases. Covid-19 changed customer behavior and their option set so dramatically that, in many cases, willingness to pay is fundamentally different. It is worth assessing whether this is the case and whether monetization strategy needs to change as a result.A surprisingly high percentage of companies designed their monetization early in the company lifecycle with limited rationale. However, they are often reluctant to enact change, because big changes to monetization take a lot of work, and the risk of getting it wrong or suffering customer backlash is scary. A major event like Covid-19 brings so much change that it can give companies air cover to make the big changes they've been considering, and we're seeing many companies take advantage of this."<div class={style.logoSpeaker}>**Dan Hockenmaier**</div> *Founder, Basis One; Growth Mentor and Contributor at Reforge*
+<div>
+![B1](../../.gitbook/assets/logos/b1-logo.svg)
+<div>
+"While the fundamentals of monetization are unlikely to change, Covid-19 has two significant implications for how companies think about pricing and monetization in the near and medium term:At the heart of monetization strategy is always a deep understanding of customer willingness to pay, and how it differs for different customer segments and use cases. Covid-19 changed customer behavior and their option set so dramatically that, in many cases, willingness to pay is fundamentally different. It is worth assessing whether this is the case and whether monetization strategy needs to change as a result.A surprisingly high percentage of companies designed their monetization early in the company lifecycle with limited rationale. However, they are often reluctant to enact change, because big changes to monetization take a lot of work, and the risk of getting it wrong or suffering customer backlash is scary. A major event like Covid-19 brings so much change that it can give companies air cover to make the big changes they've been considering, and we're seeing many companies take advantage of this."<div>**Dan Hockenmaier**</div> *Founder, Basis One; Growth Mentor and Contributor at Reforge*
 
 ## Can product value always be measured and analyzed?
 
@@ -89,20 +77,20 @@ Depending on your product, a user journey might look very different. To get to t
 
 ### Industry Examples
 
-<div class={style.logoTable}>
-    <VrboLogo />
-    <div class={style.logoText}>
-        "From the traveler side, **booking** is our number one objective—any test we run from the homepage all the way to the end of checkouts is going to have that as a primary goal. That said, we're a two-sided marketplace—we also want partners to accept those booking requests."<div class={style.logoSpeaker}>**Jamie Kapilivsky**</div> *Data Insights, Vrbo, part of Expedia Group*
+<div>
+![Vrbo](../../.gitbook/assets/logos/vrbo-logo.svg)
+<div>
+"From the traveler side, **booking** is our number one objective—any test we run from the homepage all the way to the end of checkouts is going to have that as a primary goal. That said, we're a two-sided marketplace—we also want partners to accept those booking requests."<div>**Jamie Kapilivsky**</div> *Data Insights, Vrbo, part of Expedia Group*
 
-<div class={style.logoTable}>
-    <AviraLogo />
-    <div class={style.logoText}>
-        "We want users to **complete a Smart Scan flow** because it's important in activating them, and then getting them engaged. Smart Scan checks your system for all kinds of problems: privacy issues, performance issues, network and wifi security, out-of-date software. In this flow, we show what we have to offer. For the new users, this is the moment where they get impressed."<div class={style.logoSpeaker}>**Stephan Brenner**</div> *Vice President - Product, Avira*
+<div>
+![Avira](../../.gitbook/assets/logos/avira-logo.svg)
+<div>
+"We want users to **complete a Smart Scan flow** because it's important in activating them, and then getting them engaged. Smart Scan checks your system for all kinds of problems: privacy issues, performance issues, network and wifi security, out-of-date software. In this flow, we show what we have to offer. For the new users, this is the moment where they get impressed."<div>**Stephan Brenner**</div> *Vice President - Product, Avira*
 
-<div class={style.logoTable}>
-    <RakutenViberLogo />
-    <div class={style.logoText}>
-        "To grow in new markets, or maintain our current market presence in countries where we have strong presence, it's super critical for new users to start a conversation. But if they don't have anyone to communicate with, then eventually they'll probably just drop. For existing users, a referral is what we're hoping for."<div class={style.logoSpeaker}>**Idan Dadon**</div> *Product Manager, Viber*
+<div>
+![Rakuten Viber](../../.gitbook/assets/logos/rakuten-viber-logo.svg)
+<div>
+"To grow in new markets, or maintain our current market presence in countries where we have strong presence, it's super critical for new users to start a conversation. But if they don't have anyone to communicate with, then eventually they'll probably just drop. For existing users, a referral is what we're hoping for."<div>**Idan Dadon**</div> *Product Manager, Viber*
 
 ## Which metrics should I pick to measure product success?
 
@@ -112,25 +100,25 @@ To learn more about defining your focus metric, check out [Mixpanel’s Guide to
 
 ![image](/pa-value-chart3.png)
 
-<div class={style.logoTable}>
-    <MadpawsLogo />
-    <div class={style.logoText}>
-        "Our key focus metric is the number of bookings per customer. This is how we track how well we're doing, as well as our year-on-year growth rate."<div class={style.logoSpeaker}>**Karim Mouahbi**</div> *Head of Marketing, Mad Paws*
+<div>
+![Madpaws](../../.gitbook/assets/logos/madpaws-logo.svg)
+<div>
+"Our key focus metric is the number of bookings per customer. This is how we track how well we're doing, as well as our year-on-year growth rate."<div>**Karim Mouahbi**</div> *Head of Marketing, Mad Paws*
 
-<div class={style.logoTable}>
-    <ZipRecruiterLogo />
-    <div class={style.logoText}>
-        "One of our most important metrics is the conversion rate, which helps us determine what percentage of job seekers come into our platform, find a job that's relevant to them, and then complete the Apply flow."<div class={style.logoSpeaker}>**Akio Bandle**</div> *Senior Product Manager, ZipRecruiter*
+<div>
+![Zip Recruiter](../../.gitbook/assets/logos/zip-recruiter-logo.svg)
+<div>
+"One of our most important metrics is the conversion rate, which helps us determine what percentage of job seekers come into our platform, find a job that's relevant to them, and then complete the Apply flow."<div>**Akio Bandle**</div> *Senior Product Manager, ZipRecruiter*
 
-<div class={style.logoTable}>
-    <TheWeatherCompanyLogo />
-    <div class={style.logoText}>
-        "My team uses AI technology and conversational units to create engaging and effective ads. We track active user sessions (when a user clicks on the front screen and activates the ad) as well as conversation rate (when users click a button and/or type something in). The final metric we look at is engagement: if a user performs any action at all. We watch how users engage with our various ad units according to those three metrics, and optimize toward the better performing ad units, whether they be for desktop or mobile."<div class={style.logoSpeaker}>**Shannon Ferguson**</div> *Director of Measurement, The Weather Company*
+<div>
+![The Weather Company](../../.gitbook/assets/logos/the-weather-company-logo.svg)
+<div>
+"My team uses AI technology and conversational units to create engaging and effective ads. We track active user sessions (when a user clicks on the front screen and activates the ad) as well as conversation rate (when users click a button and/or type something in). The final metric we look at is engagement: if a user performs any action at all. We watch how users engage with our various ad units according to those three metrics, and optimize toward the better performing ad units, whether they be for desktop or mobile."<div>**Shannon Ferguson**</div> *Director of Measurement, The Weather Company*
 
-<div class={style.logoTable}>
-    <DocusignLogo />
-    <div class={style.logoText}>
-        "Given that the DocuSign Agreement Cloud simplifies and accelerates the way people prepare, sign, act on and manage agreements, one of our key metrics relates to speed. We've seen that 82% of DocuSign agreements are completed in less than 24 hours, and 50% in less than 15 minutes—that means the average turnaround time for a signature is reduced by >80% compared to paper . . . and that in turn means significant ROI!"<div class={style.logoSpeaker}>**Drew Ashlock**</div> *Lead Product Manager, DocuSign*
+<div>
+![Docusign](../../.gitbook/assets/logos/docusign-logo.svg)
+<div>
+"Given that the DocuSign Agreement Cloud simplifies and accelerates the way people prepare, sign, act on and manage agreements, one of our key metrics relates to speed. We've seen that 82% of DocuSign agreements are completed in less than 24 hours, and 50% in less than 15 minutes—that means the average turnaround time for a signature is reduced by >80% compared to paper . . . and that in turn means significant ROI!"<div>**Drew Ashlock**</div> *Lead Product Manager, DocuSign*
 
 Often, a rookie PM will attempt to track every single user event, come up with an array of metrics, and consider them all equally. This is risky because it can give you a false sense of how many active users you have and how often they get value from your product. Is everyone who logs into a messaging app, clicks into a profile, changes status, and goes to settings truly active and getting value? Maybe it’s only those who send messages? **Prioritizing a single value moment is hard, but it's a more straightforward way of gauging the value that your product brings to market**.
 
@@ -138,18 +126,18 @@ Though initially your retention numbers might dribble down if you are no longer 
 
 ## Where do product leaders typically go wrong when defining their value metric?
 
-> "Great PMs understand that their specific product's context is a more important factor for defining metrics than any industry best practices. Creating a north star metric has its benefits–chiefly, simplicity in measuring progress and communicating it within and outside the team responsible for the product.When picking a north star metric, Great PMs look for a metric that: (a) is responsive to product changes (b) is an aggregate measure of the product's value for its users (c) can be readily tied to value for the business or to broader company goals (d) is expected to remain relevant for a reasonable duration of time (e.g., at least 2-3 years)Great PMs typically also complement a north star metric with balancing metrics that can help measure any major negative user impact or business impact from moving that north star metric in the desired direction."<div class={style.logoSpeaker}>**Shreyas Doshi**</div> *Lead PM at Stripe; Former Lead PM at Twitter, Google, Yahoo*
+> "Great PMs understand that their specific product's context is a more important factor for defining metrics than any industry best practices. Creating a north star metric has its benefits–chiefly, simplicity in measuring progress and communicating it within and outside the team responsible for the product.When picking a north star metric, Great PMs look for a metric that: (a) is responsive to product changes (b) is an aggregate measure of the product's value for its users (c) can be readily tied to value for the business or to broader company goals (d) is expected to remain relevant for a reasonable duration of time (e.g., at least 2-3 years)Great PMs typically also complement a north star metric with balancing metrics that can help measure any major negative user impact or business impact from moving that north star metric in the desired direction."<div>**Shreyas Doshi**</div> *Lead PM at Stripe; Former Lead PM at Twitter, Google, Yahoo*
 
-<div class={style.logoTable}>
-    <ReforgeLogo />
-    <div class={style.logoText}>
-        "The most common pitfall is relying either too much on intuition or too much on data. You have to start with a qualitative hypothesis of what the value moment is, based on first principles of your product's problem, target audience, differentiation, and other elements. You then need to validate that hypothesis with certain analyses. Teams that let the data drive the definition are letting the data dictate the strategy, when the data should be used to measure whether or not you are achieving the strategy. Those two things are fundamentally different.The best leaders understand that a [single metric](https://www.reforge.com/blog/north-star-metric-growth) can't capture the entire picture of their business, but that one metric at any given time can be the most important. It is a balance.
-        Most products should have four high-level metrics: an acquisition metric, retention metric, engagement metric, and monetization metric. The four of these act as a system where one can influence the other. They each capture a different dimension of what is happening with a product. But trying to improve all metrics at once typically isn't possible until you get to a much later stage and are able to dedicate teams to each area. Instead, leaders need to understand which one is most important at any given moment and make sure the teams understand that and are properly resourced to make meaningful progress."<div class={style.logoSpeaker}>**Brian Balfour**</div> *CEO, Reforge*
+<div>
+![Reforge](../../.gitbook/assets/logos/reforge-logo.svg)
+<div>
+"The most common pitfall is relying either too much on intuition or too much on data. You have to start with a qualitative hypothesis of what the value moment is, based on first principles of your product's problem, target audience, differentiation, and other elements. You then need to validate that hypothesis with certain analyses. Teams that let the data drive the definition are letting the data dictate the strategy, when the data should be used to measure whether or not you are achieving the strategy. Those two things are fundamentally different.The best leaders understand that a [single metric](https://www.reforge.com/blog/north-star-metric-growth) can't capture the entire picture of their business, but that one metric at any given time can be the most important. It is a balance.
+Most products should have four high-level metrics: an acquisition metric, retention metric, engagement metric, and monetization metric. The four of these act as a system where one can influence the other. They each capture a different dimension of what is happening with a product. But trying to improve all metrics at once typically isn't possible until you get to a much later stage and are able to dedicate teams to each area. Instead, leaders need to understand which one is most important at any given moment and make sure the teams understand that and are properly resourced to make meaningful progress."<div>**Brian Balfour**</div> *CEO, Reforge*
 
-<div class={style.logoTable}>
-    <ZipRecruiterLogo />
-    <div class={style.logoText}>
-        "An effective north star metric is a product manager's best friend. It provides cross-functional alignment on goals and tasks, and an objective barometer for success when a product ships. Even products that generate direct revenue require an alternative product metric that tells a more holistic story of what's going on. When your north star metric is clear, product ideation becomes a lot easier. Instead of asking yourself, 'what should I build next?', you should be asking, 'what feature or product is most likely to move this metric the most?'"<div class={style.logoSpeaker}>**Akio Bandle**</div> *Senior Product Manager, ZipRecruiter*
+<div>
+![Zip Recruiter](../../.gitbook/assets/logos/zip-recruiter-logo.svg)
+<div>
+"An effective north star metric is a product manager's best friend. It provides cross-functional alignment on goals and tasks, and an objective barometer for success when a product ships. Even products that generate direct revenue require an alternative product metric that tells a more holistic story of what's going on. When your north star metric is clear, product ideation becomes a lot easier. Instead of asking yourself, 'what should I build next?', you should be asking, 'what feature or product is most likely to move this metric the most?'"<div>**Akio Bandle**</div> *Senior Product Manager, ZipRecruiter*
 
 ## When it comes to choosing product metrics, what's the difference between a good PM and a great PM?
 
@@ -157,15 +145,15 @@ Though initially your retention numbers might dribble down if you are no longer 
 > 
 > For example: there is little to gain (and a lot to lose) from largely metrics-based product decisions for an early-stage product whose current usage is infinitesimal compared to its potential usage. In these situations, exercising product judgment by using inputs such as qualitative user feedback and competitive analysis will lead to better product decisions than “reading too much” into the current usage metrics. Great PMs will still diligently define and track metrics for such a product, but they will use metrics as one of many inputs for their product decisions.”
 > 
-> <div class={style.logoSpeaker}>**Shreyas Doshi**</div>
+> <div>**Shreyas Doshi**</div>
 *PM Lead at Stripe, Former PM Lead at Twitter, Google and Yahoo*
 
-<TataPlayLogo />
+![Tata Play](../../.gitbook/assets/logos/tata-play-logo.svg)
 > "A good PM understands and tracks user behavior in the product that correlates with users getting value. A great PM prioritizes each new product feature based on how it can move the key value metric.
 > 
 > A great PM is one who can think about innovation and incredibly technologically forward features... but never loses sight of their customer. She continually puts herself in the place of her customer, evaluating themselves at every step, behaving and thinking like the average user."
 > 
-> <div class={style.logoSpeaker}>**Vinati Malik**</div>
+> <div>**Vinati Malik**</div>
 *Senior Vice President of New Product Development, Tata Play*
 
 {% hint style="info" %}

@@ -20,7 +20,7 @@ One of the first things that product managers do when they get into product anal
 
 Such insights are more actionable, because in-product behavior can be "nudged"—and changed—more easily than demographics.
 
-<Image src="/pa-user-chart.png" />
+![](/pa-user-chart.png)
 
 User segmentation in product analytics is grouping users based on their demographics or behavior in order to establish a baseline for analysis.
 
@@ -28,7 +28,7 @@ User segmentation in product analytics is grouping users based on their demograp
 
 ## How does it work?
 
-<Image src="/pa-event-based.jpg" />
+![](/pa-event-based.jpg)
 
 In Mixpanel, each data point is connected to a single user through a unique ID. **Events** are interactions between a user and your product. These are things users do, like signing up, adding items to cart, liking and following. **Profiles** store information about who your users are, like where they live (geo), and what email they use to log in.
 
@@ -63,7 +63,7 @@ An example is the **mDAU metric**, which stands for monetizable daily active usa
 >
 > It’s nice to be able to say that you once had a 28% conversion rate, and you increased it to 32%. Progress! But really, 72 out of 100 people used to not convert to the desired action, and now, 68 people still don’t. Ask yourself: What’s the most impactful thing you can do to make those people feel compelled to stick around?”
 > 
-> <div class={style.logoSpeaker}>**Josh Elman**</div>
+> <div>**Josh Elman**</div>
 *VC & Advisor; Former Product Leader at Robinhood, LinkedIn, Twitter*
 
 ## When should I measure DAU/WAU/MAU?
@@ -78,7 +78,7 @@ However, because DAU/WAU/MAU numbers are volatile and don't paint the full pictu
 
 > "We're going to stop talking about monthly or weekly or daily active users because I'm not sure what anyone can do with that information."
 > 
-> <div class={style.logoSpeaker}>**Blake Jorgensen**</div>
+> <div>**Blake Jorgensen**</div>
 *EA's COO and CFO*
 
 If you clearly define what "active" means for your business, DAU/WAU/MAU can be helpful for assessing overall business health. But without a well-defined "active" part of the picture, it becomes a vanity metric. Our advice: DAU/MAU/WAU might be a great opening statement, but it’s never a full story.

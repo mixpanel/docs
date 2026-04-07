@@ -23,16 +23,16 @@ Before reading further, watch this walkthrough. It shows MCP end to end — from
 <section id="video" aria-label="MCP video" >
 <div>
 
-    <aside >
-      <h2 >**MCP Overview**</h2>
-      <p>
+<aside >
+<h2 >**MCP Overview**</h2>
+<p>
 If you’re new to MCP, watch this first to ground the concepts below in a concrete example. If you’re evaluating MCP for your team, this video illustrates the difference between simply querying Mixpanel and using MCP as a data synthesis layer.
-      </p>
-      <a href="https://www.loom.com/share/127592935692445282b14fc2a7c6c03d"
-         target="_blank" rel="noopener noreferrer" >
-        Open Demo in Loom →
-      </a>
-    </aside>
+</p>
+<a href="https://www.loom.com/share/127592935692445282b14fc2a7c6c03d"
+target="_blank" rel="noopener noreferrer" >
+Open Demo in Loom →
+</a>
+</aside>
 
 </section>
 
