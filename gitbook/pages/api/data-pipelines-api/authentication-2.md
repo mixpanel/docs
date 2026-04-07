@@ -8,4 +8,4 @@
   To use the Data Pipelines API, the Service Account must have the role of admin or owner.
 </Callout>
 
-[Service Account Authentication Details](../Mixpanel APIs/authentication/service-accounts.md)
+[Service Account Authentication Details](../mixpanel-apis/authentication/service-accounts.md)

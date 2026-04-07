@@ -7,6 +7,16 @@ function toPosix(p) {
   return p.split(path.sep).join('/');
 }
 
+function slugifySegment(name) {
+  return String(name)
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .replace(/--+/g, '-');
+}
+
 async function listFilesRecursive(dir) {
   const out = [];
   const items = await fs.readdir(dir, { withFileTypes: true });
@@ -62,6 +72,14 @@ function ensureH1(body, title) {
   return `# ${t}\n\n${body}`;
 }
 
+function humanizeSlug(slug) {
+  return String(slug)
+    .replace(/[-_]+/g, ' ')
+    .replace(/\bapi\b/gi, 'API')
+    .replace(/\b(\w)/g, (m) => m.toUpperCase())
+    .trim();
+}
+
 function buildSlugIndex(refRootAbs) {
   // Index slugs to output-relative paths, based on basenames and dir names.
   // Used for rewriting (ref:slug) links.
@@ -87,14 +105,15 @@ function buildSlugIndex(refRootAbs) {
       try {
         const st = await fs.stat(dirAbs);
         if (st.isDirectory()) {
+          const seg = slugifySegment(item);
           // Map directory slug to its first page if possible.
           const childOrder = await readOrderYaml(path.join(dirAbs, '_order.yaml'));
           if (childOrder.length) {
-            add(item, toPosix(path.join(outRelDir, item, `${childOrder[0]}.md`)));
+            add(item, toPosix(path.join(outRelDir, seg, `${childOrder[0]}.md`)));
           } else {
-            add(item, toPosix(path.join(outRelDir, item)));
+            add(item, toPosix(path.join(outRelDir, seg)));
           }
-          await walkDir(dirAbs, path.join(outRelDir, item));
+          await walkDir(dirAbs, path.join(outRelDir, seg));
         }
       } catch {}
     }
@@ -212,6 +231,7 @@ async function main() {
     if (!st.isDirectory()) continue;
 
     summary += `## ${top}\n\n`;
+    const topSeg = slugifySegment(top);
 
     const topDirOrder = await readOrderYaml(path.join(topDir, '_order.yaml'));
     for (const item of topDirOrder) {
@@ -232,15 +252,17 @@ async function main() {
         });
         out = rewriteCrossSpaceLinks(out, { fromSection: 'api' });
         await fs.writeFile(outAbs, out, 'utf8');
+        return fm;
       };
 
       // direct page
       try {
         const stFile = await fs.stat(fileAbs);
         if (stFile.isFile()) {
-          const outRel = toPosix(path.join(top, `${item}.md`));
-          await copyOne(fileAbs, outRel);
-          summary += `* [${item}](${outRel})\n`;
+          const outRel = toPosix(path.join(topSeg, `${item}.md`));
+          const fm = await copyOne(fileAbs, outRel);
+          const label = (fm?.title || '').trim() || humanizeSlug(item);
+          summary += `* [${label}](${outRel})\n`;
           continue;
         }
       } catch {}
@@ -259,15 +281,15 @@ async function main() {
             } catch {
               continue;
             }
-            const outRel = toPosix(path.join(top, item, `${sub}.md`));
+            const outRel = toPosix(path.join(topSeg, item, `${sub}.md`));
             await copyOne(subFile, outRel);
           }
           // Add group entry: link to first page
           if (subOrder.length) {
-            const groupLink = toPosix(path.join(top, item, `${subOrder[0]}.md`));
-            summary += `* [${item}](${groupLink})\n`;
+            const groupLink = toPosix(path.join(topSeg, item, `${subOrder[0]}.md`));
+            summary += `* [${humanizeSlug(item)}](${groupLink})\n`;
           } else {
-            summary += `* ${item}\n`;
+            summary += `* ${humanizeSlug(item)}\n`;
           }
         }
       } catch {}

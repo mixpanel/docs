@@ -2,7 +2,7 @@
 
 ## Service Account
 
-[Service Account Authentication Details](../Mixpanel APIs/authentication/service-accounts.md#service-account)
+[Service Account Authentication Details](../mixpanel-apis/authentication/service-accounts.md#service-account)
 
 > 👍 This is the preferred authentication method for Raw Data Export API.
 
