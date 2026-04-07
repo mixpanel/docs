@@ -15,329 +15,281 @@ Want a guided demo instead?
 Understand what Mixpanel is, how it works, and how to navigate it.
 
 <table data-view="cards">
-<thead><tr><th></th><th class="hidden"></th><th class="hidden"></th></tr></thead>
-<tbody>
+  <thead>
+<tr>
+<th></th>
+<th data-hidden data-card-target data-type="content-ref"></th>
+<th data-hidden data-card-cover data-type="files"></th>
+</tr>
+  </thead>
+  <tbody>
 <tr>
 <td>
-
-[Welcome to Mixpanel](https://capture.navattic.com/cmi6kt6pa000004l75zla652d)
-
+<strong>Welcome to Mixpanel</strong>
 Understand how and why teams use Mixpanel
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmi6kt6pa000004l75zla652d</td>
-<td class="hidden">/navattic/WelcomeToMixpanel_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmi6kt6pa000004l75zla652d">https://capture.navattic.com/cmi6kt6pa000004l75zla652d</a></td>
+<td>.gitbook/assets/navattic/WelcomeToMixpanel_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Data Model Overview](https://capture.navattic.com/cmi6goka4000004ib35k31ft9)
-
+<strong>Data Model Overview</strong>
 Explore Events, Properties, &amp; Users
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmi6goka4000004ib35k31ft9</td>
-<td class="hidden">/navattic/DataModelOverview_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmi6goka4000004ib35k31ft9">https://capture.navattic.com/cmi6goka4000004ib35k31ft9</a></td>
+<td>.gitbook/assets/navattic/DataModelOverview_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Overview Tour](https://capture.navattic.com/cmdrjulgv000004js7zwaeqor)
-
+<strong>Overview Tour</strong>
 Tour the Mixpanel UI
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmdrjulgv000004js7zwaeqor</td>
-<td class="hidden">/navattic/01_OverviewTour_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmdrjulgv000004js7zwaeqor">https://capture.navattic.com/cmdrjulgv000004js7zwaeqor</a></td>
+<td>.gitbook/assets/navattic/01_OverviewTour_314x139.png</td>
 </tr>
-</tbody>
+  </tbody>
 </table>
 
 ### Get Set Up
 Connect data, configure your workspace, and validate that events flow correctly.
 
 <table data-view="cards">
-<thead><tr><th></th><th class="hidden"></th><th class="hidden"></th></tr></thead>
-<tbody>
+  <thead>
+<tr>
+<th></th>
+<th data-hidden data-card-target data-type="content-ref"></th>
+<th data-hidden data-card-cover data-type="files"></th>
+</tr>
+  </thead>
+  <tbody>
 <tr>
 <td>
-
-[Org Discoverability](https://capture.navattic.com/cm52mxlya000003jp9t754qbn)
-
+<strong>Org Discoverability</strong>
 Help your team find your organization
-
 </td>
-<td class="hidden">https://capture.navattic.com/cm52mxlya000003jp9t754qbn</td>
-<td class="hidden">/navattic/OrgDiscoverability_314x139.png</td>
+<td><a href="https://capture.navattic.com/cm52mxlya000003jp9t754qbn">https://capture.navattic.com/cm52mxlya000003jp9t754qbn</a></td>
+<td>.gitbook/assets/navattic/OrgDiscoverability_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Create a Project](https://capture.navattic.com/cmdr4pqog000004jr4psc6hhi)
-
+<strong>Create a Project</strong>
 Set up production and development projects
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmdr4pqog000004jr4psc6hhi</td>
-<td class="hidden">/navattic/CreateAProject_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmdr4pqog000004jr4psc6hhi">https://capture.navattic.com/cmdr4pqog000004jr4psc6hhi</a></td>
+<td>.gitbook/assets/navattic/CreateAProject_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Manage Users](https://capture.navattic.com/cmdr80y01000004lb3xaa55h2)
-
+<strong>Manage Users</strong>
 Add or remove users
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmdr80y01000004lb3xaa55h2</td>
-<td class="hidden">/navattic/ManageUsers_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmdr80y01000004lb3xaa55h2">https://capture.navattic.com/cmdr80y01000004lb3xaa55h2</a></td>
+<td>.gitbook/assets/navattic/ManageUsers_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Manage Teams](https://capture.navattic.com/cmdst38s3000804labd4oeutn)
-
+<strong>Manage Teams</strong>
 Streamline collaboration
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmdst38s3000804labd4oeutn</td>
-<td class="hidden">/navattic/ManageTeams_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmdst38s3000804labd4oeutn">https://capture.navattic.com/cmdst38s3000804labd4oeutn</a></td>
+<td>.gitbook/assets/navattic/ManageTeams_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Data Views](https://capture.navattic.com/cmdwroow2000704jocdamdz8b)
-
+<strong>Data Views</strong>
 Control data visibility
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmdwroow2000704jocdamdz8b</td>
-<td class="hidden">/navattic/DataViews_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmdwroow2000704jocdamdz8b">https://capture.navattic.com/cmdwroow2000704jocdamdz8b</a></td>
+<td>.gitbook/assets/navattic/DataViews_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Classified Data](https://capture.navattic.com/cmdxcccdr000804jyfbsbgszr)
-
+<strong>Classified Data</strong>
 Protect sensitive information
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmdxcccdr000804jyfbsbgszr</td>
-<td class="hidden">/navattic/ClassifiedData_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmdxcccdr000804jyfbsbgszr">https://capture.navattic.com/cmdxcccdr000804jyfbsbgszr</a></td>
+<td>.gitbook/assets/navattic/ClassifiedData_314x139.png</td>
 </tr>
-</tbody>
+  </tbody>
 </table>
 
 ### Find Insights
 Explore and analyze user behavior to understand what’s happening in your product.
 
 <table data-view="cards">
-<thead><tr><th></th><th class="hidden"></th><th class="hidden"></th></tr></thead>
-<tbody>
+  <thead>
+<tr>
+<th></th>
+<th data-hidden data-card-target data-type="content-ref"></th>
+<th data-hidden data-card-cover data-type="files"></th>
+</tr>
+  </thead>
+  <tbody>
 <tr>
 <td>
-
-[Visualize Trends](https://capture.navattic.com/cmead9fmz000004l5ff34hgwo)
-
+<strong>Visualize Trends</strong>
 Create an Insights report
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmead9fmz000004l5ff34hgwo</td>
-<td class="hidden">/navattic/02_Insights_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmead9fmz000004l5ff34hgwo">https://capture.navattic.com/cmead9fmz000004l5ff34hgwo</a></td>
+<td>.gitbook/assets/navattic/02_Insights_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Optimize User Conversion](https://capture.navattic.com/cmer30mzn000104i52cqv05al)
-
+<strong>Optimize User Conversion</strong>
 Create a Funnels report
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmer30mzn000104i52cqv05al</td>
-<td class="hidden">/navattic/03_Funnels_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmer30mzn000104i52cqv05al">https://capture.navattic.com/cmer30mzn000104i52cqv05al</a></td>
+<td>.gitbook/assets/navattic/03_Funnels_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Find Product Market Fit](https://capture.navattic.com/cmf0qlad2000004l4a4ikbss7)
-
+<strong>Find Product Market Fit</strong>
 Use On Retention criteria
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmf0qlad2000004l4a4ikbss7</td>
-<td class="hidden">/navattic/TestProductMarketFit_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmf0qlad2000004l4a4ikbss7">https://capture.navattic.com/cmf0qlad2000004l4a4ikbss7</a></td>
+<td>.gitbook/assets/navattic/TestProductMarketFit_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Analyze User Groups](https://capture.navattic.com/cmf3q5eak000004l51x5ydugp)
-
+<strong>Analyze User Groups</strong>
 Create a Cohort
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmf3q5eak000004l51x5ydugp</td>
-<td class="hidden">/navattic/AnalyzeUserGroups_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmf3q5eak000004l51x5ydugp">https://capture.navattic.com/cmf3q5eak000004l51x5ydugp</a></td>
+<td>.gitbook/assets/navattic/AnalyzeUserGroups_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Analyze Autocaptured Data](https://capture.navattic.com/cmbrua13y000004l47jkmbvpg)
-
+<strong>Analyze Autocaptured Data</strong>
 Utilize Custom Events
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmbrua13y000004l47jkmbvpg</td>
-<td class="hidden">/navattic/04_Autocapture_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmbrua13y000004l47jkmbvpg">https://capture.navattic.com/cmbrua13y000004l47jkmbvpg</a></td>
+<td>.gitbook/assets/navattic/04_Autocapture_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Watch Playbacks](https://capture.navattic.com/cmapktdk2000104lb976zabd1)
-
+<strong>Watch Playbacks</strong>
 See why customers drop off
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmapktdk2000104lb976zabd1</td>
-<td class="hidden">/navattic/05_SessionReplay_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmapktdk2000104lb976zabd1">https://capture.navattic.com/cmapktdk2000104lb976zabd1</a></td>
+<td>.gitbook/assets/navattic/05_SessionReplay_314x139.png</td>
 </tr>
-</tbody>
+  </tbody>
 </table>
 
 ### Experiment & Optimize
 Run tests, manage feature rollouts, and improve product experiences.
 
 <table data-view="cards">
-<thead><tr><th></th><th class="hidden"></th><th class="hidden"></th></tr></thead>
-<tbody>
+  <thead>
+<tr>
+<th></th>
+<th data-hidden data-card-target data-type="content-ref"></th>
+<th data-hidden data-card-cover data-type="files"></th>
+</tr>
+  </thead>
+  <tbody>
 <tr>
 <td>
-
-[Create Experiments](https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi)
-
+<strong>Create Experiments</strong>
 Launch an Experiment in Mixpanel
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi</td>
-<td class="hidden">/navattic/CreateExperiments_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi">https://capture.navattic.com/cmfkxwfa5000004lc8408f5wi</a></td>
+<td>.gitbook/assets/navattic/CreateExperiments_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Understand Experiment Results](https://capture.navattic.com/cmfciul3m000004jr47ov9ji6)
-
+<strong>Understand Experiment Results</strong>
 Evaluate the performance
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmfciul3m000004jr47ov9ji6</td>
-<td class="hidden">/navattic/06_Experiments_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmfciul3m000004jr47ov9ji6">https://capture.navattic.com/cmfciul3m000004jr47ov9ji6</a></td>
+<td>.gitbook/assets/navattic/06_Experiments_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Act on Experiments](https://capture.navattic.com/cmfdp6s2l000204l2dcs34hwp)
-
+<strong>Act on Experiments</strong>
 Take action on results
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmfdp6s2l000204l2dcs34hwp</td>
-<td class="hidden">/navattic/ActOnExperiments_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmfdp6s2l000204l2dcs34hwp">https://capture.navattic.com/cmfdp6s2l000204l2dcs34hwp</a></td>
+<td>.gitbook/assets/navattic/ActOnExperiments_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Set Up Feature Flags](https://capture.navattic.com/cmgp5veba000504k7bun51lfz)
-
+<strong>Set Up Feature Flags</strong>
 Create a Feature Flag in Mixpanel
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmgp5veba000504k7bun51lfz</td>
-<td class="hidden">/navattic/SetUpFeatureFlags_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmgp5veba000504k7bun51lfz">https://capture.navattic.com/cmgp5veba000504k7bun51lfz</a></td>
+<td>.gitbook/assets/navattic/SetUpFeatureFlags_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Analyze Feature Flags](https://capture.navattic.com/cmhelb6d4000004jogv4dh18f)
-
+<strong>Analyze Feature Flags</strong>
 Use the exposure event
-
 </td>
-<td class="hidden">https://capture.navattic.com/cmhelb6d4000004jogv4dh18f</td>
-<td class="hidden">/navattic/AnalyzeFeatureFlags_314x139.png</td>
+<td><a href="https://capture.navattic.com/cmhelb6d4000004jogv4dh18f">https://capture.navattic.com/cmhelb6d4000004jogv4dh18f</a></td>
+<td>.gitbook/assets/navattic/AnalyzeFeatureFlags_314x139.png</td>
 </tr>
-</tbody>
+  </tbody>
 </table>
 
 ### Govern & Maintain Data Quality
 Ensure your data is consistent, trustworthy, and well-documented.
 
 <table data-view="cards">
-<thead><tr><th></th><th class="hidden"></th><th class="hidden"></th></tr></thead>
-<tbody>
+  <thead>
+<tr>
+<th></th>
+<th data-hidden data-card-target data-type="content-ref"></th>
+<th data-hidden data-card-cover data-type="files"></th>
+</tr>
+  </thead>
+  <tbody>
 <tr>
 <td>
-
-[Schema Management](https://capture.navattic.com/cme2n3qz4000004jxfok3gsdr)
-
+<strong>Schema Management</strong>
 Add context to your data dictionary
-
 </td>
-<td class="hidden">https://capture.navattic.com/cme2n3qz4000004jxfok3gsdr</td>
-<td class="hidden">/navattic/SchemaManagement_314x139.png</td>
+<td><a href="https://capture.navattic.com/cme2n3qz4000004jxfok3gsdr">https://capture.navattic.com/cme2n3qz4000004jxfok3gsdr</a></td>
+<td>.gitbook/assets/navattic/SchemaManagement_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Improve Data Quality](https://capture.navattic.com/cme2wd991000m04ky9pprf88n)
-
+<strong>Improve Data Quality</strong>
 Hide, drop, and merge data
-
 </td>
-<td class="hidden">https://capture.navattic.com/cme2wd991000m04ky9pprf88n</td>
-<td class="hidden">/navattic/ImproveDataQuality_314x139.png</td>
+<td><a href="https://capture.navattic.com/cme2wd991000m04ky9pprf88n">https://capture.navattic.com/cme2wd991000m04ky9pprf88n</a></td>
+<td>.gitbook/assets/navattic/ImproveDataQuality_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Verify Events](https://capture.navattic.com/cme2tbzrl000d04l811kic4ys)
-
+<strong>Verify Events</strong>
 Signal vetted data to your team
-
 </td>
-<td class="hidden">https://capture.navattic.com/cme2tbzrl000d04l811kic4ys</td>
-<td class="hidden">/navattic/VerifyEvents_314x139.png</td>
+<td><a href="https://capture.navattic.com/cme2tbzrl000d04l811kic4ys">https://capture.navattic.com/cme2tbzrl000d04l811kic4ys</a></td>
+<td>.gitbook/assets/navattic/VerifyEvents_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Require New Event Review](https://capture.navattic.com/cme6ze1c8000804l5d1s2a62w)
-
+<strong>Require New Event Review</strong>
 Use Event Approval
-
 </td>
-<td class="hidden">https://capture.navattic.com/cme6ze1c8000804l5d1s2a62w</td>
-<td class="hidden">/navattic/RequireNewEventReview_314x139.png</td>
+<td><a href="https://capture.navattic.com/cme6ze1c8000804l5d1s2a62w">https://capture.navattic.com/cme6ze1c8000804l5d1s2a62w</a></td>
+<td>.gitbook/assets/navattic/RequireNewEventReview_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Detect Unusual Data Volumes](https://capture.navattic.com/cme71ilqr000004kz9kqtdtnz)
-
+<strong>Detect Unusual Data Volumes</strong>
 Use Data Volume Monitoring
-
 </td>
-<td class="hidden">https://capture.navattic.com/cme71ilqr000004kz9kqtdtnz</td>
-<td class="hidden">/navattic/DetectUnusualDataVolumes_314x139.png</td>
+<td><a href="https://capture.navattic.com/cme71ilqr000004kz9kqtdtnz">https://capture.navattic.com/cme71ilqr000004kz9kqtdtnz</a></td>
+<td>.gitbook/assets/navattic/DetectUnusualDataVolumes_314x139.png</td>
 </tr>
 <tr>
 <td>
-
-[Enrich Tracked Data](https://capture.navattic.com/cme6ow42g000704jshxzbdaq7)
-
+<strong>Enrich Tracked Data</strong>
 Custom Events, Formulas, and more
-
 </td>
-<td class="hidden">https://capture.navattic.com/cme6ow42g000704jshxzbdaq7</td>
-<td class="hidden">/navattic/EnrichTrackedData_314x139.png</td>
+<td><a href="https://capture.navattic.com/cme6ow42g000704jshxzbdaq7">https://capture.navattic.com/cme6ow42g000704jshxzbdaq7</a></td>
+<td>.gitbook/assets/navattic/EnrichTrackedData_314x139.png</td>
 </tr>
-</tbody>
+  </tbody>
 </table>

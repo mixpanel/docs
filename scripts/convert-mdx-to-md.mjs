@@ -996,7 +996,7 @@ function extractStringProp(objText, key) {
   return m ? m[2] : '';
 }
 
-function convertSelfGuidedTours(src) {
+function convertSelfGuidedTours(src, { outPath, assetsDirAbs, copiedRootHrefs } = {}) {
   // Convert <SelfGuidedTours cards={[ ... ]} /> into a GitBook cards table.
   // This intentionally ignores the interactive overlay behavior and links directly to Navattic capture URLs.
   const lines = String(src).split('\n');
@@ -1078,26 +1078,38 @@ function convertSelfGuidedTours(src) {
                 : `https://capture.navattic.com/${navatticOpen}`
               : '';
 
+          const cover = rewriteRootAssetHrefToRelative(img, { outPath, assetsDirAbs, copiedRootHrefs });
           if (!title) return null;
-          const titleCell = url ? `[${title}](${url})` : title;
-          const cell = blurb ? `${titleCell}\n\n${blurb}` : titleCell;
-          return { cell, url, img };
+          return { title, blurb, url, cover };
         })
         .filter(Boolean);
 
       if (!rows.length) continue;
 
       out.push('<table data-view="cards">');
-      out.push('<thead><tr><th></th><th class="hidden"></th><th class="hidden"></th></tr></thead>');
-      out.push('<tbody>');
+      out.push('  <thead>');
+      out.push('    <tr>');
+      out.push('      <th></th>');
+      out.push('      <th data-hidden data-card-target data-type="content-ref"></th>');
+      out.push('      <th data-hidden data-card-cover data-type="files"></th>');
+      out.push('    </tr>');
+      out.push('  </thead>');
+      out.push('  <tbody>');
       for (const r of rows) {
-        out.push('<tr>');
-        out.push(`<td>\n\n${escapeHtml(r.cell)}\n\n</td>`);
-        out.push(`<td class="hidden">${escapeHtml(r.url || '')}</td>`);
-        out.push(`<td class="hidden">${escapeHtml(r.img || '')}</td>`);
-        out.push('</tr>');
+        out.push('    <tr>');
+        out.push('      <td>');
+        out.push(`        <strong>${escapeHtml(r.title)}</strong>`);
+        if (r.blurb) out.push(`        <br />${escapeHtml(r.blurb)}`);
+        out.push('      </td>');
+        out.push(
+          r.url
+            ? `      <td><a href="${escapeHtml(r.url)}">${escapeHtml(r.url)}</a></td>`
+            : '      <td></td>',
+        );
+        out.push(r.cover ? `      <td>${escapeHtml(r.cover)}</td>` : '      <td></td>');
+        out.push('    </tr>');
       }
-      out.push('</tbody>');
+      out.push('  </tbody>');
       out.push('</table>');
       continue;
     }
@@ -1205,6 +1217,8 @@ function collectRootImageHrefsFromText(src) {
   for (const m of s.matchAll(/<img\b[^>]*\bsrc=(["'])(\/[^"']+)\1[^>]*>/gi)) out.add(m[2]);
   // Common JSX/MDX props: src="/...", image="/..."
   for (const m of s.matchAll(/\b(?:src|image)\s*=\s*(["'])(\/[^"']+\.(?:png|jpe?g|gif|svg|webp))\1/gi)) out.add(m[2]);
+  // Object-style props inside MDX JSX (e.g. img: '/navattic/foo.png')
+  for (const m of s.matchAll(/\bimg\s*:\s*(["'])(\/[^"']+\.(?:png|jpe?g|gif|svg|webp))\1/gi)) out.add(m[2]);
   // Frontmatter-style thumbnails: thumbnail: "/..."
   for (const m of s.matchAll(/^\s*thumbnail\s*:\s*(["'])(\/[^"']+\.(?:png|jpe?g|gif|svg|webp))\1\s*$/gim)) out.add(m[2]);
   return out;
@@ -1239,15 +1253,23 @@ async function ensureGitbookStaticImageAssets({ inDirAbs, outDirAbs }) {
   return { assetsDirAbs, copiedRootHrefs: copied };
 }
 
+function rewriteRootAssetHrefToRelative(href, { outPath, assetsDirAbs, copiedRootHrefs }) {
+  const raw = String(href || '').trim();
+  if (!raw) return raw;
+  if (!raw.startsWith('/')) return raw;
+  if (copiedRootHrefs && !copiedRootHrefs.has(raw)) return raw;
+  const relFromRoot = raw.replace(/^\/+/, '');
+  const assetAbs = path.join(assetsDirAbs, relFromRoot);
+  const rel = toPosixPath(path.relative(path.dirname(outPath), assetAbs));
+  return rel.startsWith('.') ? rel : `./${rel}`;
+}
+
 function rewriteRootImagesToGitbookAssets(src, { outPath, assetsDirAbs, copiedRootHrefs }) {
   // Rewrite ![](/foo.png) -> ![](../.gitbook/assets/foo.png) only when the asset was copied.
   const s = String(src);
   return s.replace(/!\[([^\]]*)\]\((\/[^)\s]+)\)/g, (_all, alt, href) => {
-    if (copiedRootHrefs && !copiedRootHrefs.has(href)) return `![${alt}](${href})`;
-    const relFromRoot = href.replace(/^\/+/, '');
-    const assetAbs = path.join(assetsDirAbs, relFromRoot);
-    const rel = toPosixPath(path.relative(path.dirname(outPath), assetAbs));
-    return `![${alt}](${rel.startsWith('.') ? rel : `./${rel}`})`;
+    const rewritten = rewriteRootAssetHrefToRelative(href, { outPath, assetsDirAbs, copiedRootHrefs });
+    return `![${alt}](${rewritten})`;
   });
 }
 
@@ -2251,7 +2273,11 @@ function convertOne(src, maps, ctx) {
   out = jsxHtmlToHtml(out);
   out = convertFlexDivsToColumns(out);
   out = stripJsxStyleObjectsAndAttributeBraces(out);
-  out = convertSelfGuidedTours(out);
+  out = convertSelfGuidedTours(out, {
+    outPath: ctx.outPath,
+    assetsDirAbs: ctx.staticAssetsDirAbs,
+    copiedRootHrefs: ctx.copiedRootHrefs,
+  });
   out = convertNextImageToMarkdown(out);
   out = convertLogoComponentsToGitbookImages(out, ctx);
   out = ensureBlankLineBeforeStandaloneImages(out);
@@ -2339,7 +2365,7 @@ async function main() {
 
     const src = await fs.readFile(file, 'utf8');
     let converted = file.toLowerCase().endsWith('.mdx')
-      ? convertOne(src, maps, { outPath, assetsDirAbs })
+      ? convertOne(src, maps, { outPath, assetsDirAbs, staticAssetsDirAbs, copiedRootHrefs })
       : src;
     converted = rewriteRootImagesToGitbookAssets(converted, {
       outPath,
