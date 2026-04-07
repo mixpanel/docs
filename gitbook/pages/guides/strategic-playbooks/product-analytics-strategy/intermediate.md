@@ -32,7 +32,8 @@ You're beginning to use product analysis on a regular basis, but don't know how 
 
 "Think about how you can include your product analytics tool in the day-to-day and week-to-week operating of your business. It will make your team's analytics and experimentation muscles that much stronger."
 
-**Vince Maniago** *VP of Product Management, Empower*
+**Vince Maniago**
+*VP of Product Management, Empower*
 
 {% endcolumn %}
 {% endcolumns %}

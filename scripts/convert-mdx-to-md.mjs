@@ -519,6 +519,64 @@ function stripUselessDivs(src) {
   return out.join('\n').replace(/\n{3,}/g, '\n\n');
 }
 
+function convertLogoSpeakerToMarkdown(src) {
+  // Convert <div className={style.logoSpeaker}>**Name**</div> into a clean attribution line.
+  // Do this outside code fences.
+  const lines = String(src).split('\n');
+  const out = [];
+  let inFence = false;
+  for (let line of lines) {
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+
+    line = line.replace(
+      /<div\b[^>]*\bclass(?:Name)?=\{?style\.logoSpeaker\}?\b[^>]*>\s*([\s\S]*?)\s*<\/div>/g,
+      (_all, inner) => `\n\n${String(inner).trim()}\n\n`,
+    );
+    line = line.replace(
+      /<div\b[^>]*\bclass(?:Name)?="[^"]*\blogoSpeaker\b[^"]*"\b[^>]*>\s*([\s\S]*?)\s*<\/div>/g,
+      (_all, inner) => `\n\n${String(inner).trim()}\n\n`,
+    );
+
+    out.push(line);
+  }
+  return out.join('\n').replace(/\n{3,}/g, '\n\n');
+}
+
+function splitSpeakerTitleToNewLine(src) {
+  // Convert: **Name** *Title* -> **Name**\n*Title*
+  // Only do this outside code fences.
+  const lines = String(src).split('\n');
+  const out = [];
+  let inFence = false;
+  for (let line of lines) {
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+
+    line = line.replace(/\*\*([^*\n]+)\*\*\s+\*([^*\n]+)\*/g, (_all, name, title) => {
+      return `**${name.trim()}**\n*${title.trim()}*`;
+    });
+    out.push(line);
+  }
+  return out.join('\n').replace(/\n{3,}/g, '\n\n');
+}
+
 function ensureBlankLineAfterStandaloneImages(src) {
   // GitBook can be picky if an image line is immediately followed by text without a blank line.
   // Ensure a blank line after any standalone markdown image line.
@@ -650,6 +708,10 @@ function convertLogoTablesToColumns(src, { outPath, assetsDirAbs }) {
       textInner = textInner.replace(/\n{3,}/g, '\n\n').trim();
       // Ensure the speaker line isn't glued to the quote.
       textInner = textInner.replace(/"\s*\*\*/g, '"\n\n**');
+      // If attribution includes a title, put it on the next line (no blank line).
+      textInner = textInner.replace(/\*\*([^*\n]+)\*\*\s+\*([^*\n]+)\*/g, (_all, name, title) => {
+        return `**${String(name).trim()}**\n*${String(title).trim()}*`;
+      });
     }
 
     out.push('{% columns %}');
@@ -1907,6 +1969,7 @@ function convertOne(src, maps, ctx) {
   out = convertNextImageToMarkdown(out);
   out = convertLogoComponentsToGitbookImages(out, ctx);
   out = ensureBlankLineAfterStandaloneImages(out);
+  out = convertLogoSpeakerToMarkdown(out);
   out = stripUselessDivs(out);
   out = stripJsxComments(out);
   out = stripStyleTags(out);

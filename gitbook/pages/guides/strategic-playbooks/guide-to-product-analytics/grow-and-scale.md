@@ -29,7 +29,8 @@ When you talk about Growth, you are obviously referring to the growth of your co
 
 **The best metrics for understanding growth will be aligned with your company's north star metric**, and therefore, will vary widely depending on the specific context. In a luxury jewelry company, for example, a key metric might be the number of items sold over $10k where the buyer is x."
 
-**Andrew Chen** *General Partner, Andreessen Horowitz; Board Member, Reforge*
+**Andrew Chen**
+*General Partner, Andreessen Horowitz; Board Member, Reforge*
 
 {% endcolumn %}
 {% endcolumns %}
@@ -44,7 +45,8 @@ When you talk about Growth, you are obviously referring to the growth of your co
 
 "User acquisition matters as a growth metric but you also need to focus on retention. **If you're churning users, you're not really growing.** And while companies like Amazon can afford to stay unprofitable for years, your company probably can't. Outrageous success stories are outliers. Don't get dazzled by what works for them. Focus on what works for you. What's 'table stakes' will vary by industry and market, but these days, it's all about UX—especially at the onboarding stage. Make the user jump through hoops to use your app/software, and they will simply hop away."
 
-**Carlos González de Villaumbrosia** *CEO, Product School*
+**Carlos González de Villaumbrosia**
+*CEO, Product School*
 
 {% endcolumn %}
 {% endcolumns %}
@@ -67,7 +69,8 @@ When you find your product-market fit, measuring growth and value becomes even m
 
 "When you're a startup, you need to throw a lot of things against the wall and see what sticks. Your approach is often broad—like a shotgun. And then when you start noticing what works, you can become more focused—like a sniper rifle. This is product-market fit. Through trial, error, and experimentation you've found what works and now you can focus on this almost exclusively. When you reach maturity, you can consider expanding again, using your established clout, resources, and expertise to open new avenues and opportunities for growth."
 
-**Carlos González de Villaumbrosia** *CEO, Product School*
+**Carlos González de Villaumbrosia**
+*CEO, Product School*
 
 {% endcolumn %}
 {% endcolumns %}
@@ -90,7 +93,8 @@ This only comes with having a clear idea of the foundations laid out in this Gui
 
 "The strategy is to try and understand, as soon as possible, what a retained user regularly does and then try to get users who are not retained to form the same habits. Eventually, we want to provide users with the content that will increase retention and encourage them to stay in for a long enough time for others to join. **This is really the network effect.** Because as more people join, eventually the more active or more retained they'll be."
 
-**Idan Dadon** *Product Manager, Viber*
+**Idan Dadon**
+*Product Manager, Viber*
 
 {% endcolumn %}
 {% endcolumns %}
@@ -105,7 +109,8 @@ This only comes with having a clear idea of the foundations laid out in this Gui
 
 "Let's say five people take a trip but only one goes through the whole planning and booking process. There are four other adults attached to the trip that we (Vrbo) never communicated with. We don't yet have their information. **We aim for organic growth**, by trying to get the other people on the trip—the guests of guests—involved. It's a free/inexpensive acquisition channel instead of having to reach out to a completely unknown person."
 
-**Jamie Kapilivsky** *Data Insights, Vrbo, part of Expedia Group*
+**Jamie Kapilivsky**
+*Data Insights, Vrbo, part of Expedia Group*
 
 {% endcolumn %}
 {% endcolumns %}
@@ -120,7 +125,8 @@ This only comes with having a clear idea of the foundations laid out in this Gui
 
 "We have more than 661,000 customers and hundreds of millions of users around the world—we want them all to love the DocuSign experience. **The 'wow…that was easy' reaction cements the positive impression and helps to drive viral growth.** After all, once they see the value of going digital, they rarely go back to paper."
 
-**Drew Ashlock** *Lead Product Manager, DocuSign*
+**Drew Ashlock**
+*Lead Product Manager, DocuSign*
 
 {% endcolumn %}
 {% endcolumns %}

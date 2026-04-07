@@ -83,7 +83,8 @@ And finally, "Where are my users dropping off?" is a good question to ask, but o
 
 "Deliveroo wants to ensure its restaurant partners are successful, that they get orders and high ROI from using the company's services. We look closely at the conversion funnel from sign up to the first order. For each market, we have targets we want partners to hit, so we know they are reducing churn and increasing conversion. We track how well our restaurant partners are doing on the platform. Are they engaged? Are they taking actions that are good indicators of whether they're going to be successful? How long has it taken them to onboard? We want our partners to be able to go from making the decision to be on Deliveroo to actually taking their first order in a matter of hours, and being able to look at these metrics is what's going to enable us to do that."
 
-**Jordan Ng** *Senior Product Manager, Deliveroo*
+**Jordan Ng**
+*Senior Product Manager, Deliveroo*
 
 {% endcolumn %}
 {% endcolumns %}
@@ -127,7 +128,8 @@ Your retention metric should reflect the number of retained users who experience
 
 "Deliveroo looks at one-week and three-week retention to see if restaurants are engaging with the platform. Are they finding value in using Hub? You don't necessarily need to use Hub to get orders. You could get set up and then completely go on autopilot and your orders can come in. You may not necessarily need to come back to that portal, but we want to help you grow and manage your business. It's an opportunity for us to educate you, give direction, and help you improve your business so we want to measure that engagement and retention."
 
-**Jordan Ng** *Senior Product Manager, Deliveroo*
+**Jordan Ng**
+*Senior Product Manager, Deliveroo*
 
 {% endcolumn %}
 {% endcolumns %}
@@ -160,7 +162,8 @@ Remember how you identified the user interaction that symbolizes the moment when
 
 A great PM works with their data science team on a definition that makes sense for the business. They also account for 'happy churn.' Especially with transactional services, some users churn because your service works as intended, which is a good thing."
 
-**Akio Bandle** *Senior Product Manager, ZipRecruiter*
+**Akio Bandle**
+*Senior Product Manager, ZipRecruiter*
 
 {% endcolumn %}
 {% endcolumns %}
@@ -177,7 +180,8 @@ A great PM works with their data science team on a definition that makes sense f
 
 A great product manager needs to see the difference between an actual trend that can be corrected or adjusted... and a data point."
 
-**John Meakin** *Lead Statistician, Vrbo, part of Expedia Group*
+**John Meakin**
+*Lead Statistician, Vrbo, part of Expedia Group*
 
 {% endcolumn %}
 {% endcolumns %}

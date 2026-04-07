@@ -26,7 +26,8 @@ At Mixpanel, we've consulted thousands of companies—from bootstrapped startups
 
 "Every product person wants to make data-driven decisions. But to do so, you must have the right data, ask the right questions, and use the right tools. That's having true product analytics maturity"
 
-**Mike Belsito** *Co-Founder, Product Collective*
+**Mike Belsito**
+*Co-Founder, Product Collective*
 
 {% endcolumn %}
 {% endcolumns %}
@@ -54,7 +55,8 @@ This guide helps you determine:
 
 "Without data on how the user is moving through your product, you won't grasp where they're unlocking the most value. Without those insights, your team and product devolve into conjecture and building for the vocal minority. Once you've started that, it's impossible to scale."
 
-**Sam Richard** *Director of Growth, OpenView*
+**Sam Richard**
+*Director of Growth, OpenView*
 
 {% endcolumn %}
 {% endcolumns %}
