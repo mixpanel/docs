@@ -41,7 +41,7 @@
 
 * [Benchmarks](benchmarks.md)
 
-* [Strategic Playbooks](strategic-playbooks/onboarding-playbook.md)
+* [Strategic Playbooks](strategic-playbooks.md)
   * [Guide to Product Analytics](strategic-playbooks/guide-to-product-analytics/intro.md)
     * [Introduction](strategic-playbooks/guide-to-product-analytics/intro.md)
     * [Chapter. 1: Measure Value](strategic-playbooks/guide-to-product-analytics/measure-value.md)
