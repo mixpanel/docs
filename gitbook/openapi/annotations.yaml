@@ -1,11 +1,10 @@
-
 openapi: 3.0.2
 info:
   title: Annotations API
-  description: >-
-    Use annotations to label specific points in time in your charts with a description.
+  description: Use annotations to label specific points in time in your charts
+    with a description.
   contact:
-    url: 'https://mixpanel.com/get-support'
+    url: https://mixpanel.com/get-support
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -41,15 +40,15 @@ paths:
       summary: List Annotations
       description: List all annotations in a project.
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListAnnotationsResponse'
-        '401':
+                $ref: "#/components/schemas/ListAnnotationsResponse"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
     post:
       operationId: create-annotation
@@ -60,33 +59,32 @@ paths:
             schema:
               properties:
                 date:
-                  $ref: '#/components/schemas/InputDate'
+                  $ref: "#/components/schemas/InputDate"
                 description:
-                  $ref: '#/components/schemas/InputDescription'
+                  $ref: "#/components/schemas/InputDescription"
                 tags:
-                  $ref: '#/components/schemas/TagIds'
+                  $ref: "#/components/schemas/TagIds"
       tags:
         - Create Annotations
       summary: Create Annotations
       description: Create an Annotation. Requires a role of at least Analyst.
       responses:
-        '201':
+        "201":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetAnnotationsResponse'
-        '401':
+                $ref: "#/components/schemas/GetAnnotationsResponse"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
   /projects/{projectId}/annotations/{annotationId}:
     parameters:
       - $ref: ./common/parameters.yaml#/path/projectId
-      - 
-        name: annotationId
+      - name: annotationId
         in: path
-        description: 'The id of the annotation'
+        description: The id of the annotation
         required: true
         schema:
           type: number
@@ -97,15 +95,15 @@ paths:
       summary: Get Annotation
       description: Get an Annotation
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetAnnotationsResponse'
-        '401':
+                $ref: "#/components/schemas/GetAnnotationsResponse"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
     patch:
       operationId: patch-annotation
@@ -120,19 +118,19 @@ paths:
             schema:
               properties:
                 description:
-                  $ref: '#/components/schemas/InputDescription'
+                  $ref: "#/components/schemas/InputDescription"
                 tags:
-                  $ref: '#/components/schemas/TagIds'
+                  $ref: "#/components/schemas/TagIds"
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetAnnotationsResponse'
-        '401':
+                $ref: "#/components/schemas/GetAnnotationsResponse"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
     delete:
       operationId: delete-annotation
@@ -141,15 +139,15 @@ paths:
       summary: Delete Annotation
       description: Delete an Annotation. Requires a role of at least Analyst.
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteAnnotationsResponse'
-        '401':
+                $ref: "#/components/schemas/DeleteAnnotationsResponse"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
   /projects/{projectId}/annotations/tags:
     parameters:
@@ -158,24 +156,26 @@ paths:
       operationId: get-annotation-tags
       tags:
         - Get Annotation tags
-      description: Get all tags that have been added to at least one annotation. Requires a role of at least Analyst
+      description: Get all tags that have been added to at least one annotation.
+        Requires a role of at least Analyst
       summary: Get Annotation Tags
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetAnnotationTagsResponse'
-        '401':
+                $ref: "#/components/schemas/GetAnnotationTagsResponse"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
     post:
       operationId: create-annotation-tag
       tags:
         - Create Annotation tag
-      description: Creates a new tag using the provided name. Requires a role of at least Analyst
+      description: Creates a new tag using the provided name. Requires a role of at
+        least Analyst
       summary: Create Annotation Tag
       requestBody:
         required: true
@@ -184,17 +184,17 @@ paths:
             schema:
               properties:
                 name:
-                  $ref: '#/components/schemas/TagName'
+                  $ref: "#/components/schemas/TagName"
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnnotationTag'
-        '401':
+                $ref: "#/components/schemas/AnnotationTag"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
 components:
   securitySchemes:
@@ -202,7 +202,7 @@ components:
   schemas:
     GetAnnotationsResponse:
       title: GetAnnotationsResponse
-      description: "A JSON response object containing an annotation'"
+      description: A JSON response object containing an annotation'
       type: object
       additionalProperties: false
       required:
@@ -210,12 +210,12 @@ components:
         - results
       properties:
         status:
-          $ref: '#/components/schemas/ResponseStatus'
+          $ref: "#/components/schemas/ResponseStatus"
         results:
-          $ref: '#/components/schemas/AnnotationsEntry'
+          $ref: "#/components/schemas/AnnotationsEntry"
     DeleteAnnotationsResponse:
       title: DeleteAnnotationsResponse
-      description: "A JSON response object containing the id of the deleted annotation'"
+      description: A JSON response object containing the id of the deleted annotation'
       type: object
       additionalProperties: false
       required:
@@ -223,16 +223,16 @@ components:
         - results
       properties:
         status:
-          $ref: '#/components/schemas/ResponseStatus'
+          $ref: "#/components/schemas/ResponseStatus"
         results:
           type: object
           properties:
             id:
               type: number
-              description: 'The id of the deleted annotation'
+              description: The id of the deleted annotation
     ListAnnotationsResponse:
       title: ListAnnotationsResponse
-      description: "A JSON response object containing all annotations in the project'"
+      description: A JSON response object containing all annotations in the project'
       type: object
       additionalProperties: false
       required:
@@ -240,11 +240,11 @@ components:
         - results
       properties:
         status:
-          $ref: '#/components/schemas/ResponseStatus'
+          $ref: "#/components/schemas/ResponseStatus"
         results:
           type: array
           items:
-            $ref: '#/components/schemas/AnnotationsEntry'
+            $ref: "#/components/schemas/AnnotationsEntry"
     AnnotationsEntry:
       title: AnnotationsEntry
       description: Representation of a single annotation
@@ -252,17 +252,17 @@ components:
       additionalProperties: false
       properties:
         date:
-          $ref: '#/components/schemas/InputDate'
+          $ref: "#/components/schemas/InputDate"
         description:
-          $ref: '#/components/schemas/InputDescription'
+          $ref: "#/components/schemas/InputDescription"
         id:
           type: number
         user:
-          $ref: '#/components/schemas/UserInfo'
+          $ref: "#/components/schemas/UserInfo"
         tags:
           type: array
           items:
-            $ref: '#/components/schemas/SimpleTag'
+            $ref: "#/components/schemas/SimpleTag"
     SimpleTag:
       title: SimpleTag
       description: Basic info about an Annotation Tag
@@ -296,7 +296,7 @@ components:
       description: The list of annotation tags that have been created
       type: array
       items:
-        $ref: '#/components/schemas/AnnotationTag'
+        $ref: "#/components/schemas/AnnotationTag"
     AnnotationTag:
       title: AnnotationTag
       description: An annotation tag
@@ -313,17 +313,16 @@ components:
           description: whether the tag is currently attached to any annotations
     TagName:
       type: string
-      description: 'The text that will be shown when the tag is added to an annotation'
+      description: The text that will be shown when the tag is added to an annotation
     InputDate:
       type: string
-      description: 'A string representation of a date in "YYYY-MM-DD HH:mm:ss" format' 
-      example: '2022-02-15 12:00:00'
+      description: A string representation of a date in "YYYY-MM-DD HH:mm:ss" format
+      example: 2022-02-15 12:00:00
     InputDescription:
       type: string
-      description: 'The text that will be shown when looking at the annotation'
-      example: 'Something interesting happened!'
+      description: The text that will be shown when looking at the annotation
+      example: Something interesting happened!
     ResponseStatus:
       type: string
       description: The status of the response
       example: ok
-

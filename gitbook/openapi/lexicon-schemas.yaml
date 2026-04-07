@@ -1,14 +1,13 @@
 openapi: 3.0.2
 info:
   title: Lexicon Schemas API
-  description: >-
-    Use schemas to sync your data dictionary with Mixpanel. Schemas can be
-    used to populate Lexicon and provide additional context for your data.
+  description: Use schemas to sync your data dictionary with Mixpanel. Schemas can
+    be used to populate Lexicon and provide additional context for your data.
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
   contact:
-    url: "https://mixpanel.com/get-support"
+    url: https://mixpanel.com/get-support
   version: 1.0.0
 servers:
   - $ref: ./common/app-api.yaml#/server
@@ -49,7 +48,133 @@ paths:
       tags:
         - Create Schemas
       summary: Create/Replace Multiple
-      description: ""
+      description: >-
+        Upload schemas in bulk to the specified project. If a schema already
+        exists for a specified entity, it will be replaced by the one you
+        upload.
+
+
+        <Callout icon="🚧" theme="warn">
+          Metadata merging behavior
+
+          If the new schema is missing `metadata` properties that are currently set in the existing schema for that entity, those properties will be merged into the new schema. For example, if your current schema has `{"metadata": {"com.mixpanel": {"hidden": true}}}` and you upload a new schema without "hidden", we will merge `"hidden": true` to your uploaded schema's metadata. If you want to remove that property, set the value to `null`.
+        </Callout>
+
+
+        <Callout icon="📘" theme="info">
+          Adding a schema for User Profiles
+
+          To add a schema for your [User Profiles](https://help.mixpanel.com/hc/en-us/articles/115004501966-User-Profiles), specify the `entityType` as `profile` and the `name` as `$user`.
+        </Callout>
+
+
+        ### Example POST Body
+
+
+        ```json
+
+        {
+          "entries": [
+            {
+              "entityType": "event",
+              "name": "Added To Cart",
+              "schemaJson": {
+                "$schema": "http://json-schema.org/draft-07/schema",
+                "description": "Tracked when a user adds an item to their cart.",
+                "required": [
+                  "item_name",
+                  "item_id",
+                  "item_price"
+                ],
+                "additionalProperties": true,
+                "metadata": {
+                  "com.mixpanel": {
+                    "tags": [
+                      "Shopping",
+                      "KPIs"
+                    ],
+                    "displayName": "Item Purchased",
+                    "hidden": false,
+                    "dropped": false,
+                    "contacts": [
+                      "first.last@mixpanel.com"
+                    ],
+                    "teamContacts": [
+                      "Analytics Team"
+                    ]
+                  }
+                },
+                "properties": {
+                  "item_name": {
+                    "type": "string",
+                    "description": "The name of the item",
+                    "examples": [
+                      "Blue Widget"
+                    ],
+                    "metadata": {
+                      "com.mixpanel": {
+                        "displayName": "Item Name"
+                      }
+                    }
+                  },
+                  "item_id": {
+                    "type": "integer",
+                    "description": "The internal id of the item",
+                    "examples": [
+                      12345
+                    ],
+                    "metadata": {
+                      "com.mixpanel": {
+                        "displayName": "Item ID"
+                      }
+                    }
+                  },
+                  "item_price": {
+                    "type": "number",
+                    "description": "The current price of the item",
+                    "examples": [
+                      25.35
+                    ],
+                    "metadata": {
+                      "com.mixpanel": {
+                        "displayName": "Price"
+                      }
+                    }
+                  },
+                  "promo_id": {
+                    "type": "integer",
+                    "description": "The id of any promo in progress for this item",
+                    "examples": [
+                      82523,
+                      18382
+                    ],
+                    "metadata": {
+                      "com.mixpanel": {
+                        "displayName": "Promo ID"
+                      }
+                    }
+                  },
+                  "date_added_to_catalog": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The date this item was added to the store catalog",
+                    "examples": [
+                      "2015-03-05T15:25:23"
+                    ],
+                    "metadata": {
+                      "com.mixpanel": {
+                        "displayName": "Date Added"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "truncate": false
+        }
+
+        ```
       requestBody:
         content:
           application/json:
@@ -63,11 +188,9 @@ paths:
                     $ref: "#/components/schemas/SchemaEntry"
                 truncate:
                   type: boolean
-                  description: >-
-                    If true, delete your entire data dictionary before inserting
-                    these entries. This is primarily useful if you want to
-                    upload a single file that represents your entire data
-                    dictionary.
+                  description: If true, delete your entire data dictionary before inserting these
+                    entries. This is primarily useful if you want to upload a
+                    single file that represents your entire data dictionary.
                   default: false
               required:
                 - entries
@@ -183,7 +306,123 @@ paths:
       summary: Create/Replace One
       tags:
         - Create Schemas
-      description: ""
+      description: >-
+        Upload a schema for a single entity. If a schema already exists for a
+        specified entity, it will be replaced by the one you upload.
+
+
+        <Callout icon="🚧" theme="warn">
+          Metadata merging behavior
+
+          If the new schema is missing `metadata` properties that are currently set in the existing schema for that entity, those properties will be merged into the new schema. For example, if your current schema has `{"metadata": {"com.mixpanel": {"hidden": true}}}` and you upload a new schema without "hidden", we will merge `"hidden": true` to your uploaded schema's metadata. If you want to remove that property, set the value to `null`.
+        </Callout>
+
+
+        <Callout icon="📘" theme="info">
+          Adding a schema for User Profiles
+
+          To add a schema for your [User Profiles](https://help.mixpanel.com/hc/en-us/articles/115004501966-User-Profiles), specify the `entityType` as `profile` and the `name` as `$user`.
+        </Callout>
+
+
+        ### Example POST Body
+
+
+        ```json
+
+        {
+            "$schema": "http://json-schema.org/draft-07/schema",
+            "description": "Tracked when a user adds an item to their cart.",
+            "required": [
+                "item_name",
+                "item_id",
+                "item_price"
+            ],
+            "additionalProperties": true,
+            "metadata": {
+                "com.mixpanel": {
+                    "tags": [
+                        "Shopping",
+                        "KPIs"
+                    ],
+                    "displayName": "Item Purchased",
+                    "hidden": false,
+                    "dropped": false,
+                    "contacts": [
+                      "first.last@mixpanel.com"
+                    ],
+                    "teamContacts": [
+                      "Analytics Team"
+                    ]
+                }
+            },
+            "properties": {
+                "item_name": {
+                    "type": "string",
+                    "description": "The name of the item",
+                    "examples": [
+                        "Blue Widget"
+                    ],
+                    "metadata": {
+                      "com.mixpanel": {
+                        "displayName": "Item Name"
+                      }
+                    }
+                },
+                "item_id": {
+                    "type": "integer",
+                    "description": "The internal id of the item",
+                    "examples": [
+                        12345
+                    ],
+                    "metadata": {
+                      "com.mixpanel": {
+                        "displayName": "Item ID"
+                      }
+                    }
+                },
+                "item_price": {
+                    "type": "number",
+                    "description": "The current price of the item",
+                    "examples": [
+                        25.35
+                    ],
+                    "metadata": {
+                      "com.mixpanel": {
+                        "displayName": "Price"
+                      }
+                    }
+                },
+                "promo_id": {
+                    "type": "integer",
+                    "description": "The id of any promo in progress for this item",
+                    "examples": [
+                        82523,
+                        18382
+                    ],
+                    "metadata": {
+                      "com.mixpanel": {
+                        "displayName": "Promo ID"
+                      }
+                    }
+                },
+                "date_added_to_catalog": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The date this item was added to the store catalog",
+                    "examples": [
+                        "2015-03-05T15:25:23"
+                    ],
+                    "metadata": {
+                      "com.mixpanel": {
+                        "displayName": "Date Added"
+                      }
+                    }
+                }
+            }
+        }
+
+        ```
       requestBody:
         content:
           application/json:
@@ -211,7 +450,6 @@ components:
       enum:
         - event
         - profile
-
     Schema:
       type: object
       description: The schema for the entity
@@ -221,8 +459,7 @@ components:
           description: The entity description
         properties:
           type: object
-          description: >-
-            The list of properties that should be included on an instance of
+          description: The list of properties that should be included on an instance of
             this entity
           additionalProperties:
             type: object
@@ -251,18 +488,16 @@ components:
                     properties:
                       displayName:
                         type: string
-                        description: >-
-                          If set, this name will be used in the Mixpanel UI instead
-                          of the entity name
+                        description: If set, this name will be used in the Mixpanel UI instead of the
+                          entity name
                       hidden:
                         type: boolean
-                        description: "If true, this property will be hidden in the Mixpanel UI"
+                        description: If true, this property will be hidden in the Mixpanel UI
                         default: false
                       dropped:
                         type: boolean
-                        description: >-
-                          [Events only] If true, the property will be dropped at
-                          ingestion time.
+                        description: "[Events only] If true, the property will be dropped at ingestion
+                          time."
                         default: false
                     additionalProperties: false
             additionalProperties: false
@@ -275,44 +510,35 @@ components:
               properties:
                 $source:
                   type: string
-                  description: >-
-                    The source of this schema. Used by partners to identify
-                    themselves
+                  description: The source of this schema. Used by partners to identify themselves
                 displayName:
                   type: string
-                  description: >-
-                    If set, this name will be used in the Mixpanel UI instead of
-                    the entity name
+                  description: If set, this name will be used in the Mixpanel UI instead of the
+                    entity name
                 tags:
                   type: array
-                  description: >-
-                    A list of tags to associate to this entity that can be used
-                    in the Mixpanel UI for filtering
+                  description: A list of tags to associate to this entity that can be used in the
+                    Mixpanel UI for filtering
                   items:
                     type: string
                 hidden:
                   type: boolean
-                  description: "If true, this entity will be hidden in the Mixpanel UI"
+                  description: If true, this entity will be hidden in the Mixpanel UI
                   default: false
                 dropped:
                   type: boolean
-                  description: >-
-                    [Events only] If true, the event will be dropped at
-                    ingestion time.
+                  description: "[Events only] If true, the event will be dropped at ingestion
+                    time."
                   default: false
                 contacts:
                   type: array
-                  description: >-
-                    A list of emails belonging to users responsible for this
-                    entity.
+                  description: A list of emails belonging to users responsible for this entity.
                   items:
                     type: string
                     additionalProperties: false
                 teamContacts:
                   type: array
-                  description: >-
-                    A list of team names responsible for this
-                    entity.
+                  description: A list of team names responsible for this entity.
                   items:
                     type: string
               additionalProperties: false
@@ -353,9 +579,8 @@ components:
               description: The number of entries that were inserted
             deleted:
               type: integer
-              description: >-
-                The number of entries that were deleted (on applicable if
-                `truncate: true`)
+              description: "The number of entries that were deleted (on applicable if
+                `truncate: true`)"
         status:
           type: string
           enum:

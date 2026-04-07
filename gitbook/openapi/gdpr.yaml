@@ -1,13 +1,13 @@
 openapi: 3.0.2
 info:
   title: GDPR API
-  description: >-
-    The following retrieval and deletion API is made for GDPR and CCPA compliance.
+  description: The following retrieval and deletion API is made for GDPR and CCPA
+    compliance.
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
   contact:
-    url: 'https://mixpanel.com/get-support'
+    url: https://mixpanel.com/get-support
   version: 3.0.0
 servers:
   - $ref: ./common/app-api.yaml#/server
@@ -21,16 +21,15 @@ tags:
   - name: Check Status of Retrieval
     description: Checks the status of a data retrieval job
   - name: Create a Deletion
-    description: Creates a task that specifies a list of users in a particular project to delete
+    description: Creates a task that specifies a list of users in a particular
+      project to delete
   - name: Create a Retrieval
     description: Creates a data retrieval job
-
 paths:
-  # Create Retrieval Task
   /data-retrievals/v3.0:
     post:
       parameters:
-        - $ref: '#/components/parameters/ProjectToken'
+        - $ref: "#/components/parameters/ProjectToken"
       operationId: create-retrieval
       requestBody:
         required: true
@@ -39,33 +38,30 @@ paths:
             schema:
               properties:
                 distinct_ids:
-                  $ref: '#/components/schemas/DistinctIds'
+                  $ref: "#/components/schemas/DistinctIds"
                 compliance_type:
-                  $ref: '#/components/schemas/ComplianceType'
+                  $ref: "#/components/schemas/ComplianceType"
                 disclosure_type:
-                  $ref: '#/components/schemas/DisclosureType'
+                  $ref: "#/components/schemas/DisclosureType"
       tags:
         - Create a Retrieval
       summary: Create a Retrieval
       description: Creates a data retrieval job.
       responses:
-        '201':
+        "201":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/JobCreated'
-
-        '401':
+                $ref: "#/components/schemas/JobCreated"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
-
-  # Check Retrieval Task
   /data-retrievals/v3.0/{tracking_id}:
     parameters:
-      - $ref: '#/components/parameters/TrackingId'
-      - $ref: '#/components/parameters/ProjectToken'
+      - $ref: "#/components/parameters/TrackingId"
+      - $ref: "#/components/parameters/ProjectToken"
     get:
       operationId: get-retrieval
       tags:
@@ -73,22 +69,20 @@ paths:
       summary: Check Status of Retrieval
       description: Checks the status of a data retrieval job
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CheckRetrievalResponse'
-        '401':
+                $ref: "#/components/schemas/CheckRetrievalResponse"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
-
-  # Create Deletion Task
   /data-deletions/v3.0:
     post:
       parameters:
-        - $ref: '#/components/parameters/ProjectToken'
+        - $ref: "#/components/parameters/ProjectToken"
       operationId: create-deletion
       requestBody:
         required: true
@@ -97,32 +91,28 @@ paths:
             schema:
               properties:
                 distinct_ids:
-                  $ref: '#/components/schemas/DistinctIds'
+                  $ref: "#/components/schemas/DistinctIds"
                 compliance_type:
-                  $ref: '#/components/schemas/ComplianceType'
+                  $ref: "#/components/schemas/ComplianceType"
       tags:
         - Create a Deletion
       summary: Create a Deletion
       description: Creates a task that specifies a list of users in a project to delete
       responses:
-        '201':
+        "201":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/JobCreated'
-        '401':
+                $ref: "#/components/schemas/JobCreated"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
-
-  # Check and Cancel Deletion Tasks
   /data-deletions/v3.0/{tracking_id}:
     parameters:
-      - $ref: '#/components/parameters/TrackingId'
-      - $ref: '#/components/parameters/ProjectToken'
-    
-    # Check Deletion Task
+      - $ref: "#/components/parameters/TrackingId"
+      - $ref: "#/components/parameters/ProjectToken"
     get:
       operationId: get-deletion
       tags:
@@ -130,18 +120,16 @@ paths:
       summary: Check Status of Deletion
       description: Checks the status of an existing deletion task
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CheckDeletionResponse'
-        '401':
+                $ref: "#/components/schemas/CheckDeletionResponse"
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
-    
-    # Cancel Deletion Tasks
     delete:
       operationId: delete-deletion
       tags:
@@ -149,23 +137,20 @@ paths:
       summary: Cancel a Deletion
       description: Cancel a deletion task that is still in progress
       responses:
-        '204':
+        "204":
           description: Success
-        '401':
+        "401":
           $ref: ./common/responses.yaml#/401Unauthorized
-        '403':
+        "403":
           $ref: ./common/responses.yaml#/403Forbidden
-
 components:
-
   securitySchemes:
     $ref: ./common/securitySchemes.yaml
-
   schemas:
-
     JobCreated:
       title: JobCreated
-      description: "A JSON response object containing the task_id of the retrieval/deletion job."
+      description: A JSON response object containing the task_id of the
+        retrieval/deletion job.
       type: object
       additionalProperties: false
       required:
@@ -173,18 +158,17 @@ components:
         - results
       properties:
         status:
-          $ref: '#/components/schemas/ResponseStatus'
+          $ref: "#/components/schemas/ResponseStatus"
         results:
           type: object
           properties:
-            task_id: 
+            task_id:
               type: string
-              description: 'The task_id of the retrieval/deletion job.'
-              example: 'job-tracking-id'
-
+              description: The task_id of the retrieval/deletion job.
+              example: job-tracking-id
     CheckRetrievalResponse:
       title: CheckRetrievalResponse
-      description: "A JSON response object containing data about a retrieval job"
+      description: A JSON response object containing data about a retrieval job
       type: object
       additionalProperties: false
       required:
@@ -192,13 +176,13 @@ components:
         - results
       properties:
         status:
-          $ref: '#/components/schemas/ResponseStatus'
+          $ref: "#/components/schemas/ResponseStatus"
         results:
           type: object
           properties:
             status:
               type: string
-              description: 'The status of the job.'
+              description: The status of the job.
               enum:
                 - PENDING
                 - STAGING
@@ -208,17 +192,17 @@ components:
                 - REVOKED
                 - NOT_FOUND
                 - UNKNOWN
-              example: 'SUCCESS'
+              example: SUCCESS
             results:
               type: string
-              description: 'Link to the export if retrieval job is completed. Will be an empty string if job is incomplete'
-              example: 'linktoexportfile.com/9871287366712'
+              description: Link to the export if retrieval job is completed. Will be an empty
+                string if job is incomplete
+              example: linktoexportfile.com/9871287366712
             distinct_ids:
-              $ref: '#/components/schemas/DistinctIds'
-
+              $ref: "#/components/schemas/DistinctIds"
     CheckDeletionResponse:
       title: CheckDeletionResponse
-      description: "A JSON response object containing data about a data deletion job"
+      description: A JSON response object containing data about a data deletion job
       type: object
       additionalProperties: false
       required:
@@ -226,13 +210,12 @@ components:
         - results
       properties:
         status:
-          $ref: '#/components/schemas/ResponseStatus'
+          $ref: "#/components/schemas/ResponseStatus"
         results:
-          $ref: '#/components/schemas/DeletionJobResult'
-
+          $ref: "#/components/schemas/DeletionJobResult"
     DeletionJobResult:
       title: DeletionJobResult
-      description: "Details about a deletion job"
+      description: Details about a deletion job
       type: object
       additionalProperties: false
       required:
@@ -246,10 +229,10 @@ components:
       properties:
         tracking_id:
           type: string
-          description: 'The tracking id of the deletion job'
+          description: The tracking id of the deletion job
         status:
           type: string
-          description: 'The status of the job.'
+          description: The status of the job.
           enum:
             - PENDING
             - STAGING
@@ -259,64 +242,63 @@ components:
             - REVOKED
             - NOT_FOUND
             - UNKNOWN
-          example: 'SUCCESS'
+          example: SUCCESS
         requesting_user:
           type: string
-          description: 'The user that created the deletion job request'
+          description: The user that created the deletion job request
         compliance_type:
           type: string
-          description: 'GDPR or CCPA'
+          description: GDPR or CCPA
         project_id:
           type: number
-          description: 'The id of the project this job is for'
+          description: The id of the project this job is for
         date_requested:
           type: string
-          description: 'The timestamp when the deletion job was requested'
+          description: The timestamp when the deletion job was requested
         distinct_ids:
-          $ref: '#/components/schemas/DistinctIds'
+          $ref: "#/components/schemas/DistinctIds"
       example:
-        tracking_id: 'job tracking_id'
-        status: 'SUCCESS'
-        requesting_user: 'user@mail.com'
-        compliance_type: 'GDPR'
-        project_id: 'your project ID'
-        date_requested: 'YYYY-MM-DDTHH:MM:SS'
-        distinct_ids: ['distinct_id_1','distinct_id_2']
-
+        tracking_id: job tracking_id
+        status: SUCCESS
+        requesting_user: user@mail.com
+        compliance_type: GDPR
+        project_id: your project ID
+        date_requested: YYYY-MM-DDTHH:MM:SS
+        distinct_ids:
+          - distinct_id_1
+          - distinct_id_2
     ResponseStatus:
       type: string
       description: The status of the response
       example: ok
-    
     DistinctIds:
       type: array
       items:
         type: string
-        description: 'Distinct IDs involved in the request'
-      example: ['distinct_id_1','distinct_id_2','distinct_id_3']
-
+        description: Distinct IDs involved in the request
+      example:
+        - distinct_id_1
+        - distinct_id_2
+        - distinct_id_3
     ComplianceType:
       type: string
-      description: 'Select CCPA or GDPR. Default is GDPR.'
-
+      description: Select CCPA or GDPR. Default is GDPR.
     DisclosureType:
       type: string
-      description: 'Only required if compliance_type = CCPA. Can be Data, Categories, or Sources. Default is Data.'
-
+      description: Only required if compliance_type = CCPA. Can be Data, Categories,
+        or Sources. Default is Data.
   parameters:
-
     ProjectToken:
       name: token
       in: query
       schema:
         type: string
-      description: 'Your project token'
+      description: Your project token
       required: true
-
     TrackingId:
       name: tracking_id
       in: path
       schema:
         type: string
-      description: 'The task ID shown in the response'
+      description: The task ID shown in the response
       required: true

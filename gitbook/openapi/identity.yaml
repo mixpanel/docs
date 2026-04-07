@@ -8,7 +8,7 @@ info:
     url: https://opensource.org/licenses/MIT
   version: 1.0.0
   contact:
-    url: 'https://mixpanel.com/get-support'
+    url: https://mixpanel.com/get-support
 servers:
   - url: https://{region}.mixpanel.com
     description: Mixpanel's data collection server.
@@ -34,7 +34,44 @@ paths:
         - Identities
       summary: Create Identity
       operationId: create-identity
-      description: ''
+      description: |-
+        <Callout icon="📘" theme="info">
+          The `$identify` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management#identity-merge-apis) for more information.
+        </Callout>
+
+        <Callout icon="📘" theme="info">
+          You can also use the import endpoint: [https://api.mixpanel.com/import/](https://api.mixpanel.com/import/)
+        </Callout>
+
+        ```sh
+        curl --request POST \
+             --url 'https://api.mixpanel.com/track#create-identity' \
+             --header 'accept: text/plain' \
+             --header 'content-type: application/x-www-form-urlencoded' \
+             --data 'data={
+              "event": "$identify",
+              "properties": {
+                  "$identified_id": "YOUR_CHOSEN_USER_ID",
+                  "$anon_id": "ORIGINAL_ANON_ID",
+                  "token": "YOUR_PROJECT_TOKEN"
+              }
+        }
+        '
+        ```
+
+        **Identify Criteria:**
+        ![](https://files.readme.io/d0066f0-ID_management_identify_3-HTTP.png)
+
+        **Required[Event Object](https://docs.mixpanel.com/docs/tracking/reference/data-model#anatomy-of-an-event) attributes**
+
+        | Event Object property         | Type                                                                                                        | Description                                                                                                                                                                                     |
+        | :---------------------------- | :---------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+        | **event**                     | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | value must be: `$identify`                                                                                                                                                                      |
+        | **properties**                | <span style={{ fontFamily: "courier" }}>Object</span><br /><span style={{ color: "red" }}>required</span>   |                                                                                                                                                                                                 |
+        | **properties.distinct_id**    | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "green" }}>optional</span> | The distinct ID post-identification (same as $identified_id - it will be inferred from $identified_id if not included)                                                                          |
+        | **properties.$identified_id** | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | A distinct_id to merge with the $anon_id.                                                                                                                                                       |
+        | **properties.$anon_id**       | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | A distinct_id to merge with the $identified_id. The $anon_id must be [UUID v4](https://en.wikipedia.org/wiki/Universally_unique_identifier) format and not already merged to an $identified_id. |
+        | **properties.token**          | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | The project token.                                                                                                                                                                              |
       security:
         - {}
       requestBody:
@@ -50,7 +87,8 @@ paths:
                     data:
                       type: string
                       format: blob
-                      description: A JSON object with the required Event Object fields and any additional event properties.
+                      description: A JSON object with the required Event Object fields and any
+                        additional event properties.
                       default: |
                         {
                               "event": "$identify",
@@ -60,22 +98,98 @@ paths:
                                   "token": "YOUR_PROJECT_TOKEN"
                               }
                         }
-
-                - $ref: '#/components/schemas/ImportRequestParameters'
+                - $ref: "#/components/schemas/ImportRequestParameters"
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /track#identity-create-alias:
     post:
       tags:
         - Identities
       summary: Create Alias
       operationId: identity-create-alias
-      description: ''
+      description: |-
+        <Callout icon="📘" theme="info">
+          The `$create_alias` event payload is only useful for projects using the Original ID Merge system and the Legacy ID Management System; it has no functionality in the Simplified ID Merge system. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management#identity-merge-apis) for more information.
+        </Callout>
+
+        <Callout icon="📘" theme="info">
+          You can also use the import endpoint: [https://api.mixpanel.com/import/](https://api.mixpanel.com/import/)
+        </Callout>
+
+        Mixpanel supports adding an alias to a distinct id. An alias is a new value that will be interpreted by Mixpanel as an existing value. That means that you can send messages to Mixpanel using the new value, and Mixpanel will continue to use the old value for calculating funnels and retention reports, or applying updates to user profiles.
+
+        **Alias Criteria:**
+
+        <Image alt="960" border={false} src="https://files.readme.io/d16f1d3-ID_management_alias_3-HTTP.png" title="Identity Management - Alias" />
+
+        **Required[Event Object](https://docs.mixpanel.com/docs/tracking/reference/data-model#anatomy-of-an-event) attributes**
+
+        <table>
+          <thead>
+            <tr>
+              <th>Event Object property</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>**event**</td>
+
+              <td>
+                <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>
+              </td>
+
+              <td>value must be: <br />`$create_alias`</td>
+            </tr>
+
+            <tr>
+              <td>**properties**</td>
+
+              <td>
+                <span style={{ fontFamily: "courier" }}>Object</span><br /><span style={{ color: "red" }}>required</span>
+              </td>
+
+              <td />
+            </tr>
+
+            <tr>
+              <td>**properties.distinct\_id**</td>
+
+              <td>
+                <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>
+              </td>
+
+              <td>A distinct\_id to be merged with the alias.</td>
+            </tr>
+
+            <tr>
+              <td>**properties.alias**</td>
+
+              <td>
+                <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>
+              </td>
+
+              <td>A new distinct\_id to be merged with the original distinct\_id. Each alias can only map to one distinct\_id.</td>
+            </tr>
+
+            <tr>
+              <td>**properties.token**</td>
+
+              <td>
+                <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>
+              </td>
+
+              <td>The project token.</td>
+            </tr>
+          </tbody>
+        </table>
       security:
         - {}
       requestBody:
@@ -91,7 +205,8 @@ paths:
                     data:
                       type: string
                       format: blob
-                      description: A JSON object with the required Event Object fields and any additional event properties.
+                      description: A JSON object with the required Event Object fields and any
+                        additional event properties.
                       default: |
                         {
                             "event": "$create_alias",
@@ -101,21 +216,39 @@ paths:
                                 "token": "YOUR_PROJECT_TOKEN"
                             }
                         }
-                - $ref: '#/components/schemas/ImportRequestParameters'
+                - $ref: "#/components/schemas/ImportRequestParameters"
       responses:
-        '200':
-          $ref: '#/components/responses/Received'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /import:
     post:
       tags:
         - Identities
       summary: Merge Identities
       operationId: identity-merge
-      description: ''
+      description: >-
+        <Callout icon="📘" theme="info">
+          The `$merge` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management#identity-merge-apis) for more information.
+        </Callout>
+
+
+        <Callout icon="❗️" theme="error">
+          Merging identities is irreversible
+
+          `$merge` is a very powerful tool, so we will only accept `$merge` events that are sent via `https://api.mixpanel.com/import`, which is protected by the project api secret. You **cannot** unmerge `distinct_id`.
+        </Callout>
+
+
+        **Merge Criteria:**
+
+
+        <Image alt="960" border={false}
+        src="https://files.readme.io/be66940-merge_.png" title="Identity
+        Management - Merge" />
       security:
         - ServiceAccount: []
         - ProjectSecret: []
@@ -126,17 +259,19 @@ paths:
           required: true
           schema:
             type: string
-            default: '1'
+            default: "1"
             enum:
-              - '0'
-              - '1'
-          description: When set to 1 (recommended), Mixpanel will validate the batch and return errors per event that failed.
+              - "0"
+              - "1"
+          description: When set to 1 (recommended), Mixpanel will validate the batch and
+            return errors per event that failed.
         - in: query
           name: project_id
           required: false
           schema:
             type: string
-          description: The Mixpanel project_id, used to authenticate service account credentials (do not provide if using secret auth).
+          description: The Mixpanel project_id, used to authenticate service account
+            credentials (do not provide if using secret auth).
       requestBody:
         required: true
         content:
@@ -152,12 +287,16 @@ paths:
                   event:
                     type: string
                     title: event
-                    description: This is the name of the event. If you're loading data from a data warehouse, we recommend using the name of the table as the name of the event.
-                    default: '$merge'
+                    description: This is the name of the event. If you're loading data from a data
+                      warehouse, we recommend using the name of the table as the
+                      name of the event.
+                    default: $merge
                   properties:
                     type: object
                     title: properties
-                    required: ['$distinct_ids', 'token']
+                    required:
+                      - $distinct_ids
+                      - token
                     properties:
                       $distinct_ids:
                         type: array
@@ -167,12 +306,12 @@ paths:
                           type: string
                         description: The two distinct_ids to merge together.
       responses:
-        '200':
-          $ref: '#/components/responses/StrictReceived'
-        '400':
-          $ref: '#/components/responses/StrictInvalid'
-        '401':
-          $ref: '#/components/responses/StrictUnauthorized'
+        "200":
+          $ref: "#/components/responses/StrictReceived"
+        "400":
+          $ref: "#/components/responses/StrictInvalid"
+        "401":
+          $ref: "#/components/responses/StrictUnauthorized"
 components:
   securitySchemes:
     $ref: ./common/securitySchemes.yaml
@@ -191,7 +330,7 @@ components:
             - error
   responses:
     StrictReceived:
-      description: 'A 200 response indicates all events were successfully ingested.'
+      description: A 200 response indicates all events were successfully ingested.
       content:
         application/json:
           schema:
@@ -206,9 +345,9 @@ components:
             example:
               code: 200
               num_records_imported: 2000
-              status: 'OK'
+              status: OK
     StrictInvalid:
-      description: 'A 400 response indicates that some events failed validation.'
+      description: A 400 response indicates that some events failed validation.
       content:
         application/json:
           schema:
@@ -238,14 +377,15 @@ components:
             example:
               code: 400
               num_records_imported: 999
-              status: 'Bad Request'
+              status: Bad Request
               failed_records:
                 - index: 0
-                  insert_id: '13c0b661-f48b-51cd-ba54-97c5999169c0'
-                  field: 'properties.time'
-                  message: "'properties.time' is invalid: must be specified as seconds since epoch"
+                  insert_id: 13c0b661-f48b-51cd-ba54-97c5999169c0
+                  field: properties.time
+                  message: "'properties.time' is invalid: must be specified as seconds since
+                    epoch"
     StrictUnauthorized:
-      description: 'A 401 response indicates invalid service account credentials.'
+      description: A 401 response indicates invalid service account credentials.
       content:
         application/json:
           schema:
@@ -259,10 +399,9 @@ components:
                 type: string
             example:
               code: 401
-              error: 'Invalid service account credentials'
-              status: 'Unauthorized'
+              error: Invalid service account credentials
+              status: Unauthorized
     Received:
-      # TODO: Add oneOf based on response type
       content:
         text/plain:
           schema:
@@ -275,23 +414,24 @@ components:
               value: 1
             Invalid Data:
               value: 0
-      description: |
+      description: >
+        
+        * `1` - All data objects provided are valid. This does not signify a
+        valid project token or secret.
 
-        * `1` - All data objects provided are valid. This does not signify a valid project token or secret.
         * `0` - One or more data objects in the body are invalid.
-
     Unauthorized:
       description: Unauthorized
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorResponse'
+            $ref: "#/components/schemas/ErrorResponse"
     Forbidden:
       description: Forbidden
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorResponse'
+            $ref: "#/components/schemas/ErrorResponse"
 x-explorer-enabled: true
 x-proxy-enabled: true
 x-samples-enabled: true

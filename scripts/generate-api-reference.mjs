@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import YAML from 'yaml';
 
 const ROOT = path.resolve(process.cwd());
 
@@ -207,18 +208,83 @@ async function copyOpenapiSpecs() {
   }
 }
 
+async function augmentGitbookOpenapiFromReference() {
+  // For each operationId in gitbook/openapi/*.yaml, inject the corresponding
+  // /reference/**/<operationId>.md content into operation.description.
+  const refRoot = path.join(ROOT, 'reference');
+  const specDir = path.join(ROOT, 'gitbook', 'openapi');
+
+  // Index reference pages by basename (slug.md).
+  const refFiles = (await listFilesRecursive(refRoot)).filter((f) => f.toLowerCase().endsWith('.md'));
+  const byBase = new Map();
+  for (const f of refFiles) {
+    const base = path.basename(f).toLowerCase();
+    if (!byBase.has(base)) byBase.set(base, []);
+    byBase.get(base).push(f);
+  }
+
+  const specFiles = (await fs.readdir(specDir)).filter((f) => f.endsWith('.yaml'));
+  for (const specFile of specFiles) {
+    const abs = path.join(specDir, specFile);
+    const raw = await fs.readFile(abs, 'utf8');
+    const root = YAML.parse(raw) || {};
+
+    const paths = root.paths || {};
+    for (const [p, methods] of Object.entries(paths)) {
+      if (!methods || typeof methods !== 'object') continue;
+      for (const [method, op] of Object.entries(methods)) {
+        if (!op || typeof op !== 'object') continue;
+        const operationId = op.operationId;
+        if (!operationId) continue;
+
+        const hits = byBase.get(`${String(operationId).toLowerCase()}.md`) || [];
+        if (!hits.length) continue;
+        // Prefer the shortest path match (best-effort disambiguation).
+        hits.sort((a, b) => a.length - b.length);
+        const refAbs = hits[0];
+        const src = await fs.readFile(refAbs, 'utf8');
+        const { fm, body } = parseFrontmatter(src);
+
+        // Use page content as description (GitBook renders markdown from spec).
+        let desc = String(body).trim();
+        desc = rewriteCrossSpaceLinks(desc, { fromSection: 'api' });
+
+        if (desc) op.description = desc;
+        if (!op.summary && fm?.title) op.summary = String(fm.title).trim();
+      }
+    }
+
+    await fs.writeFile(abs, YAML.stringify(root), 'utf8');
+  }
+}
+
 async function main() {
   const refRoot = path.join(ROOT, 'reference');
   const outRoot = path.join(ROOT, 'gitbook', 'pages', 'api');
   await fs.mkdir(outRoot, { recursive: true });
 
   await copyOpenapiSpecs();
+  await augmentGitbookOpenapiFromReference();
 
   const topOrder = await readOrderYaml(path.join(refRoot, '_order.yaml'));
   const slugIndex = await buildSlugIndex(refRoot);
 
   // Build pages + SUMMARY
   let summary = '# Table of contents\n\n* [API Reference](README.md)\n\n';
+
+  const openapiByTopTitle = new Map([
+    ['Ingestion API', 'ingestion'],
+    ['Identity API', 'identity'],
+    ['Query API', 'query'],
+    ['Event Export API', 'export'],
+    ['Lexicon Schemas API', 'lexicon-schemas'],
+    ['Data Pipelines API', 'data-pipelines'],
+    ['Service Accounts API', 'service-accounts'],
+    ['Annotations API', 'annotations'],
+    ['GDPR API', 'gdpr'],
+    ['Warehouse Connectors API', 'warehouse-connectors'],
+    ['Feature Flags API', 'feature-flags'],
+  ]);
 
   for (const top of topOrder) {
     const topDir = path.join(refRoot, top);
@@ -232,6 +298,7 @@ async function main() {
 
     summary += `## ${top}\n\n`;
     const topSeg = slugifySegment(top);
+    const specName = openapiByTopTitle.get(top) || '';
 
     const topDirOrder = await readOrderYaml(path.join(topDir, '_order.yaml'));
     for (const item of topDirOrder) {
@@ -271,6 +338,10 @@ async function main() {
       try {
         const stDir = await fs.stat(dirAbs);
         if (stDir.isDirectory()) {
+          // For OpenAPI-driven groups, don't emit per-endpoint pages in the TOC.
+          // GitBook will auto-generate tag pages from the spec.
+          if (specName) continue;
+
           // Copy all md in subtree in deterministic order via its _order.yaml
           const subOrder = await readOrderYaml(path.join(dirAbs, '_order.yaml'));
           for (const sub of subOrder) {
@@ -293,6 +364,20 @@ async function main() {
           }
         }
       } catch {}
+    }
+
+    if (specName) {
+      summary += '* ```yaml\n';
+      summary += '  type: builtin:openapi\n';
+      summary += '  props:\n';
+      summary += '    models: false\n';
+      summary += '    downloadLink: false\n';
+      summary += '  dependencies:\n';
+      summary += '    spec:\n';
+      summary += '      ref:\n';
+      summary += '        kind: openapi\n';
+      summary += `        spec: ${specName}\n`;
+      summary += '  ```\n';
     }
 
     summary += '\n';
