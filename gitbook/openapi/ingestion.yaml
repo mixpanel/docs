@@ -55,24 +55,30 @@ paths:
 
         We support Content-Type `application/json` or `application/x-ndjson`:
 
-        ```json JSON
+        {% tabs %}
+        {% tab title="JSON" %}
+        ```json
         [
           {"event": "Signup", "properties": {"time": 1618716477000,"distinct_id": "91304156-cafc-4673-a237-623d1129c801","$insert_id": "29fc2962-6d9c-455d-95ad-95b84f09b9e4","Referred by": "Friend","URL": "mixpanel.com/signup"}},
           {"event": "Purchase", "properties": {"time": 1618716477000,"distinct_id": "91304156-cafc-4673-a237-623d1129c801","$insert_id": "935d87b1-00cd-41b7-be34-b9d98dd08b42","Item": "Coffee", "Amount": 5.0}}
         ]
         ```
-        ```json ndJSON
+        {% endtab %}
+
+        {% tab title="ndJSON" %}
+        ```json
         {"event": "Signup", "properties": {"time": 1618716477000,"distinct_id": "91304156-cafc-4673-a237-623d1129c801","$insert_id": "29fc2962-6d9c-455d-95ad-95b84f09b9e4","Referred by": "Friend","URL": "mixpanel.com/signup"}}
         {"event": "Purchase", "properties": {"time": 1618716477000,"distinct_id": "91304156-cafc-4673-a237-623d1129c801","$insert_id": "935d87b1-00cd-41b7-be34-b9d98dd08b42","Item": "Coffee", "Amount": 5.0}}
         ```
-
+        {% endtab %}
+        {% endtabs %}
         We also support `Content-Encoding: gzip` to reduce network egress.
 
         ## Authentication
 
-         `/import` requires an Owner or Admin [Service Account](https://developer.mixpanel.com/reference/service-accounts). project\_id, service account username, and service account password are required to authenticate a request.
+         `/import` requires an Owner or Admin [Service Account](https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/service-accounts). project\_id, service account username, and service account password are required to authenticate a request.
 
-        `/import` also supports [Project Token](https://developer.mixpanel.com/reference/project-token) as an authentication method. You can provide your token as the basic auth username value with an empty password. If project\_id is not specified, the request will be authenticated using the provided token.
+        `/import` also supports [Project Token](https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/project-token) as an authentication method. You can provide your token as the basic auth username value with an empty password. If project\_id is not specified, the request will be authenticated using the provided token.
 
         ## Validation
 
@@ -89,7 +95,7 @@ paths:
 
         ### Example of an event
 
-        ```json JSON
+        ```json
         {
           "event": "Signed up",
           "properties": {
@@ -102,7 +108,6 @@ paths:
           }
         }
         ```
-
         #### event
 
         This is the name of the event. If you're loading data from a data warehouse, we recommend using the name of the table as the name of the event.
@@ -155,7 +160,7 @@ paths:
 
         ### Example of a validation error
 
-        ```json JSON
+        ```json
         {
           "code": 400,
           "error": "some data points in the request failed validation",
@@ -177,7 +182,6 @@ paths:
           "status": "Bad Request"
         }
         ```
-
         When any single event in the batch does not pass validation, we return a 400 status code and a response that looks like the above.
 
         `failed_records` includes one row for each of the failed events, with details about the error we found. If some of the rows passed validation, we will ingest them and return their count in `num_records_imported`.
@@ -190,7 +194,9 @@ paths:
 
         This is an example of an event before and after enrichment:
 
-        ```json Pre-Enrichment
+        {% tabs %}
+        {% tab title="Pre-Enrichment" %}
+        ```json
         {
           "event": "Signed up",
           "properties": {
@@ -203,7 +209,10 @@ paths:
           }
         }
         ```
-        ```json Post-Enrichment
+        {% endtab %}
+
+        {% tab title="Post-Enrichment" %}
+        ```json
         {
           "event": "Signed up",
           "properties": {
@@ -218,7 +227,8 @@ paths:
           }
         }
         ```
-
+        {% endtab %}
+        {% endtabs %}
         ## Rate Limit
 
         To ensure real-time ingestion and quality-of-service, we have a rate limit of 2GB of uncompressed JSON/minute or \~30k events per second, measured on a rolling 1 minute basis.
@@ -360,7 +370,7 @@ paths:
 
         ## Limits
 
-        The limits for track are the same as /import, [see here](https://developer.mixpanel.com/reference/import-events#rate-limits).
+        The limits for track are the same as /import, [see here](https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/import-events#rate-limits).
 
         Each event has the following size limits:
 
@@ -383,10 +393,50 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/UseIpAsDistinctId
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/PNGPixel
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: If present and equal to 1, Mixpanel will use the ip address of the
+            incoming request and compute a distinct_id using a hash function if
+            no distinct_id is provided. This is different from providing a
+            `properties.ip` value in the Event Object.
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
+        - in: query
+          name: img
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: If present and equal to 1, Mixpanel will serve a 1x1 transparent
+            pixel image as a response to the request. This is useful for adding
+            [Pixel Tracking](https://en.wikipedia.org/wiki/Web_beacon) in places
+            that javascript is not supported.
+        - in: query
+          name: callback
+          required: false
+          schema:
+            type: string
+          description: "If present, Mixpanel will return a `content-type: text/javascript`
+            with a body that calls a function by value provided. This is useful
+            for creating local callbacks to a successful track call in
+            JavaScript."
       requestBody:
         content:
           application/json:
@@ -457,10 +507,42 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
+        - in: query
+          name: callback
+          required: false
+          schema:
+            type: string
+          description: "If present, Mixpanel will return a `content-type: text/javascript`
+            with a body that calls a function by value provided. This is useful
+            for creating local callbacks to a successful track call in
+            JavaScript."
       requestBody:
         required: true
         content:
@@ -503,10 +585,42 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
+        - in: query
+          name: callback
+          required: false
+          schema:
+            type: string
+          description: "If present, Mixpanel will return a `content-type: text/javascript`
+            with a body that calls a function by value provided. This is useful
+            for creating local callbacks to a successful track call in
+            JavaScript."
       requestBody:
         required: true
         content:
@@ -554,10 +668,42 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
+        - in: query
+          name: callback
+          required: false
+          schema:
+            type: string
+          description: "If present, Mixpanel will return a `content-type: text/javascript`
+            with a body that calls a function by value provided. This is useful
+            for creating local callbacks to a successful track call in
+            JavaScript."
       requestBody:
         required: true
         content:
@@ -603,10 +749,42 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
+        - in: query
+          name: callback
+          required: false
+          schema:
+            type: string
+          description: "If present, Mixpanel will return a `content-type: text/javascript`
+            with a body that calls a function by value provided. This is useful
+            for creating local callbacks to a successful track call in
+            JavaScript."
       requestBody:
         required: true
         content:
@@ -659,10 +837,42 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
+        - in: query
+          name: callback
+          required: false
+          schema:
+            type: string
+          description: "If present, Mixpanel will return a `content-type: text/javascript`
+            with a body that calls a function by value provided. This is useful
+            for creating local callbacks to a successful track call in
+            JavaScript."
       requestBody:
         required: true
         content:
@@ -706,10 +916,42 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
+        - in: query
+          name: callback
+          required: false
+          schema:
+            type: string
+          description: "If present, Mixpanel will return a `content-type: text/javascript`
+            with a body that calls a function by value provided. This is useful
+            for creating local callbacks to a successful track call in
+            JavaScript."
       requestBody:
         required: true
         content:
@@ -752,10 +994,42 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
+        - in: query
+          name: callback
+          required: false
+          schema:
+            type: string
+          description: "If present, Mixpanel will return a `content-type: text/javascript`
+            with a body that calls a function by value provided. This is useful
+            for creating local callbacks to a successful track call in
+            JavaScript."
       requestBody:
         required: true
         content:
@@ -808,10 +1082,42 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
+        - in: query
+          name: callback
+          required: false
+          schema:
+            type: string
+          description: "If present, Mixpanel will return a `content-type: text/javascript`
+            with a body that calls a function by value provided. This is useful
+            for creating local callbacks to a successful track call in
+            JavaScript."
       requestBody:
         required: true
         content:
@@ -864,9 +1170,35 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
+        - in: query
+          name: callback
+          required: false
+          schema:
+            type: string
+          description: "If present, Mixpanel will return a `content-type: text/javascript`
+            with a body that calls a function by value provided. This is useful
+            for creating local callbacks to a successful track call in
+            JavaScript."
       requestBody:
         required: true
         content:
@@ -914,9 +1246,33 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
       requestBody:
         required: true
         content:
@@ -963,9 +1319,33 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
       requestBody:
         required: true
         content:
@@ -1011,9 +1391,33 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
       requestBody:
         required: true
         content:
@@ -1063,9 +1467,33 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
       requestBody:
         required: true
         content:
@@ -1113,9 +1541,33 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
       requestBody:
         required: true
         content:
@@ -1178,9 +1630,33 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/IP
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Strict
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
+        - in: query
+          name: ip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: strict
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
       requestBody:
         required: true
         content:
@@ -1226,7 +1702,19 @@ paths:
       security:
         - {}
       parameters:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+          description: "If present and equal to 1, Mixpanel will respond with a JSON
+            Object describing the success or failure of the tracking call. The
+            returned object will have two keys: `status`, with the value 1 on
+            success and 0 on failure, and `error`, with a string-valued error
+            message if the request wasn't successful. This is useful for
+            debugging during implementation."
       requestBody:
         required: true
         content:
@@ -1425,11 +1913,31 @@ paths:
           $ref: "#/components/responses/RateLimitExceeded"
 components:
   securitySchemes:
-    $ref: ./common/securitySchemes.yaml
+    ServiceAccount:
+      type: http
+      scheme: basic
+      description: Service Account
+    ProjectSecret:
+      type: http
+      scheme: basic
+      description: Project Secret
+    OAuthToken:
+      type: http
+      scheme: bearer
+      description: OAuth Token
   schemas:
     ImportRequestParameters:
       allOf:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/Strict
+        - type: object
+          properties:
+            strict:
+              allOf:
+                - type: integer
+                  minimum: 0
+                  maximum: 1
+                - description: If present and equal to 1, Mixpanel will validate the provided
+                    records and return a JSON object with per-record error
+                    messages for records that fail validation.
     ErrorResponse:
       type: object
       properties:

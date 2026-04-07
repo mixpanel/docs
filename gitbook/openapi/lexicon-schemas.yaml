@@ -10,7 +10,20 @@ info:
     url: https://mixpanel.com/get-support
   version: 1.0.0
 servers:
-  - $ref: ./common/app-api.yaml#/server
+  - url: https://{regionAndDomain}.com/api/app
+    description: Mixpanel's application API server.
+    variables:
+      regionAndDomain:
+        default: mixpanel
+        enum:
+          - mixpanel
+          - eu.mixpanel
+          - in.mixpanel
+        description: >
+          The server location to be used:
+            * `mixpanel` - The default (US) servers used for most projects
+            * `eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
+            * `in.mixpanel` - India servers if you are enrolled in India Data Residency
 security:
   - ServiceAccount: []
 tags:
@@ -25,7 +38,12 @@ tags:
 paths:
   /projects/{projectId}/schemas:
     parameters:
-      - $ref: ./common/parameters.yaml#/path/projectId
+      - in: path
+        name: projectId
+        schema:
+          type: integer
+        required: true
+        description: "Your project id (eg: 12345)"
     get:
       operationId: list-all-schemas-for-project
       tags:
@@ -40,9 +58,17 @@ paths:
               schema:
                 $ref: "#/components/schemas/ListSchemasResponse"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
     post:
       operationId: upload-schemas-for-project
       tags:
@@ -203,9 +229,17 @@ paths:
               schema:
                 $ref: "#/components/schemas/BatchUploadSchemasResponse"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
     delete:
       operationId: delete-all-schemas-in-project
       tags:
@@ -220,12 +254,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/DeleteSchemasResponse"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
   /projects/{projectId}/schemas/{entityType}:
     parameters:
-      - $ref: ./common/parameters.yaml#/path/projectId
+      - in: path
+        name: projectId
+        schema:
+          type: integer
+        required: true
+        description: "Your project id (eg: 12345)"
       - $ref: "#/components/parameters/schemaEntityType"
       - $ref: "#/components/parameters/schemaEntityNameQuery"
     get:
@@ -242,9 +289,17 @@ paths:
               schema:
                 $ref: "#/components/schemas/ListSchemasResponse"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
     delete:
       operationId: delete-schemas-for-entity
       tags:
@@ -259,12 +314,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/DeleteSchemasResponse"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
   /projects/{projectId}/schemas/{entityType}/{name}:
     parameters:
-      - $ref: ./common/parameters.yaml#/path/projectId
+      - in: path
+        name: projectId
+        schema:
+          type: integer
+        required: true
+        description: "Your project id (eg: 12345)"
       - $ref: "#/components/parameters/schemaEntityType"
       - $ref: "#/components/parameters/schemaEntityName"
     get:
@@ -281,9 +349,17 @@ paths:
               schema:
                 $ref: "#/components/schemas/Schema"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
     delete:
       operationId: delete-schema-by-entity-and-name
       tags:
@@ -298,9 +374,17 @@ paths:
               schema:
                 $ref: "#/components/schemas/DeleteSchemasResponse"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
     post:
       operationId: upload-schema-by-entity-and-name
       summary: Create/Replace One
@@ -436,14 +520,37 @@ paths:
               schema:
                 $ref: "#/components/schemas/UploadSchemasResponse"
         "400":
-          $ref: ./common/responses.yaml#/400BadRequest
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
 components:
   securitySchemes:
-    $ref: ./common/securitySchemes.yaml
+    ServiceAccount:
+      type: http
+      scheme: basic
+      description: Service Account
+    ProjectSecret:
+      type: http
+      scheme: basic
+      description: Project Secret
+    OAuthToken:
+      type: http
+      scheme: bearer
+      description: OAuth Token
   schemas:
     SchemaEntityType:
       type: string

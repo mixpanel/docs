@@ -4,7 +4,7 @@ This page documents Mixpanel’s specifications for matching computed sets of us
 
 This spec is intended for technology partners building cohort sync integrations alongside the Mixpanel team. Please confirm with the Mixpanel Partnerships team if you wish to leverage this connection.
 
-If you are instead a Mixpanel customer looking to pull cohorts for use, please refer to the [Cohorts API](https://developer.mixpanel.com/reference/cohorts).
+If you are instead a Mixpanel customer looking to pull cohorts for use, please refer to the [Cohorts API](https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/cohorts).
 
 ## Partner Onboarding and Requirements
 

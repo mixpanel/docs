@@ -149,18 +149,146 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
+function convertAdjacentCaptionedCodeFencesToTabs(md) {
+  // Convert sequences of fenced code blocks like:
+  // ```json JSON
+  // ...
+  // ```
+  // ```json ndJSON
+  // ...
+  // ```
+  // into GitBook tabs, with tab titles from the caption ("JSON", "ndJSON").
+  const lines = String(md).split('\n');
+  const out = [];
+  let i = 0;
+
+  const parseFenceInfo = (info) => {
+    const t = String(info || '').trim();
+    if (!t) return { lang: '', title: '' };
+    const parts = t.split(/\s+/);
+    const lang = parts[0] || '';
+    const title = parts.slice(1).join(' ').trim();
+    return { lang, title };
+  };
+
+  while (i < lines.length) {
+    const line = lines[i];
+    const t = line.trim();
+
+    if (!t.startsWith('```')) {
+      out.push(line);
+      i++;
+      continue;
+    }
+
+    const info = t.slice(3);
+    const first = parseFenceInfo(info);
+    if (!first.title) {
+      // Not captioned; pass through fence verbatim.
+      out.push(line);
+      i++;
+      while (i < lines.length && !String(lines[i]).trim().startsWith('```')) {
+        out.push(lines[i]);
+        i++;
+      }
+      if (i < lines.length) {
+        out.push(lines[i]);
+        i++;
+      }
+      continue;
+    }
+
+    // Collect a run of captioned fences separated only by blank lines.
+    const blocks = [];
+    while (i < lines.length) {
+      const open = String(lines[i]).trim();
+      if (!open.startsWith('```')) break;
+      const meta = parseFenceInfo(open.slice(3));
+      if (!meta.title) break;
+
+      i++; // move past opening fence
+      const body = [];
+      while (i < lines.length && !String(lines[i]).trim().startsWith('```')) {
+        body.push(lines[i]);
+        i++;
+      }
+      const close = i < lines.length ? lines[i] : '```';
+      if (i < lines.length) i++; // consume closing fence
+      blocks.push({ lang: meta.lang, title: meta.title, body: body.join('\n') });
+
+      // Eat blank lines between blocks
+      let j = i;
+      while (j < lines.length && String(lines[j]).trim() === '') j++;
+      // Stop if next non-empty isn't a captioned fence
+      if (j >= lines.length) {
+        i = j;
+        break;
+      }
+      const next = String(lines[j]).trim();
+      if (!next.startsWith('```')) {
+        i = j;
+        break;
+      }
+      const nextMeta = parseFenceInfo(next.slice(3));
+      if (!nextMeta.title) {
+        i = j;
+        break;
+      }
+      // keep blanks as a single blank line inside tabs, but we can just skip them.
+      i = j;
+    }
+
+    if (blocks.length <= 1) {
+      // Single captioned fence: drop caption, keep language.
+      const b = blocks[0];
+      out.push(`\`\`\`${b.lang}`);
+      if (b.body) out.push(...b.body.split('\n'));
+      out.push('```');
+      continue;
+    }
+
+    out.push('{% tabs %}');
+    for (const b of blocks) {
+      out.push(`{% tab title="${b.title.replace(/"/g, '\\"')}" %}`);
+      out.push(`\`\`\`${b.lang}`);
+      if (b.body) out.push(...b.body.split('\n'));
+      out.push('```');
+      out.push('{% endtab %}');
+      out.push('');
+    }
+    if (out[out.length - 1] === '') out.pop();
+    out.push('{% endtabs %}');
+  }
+
+  return out.join('\n').replace(/\n{3,}/g, '\n\n');
+}
+
 function rewriteCrossSpaceLinks(md, { fromSection }) {
   // Keep in sync with convert-mdx-to-md.mjs space bases.
   const BASE = {
     docs: 'https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/',
     guides: 'https://app.gitbook.com/s/T5M6sZZR1LgkJeivZBt6/',
     troubleshooting: 'https://app.gitbook.com/s/j2N0ULQkDlAGcEm3cnYO/',
+    api: 'https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/',
   };
 
   const rewriteOne = (href) => {
     const raw = String(href || '').trim();
     if (!raw) return raw;
     let u = raw;
+    // Developer site reference links -> API space
+    if (u.startsWith('https://developer.mixpanel.com/reference/')) {
+      const rel = u.replace('https://developer.mixpanel.com/reference/', '').replace(/\/$/, '');
+      return `${BASE.api}${rel}`;
+    }
+    if (u.startsWith('https://developer.mixpanel.com/reference')) {
+      return BASE.api;
+    }
+    if (u.startsWith('/reference/')) {
+      const rel = u.replace(/^\/reference\//, '').replace(/\/$/, '');
+      return `${BASE.api}${rel}`;
+    }
+    if (u === '/reference') return BASE.api;
     if (u.startsWith('https://mixpanel.com/docs/')) u = u.replace('https://mixpanel.com', '');
     if (u.startsWith('https://mixpanel.com/guides/')) u = u.replace('https://mixpanel.com', '');
     const [pathPart, hash = ''] = u.split('#');
@@ -185,6 +313,10 @@ function rewriteCrossSpaceLinks(md, { fromSection }) {
   out = out.replace(/\]\((\/guides\/[^)\s]+)\)/g, (_all, href) => `](${rewriteOne(href)})`);
   out = out.replace(/\]\((https:\/\/mixpanel\.com\/docs\/[^)\s]+)\)/g, (_all, href) => `](${rewriteOne(href)})`);
   out = out.replace(/\]\((https:\/\/mixpanel\.com\/guides\/[^)\s]+)\)/g, (_all, href) => `](${rewriteOne(href)})`);
+  out = out.replace(/\]\((https:\/\/developer\.mixpanel\.com\/reference\/[^)\s]+)\)/g, (_all, href) =>
+    `](${rewriteOne(href)})`,
+  );
+  out = out.replace(/\]\((\/reference\/[^)\s]+)\)/g, (_all, href) => `](${rewriteOne(href)})`);
   // html links
   out = out.replace(/<a\b([^>]*?)\shref="([^"]+)"([^>]*)>/g, (_all, pre, href, post) => {
     const rewritten = rewriteOne(href);
@@ -197,15 +329,106 @@ async function copyOpenapiSpecs() {
   const srcDir = path.join(ROOT, 'openapi', 'src');
   const outDir = path.join(ROOT, 'gitbook', 'openapi');
   await fs.mkdir(outDir, { recursive: true });
-  const files = await fs.readdir(srcDir);
-  for (const f of files) {
-    if (!f.endsWith('.openapi.yaml')) continue;
-    const inAbs = path.join(srcDir, f);
-    const outName = f.replace(/\.openapi\.yaml$/i, '.yaml');
-    const outAbs = path.join(outDir, outName);
-    const buf = await fs.readFile(inAbs);
-    await fs.writeFile(outAbs, buf);
+  const entries = await fs.readdir(srcDir, { withFileTypes: true });
+  for (const e of entries) {
+    const inAbs = path.join(srcDir, e.name);
+    if (e.isFile() && e.name.endsWith('.openapi.yaml')) {
+      const outName = e.name.replace(/\.openapi\.yaml$/i, '.yaml');
+      const outAbs = path.join(outDir, outName);
+      const buf = await fs.readFile(inAbs);
+      await fs.writeFile(outAbs, buf);
+    }
   }
+}
+
+function deepClone(obj) {
+  return obj == null ? obj : JSON.parse(JSON.stringify(obj));
+}
+
+function jsonPointerGet(root, pointer) {
+  // pointer like "/A/B/0" (leading slash optional in our usage)
+  const p = String(pointer || '');
+  const parts = p.replace(/^#?\/?/, '').split('/').filter(Boolean);
+  let cur = root;
+  for (const rawPart of parts) {
+    const part = rawPart.replace(/~1/g, '/').replace(/~0/g, '~');
+    if (cur && typeof cur === 'object' && part in cur) cur = cur[part];
+    else return undefined;
+  }
+  return cur;
+}
+
+async function inlineExternalRefsInSpec(root, { specDirAbs, fallbackDirAbs }) {
+  // Inline $ref: ./common/foo.yaml#/Pointer into the document.
+  // Keeps internal "#/..." refs untouched.
+  const fileCache = new Map(); // absPath -> parsed yaml object
+  const loadFile = async (absPath) => {
+    if (fileCache.has(absPath)) return fileCache.get(absPath);
+    const raw = await fs.readFile(absPath, 'utf8');
+    const parsed = YAML.parse(raw) || {};
+    fileCache.set(absPath, parsed);
+    return parsed;
+  };
+
+  const resolveRefValue = async (refVal) => {
+    const ref = String(refVal || '').trim();
+    if (!ref || ref.startsWith('#/')) return null;
+    if (!ref.startsWith('./') && !ref.startsWith('../')) return null;
+    const [filePart, frag = ''] = ref.split('#');
+    let absFile = path.resolve(specDirAbs, filePart);
+    try {
+      await fs.stat(absFile);
+    } catch {
+      if (fallbackDirAbs) {
+        // Try relative to fallback root (openapi/src)
+        absFile = path.resolve(fallbackDirAbs, filePart);
+        try {
+          await fs.stat(absFile);
+        } catch {
+          // Common pattern: refs like "./schemas.yaml" actually live in "./common/schemas.yaml"
+          const cleaned = filePart.replace(/^\.?\//, '');
+          absFile = path.resolve(fallbackDirAbs, 'common', cleaned);
+        }
+      }
+    }
+    const doc = await loadFile(absFile);
+    if (!frag) return deepClone(doc);
+    const node = jsonPointerGet(doc, `#${frag.startsWith('/') ? frag : `/${frag}`}`);
+    return deepClone(node);
+  };
+
+  const visit = async (node) => {
+    if (!node || typeof node !== 'object') return node;
+
+    if (typeof node.$ref === 'string') {
+      const resolved = await resolveRefValue(node.$ref);
+      if (resolved != null) return resolved;
+    }
+
+    if (Array.isArray(node)) {
+      for (let i = 0; i < node.length; i++) {
+        node[i] = await visit(node[i]);
+      }
+      return node;
+    }
+
+    for (const k of Object.keys(node)) {
+      node[k] = await visit(node[k]);
+    }
+    return node;
+  };
+
+  // Iterate a few times to resolve nested external refs that appear after replacement.
+  let cur = root;
+  for (let iter = 0; iter < 5; iter++) {
+    const before = JSON.stringify(cur).includes('"$ref":"./') || JSON.stringify(cur).includes('"$ref":"../');
+    cur = await visit(cur);
+    const after = JSON.stringify(cur).includes('"$ref":"./') || JSON.stringify(cur).includes('"$ref":"../');
+    if (before && !after) break;
+    if (!before) break;
+  }
+
+  return cur;
 }
 
 async function augmentGitbookOpenapiFromReference() {
@@ -228,8 +451,12 @@ async function augmentGitbookOpenapiFromReference() {
     const abs = path.join(specDir, specFile);
     const raw = await fs.readFile(abs, 'utf8');
     const root = YAML.parse(raw) || {};
+    const inlined = await inlineExternalRefsInSpec(root, {
+      specDirAbs: specDir,
+      fallbackDirAbs: path.join(ROOT, 'openapi', 'src'),
+    });
 
-    const paths = root.paths || {};
+    const paths = inlined.paths || {};
     for (const [p, methods] of Object.entries(paths)) {
       if (!methods || typeof methods !== 'object') continue;
       for (const [method, op] of Object.entries(methods)) {
@@ -247,6 +474,7 @@ async function augmentGitbookOpenapiFromReference() {
 
         // Use page content as description (GitBook renders markdown from spec).
         let desc = String(body).trim();
+        desc = convertAdjacentCaptionedCodeFencesToTabs(desc);
         desc = rewriteCrossSpaceLinks(desc, { fromSection: 'api' });
 
         if (desc) op.description = desc;
@@ -254,7 +482,7 @@ async function augmentGitbookOpenapiFromReference() {
       }
     }
 
-    await fs.writeFile(abs, YAML.stringify(root), 'utf8');
+    await fs.writeFile(abs, YAML.stringify(inlined), 'utf8');
   }
 }
 

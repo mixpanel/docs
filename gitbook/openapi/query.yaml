@@ -56,7 +56,12 @@ paths:
       description: Get data from your Insights reports. The Query API has a rate limit
         of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
         - in: query
           name: bookmark_id
@@ -131,7 +136,12 @@ paths:
       description: Get data for a funnel. The Query API has a rate limit of 60 queries
         per hour and a maximum of 5 concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
         - in: query
           name: funnel_id
@@ -139,8 +149,19 @@ paths:
             type: integer
           description: The funnel that you wish to get data for.
           required: true
-        - $ref: ./common/parameters.yaml#/query/fromDate
-        - $ref: ./common/parameters.yaml#/query/toDate
+        - in: query
+          name: from_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to begin querying from. This date is
+            inclusive.
+          required: true
+        - in: query
+          name: to_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to query to. This date is inclusive.
+          required: true
         - in: query
           name: length
           schema:
@@ -352,7 +373,12 @@ paths:
         - Funnels
       description: Get the names and funnel_ids of your funnels.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
       responses:
         "200":
@@ -437,10 +463,26 @@ paths:
         The Query API has a rate limit of 60 queries per hour and a maximum of 5
         concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
-        - $ref: ./common/parameters.yaml#/query/fromDate
-        - $ref: ./common/parameters.yaml#/query/toDate
+        - in: query
+          name: from_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to begin querying from. This date is
+            inclusive.
+          required: true
+        - in: query
+          name: to_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to query to. This date is inclusive.
+          required: true
         - in: query
           name: retention_type
           schema:
@@ -607,10 +649,26 @@ paths:
         The Query API has a rate limit of 60 queries per hour and a maximum of 5
         concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
-        - $ref: ./common/parameters.yaml#/query/fromDate
-        - $ref: ./common/parameters.yaml#/query/toDate
+        - in: query
+          name: from_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to begin querying from. This date is
+            inclusive.
+          required: true
+        - in: query
+          name: to_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to query to. This date is inclusive.
+          required: true
         - in: query
           name: unit
           schema:
@@ -723,11 +781,27 @@ paths:
         Query API has a rate limit of 60 queries per hour and a maximum of 5
         concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
         - $ref: "#/components/parameters/eventName"
-        - $ref: ./common/parameters.yaml#/query/fromDate
-        - $ref: ./common/parameters.yaml#/query/toDate
+        - in: query
+          name: from_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to begin querying from. This date is
+            inclusive.
+          required: true
+        - in: query
+          name: to_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to query to. This date is inclusive.
+          required: true
         - $ref: "#/components/parameters/on"
         - in: query
           name: unit
@@ -825,11 +899,27 @@ paths:
         The Query API has a rate limit of 60 queries per hour and a maximum of 5
         concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
         - $ref: "#/components/parameters/eventName"
-        - $ref: ./common/parameters.yaml#/query/fromDate
-        - $ref: ./common/parameters.yaml#/query/toDate
+        - in: query
+          name: from_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to begin querying from. This date is
+            inclusive.
+          required: true
+        - in: query
+          name: to_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to query to. This date is inclusive.
+          required: true
         - in: query
           name: on
           schema:
@@ -925,11 +1015,27 @@ paths:
       description: Sums an expression for events per unit time. The Query API has a
         rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
         - $ref: "#/components/parameters/eventName"
-        - $ref: ./common/parameters.yaml#/query/fromDate
-        - $ref: ./common/parameters.yaml#/query/toDate
+        - in: query
+          name: from_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to begin querying from. This date is
+            inclusive.
+          required: true
+        - in: query
+          name: to_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to query to. This date is inclusive.
+          required: true
         - in: query
           name: on
           schema:
@@ -984,11 +1090,27 @@ paths:
         a rate limit of 60 queries per hour and a maximum of 5 concurrent
         queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
         - $ref: "#/components/parameters/eventName"
-        - $ref: ./common/parameters.yaml#/query/fromDate
-        - $ref: ./common/parameters.yaml#/query/toDate
+        - in: query
+          name: from_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to begin querying from. This date is
+            inclusive.
+          required: true
+        - in: query
+          name: to_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to query to. This date is inclusive.
+          required: true
         - in: query
           name: on
           schema:
@@ -1043,7 +1165,12 @@ paths:
         Query API has a rate limit of 60 queries per hour and a maximum of 5
         concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
         - in: query
           name: distinct_ids
@@ -1053,8 +1180,19 @@ paths:
             activity feeds for. For example:
             `["12a34aa567eb8d-9ab1c26f345b67-89123c45-6aeaa7-89f12af345f678"]`'
           required: true
-        - $ref: ./common/parameters.yaml#/query/fromDate
-        - $ref: ./common/parameters.yaml#/query/toDate
+        - in: query
+          name: from_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to begin querying from. This date is
+            inclusive.
+          required: true
+        - in: query
+          name: to_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to query to. This date is inclusive.
+          required: true
       responses:
         "200":
           description: Success.
@@ -1115,7 +1253,12 @@ paths:
         [`/engage` endpoint with the `filter_by_cohort`
         parameter](ref:engage#engage-query).
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
       responses:
         "200":
@@ -1208,7 +1351,12 @@ paths:
         The Query API has a rate limit of 60 queries per hour and a maximum of 5
         concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
       requestBody:
         content:
@@ -1355,7 +1503,12 @@ paths:
         The Query API has a rate limit of 60 queries per hour and a maximum of 5
         concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
         - in: query
           name: event
@@ -1368,8 +1521,19 @@ paths:
         - $ref: "#/components/parameters/type"
         - $ref: "#/components/parameters/unit"
         - $ref: "#/components/parameters/interval"
-        - $ref: ./common/parameters.yaml#/query/fromDate
-        - $ref: ./common/parameters.yaml#/query/toDate
+        - in: query
+          name: from_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to begin querying from. This date is
+            inclusive.
+          required: true
+        - in: query
+          name: to_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to query to. This date is inclusive.
+          required: true
         - $ref: "#/components/parameters/format"
       responses:
         "200":
@@ -1426,7 +1590,12 @@ paths:
         The Query API has a rate limit of 60 queries per hour and a maximum of 5
         concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
         - $ref: "#/components/parameters/type"
         - in: query
@@ -1483,7 +1652,12 @@ paths:
         Query API has a rate limit of 60 queries per hour and a maximum of 5
         concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
         - $ref: "#/components/parameters/type"
         - $ref: "#/components/parameters/limit255"
@@ -1518,7 +1692,12 @@ paths:
         The Query API has a rate limit of 60 queries per hour and a maximum of 5
         concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
         - in: query
           name: event
@@ -1542,8 +1721,19 @@ paths:
         - $ref: "#/components/parameters/type"
         - $ref: "#/components/parameters/unit"
         - $ref: "#/components/parameters/interval"
-        - $ref: ./common/parameters.yaml#/query/fromDate
-        - $ref: ./common/parameters.yaml#/query/toDate
+        - in: query
+          name: from_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to begin querying from. This date is
+            inclusive.
+          required: true
+        - in: query
+          name: to_date
+          schema:
+            type: string
+          description: The date in yyyy-mm-dd format to query to. This date is inclusive.
+          required: true
         - $ref: "#/components/parameters/format"
         - $ref: "#/components/parameters/limit255"
       responses:
@@ -1589,7 +1779,12 @@ paths:
       description: Get the top property names for an event. The Query API has a rate
         limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
         - $ref: "#/components/parameters/eventName"
         - $ref: "#/components/parameters/limit10"
@@ -1623,7 +1818,12 @@ paths:
       description: Get the top values for a property. The Query API has a rate limit
         of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
         - $ref: "#/components/parameters/eventName"
         - $ref: "#/components/parameters/propertyName"
@@ -1662,16 +1862,16 @@ paths:
         >
 
         > * Raw Event export: [Export
-        API](https://developer.mixpanel.com/reference/raw-data-export-api) or
-        [Data Pipelines](https://docs.mixpanel.com/docs/data-pipelines)
+        API](https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/raw-data-export-api)
+        or [Data Pipelines](https://docs.mixpanel.com/docs/data-pipelines)
 
         > * User Profile export: [Engage Query
-        API](https://developer.mixpanel.com/reference/engage-query) or [Data
-        Pipelines](https://docs.mixpanel.com/docs/data-pipelines)
+        API](https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/engage-query) or
+        [Data Pipelines](https://docs.mixpanel.com/docs/data-pipelines)
 
         > * Other reporting: [Query
-        API](https://developer.mixpanel.com/reference/query-api) or in-app [Core
-        Reports](https://docs.mixpanel.com/docs/reports)
+        API](https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/query-api) or in-app
+        [Core Reports](https://docs.mixpanel.com/docs/reports)
 
 
         The HTTP API is the lowest-level way to use JQL. At its core, the API is
@@ -1736,7 +1936,12 @@ paths:
         limit on data that can be processed in a single query, and a 2 GB limit
         on the resulting output data.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - $ref: "#/components/parameters/workspaceId"
       requestBody:
         content:
@@ -1790,7 +1995,18 @@ paths:
                   type: object
 components:
   securitySchemes:
-    $ref: ./common/securitySchemes.yaml
+    ServiceAccount:
+      type: http
+      scheme: basic
+      description: Service Account
+    ProjectSecret:
+      type: http
+      scheme: basic
+      description: Project Secret
+    OAuthToken:
+      type: http
+      scheme: bearer
+      description: OAuth Token
   parameters:
     workspaceId:
       in: query

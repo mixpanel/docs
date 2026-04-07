@@ -17,7 +17,20 @@ info:
   contact:
     url: https://mixpanel.com/get-support
 servers:
-  - $ref: ./common/app-api.yaml#/server
+  - url: https://{regionAndDomain}.com/api/app
+    description: Mixpanel's application API server.
+    variables:
+      regionAndDomain:
+        default: mixpanel
+        enum:
+          - mixpanel
+          - eu.mixpanel
+          - in.mixpanel
+        description: >
+          The server location to be used:
+            * `mixpanel` - The default (US) servers used for most projects
+            * `eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
+            * `in.mixpanel` - India servers if you are enrolled in India Data Residency
 security:
   - ServiceAccount: []
 tags:
@@ -27,7 +40,12 @@ paths:
   /projects/{projectId}/warehouse-sources/imports:
     get:
       parameters:
-        - $ref: ./common/parameters.yaml#/path/projectId
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
       operationId: list-warehouse-imports
       tags:
         - Warehouse Imports
@@ -49,20 +67,42 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                    type: string
+                    description: '"ok" if the request succeeded, "error" otherwise.'
+                    example: ok
+                    enum:
+                      - ok
                   results:
                     type: array
                     items:
                       $ref: "#/components/schemas/WarehouseImport"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
   /projects/{projectId}/warehouse-sources/imports/{importId}:
     get:
       parameters:
-        - $ref: ./common/parameters.yaml#/path/projectId
-        - $ref: ./common/parameters.yaml#/path/importId
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
+        - in: path
+          name: importId
+          schema:
+            type: integer
+          required: true
+          description: "Your warehouse import id (eg: 12345)"
       operationId: get-warehouse-import
       tags:
         - Warehouse Imports
@@ -81,19 +121,45 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                    type: string
+                    description: '"ok" if the request succeeded, "error" otherwise.'
+                    example: ok
+                    enum:
+                      - ok
                   results:
                     $ref: "#/components/schemas/WarehouseImportDetail"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "404":
-          $ref: ./common/responses.yaml#/404NotFound
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
     patch:
       parameters:
-        - $ref: ./common/parameters.yaml#/path/projectId
-        - $ref: ./common/parameters.yaml#/path/importId
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
+        - in: path
+          name: importId
+          schema:
+            type: integer
+          required: true
+          description: "Your warehouse import id (eg: 12345)"
       operationId: update-warehouse-import
       tags:
         - Warehouse Imports
@@ -156,21 +222,51 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                    type: string
+                    description: '"ok" if the request succeeded, "error" otherwise.'
+                    example: ok
+                    enum:
+                      - ok
                   results:
                     $ref: "#/components/schemas/WarehouseImportDetail"
         "400":
-          $ref: ./common/responses.yaml#/400BadRequest
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "404":
-          $ref: ./common/responses.yaml#/404NotFound
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
     delete:
       parameters:
-        - $ref: ./common/parameters.yaml#/path/projectId
-        - $ref: ./common/parameters.yaml#/path/importId
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
+        - in: path
+          name: importId
+          schema:
+            type: integer
+          required: true
+          description: "Your warehouse import id (eg: 12345)"
       operationId: delete-warehouse-import
       tags:
         - Warehouse Imports
@@ -200,17 +296,38 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                    type: string
+                    description: '"ok" if the request succeeded, "error" otherwise.'
+                    example: ok
+                    enum:
+                      - ok
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "404":
-          $ref: ./common/responses.yaml#/404NotFound
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
   /projects/{projectId}/warehouse-sources/imports/event-stream:
     post:
       parameters:
-        - $ref: ./common/parameters.yaml#/path/projectId
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
       operationId: create-event-stream-import
       tags:
         - Warehouse Imports
@@ -278,19 +395,40 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                    type: string
+                    description: '"ok" if the request succeeded, "error" otherwise.'
+                    example: ok
+                    enum:
+                      - ok
                   results:
                     $ref: "#/components/schemas/WarehouseImportDetail"
         "400":
-          $ref: ./common/responses.yaml#/400BadRequest
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
   /projects/{projectId}/warehouse-sources/imports/people:
     post:
       parameters:
-        - $ref: ./common/parameters.yaml#/path/projectId
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
       operationId: create-people-import
       tags:
         - Warehouse Imports
@@ -318,19 +456,40 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                    type: string
+                    description: '"ok" if the request succeeded, "error" otherwise.'
+                    example: ok
+                    enum:
+                      - ok
                   results:
                     $ref: "#/components/schemas/WarehouseImportDetail"
         "400":
-          $ref: ./common/responses.yaml#/400BadRequest
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
   /projects/{projectId}/warehouse-sources/imports/groups:
     post:
       parameters:
-        - $ref: ./common/parameters.yaml#/path/projectId
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
       operationId: create-groups-import
       tags:
         - Warehouse Imports
@@ -356,19 +515,40 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                    type: string
+                    description: '"ok" if the request succeeded, "error" otherwise.'
+                    example: ok
+                    enum:
+                      - ok
                   results:
                     $ref: "#/components/schemas/WarehouseImportDetail"
         "400":
-          $ref: ./common/responses.yaml#/400BadRequest
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
   /projects/{projectId}/warehouse-sources/imports/lookup-table:
     post:
       parameters:
-        - $ref: ./common/parameters.yaml#/path/projectId
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
       operationId: create-lookup-table-import
       tags:
         - Warehouse Imports
@@ -396,20 +576,46 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                    type: string
+                    description: '"ok" if the request succeeded, "error" otherwise.'
+                    example: ok
+                    enum:
+                      - ok
                   results:
                     $ref: "#/components/schemas/WarehouseImportDetail"
         "400":
-          $ref: ./common/responses.yaml#/400BadRequest
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
   /projects/{projectId}/warehouse-sources/imports/{importId}/manual-sync:
     put:
       parameters:
-        - $ref: ./common/parameters.yaml#/path/projectId
-        - $ref: ./common/parameters.yaml#/path/importId
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
+        - in: path
+          name: importId
+          schema:
+            type: integer
+          required: true
+          description: "Your warehouse import id (eg: 12345)"
       operationId: run-an-import
       requestBody:
         required: true
@@ -429,7 +635,11 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                    type: string
+                    description: '"ok" if the request succeeded, "error" otherwise.'
+                    example: ok
+                    enum:
+                      - ok
                   results:
                     type: object
                     properties:
@@ -437,16 +647,38 @@ paths:
                         type: string
                         description: The unique identifier for the triggered sync run.
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "404":
-          $ref: ./common/responses.yaml#/404NotFound
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
   /projects/{projectId}/warehouse-sources/imports/{importId}/history:
     get:
       parameters:
-        - $ref: ./common/parameters.yaml#/path/projectId
-        - $ref: ./common/parameters.yaml#/path/importId
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
+        - in: path
+          name: importId
+          schema:
+            type: integer
+          required: true
+          description: "Your warehouse import id (eg: 12345)"
       operationId: get-import-history
       tags:
         - Warehouse Imports
@@ -463,15 +695,31 @@ paths:
                 type: object
                 properties:
                   status:
-                    $ref: ./common/responses.yaml#/ResponseStatusOk
+                    type: string
+                    description: '"ok" if the request succeeded, "error" otherwise.'
+                    example: ok
+                    enum:
+                      - ok
                   results:
                     $ref: "#/components/schemas/ImportJobHistory"
         "401":
-          $ref: ./common/responses.yaml#/401Unauthorized
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "403":
-          $ref: ./common/responses.yaml#/403Forbidden
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
         "404":
-          $ref: ./common/responses.yaml#/404NotFound
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
 components:
   schemas:
     SyncMode:
@@ -932,4 +1180,6 @@ components:
                 nullable: true
   securitySchemes:
     ServiceAccount:
-      $ref: ./common/securitySchemes.yaml#/ServiceAccount
+      type: http
+      scheme: basic
+      description: Service Account

@@ -9,7 +9,20 @@ info:
   contact:
     url: https://mixpanel.com/get-support
 servers:
-  - $ref: ./common/export-api.yaml#/server
+  - url: https://{server}.mixpanel.com/api/2.0
+    description: Mixpanel's data export server.
+    variables:
+      server:
+        default: data
+        enum:
+          - data
+          - data-eu
+          - data-in
+        description: >
+          The server location to be used:
+            * `data` - The default (US) servers used for most projects
+            * `data-eu` - EU servers if you are enrolled in EU Data Residency
+            * `data-in` - India servers if you are enrolled in India Data Residency
 security:
   - ProjectSecret: []
 tags:
@@ -105,7 +118,18 @@ paths:
                 description: Newline delimited JSON ([JSONL](http://jsonlines.org))
 components:
   securitySchemes:
-    $ref: ./common/securitySchemes.yaml
+    ServiceAccount:
+      type: http
+      scheme: basic
+      description: Service Account
+    ProjectSecret:
+      type: http
+      scheme: basic
+      description: Project Secret
+    OAuthToken:
+      type: http
+      scheme: bearer
+      description: OAuth Token
 x-explorer-enabled: true
 x-proxy-enabled: true
 x-samples-enabled: true

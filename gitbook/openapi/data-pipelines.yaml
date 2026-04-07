@@ -10,7 +10,20 @@ info:
   contact:
     url: https://mixpanel.com/get-support
 servers:
-  - $ref: ./common/export-api.yaml#/server
+  - url: https://{server}.mixpanel.com/api/2.0
+    description: Mixpanel's data export server.
+    variables:
+      server:
+        default: data
+        enum:
+          - data
+          - data-eu
+          - data-in
+        description: >
+          The server location to be used:
+            * `data` - The default (US) servers used for most projects
+            * `data-eu` - EU servers if you are enrolled in EU Data Residency
+            * `data-in` - India servers if you are enrolled in India Data Residency
 security:
   - ServiceAccount: []
   - ProjectSecret: []
@@ -37,7 +50,12 @@ paths:
       description: This API endpoint returns the list of all the pipelines scheduled
         for a project.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
       responses:
         "200":
           description: Success
@@ -290,7 +308,12 @@ paths:
 
         ```
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - in: query
           name: name
           schema:
@@ -331,7 +354,12 @@ paths:
       summary: List Pipeline Logs
       description: This endpoint returns the timestamps of all syncs grouped by date.
       parameters:
-        - $ref: ./common/parameters.yaml#/query/projectId
+        - in: query
+          name: project_id
+          schema:
+            type: integer
+          description: Required if using service account to authenticate request.
+          required: true
         - in: query
           name: name
           schema:
@@ -360,7 +388,18 @@ paths:
           $ref: "#/components/responses/Forbidden"
 components:
   securitySchemes:
-    $ref: ./common/securitySchemes.yaml
+    ServiceAccount:
+      type: http
+      scheme: basic
+      description: Service Account
+    ProjectSecret:
+      type: http
+      scheme: basic
+      description: Project Secret
+    OAuthToken:
+      type: http
+      scheme: bearer
+      description: OAuth Token
   schemas:
     PipelineType:
       type: string

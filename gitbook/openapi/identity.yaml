@@ -314,11 +314,31 @@ paths:
           $ref: "#/components/responses/StrictUnauthorized"
 components:
   securitySchemes:
-    $ref: ./common/securitySchemes.yaml
+    ServiceAccount:
+      type: http
+      scheme: basic
+      description: Service Account
+    ProjectSecret:
+      type: http
+      scheme: basic
+      description: Project Secret
+    OAuthToken:
+      type: http
+      scheme: bearer
+      description: OAuth Token
   schemas:
     ImportRequestParameters:
       allOf:
-        - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/Strict
+        - type: object
+          properties:
+            strict:
+              allOf:
+                - type: integer
+                  minimum: 0
+                  maximum: 1
+                - description: If present and equal to 1, Mixpanel will validate the provided
+                    records and return a JSON object with per-record error
+                    messages for records that fail validation.
     ErrorResponse:
       type: object
       properties:

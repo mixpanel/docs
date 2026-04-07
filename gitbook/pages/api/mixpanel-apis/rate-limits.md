@@ -6,7 +6,7 @@ The rate limits are as follows:
 
 ### [**Ingestion API**](../ingestion-api/ingestion-api.md)
 
-2GB of uncompressed JSON/minute or \~30k events per second, measured on a rolling 1 minute basis. Please click [here](https://developer.mixpanel.com/reference/import-events#rate-limits) for more details.
+2GB of uncompressed JSON/minute or \~30k events per second, measured on a rolling 1 minute basis. Please click [here](https://app.gitbook.com/s/PTXfV1v47AbDFk5bjzT2/import-events#rate-limits) for more details.
 
 ### [**Query API**](../query-api/query-api.md)
 
