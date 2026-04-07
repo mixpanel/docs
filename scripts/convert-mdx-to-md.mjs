@@ -225,49 +225,46 @@ function rewriteInternalDocsLinks(src, absOutFile, absOutRoot) {
   const rootBase = path.basename(absOutRoot);
   const docsOutRoot = rootBase === 'docs' ? absOutRoot : path.join(path.dirname(absOutRoot), 'docs');
   const guidesOutRoot = rootBase === 'guides' ? absOutRoot : path.join(path.dirname(absOutRoot), 'guides');
-  const fromSection =
-    rootBase === 'docs' || rootBase === 'guides' || rootBase === 'troubleshooting' ? rootBase : '';
+  const fromSection = rootBase;
 
   // Markdown links: [text](/docs/foo/bar#anchor)
   out = out.replace(/\]\((\/docs\/[^)\s]+)\)/g, (all, href) => {
-    if (fromSection && fromSection !== 'docs') return `](${rewriteCrossSpaceHref(href, { fromSection })})`;
+    if (fromSection !== 'docs') return `](${rewriteCrossSpaceHref(href, { fromSection })})`;
     const rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     return `](${rewritten})`;
   });
 
   // Markdown links: [text](/guides/foo/bar#anchor)
   out = out.replace(/\]\((\/guides\/[^)\s]+)\)/g, (all, href) => {
-    if (fromSection && fromSection !== 'guides') return `](${rewriteCrossSpaceHref(href, { fromSection })})`;
+    if (fromSection !== 'guides') return `](${rewriteCrossSpaceHref(href, { fromSection })})`;
     const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, guidesOutRoot);
     return `](${rewritten})`;
   });
 
   // Markdown links to mixpanel.com/docs
   out = out.replace(/\]\((https:\/\/mixpanel\.com\/docs\/[^)\s]+)\)/g, (all, href) => {
-    if (fromSection && fromSection !== 'docs') return `](${rewriteCrossSpaceHref(href, { fromSection })})`;
+    if (fromSection !== 'docs') return `](${rewriteCrossSpaceHref(href, { fromSection })})`;
     const rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     return `](${rewritten})`;
   });
 
   // Markdown links to mixpanel.com/guides
   out = out.replace(/\]\((https:\/\/mixpanel\.com\/guides\/[^)\s]+)\)/g, (all, href) => {
-    if (fromSection && fromSection !== 'guides') return `](${rewriteCrossSpaceHref(href, { fromSection })})`;
+    if (fromSection !== 'guides') return `](${rewriteCrossSpaceHref(href, { fromSection })})`;
     const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, guidesOutRoot);
     return `](${rewritten})`;
   });
 
   // HTML links: rewrite href attr regardless of other attributes.
   out = out.replace(/<a\b([^>]*?)\shref="([^"]+)"([^>]*)>/g, (all, pre, href, post) => {
-    if (fromSection && fromSection !== 'docs' && (href.startsWith('/docs/') || href.startsWith('https://mixpanel.com/docs/')))
+    if (fromSection !== 'docs' && (href.startsWith('/docs/') || href.startsWith('https://mixpanel.com/docs/')))
       return `<a${pre} href="${escapeHtml(rewriteCrossSpaceHref(href, { fromSection }))}"${post}>`;
     if (
-      fromSection &&
       fromSection !== 'guides' &&
       (href.startsWith('/guides/') || href.startsWith('https://mixpanel.com/guides/'))
     )
       return `<a${pre} href="${escapeHtml(rewriteCrossSpaceHref(href, { fromSection }))}"${post}>`;
     if (
-      fromSection &&
       fromSection !== 'troubleshooting' &&
       (href.startsWith('/troubleshooting/') || href.startsWith('https://mixpanel.com/troubleshooting/'))
     )
@@ -293,20 +290,20 @@ function rewriteInternalDocsLinks(src, absOutFile, absOutRoot) {
 
   // In cards we currently echo the href as visible text; rewrite that too.
   out = out.replace(/>(\/docs\/[^<]+)<\/a>/g, (all, text) => {
-    if (fromSection && fromSection !== 'docs') return `>${escapeHtml(rewriteCrossSpaceHref(text, { fromSection }))}</a>`;
+    if (fromSection !== 'docs') return `>${escapeHtml(rewriteCrossSpaceHref(text, { fromSection }))}</a>`;
     const rewritten = rewriteDocsHrefToRelative(text, absOutFile, docsOutRoot);
     return `>${escapeHtml(rewritten)}</a>`;
   });
 
   // Plaintext patterns like "...( /docs/foo/bar )" or "report(/docs/foo)" (not markdown links).
   out = out.replace(/\((\/docs\/[^)\s]+)\)/g, (all, href) => {
-    if (fromSection && fromSection !== 'docs') return `(${rewriteCrossSpaceHref(href, { fromSection })})`;
+    if (fromSection !== 'docs') return `(${rewriteCrossSpaceHref(href, { fromSection })})`;
     const rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     return `(${rewritten})`;
   });
 
   out = out.replace(/\((\/guides\/[^)\s]+)\)/g, (all, href) => {
-    if (fromSection && fromSection !== 'guides') return `(${rewriteCrossSpaceHref(href, { fromSection })})`;
+    if (fromSection !== 'guides') return `(${rewriteCrossSpaceHref(href, { fromSection })})`;
     const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, guidesOutRoot);
     return `(${rewritten})`;
   });
@@ -800,6 +797,50 @@ function convertLogoTablesToColumns(src, { outPath, assetsDirAbs }) {
   return out.join('\n').replace(/\n{3,}/g, '\n\n');
 }
 
+function convertChangelogPostHeader(src) {
+  // Convert <ChangelogPostHeader ... /> to standard markdown (GitBook compatible).
+  // Expected attrs: title, image, date.
+  const lines = String(src).split('\n');
+  const out = [];
+  let inFence = false;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+
+    if (t.startsWith('<ChangelogPostHeader')) {
+      // Collect until '/>' (may be multi-line).
+      let block = line + '\n';
+      while (i + 1 < lines.length && !/\/>\s*$/.test(lines[i])) {
+        i++;
+        block += lines[i] + '\n';
+      }
+
+      const title = parseJsxAttribute(block, 'title').trim();
+      const date = parseJsxAttribute(block, 'date').trim();
+      const image = parseJsxAttribute(block, 'image').trim();
+
+      if (title) out.push(`# ${title}`);
+      if (date) out.push(`_${date}_`);
+      if (image) out.push(`![](${image})`);
+      out.push('');
+      continue;
+    }
+
+    out.push(line);
+  }
+
+  return out.join('\n').replace(/\n{3,}/g, '\n\n');
+}
+
 function extractStringProp(objText, key) {
   const re = new RegExp(String.raw`\b${key}\s*:\s*(["'])([\s\S]*?)\1`, 'm');
   const m = re.exec(objText);
@@ -1013,6 +1054,10 @@ function collectRootImageHrefsFromText(src) {
   for (const m of s.matchAll(/!\[[^\]]*\]\((\/[^)\s]+)\)/g)) out.add(m[1]);
   // HTML images: <img src="/path/to.png" ...>
   for (const m of s.matchAll(/<img\b[^>]*\bsrc=(["'])(\/[^"']+)\1[^>]*>/gi)) out.add(m[2]);
+  // Common JSX/MDX props: src="/...", image="/..."
+  for (const m of s.matchAll(/\b(?:src|image)\s*=\s*(["'])(\/[^"']+\.(?:png|jpe?g|gif|svg|webp))\1/gi)) out.add(m[2]);
+  // Frontmatter-style thumbnails: thumbnail: "/..."
+  for (const m of s.matchAll(/^\s*thumbnail\s*:\s*(["'])(\/[^"']+\.(?:png|jpe?g|gif|svg|webp))\1\s*$/gim)) out.add(m[2]);
   return out;
 }
 
@@ -1030,6 +1075,7 @@ async function ensureGitbookStaticImageAssets({ inDirAbs, outDirAbs }) {
   const assetsDirAbs = path.join(outDirAbs, '.gitbook', 'assets');
   await fs.mkdir(assetsDirAbs, { recursive: true });
 
+  const copied = new Set();
   for (const href of rootHrefs) {
     const relFromRoot = href.replace(/^\/+/, '');
     const srcAbs = path.join(ROOT, 'public', relFromRoot);
@@ -1038,23 +1084,20 @@ async function ensureGitbookStaticImageAssets({ inDirAbs, outDirAbs }) {
     await fs.mkdir(path.dirname(dstAbs), { recursive: true });
     const buf = await fs.readFile(srcAbs);
     await fs.writeFile(dstAbs, buf);
+    copied.add(href);
   }
 
-  return { assetsDirAbs };
+  return { assetsDirAbs, copiedRootHrefs: copied };
 }
 
-function rewriteRootImagesToGitbookAssets(src, { outPath, assetsDirAbs }) {
-  // Rewrite ![](/foo.png) -> ![](../.gitbook/assets/foo.png) if that asset exists.
+function rewriteRootImagesToGitbookAssets(src, { outPath, assetsDirAbs, copiedRootHrefs }) {
+  // Rewrite ![](/foo.png) -> ![](../.gitbook/assets/foo.png) only when the asset was copied.
   const s = String(src);
   return s.replace(/!\[([^\]]*)\]\((\/[^)\s]+)\)/g, (_all, alt, href) => {
+    if (copiedRootHrefs && !copiedRootHrefs.has(href)) return `![${alt}](${href})`;
     const relFromRoot = href.replace(/^\/+/, '');
     const assetAbs = path.join(assetsDirAbs, relFromRoot);
-    // If asset isn't present, keep original href.
-    // (We only copy when the file exists in /public.)
-    // Note: synchronous existence check avoided; fileExists is async so we rely on copy stage.
     const rel = toPosixPath(path.relative(path.dirname(outPath), assetAbs));
-    // Heuristic: only rewrite if it points into .gitbook/assets
-    if (!rel.includes('.gitbook/assets/')) return `![${alt}](${href})`;
     return `![${alt}](${rel.startsWith('.') ? rel : `./${rel}`})`;
   });
 }
@@ -2054,6 +2097,7 @@ function convertOne(src, maps, ctx) {
   let out = src;
   out = promoteMetadataDescriptionToDescription(out);
   out = stripMdxExportsAndImports(out);
+  out = convertChangelogPostHeader(out);
   out = convertLogoTablesToColumns(out, ctx);
   out = jsxHtmlToHtml(out);
   out = convertFlexDivsToColumns(out);
@@ -2093,7 +2137,7 @@ async function main() {
   const outDir = path.resolve(ROOT, args.outDir);
 
   const maps = await readConstantsMaps();
-  const { assetsDirAbs: staticAssetsDirAbs } = await ensureGitbookStaticImageAssets({
+  const { assetsDirAbs: staticAssetsDirAbs, copiedRootHrefs } = await ensureGitbookStaticImageAssets({
     inDirAbs: inDir,
     outDirAbs: outDir,
   });
@@ -2131,7 +2175,11 @@ async function main() {
     let converted = file.toLowerCase().endsWith('.mdx')
       ? convertOne(src, maps, { outPath, assetsDirAbs })
       : src;
-    converted = rewriteRootImagesToGitbookAssets(converted, { outPath, assetsDirAbs: staticAssetsDirAbs });
+    converted = rewriteRootImagesToGitbookAssets(converted, {
+      outPath,
+      assetsDirAbs: staticAssetsDirAbs,
+      copiedRootHrefs,
+    });
     converted = rewriteInternalDocsLinks(converted, outPath, outDir);
     converted = await tagBetaByMeta(converted, file, inDir);
     await fs.writeFile(outPath, converted, 'utf8');

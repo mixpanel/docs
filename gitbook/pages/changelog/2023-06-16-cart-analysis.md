@@ -1,0 +1,27 @@
+---
+title: "Discover purchase behaviors with Cart Analysis"
+slug: "changelog-2023-06-16-cart-analysis"
+hidden: false
+createdAt: "2023-06-16T14:59:02.165Z"
+updatedAt: "2023-06-16T14:59:02.165Z"
+date: "2023-06-16"
+---
+For ecommerce companies, understanding the purchase behavior of your users is vital when creating any revenue-driving strategy — whether that’s through website changes, marketing tactics, or product offerings. 
+That’s why we built Cart Analysis to allow you to surface details about the items in your user’s cart (brand, category, price, etc) at different moments in their purchase journey (viewed product, added to cart, purchased). This is made possible by being able to look at any sub-property within a list of objects.
+
+![changelog Image](.gitbook/assets/changelog/cart_analysis.png)
+
+An example question you can ask in Mixpanel with the power of Cart Analysis might be “how many cart checkouts with a total of over $75 have a sneaker product as an item?”
+
+![changelog Image](.gitbook/assets/changelog/cart_analysis.gif)
+
+A key feature we used to create the above visualization was the "Sum" computed property, which select a numeric property contained within the objects of the list and sums those values together (in this case, price).
+The other computed properties available with Cart Analysis are:
+- **Size**: Buckets carts by the number of items they contain.
+- **Distinct Count**: Count the number of carts that contain a specific brand or category.
+
+Getting the answer to this question can help inform a product offering strategy, like if you wanted to consider offering discounts or incentives for customers who purchase sneakers along with other products to encourage cart values over $75.
+
+If you want to learn more about how Cart Analysis can upgrade your ecommerce analytics, read our help doc on the [List of Objects data type](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/property-reference/data-type#list-of-objects), the [analysis unlocked with List of Objects](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/property-reference/data-type#list-of-objects-property-support) , and watch the demo video below. 
+
+[Link to Demo](https://www.loom.com/share/ff350b78206a4eb6948f86ed67e62ac3)

@@ -1,0 +1,22 @@
+---
+title: "Get alerted when product experiences break"
+slug: "changelog-2024-03-05-funnels-alerts"
+hidden: false
+createdAt: "2024-03-05T14:59:02.165Z"
+updatedAt: "2024-03-05T14:59:02.165Z"
+date: "2024-03-05"
+# video: "https://www.loom.com/embed/0284fcd216c74397966996fbb558b053"
+---
+
+[Link to Demo](https://www.loom.com/share/0284fcd216c74397966996fbb558b053)
+
+We’ve expanded the amount of funnel metrics you can set an [Alert](https://docs.mixpanel.com/changelogs/2023-03-29-custom-alerts) on so you can have full coverage into knowing whether your product is running smoothly:
+
+- Conversion Rate
+- Unique Converting Users
+- Total Conversions
+- Time to Convert
+- Sum of a property
+- The metrics above, but for specific step ranges in a funnel
+
+When your funnel metric is visualized as a line chart, it is also possible to use our [Anomaly Detection](https://docs.mixpanel.com/changelogs/2023-05-05-anomaly-detection-and-root-cause-analysis) feature.

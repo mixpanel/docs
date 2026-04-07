@@ -1,0 +1,19 @@
+---
+title: "Vet new events and ensure data trust with Event Approval"
+slug: "changelog-2023-06-01-event-approval"
+hidden: false
+createdAt: "2023-06-01T17:39:02.165Z"
+updatedAt: "2023-06-01T17:39:02.165Z"
+date: "2023-06-01"
+---
+
+[Link to Demo](https://www.loom.com/share/afa48331dd3f44deb3f4e63327bf2389)
+
+Our new data governance setting ensures that only trustworthy data is surfaced to your team. Event Approval allows you to hide newly tracked events by default, and notify admins of these new events.
+
+With Event Approval, you can:
+1. Provide a “stamp of approval” by making an event visible
+2. Let an event continue to be hidden if you’re unsure if it was implemented correctly
+3. Delete events that are mistakes
+
+This setting available for all organizations on an enterprise plan.

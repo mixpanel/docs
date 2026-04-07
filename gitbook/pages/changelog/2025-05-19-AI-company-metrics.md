@@ -1,0 +1,25 @@
+---
+title: "Track key AI metrics"
+slug: "changelog-2025-05-19-AI-company-metrics"
+hidden: false
+createdAt: "2025-05-19T19:59:02.165Z"
+updatedAt: "2025-05-19T19:59:02.165Z"
+date: "2025-05-19"
+thumbnail: "/changelog/analytics-for-ai-template.png"
+description: "Mixpanel’s AI Company KPIs template helps you determine which AI metrics to track and how to measure them immediately."
+isAnnouncement: true
+---
+
+# Track key AI metrics
+_2025-05-19_
+![](.gitbook/assets/changelog/analytics-for-ai-template.png)
+
+When building AI products and features, we want to help you measure impact and effectiveness. You need clear answers to questions like:
+
+- Are customers even using my chatbot?
+- How much value do they get from AI outputs?
+- Do improvements to my agent drive higher retention?
+
+Our new template helps you answer these questions quickly. Get a dashboard with proven AI metrics up and running with a few clicks, so you can start understanding how AI impacts user and business outcomes.
+
+Learn how to set up templates in our [help docs](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/boards/templates).

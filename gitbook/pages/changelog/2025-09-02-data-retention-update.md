@@ -1,0 +1,24 @@
+---
+title: "Updated Billing & Data Retention: Simpler Pricing, Enhanced Privacy"
+slug: "changelog-2025-09-02-billing-data-retention"
+hidden: false
+createdAt: "2025-09-02T12:00:00.165Z"
+updatedAt: "2025-09-02T12:00:00.165Z"
+date: "2025-09-02"
+thumbnail: "/changelog/billing-data-retention.png"
+description: "New default Billing and Data Retention policies for simpler pricing and and enhanced privacy and security"
+---
+
+# Updated Billing & Data Retention: Simpler Pricing, Enhanced Privacy
+_2025-08-18_
+![](.gitbook/assets/changelog/billing-data-retention.png)
+
+We're making two important updates to improve your Mixpanel experience:
+
+We're transitioning to ingestion-time based billing. This change makes pricing more predictable and transparent—you'll be billed based on when data arrives in Mixpanel, eliminating confusion around backdated events and making it easier to track your usage in real-time.
+
+We're updating our default data retention period to 2 years. This change reflects our commitment to data privacy and security best practices, ensuring your customer data is stored only as long as needed for meaningful analysis.
+
+These changes take effect on September 1, 2025. You can see if your account is on ingestion time billing in [Organization Settings](https://mixpanel.com/settings/org/plan).
+
+If you have specific retention needs beyond 2 years, please contact your account team to discuss custom retention options.
