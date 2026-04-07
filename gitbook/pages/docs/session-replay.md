@@ -24,7 +24,6 @@ See our developer guides on implementing Session Replay for these platforms belo
   <thead>
     <tr>
       <th></th>
-      <th></th>
       <th data-hidden data-card-target data-type="content-ref"></th>
       <th data-hidden data-card-cover data-type="files"></th>
     </tr>
@@ -32,25 +31,21 @@ See our developer guides on implementing Session Replay for these platforms belo
   <tbody>
     <tr>
       <td><strong>Web</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/sdks/javascript/javascript-replay">/docs/tracking-methods/sdks/javascript/javascript-replay</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>iOS</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/sdks/swift/swift-replay">/docs/tracking-methods/sdks/swift/swift-replay</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Android</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/sdks/android/android-replay">/docs/tracking-methods/sdks/android/android-replay</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>React Native</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/sdks/react-native/react-native-replay">/docs/tracking-methods/sdks/react-native/react-native-replay</a></td>
       <td></td>
     </tr>

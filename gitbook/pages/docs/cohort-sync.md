@@ -25,7 +25,6 @@ Refer to the Cohort Sync Integration Directory below for partner-specific setup 
   <thead>
     <tr>
       <th></th>
-      <th></th>
       <th data-hidden data-card-target data-type="content-ref"></th>
       <th data-hidden data-card-cover data-type="files"></th>
     </tr>
@@ -33,13 +32,11 @@ Refer to the Cohort Sync Integration Directory below for partner-specific setup 
   <tbody>
     <tr>
       <td><strong>Cohort Sync Integrations Directory</strong></td>
-      <td></td>
       <td><a href="/docs/cohort-sync/integrations">/docs/cohort-sync/integrations</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Custom Webhooks</strong></td>
-      <td></td>
       <td><a href="/docs/cohort-sync/webhooks">/docs/cohort-sync/webhooks</a></td>
       <td></td>
     </tr>

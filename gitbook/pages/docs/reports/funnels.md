@@ -6,7 +6,6 @@ Take a look at these pages to learn about our Funnels Report.
   <thead>
     <tr>
       <th></th>
-      <th></th>
       <th data-hidden data-card-target data-type="content-ref"></th>
       <th data-hidden data-card-cover data-type="files"></th>
     </tr>
@@ -14,25 +13,21 @@ Take a look at these pages to learn about our Funnels Report.
   <tbody>
     <tr>
       <td><strong>Overview</strong></td>
-      <td></td>
       <td><a href="/docs/reports/funnels/funnels-overview">/docs/reports/funnels/funnels-overview</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Quickstart</strong></td>
-      <td></td>
       <td><a href="/docs/reports/funnels/funnels-quickstart">/docs/reports/funnels/funnels-quickstart</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Advanced Concepts</strong></td>
-      <td></td>
       <td><a href="/docs/reports/funnels/funnels-advanced">/docs/reports/funnels/funnels-advanced</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>FAQ</strong></td>
-      <td></td>
       <td><a href="/docs/reports/funnels/funnels-faq">/docs/reports/funnels/funnels-faq</a></td>
       <td></td>
     </tr>

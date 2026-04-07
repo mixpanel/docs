@@ -555,7 +555,6 @@ function convertCards(src) {
     out.push('  <thead>');
     out.push('    <tr>');
     out.push('      <th></th>');
-    out.push('      <th></th>');
     out.push('      <th data-hidden data-card-target data-type="content-ref"></th>');
     out.push('      <th data-hidden data-card-cover data-type="files"></th>');
     out.push('    </tr>');
@@ -564,7 +563,6 @@ function convertCards(src) {
     for (const r of rows) {
       out.push('    <tr>');
       out.push(`      <td><strong>${escapeHtml(r.title)}</strong></td>`);
-      out.push('      <td></td>');
       out.push(`      <td><a href="${escapeHtml(r.href)}">${escapeHtml(r.href)}</a></td>`);
       out.push('      <td></td>');
       out.push('    </tr>');

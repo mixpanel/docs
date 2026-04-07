@@ -233,7 +233,6 @@ See our developer guides on implementing feature flags on these platforms below:
   <thead>
     <tr>
       <th></th>
-      <th></th>
       <th data-hidden data-card-target data-type="content-ref"></th>
       <th data-hidden data-card-cover data-type="files"></th>
     </tr>
@@ -241,31 +240,26 @@ See our developer guides on implementing feature flags on these platforms below:
   <tbody>
     <tr>
       <td><strong>Web</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/sdks/javascript/javascript-flags">/docs/tracking-methods/sdks/javascript/javascript-flags</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>iOS</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/sdks/swift/swift-flags">/docs/tracking-methods/sdks/swift/swift-flags</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Android</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/sdks/android/android-flags">/docs/tracking-methods/sdks/android/android-flags</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Flutter</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/sdks/flutter/flutter-flags">/docs/tracking-methods/sdks/flutter/flutter-flags</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>React Native (Beta)</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/sdks/react-native/react-native-flags">/docs/tracking-methods/sdks/react-native/react-native-flags</a></td>
       <td></td>
     </tr>
@@ -278,7 +272,6 @@ See our developer guides on implementing feature flags on these platforms below:
   <thead>
     <tr>
       <th></th>
-      <th></th>
       <th data-hidden data-card-target data-type="content-ref"></th>
       <th data-hidden data-card-cover data-type="files"></th>
     </tr>
@@ -286,31 +279,26 @@ See our developer guides on implementing feature flags on these platforms below:
   <tbody>
     <tr>
       <td><strong>Python</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/sdks/python/python-flags">/docs/tracking-methods/sdks/python/python-flags</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Ruby (Beta)</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/sdks/ruby/ruby-flags">/docs/tracking-methods/sdks/ruby/ruby-flags</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Node.js</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/sdks/nodejs/nodejs-flags">/docs/tracking-methods/sdks/nodejs/nodejs-flags</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Java</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/sdks/java/java-flags">/docs/tracking-methods/sdks/java/java-flags</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Go</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/sdks/go/go-flags">/docs/tracking-methods/sdks/go/go-flags</a></td>
       <td></td>
     </tr>

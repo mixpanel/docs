@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th></th>
-      <th></th>
       <th data-hidden data-card-target data-type="content-ref"></th>
       <th data-hidden data-card-cover data-type="files"></th>
     </tr>
@@ -12,19 +11,16 @@
   <tbody>
     <tr>
       <td><strong>Install Mixpanel</strong></td>
-      <td></td>
       <td><a href="/docs/quickstart/install-mixpanel">/docs/quickstart/install-mixpanel</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Identify Users</strong></td>
-      <td></td>
       <td><a href="/docs/quickstart/identify-users">/docs/quickstart/identify-users</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Capture Events</strong></td>
-      <td></td>
       <td><a href="/docs/quickstart/track-events">/docs/quickstart/track-events</a></td>
       <td></td>
     </tr>

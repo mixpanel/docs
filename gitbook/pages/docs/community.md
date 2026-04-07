@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th></th>
-      <th></th>
       <th data-hidden data-card-target data-type="content-ref"></th>
       <th data-hidden data-card-cover data-type="files"></th>
     </tr>
@@ -12,13 +11,11 @@
   <tbody>
     <tr>
       <td><strong>Slack Community</strong></td>
-      <td></td>
       <td><a href="https://community.mixpanel.com/">https://community.mixpanel.com/</a></td>
       <td></td>
     </tr>
     <tr>
       <td><strong>Guidelines</strong></td>
-      <td></td>
       <td><a href="/docs/community/guidelines">/docs/community/guidelines</a></td>
       <td></td>
     </tr>

@@ -16,7 +16,6 @@ However, to really exercise the power of Mixpanel, you can do a custom implement
   <thead>
     <tr>
       <th></th>
-      <th></th>
       <th data-hidden data-card-target data-type="content-ref"></th>
       <th data-hidden data-card-cover data-type="files"></th>
     </tr>
@@ -24,7 +23,6 @@ However, to really exercise the power of Mixpanel, you can do a custom implement
   <tbody>
     <tr>
       <td><strong>Integration Guide</strong></td>
-      <td></td>
       <td><a href="/docs/tracking-methods/integrations/shopify">/docs/tracking-methods/integrations/shopify</a></td>
       <td></td>
     </tr>
