@@ -24,8 +24,8 @@
         spec: ingestion
   ```
 * [Event Deduplication](ingestion-api/events/event-deduplication.md)
-* [Limits](ingestion-api/group-profiles/limits-1.md)
-* [Limits](ingestion-api/user-profiles/user-profile-limits.md)
+* [Group Profile Limits](ingestion-api/group-profiles/limits-1.md)
+* [User Profile Limits](ingestion-api/user-profiles/user-profile-limits.md)
 
 ## Identity API
 
