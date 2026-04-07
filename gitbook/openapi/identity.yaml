@@ -10,20 +10,12 @@ info:
   contact:
     url: https://mixpanel.com/get-support
 servers:
-  - url: https://{region}.mixpanel.com
-    description: Mixpanel's data collection server.
-    variables:
-      region:
-        default: api
-        enum:
-          - api
-          - api-eu
-          - api-in
-        description: |
-          The server location to be used:
-            * `api` - The default (US) servers used for most projects
-            * `api-eu` - EU servers if you are enrolled in EU Data Residency
-            * `api-in` - India servers if you are enrolled in India Data Residency
+  - url: https://api.mixpanel.com
+    description: Mixpanel's data collection server — The default (US) servers used for most projects
+  - url: https://api-eu.mixpanel.com
+    description: Mixpanel's data collection server — EU servers if you are enrolled in EU Data Residency
+  - url: https://api-in.mixpanel.com
+    description: Mixpanel's data collection server — India servers if you are enrolled in India Data Residency
 tags:
   - name: Identities
     description: Register or merge users with a new identity.
@@ -233,8 +225,9 @@ paths:
         - ProjectSecret: []
         - OAuthToken: []
       parameters:
-        - in: query
-          name: strict
+        - name: strict
+          in: query
+          description: When set to 1 (recommended), Mixpanel will validate the batch and return errors per event that failed.
           required: true
           schema:
             type: string
@@ -242,13 +235,12 @@ paths:
             enum:
               - "0"
               - "1"
-          description: When set to 1 (recommended), Mixpanel will validate the batch and return errors per event that failed.
-        - in: query
-          name: project_id
+        - name: project_id
+          in: query
+          description: The Mixpanel project_id, used to authenticate service account credentials (do not provide if using secret auth).
           required: false
           schema:
             type: string
-          description: The Mixpanel project_id, used to authenticate service account credentials (do not provide if using secret auth).
       requestBody:
         required: true
         content:

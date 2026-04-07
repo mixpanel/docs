@@ -9,20 +9,12 @@ info:
     url: https://opensource.org/licenses/MIT
   version: 1.0.0
 servers:
-  - url: https://{regionAndDomain}.com/api/app
-    description: Mixpanel's application API server.
-    variables:
-      regionAndDomain:
-        default: mixpanel
-        enum:
-          - mixpanel
-          - eu.mixpanel
-          - in.mixpanel
-        description: |
-          The server location to be used:
-            * `mixpanel` - The default (US) servers used for most projects
-            * `eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
-            * `in.mixpanel` - India servers if you are enrolled in India Data Residency
+  - url: https://mixpanel.com/api/app
+    description: Mixpanel's application API server — The default (US) servers used for most projects
+  - url: https://eu.mixpanel.com/api/app
+    description: Mixpanel's application API server — EU servers if you are enrolled in EU Data Residency
+  - url: https://in.mixpanel.com/api/app
+    description: Mixpanel's application API server — India servers if you are enrolled in India Data Residency
 security:
   - ServiceAccount: []
 tags:
@@ -42,24 +34,24 @@ paths:
       operationId: list-all-annotations-for-project
       summary: List Annotations
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
-        - in: query
-          name: from_date
-          schema:
-            type: string
+        - name: fromDate
+          in: query
           description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive.
-          required: true
-        - in: query
-          name: to_date
+          required: false
           schema:
             type: string
+        - name: toDate
+          in: query
           description: The date in yyyy-mm-dd format to query to. This date is inclusive.
-          required: true
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: Success
@@ -86,12 +78,12 @@ paths:
       operationId: create-annotation
       summary: Create Annotations
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
       requestBody:
         required: true
         content:
@@ -131,12 +123,12 @@ paths:
       operationId: get-annotation
       summary: Get Annotation
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
         - name: annotationId
           in: path
           description: The id of the annotation
@@ -169,12 +161,12 @@ paths:
       operationId: patch-annotation
       summary: Patch Annotation
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
         - name: annotationId
           in: path
           description: The id of the annotation
@@ -217,12 +209,12 @@ paths:
       operationId: delete-annotation
       summary: Delete Annotation
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
         - name: annotationId
           in: path
           description: The id of the annotation
@@ -256,12 +248,12 @@ paths:
       operationId: get-annotation-tags
       summary: Get Annotation Tags
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
       responses:
         "200":
           description: Success
@@ -288,12 +280,12 @@ paths:
       operationId: create-annotation-tag
       summary: Create Annotation Tag
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
       requestBody:
         required: true
         content:

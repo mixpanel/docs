@@ -10,20 +10,12 @@ info:
     url: https://opensource.org/licenses/MIT
   version: 1.0.0
 servers:
-  - url: https://{regionAndDomain}.com
-    description: Mixpanel's feature flags API server.
-    variables:
-      regionAndDomain:
-        default: api.mixpanel
-        enum:
-          - api.mixpanel
-          - api-eu.mixpanel
-          - api-in.mixpanel
-        description: |
-          The server location to be used:
-            * `api.mixpanel` - The default (US) servers used for most projects
-            * `api-eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
-            * `api-in.mixpanel` - India servers if you are enrolled in India Data Residency
+  - url: https://api.mixpanel.com
+    description: Mixpanel's feature flags API server — The default (US) servers used for most projects
+  - url: https://api-eu.mixpanel.com
+    description: Mixpanel's feature flags API server — EU servers if you are enrolled in EU Data Residency
+  - url: https://api-in.mixpanel.com
+    description: Mixpanel's feature flags API server — India servers if you are enrolled in India Data Residency
 tags:
   - name: Get Variant Assignments
     description: Evaluate feature flags for a specific user
@@ -41,10 +33,10 @@ paths:
       parameters:
         - name: token
           in: query
-          schema:
-            type: string
           description: Your project token
           required: true
+          schema:
+            type: string
         - name: context
           in: query
           description: URL-encoded JSON object containing evaluation context with distinct_id (required) and optional device_id and custom_properties object
@@ -89,10 +81,10 @@ paths:
       parameters:
         - name: token
           in: query
-          schema:
-            type: string
           description: Your project token
           required: true
+          schema:
+            type: string
       responses:
         "200":
           description: Success

@@ -6,7 +6,7 @@ With that in mind, it is important to note that a project's token is not a form 
 
 ## Sending data with a Project Token
 
-For [Track Events](../../ingestion-api/events/track-event.md), tokens are provided as values inside of the data sent to Mixpanel. Where this value is stored is dependent on the API endpoint used. Information on the specific location can be found in the Ingestion API's specification.
+For [Track Events](../ingestion-api/events/track-event.md), tokens are provided as values inside of the data sent to Mixpanel. Where this value is stored is dependent on the API endpoint used. Information on the specific location can be found in the Ingestion API's specification.
 
 ```json Event Data
 {
@@ -49,7 +49,7 @@ from mixpanel import Mixpanel
 mp = Mixpanel("projectoken")
 ```
 
-For [Import Events](../../ingestion-api/events/import-events.md), the token is provided in the header as the basic auth username value with an empty password. 
+For [Import Events](../ingestion-api/events/import-events.md), the token is provided in the header as the basic auth username value with an empty password. 
 
 ```json Import Events
 --header 'authorization: Basic <base64 encoding of token without password>'

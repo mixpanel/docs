@@ -10,20 +10,12 @@ info:
   contact:
     url: https://mixpanel.com/get-support
 servers:
-  - url: https://{server}.mixpanel.com/api/2.0
-    description: Mixpanel's data export server.
-    variables:
-      server:
-        default: data
-        enum:
-          - data
-          - data-eu
-          - data-in
-        description: |
-          The server location to be used:
-            * `data` - The default (US) servers used for most projects
-            * `data-eu` - EU servers if you are enrolled in EU Data Residency
-            * `data-in` - India servers if you are enrolled in India Data Residency
+  - url: https://data.mixpanel.com/api/2.0
+    description: Mixpanel's data export server — The default (US) servers used for most projects
+  - url: https://data-eu.mixpanel.com/api/2.0
+    description: Mixpanel's data export server — EU servers if you are enrolled in EU Data Residency
+  - url: https://data-in.mixpanel.com/api/2.0
+    description: Mixpanel's data export server — India servers if you are enrolled in India Data Residency
 security:
   - ServiceAccount: []
   - ProjectSecret: []
@@ -48,12 +40,12 @@ paths:
       operationId: list-warehouse-pipeline-jobs
       summary: List Pipelines
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
+          schema:
+            type: integer
       responses:
         "200":
           description: Success
@@ -258,31 +250,31 @@ paths:
       operationId: get-warehouse-pipeline-status
       summary: Get Pipeline
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: name
           schema:
-            type: string
+            type: integer
+        - name: name
+          in: query
           description: The name that uniquely identifies the pipeline.
           required: true
-        - in: query
-          name: summary
           schema:
             type: string
+        - name: summary
+          in: query
           description: "Default: `false`. Only lists task count by status and no details."
-        - in: query
-          name: status
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: |
+            Filters the tasks by the given status. Valid options for status are `pending`, `running`, `retried`, `failed`, `canceled`, and `timed_out`.
           schema:
             type: array
             items:
               type: string
-          description: |
-            Filters the tasks by the given status. Valid options for status are `pending`, `running`, `retried`, `failed`, `canceled`, and `timed_out`.
       responses:
         "200":
           description: Success
@@ -329,17 +321,17 @@ paths:
       operationId: list-warehouse-pipeline-sync-dates
       summary: List Pipeline Logs
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: name
+          schema:
+            type: integer
+        - name: name
+          in: query
+          description: The name that uniquely identifies the pipeline.
           schema:
             type: string
-          description: The name that uniquely identifies the pipeline.
       responses:
         "200":
           description: Success

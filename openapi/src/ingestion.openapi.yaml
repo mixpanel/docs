@@ -142,6 +142,16 @@ paths:
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/Verbose
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/PNGPixel
         - $ref: ./common/ingestion-api.yaml#/OptionalRequestParameter/ResponseType/JavascriptWithCallback
+        - in: header
+          name: Accept
+          required: false
+          description: >-
+            Preferred response body format. Use `application/json` for JSON responses or `text/plain` for plain text.
+          schema:
+            type: string
+            enum:
+              - application/json
+              - text/plain
       requestBody:
         content:
           application/json:

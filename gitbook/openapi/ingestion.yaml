@@ -10,20 +10,12 @@ info:
   contact:
     url: https://mixpanel.com/get-support
 servers:
-  - url: https://{region}.mixpanel.com
-    description: Mixpanel's data collection server.
-    variables:
-      region:
-        default: api
-        enum:
-          - api
-          - api-eu
-          - api-in
-        description: |
-          The server location to be used:
-            * `api` - The default (US) servers used for most projects
-            * `api-eu` - EU servers if you are enrolled in EU Data Residency
-            * `api-in` - India servers if you are enrolled in India Data Residency
+  - url: https://api.mixpanel.com
+    description: Mixpanel's data collection server — The default (US) servers used for most projects
+  - url: https://api-eu.mixpanel.com
+    description: Mixpanel's data collection server — EU servers if you are enrolled in EU Data Residency
+  - url: https://api-in.mixpanel.com
+    description: Mixpanel's data collection server — India servers if you are enrolled in India Data Residency
 tags:
   - name: Events
     description: Track events.
@@ -47,8 +39,9 @@ paths:
         - ProjectSecret: []
         - OAuthToken: []
       parameters:
-        - in: query
-          name: strict
+        - name: strict
+          in: query
+          description: When set to 1 (recommended), Mixpanel will validate the batch and return errors per event that failed.
           required: true
           schema:
             type: string
@@ -56,24 +49,23 @@ paths:
             enum:
               - "0"
               - "1"
-          description: When set to 1 (recommended), Mixpanel will validate the batch and return errors per event that failed.
-        - in: query
-          name: project_id
+        - name: project_id
+          in: query
+          description: The Mixpanel project_id, used to authenticate service account credentials.
           required: true
           schema:
             default: <YOUR_PROJECT_ID>
             type: string
-          description: The Mixpanel project_id, used to authenticate service account credentials.
-        - in: header
-          name: Content-Type
+        - name: Content-Type
+          in: header
           schema:
             type: string
             default: application/json
             enum:
               - application/json
               - application/x-ndjson
-        - in: header
-          name: Content-Encoding
+        - name: Content-Encoding
+          in: header
           schema:
             type: string
             enum:
@@ -348,36 +340,45 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: ip
+          in: query
           description: If present and equal to 1, Mixpanel will use the ip address of the incoming request and compute a distinct_id using a hash function if no distinct_id is provided. This is different from providing a `properties.ip` value in the Event Object.
-        - in: query
-          name: verbose
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
-        - in: query
-          name: img
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
+        - name: img
+          in: query
           description: If present and equal to 1, Mixpanel will serve a 1x1 transparent pixel image as a response to the request. This is useful for adding [Pixel Tracking](https://en.wikipedia.org/wiki/Web_beacon) in places that javascript is not supported.
-        - in: query
-          name: callback
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - name: callback
+          in: query
+          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
           required: false
           schema:
             type: string
-          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
+        - name: Accept
+          in: header
+          description: Preferred response body format. Use `application/json` for JSON responses or `text/plain` for plain text.
+          required: false
+          schema:
+            type: string
+            enum:
+              - application/json
+              - text/plain
       requestBody:
         content:
           application/json:
@@ -470,34 +471,37 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
+        - name: ip
+          in: query
+          description: If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location. Defaults to 1 which would use the IP address of the request to update profile geolocation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: strict
+            default: 0
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
-        - in: query
-          name: callback
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - name: callback
+          in: query
+          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
           required: false
           schema:
             type: string
-          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
       requestBody:
         required: true
         content:
@@ -545,34 +549,37 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
+        - name: ip
+          in: query
+          description: If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location. Defaults to 1 which would use the IP address of the request to update profile geolocation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: strict
+            default: 0
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
-        - in: query
-          name: callback
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - name: callback
+          in: query
+          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
           required: false
           schema:
             type: string
-          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
       requestBody:
         required: true
         content:
@@ -613,34 +620,37 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
+        - name: ip
+          in: query
+          description: If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location. Defaults to 1 which would use the IP address of the request to update profile geolocation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: strict
+            default: 0
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
-        - in: query
-          name: callback
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - name: callback
+          in: query
+          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
           required: false
           schema:
             type: string
-          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
       requestBody:
         required: true
         content:
@@ -683,34 +693,37 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
+        - name: ip
+          in: query
+          description: If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location. Defaults to 1 which would use the IP address of the request to update profile geolocation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: strict
+            default: 0
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
-        - in: query
-          name: callback
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - name: callback
+          in: query
+          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
           required: false
           schema:
             type: string
-          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
       requestBody:
         required: true
         content:
@@ -759,34 +772,37 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
+        - name: ip
+          in: query
+          description: If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location. Defaults to 1 which would use the IP address of the request to update profile geolocation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: strict
+            default: 0
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
-        - in: query
-          name: callback
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - name: callback
+          in: query
+          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
           required: false
           schema:
             type: string
-          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
       requestBody:
         required: true
         content:
@@ -827,34 +843,37 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
+        - name: ip
+          in: query
+          description: If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location. Defaults to 1 which would use the IP address of the request to update profile geolocation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: strict
+            default: 0
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
-        - in: query
-          name: callback
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - name: callback
+          in: query
+          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
           required: false
           schema:
             type: string
-          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
       requestBody:
         required: true
         content:
@@ -895,34 +914,37 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
+        - name: ip
+          in: query
+          description: If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location. Defaults to 1 which would use the IP address of the request to update profile geolocation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: strict
+            default: 0
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
-        - in: query
-          name: callback
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - name: callback
+          in: query
+          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
           required: false
           schema:
             type: string
-          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
       requestBody:
         required: true
         content:
@@ -967,34 +989,37 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
+        - name: ip
+          in: query
+          description: If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location. Defaults to 1 which would use the IP address of the request to update profile geolocation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: strict
+            default: 0
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
-        - in: query
-          name: callback
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - name: callback
+          in: query
+          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
           required: false
           schema:
             type: string
-          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
       requestBody:
         required: true
         content:
@@ -1041,27 +1066,28 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: strict
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
-        - in: query
-          name: callback
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+        - name: callback
+          in: query
+          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
           required: false
           schema:
             type: string
-          description: "If present, Mixpanel will return a `content-type: text/javascript` with a body that calls a function by value provided. This is useful for creating local callbacks to a successful track call in JavaScript."
       requestBody:
         required: true
         content:
@@ -1110,28 +1136,31 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
+        - name: ip
+          in: query
+          description: If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location. Defaults to 1 which would use the IP address of the request to update profile geolocation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: strict
+            default: 0
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
       requestBody:
         required: true
         content:
@@ -1176,28 +1205,31 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
+        - name: ip
+          in: query
+          description: If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location. Defaults to 1 which would use the IP address of the request to update profile geolocation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: strict
+            default: 0
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
       requestBody:
         required: true
         content:
@@ -1242,28 +1274,31 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
+        - name: ip
+          in: query
+          description: If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location. Defaults to 1 which would use the IP address of the request to update profile geolocation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: strict
+            default: 0
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
       requestBody:
         required: true
         content:
@@ -1312,28 +1347,31 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
+        - name: ip
+          in: query
+          description: If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location. Defaults to 1 which would use the IP address of the request to update profile geolocation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: strict
+            default: 0
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
       requestBody:
         required: true
         content:
@@ -1378,28 +1416,31 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
+        - name: ip
+          in: query
+          description: If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location. Defaults to 1 which would use the IP address of the request to update profile geolocation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: strict
+            default: 0
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
       requestBody:
         required: true
         content:
@@ -1452,28 +1493,31 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: ip
+        - name: ip
+          in: query
+          description: If present and equal to 0, Mixpanel will not perform geolocation parsing using the IP address of the request. We recommend setting the ip to "0" when making requests from the server-side to prevent the unintentional effect of overwriting your profile's geolocation with your server location. Defaults to 1 which would use the IP address of the request to update profile geolocation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: strict
+            default: 0
+        - name: strict
+          in: query
+          description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-        - in: query
-          name: verbose
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-            maximum: 1
+        - name: verbose
+          in: query
           description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
       requestBody:
         required: true
         content:
@@ -1521,14 +1565,14 @@ paths:
       security:
         - {}
       parameters:
-        - in: query
-          name: verbose
+        - name: verbose
+          in: query
+          description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
           required: false
           schema:
             type: integer
             minimum: 0
             maximum: 1
-          description: "If present and equal to 1, Mixpanel will respond with a JSON Object describing the success or failure of the tracking call. The returned object will have two keys: `status`, with the value 1 on success and 0 on failure, and `error`, with a string-valued error message if the request wasn't successful. This is useful for debugging during implementation."
       requestBody:
         required: true
         content:
@@ -1575,13 +1619,13 @@ paths:
       security:
         - ServiceAccount: []
       parameters:
-        - in: query
-          name: project_id
+        - name: project_id
+          in: query
+          description: The Mixpanel project_id, used to authenticate service account credentials.
           required: true
           schema:
             default: <YOUR_PROJECT_ID>
             type: string
-          description: The Mixpanel project_id, used to authenticate service account credentials.
       responses:
         "200":
           $ref: "#/components/responses/LookupTableList"
@@ -1598,22 +1642,22 @@ paths:
         - ServiceAccount: []
         - ProjectSecret: []
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
+          description: The ID of the lookup table to replace which can be retreived from Lexicon under the lookup table's details, click [here](https://docs.mixpanel.com/docs/data-structure/lookup-tables#where-can-i-find-the-id-of-the-lookup-table-for-apis-path-params) for more info.
           required: true
           schema:
             type: string
             format: uuid
-          description: The ID of the lookup table to replace which can be retreived from Lexicon under the lookup table's details, click [here](https://docs.mixpanel.com/docs/data-structure/lookup-tables#where-can-i-find-the-id-of-the-lookup-table-for-apis-path-params) for more info.
-        - in: query
-          name: project_id
+        - name: project_id
+          in: query
+          description: The Mixpanel project_id, used to authenticate service account credentials.
           required: true
           schema:
             default: <YOUR_PROJECT_ID>
             type: string
-          description: The Mixpanel project_id, used to authenticate service account credentials.
-        - in: header
-          name: Content-Type
+        - name: Content-Type
+          in: header
           schema:
             type: string
             default: text/csv

@@ -13,20 +13,12 @@ info:
   contact:
     url: https://mixpanel.com/get-support
 servers:
-  - url: https://{regionAndDomain}.com/api/app
-    description: Mixpanel's application API server.
-    variables:
-      regionAndDomain:
-        default: mixpanel
-        enum:
-          - mixpanel
-          - eu.mixpanel
-          - in.mixpanel
-        description: |
-          The server location to be used:
-            * `mixpanel` - The default (US) servers used for most projects
-            * `eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
-            * `in.mixpanel` - India servers if you are enrolled in India Data Residency
+  - url: https://mixpanel.com/api/app
+    description: Mixpanel's application API server — The default (US) servers used for most projects
+  - url: https://eu.mixpanel.com/api/app
+    description: Mixpanel's application API server — EU servers if you are enrolled in EU Data Residency
+  - url: https://in.mixpanel.com/api/app
+    description: Mixpanel's application API server — India servers if you are enrolled in India Data Residency
 security:
   - ServiceAccount: []
 tags:
@@ -40,12 +32,12 @@ paths:
       operationId: list-warehouse-imports
       summary: List all warehouse imports
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
       responses:
         "200":
           description: Success
@@ -88,18 +80,18 @@ paths:
       operationId: get-warehouse-import
       summary: Get a specific warehouse import
       parameters:
-        - in: path
-          name: projectId
-          schema:
-            type: integer
-          required: true
+        - name: projectId
+          in: path
           description: "Your project id (eg: 12345)"
-        - in: path
-          name: importId
+          required: true
           schema:
             type: integer
-          required: true
+        - name: importId
+          in: path
           description: "Your warehouse import id (eg: 12345)"
+          required: true
+          schema:
+            type: integer
       responses:
         "200":
           description: Success
@@ -145,18 +137,18 @@ paths:
       operationId: update-warehouse-import
       summary: Update a warehouse import
       parameters:
-        - in: path
-          name: projectId
-          schema:
-            type: integer
-          required: true
+        - name: projectId
+          in: path
           description: "Your project id (eg: 12345)"
-        - in: path
-          name: importId
+          required: true
           schema:
             type: integer
-          required: true
+        - name: importId
+          in: path
           description: "Your warehouse import id (eg: 12345)"
+          required: true
+          schema:
+            type: integer
       requestBody:
         required: true
         content:
@@ -234,18 +226,18 @@ paths:
       operationId: delete-warehouse-import
       summary: Delete a warehouse import
       parameters:
-        - in: path
-          name: projectId
-          schema:
-            type: integer
-          required: true
+        - name: projectId
+          in: path
           description: "Your project id (eg: 12345)"
-        - in: path
-          name: importId
+          required: true
           schema:
             type: integer
-          required: true
+        - name: importId
+          in: path
           description: "Your warehouse import id (eg: 12345)"
+          required: true
+          schema:
+            type: integer
       requestBody:
         required: false
         content:
@@ -301,12 +293,12 @@ paths:
       operationId: create-event-stream-import
       summary: Create an event stream import
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
       requestBody:
         required: true
         content:
@@ -383,12 +375,12 @@ paths:
       operationId: create-people-import
       summary: Create a people (user profiles) import
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
       requestBody:
         required: true
         content:
@@ -441,12 +433,12 @@ paths:
       operationId: create-groups-import
       summary: Create a groups import
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
       requestBody:
         required: true
         content:
@@ -498,12 +490,12 @@ paths:
       operationId: create-lookup-table-import
       summary: Create a lookup table import
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
       requestBody:
         required: true
         content:
@@ -556,18 +548,18 @@ paths:
       operationId: run-an-import
       summary: Run an import
       parameters:
-        - in: path
-          name: projectId
-          schema:
-            type: integer
-          required: true
+        - name: projectId
+          in: path
           description: "Your project id (eg: 12345)"
-        - in: path
-          name: importId
+          required: true
           schema:
             type: integer
-          required: true
+        - name: importId
+          in: path
           description: "Your warehouse import id (eg: 12345)"
+          required: true
+          schema:
+            type: integer
       requestBody:
         required: true
         content:
@@ -619,18 +611,18 @@ paths:
       operationId: get-import-history
       summary: Get import job history
       parameters:
-        - in: path
-          name: projectId
-          schema:
-            type: integer
-          required: true
+        - name: projectId
+          in: path
           description: "Your project id (eg: 12345)"
-        - in: path
-          name: importId
+          required: true
           schema:
             type: integer
-          required: true
+        - name: importId
+          in: path
           description: "Your warehouse import id (eg: 12345)"
+          required: true
+          schema:
+            type: integer
       responses:
         "200":
           description: Success

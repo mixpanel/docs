@@ -1,14 +1,9 @@
 # Table of contents
 
-* [API Reference](README.md)
-
-## Mixpanel APIs
-
-* [Overview](mixpanel-apis/overview.md)
-* [Authentication](mixpanel-apis/authentication/service-accounts.md)
-* [Segmentation Expressions](mixpanel-apis/segmentation-expressions.md)
-* [Rate Limits](mixpanel-apis/rate-limits.md)
-
+* [Overview](README.md)
+* [Authentication](authentication/service-accounts.md)
+* [Segmentation Expressions](segmentation-expressions.md)
+* [Rate Limits](rate-limits.md)
 ## Ingestion API
 
 * [Overview](ingestion-api/ingestion-api.md)

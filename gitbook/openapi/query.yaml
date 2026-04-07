@@ -10,20 +10,12 @@ info:
     url: https://mixpanel.com/get-support
   version: 1.0.0
 servers:
-  - url: https://{regionAndDomain}.com/api/query
-    description: Mixpanel's calculated data API
-    variables:
-      regionAndDomain:
-        default: mixpanel
-        enum:
-          - mixpanel
-          - eu.mixpanel
-          - in.mixpanel
-        description: |
-          The server location to be used:
-            * `mixpanel` - The default (US) servers used for most projects
-            * `eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
-            * `in.mixpanel` - India servers if you are enrolled in India Data Residency
+  - url: https://mixpanel.com/api/query
+    description: Mixpanel's calculated data API — The default (US) servers used for most projects
+  - url: https://eu.mixpanel.com/api/query
+    description: Mixpanel's calculated data API — EU servers if you are enrolled in EU Data Residency
+  - url: https://in.mixpanel.com/api/query
+    description: Mixpanel's calculated data API — India servers if you are enrolled in India Data Residency
 security:
   - ServiceAccount: []
   - ProjectSecret: []
@@ -54,23 +46,23 @@ paths:
       operationId: insights-query
       summary: Query Saved Report
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: bookmark_id
           schema:
             type: integer
+        - name: bookmark_id
+          in: query
           description: "The ID of your Insights report can be found from the url: `https://mixpanel.com/project/<YOUR_PROJECT_ID>/view/<YOUR_WORKSPACE_ID>/app/boards#id=12345&editor-card-id=%22report-<YOUR_BOOKMARK_ID>%22`"
           required: true
+          schema:
+            type: integer
       responses:
         "200":
           description: Success
@@ -130,42 +122,43 @@ paths:
       operationId: funnels-query
       summary: Query Saved Report
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: funnel_id
           schema:
             type: integer
+        - name: funnel_id
+          in: query
           description: The funnel that you wish to get data for.
           required: true
-        - in: query
-          name: from_date
-          schema:
-            type: string
-          description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive.
-          required: true
-        - in: query
-          name: to_date
-          schema:
-            type: string
-          description: The date in yyyy-mm-dd format to query to. This date is inclusive.
-          required: true
-        - in: query
-          name: length
           schema:
             type: integer
+        - name: from_date
+          in: query
+          description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive.
+          required: true
+          schema:
+            type: string
+        - name: to_date
+          in: query
+          description: The date in yyyy-mm-dd format to query to. This date is inclusive.
+          required: true
+          schema:
+            type: string
+        - name: length
+          in: query
           description: The number of units (defined by length_unit) each user has to complete the funnel, starting from the time they triggered the first step in the funnel. May not be greater than 90 days. Note that we will query for events past the end of to_date to look for funnel completions. This defaults to the value that was previously saved in the UI for this funnel.
-        - in: query
-          name: length_unit
+          schema:
+            type: integer
+        - name: length_unit
+          in: query
+          description: The unit applied to the length parameter can be "second", "minute", "hour", or "day". Defaults to the value that was previously saved in the UI for this funnel.
           schema:
             type: string
             enum:
@@ -173,37 +166,36 @@ paths:
               - hour
               - minute
               - second
-            description: The unit applied to the length parameter can be "second", "minute", "hour", or "day". Defaults to the value that was previously saved in the UI for this funnel.
             example: day
-        - in: query
-          name: interval
+        - name: interval
+          in: query
+          description: The number of days you want each bucket to contain. The default value is 1.
           schema:
             type: integer
-          description: The number of days you want each bucket to contain. The default value is 1.
-        - in: query
-          name: unit
+        - name: unit
+          in: query
+          description: This is an alternate way of specifying interval and can be "day", "week", or "month".
           schema:
             type: string
             enum:
               - day
               - week
               - month
-          description: This is an alternate way of specifying interval and can be "day", "week", or "month".
-        - in: query
-          name: on
-          schema:
-            type: string
+        - name: on
+          in: query
           description: The property expression to segment the event on. See the [expression to segment](ref:segmentation-expressions) below.
-        - in: query
-          name: where
           schema:
             type: string
+        - name: where
+          in: query
           description: An expression to filter events by. See the [expression to segment](ref:segmentation-expressions) below.
-        - in: query
-          name: limit
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Return the top property values. Defaults to 255 if not explicitly included. Maximum value 10,000. This parameter does nothing if \"on\" is not specified.
           schema:
             type: integer
-          description: Return the top property values. Defaults to 255 if not explicitly included. Maximum value 10,000. This parameter does nothing if \"on\" is not specified.
       responses:
         "200":
           description: Success
@@ -366,17 +358,17 @@ paths:
       operationId: funnels-list-saved
       summary: List Saved Funnels
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
+          schema:
+            type: integer
       responses:
         "200":
           description: Success.
@@ -408,76 +400,77 @@ paths:
       operationId: retention-query
       summary: Query Retention Report
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: from_date
           schema:
-            type: string
+            type: integer
+        - name: from_date
+          in: query
           description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive.
           required: true
-        - in: query
-          name: to_date
           schema:
             type: string
+        - name: to_date
+          in: query
           description: The date in yyyy-mm-dd format to query to. This date is inclusive.
           required: true
-        - in: query
-          name: retention_type
+          schema:
+            type: string
+        - name: retention_type
+          in: query
+          description: Must be either "birth" or "compounded". Defaults to "birth". The “birth” retention type corresponds to first time retention. The “compounded” retention type corresponds to recurring retention. See the [Types of Retention](https://help.mixpanel.com/hc/en-us/articles/360001370146) article for more information.
           schema:
             type: string
             enum:
               - birth
               - compounded
             example: birth
-          description: Must be either "birth" or "compounded". Defaults to "birth". The “birth” retention type corresponds to first time retention. The “compounded” retention type corresponds to recurring retention. See the [Types of Retention](https://help.mixpanel.com/hc/en-us/articles/360001370146) article for more information.
-        - in: query
-          name: born_event
+        - name: born_event
+          in: query
+          description: The first event a user must do to be counted in a birth retention cohort. Required when retention_type is "birth"; ignored otherwise.
           schema:
             type: string
             example: Added to cart
-          description: The first event a user must do to be counted in a birth retention cohort. Required when retention_type is "birth"; ignored otherwise.
-        - in: query
-          name: event
+        - name: event
+          in: query
+          description: The event to generate returning counts for. Applies to both birth and compounded retention. If not specified, we look across all events.
           schema:
             type: string
             example: Viewed report
-          description: The event to generate returning counts for. Applies to both birth and compounded retention. If not specified, we look across all events.
-        - in: query
-          name: born_where
+        - name: born_where
+          in: query
+          description: An expression to filter born_events by. See the [expressions section](ref:segmentation-expressions) above.
           schema:
             type: string
             example: properties["$os"]=="Linux"
+        - name: where
+          in: query
           description: An expression to filter born_events by. See the [expressions section](ref:segmentation-expressions) above.
-        - in: query
-          name: where
           schema:
             type: string
             example: properties["$os"]=="Linux"
-          description: An expression to filter born_events by. See the [expressions section](ref:segmentation-expressions) above.
-        - in: query
-          name: interval
-          schema:
-            type: integer
-            example: 1
+        - name: interval
+          in: query
           description: The number of units (can be specified in either days, weeks, or months) that you want per individual bucketed interval. May not be greater than 90 days if days is the specified unit. The default value is 1.
-        - in: query
-          name: interval_count
           schema:
             type: integer
             example: 1
+        - name: interval_count
+          in: query
           description: The number of individual buckets, or intervals, that are returned; defaults to 1. Note that we include a "0th" interval for events that take place less than one interval after the initial event.
-        - in: query
-          name: unit
+          schema:
+            type: integer
+            example: 1
+        - name: unit
+          in: query
+          description: The interval unit. It can be "day", "week", or "month". Default is "day".
           schema:
             type: string
             enum:
@@ -485,24 +478,23 @@ paths:
               - week
               - month
             example: day
-          description: The interval unit. It can be "day", "week", or "month". Default is "day".
-        - in: query
-          name: unbounded_retention
+        - name: unbounded_retention
+          in: query
+          description: A counting method for retention queries where retention values accumulate from right to left, i.e. day N is equal to users who retained on day N and any day after. The default value of false does not perform this accumulation. [Learn more about Counting Method](https://help.mixpanel.com/hc/en-us/articles/360045484191).
           schema:
             type: boolean
             default: false
             example: false
-          description: A counting method for retention queries where retention values accumulate from right to left, i.e. day N is equal to users who retained on day N and any day after. The default value of false does not perform this accumulation. [Learn more about Counting Method](https://help.mixpanel.com/hc/en-us/articles/360045484191).
-        - in: query
-          name: on
+        - name: on
+          in: query
+          description: The property expression to segment the second event on. See the [expressions section](ref:segmentation-expressions) above.
           schema:
             type: string
-          description: The property expression to segment the second event on. See the [expressions section](ref:segmentation-expressions) above.
-        - in: query
-          name: limit
+        - name: limit
+          in: query
+          description: Return the top limit segmentation values. This parameter does nothing if "on" is not specified.
           schema:
             type: integer
-          description: Return the top limit segmentation values. This parameter does nothing if "on" is not specified.
       responses:
         "200":
           description: Success.
@@ -576,68 +568,68 @@ paths:
       operationId: retention-frequency-query
       summary: Query Frequency Report
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: from_date
           schema:
-            type: string
+            type: integer
+        - name: from_date
+          in: query
           description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive.
           required: true
-        - in: query
-          name: to_date
           schema:
             type: string
+        - name: to_date
+          in: query
           description: The date in yyyy-mm-dd format to query to. This date is inclusive.
           required: true
-        - in: query
-          name: unit
+          schema:
+            type: string
+        - name: unit
+          in: query
+          description: The overall time period to return frequency of actions for can be "day", "week", or "month".
+          required: true
           schema:
             type: string
             enum:
               - day
               - week
               - month
-          description: The overall time period to return frequency of actions for can be "day", "week", or "month".
+        - name: addiction_unit
+          in: query
+          description: The granularity to return frequency of actions at can be "hour" or "day".
           required: true
-        - in: query
-          name: addiction_unit
           schema:
             type: string
             enum:
               - hour
               - day
-          description: The granularity to return frequency of actions at can be "hour" or "day".
-          required: true
-        - in: query
-          name: event
-          schema:
-            type: string
+        - name: event
+          in: query
           description: The event to generate returning counts for.
-        - in: query
-          name: where
           schema:
             type: string
+        - name: where
+          in: query
           description: An expression to filter the returning events by. See the [expressions section](ref:segmentation-expressions) above.
-        - in: query
-          name: on
           schema:
             type: string
+        - name: on
+          in: query
           description: The property expression to segment the second event on. See the [expressions section](ref:segmentation-expressions) above.
-        - in: query
-          name: limit
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Return the top limit segmentation values. This parameter does nothing if "on" is not specified.
           schema:
             type: integer
-          description: Return the top limit segmentation values. This parameter does nothing if "on" is not specified.
       responses:
         "200":
           description: Success.
@@ -738,42 +730,43 @@ paths:
       operationId: segmentation-query
       summary: Query Segmentation Report
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: event
           schema:
-            type: string
+            type: integer
+        - name: event
+          in: query
           description: "The event that you wish to get data for. Note: this is a single event name, not an array."
           required: true
-        - in: query
-          name: from_date
           schema:
             type: string
+        - name: from_date
+          in: query
           description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive.
           required: true
-        - in: query
-          name: to_date
           schema:
             type: string
+        - name: to_date
+          in: query
           description: The date in yyyy-mm-dd format to query to. This date is inclusive.
           required: true
-        - in: query
-          name: on
           schema:
             type: string
+        - name: on
+          in: query
           description: The property expression to segment the event on. See the [expression to segment](ref:segmentation-expressions) below.
-        - in: query
-          name: unit
+          schema:
+            type: string
+        - name: unit
+          in: query
+          description: This can be "minute", "hour", "day", or "month". This determines the buckets into which the property values that you segment on are placed. The default value is "day".
           schema:
             type: string
             enum:
@@ -781,38 +774,37 @@ paths:
               - hour
               - day
               - month
-          description: This can be "minute", "hour", "day", or "month". This determines the buckets into which the property values that you segment on are placed. The default value is "day".
-        - in: query
-          name: interval
+        - name: interval
+          in: query
+          description: Optional parameter in lieu of 'unit' when 'type' is not 'general'. Determines the number of days your results are bucketed into can be used with or without 'from_date' and 'to_date' parameters.
           schema:
             type: integer
-          description: Optional parameter in lieu of 'unit' when 'type' is not 'general'. Determines the number of days your results are bucketed into can be used with or without 'from_date' and 'to_date' parameters.
-        - in: query
-          name: where
+        - name: where
+          in: query
+          description: An expression to filter events by. See the [expression to segment](ref:segmentation-expressions) below.
           schema:
             type: string
-          description: An expression to filter events by. See the [expression to segment](ref:segmentation-expressions) below.
-        - in: query
-          name: limit
+        - name: limit
+          in: query
+          description: Return the top property values. Defaults to 60. Maximum value 10,000. This parameter does nothing if "on" is not specified.
           schema:
             type: integer
-          description: Return the top property values. Defaults to 60. Maximum value 10,000. This parameter does nothing if "on" is not specified.
-        - in: query
-          name: type
+        - name: type
+          in: query
+          description: This can be "general", "unique", or "average". If this is set to "unique", we return the unique count of events or property values. If set to "general", we return the total, including repeats. If set to "average", we return the average count. The default value is "general".
           schema:
             type: string
             enum:
               - general
               - unique
               - average
-          description: This can be "general", "unique", or "average". If this is set to "unique", we return the unique count of events or property values. If set to "general", we return the total, including repeats. If set to "average", we return the average count. The default value is "general".
-        - in: query
-          name: format
+        - name: format
+          in: query
+          description: Can be set to "csv".
           schema:
             type: string
             enum:
               - csv
-            description: Can be set to "csv".
       responses:
         "200":
           description: Success.
@@ -857,63 +849,63 @@ paths:
       operationId: segmentation-numeric-query
       summary: Numerically Bucket
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: event
           schema:
-            type: string
+            type: integer
+        - name: event
+          in: query
           description: "The event that you wish to get data for. Note: this is a single event name, not an array."
           required: true
-        - in: query
-          name: from_date
           schema:
             type: string
+        - name: from_date
+          in: query
           description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive.
           required: true
-        - in: query
-          name: to_date
           schema:
             type: string
+        - name: to_date
+          in: query
           description: The date in yyyy-mm-dd format to query to. This date is inclusive.
           required: true
-        - in: query
-          name: on
           schema:
             type: string
+        - name: on
+          in: query
           description: The property expression to segment the event on. This expression must be a numeric property. See the [expressions section](ref:segmentation-expressions) below.
           required: true
-        - in: query
-          name: unit
+          schema:
+            type: string
+        - name: unit
+          in: query
+          description: This can be "hour" or "day". This determines the buckets into which the property values that you segment on are placed. The default value is "day".
           schema:
             type: string
             enum:
               - hour
               - day
-          description: This can be "hour" or "day". This determines the buckets into which the property values that you segment on are placed. The default value is "day".
-        - in: query
-          name: where
+        - name: where
+          in: query
+          description: An expression to filter events by. See the [expression to segment](ref:segmentation-expressions) below.
           schema:
             type: string
-          description: An expression to filter events by. See the [expression to segment](ref:segmentation-expressions) below.
-        - in: query
-          name: type
+        - name: type
+          in: query
+          description: This can be "hour" or "day". This determines the buckets into which the property values that you segment on are placed. The default value is "day".
           schema:
             type: string
             enum:
               - general
               - unique
               - average
-          description: This can be "hour" or "day". This determines the buckets into which the property values that you segment on are placed. The default value is "day".
       responses:
         "200":
           description: Success
@@ -979,54 +971,54 @@ paths:
       operationId: segmentation-sum-query
       summary: Numerically Sum
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: event
           schema:
-            type: string
+            type: integer
+        - name: event
+          in: query
           description: "The event that you wish to get data for. Note: this is a single event name, not an array."
           required: true
-        - in: query
-          name: from_date
           schema:
             type: string
+        - name: from_date
+          in: query
           description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive.
           required: true
-        - in: query
-          name: to_date
           schema:
             type: string
+        - name: to_date
+          in: query
           description: The date in yyyy-mm-dd format to query to. This date is inclusive.
           required: true
-        - in: query
-          name: on
           schema:
             type: string
+        - name: on
+          in: query
           description: The expression to sum per unit time. The result of the expression should be a numeric value. If the expression is not numeric, a value of 0.0 is assumed. See the [expressions section](ref:segmentation-expressions) below.
           required: true
-        - in: query
-          name: unit
+          schema:
+            type: string
+        - name: unit
+          in: query
+          description: This can be "hour" or "day". This determines the buckets into which the property values that you segment on are placed. The default value is "day".
           schema:
             type: string
             enum:
               - hour
               - day
-          description: This can be "hour" or "day". This determines the buckets into which the property values that you segment on are placed. The default value is "day".
-        - in: query
-          name: where
+        - name: where
+          in: query
+          description: An expression to filter events by. See the [expression to segment](ref:segmentation-expressions) below.
           schema:
             type: string
-          description: An expression to filter events by. See the [expression to segment](ref:segmentation-expressions) below.
       responses:
         "200":
           description: Success.
@@ -1059,54 +1051,54 @@ paths:
       operationId: segmentation-query-average
       summary: Numerically Average
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: event
           schema:
-            type: string
+            type: integer
+        - name: event
+          in: query
           description: "The event that you wish to get data for. Note: this is a single event name, not an array."
           required: true
-        - in: query
-          name: from_date
           schema:
             type: string
+        - name: from_date
+          in: query
           description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive.
           required: true
-        - in: query
-          name: to_date
           schema:
             type: string
+        - name: to_date
+          in: query
           description: The date in yyyy-mm-dd format to query to. This date is inclusive.
           required: true
-        - in: query
-          name: on
           schema:
             type: string
+        - name: on
+          in: query
           description: The expression to sum per unit time. The result of the expression should be a numeric value. If the expression is not numeric, a value of 0.0 is assumed. See the [expressions section](ref:segmentation-expressions) below.
           required: true
-        - in: query
-          name: unit
+          schema:
+            type: string
+        - name: unit
+          in: query
+          description: This can be "hour" or "day". This determines the buckets into which the property values that you segment on are placed. The default value is "day".
           schema:
             type: string
             enum:
               - hour
               - day
-          description: This can be "hour" or "day". This determines the buckets into which the property values that you segment on are placed. The default value is "day".
-        - in: query
-          name: where
+        - name: where
+          in: query
+          description: An expression to filter events by. See the [expression to segment](ref:segmentation-expressions) below.
           schema:
             type: string
-          description: An expression to filter events by. See the [expression to segment](ref:segmentation-expressions) below.
       responses:
         "200":
           description: Success
@@ -1139,35 +1131,35 @@ paths:
       operationId: activity-stream-query
       summary: Profile Event Activity
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: distinct_ids
           schema:
-            type: string
+            type: integer
+        - name: distinct_ids
+          in: query
           description: 'A JSON array as a string representing the `distinct_ids` to return activity feeds for. For example: `["12a34aa567eb8d-9ab1c26f345b67-89123c45-6aeaa7-89f12af345f678"]`'
           required: true
-        - in: query
-          name: from_date
           schema:
             type: string
+        - name: from_date
+          in: query
           description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive.
           required: true
-        - in: query
-          name: to_date
           schema:
             type: string
+        - name: to_date
+          in: query
           description: The date in yyyy-mm-dd format to query to. This date is inclusive.
           required: true
+          schema:
+            type: string
       responses:
         "200":
           description: Success.
@@ -1220,17 +1212,17 @@ paths:
       operationId: cohorts-list
       summary: List Saved Cohorts
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
+          schema:
+            type: integer
       responses:
         "200":
           description: Success.
@@ -1284,17 +1276,17 @@ paths:
       operationId: engage-query
       summary: Query Profiles
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
+          schema:
+            type: integer
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -1430,35 +1422,37 @@ paths:
       operationId: list-recent-events
       summary: Aggregate Event Counts
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: event
           schema:
-            type: string
+            type: integer
+        - name: event
+          in: query
           description: 'The event or events that you wish to get data for, encoded as a JSON array. Example format: "["play song", "log in", "add playlist"]".'
           required: true
-        - in: query
-          name: type
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: 'The analysis type you would like to get data for - such as general, unique, or average events. Valid values: "general", "unique", or "average".'
+          required: true
           schema:
             type: string
             enum:
               - general
               - unique
               - average
-          description: 'The analysis type you would like to get data for - such as general, unique, or average events. Valid values: "general", "unique", or "average".'
+        - name: unit
+          in: query
+          description: This can be "minute", "hour", "day", "week", or "month". It determines the level of granularity of the data you get back. Note that you cannot get hourly uniques.
           required: true
-        - in: query
-          name: unit
           schema:
             type: string
             enum:
@@ -1467,33 +1461,31 @@ paths:
               - day
               - week
               - month
-          description: This can be "minute", "hour", "day", "week", or "month". It determines the level of granularity of the data you get back. Note that you cannot get hourly uniques.
-          required: true
-        - in: query
-          name: interval
+        - name: interval
+          in: query
+          description: The number of "units" to return data for - minutes, hours, days, weeks, or months. 1 will return data for the current unit (minute, hour, day, week or month). 2 will return the current and previous units, and so on. Specify either interval or from_date and to_date.
           schema:
             type: integer
-          description: The number of "units" to return data for - minutes, hours, days, weeks, or months. 1 will return data for the current unit (minute, hour, day, week or month). 2 will return the current and previous units, and so on. Specify either interval or from_date and to_date.
-        - in: query
-          name: from_date
-          schema:
-            type: string
+        - name: from_date
+          in: query
           description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive.
           required: true
-        - in: query
-          name: to_date
           schema:
             type: string
+        - name: to_date
+          in: query
           description: The date in yyyy-mm-dd format to query to. This date is inclusive.
           required: true
-        - in: query
-          name: format
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: 'The data return format, such as JSON or CSV. Options: "json" (default), "csv".'
           schema:
             type: string
             enum:
               - json
               - csv
-          description: 'The data return format, such as JSON or CSV. Options: "json" (default), "csv".'
       responses:
         "200":
           description: Success.
@@ -1545,32 +1537,32 @@ paths:
       operationId: query-top-events
       summary: Today's Top Events
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: type
+          schema:
+            type: integer
+        - name: type
+          in: query
+          description: 'The analysis type you would like to get data for - such as general, unique, or average events. Valid values: "general", "unique", or "average".'
+          required: true
           schema:
             type: string
             enum:
               - general
               - unique
               - average
-          description: 'The analysis type you would like to get data for - such as general, unique, or average events. Valid values: "general", "unique", or "average".'
-          required: true
-        - in: query
-          name: limit
+        - name: limit
+          in: query
+          description: The maximum number of events to return. Defaults to 100.
           schema:
             type: integer
-          description: The maximum number of events to return. Defaults to 100.
       responses:
         "200":
           description: Success.
@@ -1620,32 +1612,32 @@ paths:
       operationId: query-months-top-event-names
       summary: Top Events
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: type
+          schema:
+            type: integer
+        - name: type
+          in: query
+          description: 'The analysis type you would like to get data for - such as general, unique, or average events. Valid values: "general", "unique", or "average".'
+          required: true
           schema:
             type: string
             enum:
               - general
               - unique
               - average
-          description: 'The analysis type you would like to get data for - such as general, unique, or average events. Valid values: "general", "unique", or "average".'
-          required: true
-        - in: query
-          name: limit
+        - name: limit
+          in: query
+          description: The maximum number of values to return. Defaults to 255.
           schema:
             type: integer
-          description: The maximum number of values to return. Defaults to 255.
       responses:
         "200":
           description: Success.
@@ -1672,48 +1664,50 @@ paths:
       operationId: query-event-properties
       summary: Aggregrated Event Property Values
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: event
           schema:
-            type: string
+            type: integer
+        - name: event
+          in: query
           description: "The event that you wish to get data for. Note: this is a single event name, not an array."
           required: true
-        - in: query
-          name: name
           schema:
             type: string
+        - name: name
+          in: query
           description: The name of the property you would like to get data for.
           required: true
-        - in: query
-          name: values
+          schema:
+            type: string
+        - name: values
+          in: query
+          description: 'The specific property values that you would like to get data for, encoded as a JSON array. Example: If you have a property "gender" you may have values "male", "female" and "unknown". If you just want data for female and unknown users, you can include a values property that looks like "["female", "unknown"]".'
           schema:
             type: array
             items:
               type: string
-          description: 'The specific property values that you would like to get data for, encoded as a JSON array. Example: If you have a property "gender" you may have values "male", "female" and "unknown". If you just want data for female and unknown users, you can include a values property that looks like "["female", "unknown"]".'
-        - in: query
-          name: type
+        - name: type
+          in: query
+          description: 'The analysis type you would like to get data for - such as general, unique, or average events. Valid values: "general", "unique", or "average".'
+          required: true
           schema:
             type: string
             enum:
               - general
               - unique
               - average
-          description: 'The analysis type you would like to get data for - such as general, unique, or average events. Valid values: "general", "unique", or "average".'
+        - name: unit
+          in: query
+          description: This can be "minute", "hour", "day", "week", or "month". It determines the level of granularity of the data you get back. Note that you cannot get hourly uniques.
           required: true
-        - in: query
-          name: unit
           schema:
             type: string
             enum:
@@ -1722,38 +1716,36 @@ paths:
               - day
               - week
               - month
-          description: This can be "minute", "hour", "day", "week", or "month". It determines the level of granularity of the data you get back. Note that you cannot get hourly uniques.
-          required: true
-        - in: query
-          name: interval
+        - name: interval
+          in: query
+          description: The number of "units" to return data for - minutes, hours, days, weeks, or months. 1 will return data for the current unit (minute, hour, day, week or month). 2 will return the current and previous units, and so on. Specify either interval or from_date and to_date.
           schema:
             type: integer
-          description: The number of "units" to return data for - minutes, hours, days, weeks, or months. 1 will return data for the current unit (minute, hour, day, week or month). 2 will return the current and previous units, and so on. Specify either interval or from_date and to_date.
-        - in: query
-          name: from_date
-          schema:
-            type: string
+        - name: from_date
+          in: query
           description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive.
           required: true
-        - in: query
-          name: to_date
           schema:
             type: string
+        - name: to_date
+          in: query
           description: The date in yyyy-mm-dd format to query to. This date is inclusive.
           required: true
-        - in: query
-          name: format
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: 'The data return format, such as JSON or CSV. Options: "json" (default), "csv".'
           schema:
             type: string
             enum:
               - json
               - csv
-          description: 'The data return format, such as JSON or CSV. Options: "json" (default), "csv".'
-        - in: query
-          name: limit
+        - name: limit
+          in: query
+          description: The maximum number of values to return. Defaults to 255.
           schema:
             type: integer
-          description: The maximum number of values to return. Defaults to 255.
       responses:
         "200":
           description: Success.
@@ -1797,28 +1789,28 @@ paths:
       operationId: query-events-top-properties
       summary: Top Event Properties
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: event
           schema:
-            type: string
+            type: integer
+        - name: event
+          in: query
           description: "The event that you wish to get data for. Note: this is a single event name, not an array."
           required: true
-        - in: query
-          name: limit
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of properties to return. Defaults to 10.
           schema:
             type: integer
-          description: The maximum number of properties to return. Defaults to 10.
       responses:
         "200":
           description: Success.
@@ -1848,34 +1840,34 @@ paths:
       operationId: query-events-top-property-values
       summary: Top Event Property Values
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
-        - in: query
-          name: event
           schema:
-            type: string
+            type: integer
+        - name: event
+          in: query
           description: "The event that you wish to get data for. Note: this is a single event name, not an array."
           required: true
-        - in: query
-          name: name
           schema:
             type: string
+        - name: name
+          in: query
           description: The name of the property you would like to get data for.
           required: true
-        - in: query
-          name: limit
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of values to return. Defaults to 255.
           schema:
             type: integer
-          description: The maximum number of values to return. Defaults to 255.
       responses:
         "200":
           description: Success
@@ -1901,17 +1893,17 @@ paths:
       operationId: query-jql
       summary: Custom JQL Query
       parameters:
-        - in: query
-          name: project_id
-          schema:
-            type: integer
+        - name: project_id
+          in: query
           description: Required if using service account to authenticate request.
           required: true
-        - in: query
-          name: workspace_id
           schema:
             type: integer
+        - name: workspace_id
+          in: query
           description: The id of the workspace if applicable.
+          schema:
+            type: integer
       requestBody:
         content:
           application/x-www-form-urlencoded:

@@ -9,20 +9,12 @@ info:
   contact:
     url: https://mixpanel.com/get-support
 servers:
-  - url: https://{server}.mixpanel.com/api/2.0
-    description: Mixpanel's data export server.
-    variables:
-      server:
-        default: data
-        enum:
-          - data
-          - data-eu
-          - data-in
-        description: |
-          The server location to be used:
-            * `data` - The default (US) servers used for most projects
-            * `data-eu` - EU servers if you are enrolled in EU Data Residency
-            * `data-in` - India servers if you are enrolled in India Data Residency
+  - url: https://data.mixpanel.com/api/2.0
+    description: Mixpanel's data export server — The default (US) servers used for most projects
+  - url: https://data-eu.mixpanel.com/api/2.0
+    description: Mixpanel's data export server — EU servers if you are enrolled in EU Data Residency
+  - url: https://data-in.mixpanel.com/api/2.0
+    description: Mixpanel's data export server — India servers if you are enrolled in India Data Residency
 security:
   - ProjectSecret: []
 tags:
@@ -36,47 +28,47 @@ paths:
       operationId: raw-event-export
       summary: Download Data
       parameters:
-        - in: query
-          name: project_id
+        - name: project_id
+          in: query
+          description: Required if using service account to authenticate request.
           schema:
             type: integer
-          description: Required if using service account to authenticate request.
-        - in: query
-          name: from_date
-          schema:
-            type: string
+        - name: from_date
+          in: query
           description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive and interpreted as UTC timezone for projects created after 1 January 2023 and current project timezone for projects created before 11 January 2023.
           required: true
-        - in: query
-          name: to_date
           schema:
             type: string
+        - name: to_date
+          in: query
           description: The date in yyyy-mm-dd format to query to. This date is inclusive and interpreted as UTC timezone for projects created after 1 January 2023 and current project timezone for projects created before 11 January 2023.
           required: true
-        - in: query
-          name: limit
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Use this parameter if you want to limit the max number of events to be returned. Value cannot be over 100000.
           schema:
             type: integer
-          description: Use this parameter if you want to limit the max number of events to be returned. Value cannot be over 100000.
-        - in: query
-          name: event
-          schema:
-            type: string
+        - name: event
+          in: query
           description: The event or events that you wish to get data for, encoded as a JSON array.
-        - in: query
-          name: where
           schema:
             type: string
+        - name: where
+          in: query
           description: An expression to filter events by. More info on expression sequence structure can be found [here](ref:segmentation-expressions)
-        - in: query
-          name: time_in_ms
           schema:
-            type: boolean
+            type: string
+        - name: time_in_ms
+          in: query
           description: |-
             Defaults to `false` which will export event timestamps with second-precision.
             Set to `true` to export event timestamps with millisecond-precision.
-        - in: header
-          name: Accept-Encoding
+          schema:
+            type: boolean
+        - name: Accept-Encoding
+          in: header
           description: If set to `gzip` and the response body is > 1400 bytes, the response will be compressed with gzip, and `Content-Encoding` will be set to `gzip`.
           schema:
             type: string

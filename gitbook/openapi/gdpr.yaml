@@ -9,20 +9,12 @@ info:
     url: https://mixpanel.com/get-support
   version: 3.0.0
 servers:
-  - url: https://{regionAndDomain}.com/api/app
-    description: Mixpanel's application API server.
-    variables:
-      regionAndDomain:
-        default: mixpanel
-        enum:
-          - mixpanel
-          - eu.mixpanel
-          - in.mixpanel
-        description: |
-          The server location to be used:
-            * `mixpanel` - The default (US) servers used for most projects
-            * `eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
-            * `in.mixpanel` - India servers if you are enrolled in India Data Residency
+  - url: https://mixpanel.com/api/app
+    description: Mixpanel's application API server — The default (US) servers used for most projects
+  - url: https://eu.mixpanel.com/api/app
+    description: Mixpanel's application API server — EU servers if you are enrolled in EU Data Residency
+  - url: https://in.mixpanel.com/api/app
+    description: Mixpanel's application API server — India servers if you are enrolled in India Data Residency
 security:
   - OAuthToken: []
 tags:
@@ -46,10 +38,10 @@ paths:
       parameters:
         - name: token
           in: query
-          schema:
-            type: string
           description: Your project token
           required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -91,16 +83,16 @@ paths:
       parameters:
         - name: tracking_id
           in: path
-          schema:
-            type: string
           description: The task ID shown in the response
           required: true
-        - name: token
-          in: query
           schema:
             type: string
+        - name: token
+          in: query
           description: Your project token
           required: true
+          schema:
+            type: string
       responses:
         "200":
           description: Success
@@ -130,10 +122,10 @@ paths:
       parameters:
         - name: token
           in: query
-          schema:
-            type: string
           description: Your project token
           required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -173,16 +165,16 @@ paths:
       parameters:
         - name: tracking_id
           in: path
-          schema:
-            type: string
           description: The task ID shown in the response
           required: true
-        - name: token
-          in: query
           schema:
             type: string
+        - name: token
+          in: query
           description: Your project token
           required: true
+          schema:
+            type: string
       responses:
         "200":
           description: Success
@@ -211,16 +203,16 @@ paths:
       parameters:
         - name: tracking_id
           in: path
-          schema:
-            type: string
           description: The task ID shown in the response
           required: true
-        - name: token
-          in: query
           schema:
             type: string
+        - name: token
+          in: query
           description: Your project token
           required: true
+          schema:
+            type: string
       responses:
         "204":
           description: Success

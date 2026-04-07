@@ -9,20 +9,12 @@ info:
     url: https://mixpanel.com/get-support
   version: 1.0.0
 servers:
-  - url: https://{regionAndDomain}.com/api/app
-    description: Mixpanel's application API server.
-    variables:
-      regionAndDomain:
-        default: mixpanel
-        enum:
-          - mixpanel
-          - eu.mixpanel
-          - in.mixpanel
-        description: |
-          The server location to be used:
-            * `mixpanel` - The default (US) servers used for most projects
-            * `eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
-            * `in.mixpanel` - India servers if you are enrolled in India Data Residency
+  - url: https://mixpanel.com/api/app
+    description: Mixpanel's application API server — The default (US) servers used for most projects
+  - url: https://eu.mixpanel.com/api/app
+    description: Mixpanel's application API server — EU servers if you are enrolled in EU Data Residency
+  - url: https://in.mixpanel.com/api/app
+    description: Mixpanel's application API server — India servers if you are enrolled in India Data Residency
 security:
   - ServiceAccount: []
 tags:
@@ -42,12 +34,12 @@ paths:
       operationId: list-all-schemas-for-project
       summary: List Schemas
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
       responses:
         "200":
           description: Success
@@ -74,12 +66,12 @@ paths:
       operationId: upload-schemas-for-project
       summary: Create/Replace Multiple
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
       requestBody:
         content:
           application/json:
@@ -242,12 +234,12 @@ paths:
       operationId: delete-all-schemas-in-project
       summary: Delete all Schemas
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
-          required: true
-          description: "Your project id (eg: 12345)"
       responses:
         "200":
           description: Success
@@ -275,24 +267,24 @@ paths:
       operationId: list-schemas-for-entity
       summary: List for Entity
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
+        - name: entityType
+          in: path
+          description: "The entity type (eg: event)"
           required: true
-          description: "Your project id (eg: 12345)"
-        - in: path
-          name: entityType
           schema:
             $ref: "#/components/schemas/SchemaEntityType"
-          required: true
-          description: "The entity type (eg: event)"
-        - in: query
-          name: entity_name
+        - name: entity_name
+          in: query
+          description: "The entity name (eg: Added To Cart)"
+          required: false
           schema:
             type: string
-          required: false
-          description: "The entity name (eg: Added To Cart)"
       responses:
         "200":
           description: Success
@@ -319,24 +311,24 @@ paths:
       operationId: delete-schemas-for-entity
       summary: Delete for Entity
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
+        - name: entityType
+          in: path
+          description: "The entity type (eg: event)"
           required: true
-          description: "Your project id (eg: 12345)"
-        - in: path
-          name: entityType
           schema:
             $ref: "#/components/schemas/SchemaEntityType"
-          required: true
-          description: "The entity type (eg: event)"
-        - in: query
-          name: entity_name
+        - name: entity_name
+          in: query
+          description: "The entity name (eg: Added To Cart)"
+          required: false
           schema:
             type: string
-          required: false
-          description: "The entity name (eg: Added To Cart)"
       responses:
         "200":
           description: Success
@@ -364,24 +356,24 @@ paths:
       operationId: list-schemas-by-entity-and-name
       summary: List for Entity and Name
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
+        - name: entityType
+          in: path
+          description: "The entity type (eg: event)"
           required: true
-          description: "Your project id (eg: 12345)"
-        - in: path
-          name: entityType
           schema:
             $ref: "#/components/schemas/SchemaEntityType"
+        - name: name
+          in: path
+          description: "The entity name (eg: Added To Cart)"
           required: true
-          description: "The entity type (eg: event)"
-        - in: path
-          name: name
           schema:
             type: string
-          required: true
-          description: "The entity name (eg: Added To Cart)"
       responses:
         "200":
           description: Success
@@ -408,24 +400,24 @@ paths:
       operationId: delete-schema-by-entity-and-name
       summary: Delete for Entity and Name
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
+        - name: entityType
+          in: path
+          description: "The entity type (eg: event)"
           required: true
-          description: "Your project id (eg: 12345)"
-        - in: path
-          name: entityType
           schema:
             $ref: "#/components/schemas/SchemaEntityType"
+        - name: name
+          in: path
+          description: "The entity name (eg: Added To Cart)"
           required: true
-          description: "The entity type (eg: event)"
-        - in: path
-          name: name
           schema:
             type: string
-          required: true
-          description: "The entity name (eg: Added To Cart)"
       responses:
         "200":
           description: Success
@@ -452,24 +444,24 @@ paths:
       operationId: upload-schema-by-entity-and-name
       summary: Create/Replace One
       parameters:
-        - in: path
-          name: projectId
+        - name: projectId
+          in: path
+          description: "Your project id (eg: 12345)"
+          required: true
           schema:
             type: integer
+        - name: entityType
+          in: path
+          description: "The entity type (eg: event)"
           required: true
-          description: "Your project id (eg: 12345)"
-        - in: path
-          name: entityType
           schema:
             $ref: "#/components/schemas/SchemaEntityType"
+        - name: name
+          in: path
+          description: "The entity name (eg: Added To Cart)"
           required: true
-          description: "The entity type (eg: event)"
-        - in: path
-          name: name
           schema:
             type: string
-          required: true
-          description: "The entity name (eg: Added To Cart)"
       requestBody:
         content:
           application/json:

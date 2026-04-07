@@ -357,6 +357,84 @@ function deepClone(obj) {
   return obj == null ? obj : JSON.parse(JSON.stringify(obj));
 }
 
+/**
+ * Match bullet lines like `* \`api\` - The default (US)...` from OpenAPI variable descriptions.
+ */
+function labelFromVariableDescription(varDef, value) {
+  const desc = String(varDef?.description || '');
+  const val = String(value).trim();
+  for (const line of desc.split('\n')) {
+    const m = line.match(/\*\s*`([^`]+)`\s*[-–]\s*(.+)/);
+    if (m && String(m[1]).trim() === val) return m[2].trim();
+  }
+  return val;
+}
+
+/**
+ * Replace `servers` entries that use URL templates + `variables` with multiple explicit
+ * server objects (GitBook request runner prefers a server list over templated URLs).
+ */
+function expandOneServerEntry(entry) {
+  if (!entry || typeof entry !== 'object') return [entry];
+  if (!entry.variables || typeof entry.url !== 'string') return [entry];
+  const url = entry.url;
+  const placeholders = [...url.matchAll(/\{([^}]+)\}/g)].map((m) => m[1]);
+  if (!placeholders.length) return [entry];
+  if (placeholders.length > 1) return [entry];
+
+  const name = placeholders[0];
+  const varDef = entry.variables[name];
+  if (!varDef || typeof varDef !== 'object') return [entry];
+  const vals =
+    Array.isArray(varDef.enum) && varDef.enum.length
+      ? varDef.enum
+      : varDef.default != null
+        ? [varDef.default]
+        : [];
+  if (!vals.length) return [entry];
+
+  const baseDesc = String(entry.description || '')
+    .trim()
+    .replace(/\s*\.\s*$/, '');
+  const out = [];
+  for (const val of vals) {
+    const label = labelFromVariableDescription(varDef, val);
+    const resolvedUrl = url.replace(new RegExp(`\\{${name}\\}`, 'g'), String(val));
+    out.push({
+      url: resolvedUrl,
+      description: baseDesc ? `${baseDesc} — ${label}` : label,
+    });
+  }
+  return out;
+}
+
+function expandParameterizedServersToMultipleEntries(root) {
+  if (!root || typeof root !== 'object') return;
+
+  if (Array.isArray(root.servers)) {
+    const next = [];
+    for (const s of root.servers) next.push(...expandOneServerEntry(s));
+    root.servers = next;
+  }
+
+  for (const pathItem of Object.values(root.paths || {})) {
+    if (!pathItem || typeof pathItem !== 'object') continue;
+    if (Array.isArray(pathItem.servers)) {
+      const next = [];
+      for (const s of pathItem.servers) next.push(...expandOneServerEntry(s));
+      pathItem.servers = next;
+    }
+    for (const m of OPENAPI_OPERATION_METHODS) {
+      const op = pathItem[m];
+      if (!op || typeof op !== 'object') continue;
+      if (!Array.isArray(op.servers)) continue;
+      const next = [];
+      for (const s of op.servers) next.push(...expandOneServerEntry(s));
+      op.servers = next;
+    }
+  }
+}
+
 function resolveInternalRef(root, ref) {
   const r = String(ref || '').trim();
   if (!r.startsWith('#/')) return null;
@@ -420,6 +498,80 @@ function mergePathParametersIntoOperations(root) {
       op.parameters = mergeParamsWithOverride(pathParams, op.parameters || []);
     }
     pathItem.parameters = undefined;
+  }
+}
+
+/**
+ * OpenAPI allows `description` under `schema`; GitBook's parameter table often only shows
+ * top-level `description`. Copy from schema when the parameter has none.
+ */
+function hoistParameterSchemaDescription(root) {
+  const visitParam = (p) => {
+    if (!p || typeof p !== 'object') return;
+    const schema = p.schema;
+    if (!schema || typeof schema !== 'object') return;
+    if (schema.description && !p.description) {
+      p.description = schema.description;
+    }
+    if (p.description && schema.description !== undefined) {
+      if (String(p.description).trim() === String(schema.description ?? '').trim()) {
+        schema.description = undefined;
+      }
+    }
+  };
+
+  for (const pathItem of Object.values(root.paths || {})) {
+    if (!pathItem || typeof pathItem !== 'object') continue;
+    if (Array.isArray(pathItem.parameters)) pathItem.parameters.forEach(visitParam);
+    for (const m of OPENAPI_OPERATION_METHODS) {
+      const op = pathItem[m];
+      if (op?.parameters) op.parameters.forEach(visitParam);
+    }
+  }
+}
+
+/** Prefer `description` before `schema` so OpenAPI UIs list human-readable text first. */
+function reorderParameterObjectKeys(p) {
+  if (!p || typeof p !== 'object') return p;
+  const order = [
+    'name',
+    'in',
+    'description',
+    'required',
+    'deprecated',
+    'allowEmptyValue',
+    'style',
+    'explode',
+    'allowReserved',
+    'schema',
+    'example',
+    'examples',
+    'content',
+  ];
+  const out = {};
+  for (const k of order) {
+    if (Object.prototype.hasOwnProperty.call(p, k)) out[k] = p[k];
+  }
+  for (const k of Object.keys(p)) {
+    if (!Object.prototype.hasOwnProperty.call(out, k)) out[k] = p[k];
+  }
+  return out;
+}
+
+function reorderAllParameterKeys(root) {
+  const mapArr = (arr) => {
+    if (!Array.isArray(arr)) return;
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = reorderParameterObjectKeys(arr[i]);
+    }
+  };
+  for (const pathItem of Object.values(root.paths || {})) {
+    if (!pathItem || typeof pathItem !== 'object') continue;
+    mapArr(pathItem.parameters);
+    for (const m of OPENAPI_OPERATION_METHODS) {
+      const op = pathItem[m];
+      if (op?.parameters) mapArr(op.parameters);
+    }
   }
 }
 
@@ -531,7 +683,16 @@ async function inlineExternalRefsInSpec(root, { specDirAbs, fallbackDirAbs }) {
 
     if (typeof node.$ref === 'string') {
       const resolved = await resolveRefValue(node.$ref);
-      if (resolved != null) return resolved;
+      if (resolved != null) {
+        const { $ref: _ref, ...siblings } = node;
+        if (Object.keys(siblings).length === 0) {
+          return deepClone(resolved);
+        }
+        if (typeof resolved === 'object' && resolved !== null && !Array.isArray(resolved)) {
+          return { ...deepClone(resolved), ...deepClone(siblings) };
+        }
+        return deepClone(resolved);
+      }
     }
 
     if (Array.isArray(node)) {
@@ -585,8 +746,12 @@ async function augmentGitbookOpenapiFromReference() {
       fallbackDirAbs: path.join(ROOT, 'openapi', 'src'),
     });
 
+    expandParameterizedServersToMultipleEntries(inlined);
+
     dereferenceInternalParameterRefs(inlined);
     mergePathParametersIntoOperations(inlined);
+    hoistParameterSchemaDescription(inlined);
+    reorderAllParameterKeys(inlined);
 
     const paths = inlined.paths || {};
     for (const [p, methods] of Object.entries(paths)) {
@@ -634,7 +799,8 @@ async function main() {
   const slugIndex = await buildSlugIndex(refRoot);
 
   // Build pages + SUMMARY
-  let summary = '# Table of contents\n\n* [API Reference](README.md)\n\n';
+  let summary = '# Table of contents\n\n';
+  const ROOT_TOP = 'Mixpanel APIs';
 
   const openapiByTopTitle = new Map([
     ['Ingestion API', 'ingestion'],
@@ -660,8 +826,9 @@ async function main() {
     }
     if (!st.isDirectory()) continue;
 
-    summary += `## ${top}\n\n`;
-    const topSeg = slugifySegment(top);
+    const isRoot = top === ROOT_TOP;
+    if (!isRoot) summary += `## ${top}\n\n`;
+    const topSeg = isRoot ? '' : slugifySegment(top);
     const specName = openapiByTopTitle.get(top) || '';
 
     const topDirOrder = await readOrderYaml(path.join(topDir, '_order.yaml'));
@@ -690,10 +857,14 @@ async function main() {
       try {
         const stFile = await fs.stat(fileAbs);
         if (stFile.isFile()) {
-          const outRel = toPosix(path.join(topSeg, `${item}.md`));
+          let outRel = toPosix(path.join(topSeg, `${item}.md`));
+          if (isRoot && item === 'overview') outRel = 'README.md';
           const fm = await copyOne(fileAbs, outRel);
           const label = (fm?.title || '').trim() || humanizeSlug(item);
-          summary += `* [${label}](${outRel})\n`;
+          // Root space wants "Overview" at the top-level.
+          if (isRoot && item === 'overview') summary += `* [${label}](${outRel})\n`;
+          else if (isRoot) summary += `* [${label}](${outRel})\n`;
+          else summary += `* [${label}](${outRel})\n`;
           continue;
         }
       } catch {}
@@ -716,12 +887,12 @@ async function main() {
             } catch {
               continue;
             }
-            const outRel = toPosix(path.join(topSeg, item, `${sub}.md`));
+            const outRel = toPosix(path.join(topSeg, slugifySegment(item), `${sub}.md`));
             await copyOne(subFile, outRel);
           }
           // Add group entry: link to first page
           if (subOrder.length) {
-            const groupLink = toPosix(path.join(topSeg, item, `${subOrder[0]}.md`));
+            const groupLink = toPosix(path.join(topSeg, slugifySegment(item), `${subOrder[0]}.md`));
             summary += `* [${humanizeSlug(item)}](${groupLink})\n`;
           } else {
             summary += `* ${humanizeSlug(item)}\n`;
@@ -744,7 +915,7 @@ async function main() {
       summary += '  ```\n';
     }
 
-    summary += '\n';
+    if (!isRoot) summary += '\n';
   }
 
   await fs.writeFile(path.join(outRoot, 'SUMMARY.md'), summary, 'utf8');
