@@ -41,3 +41,7 @@ Best practices, user guides, and frequently asked questions
 API integration tutorials
 - [Mixpanel Status Page](https://www.mixpanelstatus.com/):
 Updates on Mixpanel incidents to view or subscribe
+
+## How can we help?
+
+We have a number of support options for a wide variety of needs: [mixpanel.com/contact-us/support/](https://mixpanel.com/contact-us/support/)
