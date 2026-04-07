@@ -60,13 +60,13 @@ paths:
         "403":
           $ref: "#/components/responses/Forbidden"
       description: |-
-        <Callout icon="📘" theme="info">
-          The `$identify` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management#identity-merge-apis) for more information.
-        </Callout>
+        {% hint style="info" %}
+        The `$identify` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management#identity-merge-apis) for more information.
+        {% endhint %}
 
-        <Callout icon="📘" theme="info">
-          You can also use the import endpoint: [https://api.mixpanel.com/import/](https://api.mixpanel.com/import/)
-        </Callout>
+        {% hint style="info" %}
+        You can also use the import endpoint: [https://api.mixpanel.com/import/](https://api.mixpanel.com/import/)
+        {% endhint %}
 
         ```sh
         curl --request POST \
@@ -85,18 +85,19 @@ paths:
         ```
 
         **Identify Criteria:**
+
         ![](https://files.readme.io/d0066f0-ID_management_identify_3-HTTP.png)
 
         **Required[Event Object](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking/reference/data-model#anatomy-of-an-event) attributes**
 
         | Event Object property         | Type                                                                                                        | Description                                                                                                                                                                                     |
         | :---------------------------- | :---------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-        | **event**                     | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | value must be: `$identify`                                                                                                                                                                      |
-        | **properties**                | <span style={{ fontFamily: "courier" }}>Object</span><br /><span style={{ color: "red" }}>required</span>   |                                                                                                                                                                                                 |
-        | **properties.distinct_id**    | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "green" }}>optional</span> | The distinct ID post-identification (same as $identified_id - it will be inferred from $identified_id if not included)                                                                          |
-        | **properties.$identified_id** | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | A distinct_id to merge with the $anon_id.                                                                                                                                                       |
-        | **properties.$anon_id**       | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | A distinct_id to merge with the $identified_id. The $anon_id must be [UUID v4](https://en.wikipedia.org/wiki/Universally_unique_identifier) format and not already merged to an $identified_id. |
-        | **properties.token**          | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | The project token.                                                                                                                                                                              |
+        | **event**                     | `String` (required)   | value must be: `$identify`                                                                                                                                                                      |
+        | **properties**                | `Object` (required)   |                                                                                                                                                                                                 |
+        | **properties.distinct_id**    | `String` (optional) | The distinct ID post-identification (same as $identified_id - it will be inferred from $identified_id if not included)                                                                          |
+        | **properties.$identified_id** | `String` (required)   | A distinct_id to merge with the $anon_id.                                                                                                                                                       |
+        | **properties.$anon_id**       | `String` (required)   | A distinct_id to merge with the $identified_id. The $anon_id must be [UUID v4](https://en.wikipedia.org/wiki/Universally_unique_identifier) format and not already merged to an $identified_id. |
+        | **properties.token**          | `String` (required)   | The project token.                                                                                                                                                                              |
   /track#identity-create-alias:
     post:
       tags:
@@ -137,19 +138,19 @@ paths:
         "403":
           $ref: "#/components/responses/Forbidden"
       description: |-
-        <Callout icon="📘" theme="info">
-          The `$create_alias` event payload is only useful for projects using the Original ID Merge system and the Legacy ID Management System; it has no functionality in the Simplified ID Merge system. Please review [this section of our documentation](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management#identity-merge-apis) for more information.
-        </Callout>
+        {% hint style="info" %}
+        The `$create_alias` event payload is only useful for projects using the Original ID Merge system and the Legacy ID Management System; it has no functionality in the Simplified ID Merge system. Please review [this section of our documentation](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management#identity-merge-apis) for more information.
+        {% endhint %}
 
-        <Callout icon="📘" theme="info">
-          You can also use the import endpoint: [https://api.mixpanel.com/import/](https://api.mixpanel.com/import/)
-        </Callout>
+        {% hint style="info" %}
+        You can also use the import endpoint: [https://api.mixpanel.com/import/](https://api.mixpanel.com/import/)
+        {% endhint %}
 
         Mixpanel supports adding an alias to a distinct id. An alias is a new value that will be interpreted by Mixpanel as an existing value. That means that you can send messages to Mixpanel using the new value, and Mixpanel will continue to use the old value for calculating funnels and retention reports, or applying updates to user profiles.
 
         **Alias Criteria:**
 
-        <Image alt="960" border={false} src="https://files.readme.io/d16f1d3-ID_management_alias_3-HTTP.png" title="Identity Management - Alias" />
+        ![Identity Management - Alias](https://files.readme.io/d16f1d3-ID_management_alias_3-HTTP.png)
 
         **Required[Event Object](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking/reference/data-model#anatomy-of-an-event) attributes**
 
@@ -167,7 +168,7 @@ paths:
               <td>**event**</td>
 
               <td>
-                <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>
+                `String` (required)
               </td>
 
               <td>value must be: <br />`$create_alias`</td>
@@ -177,7 +178,7 @@ paths:
               <td>**properties**</td>
 
               <td>
-                <span style={{ fontFamily: "courier" }}>Object</span><br /><span style={{ color: "red" }}>required</span>
+                `Object` (required)
               </td>
 
               <td />
@@ -187,7 +188,7 @@ paths:
               <td>**properties.distinct\_id**</td>
 
               <td>
-                <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>
+                `String` (required)
               </td>
 
               <td>A distinct\_id to be merged with the alias.</td>
@@ -197,7 +198,7 @@ paths:
               <td>**properties.alias**</td>
 
               <td>
-                <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>
+                `String` (required)
               </td>
 
               <td>A new distinct\_id to be merged with the original distinct\_id. Each alias can only map to one distinct\_id.</td>
@@ -207,7 +208,7 @@ paths:
               <td>**properties.token**</td>
 
               <td>
-                <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>
+                `String` (required)
               </td>
 
               <td>The project token.</td>
@@ -280,19 +281,19 @@ paths:
         "401":
           $ref: "#/components/responses/StrictUnauthorized"
       description: |-
-        <Callout icon="📘" theme="info">
-          The `$merge` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management#identity-merge-apis) for more information.
-        </Callout>
+        {% hint style="info" %}
+        The `$merge` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/id-management#identity-merge-apis) for more information.
+        {% endhint %}
 
-        <Callout icon="❗️" theme="error">
-          Merging identities is irreversible
+        {% hint style="danger" %}
+        Merging identities is irreversible
 
           `$merge` is a very powerful tool, so we will only accept `$merge` events that are sent via `https://api.mixpanel.com/import`, which is protected by the project api secret. You **cannot** unmerge `distinct_id`.
-        </Callout>
+        {% endhint %}
 
         **Merge Criteria:**
 
-        <Image alt="960" border={false} src="https://files.readme.io/be66940-merge_.png" title="Identity Management - Merge" />
+        ![Identity Management - Merge](https://files.readme.io/be66940-merge_.png)
 components:
   securitySchemes:
     ServiceAccount:

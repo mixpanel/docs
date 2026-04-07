@@ -382,6 +382,90 @@ function rewriteCrossSpaceLinksDeepInPlace(node) {
   return node;
 }
 
+/**
+ * Normalize markdown embedded in OpenAPI description strings for GitBook rendering:
+ * - React `<Callout>` → `{% hint style="..." %}...{% endhint %}`
+ * - JSX `<span style={{ ... }}>` table cells → `` `Type` (required|optional) ``
+ * - `<Image ... />` → `![alt](url)`
+ * - Ensure a blank line before standalone markdown images (outside fenced code)
+ */
+function sanitizeGitbookOpenApiMarkdownString(s) {
+  let out = String(s || '');
+  if (!out) return out;
+
+  out = out.replace(
+    /<Callout\b[\s\S]*?theme=["'](info|warn|warning|error)["'][\s\S]*?>([\s\S]*?)<\/Callout>/gi,
+    (_m, theme, body) => {
+      const map = { info: 'info', warn: 'warning', warning: 'warning', error: 'danger' };
+      const style = map[String(theme).toLowerCase()] || 'info';
+      const t = String(body).trim();
+      return `{% hint style="${style}" %}\n${t}\n{% endhint %}`;
+    },
+  );
+
+  out = out.replace(
+    /<span style=\{\{\s*fontFamily:\s*"courier"\s*\}\}>([^<]*)<\/span>\s*<br\s*\/?>\s*<span style=\{\{\s*color:\s*"red"\s*\}\}>required<\/span>/gi,
+    '`$1` (required)',
+  );
+  out = out.replace(
+    /<span style=\{\{\s*fontFamily:\s*"courier"\s*\}\}>([^<]*)<\/span>\s*<br\s*\/?>\s*<span style=\{\{\s*color:\s*"green"\s*\}\}>optional<\/span>/gi,
+    '`$1` (optional)',
+  );
+
+  out = out.replace(/<Image\b([^>]*)\/>/gi, (_m, attrs) => {
+    const src = /src="([^"]+)"/i.exec(attrs)?.[1];
+    if (!src) return _m;
+    const title = /title="([^"]*)"/i.exec(attrs)?.[1] || /alt="([^"]*)"/i.exec(attrs)?.[1] || '';
+    return `![${title}](${src})`;
+  });
+
+  out = ensureBlankLineBeforeMarkdownImages(out);
+
+  return out;
+}
+
+function ensureBlankLineBeforeMarkdownImages(text) {
+  const lines = String(text).split('\n');
+  const out = [];
+  let inFence = false;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (!inFence && /^\s*!\[/.test(line) && out.length) {
+      const prev = out[out.length - 1];
+      if (prev.trim() !== '' && prev.trim() !== '```') {
+        out.push('');
+      }
+    }
+    out.push(line);
+  }
+  return out.join('\n');
+}
+
+function sanitizeGitbookOpenApiMarkdownDeepInPlace(node) {
+  if (typeof node === 'string') {
+    return sanitizeGitbookOpenApiMarkdownString(node);
+  }
+  if (Array.isArray(node)) {
+    for (let i = 0; i < node.length; i++) {
+      node[i] = sanitizeGitbookOpenApiMarkdownDeepInPlace(node[i]);
+    }
+    return node;
+  }
+  if (node && typeof node === 'object') {
+    for (const k of Object.keys(node)) {
+      node[k] = sanitizeGitbookOpenApiMarkdownDeepInPlace(node[k]);
+    }
+    return node;
+  }
+  return node;
+}
+
 /** Collect lowercased operationIds from the source OpenAPI file for a GitBook spec name (e.g. `ingestion`). */
 async function loadOperationIdSet(specName) {
   const specPath = path.join(ROOT, 'openapi', 'src', `${specName}.openapi.yaml`);
@@ -852,6 +936,7 @@ async function augmentGitbookOpenapiFromReference() {
     ensureServersArray(inlined);
     reorderPathOperationsForGitbook(inlined);
 
+    sanitizeGitbookOpenApiMarkdownDeepInPlace(inlined);
     rewriteCrossSpaceLinksDeepInPlace(inlined);
 
     await fs.writeFile(abs, YAML.stringify(inlined, { lineWidth: 0 }), 'utf8');

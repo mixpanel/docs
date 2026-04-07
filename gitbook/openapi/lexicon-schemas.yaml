@@ -112,17 +112,17 @@ paths:
       description: |-
         Upload schemas in bulk to the specified project. If a schema already exists for a specified entity, it will be replaced by the one you upload.
 
-        <Callout icon="🚧" theme="warn">
-          Metadata merging behavior
+        {% hint style="warning" %}
+        Metadata merging behavior
 
           If the new schema is missing `metadata` properties that are currently set in the existing schema for that entity, those properties will be merged into the new schema. For example, if your current schema has `{"metadata": {"com.mixpanel": {"hidden": true}}}` and you upload a new schema without "hidden", we will merge `"hidden": true` to your uploaded schema's metadata. If you want to remove that property, set the value to `null`.
-        </Callout>
+        {% endhint %}
 
-        <Callout icon="📘" theme="info">
-          Adding a schema for User Profiles
+        {% hint style="info" %}
+        Adding a schema for User Profiles
 
           To add a schema for your [User Profiles](https://help.mixpanel.com/hc/en-us/articles/115004501966-User-Profiles), specify the `entityType` as `profile` and the `name` as `$user`.
-        </Callout>
+        {% endhint %}
 
         ### Example POST Body
 
@@ -495,17 +495,17 @@ paths:
       description: |-
         Upload a schema for a single entity. If a schema already exists for a specified entity, it will be replaced by the one you upload.
 
-        <Callout icon="🚧" theme="warn">
-          Metadata merging behavior
+        {% hint style="warning" %}
+        Metadata merging behavior
 
           If the new schema is missing `metadata` properties that are currently set in the existing schema for that entity, those properties will be merged into the new schema. For example, if your current schema has `{"metadata": {"com.mixpanel": {"hidden": true}}}` and you upload a new schema without "hidden", we will merge `"hidden": true` to your uploaded schema's metadata. If you want to remove that property, set the value to `null`.
-        </Callout>
+        {% endhint %}
 
-        <Callout icon="📘" theme="info">
-          Adding a schema for User Profiles
+        {% hint style="info" %}
+        Adding a schema for User Profiles
 
           To add a schema for your [User Profiles](https://help.mixpanel.com/hc/en-us/articles/115004501966-User-Profiles), specify the `entityType` as `profile` and the `name` as `$user`.
-        </Callout>
+        {% endhint %}
 
         ### Example POST Body
 

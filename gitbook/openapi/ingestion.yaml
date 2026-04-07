@@ -533,13 +533,13 @@ paths:
         "403":
           $ref: "#/components/responses/Forbidden"
       description: |-
-        <Callout icon="📘" theme="info">
-          This API will return a `200 OK` even if there are data validation issues. To ensure the request actually succeeded, you need to check the response body.
-        </Callout>
+        {% hint style="info" %}
+        This API will return a `200 OK` even if there are data validation issues. To ensure the request actually succeeded, you need to check the response body.
+        {% endhint %}
 
-        <Callout icon="📘" theme="info">
-          This API does not support gzip encoding.
-        </Callout>
+        {% hint style="info" %}
+        This API does not support gzip encoding.
+        {% endhint %}
   /engage#profile-set-once:
     post:
       tags:
