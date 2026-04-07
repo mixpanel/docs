@@ -179,43 +179,46 @@ function rewriteGuidesHrefToRelative(href, absOutFile, absOutRoot) {
 
 function rewriteInternalDocsLinks(src, absOutFile, absOutRoot) {
   let out = String(src);
+  const rootBase = path.basename(absOutRoot);
+  const docsOutRoot = rootBase === 'docs' ? absOutRoot : path.join(path.dirname(absOutRoot), 'docs');
+  const guidesOutRoot = rootBase === 'guides' ? absOutRoot : path.join(path.dirname(absOutRoot), 'guides');
 
   // Markdown links: [text](/docs/foo/bar#anchor)
   out = out.replace(/\]\((\/docs\/[^)\s]+)\)/g, (all, href) => {
-    const rewritten = rewriteDocsHrefToRelative(href, absOutFile, absOutRoot);
+    const rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     return `](${rewritten})`;
   });
 
   // Markdown links: [text](/guides/foo/bar#anchor)
   out = out.replace(/\]\((\/guides\/[^)\s]+)\)/g, (all, href) => {
-    const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, absOutRoot);
+    const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, guidesOutRoot);
     return `](${rewritten})`;
   });
 
   // Markdown links to mixpanel.com/docs
   out = out.replace(/\]\((https:\/\/mixpanel\.com\/docs\/[^)\s]+)\)/g, (all, href) => {
-    const rewritten = rewriteDocsHrefToRelative(href, absOutFile, absOutRoot);
+    const rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     return `](${rewritten})`;
   });
 
   // Markdown links to mixpanel.com/guides
   out = out.replace(/\]\((https:\/\/mixpanel\.com\/guides\/[^)\s]+)\)/g, (all, href) => {
-    const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, absOutRoot);
+    const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, guidesOutRoot);
     return `](${rewritten})`;
   });
 
   // HTML links: rewrite href attr regardless of other attributes.
   out = out.replace(/<a\b([^>]*?)\shref="([^"]+)"([^>]*)>/g, (all, pre, href, post) => {
-    let rewritten = rewriteDocsHrefToRelative(href, absOutFile, absOutRoot);
+    let rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     if (rewritten === href) {
-      rewritten = rewriteGuidesHrefToRelative(href, absOutFile, absOutRoot);
+      rewritten = rewriteGuidesHrefToRelative(href, absOutFile, guidesOutRoot);
     }
 
     // Also rewrite known moved targets even if they are already relative.
     // Example: ./quickstart/install-with-ai.md -> ./intro/quickstart/install-with-ai.md
     const cleaned = href.replace(/^\.\//, '').replace(/^\//, '');
     if (cleaned === 'quickstart/install-with-ai.md' || cleaned === 'quickstart/install-with-ai') {
-      const absTarget = path.join(absOutRoot, 'intro/quickstart/install-with-ai.md');
+      const absTarget = path.join(docsOutRoot, 'intro/quickstart/install-with-ai.md');
       const fromDir = path.dirname(absOutFile);
       let rel = toPosixPath(path.relative(fromDir, absTarget));
       if (!rel.startsWith('.')) rel = `./${rel}`;
@@ -226,18 +229,18 @@ function rewriteInternalDocsLinks(src, absOutFile, absOutRoot) {
 
   // In cards we currently echo the href as visible text; rewrite that too.
   out = out.replace(/>(\/docs\/[^<]+)<\/a>/g, (all, text) => {
-    const rewritten = rewriteDocsHrefToRelative(text, absOutFile, absOutRoot);
+    const rewritten = rewriteDocsHrefToRelative(text, absOutFile, docsOutRoot);
     return `>${escapeHtml(rewritten)}</a>`;
   });
 
   // Plaintext patterns like "...( /docs/foo/bar )" or "report(/docs/foo)" (not markdown links).
   out = out.replace(/\((\/docs\/[^)\s]+)\)/g, (all, href) => {
-    const rewritten = rewriteDocsHrefToRelative(href, absOutFile, absOutRoot);
+    const rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     return `(${rewritten})`;
   });
 
   out = out.replace(/\((\/guides\/[^)\s]+)\)/g, (all, href) => {
-    const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, absOutRoot);
+    const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, guidesOutRoot);
     return `(${rewritten})`;
   });
 
@@ -306,13 +309,12 @@ function convertCallouts(src) {
 }
 
 function convertExtendedAccordions(src) {
-  return src.replace(
-    /<ExtendedAccordion\s+title=(?:"([^"]+)"|'([^']+)')\s*>\s*([\s\S]*?)\s*<\/ExtendedAccordion>/g,
-    (_all, t1, t2, body) => {
-      const title = (t1 || t2 || '').trim();
-      return `<details>\n<summary>${title}</summary>\n\n${body.trim()}\n</details>`;
-    },
-  );
+  return src.replace(/<ExtendedAccordion\b([\s\S]*?)>\s*([\s\S]*?)\s*<\/ExtendedAccordion>/g, (_all, attrs, body) => {
+    const titleRaw = parseJsxAttribute(attrs, 'title') || '';
+    const title = String(titleRaw).trim();
+    if (!title) return body;
+    return `<details>\n<summary>${escapeHtml(title)}</summary>\n\n${String(body).trim()}\n</details>`;
+  });
 }
 
 function parseJsxAttribute(attrs, name) {
@@ -1018,6 +1020,30 @@ function stripStyleTags(src) {
     out.push(line);
   }
   return out.join('\n');
+}
+
+function stripFaqComponentWrappers(src) {
+  // Drop <div class="faqComponent"> wrappers used for styling in Nextra.
+  const lines = String(src).split('\n');
+  const out = [];
+  let inFence = false;
+  for (let line of lines) {
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+    if (/^<div\b[^>]*\bclass="[^"]*\bfaqComponent\b[^"]*"[^>]*>\s*$/.test(t)) continue;
+    if (/^<div\b[^>]*\bclassName="[^"]*\bfaqComponent\b[^"]*"[^>]*>\s*$/.test(t)) continue;
+    if (t === '</div>') continue;
+    out.push(line);
+  }
+  return out.join('\n').replace(/\n{3,}/g, '\n\n');
 }
 
 function normalizeEmbedUrl(url) {
@@ -1973,6 +1999,7 @@ function convertOne(src, maps, ctx) {
   out = stripUselessDivs(out);
   out = stripJsxComments(out);
   out = stripStyleTags(out);
+  out = stripFaqComponentWrappers(out);
   out = convertIframesToEmbeds(out);
   out = convertSectionAsideToColumns(out);
   out = convertExtendedButton(out);
