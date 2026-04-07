@@ -550,6 +550,125 @@ function ensureBlankLineAfterStandaloneImages(src) {
   return out.join('\n');
 }
 
+function convertLogoTablesToColumns(src, { outPath, assetsDirAbs }) {
+  // Convert:
+  // <div className={style.logoTable}>
+  //   <AviraLogo />
+  //   <div className={style.logoText}>...</div>
+  // </div>
+  // into GitBook columns with an exported SVG asset on the left.
+  const lines = String(src).split('\n');
+  const out = [];
+  let inFence = false;
+  let i = 0;
+
+  const isLogoTableOpen = (t) =>
+    /^<div\b[^>]*\bclass(Name)?=\{?style\.logoTable\}?\b[^>]*>\s*$/.test(t) ||
+    /^<div\b[^>]*\bclass(Name)?="[^"]*\blogoTable\b[^"]*"\b[^>]*>\s*$/.test(t);
+
+  while (i < lines.length) {
+    const line = lines[i];
+    const t = line.trim();
+    if (t.startsWith('```')) {
+      inFence = !inFence;
+      out.push(line);
+      i++;
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      i++;
+      continue;
+    }
+
+    if (!isLogoTableOpen(t)) {
+      out.push(line);
+      i++;
+      continue;
+    }
+
+    // Collect the whole logoTable div block using a simple div depth counter.
+    let block = line + '\n';
+    let depth = 0;
+    const countDivs = (s) => {
+      const opens = (s.match(/<div\b/g) || []).length;
+      const closes = (s.match(/<\/div>/g) || []).length;
+      return { opens, closes };
+    };
+    // Initialize depth from the opening line.
+    depth += 1;
+    i++;
+    while (i < lines.length && depth > 0) {
+      const l = lines[i];
+      const c = countDivs(l);
+      depth += c.opens;
+      depth -= c.closes;
+      block += l + '\n';
+      i++;
+    }
+
+    const logoMatch = block.match(/<([A-Za-z0-9]+Logo)\s*\/>/);
+    if (!logoMatch) {
+      out.push(block.trimEnd());
+      continue;
+    }
+
+    const comp = logoMatch[1];
+    const filename = `${kebabFromComponentName(comp)}.svg`;
+    const rel = toPosixPath(path.relative(path.dirname(outPath), path.join(assetsDirAbs, filename)));
+    const href = rel.startsWith('.') ? rel : `./${rel}`;
+
+    // Extract logoText inner HTML-ish content.
+    let textInner = '';
+    const textStart = block.search(/<div\b[^>]*\bclass(Name)?=\{?style\.logoText\}?\b[^>]*>/);
+    if (textStart !== -1) {
+      const afterStart = block.slice(textStart);
+      const openIdx = afterStart.indexOf('>') + 1;
+      const rest = afterStart.slice(openIdx);
+      // Find matching </div> for logoText with depth counting within this substring.
+      let d = 1;
+      let k = 0;
+      while (k < rest.length && d > 0) {
+        const open = rest.indexOf('<div', k);
+        const close = rest.indexOf('</div>', k);
+        if (close === -1) break;
+        if (open !== -1 && open < close) {
+          d++;
+          k = open + 4;
+        } else {
+          d--;
+          k = close + 6;
+        }
+      }
+      const content = rest.slice(0, Math.max(0, k - 6));
+      // Basic cleanup: drop logoSpeaker div wrappers but keep their content.
+      textInner = content.replace(/<div\b[^>]*\bstyle\.logoSpeaker\b[^>]*>/g, '').replace(/<\/div>/g, '');
+      textInner = stripJsxComments(textInner);
+      textInner = stripJsxStyleObjectsAndAttributeBraces(textInner);
+      textInner = jsxHtmlToHtml(textInner);
+      textInner = textInner.replace(/<\/?div\b[^>]*>/g, '');
+      textInner = textInner.replace(/\n{3,}/g, '\n\n').trim();
+      // Ensure the speaker line isn't glued to the quote.
+      textInner = textInner.replace(/"\s*\*\*/g, '"\n\n**');
+    }
+
+    out.push('{% columns %}');
+    out.push('{% column width="2/12" %}');
+    out.push('');
+    out.push(`![${humanizeComponentName(comp)}](${href})`);
+    out.push('');
+    out.push('{% endcolumn %}');
+    out.push('{% column width="10/12" %}');
+    out.push('');
+    if (textInner) out.push(textInner);
+    out.push('');
+    out.push('{% endcolumn %}');
+    out.push('{% endcolumns %}');
+  }
+
+  return out.join('\n').replace(/\n{3,}/g, '\n\n');
+}
+
 function extractStringProp(objText, key) {
   const re = new RegExp(String.raw`\b${key}\s*:\s*(["'])([\s\S]*?)\1`, 'm');
   const m = re.exec(objText);
@@ -1718,6 +1837,7 @@ function convertOne(src, maps, ctx) {
   let out = src;
   out = promoteMetadataDescriptionToDescription(out);
   out = stripMdxExportsAndImports(out);
+  out = convertLogoTablesToColumns(out, ctx);
   out = jsxHtmlToHtml(out);
   out = convertFlexDivsToColumns(out);
   out = stripJsxStyleObjectsAndAttributeBraces(out);

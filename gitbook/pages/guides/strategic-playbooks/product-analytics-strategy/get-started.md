@@ -16,10 +16,20 @@ But first, you have to assess your own capabilities and product analytics goals.
 
 At Mixpanel, we've consulted thousands of companies—from bootstrapped startups to leaders in tech. We know what "good" looks like, and we've developed a formula to get companies to "great."
 
+{% columns %}
+{% column width="2/12" %}
+
 ![Product Collective](../../.gitbook/assets/logos/product-collective-logo.svg)
 
+{% endcolumn %}
+{% column width="10/12" %}
+
 "Every product person wants to make data-driven decisions. But to do so, you must have the right data, ask the right questions, and use the right tools. That's having true product analytics maturity"
+
 **Mike Belsito** *Co-Founder, Product Collective*
+
+{% endcolumn %}
+{% endcolumns %}
 
 ## What will you learn here?
 
@@ -34,10 +44,20 @@ This guide helps you determine:
 - What you need to do to get there
 - Why it all matters to product and company growth
 
+{% columns %}
+{% column width="2/12" %}
+
 ![Open View](../../.gitbook/assets/logos/open-view-logo.svg)
 
+{% endcolumn %}
+{% column width="10/12" %}
+
 "Without data on how the user is moving through your product, you won't grasp where they're unlocking the most value. Without those insights, your team and product devolve into conjecture and building for the vocal minority. Once you've started that, it's impossible to scale."
+
 **Sam Richard** *Director of Growth, OpenView*
+
+{% endcolumn %}
+{% endcolumns %}
 
 {% hint style="info" %}
 **Explore Mixpanel**

@@ -93,7 +93,13 @@ Looking to level up your product analytics maturity? [Set up a demo today.](http
 
 ### About Product Collective
 
+{% columns %}
+{% column width="2/12" %}
+
 ![Product Collective](../../.gitbook/assets/logos/product-collective-logo.svg)
+
+{% endcolumn %}
+{% column width="10/12" %}
 
 Product Collective is a community serving 30,000+ technology product management professionals. Through its various resources, products and events, Product Collective aims to help product people answer the question, "Am I doing this right?"
 
@@ -105,9 +111,18 @@ To help you improve your product analytics strategy, check out these handpicked 
     - [Video Interview w/ Ross Walker](https://youtu.be/5q3CL_1lKoo)
     - [Podcast episode w/ Rahul Vohra of Superhuman](https://music.amazon.com/podcasts/cf646510-46b8-44ad-8865-15f086559f0f/episodes/dfbe1c51-996f-4ff7-826a-d9980667dda9/Rocketshipfm-The-Trick-That-Supercharged-Superhumans-Growth)
 
+{% endcolumn %}
+{% endcolumns %}
+
 ### About OpenView
 
+{% columns %}
+{% column width="2/12" %}
+
 ![Open View](../../.gitbook/assets/logos/open-view-logo.svg)
+
+{% endcolumn %}
+{% column width="10/12" %}
 
 OpenView is the venture capital firm for expansion stage B2B software companies. Founded in 2006, OpenView invests globally with the mission to improve people's working lives.
 
@@ -116,6 +131,9 @@ OpenView's focused investment approach across sector and stage enables the firm 
 For more information, visit [openviewpartners.com](https://openviewpartners.com/).
 
 To help you benchmark your SaaS performance, check out our [newly released 2020 report](https://openviewpartners.com/expansion-saas-benchmarks#.X6161pNKiko).
+
+{% endcolumn %}
+{% endcolumns %}
 
 ## Where do you stand?
 

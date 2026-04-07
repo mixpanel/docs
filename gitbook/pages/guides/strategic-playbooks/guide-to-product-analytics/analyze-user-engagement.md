@@ -82,17 +82,50 @@ For a video platform company, a depth metric might be the number of videos watch
 
 ### Industry Examples
 
+{% columns %}
+{% column width="2/12" %}
+
 ![Rakuten Viber](../../.gitbook/assets/logos/rakuten-viber-logo.svg)
 
-"Active users are people who are using Viber seven out of seven days a week. From a product perspective, if we're doing something good, active users are supposed to grow and if we're doing something bad, then eventually they're going to drop. We monitor this metric daily."**Idan Dadon** *Product Manager, Viber*
+{% endcolumn %}
+{% column width="10/12" %}
+
+"Active users are people who are using Viber seven out of seven days a week. From a product perspective, if we're doing something good, active users are supposed to grow and if we're doing something bad, then eventually they're going to drop. We monitor this metric daily."
+
+**Idan Dadon** *Product Manager, Viber*
+
+{% endcolumn %}
+{% endcolumns %}
+
+{% columns %}
+{% column width="2/12" %}
 
 ![Ro](../../.gitbook/assets/logos/ro-logo.svg)
 
-"To us, an active member is someone who has an active plan—they haven't canceled or their plan hasn't expired. To make sure our members are getting value, we also look at how many of them have continued treatment in the past four months."**Ira Patnaik** *Director of Product, Ro*
+{% endcolumn %}
+{% column width="10/12" %}
+
+"To us, an active member is someone who has an active plan—they haven't canceled or their plan hasn't expired. To make sure our members are getting value, we also look at how many of them have continued treatment in the past four months."
+
+**Ira Patnaik** *Director of Product, Ro*
+
+{% endcolumn %}
+{% endcolumns %}
+
+{% columns %}
+{% column width="2/12" %}
 
 ![Vrbo](../../.gitbook/assets/logos/vrbo-logo.svg)
 
-"An active user takes a trip 1-2 times per year. For us, it's a bit tricky because the shopping funnel has distinct phases—dreaming, planning, deciding, and booking. We haven't necessarily cracked the code of how to recognize what part of the funnel a person is in based on the activity that they're doing on the site and what the common actions are that can help us decide that a shopper has officially moved past one phase to the next one."**Jamie Kapilivsky** *Data Insights, Vrbo, part of Expedia Group*
+{% endcolumn %}
+{% column width="10/12" %}
+
+"An active user takes a trip 1-2 times per year. For us, it's a bit tricky because the shopping funnel has distinct phases—dreaming, planning, deciding, and booking. We haven't necessarily cracked the code of how to recognize what part of the funnel a person is in based on the activity that they're doing on the site and what the common actions are that can help us decide that a shopper has officially moved past one phase to the next one."
+
+**Jamie Kapilivsky** *Data Insights, Vrbo, part of Expedia Group*
+
+{% endcolumn %}
+{% endcolumns %}
 
 ## How can I tie active usage to my value exchange (monetization) model?
 
@@ -104,11 +137,28 @@ For example, on social media entertainment apps like TikTok, where users engage 
 
 ### Regional and Behavioral Cohorts
 
+{% columns %}
+{% column width="2/12" %}
+
 ![Rakuten Viber](../../.gitbook/assets/logos/rakuten-viber-logo.svg)
 
-"We create cohorts based on percentiles of activity (to identify power users), region-based cohorts/breakdowns by countries (there's a lot of cultural difference in how people use the app as well as their data usage). We break it down as much as we can and try to understand users based on their behavior, not the average behavior."**Idan Dadon** *Product Manager, Viber*
+{% endcolumn %}
+{% column width="10/12" %}
+
+"We create cohorts based on percentiles of activity (to identify power users), region-based cohorts/breakdowns by countries (there's a lot of cultural difference in how people use the app as well as their data usage). We break it down as much as we can and try to understand users based on their behavior, not the average behavior."
+
+**Idan Dadon** *Product Manager, Viber*
+
+{% endcolumn %}
+{% endcolumns %}
+
+{% columns %}
+{% column width="2/12" %}
 
 ![Avira](../../.gitbook/assets/logos/avira-logo.svg)
+
+{% endcolumn %}
+{% column width="10/12" %}
 
 "We use a lot of cohorts, including: free/paid users, new/existing users, operating systems (Windows 10 versus Windows 7), region, and frequency of use.
         - **Free/paid users**: We look at how free users behave versus how paid users behave. Do paid users use the Smart Scan more often than free users, for example, or less often? What features do they use? We can then find behavioural twins in the free segment and push them to become paid.
@@ -117,6 +167,9 @@ For example, on social media entertainment apps like TikTok, where users engage 
     - **Region**: Our marketing is based on different regions: Germany/Austria/Switzerland; U.S./English-speaking countries; and the rest of the world. We use these segments to see how regional users behave differently, and how business KPIs differ in these different countries.
     - **Frequency**: On how many days out of the last 28, 48 or 91 days has a user used our product?”
 **Manuel Eugster** *Vice President Data Intelligence, Avira*
+
+{% endcolumn %}
+{% endcolumns %}
 
 ## How can I track new users, resurrected users, retained users, and dormant users?
 
