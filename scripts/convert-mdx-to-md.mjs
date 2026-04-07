@@ -2107,12 +2107,24 @@ async function main() {
         const lower = f.toLowerCase();
         return lower.endsWith('.mdx') || lower.endsWith('.md');
       })
-      .map((f) => toPosixPath(path.relative(inDir, f).replace(/\.mdx$/i, '.md'))),
+      .map((f) => {
+        const rel = toPosixPath(path.relative(inDir, f));
+        const lowerRel = rel.toLowerCase();
+        // For troubleshooting, treat faqs as the space README (single-page space).
+        if (toPosixPath(args.inDir).endsWith('pages/troubleshooting') && lowerRel === 'faqs.mdx') {
+          return 'README.md';
+        }
+        return rel.replace(/\.mdx$/i, '.md');
+      }),
   );
 
   for (const file of files) {
     const rel = path.relative(inDir, file);
-    const outPath = path.join(outDir, rel.replace(/\.mdx$/i, '.md'));
+    let outRel = toPosixPath(rel).replace(/\.mdx$/i, '.md');
+    if (toPosixPath(args.inDir).endsWith('pages/troubleshooting') && toPosixPath(rel).toLowerCase() === 'faqs.mdx') {
+      outRel = 'README.md';
+    }
+    const outPath = path.join(outDir, outRel);
     await fs.mkdir(path.dirname(outPath), { recursive: true });
 
     const src = await fs.readFile(file, 'utf8');
