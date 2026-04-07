@@ -45,7 +45,7 @@ Each stage in the OADA framework connects directly to Mixpanel’s tools, helpin
 
 {% column width="41.67%" %}
 
-![OADA Loop diagram](/oada-loop-simple-wide-fcf9fa.png)
+![OADA Loop diagram](.gitbook/assets/oada-loop-simple-wide-fcf9fa.png)
 
 *The cycle of continuous innovation.*
 
@@ -72,7 +72,7 @@ Alongside events, Mixpanel also tracks **user profiles**––records that repre
 
 Optionally, you can analyze data at the group level using [Group Analytics](./data-structure/group-analytics.md).
 
-![Data Model](/Data_Model_with_Group_Analytics.png)
+![Data Model](.gitbook/assets/Data_Model_with_Group_Analytics.png)
 
 Together, these events and properties form a flexible data model that mirrors how people actually use your product. Once instrumented, you can analyze this data instantly—–without writing SQL or waiting on an analyst.
 

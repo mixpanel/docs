@@ -7,7 +7,7 @@
 
 To follow along the tutorials in this section, we've created [this board](https://mixpanel.com/project/3018488/view/3536632/app/boards/#id=6350535) in our demo project that you can copy into your own project. As you open the linked board, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range.
 
-![Screenshot use this board](/tracking_id_limits_copy_board.png)
+![Screenshot use this board](../../.gitbook/assets/tracking_id_limits_copy_board.png)
 
 ## Measurements, Filters and Breakdowns in Insights
 

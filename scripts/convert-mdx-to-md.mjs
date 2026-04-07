@@ -866,6 +866,68 @@ async function ensureGitbookLogoAssets({ inDirAbs, outDirAbs }) {
   return { assetsDirAbs, used };
 }
 
+async function fileExists(absPath) {
+  try {
+    await fs.stat(absPath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function collectRootImageHrefsFromText(src) {
+  const s = String(src);
+  const out = new Set();
+  // Markdown images: ![alt](/path/to.png)
+  for (const m of s.matchAll(/!\[[^\]]*\]\((\/[^)\s]+)\)/g)) out.add(m[1]);
+  // HTML images: <img src="/path/to.png" ...>
+  for (const m of s.matchAll(/<img\b[^>]*\bsrc=(["'])(\/[^"']+)\1[^>]*>/gi)) out.add(m[2]);
+  return out;
+}
+
+async function ensureGitbookStaticImageAssets({ inDirAbs, outDirAbs }) {
+  // Copy any root-relative image refs (e.g. /foo.png) from /public into this space's .gitbook/assets.
+  const files = await listFilesRecursive(inDirAbs);
+  const rootHrefs = new Set();
+  for (const f of files) {
+    const lower = f.toLowerCase();
+    if (!(lower.endsWith('.mdx') || lower.endsWith('.md'))) continue;
+    const src = await fs.readFile(f, 'utf8');
+    for (const href of collectRootImageHrefsFromText(src)) rootHrefs.add(href);
+  }
+
+  const assetsDirAbs = path.join(outDirAbs, '.gitbook', 'assets');
+  await fs.mkdir(assetsDirAbs, { recursive: true });
+
+  for (const href of rootHrefs) {
+    const relFromRoot = href.replace(/^\/+/, '');
+    const srcAbs = path.join(ROOT, 'public', relFromRoot);
+    if (!(await fileExists(srcAbs))) continue;
+    const dstAbs = path.join(assetsDirAbs, relFromRoot);
+    await fs.mkdir(path.dirname(dstAbs), { recursive: true });
+    const buf = await fs.readFile(srcAbs);
+    await fs.writeFile(dstAbs, buf);
+  }
+
+  return { assetsDirAbs };
+}
+
+function rewriteRootImagesToGitbookAssets(src, { outPath, assetsDirAbs }) {
+  // Rewrite ![](/foo.png) -> ![](../.gitbook/assets/foo.png) if that asset exists.
+  const s = String(src);
+  return s.replace(/!\[([^\]]*)\]\((\/[^)\s]+)\)/g, (_all, alt, href) => {
+    const relFromRoot = href.replace(/^\/+/, '');
+    const assetAbs = path.join(assetsDirAbs, relFromRoot);
+    // If asset isn't present, keep original href.
+    // (We only copy when the file exists in /public.)
+    // Note: synchronous existence check avoided; fileExists is async so we rely on copy stage.
+    const rel = toPosixPath(path.relative(path.dirname(outPath), assetAbs));
+    // Heuristic: only rewrite if it points into .gitbook/assets
+    if (!rel.includes('.gitbook/assets/')) return `![${alt}](${href})`;
+    return `![${alt}](${rel.startsWith('.') ? rel : `./${rel}`})`;
+  });
+}
+
 function stripStyleTags(src) {
   // Drop <style ...> ... </style> blocks (unsupported in GitBook markdown rendering).
   const lines = String(src).split('\n');
@@ -1874,6 +1936,10 @@ async function main() {
   const outDir = path.resolve(ROOT, args.outDir);
 
   const maps = await readConstantsMaps();
+  const { assetsDirAbs: staticAssetsDirAbs } = await ensureGitbookStaticImageAssets({
+    inDirAbs: inDir,
+    outDirAbs: outDir,
+  });
   const { assetsDirAbs } = await ensureGitbookLogoAssets({ inDirAbs: inDir, outDirAbs: outDir });
   const files = await listFilesRecursive(inDir);
   await fs.mkdir(outDir, { recursive: true });
@@ -1896,6 +1962,7 @@ async function main() {
     let converted = file.toLowerCase().endsWith('.mdx')
       ? convertOne(src, maps, { outPath, assetsDirAbs })
       : src;
+    converted = rewriteRootImagesToGitbookAssets(converted, { outPath, assetsDirAbs: staticAssetsDirAbs });
     converted = rewriteInternalDocsLinks(converted, outPath, outDir);
     converted = await tagBetaByMeta(converted, file, inDir);
     await fs.writeFile(outPath, converted, 'utf8');

@@ -7,7 +7,7 @@ Our [Retention](../../reports/retention.md) report in Mixpanel is designed to he
 
 To follow along the tutorials here, create a copy of [this board](https://mixpanel.com/project/3018488/view/3536632/app/boards/#id=6350511) from our demo project and copy into your own project. As you open the linked board, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range.
 
-![Screenshot use this board](/tracking_id_limits_copy_board.png)
+![Screenshot use this board](../../.gitbook/assets/tracking_id_limits_copy_board.png)
 
 ## Understanding Retention Criteria
 Define retention analysis to calculate users who come back on a specific time unit (e.g. day, week, month) or any time unit afterwards. You can also switch the retention mode between the default rolling time window and calendar defined time window.

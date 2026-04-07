@@ -18,7 +18,7 @@ The downside is that the questions you're answering are limited and provide an i
 If you're in this stage, the good news is that you're committed to using data to some extent to guide your product — if only in response to something breaking.
 {% endhint %}
 
-![](/novice-chart.jpg)
+![](../../.gitbook/assets/novice-chart.jpg)
 
 This is a starting point for companies that are new to data adoption.
 

@@ -20,7 +20,7 @@ One of the first things that product managers do when they get into product anal
 
 Such insights are more actionable, because in-product behavior can be "nudged"—and changed—more easily than demographics.
 
-![](/pa-user-chart.png)
+![](../../.gitbook/assets/pa-user-chart.png)
 
 User segmentation in product analytics is grouping users based on their demographics or behavior in order to establish a baseline for analysis.
 
@@ -28,7 +28,7 @@ User segmentation in product analytics is grouping users based on their demograp
 
 ## How does it work?
 
-![](/pa-event-based.jpg)
+![](../../.gitbook/assets/pa-event-based.jpg)
 
 In Mixpanel, each data point is connected to a single user through a unique ID. **Events** are interactions between a user and your product. These are things users do, like signing up, adding items to cart, liking and following. **Profiles** store information about who your users are, like where they live (geo), and what email they use to log in.
 

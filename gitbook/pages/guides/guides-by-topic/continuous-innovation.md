@@ -1,7 +1,7 @@
 # Mixpanel and the Continuous Innovation Loop
 The **Observe → Analyze → Decide → Act (OADA)** loop is the framework behind how great teams use Mixpanel to continuously innovate.
 
-![OADA Loop diagram](/oada-loop-detail.png)
+![OADA Loop diagram](../.gitbook/assets/oada-loop-detail.png)
 
 This loop represents the cycle teams follow to turn data into action by first observing what users do, then analyzing why it happens, deciding what to do next, and finally acting on those insights to drive better outcomes.
 

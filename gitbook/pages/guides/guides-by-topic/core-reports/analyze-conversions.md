@@ -6,7 +6,7 @@ Use our [Funnels](../../reports/funnels/funnels-overview.md) report to analyze w
 
 To follow along the tutorials in this section, we've created [this board](https://mixpanel.com/project/3018488/view/3536632/app/boards/#id=6350527) in our demo project that you can copy into your own project. As you open the linked board, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range.
 
-![Screenshot use this board](/tracking_id_limits_copy_board.png)
+![Screenshot use this board](../../.gitbook/assets/tracking_id_limits_copy_board.png)
 
 ## Configuring Conversion Criteria
 To utilize funnels correctly, it's important to understand how the [conversion criteria](../../reports/funnels/funnels-advanced.md#conversion-criteria) works and how it impacts the conversion rate depending on whether you use "unique" or "total" conversions. We have a couple of examples in [this board](https://mixpanel.com/project/3018488/view/3536632/app/boards/#id=6350527) to help explain and test your understanding of how the conversion criteria works. 

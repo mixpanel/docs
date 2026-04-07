@@ -24,7 +24,7 @@ But you probably already know why. Depending on your product, your customers usu
 
 To understand your product's value, you need to step back and ask: *"What are my users hoping to do with my product? And what is my product really about?"*
 
-![](/pa-value-chart1.png)
+![](../../.gitbook/assets/pa-value-chart1.png)
 
 If you look at the most successful digital products today, they have one thing in common: **they make it easier, cheaper, or more convenient for people to live their lives and get what they want**. 
 
@@ -81,7 +81,7 @@ A helpful tool in measuring value for your product is defining the so-called **"
 
 Your product's **value moment** is an event, an action, or a series of events and actions that represent the moment that a user found value in your product. Here are a few examples of value moments:
 
-![image](/pa-value-chart2.png)
+![image](../../.gitbook/assets/pa-value-chart2.png)
 
 Depending on your product, a user journey might look very different. To get to the value moment for the first time, some user flows require registration, verification, adding friends, or entering credit card information before a user can "activate" and experience the product's value for the first time. This initial journey to value is critical: **the more quickly you can get your users to value, and the more you can signal during that journey what value is to come, the better the chances they'll stick around for more value moments**.
 
@@ -138,7 +138,7 @@ Think of your value moment as a building block for successful product adoption. 
 
 To learn more about defining your focus metric, check out [Mixpanel’s Guide to Product Metrics](https://mixpanel.com/wp-content/uploads/2023/11/eBook_Guide-to-Product-Metrics.pdf).
 
-![image](/pa-value-chart3.png)
+![image](../../.gitbook/assets/pa-value-chart3.png)
 
 {% columns %}
 {% column width="2/12" %}

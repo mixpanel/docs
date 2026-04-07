@@ -5,7 +5,7 @@ If you've gone through our tutorials on how to [send production data into Mixpan
 
 We've created a [demo board](https://mixpanel.com/project/3018488/view/3536632/app/boards/#id=6350541) you can copy into your own project to follow along the tutorials in this section. As you open the linked board, you will see instructions to click on "Use this board" to transfer it over to your project and to edit the default date range.
 
-![Screenshot use this board](/tracking_id_limits_copy_board.png)
+![Screenshot use this board](../../.gitbook/assets/tracking_id_limits_copy_board.png)
 
 Think of [Boards](../../boards.md) as your homepage for keeping track of your most important metrics, or a collection of reports that you can share with your coworkers to highlight key trends or stories. You can add text, images and videos to these boards to help add color to the interpretations as well.
 

@@ -3,7 +3,7 @@
 
 But the bigger unlock isn't speed. It's context. MCP lets you layer in information that doesn't live in Mixpanel at all — campaign calendars, competitor signals, industry benchmarks, internal docs — and synthesize it with your product data in a single workflow. That's work that used to take days of manual exports and reconciliation.
 
-![image](/mixpanel-mcp-2048x1151.jpeg)
+![image](../../.gitbook/assets/mixpanel-mcp-2048x1151.jpeg)
 
 This guide covers how to use MCP well: how to orient yourself in a new project, run analysis without building reports, and go from “What happened?” to “What should we do about it?”
 
@@ -49,7 +49,7 @@ Most teams don’t struggle with analysis first — they struggle with orientati
 ### Start with intent, not event names
 Begin with discovery questions that reflect how people actually think about the product, not how the data happens to be instrumented.
 
-![image](/mcp-intent.gif)
+![image](../../.gitbook/assets/mcp-intent.gif)
 
 Examples:
 - Which events and properties best represent checkout intent in our product?
@@ -82,7 +82,7 @@ This is especially valuable when you're working in an unfamiliar project, or whe
 ## Step 2: Use MCP to Run Analysis Without Touching the UI
 Once MCP understands which events and properties represent your intent, you can ask it to analyze them directly.
 
-![image](/mcp-analysis.gif)
+![image](../../.gitbook/assets/mcp-analysis.gif)
 
 Be explicit about:
 - The behavior you care about
@@ -112,7 +112,7 @@ Digital analytics tells you what users did. It rarely explains why.
 
 That’s where MCP becomes especially powerful. It lets you layer in context that lives outside your analytics tool, so behavior can be interpreted, not just measured. 
 
-![image](/mcp-context.gif)
+![image](../../.gitbook/assets/mcp-context.gif)
 
 That context might include:
 - Promotional or campaign calendars
@@ -133,7 +133,7 @@ This is synthesis that previously required a data analyst, a spreadsheet, and a 
 ## Step 4: Combine Product Data with Unstructured Knowledge
 Some of the most important inputs into product decisions live in documents, not databases. If your AI tool is connected to sources like Notion or Google Drive, MCP can analyze those alongside Mixpanel data.
 
-![image](/mcp-notion.gif)
+![image](../../.gitbook/assets/mcp-notion.gif)
 
 Examples:
 | Unstructured Knowledge | Prompt | 
@@ -149,7 +149,7 @@ The highest-value MCP prompts don’t ask for charts — they ask for judgment.
 
 Once MCP has analyzed behavior, campaign context, benchmarks, and qualitative signals, ask MCP to synthesize across all of it: "Given everything we’ve analyzed, what would you change about our strategy going into the next quarter?"
 
-![image](/mcp-synthesis.png)
+![image](../../.gitbook/assets/mcp-synthesis.png)
 
 This compresses work that previously took days or weeks into a single, iterative workflow.
 

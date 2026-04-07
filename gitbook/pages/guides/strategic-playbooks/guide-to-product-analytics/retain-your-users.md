@@ -27,7 +27,7 @@ To realize the value of your business, a user needs to survive two key drop offs
 1. **The value moment**, which is key to activation, engagement, and retention (the moment when they get value)
 2. **The value exchange** (or payment), which is essential to monetization and business health (the moment when you get value)
 
-![image](/UserDropoffChart.png)
+![image](../../.gitbook/assets/UserDropoffChart.png)
 
 The value moments for the user and the business are sometimes the same. For example, the value moment in shopping apps (e.g., "complete checkout") is naturally tied to revenue. People get value when they buy an item they like; shops get value when people buy that item.
 
@@ -190,7 +190,7 @@ You can create cohorts for retained users directly from the Retention report. Si
 
 You can then investigate what causes your users to be retained by exploring the different properties of your "retained users" cohort in the Insights report.
 
-![image](/retained_gif.gif)
+![image](../../.gitbook/assets/retained_gif.gif)
 
 {% hint style="info" %}
 4. Why Retention is the Silent Killer (2017). Reforge.

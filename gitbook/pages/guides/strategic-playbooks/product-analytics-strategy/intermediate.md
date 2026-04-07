@@ -18,7 +18,7 @@ At this point, you recognize that product analytics is important, but aren't qui
 You're using data to inform product decisions, but not yet to propel them forward in an iterative or systematic way.
 {% endhint %}
 
-![](/intermediate-chart.jpg)
+![](../../.gitbook/assets/intermediate-chart.jpg)
 
 You're beginning to use product analysis on a regular basis, but don't know how to use it as a driver for product development.
 

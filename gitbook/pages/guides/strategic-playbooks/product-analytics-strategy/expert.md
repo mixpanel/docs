@@ -18,7 +18,7 @@ In this stage, you go from a gym membership to also hiring a personal trainer to
 
 No product development decision is made without the use of product analytics.
 
-![](/expert-chart.jpg)
+![](../../.gitbook/assets/expert-chart.jpg)
 
 {% hint style="info" %}
 **Explore Mixpanel**

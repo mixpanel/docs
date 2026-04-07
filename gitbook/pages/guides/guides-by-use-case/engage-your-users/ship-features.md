@@ -108,7 +108,7 @@ e.g. `platform = android`
 
 When your app loads, the Mixpanel SDK automatically fetches active flags and evaluates which variant each user should see. Once a variant is displayed, Mixpanel logs an exposure event (`$experiment_started`), allowing you to track adoption and impact immediately in your reports—no manual tagging needed.
 
-![Experiments_and_FF.png](/Experiments_and_FF.png)
+![Experiments_and_FF.png](../../.gitbook/assets/Experiments_and_FF.png)
 
 [📖 Full Feature Flags documentation →](../../featureflags.md)
 

@@ -127,7 +127,7 @@ As your product evolves so should your metrics and KPIs. Depending on your key v
 
 To sum up everything you've learned, below is an example of the RAE Framework *(click to zoom)*. You can also access a copy of a [blank RAE Framework Template from here](https://docs.google.com/spreadsheets/d/1sYBm9RA_pSoQLCLjsbcfyG-8Gd08CpWbEghd82ERtcc/edit?usp=sharing). Save a copy to your device to get started on defining your metrics and KPIs.
 
-[ ![image](/tutorials/example-rae-framework.png) ](/tutorials/example-rae-framework.png "Example RAE Framework (Click to expand)")
+[ ![image](../../../.gitbook/assets/tutorials/example-rae-framework.png) ](/tutorials/example-rae-framework.png "Example RAE Framework (Click to expand)")
 
 💡 Start thinking about [Retention](https://mixpanel.com/content/guide-to-product-analytics/chapter_4/) once you have fine-tuned your RAE Framework.
 

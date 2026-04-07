@@ -54,7 +54,7 @@ The goal is to break the NSM down into successive layers until the components ar
 
 ✅ **Do:** Keep decomposing until you reach metrics that a single team can influence directly. Anything broader is too abstract to drive accountability or improvement.
 
-![Metric Trees](/north-star-metric-tree-framework-2600x1222.png)
+![Metric Trees](../../.gitbook/assets/north-star-metric-tree-framework-2600x1222.png)
 
 Once you’ve defined your value architecture, plan a cross-functional workshop to map your first Metric Tree collaboratively — [Section 4](#4-run-metric-tree-workshops-for-model-creation) outlines how to run it.
 

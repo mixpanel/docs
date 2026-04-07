@@ -145,11 +145,11 @@ Consider the event `Start Signup`. Top questions we might want to answer with th
 
 Here’s an example of an implementation we *don’t* recommend.
 
-![bestpractices2](/bestpractices2.png)
+![bestpractices2](../../../.gitbook/assets/bestpractices2.png)
 
 Here, the question you’d want to answer most is: Which signup platform drives the most sign ups? If our events are too narrow, e.g. homepage/start_signup/apple, we’d have to manually add every single event where the signup occurs in order to do a comparison. It’s much easier to capture it as the event Start Signup and use event properties to describe the different originating pages / screens and signup platforms:
 
-![bestpractices3](/bestpractices3.png)
+![bestpractices3](../../../.gitbook/assets/bestpractices3.png)
 
 To get all signup starts via the ideal state structure, the user only needs to query the single signup event and apply the flow and platform breakdowns. Once that's complete, the user can easily see that the homepage flow drives the most traffic with Apple out-performing other platforms across the board.
 

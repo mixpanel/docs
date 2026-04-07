@@ -28,7 +28,7 @@ Now let's flip it and look at the other extreme — a video-hosting social media
 
 [Reforge](https://www.reforge.com/) pioneered this way of thinking about product usage intervals with their "habit zone" framework.
 
-![image](/Chart-Cadence.png)
+![image](../../.gitbook/assets/Chart-Cadence.png)
 
 > "Fundamentally, the 'right frequency' of activity needs to be defined based on a candid assessment of how the product's target user personas can get optimal value out of the product. Highly frequent usage is expected for certain product categories (e.g., messaging, music, fitness trackers) whereas less frequent usage is better for users' success or fulfillment in other product categories (e.g., personal finance, shopping). 
 >
@@ -53,7 +53,7 @@ To find your power/core/casual users, start by defining what it means to be "a p
 2. Define what it means to be a power/core/casual user. For example, "Users that watched videos 2 or more times in the last 7 days"
 3. Save the cohort
 
-![image](/ChartUser.png)
+![image](../../.gitbook/assets/ChartUser.png)
 
 Using the median value as a baseline for your analysis, you can create cohorts to track how different groups of users are changing over time.
 
@@ -192,7 +192,7 @@ To explore user behavior with lifecycle analysis, create cohorts for each group 
 - **Retained users**: Performed "watch video" at least once in two consecutive intervals
 - **Dormant users**: Performed "watch video" in previous usage interval, but did not in the current one
 
-![image](/ChartUser02.png)
+![image](../../.gitbook/assets/ChartUser02.png)
 
 Once you create the cohorts you'd like to track, head over to the Insights report in Mixpanel to visualize their growth over time.
 

@@ -61,7 +61,7 @@ Go to your Mixpanel UI, select the project down-drop at the top left-hand corner
 
 In your Organization settings navigate to the “Identity Merge” tab. There will be a “New projects in this organization will default to” drop-down, ensure this is set to “Simplified API”.
 
-![image](/simplified_api.png)
+![image](../.gitbook/assets/simplified_api.png)
 
 ## Step 2: Data Audit
 Conducting a thorough data audit is essential for a successful project migration. By systematically reviewing and assessing your data, you can ensure that only the most relevant and high-impact information is transferred. Follow these steps to audit your data effectively and streamline your migration process:
