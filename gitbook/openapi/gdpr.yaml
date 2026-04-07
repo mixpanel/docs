@@ -1,8 +1,7 @@
 openapi: 3.0.2
 info:
   title: GDPR API
-  description: The following retrieval and deletion API is made for GDPR and CCPA
-    compliance.
+  description: The following retrieval and deletion API is made for GDPR and CCPA compliance.
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -19,7 +18,7 @@ servers:
           - mixpanel
           - eu.mixpanel
           - in.mixpanel
-        description: >
+        description: |
           The server location to be used:
             * `mixpanel` - The default (US) servers used for most projects
             * `eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
@@ -34,16 +33,23 @@ tags:
   - name: Check Status of Retrieval
     description: Checks the status of a data retrieval job
   - name: Create a Deletion
-    description: Creates a task that specifies a list of users in a particular
-      project to delete
+    description: Creates a task that specifies a list of users in a particular project to delete
   - name: Create a Retrieval
     description: Creates a data retrieval job
 paths:
   /data-retrievals/v3.0:
     post:
-      parameters:
-        - $ref: "#/components/parameters/ProjectToken"
+      tags:
+        - Create a Retrieval
       operationId: create-retrieval
+      summary: Create a Retrieval
+      parameters:
+        - name: token
+          in: query
+          schema:
+            type: string
+          description: Your project token
+          required: true
       requestBody:
         required: true
         content:
@@ -56,10 +62,6 @@ paths:
                   $ref: "#/components/schemas/ComplianceType"
                 disclosure_type:
                   $ref: "#/components/schemas/DisclosureType"
-      tags:
-        - Create a Retrieval
-      summary: Create a Retrieval
-      description: Creates a data retrieval job.
       responses:
         "201":
           description: Success
@@ -79,16 +81,26 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Creates a data retrieval job.
   /data-retrievals/v3.0/{tracking_id}:
-    parameters:
-      - $ref: "#/components/parameters/TrackingId"
-      - $ref: "#/components/parameters/ProjectToken"
     get:
-      operationId: get-retrieval
       tags:
         - Check Status of Retrieval
+      operationId: get-retrieval
       summary: Check Status of Retrieval
-      description: Checks the status of a data retrieval job
+      parameters:
+        - name: tracking_id
+          in: path
+          schema:
+            type: string
+          description: The task ID shown in the response
+          required: true
+        - name: token
+          in: query
+          schema:
+            type: string
+          description: Your project token
+          required: true
       responses:
         "200":
           description: Success
@@ -108,11 +120,20 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Checks the status of a data retrieval job
   /data-deletions/v3.0:
     post:
-      parameters:
-        - $ref: "#/components/parameters/ProjectToken"
+      tags:
+        - Create a Deletion
       operationId: create-deletion
+      summary: Create a Deletion
+      parameters:
+        - name: token
+          in: query
+          schema:
+            type: string
+          description: Your project token
+          required: true
       requestBody:
         required: true
         content:
@@ -123,10 +144,6 @@ paths:
                   $ref: "#/components/schemas/DistinctIds"
                 compliance_type:
                   $ref: "#/components/schemas/ComplianceType"
-      tags:
-        - Create a Deletion
-      summary: Create a Deletion
-      description: Creates a task that specifies a list of users in a project to delete
       responses:
         "201":
           description: Success
@@ -146,16 +163,26 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Creates a task that specifies a list of users in a project to delete
   /data-deletions/v3.0/{tracking_id}:
-    parameters:
-      - $ref: "#/components/parameters/TrackingId"
-      - $ref: "#/components/parameters/ProjectToken"
     get:
-      operationId: get-deletion
       tags:
         - Check Status of Deletion
+      operationId: get-deletion
       summary: Check Status of Deletion
-      description: Checks the status of an existing deletion task
+      parameters:
+        - name: tracking_id
+          in: path
+          schema:
+            type: string
+          description: The task ID shown in the response
+          required: true
+        - name: token
+          in: query
+          schema:
+            type: string
+          description: Your project token
+          required: true
       responses:
         "200":
           description: Success
@@ -175,12 +202,25 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Checks the status of an existing deletion task
     delete:
-      operationId: delete-deletion
       tags:
         - Cancel a Deletion
+      operationId: delete-deletion
       summary: Cancel a Deletion
-      description: Cancel a deletion task that is still in progress
+      parameters:
+        - name: tracking_id
+          in: path
+          schema:
+            type: string
+          description: The task ID shown in the response
+          required: true
+        - name: token
+          in: query
+          schema:
+            type: string
+          description: Your project token
+          required: true
       responses:
         "204":
           description: Success
@@ -196,6 +236,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Cancel a deletion task that is still in progress
 components:
   securitySchemes:
     ServiceAccount:
@@ -213,8 +254,7 @@ components:
   schemas:
     JobCreated:
       title: JobCreated
-      description: A JSON response object containing the task_id of the
-        retrieval/deletion job.
+      description: A JSON response object containing the task_id of the retrieval/deletion job.
       type: object
       additionalProperties: false
       required:
@@ -259,8 +299,7 @@ components:
               example: SUCCESS
             results:
               type: string
-              description: Link to the export if retrieval job is completed. Will be an empty
-                string if job is incomplete
+              description: Link to the export if retrieval job is completed. Will be an empty string if job is incomplete
               example: linktoexportfile.com/9871287366712
             distinct_ids:
               $ref: "#/components/schemas/DistinctIds"
@@ -349,8 +388,7 @@ components:
       description: Select CCPA or GDPR. Default is GDPR.
     DisclosureType:
       type: string
-      description: Only required if compliance_type = CCPA. Can be Data, Categories,
-        or Sources. Default is Data.
+      description: Only required if compliance_type = CCPA. Can be Data, Categories, or Sources. Default is Data.
   parameters:
     ProjectToken:
       name: token

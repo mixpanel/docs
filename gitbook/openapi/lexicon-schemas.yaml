@@ -1,8 +1,7 @@
 openapi: 3.0.2
 info:
   title: Lexicon Schemas API
-  description: Use schemas to sync your data dictionary with Mixpanel. Schemas can
-    be used to populate Lexicon and provide additional context for your data.
+  description: Use schemas to sync your data dictionary with Mixpanel. Schemas can be used to populate Lexicon and provide additional context for your data.
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -19,7 +18,7 @@ servers:
           - mixpanel
           - eu.mixpanel
           - in.mixpanel
-        description: >
+        description: |
           The server location to be used:
             * `mixpanel` - The default (US) servers used for most projects
             * `eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
@@ -37,19 +36,18 @@ tags:
     description: Make changes to an existing Schema
 paths:
   /projects/{projectId}/schemas:
-    parameters:
-      - in: path
-        name: projectId
-        schema:
-          type: integer
-        required: true
-        description: "Your project id (eg: 12345)"
     get:
-      operationId: list-all-schemas-for-project
       tags:
         - Retrieve Schemas
+      operationId: list-all-schemas-for-project
       summary: List Schemas
-      description: List all schemas in a project
+      parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
       responses:
         "200":
           description: Success
@@ -69,16 +67,58 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: List all schemas in a project
     post:
-      operationId: upload-schemas-for-project
       tags:
         - Create Schemas
+      operationId: upload-schemas-for-project
       summary: Create/Replace Multiple
-      description: >-
-        Upload schemas in bulk to the specified project. If a schema already
-        exists for a specified entity, it will be replaced by the one you
-        upload.
-
+      parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entries:
+                  type: array
+                  description: The list of schema entries to upload
+                  items:
+                    $ref: "#/components/schemas/SchemaEntry"
+                truncate:
+                  type: boolean
+                  description: If true, delete your entire data dictionary before inserting these entries. This is primarily useful if you want to upload a single file that represents your entire data dictionary.
+                  default: false
+              required:
+                - entries
+              additionalProperties: false
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BatchUploadSchemasResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
+      description: |-
+        Upload schemas in bulk to the specified project. If a schema already exists for a specified entity, it will be replaced by the one you upload.
 
         <Callout icon="🚧" theme="warn">
           Metadata merging behavior
@@ -86,19 +126,15 @@ paths:
           If the new schema is missing `metadata` properties that are currently set in the existing schema for that entity, those properties will be merged into the new schema. For example, if your current schema has `{"metadata": {"com.mixpanel": {"hidden": true}}}` and you upload a new schema without "hidden", we will merge `"hidden": true` to your uploaded schema's metadata. If you want to remove that property, set the value to `null`.
         </Callout>
 
-
         <Callout icon="📘" theme="info">
           Adding a schema for User Profiles
 
           To add a schema for your [User Profiles](https://help.mixpanel.com/hc/en-us/articles/115004501966-User-Profiles), specify the `entityType` as `profile` and the `name` as `$user`.
         </Callout>
 
-
         ### Example POST Body
 
-
         ```json
-
         {
           "entries": [
             {
@@ -199,53 +235,19 @@ paths:
           ],
           "truncate": false
         }
-
         ```
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                entries:
-                  type: array
-                  description: The list of schema entries to upload
-                  items:
-                    $ref: "#/components/schemas/SchemaEntry"
-                truncate:
-                  type: boolean
-                  description: If true, delete your entire data dictionary before inserting these
-                    entries. This is primarily useful if you want to upload a
-                    single file that represents your entire data dictionary.
-                  default: false
-              required:
-                - entries
-              additionalProperties: false
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/BatchUploadSchemasResponse"
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/ErrorResponse"
-        "403":
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: "#/ErrorResponse"
     delete:
-      operationId: delete-all-schemas-in-project
       tags:
         - Delete Schemas
+      operationId: delete-all-schemas-in-project
       summary: Delete all Schemas
-      description: Delete all schemas in a project
+      parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
       responses:
         "200":
           description: Success
@@ -265,22 +267,32 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Delete all schemas in a project
   /projects/{projectId}/schemas/{entityType}:
-    parameters:
-      - in: path
-        name: projectId
-        schema:
-          type: integer
-        required: true
-        description: "Your project id (eg: 12345)"
-      - $ref: "#/components/parameters/schemaEntityType"
-      - $ref: "#/components/parameters/schemaEntityNameQuery"
     get:
-      operationId: list-schemas-for-entity
       tags:
         - Retrieve Schemas
+      operationId: list-schemas-for-entity
       summary: List for Entity
-      description: Get all schemas for a specific entity type
+      parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
+        - in: path
+          name: entityType
+          schema:
+            $ref: "#/components/schemas/SchemaEntityType"
+          required: true
+          description: "The entity type (eg: event)"
+        - in: query
+          name: entity_name
+          schema:
+            type: string
+          required: false
+          description: "The entity name (eg: Added To Cart)"
       responses:
         "200":
           description: Success
@@ -300,12 +312,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Get all schemas for a specific entity type
     delete:
-      operationId: delete-schemas-for-entity
       tags:
         - Delete Schemas
+      operationId: delete-schemas-for-entity
       summary: Delete for Entity
-      description: Delete all schemas of a specific entity type
+      parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
+        - in: path
+          name: entityType
+          schema:
+            $ref: "#/components/schemas/SchemaEntityType"
+          required: true
+          description: "The entity type (eg: event)"
+        - in: query
+          name: entity_name
+          schema:
+            type: string
+          required: false
+          description: "The entity name (eg: Added To Cart)"
       responses:
         "200":
           description: Success
@@ -325,22 +356,32 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Delete all schemas of a specific entity type
   /projects/{projectId}/schemas/{entityType}/{name}:
-    parameters:
-      - in: path
-        name: projectId
-        schema:
-          type: integer
-        required: true
-        description: "Your project id (eg: 12345)"
-      - $ref: "#/components/parameters/schemaEntityType"
-      - $ref: "#/components/parameters/schemaEntityName"
     get:
-      operationId: list-schemas-by-entity-and-name
       tags:
         - Retrieve Schemas
+      operationId: list-schemas-by-entity-and-name
       summary: List for Entity and Name
-      description: Get the schema for a specific entity type and entity name
+      parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
+        - in: path
+          name: entityType
+          schema:
+            $ref: "#/components/schemas/SchemaEntityType"
+          required: true
+          description: "The entity type (eg: event)"
+        - in: path
+          name: name
+          schema:
+            type: string
+          required: true
+          description: "The entity name (eg: Added To Cart)"
       responses:
         "200":
           description: Success
@@ -360,12 +401,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Get the schema for a specific entity type and entity name
     delete:
-      operationId: delete-schema-by-entity-and-name
       tags:
         - Delete Schemas
+      operationId: delete-schema-by-entity-and-name
       summary: Delete for Entity and Name
-      description: Delete schema for an entity type and entity name
+      parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
+        - in: path
+          name: entityType
+          schema:
+            $ref: "#/components/schemas/SchemaEntityType"
+          required: true
+          description: "The entity type (eg: event)"
+        - in: path
+          name: name
+          schema:
+            type: string
+          required: true
+          description: "The entity name (eg: Added To Cart)"
       responses:
         "200":
           description: Success
@@ -385,15 +445,63 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Delete schema for an entity type and entity name
     post:
-      operationId: upload-schema-by-entity-and-name
-      summary: Create/Replace One
       tags:
         - Create Schemas
-      description: >-
-        Upload a schema for a single entity. If a schema already exists for a
-        specified entity, it will be replaced by the one you upload.
-
+      operationId: upload-schema-by-entity-and-name
+      summary: Create/Replace One
+      parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
+        - in: path
+          name: entityType
+          schema:
+            $ref: "#/components/schemas/SchemaEntityType"
+          required: true
+          description: "The entity type (eg: event)"
+        - in: path
+          name: name
+          schema:
+            type: string
+          required: true
+          description: "The entity name (eg: Added To Cart)"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Schema"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UploadSchemasResponse"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/ErrorResponse"
+      description: |-
+        Upload a schema for a single entity. If a schema already exists for a specified entity, it will be replaced by the one you upload.
 
         <Callout icon="🚧" theme="warn">
           Metadata merging behavior
@@ -401,19 +509,15 @@ paths:
           If the new schema is missing `metadata` properties that are currently set in the existing schema for that entity, those properties will be merged into the new schema. For example, if your current schema has `{"metadata": {"com.mixpanel": {"hidden": true}}}` and you upload a new schema without "hidden", we will merge `"hidden": true` to your uploaded schema's metadata. If you want to remove that property, set the value to `null`.
         </Callout>
 
-
         <Callout icon="📘" theme="info">
           Adding a schema for User Profiles
 
           To add a schema for your [User Profiles](https://help.mixpanel.com/hc/en-us/articles/115004501966-User-Profiles), specify the `entityType` as `profile` and the `name` as `$user`.
         </Callout>
 
-
         ### Example POST Body
 
-
         ```json
-
         {
             "$schema": "http://json-schema.org/draft-07/schema",
             "description": "Tracked when a user adds an item to their cart.",
@@ -505,38 +609,7 @@ paths:
                 }
             }
         }
-
         ```
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Schema"
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/UploadSchemasResponse"
-        "400":
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                $ref: "#/ErrorResponse"
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/ErrorResponse"
-        "403":
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: "#/ErrorResponse"
 components:
   securitySchemes:
     ServiceAccount:
@@ -566,8 +639,7 @@ components:
           description: The entity description
         properties:
           type: object
-          description: The list of properties that should be included on an instance of
-            this entity
+          description: The list of properties that should be included on an instance of this entity
           additionalProperties:
             type: object
             description: The name and definition for a property. E.g. "item_id"
@@ -595,16 +667,14 @@ components:
                     properties:
                       displayName:
                         type: string
-                        description: If set, this name will be used in the Mixpanel UI instead of the
-                          entity name
+                        description: If set, this name will be used in the Mixpanel UI instead of the entity name
                       hidden:
                         type: boolean
                         description: If true, this property will be hidden in the Mixpanel UI
                         default: false
                       dropped:
                         type: boolean
-                        description: "[Events only] If true, the property will be dropped at ingestion
-                          time."
+                        description: "[Events only] If true, the property will be dropped at ingestion time."
                         default: false
                     additionalProperties: false
             additionalProperties: false
@@ -620,12 +690,10 @@ components:
                   description: The source of this schema. Used by partners to identify themselves
                 displayName:
                   type: string
-                  description: If set, this name will be used in the Mixpanel UI instead of the
-                    entity name
+                  description: If set, this name will be used in the Mixpanel UI instead of the entity name
                 tags:
                   type: array
-                  description: A list of tags to associate to this entity that can be used in the
-                    Mixpanel UI for filtering
+                  description: A list of tags to associate to this entity that can be used in the Mixpanel UI for filtering
                   items:
                     type: string
                 hidden:
@@ -634,8 +702,7 @@ components:
                   default: false
                 dropped:
                   type: boolean
-                  description: "[Events only] If true, the event will be dropped at ingestion
-                    time."
+                  description: "[Events only] If true, the event will be dropped at ingestion time."
                   default: false
                 contacts:
                   type: array
@@ -686,8 +753,7 @@ components:
               description: The number of entries that were inserted
             deleted:
               type: integer
-              description: "The number of entries that were deleted (on applicable if
-                `truncate: true`)"
+              description: "The number of entries that were deleted (on applicable if `truncate: true`)"
         status:
           type: string
           enum:

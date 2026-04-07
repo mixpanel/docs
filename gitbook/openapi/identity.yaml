@@ -19,7 +19,7 @@ servers:
           - api
           - api-eu
           - api-in
-        description: >
+        description: |
           The server location to be used:
             * `api` - The default (US) servers used for most projects
             * `api-eu` - EU servers if you are enrolled in EU Data Residency
@@ -32,8 +32,41 @@ paths:
     post:
       tags:
         - Identities
-      summary: Create Identity
       operationId: create-identity
+      summary: Create Identity
+      security:
+        - {}
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              allOf:
+                - type: object
+                  required:
+                    - data
+                  properties:
+                    data:
+                      type: string
+                      format: blob
+                      description: A JSON object with the required Event Object fields and any additional event properties.
+                      default: |
+                        {
+                              "event": "$identify",
+                              "properties": {
+                                  "$identified_id": "ORIGINAL_ID",
+                                  "$anon_id": "NEW_ID",
+                                  "token": "YOUR_PROJECT_TOKEN"
+                              }
+                        }
+                - $ref: "#/components/schemas/ImportRequestParameters"
+      responses:
+        "200":
+          $ref: "#/components/responses/Received"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
       description: |-
         <Callout icon="📘" theme="info">
           The `$identify` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management#identity-merge-apis) for more information.
@@ -72,6 +105,12 @@ paths:
         | **properties.$identified_id** | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | A distinct_id to merge with the $anon_id.                                                                                                                                                       |
         | **properties.$anon_id**       | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | A distinct_id to merge with the $identified_id. The $anon_id must be [UUID v4](https://en.wikipedia.org/wiki/Universally_unique_identifier) format and not already merged to an $identified_id. |
         | **properties.token**          | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | The project token.                                                                                                                                                                              |
+  /track#identity-create-alias:
+    post:
+      tags:
+        - Identities
+      operationId: identity-create-alias
+      summary: Create Alias
       security:
         - {}
       requestBody:
@@ -87,16 +126,15 @@ paths:
                     data:
                       type: string
                       format: blob
-                      description: A JSON object with the required Event Object fields and any
-                        additional event properties.
+                      description: A JSON object with the required Event Object fields and any additional event properties.
                       default: |
                         {
-                              "event": "$identify",
-                              "properties": {
-                                  "$identified_id": "ORIGINAL_ID",
-                                  "$anon_id": "NEW_ID",
-                                  "token": "YOUR_PROJECT_TOKEN"
-                              }
+                            "event": "$create_alias",
+                            "properties": {
+                                "distinct_id": "other_distinct_id",
+                                "alias": "your_id",
+                                "token": "YOUR_PROJECT_TOKEN"
+                            }
                         }
                 - $ref: "#/components/schemas/ImportRequestParameters"
       responses:
@@ -106,12 +144,6 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
-  /track#identity-create-alias:
-    post:
-      tags:
-        - Identities
-      summary: Create Alias
-      operationId: identity-create-alias
       description: |-
         <Callout icon="📘" theme="info">
           The `$create_alias` event payload is only useful for projects using the Original ID Merge system and the Legacy ID Management System; it has no functionality in the Simplified ID Merge system. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management#identity-merge-apis) for more information.
@@ -190,65 +222,12 @@ paths:
             </tr>
           </tbody>
         </table>
-      security:
-        - {}
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              allOf:
-                - type: object
-                  required:
-                    - data
-                  properties:
-                    data:
-                      type: string
-                      format: blob
-                      description: A JSON object with the required Event Object fields and any
-                        additional event properties.
-                      default: |
-                        {
-                            "event": "$create_alias",
-                            "properties": {
-                                "distinct_id": "other_distinct_id",
-                                "alias": "your_id",
-                                "token": "YOUR_PROJECT_TOKEN"
-                            }
-                        }
-                - $ref: "#/components/schemas/ImportRequestParameters"
-      responses:
-        "200":
-          $ref: "#/components/responses/Received"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
   /import:
     post:
       tags:
         - Identities
-      summary: Merge Identities
       operationId: identity-merge
-      description: >-
-        <Callout icon="📘" theme="info">
-          The `$merge` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management#identity-merge-apis) for more information.
-        </Callout>
-
-
-        <Callout icon="❗️" theme="error">
-          Merging identities is irreversible
-
-          `$merge` is a very powerful tool, so we will only accept `$merge` events that are sent via `https://api.mixpanel.com/import`, which is protected by the project api secret. You **cannot** unmerge `distinct_id`.
-        </Callout>
-
-
-        **Merge Criteria:**
-
-
-        <Image alt="960" border={false}
-        src="https://files.readme.io/be66940-merge_.png" title="Identity
-        Management - Merge" />
+      summary: Merge Identities
       security:
         - ServiceAccount: []
         - ProjectSecret: []
@@ -263,15 +242,13 @@ paths:
             enum:
               - "0"
               - "1"
-          description: When set to 1 (recommended), Mixpanel will validate the batch and
-            return errors per event that failed.
+          description: When set to 1 (recommended), Mixpanel will validate the batch and return errors per event that failed.
         - in: query
           name: project_id
           required: false
           schema:
             type: string
-          description: The Mixpanel project_id, used to authenticate service account
-            credentials (do not provide if using secret auth).
+          description: The Mixpanel project_id, used to authenticate service account credentials (do not provide if using secret auth).
       requestBody:
         required: true
         content:
@@ -287,9 +264,7 @@ paths:
                   event:
                     type: string
                     title: event
-                    description: This is the name of the event. If you're loading data from a data
-                      warehouse, we recommend using the name of the table as the
-                      name of the event.
+                    description: This is the name of the event. If you're loading data from a data warehouse, we recommend using the name of the table as the name of the event.
                     default: $merge
                   properties:
                     type: object
@@ -312,6 +287,20 @@ paths:
           $ref: "#/components/responses/StrictInvalid"
         "401":
           $ref: "#/components/responses/StrictUnauthorized"
+      description: |-
+        <Callout icon="📘" theme="info">
+          The `$merge` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](https://docs.mixpanel.com/docs/tracking-methods/id-management#identity-merge-apis) for more information.
+        </Callout>
+
+        <Callout icon="❗️" theme="error">
+          Merging identities is irreversible
+
+          `$merge` is a very powerful tool, so we will only accept `$merge` events that are sent via `https://api.mixpanel.com/import`, which is protected by the project api secret. You **cannot** unmerge `distinct_id`.
+        </Callout>
+
+        **Merge Criteria:**
+
+        <Image alt="960" border={false} src="https://files.readme.io/be66940-merge_.png" title="Identity Management - Merge" />
 components:
   securitySchemes:
     ServiceAccount:
@@ -336,9 +325,7 @@ components:
                 - type: integer
                   minimum: 0
                   maximum: 1
-                - description: If present and equal to 1, Mixpanel will validate the provided
-                    records and return a JSON object with per-record error
-                    messages for records that fail validation.
+                - description: If present and equal to 1, Mixpanel will validate the provided records and return a JSON object with per-record error messages for records that fail validation.
     ErrorResponse:
       type: object
       properties:
@@ -402,8 +389,7 @@ components:
                 - index: 0
                   insert_id: 13c0b661-f48b-51cd-ba54-97c5999169c0
                   field: properties.time
-                  message: "'properties.time' is invalid: must be specified as seconds since
-                    epoch"
+                  message: "'properties.time' is invalid: must be specified as seconds since epoch"
     StrictUnauthorized:
       description: A 401 response indicates invalid service account credentials.
       content:
@@ -434,11 +420,9 @@ components:
               value: 1
             Invalid Data:
               value: 0
-      description: >
+      description: |
         
-        * `1` - All data objects provided are valid. This does not signify a
-        valid project token or secret.
-
+        * `1` - All data objects provided are valid. This does not signify a valid project token or secret.
         * `0` - One or more data objects in the body are invalid.
     Unauthorized:
       description: Unauthorized

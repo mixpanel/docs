@@ -4,6 +4,18 @@ import YAML from 'yaml';
 
 const ROOT = path.resolve(process.cwd());
 
+/** OpenAPI path item operation keys only (exclude parameters, servers, $ref, etc.). */
+const OPENAPI_OPERATION_METHODS = new Set([
+  'get',
+  'put',
+  'post',
+  'delete',
+  'options',
+  'head',
+  'patch',
+  'trace',
+]);
+
 function toPosix(p) {
   return p.split(path.sep).join('/');
 }
@@ -345,6 +357,123 @@ function deepClone(obj) {
   return obj == null ? obj : JSON.parse(JSON.stringify(obj));
 }
 
+function resolveInternalRef(root, ref) {
+  const r = String(ref || '').trim();
+  if (!r.startsWith('#/')) return null;
+  return jsonPointerGet(root, r);
+}
+
+/** Stable key for de-duplicating path vs operation parameters. */
+function parameterIdentity(p) {
+  if (!p || typeof p !== 'object') return '';
+  if (typeof p.$ref === 'string') return p.$ref;
+  const inn = p.in ?? '';
+  const name = p.name ?? '';
+  return `${inn}:${name}`;
+}
+
+function mergeParamsWithOverride(pathParams, opParams) {
+  const map = new Map();
+  for (const p of pathParams || []) map.set(parameterIdentity(p), deepClone(p));
+  for (const p of opParams || []) map.set(parameterIdentity(p), deepClone(p));
+  return [...map.values()];
+}
+
+function dereferenceParameterArray(root, arr) {
+  if (!Array.isArray(arr)) return;
+  for (let i = 0; i < arr.length; i++) {
+    const item = arr[i];
+    if (!item || typeof item !== 'object') continue;
+    const ref = item.$ref;
+    if (typeof ref !== 'string' || !ref.startsWith('#/')) continue;
+    const resolved = resolveInternalRef(root, ref);
+    if (resolved != null && typeof resolved === 'object') arr[i] = deepClone(resolved);
+  }
+}
+
+/**
+ * Inline #/components/parameters/... at each use site. Some OpenAPI UIs (including GitBook)
+ * do not resolve component parameter refs for the request runner.
+ */
+function dereferenceInternalParameterRefs(root) {
+  for (const pathItem of Object.values(root.paths || {})) {
+    if (!pathItem || typeof pathItem !== 'object') continue;
+    dereferenceParameterArray(root, pathItem.parameters);
+    for (const m of OPENAPI_OPERATION_METHODS) {
+      const op = pathItem[m];
+      if (op?.parameters) dereferenceParameterArray(root, op.parameters);
+    }
+  }
+}
+
+/**
+ * GitBook's runner does not always merge path-level parameters into operations; merge explicitly.
+ */
+function mergePathParametersIntoOperations(root) {
+  for (const pathItem of Object.values(root.paths || {})) {
+    if (!pathItem || typeof pathItem !== 'object') continue;
+    const pathParams = pathItem.parameters;
+    if (!Array.isArray(pathParams) || !pathParams.length) continue;
+    for (const m of OPENAPI_OPERATION_METHODS) {
+      const op = pathItem[m];
+      if (!op || typeof op !== 'object') continue;
+      op.parameters = mergeParamsWithOverride(pathParams, op.parameters || []);
+    }
+    pathItem.parameters = undefined;
+  }
+}
+
+/**
+ * Put structural fields before long markdown descriptions so tools that scan keys in order
+ * still see parameters, request bodies, and security.
+ */
+function reorderOperationForGitbook(op) {
+  if (!op || typeof op !== 'object') return op;
+  const priority = [
+    'tags',
+    'operationId',
+    'summary',
+    'deprecated',
+    'security',
+    'parameters',
+    'requestBody',
+    'responses',
+    'callbacks',
+    'servers',
+    'description',
+  ];
+  const out = {};
+  for (const k of priority) {
+    if (Object.prototype.hasOwnProperty.call(op, k)) out[k] = op[k];
+  }
+  for (const k of Object.keys(op)) {
+    if (!Object.prototype.hasOwnProperty.call(out, k)) out[k] = op[k];
+  }
+  return out;
+}
+
+function reorderPathOperationsForGitbook(root) {
+  for (const pathItem of Object.values(root.paths || {})) {
+    if (!pathItem || typeof pathItem !== 'object') continue;
+    for (const m of OPENAPI_OPERATION_METHODS) {
+      if (pathItem[m]) pathItem[m] = reorderOperationForGitbook(pathItem[m]);
+    }
+  }
+}
+
+/**
+ * Ensure servers exist for the request runner; keep variables from source specs when present.
+ */
+function ensureServersArray(root) {
+  if (Array.isArray(root.servers) && root.servers.length) return;
+  root.servers = [
+    {
+      url: 'https://mixpanel.com',
+      description: 'Mixpanel API (configure a more specific base URL in the source OpenAPI if needed).',
+    },
+  ];
+}
+
 function jsonPointerGet(root, pointer) {
   // pointer like "/A/B/0" (leading slash optional in our usage)
   const p = String(pointer || '');
@@ -456,10 +585,14 @@ async function augmentGitbookOpenapiFromReference() {
       fallbackDirAbs: path.join(ROOT, 'openapi', 'src'),
     });
 
+    dereferenceInternalParameterRefs(inlined);
+    mergePathParametersIntoOperations(inlined);
+
     const paths = inlined.paths || {};
     for (const [p, methods] of Object.entries(paths)) {
       if (!methods || typeof methods !== 'object') continue;
       for (const [method, op] of Object.entries(methods)) {
+        if (!OPENAPI_OPERATION_METHODS.has(String(method).toLowerCase())) continue;
         if (!op || typeof op !== 'object') continue;
         const operationId = op.operationId;
         if (!operationId) continue;
@@ -482,7 +615,10 @@ async function augmentGitbookOpenapiFromReference() {
       }
     }
 
-    await fs.writeFile(abs, YAML.stringify(inlined), 'utf8');
+    ensureServersArray(inlined);
+    reorderPathOperationsForGitbook(inlined);
+
+    await fs.writeFile(abs, YAML.stringify(inlined, { lineWidth: 0 }), 'utf8');
   }
 }
 

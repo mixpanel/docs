@@ -1,8 +1,7 @@
 openapi: 3.0.2
 info:
   title: Annotations API
-  description: Use annotations to label specific points in time in your charts
-    with a description.
+  description: Use annotations to label specific points in time in your charts with a description.
   contact:
     url: https://mixpanel.com/get-support
   license:
@@ -19,7 +18,7 @@ servers:
           - mixpanel
           - eu.mixpanel
           - in.mixpanel
-        description: >
+        description: |
           The server location to be used:
             * `mixpanel` - The default (US) servers used for most projects
             * `eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
@@ -37,22 +36,23 @@ tags:
     description: Change an existing annotations
 paths:
   /projects/{projectId}/annotations:
-    parameters:
-      - in: path
-        name: projectId
-        schema:
-          type: integer
-        required: true
-        description: "Your project id (eg: 12345)"
     get:
+      tags:
+        - Retrieve Annotations
       operationId: list-all-annotations-for-project
+      summary: List Annotations
       parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
         - in: query
           name: from_date
           schema:
             type: string
-          description: The date in yyyy-mm-dd format to begin querying from. This date is
-            inclusive.
+          description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive.
           required: true
         - in: query
           name: to_date
@@ -60,10 +60,6 @@ paths:
             type: string
           description: The date in yyyy-mm-dd format to query to. This date is inclusive.
           required: true
-      tags:
-        - Retrieve Annotations
-      summary: List Annotations
-      description: List all annotations in a project.
       responses:
         "200":
           description: Success
@@ -83,8 +79,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: List all annotations in a project.
     post:
+      tags:
+        - Create Annotations
       operationId: create-annotation
+      summary: Create Annotations
+      parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
       requestBody:
         required: true
         content:
@@ -97,10 +104,6 @@ paths:
                   $ref: "#/components/schemas/InputDescription"
                 tags:
                   $ref: "#/components/schemas/TagIds"
-      tags:
-        - Create Annotations
-      summary: Create Annotations
-      description: Create an Annotation. Requires a role of at least Analyst.
       responses:
         "201":
           description: Success
@@ -120,26 +123,26 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Create an Annotation. Requires a role of at least Analyst.
   /projects/{projectId}/annotations/{annotationId}:
-    parameters:
-      - in: path
-        name: projectId
-        schema:
-          type: integer
-        required: true
-        description: "Your project id (eg: 12345)"
-      - name: annotationId
-        in: path
-        description: The id of the annotation
-        required: true
-        schema:
-          type: number
     get:
-      operationId: get-annotation
       tags:
         - Retrieve Annotations
+      operationId: get-annotation
       summary: Get Annotation
-      description: Get an Annotation
+      parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
+        - name: annotationId
+          in: path
+          description: The id of the annotation
+          required: true
+          schema:
+            type: number
       responses:
         "200":
           description: Success
@@ -159,12 +162,25 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Get an Annotation
     patch:
-      operationId: patch-annotation
       tags:
         - Patch Annotation
+      operationId: patch-annotation
       summary: Patch Annotation
-      description: Patch an Annotation. Requires a role of at least Analyst.
+      parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
+        - name: annotationId
+          in: path
+          description: The id of the annotation
+          required: true
+          schema:
+            type: number
       requestBody:
         required: true
         content:
@@ -194,12 +210,25 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Patch an Annotation. Requires a role of at least Analyst.
     delete:
-      operationId: delete-annotation
       tags:
         - Delete Annotation
+      operationId: delete-annotation
       summary: Delete Annotation
-      description: Delete an Annotation. Requires a role of at least Analyst.
+      parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
+        - name: annotationId
+          in: path
+          description: The id of the annotation
+          required: true
+          schema:
+            type: number
       responses:
         "200":
           description: Success
@@ -219,21 +248,20 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Delete an Annotation. Requires a role of at least Analyst.
   /projects/{projectId}/annotations/tags:
-    parameters:
-      - in: path
-        name: projectId
-        schema:
-          type: integer
-        required: true
-        description: "Your project id (eg: 12345)"
     get:
-      operationId: get-annotation-tags
       tags:
         - Get Annotation tags
-      description: Get all tags that have been added to at least one annotation.
-        Requires a role of at least Analyst
+      operationId: get-annotation-tags
       summary: Get Annotation Tags
+      parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
       responses:
         "200":
           description: Success
@@ -253,13 +281,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Get all tags that have been added to at least one annotation. Requires a role of at least Analyst
     post:
-      operationId: create-annotation-tag
       tags:
         - Create Annotation tag
-      description: Creates a new tag using the provided name. Requires a role of at
-        least Analyst
+      operationId: create-annotation-tag
       summary: Create Annotation Tag
+      parameters:
+        - in: path
+          name: projectId
+          schema:
+            type: integer
+          required: true
+          description: "Your project id (eg: 12345)"
       requestBody:
         required: true
         content:
@@ -287,6 +321,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: Creates a new tag using the provided name. Requires a role of at least Analyst
 components:
   securitySchemes:
     ServiceAccount:

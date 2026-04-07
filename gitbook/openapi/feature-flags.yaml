@@ -2,8 +2,7 @@ openapi: 3.0.2
 x-readme-deploy-id: feature-flags-api
 info:
   title: Feature Flags API
-  description: Use the Feature Flags API to evaluate feature flags for users and
-    retrieve feature flag definitions.
+  description: Use the Feature Flags API to evaluate feature flags for users and retrieve feature flag definitions.
   contact:
     url: https://mixpanel.com/get-support
   license:
@@ -20,7 +19,7 @@ servers:
           - api.mixpanel
           - api-eu.mixpanel
           - api-in.mixpanel
-        description: >
+        description: |
           The server location to be used:
             * `api.mixpanel` - The default (US) servers used for most projects
             * `api-eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
@@ -33,28 +32,26 @@ tags:
 paths:
   /flags:
     get:
+      tags:
+        - Get Variant Assignments
       operationId: get-variant-assignments
+      summary: Evaluate Feature Flags (GET)
       security:
         - ProjectSecret: []
       parameters:
-        - $ref: "#/components/parameters/ProjectToken"
+        - name: token
+          in: query
+          schema:
+            type: string
+          description: Your project token
+          required: true
         - name: context
           in: query
-          description: URL-encoded JSON object containing evaluation context with
-            distinct_id (required) and optional device_id and custom_properties
-            object
+          description: URL-encoded JSON object containing evaluation context with distinct_id (required) and optional device_id and custom_properties object
           required: true
           schema:
             type: string
-          example: "%7B++%22distinct_id%22%3A%22user123%22%2C++%22device_id%22%3A%22devic\
-            e456%22%2C++%22custom_properties%22%3A+%7B++++%22some_key%22%3A+%22\
-            some_value%22%2C++++%22another_key%22%3A+32++%7D%7D%22"
-      tags:
-        - Get Variant Assignments
-      summary: Evaluate Feature Flags (GET)
-      description: This endpoint returns a map from all feature flags that are
-        provisioned within a Mixpanel project to the variant that the current
-        user context is assigned to.
+          example: "%7B++%22distinct_id%22%3A%22user123%22%2C++%22device_id%22%3A%22device456%22%2C++%22custom_properties%22%3A+%7B++++%22some_key%22%3A+%22some_value%22%2C++++%22another_key%22%3A+32++%7D%7D%22"
       responses:
         "200":
           description: Success
@@ -80,22 +77,22 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: This endpoint returns a map from all feature flags that are provisioned within a Mixpanel project to the variant that the current user context is assigned to.
   /flags/definitions:
     get:
+      tags:
+        - Get Flag Definitions
       operationId: get-flag-definitions
+      summary: Get Feature Flag Definitions
       security:
         - ProjectSecret: []
       parameters:
-        - $ref: "#/components/parameters/ProjectToken"
-      tags:
-        - Get Flag Definitions
-      summary: Get Feature Flag Definitions
-      description: This endpoint returns a set of the flag definitions that are
-        currently provisioned within a Mixpanel project and are enabled. This is
-        used in local evaluation by Mixpanel service side SDK's such as the
-        Python SDK. Local evaluation polls for flag definitions according to
-        provided configuration and assignment to a variant is implemented
-        directly by the SDK without making a network request.
+        - name: token
+          in: query
+          schema:
+            type: string
+          description: Your project token
+          required: true
       responses:
         "200":
           description: Success
@@ -115,6 +112,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: This endpoint returns a set of the flag definitions that are currently provisioned within a Mixpanel project and are enabled. This is used in local evaluation by Mixpanel service side SDK's such as the Python SDK. Local evaluation polls for flag definitions according to provided configuration and assignment to a variant is implemented directly by the SDK without making a network request.
 components:
   securitySchemes:
     ServiceAccount:
@@ -149,8 +147,7 @@ components:
           $ref: "#/components/schemas/EvaluationContext"
     EvaluationContext:
       title: EvaluationContext
-      description: Context object containing user information and properties for flag
-        evaluation
+      description: Context object containing user information and properties for flag evaluation
       type: object
       required:
         - distinct_id
@@ -165,8 +162,7 @@ components:
           example: device456
         custom_properties:
           type: object
-          description: Optional runtime parameters for evaluation by
-            runtime_evaluation_rule in rollout definitions
+          description: Optional runtime parameters for evaluation by runtime_evaluation_rule in rollout definitions
           additionalProperties: true
           example:
             country: US
@@ -281,8 +277,7 @@ components:
           $ref: "#/components/schemas/RuleSet"
         context:
           type: string
-          description: The context variable used for flag evaluation (e.g., distinct_id,
-            device_id)
+          description: The context variable used for flag evaluation (e.g., distinct_id, device_id)
           example: device_id
         experiment_id:
           type: string
@@ -294,8 +289,7 @@ components:
           example: true
     RuleSet:
       title: RuleSet
-      description: Complete ruleset for a feature flag including variants and rollout
-        configuration
+      description: Complete ruleset for a feature flag including variants and rollout configuration
       type: object
       required:
         - variants
@@ -358,8 +352,7 @@ components:
         rollout_percentage:
           type: number
           format: double
-          description: The percentage of the cohort that should receive this flag (0.0 to
-            1.0)
+          description: The percentage of the cohort that should receive this flag (0.0 to 1.0)
           example: 0.8
         cohort_hash:
           type: string
@@ -368,16 +361,14 @@ components:
         runtime_evaluation_rule:
           type: object
           additionalProperties: true
-          description: JsonLogic rule that's evaluated at request time based on runtime
-            parameters in the request
+          description: JsonLogic rule that's evaluated at request time based on runtime parameters in the request
           example:
             platform: web
         runtime_evaluation_definition:
           deprecated: true
           type: object
           additionalProperties: true
-          description: Key-value pairs that are evaluated at request time for cohort
-            matching, replaced by the more powerful runtime_evaluation_rule
+          description: Key-value pairs that are evaluated at request time for cohort matching, replaced by the more powerful runtime_evaluation_rule
           example:
             platform: web
         variant_splits:
@@ -385,8 +376,7 @@ components:
           additionalProperties:
             type: number
             format: double
-          description: Dictionary mapping variant keys to their allocation splits within
-            this rollout
+          description: Dictionary mapping variant keys to their allocation splits within this rollout
           example:
             control: 0.5
             treatment: 0.5
@@ -396,8 +386,7 @@ components:
     VariantOverride:
       deprecated: true
       title: VariantOverride
-      description: Override to force a specific variant for a rollout rule (replaced
-        by variant_splits)
+      description: Override to force a specific variant for a rollout rule (replaced by variant_splits)
       type: object
       properties:
         key:

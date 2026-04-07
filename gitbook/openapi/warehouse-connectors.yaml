@@ -1,14 +1,10 @@
 openapi: 3.0.2
 info:
   title: Warehouse Connectors API
-  description: >
-    Connect an external warehouse to import events, users, groups, and lookup
-    tables.
+  description: |
+    Connect an external warehouse to import events, users, groups, and lookup tables.
 
-
-    This API allows you to manage warehouse imports from external data
-    warehouses including
-
+    This API allows you to manage warehouse imports from external data warehouses including
     BigQuery, Snowflake, Redshift, Databricks, and PostgreSQL.
   license:
     name: MIT
@@ -26,7 +22,7 @@ servers:
           - mixpanel
           - eu.mixpanel
           - in.mixpanel
-        description: >
+        description: |
           The server location to be used:
             * `mixpanel` - The default (US) servers used for most projects
             * `eu.mixpanel` - EU servers if you are enrolled in EU Data Residency
@@ -39,6 +35,10 @@ tags:
 paths:
   /projects/{projectId}/warehouse-sources/imports:
     get:
+      tags:
+        - Warehouse Imports
+      operationId: list-warehouse-imports
+      summary: List all warehouse imports
       parameters:
         - in: path
           name: projectId
@@ -46,18 +46,6 @@ paths:
             type: integer
           required: true
           description: "Your project id (eg: 12345)"
-      operationId: list-warehouse-imports
-      tags:
-        - Warehouse Imports
-      summary: List all warehouse imports
-      description: >
-        Returns a list of all warehouse imports configured for the project.
-
-
-        Each import includes metadata about the import configuration, sync
-        status,
-
-        and job scheduling information.
       responses:
         "200":
           description: Success
@@ -88,8 +76,17 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: |
+        Returns a list of all warehouse imports configured for the project.
+
+        Each import includes metadata about the import configuration, sync status,
+        and job scheduling information.
   /projects/{projectId}/warehouse-sources/imports/{importId}:
     get:
+      tags:
+        - Warehouse Imports
+      operationId: get-warehouse-import
+      summary: Get a specific warehouse import
       parameters:
         - in: path
           name: projectId
@@ -103,15 +100,6 @@ paths:
             type: integer
           required: true
           description: "Your warehouse import id (eg: 12345)"
-      operationId: get-warehouse-import
-      tags:
-        - Warehouse Imports
-      summary: Get a specific warehouse import
-      description: |
-        Retrieves detailed information about a specific warehouse import by ID.
-
-        Returns the full configuration of the import including table parameters,
-        column mappings, and sync settings.
       responses:
         "200":
           description: Success
@@ -146,7 +134,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: |
+        Retrieves detailed information about a specific warehouse import by ID.
+
+        Returns the full configuration of the import including table parameters,
+        column mappings, and sync settings.
     patch:
+      tags:
+        - Warehouse Imports
+      operationId: update-warehouse-import
+      summary: Update a warehouse import
       parameters:
         - in: path
           name: projectId
@@ -160,53 +157,6 @@ paths:
             type: integer
           required: true
           description: "Your warehouse import id (eg: 12345)"
-      operationId: update-warehouse-import
-      tags:
-        - Warehouse Imports
-      summary: Update a warehouse import
-      description: >
-        Update an existing warehouse import's settings.
-
-
-        ## Patchable Fields
-
-
-        The following fields can be modified:
-
-
-        - **paused** (boolean, required): Pause or resume the import sync
-
-        - **run_every** (integer): Sync frequency in nanoseconds. Must be one of
-        the following values:
-          - `0`: API-triggered only (no scheduled sync)
-          - `3600000000000`: Hourly
-          - `86400000000000`: Daily
-          - `604800000000000`: Weekly
-        - **databricks_params** (object): Databricks-specific cluster
-        configuration (only for Databricks sources). Note: this is a full
-        replacement, not a partial merge. Always provide the complete desired
-        cluster configuration.
-
-
-        ## Pause/Resume Behavior
-
-
-        - When `paused: true`, the import job will be stopped and no new syncs
-        will be triggered
-
-        - When `paused: false`, the import job will be resumed with the
-        specified frequency
-
-        - When resuming, you can optionally update `run_every`
-
-
-        ## Databricks Configuration
-
-
-        For Databricks Jobs compute imports, you can update cluster
-        configurations:
-
-        - `export_cluster_config`: Configuration for the data export job cluster
       requestBody:
         required: true
         content:
@@ -253,7 +203,36 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: |
+        Update an existing warehouse import's settings.
+
+        ## Patchable Fields
+
+        The following fields can be modified:
+
+        - **paused** (boolean, required): Pause or resume the import sync
+        - **run_every** (integer): Sync frequency in nanoseconds. Must be one of the following values:
+          - `0`: API-triggered only (no scheduled sync)
+          - `3600000000000`: Hourly
+          - `86400000000000`: Daily
+          - `604800000000000`: Weekly
+        - **databricks_params** (object): Databricks-specific cluster configuration (only for Databricks sources). Note: this is a full replacement, not a partial merge. Always provide the complete desired cluster configuration.
+
+        ## Pause/Resume Behavior
+
+        - When `paused: true`, the import job will be stopped and no new syncs will be triggered
+        - When `paused: false`, the import job will be resumed with the specified frequency
+        - When resuming, you can optionally update `run_every`
+
+        ## Databricks Configuration
+
+        For Databricks Jobs compute imports, you can update cluster configurations:
+        - `export_cluster_config`: Configuration for the data export job cluster
     delete:
+      tags:
+        - Warehouse Imports
+      operationId: delete-warehouse-import
+      summary: Delete a warehouse import
       parameters:
         - in: path
           name: projectId
@@ -267,15 +246,6 @@ paths:
             type: integer
           required: true
           description: "Your warehouse import id (eg: 12345)"
-      operationId: delete-warehouse-import
-      tags:
-        - Warehouse Imports
-      summary: Delete a warehouse import
-      description: |
-        Deletes a warehouse import and optionally deletes the imported data.
-
-        When `delete_data: true` is specified, an event deletion request will be
-        created to remove the imported events from Mixpanel.
       requestBody:
         required: false
         content:
@@ -319,8 +289,17 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: |
+        Deletes a warehouse import and optionally deletes the imported data.
+
+        When `delete_data: true` is specified, an event deletion request will be
+        created to remove the imported events from Mixpanel.
   /projects/{projectId}/warehouse-sources/imports/event-stream:
     post:
+      tags:
+        - Warehouse Imports
+      operationId: create-event-stream-import
+      summary: Create an event stream import
       parameters:
         - in: path
           name: projectId
@@ -328,58 +307,6 @@ paths:
             type: integer
           required: true
           description: "Your project id (eg: 12345)"
-      operationId: create-event-stream-import
-      tags:
-        - Warehouse Imports
-      summary: Create an event stream import
-      description: >
-        Create a new warehouse import for event data.
-
-
-        Event stream imports sync event data from your warehouse table to
-        Mixpanel.
-
-        Each row in your table becomes an event in Mixpanel.
-
-
-        ## Sync Modes
-
-
-        - **time_based**: Incrementally syncs new rows based on an insert time
-        column
-
-        - **mirror_mode**: Detects changes in the source table and mirrors them
-        to Mixpanel
-
-        - **full_sync**: Re-syncs all data on each run
-
-        - **one_time**: Syncs data once and does not repeat
-
-
-        ## Required Column Mappings
-
-
-        You must specify either:
-
-        - `event_name`: A static event name for all rows
-
-        - `event_column_name`: The column containing the event name
-
-
-        For B2B projects, `company_column_name` is also required.
-
-
-        ## Scheduling
-
-
-        - **run_every** (integer): Sync frequency in nanoseconds. Allowed
-        values:
-          - Trigger via API: `0`
-          - Hourly: `3600000000000` (60 * 60 * 10^9)
-          - Daily: `86400000000000` (24 * 60 * 60 * 10^9)
-          - Weekly: `604800000000000` (7 * 24 * 60 * 60 * 10^9)
-        - **databricks_params** (object): Databricks-specific cluster
-        configuration (only for Databricks sources)
       requestBody:
         required: true
         content:
@@ -420,8 +347,41 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: |
+        Create a new warehouse import for event data.
+
+        Event stream imports sync event data from your warehouse table to Mixpanel.
+        Each row in your table becomes an event in Mixpanel.
+
+        ## Sync Modes
+
+        - **time_based**: Incrementally syncs new rows based on an insert time column
+        - **mirror_mode**: Detects changes in the source table and mirrors them to Mixpanel
+        - **full_sync**: Re-syncs all data on each run
+        - **one_time**: Syncs data once and does not repeat
+
+        ## Required Column Mappings
+
+        You must specify either:
+        - `event_name`: A static event name for all rows
+        - `event_column_name`: The column containing the event name
+
+        For B2B projects, `company_column_name` is also required.
+
+        ## Scheduling
+
+        - **run_every** (integer): Sync frequency in nanoseconds. Allowed values:
+          - Trigger via API: `0`
+          - Hourly: `3600000000000` (60 * 60 * 10^9)
+          - Daily: `86400000000000` (24 * 60 * 60 * 10^9)
+          - Weekly: `604800000000000` (7 * 24 * 60 * 60 * 10^9)
+        - **databricks_params** (object): Databricks-specific cluster configuration (only for Databricks sources)
   /projects/{projectId}/warehouse-sources/imports/people:
     post:
+      tags:
+        - Warehouse Imports
+      operationId: create-people-import
+      summary: Create a people (user profiles) import
       parameters:
         - in: path
           name: projectId
@@ -429,18 +389,6 @@ paths:
             type: integer
           required: true
           description: "Your project id (eg: 12345)"
-      operationId: create-people-import
-      tags:
-        - Warehouse Imports
-      summary: Create a people (user profiles) import
-      description: >
-        Create a new warehouse import for user profile data.
-
-
-        People imports sync user properties from your warehouse to Mixpanel user
-        profiles.
-
-        Each row represents a user, identified by the `user_column_name`.
       requestBody:
         required: true
         content:
@@ -481,8 +429,17 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: |
+        Create a new warehouse import for user profile data.
+
+        People imports sync user properties from your warehouse to Mixpanel user profiles.
+        Each row represents a user, identified by the `user_column_name`.
   /projects/{projectId}/warehouse-sources/imports/groups:
     post:
+      tags:
+        - Warehouse Imports
+      operationId: create-groups-import
+      summary: Create a groups import
       parameters:
         - in: path
           name: projectId
@@ -490,16 +447,6 @@ paths:
             type: integer
           required: true
           description: "Your project id (eg: 12345)"
-      operationId: create-groups-import
-      tags:
-        - Warehouse Imports
-      summary: Create a groups import
-      description: >
-        Create a new warehouse import for group profile data.
-
-
-        Groups imports sync group properties from your warehouse to Mixpanel
-        group profiles.
       requestBody:
         required: true
         content:
@@ -540,8 +487,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: |
+        Create a new warehouse import for group profile data.
+
+        Groups imports sync group properties from your warehouse to Mixpanel group profiles.
   /projects/{projectId}/warehouse-sources/imports/lookup-table:
     post:
+      tags:
+        - Warehouse Imports
+      operationId: create-lookup-table-import
+      summary: Create a lookup table import
       parameters:
         - in: path
           name: projectId
@@ -549,18 +504,6 @@ paths:
             type: integer
           required: true
           description: "Your project id (eg: 12345)"
-      operationId: create-lookup-table-import
-      tags:
-        - Warehouse Imports
-      summary: Create a lookup table import
-      description: >
-        Create a new warehouse import for lookup table data.
-
-
-        Lookup tables allow you to enrich event and user properties with
-        additional
-
-        attributes from your warehouse.
       requestBody:
         required: true
         content:
@@ -601,8 +544,17 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: |
+        Create a new warehouse import for lookup table data.
+
+        Lookup tables allow you to enrich event and user properties with additional
+        attributes from your warehouse.
   /projects/{projectId}/warehouse-sources/imports/{importId}/manual-sync:
     put:
+      tags:
+        - Warehouse Imports
+      operationId: run-an-import
+      summary: Run an import
       parameters:
         - in: path
           name: projectId
@@ -616,16 +568,10 @@ paths:
             type: integer
           required: true
           description: "Your warehouse import id (eg: 12345)"
-      operationId: run-an-import
       requestBody:
         required: true
         content:
           application/json: {}
-      tags:
-        - Warehouse Imports
-      summary: Run an import
-      description: |
-        Triggers an immediate sync for a given warehouse import.
       responses:
         "200":
           description: Success
@@ -664,8 +610,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: |
+        Triggers an immediate sync for a given warehouse import.
   /projects/{projectId}/warehouse-sources/imports/{importId}/history:
     get:
+      tags:
+        - Warehouse Imports
+      operationId: get-import-history
+      summary: Get import job history
       parameters:
         - in: path
           name: projectId
@@ -679,13 +631,6 @@ paths:
             type: integer
           required: true
           description: "Your warehouse import id (eg: 12345)"
-      operationId: get-import-history
-      tags:
-        - Warehouse Imports
-      summary: Get import job history
-      description: >
-        Returns the execution history for a warehouse import. Returns 100 most
-        recent events.
       responses:
         "200":
           description: Success
@@ -720,6 +665,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/ErrorResponse"
+      description: |
+        Returns the execution history for a warehouse import. Returns 100 most recent events.
 components:
   schemas:
     SyncMode:
@@ -972,8 +919,7 @@ components:
           type: string
         company_column_name:
           type: string
-          description: Required for B2B projects. The column containing the company
-            identifier.
+          description: Required for B2B projects. The column containing the company identifier.
         device_column_name:
           type: string
           nullable: true
@@ -1083,67 +1029,41 @@ components:
           required:
             - value
             - resourceType
-          description: >
-            The Mixpanel property that this lookup table will be joined on. This
-            defines
+          description: |
+            The Mixpanel property that this lookup table will be joined on. This defines
+            the "Join Key" — the Mixpanel event or user property whose values will be
+            matched against the `property_key_column_name` column in your warehouse table.
 
-            the "Join Key" — the Mixpanel event or user property whose values
-            will be
-
-            matched against the `property_key_column_name` column in your
-            warehouse table.
-
-
-            For example, if your events have a property called `product_id` and
-            your warehouse
-
-            lookup table has a column `product_id` containing matching values
-            along with
-
-            enrichment columns like `product_name` and `category`, you would
-            set:
-
-            - `mixpanel_property.value` = `"product_id"` (the Mixpanel property
-            name)
-
-            - `property_key_column_name` = `"product_id"` (the warehouse column
-            name)
+            For example, if your events have a property called `product_id` and your warehouse
+            lookup table has a column `product_id` containing matching values along with
+            enrichment columns like `product_name` and `category`, you would set:
+            - `mixpanel_property.value` = `"product_id"` (the Mixpanel property name)
+            - `property_key_column_name` = `"product_id"` (the warehouse column name)
           properties:
             value:
               type: string
-              description: >
-                The name of the Mixpanel property to join on. This is the event
-                or user
-
-                property whose values will be matched against the lookup table's
-                key column.
+              description: |
+                The name of the Mixpanel property to join on. This is the event or user
+                property whose values will be matched against the lookup table's key column.
             resourceType:
               type: string
               enum:
                 - event
                 - user
-              description: >
-                Whether the join property is an event property (`event`) or a
-                user profile
-
+              description: |
+                Whether the join property is an event property (`event`) or a user profile
                 property (`user`).
             customPropertyId:
               type: integer
               nullable: true
-              description: >
-                Optional. If the join property is a custom property (created via
-                Lexicon),
-
+              description: |
+                Optional. If the join property is a custom property (created via Lexicon),
                 provide its ID here. Set to `null` for standard properties.
         property_key_column_name:
           type: string
-          description: >
-            The name of the column in your warehouse table that contains the
-            join key values.
-
-            This column's values will be matched against the Mixpanel property
-            specified in
-
+          description: |
+            The name of the column in your warehouse table that contains the join key values.
+            This column's values will be matched against the Mixpanel property specified in
             `mixpanel_property.value` to look up the corresponding row.
         sync_mode:
           type: string

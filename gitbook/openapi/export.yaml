@@ -18,7 +18,7 @@ servers:
           - data
           - data-eu
           - data-in
-        description: >
+        description: |
           The server location to be used:
             * `data` - The default (US) servers used for most projects
             * `data-eu` - EU servers if you are enrolled in EU Data Residency
@@ -31,19 +31,10 @@ tags:
 paths:
   /export:
     get:
-      operationId: raw-event-export
       tags:
         - Export
+      operationId: raw-event-export
       summary: Download Data
-      description: >-
-        Every data point sent to Mixpanel is stored as JSON in our data store.
-        The raw export API allows you to download your event data as it is
-        received and stored within Mixpanel, complete with all event properties
-        (including distinct_id) and the exact timestamp the event was fired.
-
-        The raw export API has a rate limit of 60 queries per hour, 3 queries
-        per second, and a maximum of 100 concurrent queries. If you exceed the
-        rate limit, a 429 error will be returned.
       parameters:
         - in: query
           name: project_id
@@ -54,60 +45,46 @@ paths:
           name: from_date
           schema:
             type: string
-          description: The date in yyyy-mm-dd format to begin querying from. This date is
-            inclusive and interpreted as UTC timezone for projects created after
-            1 January 2023 and current project timezone for projects created
-            before 11 January 2023.
+          description: The date in yyyy-mm-dd format to begin querying from. This date is inclusive and interpreted as UTC timezone for projects created after 1 January 2023 and current project timezone for projects created before 11 January 2023.
           required: true
         - in: query
           name: to_date
           schema:
             type: string
-          description: The date in yyyy-mm-dd format to query to. This date is inclusive
-            and interpreted as UTC timezone for projects created after 1 January
-            2023 and current project timezone for projects created before 11
-            January 2023.
+          description: The date in yyyy-mm-dd format to query to. This date is inclusive and interpreted as UTC timezone for projects created after 1 January 2023 and current project timezone for projects created before 11 January 2023.
           required: true
         - in: query
           name: limit
           schema:
             type: integer
-          description: Use this parameter if you want to limit the max number of events to
-            be returned. Value cannot be over 100000.
+          description: Use this parameter if you want to limit the max number of events to be returned. Value cannot be over 100000.
         - in: query
           name: event
           schema:
             type: string
-          description: The event or events that you wish to get data for, encoded as a
-            JSON array.
+          description: The event or events that you wish to get data for, encoded as a JSON array.
         - in: query
           name: where
           schema:
             type: string
-          description: An expression to filter events by. More info on expression sequence
-            structure can be found [here](ref:segmentation-expressions)
+          description: An expression to filter events by. More info on expression sequence structure can be found [here](ref:segmentation-expressions)
         - in: query
           name: time_in_ms
           schema:
             type: boolean
-          description: >-
-            Defaults to `false` which will export event timestamps with
-            second-precision.
-
+          description: |-
+            Defaults to `false` which will export event timestamps with second-precision.
             Set to `true` to export event timestamps with millisecond-precision.
         - in: header
           name: Accept-Encoding
-          description: If set to `gzip` and the response body is > 1400 bytes, the
-            response will be compressed with gzip, and `Content-Encoding` will
-            be set to `gzip`.
+          description: If set to `gzip` and the response body is > 1400 bytes, the response will be compressed with gzip, and `Content-Encoding` will be set to `gzip`.
           schema:
             type: string
             enum:
               - gzip
       responses:
         "200":
-          description: Success. The returned format is one event per line where each line
-            is a valid JSON object, but the full return itself is JSONL.
+          description: Success. The returned format is one event per line where each line is a valid JSON object, but the full return itself is JSONL.
           content:
             text/plain:
               schema:
@@ -116,6 +93,9 @@ paths:
                   {"event":"Signed up","properties":{"time":1602611311,"$insert_id":"hpuDqcvpltpCjBsebtxwadtEBDnFAdycabFb","mp_processing_time_ms":1602625711874}}
                   {"event":"Signed up","properties":{"time":1602787121,"$insert_id":"jajcebutltmvhbbholfhxtCcycwnBjDtndha","mp_processing_time_ms":1602801521561}}
                 description: Newline delimited JSON ([JSONL](http://jsonlines.org))
+      description: |-
+        Every data point sent to Mixpanel is stored as JSON in our data store. The raw export API allows you to download your event data as it is received and stored within Mixpanel, complete with all event properties (including distinct_id) and the exact timestamp the event was fired.
+        The raw export API has a rate limit of 60 queries per hour, 3 queries per second, and a maximum of 100 concurrent queries. If you exceed the rate limit, a 429 error will be returned.
 components:
   securitySchemes:
     ServiceAccount:
