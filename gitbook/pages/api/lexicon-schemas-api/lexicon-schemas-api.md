@@ -2,8 +2,8 @@
 
 Sync your internal data dictionary or tracking plan with Mixpanel using Schemas. A Schema is used to describe the data you are sending to Mixpanel and represents an individual entry into your data dictionary. Schemas that you upload will be used to populate Lexicon and provide additional context for your data across the query UI. A Schema represents a single entity (usually an event) and is defined with json-schema.
 
-{% hint style="info" %}
-Lexicon UI vs Lexicon Schemas API
+<Callout icon="📘" theme="info">
+  Lexicon UI vs Lexicon Schemas API
 
   The data returned from the Lexicon Schemas API is most likely _not_ 1:1 with the data you see in Lexicon. This because **schemas are a subset of the data that appears in Lexicon**. The Lexicon UI shows you events & properties that either:
 
@@ -11,23 +11,23 @@ Lexicon UI vs Lexicon Schemas API
   2. have been sent to your project in the last 30 days (sometimes the look-back period is shorter depending on your data volume).
 
   The Lexicon Schemas API only returns events with associated schemas. If an event that you see in Lexicon has no associated schema, it will not be returned by the Lexicon Schemas API. If a property on an event is not specified in the event schema, it will not be returned by the Lexicon Schemas API.
-{% endhint %}
+</Callout>
 
-{% hint style="info" %}
-When is a Lexicon Schema created?
+<Callout icon="📘" theme="info">
+  When is a Lexicon Schema created?
 
   A schema is created and associated to an event in a few different ways:
 
   1. By uploading a schema through this API
   2. By importing Lexicon entries via CSV
   3. By adding metadata in the UI (such as adding a description, hiding/showing, adding tags, etc.)
-{% endhint %}
+</Callout>
 
-{% hint style="info" %}
-How can I export all of my data from Lexicon?
+<Callout icon="📘" theme="info">
+  How can I export all of my data from Lexicon?
 
   As mentioned above, the Lexicon Schemas API is unlikely to return all of the data you see in Lexicon. If you want all of the data, you can do a CSV export from the Lexicon UI. The resulting CSV will contain events and properties that have associated schemas and events and properties that were sent in the last 30 days even if they do not have associated schemas.
-{% endhint %}
+</Callout>
 
 ## Example
 

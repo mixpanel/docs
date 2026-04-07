@@ -1,7 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
-import { fileURLToPath } from 'node:url';
 
 /**
  * Purpose: Convert this repo's Nextra-flavored MDX in `/pages/docs/**`
@@ -423,47 +422,13 @@ async function listFilesRecursive(dir) {
   return out;
 }
 
-export function mapCalloutTypeToHintStyle(type) {
+function mapCalloutTypeToHintStyle(type) {
   const t = String(type || '').toLowerCase().trim();
-  if (t === 'warn' || t === 'warning') return 'warning';
+  if (t === 'warning') return 'warning';
   if (t === 'danger' || t === 'error') return 'danger';
   if (t === 'success') return 'success';
+  // Nextra commonly uses info/note/default; GitBook supports "info".
   return 'info';
-}
-
-export function convertCallouts(src) {
-  let s = String(src);
-
-  // theme="warn" | "info" | ... (e.g. <Callout icon="🚧" theme="warn">)
-  s = s.replace(
-    /<Callout\b[^>]*\btheme=(?:"([^"]+)"|'([^']+)')[^>]*>\s*([\s\S]*?)\s*<\/Callout>/g,
-    (_all, t1, t2, body) => {
-      const style = mapCalloutTypeToHintStyle(t1 || t2);
-      return `{% hint style="${style}" %}\n${String(body).trim()}\n{% endhint %}`;
-    },
-  );
-
-  s = s.replace(
-    /<Callout\s+type=(?:"([^"]+)"|'([^']+)')\s*>\s*([\s\S]*?)\s*<\/Callout>/g,
-    (_all, t1, t2, body) => {
-      const style = mapCalloutTypeToHintStyle(t1 || t2);
-      return `{% hint style="${style}" %}\n${body.trim()}\n{% endhint %}`;
-    },
-  );
-
-  s = s.replace(
-    /<Callout\s+type=(?:"([^"]+)"|'([^']+)')\s*>([\s\S]*?)<\/Callout>/g,
-    (_all, t1, t2, body) => {
-      const style = mapCalloutTypeToHintStyle(t1 || t2);
-      return `{% hint style="${style}" %}\n${body.trim()}\n{% endhint %}`;
-    },
-  );
-
-  s = s.replace(/<Callout>\s*([\s\S]*?)\s*<\/Callout>/g, (_all, body) => {
-    return `{% hint style="info" %}\n${String(body).trim()}\n{% endhint %}`;
-  });
-
-  return s;
 }
 
 function parseItemsArray(itemsExpr) {
@@ -476,6 +441,32 @@ function parseItemsArray(itemsExpr) {
   let s;
   while ((s = strRe.exec(inner))) titles.push(s[2]);
   return titles;
+}
+
+function convertCallouts(src) {
+  // Block form
+  src = src.replace(
+    /<Callout\s+type=(?:"([^"]+)"|'([^']+)')\s*>\s*([\s\S]*?)\s*<\/Callout>/g,
+    (_all, t1, t2, body) => {
+      const style = mapCalloutTypeToHintStyle(t1 || t2);
+      return `{% hint style="${style}" %}\n${body.trim()}\n{% endhint %}`;
+    },
+  );
+
+  // Inline/self-closing-ish single-line Callout blocks sometimes appear without newlines.
+  src = src.replace(
+    /<Callout\s+type=(?:"([^"]+)"|'([^']+)')\s*>([\s\S]*?)<\/Callout>/g,
+    (_all, t1, t2, body) => {
+      const style = mapCalloutTypeToHintStyle(t1 || t2);
+      return `{% hint style="${style}" %}\n${body.trim()}\n{% endhint %}`;
+    },
+  );
+
+  // No explicit type: default to info.
+  src = src.replace(/<Callout>\s*([\s\S]*?)\s*<\/Callout>/g, (_all, body) => {
+    return `{% hint style="info" %}\n${String(body).trim()}\n{% endhint %}`;
+  });
+  return src;
 }
 
 function convertExtendedAccordions(src) {
@@ -2351,12 +2342,8 @@ async function main() {
   process.stdout.write(`Converted ${files.length} files from ${args.inDir} -> ${args.outDir}\n`);
 }
 
-const isMainModule =
-  process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
 
-if (isMainModule) {
-  main().catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
-}

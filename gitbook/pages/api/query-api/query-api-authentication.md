@@ -4,9 +4,9 @@
 
 [Service Account Authentication Details](../mixpanel-apis/authentication/service-accounts.md)
 
-{% hint style="info" %}
-This is the preferred authentication method for Query API.
-{% endhint %}
+<Callout icon="👍" theme="okay">
+  This is the preferred authentication method for Query API.
+</Callout>
 
 * Requests parameters must include a `project_id`.
 

@@ -1,10 +1,10 @@
 # Project Secret [Deprecated]
 
-{% hint style="danger" %}
-Deprecation Warning
+<Callout icon="❗️" theme="error">
+  Deprecation Warning
 
   This authentication method has been deprecated and will be fully retired on **March 3, 2027**. Please migrate to [Service Accounts](../service-accounts-api/service-accounts-api.md) instead, as they are the recommended authentication mechanism going forward.
-{% endhint %}
+</Callout>
 
 Before we introduced Service Accounts, Project Secret was the standard authentication mechanism for importing and exporting data in your project.
 

@@ -330,7 +330,7 @@ paths:
 
         ## Guides
 
-        See our Cloud Ingestion guides for example usage of this API to integrate with  [Google Pub/Sub](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-pubsub), [Amazon S3](https://docs.mixpanel.com/docs/tracking-methods/integrations/amazon-s3), or [Google Cloud Storage](https://docs.mixpanel.com/docs/tracking-methods/integrations/google-cloud-storage).
+        See our Cloud Ingestion guides for example usage of this API to integrate with  [Google Pub/Sub](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/integrations/google-pubsub), [Amazon S3](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/integrations/amazon-s3), or [Google Cloud Storage](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/tracking-methods/integrations/google-cloud-storage).
   /track:
     post:
       tags:
@@ -1644,7 +1644,7 @@ paths:
       parameters:
         - name: id
           in: path
-          description: The ID of the lookup table to replace which can be retreived from Lexicon under the lookup table's details, click [here](https://docs.mixpanel.com/docs/data-structure/lookup-tables#where-can-i-find-the-id-of-the-lookup-table-for-apis-path-params) for more info.
+          description: The ID of the lookup table to replace which can be retreived from Lexicon under the lookup table's details, click [here](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/lookup-tables#where-can-i-find-the-id-of-the-lookup-table-for-apis-path-params) for more info.
           required: true
           schema:
             type: string
@@ -1687,7 +1687,7 @@ paths:
         "429":
           $ref: "#/components/responses/RateLimitExceeded"
       description: |-
-        Lookup Tables must be [created via our UI](https://docs.mixpanel.com/docs/data-structure/lookup-tables#how-do-i-upload-a-lookup-table). Once a Lookup Table is created, its contents can be replaced via this API.
+        Lookup Tables must be [created via our UI](https://app.gitbook.com/s/qGpd1uH02qXOCsOiKqLX/data-structure/lookup-tables#how-do-i-upload-a-lookup-table). Once a Lookup Table is created, its contents can be replaced via this API.
 
         ```sh
         curl -XPUT 'https://api.mixpanel.com/lookup-tables/ID?project_id={YOUR_PROJECT_ID}' \

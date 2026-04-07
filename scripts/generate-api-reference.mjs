@@ -2,8 +2,6 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import YAML from 'yaml';
 
-import { convertCallouts } from './convert-mdx-to-md.mjs';
-
 const ROOT = path.resolve(process.cwd());
 
 /** OpenAPI path item operation keys only (exclude parameters, servers, $ref, etc.). */
@@ -290,6 +288,19 @@ function rewriteCrossSpaceLinks(md, { fromSection }) {
     const raw = String(href || '').trim();
     if (!raw) return raw;
     let u = raw;
+    // Developer docs site (docs.mixpanel.com) -> GitBook docs space
+    if (u.startsWith('https://docs.mixpanel.com/docs/')) {
+      const rest = u.slice('https://docs.mixpanel.com/docs/'.length);
+      const [pathPart, hash = ''] = rest.split('#');
+      const rel = pathPart.replace(/\/$/, '').replace(/\.md$/i, '');
+      return `${BASE.docs}${rel}${hash ? `#${hash}` : ''}`;
+    }
+    if (u.startsWith('https://docs.mixpanel.com/guides/')) {
+      const rest = u.slice('https://docs.mixpanel.com/guides/'.length);
+      const [pathPart, hash = ''] = rest.split('#');
+      const rel = pathPart.replace(/\/$/, '').replace(/\.md$/i, '');
+      return `${BASE.guides}${rel}${hash ? `#${hash}` : ''}`;
+    }
     // Developer site reference links -> API space
     if (u.startsWith('https://developer.mixpanel.com/reference/')) {
       const rel = u.replace('https://developer.mixpanel.com/reference/', '').replace(/\/$/, '');
@@ -327,6 +338,8 @@ function rewriteCrossSpaceLinks(md, { fromSection }) {
   out = out.replace(/\]\((\/guides\/[^)\s]+)\)/g, (_all, href) => `](${rewriteOne(href)})`);
   out = out.replace(/\]\((https:\/\/mixpanel\.com\/docs\/[^)\s]+)\)/g, (_all, href) => `](${rewriteOne(href)})`);
   out = out.replace(/\]\((https:\/\/mixpanel\.com\/guides\/[^)\s]+)\)/g, (_all, href) => `](${rewriteOne(href)})`);
+  out = out.replace(/\]\((https:\/\/docs\.mixpanel\.com\/docs\/[^)\s]+)\)/g, (_all, href) => `](${rewriteOne(href)})`);
+  out = out.replace(/\]\((https:\/\/docs\.mixpanel\.com\/guides\/[^)\s]+)\)/g, (_all, href) => `](${rewriteOne(href)})`);
   out = out.replace(/\]\((https:\/\/developer\.mixpanel\.com\/reference\/[^)\s]+)\)/g, (_all, href) =>
     `](${rewriteOne(href)})`,
   );
@@ -337,6 +350,26 @@ function rewriteCrossSpaceLinks(md, { fromSection }) {
     return `<a${pre} href="${escapeHtml(rewritten)}"${post}>`;
   });
   return out;
+}
+
+/** Rewrite docs/guides URLs inside any string (descriptions, examples, etc.). */
+function rewriteCrossSpaceLinksDeepInPlace(node) {
+  if (typeof node === 'string') {
+    return rewriteCrossSpaceLinks(node, { fromSection: 'api' });
+  }
+  if (Array.isArray(node)) {
+    for (let i = 0; i < node.length; i++) {
+      node[i] = rewriteCrossSpaceLinksDeepInPlace(node[i]);
+    }
+    return node;
+  }
+  if (node && typeof node === 'object') {
+    for (const k of Object.keys(node)) {
+      node[k] = rewriteCrossSpaceLinksDeepInPlace(node[k]);
+    }
+    return node;
+  }
+  return node;
 }
 
 async function copyOpenapiSpecs() {
@@ -784,6 +817,8 @@ async function augmentGitbookOpenapiFromReference() {
     ensureServersArray(inlined);
     reorderPathOperationsForGitbook(inlined);
 
+    rewriteCrossSpaceLinksDeepInPlace(inlined);
+
     await fs.writeFile(abs, YAML.stringify(inlined, { lineWidth: 0 }), 'utf8');
   }
 }
@@ -843,7 +878,6 @@ async function main() {
         const src = await fs.readFile(absIn, 'utf8');
         const { fm, body } = parseFrontmatter(src);
         let out = ensureH1(body, fm.title);
-        out = convertCallouts(out);
         out = rewriteRefLinks(out, {
           absOutFile: outAbs,
           outRootAbs: outRoot,
@@ -881,6 +915,7 @@ async function main() {
 
           // Copy all md in subtree in deterministic order via its _order.yaml
           const subOrder = await readOrderYaml(path.join(dirAbs, '_order.yaml'));
+          const copied = [];
           for (const sub of subOrder) {
             const subFile = path.join(dirAbs, `${sub}.md`);
             try {
@@ -890,11 +925,21 @@ async function main() {
               continue;
             }
             const outRel = toPosix(path.join(topSeg, slugifySegment(item), `${sub}.md`));
-            await copyOne(subFile, outRel);
+            const fm = await copyOne(subFile, outRel);
+            copied.push({ outRel, fm, sub });
           }
-          // Add group entry: link to first page
-          if (subOrder.length) {
-            const groupLink = toPosix(path.join(topSeg, slugifySegment(item), `${subOrder[0]}.md`));
+
+          if (isRoot && copied.length) {
+            // Root space (e.g. Mixpanel APIs): list every subpage in SUMMARY so GitBook export includes them.
+            const groupLabel = humanizeSlug(item);
+            const firstLink = copied[0].outRel;
+            summary += `* [${groupLabel}](${firstLink})\n`;
+            for (const { outRel, fm, sub } of copied) {
+              const label = (fm?.title || '').trim() || humanizeSlug(sub);
+              summary += `  * [${label}](${outRel})\n`;
+            }
+          } else if (copied.length) {
+            const groupLink = copied[0].outRel;
             summary += `* [${humanizeSlug(item)}](${groupLink})\n`;
           } else {
             summary += `* ${humanizeSlug(item)}\n`;

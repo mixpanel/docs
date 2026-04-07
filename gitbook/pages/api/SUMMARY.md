@@ -2,6 +2,10 @@
 
 * [Overview](README.md)
 * [Authentication](authentication/service-accounts.md)
+  * [Service Accounts](authentication/service-accounts.md)
+  * [Project Token](authentication/project-token.md)
+  * [Project Secret [Deprecated]](authentication/project-secret.md)
+  * [Request Signature [Deprecated]](authentication/request-signature.md)
 * [Segmentation Expressions](segmentation-expressions.md)
 * [Rate Limits](rate-limits.md)
 ## Ingestion API
