@@ -182,33 +182,46 @@ function rewriteInternalDocsLinks(src, absOutFile, absOutRoot) {
   const rootBase = path.basename(absOutRoot);
   const docsOutRoot = rootBase === 'docs' ? absOutRoot : path.join(path.dirname(absOutRoot), 'docs');
   const guidesOutRoot = rootBase === 'guides' ? absOutRoot : path.join(path.dirname(absOutRoot), 'guides');
+  const isCrossSpace = rootBase !== 'docs' && rootBase !== 'guides';
 
   // Markdown links: [text](/docs/foo/bar#anchor)
   out = out.replace(/\]\((\/docs\/[^)\s]+)\)/g, (all, href) => {
+    if (isCrossSpace) return all;
     const rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     return `](${rewritten})`;
   });
 
   // Markdown links: [text](/guides/foo/bar#anchor)
   out = out.replace(/\]\((\/guides\/[^)\s]+)\)/g, (all, href) => {
+    if (isCrossSpace) return all;
     const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, guidesOutRoot);
     return `](${rewritten})`;
   });
 
   // Markdown links to mixpanel.com/docs
   out = out.replace(/\]\((https:\/\/mixpanel\.com\/docs\/[^)\s]+)\)/g, (all, href) => {
+    if (isCrossSpace) return all.replace('https://mixpanel.com', '');
     const rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     return `](${rewritten})`;
   });
 
   // Markdown links to mixpanel.com/guides
   out = out.replace(/\]\((https:\/\/mixpanel\.com\/guides\/[^)\s]+)\)/g, (all, href) => {
+    if (isCrossSpace) return all.replace('https://mixpanel.com', '');
     const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, guidesOutRoot);
     return `](${rewritten})`;
   });
 
   // HTML links: rewrite href attr regardless of other attributes.
   out = out.replace(/<a\b([^>]*?)\shref="([^"]+)"([^>]*)>/g, (all, pre, href, post) => {
+    if (isCrossSpace) {
+      // For cross-space, keep /docs and /guides hrefs (strip mixpanel.com prefix only).
+      let h = href;
+      if (h.startsWith('https://mixpanel.com/docs/')) h = h.replace('https://mixpanel.com', '');
+      if (h.startsWith('https://mixpanel.com/guides/')) h = h.replace('https://mixpanel.com', '');
+      return `<a${pre} href="${escapeHtml(h)}"${post}>`;
+    }
+
     let rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     if (rewritten === href) {
       rewritten = rewriteGuidesHrefToRelative(href, absOutFile, guidesOutRoot);
@@ -229,17 +242,20 @@ function rewriteInternalDocsLinks(src, absOutFile, absOutRoot) {
 
   // In cards we currently echo the href as visible text; rewrite that too.
   out = out.replace(/>(\/docs\/[^<]+)<\/a>/g, (all, text) => {
+    if (isCrossSpace) return all;
     const rewritten = rewriteDocsHrefToRelative(text, absOutFile, docsOutRoot);
     return `>${escapeHtml(rewritten)}</a>`;
   });
 
   // Plaintext patterns like "...( /docs/foo/bar )" or "report(/docs/foo)" (not markdown links).
   out = out.replace(/\((\/docs\/[^)\s]+)\)/g, (all, href) => {
+    if (isCrossSpace) return all;
     const rewritten = rewriteDocsHrefToRelative(href, absOutFile, docsOutRoot);
     return `(${rewritten})`;
   });
 
   out = out.replace(/\((\/guides\/[^)\s]+)\)/g, (all, href) => {
+    if (isCrossSpace) return all;
     const rewritten = rewriteGuidesHrefToRelative(href, absOutFile, guidesOutRoot);
     return `(${rewritten})`;
   });
