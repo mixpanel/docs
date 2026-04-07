@@ -11,7 +11,7 @@ For the core Feature Flags SDK guide, see [Feature Flags (Swift)](/docs/tracking
 ## Prerequisites
 
 - You are on an Enterprise subscription plan
-- You have the [Mixpanel Swift SDK](/docs/tracking-methods/sdks/swift) installed
+- You have the [Mixpanel Swift SDK](/docs/tracking-methods/sdks/swift) installed (minimum version `6.2.0`)
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Installation
@@ -22,35 +22,50 @@ Add the OpenFeature provider package to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/mixpanel/mixpanel-swift-openfeature-provider", from: "0.1.0"),
-    .package(url: "https://github.com/open-feature/swift-sdk", from: "0.1.0"),
+    .package(url: "https://github.com/mixpanel/mixpanel-swift-openfeature", from: "0.1.0"),
+    .package(url: "https://github.com/open-feature/swift-sdk", from: "0.5.0"),
 ]
-```
-
-### CocoaPods
-
-```ruby
-pod 'MixpanelOpenFeatureProvider'
-pod 'OpenFeature'
 ```
 
 ## Usage
 
 The provider wraps `MixpanelFlags` from the Mixpanel Swift SDK.
 
+### Using the Convenience Initializer
+
 ```swift
 import Mixpanel
-import MixpanelOpenFeatureProvider
+import MixpanelOpenFeature
 import OpenFeature
 
-// Initialize Mixpanel with feature flags enabled
+// Create provider with a new Mixpanel instance
+let provider = MixpanelOpenFeatureProvider(options: MixpanelOptions(
+    token: "YOUR_PROJECT_TOKEN",
+    featureFlagOptions: FeatureFlagOptions(enabled: true)
+))
+
+await OpenFeatureAPI.shared.setProviderAndWait(provider: provider)
+
+let client = OpenFeatureAPI.shared.getClient()
+let showNewUI = client.getBooleanValue(key: "new-ui", defaultValue: false)
+
+// Access the underlying Mixpanel instance for identify/track
+provider.mixpanel?.identify(distinctId: "user-123")
+```
+
+### Using an Existing Mixpanel Instance
+
+```swift
+import Mixpanel
+import MixpanelOpenFeature
+import OpenFeature
+
 Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN", options: MixpanelOptions(
     featureFlagOptions: FeatureFlagOptions(enabled: true)
 ))
 
-// Register the OpenFeature provider
-let provider = MixpanelProvider(flags: Mixpanel.mainInstance().flags)
-OpenFeatureAPI.shared.setProvider(provider: provider)
+let provider = MixpanelOpenFeatureProvider(flags: Mixpanel.mainInstance().flags)
+await OpenFeatureAPI.shared.setProviderAndWait(provider: provider)
 
 let client = OpenFeatureAPI.shared.getClient()
 let showNewUI = client.getBooleanValue(key: "new-ui", defaultValue: false)
@@ -72,8 +87,10 @@ let showNewUI = client.getBooleanValue(key: "new-ui", defaultValue: false)
 Context is set globally when registering the provider, not per-evaluation. Per-evaluation context passed to individual flag evaluations is ignored.
 </Callout>
 
+The provider forwards the global OpenFeature context to the Mixpanel SDK via `setContext()` during initialization and whenever the global context changes.
+
 - **`targetingKey`** has no special meaning in this provider. It is treated as a regular context property.
-- Identity should be managed through the Mixpanel SDK via `Mixpanel.mainInstance().identify()`.
+- Identity should be managed through the Mixpanel SDK via `Mixpanel.mainInstance().identify()` or `provider.mixpanel?.identify()`.
 
 ## Error Handling
 
@@ -96,5 +113,5 @@ if let errorCode = details.errorCode {
 
 ## Lifecycle
 
-- **`onClose()`** is a no-op. The Mixpanel SDK manages its own lifecycle.
+- **`shutdown()`** is a no-op. The Mixpanel SDK manages its own lifecycle.
 - The reason code for successful evaluations is `STATIC`.

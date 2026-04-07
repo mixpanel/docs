@@ -27,8 +27,45 @@ The provider wraps either a local or remote flags provider from the Mixpanel SDK
 ### With Local Evaluation
 
 ```python
-from mixpanel import Mixpanel
 from openfeature import api
+from mixpanel_openfeature import MixpanelProvider
+from mixpanel.flags.types import LocalFlagsConfig
+
+config = LocalFlagsConfig(
+    enable_polling=True,
+    polling_interval_in_seconds=60
+)
+
+# Create provider with local evaluation (automatically starts polling)
+provider = MixpanelProvider.from_local_config("YOUR_PROJECT_TOKEN", config)
+api.set_provider(provider)
+
+client = api.get_client()
+show_new_ui = client.get_boolean_value("new-ui", False)
+```
+
+### With Remote Evaluation
+
+```python
+from mixpanel.flags.types import RemoteFlagsConfig
+
+config = RemoteFlagsConfig(
+    api_host="api.mixpanel.com"
+)
+
+provider = MixpanelProvider.from_remote_config("YOUR_PROJECT_TOKEN", config)
+api.set_provider(provider)
+
+client = api.get_client()
+variant = client.get_string_value("checkout-flow", "control")
+```
+
+### With an Existing Flags Provider
+
+If you already have a configured Mixpanel instance, you can wrap its flags provider directly:
+
+```python
+from mixpanel import Mixpanel
 from mixpanel_openfeature import MixpanelProvider
 
 mp = Mixpanel("YOUR_PROJECT_TOKEN", local_flags_config={
@@ -38,24 +75,8 @@ mp = Mixpanel("YOUR_PROJECT_TOKEN", local_flags_config={
 
 mp.local_flags.start_polling_for_definitions()
 
-# Register the provider
-api.set_provider(MixpanelProvider(mp.local_flags))
-
-client = api.get_client()
-show_new_ui = client.get_boolean_value("new-ui", False)
-```
-
-### With Remote Evaluation
-
-```python
-mp = Mixpanel("YOUR_PROJECT_TOKEN", remote_flags_config={
-    "api_host": "api.mixpanel.com"
-})
-
-api.set_provider(MixpanelProvider(mp.remote_flags))
-
-client = api.get_client()
-variant = client.get_string_value("checkout-flow", "control")
+provider = MixpanelProvider(mp.local_flags)
+api.set_provider(provider)
 ```
 
 ## Supported Flag Types
@@ -70,9 +91,7 @@ variant = client.get_string_value("checkout-flow", "control")
 
 ## Context and Identity
 
-<Callout type="info">
-Context is set globally when registering the provider, not per-evaluation. Per-evaluation context passed to individual flag evaluations is ignored.
-</Callout>
+The evaluation context passed to each flag evaluation is forwarded to the Mixpanel flags provider.
 
 - **`targeting_key`** has no special meaning in this provider. It is treated as a regular context property.
 - Identity should be managed through the Mixpanel SDK (e.g., setting `distinct_id` in the context).
@@ -97,5 +116,5 @@ if details.error_code:
 
 ## Lifecycle
 
-- **`shutdown()`** is a no-op. The Mixpanel SDK manages its own lifecycle.
+- **`shutdown()`** delegates to the underlying flags provider to clean up resources (e.g., stop polling).
 - The reason code for successful evaluations is `STATIC`.

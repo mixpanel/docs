@@ -17,13 +17,13 @@ For the core Feature Flags SDK guide, see [Feature Flags (Ruby)](/docs/tracking-
 ## Installation
 
 ```bash
-gem install mixpanel-openfeature-provider openfeature-sdk
+gem install mixpanel-ruby-openfeature openfeature-sdk
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem 'mixpanel-openfeature-provider'
+gem 'mixpanel-ruby-openfeature'
 gem 'openfeature-sdk'
 ```
 
@@ -34,20 +34,17 @@ The provider wraps either a local or remote flags provider from the Mixpanel SDK
 ### With Local Evaluation
 
 ```ruby
-require 'mixpanel'
 require 'openfeature/sdk'
 require 'mixpanel/openfeature'
 
-tracker = Mixpanel::Tracker.new('YOUR_PROJECT_TOKEN', local_flags_config: {
+# Create provider with local evaluation (automatically starts polling)
+provider = Mixpanel::OpenFeature::Provider.from_local('YOUR_PROJECT_TOKEN', {
   enable_polling: true,
   polling_interval_in_seconds: 60
 })
 
-tracker.local_flags.start_polling_for_definitions
-
-# Register the provider
 OpenFeature::SDK.configure do |config|
-  config.set_provider(Mixpanel::OpenFeature::Provider.new(tracker.local_flags))
+  config.set_provider(provider)
 end
 
 client = OpenFeature::SDK.build_client
@@ -57,16 +54,34 @@ show_new_ui = client.fetch_boolean_value(flag_key: 'new-ui', default_value: fals
 ### With Remote Evaluation
 
 ```ruby
-tracker = Mixpanel::Tracker.new('YOUR_PROJECT_TOKEN', remote_flags_config: {
+provider = Mixpanel::OpenFeature::Provider.from_remote('YOUR_PROJECT_TOKEN', {
   api_host: 'api.mixpanel.com'
 })
 
 OpenFeature::SDK.configure do |config|
-  config.set_provider(Mixpanel::OpenFeature::Provider.new(tracker.remote_flags))
+  config.set_provider(provider)
 end
 
 client = OpenFeature::SDK.build_client
 variant = client.fetch_string_value(flag_key: 'checkout-flow', default_value: 'control')
+```
+
+### With an Existing Flags Provider
+
+If you already have a configured Tracker instance, you can wrap its flags provider directly:
+
+```ruby
+require 'mixpanel'
+require 'mixpanel/openfeature'
+
+tracker = Mixpanel::Tracker.new('YOUR_PROJECT_TOKEN', local_flags_config: {
+  enable_polling: true,
+  polling_interval_in_seconds: 60
+})
+
+tracker.local_flags.start_polling_for_definitions
+
+provider = Mixpanel::OpenFeature::Provider.new(tracker.local_flags)
 ```
 
 ## Supported Flag Types
@@ -81,9 +96,7 @@ variant = client.fetch_string_value(flag_key: 'checkout-flow', default_value: 'c
 
 ## Context and Identity
 
-<Callout type="info">
-Context is set globally when registering the provider, not per-evaluation. Per-evaluation context passed to individual flag evaluations is ignored.
-</Callout>
+The evaluation context passed to each flag evaluation is forwarded to the Mixpanel flags provider.
 
 - **`targeting_key`** has no special meaning in this provider. It is treated as a regular context property.
 - Identity should be managed through the Mixpanel SDK (e.g., setting `distinct_id` in the context).
@@ -109,5 +122,5 @@ end
 
 ## Lifecycle
 
-- **`shutdown`** is a no-op. The Mixpanel SDK manages its own lifecycle.
+- **`shutdown`** delegates to the underlying flags provider to clean up resources if supported.
 - The reason code for successful evaluations is `STATIC`.

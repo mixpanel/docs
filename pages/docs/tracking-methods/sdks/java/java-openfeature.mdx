@@ -45,16 +45,12 @@ The provider wraps a `BaseFlagsProvider` (either `LocalFlagsProvider` or `Remote
 ### With Local Evaluation
 
 ```java
-import com.mixpanel.mixpanelapi.featureflags.provider.LocalFlagsProvider;
 import com.mixpanel.openfeature.MixpanelProvider;
 import dev.openfeature.sdk.*;
 
-// Initialize Mixpanel flags provider
-LocalFlagsProvider flagsProvider = new LocalFlagsProvider("YOUR_PROJECT_TOKEN", config, sdkVersion, eventSender);
-
-// Register with OpenFeature
+// Create provider with local evaluation (automatically starts polling)
 OpenFeatureAPI api = OpenFeatureAPI.getInstance();
-api.setProvider(new MixpanelProvider(flagsProvider));
+api.setProvider(new MixpanelProvider("YOUR_PROJECT_TOKEN", localFlagsConfig));
 
 Client client = api.getClient();
 boolean showNewUI = client.getBooleanValue("new-ui", false);
@@ -63,15 +59,27 @@ boolean showNewUI = client.getBooleanValue("new-ui", false);
 ### With Remote Evaluation
 
 ```java
-import com.mixpanel.mixpanelapi.featureflags.provider.RemoteFlagsProvider;
-
-RemoteFlagsProvider flagsProvider = new RemoteFlagsProvider("YOUR_PROJECT_TOKEN", config, sdkVersion, eventSender);
+import com.mixpanel.openfeature.MixpanelProvider;
 
 OpenFeatureAPI api = OpenFeatureAPI.getInstance();
-api.setProvider(new MixpanelProvider(flagsProvider));
+api.setProvider(new MixpanelProvider("YOUR_PROJECT_TOKEN", remoteFlagsConfig));
 
 Client client = api.getClient();
 String variant = client.getStringValue("checkout-flow", "control");
+```
+
+### With an Existing Flags Provider
+
+If you already have a configured `LocalFlagsProvider` or `RemoteFlagsProvider`, you can wrap it directly:
+
+```java
+import com.mixpanel.mixpanelapi.featureflags.provider.LocalFlagsProvider;
+import com.mixpanel.openfeature.MixpanelProvider;
+
+LocalFlagsProvider flagsProvider = new LocalFlagsProvider("YOUR_PROJECT_TOKEN", config, sdkVersion, eventSender);
+
+OpenFeatureAPI api = OpenFeatureAPI.getInstance();
+api.setProvider(new MixpanelProvider(flagsProvider));
 ```
 
 ## Supported Flag Types
@@ -88,9 +96,7 @@ Numeric types are coerced automatically. For example, a flag returning a `Long` 
 
 ## Context and Identity
 
-<Callout type="info">
-Context is set globally when registering the provider, not per-evaluation. Per-evaluation context passed to individual flag evaluations is ignored.
-</Callout>
+The evaluation context passed to each flag evaluation is forwarded to the Mixpanel flags provider.
 
 - **`targetingKey`** has no special meaning in this provider. It is treated as a regular context property.
 - Identity should be managed through the Mixpanel SDK (e.g., setting `distinct_id` in the context).
@@ -116,5 +122,5 @@ if (details.getErrorCode() != null) {
 
 ## Lifecycle
 
-- **`shutdown()`** is a no-op. The Mixpanel SDK manages its own lifecycle.
+- **`shutdown()`** delegates to the underlying flags provider to clean up resources (e.g., stop polling).
 - The reason code for successful evaluations is `STATIC`.

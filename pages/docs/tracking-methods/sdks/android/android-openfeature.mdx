@@ -20,8 +20,8 @@ Add the OpenFeature provider and SDK to your `build.gradle`:
 
 ```groovy
 dependencies {
-    implementation 'com.mixpanel:mixpanel-android-openfeature-provider:1.0.0'
-    implementation 'dev.openfeature:android-sdk:0.3.0'
+    implementation 'com.mixpanel:mixpanel-android-openfeature:1.0.0'
+    implementation 'dev.openfeature:kotlin-sdk-android:0.7.2'
 }
 ```
 
@@ -29,15 +29,32 @@ dependencies {
 
 The provider wraps `MixpanelAPI.Flags` from the Mixpanel Android SDK.
 
+### Using the Convenience Constructor
+
 ```kotlin
-import com.mixpanel.android.mpmetrics.MixpanelAPI
-import com.mixpanel.openfeature.MixpanelProvider
+import com.mixpanel.android.openfeature.MixpanelProvider
+import com.mixpanel.android.mpmetrics.MixpanelOptions
 import dev.openfeature.sdk.OpenFeatureAPI
 
-// Initialize Mixpanel
+// Create provider (internally creates a MixpanelAPI instance)
+val provider = MixpanelProvider(context, "YOUR_PROJECT_TOKEN", MixpanelOptions())
+OpenFeatureAPI.setProvider(provider)
+
+val client = OpenFeatureAPI.getClient()
+val showNewUI = client.getBooleanValue("new-ui", false)
+
+// Access the underlying Mixpanel instance for identify/track
+provider.mixpanel?.identify("user-123")
+```
+
+### Using an Existing MixpanelAPI Instance
+
+```kotlin
+import com.mixpanel.android.mpmetrics.MixpanelAPI
+import com.mixpanel.android.openfeature.MixpanelProvider
+
 val mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN")
 
-// Register the OpenFeature provider
 val provider = MixpanelProvider(mixpanel.flags)
 OpenFeatureAPI.setProvider(provider)
 
@@ -61,8 +78,10 @@ val showNewUI = client.getBooleanValue("new-ui", false)
 Context is set globally when registering the provider, not per-evaluation. Per-evaluation context passed to individual flag evaluations is ignored.
 </Callout>
 
+The provider forwards the global OpenFeature context to the Mixpanel SDK via `setContext()` during initialization and whenever the global context changes.
+
 - **`targetingKey`** has no special meaning in this provider. It is treated as a regular context property.
-- Identity should be managed through the Mixpanel SDK via `mixpanel.identify()`.
+- Identity should be managed through the Mixpanel SDK via `mixpanel.identify()` or `provider.mixpanel?.identify()`.
 
 ## Error Handling
 
