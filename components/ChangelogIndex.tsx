@@ -148,6 +148,7 @@ export default function ChangelogIndex({ more = "Learn More" }) {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
+                  timeZone: "UTC"
                 })}
               </p>
             ) : null}
