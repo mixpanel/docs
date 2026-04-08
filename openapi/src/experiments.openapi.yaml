@@ -1,0 +1,550 @@
+openapi: 3.1.0
+x-readme-deploy-id: experiments-api
+info:
+  title: Experiments API
+  description: >-
+    Use the Experiments API to create, manage, and control experiments.
+  contact:
+    url: 'https://mixpanel.com/get-support'
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: 1.0.0
+servers:
+  - $ref: ./common/app-api.yaml#/server
+security:
+  - ServiceAccount: []
+tags:
+  - name: Experiment Management
+    description: Create, read, update, delete, and manage experiments
+  - name: Experiment Actions
+    description: Lifecycle actions — archive, decide, force conclude, launch
+paths:
+  /workspaces/{workspace_id}/experiments:
+    parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+    get:
+      operationId: list-experiments
+      tags:
+        - Experiment Management
+      summary: List Experiments
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListExperimentResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    post:
+      operationId: create-experiment
+      tags:
+        - Experiment Management
+      summary: Create Experiment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExperimentRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleExperimentResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /workspaces/{workspace_id}/experiments/{experiment_id}:
+    parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/ExperimentId'
+    get:
+      operationId: get-experiment
+      tags:
+        - Experiment Management
+      summary: Get Experiment
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleExperimentResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    patch:
+      operationId: update-experiment
+      tags:
+        - Experiment Management
+      summary: Update Experiment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateExperimentRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleExperimentResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    delete:
+      operationId: delete-experiment
+      tags:
+        - Experiment Management
+      summary: Delete Experiment
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteExperimentResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /workspaces/{workspace_id}/experiments/{experiment_id}/archive:
+    parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/ExperimentId'
+    post:
+      operationId: archive-experiment
+      tags:
+        - Experiment Actions
+      summary: Archive Experiment
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArchiveExperimentRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteExperimentResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+    delete:
+      operationId: unarchive-experiment
+      tags:
+        - Experiment Actions
+      summary: Unarchive Experiment
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleExperimentResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /workspaces/{workspace_id}/experiments/{experiment_id}/decide:
+    parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/ExperimentId'
+    patch:
+      operationId: decide-experiment
+      tags:
+        - Experiment Actions
+      summary: Decide Experiment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DecideExperimentRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleExperimentResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /workspaces/{workspace_id}/experiments/{experiment_id}/force_conclude:
+    parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/ExperimentId'
+    put:
+      operationId: force-conclude-experiment
+      tags:
+        - Experiment Actions
+      summary: Force Conclude Experiment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForceConcludeExperimentRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleExperimentResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+  /workspaces/{workspace_id}/experiments/{experiment_id}/launch:
+    parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/ExperimentId'
+    put:
+      operationId: launch-experiment
+      tags:
+        - Experiment Actions
+      summary: Launch Experiment
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LaunchExperimentRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleExperimentResponse'
+        '401':
+          $ref: ./common/responses.yaml#/401Unauthorized
+        '403':
+          $ref: ./common/responses.yaml#/403Forbidden
+
+components:
+  securitySchemes:
+    $ref: ./common/securitySchemes.yaml
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      schema:
+        type: integer
+      required: true
+    ExperimentId:
+      name: experiment_id
+      in: path
+      schema:
+        type: string
+      required: true
+
+  schemas:
+    # --- Request schemas ---
+    CreateExperimentRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 400
+        hypothesis:
+          type: string
+        settings:
+          type: object
+        variants:
+          type: array
+        metrics:
+          type: array
+        global_access_type:
+          type: string
+
+    UpdateExperimentRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 400
+        hypothesis:
+          type: string
+        status:
+          type: string
+        settings:
+          type: object
+        variants:
+          type: array
+        metrics:
+          type: array
+        start_date:
+          type: string
+        end_date:
+          type: string
+        exposures_cache:
+          type: object
+        results_cache:
+          type: object
+        tags:
+          type: array
+          items:
+            type: string
+        global_access_type:
+          type: string
+
+    DecideExperimentRequest:
+      type: object
+      required:
+        - success
+      properties:
+        success:
+          type: boolean
+        variant:
+          type: string
+        message:
+          type: string
+
+    ForceConcludeExperimentRequest:
+      type: object
+      properties:
+        end_date:
+          type: string
+
+    ArchiveExperimentRequest:
+      type: object
+      description: Empty request body for archiving an experiment
+
+    LaunchExperimentRequest:
+      type: object
+      description: Empty request body for launching an experiment
+
+    # --- Response schemas ---
+    ExperimentApiResponse:
+      additionalProperties: false
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID of the experiment
+        name:
+          type: string
+        content_type:
+          type: string
+        description:
+          anyOf:
+            - type: string
+            - type: 'null'
+        created:
+          type: string
+          description: ISO 8601 datetime
+        creator_id:
+          anyOf:
+            - type: integer
+            - type: 'null'
+        creator_name:
+          anyOf:
+            - type: string
+            - type: 'null'
+        creator_email:
+          anyOf:
+            - type: string
+            - type: 'null'
+        modified:
+          type: string
+          description: ISO 8601 datetime
+        deleted:
+          anyOf:
+            - type: string
+            - type: 'null'
+          description: ISO 8601 datetime when soft-deleted, null if active
+        is_favorited:
+          type: boolean
+        pinned_date:
+          anyOf:
+            - type: string
+            - type: 'null'
+          description: Date string YYYY-MM-DD or null
+        tags:
+          type: array
+          items:
+            type: string
+        last_modified_by_id:
+          type: integer
+        last_modified_by_name:
+          type: string
+        last_modified_by_email:
+          type: string
+        can_view:
+          type: boolean
+        can_update_basic:
+          type: boolean
+        can_update_restricted:
+          type: boolean
+        can_update_visibility:
+          type: boolean
+        is_superadmin:
+          type: boolean
+        allow_staff_override:
+          type: boolean
+        can_share:
+          type: boolean
+        is_shared_with_project:
+          type: boolean
+        hypothesis:
+          anyOf:
+            - type: string
+            - type: 'null'
+        status:
+          type: string
+          enum:
+            - draft
+            - active
+            - concluded
+            - success
+            - fail
+        variants:
+          type: array
+          description: Array of variant objects
+        metrics:
+          type: array
+          description: Array of metric objects
+        settings:
+          type: object
+          description: Experiment settings including feature flag settings
+        exposures_cache:
+          type: object
+          description: Cached exposure counts
+        results_cache:
+          type: object
+          description: Cached experiment results
+        start_date:
+          anyOf:
+            - type: string
+            - type: 'null'
+          description: ISO 8601 datetime
+        end_date:
+          anyOf:
+            - type: string
+            - type: 'null'
+          description: ISO 8601 datetime
+        feature_flag:
+          anyOf:
+            - type: object
+            - type: 'null'
+          description: Linked feature flag data, null if no flag linked
+
+    ExperimentApiErrorResponse:
+      additionalProperties: false
+      properties:
+        status:
+          const: error
+          title: ''
+          type: string
+        type:
+          title: ''
+          type: string
+        error:
+          title: ''
+          anyOf:
+            - type: string
+            - type: object
+      required:
+        - status
+        - type
+        - error
+      title: ExperimentApiErrorResponse
+      type: object
+
+    SingleExperimentApiResponse:
+      additionalProperties: false
+      properties:
+        status:
+          const: ok
+          title: ''
+          type: string
+        results:
+          $ref: '#/components/schemas/ExperimentApiResponse'
+      required:
+        - status
+        - results
+      title: SingleExperimentApiResponse
+      type: object
+
+    SingleExperimentResponse:
+      anyOf:
+        - $ref: '#/components/schemas/SingleExperimentApiResponse'
+        - $ref: '#/components/schemas/ExperimentApiErrorResponse'
+
+    ListExperimentApiResponse:
+      additionalProperties: false
+      properties:
+        status:
+          title: ''
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ExperimentApiResponse'
+          title: ''
+          type: array
+      required:
+        - status
+        - results
+      title: ListExperimentApiResponse
+      type: object
+
+    ListExperimentResponse:
+      anyOf:
+        - $ref: '#/components/schemas/ListExperimentApiResponse'
+        - $ref: '#/components/schemas/ExperimentApiErrorResponse'
+
+    DeleteExperimentApiResponse:
+      additionalProperties: false
+      properties:
+        status:
+          const: ok
+          title: ''
+          type: string
+        results:
+          additionalProperties: true
+          title: ''
+          type: object
+      required:
+        - status
+        - results
+      title: DeleteExperimentApiResponse
+      type: object
+
+    DeleteExperimentResponse:
+      anyOf:
+        - $ref: '#/components/schemas/DeleteExperimentApiResponse'
+        - $ref: '#/components/schemas/ExperimentApiErrorResponse'
