@@ -11,6 +11,12 @@ apis:
   featureflags:
     root: ./src/feature-flags.openapi.yaml
     output: ./out/feature-flags-api.json
+  featureflags-management:
+    root: ./src/feature-flags-management.openapi.yaml
+    output: ./out/feature-flags-management-api.json
+  experiments:
+    root: ./src/experiments.openapi.yaml
+    output: ./out/experiments-api.json
   gdpr:
     root: ./src/gdpr.openapi.yaml
     output: ./out/gdpr-api-2.json

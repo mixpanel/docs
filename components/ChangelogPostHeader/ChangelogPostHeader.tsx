@@ -19,6 +19,7 @@ export default function ChangelogPostHeader({
             year: "numeric",
             month: "long",
             day: "numeric",
+            timeZone: "UTC"
           })}
         </p>
       )}
