@@ -9,7 +9,7 @@ privacy:
 ---
 The Query API allows you to obtain the same calculated and formatted results that you see from a report in our web app.
 
-The query endpoints should serve as the starting point for exporting user information from Mixpanel. This is done through the /engage endpoint. See the Export section for information on exporting event data.
+The query endpoints should serve as the starting point for exporting information from Mixpanel. For example, exporting user profiles is done through the /api/query/engage endpoint. See the Export section for information on exporting event data.
 
 The Mixpanel Query API endpoints can:
 
