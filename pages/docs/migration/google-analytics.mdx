@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components'
+
 # Migrating from Google Analytics
 
 If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/migration) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Google Analytics.
@@ -88,6 +90,10 @@ Navigate to [Project Settings → Warehouse Data](https://mixpanel.com/report/se
 Under setup select your BigQuery source you gave Mixpanel access to. In the dataset drop-down, choose your GA4 dataset, then select the GA4 users table. Your Distinct ID column will automatically map to user_id for you.
 
 Under sync settings select One Time to backfill the data or Append to bring in new data based on Insert Time (sync mode doesn't include Mirror, only Append and One Time). If you choose Append for Sync Mode, set the frequency to daily. 
+
+<Callout type="info">
+  GA4 Append syncs use BigQuery's change history ([time travel](https://docs.cloud.google.com/bigquery/docs/time-travel)) to detect newly appended rows. BigQuery retains change history for up to 7 days (configurable, minimum 2 days). If the Mixpanel sync does not run within this window, it must be reset for a full re-sync. We recommend keeping the default of 7 days to allow time to correct any unexpected access issues (e.g., a credentials change).
+</Callout>
 
 Preview the users and associated user properties to ensure the data looks as expected then select Create to import the data into Mixpanel. Once the import is complete, navigate to the Users tab and ensure the profiles have been imported as expected. 
 
