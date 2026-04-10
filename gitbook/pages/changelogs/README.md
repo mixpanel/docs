@@ -2,13 +2,13 @@
 
 {% updates format="full" %}
 {% update date="2026-04-07" %}
-## NEW PRODUCT UPDATE
+## Testing UI initiated updated
 
-
+This post is made from the UI
 {% endupdate %}
 
 {% update date="2026-04-06" tags="update" %}
-## FIXING A TYPO Audit Log: Track activity across your organization and projects
+## Audit Log: Track activity across your organization and projects
 
 Monitor security, troubleshoot issues, and maintain compliance with activity tracking for your organization and projects.
 
