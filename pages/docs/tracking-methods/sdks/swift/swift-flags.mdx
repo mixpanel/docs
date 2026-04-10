@@ -17,7 +17,7 @@ Before implementing Feature Flags, ensure:
 
 ## Flag Initialization
 
-Initializing the SDK with feature flags enabled requires setting the `featureFlagsEnabled` option to `true`. This enables making an outbound request to Mixpanel servers with the current user context.
+Initializing the SDK with feature flags enabled requires passing a `FeatureFlagOptions` configuration to `MixpanelOptions`. This enables making an outbound request to Mixpanel servers with the current user context.
 The server will assign the user context to a variant for each feature flag according to how they are configured in the Mixpanel UX.
 
 The response will include an assigned variant for each flag that the user context is in a rollout group for. If a flag is not returned, it most likely signifies that the user was either not in the rollout percentage for a flag or in the configured targeting cohort.
@@ -26,7 +26,7 @@ The response will include an assigned variant for each flag that the user contex
 
 ```swift
 Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN", options: MixpanelOptions(
-    featureFlagsEnabled: true
+    featureFlagOptions: FeatureFlagOptions(enabled: true)
 ))
 ```
 
@@ -36,10 +36,9 @@ For example, for a Variant Assignment Key, `company_id`, you would setup the SDK
 
 ```swift
 let options = MixpanelOptions(
-    featureFlagsEnabled: true,
-    featureFlagsContext: [
+    featureFlagOptions: FeatureFlagOptions(enabled: true, context: [
         "company_id": "X"
-    ]
+    ])
 )
 Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN", options: options)
 ```
@@ -48,13 +47,12 @@ If you are using Runtime Targeting in any of the feature flags in your project, 
 
 ```swift
 let options = MixpanelOptions(
-    featureFlagsEnabled: true,
-    featureFlagsContext: [
+    featureFlagOptions: FeatureFlagOptions(enabled: true, context: [
         "company_id": "X",
         "customProperties": [
             "platform": "ios"
         ]
-    ]
+    ])
 )
 Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN", options: options)
 ```
@@ -75,6 +73,36 @@ Mixpanel.mainInstance().identify(distinctId: updatedDistinctId)
 ```swift
 Mixpanel.mainInstance().flags.loadFlags()
 ```
+
+3) To update the feature flags context after initialization and trigger a reload with the new values, use `setContext`. This completely replaces the previously set custom context.
+
+```swift
+Mixpanel.mainInstance().flags.setContext([
+    "company_id": "Y",
+    "customProperties": [
+        "platform": "ios"
+    ]
+]) {
+    // Flags have been re-fetched with the new context
+}
+```
+
+## Deferred Flag Loading
+
+By default, feature flags are automatically fetched when the app first enters the foreground (`prefetchFlags` defaults to `true`). If your workflow requires calling `identify()` before the first flag fetch — for example, to ensure flags are evaluated against the correct user — you can defer automatic loading by setting `prefetchFlags` to `false`:
+
+```swift
+let options = MixpanelOptions(
+    token: "YOUR_TOKEN",
+    featureFlagOptions: FeatureFlagOptions(enabled: true, prefetchFlags: false)
+)
+Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN", options: options)
+
+// Flags will not be fetched until identify() or loadFlags() is called
+Mixpanel.mainInstance().identify(distinctId: "user-123")
+```
+
+When `prefetchFlags` is set to `false`, flags will not be loaded until you explicitly call `identify()` or `Mixpanel.mainInstance().flags.loadFlags()`.
 
 ## Flag Evaluation
 
@@ -149,6 +177,33 @@ if isEnabled {
 }
 ```
 
+### Get All Flag Assignments
+
+You can retrieve all feature flag assignments at once. These methods do **not** trigger `$experiment_started` tracking events.
+
+**Synchronous**
+
+`getAllVariantsSync()` returns a `[String: MixpanelFlagVariant]` dictionary containing all current flag assignments. If flags have not been loaded yet, it returns an empty dictionary.
+
+```swift
+let allFlags = Mixpanel.mainInstance().flags.getAllVariantsSync()
+
+for (flagName, variant) in allFlags {
+    print("\(flagName): \(variant.value)")
+}
+```
+
+**Asynchronous**
+
+`getAllVariants(completion:)` returns a `[String: MixpanelFlagVariant]` dictionary via a completion handler. If flags have not been loaded yet, it will attempt to fetch them before returning.
+
+```swift
+Mixpanel.mainInstance().flags.getAllVariants { allFlags in
+    for (flagName, variant) in allFlags {
+        print("\(flagName): \(variant.value)")
+    }
+}
+```
 
 ## Frequently Asked Questions
 
@@ -163,9 +218,9 @@ if isEnabled {
   - If you are using a targeting cohort, verify on the mixpanel 'Users' page that the user's `distinct_id` is a member of that cohort.
 
 3. **Review SDK parameters**:
-  - Ensure `featureFlagsEnabled: true` is included in the MixpanelOptions
-  - If using a custom Variant Assignment Key, ensure it is included in the `featureFlagsContext`
-  - If using Runtime Targeting, ensure all properties used in targeting are included in the `customProperties` object within `featureFlagsContext`
+  - Ensure `FeatureFlagOptions(enabled: true)` is passed to `MixpanelOptions` via the `featureFlagOptions` parameter
+  - If using a custom Variant Assignment Key, ensure it is included in the `FeatureFlagOptions` `context` parameter
+  - If using Runtime Targeting, ensure all properties used in targeting are included in the `customProperties` object within the `FeatureFlagOptions` context
 
 4. **Check flags readiness**: Use `areFlagsReady()` to check if flags have been loaded before making synchronous calls
 5. **Enable debug mode**: Set up logging to see detailed information about flag requests and responses

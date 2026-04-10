@@ -52,7 +52,7 @@ Replace `YOUR_TOKEN` with your project token. You can find your token [here](htt
 You can learn more about configuring Session Replay and Heatmaps [here](/docs/tracking-methods/sdks/javascript/javascript-replay).
 
 ```js Javascript
-//Import Mixpanel SDK
+//Import Mixpanel SDK (only required for npm and yarn)
 import mixpanel from "mixpanel-browser";
 
 // Near entry of your product, init Mixpanel
@@ -579,30 +579,17 @@ next step.**
 
 ## FAQ
 
-export function FAQBox({ title, children }) {
-  return (
-    <details
-      open={false}
-      className="last-of-type:mb-0 rounded-xl bg-[#f5f2f2] p-0 mt-6"
-    >
-      <summary>
-        <strong className="text-lg font-medium ">{title}</strong>
-      </summary>
-      <div className="nx-p-2">{children}</div>
-    </details>
-  );
-}
 
 <div className="faqComponent" >
 
-<FAQBox title="Does Mixpanel automatically track page views?">
+<ExtendedAccordion title="Does Mixpanel automatically track page views?">
   Yes, if you pass `track_pageview: true` in the `mixpanel.init()` call,
   Mixpanel will automatically track a "Page View" event every time a new page is
   loaded. Learn more
   [here](/docs/tracking-methods/sdks/javascript#tracking-page-views).
-</FAQBox>
+</ExtendedAccordion>
 
-<FAQBox title="What are the recommended web configuration options?">
+<ExtendedAccordion title="What are the recommended web configuration options?">
   When tracking on web, we recommend using localStorage, as this is more reliable:
 
 ```javascript
@@ -611,17 +598,17 @@ mixpanel.set_config({ persistence: "localStorage" });
 
 Please note that cross-subdomain tracking is not possible when using local storage. If your implementation requires cross-subdomain tracking, remove the persistence flag and use the default "cookie" persistence option.
 
-</FAQBox>
+</ExtendedAccordion>
 
-<FAQBox title="Does Mixpanel use third-party cookies?">
+<ExtendedAccordion title="Does Mixpanel use third-party cookies?">
   No, our Mixpanel JavaScript SDK does not set or use any third-party cookies.
   If you wish to disable cookies entirely, you can set the disable_persistence
   option to true when initializing your Mixpanel JS instance. Note that
   disabling persistence will disable the use of super properties and anonymous
   -> identified user tracking.
-</FAQBox>
+</ExtendedAccordion>
 
-<FAQBox title="How can I track in a privacy compliant way?">
+<ExtendedAccordion title="How can I track in a privacy compliant way?">
   If a user opts out of tracking, you can call the `.optOutTracking()` method on any of our 
   client-side SDKs; this prevents any subsequent data being tracked from that user's device. 
   Learn more [here](/docs/privacy/protecting-user-data).
@@ -630,6 +617,6 @@ For iOS specifically: Mixpanel does not use IDFA, so it does not require user pe
 through the AppTrackingTransparency(ATT) framework. For more details, refer to our
 [Apple App Developer Privacy Guidance](https://mixpanel.com/legal/app-store-privacy-details).
 
-</FAQBox>
+</ExtendedAccordion>
 
 </div>

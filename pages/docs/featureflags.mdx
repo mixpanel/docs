@@ -60,7 +60,7 @@ This is the randomization bucket unit: `distinct_id` (user), `device_id`, or a *
 
 **How to choose the right key?**
 - **User** `distinct_id`  — best for logged-in experiences across device; a user sees a consistent experience across various sessions and devices
-- **Device** `device_id`  — best for pre-auth or acquisition flows; a device keeps a consistent variant between pre-auth and post-auth experiences.
+- **Device** `device_id`  — best for pre-auth or acquisition flows; a device keeps a consistent variant between pre-auth and post-auth experiences. 
 - **Group** `group_id` — target by account/org using a group key (e.g., `account_id`). Values for group keys will need to be supplied to the Mixpanel feature flag SDK through the `context` parameter. When a group key is selected, cohort targeting targets that group accordingly.  For example, if you have a Franchise data group with key `franchise_id`, and you want to use a flag to rollout a feature to select Franchises, then `franchise_id` should be your assignment key.
 
 <Callout type="info">
@@ -101,6 +101,11 @@ When the Variant Assignment Key is set to a group key (e.g., `company_id`, `acco
  - Cohorts used in feature flag targeting refresh on a periodic cadence (~every 2 hours). So once a user or group entity qualifies for a cohort, it can take up to 2 hours before they see a desired experience.
  - If you want users or groups to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure they continue to see the new experience until the flag is turned off.
 </Callout>
+
+<Callout type="warning">
+Note that cohort targeting for `device_id` assignment key flags builds cohorts against Users, not devices. Furthermore, since this targeting is against Users, it will only target authenticated Users, which could defeat the purpose of using an auth-insensitive `device_id` rollout.  If you wish to do group cohort targeting against devices, make device a Data Group and then use group targeting against it.  
+</Callout>
+
 
 #### Runtime Targeting
 
@@ -234,7 +239,7 @@ See our developer guides on implementing feature flags on these platforms below:
   <Cards.Card icon title="Web" href="/docs/tracking-methods/sdks/javascript/javascript-flags" />
   <Cards.Card icon title="iOS" href="/docs/tracking-methods/sdks/swift/swift-flags" />
   <Cards.Card icon title="Android" href="/docs/tracking-methods/sdks/android/android-flags" />
-  <Cards.Card icon title="Flutter (Beta)" href="/docs/tracking-methods/sdks/flutter/flutter-flags" />
+  <Cards.Card icon title="Flutter" href="/docs/tracking-methods/sdks/flutter/flutter-flags" />
   <Cards.Card icon title="React Native (Beta)" href="/docs/tracking-methods/sdks/react-native/react-native-flags" />
 </Cards>
 
@@ -255,13 +260,15 @@ If you'd like to see Feature Flags availability in other SDKs, please [reach out
 
 ### Other Implementation Methods
 
-**We use a CDP in our company. How do we use Mixpanel Feature Flags with our CDP?**
-You have two options - 
-- **Option 1:** Use Mixpanel sdk for purely feature flagging assignment and exposure event `$experiment_started`   
-- **Option 2:** Use mixpanel sdk for only feature flagging assignment, not exposure event
+**Mixpanel Feature Flags with a Customer Data Platform (CDP)**
+You have two options -
+- **Option 1:** Use Mixpanel SDK for purely feature flagging assignment and exposure event `$experiment_started`.
+- **Option 2:** Use mixpanel SDK for only feature flagging assignment, not exposure event
     - When you initialize the mixpanel feature flag SDK, configure it to not track any `$experiment_started` events directly to Mixpanel.
     - This way you use the mixpanel SDK to serve the feature flags, but when an end-user sees exposure, they manually use their existing method of tracking events through their CDP to mixpanel to track the $experiment_started event
 
+**Mixpanel Feature Flags with Google Tag Manager (GTM)**
+You can implement Mixpanel Feature Flags through Google Tag Manager. See the [Google Tag Manager integration guide](/docs/tracking-methods/integrations/google-tag-manager) for step-by-step instructions on initializing flags, evaluating them, and tracking exposure events via GTM.
 
 ## Identifying User Exposures
 

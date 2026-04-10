@@ -3,7 +3,7 @@ import { Callout } from 'nextra/components'
 # Roles & Permissions  
 
 ## Overview
-Your team members access your organization and its projects using individual user accounts which is what you use to sign into Mixpanel. An account must be part of an organization but it does not need to be part of all projects in the organization.  Each account will have a single organization role per organization and one or more project roles for each project it is a part of. These roles can further limit what an account will have access to in Mixpanel.
+Your team members access your organization and its projects using individual user accounts, which is what you use to sign into Mixpanel. An account must be part of an organization, but it does not need to be part of all projects in the organization.  Each account will have a single organization role per organization and one or more project roles for each project it is a part of. These roles can further limit what an account will have access to in Mixpanel.
 
 <Callout type="info">
 To invite and manage users in your organization and project, you will need an admin or owner organization role.
@@ -50,7 +50,7 @@ If there are projects that you wish for everyone in your organization to have so
 
 ### Remove Users
 
-You can remove users from an organization or project. You can only remove users with role permission below your own.
+You can remove users from an organization or project. You can only remove users with a role permission below your own.
 
 #### Remove User from an Organization
 
@@ -75,7 +75,7 @@ To remove a user from a project:
 A user can belong to multiple projects. Removing a user from one project does not affect their access to other projects within the organization. Any assets the user created (such as boards or reports) remain available in the project and are not automatically removed when the user is removed.
 
 <Callout type="info">
-  Only users with Organization Owner or Organization Admin roles can remove users that have access to a project granted through a [Team](/docs/orgs-and-projects/roles-and-permissions#teams).
+  Only users with Organization Owner or Organization Admin roles can remove users who have access to a project granted through a [Team](/docs/orgs-and-projects/roles-and-permissions#teams).
 </Callout>
 
 ![image](/Del_Proj_Users.png "Delete Project Users")
@@ -87,9 +87,9 @@ In Mixpanel, users have roles in an organization and in a project. The types of 
 ### Organization Roles
 
 <Callout type="info">
-  Users on an Enterprise or Growth plan have access to four roles; Owner, Admin, Billing Admin, and Member. 
+  Users on an Enterprise or Growth plan have access to four roles: Owner, Admin, Billing Admin, and Member. 
   
-  Users on a Free plan have access to two roles; Owner and Billing Admin.
+  Users on a Free plan have access to two roles: Owner and Billing Admin.
 
   See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Callout>
@@ -122,14 +122,14 @@ Organization Owners have administrative permissions for the organization and all
 
 **Admin**
 
-Organization Admins have permissions to manage projects, members and roles in the organization. Organization Admins have the same permissions as Organization Owners **except** for the following:
+Organization Admins have permissions to manage projects, members, and roles in the organization. Organization Admins have the same permissions as Organization Owners **except** for the following:
 
 - Request Organization deletions
 - Delete Projects
 - Transfer Projects between Organizations
 - Manage Billing Plans
 
-In addition, an Organization Admin would not be able to assign any user to anything higher than Admin (i.e. Organization Owner).
+In addition, an Organization Admin would not be able to assign any user to anything higher than Admin (i.e., Organization Owner).
 
 **Billing Admin**
 
@@ -149,7 +149,7 @@ Organization Members have no permissions to control or manage organization setti
 ### Project Roles
 
 Users in a Project can be assigned to 4 roles: Owner, Admin, Analyst, and Consumer.
-The table below is an overview of the permissions per role on an project level.
+The table below is an overview of the permissions per role on a project level.
 
 | **Project Roles**              | **Owner** | **Admin** | **Analyst** | **Consumer** |
 |--------------------------------|-----------|-----------|-------------|--------------|
@@ -176,9 +176,10 @@ The table below is an overview of the permissions per role for reports and other
 | Create Custom Alerts                    | ✅ | ✅ | ✅ | ❌ |
 | Edit Custom Alerts                      | ✅ | ❌ | ❌ | ❌ |
 | View Users Report                       | ✅ | ✅ | ✅ | ✅ |
+| Export Users Report                     | ✅ | ✅ | ✅ | ❌ |
 | Create/Edit Cohorts                     | ✅ | ✅ | ✅ | ✅ |
 | Export Cohorts                          | ✅ | ✅ | ✅ | ❌ |
-| Create/Edit User Profiles               | ✅ | ✅ | ✅ | ❌ |
+| Create/Edit User Profiles               | ✅ | ✅ | ❌ | ❌ |
 | Delete User Profiles                    | ✅ | ✅ | ❌ | ❌ |
 | Create and View Boards                  | ✅ | ✅ | ✅ | ✅ |
 | Create Subscriptions for Boards         | ✅ | ✅ | ✅ | ❌ |
@@ -205,17 +206,17 @@ Organization Owners, by default, have administrative permissions to assume an ow
 
 **Admin**
 
-Project Admins have the same set of permissions as project owners. However, they cannot delete or reset the project or manage its security. In addition, a Project Admin would not be able to assign any user to anything higher than Admin (i.e. Project Owner).
+Project Admins have the same set of permissions as project owners. However, they cannot delete or reset the project or manage its security. In addition, a Project Admin would not be able to assign any user to anything higher than Admin (i.e., Project Owner).
 
 Organization Admins, by default, have administrative permissions to assume an admin role in a project.
 
 **Analyst**
 
-Project Analysts can create and save Mixpanel reports and Boards. They can also share their saved reports and Boards, along with reports and Boards in which they have editor permissions. They however do not have permissions to manage project user roles.
+Project Analysts can create and save Mixpanel reports and Boards. They can also share their saved reports and Boards, along with reports and Boards in which they have editor permissions. They, however, do not have permissions to manage project user roles.
 
 **Consumer**
 
-Project Consumers can view and save their own reports and Boards. However, they cannot share their saved reports and Boards with other project users as these will be marked as private.
+Project Consumers can view and save their own reports and Boards. However, they cannot share their saved reports and Boards with other project users, as these will be marked as private.
 
 - Add saved reports to their own Boards. Duplicate another user's Board and view it as a private Board.
 - Edit reports and Boards on which they have been added as an editor. However, they cannot share these reports and Boards.
@@ -225,11 +226,11 @@ Project Consumers do not have permissions to manage project user roles.
 
 #### Multiple Roles at Once
 
-It is possible to have multiple or conflicting roles on a project via teams or organization roles. Within Mixpanel all roles are additive and strictly give permissions to an action. They do not remove any abilities. For example:
+It is possible to have multiple or conflicting roles on a project via teams or organization roles. Within Mixpanel, all roles are additive and strictly give permissions to an action. They do not remove any abilities. For example:
 
 1. A project Owner who is an organization Admin will have both project Owner and project Admin permissions in the project. For all intents and purposes, this is the same as having just the project Owner role.
 
-2. If a user is assigned both the Consumer role individually and the Analyst role via a team. The user would be able to do both anything a Consumer can do and anything an Analyst can do.
+2. If a user is assigned both the Consumer role individually and the Analyst role via a team. The user would be able to do anything a Consumer can do and anything an Analyst can do.
 
 #### Grant Types
 
@@ -244,7 +245,7 @@ A user's project role(s) can be granted in different ways:
 
 ## Teams
 
-Mixpanel enables you to create and delete Teams within an organization. Teams make it easier to manage roles and permissions for a group of users. Users who are a member of a Team will be provisioned with the same role and permission that is assigned to the team.
+Mixpanel enables you to create and delete Teams within an organization. Teams make it easier to manage roles and permissions for a group of users. Users who are members of a Team will be provisioned with the same role and permissions that are assigned to the team.
 
 ![image](/Teams_List.png "Teams_List")
 
@@ -259,7 +260,7 @@ To create teams in Mixpanel:
 
 ### Adding Users to Teams
 
-All users added to a team will receive the same role and permissions that is assigned to the team. To add users to a team:
+All users added to a team will receive the same role and permissions that are assigned to the team. To add users to a team:
 
 1. Under "Organization Settings", click **Users & Teams** and you will land on the Users tab.
 2. Select the **Teams** tab and select the team to add users to.
