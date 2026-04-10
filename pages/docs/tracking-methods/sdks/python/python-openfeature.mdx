@@ -4,117 +4,190 @@ import { Callout } from 'nextra/components'
 
 ## Overview
 
-The Mixpanel OpenFeature provider allows you to use [Mixpanel Feature Flags](/docs/featureflags) through the standardized [OpenFeature](https://openfeature.dev/) API. This provider wraps the Mixpanel Python SDK's feature flags, letting you use the OpenFeature Python SDK with Mixpanel as the backend.
+This guide covers using Mixpanel's [Feature Flags](/docs/featureflags) through the [OpenFeature](https://openfeature.dev/) standard with the Mixpanel Python OpenFeature provider. OpenFeature provides a vendor-agnostic API for feature flag evaluation, allowing you to switch between providers without changing your application code.
 
-For the core Feature Flags SDK guide, see [Feature Flags (Python)](/docs/tracking-methods/sdks/python/python-flags).
+For the native Mixpanel SDK approach, see the [Feature Flags (Python)](/docs/tracking-methods/sdks/python/python-flags) guide.
 
 ## Prerequisites
 
-- You are on an Enterprise subscription plan
-- You have the [Mixpanel Python SDK](/docs/tracking-methods/sdks/python) installed
-- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+- Enterprise subscription plan with Feature Flags enabled
+- Python 3.9 or higher
+- Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Installation
 
 ```bash
-pip install mixpanel-openfeature-provider openfeature-sdk
+pip install mixpanel-openfeature openfeature-sdk
+```
+
+## Quick Start
+
+```python
+from mixpanel_openfeature import MixpanelProvider
+from mixpanel.flags.types import LocalFlagsConfig
+from openfeature import api
+
+# 1. Create and register the provider with local evaluation
+provider = MixpanelProvider.from_local_config(
+    "YOUR_PROJECT_TOKEN",
+    LocalFlagsConfig(token="YOUR_PROJECT_TOKEN"),
+)
+api.set_provider(provider)
+
+# 2. Get a client and evaluate flags
+client = api.get_client()
+show_new_feature = client.get_boolean_value("new-feature-flag", False)
+
+if show_new_feature:
+    print("New feature is enabled!")
+```
+
+## Initialization
+
+The provider supports three initialization methods depending on your evaluation strategy.
+
+### Local Evaluation (Recommended)
+
+Evaluates flags locally using cached flag definitions polled from Mixpanel. This minimizes latency since there is no network call at evaluation time.
+
+<Callout type="warning">
+Targeting by Mixpanel cohorts and sticky variants are not supported in Local Evaluation mode.
+</Callout>
+
+```python
+from mixpanel_openfeature import MixpanelProvider
+from mixpanel.flags.types import LocalFlagsConfig
+
+provider = MixpanelProvider.from_local_config(
+    "YOUR_PROJECT_TOKEN",
+    LocalFlagsConfig(token="YOUR_PROJECT_TOKEN"),
+)
+```
+
+### Remote Evaluation
+
+Evaluates flags by making a request to Mixpanel's servers for each evaluation. Use this when you need real-time flag values or cohort-based targeting.
+
+```python
+from mixpanel_openfeature import MixpanelProvider
+from mixpanel.flags.types import RemoteFlagsConfig
+
+provider = MixpanelProvider.from_remote_config(
+    "YOUR_PROJECT_TOKEN",
+    RemoteFlagsConfig(token="YOUR_PROJECT_TOKEN"),
+)
+```
+
+### Using an Existing Mixpanel Instance
+
+If your application already has a `Mixpanel` instance configured for tracking, you can wrap its flags provider:
+
+```python
+from mixpanel import Mixpanel
+from mixpanel.flags.types import LocalFlagsConfig
+from mixpanel_openfeature import MixpanelProvider
+
+mp = Mixpanel("YOUR_PROJECT_TOKEN", local_flags_config=LocalFlagsConfig(token="YOUR_PROJECT_TOKEN"))
+mp.local_flags.start_polling_for_definitions()
+
+provider = MixpanelProvider(mp.local_flags)
 ```
 
 ## Usage
 
-The provider wraps either a local or remote flags provider from the Mixpanel SDK.
+### Flag Types and Evaluation Methods
 
-### With Local Evaluation
+| Mixpanel Flag Type | Variant Values | OpenFeature Method |
+|---|---|---|
+| Feature Gate | `True` / `False` | `get_boolean_value()` |
+| Experiment | boolean, string, number, or JSON object | `get_boolean_value()`, `get_string_value()`, `get_integer_value()`, `get_float_value()`, or `get_object_value()` |
+| Dynamic Config | JSON object | `get_object_value()` |
 
 ```python
-from openfeature import api
-from mixpanel_openfeature import MixpanelProvider
-from mixpanel.flags.types import LocalFlagsConfig
+client = api.get_client()
 
-config = LocalFlagsConfig(
-    enable_polling=True,
-    polling_interval_in_seconds=60
+# Feature Gate
+is_feature_on = client.get_boolean_value("new-checkout", False)
+
+# Experiment with string variants
+button_color = client.get_string_value("button-color-test", "blue")
+
+# Experiment with numeric variants
+max_items = client.get_integer_value("max-items", 10)
+threshold = client.get_float_value("score-threshold", 0.5)
+
+# Dynamic Config
+feature_config = client.get_object_value("homepage-layout", {"layout": "default"})
+```
+
+### Evaluation Context
+
+Pass context to provide user attributes for targeting:
+
+```python
+from openfeature.evaluation_context import EvaluationContext
+
+context = EvaluationContext(
+    targeting_key="user-123",
+    attributes={
+        "email": "user@example.com",
+        "plan": "premium",
+        "beta_tester": True,
+    },
 )
 
-# Create provider with local evaluation (automatically starts polling)
-provider = MixpanelProvider.from_local_config("YOUR_PROJECT_TOKEN", config)
-api.set_provider(provider)
-
-client = api.get_client()
-show_new_ui = client.get_boolean_value("new-ui", False)
+value = client.get_boolean_value("premium-feature", False, context)
 ```
 
-### With Remote Evaluation
+<Callout type="info">
+Unlike some providers, `targetingKey` is not used as a special bucketing key. It is passed as another context property. Mixpanel's server-side configuration determines which properties are used for targeting and bucketing.
+</Callout>
+
+### Full Resolution Details
 
 ```python
-from mixpanel.flags.types import RemoteFlagsConfig
+details = client.get_boolean_details("my-feature", False)
 
-config = RemoteFlagsConfig(
-    api_host="api.mixpanel.com"
-)
-
-provider = MixpanelProvider.from_remote_config("YOUR_PROJECT_TOKEN", config)
-api.set_provider(provider)
-
-client = api.get_client()
-variant = client.get_string_value("checkout-flow", "control")
+print(details.value)        # The resolved value
+print(details.variant)      # The variant key from Mixpanel
+print(details.reason)       # Why this value was returned
+print(details.error_code)   # Error code if evaluation failed
 ```
 
-### With an Existing Flags Provider
+### Accessing the Underlying Mixpanel Instance
 
-If you already have a configured Mixpanel instance, you can wrap its flags provider directly:
+When using `from_local_config` or `from_remote_config`, you can access the Mixpanel instance for tracking:
 
 ```python
-from mixpanel import Mixpanel
-from mixpanel_openfeature import MixpanelProvider
-
-mp = Mixpanel("YOUR_PROJECT_TOKEN", local_flags_config={
-    "enable_polling": True,
-    "polling_interval_in_seconds": 60
-})
-
-mp.local_flags.start_polling_for_definitions()
-
-provider = MixpanelProvider(mp.local_flags)
-api.set_provider(provider)
+mp = provider.mixpanel
 ```
 
-## Supported Flag Types
+### Shutdown
 
-| OpenFeature Method | Python Type |
-|---|---|
-| `get_boolean_value` / `get_boolean_details` | `bool` |
-| `get_string_value` / `get_string_details` | `str` |
-| `get_integer_value` / `get_integer_details` | `int` |
-| `get_float_value` / `get_float_details` | `float` |
-| `get_object_value` / `get_object_details` | `dict` |
-
-## Context and Identity
-
-The evaluation context passed to each flag evaluation is forwarded to the Mixpanel flags provider.
-
-- **`targeting_key`** has no special meaning in this provider. It is treated as a regular context property.
-- Identity should be managed through the Mixpanel SDK (e.g., setting `distinct_id` in the context).
+```python
+provider.shutdown()
+```
 
 ## Error Handling
 
-The provider returns the default value on all errors, with an error code indicating the cause:
+The provider uses OpenFeature's standard error codes:
 
-| Error Code | Condition |
+| Error Code | When |
 |---|---|
-| `PROVIDER_NOT_READY` | The provider has not been initialized |
-| `FLAG_NOT_FOUND` | The requested flag does not exist |
-| `TYPE_MISMATCH` | The flag value does not match the requested type |
+| `PROVIDER_NOT_READY` | Flags evaluated before local provider has finished loading definitions |
+| `FLAG_NOT_FOUND` | The requested flag does not exist in Mixpanel |
+| `TYPE_MISMATCH` | The flag value type does not match the requested type |
 
-Use `get_details()` methods instead of `get_value()` to inspect error codes:
+## Troubleshooting
 
-```python
-details = client.get_boolean_details("my-flag", False)
-if details.error_code:
-    print(f"Flag error: {details.error_code} - {details.error_message}")
-```
+### Flags Always Return Default Values
 
-## Lifecycle
+1. **Provider not ready (local evaluation):** Flag definitions are polled asynchronously. Allow time for the initial fetch to complete.
+2. **Invalid project token:** Verify the token matches your Mixpanel project.
+3. **Flag not configured:** Verify the flag exists and is enabled in your Mixpanel project.
 
-- **`shutdown()`** delegates to the underlying flags provider to clean up resources (e.g., stop polling).
-- The reason code for successful evaluations is `STATIC`.
+### Type Mismatch Errors
+
+1. Verify the flag's value type in Mixpanel matches your evaluation method (e.g., string `"true"` requires `get_string_value()`, not `get_boolean_value()`).
+2. Use `get_object_value()` for JSON objects.
+3. Integer evaluation accepts whole-number `float` values. Float evaluation accepts any numeric type.
