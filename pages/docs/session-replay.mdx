@@ -101,27 +101,30 @@ In any user's profile page, Click the "View Replays" button to watch replays fro
 
 ![replayPlayer](/sr-player-apr-26.png)
 
-The Replay Player has three main areas: the Player Area, the Replay Feed, and the Details Panel.
+The Replay Player has three main areas: the Replay Feed, the Player Area, and the Details Panel.
+
+### Replay Feed
+
+The Replay Feed on the left side of the player lets you browse and find replays. It works out of the box with the Mixpanel events and properties you already track (including server-side events) — no extra setup required. Each cell represents a single user journey: a group of replays for a specific user that happened within ~30 minutes of each other. A single journey can contain several replays.
+
+The replay feed allows you to: 
+- Filter by any event, property, or time period
+- Search by user name/email, replay date, user ID, or event name
+- Sort by recency, activity, or duration
+- Hover over replay cells to reveal more details
 
 ### Player Area
 
 The Player Area is the central area where you watch replays. It includes the following controls:
 
 - Expand the player to full-screen
-- Copy a URL with or without a timestamp to share with your teammates
+- Copy a URL (with or without a timestamp) to share with your teammates
 - Change the playback speed
 - Automatically skip periods of the replay where user is inactive
 - See events in the replay timeline
 - Jump to different parts of the replay by clicking in the timeline
-
-### Replay Feed
-
-The Replay Feed on the left side of the player lets you browse and find replays:
-
-- Sort replays by recency, activity, or duration
-- Search for replays by user's name / email, replay date, user ID, or the name of an event in the replay
-- See a feed of events that occurred during each replay, including console and network events when enabled
-- Display properties and their values within the event feed
+- Bookmark a replay to save it for later
+- Enable server-side stitching (revealing replays and events for the same user that were not captured with the same SDK that captured the replay.  this is particularly useful for discovering replays, as well as moments of those replays where important events you track server-side or via data warehouse occur, like purchase events or sign-up events.)
 
 ### Details Panel
 
