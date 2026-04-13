@@ -99,7 +99,7 @@ In any user's profile page, Click the "View Replays" button to watch replays fro
 
 ### Replay Player
 
-![replayHeroImageWithPrivacy](/replayHeroImageWithPrivacy.png)
+![replayPlayer](/sr-player-apr-26.png)
 
 The Replay Player allows you to watch replays, as well as:
 
@@ -137,26 +137,41 @@ Network recording is disabled by default and requires SDK configuration. Request
 
 ### Magic Playlists
 
-Magic Playlists allow you to save playlists of replays based on events or properties, making it easy to revisit groups of replays that matter to you over time. This feature helps solve common pain points:
+Magic Playlists allow you to save playlists of replays based on events or properties, making it easy to revisit groups of replays that matter to you over time. A playlist stores your filter criteria (events, recording properties, date range, sort order) and can also hold up to 200 individually bookmarked replays. Key capabilities include:
 
 - **Dynamic playlists**: Create playlists based on your Mixpanel events and properties that automatically update as new replays meet your criteria
+- **Bookmarked replays**: Pin specific replays to a playlist so you can easily return to them later
 - **AI-powered insights**: Get AI text summaries that identify key patterns and insights across numerous replays at once
-- **Save interesting replays**: No need to repeatedly recreate replay searches
 
 <Callout type="info">
   AI summaries for Magic Playlists are currently in beta and publicly available for all customers using Magic Playlists.
 </Callout>
 
-To create a Magic Playlist:
+#### Creating a Playlist
 
 1. Access Session Replay from the side navigation in your Mixpanel project
-2. Configure filters based on events, properties, or custom time ranges
-3. Save the playlist, which will remember the filters you've applied
-4. Select a destination Mixpanel board where you want the playlist to appear
+2. Apply filters based on events, properties, or custom time ranges
+3. Click **Save Playlist** in the header and add a name
+4. Click **Save**
 
 ![Save Playlist button](/save-playlist-button.png)
 
-Once saved, your Magic Playlist will appear as a playlist card on your selected board. Any time new replays meet your saved criteria, they will automatically appear in your playlist, keeping your board up-to-date with the replays that matter most to you.
+Once saved, your Magic Playlist will appear as a playlist card on your selected board. Any time new replays meet your saved criteria, they will automatically appear in your playlist. Modifying filters after saving shows unsaved changes — you can **Save** to update or **Save as New** to create a variant.
+
+#### Bookmarking Replays
+
+Bookmarking pins a specific replay to the current playlist. You can bookmark replays in two ways:
+
+- **From the player**: Use the bookmark icon in the player's top control bar to toggle bookmark status
+- **From the playlist row**: Click the bookmark badge on any replay row
+
+A playlist must be saved before you can bookmark replays — the bookmark button is disabled until a playlist is active.
+
+#### Viewing Bookmarked Replays
+
+Use the bookmark filter toggle in the playlist header to show only bookmarked replays. When this filter is active, other filters are disabled. Bookmarked replays appear in a dedicated section at the top of the playlist.
+
+Expired bookmarked replays appear in a separate **Expired Journeys** section. You can remove expired bookmarks, but expired replay content can no longer be played. Bookmark lookback searches up to 365 days.
 
 ## Best Practices
 
