@@ -1,0 +1,33 @@
+---
+title: "Alerts: Take control with scheduling, history, and webhooks"
+description: "Schedule exactly when alerts evaluate, test thresholds before going live, see the full history of every trigger, and route notifications to any tool in your stack."
+slug: "2026-04-09-alerts-improvements"
+hidden: false
+createdAt: "2026-04-09T00:00:00.165Z"
+updatedAt: "2026-04-09T00:00:00.165Z"
+date: "2026-04-09"
+thumbnail: "/changelog/alertsImprovements.png"
+isAnnouncement: false
+---
+
+<ChangelogPostHeader
+  date="2026-04-09"
+  image="/changelog/alertsImprovements.png"
+  title="Alerts: Take control with scheduling, history, and webhooks"
+/>
+
+A well-configured alert can be the difference between catching a problem before it becomes a crisis and spotting an opportunity before it passes. That's why we've enhanced Mixpanel Alerts to give you more precision over when alerts fire, more visibility into how they're working, and more flexibility in where notifications go.
+
+With these improvements, you can:
+
+- **Schedule when alerts evaluate:** Notification windows let you define specific days, time ranges, or multiple schedules with different thresholds, so alerts fire when something is genuinely unexpected — not when your data follows its normal pattern
+- **Test before you enable:** Run a retroactive simulation over any time window to see how often an alert would have fired and at what values, before it reaches anyone's inbox
+- **See the full trigger history:** Every alert trigger is now logged with the exact metric value at that moment, so you can spot patterns without digging through email or Slack
+- **Manage everything in one place:** The enhanced alerts management hub shows status, last triggered time, trigger count, and sync health for every alert in your project
+- **Know when alerts break:** When a report change breaks an alert, Mixpanel notifies the owner immediately rather than going dark
+- **Route notifications via webhook:** Send alerts to any HTTP endpoint in your stack: incident management platforms, workflow tools like Zapier or Make, and custom dashboards
+- **More context in every notification:** Alert emails and Slack messages now include a trend chart at trigger time
+
+Less noise, more signal. [Learn more](/docs/features/alerts)
+
+**Note:** Alerts improvements are available on all plans. Growth plan customers are limited to 5 alerts per project. Enterprise customers have unlimited alerts.
