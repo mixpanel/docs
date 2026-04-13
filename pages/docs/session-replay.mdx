@@ -32,12 +32,22 @@ See our developer guides on implementing Session Replay for these platforms belo
 ## UI Controls
 
 <Callout type="info">
-  UI Controls is currently available for Web. Support for iOS, Android, React Native, and Flutter is coming soon.
+  UI Controls is currently available for Web, iOS, and Android. Support for React Native and Flutter is coming soon.
 </Callout>
 
-With UI Controls, teams can manage Session Replay sampling directly from the Mixpanel UI — no code changes or redeployment required. This is available exclusively to customers with the paid Session Replay Add-On. Changes made in the UI take effect within an hour.
+With UI Controls, teams can manage Session Replay sampling directly from the Mixpanel UI — no code changes or redeployment required. This is available exclusively to customers with the paid Session Replay Add-On. **Changes take effect within an hour.**
 
 ![remoteSettingsTab](/remoteSettingsTab.png)
+
+### Prerequisites
+
+To use UI Controls, your project must meet the following requirements:
+
+- **Paid Session Replay Add-On**: UI Controls is available exclusively with the paid Session Replay Add-On.
+- **Remote configuration enabled in your SDK**: Your SDK must have remote configuration enabled so it can receive sampling updates from the UI. See the platform-specific guides for setup instructions:
+  - [JavaScript](/docs/tracking-methods/sdks/javascript/javascript-replay#remote-configuration)
+  - [Android](/docs/tracking-methods/sdks/android/android-replay#remote-configuration)
+  - [iOS](/docs/tracking-methods/sdks/swift/swift-replay#remote-configuration)
 
 ### Baseline Sampling Rate
 
@@ -53,16 +63,6 @@ For example, you can sample 1% of all sessions globally, but capture 100% of SDK
 
 ![remoteSettingsConditional](/remoteSettingsConditional.png)
 
-### Prerequisites
-
-To use UI Controls, your project must meet the following requirements:
-
-- **Paid Session Replay Add-On**: UI Controls is available exclusively with the paid Session Replay Add-On.
-- **Remote configuration enabled in your SDK**: Your SDK must have remote configuration enabled so it can receive sampling updates from the UI. See the platform-specific guides for setup instructions:
-  - [JavaScript](/docs/tracking-methods/sdks/javascript/javascript-replay#remote-configuration)
-  - [Android](/docs/tracking-methods/sdks/android/android-replay#remote-configuration)
-  - [iOS](/docs/tracking-methods/sdks/swift/swift-replay#remote-configuration)
-
 ## Watching Replays
 
 <Callout type="info">
@@ -71,12 +71,15 @@ By default, replays are stored for 30 days after the time of ingestion. Once a r
 
 Session Replay is particularly valuable for understanding user frustration and identifying problematic user experiences. To find relevant replays, you can focus on interesting users (power users, purchases), interesting trends (KPIs spikes or dips), or replays where certain events or sentiment signals (like [dead clicks](/docs/tracking-methods/autocapture#dead-clicks)/[rage clicks](/docs/tracking-methods/autocapture#rage-clicks)) occur.
 
-To start using Session Replay, select **Session Replay** from the side navigation in your Mixpanel project. Here, you'll see your most recent replays and can easily filter them by events, properties, or custom time ranges to focus on the replays that matter most to you. Pro tip: when getting started with implementing Session Replay, you can use this view to check if replays are coming in as expected.
+There are several ways to find and watch replays in Mixpanel:
 
-what makes Mixpanel Session Replay special is that it can be used seamlessly with your existing Mixpanel workflows, like:
+1. From the Session Replay home
+2. From Mixpanel reports
+3. From User profile pages
 
-1. From Mixpanel reports
-2. From User profile pages
+### From the Session Replay home
+
+Select **Session Replay** from the side navigation in your Mixpanel project. Here, you'll see your most recent replays and can easily filter them by events, properties, or custom time ranges to focus on the replays that matter most to you. Pro tip: when getting started with implementing Session Replay, you can use this view to check if replays are coming in as expected.
 
 ### From Mixpanel reports
 
@@ -111,16 +114,34 @@ The Replay Feed on the left of the player also allows you to:
 
 - Sort replays by recency, activity, or duration
 - Search for replays by user's name / email, replay date, user ID, or the name of an event in the replay
-- See a feed of events that occurred during each replay
+- See a feed of events that occurred during each replay, including console and network events when enabled
 - Display properties and their values within the event feed
+
+### Activity Panel
+
+The Activity Panel on the right side of the Replay Player shows a chronological feed of all events that occurred during the session, including Mixpanel track events, console logs, and network calls. You can search and filter events by type, and click any event to see its details and jump the replay to that moment.
+
+#### Console Logs
+
+Console logs, warnings, and errors are captured during a session and displayed in the Activity Panel timeline. Use the filters to toggle visibility of Errors, Warnings, and Logs. Click any console event to view the full message and stack trace (when available).
+
+Console recording is enabled by default. To configure, see the [JavaScript SDK guide](/docs/tracking-methods/sdks/javascript/javascript-replay).
+
+#### Network Calls
+
+Network calls made during a session are captured and displayed in the Activity Panel. Use the filters to toggle visibility of Fetch, XHR, and Other request types. Click any network event to inspect headers, request payload, and response details, along with status codes and duration.
+
+<Callout type="info">
+Network recording is disabled by default and requires SDK configuration. Request and response headers and bodies also require additional setup. See the [Network Recording guide](/docs/tracking-methods/sdks/javascript/javascript-replay#network-recording) for instructions.
+</Callout>
 
 ### Magic Playlists
 
 Magic Playlists allow you to save playlists of replays based on events or properties, making it easy to revisit groups of replays that matter to you over time. This feature helps solve common pain points:
 
-- **Save interesting replays**: No need to repeatedly recreate replay searches
 - **Dynamic playlists**: Create playlists based on your Mixpanel events and properties that automatically update as new replays meet your criteria
 - **AI-powered insights**: Get AI text summaries that identify key patterns and insights across numerous replays at once
+- **Save interesting replays**: No need to repeatedly recreate replay searches
 
 <Callout type="info">
   AI summaries for Magic Playlists are currently in beta and publicly available for all customers using Magic Playlists.
@@ -132,6 +153,8 @@ To create a Magic Playlist:
 2. Configure filters based on events, properties, or custom time ranges
 3. Save the playlist, which will remember the filters you've applied
 4. Select a destination Mixpanel board where you want the playlist to appear
+
+![Save Playlist button](/save-playlist-button.png)
 
 Once saved, your Magic Playlist will appear as a playlist card on your selected board. Any time new replays meet your saved criteria, they will automatically appear in your playlist, keeping your board up-to-date with the replays that matter most to you.
 
@@ -163,11 +186,11 @@ To ensure successful implementation, we recommend:
 
 Session Replay is a powerful feature that should be implemented with care. Following best practices can help you gain valuable insights into user behavior. We recommend thorough testing in your development environment before deploying to production.
 
-## Performance Considerations
+### Performance Considerations
 
 Our Session Replay SDKs are designed with performance in mind, utilizing optimized capture algorithms that reduce CPU and memory usage. However, as with any SDK integration, there may still be some risk of performance impacts. We recommend thorough testing and monitoring your app's performance during initial deployment.
 
-## Incident Handling
+### Incident Handling
 
 If you encounter an unexpected or urgent issue, please reach out to our support team promptly so we can help resolve it as quickly as possible. Examples of situations that require immediate attention include:
 
@@ -228,7 +251,7 @@ You can use Session Replay with CDPs (e.g., Segment and mParticle) on both web a
 | iOS | Works with CDPs, but you must install the Mixpanel Session Replay SDK in your app. Read more in our [iOS implementation guide](/docs/tracking-methods/sdks/swift/swift-replay). |
 | Android | Works with CDPs, but you must install the Mixpanel Session Replay SDK in your app. Read more in our [Android implementation guide](/docs/tracking-methods/sdks/android/android-replay). |
 
-### How does Session Replay work differently on web versus mobile?
+#### How does Session Replay work differently on web versus mobile?
 
 Session Replay works differently on web versus mobile in Mixpanel:
 - **Web**: Captures DOM changes to reconstruct user interactions, tracking elements, clicks, and navigation. This provides an event-based replay of user activity.
