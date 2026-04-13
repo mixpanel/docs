@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import { TrustArcHeadScripts, TrustArcBodyScripts } from "../components/TrustArcScripts/TrustArcScripts";
+import { TrustArcHeadScripts } from "../components/TrustArcScripts/TrustArcScripts";
 
 export default function Document() {
   return (
@@ -10,11 +10,6 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <script>
-          {`(function(w,q){w['QualifiedObject']=q;w[q]=w[q]||function(){
-(w[q].q=w[q].q||[]).push(arguments)};})(window,'qualified')`}
-        </script>
-        <script async src="https://js.qualified.com/qualified.js?token=gSDtTCjJ2BozXgw6"></script>
         <script
           async
           src="https://widget.kapa.ai/kapa-widget.bundle.js"
@@ -54,10 +49,8 @@ export default function Document() {
         </script>
         {/* Empty script tag as chrome bug fix, see https://stackoverflow.com/a/42969608/943337 */}
         <script> </script>
-        {/* Trustarc - body scripts are to refresh page when user changes preferences. Removed at request of legal. Could be necessary for GDPR*/}
-        {/* <TrustArcBodyScripts /> */}
-        <div id="consent-banner"></div>
-        {/* end Trustarc */}
+        {/* TrustArc script */}
+        <div id="consent-banner" />
       </body>
     </Html>
   );

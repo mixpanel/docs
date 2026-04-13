@@ -37,7 +37,6 @@ export default {
       </div>
     ),
   },
-  "guide-to-product-analytics": "Guide to Product Analytics",
   "benchmarks": "Benchmarks",
   "strategic-playbooks": "Strategic Playbooks",
   "glossary": "Glossary"

@@ -170,7 +170,12 @@ You may undo Data Deletion requests **for only 7 days after submitting**, after 
 
 ***How does Data Deletion impact billing?***
 
-When billing runs for the current month, deleted events will not be included in the tally calculation for that current month.
+Billing behavior for successfully deleted events depends on your plan:
+
+- Legacy event timestamp billing 
+  — Deleted events are excluded from the current month's usage calculation.
+- Ingestion timestamp billing 
+  — Deleted events are still counted toward your usage for the month.
     
 ***Do you support property deletion?***
 
