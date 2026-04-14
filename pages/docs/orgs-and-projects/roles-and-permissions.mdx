@@ -339,25 +339,14 @@ Once created, the custom role will appear alongside default roles when assigning
 
 When creating or editing a custom role, you can configure permissions across six categories:
 
-<<<<<<< HEAD
-| **Category**                        | **Configurable Permissions**                                                                                                                                                                                                                                              |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Analysis**                        | Save reports & boards, create custom data definitions (cohorts, custom events, custom properties, metrics, behaviors), manage all analysis & custom definitions created by others                                                                                         |
-| **Feature Flags & Experimentation** | Create experiments, create feature flags, manage feature flags created by others                                                                                                                                                                                          |
-| **Data Management**                 | Edit metadata, set event & property visibility, data verification, manage schemas, manage lookup tables, mark sensitive data, edit profiles, data deletion/dropping/merging, data settings access (volume monitoring, quality monitoring, event approval, data standards) |
-| **Data Access, Exports & Alerts**   | Public boards, sensitive data access, export data from Mixpanel, create alerts & webhooks, create board subscriptions, manage all alerts                                                                                                                                  |
-| **Data Sources**                    | Create & manage cohort syncs, create & manage pipelines, create & manage data warehouses                                                                                                                                                                                  |
-| **Settings**                        | View & edit project settings (workspaces, service accounts, project users, project info, security settings, usage analytics)                                                                                                                                              |
-=======
-| **Category** | **Configurable Permissions** |
-|---|---|
-| **Analysis** | Save Reports and Boards, Create Custom Data Definitions (cohorts, metrics, custom events and properties), Manage All Analysis and Custom Data Definitions |
-| **Feature Flags and Experimentation** | Experimentation Creation, Feature Flag Creation, Full Feature Flag Access |
-| **Data Management** | Edit Metadata, Set Event and Property Visibility, Data Verification, Manage Schemas, Manage Lookup Tables, Mark Sensitive Data, Edit Profiles, Data Deletion Dropping and Merging, Data Settings Access |
-| **Data Access, Exports, and Alerts** | Public Boards, Sensitive Data Access, Export Lexicon, Export Reports as CSV, Export Users as CSV, Export Events as CSV, Create Alerts, Create Board Subscriptions, Manage All Alerts |
-| **Data Sources and Definitions** | Create and Manage Cohort Syncs, Create and Manage Pipelines, Create and Manage Data Warehouses |
-| **Settings and Notifications** | View and Edit Project Settings |
->>>>>>> refs/remotes/origin/add-custom-roles-docs
+| **Category**                          | **Configurable Permissions**                                                                                                                                                                            |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Analysis**                          | Save Reports and Boards, Create Custom Data Definitions (cohorts, metrics, custom events and properties), Manage All Analysis and Custom Data Definitions                                               |
+| **Feature Flags and Experimentation** | Experimentation Creation, Feature Flag Creation, Full Feature Flag Access                                                                                                                               |
+| **Data Management**                   | Edit Metadata, Set Event and Property Visibility, Data Verification, Manage Schemas, Manage Lookup Tables, Mark Sensitive Data, Edit Profiles, Data Deletion Dropping and Merging, Data Settings Access |
+| **Data Access, Exports, and Alerts**  | Public Boards, Sensitive Data Access, Export Lexicon, Export Reports as CSV, Export Users as CSV, Export Events as CSV, Create Alerts, Create Board Subscriptions, Manage All Alerts                    |
+| **Data Sources and Definitions**      | Create and Manage Cohort Syncs, Create and Manage Pipelines, Create and Manage Data Warehouses                                                                                                          |
+| **Settings and Notifications**        | View and Edit Project Settings                                                                                                                                                                          |
 
 <Callout type="info">
   All custom roles automatically include base permissions: viewing reports,
@@ -378,29 +367,24 @@ Select **Edit** to modify the role name, description, or permissions, then click
 Select **Copy to Another Project** to copy a custom role from one project to another within the same organization. Choose the target project, then modify the name, description, or permissions as needed before saving.
 
 <Callout type="info">
-<<<<<<< HEAD
   Cloning a role to another project requires the **manage custom roles**
   permission on the target project. Any permissions gated by features that are
   not enabled on the target project will be automatically excluded from the
   cloned role.
-=======
-Copying a role to another project requires the **manage custom roles** permission on the target project. Any permissions gated by features that are not enabled on the target project will be automatically excluded from the copied role.
->>>>>>> refs/remotes/origin/add-custom-roles-docs
 </Callout>
 
 #### Deleting a Custom Role
 
 Select **Delete** and confirm the deletion. When a custom role is deleted, all users, service accounts, and teams currently assigned to that role are automatically reassigned to the **Consumer** role — the least-privileged default role. Review the list of affected users before confirming deletion, and reassign them to an appropriate role afterward.
 
-### Assigning Custom Roles to Service Accounts
-
-<<<<<<< HEAD
 <Callout type="info">
   When a custom role is deleted, all users currently assigned to that role will
   be automatically reassigned to the **Consumer** role. Review the list of
   affected users before confirming deletion.
 </Callout>
-=======
+
+### Assigning Custom Roles to Service Accounts
+
 Service accounts can be assigned custom roles the same way project users can. To assign a custom role to a service account, navigate to **Project Settings** → **Service Accounts** and select the custom role when creating or editing a service account.
 
 ### Assigning Custom Roles to Organization Teams
@@ -452,4 +436,3 @@ No. Custom Roles operate at the project level. Per-board, per-report, or per-coh
 #### Do service accounts support custom roles?
 
 Yes. Service accounts can be assigned custom roles the same way project users can.
->>>>>>> refs/remotes/origin/add-custom-roles-docs
