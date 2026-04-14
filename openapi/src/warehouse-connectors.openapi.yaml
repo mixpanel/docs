@@ -19,8 +19,6 @@ security:
 tags:
   - name: Warehouse Imports
     description: Manage warehouse data imports
-  - name: Run an import
-    description: Trigger an import sync via API
 
 paths:
   /projects/{projectId}/warehouse-sources/imports:
@@ -109,7 +107,7 @@ paths:
           - `3600000000000`: Hourly
           - `86400000000000`: Daily
           - `604800000000000`: Weekly
-        - **databricks_params** (object): Databricks-specific cluster configuration (only for Databricks sources)
+        - **databricks_params** (object): Databricks-specific cluster configuration (only for Databricks sources). Note: this is a full replacement, not a partial merge. Always provide the complete desired cluster configuration.
 
         ## Pause/Resume Behavior
 
@@ -375,7 +373,7 @@ paths:
         content:
           application/json: {}
       tags:
-        - Run an import
+        - Warehouse Imports
       summary: Run an import
       description: |
         Triggers an immediate sync for a given warehouse import.
@@ -389,6 +387,12 @@ paths:
                 properties:
                   status:
                     $ref: ./common/responses.yaml#/ResponseStatusOk
+                  results:
+                    type: object
+                    properties:
+                      run_id:
+                        type: string
+                        description: The unique identifier for the triggered sync run.
         "401":
           $ref: ./common/responses.yaml#/401Unauthorized
         "403":
@@ -406,7 +410,7 @@ paths:
         - Warehouse Imports
       summary: Get import job history
       description: |
-        Returns the execution history for a warehouse import. Returns 100 most recent events.
+        Returns the execution history for a warehouse import. Returns 30 most recent events.
       responses:
         "200":
           description: Success
@@ -679,6 +683,12 @@ components:
         company_column_name:
           type: string
           description: Required for B2B projects. The column containing the company identifier.
+        device_column_name:
+          type: string
+          nullable: true
+        json_properties_column_name:
+          type: string
+          nullable: true
         sync_mode:
           $ref: "#/components/schemas/SyncMode"
         run_every:
@@ -711,6 +721,9 @@ components:
           $ref: "#/components/schemas/TableParams"
         user_column_name:
           type: string
+        json_properties_column_name:
+          type: string
+          nullable: true
         sync_mode:
           $ref: "#/components/schemas/SyncMode"
         run_every:
@@ -753,6 +766,9 @@ components:
         insert_time_column_name:
           type: string
           nullable: true
+        json_properties_column_name:
+          type: string
+          nullable: true
         property_mappings:
           $ref: "#/components/schemas/PropertyMappings"
         databricks_params:
@@ -780,14 +796,40 @@ components:
         mixpanel_property:
           type: object
           required: [value, resourceType]
+          description: |
+            The Mixpanel property that this lookup table will be joined on. This defines
+            the "Join Key" — the Mixpanel event or user property whose values will be
+            matched against the `property_key_column_name` column in your warehouse table.
+
+            For example, if your events have a property called `product_id` and your warehouse
+            lookup table has a column `product_id` containing matching values along with
+            enrichment columns like `product_name` and `category`, you would set:
+            - `mixpanel_property.value` = `"product_id"` (the Mixpanel property name)
+            - `property_key_column_name` = `"product_id"` (the warehouse column name)
           properties:
             value:
               type: string
+              description: |
+                The name of the Mixpanel property to join on. This is the event or user
+                property whose values will be matched against the lookup table's key column.
             resourceType:
               type: string
               enum: [event, user]
+              description: |
+                Whether the join property is an event property (`event`) or a user profile
+                property (`user`).
+            customPropertyId:
+              type: integer
+              nullable: true
+              description: |
+                Optional. If the join property is a custom property (created via Lexicon),
+                provide its ID here. Set to `null` for standard properties.
         property_key_column_name:
           type: string
+          description: |
+            The name of the column in your warehouse table that contains the join key values.
+            This column's values will be matched against the Mixpanel property specified in
+            `mixpanel_property.value` to look up the corresponding row.
         sync_mode:
           type: string
           enum: [full_sync, one_time]

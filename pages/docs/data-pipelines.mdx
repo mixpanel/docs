@@ -47,6 +47,7 @@ JSON Pipelines also facilitate data export into tables, creating schemas that ar
 For detailed setup guides per destination, see:
 
 - [BigQuery](/docs/data-pipelines/integrations/bigquery)
+- [Databricks](/docs/data-pipelines/integrations/databricks)
 - [Redshift Spectrum](/docs/data-pipelines/integrations/redshift-spectrum)
 - [Snowflake](/docs/data-pipelines/integrations/snowflake)
 
@@ -88,6 +89,12 @@ To delete, pause, or unpause a JSON pipeline:
 4. Select **Delete Pipeline**, **Pause Pipeline**, or **Unpause Pipeline** as needed
 
 Note: JSON pipelines can only be managed through the UI, not via the data pipelines API.
+
+### Backfilling Historical Data
+
+You can schedule an initial backfill when creating a pipeline. This ensures that historical data is also exported to the data warehouse. Note that the `from_date` must be within 6 months in the past.
+
+The completion time for a backfill depends on the number of days and the amount of data in the project. Larger backfills can take up to multiple weeks.
 
 ### Viewing Pipeline Configuration
 
