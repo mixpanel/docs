@@ -1,5 +1,5 @@
 export default {
-    "bot-traffic": "Bot Traffic",
+    "bot-traffic": "Bot & Unwanted Traffic",
     "debugging": "Debugging",
     "developer-environments": "Developer Environments",
     "geolocation": "Geolocation",
