@@ -8,6 +8,10 @@ import { Callout } from 'nextra/components'
 
 This guide describes how Mixpanel exports your data into a customer-managed [Google BigQuery](https://cloud.google.com/bigquery/) dataset.
 
+<Callout type="warning">
+  BigQuery pipelines require a customer-managed GCP project and dataset. Mixpanel-hosted BigQuery is not supported.
+</Callout>
+
 ## Design
 
 ![image](/230698685-c02cb9a1-d66f-42a7-8063-8e78b79e7b1f.png)
