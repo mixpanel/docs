@@ -1,0 +1,146 @@
+import { Callout, Tabs } from 'nextra/components'
+
+# MCP for Ecommerce: Use Cases and Sample Prompts
+Ecommerce teams often have behavioral data on one side and ad spend, inventory, and order data on the other — with no easy way to connect them. The Mixpanel MCP server lets you query across both, so you can calculate true acquisition costs, prioritize restocking decisions, and understand what actually drives repeat purchases.
+
+## Use Cases
+
+<Callout type="info">
+  **New to MCP?** Start with [Explore Data with AI](/guides/guides-by-use-case/empower-your-team/mcp) for setup instructions and foundational concepts before diving into industry-specific use cases.
+</Callout>
+
+Each use case below shows a cross-system question your team can ask, the data sources it draws from, and what you can do with the answer.
+
+### Conversion Funnel × Ad Spend
+
+**The question**: What's my real cost-per-acquisition by channel when I combine Mixpanel conversion data with Google Ads spend?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Conversion funnel, UTM properties |
+| Google / Meta Ads | Spend, impressions, clicks |
+
+Click-through attribution overstates the contribution of channels that benefit from late-funnel assists. Combining Mixpanel's on-site conversion data with ad spend gives you a CAC that reflects what users actually did after they clicked — not just that they clicked.
+
+### Product Page Engagement × Inventory
+
+**The question**: Which products have high engagement but are running low on inventory?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Product view and cart events |
+| Inventory system | Stock levels |
+
+High-demand products that go out of stock mid-consideration don't just lose a sale — they break momentum for users who were close to converting. This join surfaces restocking priorities before they become lost revenue.
+
+<Callout type="info">
+  **Pro tip**: Run this analysis at the category level, not just the SKU level. A category trending up in views is a better signal for merchandising decisions than a single product spike.
+</Callout>
+
+### Cart Abandonment × Customer Segment
+
+**The question**: What's the cart abandonment rate for first-time vs. returning buyers, and at which step?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Checkout funnel |
+| CDP | Segment membership, LTV tier |
+
+First-time and returning buyers drop off for different reasons. First-timers often hesitate at trust signals — shipping costs, return policies, payment options. Returning buyers who abandon are a different problem: something interrupted or changed. Knowing which segment is abandoning where lets you design recovery campaigns that actually match the reason.
+
+### Post-Purchase Behavior × Lifetime Value
+
+**The question**: Which post-purchase actions predict the highest 12-month LTV?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Post-purchase events |
+| Order management | Repeat purchase, LTV |
+
+Not all first purchases are equal. Some customers browse once and never return; others become high-frequency buyers within 30 days. This join shows you which behaviors in the first session or two after purchase predict which outcome — so you can build onboarding flows and retention campaigns around the signals that actually matter.
+
+<Callout type="warning">
+  **Pitfall**: LTV calculations that only use purchase data miss the behavioral signals that precede churn. A customer who stops browsing before they stop buying is already at risk — the engagement data shows it earlier than the order data does.
+</Callout>
+
+## Sample Prompts by Role
+
+These are starting points. Adjust the time ranges, segments, and metrics to match your product and data.
+
+<Tabs items={['Product Manager', 'Data Analyst', 'Growth / Marketing Lead', 'Merchandising / Buyer', 'Executive']}>
+  <Tabs.Tab>
+    - Add-to-cart to purchase conversion rate by product category over 30 days
+    - Checkout funnel by device type — where's the biggest mobile vs. desktop gap?
+    - Which site search terms lead to the highest conversion rate?
+    - Impact of "saved for later" feature: adoption rate and does it increase eventual purchase?
+    - PDP to add to cart to purchase funnel for our top 5 categories
+    - Average sessions before a first-time buyer purchases?
+    - Product recommendation CTR compared to organic browse-to-cart?
+    - Return initiation funnel — at which step do customers abandon?
+    - Wishlist creation engagement pattern: does it predict higher LTV?
+    - Which PDP elements (reviews viewed, size guide, image zoom) correlate most with conversion?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Monthly buyer cohort retention (repeat purchase rate at M1 through M12)
+    - Purchase frequency distribution: orders per quarter for active customers?
+    - Segment all users by `acquisition_source`: conversion rate, AOV, repeat purchase rate.
+    - Which properties predict high LTV? Compare top 10% by order value vs. the rest.
+    - All checkout events with daily volume for the past 90 days
+    - Data quality issues: inconsistent product category values or missing properties?
+    - Cart size distribution (items, value) for completed vs. abandoned carts
+    - Session-to-purchase conversion by day of week and hour of day?
+    - Behavior paths comparing mobile app vs. mobile web vs. desktop
+    - Full event flow from landing page through purchase — most common happy path?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Conversion rate by UTM campaign for 30 days (actual purchases, not just clicks)
+    - Which channels have the highest repeat purchase rate (long-term value, not just first orders)?
+    - Retention curve for Black Friday customers vs. organic?
+    - Email win-back performance: open to click to visit to purchase conversion
+    - Coupon users vs. full-price buyers — do discounts attract high or low LTV?
+    - Landing pages with highest bounce-to-browse-to-buy conversion path?
+    - True CAC factoring in on-site conversion rate per channel?
+    - Top 10 organic entry pages and their revenue contribution this month
+    - Referral program funnel: link click to signup to first purchase to referral sent?
+    - Which segments are most responsive to promotions based on behavioral engagement?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Categories with highest view-to-cart and cart-to-purchase ratios?
+    - Products with high page views but low add-to-cart — need better presentation or pricing?
+    - Cross-sell patterns: which products are most commonly purchased together?
+    - Seasonal demand by category compared to last year based on engagement trends
+    - New arrivals from past 30 days trending highest in engagement
+    - Price sensitivity: conversion rate across `price_range` for each category
+    - Which collections or curated pages drive the most downstream purchases?
+    - Relationship between scarcity signals ("only X left") and conversion rate
+    - Top 20 most-viewed products with below-average conversion (optimization opportunities)
+    - Product engagement difference by customer segment (first-time vs. VIP vs. lapsed)
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Commerce dashboard: revenue, conversion rate, AOV, new vs. returning mix, top category (week-over-week and year-over-year)
+    - Funnel health: visit to PDP to add to cart to purchase with week-over-week trend
+    - Which category is driving the most revenue growth this quarter?
+    - Mobile vs. desktop conversion gap — is it improving?
+    - Leading indicator for customer churn: which signal predicts they won't return?
+  </Tabs.Tab>
+</Tabs>
+
+## Recommended Data Connections
+
+| Source | What it adds |
+| --- | --- |
+| Shopify / BigCommerce | Order and catalog data |
+| Stripe | Payment and subscription data |
+| Google Ads / Meta Ads | Ad spend and attribution |
+| Klaviyo / Braze | Email and SMS campaign data |
+| Google Sheets | Inventory and promotional calendars |
+
+## Key Takeaways
+
+- True CAC only makes sense when you pair ad spend with on-site conversion data — click-through attribution alone misattributes credit across the funnel.
+- Inventory and engagement data belong together; knowing which products are trending in views before they go out of stock is a more actionable signal than reacting after the fact.
+- Cart abandonment analysis works best when it's segmented — first-time and returning buyers drop off for different reasons and need different recovery approaches.
+- Post-purchase behavioral signals predict long-term LTV earlier than order data alone; customers who stop browsing often stop buying shortly after.
+- The Merchandising / Buyer role is underserved by most analytics setups — MCP makes product-level behavioral data accessible without requiring a data request.
+
+👉 **Next step**: See the [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) page for other industry guides, or visit [MCP Integration Pairings](/guides/guides-by-use-case/empower-your-team/mcp/integrations) to explore what each data connection unlocks.
