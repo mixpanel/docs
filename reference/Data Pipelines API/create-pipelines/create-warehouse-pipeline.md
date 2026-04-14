@@ -3,13 +3,12 @@ title: Create Pipeline
 category:
   uri: Data Pipelines API
 content:
-  excerpt: ""
+  excerpt: ''
 privacy:
   view: public
 ---
-
-This request creates an export pipeline. The `type` parameter defines the kind of pipeline that is initiated. Note that only 2 recurring and 1 non-recurring events pipelines (**data_source**: `events`) are allowed per project.
+This request creates an export pipeline. The `type` parameter defines the kind of pipeline that is initiated. Note that only 2 recurring and 1 non-recurring events pipelines (**data\_source**: `events`) are allowed per project.
 
 Create API returns the name of the pipeline created. Use the name of the pipeline to check the status of or cancel the pipeline.
 
-> **Important:** For BigQuery pipelines, `gcp_project` and `bq_dataset_name` are **required** fields. Pipeline creation will fail if these parameters are omitted. Mixpanel-hosted BigQuery is not supported — you must provide your own GCP project and dataset.
+> **Important:** For BigQuery pipelines, `gcp_project` and `bq_dataset_name` are **required** fields. Mixpanel-hosted BigQuery is not supported.
