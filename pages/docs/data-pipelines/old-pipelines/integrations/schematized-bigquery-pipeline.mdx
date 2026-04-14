@@ -10,7 +10,9 @@ This guide describes how Mixpanel exports your data to a [Google BigQuery](https
 
 ## Design
 
-Mixpanel exports data into customer-managed BigQuery. Mixpanel-hosted BigQuery is no longer supported for new pipelines.
+<Callout type="warning">
+  Mixpanel exports data into customer-managed BigQuery. Mixpanel-hosted BigQuery is no longer supported for new pipelines.
+</Callout>
 
 ![image](/230698685-c02cb9a1-d66f-42a7-8063-8e78b79e7b1f.png)
 
@@ -115,10 +117,3 @@ We recommend exporting Mixpanel data into customer-managed BigQuery, for this th
 
 3. You need to pass this dataset and gcp project id as params when you [create your pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline)
 
-## Exporting into Mixpanel managed BigQuery
-
-<Callout type="warning">
-  Mixpanel-hosted BigQuery is no longer supported for new pipelines. Please use customer-managed BigQuery instead.
-</Callout>
-
-Existing pipelines on Mixpanel-hosted BigQuery will continue to operate, but new schematized pipelines must use customer-managed BigQuery by providing a `gcp_project` and `bq_dataset_name` when [creating your pipeline](https://developer.mixpanel.com/reference/create-warehouse-pipeline).
