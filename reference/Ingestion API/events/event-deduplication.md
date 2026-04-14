@@ -28,7 +28,7 @@ Only the four key event properties listed above are used for deduplication. Addi
 
 Deduplication occurs when a subset of the event data (event name, distinct\_id, timestamp, $insert\_id) is identical. Other event properties are not considered.
 
-**Required[Event Object](doc:data-model#anatomy-of-an-event) attributes**
+**Required [Event Object](doc:data-model#anatomy-of-an-event) attributes**
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -98,7 +98,7 @@ In other words, each event containing an `$insert_id` is checked for duplication
 }
 ```
 
-If this minimized event object is an exact match to any other minimized event object, it is marked as a duplicate. Ingested events that have been marked as a duplicates will be deduplicated.
+If this minimized event object is an exact match to any other minimized event object, it is marked as a duplicate. Ingested events that have been marked as duplicates will be deduplicated.
 
 If an event is sent to the Ingestion API without an `$insert_id`, one will be generated for it. However, it will not qualify for the deduplication process.
 
@@ -109,14 +109,18 @@ Mixpanel uses two main deduplication processes:
 ### Query-Time Deduplication
 
 * When: Happens immediately when you query data in the Mixpanel UI.
-* How: If multiple events share the same event\_name, distinct\_id, timestamp, and $insert\_id, only the most recent version of the event is shown in reports (based on the API ingestion time). This ensures that duplicate events do not affect your analytics in real time.
+* How: If multiple events share the same event\_name, distinct\_id, timestamp, and $insert\_id, only the most recent version of the event is shown in reports (based on the API ingestion time). In most cases, only the more recent version of the event is shown in reports (based on the API ingestion time). It is important to note that Mixpanel does not guarantee upsert behavior.
 * Scope: This deduplication is visible in the Mixpanel UI and reports, but not in raw data exports. Raw event export will contain all data as they were ingested, without any deduplication.
 
 ### Compaction-Time Deduplication
 
+<Callout icon="🚧" theme="warn">
+  Compaction-time deduplication does not run at a guaranteed or deterministic time. The process can take several hours to days to complete, and in some cases may not run at all. Do not rely on this mechanism to upsert existing data.
+</Callout>
+
 * When: Runs periodically in the backend, typically after a few hours and again after about 20 days, once data ingestion for a day is complete.
-* How: During compaction, Mixpanel scans for events with the same event name, distinct\_id, and $insert\_id (timestamp does not need to match exactly, just the same calendar day). The older event is deleted, and only the latest remains in storage.
-* Scope: This process helps reduce storage of duplicate events and may affect event counts if duplicates were present with different timestamps
+* How: During compaction, Mixpanel scans for events with the same event name, distinct\_id, and $insert\_id (timestamp does not need to match exactly, just the same calendar day).
+* Scope: This process helps reduce the storage of duplicate events and may affect event counts if duplicates were present with different timestamps
 
 <br />
 
@@ -126,4 +130,4 @@ Mixpanel uses two main deduplication processes:
 
 **Insert ID Best Practice** - Always generate a unique $insert\_id for each event. Reusing $insert\_id (e.g., setting it to the user’s distinct\_id) can cause unintended deduplication and data loss
 
-**Deduplication Timing** - Query-time deduplication is immediate. Compaction-time deduplication timing is not guaranteed and may take hours to days to complete.s
+**Deduplication Timing** - Query-time deduplication is immediate. Compaction-time deduplication timing is not guaranteed and may take hours to days to complete.
