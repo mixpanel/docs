@@ -1,0 +1,134 @@
+import { Callout, Tabs } from 'nextra/components'
+
+# MCP for Media & Entertainment: Use Cases and Sample Prompts
+Media and entertainment companies track content consumption well — but consumption data alone doesn't tell you what drives a subscriber to renew or cancel. The Mixpanel MCP server lets you combine behavioral analytics with billing data, content metadata, and ad performance, so you can connect what users watch or read to what actually keeps them subscribed.
+
+## Use Cases
+
+<Callout type="info">
+  **New to MCP?** Start with [Explore Data with AI](/guides/guides-by-use-case/empower-your-team/mcp) for setup instructions and foundational concepts before diving into industry-specific use cases.
+</Callout>
+
+Each use case below shows a cross-system question your team can ask, the data sources it draws from, and what you can do with the answer.
+
+### Content Consumption × Subscriber Retention
+
+**The question**: Which content genres have the strongest correlation with 90-day subscriber retention?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Content play/read events, genre properties |
+| Billing system | Subscription status, churn date |
+
+High engagement with a piece of content doesn't mean it drives retention. Some genres spike in short-term plays but don't bring subscribers back. This join shows you which content categories are actually worth investing in for long-term retention — not just what gets clicks.
+
+<Callout type="info">
+  **Pro tip**: Run this analysis by subscriber cohort, not just overall. What retains a subscriber who joined during a major release may be different from what retains an organic signup.
+</Callout>
+
+### Engagement Depth × Ad Revenue
+
+**The question**: Do users consuming 3+ pieces per session generate more ad revenue?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Session depth, content events |
+| Ad server | Impression revenue, CPM data |
+
+Ad-supported tiers live or die on session depth. Knowing which content types and discovery paths lead to multi-piece sessions — and how that translates to impression revenue — tells you where to invest in the recommendation experience and where deeper sessions are being left on the table.
+
+### Onboarding × Content Discovery
+
+**The question**: Users who engage with recommendations in their first session — how much higher is Day 7 retention?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Onboarding events, recommendation clicks |
+| Content CMS | Recommendation algorithm metadata |
+
+Recommendation engines are expensive to build and hard to evaluate. This join gives you a direct measure of their impact on early retention — so you can justify continued investment with data rather than assumptions, and identify which recommendation surfaces are actually working.
+
+<Callout type="warning">
+  **Pitfall**: First-session content engagement is strongly influenced by what's surfaced on the home screen, not just the recommendation engine. Make sure you're distinguishing between recommendation clicks and browse-initiated plays before drawing conclusions about algorithm performance.
+</Callout>
+
+### Platform Usage × Churn Prediction
+
+**The question**: What usage patterns in the 30 days before churn distinguish churners from retained subscribers?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Usage frequency, feature engagement |
+| Billing | Churn events, plan downgrades |
+
+Churn prediction models built on billing data alone catch cancellations too late. Behavioral signals — declining session frequency, shorter session duration, fewer content completions — show up earlier. This join gives you the leading indicators you need to intervene before a subscriber decides to leave.
+
+## Sample Prompts by Role
+
+These are starting points. Adjust the time ranges, segments, and metrics to match your product and data.
+
+<Tabs items={['Product Manager', 'Data Analyst', 'Content Strategy / Editorial', 'Executive']}>
+  <Tabs.Tab>
+    - D1/D7/D30 retention for free trial vs. direct subscription signups?
+    - Which onboarding steps have the highest drop-off for new subscribers?
+    - Content completion rate by type (video, article, podcast) over 90 days
+    - Average session depth and its trend this quarter?
+    - Engagement of users who set preferences during onboarding vs. skipped?
+    - Funnel from signup to first content to 5th content to paid subscription?
+    - Engagement by discovery method: search vs. recommendations vs. browse?
+    - Adoption rate for new playlist/collection feature since launch?
+    - Notification-enabled users retained at Day 30 vs. not?
+    - Average time between subscribing and first content interaction?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Monthly cohort subscriber retention table (M0 through M6 for 12 months)
+    - Content consumption frequency distribution per week for active users?
+    - Segment users by `subscription_tier`: sessions, content consumed, duration for each.
+    - Genres ranked by completion rate?
+    - Daily content play/read volume for 6 months by `content_type`
+    - Data quality: content events missing genre or `content_id`?
+    - Distribution of active days per month?
+    - Median session duration by platform and day of week?
+    - Top 50 content items this month: genre, completion rate, engagement time
+    - Consumption patterns of subscribers who churned in 60 days vs. renewed?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Which genres drive highest 90-day subscriber retention? Rank them.
+    - Top 20 most-consumed content this month with audience demographics
+    - Content discovery pattern: how do users find content they complete?
+    - Highest "binge signal" (3+ episodes/articles consumed in one session)?
+    - New release performance in first 7 days vs. catalog content?
+    - Underserved genres: high search volume but low content completion?
+    - Editorial picks vs. algorithmic recommendations: completion rate comparison?
+    - Long-form vs. short-form: which is growing fastest in engagement?
+    - Cross-genre pattern: after consuming genre A, what do they consume next?
+    - Content performance difference between free-tier and paid subscribers?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Platform dashboard: subscribers, DAU/MAU, content volume, churn rate, top genre (month-over-month and year-over-year)
+    - Subscriber lifecycle: trial to paid to 3-month retained to 12-month retained funnel?
+    - Which content investment is driving the most subscriber growth this quarter?
+    - Multi-platform engagement: are smart TV users more retained than mobile?
+    - Leading indicator of churn: which engagement drop predicts cancellation 30 days out?
+  </Tabs.Tab>
+</Tabs>
+
+## Recommended Data Connections
+
+| Source | What it adds |
+| --- | --- |
+| Stripe / App Store | Subscription and billing data |
+| CMS / Content DB | Content metadata and catalog |
+| Google Ads / Meta Ads | Audience and ad performance |
+| Slack | Editorial and product team alerts |
+| Notion | Content strategy documentation |
+
+## Key Takeaways
+
+- Short-term content engagement and long-term subscriber retention don't always correlate — the join between play events and billing data shows which genres actually earn renewals.
+- Session depth is the key lever for ad revenue on free tiers; knowing which content and discovery paths drive multi-piece sessions is more actionable than average session length alone.
+- Recommendation engine impact is measurable: first-session recommendation engagement vs. Day 7 retention is a direct test of whether the algorithm is doing its job.
+- Churn prediction built on behavioral signals gives you a 30-day window to intervene; billing-based detection gives you none.
+- The Content Strategy / Editorial role is often data-poor despite being responsible for the product's most expensive decisions — this is where MCP adds the most immediate value.
+
+👉 **Next step**: See the [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) page for other industry guides, or visit [MCP Integration Pairings](/guides/guides-by-use-case/empower-your-team/mcp/integrations) to explore what each data connection unlocks.

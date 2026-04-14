@@ -1,0 +1,147 @@
+import { Callout, Tabs } from 'nextra/components'
+
+# MCP for AI Products: Use Cases and Sample Prompts
+AI products have a layer of complexity that most product analytics setups weren't built for: quality isn't just about UX, it's about model performance. The Mixpanel MCP server lets you connect behavioral data with model evaluation scores, error tracking, infrastructure costs, and billing data — so you can understand how what's happening under the hood translates into what users actually do.
+
+## Use Cases
+
+<Callout type="info">
+  **New to MCP?** Start with [Explore Data with AI](/guides/guides-by-use-case/empower-your-team/mcp) for setup instructions and foundational concepts before diving into industry-specific use cases.
+</Callout>
+
+Each use case below shows a cross-system question your team can ask, the data sources it draws from, and what you can do with the answer.
+
+### User Engagement × Model Quality
+
+**The question**: Do users who interact with higher-scoring model outputs have better retention?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Engagement events, thumbs up/down signals |
+| Eval platform | Model scores, quality metrics |
+
+Thumbs up/down signals tell you something, but they're noisy and self-selected. Combining them with eval scores gives your ML team a more grounded optimization target — one that's anchored in what actually keeps users coming back, not just what they rate in the moment.
+
+### Feature Usage × Infrastructure Cost
+
+**The question**: Which AI features have the highest per-user compute cost relative to their retention impact?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Feature usage events |
+| Cloud provider | Compute costs, API call volumes |
+
+Not every high-engagement feature is worth what it costs to serve. This join helps you find the features where cost and retention impact are misaligned — either expensive features that aren't driving retention, or under-invested features that are.
+
+<Callout type="info">
+  **Pro tip**: Run this analysis before roadmap planning, not after. Knowing your cost-to-retain ratio per feature is one of the more defensible inputs into prioritization conversations.
+</Callout>
+
+### Error Rates × User Drop-off
+
+**The question**: When error rates spike, how quickly does it show up in session frequency?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Session frequency, feature events |
+| Sentry | Error rates, latency data |
+
+Infrastructure teams often work from SLOs that don't account for user behavior. This join gives you the user-side view of a reliability incident — how fast it ripples into engagement, which segments feel it most, and whether recovery shows up in the data after a fix ships.
+
+<Callout type="warning">
+  **Pitfall**: A spike in errors doesn't always produce an immediate drop in sessions — some users retry, some don't notice. Look at lagged engagement (Day 3, Day 7) rather than same-day metrics to get a more accurate picture of impact.
+</Callout>
+
+### Prompt Patterns × Conversion
+
+**The question**: Which prompt types lead to the highest satisfaction and paid conversion?
+
+| Data source | What you're pulling |
+| --- | --- |
+| Mixpanel | Prompt events, satisfaction signals |
+| Billing system | Conversion and plan data |
+
+Different users come to AI products with different jobs to be done — writing, coding, analysis, research. This join shows you which use cases your product serves best and which ones convert, which is useful both for positioning and for deciding where to invest in fine-tuning.
+
+## Sample Prompts by Role
+
+These are starting points. Adjust the time ranges, segments, and metrics to match your product and data.
+
+<Tabs items={['Product Manager', 'ML Engineering Lead', 'Data Analyst', 'Growth / Marketing Lead', 'Executive']}>
+  <Tabs.Tab>
+    - Retention curve for users who used AI feature 5+ times in their first week
+    - Funnel from free signup to first AI interaction to 10th interaction to upgrade to paid
+    - Daily trend of AI outputs per user, segmented by plan tier
+    - User segments with highest thumbs-down ratio on AI outputs
+    - Engagement pattern for users who hit rate limits vs. those who don't
+    - Average time from signup to first "power use" session (10+ prompts)
+    - Output exported rate difference between free and paid users
+    - Adoption curve for newest model version — are users switching?
+    - Conversion rate for users who hit "wow moment" in session 1 vs. later
+    - Which use case categories (writing, coding, analysis) have highest retention correlation?
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Negative feedback trend (thumbs down, regenerations) over 30 days by `model_version`
+    - When error rate spiked last week, what was the impact on session frequency for 7 days after?
+    - Which prompt categories generate the most "regenerate" or "edit" events (quality gaps)?
+    - Satisfaction signals between model v2.3 and v2.4
+    - Latency threshold where we lose users (response time vs. engagement)
+    - Token count per prompt trend over time — are prompts getting longer?
+    - Which `error_types` correlate most with session abandonment?
+    - Sessions with model switch event — do those users show higher or lower satisfaction?
+    - Output quality distribution across `use_case_categories`
+    - After deploying model v2.4, Day 1 and Day 7 impact on output acceptance rate
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Monthly cohort retention table for 12 months (M0 through M6)
+    - Distribution of active days per month
+    - Segment by `plan_type`: prompts per session, satisfaction rate, retention.
+    - Frequency distribution of prompts per week for active users?
+    - All events with 30-day volume sorted by frequency
+    - Data quality: events missing `model_version` or `output_quality_score`
+    - Behavioral paths of users who convert vs. churn during trial
+    - Median prompts per session by platform and plan type
+    - Properties most predictive of 90-day retention
+    - Daily trend of total prompts, unique users, avg prompts per user for 6 months
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - Signup-to-activation conversion by channel (activation = 3+ prompts)
+    - Channels bringing users with highest 30-day retention, not just signups
+    - Free-to-paid conversion by `use_case_category` — which drives most upgrades?
+    - Behavior of users from "AI for [use case]" landing pages vs. generic signups
+    - Viral coefficient: share/export action rate and downstream signup
+    - Conversion funnel for content marketing vs. product-led referral acquisitions
+    - Segments with highest quota-warning-to-upgrade ratio (pricing optimization targets)
+    - Reactivation rate for re-engagement campaign recipients last month
+    - Behavior difference: work email vs. personal email signups
+    - Trial usage patterns that predict conversion with highest accuracy
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - AI dashboard: DAU, prompts per user, satisfaction %, free-to-paid conversion, cost per active user (week-over-week and month-over-month)
+    - Unit economics: how does usage-based cost scale with engagement?
+    - Which AI capability is driving the most engagement growth?
+    - Model quality vs. business metrics: does better AI equal better retention?
+    - Biggest risk in our user base: any segment with declining engagement
+  </Tabs.Tab>
+</Tabs>
+
+## Recommended Data Connections
+
+| Source | What it adds |
+| --- | --- |
+| Weights & Biases | Model eval and experiment tracking |
+| Sentry | Error and latency monitoring |
+| Stripe | Billing and usage-based pricing |
+| GitHub | Deployment and release tracking |
+| Slack | ML and product team alerts |
+| Snowflake / BigQuery | Model logs and cost data |
+
+## Key Takeaways
+
+- Model quality and user retention are measurable together — connecting eval scores with engagement data gives ML teams a product-centric target to optimize toward.
+- Cost-to-serve analysis only means something when it's paired with retention impact; high compute cost on a high-retention feature is a different problem than high compute cost on a feature users abandon.
+- Reliability incidents have a lagged user impact — look at engagement trends in the days after an incident, not just the day of.
+- Prompt patterns and use case categories are underused signals for both product positioning and fine-tuning decisions.
+- The teams getting the most from this setup are the ones sharing data across ML, product, and growth — not keeping it siloed by function.
+
+👉 **Next step**: See the [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) page for other industry guides, or visit [MCP Integration Pairings](/guides/guides-by-use-case/empower-your-team/mcp/integrations) to explore what each data connection unlocks.
