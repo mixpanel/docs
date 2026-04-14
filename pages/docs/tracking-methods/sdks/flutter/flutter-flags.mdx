@@ -86,9 +86,9 @@ String updatedDistinctId = "";
 mixpanel.identify(updatedDistinctId);
 ```
 
-### Manual Reload (iOS & Android)
+### Manual Reload
 
-To refresh flag variants that may have changed during the lifetime of your app, you can manually reload flags. This is supported on iOS and Android.
+To refresh flag variants that may have changed during the lifetime of your app, you can manually reload flags:
 
 ```dart
 FeatureFlags flags = mixpanel.getFeatureFlags();
@@ -101,33 +101,25 @@ await flags.loadFlags();
 On Web, `loadFlags()` is not supported. Use `updateContext()` to trigger a flag reload instead.
 </Callout>
 
-### Update Context (Web Only)
+### Update Context
 
-<Callout type="warning">
-The `updateContext` method has different behavior across platforms. Context updates are only fully supported on **Web**. On mobile platforms, context must be set during initialization.
-</Callout>
-
-On **Web**, you can update the feature flags context after initialization, which will trigger a reload with the new context values:
+You can update the feature flags context after initialization, which will replace the current context and trigger a reload with the new values. This is supported on all platforms (iOS, Android, and Web).
 
 ```dart
-// Get the feature flags instance
 FeatureFlags flags = mixpanel.getFeatureFlags();
 
-// Update context to reload flags (Web only)
+// Update context and reload flags
 await flags.updateContext({
   "company_id": "Y",
+  "custom_properties": {
+    "platform": "flutter",
+  },
 });
 ```
 
-**Platform-specific behavior:**
-
-| Platform | `updateContext` Behavior |
-|----------|-------------------------|
-| **Web** | Fully supported. Updates the context and reloads flags with the new values. |
-| **Android** | Context update is ignored. Calling this method will trigger a flag reload using the current user identity, but the new context values will not be applied. |
-| **iOS** | Not supported. This method is a no-op and logs a warning. Context must be set during `Mixpanel.init()`. |
-
-For iOS and Android, if you need to use custom context values (such as `company_id` for group-based targeting), you must provide them during SDK initialization via `FeatureFlagsConfig`.
+<Callout type="info">
+`updateContext` completely replaces the previously set custom context — it does not merge with existing values. The returned `Future` completes when the flag re-fetch is complete.
+</Callout>
 
 ### Check Flags Ready
 

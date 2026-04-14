@@ -906,24 +906,23 @@ components:
             - ASIA_SOUTHEAST_2
             - AUSTRALIA_SOUTHEAST_1
           description: The region used for BigQuery.
-        bq_share_with_group:
-          type: string
-          description: Group account email address to share the data-set with if managed by mixpanel. e.g. bq-access-alias@somecompany.com
         bq_prefix:
           type: string
           description: The table prefix to be added to all the tables exported as part of the this pipeline. Only alphanumeric characters and underscores can be used.
         gcp_project:
           type: string
-          description: Customer's project id where bigquery dataset is present. If this field isn't provided the default dataset will be created on mixpanel managed bigquery.
+          description: Customer's GCP project ID where the BigQuery dataset is present.
         bq_dataset_name:
           type: string
-          description: Dataset created by customer on their own gcp project to which mixpanel needs to export data.
+          description: Dataset created by the customer on their GCP project to which Mixpanel exports data.
       required:
         - type
         - from_date
         - bq_region
         - sync
         - schema_type
+        - gcp_project
+        - bq_dataset_name
 
     SchematizedSnowflakePipeline:
       title: Schematized Snowflake Pipeline
