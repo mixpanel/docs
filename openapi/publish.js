@@ -58,12 +58,11 @@ async function updateSpecs() {
     const spec = YAML.parse(yamlStr);
     const specMeta = remoteSpecMetas.data.find((m) => m.filename === specFile);
     if (!specMeta) {
-      console.log(`!!! No spec found for "${spec.info.title}". Please upload it as found in the developer.mixpanel.com runbook.`);
-      continue;
+      console.log(`No existing spec found for "${spec.info.title}" (${specFile}). Creating new.`);
     }
 
     // validate and publish spec
-    console.log(`Updating ${spec.info.title} (${specFile})`);
+    console.log(`${specMeta ? 'Updating' : 'Creating'} ${spec.info.title} (${specFile})`);
     await execAndLog('npx', ['rdme@10.6.0', 'openapi:validate', fullPath]);
     // publish the json version
     await execAndLog(

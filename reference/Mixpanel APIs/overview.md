@@ -70,3 +70,7 @@ Use the Warehouse Connectors API to manually run a warehouse imports.
 **EU Residency Server:** `api-eu.mixpanel.com/flags`
 **India Residency Server:** `api-in.mixpanel.com/flags`
 Use the Feature Flags API to assign your users to variants for experiments, rollout, and releases.
+
+<Callout icon="⚠️" theme="warn">
+  **TLS 1.0 and 1.1 Deprecation:** Starting April 2026, Mixpanel APIs will no longer accept connections using TLS 1.0 and 1.1 protocols. Please ensure your integrations are configured to use TLS 1.2 or higher. For more details, see the [TLS Deprecation Notice](https://docs.mixpanel.com/changelogs/2026-02-26-tls1011-deprecation).
+</Callout>

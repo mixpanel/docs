@@ -128,7 +128,7 @@ This method enables targeting users immediately when they perform specific actio
   - Target users who trigger 'Add to Cart' event with product_category = 'premium'
 
 <Callout type="info">
-    For detailed configuration options and examples, see our [Runtime Events guide](/docs/feature-flags/runtime-events).
+    For detailed configuration options and examples, see our [Runtime Events guide](/docs/featureflags/runtime-events).
 </Callout>
 
 ### Rollout Percentage
@@ -260,13 +260,15 @@ If you'd like to see Feature Flags availability in other SDKs, please [reach out
 
 ### Other Implementation Methods
 
-**We use a CDP in our company. How do we use Mixpanel Feature Flags with our CDP?**
-You have two options - 
-- **Option 1:** Use Mixpanel sdk for purely feature flagging assignment and exposure event `$experiment_started`   
-- **Option 2:** Use mixpanel sdk for only feature flagging assignment, not exposure event
+**Mixpanel Feature Flags with a Customer Data Platform (CDP)**
+You have two options -
+- **Option 1:** Use Mixpanel SDK for purely feature flagging assignment and exposure event `$experiment_started`.
+- **Option 2:** Use mixpanel SDK for only feature flagging assignment, not exposure event
     - When you initialize the mixpanel feature flag SDK, configure it to not track any `$experiment_started` events directly to Mixpanel.
     - This way you use the mixpanel SDK to serve the feature flags, but when an end-user sees exposure, they manually use their existing method of tracking events through their CDP to mixpanel to track the $experiment_started event
 
+**Mixpanel Feature Flags with Google Tag Manager (GTM)**
+You can implement Mixpanel Feature Flags through Google Tag Manager. See the [Google Tag Manager integration guide](/docs/tracking-methods/integrations/google-tag-manager) for step-by-step instructions on initializing flags, evaluating them, and tracking exposure events via GTM.
 
 ## Identifying User Exposures
 
