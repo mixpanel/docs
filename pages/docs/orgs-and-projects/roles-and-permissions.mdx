@@ -1,12 +1,14 @@
-import { Callout } from 'nextra/components'
+import { Callout } from "nextra/components";
 
-# Roles & Permissions  
+# Roles & Permissions
 
 ## Overview
-Your team members access your organization and its projects using individual user accounts, which is what you use to sign into Mixpanel. An account must be part of an organization, but it does not need to be part of all projects in the organization.  Each account will have a single organization role per organization and one or more project roles for each project it is a part of. These roles can further limit what an account will have access to in Mixpanel.
+
+Your team members access your organization and its projects using individual user accounts, which is what you use to sign into Mixpanel. An account must be part of an organization, but it does not need to be part of all projects in the organization. Each account will have a single organization role per organization and one or more project roles for each project it is a part of. These roles can further limit what an account will have access to in Mixpanel.
 
 <Callout type="info">
-To invite and manage users in your organization and project, you will need an admin or owner organization role.
+  To invite and manage users in your organization and project, you will need an
+  admin or owner organization role.
 </Callout>
 
 ### Invite Users
@@ -59,7 +61,8 @@ You can remove users from an organization or project. You can only remove users 
 3. Click the **Delete** button that appears at the top of the table.
 
 <Callout type="info">
-  Deleting a user from an organization will remove them from all projects and teams within the organization and is non-reversible.
+  Deleting a user from an organization will remove them from all projects and
+  teams within the organization and is non-reversible.
 </Callout>
 
 ![image](/Del_Org_Users.png "Delete Org Users")
@@ -75,7 +78,9 @@ To remove a user from a project:
 A user can belong to multiple projects. Removing a user from one project does not affect their access to other projects within the organization. Any assets the user created (such as boards or reports) remain available in the project and are not automatically removed when the user is removed.
 
 <Callout type="info">
-  Only users with Organization Owner or Organization Admin roles can remove users who have access to a project granted through a [Team](/docs/orgs-and-projects/roles-and-permissions#teams).
+  Only users with Organization Owner or Organization Admin roles can remove
+  users who have access to a project granted through a
+  [Team](/docs/orgs-and-projects/roles-and-permissions#teams).
 </Callout>
 
 ![image](/Del_Proj_Users.png "Delete Project Users")
@@ -87,35 +92,38 @@ In Mixpanel, users have roles in an organization and in a project. The types of 
 ### Organization Roles
 
 <Callout type="info">
-  Users on an Enterprise or Growth plan have access to four roles: Owner, Admin, Billing Admin, and Member. 
-  
-  Users on a Free plan have access to two roles: Owner and Billing Admin.
+  Users on an Enterprise or Growth plan have access to four roles: Owner, Admin, Billing Admin, and Member.
 
-  See our [pricing page](https://mixpanel.com/pricing/) for more details.
+Users on a Free plan have access to two roles: Owner and Billing Admin.
+
+See our [pricing page](https://mixpanel.com/pricing/) for more details.
+
 </Callout>
 
 The table below breaks down the roles and permissions of each role:
 
-| **Organization Role** | **Owner** | **Admin** | **Billing Admin** | **Member** |
-|-----------------------|-----------|-----------|-------------------|------------|
-| Manage Billing Plans                                               | ✅ | ❌ | ✅ | ❌ |
-| Create Projects                                                    | ✅ | ✅ | ❌ | ❌ |
-| Delete Projects                                                    | ✅ | ❌ | ❌ | ❌ |
-| Create/Delete Teams                                                | ✅ | ✅ | ❌ | ❌ |
-| Transfer Projects Between Organizations                            | ✅ | ❌ | ❌ | ❌ |
-| Add/Invite/Remove users to an Organization and or Projects         | ✅ | ✅ | ❌ | ❌ |
-| Add/Modify/Remove Service Accounts to Organization and or Projects | ✅ | ✅ | ❌ | ❌ |
-| Modify Roles - Organization Level                                  | ✅ | ✅ | ❌ | ❌ |
-| Modify Roles - Make themselves an Owner                            | ✅ | ❌ | ❌ | ❌ |
-| Modify Roles - Project/Team Level                                  | ✅ | ✅ | ❌ | ❌ |
-| Modify 2FA and SSO                                                 | ✅ | ✅ | ❌ | ❌ |
-| Request Organization Deletion                                      | ✅ | ❌ | ❌ | ❌ |
+| **Organization Role**                                              | **Owner** | **Admin** | **Billing Admin** | **Member** |
+| ------------------------------------------------------------------ | --------- | --------- | ----------------- | ---------- |
+| Manage Billing Plans                                               | ✅        | ❌        | ✅                | ❌         |
+| Create Projects                                                    | ✅        | ✅        | ❌                | ❌         |
+| Delete Projects                                                    | ✅        | ❌        | ❌                | ❌         |
+| Create/Delete Teams                                                | ✅        | ✅        | ❌                | ❌         |
+| Transfer Projects Between Organizations                            | ✅        | ❌        | ❌                | ❌         |
+| Add/Invite/Remove users to an Organization and or Projects         | ✅        | ✅        | ❌                | ❌         |
+| Add/Modify/Remove Service Accounts to Organization and or Projects | ✅        | ✅        | ❌                | ❌         |
+| Modify Roles - Organization Level                                  | ✅        | ✅        | ❌                | ❌         |
+| Modify Roles - Make themselves an Owner                            | ✅        | ❌        | ❌                | ❌         |
+| Modify Roles - Project/Team Level                                  | ✅        | ✅        | ❌                | ❌         |
+| Modify 2FA and SSO                                                 | ✅        | ✅        | ❌                | ❌         |
+| Request Organization Deletion                                      | ✅        | ❌        | ❌                | ❌         |
 
 **Owner**
+
 <Callout type="info">
   It is recommended to have at least 2 Organization Owners at all times, in case an owner loses access to their account or is no longer working with the company.
 
-  If all existing owners are no longer working with the company and you need to assign a new owner, please [reach out to the support team](https://mixpanel.com/get-support).
+If all existing owners are no longer working with the company and you need to assign a new owner, please [reach out to the support team](https://mixpanel.com/get-support).
+
 </Callout>
 
 Organization Owners have administrative permissions for the organization and all the projects in the organization. Multiple users can be Owners. However, each organization must have at least one Owner.
@@ -152,51 +160,51 @@ Users in a Project can be assigned to 4 roles: Owner, Admin, Analyst, and Consum
 The table below is an overview of the permissions per role on a project level.
 
 | **Project Roles**              | **Owner** | **Admin** | **Analyst** | **Consumer** |
-|--------------------------------|-----------|-----------|-------------|--------------|
-| Transfer/Reset/Delete Projects | ✅ | ❌ | ❌ | ❌ |
-| Edit Project Timezones         | ✅ | ✅ | ❌ | ❌ |
-| Edit Project Name              | ✅ | ✅ | ❌ | ❌ |
-| View Access Keys               | ✅ | ✅ | ❌ | ❌ |
-| View Usage Statistics          | ✅ | ✅ | ❌ | ❌ |
-| Access Time Period Settings    | Edit | Edit | View Only | View Only |
-| Invite Project Users           | ✅ | ✅ | ❌ | ❌ |
-| Change Project Users Role      | ✅ | ✅ | ❌ | ❌ |
-| Approve Access Requests        | ✅ | ✅ | ❌ | ❌ |
-| Create Service Accounts        | ✅ | ✅ | ❌ | ❌ |
+| ------------------------------ | --------- | --------- | ----------- | ------------ |
+| Transfer/Reset/Delete Projects | ✅        | ❌        | ❌          | ❌           |
+| Edit Project Timezones         | ✅        | ✅        | ❌          | ❌           |
+| Edit Project Name              | ✅        | ✅        | ❌          | ❌           |
+| View Access Keys               | ✅        | ✅        | ❌          | ❌           |
+| View Usage Statistics          | ✅        | ✅        | ❌          | ❌           |
+| Access Time Period Settings    | Edit      | Edit      | View Only   | View Only    |
+| Invite Project Users           | ✅        | ✅        | ❌          | ❌           |
+| Change Project Users Role      | ✅        | ✅        | ❌          | ❌           |
+| Approve Access Requests        | ✅        | ✅        | ❌          | ❌           |
+| Create Service Accounts        | ✅        | ✅        | ❌          | ❌           |
 
 The table below is an overview of the permissions per role for reports and other features.
 
-| **Project Roles**                 | **Owner** | **Admin** | **Analyst** | **Consumer** |
-|-----------------------------------|-----------|-----------|-------------|--------------|
-| Create and View Insights Reports        | ✅ | ✅ | ✅ | ✅ |
-| Create and View Flows Reports           | ✅ | ✅ | ✅ | ✅ |
-| Create and View Funnels Reports         | ✅ | ✅ | ✅ | ✅ |
-| Create and View Retention Reports       | ✅ | ✅ | ✅ | ✅ |
-| Download Reports                        | ✅ | ✅ | ✅ | ❌ |
-| Create Custom Alerts                    | ✅ | ✅ | ✅ | ❌ |
-| Edit Custom Alerts                      | ✅ | ❌ | ❌ | ❌ |
-| View Users Report                       | ✅ | ✅ | ✅ | ✅ |
-| Export Users Report                     | ✅ | ✅ | ✅ | ❌ |
-| Create/Edit Cohorts                     | ✅ | ✅ | ✅ | ✅ |
-| Export Cohorts                          | ✅ | ✅ | ✅ | ❌ |
-| Create/Edit User Profiles               | ✅ | ✅ | ❌ | ❌ |
-| Delete User Profiles                    | ✅ | ✅ | ❌ | ❌ |
-| Create and View Boards                  | ✅ | ✅ | ✅ | ✅ |
-| Create Subscriptions for Boards         | ✅ | ✅ | ✅ | ❌ |
-| Edit Subscriptions for Boards           | ✅ | Only the Creator | Only the Creator | Only the Creator |
-| Create/Edit Custom Events               | ✅ | ✅ | ✅ | ✅ Can save only for self |
-| Create/Edit Saved Behaviors             | ✅ | ✅ | ✅ | ✅ Can save only for self |
-| Create/Edit Saved Formulas              | ✅ | ✅ | ✅ | ✅ Can save only for self |
-| Create/Edit Custom Properties           | ✅ | ✅ | ✅ | ✅ Can save only for self |
-| Create/Edit Borrowed Properties         | ✅ | ✅ | ❌ | ❌ |
-| Upload a Lookup Table                   | ✅ | ✅ | ✅ | ✅ |
-| Map Property to Lookup Table in Lexicon | ✅ | ✅ | ❌ | ❌ |
-| Hide Data in Lexicon                    | ✅ | ✅ | ❌ | ❌ |
-| Edit Descriptions in Lexicon            | ✅ | ✅ | ❌ | ❌ |
-| Add Tags in Lexicon                     | ✅ | ✅ | ❌ | ❌ |
-| Merge Data in Lexicon                   | ✅ | ❌ | ❌ | ❌ |
-| Drop Data in Lexicon                    | ✅ | ❌ | ❌ | ❌ |
-| Download CSV in Lexicon                 | ✅ | ✅ | ✅ | ✅ |
+| **Project Roles**                       | **Owner** | **Admin**        | **Analyst**      | **Consumer**              |
+| --------------------------------------- | --------- | ---------------- | ---------------- | ------------------------- |
+| Create and View Insights Reports        | ✅        | ✅               | ✅               | ✅                        |
+| Create and View Flows Reports           | ✅        | ✅               | ✅               | ✅                        |
+| Create and View Funnels Reports         | ✅        | ✅               | ✅               | ✅                        |
+| Create and View Retention Reports       | ✅        | ✅               | ✅               | ✅                        |
+| Download Reports                        | ✅        | ✅               | ✅               | ❌                        |
+| Create Custom Alerts                    | ✅        | ✅               | ✅               | ❌                        |
+| Edit Custom Alerts                      | ✅        | ❌               | ❌               | ❌                        |
+| View Users Report                       | ✅        | ✅               | ✅               | ✅                        |
+| Export Users Report                     | ✅        | ✅               | ✅               | ❌                        |
+| Create/Edit Cohorts                     | ✅        | ✅               | ✅               | ✅                        |
+| Export Cohorts                          | ✅        | ✅               | ✅               | ❌                        |
+| Create/Edit User Profiles               | ✅        | ✅               | ❌               | ❌                        |
+| Delete User Profiles                    | ✅        | ✅               | ❌               | ❌                        |
+| Create and View Boards                  | ✅        | ✅               | ✅               | ✅                        |
+| Create Subscriptions for Boards         | ✅        | ✅               | ✅               | ❌                        |
+| Edit Subscriptions for Boards           | ✅        | Only the Creator | Only the Creator | Only the Creator          |
+| Create/Edit Custom Events               | ✅        | ✅               | ✅               | ✅ Can save only for self |
+| Create/Edit Saved Behaviors             | ✅        | ✅               | ✅               | ✅ Can save only for self |
+| Create/Edit Saved Formulas              | ✅        | ✅               | ✅               | ✅ Can save only for self |
+| Create/Edit Custom Properties           | ✅        | ✅               | ✅               | ✅ Can save only for self |
+| Create/Edit Borrowed Properties         | ✅        | ✅               | ❌               | ❌                        |
+| Upload a Lookup Table                   | ✅        | ✅               | ✅               | ✅                        |
+| Map Property to Lookup Table in Lexicon | ✅        | ✅               | ❌               | ❌                        |
+| Hide Data in Lexicon                    | ✅        | ✅               | ❌               | ❌                        |
+| Edit Descriptions in Lexicon            | ✅        | ✅               | ❌               | ❌                        |
+| Add Tags in Lexicon                     | ✅        | ✅               | ❌               | ❌                        |
+| Merge Data in Lexicon                   | ✅        | ❌               | ❌               | ❌                        |
+| Drop Data in Lexicon                    | ✅        | ❌               | ❌               | ❌                        |
+| Download CSV in Lexicon                 | ✅        | ✅               | ✅               | ✅                        |
 
 **Owner**
 
@@ -303,7 +311,8 @@ To delete a team in Mixpanel:
 ## Custom Roles
 
 <Callout type="info">
-Custom Roles is available to organizations on **Enterprise** plans. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+  Custom Roles is available to organizations on **Enterprise** plans. See our
+  [pricing page](https://mixpanel.com/pricing/) for more details.
 </Callout>
 
 Custom roles let you create specialized access profiles beyond the four default project roles (Owner, Admin, Analyst, Consumer). With custom roles, you can define granular permissions tailored to specific job functions or workflows. Each project can have up to **5 custom roles**.
@@ -322,23 +331,27 @@ To create a custom role:
 6. Configure permissions by toggling individual permissions on or off across the available categories (see [Permission Categories](/docs/orgs-and-projects/roles-and-permissions#permission-categories) below).
 7. Click **Save** to create the role.
 
-Once created, the custom role will appear alongside default roles when assigning project roles to users.
+![create_custom_role](/create_custom_role_button.png)
+
+Once created, the custom role will appear alongside default roles when assigning project roles to users, teams, and service accounts.
 
 ### Permission Categories
 
 When creating or editing a custom role, you can configure permissions across six categories:
 
-| **Category** | **Configurable Permissions** |
-|---|---|
-| **Analysis** | Save reports & boards, create custom data definitions (cohorts, custom events, custom properties, metrics, behaviors), manage all analysis & custom definitions created by others |
-| **Feature Flags & Experimentation** | Create experiments, create feature flags, manage feature flags created by others |
-| **Data Management** | Edit metadata, set event & property visibility, data verification, manage schemas, manage lookup tables, mark sensitive data, edit profiles, data deletion/dropping/merging, data settings access (volume monitoring, quality monitoring, event approval, data standards) |
-| **Data Access, Exports & Alerts** | Public boards, sensitive data access, export data from Mixpanel, create alerts & webhooks, create board subscriptions, manage all alerts |
-| **Data Sources** | Create & manage cohort syncs, create & manage pipelines, create & manage data warehouses |
-| **Settings** | View & edit project settings (workspaces, service accounts, project users, project info, security settings, usage analytics) |
+| **Category**                        | **Configurable Permissions**                                                                                                                                                                                                                                              |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Analysis**                        | Save reports & boards, create custom data definitions (cohorts, custom events, custom properties, metrics, behaviors), manage all analysis & custom definitions created by others                                                                                         |
+| **Feature Flags & Experimentation** | Create experiments, create feature flags, manage feature flags created by others                                                                                                                                                                                          |
+| **Data Management**                 | Edit metadata, set event & property visibility, data verification, manage schemas, manage lookup tables, mark sensitive data, edit profiles, data deletion/dropping/merging, data settings access (volume monitoring, quality monitoring, event approval, data standards) |
+| **Data Access, Exports & Alerts**   | Public boards, sensitive data access, export data from Mixpanel, create alerts & webhooks, create board subscriptions, manage all alerts                                                                                                                                  |
+| **Data Sources**                    | Create & manage cohort syncs, create & manage pipelines, create & manage data warehouses                                                                                                                                                                                  |
+| **Settings**                        | View & edit project settings (workspaces, service accounts, project users, project info, security settings, usage analytics)                                                                                                                                              |
 
 <Callout type="info">
-All custom roles automatically include base permissions: viewing reports, editing visibility of entities you created, and locking/unlocking entities you created. These permissions cannot be removed.
+  All custom roles automatically include base permissions: viewing reports,
+  editing visibility of entities you created, and sharing entities you created.
+  These permissions cannot be removed.
 </Callout>
 
 ### Editing a Custom Role
@@ -368,7 +381,10 @@ To clone a custom role:
 7. Click **Save** to create the cloned role.
 
 <Callout type="info">
-Cloning a role to another project requires the **manage custom roles** permission on the target project. Any permissions gated by features that are not enabled on the target project will be automatically excluded from the cloned role.
+  Cloning a role to another project requires the **manage custom roles**
+  permission on the target project. Any permissions gated by features that are
+  not enabled on the target project will be automatically excluded from the
+  cloned role.
 </Callout>
 
 ### Deleting a Custom Role
@@ -381,5 +397,7 @@ To delete a custom role:
 4. Select **Delete** and confirm the deletion.
 
 <Callout type="info">
-When a custom role is deleted, all users currently assigned to that role will be automatically reassigned to the **Consumer** role. Review the list of affected users before confirming deletion.
+  When a custom role is deleted, all users currently assigned to that role will
+  be automatically reassigned to the **Consumer** role. Review the list of
+  affected users before confirming deletion.
 </Callout>
