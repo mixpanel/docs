@@ -1,9 +1,9 @@
 import { Callout } from 'nextra/components'
 
-# Embed analytics into your product development cycle
+# Embed Analytics into Your Product Development Cycle
 When a feature ships without verified tracking in place, the cost shows up later — empty dashboards, re-opened tickets, roadmap decisions made without reliable numbers. This guide walks you through how to treat instrumentation as part of the feature cycle itself: planned before the first line of code is written, verified before you call a feature done.
 
-The principle behind this approach is borrowed from quality engineering: the earlier you catch a problem, the cheaper it is to fix. The same applies to analytics. When tracking is planned at the start of a feature rather than added after it ships, your data is more accurate, your metrics are more reliable, and your team can make decisions from day one instead of playing catch-up.
+The principle behind this approach is borrowed from quality engineering: The earlier you catch a problem, the cheaper it is to fix. The same applies to analytics. When tracking is planned at the start of a feature rather than added after it ships, your data is more accurate, your metrics are more reliable, and your team can make decisions from day one instead of playing catch-up.
 
 ## Phase 1: Define what you're measuring before you build
 
@@ -60,11 +60,11 @@ A feature isn't done until its events are firing correctly. Verification belongs
 
 ## Phase 4: Launch with measurement ready
 
-Shipping with measurement in place means you can assess impact from day one, not three sprints later when someone finally builds the dashboard.
+Shipping with measurement in place means you can assess impact from day one, not three sprints later when someone finally builds the board.
 
 **Steps to take**
 
-- Have at least one Mixpanel report or dashboard live before or alongside the feature announcement. Link it from the announcement so your team knows where to look.
+- Have at least one Mixpanel report or board live before or alongside the feature announcement. Link it from the announcement so your team knows where to look.
 - Document the pre-launch state of your key metrics. Without a baseline, you can't measure impact — you can only observe activity.
 - Set up a [Mixpanel alert](/docs/features/alerts) or a scheduled check-in cadence to catch unexpected data drops after launch. A spike or gap in event volume post-launch is worth catching early.
 - If you're using [Feature Flags](/docs/featureflags) to control rollout, connect them to your Mixpanel reports so measurement is tied directly to the release.
@@ -86,27 +86,27 @@ Proactive data governance is a team effort. Here's who owns what across a typica
 | QA / Test Engineer | Validates tracking as part of the QA pass. Includes event verification in acceptance criteria. |
 | Engineering Manager | Makes tracking plan completion a gate in the definition of done. Holds the standard across sprints. |
 
-## Getting started: a 30-day plan
+## Getting started: A 30-day plan
 
 Changing team habits takes time. Here's a realistic approach to introducing these practices without disrupting your current velocity.
 
 ### Weeks 1–2: Establish the standard
 
-- Agree on a tracking plan template your team will use for all new features. A simple spreadsheet is fine to start.
+- Agree on a [tracking plan template](/docs/tracking-best-practices/tracking-plan#translate-flows-into-events--properties) your team will use for all new features. A simple spreadsheet is fine to start.
 - Add "tracking plan complete" to your definition of done in your project management tool.
-- Enable Event Approval in Mixpanel to start catching unplanned events.
-- Audit your 10 most-used events in Lexicon and add descriptions for any that are undocumented.
+- Enable [Event Approval](/docs/data-governance/event-approval) in Mixpanel to start catching unplanned events.
+- Audit your 10 most-used events in [Lexicon](/docs/data-governance/lexicon) and add descriptions for any that are undocumented.
 
 ### Weeks 3–4: Build the habit
 
 - Walk through the tracking plan for one upcoming feature in your next sprint planning session.
 - Identify one person to serve as your data governor — the person who reviews new events and maintains your naming standards.
-- Set up one Mixpanel dashboard for a recently shipped feature. Even retroactively, this builds the habit.
+- Set up one [Mixpanel board](/docs/boards) for a recently shipped feature. Even retroactively, this builds the habit.
 
 ### Day 30 and beyond: Make it repeatable
 
 - Review your first full feature cycle with the new process. What worked? What didn't?
-- Document your naming conventions in Data Standards within Mixpanel.
+- Document your naming conventions in [Data Standards](/docs/data-governance/data-standards) within Mixpanel.
 - Schedule a monthly 30-minute data review across your product and analytics teams.
 - Expand the practice to more features and more teams.
 
@@ -115,10 +115,10 @@ The goal isn't perfect tracking from day one. It's a team that thinks about meas
 ## Key takeaways
 
 - Define success metrics in the design phase, before any code is written.
-- Write a tracking plan as part of the ticket, not as a separate artifact that gets out of sync.
+- Write a tracking plan as part of your spec or ticket, not as a separate artifact that gets out of sync.
 - Share the tracking plan with engineers before implementation begins, not after.
 - Verify events in staging before every production release.
 - Document your baseline metrics before launch so you can measure actual impact.
-- Shipping a feature means shipping its measurement — dashboard included.
+- Shipping a feature means shipping its measurement — Mixpanel board included.
 
-👉 **Next step**: To build out the governance infrastructure that supports this process, see [Govern your Mixpanel data for long-term success](/guides/guides-by-topic/govern-data). For a deeper look at tracking strategy, start with the [Building a Tracking Strategy](https://university.mixpanel.com/training/01971248-cfad-7259-9c42-b9c246278b9d/register) module in Mixpanel University.
+👉 **Next step**: To build out the governance infrastructure that supports this process, see [Govern Your Mixpanel Data for Long-Term Success](/guides/guides-by-topic/govern-data). For a deeper look at tracking strategy, start with the [Building a Tracking Strategy](https://university.mixpanel.com/training/01971248-cfad-7259-9c42-b9c246278b9d/register) module in Mixpanel University.
