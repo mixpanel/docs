@@ -1,0 +1,124 @@
+import { Callout } from 'nextra/components'
+
+# Embed analytics into your product development cycle
+When a feature ships without verified tracking in place, the cost shows up later — empty dashboards, re-opened tickets, roadmap decisions made without reliable numbers. This guide walks you through how to treat instrumentation as part of the feature cycle itself: planned before the first line of code is written, verified before you call a feature done.
+
+The principle behind this approach is borrowed from quality engineering: the earlier you catch a problem, the cheaper it is to fix. The same applies to analytics. When tracking is planned at the start of a feature rather than added after it ships, your data is more accurate, your metrics are more reliable, and your team can make decisions from day one instead of playing catch-up.
+
+## Phase 1: Define what you're measuring before you build
+
+The most common instrumentation problem isn't technical — it's that no one decided what to measure before the sprint started. Before any feature moves to development, answer three questions in the design phase:
+
+- What user actions prove adoption?
+- What does success look like at 30, 60, and 90 days?
+- What signal would tell you to double down or cut the feature?
+
+Writing down the answers forces a useful conversation early, while changing course is still cheap.
+
+**Steps to take**
+
+- Write your success metrics in the feature spec itself, not in a separate doc. If they're not in your spec, they'll be skipped.
+- Check whether events you need already exist in your schema before creating new ones. Reusing existing events keeps your data consistent and reduces clutter.
+- Review your team's naming conventions before adding anything new. A consistent format — like `Object Action` (e.g. `Button Clicked`, `Checkout Completed`) — makes your schema readable and queryable across teams.
+
+<Callout type="info">
+  **Pro tip**: If you can't name your success metric before you build, that's often a signal to tighten the feature scope first, not a reason to defer tracking.
+</Callout>
+
+## Phase 2: Write a tracking plan as part of your spec
+
+A [tracking plan](/docs/tracking-best-practices/tracking-plan) is a structured list of the events and properties you intend to fire for a feature: what triggers them, what properties they carry, and what naming conventions apply. It's the contract between PM, engineering, and data — and it belongs in your spec, not in a separate document that gets out of sync.
+
+If your team is new to tracking plans, Mixpanel provides [templates for common verticals](/docs/tracking-best-practices/tracking-plan#translate-flows-into-events--properties) — including e-commerce, financial services, media, and SaaS — as well as a blank template you can copy and adapt. The format matters less than the habit.
+
+**Steps to take**
+
+- Add a tracking plan section to your feature spec or ticket template. At minimum: event name, trigger condition, required properties, and any naming conventions that apply.
+- Share the tracking plan with engineers before they write implementation code. Tracking planned after the fact means re-opening shipped code.
+- Use [Lexicon](/docs/data-governance/lexicon) to check whether the events you need already exist and whether their property schemas match what you're planning. Lexicon is Mixpanel's central schema registry — every event and property your project sends lives there.
+- Enable [Event Approval](/docs/data-governance/event-approval) so new, unplanned events require review before they're ingested. This is your primary tool for preventing schema drift when engineers ship new tracking without a plan.
+- If your team sends data across multiple product areas, consider setting up [Data Views](/docs/data-governance/data-views-and-classification) to segment your Mixpanel project by team or feature area. This reduces noise and keeps each team focused on the data relevant to their work.
+
+<Callout type="warning">
+  **Pitfall**: Skipping the tracking plan when a feature feels "small" is how schemas accumulate inconsistent events over time. Every unplanned event is technical debt in your data.
+</Callout>
+
+## Phase 3: Verify tracking before you ship
+
+A feature isn't done until its events are firing correctly. Verification belongs in your QA pass, not as a post-launch clean-up task.
+
+**Steps to take**
+
+- Verify events fire in staging using Mixpanel's [Events View](/docs/tracking-best-practices/debugging#debugging-with-events) before pushing to production. Spot-check that required properties are populated and not null, missing, or malformed.
+- Review any new events for [PII](/guides/guides-by-workflow/data-privacy). No personally identifiable information should be sent as an event property without explicit governance approval.
+- Update [Lexicon](/docs/data-governance/lexicon) with descriptions for any new events and properties. If another team member can't tell what an event means from its Lexicon entry, they'll either ignore it or create a duplicate.
+- Use the [Lexicon Schemas API](https://developer.mixpanel.com/reference/lexicon-schemas-api) to load your pre-release tracking plan into Mixpanel programmatically. This lets you compare planned vs. actual events after launch and catch gaps early.
+
+<Callout type="info">
+  **Pro tip**: Add event verification to your pull request template so it's a required step. The conversation about whether tracking is verified shouldn't happen in a retrospective.
+</Callout>
+
+## Phase 4: Launch with measurement ready
+
+Shipping with measurement in place means you can assess impact from day one, not three sprints later when someone finally builds the dashboard.
+
+**Steps to take**
+
+- Have at least one Mixpanel report or dashboard live before or alongside the feature announcement. Link it from the announcement so your team knows where to look.
+- Document the pre-launch state of your key metrics. Without a baseline, you can't measure impact — you can only observe activity.
+- Set up a [Mixpanel alert](/docs/features/alerts) or a scheduled check-in cadence to catch unexpected data drops after launch. A spike or gap in event volume post-launch is worth catching early.
+- If you're using [Feature Flags](/docs/featureflags) to control rollout, connect them to your Mixpanel reports so measurement is tied directly to the release.
+- Define [Data Standards](/docs/data-governance/data-standards) at the project level if you haven't already — naming conventions, required properties, and approved values enforced across every team that sends data.
+
+<Callout type="warning">
+  **Pitfall**: Capturing baseline metrics after launch makes it nearly impossible to attribute changes to the feature you shipped. Document the baseline before you turn the feature on.
+</Callout>
+
+## Roles and responsibilities
+
+Proactive data governance is a team effort. Here's who owns what across a typical product team:
+
+| Role | Responsibilities |
+| --- | --- |
+| Product Manager | Defines success metrics. Writes the tracking plan. Ensures tracking is a line item in every feature spec. Reviews data post-launch. |
+| Engineer / Developer | Implements tracking per the plan. Flags ambiguities before building. Verifies events fire correctly in staging. |
+| Data Governor / Analyst | Maintains naming conventions and Data Standards. Reviews new events via Event Approval. Keeps Lexicon descriptions current. |
+| QA / Test Engineer | Validates tracking as part of the QA pass. Includes event verification in acceptance criteria. |
+| Engineering Manager | Makes tracking plan completion a gate in the definition of done. Holds the standard across sprints. |
+
+## Getting started: a 30-day plan
+
+Changing team habits takes time. Here's a realistic approach to introducing these practices without disrupting your current velocity.
+
+### Weeks 1–2: Establish the standard
+
+- Agree on a tracking plan template your team will use for all new features. A simple spreadsheet is fine to start.
+- Add "tracking plan complete" to your definition of done in your project management tool.
+- Enable Event Approval in Mixpanel to start catching unplanned events.
+- Audit your 10 most-used events in Lexicon and add descriptions for any that are undocumented.
+
+### Weeks 3–4: Build the habit
+
+- Walk through the tracking plan for one upcoming feature in your next sprint planning session.
+- Identify one person to serve as your data governor — the person who reviews new events and maintains your naming standards.
+- Set up one Mixpanel dashboard for a recently shipped feature. Even retroactively, this builds the habit.
+
+### Day 30 and beyond: Make it repeatable
+
+- Review your first full feature cycle with the new process. What worked? What didn't?
+- Document your naming conventions in Data Standards within Mixpanel.
+- Schedule a monthly 30-minute data review across your product and analytics teams.
+- Expand the practice to more features and more teams.
+
+The goal isn't perfect tracking from day one. It's a team that thinks about measurement before shipping — so your data gets more accurate with every feature, not less.
+
+## Key takeaways
+
+- Define success metrics in the design phase, before any code is written.
+- Write a tracking plan as part of the ticket, not as a separate artifact that gets out of sync.
+- Share the tracking plan with engineers before implementation begins, not after.
+- Verify events in staging before every production release.
+- Document your baseline metrics before launch so you can measure actual impact.
+- Shipping a feature means shipping its measurement — dashboard included.
+
+👉 **Next step**: To build out the governance infrastructure that supports this process, see [Govern your Mixpanel data for long-term success](/guides/guides-by-topic/govern-data). For a deeper look at tracking strategy, start with the [Building a Tracking Strategy](https://university.mixpanel.com/training/01971248-cfad-7259-9c42-b9c246278b9d/register) module in Mixpanel University.
