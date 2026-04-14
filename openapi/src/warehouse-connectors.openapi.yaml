@@ -410,7 +410,7 @@ paths:
         - Warehouse Imports
       summary: Get import job history
       description: |
-        Returns the execution history for a warehouse import. Returns 100 most recent events.
+        Returns the execution history for a warehouse import. Returns 30 most recent events.
       responses:
         "200":
           description: Success
