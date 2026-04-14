@@ -250,17 +250,7 @@ Complete the following steps to get your Databricks connector up and running:
 
 Mixpanel connects to Databricks using a service principal. You can authenticate with either a personal access token or OAuth (recommended).
 
-**Option A: Personal Access Token**
-
-1. [Create the service principal](https://docs.databricks.com/en/admin/users-groups/service-principals.html#manage-service-principals-in-your-account) in your Databricks account if it doesn't already exist.
-2. Generate a token for the service principal using the Databricks CLI:
-```bash
-databricks configure --token
-databricks token-management create-obo-token <application_id_of_service_principal> --lifetime-seconds 31536000 --comment "Mixpanel warehouse connector service principal token"
-```
-3. Save the generated token — you'll need it when connecting in Mixpanel.
-
-**Option B: Service Principal OAuth (Recommended)**
+**Option A: Service Principal OAuth (Recommended)**
 
 OAuth M2M (machine-to-machine) authentication uses a client ID and client secret instead of a token. OAuth secrets can be managed and rotated without affecting other integrations.
 
@@ -272,6 +262,16 @@ OAuth M2M (machine-to-machine) authentication uses a client ID and client secret
     - Click **Generate secret**.
     - Copy the **Client ID** and **Secret** immediately — the secret won't be shown again.
 3. Save both the Client ID and Secret — you'll need them when connecting in Mixpanel.
+
+**Option B: Personal Access Token**
+
+1. [Create the service principal](https://docs.databricks.com/en/admin/users-groups/service-principals.html#manage-service-principals-in-your-account) in your Databricks account if it doesn't already exist.
+2. Generate a token for the service principal using the Databricks CLI:
+```bash
+databricks configure --token
+databricks token-management create-obo-token <application_id_of_service_principal> --lifetime-seconds 31536000 --comment "Mixpanel warehouse connector service principal token"
+```
+3. Save the generated token — you'll need it when connecting in Mixpanel.
 
 ### Step 2: Grant permissions
 
