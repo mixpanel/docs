@@ -12,4 +12,4 @@ This request creates an export pipeline. The `type` parameter defines the kind o
 
 Create API returns the name of the pipeline created. Use the name of the pipeline to check the status of or cancel the pipeline.
 
-> **Note:** For BigQuery pipelines, the `gcp_project` and `bq_dataset_name` parameters are required. Mixpanel-hosted BigQuery is not supported.
+> **Important:** For BigQuery pipelines, `gcp_project` and `bq_dataset_name` are **required** fields. Pipeline creation will fail if these parameters are omitted. Mixpanel-hosted BigQuery is not supported — you must provide your own GCP project and dataset.
