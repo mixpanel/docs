@@ -38,6 +38,7 @@ export default {
     ),
   },
   "benchmarks": "Benchmarks",
+  "template-gallery": "Template Gallery",
   "strategic-playbooks": "Strategic Playbooks",
   "glossary": "Glossary"
 }
