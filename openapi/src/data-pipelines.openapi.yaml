@@ -1064,6 +1064,9 @@ components:
         snowflake_schema:
           type: string
           description: The Snowflake schema to export data into.
+        snowflake_prefix:
+          type: string
+          description: Prefix for created views and tables.
       required:
         - type
         - from_date
