@@ -23,7 +23,9 @@ Suggested page structure (in order):
 
 # Alerts: Get notified about anomalies in your data
 
-Users with a paid plan can access Alerts. Growth plan users can set up to 5 alerts per project. Enterprise plan users can set an unlimited number of alerts. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+<Callout type="info">
+    Users with a paid plan can access Alerts. Growth plan users can set up to 5 alerts per project. Enterprise plan users can set an unlimited number of alerts. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+</Callout>
 
 {/* ============================================================ */}
 {/* SECTION 1: OVERVIEW — [UPDATED] */}
@@ -46,7 +48,9 @@ When an alert is active, Mixpanel continuously monitors its validity — surfaci
 
 ## Create an Alert
 
-To create and manage alerts, you will need an analyst, admin, or owner project role. Learn more about [Roles and Permissions](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions).
+<Callout type="info">
+    To create and manage alerts, you will need an analyst, admin, or owner project role. Learn more about [Roles and Permissions](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions).
+</Callout>
 
 Create an alert for your Insights and Funnels reports and be notified when report conditions reach certain thresholds. Alerts can be delivered via email, Slack, or webhook, and can be sent to multiple recipients.
 
@@ -78,6 +82,8 @@ Create an alert for your Insights and Funnels reports and be notified when repor
    - **Email** — enter the recipient's email address. You can enter any email, not just Mixpanel users.
    - **Slack** — select the Slack channels to notify. Private Slack channels are not supported. You may need to configure the Mixpanel Slack app first — click **Add Mixpanel to Slack** and follow the prompts.
    - **Webhook** — select a configured webhook from the dropdown. See [Webhook Alerts](#webhook-alerts) for setup instructions.
+
+![](/255713687-91a2bb99-3a79-43d4-9d97-3b397aab0305.png)
 
 8. Optionally, click **Test Alert** to send a test notification before saving. See [Test Alert](#test-alert) below.
 
@@ -181,6 +187,9 @@ You can also manage webhooks directly from **Project Settings > Alerts** via the
 1. When creating or editing an alert, scroll to the **Notify** section.
 2. Locate the **via Webhook** dropdown.
 3. Select your webhook from the available options.
+
+![image.png](/webhookalert2.png)
+
 4. Complete the rest of your alert configuration and save.
 
 **Sample payload received from the Webhook:**
@@ -310,7 +319,9 @@ Custom Threshold alerts monitor your metrics and notify you when the metric reac
 
 ### Anomaly Detection
 
-Users on the Enterprise plan can create Anomaly Detection alerts. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+<Callout type="info">
+    Users on the Enterprise plan can create Anomaly Detection alerts. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+</Callout>
 
 Anomaly Detection alerts automatically monitor your metrics and notify you when significant anomalies occur. Mixpanel uses advanced forecasting algorithms to calculate expected ranges for your metrics. If a data point falls outside the calculated confidence interval, you'll receive an alert — no manual threshold configuration required.
 
