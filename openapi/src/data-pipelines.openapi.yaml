@@ -1045,7 +1045,7 @@ components:
           description: Prefix for created views and tables.
         snowflake_account_name:
           type: string
-          description: The Snowflake account identifier (e.g. myaccount.us-east-1).
+          description: The Snowflake account identifier (e.g. myorg-myaccount).
         snowflake_warehouse:
           type: string
           description: The Snowflake warehouse to use for loading data.
