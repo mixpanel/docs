@@ -34,7 +34,7 @@ Explore curated board templates designed to solve common product questions. Clic
     }}
   >
     Ready to build? Create a Board
-    <span aria-hidden>→</span>
+    <span aria-hidden>&rarr;</span>
   </a>
 </div>
 
@@ -51,6 +51,25 @@ Explore curated board templates designed to solve common product questions. Clic
     border-radius: 10px;
   }
 `}</style>
+
+<div style={{
+  maxWidth: '720px',
+  margin: '32px auto 0',
+  textAlign: 'center',
+  padding: '0 20px'
+}}>
+  <p style={{
+    fontSize: '16px',
+    lineHeight: '1.6',
+    color: 'var(--sgt-title)',
+    opacity: 0.8
+  }}>
+    Templates are pre-built dashboards designed around a specific use case or industry.
+    Instead of starting from a blank canvas, you start with a proven framework
+    built on industry best practices that you can adapt to your needs.
+  </p>
+</div>
+
 
 {/*
   Cards API (examples):
@@ -138,3 +157,29 @@ Custom-built frameworks optimized for E-commerce, SaaS, and Finance workflows.
     }
   ]}
 />
+
+<br></br>
+<hr style={{ opacity: 0.1, margin: '40px 0' }} />
+
+### Implementation FAQ
+
+<details style={{ cursor: 'pointer', marginBottom: '16px' }}>
+  <summary style={{ fontWeight: 600, fontSize: '18px', padding: '10px 0' }}>
+    How do I use these templates in my own project?
+  </summary>
+  <p style={{ paddingLeft: '20px', opacity: 0.8, marginTop: '8px' }}>
+    Pick a template above to explore the interactive demo. Once you're ready to use it with your own data,
+    simply click "Create Board" from the Template Selector in Mixpanel. Your reports will populate
+    automatically, and you can customize any metric, filter, or visualization from there.
+  </p>
+</details>
+
+<details style={{ cursor: 'pointer' }}>
+  <summary style={{ fontWeight: 600, fontSize: '18px', padding: '10px 0' }}>
+    Can I customize a template after it's created?
+  </summary>
+  <p style={{ paddingLeft: '20px', opacity: 0.8, marginTop: '8px' }}>
+    Yes. Think of a template as a starting point, not a fixed structure. You can add reports,
+    change conversion window settings, or adjust event properties to match your specific tracking schema.
+  </p>
+</details>
