@@ -134,13 +134,12 @@ function CardView({ t }: { t: TemplateCard }) {
    * If a background color is provided:
    * 1. Set background to custom color
    * 2. Invert text to white for legibility
-   * 3. Set dogear to a subtle transparent white so it's visible on dark backgrounds
    */
   const customBgStyle = t.bg ? {
     background: t.bg,
     '--sgt-title': '#ffffff',
     '--sgt-blurb': 'rgba(255,255,255,0.9)',
-    '--sgt-dogear': 'rgba(255,255,255,0.4)'
+    '--sgt-dogear': 'MP_PURPLE'
   } as React.CSSProperties : {};
 
   return (
