@@ -8,12 +8,14 @@ import Image from 'next/image';
  * - description: Supporting text explaining the template
  * - img: Preview image src (314x160 pixels recommended)
  * - previewUrl: Destination for the new tab preview
+ * - bg: Optional custom background color (hex or rgba)
  */
 type TemplateCard = {
   title: string;
   description: string;
   img: string;
   previewUrl: string;
+  bg?: string;
 };
 
 interface Props {
@@ -26,7 +28,7 @@ const BORDER_RADIUS = 14;
 const CARD_W = 296;
 const CARD_H = 319;
 /** Fixed image height for consistent alignment */
-const IMAGE_H = 160; 
+const IMAGE_H = 160;
 /** Adjusted to 280 to ensure flush bleed to right edge (296 - 16 = 280) */
 const IMAGE_W = 280;
 
@@ -87,27 +89,28 @@ const styles = {
 
   bottom: {
     position: 'absolute' as const,
-    top: IMAGE_H + 22, 
+    top: IMAGE_H + 22,
     left: 0,
     right: 0,
     bottom: 0,
-    padding: '16px 18px 22px',
+    padding: '12px 18px 22px',
     zIndex: 3,
   },
 
   title: {
-    fontSize: 23,
+    fontSize: 21,
     fontWeight: 700,
-    lineHeight: 1.2,
+    lineHeight: 1.1,
     margin: 0,
     color: 'var(--sgt-title)',
   } as React.CSSProperties,
 
   blurb: {
-    marginTop: 8,
-    fontSize: 15,
+    marginTop: 4,
+    fontSize: 14,
+    lineHeight: 1.3,
     color: 'var(--sgt-blurb)',
-    opacity: 0.75,
+    opacity: 0.85,
   } as React.CSSProperties,
 
   clickable: {
@@ -127,8 +130,21 @@ function CardView({ t }: { t: TemplateCard }) {
     window.open(t.previewUrl, '_blank', 'noopener,noreferrer');
   };
 
+  /**
+   * If a background color is provided:
+   * 1. Set background to custom color
+   * 2. Invert text to white for legibility
+   * 3. Set dogear to a subtle transparent white so it's visible on dark backgrounds
+   */
+  const customBgStyle = t.bg ? {
+    background: t.bg,
+    '--sgt-title': '#ffffff',
+    '--sgt-blurb': 'rgba(255,255,255,0.9)',
+    '--sgt-dogear': 'rgba(255,255,255,0.2)'
+  } as React.CSSProperties : {};
+
   return (
-    <div style={styles.card} className="sgt-card">
+    <div style={{ ...styles.card, ...customBgStyle }} className="sgt-card">
       <button
         type="button"
         style={styles.clickable}
@@ -222,8 +238,8 @@ export default function BoardTemplates({ templates }: Props) {
 
         /* ---- Responsive type bump on very wide screens ---- */
         @media (min-width: 1280px) {
-          .sgt-card h3 { font-size: 24px; }
-          .sgt-card p { font-size: 15px; }
+          .sgt-card h3 { font-size: 22px; }
+          .sgt-card p { font-size: 14px; }
         }
       `}</style>
     </>
