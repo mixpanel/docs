@@ -140,7 +140,7 @@ function CardView({ t }: { t: TemplateCard }) {
     background: t.bg,
     '--sgt-title': '#ffffff',
     '--sgt-blurb': 'rgba(255,255,255,0.9)',
-    '--sgt-dogear': 'rgba(255,255,255,0.2)'
+    '--sgt-dogear': 'rgba(255,255,255,0.4)'
   } as React.CSSProperties : {};
 
   return (
