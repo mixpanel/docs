@@ -1,0 +1,64 @@
+import BoardTemplates from '../../components/BoardTemplates'
+
+# Board Templates
+
+Discover Mixpanel’s core features through pre-built dashboard templates. 
+Click any card to start a project with that template, or click **PREVIEW BOARD** to explore a live interactive demo. [cite: 2]
+
+{/*
+  Cards API (examples):
+
+  {
+    title: 'Company KPIs',                      // Main title for the template card
+    description: 'Measure product health...',   // Supporting text explaining the use case (matches "blurb" in tours)
+    img: '/templates/Company KPIs.webp',        // Image src (314x139 pixels recommended)
+    previewUrl: 'https://...',                  // URL for the iframe modal (Preview)
+    createUrl: 'https://...'                    // URL for the main card click (Create flow)
+  }
+
+  Notes:
+  - The PREVIEW BOARD badge opens the preview link in an iframe modal for a consistent experience.
+  - Clicking the card body navigates the current tab to the creation flow via useRouter.
+  - Images should live under /public/templates/ for easy referencing. 
+*/}
+
+<br></br>
+
+### Essential Dashboards
+Understand your product's performance and core KPIs at a glance. 
+
+<BoardTemplates
+  templates={[
+    {
+      title: 'Company KPIs',
+      description: 'Measure product health across engagement, retention, and growth in one unified dashboard.',
+      img: '/templates/Company KPIs.webp',
+      previewUrl: 'https://mixpanel.com/p/QLBHa24vdYuK2MJLiNUA1S',
+      createUrl: 'https://mixpanel.com/project/?show-template-selector=true'
+    },
+    {
+      title: 'Retention Analysis',
+      description: 'Identify where users drop off and understand what keeps your most loyal users coming back.',
+      img: '/templates/Retention_Preview.png',
+      previewUrl: 'https://mixpanel.com/p/RetentionPreviewID',
+      createUrl: 'https://mixpanel.com/project/?show-template-selector=true'
+    }
+  ]}
+/>
+
+<br></br>
+
+### Industry Specifics
+Templates tailored for E-commerce, SaaS, and Finance workflows. 
+
+<BoardTemplates
+  templates={[
+    {
+      title: 'Ecommerce Funnels',
+      description: 'Visualize your checkout flow and identify where customers drop off in the purchase journey.',
+      img: '/templates/Ecommerce_Preview.png',
+      previewUrl: 'https://mixpanel.com/p/EcommercePreviewID',
+      createUrl: 'https://mixpanel.com/project/?show-template-selector=true'
+    }
+  ]}
+/>
