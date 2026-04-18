@@ -1,5 +1,14 @@
 import BoardTemplates from '../../components/BoardTemplates'
 
+export const COLORS = {
+  purple: '#4f46e5',
+  teal: '#064e3b',
+  indigo: '#312e81',
+  maroon: '#4c1d1d',
+  brown: '#451a03',
+  deepBlue: '#1e3a8a'
+}
+
 # Board Templates
 
 Discover Mixpanel's core features through pre-built dashboard templates. Click any card below to explore a live interactive demo in a new tab.
@@ -51,7 +60,8 @@ Discover Mixpanel's core features through pre-built dashboard templates. Click a
     title: 'Company KPIs',           // Main title for the template card
     description: "Measure health",   // Supporting text (matches "blurb" in tours)
     img: '/templates/kpi.webp',      // Image src (314x160 pixels recommended)
-    previewUrl: 'https://...'        // Link to the live Mixpanel board
+    previewUrl: 'https://...',       // Link to the live Mixpanel board
+    bg: COLORS.purple                // Optional: Background color constant
   }
 */}
 
@@ -64,30 +74,35 @@ Understand your product's performance and core KPIs at a glance.
   templates={[
     {
       title: 'Company KPIs',
+      bg: COLORS.purple,
       description: "Measure product health across engagement, retention, and growth in one unified dashboard.",
       img: '/templates/CompanyKPIs_Preview.webp',
       previewUrl: 'https://mixpanel.com/p/QLBHa24vdYuK2MJLiNUA1S'
     },
     {
       title: 'Feature Launch',
+      bg: COLORS.teal,
       description: "Understand if your new feature is being adopted, retained, and impacting your core product experience.",
       img: '/templates/FeatureLaunch_Preview.webp',
       previewUrl: 'https://mixpanel.com/p/5dbqyToAtFMaDJVJNzUeuG'
     },
     {
       title: 'Web Analytics',
+      bg: COLORS.indigo,
       description: "Get a complete view of your website's performance with essential user, session, and page-level metrics.",
       img: '/templates/WebAnalytics_Preview.webp',
       previewUrl: 'https://mixpanel.com/p/BkaDwovdEpEcMJp33R6sah'
     },
     {
       title: 'Marketing KPIs',
+      bg: COLORS.maroon,
       description: "Connect campaign activity to business outcomes across the full marketing funnel.",
       img: '/templates/MarketingKPIs_Preview.webp',
       previewUrl: 'https://mixpanel.com/p/MKDgQSoYBZciN4AGgY7MghM'
     },
     {
       title: 'Lifecycle Analysis',
+      bg: COLORS.deepBlue,
       description: "See what's driving your active users by segmenting them into new, retained, resurrected, and dormant cohorts.",
       img: '/templates/MarketingKPIs_Preview.webp',
       previewUrl: 'https://mixpanel.com/p/CEngFwLvPa5zvTSLvFTHNH'
@@ -104,18 +119,21 @@ Templates tailored for E-commerce, SaaS, and Finance workflows.
   templates={[
     {
       title: 'Ecommerce',
+      bg: COLORS.brown,
       description: "Track revenue, analyze purchases, optimize conversions, and identify your best acquisition channels.",
       img: '/templates/Ecommerce_Preview.webp',
       previewUrl: 'https://mixpanel.com/p/2cv24kB3k5n9reXr9bSJKU'
     },
     {
       title: 'AI Company',
+      bg: COLORS.indigo,
       description: "Track AI agent engagement, cost efficiency, response performance, and user feedback.",
       img: '/templates/AICompany_Preview.webp',
       previewUrl: 'https://mixpanel.com/p/NaKPyubj6EuA4oV75taqrq'
     },
     {
       title: 'SaaS Business KPIs',
+      bg: COLORS.teal,
       description: "Understand your MRR trends, what's driving month-over-month revenue changes, and where churn is concentrated.",
       img: '/templates/SaaSBusinessKPIs_Preview.webp',
       previewUrl: 'https://mixpanel.com/p/8R2b9DRvnZfrNXYVqNxFLH'
