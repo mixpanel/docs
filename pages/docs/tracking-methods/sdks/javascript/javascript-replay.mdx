@@ -525,14 +525,31 @@ The direct integration automatically includes session replay properties (`$mp_re
 
 Rudderstack's Javascript SDK has a `.getAnonymousId()` method which can be used to [retrieve the device_id](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/supported-api/#retrieving-anonymous-id). In the following example, we use this method to bind Rudderstack's anonymousId to Mixpanel's device_id, as well as patching [track](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/supported-api/#track) and [page](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/supported-api/#page) event methods to include session replay properties on every Rudderstack event.
 
+
+<Callout type="info">
+**Race Condition Note (RudderStack + Heatmaps):** If you are using `record_heatmap_data`, set it to `false` at init and enable it via `set_config()` only after the RudderStack anonymousId has been registered. This prevents heatmap click events from firing with Mixpanel's default `$device_id` before your custom identity binding completes, which can create orphaned anonymous profiles and inflate MTU counts.
+</Callout>
+
 ```javascript Javascript
 mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
+  // Set your desired sampling rate at init — the sampling decision is evaluated here.
   record_sessions_percent: 10,
+
+// Disabled initially to prevent race condition with RudderStack ID binding.
+  // Remove this line if you are not using heatmaps.
+  record_heatmap_data: false,
+
+
   loaded: function (mixpanel) {
     window.rudderanalytics.ready(function() {
       const rudderAnonymousId = rudderanalytics.getAnonymousId();
       if (rudderAnonymousId) {
 	mixpanel.register({ $device_id: rudderAnonymousId, distinct_id : "$device:"+rudderAnonymousId });
+		
+		// Enable heatmap data now that the correct device_id is registered.
+        // Remove this line if you are not using heatmaps.
+        mixpanel.set_config({ record_heatmap_data: true });
+
       }
  
       // Patch track method to include sessionReplayProperties
