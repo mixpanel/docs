@@ -62,10 +62,10 @@ This is a recommended feature for all B2B products that want answers to question
 
 ### Data Pipelines Add-On
 
-The Data Pipelines Add-On exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment. We offer a 30-day free trial of this feature, see the [FAQ](/docs/data-pipelines#how-does-the-free-trial-work) on how to enable it.
+The Data Pipelines Add-On exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment. We offer a 30-day free trial of this feature; see the [FAQ article](/docs/data-pipelines#how-does-the-free-trial-work) on how to enable it.
 
 ### Metric Tree Add-on
-The Metric Tree Add-On enables you to map your growth strategy in a quantitative and measurable way, and understand the logical relationship between your input metrics and output business outcomes. It is a collaborative space for you and your team to identify opportunities, have prioritization and trade-off discussions across Exec to ICs, and eventually take data backed decisions. You can read more about the functionality of Metric Trees [here](/docs/metric_tree).
+The Metric Tree Add-On enables you to map your growth strategy in a quantitative and measurable way, and understand the logical relationship between your input metrics and output business outcomes. It is a collaborative space for you and your team to identify opportunities, have prioritization and trade-off discussions across Exec to ICs, and eventually take data-backed decisions. You can read more about the functionality of Metric Trees [here](/docs/metric_tree).
 
 ## Billing & Payment
 
@@ -82,13 +82,13 @@ You can only update billing information if you have “Owner” or “Billing Ad
 
 ### Troubleshoot payment issues
 
-If you received a notification that your payment did not go through (via email, within the product or both), don't worry, it's quick and easy to get back up and running. 
+If you received a notification that your payment did not go through (via email, within the product, or both), don't worry, it's quick and easy to get back up and running. 
 
-1. Click on “Update the Payment Method” at the notification:
+1. Click on “Update the Payment Method” in the notification:
    
 ![Update Payment Method](/update-payment-method.png)
 
-2. Edit the credit card used clicking on the “edit-pencil” icon:
+2. Edit the credit card used by clicking on the “edit-pencil” icon:
    
 ![Edit Payment Method](/edit-payment-method.png)
 
@@ -104,7 +104,7 @@ You can only edit or downgrade your plan if you have “Owner” or “Billing A
 
 To submit a downgrade request:
 
-1. In “Organization settings” select “Plan Details & Billing”.
+1. In “Organization Settings”, select “Plan Details & Billing”.
 2. Click "Switch to Free" at the bottom of the Plan Details & Billing section.
 3. When you click Submit, a request will be sent to Mixpanel's Billing Team for processing.
    
@@ -122,7 +122,7 @@ You can also check the top events contributing towards your event count by creat
 
 ### What if I go over my event plan allowance? Can I set a billing limit?
 
-If you sent more data than your paid plan allows, the **additional cost will be charged at the beginning of the next month based on your additional data rate,** check it in the section "Plan Details & Billing" in your Organization Settings.
+If you sent more data than your paid plan allows, the **additional cost will be charged at the beginning of the next month based on your additional data rate**, which you can find in the "Plan Details & Billing" section in your Organization Settings.
 
 It’s not possible to set a billing limit at this moment, but check out [this article](https://github.com/orgs/mixpanel/discussions/526) to learn how to create a report and get warning alerts when you’re close to exceeding your plan limit.
 
@@ -134,7 +134,7 @@ If you go over your prepaid amount, Mixpanel won't stop collecting your data. An
 
 Organization owners and billing admins are sent an alert email if their paid account reaches the following percentages of their plan volume: 85%, 100%, 110%, 120%, 200%, 300%, and 400%. It is possible to receive multiple alerts in a month if an account reaches two or more of the thresholds mentioned above. Email addresses that are CC'd on receipts will also be CC'd on additional carte data rate alerts.
 
-If the billing owner logs into Mixpanel, they will see a popup if their account reaches the following percentages of their plan volume: 100%, 110%, and 120%.
+If the billing owner logs into Mixpanel, they will see a pop-up if their account reaches the following percentages of their plan volume: 100%, 110%, and 120%.
 
 ### I’m on a Growth plan and paying for less than 1M monthly events. How do I switch to the more recent one?
 The easiest way to switch is to go to Mixpanel’s [pricing page](https://www.mixpanel.com/pricing) and select “Make the Switch” on the Growth plan card. From there, you can move to the latest plan. If you are unable to adjust your plan, reach out to our Support team.
@@ -143,9 +143,9 @@ The easiest way to switch is to go to Mixpanel’s [pricing page](https://www.mi
 Our latest pricing plans include the first 1M events free each month. We require a larger pre-committed volume (more than 1M monthly events) in order to purchase an annual plan. Annual plans still include the first 1M events free each month.
 
 ### I signed up for the 1 million event Growth plan. What happens if I go over that amount?
-The first 1 million events ingested are free! If you go over 1 million events, each event ingested will be charged at the additional data rate seen in the “Plan Details & Billing” in your Organization Settings. If you're only on a 1M monthly events plan, the additional data rate is $.00028 per event. Purchasing higher volumes upfront will lower that additional data rate, as we include volume discounts in our pricing.
+The first 1 million events ingested are free! If you go over 1 million events, each event ingested will be charged at the additional data rate seen in the “Plan Details & Billing” section in your Organization Settings. If you're only on a 1M monthly events plan, the additional data rate is $.00028 per event. Purchasing higher volumes upfront will lower that additional data rate, as we include volume discounts in our pricing.
 
-If you have Data Pipeline or Group Analytics add-ons, you will also be charged 20% for Data Pipelines and/or 40% for Group Analytics based on the additional data ingested.
+If you have the Data Pipeline or Group Analytics add-ons, you will also be charged 20% for Data Pipelines and/or 40% for Group Analytics based on the additional data ingested.
 
 As an example:
 
@@ -162,7 +162,7 @@ If you are an existing customer on an MTU plan, refer to our MTU Pricing Guide.
 
 ### Are monthly events calculated based on ingestion time or event timestamp?
 
-Events are calculated based on the ingestion time, defined as the time an event is processed by Mixpanel servers. Ingestion time is [stored by default](/docs/data-structure/property-reference/default-properties#event-properties) as the Time Processed (UTC) property on all events. For example, if on January 10th an event is sent to Mixpanel that is timestamped December 10th, it will be included in January monthly tallies.
+Events are calculated based on the ingestion time, defined as the time an event is processed by Mixpanel servers. Ingestion time is [stored by default](/docs/data-structure/property-reference/default-properties#event-properties) as the Time Processed (UTC) property on all events. For example, if on January 10th an event is sent to Mixpanel that is timestamped December 10th, it will be included in January's monthly tallies.
 
 Some accounts are on legacy event timestamp billing. In this case, monthly events are tallied based on the timestamp of the event. For example, if on January 10th an event is sent to Mixpanel that is timestamped December 10th, it won’t be included in any tallies because the timestamp is from a previous month. 
 
@@ -170,14 +170,14 @@ You can see if your account is on ingestion time billing in Organization Setting
 
 ### Is old event data billed when imported to Mixpanel?
 
-This depends on if your account is on ingestion time or event timestamp billing. Refer to the section above for details.
+This depends on whether your account is on ingestion time or event timestamp billing. Refer to the section above for details.
 
 For accounts on ingestion time billing, old events will be included in billing tallies since they’re calculated based on ingestion time. For example, if April 1st - April 30th is the current billing cycle, importing data from March **will** be included in the April event count. If you’re planning on backfilling a significant amount of historical events and need help understanding how it will impact your costs, please reach out to your Mixpanel account manager or [contact support](https://mixpanel.com/get-support).
 
-For legacy accounts on event timestamp billing, events imported with timestamps outside the currently billing cycle will not contribute to event tallies. For example: if April 1st - April 30th is the current billing cycle, importing data from March will **not** be included in the April event count.
+For legacy accounts on event timestamp billing, events imported with timestamps outside the current billing cycle will not contribute to event tallies. For example: if April 1st - April 30th is the current billing cycle, importing data from March will **not** be included in the April event count.
 
 ### I am using the Warehouse add-on for ingesting data. How does this impact billing? 
 
 Events imported through a warehouse connection are treated as any other source (same as importing through our SDKs or API directly). Warehouse data, similar to other sources, is billed in accordance with general Mixpanel pricing policies. 
 
-There is one additional field you will see in the Billing Page on your Data Usage Table called "Updates". Updates (updating an existing event or deleting an event) are generated by Mirror-type syncs and are tracked separately from event volume. Each update is counted as one event towards billing and they are counted and billed for the month they were triggered on, even if the record being updated is for a previous month. You can read more about these updates and how warehouse connectors may affect billing from the warehouse perspective [here](/docs/tracking-methods/warehouse-connectors#faq)
+There is one additional field you will see in the Billing Page on your Data Usage Table called "Updates". Updates (updating an existing event or deleting an event) are generated by Mirror-type syncs and are tracked separately from event volume. Each update is counted as one event towards billing, and they are counted and billed for the month they were triggered on, even if the record being updated is for a previous month. You can read more about these updates and how warehouse connectors may affect billing from the warehouse perspective [here](/docs/tracking-methods/warehouse-connectors#faq)
