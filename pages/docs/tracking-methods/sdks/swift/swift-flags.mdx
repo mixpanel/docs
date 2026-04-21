@@ -74,6 +74,19 @@ Mixpanel.mainInstance().identify(distinctId: updatedDistinctId)
 Mixpanel.mainInstance().flags.loadFlags()
 ```
 
+3) To update the feature flags context after initialization and trigger a reload with the new values, use `setContext`. This completely replaces the previously set custom context.
+
+```swift
+Mixpanel.mainInstance().flags.setContext([
+    "company_id": "Y",
+    "customProperties": [
+        "platform": "ios"
+    ]
+]) {
+    // Flags have been re-fetched with the new context
+}
+```
+
 ## Deferred Flag Loading
 
 By default, feature flags are automatically fetched when the app first enters the foreground (`prefetchFlags` defaults to `true`). If your workflow requires calling `identify()` before the first flag fetch — for example, to ensure flags are evaluated against the correct user — you can defer automatic loading by setting `prefetchFlags` to `false`:

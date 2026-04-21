@@ -219,9 +219,12 @@ $border-radius-lg: 100px;
 }
 
 .changelogMainContainerWrapper {
-  width: 100%;
-  position: absolute;
-  left: 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -769,10 +772,6 @@ article {
       opacity: 1 !important;
       background-color: #fefce8 !important;
       color: #713f11;
-    }
-
-    ._mt-6 {
-      border-bottom: colors.$black;
     }
 
     // modify buttons in integration pages
@@ -1691,10 +1690,6 @@ article {
   ._w-full > main {
     color: colors.$base100;
     background-color: colors.$darkbg;
-
-    ._mt-6 {
-      border-bottom: colors.$black;
-    }
 
     // modify buttons in integration pages
     a.nextra-card {

@@ -29,10 +29,10 @@
     "npm": ">=10.0.0 <12.0.0"
   },
   "dependencies": {
-    "@docsearch/js": "4.3.2",
+    "@docsearch/js": "4.6.0",
     "@docsearch/react": "4.3.2",
     "@headlessui/react": "2.2.9",
-    "@sentry/react": "8.50.0",
+    "@sentry/react": "10.44.0",
     "clsx": "2.1.1",
     "next": "14.2.35",
     "next-sitemap": "4.2.3",
@@ -41,13 +41,13 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "sass": "1.97.3",
-    "sharp": "0.34.3",
-    "tailwind-merge": "3.4.0"
+    "sharp": "0.34.5",
+    "tailwind-merge": "3.5.0"
   },
   "devDependencies": {
     "@redocly/cli": "2.15.1",
     "@types/mixpanel": "2.14.9",
-    "@types/node": "25.3.3",
+    "@types/node": "25.5.0",
     "autoprefixer": "10.4.27",
     "cspell": "9.7.0",
     "postcss": "8.5.6",
@@ -55,6 +55,6 @@
     "tailwind-variants": "3.1.1",
     "tailwindcss": "3.4.14",
     "typescript": "5.9.3",
-    "yaml": "2.8.1"
+    "yaml": "2.8.3"
   }
 }
