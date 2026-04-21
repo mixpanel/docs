@@ -10,10 +10,10 @@ Mixpanel's Audit Log tracks activity within your organization and projects, prov
 
 ## Accessing Audit Log
 
-Audit log can be accessed at two levels by users with Admin or Owner roles in the organization:
+Audit log can be accessed at two levels:
 
-- **Organization-level logs** — Found in Organization Settings.
-- **Project-level logs** — Found in Project Settings.
+- **Organization-level logs** — Found in Organization Settings. Accessible to organization admins and owners, these logs all events across the organization, including user authentication, service account management, and organization-wide changes.
+- **Project-level logs** — Found in Project Settings. Accessible to project admins and owners, these logs include project-specific events like report creation and data exports.
 
 Some events are tracked only at the organization level, while most are available in both organization and project logs.
 
@@ -160,7 +160,7 @@ You can export your audit log info to CSV format for further analysis or archiva
 
 #### Who can access Audit Log?
 
-Only users with Admin or Owner roles in an organization can view audit log for that organization or project.
+Only users with Admin or Owner roles in an organization or project can view the audit log for that organization or project. Custom roles can be configured to include audit log access as well.
 
 #### Can I filter Audit Log by event type or user?
 
