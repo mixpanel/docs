@@ -47,8 +47,8 @@ const styles = {
     height: CARD_H,
     borderRadius: BORDER_RADIUS,
     overflow: 'hidden',
-    border: `2px solid ${MP_PURPLE}`,
-    boxShadow: '0 10px 30px rgba(0,0,0,.25)',
+    border: `2px solid var(--sgt-border)`,
+    boxShadow: '0 10px 30px var(--sgt-shadow)',
     transition: 'transform .25s ease, box-shadow .25s ease, background .3s ease, color .3s ease',
   } as React.CSSProperties,
 
@@ -139,7 +139,8 @@ function CardView({ t }: { t: TemplateCard }) {
     background: t.bg,
     '--sgt-title': '#ffffff',
     '--sgt-blurb': 'rgba(255,255,255,0.9)',
-    '--sgt-dogear': MP_PURPLE
+    '--sgt-dogear': MP_PURPLE,
+    '--sgt-border': 'transparent'
   } as React.CSSProperties : {};
 
   return (
@@ -182,6 +183,7 @@ export default function BoardTemplates({ templates }: Props) {
           --sgt-border: ${MP_PURPLE};
           --sgt-media-bg: #111111;
           --sgt-dogear: ${MP_PURPLE};
+          --sgt-shadow: rgba(0, 0, 0, 0.4);
         }
 
         /* ---- Prefer light scheme (also covered below by class/attr) ---- */
@@ -194,8 +196,9 @@ export default function BoardTemplates({ templates }: Props) {
             --sgt-title: #111111;
             --sgt-blurb: #333333;
             --sgt-border: ${MP_PURPLE};
-            --sgt-media-bg: #e9e9ef;
+            --sgt-media-bg: #f3f4f6;
             --sgt-dogear: ${MP_PURPLE};
+            --sgt-shadow: rgba(139, 92, 246, 0.12);
           }
         }
 
@@ -207,8 +210,9 @@ export default function BoardTemplates({ templates }: Props) {
           --sgt-title: #111111;
           --sgt-blurb: #333333;
           --sgt-border: ${MP_PURPLE};
-          --sgt-media-bg: #e9e9ef;
+          --sgt-media-bg: #f3f4f6;
           --sgt-dogear: ${MP_PURPLE};
+          --sgt-shadow: rgba(139, 92, 246, 0.12);
         }
 
         /* ---- Card base colors ---- */
@@ -216,12 +220,13 @@ export default function BoardTemplates({ templates }: Props) {
           background: var(--sgt-card-bg);
           color: var(--sgt-title);
           border-color: var(--sgt-border);
+          box-shadow: 0 10px 30px var(--sgt-shadow);
         }
 
         /* ---- Micro-interactions ---- */
         .sgt-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(139, 92, 246, 0.25);
+          transform: translateY(-4px);
+          box-shadow: 0 15px 35px rgba(139, 92, 246, 0.25);          
         }
 
         .sgt-card:focus-within {
