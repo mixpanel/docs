@@ -139,8 +139,7 @@ function CardView({ t }: { t: TemplateCard }) {
     background: t.bg,
     '--sgt-title': '#ffffff',
     '--sgt-blurb': 'rgba(255,255,255,0.9)',
-    '--sgt-dogear': MP_PURPLE,
-    '--sgt-border': 'transparent'
+    '--sgt-dogear': MP_PURPLE
   } as React.CSSProperties : {};
 
   return (
