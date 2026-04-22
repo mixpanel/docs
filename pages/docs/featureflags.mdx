@@ -229,7 +229,37 @@ NOTE: Cohort membership is refreshed every 2 hours when targeting anything aside
 
 
 ## Implementation
-Feature Flagging is currently supported on a subset of Mixpanel client and server SDK's.
+Feature Flagging is currently supported on a subset of Mixpanel client and server SDK's. There are two modes for using feature flags. Remote evaluation is available for both client and server SDKs whereas local evaluation is available for server SDKs.
+
+
+### Remote Evaluation
+
+Remote evaluation makes a network call to Mixpanel servers each time you evaluate a flag. The server receives the user context and determines the variant assignment based on your configured targeting rules.
+
+This is ideal for applications requiring cohort-based targeting or sticky variant assignments
+
+### Local Evaluation
+
+Local evaluation minimizes latency by evaluating flags within your application. This mode is recommended for server-side SDKs used in latency-sensitive server-side applications.
+
+The SDK polls Mixpanel servers for feature flag configurations at a configurable interval (e.g., every 60 seconds). Flag configurations are cached and served via **Google Cloud CDN** for global low-latency access. Flag evaluation happens locally within your SDK with minimal latency (<<1ms).
+
+As evaluation is done completely locally, cohort targeting and sticky variants are not supported.
+
+#### Polling latency by region
+
+| Region | Polling Latency |
+|--------|----------------|
+| Singapore, APAC | ~17ms |
+| Belgium, Europe | ~19ms |
+| São Paulo, South America | ~23ms |
+| Iowa, USA | ~20ms |
+| Oregon, USA | ~20ms |
+| Virginia, USA | ~29ms |
+
+#### Cache invalidation
+
+When you update the configuration of one of your feature flags, CDN cached settings will be invalidated. Your SDK will receive updated configurations on its next poll cycle.
 
 See our developer guides on implementing feature flags on these platforms below:
 
