@@ -63,11 +63,11 @@ async function updateSpecs() {
 
     // validate and publish spec
     console.log(`${specMeta ? 'Updating' : 'Creating'} ${spec.info.title} (${specFile})`);
-    await execAndLog('npx', ['rdme@10.6.0', 'openapi:validate', fullPath]);
+    await execAndLog('npx', ['rdme@10.6.2', 'openapi:validate', fullPath]);
     // publish the json version
     await execAndLog(
       'npx', [
-        'rdme@10.6.0',
+        'rdme@10.6.2',
         'openapi',
         'upload',
         `${fullPath}`,
