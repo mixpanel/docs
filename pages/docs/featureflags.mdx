@@ -227,10 +227,8 @@ Mixpanel analytics downtime will result in suspended cohort membership refreshes
 The latency of Feature flags API responses is usually on the order of milliseconds.
 NOTE: Cohort membership is refreshed every 2 hours when targeting anything aside from 'All Users'/'All Entities' or 'Runtime Filters'. Therefore, new users or group entities entering cohorts may not be reflected in Feature flags API responses for up to that 2 hour period.
 
-
 ## Implementation
 Feature Flagging is currently supported on a subset of Mixpanel client and server SDK's. There are two modes for using feature flags. Remote evaluation is available for both client and server SDKs whereas local evaluation is available for server SDKs.
-
 
 ### Remote Evaluation
 
@@ -242,7 +240,7 @@ This is ideal for applications requiring cohort-based targeting or sticky varian
 
 Local evaluation minimizes latency by evaluating flags within your application. This mode is recommended for server-side SDKs used in latency-sensitive server-side applications.
 
-The SDK polls Mixpanel servers for feature flag configurations at a configurable interval (e.g., every 60 seconds). Flag configurations are cached and served via **Google Cloud CDN** for global low-latency access. Flag evaluation happens locally within your SDK with minimal latency (<<1ms).
+The SDK polls Mixpanel servers for feature flag configurations at a configurable interval (e.g., every 60 seconds). Flag configurations are cached and served via **Google Cloud CDN** for global low-latency access. Flag evaluation happens locally within your SDK with minimal latency (<1ms).
 
 As evaluation is done completely locally, cohort targeting and sticky variants are not supported.
 
