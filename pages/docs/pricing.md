@@ -42,7 +42,7 @@ If you're already using another tool, you might have the exact numbers you need.
 
 ### **View Events Usage**
 
-If you are currently tracking data, you can see your events’ consumption in your Organization Settings. Click on the gear icon in the upper right corner of Mixpanel, “Organization Settings”, and then the “Plan Details & Billing” tab.
+If you are currently tracking data, you can see your events’ consumption in your Organization Settings. Click on the gear icon in the lower left corner of Mixpanel, “Organization Settings”, and then the “Plan Details & Billing” tab.
 
 From here, you can quickly view this billing period’s usage on the right side of the screen as well as the historical one by clicking the “View Historical Usage” link:
 
