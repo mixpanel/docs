@@ -43,7 +43,8 @@ Users will not be reassigned different variants when purely increasing overall r
 
 ## Types of Feature Flags
 
-We support the following types of Flags 
+We support the following types of Flags:
+
 1. **Feature Gate** : Toggle a feature on or off for targeted users or all users. Useful for phased or controlled rollout.
 2. [**Experiment**](/docs/experiments) : Deliver different variant experiences (e.g., layouts, flows, pricing) to a targeted group of users. Enables measuring and analyzing impact.
 3. **Dynamic Config** : Configure features with flexible key-value pairs instead of just on/off. It lets you:
@@ -149,20 +150,20 @@ Example: Building on the same example above, variant allocation is 50-50 for A/B
 
 ### Frequently Asked Questions
 
-**1. How do [Data Views](/docs/data-governance/data-views-and-classification) affect feature flags?**
+**How do [Data Views](/docs/data-governance/data-views-and-classification) affect feature flags?**
 
 Feature flags are scoped to data views. If targeting your flag to specific user cohorts, only end users included in the data view where the flag is created, will be targeted. Only users with access to a data-view and can view and edit the flag
 
-**2. Can I target a cohort, but also include run-time targeting like device or url path?**
+**Can I target a cohort, but also include run-time targeting like device or url path?**
 
 Yes. You can couple run-time targeting with both user cohorts and group cohorts. It works with an AND condition across the targeting criteria.
 
-**3. Why is control variant always non-sticky? I want all my variants to be sticky**
+**Why is control variant always non-sticky? I want all my variants to be sticky**
 
 Control variant is set to always be non-sticky to ensure this is the only group of users that can move up to other variants if allocation of other variants is increased. This is to avoid users moving from non-control variants.
 NOTE: If you do want all users to be sticky and do not anticipate needing to change the variant allocation, mark control variant as 0%, and allocate all the 100% to the other variants. This is recommended for use-cases where you have no default or control experience, and are testing a brand new experience with 2+ variants
 
-**4. How do we avoid overlapping target audiences across 2 different feature flags?**
+**How do we avoid overlapping target audiences across 2 different feature flags?**
 
 Let's say we have 2 features: feature A and feature B, and we want these to be non-overlapping in audience targeting.
 In the feature flag B page, in the target audience -
@@ -171,7 +172,7 @@ In the feature flag B page, in the target audience -
     - Rollout % : 100%
 - Create Rollout Group 2: All users, or any specific users you want for flag B
 
-**5. Are there any limits to variants or rollout group?**
+**Are there any limits to variants or rollout group?**
 
 Yes, today you can have a maximum of 5 variants per flag, and a maximum of 5 rollout groups per flag
 
@@ -193,7 +194,8 @@ This section allows you to whitelist users who will receive the experience, vs r
 
 ### Testing Environment
 
-Use separate Mixpanel projects, which are connected to your different environments, to reduce risk and promote safety. You might have just 1 or 2 of these, which is also fine - 
+Use separate Mixpanel projects, which are connected to your different environments, to reduce risk and promote safety. You might have just 1 or 2 of these, which is also fine:
+
 1. **Dev** **Project** — rapid iteration; permissive targeting 
 2. **Staging Project** — mirrors prod cohorts; dry runs for promotion
 3. **Prod Project** — customer-facing
@@ -227,9 +229,39 @@ Mixpanel analytics downtime will result in suspended cohort membership refreshes
 The latency of Feature flags API responses is usually on the order of milliseconds.
 NOTE: Cohort membership is refreshed every 2 hours when targeting anything aside from 'All Users'/'All Entities' or 'Runtime Filters'. Therefore, new users or group entities entering cohorts may not be reflected in Feature flags API responses for up to that 2 hour period.
 
-
 ## Implementation
-Feature Flagging is currently supported on a subset of Mixpanel client and server SDK's.
+Feature Flagging is currently supported on a subset of Mixpanel client and server SDK's. There are two modes for using feature flags. Remote evaluation is available for both client and server SDKs whereas local evaluation is available for server SDKs.
+
+### Remote Evaluation
+
+Remote evaluation makes a network call to Mixpanel servers each time you evaluate a flag. The server receives the user context and determines the variant assignment based on your configured targeting rules.
+
+This is ideal for applications requiring cohort-based targeting or sticky variant assignments
+
+### Local Evaluation
+
+Local evaluation minimizes latency by evaluating flags within your application. This mode is recommended for server-side SDKs used in latency-sensitive server-side applications.
+
+The SDK polls Mixpanel servers for feature flag configurations at a configurable interval (e.g., every 60 seconds). Flag configurations are cached and served via **Google Cloud CDN** for global low-latency access. Flag evaluation happens locally within your SDK with minimal latency (&lt;1ms).
+
+As evaluation is done completely locally, cohort targeting and sticky variants are not supported.
+
+#### Polling latency by region
+
+Below is a table, demonstrating the average latency of polling latency for cached calls, broken down by approximate caller region.
+
+| Region | Polling Latency |
+|--------|----------------|
+| Singapore, APAC | ~17ms |
+| Belgium, Europe | ~19ms |
+| São Paulo, South America | ~23ms |
+| Iowa, USA | ~20ms |
+| Oregon, USA | ~20ms |
+| Virginia, USA | ~29ms |
+
+#### Cache invalidation
+
+When you update the configuration of one of your feature flags, CDN cached settings will be invalidated. Your SDK will receive updated configurations on its next poll cycle.
 
 See our developer guides on implementing feature flags on these platforms below:
 
@@ -295,42 +327,42 @@ to the feature flag page of the associated flag, or the related experiment page.
 
 Pricing Unit: Feature Flags are priced based on Feature Flag API Requests, and number of 'active' feature flags at any time
 
-**1. What is a Feature Flag API Request?**
+**What is a Feature Flag API Request?**
 
 A feature flag API request is a call made by your application to a Feature Flag system’s API to determine **which all features** should be enabled or disabled, or which variant should be served to a user. All the active flags in the system are evaluated as part of this API request.  
 
-**2. How can I estimate Feature Flag API requests?**
+**How can I estimate Feature Flag API requests?**
 
 In general, you can expect every user session to have 1 API request. When the session starts, all the flags for the user are fetched in the single API request. So monthly API requests is at minimum equivalent to the total user sessions that month. 
 Few notes: 
 - If you have multiple sdk inits each session, that would increase the count of API requests in a session
 - Considering above, general rule of thumb: would consider API requests to be 1.5 x User Sessions considering implementation challenges, or multiple sdk inits in a session
 
-**3. How do I estimate API requests if implementing via server side sdk?**
+**How do I estimate API requests if implementing via server side sdk?**
 
 - If you are using server side sdk, with only local evaluation: your API requests depend on a) how many server instances you have and b) how frequently you poll your servers
 - If you are using server side sdk, but with remote evaluation or leveraging cohorts: your API request estimation is similar to client-side sdk requests laid our above
 
-**4. What happens if I go over my purchased Feature Flag API Request bucket?**
+**What happens if I go over my purchased Feature Flag API Request bucket?**
 
 You can continue using Mixpanel Feature Flags, but you will be charged a higher rate for the overages. 
 
-**5. Is there any limit on number of feature flags per API request?**
+**Is there any limit on number of feature flags per API request?**
 
 Yes, there is a limit depending on the plan you purchase. You can choose from 3 plans: to have upto 50, 200 or 1000 'active flags' per API request.
 - Once you reach this limit, no more flags will will be fetched as part of the API request until you disable some others or upgrade your plan 
 - Active flags are flags which are marked 'Enabled'. Only these flags are counted under the 'active flag' limit
 - If you are on the 50 active flag limit, the first 50 flags based on the 'start' date are fetched
 
-**6. Do I get double charged if I create the same feature flag across projects?**
+**Do I get double charged if I create the same feature flag across projects?**
 
 No. We charge based on active 'feature flag keys'. If the same flag-key is used across projects, it will be charged only once.
 
-**7. How can I monitor my account’s Feature Flag API requests consumption?**
+**How can I monitor my account’s Feature Flag API requests consumption?**
 
 You can see your feature flag usage by going to Organization settings > Plan Details & Billing.
 
-**8. If I purchase the feature flag add-on, do I still need to purchase the experimentation add-on as well?**
+**If I purchase the feature flag add-on, do I still need to purchase the experimentation add-on as well?**
 
 Yes. Both these are separate add-ons to ensure we're compatible with your tech stack. So, if you are also looking to analyze experiments, please check our [experimentation offering.] (https://docs.mixpanel.com/docs/experiments) 
 
