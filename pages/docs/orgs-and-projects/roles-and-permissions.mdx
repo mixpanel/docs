@@ -339,14 +339,14 @@ Once created, the custom role will appear alongside default roles when assigning
 
 When creating or editing a custom role, you can configure permissions across six categories:
 
-| **Category**                          | **Configurable Permissions**                                                                                                                                                                            |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Analysis**                          | Save Reports and Boards, Create Custom Data Definitions (cohorts, metrics, custom events and properties), Manage All Analysis and Custom Data Definitions                                               |
-| **Feature Flags and Experimentation** | Experimentation Creation, Feature Flag Creation, Full Feature Flag Access                                                                                                                               |
-| **Data Management**                   | Edit Metadata, Set Event and Property Visibility, Data Verification, Manage Schemas, Manage Lookup Tables, Mark Sensitive Data, Edit Profiles, Data Deletion Dropping and Merging, Data Settings Access |
-| **Data Access, Exports, and Alerts**  | Public Boards, Sensitive Data Access, Export Lexicon, Export Reports as CSV, Export Users as CSV, Export Events as CSV, Create Alerts, Create Board Subscriptions, Manage All Alerts                    |
-| **Data Sources and Definitions**      | Create and Manage Cohort Syncs, Create and Manage Pipelines, Create and Manage Data Warehouses                                                                                                          |
-| **Settings and Notifications**        | View and Edit Project Settings                                                                                                                                                                          |
+| **Category**                          | **Configurable Permissions**                                                                                                                                                                             |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Analysis**                          | Save Reports and Boards, Create Custom Data Definitions (cohorts, metrics, custom events and properties), Manage All Analysis and Custom Data Definitions                                                |
+| **Feature Flags and Experimentation** | Experimentation Creation, Feature Flag Creation, Full Feature Flag Access                                                                                                                                |
+| **Data Management**                   | Edit Metadata, Set Event and Property Visibility, Data Verification, Manage Schemas, Manage Lookup Tables, Mark Data Classified, Edit Profiles, Data Deletion Dropping and Merging, Data Settings Access |
+| **Data Access, Exports, and Alerts**  | Public Boards, Classified Data Access, Export Lexicon, Export Reports as CSV, Export Users as CSV, Export Events as CSV, Create Alerts, Create Board Subscriptions, Manage All Alerts                    |
+| **Data Sources and Definitions**      | Create and Manage Cohort Syncs, Create and Manage Pipelines, Create and Manage Data Warehouses                                                                                                           |
+| **Settings and Notifications**        | View and Edit Project Settings                                                                                                                                                                           |
 
 <Callout type="info">
   All custom roles automatically include base permissions: viewing reports,
@@ -400,18 +400,18 @@ To assign a custom role to a team:
 
 All members of the team inherit the assigned role for that project.
 
-### Changes to Sensitive Data Access (April 2026)
+### Changes to Classified Data Access (April 2026)
 
-Previously, sensitive data access was managed through a separate per-user toggle on the Project Users page. Admins could individually grant or revoke a user's ability to view sensitive properties, independent of their project role.
+Previously, classified data access was managed through a separate per-user toggle on the Project Users page. Admins could individually grant or revoke a user's ability to view sensitive properties, independent of their project role.
 
-With Custom Roles, sensitive data access is now a permission called **Sensitive Data Access** under the **Data Access, Exports, and Alerts** category. This gives you a single place to define what a role can and cannot do, rather than managing access through a separate toggle.
+With Custom Roles, classified data access is now a permission called **Classified Data Access** under the **Data Access, Exports, and Alerts** category. This gives you a single place to define what a role can and cannot do, rather than managing access through a separate toggle.
 
-No default role — including Owner and Admin — has the ability to view sensitive data by default. This is intentional: access to sensitive data should always be an explicit decision, not an inherited side effect of a role. Owners and Admins retain the ability to control who gets sensitive data access, but must be explicitly granted viewing access themselves through a custom role.
+No default role — including Owner and Admin — has the ability to view classified data by default. This is intentional: access to classified data should always be an explicit decision, not an inherited side effect of a role. Owners and Admins retain the ability to control who gets classified data access, but must be explicitly granted viewing access themselves through a custom role.
 
 Note the distinction between two related permissions:
 
-- **Mark Sensitive Data** (under Data Management) — Controls which properties are classified as sensitive. Does not grant the ability to view that data.
-- **Sensitive Data Access** (under Data Access, Exports, and Alerts) — Grants the ability to view properties that have been marked sensitive.
+- **Mark Classified Data** (under Data Management) — Controls which properties are classified as sensitive. Does not grant the ability to view that data.
+- **Classified Data Access** (under Data Access, Exports, and Alerts) — Grants the ability to view properties that have been marked sensitive.
 
 These are intentionally separate so that someone can classify data without being able to see it.
 
@@ -421,9 +421,9 @@ These are intentionally separate so that someone can classify data without being
 
 No. Default roles (Owner, Admin, Analyst, Consumer) cannot be edited. Create a custom role instead — optionally starting from a default role as a template.
 
-#### Why can't Owners or Admins see sensitive data by default?
+#### Why can't Owners or Admins see classified data by default?
 
-By design, no role can view sensitive data by default — including Owner and Admin. Owners and Admins can control who gets access, but cannot view sensitive data themselves unless explicitly granted via a custom role. This ensures sensitive data access is always intentional.
+By design, no role can view classified data by default — including Owner and Admin. Owners and Admins can control who gets access, but cannot view classified data themselves unless explicitly granted via a custom role. This ensures classified data access is always intentional.
 
 #### Can Custom Roles change how Mixpanel looks for a user?
 
