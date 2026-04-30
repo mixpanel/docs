@@ -1,5 +1,5 @@
 # Default to docs reviewers
 # ======================
 *                    @mixpanel/docs-reviewers
-package*.json        @mixpanel/interactive
-.github/*            @mixpanel/interactive
+package*.json        @mixpanel/tofu
+.github/*            @mixpanel/tofu

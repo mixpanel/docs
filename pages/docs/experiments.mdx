@@ -48,10 +48,10 @@ Before creating an experiment report, ensure you have:
 
 ### Step 1: Select an Experiment
 
-Click 'New Experiment' from the Experiment report menu and select your experiment. Any experiment started in the last 30 days will automatically be detected and populated in the dropdown. To analyze experiments that began before 30 days, please hard-code the experiment name
+Click 'New Experiment' from the Experiment report menu and select your experiment. Both experiments run through Mixpanel Feature Flags and experiments tracked via exposure events are detected and populated in the dropdown. To keep the dropdown focused on experiments you're likely to care about, we hide Mixpanel Feature Flag experiments once their flag is archived, and we hide exposure-event experiments that haven't received an exposure event in the last 30 days. To analyze an exposure-event experiment beyond that window, you can hard-code the experiment name by typing `$experiment:Experiment name` as a filter or breakdown property, where `Experiment name` is the value of whichever property you configured as the experiment name on your exposure events.
 
 <Callout type="info">
-Only experiments tracked via exposure events, i.e, `$experiment_started`, can be analyzed in the experiment report. Read more on how to track experiments [here](#implementation-for-experimentation). 
+Two kinds of experiments can be analyzed in the experiment report: experiments run through Mixpanel Feature Flags with the Experiment type, and experiments tracked via exposure events (i.e., `$experiment_started`). Read more on how to track experiments [here](#implementation-for-experimentation).
 </Callout>
 ### Step 2: Choose the ‘Control’ Variant
 
@@ -347,7 +347,9 @@ For every user event, we identify if the event is performed after being exposed 
 
 ### Implementation for Experimentation
 
-Mixpanel experiment analysis work based on exposure events. To use the experiment report, you must send your Exposure events in the following format: 
+If you're using [Mixpanel Feature Flags](/docs/featureflags), you don't need to do anything extra to send exposure events — Mixpanel's SDKs track them automatically when a user is exposed to a variant. Your experiment will show up in the Experiment report as soon as the feature flag is created with the Experiment type.
+
+If you're using a 3rd party feature flagging service or an in-house feature flag system, you can still analyze your experiments in Mixpanel by sending exposure events yourself in the following format:
 
 **Event Name:** “$experiment_started”
 
