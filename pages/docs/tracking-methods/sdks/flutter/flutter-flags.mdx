@@ -171,7 +171,7 @@ if (value == "variant_a") {
 
 ### Get All Variants
 
-Starting from Flutter SDK version `2.7.0`, you can retrieve all currently loaded flag assignments at once using `getAllVariants()`. This returns a `Map<String, MixpanelFlagVariant>` containing every flag the user is assigned to from the most recent fetch. If no flags have been loaded yet, an empty map is returned. This method does **not** trigger an exposure event for any flag.
+Starting from Flutter SDK version `2.7.0`, you can retrieve all currently loaded flag assignments at once using `getAllVariants()`. This returns a `Map<String, MixpanelFlagVariant>` containing every flag the user is assigned to from the most recent fetch. This method does **not** trigger an exposure event for any flag.
 
 ```dart
 FeatureFlags flags = mixpanel.getFeatureFlags();
