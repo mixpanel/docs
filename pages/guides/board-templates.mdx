@@ -1,0 +1,192 @@
+import BoardTemplates from '../../components/BoardTemplates'
+
+export const COLORS = {
+  indigo: '#15003F',
+  teal: '#003229',
+  maroon: '#33001F',
+  brown: '#3F1A0D',
+}
+
+# Board Templates
+
+Explore curated Board templates designed to solve common product questions. Click any card below to launch a live, interactive demo in a new tab.
+
+{/* Section CTA — content lives in MDX so it's easy to change or A/B test */}
+<div style={{ textAlign: 'center', marginTop: '28px' }}>
+  <a
+    href="https://mixpanel.com/project/?show-template-selector=true"
+    target="_blank"
+    className="sgt-cta"
+    style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '8px',
+      fontWeight: 600,
+      fontSize: '15px',
+      padding: '10px 14px',
+      borderRadius: '10px',
+      border: '1px solid rgb(139, 92, 246)',
+      color: 'var(--sgt-title)',
+      background: 'var(--sgt-card-bg)',
+      textDecoration: 'none',
+      boxShadow: '0 4px 16px rgba(0,0,0,.12)',
+      transition: 'transform .2s ease, box-shadow .2s ease, background .2s ease',
+    }}
+  >
+    Ready to build? Create a Board
+    <span aria-hidden>&rarr;</span>
+  </a>
+</div>
+
+<style jsx global>{`
+  /* CTA interactions reuse component look & feel */
+  .sgt-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.18);
+    background: rgba(139, 92, 246, 0.08);
+  }
+  .sgt-cta:focus-visible {
+    outline: 2px solid rgb(139, 92, 246);
+    outline-offset: 3px;
+    border-radius: 10px;
+  }
+`}</style>
+
+<div style={{
+  maxWidth: '720px',
+  margin: '32px auto 0',
+  textAlign: 'center',
+  padding: '0 20px'
+}}>
+    Templates are pre-built dashboards designed around a specific use case or industry.
+    Instead of starting from a blank canvas, you start with a proven framework
+    built on industry best practices that you can adapt to your needs.
+</div>
+
+{/*
+  Cards API (examples):
+  {
+    title: 'Company KPIs',           // Main title for the template card
+    description: "Measure health",   // Supporting text (matches "blurb" in tours)
+    img: '/templates/kpi.webp',      // Image src (314x160 pixels recommended)
+    previewUrl: 'https://...',       // Link to the live Mixpanel board
+    bg: COLORS.purple                // Optional: Background color constant
+  }
+*/}
+
+<br></br>
+
+### Essential Boards
+Foundational views to monitor product health, user retention, and core growth metrics at a glance.
+
+<BoardTemplates
+  templates={[
+    {
+      title: 'Company KPIs',
+      bg: COLORS.indigo,
+      description: "Measure product health across engagement, retention, and growth in one unified dashboard.",
+      img: '/templates/CompanyKPIs_Preview.webp',
+      previewUrl: 'https://mixpanel.com/p/QLBHa24vdYuK2MJLiNUA1S'
+    },
+    {
+      title: 'Feature Launch',
+      bg: COLORS.teal,
+      description: "Understand if your new feature is being adopted, retained, and impacting your core product experience.",
+      img: '/templates/FeatureLaunch_Preview.webp',
+      previewUrl: 'https://mixpanel.com/p/5dbqyToAtFMaDJVJNzUeuG'
+    },
+    {
+      title: 'Web Analytics',
+      bg: COLORS.maroon,
+      description: "Get a complete view of your website's performance with essential user, session, and page-level metrics.",
+      img: '/templates/WebAnalytics_Preview.webp',
+      previewUrl: 'https://mixpanel.com/p/BkaDwovdEpEcMJp33R6sah'
+    },
+    {
+      title: 'Marketing KPIs',
+      bg: COLORS.brown,
+      description: "Connect campaign activity to business outcomes across the full marketing funnel.",
+      img: '/templates/MarketingKPIs_Preview.webp',
+      previewUrl: 'https://mixpanel.com/p/MKDgQSoYBZciN4AGgY7Mgh'
+    },
+    {
+      title: 'Lifecycle Analysis',
+      bg: COLORS.indigo,
+      description: "See what's driving your active users by segmenting them into new, retained, resurrected, and dormant cohorts.",
+      img: '/templates/LifecycleAnalysis_Preview.webp',
+      previewUrl: 'https://mixpanel.com/p/CEngFwLvPa5zvTSLvFTHNH'
+    },
+  ]}
+/>
+
+<br></br>
+
+### Industry-Specific Boards
+Custom-built frameworks optimized for E-commerce, SaaS, and Finance workflows.
+
+<BoardTemplates
+  templates={[
+    {
+      title: 'Ecommerce',
+      bg: COLORS.teal,
+      description: "Track revenue, analyze purchases, optimize conversions, and identify your best acquisition channels.",
+      img: '/templates/Ecommerce_Preview.webp',
+      previewUrl: 'https://mixpanel.com/p/2cv24kB3k5n9reXr9bSJKU'
+    },
+    {
+      title: 'AI Company',
+      bg: COLORS.maroon,
+      description: "Track AI agent engagement, cost efficiency, response performance, and user feedback.",
+      img: '/templates/AICompany_Preview.webp',
+      previewUrl: 'https://mixpanel.com/p/NaKPyubj6EuA4oV75taqrq'
+    },
+    {
+      title: 'SaaS Business KPIs',
+      bg: COLORS.brown,
+      description: "Understand your MRR trends, what's driving month-over-month revenue changes, and where churn is concentrated.",
+      img: '/templates/SaaSBusinessKPIs_Preview.webp',
+      previewUrl: 'https://mixpanel.com/p/8R2b9DRvnZfrNXYVqNxFLH'
+    }
+  ]}
+/>
+
+<br></br>
+<hr style={{ opacity: 0.1, margin: '40px 0' }} />
+
+### Board Template FAQs
+
+<details style={{ cursor: 'pointer', marginBottom: '16px' }}>
+  <summary style={{ fontSize: '1.15rem', paddingBottom: '4px' }}>
+    <strong>How do I use these templates in my own project?</strong>
+  </summary>
+  <div style={{ paddingLeft: '24px', paddingTop: '8px' }}>
+    The tiles above are <strong>interactive previews</strong> designed for exploration. To use a template with your own data, navigate to your Mixpanel project and choose one of two paths:
+    
+    <ul style={{ listStyleType: 'disc', paddingLeft: '20px', marginTop: '12px' }}>
+      <li style={{ marginBottom: '8px' }}>
+        <strong>The Template Selector:</strong> Click the <a href="https://mixpanel.com/project/?show-template-selector=true" target="_blank" style={{ color: '#b794f4', fontWeight: 600 }}>Ready to build? Create a Board &rarr;</a> button to launch the configuration wizard.
+      </li>
+      <li>
+        <strong>From a New Board:</strong> Create a new Board (via <strong>+ Create New</strong> &gt; <strong>Board</strong>) and select a framework from the <strong>Start from a Template</strong> section.
+      </li>
+    </ul>
+  </div>
+</details>
+
+<details style={{ cursor: 'pointer', marginBottom: '16px' }}>
+  <summary style={{ fontSize: '1.15rem', paddingBottom: '4px' }}>
+    <strong>Can I customize a template after it's created?</strong>
+  </summary>
+  <div style={{ paddingLeft: '24px', paddingTop: '8px' }}>
+    Yes. Think of a template as a starting point, not a fixed structure. You can add reports, change conversion window settings, or adjust event properties to match your specific tracking schema.
+  </div>
+</details>
+
+<details style={{ cursor: 'pointer' }}>
+  <summary style={{ fontSize: '1.15rem', paddingBottom: '4px' }}>
+    <strong>Are templates free to use?</strong>
+  </summary>
+  <div style={{ paddingLeft: '24px', paddingTop: '8px' }}>
+    Yes. Every template is available to all Mixpanel users, including those on the Free plan.
+  </div>
+</details>
