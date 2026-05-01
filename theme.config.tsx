@@ -73,7 +73,7 @@ const config: DocsThemeConfig = {
             // @ts-expect-error - truste is injected by TrustArc script at runtime
             onClick={() => truste.eu.clickListener()}
           >
-            Cookie Preferences
+            Your Privacy Rights
           </a>
         </div>
       </div>

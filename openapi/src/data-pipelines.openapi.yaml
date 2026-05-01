@@ -906,24 +906,23 @@ components:
             - ASIA_SOUTHEAST_2
             - AUSTRALIA_SOUTHEAST_1
           description: The region used for BigQuery.
-        bq_share_with_group:
-          type: string
-          description: Group account email address to share the data-set with if managed by mixpanel. e.g. bq-access-alias@somecompany.com
         bq_prefix:
           type: string
           description: The table prefix to be added to all the tables exported as part of the this pipeline. Only alphanumeric characters and underscores can be used.
         gcp_project:
           type: string
-          description: Customer's project id where bigquery dataset is present. If this field isn't provided the default dataset will be created on mixpanel managed bigquery.
+          description: Customer's GCP project ID where the BigQuery dataset is present.
         bq_dataset_name:
           type: string
-          description: Dataset created by customer on their own gcp project to which mixpanel needs to export data.
+          description: Dataset created by the customer on their GCP project to which Mixpanel exports data.
       required:
         - type
         - from_date
         - bq_region
         - sync
         - schema_type
+        - gcp_project
+        - bq_dataset_name
 
     SchematizedSnowflakePipeline:
       title: Schematized Snowflake Pipeline
@@ -1043,27 +1042,44 @@ components:
             is `events`.
         snowflake_prefix:
           type: string
-          description: prefix for created views and tables
-        snowflake_share_with:
+          description: Prefix for created views and tables.
+        snowflake_account_name:
           type: string
-          description: Name of the account with which the data-set should be shared. e.g. mysnowflakeaccountname
-        region:
+          description: The Snowflake account identifier (e.g. myorg-myaccount).
+        snowflake_warehouse:
           type: string
-          enum:
-            - us-west-aws
-            - us-east-aws
-            - us-east-2-aws
-            - eu-west-1-aws
-            - eu-central-1-aws
-            - ap-southeast-2-aws
-          description: The valid region for the Snowflake instance
+          description: The Snowflake warehouse to use for loading data.
+        snowflake_storage_integration:
+          type: string
+          description: The name of the Snowflake storage integration for GCS staging.
+        snowflake_user:
+          type: string
+          description: The Snowflake user for authentication.
+        snowflake_password:
+          type: string
+          description: The password for the Snowflake user.
+        snowflake_role:
+          type: string
+          description: The Snowflake role to use.
+        snowflake_database:
+          type: string
+          description: The Snowflake database to export data into.
+        snowflake_schema:
+          type: string
+          description: The Snowflake schema to export data into.
       required:
         - type
         - from_date
-        - snowflake_share_with
-        - region
         - sync
         - schema_type
+        - snowflake_account_name
+        - snowflake_warehouse
+        - snowflake_storage_integration
+        - snowflake_user
+        - snowflake_password
+        - snowflake_role
+        - snowflake_database
+        - snowflake_schema
 
     SchematizedAWSPipeline:
       title: Schematized AWS Pipeline

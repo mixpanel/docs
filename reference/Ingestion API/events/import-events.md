@@ -85,6 +85,8 @@ If the time value is set in the future, it will be overwritten with the current 
 
 If the event is not associated with any user, set distinct\_id to the empty string. Events with an empty distinct\_id will be excluded from all behavioral analysis.
 
+If no distinct\_id is provided, Mixpanel will use the ip address of the incoming request and compute a distinct\_id using a hash function.
+
 To prevent accidental implementation mistakes, we disallow the following values for distinct\_id:
 
 ```

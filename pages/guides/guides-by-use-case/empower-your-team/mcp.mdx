@@ -1,7 +1,7 @@
 import { Callout, Steps } from 'nextra/components'
 
 # Use Mixpanel MCP to Go From "What Happened?" to "What Should We Do?"
-**Mixpanel Model Context Protocol (MCP)** connects your Mixpanel project to the AI tools your team already uses—such as Claude, ChatGPT, Cursor, and Gemini — so you can ask real questions about product behavior in plain language and get answers without touching the Mixpanel UI.
+**Mixpanel Model Context Protocol (MCP)** connects your Mixpanel project to the AI tools your team already uses — such as Claude, ChatGPT, Cursor, and Gemini — so you can ask real questions about product behavior in plain language and get answers without touching the Mixpanel UI.
 
 But the bigger unlock isn't speed. It's context. MCP lets you layer in information that doesn't live in Mixpanel at all — campaign calendars, competitor signals, industry benchmarks, internal docs — and synthesize it with your product data in a single workflow. That's work that used to take days of manual exports and reconciliation.
 
@@ -10,20 +10,22 @@ But the bigger unlock isn't speed. It's context. MCP lets you layer in informati
 This guide covers how to use MCP well: how to orient yourself in a new project, run analysis without building reports, and go from “What happened?” to “What should we do about it?”
 
 ## What Good Looks Like
-Before diving into steps, it's worth being clear about what "good" looks like in practice. Teams that use MCP effectively look materially different from teams that don't:
+
+Before diving into steps, it’s worth being clear about what “good” looks like in practice. Teams that use MCP effectively look materially different from teams that don’t:
+
 - New team members can explore product data on day one, without learning your event schema first.
 - Product Managers and Data Analysts explore questions and sanity-check assumptions quickly before formalizing anything in Mixpanel.
 - Product questions are routinely answered with business context (not just metrics) attached.
 - Strategic decisions are informed by synthesis across data sources, not stitched-together exports
 - Teams use MCP to surface events and properties from their Mixpanel schema that lead to better metrics.
 
-If you're using MCP only as a faster way to build reports, most of this value never materializes.
+If you’re using MCP only as a faster way to build reports, most of this value never materializes.
 
 ## See MCP in Action
 Before reading further, watch this walkthrough. It shows MCP end to end — from asking intent-based questions, to running live analysis against Mixpanel, and synthesizing product data with external context like calendars and benchmarks.
-<br></br>
 
-<section id="video" aria-label="MCP video" style={{ padding: '8px 16px 32px' }}>
+<br></br>
+<section id="video" aria-label="MCP overview video" style={{ padding: '8px 16px 32px' }}>
   <div
     style={{
       display: 'flex',
@@ -33,7 +35,7 @@ Before reading further, watch this walkthrough. It shows MCP end to end — from
     }}
   >
     {/* Left: video with a min width so it wraps when narrow */}
-    {/* <div style={{ flex: '1 1 480px', minWidth: 320 }}>
+    <div style={{ flex: '1 1 480px', minWidth: 320 }}>
       <div
         style={{
           position: 'relative',
@@ -45,26 +47,26 @@ Before reading further, watch this walkthrough. It shows MCP end to end — from
         }}
       >
         <iframe
-          title="MCP Overview"
-          src="https://www.loom.com/embed/127592935692445282b14fc2a7c6c03d"
+          title="Mixpanel MCP"
+          src="https://www.youtube-nocookie.com/embed/NQygWnSViZc"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
           style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
         />
       </div>
-    </div> */}
+    </div>
 
     {/* Right: text with a flexible basis */}
     <aside style={{ flex: '1 1 320px', minWidth: 280 }}>
-      <h2 style={{ marginTop: 0 }}>**MCP Overview**</h2>
+      <h2 style={{ marginTop: 0 }}>**Mixpanel MCP Overview**</h2>
       <p>
-If you’re new to MCP, watch this first to ground the concepts below in a concrete example. If you’re evaluating MCP for your team, this video illustrates the difference between simply querying Mixpanel and using MCP as a data synthesis layer.
+        If you’re new to MCP, watch this first to ground the concepts below in a concrete example. If you’re evaluating MCP for your team, this video illustrates the difference between simply querying Mixpanel and using MCP as a data synthesis layer.
       </p>
 <br></br>
-      <a href="https://www.loom.com/share/127592935692445282b14fc2a7c6c03d"
+      <a href="https://youtu.be/NQygWnSViZc?si=cFEc1aGyEKZClWg9"
          target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>
-        Open Demo in Loom →
+        Open in YouTube →
       </a>
     </aside>
   </div>
@@ -75,8 +77,27 @@ You’ll need:
 - MCP set up in your AI interface of choice. Review [Mixpanel MCP Integration](/docs/features/mcp) for setup instructions.
 - Access to a Mixpanel project with reasonably stable event definitions.
 - Any external context you want to analyze (CSVs, calendars, internal docs, benchmarks).
+- The [MCP Prompt Library](https://mixpanel.com/wp-content/uploads/2026/04/Mixpanel_MCP_Prompt_Library.pdf) on hand as a reference — ready-to-use prompts for analysis, investigation, dashboards, and governance. If you use Claude Projects, Cursor, or another persistent AI environment, load the [agent version](https://storage.googleapis.com/cdn-mxpnl-com/libs/mcp-prompt/Mixpanel_MCP_Prompt_Library_agent.md) instead: It detects your connected tools automatically and composes multi-step workflows without you having to prompt each step separately.
 
 Once MCP is connected, select it as a data source inside your AI tool before asking questions.
+
+<Callout type="info">
+  **How ready is your data?** MCP works best when your events are consistently named, key properties are populated, and your schema is documented in [Lexicon](/docs/data-governance/lexicon). If you're not there yet, that's OK — MCP can actually help you audit your data. Try asking: "Show me all events with their 30-day volume" or "What data quality issues exist in my project?"
+</Callout>
+
+## Where You're Starting From
+
+Most teams start with single questions about one metric. With practice, MCP becomes something more — a workflow embedded in how your team makes decisions every week.
+
+| Level | Name | Description | Example |
+| --- | --- | --- | --- |
+| 1 | Single Query | Ask basic questions about one metric in Mixpanel. | "What's our 7-day retention?" |
+| 2 | Multi-Query Analysis | Chain multiple Mixpanel queries to build a complete picture. | "Show me retention by channel, then break down the top channel by feature usage." |
+| 3 | Cross-Source Joins | Connect Mixpanel with one additional data source for combined analysis. | "Which users with high feature adoption also have open Salesforce opportunities?" |
+| 4 | Automated Delivery | Set up recurring MCP-powered reports delivered to Slack or other channels. | Weekly metrics digest posted to your team's Slack every Monday. |
+| 5 | Embedded in Decisions | MCP analysis is part of standing rituals (sprint planning, QBRs, board reporting). | Every product review starts with an MCP-generated impact summary. |
+
+This guide covers the core workflow. [MCP Integration Pairings](/guides/guides-by-use-case/empower-your-team/mcp/integrations) goes deeper on tool-specific combinations — including automated delivery via Slack — and [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) gives you use cases and prompts tailored to your context.
 
 ## Step 1: Use MCP to Eliminate the Context Gap
 Most teams don’t struggle with analysis first — they struggle with orientation. For instance, before you can answer “What's our activation rate?”, you need to know how activation is actually instrumented in your project.
@@ -212,4 +233,4 @@ These issues come up most often when teams treat MCP as a shortcut instead of a 
 - Use MCP to explore and validate. Use Mixpanel to formalize and share.
 - The best teams use MCP to move faster from "What happened?" to "What should we do about it?"
 
-👉 **Next step**: Review the [Mixpanel MCP Integration](/docs/features/mcp) documentation to set up the integration correctly and understand how to connect Mixpanel MCP to your AI tools with confidence.
+👉 **Next step**: Ready to go deeper? See [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) for use cases and sample prompts tailored to your context, or [MCP Integration Pairings](/guides/guides-by-use-case/empower-your-team/mcp/integrations) to explore what each external data source unlocks.

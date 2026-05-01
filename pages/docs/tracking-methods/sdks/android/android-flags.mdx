@@ -96,6 +96,24 @@ mixpanel.identify(updatedDistinctId);
 // Manually reload flags if desired
 mixpanel.flags.loadFlags();
 ```
+
+3) To update the feature flags context after initialization and trigger a reload with the new values, use `setContext`. This completely replaces the previously set custom context.
+
+```java
+Map<String, Object> newContext = new HashMap<>();
+newContext.put("company_id", "Y");
+
+Map<String, Object> customProperties = new HashMap<>();
+customProperties.put("platform", "android");
+newContext.put("custom_properties", customProperties);
+
+mixpanel.flags.setContext(newContext, new FlagCompletionCallback<Boolean>() {
+    @Override
+    public void onComplete(Boolean success) {
+        // Flags have been re-fetched with the new context
+    }
+});
+```
 ## Deferred Flag Loading
 
 By default, feature flags are automatically fetched when the app first enters the foreground (`prefetchFlags` defaults to `true`). If your workflow requires calling `identify()` before the first flag fetch — for example, to ensure flags are evaluated against the correct user — you can defer automatic loading by setting `prefetchFlags(false)`:
