@@ -122,7 +122,7 @@ You can also check the top events contributing towards your event count by creat
 
 ### What if I go over my event plan allowance? Can I set a billing limit?
 
-If you sent more data than your paid plan allows, the **additional cost will be charged at the beginning of the next month based on your additional data rate,** check it in the section "Plan Details & Billing" in your Organization Settings.
+If you sent more data than your paid plan allows, the **additional cost will be charged at the beginning of the next month based on your additional data rate**, which you can find in the "Plan Details & Billing" section in your Organization Settings.
 
 It’s not possible to set a billing limit at this moment, but check out [this article](https://github.com/orgs/mixpanel/discussions/526) to learn how to create a report and get warning alerts when you’re close to exceeding your plan limit.
 
@@ -143,9 +143,9 @@ The easiest way to switch is to go to Mixpanel’s [pricing page](https://www.mi
 Our latest pricing plans include the first 1M events free each month. We require a larger pre-committed volume (more than 1M monthly events) in order to purchase an annual plan. Annual plans still include the first 1M events free each month.
 
 ### I signed up for the 1 million event Growth plan. What happens if I go over that amount?
-The first 1 million events ingested are free! If you go over 1 million events, each event ingested will be charged at the additional data rate seen in the “Plan Details & Billing” in your Organization Settings. If you're only on a 1M monthly events plan, the additional data rate is $.00028 per event. Purchasing higher volumes upfront will lower that additional data rate, as we include volume discounts in our pricing.
+The first 1 million events ingested are free! If you go over 1 million events, each event ingested will be charged at the additional data rate seen in the “Plan Details & Billing” section in your Organization Settings. If you're only on a 1M monthly events plan, the additional data rate is $.00028 per event. Purchasing higher volumes upfront will lower that additional data rate, as we include volume discounts in our pricing.
 
-If you have Data Pipeline or Group Analytics add-ons, you will also be charged 20% for Data Pipelines and/or 40% for Group Analytics based on the additional data ingested.
+If you have the Data Pipeline or Group Analytics add-ons, you will also be charged 20% for Data Pipelines and/or 40% for Group Analytics based on the additional data ingested.
 
 As an example:
 
