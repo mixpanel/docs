@@ -30,7 +30,7 @@ There are three event-based billing plans to choose from: Free, Growth, and Ente
 
 The high-level differences between the three are:
 
-- **Free:** Mixpanel is usage-based and you can use it for free for as long as you want, no trial needed. If you are new to Mixpanel and want to test it out, we encourage you to use our free plan and upgrade once you have an estimate of your project’s volume. Limited to a maximum of 5 saved reports per user account and 1M total events. Features like cohorts, lookup tables, custom properties, or permissions are not included.
+- **Free:** Mixpanel is usage-based, and you can use it for free for as long as you want, no trial needed. If you are new to Mixpanel and want to test it out, we encourage you to use our free plan and upgrade once you have an estimate of your project’s volume. Limited to a maximum of 5 saved reports per user account and 1M total events. Features like cohorts, lookup tables, custom properties, or permissions are not included.
 - **Growth:** The typical Growth plan customer is a small team using Mixpanel (fewer than 50 employees). Growth plans purchased after February 2025 include the first 1M events free.
 - **Enterprise:** Designed for large teams that require access controls and permissions, data governance features, dedicated onboarding support, and account management. Some exclusive reports for Enterprise are Signal, Experiments, and Impact, with features like Data Views and sensitive data classification.
 
@@ -42,7 +42,7 @@ If you're already using another tool, you might have the exact numbers you need.
 
 ### **View Events Usage**
 
-If you are currently tracking data, you can see your events’ consumption in your Organization Settings. Click on the gear icon in the upper right corner of Mixpanel, “Organization Settings”, and then the “Plan Details & Billing” tab.
+If you are currently tracking data, you can see your events’ consumption in your Organization Settings. Click on the gear icon in the lower left corner of Mixpanel, “Organization Settings”, and then the “Plan Details & Billing” tab.
 
 From here, you can quickly view this billing period’s usage on the right side of the screen as well as the historical one by clicking the “View Historical Usage” link:
 
@@ -50,7 +50,7 @@ From here, you can quickly view this billing period’s usage on the right side 
 
 ### Group Analytics Add-On
 
-The Group Analytics add-on allows behavioral analysis from a business or group level, as opposed to an individual level. 
+The Group Analytics add-on enables behavioral analysis at the business or group level, as opposed to the individual level. 
 
 Check [here](/docs/data-structure/advanced/group-analytics) for the technical documentation for Group Analytics, keeping in mind that implementing this feature is not trivial and includes sending your events with the key of the [group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties) they belong to. Group Analytics **can’t be implemented retroactively** for already ingested events.
 
@@ -62,10 +62,10 @@ This is a recommended feature for all B2B products that want answers to question
 
 ### Data Pipelines Add-On
 
-The Data Pipelines Add-On exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment. We offer a 30-day free trial of this feature; see the [FAQ article](/docs/data-pipelines#how-does-the-free-trial-work) on how to enable it.
+The Data Pipelines Add-On exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment. We offer a 30-day free trial of this feature; see the [FAQ](/docs/data-pipelines#how-does-the-free-trial-work) on how to enable it.
 
 ### Metric Tree Add-on
-The Metric Tree Add-On enables you to map your growth strategy in a quantitative and measurable way, and understand the logical relationship between your input metrics and output business outcomes. It is a collaborative space for you and your team to identify opportunities, have prioritization and trade-off discussions across Exec to ICs, and eventually take data-backed decisions. You can read more about the functionality of Metric Trees [here](/docs/metric_tree).
+The Metric Tree Add-On enables you to map your growth strategy quantitatively and measurably, and understand the logical relationship between your input metrics and output business outcomes. It is a collaborative space for you and your team to identify opportunities, have prioritization and trade-off discussions across Exec to ICs, and eventually take data-backed decisions. You can read more about the functionality of Metric Trees [here](/docs/metric_tree).
 
 ## Billing & Payment
 
@@ -75,8 +75,8 @@ Mixpanel runs on a subscription service in which your card is charged at the beg
 
 You can only update billing information if you have “Owner” or “Billing Admin” permissions over your Mixpanel organization:
 
-- Click on the gear icon at the upper-right corner of the purple menu at Mixpanel and then select “Organization Settings”.
-- Then select at the left-hand menu “Plan Details & Billing” and click on “Manage Billing & Payment” as shown below.
+- Click on the gear icon at the lower-left corner of the purple menu at Mixpanel and then select “Organization Settings”.
+- Then select from the left-hand menu “Plan Details & Billing” and click on “Manage Billing & Payment” as shown below.
 
 ![Manage Billing & Payment](/manage-billing-and-payment.png)
 
@@ -96,7 +96,7 @@ If you received a notification that your payment did not go through (via email, 
    
 ![Rerun Payment](/rerun-payment.png)
 
-If the payment is successful, you will see a success message in the bottom left corner, and an error icon should no longer appear next to your payment information. Note: this can take up to a few minutes to process. You may check back later and it will not interrupt processing. If you and your bank are unable to resolve the issue, please reach out to our Support team.
+If the payment is successful, you will see a success message in the bottom left corner, and an error icon should no longer appear next to your payment information. Note: this can take up to a few minutes to process. You may check back later, and it will not interrupt processing. If you and your bank are unable to resolve the issue, please reach out to our Support team.
 
 ### Downgrade your plan to Free
 
@@ -104,7 +104,7 @@ You can only edit or downgrade your plan if you have “Owner” or “Billing A
 
 To submit a downgrade request:
 
-1. In “Organization Settings”, select “Plan Details & Billing”.
+1. In “Organization Settings”, select the “Plan Details & Billing” tab.
 2. Click "Switch to Free" at the bottom of the Plan Details & Billing section.
 3. When you click Submit, a request will be sent to Mixpanel's Billing Team for processing.
    
