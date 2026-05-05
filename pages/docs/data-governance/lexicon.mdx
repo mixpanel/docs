@@ -37,7 +37,7 @@ import { Callout } from 'nextra/components'
 
 Lexicon is a data dictionary that stores descriptions of events and their properties. Project owners and admins can add/manage descriptions for all events and properties and organize data for clarity and discoverability. Event and property definitions help your entire team understand what your data means, so everyone stays on the same page.
 
-To open Lexicon, select the **Data Management** icon on the right side of the top navigation menu and then select **Lexicon**.
+To open Lexicon, select the **Data** tab on the left-hand navigation menu, and then select **Lexicon**.
 
 When you open Lexicon, you'll see two sections:
 
@@ -347,6 +347,8 @@ In the Export panel, you can select:
 - User Profile Properties
 
 The requester will receive an email with a link to download a single CSV file. This link remains active for 14 days. Each CSV file can contain up to 5,000 events, 2,000 properties per event, and 2,000 user profile properties.
+
+The numbers in the CSV export may not match exactly with the numbers in the Mixpanel UI. This is because the numbers in the Lexicon UI only include queries made from the Mixpanel UI, whereas the numbers in the CSV export include queries made from the Mixpanel public API in addition to the queries made from the UI.
 
 ### CSV Import
 
