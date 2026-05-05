@@ -18,7 +18,7 @@ Mixpanel supports two levels of business context. AI assistants read whichever i
 | Level            | What to include                                                                                  | Who can edit                            |
 | ---------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------- |
 | **Organization** | Company background, business model, north star metrics, customer segments, internal acronyms    | Organization admins                     |
-| **Project**      | Events, properties, naming conventions, key dashboards, team norms, default project hints       | Anyone with access to the project       |
+| **Project**      | Events, properties, naming conventions, key dashboards, team norms, default project hints       | Project owners and admins               |
 
 A typical setup uses both: org context tells the AI what business you're in, and project context tells it how this specific project tracks data.
 
@@ -45,7 +45,7 @@ Project-level context describes how an individual project is structured — its 
 3. **Write your context** in the markdown editor.
 4. **Click Save.**
 
-Anyone with access to the project can edit its context.
+Project owners and admins can edit project context. Anyone with project access can read it.
 
 ## What to Include in Project Context
 
@@ -79,14 +79,16 @@ Ask your AI assistant in plain language:
 
 <Callout type="warning">
     Updating context via MCP performs a **full replace** — the new content overwrites whatever existed before. Other people on your team may have authored the current context, so always have your AI assistant confirm what's there before overwriting.
+
+    `Update-Business-Context` will fail with a permission error if your account doesn't have edit access to the org or project you're updating.
 </Callout>
 
 ## Limitations
 
 - **Markdown only** — context must be plain markdown text. Images, structured data, and links inside the context aren't fetched or rendered for the AI assistant.
 - **Full-replace updates** — `Update-Business-Context` overwrites the entire context at the level you target. There is no append or merge mode.
-- **Org admin required** — only organization admins can edit organization-level context. Project context is open to anyone with project access.
-- **Size limit** — organization context is capped at 50,000 characters.
+- **Edit permissions** — organization context can only be edited by organization owners and admins. Project context can only be edited by project owners and admins. Anyone with project access can read both.
+- **Size limit** — each context (organization and project) is capped at 50,000 characters.
 
 ## FAQ
 
