@@ -81,3 +81,72 @@ These phases apply to Full Implementation mode only. Quick Start uses Live View 
 - **Not legal advice.** The compliance and privacy guardrails in `SKILL.md` are implementation defaults, not legal guidance. Customer policy and counsel are the authoritative source for consent and data residency requirements.
 - **No enforcement mechanism.** The skill guides the agent to gate phases and reject shortcuts, but a customer who overrides the agent can bypass any guardrail. The skill documents the risk, not the enforcement.
 - **Developer Handoff Spec is unverified.** When no codebase access is available, the generated specification cannot be tested for correctness. The agent fills the template with session context, but cannot verify the code compiles, runs, or produces events in Live View. The developer receiving the spec must validate it.
+
+---
+
+## Testing
+
+The skill includes a test harness in `tests/` to validate that an AI agent can correctly implement Mixpanel tracking when given the skill.
+
+### Test App
+
+`test-app/` is a minimal React + Express e-commerce demo (Cinder & Bloom Coffee) with:
+- Product catalog, cart, checkout flow
+- Login/signup authentication flow
+- No Mixpanel pre-installed
+
+This provides a realistic codebase for the agent to implement tracking against.
+
+### Test Files
+
+| File | Purpose |
+|---|---|
+| `tests/01-implement.txt` | Prompt that instructs an agent to implement Mixpanel using the skill |
+| `tests/02-evaluate.txt` | Evaluation criteria for grading the agent's implementation |
+
+### Running a Test
+
+1. **Start a fresh agent session** with access to this repo
+2. **Feed it `01-implement.txt`** as the initial prompt
+3. **Let the agent complete** its implementation (it should follow the Quick Start flow)
+4. **Feed it `02-evaluate.txt`** to have the agent self-evaluate its work
+5. **Review the JSON output** — `pass: true` means all criteria passed
+
+### Evaluation Criteria
+
+The evaluation checks 14 criteria across 5 categories:
+
+**SDK Setup (1-3)**
+- Mixpanel initialized (SDK loaded + init() called)
+- At least one event tracked
+- Real project token used (not placeholder)
+
+**Identity Management (4-7)**
+- `identify()` called on login/signup with stable user ID
+- `reset()` called on logout
+- `identify()` called BEFORE tracking signup event
+- Email NOT used as user ID
+
+**Naming Conventions (8-9)**
+- Event names use `snake_case`
+- Property names use `snake_case`
+
+**Data Quality (10-12)**
+- Numeric values sent as numbers, not strings
+- No `null` or empty strings sent (should omit instead)
+- No `$` or `mp_` prefixes on custom properties
+
+**Critical Prohibitions (13-14)**
+- No `alias()` calls
+- No dynamic event/property name construction
+
+### After Evaluation
+
+The evaluation prompt instructs the agent to revert all changes to `test-app/` so subsequent test runs start clean.
+
+### Adding New Tests
+
+To test additional scenarios:
+1. Create `tests/0X-scenario.txt` with the agent prompt
+2. Create corresponding evaluation criteria or reuse `02-evaluate.txt`
+3. Document what the test validates in this section
