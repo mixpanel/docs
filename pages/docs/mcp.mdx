@@ -44,6 +44,18 @@ A typical workflow looks like:
 | | `Delete-Tag` | Remove a tag from your project |
 | | `Dismiss-Issues` | Bulk-dismiss data quality issues by event, property, or type |
 | **Session Replays** | `Get-User-Replays-Data` | Analyze a specific user's replays alongside their event data |
+| **Experiments** *(Beta)* | `List-Experiments` | List all experiments in a project |
+| | `Get-Experiment` | Retrieve experiment details and configuration |
+| | `Create-Experiment` | Create a new experiment |
+| | `Update-Experiment` | Modify an experiment's configuration or status |
+| **Feature Flags** *(Beta)* | `List-Feature-Flags` | List all feature flags in a project |
+| | `Get-Feature-Flag` | Retrieve feature flag details and targeting rules |
+| | `Create-Feature-Flag` | Create a new feature flag |
+| | `Update-Feature-Flag` | Modify a feature flag's configuration or targeting |
+
+<Callout type="warning">
+  **Experiments and Feature Flags tools are in beta.** They require opt-in configuration. See [Enabling Beta Features](#beta-experiments--feature-flags) below. Audience targeting and cohort editing are not yet supported.
+</Callout>
 
 ## MCP Server URLs
 
@@ -148,6 +160,68 @@ Or edit `~/.gemini/settings.json` manually and add:
 
 Any client that supports the MCP JSON config format can connect using the same JSON snippet from the Cursor section above. The first time it connects it will prompt you to authorize with Mixpanel.
 
+## Beta: Experiments & Feature Flags
+
+<Callout type="warning">
+  Experiments and Feature Flags tools are in **beta**. To enable them, you need to pass an additional header when connecting to the MCP server. Instructions vary by client — see below. After updating your configuration, restart your client to load the new tools.
+</Callout>
+
+### Claude Desktop
+
+1. Open **Settings → Developer** and click **Edit Config** to open `claude_desktop_config.json`
+2. Update your Mixpanel entry to pass the feature flag header:
+
+```json
+"mcpServers": {
+  "mixpanel": {
+    "command": "npx",
+    "args": [
+      "mcp-remote@latest",
+      "https://mcp.mixpanel.com/mcp",
+      "--header",
+      "X-Feature-Flags:experiments_and_feature_flags_tools"
+    ]
+  }
+}
+```
+
+3. Completely quit and relaunch Claude Desktop. A browser tab will open to re-authenticate.
+
+### Claude Code
+
+Run the following command to add (or replace) the Mixpanel MCP server with beta tools enabled:
+
+```bash
+claude mcp add --transport http mixpanel https://mcp.mixpanel.com/mcp --header 'X-Feature-Flags: experiments_and_feature_flags_tools'
+```
+
+Then reload tools in your current session with `/mcp` or start a new session.
+
+### Cursor
+
+Update your `~/.cursor/mcp.json` entry to include the header argument:
+
+```json
+{
+  "mcpServers": {
+    "mixpanel": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://mcp.mixpanel.com/mcp",
+        "--header",
+        "X-Feature-Flags:experiments_and_feature_flags_tools"
+      ]
+    }
+  }
+}
+```
+
+### Other JSON-configured clients
+
+Any client using the MCP JSON config format can enable beta tools by adding `"--header"` and `"X-Feature-Flags:experiments_and_feature_flags_tools"` to the `args` array, following the Cursor example above.
+
 ## Example Queries
 
 Once connected, try asking your AI assistant:
@@ -176,6 +250,11 @@ Once connected, try asking your AI assistant:
 **Triage data quality**
 - "Show me all open data quality issues for the Signup event"
 - "Dismiss all issues for events we deprecated last quarter"
+
+**Test & ship**
+- "Create an experiment to test whether showing a progress indicator during onboarding increases activation rate"
+- "Create a feature flag for our new AI-powered search"
+- "How did our checkout experiment perform? Did it reach significance?"
 
 **Investigate users**
 - "This user reported a bug — what happened in their last 3 sessions?"
