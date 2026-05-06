@@ -1,0 +1,132 @@
+import { Callout, Tabs } from 'nextra/components'
+
+# Hierarchical Groups Implementation Guide
+
+<Callout type="info">
+  Hierarchical Groups is available for Enterprise customers. Contact your account team for more details.
+</Callout>
+
+## Overview
+
+Hierarchical Groups extends Mixpanel's Group Analytics by allowing you to define parent-child relationships between groups. This enables analysis across organizational hierarchies such as companies → divisions → teams, or accounts → projects → workspaces.
+
+## Setup
+
+### Configuring Hierarchical Groups in Project Settings
+
+To set up hierarchical groups, you'll need to define both the group keys and their relationships.
+
+1. Navigate to your Project Settings (requires project owner or admin permissions)
+2. Navigate to the **Hierarchical Groups** section
+3. Click **+Add Hierarchical Group Structure**
+4. Define your hierarchy levels (e.g., Company → Team → Project)
+
+[Content placeholder: Detailed setup steps with screenshots]
+
+### Defining Parent-Child Relationships
+
+[Content placeholder: Instructions on how to configure which group keys are parents/children of each other]
+
+<Callout type="info">
+  Group hierarchies must be defined before data is sent. The hierarchy structure determines how events and profiles roll up through the organization.
+</Callout>
+
+## Tracking Events with Hierarchical Groups
+
+Events in hierarchical groups automatically inherit relationships based on the group structure you've defined.
+
+[Content placeholder: Explanation of how event attribution works with hierarchical groups]
+
+### Example: Multi-Level Organization
+
+```javascript
+// Example: User belongs to a Team, which belongs to a Company
+mixpanel.track("feature_used", {
+  team_id: "team_123",
+  company_id: "company_456"
+});
+```
+
+[Content placeholder: Detailed examples showing how events roll up through hierarchy levels]
+
+<Tabs items={['Javascript (Web)', 'Kotlin (Android)', 'Swift (iOS)', 'Python']}>
+	<Tabs.Tab>
+	```javascript Javascript
+	// Placeholder: JavaScript implementation examples for hierarchical groups
+	mixpanel.setGroup("company_id", "company_1");
+	mixpanel.setGroup("team_id", "team_a");
+	mixpanel.track("event_name");
+	```
+	</Tabs.Tab>
+	<Tabs.Tab>
+	```kotlin Kotlin
+	// Placeholder: Kotlin implementation examples for hierarchical groups
+	mixpanel.setGroup("company_id", "company_1");
+	mixpanel.setGroup("team_id", "team_a");
+	mixpanel.track("event_name");
+	```
+	</Tabs.Tab>
+	<Tabs.Tab>
+	```swift Swift
+	// Placeholder: Swift implementation examples for hierarchical groups
+	Mixpanel.mainInstance().setGroup(groupKey: "company_id", groupID: "company_1")
+	Mixpanel.mainInstance().setGroup(groupKey: "team_id", groupID: "team_a")
+	Mixpanel.mainInstance().track(event: "event_name")
+	```
+	</Tabs.Tab>
+	<Tabs.Tab>
+	```python Python
+	# Placeholder: Python implementation examples for hierarchical groups
+	mp.track('user_id', 'event_name', {
+	    'company_id': 'company_1',
+	    'team_id': 'team_a'
+	})
+	```
+	</Tabs.Tab>
+</Tabs>
+
+## Managing Hierarchical Group Profiles
+
+Hierarchical group profiles allow you to set properties at each level of your organization structure.
+
+[Content placeholder: How to create and update group profiles at different hierarchy levels]
+
+### Setting Parent-Child Relationships
+
+[Content placeholder: API/SDK examples for establishing parent-child relationships between group profiles]
+
+```python
+# Placeholder: Example of setting up hierarchical relationship
+mp.group_set('team_id', 'team_a', {
+    'Team Name': 'Engineering Team A',
+    'parent_company_id': 'company_1'
+})
+```
+
+## Roll-Up Analysis
+
+One of the key features of hierarchical groups is the ability to analyze behavior at any level and see how it rolls up.
+
+[Content placeholder: Explanation of how metrics aggregate through hierarchy levels]
+
+### Cross-Level Filtering
+
+[Content placeholder: How to filter and break down data across different hierarchy levels]
+
+## SDK References for Hierarchical Groups
+
+[Content placeholder: Links to SDK-specific implementation guides]
+
+- [HTTP API](https://developer.mixpanel.com/reference/group-set-property)
+- [Javascript SDK](/docs/tracking-methods/sdks/javascript#group-analytics)
+- [iOS-Swift SDK](/docs/tracking-methods/sdks/swift#group-analytics)
+- [Android SDK](/docs/tracking-methods/sdks/android#group-analytics)
+- [Python SDK](/docs/tracking-methods/sdks/python#group-analytics)
+
+## Migration from Legacy Group Analytics
+
+[Content placeholder: Guide for customers migrating from legacy group analytics to hierarchical groups]
+
+### Compatibility Considerations
+
+[Content placeholder: What to know when transitioning existing group analytics implementations]
