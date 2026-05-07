@@ -1,16 +1,21 @@
 import { Steps, Callout } from 'nextra/components'
 
-# Agentic Automations: hands-off monitoring of the metrics you own
+# Agentic Automations
 
 ## Overview
 
-Most product owners are expected to be experts on the KPIs they own — but they have so many other responsibilities that checking the data constantly gets deprioritized. The problem is only getting worse as AI accelerates product velocity, leaving owners responsible for more surfaces with less time to understand any of them.
-
-Mixpanel's **Agentic Automations** are AI agents you configure once that do recurring analysis work for you and deliver the result where you already work. The first available automation type is **KPI Monitoring** — more types will follow.
+Mixpanel Agentic Automations are AI agents you configure once that do recurring analysis work for you and deliver the result where you already work.
 
 <Callout type="info">
-    Agentic Automations are part of Mixpanel AI. Availability depends on your plan and feature configuration — if you don't see the option to create an Automation, contact your Mixpanel account team.
+    Agentic Automations are in beta. If you'd like access, please reach out to your Mixpanel account team to join the waitlist.
 </Callout>
+
+## Types of Agentic Automations
+
+- **KPI Monitoring** *(available now)* — Watches a metric you own and ships a personalized digest on the cadence you choose. See [below](#kpi-monitoring) for details.
+- **Research** — Runs open-ended analyses on your data and writes up the findings, so you spend less time scoping investigations and more time deciding what to do.
+- **Event-triggered** — Runs an agent every time a specific event fires — for example, investigate each time a user churns or submits negative NPS feedback.
+- **Data governance** — Watches your tracked data for anomalies or discrepancies and flags them for review.
 
 ## KPI Monitoring
 
@@ -53,19 +58,17 @@ Every digest includes a thumbs-up / thumbs-down widget. This is the most direct 
 - **Metric types.** KPI Monitors today support Insights-style event metrics only. Funnel and retention metrics aren't yet supported.
 - **Delivery channels.** Slack and in-product only today. Email is on the roadmap.
 - **Cadence.** Hourly, daily, or weekly. There's no per-user delivery window control yet (e.g., "weekdays 8–10am local") — that's planned.
-- **Memory.** The agent doesn't yet learn from your past feedback across runs. Feedback is recorded for our quality work but doesn't change what the agent surfaces tomorrow.
-- **Project context.** The agent doesn't yet consume your project's AI-generated Business Context, so digests may miss customer-specific framing.
-- **Cross-feature.** You can't trigger a Root Cause Analysis directly from a digest yet. For now, run RCA from the Insights report or alert that the digest references.
 
 ## Coming next
 
 - Email delivery for digests.
 - Funnel and retention support via saved metrics.
 - Customizable notification windows (timezone, time-of-day, quiet hours).
-- Past-feedback memory so digest relevance improves over time.
-- Business Context grounding.
-- Trigger an RCA directly from an Automation.
-- New automation types beyond KPI Monitoring (event- and property-triggered automations, data-governance upkeep).
+- New automation types beyond KPI Monitoring.
+
+<Callout type="info">
+    Interested in early access or helping us shape these features? Reach out to your account manager and ask to be connected with our product team.
+</Callout>
 
 ## Related
 
