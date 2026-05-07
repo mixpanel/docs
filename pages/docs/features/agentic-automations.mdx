@@ -1,0 +1,74 @@
+import { Steps, Callout } from 'nextra/components'
+
+# Agentic Automations: hands-off monitoring of the metrics you own
+
+## Overview
+
+Most product owners are expected to be experts on the KPIs they own — but they have so many other responsibilities that checking the data constantly gets deprioritized. The problem is only getting worse as AI accelerates product velocity, leaving owners responsible for more surfaces with less time to understand any of them.
+
+Mixpanel's **Agentic Automations** are AI agents you configure once that do recurring analysis work for you and deliver the result where you already work. The first available automation type is **KPI Monitoring** — more types will follow.
+
+<Callout type="info">
+    Agentic Automations are part of Mixpanel AI. Availability depends on your plan and feature configuration — if you don't see the option to create an Automation, contact your Mixpanel account team.
+</Callout>
+
+## KPI Monitoring
+
+A KPI Monitor watches a metric you care about and ships a personalized digest on the cadence you choose. Each digest summarizes what changed in the last window, calls out shifts the agent considers notable, and gives you a way to give feedback so we can improve what the agent surfaces over time.
+
+### Create a KPI Monitor
+
+<Steps>
+
+{<h3>Pick the metric to monitor</h3>}
+
+Choose any Insights-style event metric — sums, counts, or unique counts over an event you've already instrumented. The agent will use the metric's existing definition (filters, breakdowns, time grain) as the source of truth for what it watches.
+
+{<h3>Pick a cadence</h3>}
+
+Digests can be delivered hourly, daily, or weekly. Pick the rhythm that matches how your team operates — daily is a good default for most active KPIs.
+
+{<h3>Pick a delivery channel</h3>}
+
+Digests can land in Slack or in-product. Slack delivery requires the [Slack integration](/docs/features/slack-integration) to be configured for your project.
+
+{<h3>Save the Automation</h3>}
+
+The agent runs on schedule — your first digest arrives at the next cadence boundary. You can pause, edit, or delete the Automation at any time.
+
+</Steps>
+
+### What's in a digest
+
+- A short summary of what the metric did in the last window vs. baseline.
+- Any shifts the agent considers notable, with the agent's reasoning.
+- A thumbs-up / thumbs-down feedback widget on every digest.
+
+### Feedback
+
+Every digest includes a thumbs-up / thumbs-down widget. This is the most direct signal we use to improve digest quality — please rate digests honestly. Feedback drives prompt and model iteration.
+
+## Limits
+
+- **Metric types.** KPI Monitors today support Insights-style event metrics only. Funnel and retention metrics aren't yet supported.
+- **Delivery channels.** Slack and in-product only today. Email is on the roadmap.
+- **Cadence.** Hourly, daily, or weekly. There's no per-user delivery window control yet (e.g., "weekdays 8–10am local") — that's planned.
+- **Memory.** The agent doesn't yet learn from your past feedback across runs. Feedback is recorded for our quality work but doesn't change what the agent surfaces tomorrow.
+- **Project context.** The agent doesn't yet consume your project's AI-generated Business Context, so digests may miss customer-specific framing.
+- **Cross-feature.** You can't trigger a Root Cause Analysis directly from a digest yet. For now, run RCA from the Insights report or alert that the digest references.
+
+## Coming next
+
+- Email delivery for digests.
+- Funnel and retention support via saved metrics.
+- Customizable notification windows (timezone, time-of-day, quiet hours).
+- Past-feedback memory so digest relevance improves over time.
+- Business Context grounding.
+- Trigger an RCA directly from an Automation.
+- New automation types beyond KPI Monitoring (event- and property-triggered automations, data-governance upkeep).
+
+## Related
+
+- [Alerts](/docs/features/alerts) — threshold and anomaly notifications, complementary to digests
+- [Slack Integration](/docs/features/slack-integration) — required for Slack delivery
+- [Saved Metrics & Behaviors](/docs/features/saved-metrics-and-behaviors) — the metric definitions a KPI Monitor watches

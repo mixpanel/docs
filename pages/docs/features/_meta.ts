@@ -1,4 +1,5 @@
 export default {
+    "agentic-automations": "Agentic Automations",
     "alerts": "Alerts",
     "annotations": "Annotations",
     "embeds": "Embeds",
