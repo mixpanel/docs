@@ -221,6 +221,10 @@ Lift, mean, and variance are calculated differently based on the type of metric 
 **Why This Matters:**
 Normalizing by exposed users (not just converters) helps you understand the impact on your entire user base. A feature that increases average order value among buyers but reduces conversion rate may decrease overall revenue per user.
 
+<Callout type="info">
+**Metrics with a Group Identifier:** When you [change a metric's group identifier](/docs/data-structure/advanced/group-analytics#change-the-group-identifier-in-a-report) from Users to a group key (e.g., Company), exposures for that metric are counted at the group level. The number of exposed groups is then used for all of that metric's calculations — normalizing group rates, computing variance, and determining statistical significance. For example, if a metric is set to aggregate by Company and 200 companies have been exposed to the treatment, the group rate is calculated as the total metric value divided by those 200 exposed companies, not by the number of individual users.
+</Callout>
+
 **Custom Formula Metrics:**
 For complex metrics using formulas like `Revenue per User = Total Revenue ÷ Unique Users`, Mixpanel uses propagation of uncertainty to estimate variance. This combines the variances of the component metrics (Total Revenue and Unique Users) to calculate the overall metric's statistical significance. The system assumes metrics in formulas are uncorrelated for these calculations.
 
