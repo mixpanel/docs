@@ -17,7 +17,7 @@ Suggested page structure (in order):
   6. Webhook Alerts                  [UNCHANGED — minor nav note added]
   7. View & Manage Alerts            [UPDATED]
   8. Alert Criteria Types            [UNCHANGED]
-  9. Root Cause Analysis             [UNCHANGED]
+  9. Root Cause Analysis             [UPDATED] ← now a brief entry point linking to the new top-level RCA page
 =============================================================================
 */}
 
@@ -358,26 +358,25 @@ Each organization has a limit of 50 active Anomaly Detection Alerts. A warning b
 When displaying decimal values, the current value shown in alert messages is rounded to 2 decimal places. This can make it appear to be outside the alert range when it is very close to the boundary. The actual alert is always checked against the full unrounded value.
 
 {/* ============================================================ */}
-{/* SECTION 9: ROOT CAUSE ANALYSIS — [UNCHANGED] */}
-{/* No content changes. Copy as-is from live doc. */}
+{/* SECTION 9: ROOT CAUSE ANALYSIS — [UPDATED] */}
+{/* RCA was promoted to its own top-level feature page at */}
+{/* /docs/features/root-cause-analysis. This section now serves */}
+{/* as a brief entry point that explains the alert ↔ RCA pairing */}
+{/* and links to the full feature page. The legacy "12 segmented */}
+{/* reports" content was retired because the AI agent replaces it. */}
+{/* The H2 anchor #root-cause-analysis is preserved for inbound */}
+{/* deep links. */}
 {/* ============================================================ */}
 
 ## Root Cause Analysis
 
-Mixpanel's Root Cause Analysis (RCA) feature analyzes the properties of unexpected events and automatically generates a Board with reports broken down by relevant properties, so you can investigate the underlying cause of any anomalous data point or triggered alert.
+When an alert fires, you can launch [**Root Cause Analysis (RCA)**](/docs/features/root-cause-analysis) directly from the trigger notification to automatically diagnose what drove the anomaly. RCA is an AI-powered agent that validates the change, runs the relevant breakdowns, ranks the dimensions that contributed most, and generates a Board with an AI-written interpretation, confidence level, and suggested next steps.
 
-RCA Boards can be accessed from alert trigger messages delivered via Slack, email, or webhook. Each alert is tied to one Root Cause Analysis Board that can be accessed and edited by anyone in your organization. With this one-to-one pairing, edits made by one teammate are visible to others. Duplicate the board if you want to make independent edits.
+**How it pairs with alerts:**
 
-If the original Board is deleted, another can be generated from the alert trigger message.
+- Every alert is tied one-to-one with a Root Cause Analysis Board. The Slack, email, or webhook notification includes a link that opens the Board.
+- The first time you open the link, the AI agent runs and generates the Board. Subsequent opens return to the same Board, so your team doesn't duplicate work.
+- The Board is project-shared — anyone in your project can review or edit it. Duplicate it if you want a private working copy.
+- If the Board is deleted, you can regenerate it from the alert trigger message.
 
-### Root Cause Analysis Board
-
-The RCA Board provides a comprehensive view of the data related to the triggered alert or selected data point. Mixpanel scans the top properties of the original event and generates a report for each property, so you can visually explore the relationship between properties and the anomalous data point.
-
-Key features:
-
-- **12 segmented reports** are generated, showing the triggered event broken down by its top relevant properties.
-- Each segmented report is **filtered by a date range** that matches the original alert's time window — using a custom date range (not a relative one) to ensure consistency on future visits.
-- The board includes **links to the original report** where the alert was set up, as well as a link to the alert's configuration settings.
-
-By leveraging Root Cause Analysis, you can quickly identify the factors driving anomalies, take targeted action, and collaborate with your team without losing context.
+For the full feature — including how to launch RCA from Insights reports, what cards land on the Board, and how to prioritize which properties RCA analyzes — see the [Root Cause Analysis](/docs/features/root-cause-analysis) page.
