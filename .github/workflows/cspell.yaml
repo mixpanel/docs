@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
-      - uses: streetsidesoftware/cspell-action@9cd41bb518a24fefdafd9880cbab8f0ceba04d28  # v8
+      - uses: streetsidesoftware/cspell-action@de2a73e963e7443969755b648a1008f77033c5b2  # v8
         with:
           # Define glob patterns to filter the files to be checked. Use a new line between patterns to define multiple patterns.
           # The default is to check ALL files that were changed in in the pull_request or push.
