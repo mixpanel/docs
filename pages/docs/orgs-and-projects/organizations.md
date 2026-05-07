@@ -1,6 +1,5 @@
 # Organizations
 
-
 ## Overview
 
 An Organization is an entity that links your projects, users, and subscription plan.
@@ -18,7 +17,7 @@ To access your organization's different settings, click the gear icon located on
 ## Organization Discoverability
 Organization Discoverability makes it seamless for new users with a shared work email domain to connect with teammates in an existing organization in Mixpanel, allowing them to access their team’s projects, data, and reports, instead of joining a new, empty org.
 
-This feature is accessible to new users who have verified their email as well as existing organizations that are on an Enterprise plan and do not have SSO enabled.
+This feature is accessible to new users who have verified their email, as well as existing organizations that are on an Enterprise plan and do not have SSO enabled.
 
 ![Organization Discoverability 1 Image](/discoverabilityone.png)
 
@@ -27,7 +26,6 @@ This feature is accessible to new users who have verified their email as well as
 Only **organization owners** and **billing admins** can access Organization Discoverability by going to Organization Settings > Users & Teams > Organization Discoverability.
 
 ![Organization Discoverability 2 Image](/discoverabilitytwo.png)
-
 
 They can enable Organization Discoverability by first specifying the private (i.e., work) email domain(s) that should be granted access when a new user signs up for Mixpanel. Please note that public email domains, such as Gmail or Yahoo, cannot be used.
 
@@ -39,8 +37,38 @@ The org owner or admin can then designate the level of discoverability of their 
 
 **Invite Only:** An organization designated “invite only” is undiscoverable regardless of email domain. New users must be invited by the admin.
 
+## Transferring ownership of an Organization
+
+<Callout type="info">
+To complete this process, you will need the "Owner" organization role. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+
+If the only organization owner is no longer with your company and you'd like to become its new owner, please [contact the Support team](https://mixpanel.com/get-support).
+</Callout>
+
+### Internally
+
+To make an existing user the new owner of your organization, follow these steps:
+
+1. Under "Organization Settings", click **Users & Teams** and you will land on the Users tab.
+2. Find the user's account in the list and click their name.
+3. Change their organization role to 'Owner', and click 'Save'.
+
+### Externally
+
+<Callout type="info">
+If you're using a paid plan and would like to remove your credit card details from your account for security reasons, please [contact the Support team](https://mixpanel.com/get-support) for assistance.
+</Callout>
+
+To make a new person the owner of your organization, follow these steps:
+
+1. Under "Organization Settings", click **Users & Teams** and you will land on the Users tab.
+2. Click **Invite Users**. The “Invite New Users” box appears.
+3. Enter the email address of the person and select their **Organization Role** ("Owner"), **Projects** to add them to, and **Project Role** ("Owner").
+4. Click **Invite** to complete the process.
+5. They will receive an email to create a user account and, afterwards, have full control of the organization.
+
 ## Deleting an Organization
-Organization Owners may request the closure of the organization under the Overview tab in the Organization Settings, which would delete your organization, all existing projects, and all the data contained within the project. Users will maintain access to your organization for 90 days, after which it will be deleted. After 90 days, organization projects will be **permanently** deleted.
+Organization Owners may request the closure of the organization under the Overview tab in the Organization Settings, which would delete your organization, all existing projects, and all the data contained within them. Users will maintain access to your organization for 90 days, after which it will be deleted. After 90 days, organization projects will be **permanently** deleted and cannot be recovered.
 
 Learn more about privacy and compliance [here](/docs/privacy).
 
