@@ -84,7 +84,8 @@ When creating a Warehouse Connector for events:
 1. Create a new WHC as you normally would, but stop at the **Map Columns** step.
 2. Map the column containing your top-level identifier to **Company ID**.
 3. Map the column containing your user-level identifier to **User ID**. This mapping is **required** for Hierarchical Groups projects (it is optional in standard projects).
-4. Complete the sync.
+4. Additional group properties must be set on the event but do not require any special mapping in the set up process.
+5. Complete the sync.
 
 After the sync runs, verify that your events carry all three properties: `$company_id`, `$user_id`, and the auto-generated `$distinct_id` in the format `$company:<company_id>|$user:<user_id>`.
 
