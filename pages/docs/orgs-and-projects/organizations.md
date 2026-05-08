@@ -40,8 +40,9 @@ The org owner or admin can then designate the level of discoverability of their 
 ## Transferring ownership of an Organization
 
 <Callout type="info">
-To complete this process, you will need the "Owner" organization role. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
 
+To complete this process, you will need the "Owner" organization role. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+  
 If the only organization owner is no longer with your company and you'd like to become its new owner, please [contact the Support team](https://mixpanel.com/get-support).
 </Callout>
 
@@ -56,6 +57,7 @@ To make an existing user the new owner of your organization, follow these steps:
 ### Externally
 
 <Callout type="info">
+
 If you're using a paid plan and would like to remove your credit card details from your account for security reasons, please [contact the Support team](https://mixpanel.com/get-support) for assistance.
 </Callout>
 
