@@ -18,8 +18,8 @@ Two project-level settings shape how all three capabilities behave. It's worth u
 
 **How to set it up:** Go to **Project Settings → Business Context**. Write in plain language — metric definitions, launch dates, team structure, anything an informed new hire would need to know. The AI reads it as background before every query in that project.
 
-<Callout type="tip">
-Start with your primary metric definitions and your fiscal calendar. Those two pieces of context eliminate the most common sources of AI misinterpretation.
+<Callout type="info">
+    **Pro tip:** Start with your primary metric definitions and your fiscal calendar. Those two pieces of context eliminate the most common sources of AI misinterpretation.
 </Callout>
 
 ### Governed Mode
@@ -34,8 +34,8 @@ Governed Mode is how admins control that. When it's on, AI features in Mixpanel 
 
 **The tradeoff:** Governed Mode puts the burden of verification on admins. If your team ships new events and doesn't verify them, those events won't be accessible to AI — which can make the agents feel incomplete or broken to end users who expect to query everything. Before turning it on, make sure your verification workflow can keep pace with your instrumentation. If it can't, the default experience — where AI prioritizes verified and high-usage data but isn't restricted to it — may serve your team better.
 
-<Callout type="tip">
-Before enabling Governed Mode, audit your verified events against the queries your team asks most often. If your most important metrics aren't verified, start there — then enable the mode once the high-traffic events are covered.
+<Callout type="info">
+    **Pro tip:** Before enabling Governed Mode, audit your verified events against the queries your team asks most often. If your most important metrics aren't verified, start there — then enable the mode once the high-traffic events are covered.
 </Callout>
 
 ---
@@ -68,12 +68,12 @@ Examples of prompts that work:
 
 The agent generates a complete board. Review it, adjust any charts that need refinement, and save.
 
-<Callout type="tip">
-The more your Business Context is configured, the better the generated board will be. If the agent knows what "activation" means at your company, it will use the right events — not its best guess.
+<Callout type="info">
+    **Pro tip:** The more your Business Context is configured, the better the generated board will be. If the agent knows what "activation" means at your company, it will use the right events — not its best guess.
 </Callout>
 
 <Callout type="warning">
-Prompt to Dashboard is a starting point, not a finished artifact. Treat the generated board as a strong first draft — always sanity-check that the events and filters match what you intend to measure.
+    Prompt to Dashboard is a starting point, not a finished artifact. Treat the generated board as a strong first draft — always sanity-check that the events and filters match what you intend to measure.
 </Callout>
 
 ### In practice
@@ -119,8 +119,8 @@ The RCA Agent generates a board with:
 - **Confidence levels** — how strongly the data supports each finding
 - **Suggested next steps** — where to look or what to test next
 
-<Callout type="tip">
-The RCA Agent uses your Business Context when it's configured. If you've defined metric definitions or noted recent launches, the agent factors those in — a drop that coincides with a known event gets interpreted differently than one that doesn't.
+<Callout type="info">
+    **Pro tip:** The RCA Agent uses your Business Context when it's configured. If you've defined metric definitions or noted recent launches, the agent factors those in — a drop that coincides with a known event gets interpreted differently than one that doesn't.
 </Callout>
 
 After reviewing an RCA board, you can rate its accuracy. That feedback improves future results for your project.
@@ -157,11 +157,11 @@ The KPI Agent is for the metric you're accountable for. Set it up once — point
 {/* TODO: Add screenshot of KPI Agent setup flow */}
 
 <Callout type="warning">
-At launch, the KPI Agent supports [Insights](https://docs.mixpanel.com/guides/guides-by-topic/core-reports/discover-insights)-based queries. Funnel and Retention report support is coming in a future release.
+    At launch, the KPI Agent supports [Insights](https://docs.mixpanel.com/guides/guides-by-topic/core-reports/discover-insights)-based queries. Funnel and Retention report support is coming in a future release.
 </Callout>
 
-<Callout type="tip">
-The feedback loop is the feature. Rate your digests — the agent uses those signals to filter what it surfaces in future runs.
+<Callout type="info">
+    The feedback loop is the feature. Rate your digests — the agent uses those signals to filter what it surfaces in future runs.
 </Callout>
 
 ### In practice
