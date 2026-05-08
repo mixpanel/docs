@@ -183,6 +183,68 @@ Not as of now. If you have events with properties you want to delete, you should
     
 Please refer to 'Reminders with ETL Approach' section as you proceed, and submit feedback (accessible in-app with our help menu) if this is a blocker for you and your team
 
+## 3. Drop Filters
+
+Drop Filters let you stop unwanted events from being ingested and stored into Mixpanel going forward. Where [Data Deletion](#2-deleting-problematic-data) addresses *past* problematic data, Drop Filters address it *proactively* — events matching your filter rules are dropped at ingestion and never stored, never queried, and never counted.
+
+You might find this useful if you:
+- Have **unwanted events** (e.g. test or staging events) leaking into your production project
+- Are dealing with **noisy events** that clutter your project without adding analytical value
+- Want to stop ingesting **high-volume events** that aren't being queried
+
+<Callout type="info">
+    Drop Filters only affect events going forward. To remove data already in your project, use [Data Deletion](#2-deleting-problematic-data).
+</Callout>
+
+### Who can use Drop Filters?
+
+- Only Owners have permission to creat drop filters and drop data.
+
+### Supported filter criteria
+
+A Drop Filter targets a specific event, narrowed by one or more property values. Every filter must include:
+
+- **Event name** — the event you want to filter (required)
+- **Event property** — at least one property on that event to filter by (required)
+- **Property values** — one or more values for that property (required)
+
+You can combine multiple criteria within a single filter to target precisely the events you want to drop.
+
+Only events matching the event name *and* the specified property values will be dropped. Filtering by event name alone is not supported with drop filters. To drop a full event by event name with no property filters, go to Lexicon and add a Dropped tag to the event.
+
+### How to use
+
+<Callout type="warning">
+    Dropped events are not stored and cannot be recovered. Review your filter carefully before saving. Filters are active 10 minutes after creation and while drop filters can be deleted, the data dropped while they were active cannot be recovered unless sent to Mixpanel again.
+</Callout>
+
+![image](/drop-filter-1.png)
+
+1. Navigate to **Lexicon > Data Governance > Data Drop And Deletion**
+2. Click **Create Drop Filter**
+3. Select the event you want to drop
+4. Add property + value conditions to narrow the filter
+6. Save the filter
+
+![image](/drop-filter-2.png)
+
+Once saved, the filter takes effect on all newly ingested events. Existing data in your project is unaffected.
+
+### Editing or removing a Drop Filter
+
+To stop dropping events, locate the filter in **Lexicon > Data Governance > Data Drop And Deletion** and delete it. Events sent after that point will be ingested normally.
+
+![image](/drop-filter-3.png)
+
+### Frequently asked questions
+
+***How do Drop Filters impact billing?***
+
+Dropped events are not ingested, so they do not count toward your event volume usage.
+
+***Can I recover events that were dropped?***
+
+No. Dropped events are discarded at ingestion and cannot be recovered. If you need historical analysis on these events, disable the filter first and re-send the data.
 
 ### Other resources
 
