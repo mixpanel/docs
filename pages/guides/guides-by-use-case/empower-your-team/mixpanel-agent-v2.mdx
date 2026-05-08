@@ -1,0 +1,222 @@
+# Replace Your Manual Workflows with Mixpanel Agent
+
+**Mixpanel Agent** is a set of AI capabilities built directly into Mixpanel. Each one removes a different kind of manual work from the path between a question and a decision: building a board, diagnosing a metric shift, or staying current on a KPI you're accountable for.
+
+This guide covers how to get the most out of each capability — and how to migrate workflows you're already running today. If you're looking to query Mixpanel from an external AI tool like Claude or ChatGPT, see [Explore Data with AI](https://docs.mixpanel.com/guides/guides-by-use-case/empower-your-team/mcp) instead.
+
+## Before You Get Started
+
+Two project-level settings shape how all three capabilities behave. It's worth understanding them before you begin.
+
+### Business Context Engine
+
+**What it is:** A shared layer where your team defines the things Mixpanel can't infer from raw events alone: what your key metrics mean, how your fiscal calendar is structured, when major launches happen, how your team is organized. You set it in Org Settings or Project Settings (for multi-project organizations, consider the interaction of organization vs. project level settings). Every AI surface picks it up automatically.
+
+**Why it matters:** Without context, AI answers are generic. With it, the RCA Agent knows that "active" means users who have performed two actions within one day. Prompt to Dashboard knows "onboarded" means a user has completed a key value moment, not just what the word means in general.
+
+**How to set it up:** Go to **Project Settings → Business Context**. Write in plain language — metric definitions, launch dates, team structure, anything an informed new hire would need to know. The AI reads it as background before every query in that project.
+
+<Callout type="tip">
+Start with your primary metric definitions and your fiscal calendar. Those two pieces of context eliminate the most common sources of AI misinterpretation.
+</Callout>
+
+### Governed Mode
+
+Agents are only as good as the data they query. If your Mixpanel project has inconsistent event naming, duplicate metrics, or unverified events, the AI will work with what it finds — and two people asking the same question might get different answers.
+
+Governed Mode is how admins control that. When it's on, AI features in Mixpanel — including the agents — are restricted to querying only [verified data](https://docs.mixpanel.com/docs/data-governance/lexicon): verified events, custom events, metrics, behaviors, and cohorts. Unverified data is still in your project; it's just off-limits to AI.
+
+**When it matters:** This is primarily an enterprise data team concern. If your organization is rolling out AI access to a broad set of users — PMs, engineers, stakeholders who don't know the difference between `checkout_complete` and `checkout_complete_v2` — Governed Mode ensures the AI doesn't surface the wrong one.
+
+**What users see:** When Governed Mode is on, users querying AI features will see a notice indicating that results are limited to verified data. This is intentional — it tells them the constraint is a setting, not a limitation of Mixpanel.
+
+**The tradeoff:** Governed Mode puts the burden of verification on admins. If your team ships new events and doesn't verify them, those events won't be accessible to AI — which can make the agents feel incomplete or broken to end users who expect to query everything. Before turning it on, make sure your verification workflow can keep pace with your instrumentation. If it can't, the default experience — where AI prioritizes verified and high-usage data but isn't restricted to it — may serve your team better.
+
+<Callout type="tip">
+Before enabling Governed Mode, audit your verified events against the queries your team asks most often. If your most important metrics aren't verified, start there — then enable the mode once the high-traffic events are covered.
+</Callout>
+
+---
+
+## Prompt to Dashboard
+
+### What it does
+
+Describe what you want to understand, and Mixpanel builds the dashboard. Natural language in, a complete multi-chart board out — with the charts, breakdowns, and time ranges inferred from your prompt.
+
+This isn't a single-chart suggestion. It generates a full board. You refine from there.
+
+### When to use it
+
+- You're starting analysis on a new topic and don't want to build a board from scratch
+- A stakeholder asked a question you don't have a board for yet
+- You want to explore an area quickly before deciding whether it's worth deeper instrumentation
+
+### How to use it
+
+From the **[Boards](https://docs.mixpanel.com/guides/guides-by-topic/core-reports/create-boards)** section, describe what you want to monitor. Be as specific or as general as your question is — the agent fills in what it can infer from your data.
+
+{/* TODO: Add screenshot of Prompt to Dashboard interface */}
+
+Examples of prompts that work:
+
+- "Show me how our onboarding funnel performed last quarter by acquisition channel"
+- "Build a dashboard for our new checkout flow — conversion, drop-off points, and mobile vs. desktop"
+- "I need to understand what's driving retention in our power user cohort"
+
+The agent generates a complete board. Review it, adjust any charts that need refinement, and save.
+
+<Callout type="tip">
+The more your Business Context is configured, the better the generated board will be. If the agent knows what "activation" means at your company, it will use the right events — not its best guess.
+</Callout>
+
+<Callout type="warning">
+Prompt to Dashboard is a starting point, not a finished artifact. Treat the generated board as a strong first draft — always sanity-check that the events and filters match what you intend to measure.
+</Callout>
+
+### In practice
+
+Marcus leads growth at a consumer app. His VP asks on a Monday afternoon: "Can you put together a view of how our referral program is performing?" A dashboard like that would normally take Marcus an hour to build.
+
+He types the request into Prompt to Dashboard: "Show me referral program performance — invites sent, signups from referrals, conversion rate, and breakdown by referral channel."
+
+The agent generates a six-chart board with text cards explaining each metric in under a minute. Marcus adjusts one chart where the agent used the wrong event for "invite sent" and sends the link to his VP before end of day.
+
+---
+
+## RCA Agent
+
+### What it does
+
+When a metric moves, the RCA Agent tells you why. Trigger it from an [Insights](https://docs.mixpanel.com/guides/guides-by-topic/core-reports/discover-insights) report or an [alert](https://docs.mixpanel.com/docs/features/alerts), and it generates a board: contribution factor analysis, ranked dimensions, an AI interpretation of the shift, confidence levels, and suggested next steps.
+
+This is the "something happened, explain it" capability. It's reactive by design — it runs when you ask it to.
+
+### When to use it
+
+- A chart moved and you want an explanation without 30 minutes of manual segment slicing
+- An alert fired and you need to know whether it's signal or noise before escalating
+- You want a structured, shareable artifact — not just a hypothesis about what happened
+
+### How to run it
+
+Two entry points:
+
+- **From an [Insights](https://docs.mixpanel.com/guides/guides-by-topic/core-reports/discover-insights) report:** When you see a metric shift, trigger RCA directly from the report. The agent analyzes the visible change in context.
+- **From an [alert](https://docs.mixpanel.com/docs/features/alerts):** When an alert fires, launch RCA from the notification. This connects detection to diagnosis without switching contexts.
+
+{/* TODO: Add screenshot of RCA trigger UI */}
+
+### What you get back
+
+The RCA Agent generates a board with:
+
+- **Contribution factor analysis** — which dimensions explain the most variance in the shift
+- **Ranked dimensions** — the segments or properties most likely driving the change, ordered by significance
+- **AI interpretation** — a plain-language explanation of what the analysis shows
+- **Confidence levels** — how strongly the data supports each finding
+- **Suggested next steps** — where to look or what to test next
+
+<Callout type="tip">
+The RCA Agent uses your Business Context when it's configured. If you've defined metric definitions or noted recent launches, the agent factors those in — a drop that coincides with a known event gets interpreted differently than one that doesn't.
+</Callout>
+
+After reviewing an RCA board, you can rate its accuracy. That feedback improves future results for your project.
+
+### In practice
+
+Priya is a PM at a SaaS company. On a Tuesday morning she sees her checkout completion rate dropped 9% week-over-week. She triggers the RCA Agent from the Insights report.
+
+The top contribution factor: users on iOS 17.4, accounting for 61% of the variance. The drop started on Friday — the same day a payment SDK update shipped. Ranked second: users in the EU, though the agent notes low confidence on that dimension.
+
+Priya shares the RCA board directly with the engineering team: "SDK-related, iOS 17.4, started Friday, confidence is high." They're investigating within the hour.
+
+---
+
+## KPI Agent
+
+### What it does
+
+The KPI Agent is for the metric you're accountable for. Set it up once — point it at a KPI, choose a cadence, pick a delivery destination — and it sends you a personalized digest on schedule. You rate what you receive, and the agent uses that feedback when generating future digests.
+
+### When to use it
+
+- You own a KPI and need to stay informed without opening a dashboard every day
+- You send a weekly metric update to a stakeholder and want to stop building it manually
+- You want a digest that reflects what matters to you, not just raw numbers
+
+### How to set it up
+
+1. Choose the metric you want to monitor ([Insights](https://docs.mixpanel.com/guides/guides-by-topic/core-reports/discover-insights)-based queries at launch)
+2. Set your cadence — daily or weekly
+3. Choose your delivery destination — Slack or in-product
+4. Rate the digests you receive — the agent uses those signals when generating future runs
+
+{/* TODO: Add screenshot of KPI Agent setup flow */}
+
+<Callout type="warning">
+At launch, the KPI Agent supports [Insights](https://docs.mixpanel.com/guides/guides-by-topic/core-reports/discover-insights)-based queries. Funnel and Retention report support is coming in a future release.
+</Callout>
+
+<Callout type="tip">
+The feedback loop is the feature. Rate your digests — the agent uses those signals to filter what it surfaces in future runs.
+</Callout>
+
+### In practice
+
+Lena is a data analyst at a fintech company. Every Thursday she pulled weekly active users manually, wrote two sentences of context, and pasted it into a Slack update.
+
+She sets up the KPI Agent on the WAU Insights query with a Wednesday evening delivery to Slack. After rating a few digests — thumbs down when the agent surfaces noise about outlier segments, thumbs up when it correctly flags the week-over-week comparison she always checks — the digest sharpens. The Thursday update now takes 90 seconds instead of 20 minutes.
+
+---
+
+## Migrating your existing workflows
+
+Agents don't replace how you think about your data. They replace the mechanical work between a question and an answer.
+
+### Direct migrations
+
+These are 1:1 replacements. If you're doing any of these today, an agent handles it better.
+
+| If you currently... | Migrate to... | What changes |
+| :--- | :--- | :--- |
+| Send Board Subscriptions to stakeholders on a schedule | KPI Agent | The digest includes interpretation, not just numbers. |
+| Manually pull a metric each week and write a summary update | KPI Agent | The pull and the summary are automated. Your job is to review and act. |
+| Open Mixpanel every morning to check if anything moved | KPI Agent | It comes to you. |
+| Investigate an [alert](https://docs.mixpanel.com/docs/features/alerts) by manually building breakdowns and filtering by segment | RCA Agent | The investigation runs automatically when the alert fires. You get a ranked explanation instead of a starting point. |
+| Build boards from scratch or browse templates to find a starting point | Prompt to Dashboard | Describe what you want to understand. The board is your first draft. |
+| Copy a teammate's board and customize it for your team | Prompt to Dashboard | Describe your team's specific question and get a board built for it directly. |
+
+### Workflows that weren't practical before
+
+These aren't replacements — they're things that were too expensive to do regularly. Agents change that.
+
+**[Alerts](https://docs.mixpanel.com/docs/features/alerts) now come with answers.** Before, an alert fired and you spent 30–60 minutes figuring out why — building breakdowns, filtering by segment, comparing cohorts. Now, pair every meaningful alert with RCA. When it fires, the investigation runs automatically. You get a confidence-weighted explanation before you've opened Mixpanel.
+
+**You can afford to ask questions you would have skipped.** "We should look at referral performance by acquisition channel" used to be a 2-hour task. Most of those questions didn't get answered because the person who could answer them was already underwater. That same question is now a 5-minute task. The cost of a new analytical question dropped to near zero.
+
+**Metric ownership now means judgment, not reporting.** Before, owning a KPI meant opening a dashboard regularly, pulling the number, writing two sentences, and sharing it upward. The mechanical parts fell to the person accountable for the metric. Now those parts are automated. What's left is the work that actually matters: interpreting movement, deciding what to investigate, and choosing what to do next.
+
+---
+
+## Key Takeaways
+
+- Configure Business Context before you do anything else — it's what turns generic AI responses into answers that reflect how your team actually works.
+- Governed Mode is the right call for teams with broad AI access and a mature verification workflow. If your verification can't keep pace with instrumentation, the default experience is more reliable.
+- Prompt to Dashboard is a starting point, not a finished product. Treat every generated board as a first draft and sanity-check the events before sharing.
+- Pair every meaningful alert with RCA. The alert tells you something moved; RCA tells you why, before you've had to open a single breakdown.
+- The KPI Agent's feedback loop is the feature. Rate your digests — that's what sharpens them over time.
+- The biggest shift these capabilities make isn't speed — it's what becomes worth doing. Questions that weren't practical before now take minutes.
+
+---
+
+## Quick reference
+
+|  | Prompt to Dashboard | RCA Agent | KPI Agent |
+| :--- | :--- | :--- | :--- |
+| **Trigger** | On-demand | On-demand | Scheduled |
+| **Scope** | New board creation | Single metric shift | Single metric |
+| **Output** | Multi-chart dashboard | Generated RCA board | Personalized digest |
+| **Delivery** | In-product | In-product | Slack or in-product |
+| **Best for** | Building a board fast | Explaining what changed | Staying close to a metric |
+| **Uses Business Context** | Yes | Yes | Coming soon |
