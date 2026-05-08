@@ -6,8 +6,6 @@ Hierarchical Groups is a purpose-built data model for B2B products where **users
 
 ## Overview
 
-### The Hierarchy
-
 Hierarchical Groups uses a two-level structure:
 
 - **Company level** (top): Identified by `$company_id`. Represents an account, organization, workspace, or any top-level entity.
@@ -23,40 +21,34 @@ In a Hierarchical Groups project, Mixpanel constructs the `$distinct_id` from th
 $distinct_id = $company:<company_id>|$user:<user_id>
 ```
 
-This has a critical implication: **`$user_id` is not globally unique.** A user with `$user_id: alice` in `$company_id: acme` is a completely different user from `$user_id: alice` in `$company_id: globex`. They will have separate profiles and their events will be counted independently.
+This has a critical implication: **`$user_id` is not globally unique.** A user with `$user_id: alice` in `$company_id: acme` is a completely different user from `$user_id: alice` in `$company_id: globex`. They will have separate profiles and their events will be counted independently. 
+
+Additionally, `$company_id` and `$user_id` must be set at the same time. Setting either property determines the canonical `$distinct_id` for a user based on the composite properties available. If `$company_id` or `$user_id` are missing Mixpaenl will generate a canonical user_id that does not include the missing property. For example, a user with `$user_id: alice` without a `$company_id` cannot be later attributed to the same user that is `$user_id: alice` in `$company_id: acme`.
 
 ### How Analysis Works
 
-When you analyze by **Company**, Mixpanel implicitly filters to events where `$company_id` is set and counts uniques by `$company_id`. When you analyze by **User**, it counts uniques by the composite `$distinct_id`. Additional group keys you define (beyond `$company_id` and `$user_id`) also implicitly filter by `$company_id` when used in analysis.
-
-The **"Number of users who did…"** computed property is available for Company-level analysis, letting you segment companies by the count and quality of their active users.
+When you analyze by **Company**, Mixpanel implicitly filters to events where `$company_id` is set and counts uniques by `$company_id`. When you analyze by **User**, it counts uniques by the composite `$distinct_id`. Additional group keys you define (beyond `$company_id` and `$user_id`) also implicitly filter by `$company_id`. The additional group keys are defined by the composite of `$company_id` and `<other_group_key>` (team, org, etc.). The hierarchy will only ever extend one level company -> user or company -> other_group.
 
 ## Prerequisites
 
 Before enabling Hierarchical Groups, make sure you meet these requirements:
 
-**You must have a stable `$company_id` value.** Every event and every profile requires a `$company_id`. If you don't yet know what value to use for this property, do not enable Hierarchical Groups — you cannot use a placeholder or null value and fix it later (see [Constraints](#constraints) below).
+**You must have a stable `$company_id` and `$user_id` value.** You cannot use identity management to merge different composites of a `$company_id` and `$user_id` together. If you don't yet know what value to use for these properties, we do not recommend enabling Hierarchical Groups. It is possible to merge anonymous events (only `$device_id`, no `$company_id` and `$user_id` properties set) to a `$company_id` and `$user_id` composite with Simplified ID merge (see [Identity Management](#id_managment) below).
 
-**You must use ID Management V3.** Hierarchical Groups is not supported on projects using ID Management V2.
+**You must use Simplified ID Merge.** Hierarchical Groups is not supported on projects using Original ID Merge.
 
-**This is a project-creation-time decision.** You cannot convert an existing standard project to Hierarchical Groups, and you cannot remove Hierarchical Groups from a project once enabled. Choose your model before sending any data.
+**This is a project-creation-time decision.** You cannot convert an existing standard project to Hierarchical Groups, and you cannot remove Hierarchical Groups from a project once enabled. Choose your model before sending any data. Existing projects would need to have their data migrated to a *new* Hierarchical project to work on this system.
 
-## Constraints
+## Identity Management
+NEED TO FILL THIS IN
 
-Understanding these constraints upfront will save you from data quality problems down the road.
 
-**No null or placeholder `$company_id` values.** If you send events with `$company_id` set to null (or omit it entirely), the `$distinct_id` for that event will not include a company prefix. For example, an event with only `$user_id: alice` and no `$company_id` will get `$distinct_id = alice` rather than `$company:acme|$user:alice`. If you later send events for the same user *with* a `$company_id`, Mixpanel treats them as two different users — resulting in split profiles and inaccurate counts. There is no way to merge these after the fact.
+## Implementation
+Hierarchical groups can only be implemented via Data Warehouse Connectors or directly via the HTTP APIs. The groups methods in Mixpanel's SDKs only support classic groups presently.
 
-**`$company_id` and `$user_id` must be different values.** If you map the same column to both `$company_id` and `$user_id` (or they happen to share the same value), the generated `$distinct_id` will be malformed. This causes events and profile properties to be tied to incorrect users. Always use distinct columns or values for each level of the hierarchy.
+### Events
 
-**`$user_id` is required on events.** In standard Warehouse Connector imports, `User ID` mapping is optional. In Hierarchical Groups projects, it is **required**. Events without a `$user_id` will still be ingested, but they will only be attributable at the Company level — they will not appear in User-level analysis.
-
-**No migration path.** You cannot start with a standard Mixpanel project and later migrate to Hierarchical Groups. If you are unsure whether you need the hierarchy, it is better to start with a standard project and migrate to a *new* Hierarchical project later (which requires re-importing your data with correct `$company_id` values on every event).
-
-## Implementation: Events
-
-### Import API
-
+#### Import API
 When sending events via the Import API, include `$company_id` and `$user_id` as event properties. The `distinct_id` property should also be present but Mixpanel will override it with the composite identity.
 
 ```bash
@@ -85,7 +77,7 @@ After ingestion, this event will have:
 - `$user_id`: `alice`
 - `$distinct_id`: `$company:acme_corp|$user:alice`
 
-### Warehouse Connector
+#### Warehouse Connector: Events
 
 When creating a Warehouse Connector for events:
 
@@ -96,26 +88,33 @@ When creating a Warehouse Connector for events:
 
 After the sync runs, verify that your events carry all three properties: `$company_id`, `$user_id`, and the auto-generated `$distinct_id` in the format `$company:<company_id>|$user:<user_id>`.
 
-## Implementation: Company Profiles
+### Profiles
 
-Company profiles store metadata about companies (account name, plan tier, industry, ARR, etc.). They appear in the **Users** tab under the **Company** section.
+Profiles store metadata about entity (company, user, and any other groups youve set up). They appear in the **Users** tab of the UI. At the top of the page you will see the groups that you've set up.
 
-### Warehouse Connector
+INSERT_PICTURE_HERE
+
+#### Warehouse Connector: Profiles
 
 1. Create a new Warehouse Connector and select **Group Table** as the source type.
 2. At the **Map Columns** step:
-   - Set **Group Key** to `$company_id`.
-   - Set **Group ID** to the column containing your company identifier.
-   - Set **Company ID** to the **same column** as Group ID — this ensures the profile is correctly associated with the hierarchy.
-3. Map any additional columns to company profile properties.
+   - Set **Group Key** to the group you want this sync to send profile data for (`$company_id`, `$user_id`, etc.)
+   - Set **Group ID** to the column containing your group identifier values.
+   - Set **Company ID** to the column containing the identifier values for `$company_id` — this ensures the profile is correctly associated within the hierarchy.
+3. Map any additional columns to profile properties.
 4. Create the sync.
 
-After import, company profiles will have a Distinct ID in the format `$company:<company_id>`.
+After import, profiles will have a Distinct ID in the format `$company:<company_id>` if doing a `$company_id` sync, `$company:<company_id>|$user:<user_id>` for a user sync, or `$company:<company_id>|<other_group_key>:<other_group_key_value>` for other groups you've set up.
 
 ### Groups API
 
-To create or update company profiles via the HTTP API, use the `/groups` endpoint. You **must** include `$company_id` at the outer level of the payload (outside of `$set`):
+To create or update company profiles via the HTTP API, use the `/groups` endpoint. There are three key values that must be set in order to properly set profiles for hierarchical groups (outside of `$set`) - `$group_key`, `$group_id`, and `$company_id`.
 
+- `$group_key` - this should be set to the name of the group key you want to set the profile properties to (`$company_id`, `$user_id`, etc.)
+- `$group_id` - this should be set to the actual value of the group key you want to set those properties on (`acme_corp`, `user_123`, etc.)
+- `$company_id` - this should be the value of the parent `$company_id` associated with this child entity (`acme_corp`)
+
+Company Profile Example:
 ```bash
 curl --request POST \
   --url 'https://api.mixpanel.com/groups?strict=1' \
@@ -136,28 +135,7 @@ curl --request POST \
   ]'
 ```
 
-> **Important:** The `$group_id` value should be the bare company ID (e.g., `acme_corp`), not the prefixed form (`$company:acme_corp`). Using the prefixed form will cause the request to fail silently or produce stuck items.
-
-## Implementation: User Profiles
-
-User profiles store metadata about individual users within companies (role, signup date, last active, etc.). They appear in the **Users** tab under the **User** section.
-
-### Warehouse Connector
-
-> **Important:** User profiles in Hierarchical Groups projects use the **Group Table** source type, not "User Table." Using "User Table" will produce incorrect results.
-
-1. Create a new Warehouse Connector and select **Group Table** as the source type.
-2. At the **Map Columns** step:
-   - Set **Group Key** to `$user_id`.
-   - Set **Group ID** to the column containing your user-level identifier.
-   - Set **Company ID** to the column containing your company-level identifier (the same value used in your events and company profiles).
-3. Map any additional columns to user profile properties.
-4. Create the sync.
-
-### Groups API
-
-To create or update user profiles via the HTTP API:
-
+User Profile Example:
 ```bash
 curl --request POST \
   --url 'https://api.mixpanel.com/groups?strict=1' \
@@ -177,14 +155,7 @@ curl --request POST \
   ]'
 ```
 
-As with company profiles, use the bare `$group_id` value (e.g., `alice`), not the composite form.
-
-## Implementation: Additional Group Keys
-
-You can define additional group keys beyond `$company_id` and `$user_id` (e.g., `team_id`, `workspace_id`). These function similarly to standard group keys but inherit the hierarchical context — when used in analysis, they implicitly filter to events where `$company_id` is set.
-
-To create profiles for additional group keys via the API, include `$company_id` at the outer level:
-
+Additional Group Key Example:
 ```bash
 curl --request POST \
   --url 'https://api.mixpanel.com/groups?strict=1' \
@@ -202,6 +173,7 @@ curl --request POST \
     }
   ]'
 ```
+> **Important:** The values of `$group_key`, `$group_id`, and `$company_id` value should be the bare ID (e.g., `acme_corp`), not the prefixed form (`$company:acme_corp`).
 
 ## FAQ
 
@@ -211,23 +183,13 @@ No. Hierarchical Groups must be enabled at project creation. If you later decide
 **What happens if I send events without `$company_id`?**
 The event will still be ingested, but the `$distinct_id` will not include the company prefix. The event will not appear in Company-level analysis. If you later send events for the same `$user_id` with a `$company_id`, Mixpanel will treat them as different users, resulting in split profiles.
 
-**What happens if `$company_id` and `$user_id` have the same value?**
-The `$distinct_id` will be `$company:<value>|$user:<value>`, which is technically valid but can cause confusion. More critically, if you map the same source column to both Company ID and User ID in a Warehouse Connector, it can cause SCD events and profile properties to be tied to incorrect users. Always use distinct values.
-
-**Can a user belong to multiple companies?**
-No. The model enforces a many-to-one relationship: each user belongs to exactly one company. If you have users who genuinely operate across multiple companies, they will appear as separate users in Mixpanel (one per company).
-
 **Is the same `$user_id` in two different companies treated as two different users?**
 Yes. User identity is the composite key (`$company_id`, `$user_id`). An event with `$company_id: acme` and `$user_id: alice` is a completely different user from `$company_id: globex` and `$user_id: alice`. They will have separate profiles and separate event histories.
 
 **Why do my user profiles not appear after a Warehouse Connector sync?**
 The most common causes are:
 1. You used a "User Table" source type instead of "Group Table." User profiles in Hierarchical Groups must use the Group Table type.
-2. You mapped the same column to both Group ID and Company ID. The Group ID should be the user-level identifier; the Company ID should be the company-level identifier.
 3. The `$user_id` and `$company_id` values in the profile sync don't match the values on your events, so they're creating profiles that don't correspond to any event data.
 
-**Can I use the `/engage` endpoint for user profiles?**
-For Hierarchical Groups projects, use the `/groups` endpoint for both company and user profiles. The behavior of `/engage` in Hierarchical Groups projects may produce unexpected results — use `/groups` with the appropriate `$group_key` instead.
-
-**Does Hierarchical Groups work with ID Management V2?**
-No. Hierarchical Groups requires ID Management V3. If your project uses V2, it is not compatible.
+**Does Hierarchical Groups work with Original ID Merge**
+No. Hierarchical Groups requires Simplified ID Merge. If your project uses Original ID Merge, it is not compatible.
