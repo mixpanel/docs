@@ -50,9 +50,11 @@ Mixpanel Agent gives you three capabilities. They're designed to work together, 
 
 They map to three distinct moments in how you work with data: building a view, explaining a change, and staying close to a metric over time.
 
-**The full loop in practice:** A stakeholder asks for a view of onboarding performance after a recent flow change. Prompt to Dashboard generates the board in minutes. The next day, the PM notices activation dropped 8% and triggers RCA — which traces it to a new onboarding variant. The team pauses the variant. She sets up the KPI Agent on activation rate to watch the recovery.
+**The full loop in practice:** A stakeholder asks for a view of onboarding performance after a recent flow change. Prompt to Dashboard generates the board in minutes. The next day, the PM notices activation dropped 8% and triggers RCA, which traces it to a new onboarding variant. The team pauses the variant. The PM sets up the KPI Agent on activation rate to watch the recovery.
 
-Your judgment is still in the middle of that loop. What the three capabilities remove is the mechanical work surrounding the decisions.
+<Callout type="info">
+    **Pro tip:** Your judgment is still in the middle of that loop. What the three capabilities remove is the mechanical work surrounding the decisions.
+</Callout>
 
 ---
 
@@ -70,7 +72,7 @@ Describe what you want to understand, and Mixpanel builds the dashboard — char
 
 ### How to use it
 
-From the [Boards](/docs/boards)section, describe what you want to monitor. Be as specific or as general as the question is.
+From the [Boards](/docs/boards) section, describe what you want to monitor. Be as specific or as general as the question is.
 
 {/* TODO: Add screenshot of Prompt to Dashboard interface */}
 
@@ -113,8 +115,8 @@ This is reactive by design — it runs when you ask it to.
 
 ### How to run it
 
-- **From an [Insights](/docs/reports/insights) report:** Trigger RCA directly when you see a metric shift. The agent analyzes the visible change in context.
-- **From an [alert](/docs/features/alerts):** Launch RCA from the notification. Detection and diagnosis in one step.
+- **From an Insights report:** Trigger RCA directly when you see a metric shift. The agent analyzes the visible change in context.
+- **From an alert:** Launch RCA from the notification. Detection and diagnosis in one step.
 
 {/* TODO: Add screenshot of RCA trigger UI */}
 
@@ -178,7 +180,7 @@ Agents don't replace how you think about your data. They replace the mechanical 
 | Send Board Subscriptions to stakeholders on a schedule | KPI Agent | The digest includes interpretation, not just numbers. |
 | Manually pull a metric each week and write a summary | KPI Agent | The pull and the summary are automated. Your job is to review and act. |
 | Open Mixpanel every morning to check if anything moved | KPI Agent | It comes to you. You know when and where to dig into Mixpanel. |
-| Investigate an [alert](/docs/features/alerts) by manually building breakdowns | RCA Agent | The investigation runs automatically. You get a ranked explanation instead of a starting point. |
+| Investigate an alert by manually building breakdowns | RCA Agent | The investigation runs automatically. You get a ranked explanation instead of a starting point. |
 | Build boards from scratch or browse templates to find a starting point | Prompt to Dashboard | Describe your question. The board is your first draft. |
 | Copy a teammate's board and customize it for your team | Prompt to Dashboard | Skip the copy. Describe your team's specific question and get a board built for it directly. |
 
