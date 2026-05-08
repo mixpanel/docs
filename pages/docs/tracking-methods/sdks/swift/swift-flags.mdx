@@ -61,7 +61,7 @@ Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN", options: options)
 
 Minimum supported SDK version: [`v6.4.0`](https://github.com/mixpanel/mixpanel-swift/releases/tag/v6.4.0)
 
-By default (`networkOnly`), the SDK fetches fresh flag assignments on app launch and waits for the network response before variant calls complete. You can enable persistence to persist assignments to UserDefaults so they are available immediately on subsequent launches.
+By default (`networkOnly`), the SDK fetches fresh flag assignments and waits for the network response before variant calls complete. You can enable persistence to persist assignments to UserDefaults so they are available immediately on subsequent launches.
 
 Configure a `variantLookupPolicy` on `FeatureFlagOptions`:
 

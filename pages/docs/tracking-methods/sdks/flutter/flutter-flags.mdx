@@ -80,7 +80,7 @@ Minimum supported SDK version: [`v2.8.0`](https://github.com/mixpanel/mixpanel-f
 Flag persistence is supported on iOS and Android. Web support is coming soon. On Web, the `variantLookupPolicy` is treated as `networkOnly` regardless of what is configured.
 </Callout>
 
-By default (`networkOnly`), the SDK fetches fresh flag assignments on each launch and waits for the network response before variant calls complete. You can enable persistence so that assignments are persisted on-device and available immediately on subsequent launches (iOS and Android only).
+By default (`networkOnly`), the SDK fetches fresh flag assignments and waits for the network response before variant calls complete. You can enable persistence so that assignments are persisted on-device and available immediately on subsequent launches (iOS and Android only).
 
 Configure a `variantLookupPolicy` on `FeatureFlagsConfig`:
 
@@ -102,7 +102,7 @@ dynamic value = await flags.getVariantValue("my-feature-flag", "control");
 // value is from the network response, or from persistence if the network was unavailable
 ```
 
-**`persistenceUntilNetworkSuccess`** — Persisted variants are returned immediately on launch. On iOS and Android, each getter call while serving persisted data triggers a background network fetch (deduplicated — only one fetch runs at a time). If the fetch fails, persisted data continues to be served and the next getter call retries the fetch. Once a fetch succeeds, the in-memory state updates and subsequent calls no longer trigger background fetches.
+**`persistenceUntilNetworkSuccess`** — Persisted variants are returned immediately on launch. On iOS and Android, each getter call while serving persisted data triggers a background network fetch. If the fetch fails, persisted data continues to be served and the next getter call retries the fetch. Once a fetch succeeds, the in-memory state updates and subsequent calls no longer trigger background fetches.
 
 ```dart
 Mixpanel mixpanel = await Mixpanel.init(

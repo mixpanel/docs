@@ -82,7 +82,7 @@ MixpanelAPI mixpanel = MixpanelAPI.getInstance(getApplicationContext(), "YOUR_PR
 
 Minimum supported SDK version: [`v8.7.0`](https://github.com/mixpanel/mixpanel-android/releases/tag/v8.7.0)
 
-By default (`networkOnly`), the SDK fetches fresh flag assignments on app launch and waits for the network response before variant calls complete. You can enable persistence to persist assignments to SharedPreferences so they are available immediately on subsequent launches.
+By default (`networkOnly`), the SDK fetches fresh flag assignments and waits for the network response before variant calls complete. You can enable persistence to persist assignments to SharedPreferences so they are available immediately on subsequent launches.
 
 Configure a `variantLookupPolicy` on the `FeatureFlagOptions` builder:
 

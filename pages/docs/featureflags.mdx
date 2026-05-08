@@ -256,7 +256,7 @@ Persistence is configured with a `variantLookupPolicy`, which accepts one of thr
 
 | Policy | Behavior |
 |--------|----------|
-| `networkOnly` *(default)* | No persistence of variants.Every lookup waits for a fresh network response.|
+| `networkOnly` *(default)* | No persistence of variants. Every lookup waits for a fresh network response.|
 | `networkFirst` | The SDK waits for a network response first. If the network fails, previously persisted variants are served as a fallback |
 | `persistenceUntilNetworkSuccess` | Persisted variants are served immediately on launch. The next time a network call succeeds, the variants will update the in-memory state as well as be persisted to the device. |
 
