@@ -59,6 +59,7 @@ export default {
     ),
   },
   "mcp": "MCP Server",
+  "business-context": "Business Context",
   admin: {
     type: "separator",
     title: (
