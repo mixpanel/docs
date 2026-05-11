@@ -4,9 +4,9 @@ import { Callout, Steps } from 'nextra/components'
 
 **Mixpanel Agent** is an AI analyst built directly into Mixpanel. Ask it a question or give it a task and it interprets your intent, selects the right tools, and returns an answer without you specifying each step.
 
-This guide covers how to get the most out of each capability and how to migrate workflows you're already running today. If you're looking to query Mixpanel from an external AI tool like Claude or ChatGPT, see [Use Mixpanel MCP](/guides/guides-by-use-case/empower-your-team/mcp) instead.
-
 You use it in two ways. The first is conversational: ask it a question, describe what you want to see, and it responds in the moment. The second is through agents you configure: set one up once and it runs on your behalf — monitoring, explaining, interpreting — without you having to ask each time. You'll find Mixpanel Agent in the side navigation for a full-page experience, or as a contextual panel you can open alongside any report or board.
+
+This guide covers how to get the most out of each capability and how to migrate workflows you're already running today. If you're looking to query Mixpanel from an external AI tool like Claude or ChatGPT, see [Use Mixpanel MCP](/guides/guides-by-use-case/empower-your-team/mcp) instead.
 
 ## Before You Get Started
 
@@ -32,7 +32,7 @@ When it's on, all AI features are restricted to [verified data](/docs/data-gover
 
 This is primarily an enterprise concern. It's most valuable when you're rolling out AI access broadly — to PMs, engineers, and stakeholders who may not know the difference between `checkout_complete` and `checkout_complete_v2`.
 
-The tradeoff: Verified Mode puts the burden of verification on admins. If your team ships events faster than they get verified, the agents will feel incomplete. Before enabling it, make sure your verification workflow can keep pace. If it can't, the default experience — where AI prioritizes verified and high-usage data without being restricted to it — is probably the better call.
+The tradeoff: Verified Mode puts the burden of verification on admins. If your team ships events faster than they get verified, the agents will feel incomplete. Before enabling it, make sure your verification workflow can keep pace. If it can't, the default experience, where AI prioritizes verified and high-usage data without being restricted to it, is probably the better call.
 
 <Callout type="info">
     **Pro tip:** Before enabling Verified Mode, audit your verified events against the queries your team runs most often. Get your high-traffic events verified first, then enable the mode.
