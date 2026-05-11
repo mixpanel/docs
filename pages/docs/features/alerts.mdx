@@ -17,7 +17,7 @@ Suggested page structure (in order):
   6. Webhook Alerts                  [UNCHANGED — minor nav note added]
   7. View & Manage Alerts            [UPDATED]
   8. Alert Criteria Types            [UNCHANGED]
-  9. Root Cause Analysis             [UNCHANGED]
+  9. Root Cause Analysis             [UPDATED] ← one-paragraph tease linking to the new top-level RCA page
 =============================================================================
 */}
 
@@ -358,26 +358,15 @@ Each organization has a limit of 50 active Anomaly Detection Alerts. A warning b
 When displaying decimal values, the current value shown in alert messages is rounded to 2 decimal places. This can make it appear to be outside the alert range when it is very close to the boundary. The actual alert is always checked against the full unrounded value.
 
 {/* ============================================================ */}
-{/* SECTION 9: ROOT CAUSE ANALYSIS — [UNCHANGED] */}
-{/* No content changes. Copy as-is from live doc. */}
+{/* SECTION 9: ROOT CAUSE ANALYSIS — [UPDATED] */}
+{/* RCA lives on its own top-level page under MIXPANEL AI at */}
+{/* /docs/root-cause-analysis. This section is now just a */}
+{/* one-paragraph tease so users on the Alerts page know the */}
+{/* feature exists. The H2 anchor #root-cause-analysis is preserved */}
+{/* for inbound deep links. Keep this section short — alert↔RCA */}
+{/* mechanics belong on the RCA page, not here. */}
 {/* ============================================================ */}
 
 ## Root Cause Analysis
 
-Mixpanel's Root Cause Analysis (RCA) feature analyzes the properties of unexpected events and automatically generates a Board with reports broken down by relevant properties, so you can investigate the underlying cause of any anomalous data point or triggered alert.
-
-RCA Boards can be accessed from alert trigger messages delivered via Slack, email, or webhook. Each alert is tied to one Root Cause Analysis Board that can be accessed and edited by anyone in your organization. With this one-to-one pairing, edits made by one teammate are visible to others. Duplicate the board if you want to make independent edits.
-
-If the original Board is deleted, another can be generated from the alert trigger message.
-
-### Root Cause Analysis Board
-
-The RCA Board provides a comprehensive view of the data related to the triggered alert or selected data point. Mixpanel scans the top properties of the original event and generates a report for each property, so you can visually explore the relationship between properties and the anomalous data point.
-
-Key features:
-
-- **12 segmented reports** are generated, showing the triggered event broken down by its top relevant properties.
-- Each segmented report is **filtered by a date range** that matches the original alert's time window — using a custom date range (not a relative one) to ensure consistency on future visits.
-- The board includes **links to the original report** where the alert was set up, as well as a link to the alert's configuration settings.
-
-By leveraging Root Cause Analysis, you can quickly identify the factors driving anomalies, take targeted action, and collaborate with your team without losing context.
+When an alert fires, you can launch AI-powered [Root Cause Analysis](/docs/root-cause-analysis) directly from the trigger notification to automatically diagnose what drove the change. See the [Root Cause Analysis](/docs/root-cause-analysis) page for the full feature.
