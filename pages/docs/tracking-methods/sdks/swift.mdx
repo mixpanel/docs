@@ -6,7 +6,7 @@ import { Callout, Tabs } from 'nextra/components'
 
 Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=swift).
 
-The [Full API Reference](https://mixpanel.github.io/mixpanel-swift/), [Library Source Code](https://github.com/mixpanel/mixpanel-swift), and an [Example Application](https://github.com/mixpanel/mixpanel-swift/tree/master/MixpanelDemo/MixpanelDemo) is documented in our GitHub repo.
+The [Full API Reference](https://mixpanel.github.io/mixpanel-swift/), [Library Source Code](https://github.com/mixpanel/mixpanel-swift), and an [Example Application](https://github.com/mixpanel/mixpanel-swift/tree/master/MixpanelDemo/MixpanelDemo) are documented in our GitHub repo.
 
 ## Installing the Library
 
@@ -26,7 +26,7 @@ You can install the Swift library by using CocoaPods, Carthage, or Swift Package
     gem install cocoapods
     ```
 
-    2. After install CocoaPods, create a local CocoaPods spec mirror by running the following:
+    2. After installing CocoaPods, create a local CocoaPods spec mirror by running the following:
 
     ```bash
     # Create CocoaPods spec mirror
@@ -126,7 +126,7 @@ func application(_ application: UIApplication,
     let options = MixpanelOptions(
         token: "YOUR_PROJECT_TOKEN",
         serverURL: "https://api-eu.mixpanel.com",
-        flushInterval: 15,
+        flushInterval: 15
     )
     Mixpanel.initialize(options: options)
 
@@ -436,7 +436,7 @@ A few commonly used people methods are highlighted below:
     ```
   </Tabs.Tab>
   <Tabs.Tab>
-    The [`append(properties:)`](https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:8Mixpanel6PeopleC6append10propertiesySDySSAA0A4Type_pG_tF) method append values to a list profile property.
+    The [`append(properties:)`](https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:8Mixpanel6PeopleC6append10propertiesySDySSAA0A4Type_pG_tF) method appends values to a list profile property.
 
     Use this method to add additional values to an existing list property instead of redefining the entire list.
 
@@ -464,7 +464,7 @@ A few commonly used people methods are highlighted below:
 
   </Tabs.Tab>
   <Tabs.Tab>
-    The [`union(properties:)`](https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:8Mixpanel6PeopleC5union10propertiesySDySSAA0A4Type_pG_tF) method append new values to a list property, excluding duplicates.
+    The [`union(properties:)`](https://mixpanel.github.io/mixpanel-swift/Classes/People.html#/s:8Mixpanel6PeopleC5union10propertiesySDySSAA0A4Type_pG_tF) method appends new values to a list property, excluding duplicates.
 
     Use this method to create a list profile property that only contains unique values without duplicates.
 
@@ -482,7 +482,7 @@ A few commonly used people methods are highlighted below:
         ])
     
     /// add "legal" to "roles"
-    /// "roles" = ['sales','engineer','engineer']
+    /// "roles" = ['sales','engineer','legal']
     Mixpanel.mainInstance().people.union(properties: [
         "roles":"legal"
         ])
@@ -522,7 +522,7 @@ A group is identified by the `group_key` and `group_id`.
 * `group_key` is the event property that connects event data to a group. (e.g. `company`)
 * `group_id` is the identifier for a specific group. (e.g. `mixpanel`,`company_a`,`company_b`, etc.)
 
-The Swift SDK provides a few method for adding individual users to a group and setting group profile properties.
+The Swift SDK provides a few methods for adding individual users to a group and setting group profile properties.
 
 ### Adding Users to a Group
 
@@ -619,7 +619,7 @@ A few commonly used group methods are highlighted below:
     Mixpanel.mainInstance().getGroup(groupKey: "company", groupID: “mixpanel”).set(properties: [
         "name": "Mixpanel"])
 
-    /// ignored since "name" is already exists
+    /// ignored since "name" already exists
     Mixpanel.mainInstance().getGroup(groupKey: "company", groupID: “mixpanel”).setOnce(properties: [
         "name": "mp"])
     
@@ -667,7 +667,7 @@ A few commonly used group methods are highlighted below:
     ])
 
     /// add "data pipeline" to "features" prop
-    /// ignore "alert" since it is a duplicate value
+    /// ignore "alerts" since it is a duplicate value
     Mixpanel.mainInstance().getGroup(groupKey: "company", groupID: “mixpanel”).union(key: "features",
         values: ["data pipeline","alerts"])
     ```
@@ -740,7 +740,7 @@ For GDPR compliance, you can initialize the SDK with users opted out of tracking
 
 **Example Usage**
 ```swift Swift
-/// create Mixpanel instance with users opt out of tracking by default
+/// create Mixpanel instance with users opted out of tracking by default
 /// SDK is prevented from sending data
 let options = MixpanelOptions(
     token: "YOUR_PROJECT_TOKEN",
