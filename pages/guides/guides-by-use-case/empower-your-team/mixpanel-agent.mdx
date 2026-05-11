@@ -2,9 +2,9 @@ import { Callout, Steps } from 'nextra/components'
 
 # Use Mixpanel Agent to Go From Question to Decision, Faster
 
-**Mixpanel Agent** is an AI analyst built directly into Mixpanel. Ask it a question or give it a task and it interprets your intent, selects the right tools, and returns an answer — without you specifying each step.
+**Mixpanel Agent** is an AI analyst built directly into Mixpanel. Ask it a question or give it a task and it interprets your intent, selects the right tools, and returns an answer without you specifying each step.
 
-This guide covers how to get the most out of each capability — and how to migrate workflows you're already running today. If you're looking to query Mixpanel from an external AI tool like Claude or ChatGPT, see [Use Mixpanel MCP](/guides/guides-by-use-case/empower-your-team/mcp) instead.
+This guide covers how to get the most out of each capability and how to migrate workflows you're already running today. If you're looking to query Mixpanel from an external AI tool like Claude or ChatGPT, see [Use Mixpanel MCP](/guides/guides-by-use-case/empower-your-team/mcp) instead.
 
 You use it in two ways. The first is conversational: ask it a question, describe what you want to see, and it responds in the moment. The second is through agents you configure: set one up once and it runs on your behalf — monitoring, explaining, interpreting — without you having to ask each time. You'll find Mixpanel Agent in the side navigation for a full-page experience, or as a contextual panel you can open alongside any report or board.
 
@@ -14,11 +14,11 @@ Two project-level settings shape how all four capabilities behave.
 
 ### Business Context
 
-Business Context is a shared layer where your team defines what Mixpanel can't infer from raw events: key metric definitions, fiscal calendar, launch history, team structure. You configure it in **Project Settings → Business Context** (for multi-project organizations, consider the interaction of org-level vs. project-level settings). Every AI surface reads it automatically.
+[Business Context](/docs/business-context) is a shared layer where your team defines what Mixpanel can't infer from raw events: key metric definitions, fiscal calendar, launch history, team structure. Every AI surface reads it automatically.
 
-Without it, AI answers are generic. With it, Mixpanel Agent knows "activation" means a user completed a key value moment — not just what the word means in general. The RCA Agent knows a drop on November 1 isn't anomalous — it's the day after a promo ended.
+Without it, AI answers are generic. With it, Mixpanel Agent knows "activation" means a user completed a key value moment. The RCA Agent knows a drop on November 1 isn't anomalous — it's the day after a promo ended.
 
-Write in plain language — anything an informed new hire would need. The AI reads it as background before every query.
+For setup instructions, see the [Business Context documentation](/docs/business-context). Write in plain language — anything an informed new hire would need.
 
 <Callout type="info">
     **Pro tip:** Start with your primary metric definitions and your fiscal calendar. Those two entries eliminate the most common sources of AI misinterpretation.
@@ -63,25 +63,23 @@ They map to four distinct moments in how you work with data: getting an answer, 
 
 ## Ask Mixpanel Agent
 
-### What it does
-
-Open Mixpanel Agent from anywhere and ask in plain language — about your data, your metrics, or what you want to see. A single prompt can run an analysis, build a report, create a cohort, or walk you through a user's session replays without you specifying each step. The Agent automatically picks up your current page as context, so you don't need to describe your setup first.
-
 ### When to use it
 
 - You need a quick answer without opening a report
 - A stakeholder asked a question you don't have a board for yet
 - You want to explore an area quickly before deciding whether it's worth deeper instrumentation
 
-### What you can ask
+### How to use it
 
-**Data questions:** "What's our weekly active users trend over the last 90 days?" "How did retention change after the onboarding update?" "Which acquisition channel has the best 30-day retention?"
-
-**Build requests:** "Build me a dashboard for our referral program — invites sent, signups from referrals, conversion rate, breakdown by channel." The Agent generates a full multi-chart board from your description. Treat the output as a strong first draft — review the events and filters before saving.
-
-**Analysis:** "Compare mobile vs. desktop checkout conversion." "What's the drop-off in our signup funnel?" The Agent queries your data and returns an answer, not just a chart.
+Open Mixpanel Agent from anywhere and ask in plain language. A single prompt can run an analysis, build a report, create a cohort, or walk you through session replays without you specifying each step. The Agent automatically picks up your current page as context, so you don't need to describe your setup first.
 
 {/* TODO: Add screenshot of Mixpanel Agent interface */}
+
+A few things you can ask:
+
+- **Data questions:** "Which acquisition channel has the best 30-day retention?" or "How did retention change after the onboarding update?"
+- **Build requests:** "Build me a dashboard for our referral program — invites sent, signups from referrals, conversion rate, breakdown by channel." The Agent generates a full multi-chart board. Treat it as a first draft and review the events before saving.
+- **Analysis:** "Compare mobile vs. desktop checkout conversion" or "What's the drop-off in our signup funnel?"
 
 <Callout type="info">
     **Pro tip:** The more your Business Context is configured, the better the answers. If the Agent knows what "activation" means at your company, it uses the right events — not its best guess.
@@ -95,22 +93,18 @@ Marcus leads growth at a consumer app. His VP asks for a view of referral progra
 
 ## RCA Agent
 
-### What it does
-
-When a metric moves, the RCA Agent tells you why. Trigger it from an [Insights](/docs/reports/insights) report, an [alert](/docs/features/alerts), or directly through Mixpanel Agent, and it generates a board with contribution factor analysis, ranked dimensions, an AI interpretation, confidence levels, and suggested next steps.
-
-This is reactive by design — it runs when you ask it to.
-
 ### When to use it
 
 - A chart moved and you want an explanation without 30 minutes of manual segment slicing
 - An alert fired and you need to know whether it's signal or noise before escalating
-- You want a structured, shareable artifact — not just a hypothesis
+- You want a structured, shareable artifact, not just a hypothesis
 
-### How to run it
+### How to use it
 
-- **From an [Insights](/docs/reports/insights) report:** Trigger RCA directly when you see a metric shift. The Agent analyzes the visible change in context.
-- **From an [alert](/docs/features/alerts):** Launch RCA from the notification. Detection and diagnosis in one step.
+Trigger the RCA Agent from three entry points:
+
+- **From an Insights report:** Trigger RCA directly when you see a metric shift. The Agent analyzes the visible change in context.
+- **From an alert:** Launch RCA from the notification. Detection and diagnosis in one step.
 - **From Mixpanel Agent:** Ask "why did this metric drop?" and the Agent routes it to RCA and returns a structured explanation.
 
 {/* TODO: Add screenshot of RCA trigger UI */}
@@ -137,17 +131,13 @@ Priya is a PM at a SaaS company. Checkout completion dropped 9% week-over-week. 
 
 ## KPI Agent
 
-### What it does
-
-The KPI Agent monitors a metric you care about and delivers a digest to you on a schedule you set. Instead of opening a dashboard to check whether something moved, it comes to you — with context, not just a number.
-
 ### When to use it
 
 - You own a KPI and need to stay informed without opening a dashboard every day
 - You send a weekly metric update to stakeholders and want to stop building it manually
 - You want a digest that reflects what matters to you, not just raw numbers
 
-### How to set it up
+### How to use it
 
 1. Choose the metric you want to monitor
 2. Set your cadence — daily or weekly
@@ -167,21 +157,21 @@ Lena owns weekly active users at a fintech company. Every Thursday she pulled th
 
 ## Experiments Agent
 
-### What it does
-
-Running an experiment has always required statistical knowledge most PMs don't have — choosing the right confidence level, understanding what a health check failure means, knowing whether a 4% lift is significant enough to ship. The Experiments Agent works alongside you inside the [experiments](/docs/experiments) and [feature flags](/docs/featureflags) pages. Ask it to help configure an experiment, explain results in plain language, or roll out a winner. It's a conversation, not a form.
-
 ### When to use it
 
 - You're setting up a new experiment and want to make sure it's configured correctly before launch
 - Your experiment has results and you need to know what they mean and what to do next
 - You want to ship a winning variant without navigating the decision modal yourself
 
-### How it works
+### How to use it
+
+Running an experiment has always required statistical knowledge most PMs don't have — choosing the right confidence level, understanding what a health check failure means, knowing whether a 4% lift is significant enough to ship.
+
+The Experiments Agent works alongside you inside the [experiments](/docs/experiments) and [feature flags](/docs/featureflags) pages. Ask it to help configure an experiment, explain results in plain language, or roll out a winner. It's a conversation, not a form.
 
 Open Mixpanel Agent on any experiment or feature flag page.
 
-**Setting up an experiment:** The Agent walks you through three questions — your hypothesis, your primary success metric, and how long it should run. Everything else — experiment name, variant split, confidence threshold, statistical defaults — the Agent handles. It presents the full configuration for your approval before creating anything.
+**Setting up an experiment:** The Agent walks you through three questions — your hypothesis, your primary success metric, and how long it should run. Everything else (experiment name, variant split, confidence threshold, statistical defaults) the Agent handles. It presents the full configuration for your approval before creating anything.
 
 **Interpreting results:** Ask the Agent to summarize your results and it reads the full experiment — your hypothesis, every metric, the statistical output — and returns a plain-language verdict: what happened, whether it's significant, and a clear recommendation to ship, iterate, or kill.
 
@@ -199,7 +189,11 @@ Open Mixpanel Agent on any experiment or feature flag page.
 
 ### In practice
 
-Dev is an engineer at a fintech company. His team's experiment on the savings goal flow has results — p-values, confidence intervals, a table of metrics — but nobody knows whether to ship the treatment or not. He opens Mixpanel Agent on the results page and asks it to summarize. The Agent comes back: the treatment increased savings goal completion by 3.1%, both guardrail metrics passed, recommendation is to ship. It flags that session length trended down slightly and suggests a follow-up test. The PM sends the summary to the VP instead of the raw stats table. The decision gets made in the same meeting.
+Dev is an engineer at a fintech company. His team's experiment on the savings goal flow has results — p-values, confidence intervals, a table of metrics — but nobody knows whether to ship the treatment or not.
+
+He opens Mixpanel Agent on the results page and asks it to summarize. The Agent comes back: the treatment increased savings goal completion by 3.1%, both guardrail metrics passed, recommendation is to ship. It flags that session length trended down slightly and suggests a follow-up test.
+
+The PM sends the summary to the VP instead of the raw stats table. The decision gets made in the same meeting.
 
 ---
 
@@ -211,15 +205,15 @@ Mixpanel Agent doesn't replace how you think about your data. It replaces the me
 | :--- | :--- | :--- |
 | Send Board Subscriptions to stakeholders on a schedule | KPI Agent | The digest includes interpretation, not just numbers. |
 | Manually pull a metric each week and write a summary | KPI Agent | The pull and the summary are automated. Your job is to review and act. |
-| Open Mixpanel every morning to check if anything moved | KPI Agent | It comes to you. You know when and where to dig into Mixpanel. |
-| Investigate an [alert](/docs/features/alerts) by manually building breakdowns | RCA Agent | The investigation runs automatically. You get a ranked explanation instead of a starting point. |
+| Open Mixpanel every morning to check if anything moved | KPI Agent | It comes to you. You know when and where to dig in. |
+| Investigate an alert by manually building breakdowns | RCA Agent | The investigation runs automatically. You get a ranked explanation instead of a starting point. |
 | Build boards from scratch or browse templates to find a starting point | Ask Mixpanel Agent | Describe your question. The board is your first draft. |
 | Copy a teammate's board and customize it for your team | Ask Mixpanel Agent | Describe your team's specific question and get a board built for it directly. |
 | Manually interpret experiment results and write up a recommendation | Experiments Agent | Ask the Agent to summarize. It returns a verdict, key numbers, and a ship/kill recommendation in plain language. |
 
 Those are direct replacements — workflows you're already running that an agent handles better. But there's a second category worth considering: things that weren't practical before because the effort was too high relative to the value, so teams either skipped them or did them infrequently. Agents change that calculus.
 
-**On [alerts](/docs/features/alerts):** Before, an alert was the beginning of an investigation. Now pair every meaningful alert with RCA — when it fires, the investigation runs automatically and you get a confidence-weighted explanation before you've opened Mixpanel.
+**On alerts:** Before, an alert was the beginning of an investigation. Now pair every meaningful [alert](/docs/features/alerts) with RCA — when it fires, the investigation runs automatically and you get a confidence-weighted explanation before you've opened Mixpanel.
 
 **On questions that weren't worth asking:** A question like "what's driving retention in our power user cohort by acquisition channel" used to be a 2-hour task. Most of those questions didn't get answered because the people who could answer them were already underwater. That same question is now a 5-minute task.
 
