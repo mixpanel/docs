@@ -44,6 +44,18 @@ A typical workflow looks like:
 | | `Delete-Tag` | Remove a tag from your project |
 | | `Dismiss-Issues` | Bulk-dismiss data quality issues by event, property, or type |
 | **Session Replays** | `Get-User-Replays-Data` | Analyze a specific user's replays alongside their event data |
+| **Experiments** *(Beta)* | `List-Experiments` | List all experiments in a project |
+| | `Get-Experiment` | Retrieve experiment details and configuration |
+| | `Create-Experiment` | Create a new experiment |
+| | `Update-Experiment` | Modify an experiment's configuration or status |
+| **Feature Flags** *(Beta)* | `List-Feature-Flags` | List all feature flags in a project |
+| | `Get-Feature-Flag` | Retrieve feature flag details and targeting rules |
+| | `Create-Feature-Flag` | Create a new feature flag |
+| | `Update-Feature-Flag` | Modify a feature flag's configuration or targeting |
+
+<Callout type="warning">
+  **Experiments and Feature Flags tools are in open beta** and available to all users. Audience targeting and cohort editing are not yet supported.
+</Callout>
 
 ## MCP Server URLs
 
@@ -176,6 +188,11 @@ Once connected, try asking your AI assistant:
 **Triage data quality**
 - "Show me all open data quality issues for the Signup event"
 - "Dismiss all issues for events we deprecated last quarter"
+
+**Test & ship**
+- "Create an experiment to test whether showing a progress indicator during onboarding increases activation rate"
+- "Create a feature flag for our new AI-powered search"
+- "How did our checkout experiment perform? Did it reach significance?"
 
 **Investigate users**
 - "This user reported a bug — what happened in their last 3 sessions?"
