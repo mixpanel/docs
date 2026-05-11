@@ -58,6 +58,7 @@ export default {
       </div>
     ),
   },
+  "mixpanel-agent": "Mixpanel Agent",
   "mcp": "MCP Server",
   "business-context": "Business Context",
   admin: {
