@@ -21,9 +21,9 @@ In a Hierarchical Groups project, Mixpanel constructs the `$distinct_id` from th
 $distinct_id = $company:<company_id>|$user:<user_id>
 ```
 
-This has a critical implication: **`$user_id` is not globally unique.** A user with `$user_id: alice` in `$company_id: acme` is a completely different user from `$user_id: alice` in `$company_id: globex`. They will have separate profiles and their events will be counted independently. 
+This has a critical implication: **`$user_id` is not globally unique.** A user with `$user_id: alice` in `$company_id: acme` is a completely different user from `$user_id: alice` in `$company_id: globe_inc`. They will have separate profiles and their events will be counted independently. 
 
-Additionally, `$company_id` and `$user_id` must be set at the same time. Setting either property determines the canonical `$distinct_id` for a user based on the composite properties available. If `$company_id` or `$user_id` are missing Mixpaenl will generate a canonical user_id that does not include the missing property. For example, a user with `$user_id: alice` without a `$company_id` cannot be later attributed to the same user that is `$user_id: alice` in `$company_id: acme`.
+Additionally, `$company_id` and `$user_id` must be set at the same time. Setting either property determines the canonical `$distinct_id` for a user based on the composite properties available. If `$company_id` or `$user_id` are missing Mixpanel will generate a canonical user_id that does not include the missing property. For example, a user with `$user_id: alice` without a `$company_id` cannot be later attributed to the same user that is `$user_id: alice` in `$company_id: acme`.
 
 ### How Analysis Works
 
@@ -91,7 +91,7 @@ After the sync runs, verify that your events carry all three properties: `$compa
 
 ### Profiles
 
-Profiles store metadata about entity (company, user, and any other groups youve set up). They appear in the **Users** tab of the UI. At the top of the page you will see the groups that you've set up.
+Profiles store metadata about entity (company, user, and any other groups you have set up). They appear in the **Users** tab of the UI. At the top of the page you will see the groups that you've set up.
 
 INSERT_PICTURE_HERE
 
@@ -185,7 +185,7 @@ No. Hierarchical Groups must be enabled at project creation. If you later decide
 The event will still be ingested, but the `$distinct_id` will not include the company prefix. The event will not appear in Company-level analysis. If you later send events for the same `$user_id` with a `$company_id`, Mixpanel will treat them as different users, resulting in split profiles.
 
 **Is the same `$user_id` in two different companies treated as two different users?**
-Yes. User identity is the composite key (`$company_id`, `$user_id`). An event with `$company_id: acme` and `$user_id: alice` is a completely different user from `$company_id: globex` and `$user_id: alice`. They will have separate profiles and separate event histories.
+Yes. User identity is the composite key (`$company_id`, `$user_id`). An event with `$company_id: acme` and `$user_id: alice` is a completely different user from `$company_id: globe_inc` and `$user_id: alice`. They will have separate profiles and separate event histories.
 
 **Why do my user profiles not appear after a Warehouse Connector sync?**
 The most common causes are:
