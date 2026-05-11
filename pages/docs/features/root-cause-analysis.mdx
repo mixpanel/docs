@@ -1,12 +1,12 @@
 import { Steps, Callout } from 'nextra/components'
 
-# Root Cause Analysis: AI-generated explanations for why your metrics changed
+# AI-Powered Root Cause Analysis: AI-generated explanations for why your metrics changed
 
 ## Overview
 
-Investigating anomalies or trends in your data is extremely manual. Teams spend hours each week running the same repetitive process — picking properties, running breakdowns, eyeballing segments — to figure out what drove a change in a metric.
+Investigating anomalies or trends in your data is extremely manual. Teams spend hours each week running the same repetitive process (picking properties, running breakdowns, eyeballing segments) to figure out what drove a change in a metric.
 
-Mixpanel's **Root Cause Analysis (RCA)** does that work for you. Launch RCA from any Insights report or fired alert and an AI agent automatically diagnoses what changed: it validates the anomaly, runs the relevant breakdowns, ranks the dimensions that contributed most, and writes up an interpretation with a confidence level and suggested next steps — all delivered as a Board you and your team can keep working from.
+Mixpanel's **AI-Powered Root Cause Analysis (RCA)** feature does that work for you. Launch RCA from any Insights report or fired alert and an AI agent automatically diagnoses what changed: it validates the anomaly, runs the relevant breakdowns, ranks the dimensions that contributed most, and writes up an interpretation with a confidence level and suggested next steps — all delivered as a Board you and your team can keep working from.
 
 <Callout type="info">
     Root Cause Analysis is part of Mixpanel AI. Availability depends on your plan and feature configuration — if you don't see the option to run RCA, contact your Mixpanel account team.
@@ -14,9 +14,8 @@ Mixpanel's **Root Cause Analysis (RCA)** does that work for you. Launch RCA from
 
 ## How it works
 
-When you run an RCA, Mixpanel:
-
-1. **Validates the anomaly.** The agent first confirms there really is a meaningful change to explain.
+When you run an RCA, Mixpanel will immediately launch a new board, then expose its reasoning as it works through the data:
+1. **Validates the anomaly.** The agent first investigates there really is a meaningful change to explain.
 2. **Selects properties to analyze.** RCA combines properties you've prioritized for your project with properties Mixpanel suggests based on the event being analyzed.
 3. **Runs breakdown queries.** The agent runs the breakdowns it needs to find which dimensions actually moved.
 4. **Streams cards into a Board.** As each step finishes, a new card appears on the RCA Board — you'll see a live progress banner at the top while the agent is still working.
@@ -43,14 +42,14 @@ Because RCA generates a standard Mixpanel Board, it inherits all the capabilitie
 
 - **Anyone in your project can open it.** RCA Boards are project-shared by default, so teammates can pick up the analysis where you left off.
 - **You can edit it like any Board.** Add cards, rearrange, annotate, or duplicate it if you want a private working copy.
-- **Cards include contribution factor analysis.** Each ranked dimension lands as its own card with the breakdown, contribution percentage, and supporting context.
+- **Cards include contribution factor analysis.** Each ranked dimension lands as its own card with the breakdown, contribution percentage, and supporting context. You can edit this as needed before sharing. 
 - **The interpretation card summarizes findings.** The AI's written explanation, confidence level, and suggested next steps live at the top of the Board so anyone scanning the results gets the punchline first.
 
-## Settings: prioritize properties
+## Custom RCA Settings
 
 Oftentimes, customers know which properties matter for their business and want to direct the root cause analysis to focus there first.
 
-In project settings, you can specify which event properties RCA should prioritize during analysis. For example, a marketing team that knows anomalies usually trace back to `utm_campaign_id` can point RCA at that dimension so it's always considered first. Properties you prioritize are combined with Mixpanel's automatic suggestions, so you never lose the agent's broader view — you just bias it toward the dimensions you care most about.
+In the AI Settings tab of your Project Settings, you can specify which event properties RCA should prioritize during analysis. For example, a marketing team that knows anomalies usually trace back to `utm_campaign_id` can point RCA at that dimension so it's always considered first. Properties you prioritize are combined with Mixpanel's automatic suggestions, so you never lose the agent's broader view — you just guide it toward the dimensions you care most about.
 
 ## Feedback
 
@@ -60,8 +59,3 @@ Every generated Board has a thumbs-up / thumbs-down feedback widget. We use this
 
 - Daily RCA runs per project are capped by plan: Enterprise 300/day, Growth 70/day, Free 10/day.
 - RCA today reasons over events and properties. Adjacent context like annotations, session replays, experiments, and metric trees aren't included in the V0 agent's reasoning.
-
-## Related
-
-- [Alerts](/docs/features/alerts) — set up alerts that can launch RCA when they fire
-- [Boards](/docs/boards) — the surface RCA generates results into
