@@ -4,7 +4,7 @@ import { Steps, Callout } from 'nextra/components'
 
 ## Overview
 
-Mixpanel Agentic Automations are AI agents you configure once that do recurring analysis work for you and deliver the result where you already work.
+Mixpanel Agentic Automations are sub-agents of Mixpanel Agent that you configure once to do recurring analysis work for you, and deliver the result where you already work.
 
 <Callout type="info">
     Agentic Automations are in beta. If you'd like access, please reach out to your Mixpanel account team to join the waitlist.
@@ -25,13 +25,20 @@ A KPI Monitor watches a metric you care about and ships a personalized digest on
 
 <Steps>
 
+{<h3>Launch the Automation creation workflow</h3>}
+Click '+ Create New' button in your side navigation bar. At the bottom of the 'Analysis' section, click the Automation button.
+
+<Callout type="info">
+    Don't see this button? Agentic Automations are in beta. If you'd like access, please reach out to your Mixpanel account team to join the waitlist.
+</Callout>
+
 {<h3>Pick the metric to monitor</h3>}
 
-Choose any Insights-style event metric — sums, counts, or unique counts over an event you've already instrumented. The agent will use the metric's existing definition (filters, breakdowns, time grain) as the source of truth for what it watches.
+Choose any Insights-style event metric — sums, counts, or unique counts over an event you've already instrumented. The agent will use the metric's existing definition as the source of truth for what it watches.
 
 {<h3>Pick a cadence</h3>}
 
-Digests can be delivered hourly, daily, or weekly. Pick the rhythm that matches how your team operates — daily is a good default for most active KPIs.
+Digests can be delivered daily, weekly, or monthly. Pick the rhythm that matches how your team operates — daily is a good default for most active KPIs.
 
 {<h3>Pick a delivery channel</h3>}
 
@@ -47,31 +54,19 @@ The agent runs on schedule — your first digest arrives at the next cadence bou
 
 - A short summary of what the metric did in the last window vs. baseline.
 - Any shifts the agent considers notable, with the agent's reasoning.
-- A thumbs-up / thumbs-down feedback widget on every digest.
-
-### Feedback
-
-Every digest includes a thumbs-up / thumbs-down widget. This is the most direct signal we use to improve digest quality — please rate digests honestly. Feedback drives prompt and model iteration.
 
 ## Limits
 
 - **Metric types.** KPI Monitors today support Insights-style event metrics only. Funnel and retention metrics aren't yet supported.
-- **Delivery channels.** Slack and in-product only today. Email is on the roadmap.
-- **Cadence.** Hourly, daily, or weekly. There's no per-user delivery window control yet (e.g., "weekdays 8–10am local") — that's planned.
+- **Delivery channels.** Slack and email are available today
+- **Cadence.** Daily, weekly, or monthly. There's no per-user delivery window control yet (e.g., "weekdays 8–10am local").
 
 ## Coming next
 
-- Email delivery for digests.
 - Funnel and retention support via saved metrics.
 - Customizable notification windows (timezone, time-of-day, quiet hours).
-- New automation types beyond KPI Monitoring.
+- New Agentic Automation types beyond KPI Monitoring.
 
 <Callout type="info">
     Interested in early access or helping us shape these features? Reach out to your account manager and ask to be connected with our product team.
 </Callout>
-
-## Related
-
-- [Alerts](/docs/features/alerts) — threshold and anomaly notifications, complementary to digests
-- [Slack Integration](/docs/features/slack-integration) — required for Slack delivery
-- [Saved Metrics & Behaviors](/docs/features/saved-metrics-and-behaviors) — the metric definitions a KPI Monitor watches
