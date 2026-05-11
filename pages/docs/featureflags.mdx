@@ -242,6 +242,34 @@ Remote evaluation makes a network call to Mixpanel servers each time you evaluat
 
 This is ideal for applications requiring cohort-based targeting or sticky variant assignments
 
+### Flag Persistence
+
+<Callout type="info">
+Flag persistence is a client SDK feature. It is officially supported on the Android, Swift, and Flutter (mobile) client SDKs. Support for JavaScript (Web) and React Native is coming soon.
+</Callout>
+
+By default, client SDKs fetch flag assignments from Mixpanel feature flag evaluation endpoint. If the call fails due to network issues, the SDK returns the fallback variant, which can result in an undesirable user experience.
+
+Flag persistence lets the SDK persist assignments to the device so that they are made available, even if the network is not. This is useful for reducing latency at startup and for providing graceful degradation when the network is unavailable.
+
+Persistence is configured with a `variantLookupPolicy`, which accepts one of three strategies:
+
+| Policy | Behavior |
+|--------|----------|
+| `networkOnly` *(default)* | No persistence of variants. Every lookup waits for a fresh network response.|
+| `networkFirst` | The SDK waits for a network response first. If the network fails, previously persisted variants are served as a fallback |
+| `persistenceUntilNetworkSuccess` | Persisted variants are served immediately on launch. The next time a network call succeeds, the variants will update the in-memory state as well as be persisted to the device. |
+
+**TTL:** Both persistent policies accept a configurable TTL (default: 24 hours). Persisted variants older than the TTL are treated as expiring and not served.
+
+**Identity scoping:** Persisted variants are tied to the current `distinct_id`. Calling `identify()` with a different ID or calling `reset()` clears persisted data and triggers a fresh network fetch.
+
+**Variant source:** Each returned variant carries a `source` indicating where the value came from: `network`, `persistence`, or `fallback`. This lets you know at call time whether you are looking at a fresh or persisted assignment.
+
+**`$experiment_started` properties:** When a variant is served, the `$experiment_started` event includes a new `$variant_source` property (`"network"` or `"persistence"`). For persistence-sourced variants, two additional properties are included: `$persisted_at_in_ms` (the epoch ms when the variant set was persisted) and `$ttl_in_ms` (the configured TTL). Fallback variants do not trigger `$experiment_started`.
+
+See the SDK-specific guides below for implementation examples.
+
 ### Local Evaluation
 
 Local evaluation minimizes latency by evaluating flags within your application. This mode is recommended for server-side SDKs used in latency-sensitive server-side applications.
@@ -287,6 +315,28 @@ See our developer guides on implementing feature flags on these platforms below:
   <Cards.Card icon title="Node.js" href="/docs/tracking-methods/sdks/nodejs/nodejs-flags" />
   <Cards.Card icon title="Java" href="/docs/tracking-methods/sdks/java/java-flags" />
   <Cards.Card icon title="Go" href="/docs/tracking-methods/sdks/go/go-flags" />
+</Cards>
+
+### OpenFeature Providers
+
+Mixpanel also offers [OpenFeature](https://openfeature.dev/) providers, which let you use Mixpanel's feature flags through OpenFeature's standardized, vendor-agnostic API.
+
+#### Client Side
+
+<Cards>
+  <Cards.Card icon title="Web" href="/docs/tracking-methods/sdks/javascript/javascript-openfeature" />
+  <Cards.Card icon title="iOS" href="/docs/tracking-methods/sdks/swift/swift-openfeature" />
+  <Cards.Card icon title="Android" href="/docs/tracking-methods/sdks/android/android-openfeature" />
+</Cards>
+
+#### Server Side
+
+<Cards>
+  <Cards.Card icon title="Python" href="/docs/tracking-methods/sdks/python/python-openfeature" />
+  <Cards.Card icon title="Ruby" href="/docs/tracking-methods/sdks/ruby/ruby-openfeature" />
+  <Cards.Card icon title="Node.js" href="/docs/tracking-methods/sdks/nodejs/nodejs-openfeature" />
+  <Cards.Card icon title="Java" href="/docs/tracking-methods/sdks/java/java-openfeature" />
+  <Cards.Card icon title="Go" href="/docs/tracking-methods/sdks/go/go-openfeature" />
 </Cards>
 
 <Callout type="info">
