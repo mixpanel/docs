@@ -62,7 +62,7 @@ Layer rules on top of the baseline rate using any event, property, or URL you're
 For example, you can sample 1% of all sessions globally, but capture 100% of SDK initializations where `checkout_error` fires or where users land on your pricing page.
 
 <Callout type="info">
-  URL-based rules are evaluated using page view events (`$mp_web_page_view`) emitted while heatmap capture is active. These page views are tagged with `$captured_for_heatmap: true` and are **exempt from event and MTU billing**, so adding URL conditions does not increase your billable event volume. See [Heatmaps for Web](/docs/session-replay/heatmaps#implementation) for details.
+  URL-based rules are evaluated using page view events (`$mp_web_page_view`) emitted while heatmap capture is active. These page views are **exempt from event and MTU billing**, so adding URL conditions does not increase your billable event volume. See [Heatmaps for Web](/docs/session-replay/heatmaps#implementation) for details.
 </Callout>
 
 ![remoteSettingsConditional](/remoteSettingsConditional.png)
