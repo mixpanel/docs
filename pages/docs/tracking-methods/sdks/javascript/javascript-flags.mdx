@@ -76,7 +76,9 @@ Configure a `variantLookupPolicy` in the `flags` init options:
 ```javascript
 mixpanel.init("YOUR_PROJECT_TOKEN", {
   flags: {
-    variantLookupPolicy: "networkFirst",
+    persistence: {
+      variantLookupPolicy: "networkFirst",
+    },
   },
 });
 
@@ -89,7 +91,9 @@ const variant_value = await mixpanel.flags.get_variant_value("my-feature-flag", 
 ```javascript
 mixpanel.init("YOUR_PROJECT_TOKEN", {
   flags: {
-    variantLookupPolicy: "persistenceUntilNetworkSuccess",
+    persistence: {
+      variantLookupPolicy: "persistenceUntilNetworkSuccess",
+    },
   },
 });
 
@@ -97,14 +101,14 @@ mixpanel.init("YOUR_PROJECT_TOKEN", {
 const variant_value = await mixpanel.flags.get_variant_value("my-feature-flag", "control");
 ```
 
-To customize the TTL, pass a configuration object instead of a string. By default, the TTL is 24 hours.
+To customize the TTL, add `persistenceTtlMs` alongside `variantLookupPolicy`. By default, the TTL is 24 hours.
 
 ```javascript
 mixpanel.init("YOUR_PROJECT_TOKEN", {
   flags: {
-    variantLookupPolicy: {
-      policy: "networkFirst",
-      ttlMs: 12 * 60 * 60 * 1000, // 12 hours
+    persistence: {
+      variantLookupPolicy: "networkFirst",
+      persistenceTtlMs: 12 * 60 * 60 * 1000, // 12 hours
     },
   },
 });
@@ -112,14 +116,14 @@ mixpanel.init("YOUR_PROJECT_TOKEN", {
 
 ### Variant source
 
-Every variant carries a `source` field indicating where the value came from: `"network"`, `"persistence"`, or `"fallback"`. Use `get_variant` to receive the full variant object including this metadata.
+Every variant carries a `variant_source` field indicating where the value came from: `"network"`, `"persistence"`, or `"fallback"`. Use `get_variant` to receive the full variant object including this metadata.
 
 ```javascript
 const fallback = { key: "control", value: "control" };
 const variant = await mixpanel.flags.get_variant("my-feature-flag", fallback);
 
 const value = variant.value;
-const source = variant.source; // "network", "persistence", or "fallback"
+const source = variant.variant_source; // "network", "persistence", or "fallback"
 ```
 
 ### `$experiment_started` properties
