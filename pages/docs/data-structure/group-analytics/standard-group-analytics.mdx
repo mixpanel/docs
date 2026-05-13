@@ -10,17 +10,37 @@ Standard Group Analytics lets you establish event properties other than `distinc
 
 By default, Mixpanel counts unique users by `distinct_id`. Group Analytics lets you count uniques by an alternative identifier — one shared by a set of individuals with different `distinct_id` values. For example, if five users share the same `company_id`, a "unique companies" count for an event those five users all performed would return 1, not 5.
 
-Each group key you define is **independent**. Mixpanel does not assume any relationship between group keys or between groups and users. You can define up to 5 group keys per project, and events can carry values for multiple group keys simultaneously.
+### Single Level Identity
 
-### Group Profiles
+Each group key you define is **independent**. Mixpanel does not assume any relationship between group keys or between groups and users. `distinct_id` is determined based on a single key:
 
-Just as User Profiles store metadata about individual users, **Group Profiles** store metadata about groups. A group profile is identified by a `group_key` and `group_id` pair — for example, the group key `company` with the group ID `acme_corp`. Group profile properties (like company name, plan tier, or industry) can be used as filters and breakdowns in reports.
+User Level:
+```
+distinct_id = <user_id>
+```
+> Note: user level distinct_id actually follows the rules for how distinct_id is set based on your identity management system. As a result the above may not always be true if user_id is not yet defined or if you are using orginal ID merge or a non ID merge project.
 
-### Company Analytics (B2B Key)
+Group Level:
+```
+distinct_id = <group_id>
+```
 
-Company Analytics is a feature within Standard Group Analytics tailored for B2B SaaS. It introduces the concept of a **B2B Company Key** — a designated group key that represents "company" in your data model. With a B2B Company Key, you get access to the **"Number of users who did…"** computed property, which lets you segment companies by the count and quality of their active users. For example: "How many trial accounts have more than two users who completed onboarding?"
+You can define up to 5 group keys per project, and events can carry values for multiple group ids and keys simultaneously.
 
-> **Note:** Company Analytics and Hierarchical Groups solve similar B2B problems but work very differently. Company Analytics sits on top of Standard Group Analytics and does not enforce a company → user identity relationship. Hierarchical Groups does. See the [comparison table](/docs/data-structure/group-analytics#choosing-between-the-two) for help deciding.
+### How Analysis Works
+When analyzing by **Group** Mixpanel counts uniques by group_id values while User level analysis uses user_id values for uniqueness. There is no hard coded relationship between groups and user in the distinct_id. As such users can technically exist in multiple groups but still be counted as a single user at the User level.
+
+### Limits
+
+The limits below ensure standard group analytics works correctly in Mixpanel:
+- 1M group profiles per group key (e.g. company_id)
+- 1M events per day per group identifier (e.g. company_id = "Mixpanel") - see [Hot Shard Limits](/docs/tracking-best-practices/hot-shard-limits)
+- Group properties have similar [limits as User properties](/docs/data-structure/user-profiles#what-are-the-limits-of-user-properties)
+- This add-on supports up to 3 group keys. Enterprise Plans can increase this to 6 for an additional fee.
+
+## Prerequisites
+
+**Standard Groups only functions on data ingested after group keys are set up.** You must have the groups package enabled on the account and group keys defined in Project Settings before events will start showing up in Groups. Standard groups are not retroactive meaning any data ingested into Mixpanel prior to setting up the group keys will not be assoiciated with your groups even if that information already have group key and id set on it.
 
 ## Data Model
 
@@ -62,10 +82,10 @@ Group profiles are key-value stores of metadata about a specific group. They are
 
 ### Identity Management
 
-Standard Group Analytics does **not** change how `distinct_id` or user identity works. Users are still identified by `distinct_id` as normal. Group keys provide an additional, independent axis for counting uniques — they do not replace or modify user identity.
+Standard Group Analytics does **not** change how `distinct_id` or user identity works. Users are still identified by `distinct_id` as normal. Group keys provide an additional, independent axis for counting uniques — they do not replace or modify user identity. It is not possible to merge different group ids together.
 
 ## Implementation
-> Note: Standard Groups can be implemented using Mixpanel's SDK methods in addition to Data Warehouse Connectors and HTTP APIs directly.
+Standard Groups can be implemented using Mixpanel's SDK methods in addition to Data Warehouse Connectors and HTTP APIs directly.
 
 ### Group Keys in Project Settings
 
@@ -199,14 +219,6 @@ Once group keys are configured and events are flowing with group key properties:
 - You can mix metrics in a single Insights report — for example, one metric counting unique users and another counting unique companies.
 - **Group profile properties** are available as filters and breakdowns when analyzing by the corresponding group (and user if group key is added to the user profile).
 - **User profile properties** are available when analyzing by users, but **not** when analyzing by groups.
-
-## Limits
-
-The limits below ensure group analytics works correctly in Mixpanel:
-- 1M group profiles per group key (e.g. company_id)
-- 1M events per day per group identifier (e.g. company_id = "Mixpanel") - see [Hot Shard Limits](/docs/tracking-best-practices/hot-shard-limits)
-- Group properties have similar [limits as User properties](/docs/data-structure/user-profiles#what-are-the-limits-of-user-properties)
-- This add-on supports up to 3 group keys. Enterprise Plans can increase this to 6 for an additional fee.
   
 ## FAQ
 
