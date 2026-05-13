@@ -59,7 +59,7 @@ For an event to be attributed properly, the event must include the `$company_id`
   "properties": {
     "time": 1690000000,
     "$company_id": "acme",
-    "$user_id: "alice",
+    "$user_id": "alice",
     "team_id": "engineering",    // team_id would be the other group key in this case
     "amount": 99.99
   }
