@@ -95,7 +95,7 @@ After the sync runs, verify that your events carry all three properties: `$compa
 
 Profiles store metadata about entity (company, user, and any other groups you have set up). They appear in the **Users** tab of the UI. At the top of the page you will see the groups that you've set up.
 
-INSERT_PICTURE_HERE
+![image](/hierarchical_groups_user_page_light.png)
 
 #### Warehouse Connector: Profiles
 
