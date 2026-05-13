@@ -119,23 +119,6 @@ codex mcp login mixpanel
 2. Enter your [MCP Server URL](#mcp-server-urls) and give it a name
 3. Click **Connect** and complete the Mixpanel OAuth flow
 
-### Cursor
-
-1. Go to **Settings → Tools & MCP → New MCP Server** to open `~/.cursor/mcp.json`
-2. Add the following (use the EU or IN URL if needed):
-
-```json
-{
-  "mcpServers": {
-    "mixpanel": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.mixpanel.com/mcp"]
-    }
-  }
-}
-```
-
-3. Save the file — Cursor will prompt you to authorize with Mixpanel on first connect
 
 ### Gemini CLI
 
@@ -156,9 +139,27 @@ Or edit `~/.gemini/settings.json` manually and add:
 }
 ```
 
-### Other JSON-configured clients
+### Cursor
 
-Any client that supports the MCP JSON config format can connect using the same JSON snippet from the Cursor section above. The first time it connects it will prompt you to authorize with Mixpanel.
+1. Go to **Settings → Tools & MCP → New MCP Server** to open `~/.cursor/mcp.json`
+2. Add the following (use the EU or IN URL if needed):
+
+```json
+{
+  "mcpServers": {
+    "mixpanel": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.mixpanel.com/mcp"]
+    }
+  }
+}
+```
+
+3. Save the file — Cursor will prompt you to authorize with Mixpanel on first connect
+
+### Microsoft Copilot (JSON-configured clients)
+
+Any client that supports the MCP JSON config format, including Microsoft Copilot, can connect using the same JSON snippet from the Cursor section above. The first time it connects it will prompt you to authorize with Mixpanel.
 
 ## Example Queries
 
