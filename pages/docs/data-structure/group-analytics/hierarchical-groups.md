@@ -33,14 +33,16 @@ When you analyze by **Company**, Mixpanel implicitly filters to events where `$c
 
 Before enabling Hierarchical Groups, make sure you meet these requirements:
 
-**You must have a stable `$company_id` and `$user_id` value.** You cannot use identity management to merge different composites of a `$company_id` and `$user_id` together. If you don't yet know what value to use for these properties, we do not recommend enabling Hierarchical Groups. It is possible to merge anonymous events (only `$device_id`, no `$company_id` and `$user_id` properties set) to a `$company_id` and `$user_id` composite with Simplified ID merge (see [Identity Management](#id_managment) below).
+**You must have a stable `$company_id` and `$user_id` value.** You cannot use identity management to merge different composites of a `$company_id` and `$user_id` together. If you don't yet know what value to use for these properties, we do not recommend enabling Hierarchical Groups. It is possible to merge anonymous events (only `$device_id`, no `$company_id` and `$user_id` properties set) to a `$company_id` and `$user_id` composite with Simplified ID merge (see [Identity Management](#identity_managment) below).
 
 **You must use Simplified ID Merge.** Hierarchical Groups is not supported on projects using Original ID Merge.
 
 **This is a project-creation-time decision.** You cannot convert an existing standard project to Hierarchical Groups, and you cannot remove Hierarchical Groups from a project once enabled. Choose your model before sending any data. Existing projects would need to have their data migrated to a *new* Hierarchical project to work on this system.
 
 ## Identity Management
-NEED TO FILL THIS IN
+Identity Management works only on the user level. In hierarchical groups, the canonical user identity is determined by the composite of the `$company_id` and `$user_id` values as soon as one of those value is set (so ideally they are set together at the same time). Events sent without `$company_id` and `$user_id` that have a `$device_id` value can later be merged to a canonical user identifier by having `$company_id` and `$user_id` set alongside the `$device_id` value on an event.
+
+Merging the `$device_id` to the canonical `$company_id` and `$user_id` composite means that all events going forward and historically attributed to the `$device_id` would be merged to the composite identifier similar to how Simplified ID merge works outside of hierarchical groups. At present the merged events are only visible in the User level activity feed.
 
 
 ## Implementation
