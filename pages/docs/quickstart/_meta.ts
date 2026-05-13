@@ -2,7 +2,7 @@ export default {
   "install-mixpanel": "Install Mixpanel",
   "identify-users": "Identify Users",
   "capture-events": "Capture Events",
-  "install-with-ai": "Install with AI [BETA]",
+  "install-with-ai": "Install with AI",
   "tips-and-tricks": {
     "display": "hidden"
   },
