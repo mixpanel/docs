@@ -29,12 +29,12 @@ Additionally, `$company_id` and `$user_id` must be set at the same time. Setting
 
 When you analyze by **Company**, Mixpanel implicitly filters to events where `$company_id` is set and counts uniques by `$company_id`. When you analyze by **User**, it counts uniques by the composite `distinct_id`. Additional group keys you define (beyond `$company_id` and `$user_id`) also implicitly filter by `$company_id`. The additional group keys are defined by the composite of `$company_id` and `<other_group_key>` (team, org, etc.). The hierarchy will only ever extend one level company -> user or company -> other_group.
 
-### Advantages
+## Advantages
 - No more limits on group profiles per group key
-- 
-
-### Limits
-- 1M events per day per group identifier (e.g. company_id = "Mixpanel") - see [Hot Shard Limits](/docs/tracking-best-practices/hot-shard-limits)
+- Group membership can apply retroactively for non-default groups (groups other than `$company_id` and `$user_id`)
+  
+## Limits
+- 1M events per day per group identifier (e.g. $company_id = "Mixpanel") - see [Hot Shard Limits](/docs/tracking-best-practices/hot-shard-limits)
 - Group properties have similar [limits as User properties](/docs/data-structure/user-profiles#what-are-the-limits-of-user-properties)
 
 ## Prerequisites
