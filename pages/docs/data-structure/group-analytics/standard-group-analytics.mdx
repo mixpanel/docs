@@ -30,7 +30,7 @@ You can define up to 5 group keys per project, and events can carry values for m
 ### How Analysis Works
 When analyzing by **Group** Mixpanel counts uniques by group_id values while User level analysis uses user_id values for uniqueness. There is no hard coded relationship between groups and user in the distinct_id. As such users can technically exist in multiple groups but still be counted as a single user at the User level.
 
-### Limits
+## Limits
 
 The limits below ensure standard group analytics works correctly in Mixpanel:
 - 1M group profiles per group key (e.g. company_id)
