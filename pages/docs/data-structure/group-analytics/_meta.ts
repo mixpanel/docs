@@ -1,4 +1,4 @@
 export default {
-    "group-analytics-implementation": "Implementation",
-    "group-analytics-faq": "FAQ"
+    "legacy": "Legacy Group Analytics",
+    "hierarchical": "Hierarchical Groups"
 }

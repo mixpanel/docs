@@ -1,0 +1,107 @@
+# Hierarchical Groups FAQ
+
+## Limits
+
+[Content placeholder: Specific limits for hierarchical groups]
+
+- Maximum hierarchy depth: [TBD]
+- Maximum number of child groups per parent: [TBD]
+- Group profile limits: [TBD]
+- Event attribution limits: [TBD]
+
+## Hierarchy Structure
+
+### How many levels can I have in my hierarchy?
+
+[Content placeholder: Answer about maximum hierarchy depth and recommended structures]
+
+### Can a group have multiple parents?
+
+[Content placeholder: Answer about whether groups can belong to multiple parents in the hierarchy]
+
+### Can I change the hierarchy structure after it's set up?
+
+[Content placeholder: Answer about modifying hierarchy relationships after initial setup]
+
+## Event Attribution
+
+### How are events attributed in hierarchical groups?
+
+[Content placeholder: Explanation of how events flow through the hierarchy and are attributed at each level]
+
+### What happens if I only send a child group key without the parent?
+
+[Content placeholder: Behavior when partial hierarchy information is sent with an event]
+
+### Can I query events at any level of the hierarchy?
+
+[Content placeholder: Explanation of which hierarchy levels are queryable and how]
+
+## Reporting and Analysis
+
+### How do metrics roll up through the hierarchy?
+
+[Content placeholder: Explanation of aggregation behavior from child to parent groups]
+
+### Can I filter by parent group and see child group breakdown?
+
+[Content placeholder: Cross-level filtering and breakdown capabilities]
+
+### Are user properties supported when analyzing by hierarchical groups?
+
+[Content placeholder: Relationship between user properties and hierarchical group analysis]
+
+## Group Profiles
+
+### How do group profiles work in a hierarchy?
+
+[Content placeholder: Explanation of group profiles at different hierarchy levels]
+
+### Can child groups inherit properties from parent groups?
+
+[Content placeholder: Property inheritance behavior in hierarchical groups]
+
+### How do I export hierarchical group profiles via API?
+
+[Content placeholder: API instructions for exporting group profiles with hierarchy information]
+
+```bash
+# Placeholder: API example for exporting hierarchical group data
+curl --request POST \
+  --url https://mixpanel.com/api/2.0/engage \
+  --header 'Authorization: Basic <redacted>' \
+  --data 'data_group_id=<data_group_id>'
+```
+
+## Migration and Compatibility
+
+### How is Hierarchical Groups different from Legacy Group Analytics?
+
+Hierarchical Groups extends the legacy Group Analytics by adding parent-child relationships between groups. This allows:
+- Roll-up analysis across organizational levels
+- Cross-level filtering and breakdowns
+- Automatic event attribution through hierarchy levels
+
+Legacy Group Analytics treats all group keys as independent entities without relationships.
+
+### Can I use both Legacy and Hierarchical Groups in the same project?
+
+[Content placeholder: Compatibility between legacy and hierarchical groups]
+
+### What happens to my existing group data when I migrate to Hierarchical Groups?
+
+[Content placeholder: Migration path and data preservation]
+
+## Best Practices
+
+### When should I use Hierarchical Groups vs Legacy Group Analytics?
+
+[Content placeholder: Guidance on choosing between hierarchical and legacy approaches]
+
+### What's the recommended hierarchy structure for B2B SaaS companies?
+
+[Content placeholder: Common patterns and recommendations for hierarchy setup]
+
+### How should I handle groups that move between parents?
+
+[Content placeholder: Best practices for managing group relationship changes]
