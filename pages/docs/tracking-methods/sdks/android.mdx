@@ -703,7 +703,21 @@ mixpanel.track('some_other_event');
 ```
 ### EU Data Residency
 
-Route data to Mixpanel's EU servers by adding these meta-data entries under the `<application>` tag of your app's `AndroidManifest.xml` to set the URLs of the API requests to our EU domain.
+Route data to Mixpanel's EU servers by setting the `serverURL` to `https://api-eu.mixpanel.com` during initialization using `MixpanelOptions`.
+
+<Callout type="info">
+Setting `serverURL` during initialization ensures all requests (events, profiles, and feature flags) use the correct endpoint from the start.
+</Callout>
+
+```java Java
+MixpanelOptions options = new MixpanelOptions.Builder()
+    .serverURL("https://api-eu.mixpanel.com")
+    .build();
+
+MixpanelAPI mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", trackAutomaticEvents, options);
+```
+
+You can also configure endpoints via `<meta-data>` tags in your `AndroidManifest.xml` under the `<application>` tag:
 
 ```xml Java
 ...
@@ -715,23 +729,30 @@ Route data to Mixpanel's EU servers by adding these meta-data entries under the 
            android:value="https://api-eu.mixpanel.com/engage?ip=1" />
     <meta-data android:name="com.mixpanel.android.MPConfig.GroupsEndpoint"
            android:value="https://api-eu.mixpanel.com/groups" />
-    <meta-data android:name="com.mixpanel.android.MPConfig.DecideEndpoint"
-           android:value="https://api-eu.mixpanel.com/decide" />
+    <meta-data android:name="com.mixpanel.android.MPConfig.FlagsEndpoint"
+           android:value="https://api-eu.mixpanel.com/flags" />
     ...
 </application>
 ...
 ```
 
-Alternatively, you can route data to Mixpanel's EU servers by calling `.setServerURL()` to set the `serverURL` to `https://api-eu.mixpanel.com` after initializing the client.
-
-```xml Java
-// set the Mixpanel instance to send data using Mixpanel's EU domain
-mixpanel.setServerURL("https://api-eu.mixpanel.com");
-```
-
 ### India Data Residency
 
-Route data to Mixpanel's India servers by adding these meta-data entries under the `<application>` tag of your app's `AndroidManifest.xml` to set the URLs of the API requests to our India domain.
+Route data to Mixpanel's India servers by setting the `serverURL` to `https://api-in.mixpanel.com` during initialization using `MixpanelOptions`.
+
+<Callout type="info">
+Setting `serverURL` during initialization ensures all requests (events, profiles, and feature flags) use the correct endpoint from the start.
+</Callout>
+
+```java Java
+MixpanelOptions options = new MixpanelOptions.Builder()
+    .serverURL("https://api-in.mixpanel.com")
+    .build();
+
+MixpanelAPI mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", trackAutomaticEvents, options);
+```
+
+You can also configure endpoints via `<meta-data>` tags in your `AndroidManifest.xml` under the `<application>` tag:
 
 ```xml Java
 ...
@@ -743,18 +764,11 @@ Route data to Mixpanel's India servers by adding these meta-data entries under t
            android:value="https://api-in.mixpanel.com/engage?ip=1" />
     <meta-data android:name="com.mixpanel.android.MPConfig.GroupsEndpoint"
            android:value="https://api-in.mixpanel.com/groups" />
-    <meta-data android:name="com.mixpanel.android.MPConfig.DecideEndpoint"
-           android:value="https://api-in.mixpanel.com/decide" />
+    <meta-data android:name="com.mixpanel.android.MPConfig.FlagsEndpoint"
+           android:value="https://api-in.mixpanel.com/flags" />
     ...
 </application>
 ...
-```
-
-Alternatively, you can route data to Mixpanel's IN servers by calling `.setServerURL()` to set the `serverURL` to `https://api-in.mixpanel.com` after initializing the client.
-
-```xml Java
-// set the Mixpanel instance to send data using Mixpanel's IN domain
-mixpanel.setServerURL("https://api-in.mixpanel.com");
 ```
 
 ### Disable Geolocation
