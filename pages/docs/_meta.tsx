@@ -59,6 +59,8 @@ export default {
     ),
   },
   "mixpanel-agent": "Mixpanel Agent",
+  "agentic-automations": "Agentic Automations",
+  "root-cause-analysis": "Root Cause Analysis",
   "mcp": "MCP Server",
   "business-context": "Business Context",
   admin: {

@@ -43,13 +43,13 @@ let options = MixpanelOptions(
 Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN", options: options)
 ```
 
-If you are using Runtime Targeting in any of the feature flags in your project, then any properties that you use in targeting should be included in a `customProperties` node within the context:
+If you are using Runtime Targeting in any of the feature flags in your project, then any properties that you use in targeting should be included in a `custom_properties` node within the context:
 
 ```swift
 let options = MixpanelOptions(
     featureFlagOptions: FeatureFlagOptions(enabled: true, context: [
         "company_id": "X",
-        "customProperties": [
+        "custom_properties": [
             "platform": "ios"
         ]
     ])
@@ -155,7 +155,7 @@ Mixpanel.mainInstance().flags.loadFlags()
 ```swift
 Mixpanel.mainInstance().flags.setContext([
     "company_id": "Y",
-    "customProperties": [
+    "custom_properties": [
         "platform": "ios"
     ]
 ]) {
@@ -303,7 +303,7 @@ Mixpanel.mainInstance().flags.getAllVariants { allFlags in
 3. **Review SDK parameters**:
   - Ensure `FeatureFlagOptions(enabled: true)` is passed to `MixpanelOptions` via the `featureFlagOptions` parameter
   - If using a custom Variant Assignment Key, ensure it is included in the `FeatureFlagOptions` `context` parameter
-  - If using Runtime Targeting, ensure all properties used in targeting are included in the `customProperties` object within the `FeatureFlagOptions` context
+  - If using Runtime Targeting, ensure all properties used in targeting are included in the `custom_properties` object within the `FeatureFlagOptions` context
 
 4. **Check flags readiness**: Use `areFlagsReady()` to check if flags have been loaded before making synchronous calls
 5. **Enable debug mode**: Set up logging to see detailed information about flag requests and responses
