@@ -1,0 +1,36 @@
+---
+title: "Databricks Pipeline Integration is now Generally Available"
+slug: "changelog-2026-05-15-databricks-pipeline-ga"
+hidden: false
+createdAt: "2026-05-15T00:00:00.000Z"
+updatedAt: "2026-05-15T00:00:00.000Z"
+date: "2026-05-15"
+description: "The Databricks export destination for Data Pipelines is now Generally Available — export your Mixpanel data directly to Databricks Unity Catalog."
+isAnnouncement: false
+---
+
+<ChangelogPostHeader
+  date="2026-05-15"
+  title="Databricks Pipeline Integration is now Generally Available"
+/>
+
+The **Databricks export destination** for Data Pipelines is now **Generally Available**.
+
+Since launching in Private Beta, we've worked with early customers to harden reliability and polish the setup experience. It's ready for production workloads.
+
+### What you can do with it
+
+Export your Mixpanel event data directly to your Databricks workspace via Unity Catalog Managed Volumes — no third-party ETL tools or custom infrastructure required. Mixpanel loads raw events into a single-column table and automatically creates a typed view on top, so your data team can start querying with standard SQL immediately.
+
+A few things that make this integration particularly useful:
+
+- **Works across all Databricks clouds** — AWS, GCP, and Azure are all supported
+- **Date-clustered tables** — raw tables use liquid clustering on `event_date`, so date-range queries are fast without manual optimization
+- **Static IP support** — works with IP allowlisting if your Databricks workspace has network restrictions
+- **Serverless-friendly** — pairs well with Serverless SQL Warehouses for fast startup and pay-per-use pricing
+
+If your analytics and data science teams are already working in Databricks, this is the simplest way to get your Mixpanel data into that environment without stitching together intermediate storage or custom export scripts.
+
+The Databricks destination is available to any Mixpanel customer with the Data Pipelines add-on package.
+
+Get started with the [Databricks integration](/docs/data-pipelines/integrations/databricks).
