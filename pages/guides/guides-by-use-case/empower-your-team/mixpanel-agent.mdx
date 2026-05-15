@@ -115,6 +115,10 @@ Trigger the RCA Agent from three entry points:
 - **From an alert:** Launch RCA from the notification. Detection and diagnosis in one step.
 - **From Mixpanel Agent:** Ask "why did this metric drop?" and the Agent routes it to RCA and returns a structured explanation.
 
+<Callout type="info">
+    **Pro tip:** You can tell RCA which properties to always consider. Go to **Project Settings → AI Settings** to prioritize the dimensions most relevant to your team's analysis.
+</Callout>
+
 {/* TODO: Add screenshot of RCA trigger UI */}
 
 ### What you get back
@@ -150,13 +154,14 @@ The KPI Agent monitors a metric you care about and delivers a digest to you on a
 ### How to use it
 
 1. Choose the metric you want to monitor
-2. Set your cadence — daily or weekly
-3. Choose your delivery destination — Slack or in-product
+2. Set your cadence — daily, weekly, or monthly
+3. Choose your delivery destination — Slack or email
+4. Use "run now" to preview the digest before committing to a cadence
 
 {/* TODO: Add screenshot of KPI Agent setup flow */}
 
 <Callout type="warning">
-    At launch, the KPI Agent supports [Insights](/docs/reports/insights)-based queries. Funnel and Retention report support is coming in a future release.
+    The KPI Agent is set up and managed directly from the KPI Agent interface — creating or managing it through Mixpanel Agent is coming soon. At launch, it supports [Insights](/docs/reports/insights)-based queries on a daily, weekly, or monthly cadence. Funnel and Retention report support is coming soon as well.
 </Callout>
 
 ### In practice
@@ -215,7 +220,7 @@ Mixpanel Agent doesn't replace how you think about your data. It replaces the me
 | :--- | :--- | :--- |
 | Send Board Subscriptions to stakeholders on a schedule | KPI Agent | The digest includes interpretation, not just numbers. |
 | Manually pull a metric each week and write a summary | KPI Agent | The pull and the summary are automated. Your job is to review and act. |
-| Open Mixpanel every morning to check if anything moved | KPI Agent | It comes to you. You know when and where to dig in. |
+| Open Mixpanel every morning to check if anything moved | KPI Agent | It comes to you — daily, weekly, or monthly, via Slack or email. You know where to dig in. |
 | Investigate an alert by manually building breakdowns | RCA Agent | The investigation runs automatically. You get a ranked explanation instead of a starting point. |
 | Build boards from scratch or browse templates to find a starting point | Ask Mixpanel Agent | Describe your question. The board is your first draft. |
 | Copy a teammate's board and customize it for your team | Ask Mixpanel Agent | Describe your team's specific question and get a board built for it directly. |
@@ -237,7 +242,7 @@ Those are direct replacements — workflows you're already running that an agent
 - Verified Mode is the right call for teams with broad AI access and a mature verification workflow. If your verification can't keep pace with instrumentation, the default experience is more reliable.
 - Mixpanel Agent picks up your current page as context automatically — you don't need to describe your setup before asking a question.
 - Pair every meaningful alert with RCA. The alert tells you something moved; RCA tells you why, before you've had to open a single breakdown.
-- Set up the KPI Agent once on the metric you're accountable for and it delivers a digest on your schedule — daily or weekly, Slack or in-product.
+- Set up the KPI Agent once on the metric you're accountable for and it delivers a digest on your schedule — daily, weekly, or monthly, via Slack or email.
 - Use the Experiments Agent during setup, not just at results time — it can't fix a misconfigured experiment after the fact.
 - The biggest shift these capabilities make isn't speed — it's what becomes worth doing. Questions that weren't practical before now take minutes.
 
@@ -252,6 +257,6 @@ Those are direct replacements — workflows you're already running that an agent
 | **Trigger** | On-demand | On-demand | Scheduled | On-demand |
 | **Scope** | Any question or build request | Single metric shift | Single metric | Experiment setup, results, rollout |
 | **Output** | Answer or multi-chart board | Generated RCA board | Personalized digest | Guided conversation + actions |
-| **Delivery** | In-product | In-product | Slack or in-product | In-product |
+| **Delivery** | In-product | In-product | Slack or email | In-product |
 | **Best for** | Getting answers fast | Explaining what changed | Staying close to a KPI | Running experiments without statistical expertise |
 | **Uses Business Context** | Yes | Yes | Coming soon | Yes |

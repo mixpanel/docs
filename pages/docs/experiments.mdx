@@ -194,32 +194,44 @@ This example shows why larger sample sizes are crucial—with only 10 users per 
 
 ### How do you read lift?
 
+<Callout type="info">
+Lift is always calculated using **exposures** (users assigned to a variant) as the denominator — not the denominator you may see in other tabs like Totals or Chart. For funnel metrics, this means the lift denominator differs from the funnel conversion rate denominator. See the FAQ ["Why does the lift in Results disagree with the conversion rate in Totals or Chart?"](#why-does-the-lift-in-results-disagree-with-the-conversion-rate-in-totals-or-chart) for a worked example.
+</Callout>
+
 Lift is the percentage difference between the control and variant(s) metrics. 
 $Lift= { (variant \,group\,rate - control \,group\,rate) \over (control \,group\,rate)}$
 
-Lift, mean, and variance are calculated differently based on the type of metric being analyzed:
+The "group rate" in this formula is calculated differently for each metric type. In every case, the denominator is **the number of users exposed to that variant** (i.e., users who received the `$experiment_started` event for that variant):
 
 **Total Events Metrics:**
+- **Numerator:** Total event count in the variant
+- **Denominator:** Number of users exposed to the variant
 - **Group Rate:** Total count ÷ Number of users exposed
 - **Variance:** Calculated directly from the per-user event counts, treated as a continuous variable
 - **Example:** If the treatment group has 150 total purchases from 100 exposed users, the group rate = 1.5 purchases per user
 
 **Total Sessions Metrics:**
+- **Numerator:** Total session count in the variant
+- **Denominator:** Number of users exposed to the variant
 - **Group Rate:** Total count ÷ Number of users exposed
 - **Variance:** Equal to the mean (Poisson distribution property)
 
 **Rate Metrics (Conversion, Retention):** 
-- **Group Rate:** The actual rate (already normalized)
+- **Numerator:** Number of users who converted (or were retained) in the variant
+- **Denominator:** Number of users exposed to the variant
+- **Group Rate:** Conversions ÷ Exposures
 - **Variance:** Calculated using Bernoulli distribution: p × (1-p)
-- **Example:** If 25 out of 100 users convert, group rate = 0.25 (25% conversion rate)
+- **Example:** If 25 out of 100 exposed users convert, group rate = 0.25 (25%). Note that this denominator is exposures — not funnel entrants. This is different from the funnel conversion rate you see in the Totals or Chart tabs, which uses funnel entrants as the denominator.
 
 **Value Metrics (Averages, Sums):**
+- **Numerator:** Sum of property values across all users in the variant
+- **Denominator:** Number of users exposed to the variant
 - **Group Rate:** Sum of property values ÷ Number of users exposed  
 - **Variance:** Calculated from the distribution of individual property values
 - **Example:** If the treatment group spent $5,000 total from 100 users, the group rate = $50 average per exposed user
 
 **Why This Matters:**
-Normalizing by exposed users (not just converters) helps you understand the impact on your entire user base. A feature that increases average order value among buyers but reduces conversion rate may decrease overall revenue per user.
+Normalizing by exposed users (not just converters or funnel entrants) helps you understand the impact on your entire user base. A feature that increases average order value among buyers but reduces conversion rate may decrease overall revenue per user.
 
 <Callout type="info">
 **Metrics with a Group Identifier:** When you [change a metric's group identifier](/docs/data-structure/advanced/group-analytics#change-the-group-identifier-in-a-report) from Users to a group key (e.g., Company), exposures for that metric are counted at the group level. The number of exposed groups is then used for all of that metric's calculations — normalizing group rates, computing variance, and determining statistical significance. For example, if a metric is set to aggregate by Company and 200 companies have been exposed to the treatment, the group rate is calculated as the total metric value divided by those 200 exposed companies, not by the number of individual users.
@@ -391,6 +403,29 @@ You can specify the event and property that should be used as the exposure event
 3. For what time duration do we associate the user being exposed to an experiment to impact metrics? 
     
     After the most recent experiment exposure for a user, we consider that user’s behavior as ‘exposed’ to an experiment for a max of 90 days.
+
+#### Why does the lift in Results disagree with the conversion rate in Totals or Chart?
+
+This is expected behavior — the two numbers use different denominators and answer different questions.
+
+**Lift** divides conversions by **exposures** (all users assigned to a variant). **Totals/Chart** for funnel metrics divides funnel completers by **funnel entrants** (users who started the funnel). When a variant changes how many users enter the funnel — for example, a new CTA that attracts more (or less qualified) users — the two rates can move in opposite directions.
+
+**Worked example:**
+
+|  | Control | Variant (v1) |
+| --- | --- | --- |
+| Exposures (users assigned) | 35,350 | 35,620 |
+| Funnel entrants | 7,504 | 8,676 |
+| Funnel completers | 2,289 | 2,480 |
+| **Funnel conversion** (completers ÷ entrants) | 30.50% | 28.58% |
+| **Per-exposure conversion** (completers ÷ exposures) | 6.49% | 6.96% |
+
+- **Funnel conversion (Totals/Chart tab):** v1 is 28.58% vs control 30.50% — v1 looks **worse** (−6.3%).
+- **Per-exposure conversion (basis for Lift):** v1 is 6.96% vs control 6.49% — v1 looks **better** (+7.52%).
+
+Both are correct. The funnel conversion rate answers: "For users who started the funnel, how often did they finish?" The per-exposure conversion rate answers: "For all users assigned to this variant, how often did they convert?"
+
+In this example, the variant brought more users into the funnel (8,676 entrants vs 7,504). Those additional users lowered the funnel completion rate, but the variant still converted a larger share of its total exposed population. Lift uses the per-exposure rate because it measures the overall impact of the variant on your entire user base, not just on users who happened to enter the funnel.
 
 ## Experimentation Pricing FAQ
 <Callout type="info">
