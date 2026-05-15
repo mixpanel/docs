@@ -73,7 +73,7 @@ The Metric Tree Add-On enables you to map your growth strategy quantitatively an
 
 ## Billing & Payment
 
-Mixpanel runs on a subscription service in which your card is charged at the beginning of every month or every year (depending on the plan you’ve purchased) to cover reporting services for that period of time.
+Mixpanel runs on a subscription service in which your card is charged at the beginning of every month or every year (depending on the plan you purchased) to cover reporting services for that period of time.
 
 <Callout type="info">
 Any of the following actions can only be done by "Owner" and "Billing Admin" users. Learn more about [Roles and Permissions](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions).  
@@ -83,10 +83,10 @@ If you don't see these sections, please contact your organization's owner or bil
 
 ### Update billing information
 
-To update your credit card or download invoices:  
+To update your credit card or download invoices, please follow these steps:
+- Click the gear icon at the lower-left corner of the purple menu at Mixpanel and then the **“Organization Settings”** option.
+- Then, select the **“Plan Details & Billing”** tab, and click **“Manage Billing & Payment”**.
 
-1. Click the gear icon in the lower-left corner of your screen, then select “Organization Settings”.
-2. Once there, click the “Plan Details & Billing” tab, "Billing Info" tab, and finally the “Manage Billing & Payment” button.
 
 ![Manage Billing & Payment](/../public/2026_Manage_Billing_Payment_button.png)
 
@@ -104,6 +104,10 @@ If you received an email or in-app notification that your payment didn't go thro
 If the payment is successful, you will see a success message in the bottom left corner, and an error icon should no longer appear next to your payment information - do note that this can take a few minutes to process. You may check back later, and it will not interrupt processing. If you and your bank are unable to resolve the issue, please reach out to our Support team.
 
 ### Downgrade your plan to Free
+
+<Callout type="info">
+You can only edit or downgrade your plan if you have “Owner” or “Billing Admin” permissions over your Mixpanel organization.
+</Callout>
 
 To submit a downgrade request:
 
@@ -123,24 +127,26 @@ You can also check the top events contributing towards your event count by creat
 
 [Hiding events](/docs/data-governance/lexicon#hide-events-and-properties) in Lexicon won’t stop their ingestion. [Dropping an event](/docs/data-governance/lexicon#dropping-events) in Lexicon will only block its ingestion from the moment it was dropped, not removing it retroactively.
 
-### What if I go over my event plan allowance? 
+### What if I go over my event plan allowance? Do you stop tracking my events?
 
-In either of the following scenarios, **Mixpanel won't stop collecting your data**:  
-- If you sent more data than your Free plan allows, your access will be temporarily blocked until you either upgrade to a Growth plan or the new billing cycle begins next month.  
-- If you sent more data than your Growth plan allows, the additional cost will be charged at the beginning of the next month based on your "à la carte" data rate, which you can find in the "Data Usage" tab in the Plan Details & Billing" section of your organization's Settings.
+If you go over your plan's events, Mixpanel won't stop collecting your data:
 
-Organization owners and billing admins are sent email alerts if their paid account reaches one of the following percentages of their plan volume: 85%, 100%, 110%, 120%, 200%, 300%, and 400%. It is possible to receive multiple alerts in a month if an account reaches two or more of the thresholds mentioned above.
+- If you're using a Free plan, Mixpanel caps you at 1M monthly events, but doesn't charge overages. Once you hit the limit, you will be blocked from viewing your reports until you either upgrade to a Growth plan that supports your current usage or wait until the following month, when your allowance automatically resets.
+- If you're using a Growth plan, the additional cost will be charged at the beginning of the next month based on your À La Carte rate, which you can find in the "Plan Details & Billing" section in your Organization Settings.
+On the contrary, if you want to avoid paying for overages, you can either [downgrade your paid plan to the Free one](https://docs.mixpanel.com/docs/pricing#downgrade-your-plan-to-free) or upgrade to one that covers your additional usage before the end of the billing cycle - the more events your plan includes, the less you pay per event.
 
-Another option to avoid paying for overages is to downgrade or upgrade before the end of the billing cycle to a plan that covers all your data usage.
+#### Alerts for Additional Data Charges
 
-### Can I set a billing limit?
+Organization owners and billing admins are sent an alert email if their paid account reaches the following percentages of their plan volume: 85%, 100%, 110%, 120%, 200%, 300%, and 400%. If an account reaches two or more of these thresholds, it is possible to receive multiple alerts in one month. Additionally, email addresses that are CC'd on invoice receipts will also be CC'd on alert emails.
 
-At this moment, it’s not possible to set a billing limit. However, you can read [this article](https://github.com/orgs/mixpanel/discussions/526) to learn how to create a report and get warning alerts when you’re close to exceeding your plan limit.
+#### Can I set a billing limit?
+
+While it's not possible to set a billing limit at this moment, read [this article](https://github.com/orgs/mixpanel/discussions/526) to learn how to create a report and get warning alerts when you’re close to exceeding your plan limit.
 
 ### I’m on a Growth plan and paying for less than 1M monthly events. How do I switch to the more recent one?
 The easiest way to switch is to go to Mixpanel’s [pricing page](https://www.mixpanel.com/pricing) and select “Make the Switch” on the Growth plan card. From there, you can move to the latest plan. If you are unable to adjust your plan, reach out to our Support team.
 
-### Why can I only select a volume of 1M monthly events on monthly Growth plans, not annual ones?
+### Why can I only select a volume of 1M monthly events on monthly Growth plans, but not annual ones?
 Our latest pricing plans include the first 1M events free each month. We require a larger pre-committed volume (more than 1M monthly events) in order to purchase an annual plan. Annual plans still include the first 1M events free each month.
 
 ### I signed up for the 1 million event Growth plan. What happens if I go over that amount?
@@ -153,13 +159,13 @@ As an example:
 - You signed up for the 1 million monthly event Growth plan with Group Analytics
 - If you send 1.1 million events in a month, you’ll be charged for the 100,000 events over the plan at the additional data rate, along with 40% of the calculated overage for the Group Analytics add-on.
 
-We bake volume discounts into our pricing, so if you are often tracking more than 1 million monthly events, it may be better to upgrade to the right size plan on the Pricing page — you’ll pay less per event.
+We bake volume discounts into our pricing, so if you are often tracking more than 1 million monthly events, it may be better to upgrade to the right-sized plan on the Pricing page — you’ll pay less per event.
 
 ### Is Mixpanel’s pricing based on MTUs?
 
 Mixpanel’s default pricing option is based on events because it is a better option for the majority of customers. Mixpanel also offers an MTU-based Enterprise plan, which **starts at $20,000 per year** and isn’t available online. If you are interested in learning more about it, [contact our sales team](https://mixpanel.com/contact-us/sales/).
 
-If you are an existing customer on an MTU plan, refer to our [MTU Pricing Guide](https://docs.mixpanel.com/docs/pricing/legacy-mtu-billing).
+If you are an existing customer on an MTU plan, [refer to our MTU Pricing Guide](/docs/pricing/legacy-mtu-billing).
 
 ### Are monthly events calculated based on ingestion time or event timestamp?
 
