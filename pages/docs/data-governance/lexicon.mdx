@@ -71,7 +71,7 @@ This table contains descriptions for each field in the “Events” view.
 | Last Queried | The user that last used this event in the Mixpanel UI. |
 | First Queried | The user that first used this event in the Mixpanel UI. |
 | Owners | The user(s) that are points-of-contact for this event. |
-| Status | Whether this event is Pending, Visible, Hidden, Dropped, or Merged. |
+| Status | Whether this event is Pending, Visible, Hidden, Blocked, or Merged. |
 
 
 ### Event Properties
@@ -88,7 +88,7 @@ This table contains descriptions for each field in the “Event Properties” vi
 | Example Value | What is an example value of this property. |
 | Events With Property | The total number of events that contain this property in the last 30 days. |
 | Queries | The total number of UI queries that project members executed in the last 30 days. Includes queries from selecting events in reports, viewing reports, and queries in "Users" and "Events" tabs. Excludes dashboard views.|
-| Status | Indicates whether the property is visible or hidden from the Mixpanel interface. Also indicates if the property is dropped, merged, or marked as sensitive. |
+| Status | Indicates whether the property is visible or hidden from the Mixpanel interface. Also indicates if the property is blocked, merged, or marked as sensitive. |
 
 Lexicon contains property definitions for the default properties that Mixpanel’s client-side libraries automatically send with each event across web and mobile platforms.
 
@@ -106,7 +106,7 @@ This table contains descriptions for each field in the “Profile Properties” 
 | Display Name | The property name that displays in the Mixpanel interface. |
 | Description | The information that describes the property, such as what events it is sent with. |
 | Example Value | What is an example value of this property. |
-| Status | Indicates whether the property is visible or hidden from the Mixpanel interface. Also indicates if the property is dropped, merged, or marked as sensitive. |
+| Status | Indicates whether the property is visible or hidden from the Mixpanel interface. Also indicates if the property is blocked, merged, or marked as sensitive. |
 | Users With Property | The total number of profiles that contain this property. |
 | Queries | The total number of UI queries that project members executed in the last 30 days. Includes queries from selecting events in reports, viewing reports, and queries in "Users" and "Events" tabs. Excludes dashboard views.|
 
@@ -136,7 +136,7 @@ After you ingest raw data into a project, you cannot rename it. However, you can
 
 Lexicon provides several options for you to filter your events, custom events, event properties, and profile properties.
 
-You can filter by visible or hidden events, dropped events, merged events, tags, your defined events, autotracked events, and default Mixpanel events. These filtering options help you arrive at the most useful data to analyze your performance.
+You can filter by visible or hidden events, blocked events, merged events, tags, your defined events, autotracked events, and default Mixpanel events. These filtering options help you arrive at the most useful data to analyze your performance.
 
 ![Lexicon Filtering](/lexiconFiltering.png)
 
@@ -144,7 +144,7 @@ You can filter by visible or hidden events, dropped events, merged events, tags,
 
 In each view, you can see the total UI and API queries in the last 30 days for any of these data types and sort by them.
 
-This data lets you easily discover the parts of your implementation that are most valuable and the parts that are not being used. You can use this information to determine which events and properties you should drop.
+This data lets you easily discover the parts of your implementation that are most valuable and the parts that are not being used. You can use this information to determine which events and properties you should block.
 
 ![Lexicon Query Volumes](/thirtyDayMetrics.png)
 
@@ -173,7 +173,7 @@ By blocking an event, you can intercept and block incoming events. Mixpanel will
 To block an event in Lexicon:
 
 1. Select an event to block. The Block icon appears.
-![Lexicon Drop Events](/lexicon-block-event.png)
+![Lexicon Block Events](/lexicon-block-event.png)
 2. Click Block. A “Confirm blocking your event(s)” warning indicates you cannot recover the data associated with the event.
 ![Lexicon Block Events Warning](/lexicon-block-event-warning.png)
 3. Click Block. The status of the event indicates **Blocked**.
@@ -196,7 +196,7 @@ To block a property in Lexicon:
 
 1. Select a property to block. The Block icon appears.
 ![Lexicon Block Properties](/lexicon-block-property.png)
-2. Click **Block**. A warning indicates that you cannot recover the data that you choose to drop. Click Block to confirm. The status of the property will indicate Blocked.
+2. Click **Block**. A warning indicates that you cannot recover the data that you choose to block. Click Block to confirm. The status of the property will indicate Blocked.
 
 **Unblocking Properties**
 
@@ -210,7 +210,7 @@ To block a property in Lexicon:
 You must have an admin or owner project role to hide and unhide data from the Lexicon. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
 </Callout>
 
-In Lexicon, you can hide any events or properties. Unlike [dropping data](/docs/data-governance/lexicon#dropping-data), hiding data does not affect data ingestion; any events/properties that are hidden will continue to be ingested in your project and count toward your data allowance.
+In Lexicon, you can hide any events or properties. Unlike [blocking data](/docs/data-governance/lexicon#blocking-data), hiding data does not affect data ingestion; any events/properties that are hidden will continue to be ingested in your project and count toward your data allowance.
 
 A hidden entity will not be indexed in your event/properties menu in the query builder. Any [inactive events and properties](/docs/tracking-best-practices/debugging#inactive-events-and-properties) will also be hidden.
 
@@ -366,7 +366,7 @@ Once you've made your modifications, you can directly import the CSV file into L
 - Review Events, Event Properties, and/or User Profile Properties
 - Import into Lexicon
 
-Event and property descriptions and metadata (hidden, dropped, sensitive, etc) that are already in Lexicon will be overwritten by descriptions and metadata for matching event and property names. By default, any event and property descriptions for events that are not imported will remain unchanged unless you check the option to overwrite your entire data dictionary during import.
+Event and property descriptions and metadata (hidden, blocked, sensitive, etc) that are already in Lexicon will be overwritten by descriptions and metadata for matching event and property names. By default, any event and property descriptions for events that are not imported will remain unchanged unless you check the option to overwrite your entire data dictionary during import.
 
 ### Segment Import
 When importing a data dictionary from Segment Protocols using the Segment Config API, you will be asked for your Segment Token and Segment Workspace. You can find your Segment Token by going to your Segment dashboard: Settings > Access Management > Tokens
