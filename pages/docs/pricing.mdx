@@ -66,10 +66,10 @@ This is a recommended feature for all B2B products that want answers to question
 
 ### Data Pipelines Add-On
 
-The Data Pipelines Add-On exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment. We offer a 30-day free trial of this feature; see the [FAQ](/docs/data-pipelines#how-does-the-free-trial-work) on how to enable it.
+The Data Pipelines Add-On exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment. We offer a 30-day free trial of this feature; see the [FAQ](https://docs.mixpanel.com/docs/data-pipelines#how-does-the-free-trial-work) on how to enable it.
 
 ### Metric Tree Add-on
-The Metric Tree Add-On enables you to map your growth strategy quantitatively and measurably, and understand the logical relationship between your input metrics and output business outcomes. It is a collaborative space for you and your team to identify opportunities, have prioritization and trade-off discussions across Exec to ICs, and eventually take data-backed decisions. You can read more about the functionality of Metric Trees [here](/docs/metric_tree).
+The Metric Tree Add-On enables you to map your growth strategy quantitatively and measurably, and understand the logical relationship between your input metrics and output business outcomes. It is a collaborative space for you and your team to identify opportunities, have prioritization and trade-off discussions across Exec to ICs, and eventually take data-backed decisions. You can read more about the functionality of Metric Trees [here](https://docs.mixpanel.com/docs/metric_tree).
 
 ## Billing & Payment
 
@@ -123,21 +123,19 @@ You can also check the top events contributing towards your event count by creat
 
 [Hiding events](/docs/data-governance/lexicon#hide-events-and-properties) in Lexicon won’t stop their ingestion. [Dropping an event](/docs/data-governance/lexicon#dropping-events) in Lexicon will only block its ingestion from the moment it was dropped, not removing it retroactively.
 
-### What if I go over my event plan allowance? Can I set a billing limit?
+### What if I go over my event plan allowance? 
 
-If you sent more data than your paid plan allows, the **additional cost will be charged at the beginning of the next month based on your additional data rate**, which you can find in the "Plan Details & Billing" section in your Organization Settings.
+In either of the following scenarios, **Mixpanel won't stop collecting your data**:  
+- If you sent more data than your Free plan allows, your access will be temporarily blocked until you either upgrade to a Growth plan or the new billing cycle begins next month.  
+- If you sent more data than your Growth plan allows, the additional cost will be charged at the beginning of the next month based on your "à la carte" data rate, which you can find in the "Data Usage" tab in the Plan Details & Billing" section of your organization's Settings.
 
-It’s not possible to set a billing limit at this moment, but check out [this article](https://github.com/orgs/mixpanel/discussions/526) to learn how to create a report and get warning alerts when you’re close to exceeding your plan limit.
+Organization owners and billing admins are sent email alerts if their paid account reaches one of the following percentages of their plan volume: 85%, 100%, 110%, 120%, 200%, 300%, and 400%. It is possible to receive multiple alerts in a month if an account reaches two or more of the thresholds mentioned above.
 
 Another option to avoid paying for overages is to downgrade or upgrade before the end of the billing cycle to a plan that covers all your data usage.
 
-#### Alerts for Additional Data Charges
+### Can I set a billing limit?
 
-If you go over your prepaid amount, Mixpanel won't stop collecting your data. Any additional data over your current plan will be billed the following month.
-
-Organization owners and billing admins are sent an alert email if their paid account reaches the following percentages of their plan volume: 85%, 100%, 110%, 120%, 200%, 300%, and 400%. It is possible to receive multiple alerts in a month if an account reaches two or more of the thresholds mentioned above. Email addresses that are CC'd on receipts will also be CC'd on additional carte data rate alerts.
-
-If the billing owner logs into Mixpanel, they will see a pop-up if their account reaches the following percentages of their plan volume: 100%, 110%, and 120%.
+At this moment, it’s not possible to set a billing limit. However, you can read [this article](https://github.com/orgs/mixpanel/discussions/526) to learn how to create a report and get warning alerts when you’re close to exceeding your plan limit.
 
 ### I’m on a Growth plan and paying for less than 1M monthly events. How do I switch to the more recent one?
 The easiest way to switch is to go to Mixpanel’s [pricing page](https://www.mixpanel.com/pricing) and select “Make the Switch” on the Growth plan card. From there, you can move to the latest plan. If you are unable to adjust your plan, reach out to our Support team.
