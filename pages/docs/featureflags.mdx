@@ -372,6 +372,33 @@ The Feature Flags tab on a user's profile page will display the most recently vi
 If a user later sees a new variant, that will be displayed instead. If the flag is tied to an experiment, clicking on the right arrow will open a menu allowing the user to navigate
 to the feature flag page of the associated flag, or the related experiment page.
 
+## Multiple Environments
+
+### Other Environments Selector
+
+The "Other Environments" selector will appear under the "Settings" tab of a feature flag. This panel allows the user
+to manage changes between Feature Flags across different projects. This enables users to use a Mixpanel project as a development environments
+where they can create and make changes to a flag, and select another project to push those changes to.
+
+#### Pushing changes
+When pushing changes to a linked flag, the source flag will push all info to the destination flag. All other changes on the destination flag will
+be overwritten.
+
+#### Other Environments Menu
+
+This menu displays a list of the linked feature flags that exist in other projects. From here, you can manage the other flags. This menu allows you
+to navigate to the linked flag, push changes that have occurred to the linked flag, or remove the connection.
+
+#### Duplicate To Project
+
+A user can duplicate a feature flag to other projects. You may not use this feature for duplicating to the same project (use the existing duplicate flow instead).
+Once a user has duplicated a flag to another project, they will be able to manage the connection from within the "Other Environments" menu.
+
+#### Data Groups
+
+Feature Flag rollouts may include configuration that reference data groups in a given project. For instance, if the user changes the
+"Assignment Key" of a flag, both the source and destination projects _must_ include the referenced data group in order to duplicate or push changes.
+If the assignment key is _not_ present in the destination project, the operations will fail.
 
 ## Feature Flagging Pricing FAQ
 
