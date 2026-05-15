@@ -24,37 +24,51 @@ A typical workflow looks like:
 | **Analytics** | `Run-Query` | Execute insights, funnels, flows, and retention queries |
 | | `Get-Query-Schema` | Get the full JSON schema for building a query |
 | | `Get-Report` | Retrieve a saved report, optionally including results |
+| | `Display-Query` | Display an interactive chart widget for a previously-run query |
 | **Dashboards** | `Create-Dashboard` | Create a new dashboard with text cards and reports |
 | | `List-Dashboards` | Browse dashboards in a project |
 | | `Get-Dashboard` | Retrieve a dashboard's metadata, text cards, and reports |
 | | `Update-Dashboard` | Modify a dashboard's metadata, rows, and layout |
 | | `Duplicate-Dashboard` | Create a copy of an existing dashboard |
 | | `Delete-Dashboard` | Delete a dashboard |
-| **Data Discovery** | `Get-Projects` | List your projects and workspaces |
-| | `Get-Events` | Browse all events in a project |
-| | `Get-Property-Names` | Explore properties for events or users |
+| **Data Discovery** | `Get-Business-Context` | Get org- and project-specific business context, vocabulary, and query instructions |
+| | `Get-Projects` | List your projects and workspaces |
+| | `List-Organizations` | List organizations the current user belongs to |
+| | `Get-Events` | Browse and search events in a project, optionally including full metadata |
+| | `List-Properties` | List and search event or user properties in a project |
 | | `Get-Property-Values` | Discover values for a specific property |
-| | `Get-Event-Details` | Retrieve full event metadata |
+| | `Search-Entities` | Search across dashboards, reports, experiments, feature flags, and more |
 | | `Get-Issues` | Get data quality issues filtered by event, property, type, or date |
 | | `Get-Lexicon-URL` | Get a direct link to an event or property in Lexicon |
 | **Data Management** | `Edit-Event` | Update event description, display name, tags, or visibility |
 | | `Edit-Property` | Update property description, display name, hidden status, or PII classification |
+| | `Bulk-Edit-Events` | Edit multiple events at once (up to 50) with uniform or per-event fields |
+| | `Bulk-Edit-Properties` | Edit multiple properties at once (up to 50) with uniform or per-property fields |
 | | `Create-Tag` | Create a new tag in Lexicon |
 | | `Rename-Tag` | Rename an existing tag across all associated events and properties |
 | | `Delete-Tag` | Remove a tag from your project |
 | | `Dismiss-Issues` | Bulk-dismiss data quality issues by event, property, or type |
+| | `Update-Business-Context` | Update business context at the project or organization level |
+| **Metrics** | `Create-Metric` | Create a saved metric (behavior or formula) for reuse across experiments |
+| | `Get-Metric` | Get the full definition of a saved metric |
+| | `List-Metrics` | List all saved metrics in a project |
+| | `Update-Metric` | Update a saved metric's name, definition, or description |
 | **Session Replays** | `Get-User-Replays-Data` | Analyze a specific user's replays alongside their event data |
-| **Experiments** *(Beta)* | `List-Experiments` | List all experiments in a project |
-| | `Get-Experiment` | Retrieve experiment details and configuration |
+| **Experiments** *(Beta)* | `List-Experiments` | List and search experiments in a project |
+| | `Get-Experiment` | Retrieve experiment details, configuration, and results |
 | | `Create-Experiment` | Create a new experiment |
-| | `Update-Experiment` | Modify an experiment's configuration or status |
-| **Feature Flags** *(Beta)* | `List-Feature-Flags` | List all feature flags in a project |
+| | `Update-Experiment` | Modify an experiment's configuration or manage its lifecycle |
+| | `Get-Experiment-Setup-Guidance` | Get best-practice guidance for designing an experiment |
+| | `Get-Experiment-Results-Interpretation-Guidance` | Get best-practice guidance for interpreting experiment results |
+| **Feature Flags** *(Beta)* | `List-Feature-Flags` | List and search feature flags in a project |
 | | `Get-Feature-Flag` | Retrieve feature flag details and targeting rules |
 | | `Create-Feature-Flag` | Create a new feature flag |
 | | `Update-Feature-Flag` | Modify a feature flag's configuration or targeting |
+| | `Get-Feature-Flag-Setup-Guidance` | Get best-practice guidance for creating and configuring a feature flag |
+| | `Get-Feature-Flag-Lifecycle-Guidance` | Get best-practice guidance for rollout, kill-switch, and cleanup of a feature flag |
 
 <Callout type="warning">
-  **Experiments and Feature Flags tools are in open beta** and available to all users. Audience targeting and cohort editing are not yet supported.
+  **Experiments and Feature Flags tools are in open beta** and available to all users. Audience targeting and cohort editing are not yet supported via MCP — use the Mixpanel UI instead.
 </Callout>
 
 ## MCP Server URLs
