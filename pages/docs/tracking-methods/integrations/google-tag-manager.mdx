@@ -171,6 +171,17 @@ The more complex tag types (`group`, `people`, and `track`) are elevated to the 
 
 Once you select a tag type, **additional options may appear.** Please have a look at the SDK reference for details on how to configure these options.
 
+### GTM Template Default Overrides vs. JS SDK
+
+As of October 2025, the GTM template sets two initialization defaults that differ from the JS SDK. This applies to anyone who installed the template fresh or opted into new versions of the template update.
+
+| Option | GTM Template Default | JS SDK Default |
+|---|---|---|
+| `persistence` | `localStorage` | `cookie` |
+| `stop_utm_persistence` | `true` | `false` |
+
+Switching between template versions and/or the JS SDK without accounting for these can change how persistent user data is stored and whether UTM parameters persist across subsequent events. To override either, add them as [Custom Initialization Options](#custom-initialization-options).
+
 ### Tag to Function Mapping
 
 **Essential Tags**
