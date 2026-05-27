@@ -1,0 +1,29 @@
+---
+title: Rate Limits
+---
+We enforce a rate limit on our API to ensure the integrity of our system as well as prevent a single project from monopolizing the available resources for other projects. These rate limits are scope per project.
+
+Getting a 429 response code from our API means that you have reached our rate-limit.
+
+The rate limits are as follows:
+
+### [**Ingestion API**](/reference/ingestion-api)
+
+2GB of uncompressed JSON/minute or \~30k events per second, measured on a rolling 1 minute basis. Please click [here](/reference/import-events#rate-limits) for more details.
+
+### [**Query API**](/reference/query-api)
+
+A maximum of 5 concurrent queries and 60 queries per hour.
+
+### [**Raw Data Export API**](/reference/raw-data-export-api)
+
+A maximum of 100 concurrent queries, 60 queries per hour, and 3 queries per second.
+
+### [**Lexicon Schemas API**](/reference/lexicon-schemas-api)
+
+A maximum of 5 requests per minute, under 4000 events and properties updated in each minute, and less than 3000 total truncations/deletions per request.
+
+### You can reduce rate-limiting errors using one of the two approaches:
+
+* Spread your queries out over a longer period of time.
+* Consolidate multiple queries into a single query (for example, multiple queries filtering on a single property may be combined into a single segmentation query).

@@ -1,0 +1,61 @@
+.dark li[id="topbar-cta-button"] > a > span {
+  background-color: #8363fe !important;
+}
+
+h5,
+h6 {
+  font-weight: bold;
+}
+
+.create-service-account {
+  display: flex;
+  margin: 18px 0;
+}
+
+.create-service-account img {
+  width: 80%;
+}
+
+@media (max-width: 1400px) {
+  .create-service-account img {
+    width: 100%;
+  }
+}
+
+.mixpanel-custom-two-column {
+  display: flex;
+  margin: 18px 0;
+}
+
+.mixpanel-custom-two-column div {
+  width: 100%;
+  margin: 15px 0;
+}
+
+.mixpanel-custom-two-column .image-container {
+  display: flex;
+}
+
+.mixpanel-custom-two-column .image-container img {
+  height: 300px;
+}
+
+#navbar > div.z-0.absolute.inset-0.bg-background-light.dark\:bg-background-dark,
+#navbar > div.z-10.relative > div.hidden.lg\:block.bg-gray-50.dark\:bg-gray-900 {
+  background-color: #f5f2f2 !important;
+}
+
+.dark #navbar > div.z-0.absolute.inset-0.bg-background-light.dark\:bg-background-dark,
+.dark #navbar > div.z-10.relative > div.hidden.lg\:block.bg-gray-50.dark\:bg-gray-900 {
+  background-color: #2b273f !important;
+}
+
+ul.contains-task-list,
+ul.contains-task-list > li.task-list-item {
+  padding-left: 0 !important;
+}
+
+ul.contains-task-list > li.task-list-item:before {
+  width: 0;
+  height: 0;
+}

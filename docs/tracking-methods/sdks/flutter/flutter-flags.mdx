@@ -1,0 +1,306 @@
+---
+sidebarTitle: "Feature Flags (Flutter)"
+title: "Implement Feature Flags (Flutter)"
+---
+
+## Overview
+
+This developer guide will assist you in configuring your Flutter application for Feature Flags using the [Mixpanel Flutter SDK](/docs/tracking-methods/sdks/flutter). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
+
+Feature Flags in the Flutter SDK work across iOS, Android, and Web platforms.
+
+For complete Flutter SDK documentation, see the [Flutter SDK guide](/docs/tracking-methods/sdks/flutter).
+
+## Prerequisites
+
+Before implementing Feature Flags, ensure:
+
+- You are on an Enterprise subscription plan and have the latest version of the SDK installed (minimum supported version is `v2.5.0`). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+
+## Flag Initialization
+
+Initializing the SDK with feature flags enabled requires passing a `FeatureFlagsConfig` with `enabled: true` to the `Mixpanel.init()` method. This enables making an outbound request to Mixpanel servers with the current user context.
+The server will assign the user context to a variant for each feature flag according to how they are configured in the Mixpanel UX.
+
+The response will include an assigned variant for each flag that the user context is in a rollout group for. If a flag is not returned, it most likely signifies that the user was excluded by filtering rules or the rollout percentage for the flag.
+
+**Example Usage**
+
+```dart
+import 'package:mixpanel_flutter/mixpanel_flutter.dart';
+
+// Initialize Mixpanel with feature flags enabled
+Mixpanel mixpanel = await Mixpanel.init(
+  "YOUR_PROJECT_TOKEN",
+  trackAutomaticEvents: false,
+  featureFlags: FeatureFlagsConfig(enabled: true),
+);
+```
+
+If your flag is configured with a Variant Assignment Key other than `distinct_id` or `device_id` for any of the feature flags in your project, then the call to initialize feature flags must include those keys.
+
+For example, for a Variant Assignment Key, `company_id`, you would setup the SDK as follows:
+
+```dart
+Mixpanel mixpanel = await Mixpanel.init(
+  "YOUR_PROJECT_TOKEN",
+  trackAutomaticEvents: false,
+  featureFlags: FeatureFlagsConfig(
+    enabled: true,
+    context: {
+      "company_id": "X",
+    },
+  ),
+);
+```
+
+If you are using Runtime Targeting in any of the feature flags in your project, then any properties that you use in targeting should be included in a `custom_properties` node within the context:
+
+```dart
+Mixpanel mixpanel = await Mixpanel.init(
+  "YOUR_PROJECT_TOKEN",
+  trackAutomaticEvents: false,
+  featureFlags: FeatureFlagsConfig(
+    enabled: true,
+    context: {
+      "company_id": "X",
+      "custom_properties": {
+        "platform": "flutter",
+      },
+    },
+  ),
+);
+```
+
+## Flag Persistence
+
+Minimum supported SDK version: [`v2.8.0`](https://github.com/mixpanel/mixpanel-flutter/releases/tag/v2.8.0)
+
+<Note>
+Flag persistence is supported on iOS and Android. Web support is coming soon. On Web, the `variantLookupPolicy` is treated as `networkOnly` regardless of what is configured.
+</Note>
+
+By default (`networkOnly`), the SDK fetches fresh flag assignments and waits for the network response before variant calls complete. You can enable persistence so that assignments are persisted on-device and available immediately on subsequent launches (iOS and Android only).
+
+Configure a `variantLookupPolicy` on `FeatureFlagsConfig`:
+
+**`networkFirst`** — The SDK waits for the network on every launch. If the network call fails, the persisted value is returned as a fallback. Async getter calls block until the fetch completes (or the fallback is resolved).
+
+```dart
+Mixpanel mixpanel = await Mixpanel.init(
+  "YOUR_PROJECT_TOKEN",
+  trackAutomaticEvents: false,
+  featureFlags: FeatureFlagsConfig(
+    enabled: true,
+    variantLookupPolicy: VariantLookupPolicy.networkFirst(),
+  ),
+);
+
+// getVariantValue waits for the network. Falls back to persisted value if network fails.
+FeatureFlags flags = mixpanel.getFeatureFlags();
+dynamic value = await flags.getVariantValue("my-feature-flag", "control");
+// value is from the network response, or from persistence if the network was unavailable
+```
+
+**`persistenceUntilNetworkSuccess`** — Persisted variants are returned immediately on launch. On iOS and Android, each getter call while serving persisted data triggers a background network fetch. If the fetch fails, persisted data continues to be served and the next getter call retries the fetch. Once a fetch succeeds, the in-memory state updates and subsequent calls no longer trigger background fetches.
+
+```dart
+Mixpanel mixpanel = await Mixpanel.init(
+  "YOUR_PROJECT_TOKEN",
+  trackAutomaticEvents: false,
+  featureFlags: FeatureFlagsConfig(
+    enabled: true,
+    variantLookupPolicy: VariantLookupPolicy.persistenceUntilNetworkSuccess(),
+  ),
+);
+
+// getVariantValue returns immediately from persistence. Each call (iOS/Android) triggers a
+// background fetch until a network response succeeds and replaces the persisted state.
+FeatureFlags flags = mixpanel.getFeatureFlags();
+dynamic value = await flags.getVariantValue("my-feature-flag", "control");
+// value is from persistence; background fetch retries on each call until network succeeds
+```
+
+To customize the TTL (default: 24 hours), pass a `Duration`:
+
+```dart
+Mixpanel mixpanel = await Mixpanel.init(
+  "YOUR_PROJECT_TOKEN",
+  trackAutomaticEvents: false,
+  featureFlags: FeatureFlagsConfig(
+    enabled: true,
+    variantLookupPolicy: VariantLookupPolicy.networkFirst(
+      persistenceTtl: Duration(hours: 12),
+    ),
+  ),
+);
+```
+
+### Variant source
+
+Every `MixpanelFlagVariant` carries a `source` field indicating where the value came from: `NetworkSource`, `PersistenceSource` (with a `persistedAt` timestamp), or `FallbackSource`. Use `getVariant()` to receive the full variant object.
+
+```dart
+FeatureFlags flags = mixpanel.getFeatureFlags();
+final fallback = MixpanelFlagVariant(key: "control", value: "control");
+MixpanelFlagVariant variant = await flags.getVariant("my-feature-flag", fallback);
+final value = variant.value;
+final source = variant.source; // NetworkSource, PersistenceSource, or FallbackSource
+```
+
+### `$experiment_started` properties
+
+When a variant is served, the `$experiment_started` exposure event includes:
+
+- `$variant_source` — `"network"` or `"persistence"`
+- `$persisted_at_in_ms` — epoch ms when the variant set was persisted *(persistence only)*
+- `$ttl_in_ms` — the configured TTL in ms *(persistence only)*
+
+<Note>
+Persisted variants are tied to the current `distinct_id`. Calling `identify()` with a new ID or calling `reset()` clears persisted data and triggers a fresh fetch.
+</Note>
+
+## Flag Reload
+
+Following initialization, you can reload feature flag assignments. The available methods vary by platform.
+
+### Reload via identify (All Platforms)
+
+After a user logs in or out of your application and you call `identify`, a feature flag reload will be triggered. This works consistently across iOS, Android, and Web.
+
+```dart
+String updatedDistinctId = "";
+// Reload after login
+mixpanel.identify(updatedDistinctId);
+```
+
+### Manual Reload
+
+To refresh flag variants that may have changed during the lifetime of your app, you can manually reload flags:
+
+```dart
+FeatureFlags flags = mixpanel.getFeatureFlags();
+
+// Manually reload flag assignments
+await flags.loadFlags();
+```
+
+<Note>
+On Web, `loadFlags()` is not supported. Use `updateContext()` to trigger a flag reload instead.
+</Note>
+
+### Update Context
+
+You can update the feature flags context after initialization, which will replace the current context and trigger a reload with the new values. This is supported on all platforms (iOS, Android, and Web).
+
+```dart
+FeatureFlags flags = mixpanel.getFeatureFlags();
+
+// Update context and reload flags
+await flags.updateContext({
+  "company_id": "Y",
+  "custom_properties": {
+    "platform": "flutter",
+  },
+});
+```
+
+<Note>
+`updateContext` completely replaces the previously set custom context — it does not merge with existing values. The returned `Future` completes when the flag re-fetch is complete.
+</Note>
+
+### Reset
+
+Calling `reset()` clears all feature flag assignments from memory and triggers a new fetch for the updated `distinct_id`. Requires SDK version [`v2.8.0`](https://github.com/mixpanel/mixpanel-flutter/releases/tag/v2.8.0) or later.
+
+```dart
+mixpanel.reset();
+// Flags are cleared immediately. A new fetch begins for the anonymous distinct_id.
+```
+
+### Check Flags Ready
+
+Before evaluating flags, you can check if they have been loaded:
+
+```dart
+FeatureFlags flags = mixpanel.getFeatureFlags();
+
+bool ready = await flags.areFlagsReady();
+if (ready) {
+  // Flags are loaded and ready to use
+}
+```
+
+### Feature Gates: Check if Flag is Enabled/Disabled
+
+```dart
+FeatureFlags flags = mixpanel.getFeatureFlags();
+
+// Check if a boolean flag is enabled
+// The fallback value is used if the user doesn't match any of the flag's rollout rules
+bool isEnabled = await flags.isEnabled("my-boolean-flag", false);
+
+if (isEnabled) {
+  showNewFeature();
+} else {
+  showOldFeature();
+}
+```
+
+### Experiment and Dynamic Config Flags: Get Variant Value
+
+```dart
+FeatureFlags flags = mixpanel.getFeatureFlags();
+
+// Get the flag value
+// The fallback value is used if the user doesn't match any of the flag's rollout rules
+dynamic value = await flags.getVariantValue("my-feature-flag", "control");
+
+// Use flag value in your application logic
+if (value == "variant_a") {
+  showExperienceForVariantA();
+} else if (value == "variant_b") {
+  showExperienceForVariantB();
+} else {
+  showDefaultExperience();
+}
+```
+
+### Get All Variants
+
+Starting from Flutter SDK version `2.7.0`, you can retrieve all currently loaded flag assignments at once using `getAllVariants()`. This returns a `Map<String, MixpanelFlagVariant>` containing every flag the user is assigned to from the most recent fetch. This method does **not** trigger an exposure event for any flag.
+
+```dart
+FeatureFlags flags = mixpanel.getFeatureFlags();
+
+// Get the variant value for a single flag
+dynamic value = await flags.getVariantValue("my-feature-flag", "control");
+
+// Get all flag variants, mapped from the flag key to its assigned variant
+Map<String, MixpanelFlagVariant> allFlags = await flags.getAllVariants();
+```
+
+## Exposure Events
+
+Calling `isEnabled` or `getVariantValue` triggers tracking an exposure event, `$experiment_started` to your Mixpanel project *if* the user context is in a rollout group for the feature flag. Note that `getAllVariants()` does not trigger exposure events.
+
+## Frequently Asked Questions
+
+### What if I'm not receiving any flags on SDK initialization?
+
+1. **Check your project token**:
+  - Ensure you're using the correct project token from your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+2. **Review flag configuration**:
+  - Make sure your feature flag is enabled
+  - Check the flag's rollout percentage
+    - User contexts that are not assigned to the rollout percentage will not receive flags
+  - If you are using a targeting cohort, verify on the mixpanel 'Users' page that the user's `distinct_id` is a member of that cohort.
+
+3. **Review SDK parameters**:
+  - Ensure `FeatureFlagsConfig(enabled: true)` is passed to `Mixpanel.init()`
+  - If using a custom Variant Assignment Key, ensure it is included in the `context` map
+  - If using Runtime Targeting, ensure all properties used in targeting are included in the `custom_properties` object within `context`
+
+4. **Check flags readiness**: Use `areFlagsReady()` to check if flags have been loaded before making flag evaluation calls
+5. **Enable debug logging**: Call `mixpanel.setLoggingEnabled(true)` to see detailed information about flag requests and responses
