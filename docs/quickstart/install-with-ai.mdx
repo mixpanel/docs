@@ -1,0 +1,136 @@
+---
+title: "Install with AI"
+---
+
+The Mixpanel Implementation Skill installs Mixpanel into your project through your AI coding agent. It handles SDK selection, identity management, event tracking, and compliance gates through a guided conversation — with paths ranging from a one-session Quick Start to a full production-ready rollout.
+
+## What You'll Need
+
+Before starting, make sure you have:
+
+- A Mixpanel account with Admin or Owner access ([sign up](https://www.mixpanel.com/signup) if you don't have one)
+- An AI coding agent with access to your project files (Claude Code, Cursor, ChatGPT, GitHub Copilot, Windsurf, etc.)
+    - Use the most advanced model your tool offers
+- A development or staging environment where you can test the changes
+
+## Step 1: Get Your Mixpanel Project Token
+
+1. **Log into your Mixpanel account** at [mixpanel.com/login](https://www.mixpanel.com/login).
+2. **Open project settings** by clicking the gear icon in the bottom left.
+3. **Click "Overview"** in the left sidebar.
+4. **Copy your Project Token** from the Access Keys section. It's a long string of letters and numbers.
+   *Note: You'll need to be an Admin or Owner in your project.*
+5. **Keep this handy** — you'll give it to your coding agent in the next step.
+
+## Step 2: Run the Mixpanel Implementation Skill
+
+The skill runs inside your coding agent. To start it:
+
+1. **Open your AI coding agent** and make sure it has access to your project files.
+2. **Paste this prompt** into the chat:
+
+```
+Set up Mixpanel tracking in this project.
+Use the Mixpanel setup skill: https://storage.googleapis.com/cdn-mxpnl-com/libs/mixpanel-skill/skill.md
+```
+
+3. **Answer the skill's questions.** The skill scans your codebase, confirms a few one-way-door details (platform, CDP usage, EU/CA users, your most important user action), and then writes the integration code.
+
+## How the Skill Works
+
+The skill starts by asking which mode fits your goal:
+
+| Mode | What it covers |
+|------|----------------|
+| **Quick Start** | Get your first two events into Mixpanel in one session — sign-up plus your Value Moment. |
+| **Full Implementation** | Build a complete, production-ready setup: discovery, analytics strategy, data model, tracking plan, identity, and governance. |
+| **Add Tracking** | Extend an existing Mixpanel implementation with new events. |
+| **Audit** | Diagnose an existing implementation and produce a prioritized fix list. |
+
+You can switch modes mid-flow. If Quick Start surfaces consent, CDP, or identity complexity, the skill offers to escalate to Full Implementation. If Full Implementation feels heavy, you can downshift to Quick Start.
+
+### What the Skill Does
+
+- **Scans your codebase** to identify your platform, framework, auth flow, and candidate events — so you don't answer questions the code already answers.
+- **Selects the correct SDK** for your platform (JavaScript, React Native, iOS Swift, Android, Python, Node.js, Flutter, Go, Ruby, PHP, Java, Unity).
+- **Routes through your CDP** if you use Segment, Rudderstack, or mParticle, instead of installing the SDK directly.
+- **Gates SDK initialization behind consent** when you have EU or California users.
+- **Wires identity correctly** — `identify` on login or signup, `reset` on logout, in the right files.
+- **Drops an `AGENTS.md` file** in your repo so future AI agents know Mixpanel is your analytics tool, how it's configured, and how to add tracking consistently.
+- **Verifies events in Live View** before considering the work done.
+
+### If You Don't Have Codebase Access
+
+The skill also supports a developer handoff path. Tell the skill you're scoping the work for a developer to implement later, and it generates a `MIXPANEL_IMPLEMENTATION_SPEC.md` file with copy-paste-ready code, business context, verification steps, and troubleshooting — instead of writing code directly.
+
+## Step 3: Test Your Installation
+
+After the skill finishes, confirm events are flowing:
+
+1. **Deploy the changes** to your testing environment.
+2. **Use your app or website** the way a user would.
+3. **Open the [Events page](https://mixpanel.com/report/events)** in Mixpanel.
+4. **Confirm events appear** as you interact with your app. You may need to refresh.
+
+### What You Should See
+
+The skill names events based on your product, but a typical implementation includes:
+
+- `sign_up_completed` — when a user finishes account creation
+- A **Value Moment** event named for the most important action in your product (e.g., `report_generated`, `purchase_completed`, `prompt_sent`)
+- Identity tied to your authenticated user ID
+
+If you chose Full Implementation, you'll also have a full tracking plan, governance setup in Lexicon, and a documented identity flow.
+
+## Troubleshooting
+
+#### No events showing up?
+
+1. Confirm you used the correct project token.
+2. Make sure your app is running and you're actually interacting with it.
+3. Wait a minute or two — there can be a small delay.
+4. Open your browser console (F12) and check for errors.
+
+#### Events tracking with the wrong name or properties?
+
+Tell the skill to switch into **Audit** mode. It reviews what's currently tracked and produces a prioritized fix list.
+
+#### Wrong SDK installed?
+
+The skill checks platform during its Pre-Flight scan, but if it picked the wrong SDK, tell it and ask it to redo the implementation step. The skill rolls back and tries again with the correct SDK.
+
+#### The skill is asking for information I don't have?
+
+Pause and gather it, or tell the skill you don't have codebase access — it will generate a developer handoff specification instead of writing code.
+
+#### Need more help?
+
+- Browse the [Mixpanel documentation](/).
+- Ask your coding agent to explain what it installed.
+- Contact [Mixpanel support](https://mixpanel.com/contact-us/support/).
+
+## FAQ
+
+#### Which coding agents does the skill work with?
+
+Any agent that can fetch a URL and follow instructions — Claude Code, Cursor, ChatGPT, GitHub Copilot Chat, Windsurf, and others. The skill is a plain Markdown file your agent reads at runtime.
+
+#### Is my code or project token sent to Mixpanel?
+
+No. The skill runs entirely inside your coding agent. Your code never leaves your environment, and your project token is used only by the Mixpanel SDK that gets installed in your project.
+
+#### Can I run the skill again later?
+
+Yes. Add new events through **Add Tracking** mode, or review your setup through **Audit** mode. The `AGENTS.md` file the skill drops in your repo gives future agents the context they need to add events consistently.
+
+#### What if I'm not technical?
+
+The skill works whether or not you know how to code. If you don't have codebase access, choose the developer handoff path — the skill generates a complete specification your developer can implement.
+
+#### Does the skill work with a CDP like Segment?
+
+Yes. If you route data through Segment, Rudderstack, or mParticle, the skill skips direct SDK installation and configures Mixpanel through your CDP instead.
+
+<Warning>
+    The skill generates production code. Always review what your AI agent writes before merging or deploying. Human oversight is recommended for every integration.
+</Warning>

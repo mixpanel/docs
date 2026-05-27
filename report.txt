@@ -1,0 +1,2 @@
+guides/guides-by-topic/govern-data.mdx
+- iframe video does not load on small screen space. 

@@ -1,0 +1,257 @@
+---
+sidebarTitle: "Feature Flags (Javascript)"
+title: "Implement Feature Flags (Web)"
+---
+
+## Overview
+
+This developer guide will assist you in configuring your web platform for Feature Flags using the [Mixpanel JavaScript SDK](/docs/tracking-methods/sdks/javascript). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
+
+For complete JavaScript SDK documentation, see the [JavaScript SDK guide](/docs/tracking-methods/sdks/javascript).
+
+## Prerequisites
+
+Before implementing Feature Flags, ensure:
+
+- You are on an Enterprise subscription plan and have the latest version of the SDK installed (minimum supported version is [`v2.71.0`](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.71.0)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+
+## Flag Initialization
+
+Initializing the SDK with the `flags` option enables making an outbound request to Mixpanel servers with the current user context.
+
+The server will assign the user context to a variant for each feature flag according to the how they are configured in the Mixpanel UX.
+
+The response will include an assigned variant for each flag that the user context is in a rollout group for. If a flag is not returned, it most likely signifies that the user was either not in the rollout percentage for a flag or in the configured targeting cohort.
+ 
+**Example Usage**
+
+```javascript Javascript
+mixpanel.init("YOUR_PROJECT_TOKEN", {
+  debug: true,
+  flags: true,
+});
+```
+
+If your flag is configured with a Variant Assignment Key other than `distinct_id` or `device_id` for any of the feature flags in your project, then the call to initialize feature flags must include those keys.
+
+For example, for a Variant Assignment Key, `company_id`, you would setup the SDK as follows.
+
+```javascript Javascript
+mixpanel.init("YOUR_PROJECT_TOKEN", {
+  debug: true,
+  flags: {
+    context: {
+      company_id: "X",
+    },
+  },
+});
+```
+
+If you are using Runtime Targeting in any of the feature flags in your project, then any properties that you use in targeting should be included in a `custom_properties` node within `context`:
+
+```javascript
+mixpanel.init("YOUR_PROJECT_TOKEN", {
+  debug: true,
+  flags: {
+    context: {
+      company_id: "X",
+      custom_properties: {
+        platform: "web",
+      },
+    },
+  },
+});
+```
+
+## Flag Persistence
+
+Minimum supported SDK version: [`v2.79.0`](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.79.0)
+
+By default, the SDK is in `networkOnly` persistence mode, where the network call for flag assignments are made and then we wait for the network response before async variant calls complete. You can enable persistence to store assignments in IndexedDB so they are available immediately on subsequent page loads.
+
+Configure a `variantLookupPolicy` in the `flags` init options:
+
+**`networkFirst`** — The SDK waits for the network on every launch. If the network call fails, the persisted value is returned as a fallback. Async getter calls block until the fetch completes (or the fallback is resolved).
+
+```javascript
+mixpanel.init("YOUR_PROJECT_TOKEN", {
+  flags: {
+    persistence: {
+      variantLookupPolicy: "networkFirst",
+    },
+  },
+});
+
+// The async get_variant_value waits for the call to succeed and falls back to persisted value if it exists. 
+const variant_value = await mixpanel.flags.get_variant_value("my-feature-flag", "control");
+```
+
+**`persistenceUntilNetworkSuccess`** — Persisted variants are returned immediately on page load if they exist and are valid. Once a network call for flags succeeds, it will overwrite previously loaded persisted values.
+
+```javascript
+mixpanel.init("YOUR_PROJECT_TOKEN", {
+  flags: {
+    persistence: {
+      variantLookupPolicy: "persistenceUntilNetworkSuccess",
+    },
+  },
+});
+
+// get_variant_value returns immediately from persistence even if the network call is still in progress.
+const variant_value = await mixpanel.flags.get_variant_value("my-feature-flag", "control");
+```
+
+To customize the TTL, add `persistenceTtlMs` alongside `variantLookupPolicy`. By default, the TTL is 24 hours.
+
+```javascript
+mixpanel.init("YOUR_PROJECT_TOKEN", {
+  flags: {
+    persistence: {
+      variantLookupPolicy: "networkFirst",
+      persistenceTtlMs: 12 * 60 * 60 * 1000, // 12 hours
+    },
+  },
+});
+```
+
+### Variant source
+
+Every variant carries a `variant_source` field indicating where the value came from: `"network"`, `"persistence"`, or `"fallback"`. Use `get_variant` to receive the full variant object including this metadata.
+
+```javascript
+const fallback = { key: "control", value: "control" };
+const variant = await mixpanel.flags.get_variant("my-feature-flag", fallback);
+
+const value = variant.value;
+const source = variant.variant_source; // "network", "persistence", or "fallback"
+```
+
+### `$experiment_started` properties
+
+When a variant is served, the `$experiment_started` exposure event includes:
+
+- `$variant_source` — `"network"` or `"persistence"`
+- `$persisted_at_in_ms` — epoch ms from when the persisted variant set was first stored.
+- `$ttl_in_ms` — the configured TTL in ms, if the variant was from persistence
+
+<Note>
+Persisted variants are tied to the current `distinct_id`. Calling `identify()` with a new ID or calling `reset()` clears persisted data and triggers a fresh fetch.
+</Note>
+
+## Flag Reload
+
+Following initialization, you can reload feature flag assignments in a couple of ways:
+
+1) After a user logs in or out of your application and you call `identify`, a feature flag reload will be triggered.
+
+```javascript
+updated_distinct_id = ""
+mixpanel.identify(updated_distinct_id)
+```
+
+2) To refresh flag variants that may have changed during the lifetime of your app, you can manually reload flags with a new context:
+
+```javascript
+mixpanel.flags.update_context({
+  company_id: "Y",
+  custom_properties: {
+    platform: "mobile",
+  },
+});
+```
+
+3) Calling `reset()` clears all feature flag assignments from memory and triggers a new fetch for the updated `distinct_id`. Requires SDK version [`v2.79.0`](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.79.0) or later.
+
+```javascript
+mixpanel.reset();
+// Flags are cleared immediately. A new fetch begins for the anonymous distinct_id.
+```
+
+## Flag Evaluation
+
+Lookup the assigned value for a feature flag.
+This action triggers tracking an exposure event, `$experiment_started` to your Mixpanel project.
+
+### Asynchronous Flag Variant Retrieval
+
+**Experiment Flags: Get Variant Value**
+
+```javascript
+// Fetch the variant value once flags are ready and track an exposure event *if* the user context is in a rollout group for the feature flag.
+const fallback = "control"; // the value to use if the user doesn't match any of the flag's rollout rules
+const variant_value = await mixpanel.flags.get_variant_value("my-feature-flag", fallback);
+
+// Use flag value in your application logic
+if (variant_value == "variant_a") {
+  showExperienceForVariantA();
+} else if (variant_value == "variant_b") {
+  showExperienceForVariantB();
+} else if (variant_value == "control") {
+  showDefaultExperience();
+}
+```
+
+**Feature Gates: Check if Flag is Enabled/Disabled**
+```javascript
+// Fetch the variant value once flags are ready and track an exposure event *if* the user context is in a rollout group for the feature flag.
+const fallback = false;
+const isEnabled = await mixpanel.flags.is_enabled("my-feature-flag", fallback);
+
+// Use the result in your application logic. 
+if (isEnabled) {
+  showNewFeature();
+} else {
+  showOldFeature();
+}
+```
+
+### Synchronous Flag Variant Retrieval
+**Experiment Flags: Get Variant Value**
+
+```javascript
+// Fetch the variant value once flags are ready and track an exposure event *if* the user context is in a rollout group for the feature flag.
+const fallback = "control"; // the value to use if the user doesn't match any of the flag's rollout rules
+const variant_value = mixpanel.flags.get_variant_value_sync("my-feature-flag", fallback);
+
+// Use flag value in your application logic
+if (variant_value == "variant_a") {
+  showExperienceForVariantA();
+} else if (variant_value == "variant_b") {
+  showExperienceForVariantB();
+} else if (variant_value == "control") {
+  showDefaultExperience();
+}
+```
+**Feature Gates: Check if Flag is Enabled/Disabled**
+```javascript
+// Fetch the variant value once flags are ready and track an exposure event *if* the user context is in a rollout group for the feature flag.
+const fallback = false;
+const isEnabled = mixpanel.flags.is_enabled_sync("my-feature-flag", fallback);
+
+// Use the result in your application logic. 
+if (isEnabled) {
+  showNewFeature();
+} else {
+  showOldFeature();
+}
+```
+
+## Frequently Asked Questions
+
+### What if I'm not receiving any flags on SDK initialization?
+
+1. **Check your project token**: 
+    - Ensure you're using the correct project token from your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+2. **Review flag configuration**: 
+    - Make sure your feature flag is enabled
+    - Check the flag's rollout percentage
+      - User contexts that are not assigned to the rollout percentage will not be assigned variant values
+    - If you are using a targeting cohort, verify on the mixpanel 'Users' page that the user's `distinct_id` is a member of that cohort.
+
+3. **Review SDK parameters**:
+    - Ensure `flags: true` or `flags: { context: {...} }` is included in the init options
+    - If using a custom Variant Assignment Key, ensure it is included in the `context` object
+    - If using Runtime Targeting, ensure all properties used in targeting are included in the `custom_properties` object within `context` 
+
+4. **Enable debug mode**: Use `debug: true` in initialization to see detailed logs in the browser console
