@@ -25,14 +25,14 @@ jobs:
 
           @mixpanel/docs-reviewers: please review.
 
-          —[Mark stale](https://github.com/mixpanel/docs/actions/workflows/stale.yaml)
+          —[Mark stale](https://github.com/mixpanel/docs/actions/workflows/stale.yml)
         stale-pr-message: >
           This PR has been inactive for over 180 days. It will be automatically closed in 14 days.
           Label this PR as "never-stale" to exempt it from this check.
 
           @mixpanel/docs-reviewers: please review.
 
-          —[Mark stale](https://github.com/mixpanel/docs/actions/workflows/stale.yaml)
+          —[Mark stale](https://github.com/mixpanel/docs/actions/workflows/stale.yml)
         stale-issue-label: 'stale'
         stale-pr-label: 'stale'
-        exempt-pr-labels: never-stale
+        exempt-pr-labels: 'never-stale'
