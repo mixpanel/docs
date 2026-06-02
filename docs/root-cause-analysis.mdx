@@ -54,6 +54,10 @@ Oftentimes, customers know which properties matter for their business and want t
 
 In the AI Settings tab of your Project Settings, you can specify which event properties RCA should prioritize during analysis. For example, a marketing team that knows anomalies usually trace back to `utm_campaign_id` can point RCA at that dimension so it's always considered first. Properties you prioritize are combined with Mixpanel's automatic suggestions, so you never lose the agent's broader view — you just guide it toward the dimensions you care most about.
 
+<Info>
+    These settings only influence which properties RCA prioritizes. They don't control RCA's analysis sequencing or methodology — regardless of the instructions you provide, the agent still validates the anomaly, runs its breakdowns, ranks contributing dimensions, and writes up its interpretation the same way.
+</Info>
+
 ## Feedback
 
 Every generated Board has a thumbs-up / thumbs-down feedback widget. We use this signal to evaluate RCA quality and improve future runs. If RCA missed the mark, please rate it — it's the most direct way to influence what we work on next.
