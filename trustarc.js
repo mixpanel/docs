@@ -21,7 +21,6 @@
 
   var CONSENT_BANNER_ID = "consent-banner";
   var COOKIE_PREF_LINK_CLASS = "mxp-cookie-preferences-link";
-  var FOOTER_OBSERVE_TIMEOUT_MS = 15000;
 
   addScriptOnce(TRUSTARC_AUTOBLOCK_CORE_SRC);
   addScriptOnce(TRUSTARC_AUTOBLOCK_SRC);
@@ -62,23 +61,16 @@
   }
 
   function ensureCookiePreferencesLink() {
-    if (injectCookiePreferencesLink()) return;
-    // Mintlify renders the footer asynchronously; watch for it.
-    var timeoutId;
-    var observer = new MutationObserver(function () {
-      if (injectCookiePreferencesLink()) {
-        observer.disconnect();
-        clearTimeout(timeoutId);
-      }
-    });
+    injectCookiePreferencesLink();
+    // Keep a persistent observer so the link is re-injected if Mintlify
+    // re-renders the footer on SPA navigation. Disconnect any observer
+    // from a prior execution of this script so we don't accumulate.
+    if (window.__mxpTrustArcFooterObserver) {
+      window.__mxpTrustArcFooterObserver.disconnect();
+    }
+    var observer = new MutationObserver(injectCookiePreferencesLink);
     observer.observe(document.body, { childList: true, subtree: true });
-
-    timeoutId = setTimeout(function () {
-      observer.disconnect();
-      if (!document.querySelector("." + COOKIE_PREF_LINK_CLASS)) {
-        console.warn("[trustarc] Footer not found; Cookie Preferences link not injected.");
-      }
-    }, FOOTER_OBSERVE_TIMEOUT_MS);
+    window.__mxpTrustArcFooterObserver = observer;
   }
 
   function injectCookiePreferencesLink() {
@@ -97,6 +89,8 @@
         typeof window.truste.eu.clickListener === "function"
       ) {
         window.truste.eu.clickListener();
+      } else {
+        console.warn("[trustarc] Preferences manager not loaded — check that the current origin is on the cmId allowlist.");
       }
     });
     footer.appendChild(link);
