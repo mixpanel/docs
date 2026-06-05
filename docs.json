@@ -423,7 +423,13 @@
                       "docs/access-security/single-sign-on/google"
                     ]
                   },
-                  "docs/access-security/audit-log"
+                  {
+                    "group": "Audit Log",
+                    "root": "docs/access-security/audit-log",
+                    "pages": [
+                      "docs/access-security/audit-log-reference"
+                    ]
+                  }
                 ]
               },
               {
