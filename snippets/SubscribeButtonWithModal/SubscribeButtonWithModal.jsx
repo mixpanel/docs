@@ -14,7 +14,10 @@ export const SubscribeButtonWithModal = () => {
   const [inputState, setInputState] = useState(STATE.DEFAULT);
 
   const submitDisabled =
-    inputState === STATE.ERROR || inputState === STATE.SUCCESS || !agreedToTerms;
+    !agreedToTerms ||
+    inputState === STATE.SUCCESS ||
+    !email ||
+    !EMAIL_REGEX.test(email);
 
   const openModal = () => dialogRef.current?.showModal?.();
   const closeModal = () => dialogRef.current?.close?.();
@@ -101,9 +104,9 @@ export const SubscribeButtonWithModal = () => {
 
           {error && <p className="text-xs text-[#cc332b] ml-6 mt-1">{error}</p>}
 
-          <div className="flex items-start gap-3 mt-4">
+          <div className="flex items-center gap-3 mt-4">
             <input
-              className="mt-1 flex-shrink-0"
+              className="flex-shrink-0"
               type="checkbox"
               aria-label="Agree to terms"
               disabled={inputState === STATE.SUCCESS}
@@ -122,7 +125,7 @@ export const SubscribeButtonWithModal = () => {
           <button
             onClick={handleSubmit}
             disabled={submitDisabled}
-            className="px-5 py-3 my-4 drop-shadow-sm bg-gradient-to-t from-[#7856ff] to-[#9075ff] rounded-full text-white font-medium"
+            className="px-5 py-3 my-4 drop-shadow-sm bg-gradient-to-t from-[#7856ff] to-[#9075ff] rounded-full text-white font-medium disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Subscribe
           </button>
