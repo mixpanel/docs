@@ -6,16 +6,17 @@ export const SubscribeButtonWithModal = () => {
 
   const STATE = { DEFAULT: "default", FOCUS: "focus", ERROR: "error", SUCCESS: "success" };
 
-  const BUTTON_CLASS =
-    "px-5 py-3 my-4 drop-shadow-sm bg-gradient-to-t from-[#7856ff] to-[#9b7eff] rounded-full text-white font-medium";
+  const dialogRef = useRef(null);
 
   const [email, setEmail] = useState("");
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [error, setError] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
   const [inputState, setInputState] = useState(STATE.DEFAULT);
 
   const submitDisabled = inputState === STATE.ERROR || !agreedToTerms;
+
+  const openModal = () => dialogRef.current?.showModal?.();
+  const closeModal = () => dialogRef.current?.close?.();
 
   const validateEmail = () => {
     if (!email) {
@@ -61,68 +62,71 @@ export const SubscribeButtonWithModal = () => {
 
   return (
     <div>
-      <button type="button" onClick={() => setIsOpen(true)} className={BUTTON_CLASS}>
+      <button
+        type="button"
+        onClick={openModal}
+        className="px-5 py-3 my-4 drop-shadow-sm bg-gradient-to-t from-[#7856ff] to-[#9075ff] rounded-full text-white font-medium"
+      >
         Subscribe
       </button>
 
-      {isOpen && (
-        <div
-          className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black/80 z-50"
-          onClick={() => setIsOpen(false)}
-        >
-          <div className="w-full max-w-2xl" onClick={(e) => e.stopPropagation()}>
-            <div className="changelogSubscribeModalInner bg-white dark:bg-gray-900 p-8 rounded-3xl">
-              <div className="text-3xl font-medium text-center mb-4">Subscribe to product updates</div>
-              <div className="text-lg text-center mb-6">Sign up to stay up-to-date on our newest releases.</div>
+      <dialog
+        ref={dialogRef}
+        onClick={(e) => {
+          if (e.target === dialogRef.current) closeModal();
+        }}
+        className="w-full max-w-2xl p-0 rounded-3xl bg-transparent backdrop:bg-black/80"
+      >
+        <div className="bg-[#fbf9f9] dark:bg-[#201f24] p-8 rounded-3xl">
+          <div className="text-3xl font-medium text-center mb-4">Subscribe to product updates</div>
+          <div className="text-lg text-center mb-6">Sign up to stay up-to-date on our newest releases.</div>
 
-              <div className="flex flex-col">
-                <label className="font-medium ml-6 mb-1">Company Email</label>
-                <input
-                  className="rounded-full px-6 py-3.5 outline-[#7856ff] border border-gray-200"
-                  aria-label="Email address"
-                  disabled={inputState === STATE.SUCCESS}
-                  value={inputState === STATE.SUCCESS ? "Thanks for subscribing!" : email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@email.com"
-                  onFocus={() => setInputState(STATE.FOCUS)}
-                  onBlur={() => {
-                    setInputState(STATE.DEFAULT);
-                    validateEmail();
-                  }}
-                />
-              </div>
-
-              {error && <p className="text-xs text-red-600 ml-6 mt-1">{error}</p>}
-
-              <div className="flex mt-4">
-                <input
-                  className="mr-2"
-                  type="checkbox"
-                  aria-label="Agree to terms"
-                  disabled={inputState === STATE.SUCCESS}
-                  onChange={() => setAgreedToTerms((v) => !v)}
-                  onBlur={validateEmail}
-                />
-                <span className="text-gray-500 text-xs leading-normal">
-                  I agree to receive product update emails about Mixpanel products pursuant to the{" "}
-                  <a href="https://www.mixpanel.com/legal/privacy-policy" target="_blank" rel="noreferrer">
-                    Privacy Statement
-                  </a>
-                  . I understand that I can opt-out at any time.
-                </span>
-              </div>
-
-              <button
-                onClick={handleSubmit}
-                disabled={submitDisabled}
-                className={`${BUTTON_CLASS} disabled:opacity-50 disabled:cursor-not-allowed`}
-              >
-                Subscribe
-              </button>
-            </div>
+          <div className="flex flex-col">
+            <label className="font-medium ml-6 mb-1">Company Email</label>
+            <input
+              className="rounded-full px-6 py-3.5 outline-[#7856ff]"
+              aria-label="Email address"
+              disabled={inputState === STATE.SUCCESS}
+              value={inputState === STATE.SUCCESS ? "Thanks for subscribing!" : email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@email.com"
+              onFocus={() => setInputState(STATE.FOCUS)}
+              onBlur={() => {
+                setInputState(STATE.DEFAULT);
+                validateEmail();
+              }}
+            />
           </div>
+
+          {error && <p className="text-xs text-[#cc332b] ml-6 mt-1">{error}</p>}
+
+          <div className="flex items-start gap-3 mt-4">
+            <input
+              className="mt-1 flex-shrink-0"
+              type="checkbox"
+              aria-label="Agree to terms"
+              disabled={inputState === STATE.SUCCESS}
+              checked={agreedToTerms}
+              onChange={() => setAgreedToTerms((v) => !v)}
+            />
+            <span className="text-[#626266] text-xs leading-normal">
+              I agree to receive product update emails about Mixpanel products pursuant to the{" "}
+              <a href="https://www.mixpanel.com/legal/privacy-policy" target="_blank" rel="noreferrer">
+                Privacy Statement
+              </a>
+              . I understand that I can opt-out at any time.
+            </span>
+          </div>
+
+          <button
+            onClick={handleSubmit}
+            disabled={submitDisabled}
+            className="px-5 py-3 my-4 drop-shadow-sm bg-gradient-to-t from-[#7856ff] to-[#9075ff] rounded-full text-white font-medium"
+          >
+            Subscribe
+          </button>
         </div>
-      )}
+      </dialog>
     </div>
   );
 };
