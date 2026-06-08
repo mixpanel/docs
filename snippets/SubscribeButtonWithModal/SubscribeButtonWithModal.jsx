@@ -13,7 +13,8 @@ export const SubscribeButtonWithModal = () => {
   const [error, setError] = useState("");
   const [inputState, setInputState] = useState(STATE.DEFAULT);
 
-  const submitDisabled = inputState === STATE.ERROR || !agreedToTerms;
+  const submitDisabled =
+    inputState === STATE.ERROR || inputState === STATE.SUCCESS || !agreedToTerms;
 
   const openModal = () => dialogRef.current?.showModal?.();
   const closeModal = () => dialogRef.current?.close?.();
