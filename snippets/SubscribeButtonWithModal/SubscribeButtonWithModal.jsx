@@ -76,7 +76,7 @@ export const SubscribeButtonWithModal = () => {
 
       <dialog
         ref={dialogRef}
-        onClick={(e) => {
+        onMouseDown={(e) => {
           if (e.target === dialogRef.current) closeModal();
         }}
         className="w-full max-w-2xl p-0 rounded-3xl bg-transparent backdrop:bg-black/80"
