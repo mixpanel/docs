@@ -748,8 +748,7 @@
                 "root": "reference/authentication"
               },
               "reference/segmentation-expressions",
-              "reference/rate-limits",
-              "reference/project-secret-1"
+              "reference/rate-limits"
             ]
           },
           {
