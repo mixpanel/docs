@@ -60,10 +60,6 @@ ul.contains-task-list > li.task-list-item:before {
   height: 0;
 }
 
-.dark .prose {
-  --tw-prose-invert-body: #fff;
-}
-
 .dark #content {
   color: #e2e1e6;
 }
