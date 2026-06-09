@@ -63,3 +63,7 @@ ul.contains-task-list > li.task-list-item:before {
 .dark .prose {
   --tw-prose-invert-body: #fff;
 }
+
+.dark #content {
+  color: #e2e1e6;
+}
