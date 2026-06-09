@@ -39,7 +39,7 @@ While Mixpanel captures data through [events](/docs/data-structure/events-and-pr
 
 ### Tracking Do's
 - **DO use internal IDs**: Use non-personally identifiable internal IDs (like `user_id` or `account_id`) whenever possible. If an internal ID reveals identity, hash or encrypt it before sending.
-- **DO maintain a [tracking plan](/docs/tracking-best-practices/tracking-plan#translate-flows-into-events--properties)**: Document definitions, data types, business purposes, and PII flags for every event and property you intend to collect.
+- **DO maintain a [tracking plan](/docs/tracking-best-practices/tracking-plan#translate-flows-into-events-/-properties)**: Document definitions, data types, business purposes, and PII flags for every event and property you intend to collect.
 - **DO track value moments**: Map events directly to KPIs—such as activation, engagement, monetization, or retention—rather than tracking every possible click.
 
 ### Tracking Don'ts
@@ -113,7 +113,7 @@ Schedule quarterly or semi-annual reviews to catch issues early. Your review che
 <Step title="Remediation Workflow">
 
 If you discover unexpected PII, follow a structured remediation flow immediately:
-- **Stop Ingestion**: [Drop](/docs/data-governance/lexicon#dropping-data) the event or property at ingestion to stop the leak.
+- **Stop Ingestion**: [Drop](/docs/data-governance/data-clean-up#3-drop-filters) the event or property at ingestion to stop the leak.
 - **Restrict Access**: Immediately reclassify the property and restrict access using [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview) and [Data Classification](/docs/data-governance/data-views-and-classification#data-classification).
 - **Notify & Update**: Inform relevant stakeholders (including Legal/Compliance) and update your [tracking documentation](/docs/tracking-best-practices/tracking-plan#translate-flows-into-events--properties) to prevent recurrence.
 </Step>
