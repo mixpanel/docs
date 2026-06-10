@@ -14,11 +14,8 @@
     Sentry.init({
       // disables session replay by default
       replaysSessionSampleRate: 0,
-      ignoreErrors: [
-        // Qualified SDK (js.qualified.com) rejects promises with the raw string
-        // "unauthorized" for unauthenticated visitors. See TOF-113.
-        "Non-Error promise rejection captured with value: unauthorized",
-      ],
+      // Generic network noise (failed/cancelled fetches, offline) that adds no signal.
+      ignoreErrors: ["Failed to fetch", "Load failed"],
     });
   };
 
