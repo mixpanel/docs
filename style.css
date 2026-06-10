@@ -59,3 +59,7 @@ ul.contains-task-list > li.task-list-item:before {
   width: 0;
   height: 0;
 }
+
+.dark #content {
+  color: #e2e1e6;
+}
