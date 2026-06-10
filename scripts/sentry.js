@@ -16,6 +16,7 @@
       replaysSessionSampleRate: 0,
       // Generic network noise (failed/cancelled fetches, offline) that adds no signal.
       ignoreErrors: ["Failed to fetch", "Load failed"],
+      allowUrls: [/docs\.mixpanel\.com/, /mintlify\.app/],
     });
   };
 
