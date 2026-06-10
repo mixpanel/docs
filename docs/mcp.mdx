@@ -236,7 +236,24 @@ The header would be: `Authorization: Bearer Basic bXktc2EuYWJjMTIzLm1wLXNlcnZpY2
 
 ### Claude
 
-Service accounts are not supported through the Claude web connector. Use [Claude Code](#claude-code-1) or [Cursor](#cursor-1) instead.
+[Claude Desktop MCP docs](https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop)
+
+Open your config file via **Settings → Developer → Edit Config** and add the following (use the EU or IN URL if needed):
+
+```json
+{
+  "mcpServers": {
+    "mixpanel": {
+      "url": "https://mcp.mixpanel.com/mcp",
+      "headers": {
+        "Authorization": "Bearer Basic <base64-encoded-credentials>"
+      }
+    }
+  }
+}
+```
+
+Restart Claude Desktop after saving the file.
 
 ### Claude Code
 
@@ -264,10 +281,6 @@ Or add it to your `.mcp.json` file using an environment variable:
 ```
 
 Set `MIXPANEL_SA_TOKEN` to your base64-encoded credentials before starting Claude Code.
-
-### ChatGPT
-
-Service accounts are not supported through the ChatGPT connector. Use [Cursor](#cursor-1) or another client that supports custom headers instead.
 
 ### Codex
 
