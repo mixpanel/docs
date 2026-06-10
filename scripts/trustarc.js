@@ -1,5 +1,5 @@
 // TrustArc cookie consent. Auto-loaded on every page via Mintlify's
-// root .js file convention. On each execution:
+// custom .js file convention. On each execution:
 //   1. Adds the three TrustArc head scripts (sync, sync, async) if absent.
 //   2. Ensures <div id="consent-banner"></div> exists in the body so the
 //      notice script can mount the banner.
@@ -11,7 +11,7 @@
 (function () {
   if (typeof window === "undefined") return;
 
-  var TRUSTARC_CM_ID = "9iv2en";
+  var TRUSTARC_CM_ID = "u7wymg";
   var TRUSTARC_AUTOBLOCK_CORE_SRC =
     "https://consent.trustarc.com/v2/autoblockasset/core.min.js?cmId=" + TRUSTARC_CM_ID;
   var TRUSTARC_AUTOBLOCK_SRC =
