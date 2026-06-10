@@ -9,6 +9,8 @@
 
   // Configure sentryOnLoad before adding the Loader Script.
   window.sentryOnLoad = function () {
+    // The loader calls this once; remove it so it doesn't linger on the global scope.
+    delete window.sentryOnLoad;
     Sentry.init({
       // disables session replay by default
       replaysSessionSampleRate: 0,
