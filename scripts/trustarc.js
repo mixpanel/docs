@@ -11,7 +11,7 @@
 (function () {
   if (typeof window === "undefined") return;
 
-  var TRUSTARC_CM_ID = "u7wymg";
+  var TRUSTARC_CM_ID = "u7wymg"; // Temp test ID to be updated prior to cutover in TOF-212
   var TRUSTARC_AUTOBLOCK_CORE_SRC =
     "https://consent.trustarc.com/v2/autoblockasset/core.min.js?cmId=" + TRUSTARC_CM_ID;
   var TRUSTARC_AUTOBLOCK_SRC =
