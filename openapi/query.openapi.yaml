@@ -1009,8 +1009,13 @@ paths:
       summary: Profile Event Activity
       tags:
       - Activity Feed
-      description: This endpoint returns the activity feed for specified users. The Query API has a rate limit of 60 queries
-        per hour and a maximum of 5 concurrent queries.
+      deprecated: true
+      description: |
+        > ❗️stream/query is currently in maintenance mode.
+
+        This endpoint returns the activity feed for specified users.
+
+        **Note:** The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
       parameters:
       - in: query
         name: project_id
