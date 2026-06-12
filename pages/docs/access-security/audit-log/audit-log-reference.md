@@ -2,11 +2,22 @@
 
 Mixpanel's Audit Log tracks activity within your organization and projects, providing visibility into who made changes, when they occurred, and what was modified. This page is the authoritative catalog of every event type the Audit Log records.
 
-For an overview of the Audit Log — how to access it in the UI, retention by plan, the CSV export workflow, and FAQ — see the [Audit Log overview](/docs/access-security/audit-log).
+For an overview of the Audit Log — how to access it in the UI, retention by plan, the CSV export workflow, and FAQ — see the [Audit Log overview](https://docs.mixpanel.com/docs/access-security/audit-log).
 
 The events Mixpanel records are listed below. The **Available Since** date on each event is the first calendar day on which the event is available.
 
 ## Events
+
+### Agentic Workflows
+
+| Event Type             | Display Name               | Description                                                                                   | Scope                    | Available Since |
+| ---------------------- | -------------------------- | --------------------------------------------------------------------------------------------- | ------------------------ | --------------- |
+| `agent_flow.activated` | Agent Automation Activated | An agentic automation was activated.                                                          | Project and organization | June 9, 2026    |
+| `agent_flow.created`   | Agent Automation Created   | A new agentic automation was created.                                                         | Project and organization | June 9, 2026    |
+| `agent_flow.deleted`   | Agent Automation Deleted   | An agentic automation was deleted.                                                            | Project and organization | June 9, 2026    |
+| `agent_flow.paused`    | Agent Automation Paused    | An active agentic automation was paused.                                                      | Project and organization | June 9, 2026    |
+| `agent_flow.triggered` | Agent Automation Triggered | An agentic automation run was triggered, either manually or based on the configured schedule. | Project and organization | June 9, 2026    |
+| `agent_flow.updated`   | Agent Automation Updated   | An existing agentic automation was updated.                                                   | Project and organization | June 9, 2026    |
 
 ### Alerts
 
