@@ -1261,13 +1261,6 @@
     }
   },
   "footer": {
-    "links": [
-      {
-        "items": [
-          { "label": "Cookie Preferences", "href": "#cookie-preferences" }
-        ]
-      }
-    ],
     "socials": {
       "x": "https://x.com/mixpanel",
       "github": "https://github.com/mixpanel",
