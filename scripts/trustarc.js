@@ -80,7 +80,7 @@
     var link = document.createElement("a");
     link.className = COOKIE_PREF_LINK_CLASS;
     link.href = "#";
-    link.textContent = "Cookie Preferences";
+    link.textContent = "Your Privacy Rights";
     link.addEventListener("click", function (event) {
       event.preventDefault();
       if (
