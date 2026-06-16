@@ -2897,15 +2897,15 @@
     },
     {
       "source": "/docs/data-pipelines/integrations/azure-raw-pipeline",
-      "destination": "/docs/data-pipelines/integrations/raw-azure-pipeline"
+      "destination": "/docs/data-pipelines/old-pipelines/integrations/raw-azure-pipeline"
     },
     {
       "source": "/docs/data-pipelines/integrations/google-cloud-storage",
-      "destination": "/docs/data-pipelines/integrations/schematized-gcs-pipeline"
+      "destination": "/docs/data-pipelines/old-pipelines/integrations/schematized-gcs-pipeline"
     },
     {
       "source": "/docs/data-pipelines/integrations/google-cloud-storage-raw-pipeline",
-      "destination": "/docs/data-pipelines/integrations/raw-gcs-pipeline"
+      "destination": "/docs/data-pipelines/old-pipelines/integrations/raw-gcs-pipeline"
     },
     {
       "source": "/docs/data-pipelines/integrations/raw-aws-pipeline",
