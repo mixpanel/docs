@@ -33,8 +33,10 @@ paths:
       operationId: get-variant-assignments
       security:
       - ProjectSecret: []
+      - ServiceAccount: []
       parameters:
       - $ref: '#/components/parameters/ProjectToken'
+      - $ref: '#/components/parameters/ProjectId'
       - name: context
         in: query
         description: URL-encoded JSON object containing evaluation context with distinct_id (required) and optional device_id
@@ -102,8 +104,10 @@ paths:
       operationId: get-flag-definitions
       security:
       - ProjectSecret: []
+      - ServiceAccount: []
       parameters:
       - $ref: '#/components/parameters/ProjectToken'
+      - $ref: '#/components/parameters/ProjectId'
       tags:
       - Get Flag Definitions
       summary: Get Feature Flag Definitions
@@ -165,7 +169,14 @@ components:
       schema:
         type: string
       description: Your project token
-      required: true
+      required: false
+    ProjectId:
+      name: project_id
+      in: query
+      schema:
+        type: string
+      description: The Mixpanel project_id. Provide if using service account auth.
+      required: false
   schemas:
     EvaluateFlagsRequest:
       title: EvaluateFlagsRequest
