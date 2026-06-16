@@ -1600,8 +1600,8 @@
       "destination": "/docs/admin/organizations-projects"
     },
     {
-      "source": "/:zendesk_attachmentattachments/token/:path*",
-      "destination": "https://mixpanelsupport.zendesk.com/:zendesk_attachment"
+      "source": "/attachments/token/:path*",
+      "destination": "https://mixpanelsupport.zendesk.com/attachments/token/:path*"
     },
     {
       "source": "/hc/articles/360000679006/:path*",
