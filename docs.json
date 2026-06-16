@@ -10,6 +10,9 @@
   "integrations": {
     "gtm": {
       "tagId": "GTM-MRDR9SP"
+    },
+    "mixpanel": {
+      "projectToken": "metrics-1"
     }
   },
   "background": {
