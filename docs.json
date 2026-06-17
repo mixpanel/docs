@@ -1272,6 +1272,10 @@
   },
   "redirects": [
     {
+      "source": "/changelogs/*",
+      "destination": "/changelogs"
+    },
+    {
       "source": "/developer-docs-redirect/android",
       "destination": "/docs/tracking-methods/sdks/android"
     },
