@@ -1,0 +1,69 @@
+---
+title: "Mixpanel Headless: Programmatic access to your analytics"
+---
+
+Mixpanel has always been built for builders. But until now, the only way to drive it was through a UI.
+
+Headless changes that. It's a Python SDK that gives you direct, code-level access to the full Mixpanel product surface. If you're an engineer or data analyst who wants to automate analysis, build agents, or integrate Mixpanel into a pipeline, this is where you start.
+
+## Multiple interfaces, one data layer
+
+Headless doesn't replace the Mixpanel you already use. It extends it. Think of Mixpanel as a single data layer, now accessible through multiple interfaces depending on what you're building and where you're working:
+
+- **Mixpanel Agent** is for exploration inside the product. Ask a question in plain language, get an answer from your data. No code required.
+- **Mixpanel MCP** is for AI tools. Connect Claude, ChatGPT, Gemini, Cursor, and [other supported tools](/docs/mcp) to your Mixpanel project and query it from your existing AI workflow.
+- **Mixpanel Headless** is for builders. Write Python that reads and acts on your Mixpanel data.
+
+The same retention curve, the same funnel, the same cohort: available through whichever interface fits the job. What's new isn't the data. It's the surface area.
+
+## What Headless is
+
+At its core, Headless is a typed Python SDK. You authenticate once, instantiate a `Workspace` object, and every Mixpanel capability is available as a method call. Query results come back as structured Python objects with a `.df` property for DataFrame access.
+
+Here's what makes it different from querying the REST API directly:
+
+- **Typed results.** You get structured objects back, not raw JSON. Funnel results have `.overall_conversion_rate`. Retention results have a cohort-shaped DataFrame. You don't parse. You use.
+- **Built-in discovery.** Before writing a query, you can inspect the project: list events, enumerate properties and their values, browse cohorts and boards. This matters especially when building agents that need to understand a project's shape before querying it.
+- **Full product surface.** MCP exposes around 30 curated tools designed for natural-language sessions. Headless exposes everything: every report type, every configuration, every asset. If Mixpanel can do it, Headless can express it in code.
+
+See the [Headless documentation](https://mixpanel.github.io/mixpanel-headless/) for the full picture.
+
+## When to use Headless
+
+Headless is the right tool when you're writing Python and need programmatic access to Mixpanel data. Below are a few patterns where it fits well.
+
+### Automating repetitive analysis.
+
+If you're building the same report week over week, a script can do it for you. Query the data, format the output, send it to Slack or email. No board required.
+
+### Feeding AI agents.
+
+Agents need a surface they can query without human mediation. Headless gives them typed access to the full Mixpanel product. An agent can discover what events exist, run the right query, interpret the result, and take action, all in code.
+
+### Keeping Lexicon in sync.
+
+Every Mixpanel project has a [Lexicon](/docs/data-governance/lexicon): a dictionary of events and properties with descriptions, ownership, status, and type metadata.
+
+In the UI, keeping it current is a manual task. With Headless, it's automatable. You can read the current state, diff it against a tracking plan or warehouse schema, and write updates back from a script.
+
+Tracking plan changes propagate automatically. New events get described on deploy. Stale events get flagged on a schedule.
+
+For teams where Lexicon maintenance has slipped, Headless gives you the tools to automate it. See the [Data Governance docs](https://mixpanel.github.io/mixpanel-headless/guide/data-governance/) for implementation details.
+
+### Cross-project tooling.
+
+Query multiple projects in the same script. Useful for organizations managing several products, regions, or environments from a single codebase.
+
+<Info>
+If you want to query Mixpanel from a chat interface rather than code, [Mixpanel MCP](/guides/guides-by-use-case/empower-your-team/mcp) is the better fit. For AI-assisted analysis inside Mixpanel itself, see [Mixpanel Agent](/guides/guides-by-use-case/empower-your-team/mixpanel-agent).
+</Info>
+
+## What's next
+
+The direction is toward a fully agentic analytics layer: a Mixpanel that doesn't just answer questions when asked, but actively surfaces what matters, integrates into the tools teams already use, and runs without anyone having to open a browser. Headless is the foundation.
+
+<Warning>
+**Early access:** Headless is in early access. The current rate limit is 60 requests per 60 minutes. Keep this in mind when designing workflows that run at scale or on a tight schedule. The API is under active development; expect changes before 1.0.
+</Warning>
+
+👉 **Ready to build?** [Request access](https://mixpanel.com/ai/headless), then start with the [installation](https://mixpanel.github.io/mixpanel-headless/getting-started/installation/) and [quick start](https://mixpanel.github.io/mixpanel-headless/getting-started/quickstart/) guides to get credentials and your first query running.
