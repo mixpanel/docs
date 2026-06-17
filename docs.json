@@ -362,8 +362,7 @@
                   "docs/features/revenue-analytics",
                   "docs/features/saved-metrics-and-behaviors",
                   "docs/features/sessions",
-                  "docs/features/slack-integration",
-                  "docs/features/spark"
+                  "docs/features/slack-integration"
                 ]
               }
             ]
@@ -3936,6 +3935,10 @@
     {
       "source": "/troubleshooting/docs/tracking-best-practices/traffic-attribution",
       "destination": "/docs/tracking-best-practices/traffic-attribution"
+    },
+    {
+      "source": "/docs/features/spark",
+      "destination": "/docs/mixpanel-agent"
     }
   ]
 }
