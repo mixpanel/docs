@@ -563,18 +563,21 @@ mixpanel.init('MIXPANEL-PROJECT-TOKEN', {
 // Disabled initially to prevent race condition with RudderStack ID binding.
   // Remove this line if you are not using heatmaps.
   record_heatmap_data: false,
-
-
+  autocapture: false, //optional set to true if using Autocapture
   loaded: function (mixpanel) {
     window.rudderanalytics.ready(function() {
       const rudderAnonymousId = rudderanalytics.getAnonymousId();
-      if (rudderAnonymousId) {
-	mixpanel.register({ $device_id: rudderAnonymousId, distinct_id : "$device:"+rudderAnonymousId });
-		
-		// Enable heatmap data now that the correct device_id is registered.
-        // Remove this line if you are not using heatmaps.
-        mixpanel.set_config({ record_heatmap_data: true });
+       if (rudderAnonymousId) {
+        // Idempotency guard prevents double-prefixing on repeat page loads.
+        if (!rudderAnonymousId.startsWith('$device:')) {
+          rudderanalytics.setAnonymousId('$device:' + rudderAnonymousId);
+        }
 
+        mixpanel.register({
+          $device_id: rudderAnonymousId,
+          distinct_id: '$device:' + rudderAnonymousId,
+        });
+        mixpanel.set_config({ record_heatmap_data: true });
       }
  
       // Patch track method to include sessionReplayProperties
