@@ -402,9 +402,9 @@ The following functions have additional aggregation options which you will be pr
 
 | Function | Aggregation options |
 | --- | --- |
-| Frequency per User | Total Per User |
-| Aggregate Property | Sum<br />Average<br />Median<br />[Distinct Count](https://www.loom.com/share/7d0e42f847c24b3c8720d5b6a6bedeb4)<br />Percentiles (P25,P75,P90,P99)<br />Minimum<br />Maximum |
-| Aggregate Property per User | Sum<br />Average<br />Distinct value count<br />Minimum<br />Maximum |
+| Frequency per User | Distribution<br />Average<br />Median<br />Percentiles (P25,P75,P90,Nth)<br />Minimum<br />Maximum |
+| Aggregate Property | Sum<br />Average<br />Median<br />[Distinct Count](https://www.loom.com/share/7d0e42f847c24b3c8720d5b6a6bedeb4)<br />Percentiles (P25,P75,P90,P99,Nth)<br />Minimum<br />Maximum |
+| Aggregate Property per User | Average<br />Sum<br />Distribution<br />Median<br />Percentiles (P25,P75,P90,Nth)<br />Minimum<br />Maximum |
 
 These functions provide additional aggregation options following the initial calculation because they are “per user” calculations. “Per user” calculations first calculate the value per user, which is an unhelpful query in its raw form, but becomes useful when you perform an aggregation on that calculation.
 
