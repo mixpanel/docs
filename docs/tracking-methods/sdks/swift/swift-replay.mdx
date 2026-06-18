@@ -98,6 +98,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 ```
+
+## Data Residency
+
+<Callout type="info">
+Available in Session Replay SDK version `1.5.1` and later.
+</Callout>
+
+If your Mixpanel project lives in the EU or India data center, or you route all Mixpanel traffic through a self-hosted proxy, set the `serverURL` on `MPSessionReplayConfig`. The SDK exposes a `DataResidency` enum with the managed region URLs so you don't have to hardcode them.
+
+| Region | `DataResidency` constant | URL |
+| --- | --- | --- |
+| US (default) | `DataResidency.us` | `https://api.mixpanel.com` |
+| EU | `DataResidency.eu` | `https://api-eu.mixpanel.com` |
+| India | `DataResidency.in` | `https://api-in.mixpanel.com` |
+
+**Example Usage**
+
+```swift Swift
+import MixpanelSessionReplay
+
+let config = MPSessionReplayConfig(
+    wifiOnly: false,
+    serverURL: DataResidency.eu
+)
+MPSessionReplay.initialize(
+    token: Mixpanel.mainInstance().apiToken,
+    distinctId: Mixpanel.mainInstance().distinctId,
+    config: config
+)
+```
+
+You can also pass any fully-qualified HTTPS URL — useful when routing replay traffic through a self-hosted proxy:
+
+```swift Swift
+let config = MPSessionReplayConfig(
+    serverURL: "https://mixpanel-proxy.yourcompany.com"
+)
+```
+
+Learn more about [EU Data Residency](/docs/privacy/eu-residency) and [India Data Residency](/docs/privacy/in-residency).
+
 ## Capturing Replays
 
 <Warning>

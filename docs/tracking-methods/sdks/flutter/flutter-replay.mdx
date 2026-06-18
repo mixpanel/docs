@@ -84,6 +84,45 @@ class _MyAppState extends State<MyApp> {
 }
 ```
 
+## Data Residency
+
+<Callout type="info">
+Available in Flutter Session Replay SDK version `0.1.0-beta.4` and later.
+</Callout>
+
+If your Mixpanel project lives in the EU or India data center, or you route all Mixpanel traffic through a self-hosted proxy, set `serverUrl` on `SessionReplayOptions`. The SDK exposes a `DataResidency` class with the managed region URLs so you don't have to hardcode them.
+
+| Region | `DataResidency` constant | URL |
+| --- | --- | --- |
+| US (default) | `DataResidency.us` | `https://api.mixpanel.com` |
+| EU | `DataResidency.eu` | `https://api-eu.mixpanel.com` |
+| India | `DataResidency.india` | `https://api-in.mixpanel.com` |
+
+**Example Usage**
+
+```dart
+import 'package:mixpanel_flutter_session_replay/mixpanel_flutter_session_replay.dart';
+
+final result = await MixpanelSessionReplay.initialize(
+  token: 'YOUR_MIXPANEL_TOKEN',
+  distinctId: 'user_123',
+  options: SessionReplayOptions(
+    autoRecordSessionsPercent: 100.0,
+    serverUrl: DataResidency.eu,
+  ),
+);
+```
+
+You can also pass any fully-qualified HTTPS URL — useful when routing replay traffic through a self-hosted proxy:
+
+```dart
+options: SessionReplayOptions(
+  serverUrl: 'https://mixpanel-proxy.yourcompany.com',
+)
+```
+
+Learn more about [EU Data Residency](/docs/privacy/eu-residency) and [India Data Residency](/docs/privacy/in-residency).
+
 ## Quick Start
 
 Here's a quick overview of some available controls. For a more in-depth guide, continue reading.
