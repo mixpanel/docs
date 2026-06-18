@@ -17,10 +17,10 @@ Mixpanel's **AI-Powered Root Cause Analysis (RCA)** feature does that work for y
 
 When you run an RCA, Mixpanel immediately launches a new Board and exposes the agent's reasoning as it works:
 
-1. **Validates the anomaly.** Confirms there's a meaningful change to explain before going further.
+1. **Validates the anomaly.** Confirms there's a real change to explain before going further, using a z-score to check the change is well outside normal day-to-day variation rather than routine noise or seasonality.
 2. **Selects properties to analyze.** An LLM agent picks which properties to break down on, combining properties Mixpanel suggests for the event with any you've prioritized in [Custom RCA Settings](#custom-rca-settings). It spreads picks across plausible cause categories (acquisition, audience, platform, data quality, user identity), filters out high-cardinality identifiers and near-duplicates, and factors in your project's business context.
 3. **Runs breakdowns.** Executes the chosen breakdowns to see which segments actually moved.
-4. **Writes an interpretation.** Fills the Board with contribution factor analysis, ranked dimensions, an AI-written explanation of the likely cause, a confidence level, and suggested next steps.
+4. **Writes an interpretation.** Fills the Board with contribution factor analysis (each segment's share of the total change), ranked dimensions, an AI-written explanation of the likely cause, a confidence level, and suggested next steps.
 
 Cards stream into the Board as each step completes, with a live progress banner at the top while the agent is still working.
 
