@@ -407,10 +407,24 @@ Note that flags created as part of an experiment (experiment-type flags) cannot 
 
 Once duplicated, the new flag is linked to the original and can be managed from the "Other Environments" menu.
 
+#### Permissions
+
+To duplicate a flag to another project, you need permission to create and edit feature flags in **both** the source and destination projects. The required permission level in the destination project is the same as what's needed to manually create a new flag there — governed by that project's roles and custom roles.
+
+#### What to expect after duplicating
+
+When a flag is duplicated to another project, time-based settings reset to the day the duplicate was created — the same behavior as duplicating within a project.
+
+If your flag targets a cohort, Mixpanel assumes the event properties referenced by that cohort exist in the destination project. It does not validate property availability at copy time, so verify that your destination project collects the same events and properties before using the flag there.
+
+#### Removing a connection
+
+Removing an inter-project connection from the "Other Environments" menu unlinks the two flags — it does **not** delete the flag in the destination project. The copied flag remains in the destination project and continues to function independently; it simply loses its link to the original.
+
 #### Data Groups
 
 Feature Flag rollouts may include configuration that references data groups in a given project. For instance, if you change the
-"Assignment Key" of a flag, both the source and destination projects _must_ include the referenced data group in order to duplicate or push changes.
+"Assignment Key" of a flag to a data group key, both the source and destination projects _must_ include the referenced data group in order to duplicate or push changes.
 If the assignment key is _not_ present in the destination project, the operation will fail.
 
 <Callout type="info">
