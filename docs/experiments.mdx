@@ -270,6 +270,32 @@ Normalizing by exposed users (not just converters or funnel entrants) helps you 
 **Custom Formula Metrics:**
 For complex metrics using formulas like `Revenue per User = Total Revenue ÷ Unique Users`, Mixpanel uses propagation of uncertainty to estimate variance. This combines the variances of the component metrics (Total Revenue and Unique Users) to calculate the overall metric's statistical significance. The system assumes metrics in formulas are uncorrelated for these calculations.
 
+### Segment your results
+
+Segmentation lets you break your experiment results down by a property (such as country, platform, plan type, or device) to see how the treatment effect varies across groups of users. This is useful for spotting cases where a change helps one segment but hurts another, which an aggregate result can hide.
+
+**How to use it:** Use the **breakdown picker** above the results table to choose a property to segment by. Mixpanel then computes a separate result (lift, p-value, and confidence) for each value of that property and lays them out in a table, so you can compare the variants within every segment. Each segment row reads exactly like the overall results: green for a significant positive difference, red for a significant negative one, and gray for differences that aren't statistically significant.
+
+This breakdown happens natively inside the Experiment report and is distinct from clicking **Analyze** on a metric, which opens a separate Insights report (see [Diagnosing experiments further](#diagnosing-experiments-further-in-regular-mixpanel-reports)).
+
+#### The risk of post-hoc segmentation
+
+Breaking results down after an experiment has run is a form of *post-hoc analysis*, and it carries a real statistical risk. Every additional segment you inspect is another chance to see a "significant" result that is actually just noise. This is the same multiple-comparisons problem described under [Bonferroni](#bonferroni-correction) and [Benjamini-Hochberg](#benjamini-hochberg-correction), but it's especially easy to fall into when you slice the same results many different ways looking for something that "worked."
+
+This practice is often called *p-hacking*: if you test enough segments, you will eventually find one with a low p-value purely by chance. Reporting that segment as a win, and constructing a story around why that particular group responded, can lead you to ship a change based on a false positive.
+
+<Warning>
+Treat a winning segment as a **lead to investigate, not a conclusion**. If a segment looks promising, the rigorous next step is to run a fresh experiment that targets that segment specifically and confirms the effect.
+</Warning>
+
+#### Why Mixpanel corrects segmented results by default
+
+Because segmenting multiplies the number of comparisons being made, Mixpanel corrects segmented results by default. When you don't already have a [Multiple Testing Correction](#bonferroni-correction) enabled, adding a breakdown turns on the [Benjamini-Hochberg correction](#benjamini-hochberg-correction) across its segments. If you already have Bonferroni enabled, Mixpanel keeps it rather than switching to Benjamini-Hochberg, since Bonferroni is the stricter check. Either way the correction is recommended but optional, and you can turn it off from the results if you want to see the uncorrected numbers.
+
+Benjamini-Hochberg controls the **false discovery rate**, the share of your flagged winners that are actually false positives. It does this by making the significance threshold stricter as you add more segments, so a segment still highlighted as a winner after correction is more trustworthy. Segments that only looked significant because you tested many of them are filtered out. See the [Benjamini-Hochberg Correction](#benjamini-hochberg-correction) section for a worked example of how the procedure ranks and thresholds p-values.
+
+This correction operates on the values in your breakdown, which is a different axis from the [Multiple Testing Correction](#bonferroni-correction) you apply across metrics and variants. That means adding more breakdown values doesn't inflate your false positive rate.
+
 ### When do we say the Experiment is ready to review?
 Once the ‘Test Duration’ setup during configuration is complete, we show a banner that says “Experiment is ready to review”.
 
