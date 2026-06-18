@@ -345,6 +345,20 @@ When duplicating an experiment that is linked to a Mixpanel Flag to another proj
 
 When pushing changes, if both the source and destination experiments are linked to flags that are also linked (i.e., you chose to duplicate the flag as well), you can choose to push any changes from the source flag to the destination project's flag at the same time.
 
+#### Permissions
+
+To duplicate an experiment to another project, you need permission to create and edit experiments in **both** the source and destination projects. The required permission level in the destination project is the same as what's needed to manually create a new experiment there — governed by that project's roles and custom roles.
+
+#### What to expect after duplicating
+
+When an experiment is duplicated to another project, time-based settings (such as the experiment period and day counts) reset to the day the duplicate was created — the same behavior as duplicating within a project.
+
+If your experiment targets a cohort, Mixpanel assumes the event properties referenced by that cohort exist in the destination project. It does not validate property availability at copy time, so verify that your destination project collects the same events and properties before running the experiment there.
+
+#### Removing a connection
+
+Removing an inter-project connection from the "Other Environments" menu unlinks the two experiments — it does **not** delete the experiment in the destination project. The copied experiment remains in the destination project and continues to function independently; it simply loses its link to the original.
+
 <Info>
   **Billing across projects:** You aren't double-charged for using the same feature flag across multiple projects. Mixpanel charges based on active feature flag keys, so the same flag-key shared across projects is counted once.
 </Info>
