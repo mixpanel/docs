@@ -219,21 +219,6 @@ This section allows you to whitelist users who will receive the experience, vs r
 >
 > **Debugging tip:** to verify which ID was saved for a QA tester, inspect the `/flags/` network request in your browser's developer tools. The response payload includes a `test_users` field listing the saved IDs. Compare these against the `distinct_id` your SDK is sending — if they don't match, that's the source of the issue. You can also see this in the dropdown when searching for users.
 
-### Testing Environment
-
-Use separate Mixpanel projects, which are connected to your different environments, to reduce risk and promote safety. You might have just 1 or 2 of these, which is also fine:
-
-1. **Dev** **Project** — rapid iteration; permissive targeting 
-2. **Staging Project** — mirrors prod cohorts; dry runs for promotion
-3. **Prod Project** — customer-facing
-
-Recommended workflow:
-- Create the flag in **dev** with a consistent **Flag Key**. Validate eligibility, variants, etc.
-- Create the same flag in **staging.** Use the same **Flag Key.** QA Test in this mode
-- Lastly, create the same flag in **prod.** Use the same **Flag Key.** Ensure the right edit permissions are provided, and the right rollout % is set.
-
-[Coming soon]: Ability to push a flag from Dev or Staging project to Prod project in one click. 
-
 ## Performance, Reliability  & security
 
 **Privacy**
