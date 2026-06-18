@@ -84,6 +84,47 @@ await MPSessionReplay.stopRecording();
 const recording = await MPSessionReplay.isRecording();
 ```
 
+## Data Residency
+
+<Info>
+Available in React Native Session Replay SDK version `1.3.0` and later.
+</Info>
+
+If your Mixpanel project lives in the EU or India data center, or you route all Mixpanel traffic through a self-hosted proxy, set `serverURL` on `MPSessionReplayConfig`. The SDK exposes a `MPDataResidency` constant set with the managed region URLs so you don't have to hardcode them.
+
+| Region | `MPDataResidency` constant | URL |
+| --- | --- | --- |
+| US (default) | `MPDataResidency.US` | `https://api.mixpanel.com` |
+| EU | `MPDataResidency.EU` | `https://api-eu.mixpanel.com` |
+| India | `MPDataResidency.IN` | `https://api-in.mixpanel.com` |
+
+**Example Usage**
+
+```typescript
+import {
+  MPSessionReplay,
+  MPSessionReplayConfig,
+  MPDataResidency,
+} from "@mixpanel/react-native-session-replay";
+
+const config = new MPSessionReplayConfig({
+  recordingSessionsPercent: 100,
+  serverURL: MPDataResidency.EU,
+});
+
+await MPSessionReplay.initialize(token, distinctId, config);
+```
+
+You can also pass any fully-qualified HTTPS URL — useful when routing replay traffic through a self-hosted proxy:
+
+```typescript
+const config = new MPSessionReplayConfig({
+  serverURL: "https://mixpanel-proxy.yourcompany.com",
+});
+```
+
+Learn more about [EU Data Residency](/docs/privacy/eu-residency) and [India Data Residency](/docs/privacy/in-residency).
+
 ## Configuration
 
 The `MPSessionReplayConfig` class provides comprehensive control over session replay behavior:

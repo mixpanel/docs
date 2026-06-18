@@ -13,6 +13,30 @@ By default, Session Replay is disabled and will not be loaded into your applicat
 
 You are a Mixpanel customer and have the latest version of the Mixpanel Javascript SDK installed (minimum supported version is [`v2.50.0`](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.50.0)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
 
+## Data Residency
+
+If your Mixpanel project lives in the EU or India data center, or you route all Mixpanel traffic through a self-hosted proxy, set `api_host` when you initialize the JavaScript SDK. Session Replay reuses the same `api_host` — there is no separate replay endpoint to configure.
+
+| Region | `api_host` value |
+| --- | --- |
+| US (default) | `https://api.mixpanel.com` |
+| EU | `https://api-eu.mixpanel.com` |
+| India | `https://api-in.mixpanel.com` |
+
+**Example Usage**
+
+```javascript Javascript
+// Route Session Replay (and all other Mixpanel traffic) to the EU data center
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    api_host: 'https://api-eu.mixpanel.com',
+    record_sessions_percent: 100
+});
+```
+
+For self-hosted proxies, pass your proxy URL as `api_host`. If you also need the SDK to load its async module bundles (including the recorder) through your proxy instead of `cdn.mxpnl.com`, see [Self-Hosted Proxy](/docs/tracking-methods/sdks/javascript#self-hosted-proxy) for the full setup.
+
+Learn more about [EU Data Residency](/docs/privacy/eu-residency) and [India Data Residency](/docs/privacy/in-residency).
+
 ## Capturing Replays
 
 <Warning>
