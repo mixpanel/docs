@@ -7,10 +7,6 @@ sidebarTitle: "Session Replay (Flutter)"
 
 This developer guide will assist you in configuring your Flutter app for [Session Replay](/docs/session-replay) using the [Session Replay SDK (Flutter)](https://github.com/mixpanel/mixpanel-flutter-session-replay). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
 
-<Warning>
-  Flutter Session Replay is currently in **Public Beta**. Please reach out to your Account Manager or Support for any questions about Session Replay or the beta.
-</Warning>
-
 ## Best Practices
 
 Session Replay provides powerful insights into user behavior, but it also introduces risks, especially on mobile. These risks are not unique to Mixpanel; they are common across the entire session replay product category. Because SDKs run on end-user devices and screen content may include sensitive data, we recommend implementing / testing Session Replay carefully. Be especially cautious with masking, edge-case testing, and rollout strategies. For more information on risk categories and best practices, read more [here](/docs/session-replay#best-practices).
@@ -85,10 +81,6 @@ class _MyAppState extends State<MyApp> {
 ```
 
 ## Data Residency
-
-<Info>
-Available in Flutter Session Replay SDK version `0.1.0-beta.4` and later.
-</Info>
 
 If your Mixpanel project lives in the EU or India data center, or you route all Mixpanel traffic through a self-hosted proxy, set `serverUrl` on `SessionReplayOptions`. The SDK exposes a `DataResidency` class with the managed region URLs so you don't have to hardcode them.
 
@@ -604,10 +596,6 @@ Without any masking directive, auto-masking applies based on `autoMaskedViews` c
 ## Retention
 
 By default, Mixpanel retains Session Replays for 30 days from the date the replay is ingested and becomes available for viewing within Mixpanel. Customers on our [Enterprise plan](https://mixpanel.com/pricing/) can customize this retention period between 7 days and 360 days. Once a replay is expired, there is no way to view that replay.
-
-## Legal (Beta Terms)
-
-Our Session Replay Beta Service Addendum can be found [here](https://mixpanel.com/legal/session-replay-beta-service-addendum/).
 
 ## FAQ
 
