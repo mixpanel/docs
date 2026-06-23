@@ -362,8 +362,7 @@
                   "docs/features/revenue-analytics",
                   "docs/features/saved-metrics-and-behaviors",
                   "docs/features/sessions",
-                  "docs/features/slack-integration",
-                  "docs/features/spark"
+                  "docs/features/slack-integration"
                 ]
               }
             ]
@@ -423,7 +422,13 @@
                       "docs/access-security/single-sign-on/google"
                     ]
                   },
-                  "docs/access-security/audit-log"
+                  {
+                    "group": "Audit Log",
+                    "root": "docs/access-security/audit-log",
+                    "pages": [
+                      "docs/access-security/audit-log-reference"
+                    ]
+                  }
                 ]
               },
               {
@@ -611,6 +616,7 @@
                           "guides/guides-by-use-case/empower-your-team/mcp/integrations"
                         ]
                       },
+                      "guides/guides-by-use-case/empower-your-team/headless",
                       "guides/guides-by-use-case/empower-your-team/close-strategy-execution-gap",
                       "guides/guides-by-use-case/empower-your-team/see-replays"
                     ]
@@ -647,6 +653,17 @@
                   }
                 ]
               }
+            ]
+          },
+          {
+            "group": "MIXPANEL AI",
+            "icon": "/icons/flower.svg",
+            "pages": [
+              "guides/guides-by-use-case/empower-your-team/mixpanel-agent",
+              "guides/guides-by-use-case/empower-your-team/mcp",
+              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry",
+              "guides/guides-by-use-case/empower-your-team/mcp/integrations",
+              "guides/guides-by-use-case/empower-your-team/headless"
             ]
           },
           {
@@ -3918,6 +3935,10 @@
     {
       "source": "/troubleshooting/docs/tracking-best-practices/traffic-attribution",
       "destination": "/docs/tracking-best-practices/traffic-attribution"
+    },
+    {
+      "source": "/docs/features/spark",
+      "destination": "/docs/mixpanel-agent"
     }
   ]
 }
