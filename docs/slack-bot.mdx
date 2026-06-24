@@ -1,0 +1,165 @@
+---
+title: Mixpanel Agent in Slack
+tags: [slack, slack bot, mixpanel agent, agent, ai, chatops]
+---
+
+## Overview
+
+Mixpanel Agent in Slack brings AI-powered analysis to the place your team already collaborates. @mention the bot in any Slack channel and your whole team can ask questions, refine them together, and build on each other's findings in a single thread — without anyone leaving the conversation to go pull data.
+
+It's built for shared investigations. A PM, an engineer, and a designer can all weigh in on the same thread: one asks how a launch is performing, another follows up with a question about a specific segment, a third drills into session replays for users who churned.
+
+<Info>
+Mixpanel Agent in Slack is currently available to existing Mixpanel customers by request. See [Getting started](#getting-started) below.
+</Info>
+
+## What you can ask
+
+The Slack bot queries your data through Mixpanel's [Model Context Protocol (MCP) server](/docs/mcp), so it can investigate metrics, look up numbers, or dig into user behavior from inside Slack.
+
+**Investigate a metric**
+- *Why did signups drop last week?*
+- *Walk me through the checkout funnel for mobile users in the last 30 days*
+
+**Get a quick number**
+- *How many active users did we have yesterday?*
+- *What's our 7-day retention for users who completed onboarding in Q1?*
+
+**Get up to speed**
+- *Summarize the "Weekly Growth" board for me*
+- *What tracking do we have on the messaging feature?*
+
+**Investigate users**
+- *This customer reported a bug — what happened in their last 3 sessions?*
+
+Through MCP, the bot can query events, properties, reports, boards, cohorts, experiments, feature flags, and session replays in the projects you already have permission to view.
+
+## How it works in Slack
+
+**Mention the bot in any channel.** Once `@Mixpanel Agent` has been added to a channel, anyone in that channel can ask it a question. The bot replies in a thread, so the conversation stays organized.
+
+<Frame>
+![Asking the Mixpanel Agent a question in a Slack channel](/images/slack-bot-ask.png)
+</Frame>
+
+**Get real answers, grounded in your data.** Responses include the metric definition, a data table, and a link back to the live report in Mixpanel — so you can verify the numbers and dig in further.
+
+<Frame>
+![A Mixpanel Agent response showing metric definition, data table, and an "Open in Mixpanel" link](/images/slack-bot-answer.png)
+</Frame>
+
+**Follow up in the thread.** The Agent keeps the context of the thread, so anyone in the channel can ask follow-ups, refine the question, or drill into a specific segment without restating the setup.
+
+<Frame>
+![A teammate following up on the same thread with a related question](/images/slack-bot-followup.png)
+</Frame>
+
+**Direct message the bot.** Prefer to ask privately? Send the bot a DM and it will respond there.
+
+**Authenticate with `/mixpanel`.** The first time you ask a question, the bot will prompt you to connect your Mixpanel account. Run the `/mixpanel` slash command in Slack to complete the one-time OAuth flow. After that, the bot queries Mixpanel using your own credentials and permissions.
+
+## Getting started
+
+Mixpanel Agent in Slack is available to existing Mixpanel customers on request. We're rolling it out account-by-account during early access.
+
+**To enable it for your workspace:**
+
+1. **Contact your Mixpanel account team.** Reach out to your Customer Success Manager or Account Executive and let them know you'd like to try the Slack bot. If you're not sure who that is, [contact Mixpanel sales](https://mixpanel.com/contact-us/sales/) and we'll route you to the right person.
+2. **Your account team will share an install link.** A Slack workspace admin will need to authorize the app and the requested scopes during install.
+3. **Add the bot to a channel.** Invite `@Mixpanel Agent` into any channel where you want to be able to ask questions.
+4. **Authenticate.** Each user runs `/mixpanel` once in Slack to connect their own Mixpanel account.
+5. **Ask a question.** `@Mixpanel Agent how many signups did we have this week?`
+
+<Info>
+**Adding business context improves answers.** The Agent uses your project's [Business Context](/docs/business-context) — your team's definitions, vocabulary, and how to interpret your data — to give more relevant answers. The more context you provide, the better the responses.
+</Info>
+
+## A note on shared channels
+
+The Slack bot queries Mixpanel data using your individual permissions and posts responses publicly in the channel where it was asked. This means a response may include data that other members of the channel would not otherwise have access to in Mixpanel.
+
+Before asking a question, consider whether the response might contain sensitive or restricted data that isn't appropriate to share with everyone in the channel. By submitting a query, you accept responsibility for any data surfaced in the bot's response.
+
+## A note on accuracy
+
+Like all AI tools, responses generated by Mixpanel Agent in Slack may not always be accurate. Please double-check important findings.
+
+## Security and data access
+
+This section is intended for security teams reviewing Mixpanel Agent in Slack before approving installation.
+
+### App distribution status
+
+Mixpanel Agent in Slack is currently an unlisted Slack app. It is not published to the Slack App Directory. Installation is available only via a direct install link shared by your Mixpanel account team.
+
+### Authentication
+
+**Slack OAuth.** The bot is installed into your Slack workspace via Slack's standard OAuth 2.0 flow. A workspace admin must authorize the app and the requested scopes during installation.
+
+**Mixpanel authentication.** Each user individually authenticates with their own Mixpanel account by running the `/mixpanel` slash command in Slack. The bot does not use a shared service account or API key — it queries Mixpanel data using the authenticated user's own credentials and permissions.
+
+### How Mixpanel data is accessed
+
+The bot accesses Mixpanel data entirely through the [Model Context Protocol (MCP)](/docs/mcp), using the individual user's authenticated credentials. MCP respects your existing Mixpanel organization and project-level access controls. A user can only query data they already have permission to view in Mixpanel — the bot does not elevate or bypass any access restrictions.
+
+### LLM provider
+
+The bot uses OpenAI as its LLM provider to interpret natural-language questions and generate Mixpanel queries. User questions and Mixpanel query results are sent to OpenAI for processing. Customer data is not used to train AI models — Mixpanel's contracts with third-party providers prohibit them from using your data to train or improve their models.
+
+### Slack OAuth scopes
+
+The following bot token scopes are requested at install time. All scopes marked "Required" are necessary for core functionality. Optional scopes enable enhanced features but the bot functions without them.
+
+| Scope | Required | What it does | Why the bot needs it |
+| --- | --- | --- | --- |
+| `app_mentions:read` | Yes | View messages that directly @mention the bot | Detect when a user asks the bot a question |
+| `channels:history` | Yes | View messages in public channels the bot has been added to | Read conversation context in threads where it is asked questions |
+| `channels:read` | Yes | View basic info about public channels | Identify which channels the bot has been added to |
+| `chat:write` | Yes | Send messages as @Mixpanel Agent | Post responses to user questions |
+| `commands` | Yes | Add slash commands | Powers the `/mixpanel` command used for authentication |
+| `groups:history` | Yes | View messages in private channels the bot has been added to | Same as `channels:history`, for private channels |
+| `im:history` | Yes | View messages in direct messages with the bot | Respond to direct messages |
+| `im:read` | Yes | View basic info about direct messages with the bot | Identify DM conversations the bot is part of |
+| `mpim:history` | Yes | View messages in group DMs the bot has been added to | Respond in multi-person DM threads |
+| `users:read` | Yes | View people in the workspace | Resolve user identities when processing requests |
+| `reactions:write` | No | Add and edit emoji reactions | Acknowledge receipt of a message (e.g., adding a 👀 reaction); not required for core functionality |
+
+### What the bot can and cannot access
+
+**Can access:**
+- Messages in channels, DMs, and group DMs where the bot has been explicitly added or mentioned
+- Mixpanel data the authenticated user already has permission to view
+
+**Cannot access:**
+- Messages in channels the bot has not been added to
+- Mixpanel data outside the authenticated user's organization and project permissions
+- Any Slack content beyond the scopes listed above
+
+### Data flow
+
+1. A user @mentions the bot with a question in Slack.
+2. The bot reads the message (via Slack OAuth scopes).
+3. The question is sent to OpenAI to interpret intent and formulate a Mixpanel query.
+4. The bot queries Mixpanel via MCP using the user's own authenticated credentials.
+5. Results are sent back through OpenAI to generate a natural-language response.
+6. The bot posts the response in the Slack thread.
+
+## FAQ
+
+**1. Is there an additional cost?**<br/>
+No. Mixpanel Agent in Slack is included at no additional cost for existing Mixpanel customers. Access is granted by request during early access — see [Getting started](#getting-started) for how to enable it for your workspace.
+
+## Privacy
+
+Mixpanel Agent in Slack is covered by Mixpanel's standard privacy and data handling policies.
+
+- [Mixpanel Privacy Policy](https://mixpanel.com/legal/privacy-policy/)
+- [Mixpanel Privacy Hub](https://mixpanel.com/legal/privacy-hub/)
+- [Mixpanel Data Processing Addendum](https://mixpanel.com/legal/dpa/)
+- [Mixpanel Agent Beta Service Addendum](https://mixpanel.com/legal/supplemental-terms/#mixpanel-agent-beta-service-addendum)
+
+AI features, including Mixpanel Agent in Slack, are disabled by default for customers enrolled in EU or India Data Residency, but can be enabled by your Mixpanel admin. AI features are not available for accounts with a signed Business Associate Addendum (BAA) with Mixpanel.
+
+## Support and feedback
+
+Have feedback, hit a bug, or want to request a capability? Reach out to your Mixpanel account team or [contact Mixpanel support](https://mixpanel.com/get-support).

@@ -377,6 +377,7 @@
             "icon": "/icons/ai.svg",
             "pages": [
               "docs/mixpanel-agent",
+              "docs/slack-bot",
               "docs/agentic-automations",
               "docs/root-cause-analysis",
               "docs/mcp",
