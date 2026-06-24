@@ -52,6 +52,11 @@
     ]
   },
   "favicon": "/favicon.png",
+  "seo": {
+    "metatags": {
+      "canonical": "https://docs.mixpanel.com"
+    }
+  },
   "navigation": {
     "tabs": [
       {
