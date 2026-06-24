@@ -65,6 +65,42 @@ private fun initializeMixpanel() {
 }
 ```
 
+## Data Residency
+
+<Info>
+Available in Session Replay SDK version `1.4.0` and later.
+</Info>
+
+If your Mixpanel project lives in the EU or India data center, or you route all Mixpanel traffic through a self-hosted proxy, set `serverUrl` on `MPSessionReplayConfig`. The SDK exposes a `DataResidency` object with the managed region URLs so you don't have to hardcode them.
+
+| Region | `DataResidency` constant | URL |
+| --- | --- | --- |
+| US (default) | `DataResidency.US` | `https://api.mixpanel.com` |
+| EU | `DataResidency.EU` | `https://api-eu.mixpanel.com` |
+| India | `DataResidency.IN` | `https://api-in.mixpanel.com` |
+
+**Example Usage**
+
+```kotlin Kotlin
+import com.mixpanel.android.sessionreplay.utils.DataResidency
+
+val config = MPSessionReplayConfig(
+    wifiOnly = false,
+    serverUrl = DataResidency.EU
+)
+MPSessionReplay.initialize(this, token, mixpanel.distinctId, config)
+```
+
+You can also pass any fully-qualified HTTPS URL — useful when routing replay traffic through a self-hosted proxy:
+
+```kotlin Kotlin
+val config = MPSessionReplayConfig(
+    serverUrl = "https://mixpanel-proxy.yourcompany.com"
+)
+```
+
+Learn more about [EU Data Residency](/docs/privacy/eu-residency) and [India Data Residency](/docs/privacy/in-residency).
+
 ## Capturing Replays
 
 <Warning>
