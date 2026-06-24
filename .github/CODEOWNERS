@@ -14,3 +14,4 @@
 # ======================
 /csp.txt                @mixpanel/tofu
 /scripts/               @mixpanel/tofu
+*.jsx                   @mixpanel/tofu
