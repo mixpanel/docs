@@ -1,5 +1,5 @@
 <div align="center">
-	<img width="150" src="https://github.com/mixpanel/docs/assets/71290498/1f5dfccf-8ba8-481a-8faa-c6c297d7d4c6" alt="Mixpanel">
+	<img width="150" src="images/mixpanel-logo.svg" alt="Mixpanel">
 	<h1>Mixpanel's Official Documentation</h1>
 	<p>
 		<b><a href="https://docs.mixpanel.com/">docs.mixpanel.com</a></b>
@@ -47,9 +47,9 @@ mintlify dev
 
 # Adding Images/GIFs
 
-Upload images/GIFs to the `image/` directory.
+Upload images/GIFs to the `images/` directory.
 
-To reference an image, use a relative link to the image For example, if you have an image `public/example.png`, you can reference it as follows: 
+To reference an image, use a relative link to the image. For example, if you have an image `images/example.png`, you can reference it as follows:
 
 ```
 <Frame>
@@ -57,7 +57,7 @@ To reference an image, use a relative link to the image For example, if you have
 </Frame>
 ```
 
-Ensure that the the image filename has no spaces and are separated by either a hyphen or an underscore.
+Ensure that the image filename has no spaces and are separated by either a hyphen or an underscore.
 
 If you're making a diagram, please add it to this [Figjam](https://www.figma.com/file/m4XseN6oAiu2yGN18qfamD/Docs-Toolkit?type=whiteboard&node-id=0-1&t=j3TBgane3MsYReF2-0). That way, if others want to make small tweaks, they can discover the original.
 
