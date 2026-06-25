@@ -170,7 +170,7 @@ There are 4 parts to implementing Group Analytics via Segment. Learn more about 
 Create the Group Key in Mixpanel Project Settings. In this example, we are setting `company_id` as the group key.
 
 <Frame>
-![1groupkey_projectsettings](https://github.com/mixpanel/docs-legacy/assets/97630035/835de9fa-eea2-47b0-9965-4a922ebd39ab)
+![1groupkey_projectsettings](/images/835de9fa-eea2-47b0-9965-4a922ebd39ab.gif)
 </Frame>
 
 **2. Configure your Group Actions Mapping**
@@ -206,7 +206,7 @@ analytics.group("some_company", {
 Example Group Profile/Group Profile Properties created from the group method above:
 
 <Frame>
-![4groupprofile](https://github.com/mixpanel/docs-legacy/assets/97630035/b8b7ab18-4c65-4dff-965a-d532ae49cffc)
+![4groupprofile](/images/b8b7ab18-4c65-4dff-965a-d532ae49cffc.png)
 </Frame>
 
 **4. Add Group Key as a User Profile Property**
@@ -215,7 +215,7 @@ In order to use Group Profile Properties when analyzing User Profiles, the user 
 
 Declare the Group Key in the identify method as a profile property (trait):
 <Frame>
-![5identify](https://github.com/mixpanel/docs-legacy/assets/97630035/41cc54c4-2e52-4e77-833d-cc178d1fb107)
+![5identify](/images/41cc54c4-2e52-4e77-833d-cc178d1fb107.png)
 </Frame>
 
 **5. Add Group Key as an Event Property to Events**
@@ -225,7 +225,7 @@ In order to connect events to a Group, the event must have the Group Key/Group I
 The Group Key must be explicitly declared as an event property on every event track call in order for the event to be compatible with Group Analytics.
 
 <Frame>
-![6trackcall](https://github.com/mixpanel/docs-legacy/assets/97630035/9609917d-f00b-4450-a9d5-7d77bd338f9d)
+![6trackcall](/images/9609917d-f00b-4450-a9d5-7d77bd338f9d.png)
 </Frame>
 
 If you are using [Segment Device Mode](https://segment.com/docs/connections/destinations/catalog/mixpanel/#group-using-device-mode) (Classic destination):
@@ -236,12 +236,12 @@ If you are using [Segment Device Mode](https://segment.com/docs/connections/dest
 ## Debugging
 For debugging purposes, it can be useful to see exactly what Segment is sending to Mixpanel. You can validate this data through the [Segment Source Debugger](https://segment.com/docs/connections/sources/debugger/). In the Segment Source Debugger, you can select the event you are looking to validate:
 <Frame>
-<img width="1080" alt="debugger screenshot" src="https://github.com/mixpanel/docs-legacy/assets/97630035/6ee0bbcd-8bf2-4f86-83a7-b0a3c39108e4" />
+<img width="1080" alt="debugger screenshot" src="/images/6ee0bbcd-8bf2-4f86-83a7-b0a3c39108e4.png" />
 </Frame>
 
 Click the “Validate” button in the top right corner and choose “Mixpanel” as the destination. After the event has been sent, you can click to view the request from Segment to grab the data payload:
 <Frame>
-![pasted image 0 (1)](https://github.com/mixpanel/docs-legacy/assets/97630035/0344decc-dc96-4569-ac3d-cc530c63bdb3)
+![pasted image 0 (1)](/images/0344decc-dc96-4569-ac3d-cc530c63bdb3.png)
 </Frame>
 
 You can then copy the data payload and decode it in a [base64 decoder](https://www.base64decode.org/) to see the JSON event that was sent to Mixpanel.
