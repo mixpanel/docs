@@ -1,4 +1,17 @@
-# Default to docs reviewers
+# Documentation content → docs reviewers (default for everything)
 # ======================
-*                    @mixpanel/docs-reviewers
-.github/*            @mixpanel/tofu
+*                       @mixpanel/docs-reviewers
+
+# tofu or docs reviewers (either can approve)
+# ======================
+/docs.json              @mixpanel/tofu @mixpanel/docs-reviewers
+/style.css              @mixpanel/tofu @mixpanel/docs-reviewers
+/README.md              @mixpanel/tofu @mixpanel/docs-reviewers
+/.github/               @mixpanel/tofu @mixpanel/docs-reviewers
+/.gitignore             @mixpanel/tofu @mixpanel/docs-reviewers
+
+# Engineering-owned files → tofu only
+# ======================
+/csp.txt                @mixpanel/tofu
+/scripts/               @mixpanel/tofu
+*.jsx                   @mixpanel/tofu
