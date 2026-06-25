@@ -1,5 +1,5 @@
 ---
-title: "Sharing and Permission"
+title: "Sharing "
 ---
 
 <Note>
@@ -18,29 +18,38 @@ This will make it easy to keep reports organized, and reduce time wasted recreat
 
 ## Sharing
 
-Sharing and permissions are set at the board level, and all reports saved on a board inherit the same set of sharing and permissions settings of that board.
+Every Boards is accessible by all project members. Board-level sharing settings control how Boards are surfaced in Mixpanel and who can edit.
 
-To share a board, and therefore all reports contained within it, click the Share button at the top right of the board. From here, sharing works as before, but remember, sharing a board shares all of that board's other reports as well. 
+Sharing is done at the board level. All reports saved on a board inherit the same sharing settings of that board. To share a board, click the Share button at the top right of the board. 
 
 <Frame>
   ![/GIF3\_\_light\_.gif](/images/GIF3__light_.gif)
 </Frame>
 
-Both reports and boards can also be shared via the "Copy URL" button at the top right. Clicking this button will immediately copy the short link to the report or board, so you can quickly paste it into your application of choice.
+You can set access for specific individuals, Teams, and everyone in the project.
+
+**Individuals and Teams Sharing:**
+
+- Viewers: Board discoverable in Mixpanel search. Any changes Viewers make will not be saved
+- Editors: Able to make and save changes to the Board
+
+**Project Sharing:**
+
+- Off: The Board does not surface in Mixpanel for users who are not Viewers or Editors of the Board. Note, even when project sharing is Off, any project member with the direct link can still view the Board
+- Viewer: Board discoverable in Mixpanel. Any changes Viewers make will not be saved
+- Editor: Able to make and save changes to the Board
+
+The **Copy URL** button copies a short link to a Board or report. Anyone with the link who has access to the project can open it. What they can do is always governed by the permissions above.
 
 <Frame>
   ![/Screen\_Shot\_2021-11-08\_at\_11.01.00\_AM.png](/images/Screen_Shot_2021-11-08_at_11.01.00_AM.png)
+
+   
 </Frame>
 
-So long as the recipient has access to the project, they will be able to access boards and their reports. However, unless they have specifically given Editor permissions, they will only be able to view it, not edit it.
+If a Board contains sensitive data, restrict access to the underlying data through [Data Views and Data Classification](https://docs.mixpanel.com/docs/data-governance/data-views-and-classification).
 
-## Permissions
-
-Sharing and permissions are set at the board level, and all reports saved on a board inherit the same set of sharing and permissions settings of that board.
-
-In the sharing process, you can choose the permissions level granted to the individual with whom you're sharing the board. Teammates can either be Viewers (any changes made will not be saved) or Editors (changes made will be saved). 
-
-As with sharing, setting a user's permission level on a board will give them the same permission level for all reports on that board.
+The default settings for project sharing can be set by admins in Project Settings. 
 
 ## Linked Reports
 
