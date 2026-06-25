@@ -59,8 +59,6 @@ To reference an image, use a relative link to the image. For example, if you hav
 
 Ensure that the image filename has no spaces and are separated by either a hyphen or an underscore.
 
-If you're making a diagram, please add it to this [Figjam](https://www.figma.com/file/m4XseN6oAiu2yGN18qfamD/Docs-Toolkit?type=whiteboard&node-id=0-1&t=j3TBgane3MsYReF2-0). That way, if others want to make small tweaks, they can discover the original.
-
 Images are hard to keep up-to-date, so please use them judiciously.
 
 # Adding Youtube Videos
