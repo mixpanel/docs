@@ -3,7 +3,7 @@ title: "Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for E
 slug: "changelog-2026-02-20-eu-forwarding-deprecation"
 hidden: false
 createdAt: "2026-02-20T10:00:00.000Z"
-updatedAt: "2026-02-20T10:00:00.000Z"
+updatedAt: "2026-07-01T10:00:00.000Z"
 date: "2026-02-20"
 thumbnail: ""
 og:description: "Starting July 2026, we will be fully retiring the legacy US-to-EU Data Forwarding Service for EU Projects"
@@ -19,6 +19,20 @@ import { ChangelogPostHeader } from "/snippets/ChangelogPostHeader/ChangelogPost
   image=""
   title="Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for EU Projects"
 />
+
+> **🚨 UPDATE: July 1, 2026 – US-to-EU Data Forwarding has officially ended.**
+> 
+> As scheduled, we have sunset US-to-EU data forwarding. For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI for a month.
+>
+> **How events are being filtered**
+> 
+> New US->EU Forwarded events have not been deleted. However, they are temporarily hidden from the UI if they match all of the following criteria:
+> * The event was processed after July 1st (UTC) (`mp_processing_time_ms` > `<July 1st UTC>`).
+> * The event was forwarded from the US (`$mp_is_forwarded` is defined).
+>
+> These events will be un-hidden in one month, so your reporting counts may change at that time. **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss moving forward.**
+> 
+> *Need help or want to opt out? If you wish to opt out of this UI preview and un-hide your forwarded events early, please [contact support](https://mixpanel.com/get-support).* 
 
 Starting July 2026, we will be sunsetting the legacy automated US-to-EU Data Forwarding process for [EU Data Residency projects](/docs/privacy/eu-residency) to align with data residency best practices and improve ingestion performance.
 After this date, data sent to our US Ingestion Servers for EU Data Residency projects will no longer be forwarded, which can result in data loss.
