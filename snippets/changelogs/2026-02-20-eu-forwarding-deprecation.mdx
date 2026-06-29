@@ -20,9 +20,9 @@ import { ChangelogPostHeader } from "/snippets/ChangelogPostHeader/ChangelogPost
   title="Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for EU Projects"
 />
 
-> **🚨 UPDATE: July 1, 2026 – US-to-EU Data Forwarding has officially ended.** <br />
+> **🚨 UPDATE: July 1, 2026 – US-to-EU Data Forwarding has officially ended.** <br /><br />
 > 
-> As scheduled, we have sunset US-to-EU data forwarding. For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI for a month.<br />
+> As scheduled, we have sunset US-to-EU data forwarding. <br /> **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI for a month.**<br /><br />
 >
 > **How events are being filtered**<br />
 > 
@@ -30,7 +30,7 @@ import { ChangelogPostHeader } from "/snippets/ChangelogPostHeader/ChangelogPost
 > * The event was processed after July 1st (UTC) (`mp_processing_time_ms` > `<July 1st UTC>`).
 > * The event was forwarded from the US (`$mp_is_forwarded` is defined).
 >
-> These events will be un-hidden in one month, so your reporting counts may change at that time. **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss moving forward.**<br />
+> These events will be un-hidden in one month, so your reporting counts may change at that time. <br /> **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss moving forward.**<br /><br />
 > 
 > *Need help or want to opt out? If you wish to opt out of this UI preview and un-hide your forwarded events early, please [contact support](https://mixpanel.com/get-support).* 
 
