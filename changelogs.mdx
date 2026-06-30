@@ -8,15 +8,19 @@ import { VideoButtonWithModal } from "/snippets/VideoButtonWithModal/VideoButton
 
 Get all the latest updates in your inbox.
 
-<Update label="06/30/2026">
+<Update label="06/25/2026">
   ## Introducing Mixpanel Agent: your always-on product analyst
+
+  <Frame>
+    ![Introducing Mixpanel Agent: your always-on product analyst](/images/changelog/mp_agent_changelog_header.png)
+  </Frame>
 
   Mixpanel Agent is now available for your team. It's an always-on product analyst that answers questions about your data in plain language, automatically investigates metric changes, and keeps you informed on the numbers you own.
 
   **Three ways to start using it today:**
 
   - **Self-serve answers:** Ask anything about your product and get an answer in seconds. No query builder, no data team required. 
-    - _Try asking: _
+    - \_Try asking: \_
     - "How many users signed up for a trial last month" 
     - "Summarize the insights from this analysis and give me top 3 takeaways."
     - "Build a dashboard for this new feature launch" 
@@ -498,13 +502,13 @@ Get all the latest updates in your inbox.
   ## Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for EU Projects
 
   > **🚨 UPDATE: July 1, 2026 – US-to-EU Data Forwarding has officially ended.** \
-  > \
+  > \\
   >
   > As scheduled, we have sunset US-to-EU data forwarding. \
-  >  **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI for a month.**\
-  > \
+  > **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI for a month.**\
+  > \\
   >
-  > **How events are being filtered**\
+  > **How events are being filtered**\\
   >
   > New US-\>EU Forwarded events have not been deleted. However, they are temporarily hidden from the UI if they match all of the following criteria:
   >
@@ -512,8 +516,8 @@ Get all the latest updates in your inbox.
   > - The event was forwarded from the US (`$mp_is_forwarded` is defined).
   >
   > These events will be un-hidden in one month, so your reporting counts may change at that time. \
-  >  **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss moving forward.**\
-  > \
+  > **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss moving forward.**\
+  > \\
   >
   > _Need help or want to opt out? If you wish to opt out of this UI preview and un-hide your forwarded events early, please [contact support](https://mixpanel.com/get-support)._
 
@@ -1317,7 +1321,7 @@ Get all the latest updates in your inbox.
   ## New features for enhanced B2B account analytics!
 
   <Frame>
-    ![New features for enhanced B2B account analytics!](/images/changelog/B2B - Summary.png)
+    !\[New features for enhanced B2B account analytics!\](/images/changelog/B2B - Summary.png)
   </Frame>
 
   [Two new features built for B2B analysis](/docs/data-structure/group-analytics#how-is-b2b-company-analytics-different-than-group-analytics) are now available for customers with the [Group Analytics](/docs/data-structure/group-analytics) add-on! You can now improve adoption and reduce churn risk by monitoring strategic accounts with out-of-the-box **Account Profiles** and **Activation Metrics**.
@@ -1658,7 +1662,7 @@ Get all the latest updates in your inbox.
 
   As part of these changes, the query builder has moved to the right of your screen. This allows for consistent placement of report tools, and makes access to report level controls easier. If you prefer to keep the query builder on the left side, you can press the button on the bottom right of the panel to switch it back to left. This setting will be persisted for any future visit to Mixpanel.
 
-  As part of these changes we've also added keyboard shortcuts: ``` to expand or collapse the side navigation, `Esc` to close out of a report and return the your Board.
+  As part of these changes we've also added keyboard shortcuts: \`\`\` to expand or collapse the side navigation, `Esc` to close out of a report and return the your Board.
 </Update>
 
 <Update label="2024-06-18">
@@ -2679,13 +2683,11 @@ Get all the latest updates in your inbox.
     - utm\_campaign: track the campaign name associated with the traffic
     - utm\_content: track the specific link within in an ad that a user clicked
     - utm\_term: track keywords associated with campaigns
-    - Initial UTM: tracks the first time a user reaches any of the above parameters
-    Tracking UTM tags help fuel attribution analysis so you can understand which campaigns, ads, or content is contributing the most, or least, to conversion.
+    - Initial UTM: tracks the first time a user reaches any of the above parameters Tracking UTM tags help fuel attribution analysis so you can understand which campaigns, ads, or content is contributing the most, or least, to conversion.
   - Page Views (default: off) —  auto-track page views to build metrics like:
     1. Total Views: identify top performing pages to learn what content your users like best
     2. Bounce Rate: percentage of visitors who leave your website within 10s of viewing it
-    3. Conversion Rate: percentage of visitors who complete a key action after visiting a page.
-    Tracking the performance of your pages is the main way to understand if your website is driving value to your users and business. If you want to get started with web analytics, turning on auto-tracking pages can help you get started.
+    3. Conversion Rate: percentage of visitors who complete a key action after visiting a page. Tracking the performance of your pages is the main way to understand if your website is driving value to your users and business. If you want to get started with web analytics, turning on auto-tracking pages can help you get started.
 </Update>
 
 <Update label="2023-06-06">
