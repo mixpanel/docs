@@ -63,16 +63,3 @@ ul.contains-task-list > li.task-list-item:before {
 .dark #content {
   color: #e2e1e6;
 }
-
-.mxp-cookie-preferences-link {
-  display: inline-block;
-  margin-left: 1rem;
-  font-size: 0.875rem;
-  color: inherit;
-  opacity: 0.7;
-  text-decoration: none;
-}
-
-.mxp-cookie-preferences-link:hover {
-  opacity: 1;
-}

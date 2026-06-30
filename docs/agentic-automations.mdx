@@ -19,42 +19,30 @@ A KPI Monitor watches a metric you care about and ships a personalized digest on
 ### Create a KPI Monitor
 
 <Steps>
+  <Step title="Launch the Automation creation workflow">
+    Click '\+ Create New' button in your side navigation bar. At the bottom of the 'Analysis' section, click the Automation button.
 
+    <Note>
+      Don't see this button? Your organization may not have Mixpanel AI enabled. See the [Mixpanel Agent FAQ](/docs/mixpanel-agent#faq) for how to enable Mixpanel AI features in settings.
+    </Note>
+  </Step>
+  <Step title="Pick a cadence">
+    Digests can be delivered daily, weekly, or monthly. Pick the rhythm that matches how your team operates. Weekly is a balanced default cadence for most teams.
+  </Step>
+  <Step title="Pick the metric to monitor">
+    Choose any Insights-style event metric — sums, counts, or unique counts over an event you've already instrumented. The agent will use the metric's existing definition as the source of truth for what it watches.
+  </Step>
+  <Step title="Add instructions">
+    Use the **Instructions** field to tell the agent how to interpret results and what to call out. For example: "Flag anything that deviates more than 2 standard deviations from the 30-day average" or "Focus on week-over-week change, not absolute values."
 
-<Step title="Launch the Automation creation workflow">
-Click '+ Create New' button in your side navigation bar. At the bottom of the 'Analysis' section, click the Automation button.
-
-<Note>
-    Don't see this button? Your organization may not have Mixpanel AI enabled. See the [Mixpanel Agent FAQ](/docs/mixpanel-agent#faq) for how to enable Mixpanel AI features in settings.
-</Note>
-</Step>
-
-<Step title="Pick a cadence">
-
-Digests can be delivered daily, weekly, or monthly. Pick the rhythm that matches how your team operates. Weekly is a balanced default cadence for most teams.
-</Step>
-
-<Step title="Pick the metric to monitor">
-
-Choose any Insights-style event metric — sums, counts, or unique counts over an event you've already instrumented. The agent will use the metric's existing definition as the source of truth for what it watches.
-</Step>
-
-<Step title="Add instructions">
-
-Use the **Instructions** field to tell the agent how to interpret results and what to call out. For example: "Flag anything that deviates more than 2 standard deviations from the 30-day average" or "Focus on week-over-week change, not absolute values."
-
-Instructions shape the digest's commentary, not the underlying query. The agent runs a single, fixed query based on the metric you selected. It cannot run additional queries, pull in other metrics, or take actions. Instructions guide how the agent frames its summary: which comparisons to emphasize, what thresholds matter to you, and what language to use when describing shifts.
-</Step>
-
-<Step title="Pick a delivery channel">
-
-Digests can land in Slack or email. Slack delivery requires the [Slack integration](/docs/features/slack-integration) to be configured for your project.
-</Step>
-
-<Step title="Save the Automation">
-
-The agent runs on schedule — your first digest arrives at the next cadence boundary. You can pause, edit, or delete the Automation at any time.
-</Step>
+    Instructions shape the digest's commentary, not the underlying query. The agent runs a single, fixed query based on the metric you selected. It cannot run additional queries, pull in other metrics, or take actions. Instructions guide how the agent frames its summary: which comparisons to emphasize, what thresholds matter to you, and what language to use when describing shifts.
+  </Step>
+  <Step title="Pick a delivery channel">
+    Digests can land in Slack or email. Slack delivery requires the [Slack integration](/docs/features/slack-integration) to be configured for your project.
+  </Step>
+  <Step title="Save the Automation">
+    The agent runs on schedule — your first digest arrives at the next cadence boundary. You can pause, edit, or delete the Automation at any time.
+  </Step>
 </Steps>
 
 ### What's in a digest
@@ -70,5 +58,44 @@ The agent runs on schedule — your first digest arrives at the next cadence bou
 - **Cadence.** Daily, weekly, or monthly. There's no per-user delivery window control yet (e.g., "weekdays 8–10am local").
 
 <Note>
-    Have feedback or want to help shape what's next for Agentic Automations? Reach out to your account manager and ask to be connected with our product team.
+  Have feedback or want to help shape what's next for Agentic Automations? Reach out to your account manager and ask to be connected with our product team.
 </Note>
+
+<Steps>
+  <Step title="Launch the Automation creation workflow">
+    Click '\+ Create New' button in your side navigation bar. At the bottom of the 'Analysis' section, click the Automation button.
+
+    <Note>
+      Don't see this button? Agentic Automations are in beta. If you'd like access, please reach out to your Mixpanel account team to join the waitlist.
+    </Note>
+  </Step>
+  <Step title="Pick a cadence">
+    Digests can be delivered daily, weekly, or monthly. Pick the rhythm that matches how your team operates. Weekly is a balanced default cadence for most teams.
+  </Step>
+  <Step title="Pick the metric to monitor">
+    Choose any Insights-style event metric — sums, counts, or unique counts over an event you've already instrumented. The agent will use the metric's existing definition as the source of truth for what it watches.
+  </Step>
+  <Step title="Pick the metric to monitor">
+    Choose any Insights-style event metric — sums, counts, or unique counts over an event you've already instrumented. The agent will use the metric's existing definition as the source of truth for what it watches.
+  </Step>
+  <Step title="Add instructions">
+    Use the **Instructions** field to tell the agent how to interpret results and what to call out. For example: "Flag anything that deviates more than 2 standard deviations from the 30-day average" or "Focus on week-over-week change, not absolute values."
+
+    Instructions shape the digest's commentary, not the underlying query. The agent runs a single, fixed query based on the metric you selected. It cannot run additional queries, pull in other metrics, or take actions. Instructions guide how the agent frames its summary: which comparisons to emphasize, what thresholds matter to you, and what language to use when describing shifts.
+  </Step>
+  <Step title="Pick a cadence">
+    Digests can be delivered daily, weekly, or monthly. Pick the rhythm that matches how your team operates — daily is a good default for most active KPIs.
+  </Step>
+  <Step title="Pick a delivery channel">
+    Digests can land in Slack or email. Slack delivery requires the [Slack integration](/docs/features/slack-integration) to be configured for your project.
+  </Step>
+  <Step title="Pick a delivery channel">
+    Digests can land in Slack or email. Slack delivery requires the [Slack integration](/docs/features/slack-integration) to be configured for your project.
+  </Step>
+  <Step title="Save the Automation">
+    The agent runs on schedule — your first digest arrives at the next cadence boundary. You can pause, edit, or delete the Automation at any time.
+  </Step>
+  <Step title="Save the Automation">
+    The agent runs on schedule — your first digest arrives at the next cadence boundary. You can pause, edit, or delete the Automation at any time.
+  </Step>
+</Steps>
