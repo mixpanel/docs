@@ -7,7 +7,7 @@ title: "Root Cause Analysis: AI-generated explanations for why your metrics chan
 
 Investigating anomalies or trends in your data is extremely manual. Teams spend hours each week running the same repetitive process (picking properties, running breakdowns, eyeballing segments) to figure out what drove a change in a metric.
 
-Mixpanel's **AI-Powered Root Cause Analysis (RCA)** feature does that work for you. Launch RCA from any Insights report or fired alert and an AI agent automatically diagnoses what changed: it validates the anomaly, runs the relevant breakdowns, ranks the dimensions that contributed most, and writes up an interpretation with a confidence level and suggested next steps — all delivered as a Board you and your team can keep working from.
+Mixpanel's **AI-Powered Root Cause Analysis (RCA)** feature does that work for you. Launch RCA from any Insights report, a fired alert, or the Mixpanel Agent and an AI agent automatically diagnoses what changed: it validates the anomaly, runs the relevant breakdowns, ranks the dimensions that contributed most, and writes up an interpretation with a confidence level and suggested next steps — all delivered as a Board you and your team can keep working from.
 
 ## How it works
 
@@ -26,12 +26,17 @@ Cards stream into the Board as each step completes, with a live progress banner 
 
 <Step title="From an Insights report">
 
-Open any Insights chart, hover over a data point that looks unexpected, and choose **Root Cause Analysis** from the popover. RCA launches scoped to that event, segment, and time window.
+Open any Insights chart, hover over a data point that looks unexpected, and choose **Root Cause Analysis** from the popover. RCA launches scoped to that event and time window, and picks up any breakdown or segment already applied to the report so it analyzes the same slice you're looking at.
 </Step>
 
 <Step title="From a fired alert">
 
 When an alert fires, the notification (Slack, email, or webhook) includes a link that runs Root Cause Analysis and generates a Board for that alert. See [Alerts](/docs/features/alerts#root-cause-analysis) for how RCA fits into alerting.
+</Step>
+
+<Step title="From the Mixpanel Agent">
+
+Ask the [Mixpanel Agent](/docs/mixpanel-agent) to investigate a change (for example, _"explain this spike in signups"_) and it can kick off Root Cause Analysis for you. The analysis runs right in your Agent chat and produces the same RCA Board you can open and keep working from.
 </Step>
 </Steps>
 
@@ -43,6 +48,10 @@ Because RCA generates a standard Mixpanel Board, it inherits all the capabilitie
 - **You can edit it like any Board.** Add cards, rearrange, annotate, or duplicate it if you want a private working copy.
 - **Cards include contribution factor analysis.** Each ranked dimension lands as its own card with the breakdown, contribution percentage, and supporting context. You can edit this as needed before sharing. 
 - **The interpretation card summarizes findings.** The AI's written explanation, confidence level, and suggested next steps live at the top of the Board so anyone scanning the results gets the punchline first.
+
+<Note>
+    RCA only surfaces data the person running it already has permission to see. It won't expose personal information (PII) that wouldn't otherwise be visible to that user.
+</Note>
 
 ## Custom RCA Settings
 
