@@ -663,7 +663,7 @@ Learn more about [debugging](/docs/tracking-best-practices/debugging).
 
 ### Network Failover
 
-Configure a backup host for automatic failover when the primary API endpoint is unreachable. This can be used as a troubleshooting fallback when network calls to the Mixpanel endpoint are blocked or unreachable.
+Configure a backup host for automatic failover when the primary API endpoint is unreachable. The default primary endpoint is `api.mixpanel.com` (or your configured custom endpoint for EU/India data residency or proxy server). This can be used as a troubleshooting fallback when network calls to the Mixpanel endpoint are blocked or unreachable.
 
 **Setup**
 ```java Java
@@ -693,17 +693,7 @@ No failover for:
 - Successful responses (HTTP 200 OK)
 - Parse errors
 
-**Proxy Server Example**
-```java Java
-MixpanelAPI mixpanel = MixpanelAPI.getInstance(
-    context, 
-    "YOUR_PROJECT_TOKEN",
-    new MPConfig.Builder(context)
-        .setServerURL("https://proxy.yourcompany.com")
-        .build()
-);
-mixpanel.setBackupHost("proxy-backup.yourcompany.com");
-```
+This works with proxy server setups as well - if the proxy fails, the backup will be tried.
 
 **Requirements**
 
