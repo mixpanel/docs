@@ -702,6 +702,7 @@ Install the [Session Replay SDK for Swift](/docs/tracking-methods/sdks/swift/swi
 
 ## Debugging and Logging
 
+### Enable SDK logs
 Enable debug mode by setting the [`loggingEnabled`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC14loggingEnabledSbvp) configuration to `true`.
 
 **Example Usage**
@@ -710,6 +711,48 @@ Enable debug mode by setting the [`loggingEnabled`](https://mixpanel.github.io/m
 Mixpanel.mainInstance().loggingEnabled = true
 ```
 Learn more about [debugging](/docs/tracking-best-practices/debugging).
+
+### Network Failover
+
+Configure a backup host for automatic failover when the primary API endpoint is unreachable. This can be used as a troubleshooting fallback when network calls to the Mixpanel endpoint are blocked or unreachable.
+
+**Setup**
+```swift Swift
+let mixpanel = Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN")
+mixpanel.backupHost = "api-backup.mixpanel.com"
+```
+
+The SDK automatically retries failed requests to the backup host, preserving the same URL path, authentication, and headers as the primary.
+
+**How It Works**
+
+Failover triggers:
+- Network failures (connection timeout, DNS errors)
+- Non 4xx HTTP status codes
+
+No failover for:
+- Client errors (HTTP 4xx) - indicates invalid request
+- Successful responses (HTTP 200 OK)
+- Parse errors
+
+**Proxy Server Example**
+```swift Swift
+let proxyConfig = ProxyServerConfig(
+    serverUrl: "https://proxy.yourcompany.com",
+    delegate: MyProxyDelegate()
+)
+let mixpanel = Mixpanel.initialize(
+    options: MixpanelOptions(token: "YOUR_TOKEN", proxyServerConfig: proxyConfig)
+)
+mixpanel.backupHost = "proxy-backup.yourcompany.com"
+```
+
+**Requirements**
+
+Your backup host must:
+- Support the same API endpoints (`/track/`, `/engage/`, `/groups/`)
+- Accept the same authentication mechanism as the primary host
+- Use the same URL scheme and port as configured for the primary host
 
 ## Privacy-Friendly Tracking
 You have control over the data you send to Mixpanel. The Swift SDK provides methods to help you protect user data.

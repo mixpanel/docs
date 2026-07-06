@@ -643,8 +643,9 @@ A few commonly used group methods are highlighted below:
 
 Install the [Session Replay SDK for Android](/docs/tracking-methods/sdks/android/android-replay) to record replay data. Learn more about [Session Replay](/docs/session-replay) and [implementing Session Replay on Android](/docs/tracking-methods/sdks/android/android-replay).
 
-## Debug Mode
+## Debugging and Logging
 
+### Enable SDK logs
 To enable debug mode, add the following permission within your `AndroidManifest.xml` inside the `<application>` tag:
 ```xml Java
 ...
@@ -659,6 +660,57 @@ To enable debug mode, add the following permission within your `AndroidManifest.
 ```
 
 Learn more about [debugging](/docs/tracking-best-practices/debugging).
+
+### Network Failover
+
+Configure a backup host for automatic failover when the primary API endpoint is unreachable. This can be used as a troubleshooting fallback when network calls to the Mixpanel endpoint are blocked or unreachable.
+
+**Setup**
+```java Java
+MixpanelAPI mixpanel = MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN");
+mixpanel.setBackupHost("api-backup.mixpanel.com");
+```
+
+**AndroidManifest.xml Configuration**
+```xml
+<application>
+    <meta-data
+      android:name="com.mixpanel.android.MPConfig.BackupHost"
+      android:value="api-backup.mixpanel.com" />
+</application>
+```
+
+The SDK automatically retries failed requests to the backup host, preserving the same URL path, authentication, and headers as the primary.
+
+**How It Works**
+
+Failover triggers:
+- Network failures (connection timeout, DNS errors)
+- Non 4xx HTTP status codes
+
+No failover for:
+- Client errors (HTTP 4xx) - indicates invalid request
+- Successful responses (HTTP 200 OK)
+- Parse errors
+
+**Proxy Server Example**
+```java Java
+MixpanelAPI mixpanel = MixpanelAPI.getInstance(
+    context, 
+    "YOUR_PROJECT_TOKEN",
+    new MPConfig.Builder(context)
+        .setServerURL("https://proxy.yourcompany.com")
+        .build()
+);
+mixpanel.setBackupHost("proxy-backup.yourcompany.com");
+```
+
+**Requirements**
+
+Your backup host must:
+- Support the same API endpoints (`/track/`, `/engage/`, `/groups/`)
+- Accept the same authentication mechanism as the primary host
+- Use the same URL scheme and port as configured for the primary host
 
 ## Privacy-Friendly Tracking
 You have control over the data you send to Mixpanel. The Android SDK provide methods to help you protect user data.
