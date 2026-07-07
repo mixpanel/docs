@@ -3,14 +3,41 @@ title: "Changelogs"
 ---
 
 import {Button} from "/snippets/button.mdx";
-
-import {Button} from "/snippets/button.mdx";
 import { SubscribeButtonWithModal } from "/snippets/SubscribeButtonWithModal/SubscribeButtonWithModal.jsx";
 import { VideoButtonWithModal } from "/snippets/VideoButtonWithModal/VideoButtonWithModal.jsx";
 
 Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
+
+<Update label="2026-06-25">
+## Introducing Mixpanel Agent: your always-on product analyst
+
+<Frame>
+  ![Introducing Mixpanel Agent: your always-on product analyst](/images/changelog/mp_agent_changelog_header.png)
+</Frame>
+
+Mixpanel Agent is now available for your team. It's an always-on product analyst that answers questions about your data in plain language, automatically investigates metric changes, and keeps you informed on the numbers you own.
+
+**Three ways to start using it today:**
+
+- **Self-serve answers:** Ask anything about your product and get an answer in seconds. No query builder, no data team required.
+  
+  _Try asking:_
+    - _"How many users signed up for a trial last month"_
+    - _"Summarize the insights from this analysis and give me top 3 takeaways."_
+    - _"Build a dashboard for this new feature launch"_
+
+- **Root cause analysis:** When a metric moves unexpectedly, Mixpanel Agent automatically investigates the likely drivers and helps you get to the bottom of it. 
+    - _Try asking: "Why did my activation rate drop last week?"_
+
+
+- **KPI monitoring:** Set up a monitor for any metric you own and Mixpanel Agent will surface what moved on your schedule, whether that’s daily, weekly, or monthly. 
+    - _Try it: Open Automations and set up a monitor for a key metric you own today._
+
+[Get started →](https://mixpanel.com/agent) |[Learn more from our docs →](/docs/mixpanel-agent)
+
+</Update>
 
 <Update label="2026-05-15">
 ## Databricks Pipeline Integration is now Generally Available
@@ -466,17 +493,19 @@ You can give it a try the next time you create a board from a template.
 
 > **🚨 UPDATE: July 1, 2026 – US-to-EU Data Forwarding has officially ended.** <br /><br />
 > 
-> As scheduled, we have sunset US-to-EU data forwarding. <br /> **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI for a month.**<br /><br />
+> As scheduled, we have sunset US-to-EU data forwarding. <br /> **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI until August 1, 2026.**<br /><br />
 >
 > **How events are being filtered**<br />
 > 
-> New US->EU Forwarded events have not been deleted. However, they are temporarily hidden from the UI if they match all of the following criteria:
+> [July 1, 2026 - August 1, 2026]: New US->EU Forwarded events have not been deleted. However, they are temporarily hidden from the UI if they match all of the following criteria:
 > * The event was processed after July 1st (UTC) (`mp_processing_time_ms` > `<July 1st UTC>`).
 > * The event was forwarded from the US (`$mp_is_forwarded` is defined).
 >
-> These events will be un-hidden in one month, so your reporting counts may change at that time. <br /> **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss moving forward.**<br /><br />
+> These events will be un-hidden on August 1, 2026, so your reporting counts may change at that time. <br /><br />Events that are still being sent to the US after August 1, 2026 for EU Projects will not be accepted. <br /><br /> **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss after August 1, 2026.**<br /><br />
 > 
 > *Need help or want to opt out? If you wish to opt out of this UI preview and un-hide your forwarded events early, please [contact support](https://mixpanel.com/get-support).* 
+>
+> >⏳ **Note:** Some projects have an extended timeline through **December 31, 2026**. These projects are not affected by the temporary event-hiding described above. If this applies to your project, we've already reached out with a notification. If you did not receive a notification, your deadline is **August 1, 2026**.
 
 Starting July 2026, we will be sunsetting the legacy automated US-to-EU Data Forwarding process for [EU Data Residency projects](/docs/privacy/eu-residency) to align with data residency best practices and improve ingestion performance.
 After this date, data sent to our US Ingestion Servers for EU Data Residency projects will no longer be forwarded, which can result in data loss.
