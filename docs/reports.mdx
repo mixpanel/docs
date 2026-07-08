@@ -242,7 +242,8 @@ If needed, you can adjust the desired time window backward by the selected numbe
 
 ### Period to date
 
-This option allows you to select a date range that will update dynamically to fit the current interval - you can choose "Day", "Week", "Month", "Quarter", and "Year". When the boundary of the interval is passed, the date range will automatically update to include only the current interval. For example, if "Month" was selected, and the date was February 27, the date range would include Feb 1 - Feb 27. The next week, after the month boundary has passed, the date range would include Mar 1 - Mar 4. "Period to date" respects the start of the week and start of quarter settings under Project Settings.
+This option allows you to select a date range that will update dynamically to fit the current interval - you can choose "Day", "Week", "Month", "Quarter", and "Year". When the boundary of the interval is passed, the date range will automatically update to include only the current interval. For example, if "Month" was selected on June 27, the date range would include Jun 1 - Jun 27. The next month, after June has passed, the date range would include Jul 1 - Jul 8, as shown in the image below.\
+"Period to date" respects the start of the week and start of quarter settings under Project Settings.
 
 <Frame>
   ![Date Picker Period To Date](/images/date_picker_period_to_date.png)
@@ -258,7 +259,8 @@ Choosing this option allows you to query information tracked only in the selecte
 
 ### Minute Level Granularity
 
-Enable hourly and minute-level granularity by clicking the "Enable Time Ranges" toggle on the bottom-left side of the date range picker. This enables you to select time ranges up to the minute. You can also use this for the "Last" time range to monitor only the past few hours or minutes.
+Enable hourly and minute-level granularity by clicking the "Enable Time Ranges" toggle on the bottom-left side of the date range picker. This enables you to select time ranges up to the minute. You can also use this for the "Last" time range to monitor only the past few hours or minutes.\
+This setting only works for the "Fixed", "Last", and "Since" options; it's not available for "Period to date" and "Previous period".
 
 <Frame>
   <img
@@ -331,15 +333,20 @@ Comparisons are supported across all insights chart types. Depending on the exac
 ## Saving to a board
 
 <Note>
-  Free plans allow each user to save up to 5 reports. Growth and Enterprise plan users can save an unlimited number of reports. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+  Free plans allow each user to save up to 5 reports, while Growth and Enterprise plan users can save an unlimited number of reports. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Note>
 
-When you are satisfied with the analysis and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [board](/docs/boards). You can do this by pressing "Save" in the top right and selecting the board you would like to save to, or creating a new board.
+When you are satisfied with the analysis and decide that this is something that you are likely to revisit, you save the report to a [board](/docs/boards) by pressing "Save" in the top right and selecting the board you would like to save to, or creating a new board.
 
 All reports are saved to a board, which inherits the sharing settings and permissions applied to that board. Learn more about saving, sharing, and permission for your reports and boards [here](/docs/boards/sharing-and-permission).
 
 <Frame>
-  ![/Screen\_Shot\_2022-07-08\_at\_5.40.30\_PM.png](/images/Screen_Shot_2022-07-08_at_5.40.30_PM.png)
+  <img
+    src="/images/reports_save_to_board.png"
+    alt="Reports Save To Board"
+    title="Reports Save To Board"
+    className="mx-auto"
+  />
 </Frame>
 
 ## Typecasting
@@ -358,7 +365,7 @@ Insights will automatically bucket high-cardinality segments of number data type
 
 You can either customize the ranges by clicking "[Customize Range](/docs/features/advanced#custom-buckets)".
 
-Or alternatively, if you'd like to see the exact numeric values, you can typecast the Number property to a String to remove the range bucketing.
+Alternatively, if you'd like to see the exact numeric values, you can typecast the Number property to a String to remove the range bucketing.
 
 ## View Users
 
@@ -371,7 +378,7 @@ View Users can help you:
 - Export these users to a CSV file.
 
 <Frame>
-  ![/View\_Users\_Insights\_gif.gif](/images/View_Users_Insights_gif.gif)
+  ![Reports View Users](/images/reports_view_users.gif)
 </Frame>
 
 ## Segment Limits and Ordering
@@ -445,15 +452,19 @@ Query-time sampling allows you to query a subset of users and shorten the time i
 
 ### Enable Sampling
 
-From the report in which you would like to use sampling, click the **lightning bolt** in the upper right corner of the query builder.
+From the report in which you would like to use sampling, click the **lightning bolt** in the upper-right corner of the query builder. This will enable sampling on the report and will be indicated by the lightning bolt symbol turning blue.\
+The percentage of the total that is included in the query calculations will be indicated in the banner shown above the report.
 
 <Frame>
-  ![/13109650264596](/images/13109650264596.png)
+  <img
+    src="/images/reports_query_time_sampling.png"
+    alt="Reports Query Time Sampling"
+    title="Reports Query Time Sampling"
+    className="mx-auto"
+  />
 </Frame>
 
-This will enable sampling on the report and will be indicated by the lightning bolt symbol turning blue. The percentage of the total that is included in the query calculations will be indicated in the top right corner of the query builder.
-
-To turn off sampling, click the lightning bolt symbol in the upper right corner of the query builder again. The lightning bolt symbol will turn grey to indicate that sampling is disabled.
+To turn off sampling, simply click the lightning bolt toggle again.
 
 ### Query Time Sampling Calculation and Presentation
 
