@@ -440,42 +440,47 @@ If the assignment key is _not_ present in the destination project, the operation
 
 Pricing Unit: Feature Flags are priced based on Feature Flag API Requests, and number of 'active' feature flags at any time
 
-**What is a Feature Flag API Request?**
+
+**1. How are active feature flags are counted?**
+
+Mixpanel counts every active feature flag toward your plan capacity. It counts a feature flag shared across projects only once. Disabling or archiving a feature flag frees up your plan capacity
+
+**2. What is a Feature Flag API Request?**
 
 A feature flag API request is a call made by your application to a Feature Flag system’s API to determine **which all features** should be enabled or disabled, or which variant should be served to a user. All the active flags in the system are evaluated as part of this API request.  
 
-**How can I estimate Feature Flag API requests?**
+**3. How can I estimate Feature Flag API requests?**
 
 In general, you can expect every user session to have 1 API request. When the session starts, all the flags for the user are fetched in the single API request. So monthly API requests is at minimum equivalent to the total user sessions that month. 
 Few notes: 
 - If you have multiple sdk inits each session, that would increase the count of API requests in a session
 - Considering above, general rule of thumb: would consider API requests to be 1.5 x User Sessions considering implementation challenges, or multiple sdk inits in a session
 
-**How do I estimate API requests if implementing via server side sdk?**
+**4. How do I estimate API requests if implementing via server side sdk?**
 
 - If you are using server side sdk, with only local evaluation: your API requests depend on a) how many server instances you have and b) how frequently you poll your servers
 - If you are using server side sdk, but with remote evaluation or leveraging cohorts: your API request estimation is similar to client-side sdk requests laid our above
 
-**What happens if I go over my purchased Feature Flag API Request bucket?**
+**5. What happens if I go over my purchased Feature Flag API Request bucket?**
 
 You can continue using Mixpanel Feature Flags, but you will be charged a higher rate for the overages. 
 
-**Is there any limit on number of feature flags per API request?**
+**6. Is there any limit on number of feature flags per API request?**
 
 Yes, there is a limit depending on the plan you purchase. You can choose from 3 plans: to have upto 50, 200 or 1000 'active flags' per API request.
 - Once you reach this limit, no more flags will will be fetched as part of the API request until you disable some others or upgrade your plan 
 - Active flags are flags which are marked 'Enabled'. Only these flags are counted under the 'active flag' limit
 - If you are on the 50 active flag limit, the first 50 flags based on the 'start' date are fetched
 
-**Do I get double charged if I create the same feature flag across projects?**
+**7. Do I get double charged if I create the same feature flag across projects?**
 
 No. We charge based on active 'feature flag keys'. If the same flag-key is used across projects, it will be charged only once.
 
-**How can I monitor my account’s Feature Flag API requests consumption?**
+**8. How can I monitor my account’s Feature Flag API requests consumption?**
 
 You can see your feature flag usage by going to Organization settings > Plan Details & Billing.
 
-**If I purchase the feature flag add-on, do I still need to purchase the experimentation add-on as well?**
+**9. If I purchase the feature flag add-on, do I still need to purchase the experimentation add-on as well?**
 
 Yes. Both these are separate add-ons to ensure we're compatible with your tech stack. So, if you are also looking to analyze experiments, please check our [experimentation offering.] (https://docs.mixpanel.com/docs/experiments) 
 
