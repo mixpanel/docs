@@ -1,18 +1,18 @@
 ---
-sidebarTitle: "Flows"
 title: "Flows: See frequent paths taken by users to or from any event"
+sidebarTitle: "Flows"
 ---
 
 ## Overview
 
 <Frame>
-![/flows_header.png](/images/flows_header.png)
+  ![/flows\_header.png](/images/flows_header.png)
 </Frame>
 
-Flows identifies the most frequent paths taken by users to or from any event. Use Flows to understand how your users sequentially perform events in your product and analyze drop-offs or unsuccessful behavior.
+Flows identify the most frequent paths taken by users to or from any event. Use Flows to understand how your users sequentially perform events in your product and analyze drop-offs or unsuccessful behavior.
 
 <Note>
-    The Flows report is available on all free and paid subscription plans.
+  The Flows report is available on all free and paid subscription plans.
 </Note>
 
 ## Use Cases
@@ -27,16 +27,10 @@ Here are some of the sample questions you can answer in Flows:
 ## Quick Start
 
 <Frame>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/lB9lQ8Xw9-8"
-      frameBorder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowFullScreen
-    ></iframe>
+  <iframe src="https://www.youtube-nocookie.com/embed/lB9lQ8Xw9-8" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen />
 </Frame>
 
-Building a Flows report follows the same high level steps as building any other report. You can read about report building basics [here](/docs/reports).
+Building a Flows report follows the same high-level steps as building any other report. You can read about report-building basics [here](/docs/reports).
 
 Building a report in Flows takes just a few clicks, and results arrive in seconds. Let's build a simple report together. Using a B2B messaging example, imagine you wanted to answer the following question:
 
@@ -44,14 +38,14 @@ Building a report in Flows takes just a few clicks, and results arrive in second
 
 ### Step 1: Choose Events
 
-Events are the basic building block of a Flow. In this case, since we want to know how users navigated from the landing page, to signing up, we would add two events, "Landing Page" and "Sign Up" within the "Steps" section.
+Events are the basic building block of a Flow. In this case, since we want to know how users navigated from the landing page to signing up, we would add two events, "Landing Page" and "Sign Up" within the "Steps" section.
 
 ### Step 2: Choose Steps Before/After Events
 
 Above and below your selected events, you can choose how many steps to show before and after each event, respectively. In this case, we're curious to see at least 3 steps after our first selected event, so we input "3" below "Landing Page." At this point, your query should look like this:
 
 <Frame>
-![/Screen_Shot_2022-07-11_at_3.19.59_PM.png](/images/Screen_Shot_2022-07-11_at_3.19.59_PM.png)
+  ![/Screen\_Shot\_2022-07-11\_at\_3.19.59\_PM.png](/images/Screen_Shot_2022-07-11_at_3.19.59_PM.png)
 </Frame>
 
 ### Step 3: Choose Filters
@@ -59,12 +53,12 @@ Above and below your selected events, you can choose how many steps to show befo
 Filters exclude unwanted data. In this case, we only care about events performed by Chrome users. Therefore, add a "Browser" filter, where Browser equals "Chrome". At this point, your query should look like this:
 
 <Frame>
-![/flows_3.png](/images/flows_3.png)
+  ![/flows\_3.png](/images/flows_3.png)
 </Frame>
 
 ### Step 4: Expand The Events
 
-Transforms a high-level view of certain flow step into a more granular, segmented analysis at any given point However, e.g. if we wanted to see how the flow varies by city for a "Check Out" event, we could expand the "Check Out" event by "City", which can either be an event property or user profile property.
+Transforms a high-level view of a certain flow step into a more granular, segmented analysis at any given point. However, if we wanted to see how the flow varies by city for a "Check Out" event, we could expand the "Check Out" event by "City", which can either be an event property or user profile property.
 
 ### Step 5: Choose Breakdowns
 
@@ -72,12 +66,12 @@ The "Breakdown" feature in Mixpanel's Flows report helps you understand how the 
 
 ### Step 6: Analyze Results
 
-Flows features two visualizations to help you view the results of your query in the clearest chart type. By default, Flows displays the User Flows chart, which uses a Sankey diagram to visually display multiple paths on the same chart. This visualization excels when trying to identify different variants of a similar path, or following one particular trail.
+Flows features two visualizations to help you view the results of your query in the clearest chart type. By default, Flows displays the User Flows chart, which uses a Sankey diagram to visually display multiple paths on the same chart. This visualization excels when trying to identify different variants of a similar path or following one particular trail.
 
-User Flows displays a Sankey diagram where the height of the bar is proportional to the number of users who perform that specific event, and the height of the lines that connect bars are proportional to the number of users who perform the the two events in sequence.
+User Flows displays a Sankey diagram where the height of the bar is proportional to the number of users who perform that specific event, and the height of the lines that connect bars is proportional to the number of users who perform the two events in sequence.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.14.37_PM.png](/images/Screen_Shot_2021-07-20_at_7.14.37_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.14.37\_PM.png](/images/Screen_Shot_2021-07-20_at_7.14.37_PM.png)
 </Frame>
 
 In the above example, more users moved from the A event “Exit Tutorial” to “Experiment Started” than any other path. This is graphically signified by the height of the line.
@@ -85,37 +79,37 @@ In the above example, more users moved from the A event “Exit Tutorial” to �
 Hover over a stage of the diagram to highlight it and see details of that section. This includes the total number of unique users who moved between those two steps on that path, as well as the percentage.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.15.41_PM.png](/images/Screen_Shot_2021-07-20_at_7.15.41_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.15.41\_PM.png](/images/Screen_Shot_2021-07-20_at_7.15.41_PM.png)
 </Frame>
 
 Select any blue node representing an event on the Sankey chart to highlight the most popular paths that led to or from that node. The selected node is indicated in a lighter blue.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.16.15_PM.png](/images/Screen_Shot_2021-07-20_at_7.16.15_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.16.15\_PM.png](/images/Screen_Shot_2021-07-20_at_7.16.15_PM.png)
 </Frame>
 
 ## Basic Features
 
 ### Viewing More Steps
 
-By default, flows shows you the first 3 events performed by users after the selected event. If you wish to see what users did further along in the path, you can adjust the number of steps directly in the Sankey visualization as shown below.
+By default, Flows shows you the first 3 events performed by users after the selected event. If you wish to see what users did further along in the path, you can adjust the number of steps directly in the Sankey visualization, as shown below.
 
-Use the "+" on the right of the visualization to add steps after your selected events of interest to see what paths your users took following these key events.
+Use the "\+" icon on the right of the visualization to add steps after your selected events of interest to see what paths your users took following these key events.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.34.41_PM.png](/images/Screen_Shot_2021-07-20_at_7.34.41_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.34.41\_PM.png](/images/Screen_Shot_2021-07-20_at_7.34.41_PM.png)
 </Frame>
 
-The "+" on the left of the visualization will add steps before the events you've added in the query builder. This will allow you to see what paths your users took that led up to these events of interest.
+The "\+" on the left of the visualization will add steps before the events you've added in the query builder. This will allow you to see what paths your users took that led up to these events of interest.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.35.06_PM.png](/images/Screen_Shot_2021-07-20_at_7.35.06_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.35.06\_PM.png](/images/Screen_Shot_2021-07-20_at_7.35.06_PM.png)
 </Frame>
 
 To add steps in larger quantities, you can adjust the number of steps directly in the query builder section as well.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.40.10_PM.png](/images/Screen_Shot_2021-07-20_at_7.40.10_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.40.10\_PM.png](/images/Screen_Shot_2021-07-20_at_7.40.10_PM.png)
 </Frame>
 
 ### Multiple Anchor Steps
@@ -123,57 +117,57 @@ To add steps in larger quantities, you can adjust the number of steps directly i
 You can add multiple steps in the query builder.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.51.32_PM.png](/images/Screen_Shot_2021-07-20_at_7.51.32_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.51.32\_PM.png](/images/Screen_Shot_2021-07-20_at_7.51.32_PM.png)
 </Frame>
 
-This allows you to examine flows between targeted events. The "+" on the left of the breakpoint line (marked with ≈) will show you the events that happened directly after the first anchored event.
+This allows you to examine flows between targeted events. The "\+" on the left of the breakpoint line (marked with ≈) will show you the events that happened directly after the first anchored event.
 
-In the following example, Flows is showing the event that happened right after App Open before the made a Purchase.
+In the following example, Flows is showing the event that happened right after 'App Open' before 'In-App Purchase'.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.52.07_PM.png](/images/Screen_Shot_2021-07-20_at_7.52.07_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.52.07\_PM.png](/images/Screen_Shot_2021-07-20_at_7.52.07_PM.png)
 </Frame>
 
-Use the "+" on the right of the breakpoint line (marked with ≈) will show you the events that happened right before the later anchored event.
+Use the "\+" on the right of the breakpoint line (marked with ≈) to show you the events that happened right before the later anchored event.
 
-For example, below Flows is showing the event that happened directly before a Purchase, but only after the user did App Open.
+As an example, below we see the event that happened directly before 'In-App Purchase', but only after the user did 'App Open'.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.53.04_PM.png](/images/Screen_Shot_2021-07-20_at_7.53.04_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.53.04\_PM.png](/images/Screen_Shot_2021-07-20_at_7.53.04_PM.png)
 </Frame>
 
 ### Viewing More Event Flows
 
-By default, flows only shows you the top 3 events performed by users ordered by the number of users who performed them. Less common events performed by fewer users are combined into an "Other events" section. ([Click here](/docs/reports/flows). To view more events, simply right click the other events node and `Add a row of events`.
+By default, Flows only show you the top 3 events performed by users, ordered by the number of users who performed them. Less common events performed by fewer users are combined into an "Other events" section. To view more events, simply right-click the 'Other events' node and `Add a row of events`.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.46.45_PM.png](/images/Screen_Shot_2021-07-20_at_7.46.45_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.46.45\_PM.png](/images/Screen_Shot_2021-07-20_at_7.46.45_PM.png)
 </Frame>
 
 To expand a large number of steps at the same time, you can select the number of rows you want directly in the advanced settings
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.47.31_PM.png](/images/Screen_Shot_2021-07-20_at_7.47.31_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.47.31\_PM.png](/images/Screen_Shot_2021-07-20_at_7.47.31_PM.png)
 </Frame>
 
 ### Sankey Chart
 
 #### Selected Events
 
-These are significant moments in a users lifecycle around which you would like to explore user behavior (for example, you may wish to view what users do after a Sign Up event).  Selected events are picked in the query builder and are annotated with an alphabetical label (A, B, C) that is shown in the query builder and the sankey diagram.
+These are significant moments in a user's lifecycle around which you would like to explore user behavior (for example, you may wish to view what users do after a Sign Up event). Selected events are picked in the query builder and are annotated with an alphabetical label (A, B, C) that is shown in the query builder and the sankey diagram.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.20.39_PM.png](/images/Screen_Shot_2021-07-20_at_7.20.39_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.20.39\_PM.png](/images/Screen_Shot_2021-07-20_at_7.20.39_PM.png)
 </Frame>
 
-In the above example, we picked two anchor events "Exit Tutorial" and "Experiment Started", and are viewing the events that were performed by users between them.
+In the above example, we picked two anchor events, "Exit Tutorial" and "Experiment Started", and are viewing the events that were performed by users between them.
 
 #### Intermediate Events
 
-Once an event is selected, Mixpanel calculates the most common events performed by users immediately before or after the selected events. These intermediate events can match either regularly tracked events OR the most used custom events in your project. The icon will let you know at a glance the type of event being displayed.
+Once an event is selected, Mixpanel calculates the most common events performed by users immediately before or after the selected event. These intermediate events can match either regularly tracked events OR the most used custom events in your project. The icon will let you know at a glance the type of event being displayed.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.27.00_PM.png](/images/Screen_Shot_2021-07-20_at_7.27.00_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.27.00\_PM.png](/images/Screen_Shot_2021-07-20_at_7.27.00_PM.png)
 </Frame>
 
 In the above example, Install or Open is a custom event, while Experiment Started is a regular event.
@@ -182,10 +176,10 @@ In the above example, Install or Open is a custom event, while Experiment Starte
 
 #### Other Events
 
-At each step in the flow, Mixpanel by default displays the top 3 intermediate events performed by users ordered by the number of users who performed them at that step. The rest of the events performed are grouped into a single bar called "Other events".
+At each step in the flow, Mixpanel by default displays the top 3 intermediate events performed by users, ordered by the number of users who performed them at that step. The rest of the events performed are grouped into a single bar called "Other events".
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.28.39_PM.png](/images/Screen_Shot_2021-07-20_at_7.28.39_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.28.39\_PM.png](/images/Screen_Shot_2021-07-20_at_7.28.39_PM.png)
 </Frame>
 
 #### Drop off
@@ -193,7 +187,7 @@ At each step in the flow, Mixpanel by default displays the top 3 intermediate ev
 “Drop-off” represents users who did not do any further events in the next step during the time period specified in the report, and therefore dropped out of the flow. Users are considered dropped off at future anchor steps selected in the query builder if they do not perform that particular anchor in the time period.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.28.54_PM.png](/images/Screen_Shot_2021-07-20_at_7.28.54_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.28.54\_PM.png](/images/Screen_Shot_2021-07-20_at_7.28.54_PM.png)
 </Frame>
 
 ### Conversion Criteria
@@ -205,28 +199,25 @@ Your selected counting method determines how many times Mixpanel will count a pa
 By default, Flows calculations are based on **uniques**. To change to a different counting method, click on the word **Uniques** in the conversion criteria, and select between **totals or sessions** from the drop-down list.
 
 <Frame>
-![/Screen_Shot_2021-12-15_at_10.16.00_AM.png](/images/Screen_Shot_2021-12-15_at_10.16.00_AM.png)
+  ![/Screen\_Shot\_2021-12-15\_at\_10.16.00\_AM.png](/images/Screen_Shot_2021-12-15_at_10.16.00_AM.png)
 </Frame>
 
-**Uniques**
-Unique flows count a single entry per user (determined by distinct_id). Each can do the first step only once, and this is on the first time they perform the Step A event in the date range. Even if a particular user completes the funnel multiple times in the date range, they will only be counted towards conversion once, and on the first time they entered in the span of the funnel.
+**Uniques:** counts a single entry per user (determined by distinct\_id). Each can do the first step only once, and this is on the first time they perform the Step A event in the date range. Even if a particular user completes the funnel multiple times in the date range, they will only be counted towards conversion once, and on the first time they entered in the span of the funnel.
 
-**Totals**
-Totals flows count multiple entries per user.  Users can re-start the flow and every time a user starts the flow they are counted. Users may re-enter a totals flows only after they have exited their previous attempt. Users exit a flow in 3 ways:
+**Totals:** counts multiple entries per user.  Users can restart the flow, and every time a user starts the flow, they are counted. Users may re-enter a totals flows only after they have exited their previous attempt. Users exit a flow in 3 ways:
 
 1. They complete the last required step in the flow
 2. They fail to get to the last required step in the conversion window and time out,
 3. They are excluded from the current flow by an exclusion step.
 
-**Sessions**
-Sessions ensure every step in the flow is performed in the same session. Like totals flows, users will be allowed to re-start the flow in subsequent sessions. Learn more about Sessions [here](/docs/features/sessions).
+**Sessions:** ensure every step in the flow is performed in the same session. Like totals flows, users will be allowed to restart the flow in subsequent sessions. Learn more about Sessions [here](/docs/features/sessions).
 
 #### Conversion Window
 
 The Conversion Window determines how much time a user has to finish the last required step in the flow. By default, all customers have 30 days to complete a flow from the timestamp they perform the Step A event. To adjust this conversion window, click on the words **30 days** in the conversion criteria. You will be able to adjust both the unit of time and the amount.
 
 <Frame>
-![/Screen_Shot_2021-12-15_at_11.12.25_AM.png](/images/Screen_Shot_2021-12-15_at_11.12.25_AM.png)
+  ![/Screen\_Shot\_2021-12-15\_at\_11.12.25\_AM.png](/images/Screen_Shot_2021-12-15_at_11.12.25_AM.png)
 </Frame>
 
 The maximum amount of time you can choose for the conversion window is 366 days, or otherwise equivalent (12 months, 52 weeks, etc).
@@ -235,7 +226,7 @@ The maximum amount of time you can choose for the conversion window is 366 days,
 
 Holding a property constant in flows requires that a user retain the same value of a given event property for an event to be considered part of the flow.
 
-For example, let's say your product is an e-commerce retail site, and you want to see flows between Add to Cart > Purchase as long as they purchased the same item - meaning they must be interacting with the same item in every step of the flow - you would hold the Item Name property constant.
+For example, let's say your product is an e-commerce retail site, and you want to see flows between Add to Cart \> Purchase as long as they purchased the same item - meaning they must be interacting with the same item in every step of the flow - you would hold the Item Name property constant.
 
 The way this is calculated depends on whether you have selected a counting method that does not allow users to re-enter the flow ("Uniques") or allows re-entry ("Totals" or "Sessions).
 
@@ -245,33 +236,33 @@ The way this is calculated depends on whether you have selected a counting metho
 To add a property constant to your flows, select the **Holding property constant** button in the conversion criteria section.
 
 <Frame>
-![/Screen_Shot_2021-12-15_at_11.10.42_AM.png](/images/Screen_Shot_2021-12-15_at_11.10.42_AM.png)
+  ![/Screen\_Shot\_2021-12-15\_at\_11.10.42\_AM.png](/images/Screen_Shot_2021-12-15_at_11.10.42_AM.png)
 </Frame>
 
-Some things to keep in mind are that you are only able to select event properties that apply to all of the required steps. Also, you can select multiple properties, but when you do ALL must be kept constant.
+Some things to keep in mind are that you are only able to select event properties that apply to all of the required steps. Also, you can select multiple properties, but when you do, **all** must be kept constant.
 
 ## Advanced
 
 ### Top Paths
 
-Another way to visualize your user flows is by "Top Paths", which condenses the flows down to unique paths on each row. This visualization is great for understanding the most common paths users take, though they may not be similar. In this case, since we want to understand the most common paths, choose Top Paths. Your report should look like this:
+Another way to visualize your user flows is by "Top Paths", which condenses the flows down to unique paths on each row. This visualization is great for understanding the most common paths users take, though they may not be similar. In this case, since we want to understand the most common paths, we choose Top Paths. Your report should look like this:
 
 In the top bar of the visualization, you will see the option to toggle between User Flows and Top Paths.
 
 <Frame>
-![/Screen_Shot_2022-07-12_at_4.31.17_PM.png](/images/Screen_Shot_2022-07-12_at_4.31.17_PM.png)
+  ![/Screen\_Shot\_2022-07-12\_at\_4.31.17\_PM.png](/images/Screen_Shot_2022-07-12_at_4.31.17_PM.png)
 </Frame>
 
 Top paths will show the 50 most common event sequences of up to the number of steps you had selected in the User Flow sankey visualization.
 
 <Frame>
-![/Screen_Shot_2022-07-12_at_4.32.15_PM.png](/images/Screen_Shot_2022-07-12_at_4.32.15_PM.png)
+  ![/Screen\_Shot\_2022-07-12\_at\_4.32.15\_PM.png](/images/Screen_Shot_2022-07-12_at_4.32.15_PM.png)
 </Frame>
 
-The total percentage of users who reached the ultimate destination of a flow is indicated on the top left, while the total users that reached a given step and the percentage of users who converted from the previous step are indicated on the bottom of each step.
+The total percentage of users who reached the ultimate destination of a flow is indicated on the top left, while the total number of users that reached a given step and the percentage of users who converted from the previous step are indicated on the bottom of each step.
 
 <Frame>
-![image](/images/c36fcfb5-edbb-4374-86fc-6e3d3f5aa316.png)
+  ![image](/images/c36fcfb5-edbb-4374-86fc-6e3d3f5aa316.png)
 </Frame>
 
 ### Expand Event by Property
@@ -281,13 +272,13 @@ You can choose to expand the results of your report by a particular property to 
 Click the **Expand** button, select an event, and then select a property under that event.
 
 <Frame>
-![/psAq6XYr2B.gif](/images/psAq6XYr2B.gif)
+  ![Flows Expand Event Property](/images/flows_expand_event_property.gif)
 </Frame>
 
-You can also expand on a specific event in the chart below by right clicking on an event and selecting **Expand by property**.
+You can also expand on a specific event in the chart below by right-clicking on an event and selecting **Expand by property**.
 
 <Frame>
-![/6.png](/images/6.png)
+  ![Flows Expand Event Property2](/images/flows_expand_event_property2.gif)
 </Frame>
 
 ### Breakdown and Compare by Cohorts
@@ -295,7 +286,7 @@ You can also expand on a specific event in the chart below by right clicking on 
 Beside the **Filter** button, select the **Breakdown** button to select one or more cohorts from the drop-down list. You will be shown both users in and not in the cohort.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_5.42.21_PM.png](/images/Screen_Shot_2021-07-20_at_5.42.21_PM.png)
+  ![Flows Breakdown Cohort](/images/flows_breakdown_cohort.png)
 </Frame>
 
 If you have selected multiple cohorts, the chart below will be broken down by those cohorts. Cohorts will appear in the chart in different colors, making it easy to follow the paths the cohorts took in your flows.
@@ -303,7 +294,7 @@ If you have selected multiple cohorts, the chart below will be broken down by th
 In the following example, the cohorts “Android Users” and “iPhone Users” are being compared. As shown in the Legend on the left of the chart, “iPhone Users” are indicated in purple, “Android Users” in orange.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_5.42.31_PM.png](/images/Screen_Shot_2021-07-20_at_5.42.31_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_5.42.31\_PM.png](/images/Screen_Shot_2021-07-20_at_5.42.31_PM.png)
 </Frame>
 
 To see the percentage breakdowns of these cohorts in more detail, click on a node to highlight the strongest path to that node. The box that pops up shows the percentage of each cohort that followed that path.
@@ -311,7 +302,7 @@ To see the percentage breakdowns of these cohorts in more detail, click on a nod
 In the following example, of the users that reached this Exit Tutorial event, 22.2% of users are iPhone users, 77.8% of users are Android users.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_5.42.41_PM.png](/images/Screen_Shot_2021-07-20_at_5.42.41_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_5.42.41\_PM.png](/images/Screen_Shot_2021-07-20_at_5.42.41_PM.png)
 </Frame>
 
 ### Hide Events
@@ -321,13 +312,13 @@ You can choose to hide events from the flows report to simplify and clarify the 
 Click the **Hide Events** button at the top of the chart and check any events you want to hide from the query, then click **Apply**.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_5.45.22_PM.png](/images/Screen_Shot_2021-07-20_at_5.45.22_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_5.45.22\_PM.png](/images/Screen_Shot_2021-07-20_at_5.45.22_PM.png)
 </Frame>
 
-You can also choose to hide a specific event from the flow by right clicking on it in the Flows chart.
+You can also choose to hide a specific event from the flow by right-clicking on it in the Flows chart.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_5.45.58_PM.png](/images/Screen_Shot_2021-07-20_at_5.45.58_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_5.45.58\_PM.png](/images/Screen_Shot_2021-07-20_at_5.45.58_PM.png)
 </Frame>
 
 ### Custom Events in Flows
@@ -338,34 +329,34 @@ You may pick custom events as the starting or ending events directly in the quer
 
 #### Custom events as intermediate events
 
-Mixpanel automatically considers the most used and common custom events in your project, displaying them in intermediate steps instead of showing the underlying events. When a custom event is shown instead of the underlying event, it is annotated with the custom event icon to indicate that the event displayed is a custom event.
+Mixpanel automatically considers the most used and common custom events in your project, displaying them in intermediate steps instead of showing the underlying events. When a custom event is shown instead of the underlying event, it is annotated with the custom event icon to indicate that the event displayed is custom.
 
 <Frame>
-![/Screen_Shot_2021-07-20_at_7.04.29_PM.png](/images/Screen_Shot_2021-07-20_at_7.04.29_PM.png)
+  ![/Screen\_Shot\_2021-07-20\_at\_7.04.29\_PM.png](/images/Screen_Shot_2021-07-20_at_7.04.29_PM.png)
 </Frame>
 
 Mixpanel uses the following criteria to decide which custom events are shown in user flows:
 
 1. Custom events that are shared with all users in the projects are the only ones picked to be shown in flows right now
-2. Only the 50 most frequently queried custom events in the project are used in flows analysis.
-3. If custom events have overlapping definitions (e.g. both custom events operate on the same event), we will choose the more frequently queried custom event to show in the report.
+2. Only the 50 most frequently queried custom events in the project are used in Flows analysis.
+3. If custom events have overlapping definitions (e.g., both custom events operate on the same event), we will choose the more frequently queried custom event to show in the report.
 
 #### Expanding custom events
 
 You may also expand custom events by event name to view the underlying events if required.
 
 <Frame>
-![/Screen_Shot_2021-07-30_at_1.21.26_PM.png](/images/Screen_Shot_2021-07-30_at_1.21.26_PM.png)
+  ![/Screen\_Shot\_2021-07-30\_at\_1.21.26\_PM.png](/images/Screen_Shot_2021-07-30_at_1.21.26_PM.png)
 </Frame>
 
 #### Disabling custom events
 
-You can disable custom events for flows by toggling the Show Custom Events in the dropdown menu below. Custom events that have been manually chosen as steps in the flow will continue to show up, but no other other custom events will be shown.
+You can disable custom events for flows by toggling the Show Custom Events in the dropdown menu below. Custom events that have been manually chosen as steps in the flow will continue to show up, but no other custom events will be shown.
 
 <Frame>
-![/Screen_Shot_2021-10-29_at_10.48.22_AM__1_.png](/images/Screen_Shot_2021-10-29_at_10.48.22_AM__1_.png)
+  ![/Screen\_Shot\_2021-10-29\_at\_10.48.22\_AM\_\_1\_.png](/images/Screen_Shot_2021-10-29_at_10.48.22_AM__1_.png)
 </Frame>
 
 ### Exclusion Steps
 
-You can add exclusion steps, which exclude users who did a particular step. This is useful digging into a particular view, for example to explore the 2nd most popular path taken.
+You can add exclusion steps, which exclude users who did a particular step. This is useful for digging into a particular view, for example, to explore the 2nd most popular path taken.
