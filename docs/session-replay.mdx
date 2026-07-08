@@ -278,6 +278,10 @@ Mixpanel reserves the right to stop ingesting replays once a customer collects r
 
 Replays are available for viewing in Mixpanel ~1 minute after the recording is captured.
 
+#### What defines a single replay?
+
+A replay is a continuous recording of a user's activity that ends after 30 minutes of inactivity (a new replay begins automatically when the user is active again) or once it reaches a maximum length of 24 hours, whichever comes first. On the web, both thresholds are configurable via the `record_idle_timeout_ms` (default 30 minutes) and `record_max_ms` (default 24 hours) [JavaScript init options](/docs/tracking-methods/sdks/javascript/javascript-replay#init-options); on iOS, Android, and React Native, capture runs per app session and can be started or stopped manually.
+
 #### How long are replays stored?
 
 By default, replays are stored for 30 days after the time of ingestion. Once a replay is expired, there is no way to view that replay. Enterprise plan customers with the paid session replay add-on can customize this retention period between 7 days and 360 days. For more information, reach out to your Account Manager or our sales team.
