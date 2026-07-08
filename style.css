@@ -90,6 +90,12 @@ ul.contains-task-list > li.task-list-item:before {
   cursor: not-allowed;
 }
 
+.mxp-subscribe-dialog {
+  /* Tailwind's Preflight resets margin to 0 on every element, which overrides
+     the UA style that centers a modal <dialog>; restore it. */
+  margin: auto;
+}
+
 .mxp-subscribe-dialog::backdrop {
   background-color: rgb(0 0 0 / 0.8);
 }
