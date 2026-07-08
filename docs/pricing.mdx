@@ -28,7 +28,7 @@ Event-based pricing calculates the amount you are charged based on the number of
 
 ### Plan Differences
 
-There are three event-based billing plans to choose from: Free, Growth, and Enterprise. Growth and Enterprise plans have optional add-ons for Group Analytics (recommended for B2B) and Data Pipelines (exports your events to a data warehouse or cloud storage bucket). Refer to our [pricing page](https://mixpanel.com/pricing/) for more information on the benefits and features of each plan. 
+There are three event-based billing plans to choose from: Free, Growth, and Enterprise. Growth and Enterprise plans have optional add-ons for Group Analytics (recommended for B2B) and Data Pipelines (exports your events to a data warehouse or cloud storage bucket). Refer to our [pricing page](https://mixpanel.com/pricing/) for more information on the benefits and features of each plan.
 
 The high-level differences between the three are:
 
@@ -49,16 +49,16 @@ If you are currently tracking data and have either the "Owner" or "Billing Admin
 From here, you can quickly view this billing period’s usage on the right side of the screen as well as the historical one by accessing the "Data Usage" tab and clicking the “View Historical Usage” button:
 
 <Frame>
-![Events Usage](/images/2026_Plan_Details_Billing_tab.png)
+  ![Events Usage](/images/2026_Plan_Details_Billing_tab.png)
 </Frame>
 
 <Frame>
-![Historic Usage](/images/2026_Data_Usage_tab.png)
+  ![Historic Usage](/images/2026_Data_Usage_tab.png)
 </Frame>
 
 ### Group Analytics Add-On
 
-The Group Analytics add-on enables behavioral analysis at the business or group level, as opposed to the individual level. 
+The Group Analytics add-on enables behavioral analysis at the business or group level, as opposed to the individual level.
 
 Check [here](/docs/data-structure/advanced/group-analytics) for the technical documentation for Group Analytics, keeping in mind that implementing this feature is not trivial and includes sending your events with the key of the [group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties) they belong to. Group Analytics **can’t be implemented retroactively** for already ingested events.
 
@@ -73,6 +73,7 @@ This is a recommended feature for all B2B products that want answers to question
 The Data Pipelines Add-On exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment. We offer a 30-day free trial of this feature; see the [FAQ](/docs/data-pipelines#how-does-the-free-trial-work) on how to enable it.
 
 ### Metric Tree Add-on
+
 The Metric Tree Add-On enables you to map your growth strategy quantitatively and measurably, and understand the logical relationship between your input metrics and output business outcomes. It is a collaborative space for you and your team to identify opportunities, have prioritization and trade-off discussions across Exec to ICs, and eventually take data-backed decisions. You can read more about the functionality of Metric Trees [here](/docs/metric_tree).
 
 ## Billing & Payment
@@ -80,30 +81,31 @@ The Metric Tree Add-On enables you to map your growth strategy quantitatively an
 Mixpanel runs on a subscription service in which your card is charged at the beginning of every month or every year (depending on the plan you purchased) to cover reporting services for that period of time.
 
 <Note>
-This can only be done by "Owner" and "Billing Admin" users. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+  This can only be done by "Owner" and "Billing Admin" users. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
 
-If you don't see these sections, please contact your organization's owner or billing admin. If there isn't one, please [contact the Support team](https://mixpanel.com/get-support).
+  If you don't see these sections, please contact your organization's owner or billing admin. If there isn't one, please [contact the Support team](https://mixpanel.com/get-support).
 </Note>
 
 ### Update billing information
 
 To update your credit card or download invoices, please follow these steps:
+
 1. Click the gear icon at the lower-left corner of the purple menu at Mixpanel and then the “Organization Settings” option.
 2. Then, select the “Plan Details & Billing” tab, and click “Manage Billing & Payment”.
 
 <Frame>
-![Manage Billing & Payment](/images/2026_Manage_Billing_Payment_button.png)
+  ![Manage Billing & Payment](/images/2026_Manage_Billing_Payment_button.png)
 </Frame>
 
 ### Troubleshoot payment issues
 
-If you received an email or in-app notification that your payment didn't go through, don't worry! It's quick and easy to get back up and running. 
+If you received an email or in-app notification that your payment didn't go through, don't worry! It's quick and easy to get back up and running.
 
 1. Click on “Update the Payment Method” in the notification to be taken to your organization's "Billing & Payment" section.
 2. Edit the credit card details by clicking the “pencil” icon:
-   
+
 <Frame>
-![Edit Payment Method](/images/2026_Update_Credit_Card.png)
+  ![Edit Payment Method](/images/2026_Update_Credit_Card.png)
 </Frame>
 
 3. Lastly, click on the “Rerun Payment” button on the right side.
@@ -113,17 +115,21 @@ If the payment is successful, you will see a success message in the bottom left 
 ### Downgrade your plan to Free
 
 <Note>
-You can only edit or downgrade your plan if you have “Owner” or “Billing Admin” permissions over your Mixpanel organization.
+  You can only edit or downgrade your plan if you have “Owner” or “Billing Admin” permissions over your Mixpanel organization.
 </Note>
+
+<Warning>
+  Downgrading to the Free plan does not take effect immediately. You will keep your current plan through the rest of this billing cycle, and the Free plan starts on your next billing date.
+</Warning>
 
 To submit a downgrade request:
 
 1. In your organization's “Plan Details & Billing” tab, click "Modify Plan", and then "Downgrade to Free Plan".
 2. A pop-up window will appear, informing you that your account will remain active and be automatically moved to a Free plan after your current monthly/annual subscription ends.
 3. After clicking the "Submit" button, a Downgrade Request Email is sent to all organization owners as proof of your request, and a copy of it goes to Mixpanel's Billing Team for processing.
-   
+
 <Frame>
-![Switch to Free](/images/2026_Downgrade_To_Free.png)
+  ![Switch to Free](/images/2026_Downgrade_To_Free.png)
 </Frame>
 
 ## FAQs
@@ -141,8 +147,7 @@ You can also check the top events contributing towards your event count by creat
 If you go over your plan's events, Mixpanel won't stop collecting your data:
 
 - If you're using a Free plan, Mixpanel limits your platform access once you reach 1M monthly events, but doesn't charge overages. Once you hit the limit, you will be blocked from viewing your reports until you either upgrade to a Growth plan that supports your current usage or wait until the following month, when your allowance automatically resets.
-- If you're using a Growth plan, the additional cost will be charged at the beginning of the next month based on your À La Carte rate, which you can find in the "Plan Details & Billing" section in your Organization Settings.
-On the contrary, if you want to avoid paying for overages, you can either [downgrade your paid plan to the Free one](/docs/pricing#downgrade-your-plan-to-free) or upgrade to one that covers your additional usage before the end of the billing cycle - the more events your plan includes, the less you pay per event.
+- If you're using a Growth plan, the additional cost will be charged at the beginning of the next month based on your À La Carte rate, which you can find in the "Plan Details & Billing" section in your Organization Settings. On the contrary, if you want to avoid paying for overages, you can either [downgrade your paid plan to the Free one](/docs/pricing#downgrade-your-plan-to-free) or upgrade to one that covers your additional usage before the end of the billing cycle - the more events your plan includes, the less you pay per event.
 
 #### Alerts for Additional Data Charges
 
@@ -153,12 +158,15 @@ Organization owners and billing admins are sent an alert email if their paid acc
 While it's not possible to set a billing limit at this moment, read [this article](https://github.com/orgs/mixpanel/discussions/526) to learn how to create a report and get warning alerts when you’re close to exceeding your plan limit.
 
 ### I’m on a Growth plan and paying for less than 1M monthly events. How do I switch to the more recent one?
+
 The easiest way to switch is to go to Mixpanel’s [pricing page](https://www.mixpanel.com/pricing) and select “Make the Switch” on the Growth plan card. From there, you can move to the latest plan. If you are unable to adjust your plan, reach out to our Support team.
 
 ### Why can I only select a volume of 1M monthly events on monthly Growth plans, but not annual ones?
+
 Our latest pricing plans include the first 1M events free each month. We require a larger pre-committed volume (more than 1M monthly events) in order to purchase an annual plan. Annual plans still include the first 1M events free each month.
 
 ### I signed up for the 1 million event Growth plan. What happens if I go over that amount?
+
 The first 1 million events ingested are free! If you go over 1 million events, each event ingested will be charged at the additional data rate seen in the “Plan Details & Billing” section in your Organization Settings. If you're only on a 1M monthly events plan, the additional data rate is \$.00028 per event. Purchasing higher volumes upfront will lower that additional data rate, as we include volume discounts in our pricing.
 
 If you have the Data Pipeline or Group Analytics add-ons, you will also be charged 20% for Data Pipelines and/or 40% for Group Analytics based on the additional data ingested.
@@ -180,9 +188,9 @@ If you are an existing customer on an MTU plan, [refer to our MTU Pricing Guide]
 
 Events are calculated based on the ingestion time, defined as the time an event is processed by Mixpanel servers. Ingestion time is [stored by default](/docs/data-structure/property-reference/default-properties#event-properties) as the Time Processed (UTC) property on all events. For example, if on January 10th an event is sent to Mixpanel that is timestamped December 10th, it will be included in January's monthly tallies.
 
-Some accounts are on legacy event timestamp billing. In this case, monthly events are tallied based on the timestamp of the event. For example, if on January 10th an event is sent to Mixpanel that is timestamped December 10th, it won’t be included in any tallies because the timestamp is from a previous month. 
+Some accounts are on legacy event timestamp billing. In this case, monthly events are tallied based on the timestamp of the event. For example, if on January 10th an event is sent to Mixpanel that is timestamped December 10th, it won’t be included in any tallies because the timestamp is from a previous month.
 
-You can see if your account is on ingestion time billing in Organization Settings > Plan Details & Billing > Data Usage.
+You can see if your account is on ingestion time billing in Organization Settings \> Plan Details & Billing \> Data Usage.
 
 ### Is old event data billed when imported to Mixpanel?
 
@@ -192,16 +200,16 @@ For accounts on ingestion time billing, old events will be included in billing t
 
 For legacy accounts on event timestamp billing, events imported with timestamps outside the current billing cycle will not contribute to event tallies. For example: if April 1st - April 30th is the current billing cycle, importing data from March will **not** be included in the April event count.
 
-### I am using the Warehouse add-on for ingesting data. How does this impact billing? 
+### I am using the Warehouse add-on for ingesting data. How does this impact billing?
 
-Events imported through a warehouse connection are treated as any other source (same as importing through our SDKs or API directly). Warehouse data, similar to other sources, is billed in accordance with general Mixpanel pricing policies. 
+Events imported through a warehouse connection are treated as any other source (same as importing through our SDKs or API directly). Warehouse data, similar to other sources, is billed in accordance with general Mixpanel pricing policies.
 
 There is one additional field you will see in the Billing Page on your Data Usage Table called "Updates". Updates (updating an existing event or deleting an event) are generated by Mirror-type syncs and are tracked separately from event volume. Each update is counted as one event towards billing, and they are counted and billed for the month they were triggered on, even if the record being updated is for a previous month. You can read more about these updates and how warehouse connectors may affect billing from the warehouse perspective [here](/docs/tracking-methods/warehouse-connectors#faq)
 
 ### I received an email asking me to upload my company's tax information. Is it a scam? Why are you asking for that?
 
-Those emails are real and part of our ongoing efforts to ensure that our customers' billing and tax data is as up-to-date as possible. This allows us to generate invoices with the correct information and helps reduce billing issues.  
+Those emails are real and part of our ongoing efforts to ensure that our customers' billing and tax data is as up-to-date as possible. This allows us to generate invoices with the correct information and helps reduce billing issues.
 
-To do so, you can either use the link provided in the email or go to your organization's Settings -> 'Plan Details & Billing' tab -> 'Billing Info' tab -> 'Manage Billing & Payment' button -> 'Tax Information' tab -> 'Manage Tax Info' button on the top-right side of the screen.  
+To do so, you can either use the link provided in the email or go to your organization's Settings -\> 'Plan Details & Billing' tab -\> 'Billing Info' tab -\> 'Manage Billing & Payment' button -\> 'Tax Information' tab -\> 'Manage Tax Info' button on the top-right side of the screen.
 
 If you or your Finance team have any additional questions about it, please [contact the Support team](https://mixpanel.com/get-support).
