@@ -69,7 +69,7 @@ export const SubscribeButtonWithModal = () => {
       <button
         type="button"
         onClick={openModal}
-        className="px-5 py-3 my-4 drop-shadow-sm bg-gradient-to-t from-[#7856ff] to-[#9075ff] rounded-full text-white font-medium"
+        className="px-5 py-3 my-4 rounded-full text-white font-medium mxp-subscribe-button"
       >
         Subscribe
       </button>
@@ -79,9 +79,9 @@ export const SubscribeButtonWithModal = () => {
         onMouseDown={(e) => {
           if (e.target === dialogRef.current) closeModal();
         }}
-        className="w-full max-w-2xl p-0 rounded-3xl bg-transparent backdrop:bg-black/80"
+        className="w-full max-w-2xl p-0 rounded-3xl bg-transparent mxp-subscribe-dialog"
       >
-        <div className="bg-[#fbf9f9] dark:bg-[#201f24] p-8 rounded-3xl">
+        <div className="p-8 rounded-3xl mxp-subscribe-modal">
           <div className="text-3xl font-medium text-center mb-4">Subscribe to product updates</div>
           <div className="text-lg text-center mb-6">Sign up to stay up-to-date on our newest releases.</div>
 
@@ -102,7 +102,7 @@ export const SubscribeButtonWithModal = () => {
             />
           </div>
 
-          {error && <p className="text-xs text-[#cc332b] ml-6 mt-1">{error}</p>}
+          {error && <p className="text-xs ml-6 mt-1 mxp-subscribe-error">{error}</p>}
 
           <div className="flex items-center gap-3 mt-4">
             <input
@@ -125,7 +125,7 @@ export const SubscribeButtonWithModal = () => {
           <button
             onClick={handleSubmit}
             disabled={submitDisabled}
-            className="px-5 py-3 my-4 drop-shadow-sm bg-gradient-to-t from-[#7856ff] to-[#9075ff] rounded-full text-white font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-5 py-3 my-4 rounded-full text-white font-medium mxp-subscribe-button"
           >
             Subscribe
           </button>
