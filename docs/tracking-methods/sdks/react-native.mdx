@@ -39,41 +39,34 @@ const trackAutomaticEvents = false;
 const mixpanel = new Mixpanel('YOUR_PROJECT_TOKEN', trackAutomaticEvents);
 
 //initialize Mixpanel
-mixpanel.init();
+await mixpanel.init();
 ```
 
 ### Library Configuration
 
 <Warning>For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/react-native#privacy-friendly-tracking).</Warning>
 
-The Mixpanel object can be initialized with different configurations. See below for a list of configuration options.
+The `Mixpanel` constructor accepts up to four arguments: your project token, `trackAutomaticEvents`, an optional `useNative` flag (defaults to `true`), and an optional storage adapter for JavaScript mode. Additional runtime configuration is passed to `init()`.
 
 ```javascript
-//import Mixpanel class from the SDK
 import { Mixpanel } from 'mixpanel-react-native';
 
 const trackAutomaticEvents = false; // disable legacy autotrack mobile events
-const useNative = true;             // use Native Mode
-const serverURL = 'https://api.mixpanel.com';  // set the server URL to Mixpanel's US domain
-const optOutTrackingDefault = false;           // opt users into tracking by default
-const superProperties = {           // register super properties for the user
-  'data_source':'MP-React'
-  }
 
 // create an instance of Mixpanel using your project token
-// with the configuration options above
-const mixpanel = new Mixpanel(
-  'YOUR_PROJECT_TOKEN',
-  trackAutomaticEvents,
-  useNative,
-  serverURL,
-  optOutTrackingDefault,
-  superProperties
-  );
+const mixpanel = new Mixpanel('YOUR_PROJECT_TOKEN', trackAutomaticEvents);
 
-//initialize Mixpanel
-mixpanel.init();
+// initialize Mixpanel with the full configuration
+await mixpanel.init(
+  false,                              // optOutTrackingDefault
+  { data_source: 'MP-React' },        // superProperties
+  'https://api.mixpanel.com',         // serverURL (see Privacy-Friendly Tracking)
+  false,                              // useGzipCompression
+  { enabled: false }                  // featureFlagsOptions (see Feature Flags)
+);
 ```
+
+The fifth argument, `featureFlagsOptions`, configures Feature Flags. Pass `{ enabled: true }` and optional `context` and `persistence` fields to opt in. See [Feature Flags](/docs/tracking-methods/sdks/react-native/react-native-flags) for the full configuration reference.
 
 ### Javascript Mode
 
@@ -104,7 +97,7 @@ const mixpanel = new Mixpanel(
   );
 
 // initialize Mixpanel
-mixpanel.init();
+await mixpanel.init();
 ```
 
 When using Javascript Mode:
@@ -196,7 +189,7 @@ mixpanel.registerSuperPropertiesOnce({
 mixpanel.track('registration');
 ```
 
-If you have properties you'd like all events to include, you can also set the super properties when initializing the Mixpanel object.
+If you have properties you'd like all events to include, you can also set the super properties when initializing the Mixpanel object by passing them as the second argument to `.init()`.
 
 **Example Usage**
 ```javascript
@@ -206,14 +199,13 @@ const superProperties = {
   city: 'San Francisco'
 };
 
-// create new Mixpanel class with the superProperties
-const mixpanel = new Mixpanel(
-  'YOUR_PROJECT_TOKEN',
-  superProperties
-  );
+const trackAutomaticEvents = false;
 
-//initialize Mixpanel
-mixpanel.init();
+// create new Mixpanel class
+const mixpanel = new Mixpanel('YOUR_PROJECT_TOKEN', trackAutomaticEvents);
+
+// initialize Mixpanel with the super properties
+await mixpanel.init(false, superProperties);
 
 // track "some_event"
 // "name" and "city" added as event properties
@@ -583,6 +575,37 @@ A few commonly used group methods are highlighted below:
   </Tab>
 </Tabs>
 
+## Feature Flags
+
+Feature Flags let you control the rollout of features, run A/B experiments, and change application behavior without shipping new code. They work in both native mode (iOS and Android) and JavaScript mode (Expo, React Native Web).
+
+Enable feature flags by passing `featureFlagsOptions` with `enabled: true` to `.init()`, then evaluate flags on `mixpanel.flags`.
+
+```javascript
+await mixpanel.init(
+  false,
+  {},
+  undefined,
+  undefined,
+  { enabled: true }
+);
+
+// Evaluate a flag once flags are ready. Records a $experiment_started exposure event.
+const variantValue = await mixpanel.flags.getVariantValue('my-feature-flag', 'control');
+```
+
+See the [Feature Flags (React Native)](/docs/tracking-methods/sdks/react-native/react-native-flags) guide for the full API, including runtime targeting, persistence policies, sync evaluation, and context updates.
+
+## Session Replay
+
+Session Replay records the mobile UI of your React Native app so you can see what your users saw. Recording ships as a separate package, `@mixpanel/react-native-session-replay`, and installs alongside the main `mixpanel-react-native` SDK.
+
+```bash
+npm install @mixpanel/react-native-session-replay
+```
+
+See the [Session Replay (React Native)](/docs/tracking-methods/sdks/react-native/react-native-replay) guide for platform setup, configuration options, and privacy masking APIs.
+
 ## Debug Mode
 
 To enable debug mode, call the [.setLoggingEnabled()](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#setLoggingEnabled) with `true`, then run your iOS project with Xcode or android project with Android Studio. The logs will be available in the console.
@@ -623,7 +646,7 @@ mixpanel.track('some_other_event');
 
 **Opt Out by Default**
 
-You can initialize the library with users opted out of tracking by default using the `optOutTrackingDefault` configuration. Once the user is ready to be tracked, call [`.optInTracking()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#optInTracking) to start tracking.
+You can initialize the library with users opted out of tracking by default by passing `optOutTrackingDefault` as the first argument to `.init()`. Once the user is ready to be tracked, call [`.optInTracking()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#optInTracking) to start tracking.
 
 **Example Usage**
 
@@ -631,17 +654,14 @@ You can initialize the library with users opted out of tracking by default using
 //import Mixpanel class from the SDK
 import { Mixpanel } from 'mixpanel-react-native';
 
-const optOutTracking = true; // opt users out of tracking by default
 const trackAutomaticEvents = false;
+const optOutTrackingDefault = true; // opt users out of tracking by default
 
-// create new Mixpanel class with your configurations
-const mixpanel = new Mixpanel(
-  'YOUR_PROJECT_TOKEN',
-  trackAutomaticEvents,
-  optOutTrackingDefault
-  );
-// initialize Mixpanel
-mixpanel.init();
+// create new Mixpanel class
+const mixpanel = new Mixpanel('YOUR_PROJECT_TOKEN', trackAutomaticEvents);
+
+// initialize Mixpanel with opt-out-by-default
+await mixpanel.init(optOutTrackingDefault);
 
 // this track call will not work
 mixpanel.track('some_event');
@@ -721,22 +741,17 @@ The simplest way is to use our [sample nginx config](https://github.com/mixpanel
 
 **Step 2: Point our React Native SDK at your server**
 
-When initializing, replace `<YOUR_PROXY_DOMAIN>` with your proxy server's domain for `serverURL`.
+When initializing, replace `<YOUR_PROXY_DOMAIN>` with your proxy server's domain and pass it as the third argument to `.init()`.
 
 ```javascript
-const serverURL = '<YOUR_PROXY_DOMAIN>';  // set the server URL to your proxy
+const serverURL = '<YOUR_PROXY_DOMAIN>';  // your proxy domain
 const trackAutomaticEvents = false;
 
 // create an instance of Mixpanel using your project token
-// with the configuration options above
-const mixpanel = new Mixpanel(
-  'YOUR_PROJECT_TOKEN',
-  trackAutomaticEvents,
-  serverURL
-  );
+const mixpanel = new Mixpanel('YOUR_PROJECT_TOKEN', trackAutomaticEvents);
 
-//initialize Mixpanel
-mixpanel.init();
+// initialize Mixpanel and route events through the proxy
+await mixpanel.init(false, {}, serverURL);
 ```
 
 ## Release History

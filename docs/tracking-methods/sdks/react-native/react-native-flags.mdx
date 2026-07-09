@@ -1,11 +1,7 @@
 ---
-sidebarTitle: "Feature Flags (React Native) (Beta)"
+sidebarTitle: "Feature Flags (React Native)"
 title: "Implement Feature Flags (React Native)"
 ---
-
-<Warning>
-Feature Flags for React Native is currently in **Beta**. Install the beta SDK version: `npm install mixpanel-react-native@beta` (minimum version `v3.2.0-beta.3`).
-</Warning>
 
 ## Overview
 
@@ -19,9 +15,9 @@ For complete React Native SDK documentation, see the [React Native SDK guide](/d
 
 Before implementing Feature Flags, ensure:
 
-- You are on an Enterprise subscription plan and have the beta version of the SDK installed (minimum supported version is `v3.2.0-beta.3`). Install via: `npm install mixpanel-react-native@beta`
-- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
-- For iOS native apps, run `cd ios && pod install` after installing the beta SDK
+- You are on an Enterprise subscription plan and have the latest version of the SDK installed (minimum supported version is [`v3.5.0`](https://github.com/mixpanel/mixpanel-react-native/releases)). If not, install with `npm install mixpanel-react-native`.
+- You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
+- For iOS native apps, run `cd ios && pod install` after installing the SDK.
 
 <Note>
 **Data Residency:** Use the server URL that matches your Mixpanel project's data residency region:
@@ -36,7 +32,7 @@ The React Native SDK operates in two modes that affect how feature flags are eva
 
 | Mode | Platforms | How It Works |
 |------|-----------|-------------|
-| **Native** | iOS, Android | Bridges to the native Swift/Android SDKs for flag evaluation |
+| **Native** | iOS, Android | Bridges to the native Swift and Android SDKs for flag evaluation |
 | **JavaScript** | Expo, React Native Web | Uses a pure JavaScript implementation (aligned with mixpanel-js) |
 
 <Note>
@@ -49,10 +45,10 @@ The mode is determined by the `useNative` parameter in the `Mixpanel` constructo
 import { Mixpanel } from 'mixpanel-react-native';
 
 // Native mode (default for bare React Native apps)
-const mixpanel = new Mixpanel("YOUR_PROJECT_TOKEN");
+const mixpanel = new Mixpanel("YOUR_PROJECT_TOKEN", true);
 
 // JavaScript mode (for Expo or React Native Web)
-const mixpanel = new Mixpanel("YOUR_PROJECT_TOKEN", false, false);
+const mixpanel = new Mixpanel("YOUR_PROJECT_TOKEN", true, false);
 ```
 
 ## Flag Initialization
@@ -69,10 +65,10 @@ The response will include an assigned variant for each flag that the user contex
 import { Mixpanel } from 'mixpanel-react-native';
 
 // For native apps (iOS/Android)
-const mixpanel = new Mixpanel("YOUR_PROJECT_TOKEN");
+const mixpanel = new Mixpanel("YOUR_PROJECT_TOKEN", true);
 
-// For Expo / React Native Web, use JavaScript mode:
-// const mixpanel = new Mixpanel("YOUR_PROJECT_TOKEN", false, false);
+// For Expo or React Native Web, use JavaScript mode:
+// const mixpanel = new Mixpanel("YOUR_PROJECT_TOKEN", true, false);
 
 await mixpanel.init(
   false,                       // optOutTrackingDefault
@@ -85,7 +81,7 @@ await mixpanel.init(
 
 If your flag is configured with a Variant Assignment Key other than `distinct_id` or `device_id` for any of the feature flags in your project, then the call to initialize feature flags must include those keys.
 
-For example, for a Variant Assignment Key, `company_id`, you would setup the SDK as follows:
+For example, for a Variant Assignment Key `company_id`, you would set up the SDK as follows:
 
 ```javascript
 await mixpanel.init(
@@ -122,6 +118,98 @@ await mixpanel.init(
 );
 ```
 
+## Flag Persistence
+
+By default (`networkOnly`), the SDK fetches fresh flag assignments and waits for the network response before variant calls complete. You can enable persistence to cache assignments so they are available immediately on subsequent launches. In JavaScript mode, persistence uses the same AsyncStorage adapter as the rest of the SDK. In native mode, persistence is handled by the underlying iOS and Android SDKs.
+
+Configure a `persistence.variantLookupPolicy` on `featureFlagsOptions`:
+
+**`networkFirst`**. The SDK waits for the network on every launch. If the network call fails, the persisted value is returned as a fallback. Async getter calls block until the fetch completes (or the fallback is resolved).
+
+```javascript
+await mixpanel.init(
+  false,
+  {},
+  undefined,
+  undefined,
+  {
+    enabled: true,
+    persistence: {
+      variantLookupPolicy: "networkFirst",
+    },
+  }
+);
+
+// Waits for the network. Falls back to the persisted value if the network is unavailable.
+const value = await mixpanel.flags.getVariantValue("my-feature-flag", "control");
+```
+
+**`persistenceUntilNetworkSuccess`**. Persisted variants are returned immediately on launch. Each getter call while serving persisted data triggers a background network fetch (deduplicated, only one fetch runs at a time). If the fetch fails, persisted data continues to be served and the next getter call retries the fetch. Once a fetch succeeds, the in-memory state updates and subsequent calls no longer trigger background fetches.
+
+```javascript
+await mixpanel.init(
+  false,
+  {},
+  undefined,
+  undefined,
+  {
+    enabled: true,
+    persistence: {
+      variantLookupPolicy: "persistenceUntilNetworkSuccess",
+    },
+  }
+);
+
+// Returns persisted variants immediately. Background fetches retry until a
+// network success replaces the persisted state.
+const value = await mixpanel.flags.getVariantValue("my-feature-flag", "control");
+```
+
+To customize the TTL (default is 24 hours), pass `persistenceTtlMs` in milliseconds:
+
+```javascript
+await mixpanel.init(
+  false,
+  {},
+  undefined,
+  undefined,
+  {
+    enabled: true,
+    persistence: {
+      variantLookupPolicy: "networkFirst",
+      persistenceTtlMs: 12 * 60 * 60 * 1000, // 12 hours
+    },
+  }
+);
+```
+
+### Variant source
+
+Every variant returned by `getVariant` / `getVariantSync` carries a `variant_source` field indicating where the value came from: `"network"`, `"persistence"`, or `"fallback"`. Variants served from persistence also include `persisted_at_in_ms`, the epoch timestamp in milliseconds when the variant set was persisted.
+
+```javascript
+const fallback = { key: "control", value: "control" };
+const variant = await mixpanel.flags.getVariant("my-feature-flag", fallback);
+
+console.log(variant.value);
+console.log(variant.variant_source); // "network" | "persistence" | "fallback"
+
+if (variant.variant_source === "persistence") {
+  console.log(`Persisted at: ${new Date(variant.persisted_at_in_ms).toISOString()}`);
+}
+```
+
+### `$experiment_started` properties
+
+When a variant is served, the `$experiment_started` exposure event includes:
+
+- `$variant_source`. Either `"network"` or `"persistence"`.
+- `$persisted_at_in_ms`. Epoch milliseconds when the variant set was persisted (persistence only).
+
+<Note>
+Persistence is scoped to the current `distinct_id`. Calling `identify()` with a new ID or calling `reset()` clears persisted flag state and triggers a fresh fetch.
+</Note>
+
 ## Flag Reload
 
 Following initialization, you can reload feature flag assignments in several ways:
@@ -143,15 +231,12 @@ You can manually reload flags at any time:
 await mixpanel.flags.loadFlags();
 ```
 
-### Update Context (JavaScript Mode Only)
+### Update Context
 
-<Warning>
-The `updateContext` method is only available in **JavaScript mode** (Expo / React Native Web). In native mode, context must be set during initialization and calling `updateContext` will throw an error.
-</Warning>
-
-In JavaScript mode, you can update the feature flags context after initialization, which will trigger a reload with the new context values:
+`updateContext` is available in both native and JavaScript modes. It updates the feature flags context after initialization and triggers a reload with the new values.
 
 ```javascript
+// Default is merge with the existing context.
 await mixpanel.flags.updateContext({
   company_id: "Y",
   custom_properties: {
@@ -160,7 +245,7 @@ await mixpanel.flags.updateContext({
 });
 ```
 
-By default, the new context is merged with the existing context. To replace the context entirely, pass `{ replace: true }`:
+In JavaScript mode, pass `{ replace: true }` to replace the context entirely instead of merging.
 
 ```javascript
 await mixpanel.flags.updateContext(
@@ -168,6 +253,10 @@ await mixpanel.flags.updateContext(
   { replace: true }
 );
 ```
+
+<Note>
+In **native mode**, the SDK always merges the new context with the existing context. The `{ replace: true }` option is accepted for API parity but has no effect on native.
+</Note>
 
 ## Flag Evaluation
 
@@ -181,7 +270,7 @@ Async methods return Promises that resolve once flags are ready. This is the rec
 
 ```javascript
 // Fetch the variant value once flags are ready and track an exposure event
-// *if* the user context is in a rollout group for the feature flag.
+// if the user context is in a rollout group for the feature flag.
 const fallback = "control"; // used if the user doesn't match any rollout rules
 const variantValue = await mixpanel.flags.getVariantValue("my-feature-flag", fallback);
 
@@ -259,9 +348,46 @@ if (mixpanel.flags.areFlagsReady()) {
 }
 ```
 
+### Get All Flag Assignments
+
+You can retrieve all feature flag assignments at once. These methods do **not** trigger `$experiment_started` exposure events.
+
+**Synchronous**
+
+`getAllVariantsSync()` returns a JavaScript `Map` keyed by feature name. If flags have not been loaded yet, it returns an empty `Map`.
+
+```javascript
+const allFlags = mixpanel.flags.getAllVariantsSync();
+
+for (const [flagName, variant] of allFlags) {
+  console.log(`${flagName}: ${variant.value}`);
+}
+```
+
+**Asynchronous**
+
+`getAllVariants` returns a `Map` via a callback or a Promise. If flags have not been loaded yet, it will attempt to fetch them before returning. On failure, it resolves to an empty `Map` rather than rejecting.
+
+```javascript
+// Promise pattern
+const flags = await mixpanel.flags.getAllVariants();
+flags.forEach((variant, flagName) => {
+  console.log(`${flagName}: ${variant.value}`);
+});
+
+// Callback pattern
+mixpanel.flags.getAllVariants((flags) => {
+  flags.forEach((variant, flagName) => {
+    console.log(`${flagName}: ${variant.value}`);
+  });
+});
+```
+
 ## Exposure Events
 
-Calling `isEnabled`, `isEnabledSync`, `getVariantValue`, `getVariantValueSync`, `getVariant`, or `getVariantSync` triggers tracking an exposure event, `$experiment_started` to your Mixpanel project *if* the user context is in a rollout group for the feature flag.
+Calling `isEnabled`, `isEnabledSync`, `getVariantValue`, `getVariantValueSync`, `getVariant`, or `getVariantSync` triggers tracking an exposure event, `$experiment_started`, to your Mixpanel project if the user context is in a rollout group for the feature flag. The exposure event is deduplicated per feature name for the lifetime of the SDK instance.
+
+`getAllVariants` and `getAllVariantsSync` do not fire exposure events.
 
 ## Method Name Aliases
 
@@ -276,6 +402,9 @@ The React Native SDK supports both camelCase and snake_case method names, aligne
 | `getVariantValueSync()` | `get_variant_value_sync()` |
 | `isEnabled()` | `is_enabled()` |
 | `isEnabledSync()` | `is_enabled_sync()` |
+| `getAllVariants()` | `get_all_variants()` |
+| `getAllVariantsSync()` | `get_all_variants_sync()` |
+| `loadFlags()` | `load_flags()` |
 | `updateContext()` | `update_context()` |
 
 ## Frequently Asked Questions
@@ -283,28 +412,29 @@ The React Native SDK supports both camelCase and snake_case method names, aligne
 ### What if I'm not receiving any flags on SDK initialization?
 
 1. **Check your project token**:
-  - Ensure you're using the correct project token from your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+  - Ensure you're using the correct project token from your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
 2. **Review flag configuration**:
-  - Make sure your feature flag is enabled
-  - Check the flag's rollout percentage
-    - User contexts that are not assigned to the rollout percentage will not receive flags
-  - If you are using a targeting cohort, verify on the mixpanel 'Users' page that the user's `distinct_id` is a member of that cohort.
-
+  - Make sure your feature flag is enabled.
+  - Check the flag's rollout percentage. User contexts that are not assigned to the rollout percentage will not receive flags.
+  - If you are using a targeting cohort, verify on the Mixpanel 'Users' page that the user's `distinct_id` is a member of that cohort.
 3. **Review SDK parameters**:
-  - Ensure `featureFlagsOptions` with `enabled: true` is passed to `init()`
-  - If using a custom Variant Assignment Key, ensure it is included in the `context` object
-  - If using Runtime Targeting, ensure all properties used in targeting are included in the `custom_properties` object within `context`
+  - Ensure `featureFlagsOptions` with `enabled: true` is passed to `init()`.
+  - If using a custom Variant Assignment Key, ensure it is included in the `context` object.
+  - If using Runtime Targeting, ensure all properties used in targeting are included in the `custom_properties` object within `context`.
+4. **Check flags readiness**: Use `areFlagsReady()` to check if flags have been loaded before using sync evaluation methods.
+5. **Enable debug logging**: Call `mixpanel.setLoggingEnabled(true)` to see detailed information about flag requests and responses.
 
-4. **Confirm beta SDK version**: Feature flags require the beta version (`npm install mixpanel-react-native@beta`, minimum `v3.2.0-beta.3`)
-5. **Check flags readiness**: Use `areFlagsReady()` to check if flags have been loaded before using sync evaluation methods
-6. **Enable debug logging**: Call `mixpanel.setLoggingEnabled(true)` to see detailed information about flag requests and responses
+### Why does `{ replace: true }` have no effect in native mode?
 
-### Why is `updateContext` throwing an error?
+`updateContext` works in both native and JavaScript modes, but the two modes differ in how they merge context.
 
-`updateContext` is only supported in **JavaScript mode** (Expo / React Native Web). If you are using native mode (bare React Native on iOS/Android), you must set the context during initialization via `featureFlagsOptions`. There is no way to update context after init in native mode.
+- **JavaScript mode** honors the `replace` option. Pass `{ replace: true }` to replace the existing context, or omit it (the default) to merge.
+- **Native mode** always merges the new context with the existing context. `{ replace: true }` is accepted for API parity but is ignored on native.
+
+If you need replace semantics on native, call `mixpanel.reset()` and re-initialize with the desired context.
 
 ### Which mode should I use?
 
-- **Bare React Native apps** (iOS/Android): Use **native mode** (`new Mixpanel(token)`) for best performance, as it delegates to the optimized native SDKs.
-- **Expo apps**: Use **JavaScript mode** (`new Mixpanel(token, false, false)`), which is the automatic default in Expo since native modules are not available.
+- **Bare React Native apps** (iOS/Android): Use **native mode** (`new Mixpanel(token, true)`) for best performance, as it delegates to the optimized native SDKs.
+- **Expo apps**: Use **JavaScript mode** (`new Mixpanel(token, true, false)`), which is the automatic default in Expo since native modules are not available.
 - **React Native Web**: Use **JavaScript mode**.
