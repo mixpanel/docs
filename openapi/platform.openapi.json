@@ -310,5 +310,20 @@
             }
         }
     },
-    "servers": []
+    "servers": [
+        {
+            "url": "https://platform-{region}.mixpanel.com",
+            "variables": {
+                "region": {
+                    "default": "us",
+                    "enum": [
+                        "us",
+                        "eu",
+                        "in"
+                    ],
+                    "description": "Mixpanel data residency region."
+                }
+            }
+        }
+    ]
 }
