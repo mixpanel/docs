@@ -5,6 +5,7 @@ title: "Data Clean-Up"
 ## Types of data clean-up
 
 Usually, data "clean-up" comes in two primary forms:
+
 1. Cleaning up data mess that accumulates naturally over time
 2. Deleting problematic data stemming from acute issues (e.g. implementation bugs, bot traffic, PII)
 
@@ -35,43 +36,32 @@ If you use Figma to identify your events, some customers add their links to the 
 #### Adding tags to events
 
 <Frame>
-  <iframe
-    src="https://www.youtube-nocookie.com/embed/BeW5n9srpQ0"
-    frameBorder="0"
-    webkitallowfullscreen="true"
-    mozallowfullscreen="true"
-    allowFullScreen
-  ></iframe>
+  <iframe src="https://www.youtube-nocookie.com/embed/BeW5n9srpQ0" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen />
 </Frame>
 
 ### Using custom events to combine or filter events
 
 <Frame>
-  <iframe
-    src="https://www.youtube-nocookie.com/embed/YjlTAaHlUuQ"
-    frameBorder="0"
-    webkitallowfullscreen="true"
-    mozallowfullscreen="true"
-    allowFullScreen
-  ></iframe>
+  <iframe src="https://www.youtube-nocookie.com/embed/YjlTAaHlUuQ" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen />
 </Frame>
 
 ### Cleaning up user profiles
 
-If you want to clean up old user profile properties that are no longer being used, you can use our [Engage API](/reference/profile-delete-property) to remove these old user properties. We also provide a ‘people_unset’ method in the Mixpanel-utils Library [here](https://github.com/mixpanel/mixpanel-utils#unset-properties).
+If you want to clean up old user profile properties that are no longer being used, you can use our [Engage API](/reference/profile-delete-property) to remove these old user properties. We also provide a ‘people\_unset’ method in the Mixpanel-utils Library [here](https://github.com/mixpanel/mixpanel-utils#unset-properties).
 
 ## 2. Deleting problematic data
 
 Data Deletion allows you to delete noisy or sensitive data from your Mixpanel project, helping you maintain the integrity of your analytics project, and preserve a clear view of user behavior.
 
 You might find this useful if you:
+
 - accidentally send Personal Identifiable Information (PII) in a property
 - have implementation issues leading to duplicated data
 - experience bot traffic issues that clutter an important event
 
 In addition to permanently deleting the chosen data from our servers, we will immediately hide the data in your project so your users don’t accidentally view or analyze incorrect/sensitive data.
 
-Unlike **[Hiding Events](https://mixpanel.com/blog/now-you-can-hide-events-and-properties/)** or **[Data Views](/docs/data-governance/data-views-and-classification)**, Data Deletion affects your entire project, and can allow you to remove a subset of problematic events from an otherwise useful event.
+Unlike [**Hiding Events**](https://mixpanel.com/blog/now-you-can-hide-events-and-properties/) or [**Data Views**](/docs/data-governance/data-views-and-classification), Data Deletion affects your entire project, and can allow you to remove a subset of problematic events from an otherwise useful event.
 
 ### Is data deletion right for my problem?
 
@@ -90,6 +80,7 @@ Data Deletion is a severe action with permanent consequences. Thus, we recommend
 ### Who can use Data Deletion?
 
 You can use the Data Deletion tool in these scenarios:
+
 - Your Mixpanel role is Owner or Admin
 - Your data does not extend beyond the past 180 days (event time, not ingestion time)
 - Your event volumes are below 5 billion events per month, any month over the trailing 3 months
@@ -98,15 +89,16 @@ You can use the Data Deletion tool in these scenarios:
 ### How to use
 
 <Warning>
-    Data Deletion is irreversible. Exercise caution when using this feature.
+  Data Deletion is irreversible. Exercise caution when using this feature.
 </Warning>
 
 <Frame>
-![image](/images/data-deletion1.png)
+  ![image](/images/data-deletion1.png)
 </Frame>
 
 Once you've identified the problematic data, and confirmed you want to delete:
-1. Navigate to the **Lexicon > Data Governance > Data Deletion**
+
+1. Navigate to the **Lexicon \> Data Governance \> Data Deletion**
 2. Click ‘Request an Event Deletion’
 3. Select which event you want to delete
 4. Select time range (event time cannot be more than 180 days in the past)
@@ -123,10 +115,10 @@ During this intermediate 7 day period, we will automatically hide the data in yo
 You may undo Data Deletion requests **for only 7 days after submitting**, after which deletions become permanent. To do so, take the following steps:
 
 <Frame>
-![image](/images/data-deletion2.png)
+  ![image](/images/data-deletion2.png)
 </Frame>
 
-1. Navigate to the **Lexicon > Data Governance > Data Deletion**
+1. Navigate to the **Lexicon \> Data Governance \> Data Deletion**
 2. Locate the Deletion request you wish to undo in the table
 3. Click ‘Undo’ button in the Deletion Data column
 
@@ -137,23 +129,20 @@ You may undo Data Deletion requests **for only 7 days after submitting**, after 
 ### Reminders with ETL approach
 
 - For projects created prior to 1 Jan 2023 offset your timestamps
-    - If your project was created prior to 1 Jan 2023, you cannot just clean the data you don't want and re-import it. Your data is stored in project time, so you need to adjust the offset before importing
-- Don’t forget to regenerate \$insert_id’s when you ETL
-    - When you submit a deletion request, we hide your data immediately from your project to reduce any privacy concerns. We call this “soft deletion”, an interim phase before our “hard deletion” kicks in (where your data is permanently deleted from our servers) so that you can review the impact of your changes and undo when necessary. If you re-import data while the data is soft deleted **with the same \$insert_id**, our deduplication systems may keep the old (deleted) event and toss the new event. Since this data is soft-deleted, your re-import won’t reflect the data as imported. Thus, when the ETL is done, you should regenerate the \$insert_id value if possible, to avoid this possible collision
-
+  - If your project was created prior to 1 Jan 2023, you cannot just clean the data you don't want and re-import it. Your data is stored in project time, so you need to adjust the offset before importing
+- Don’t forget to regenerate \$insert\_id’s when you ETL
+  - When you submit a deletion request, we hide your data immediately from your project to reduce any privacy concerns. We call this “soft deletion”, an interim phase before our “hard deletion” kicks in (where your data is permanently deleted from our servers) so that you can review the impact of your changes and undo when necessary. If you re-import data while the data is soft deleted **with the same \$insert\_id**, our deduplication systems may keep the old (deleted) event and toss the new event. Since this data is soft-deleted, your re-import won’t reflect the data as imported. Thus, when the ETL is done, you should regenerate the \$insert\_id value if possible, to avoid this possible collision
 
 ### Frequently asked questions
 
-***How does Data Deletion impact billing?***
+**_How does Data Deletion impact billing?_**
 
 Billing behavior for successfully deleted events depends on your plan:
 
-- Legacy event timestamp billing
-  — Deleted events are excluded from the current month's usage calculation.
-- Ingestion timestamp billing
-  — Deleted events are still counted toward your usage for the month.
+- Legacy event timestamp billing — Deleted events are excluded from the current month's usage calculation.
+- Ingestion timestamp billing — Deleted events are still counted toward your usage for the month.
 
-***Do you support property deletion?***
+**_Do you support property deletion?_**
 
 Not as of now. If you have events with properties you want to delete, you should do an Extract, Transform, Load approach. The goal would be to run a raw export on the event and then delete the bad imported data. Once this data has been transformed, re-import the data into the project. Then, call this event something slightly different and then hide the original one
 
@@ -161,15 +150,16 @@ Please refer to 'Reminders with ETL Approach' section as you proceed, and submit
 
 ## 3. Drop Filters
 
-Drop Filters let you stop unwanted events from being ingested and stored into Mixpanel going forward. Where [Data Deletion](#2-deleting-problematic-data) addresses *past* problematic data, Drop Filters address it *proactively* — events matching your filter rules are dropped at ingestion and never stored, never queried, and never counted.
+Drop Filters let you stop unwanted events from being ingested and stored into Mixpanel going forward. Where [Data Deletion](#2-deleting-problematic-data) addresses _past_ problematic data, Drop Filters address it _proactively_ — events matching your filter rules are dropped at ingestion and never stored, never queried, and never counted.
 
 You might find this useful if you:
+
 - Have **unwanted events** (e.g. test or staging events) leaking into your production project
 - Are dealing with **noisy events** that clutter your project without adding analytical value
 - Want to stop ingesting **high-volume events** that aren't being queried
 
 <Note>
-    Drop Filters only affect events going forward. To remove data already in your project, use [Data Deletion](#2-deleting-problematic-data).
+  Drop Filters only affect events going forward. To remove data already in your project, use [Data Deletion](#2-deleting-problematic-data).
 </Note>
 
 ### Who can use Drop Filters?
@@ -186,49 +176,53 @@ A Drop Filter targets a specific event, narrowed by one or more property values.
 
 You can combine multiple criteria within a single filter to target precisely the events you want to drop.
 
-Only events matching the event name *and* the specified property values will be dropped. Filtering by event name alone is not supported with drop filters. To drop a full event by event name with no property filters, go to Lexicon and add a Dropped tag to the event.
+Only events matching the event name _and_ the specified property values will be dropped. Filtering by event name alone is not supported with drop filters. To drop a full event by event name with no property filters, go to Lexicon and add a Dropped tag to the event.
 
 ### How to use
 
 <Warning>
-    Dropped events are not stored and cannot be recovered. Review your filter carefully before saving. Filters are active within 10 minutes after creation and while drop filters can be deleted, the data dropped while they were active cannot be recovered unless sent to Mixpanel again.
+  Dropped events are not stored and cannot be recovered. Review your filter carefully before saving. Filters are active within 10 minutes after creation and while drop filters can be deleted, the data dropped while they were active cannot be recovered unless sent to Mixpanel again.
 </Warning>
 
 <Frame>
-![image](/images/drop-filter-1.png)
+  ![image](/images/drop-filter-1.png)
 </Frame>
 
-1. Navigate to **Lexicon > Data Governance > Data Drop And Deletion**
+1. Navigate to **Lexicon \> Data Governance \> Data Drop And Deletion**
 2. Click **Create Drop Filter**
 3. Select the event you want to drop
-4. Add property + value conditions to narrow the filter
-6. Save the filter
+4. Add property \+ value conditions to narrow the filter
+5. Save the filter
 
 <Frame>
-![image](/images/drop-filter-2.png)
+  ![image](/images/drop-filter-2.png)
 </Frame>
 
 Once saved, the filter takes effect on all newly ingested events. Existing data in your project is unaffected.
 
 ### Editing or removing a Drop Filter
 
-To stop dropping events, locate the filter in **Lexicon > Data Governance > Data Drop And Deletion** and delete it. Events sent after that point will be ingested normally.
+To stop dropping events, locate the filter in **Lexicon \> Data Governance \> Data Drop And Deletion** and delete it. Events sent after that point will be ingested normally.
 
 <Frame>
-![image](/images/drop-filter-3.png)
+  ![image](/images/drop-filter-3.png)
 </Frame>
+
+<Warning>
+  A project can currently contain up to 15 Drop Filters.
+</Warning>
 
 ### Dropping a full event
 
-To drop an entire event, locate the event in Lexicon under the **Events** tab. Select the event and under ***Status*** toggle on ***Blocked***. Fully dropped events have a status of ***Blocked*** on lexicon while events dropped with drop filters have a status of ***Filtered***
+To drop an entire event, locate the event in Lexicon under the **Events** tab. Select the event and under **_Status_** toggle on **_Blocked_**. Fully dropped events have a status of **_Blocked_** on lexicon while events dropped with drop filters have a status of **_Filtered_**
 
 ### Frequently asked questions
 
-***How do Drop Filters impact billing?***
+**_How do Drop Filters impact billing?_**
 
 Dropped events are not ingested, so they do not count toward your event volume usage.
 
-***Can I recover events that were dropped?***
+**_Can I recover events that were dropped?_**
 
 No. Dropped events are discarded at ingestion and cannot be recovered. If you need historical analysis on these events, disable the filter first and re-send the data.
 
