@@ -437,9 +437,9 @@ If the assignment key is _not_ present in the destination project, the operation
 Pricing Unit: Feature Flags are priced based on Feature Flag API Requests, and number of 'active' feature flags at any time
 
 
-**1. How are feature flags are counted for billing?**
+**1. How are feature flags counted for billing?**
 
-Mixpanel counts every active feature flag toward your plan capacity. It counts a feature flag shared across projects only once. Disabling or archiving a feature flag frees up your plan capacity
+Mixpanel counts every active feature flag toward your plan capacity. Specifically, it is defined as a feature flag having the same flag key across projects within the organization. If the same feature flag key is used in different projects in your organization, it will only be counted once. Disabling or archiving a feature flag frees up your plan capacity
 
 **2. What is a Feature Flag API Request?**
 
