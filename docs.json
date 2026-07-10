@@ -601,7 +601,13 @@
                   {
                     "group": "Empower Your Team",
                     "pages": [
-                      "guides/guides-by-use-case/empower-your-team/mixpanel-agent",
+                      {
+                        "group": "Use Mixpanel Agent",
+                        "pages": [
+                          "guides/guides-by-use-case/empower-your-team/mixpanel-agent",
+                          "guides/guides-by-use-case/empower-your-team/mixpanel-agent/use-cases"
+                        ]
+                      },
                       {
                         "group": "Use Mixpanel MCP",
                         "root": "guides/guides-by-use-case/empower-your-team/mcp",
