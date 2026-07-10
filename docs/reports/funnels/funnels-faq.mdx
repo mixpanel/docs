@@ -71,4 +71,4 @@ To calculate the actual p-value, we estimate the hypergeometric cumulative distr
 
 In the CDF, the value of any point (X) represents the probability that a random draw would result in fewer conversions, P(k \< X). 1 - P(k \< X) represents the probability that a random draw would result in more conversions, P(k \>= X).
 
-These two probabilities are used to represent the probability that the selected segment will either outperform (P(k \< X)) or underperform (P(k \> X)) the overall set of users. Mixpanel takes the higher probability of the two, and calculates the p-value as 1 - max(P(outperform), P(underperform)).
+These two probabilities are used to represent the probability that the selected segment will either outperform (P(k \< X)) or underperform (P(k \> X)) the overall set of users. Mixpanel takes the higher probability of the two and calculates the p-value as 1 - max(P(outperform), P(underperform)).

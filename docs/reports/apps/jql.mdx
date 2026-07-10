@@ -64,7 +64,7 @@ Profile data is fetched by calling `People()`
 
 | Argument | Type | Description |
 | :-- | :-- | :-- |
-| **user\_selectors** | <br /> | An optional list of {selector: "Segmentation expression"} objects that restrict user records retrieved. A record is retrieved if it matches any of the expressions. Segmentation expression in user selectors expressions can only access user properties, not event properties. See also information on Segmentation expressions as [argument to Events()](/reference/segmentation-expressions). |
+| **user\_selectors** | An optional list of {selector: "Segmentation expression"} objects that restrict user records retrieved. A record is retrieved if it matches any of the expressions. Segmentation expression in user selectors expressions can only access user properties, not event properties. See also information on Segmentation expressions as [argument to Events()](/reference/segmentation-expressions). |  |
 
 ```javascript
 function main() {
@@ -108,8 +108,8 @@ Apart from the joined collection, join() accepts an optional third argument: an 
 
 | Argument | Type | Description |
 | :-- | :-- | :-- |
-| **type** | <br /> | Join type: full, left, right, or inner. Default is a full join. |
-| **selectors** | <br /> | An optional list of {event: "event name", selector: "Segmentation expression"} objects that restrict event/user pairs retrieved. A record is retrieved if it matches any of the selector objects. To learn more about selectors, refer to [Segmentation API](/reference/segmentation-expressions). Segmentation expressions in join() selectors can access both events and user properties. |
+| **type** | Join type: full, left, right or inner. Default is a full join. |  |
+|  | **selectors** | An optional list of {event: "event name", selector: "Segmentation expression"} objects that restrict event/user pairs retrieved. A record is retrieved if it matches any of the selector objects. To learn more about selectors, refer to [Segmentation API](/reference/segmentation-expressions). Segmentation expressions in join() selectors can access both events and user properties. |
 
 ```javascript
 function main() {
@@ -138,9 +138,9 @@ The objects returned from `join()` have the following attributes:
 
 | Attribute | Type | Description |
 | :-- | :-- | :-- |
-| **distinct\_id** |  | The distinct\_id of both the event and the matching user. |
+| **distinct\_id** |  | The distinct\_id of both event and matching user. |
 | **event** |  | Event object. For users with no events, this property is undefined |
-| **user** |  | User object with distinct\_id matching the event. For events without a distinct ID or when there's no matching user record, this property is undefined. |
+| **user** |  | User object with distinct\_id matching the event. For events without distinct id or when there's no matching user record, this property is undefined. |
 
 ## join() Operation Details
 
@@ -203,7 +203,7 @@ Transformations are applied to collections, taking one collection as input and p
 
 The JQL API provides the following set of transformations, which can be chained together to do complex analysis.
 
-## filter(function(item))
+## filter(function(item) {})
 
 Filter the collection by calling the provided function on each of its elements. If the function evaluates to true, keep the element. Otherwise, discard it.
 
@@ -225,7 +225,7 @@ function main() {
 }
 ```
 
-## map(function(item))
+## map(function(item) {})
 
 Build a new collection by applying the provided function to each element of the input collection. The output collection contains the return value of the provided function for each element in the input collection, so an input collection of size N will result in an output collection of size N.
 
@@ -257,9 +257,9 @@ function(accumulators, items) {
 }
 ```
 
-A reducer function accepts two arguments: an array of its previous results (accumulators), and an array of items to reduce. The first argument - accumulators - is used to break down the initial set of values into many calls of the reducer function. JQL runs the reduction in a hierarchical fashion, where some subsets of inputs are reduced to accumulator values first, and multiple accumulator values are combined subsequently. There are no guarantees on the order of input.
+A reducer function accepts two arguments: an array of its previous results (accumulators), and an array of items to reduce. The first argument, accumulators, is used to break down the initial set of values into multiple calls of the reducer function. JQL runs the reduction in a hierarchical fashion, where some subsets of inputs are reduced to accumulator values first, and multiple accumulator values are combined subsequently. There are no guarantees on the order of input.
 
-The example below is using a reduce function that counts elements up.
+The example below uses a reduce function that counts elements upward.
 
 ```javascript
 // Count events.
@@ -614,11 +614,11 @@ function main() {
   An important note on data serialization: the query engine is sometimes forced to serialize and transfer collections during transformations using JSON. Complex data types such as functions and dates are not preserved, so you should avoid storing these types in accumulator objects.
 </Note>
 
-# JQL Builtins
+# JQL Built-ins
 
 We provide a set of useful helper functions for use with the `groupBy()`,` groupByUser()`, and `reduce()` transformations. These functions are provided by the query engine, so they are available with no extra work to you.
 
-Some of the built-in reducers, e.g. `avg()` or `sum()`, compute statistics over numeric collections. Each of the numeric built-in reducers accepts an optional first argument - an accessor - that instructs it how to convert the input object to a numeric value.
+Some of the built-in reducers, e.g., `avg()` or `sum()`, compute statistics over numeric collections. Each of the numeric built-in reducers accepts an optional first argument - an accessor - that instructs it how to convert the input object to a numeric value.
 
 An accessor can be a JavaScript function, a string with a dot-separated property path, or a built-in mapper function, like `mixpanel.numeric_bucket()`.
 
@@ -914,7 +914,7 @@ Limit the response of each group to the top N values of a collection and optiona
 | Argument | Type | Description |
 | :-- | :-- | :-- |
 | **limits** |  | Array of limits per group. |
-| **global** |  | Limit the maximum number of results to display. |
+| **global** |  | limit Maximum number of results to display. |
 
 ```javascript
 // Get the top events by user, by date, limited to the top 12 results
@@ -1098,7 +1098,7 @@ Convert input into a number. mixpanel.to\_number() is commonly used when executi
 
 | Argument | Type | Description |
 | :-- | :-- | :-- |
-| **accessor** |  | Name of property to convert (or a JavaScript function). |
+| **accessor** |  | Name of property to convert (or a javascript function). |
 
 ```javascript
 // Compute the distribution of signup times

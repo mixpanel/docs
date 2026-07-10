@@ -143,11 +143,7 @@ Exclusion steps operate as a “did not do” filter for funnels. This provides
 
 A few things to note about exclusion steps:
 
-1. An exclusion step can be placed between any steps in the funnel. It cannot be the first or last step.
-   Example scenario: The user tracks (1) Event A → (2) Event A → (3) Event A → (4) Event B
-   Totals conversion funnel looking at A → B, with Exclusion Step: Event A
-   The user enters the funnel when they track (1). They then drop off when they track (2) since Event A is excluded. With the totals conversion criteria, the user will re-enter the funnel at (3) and then convert with (4). Overall, there will be two entries and one conversion.
-   Example reports for reference from our demo dataset:
+1. An exclusion step can be placed between any steps in the funnel. It cannot be the first or last step. Example scenario: The user tracks (1) Event A → (2) Event A → (3) Event A → (4) Event B Totals conversion funnel looking at A → B, with Exclusion Step: Event A The user enters the funnel when they track (1). They then drop off when they track (2) since Event A is excluded. With the totals conversion criteria, the user will re-enter the funnel at (3) and then convert with (4). Overall, there will be two entries and one conversion. Example reports for reference from our demo dataset:
    - [User activity](https://mixpanel.com/s/2it5gE)
    - [Funnel](https://mixpanel.com/s/2CpCuq)
 2. A user will qualify for each step in the funnel until they track the exclusion step. This means users who tracked the exclusion step are still able to enter the funnel and convert through the steps. Use a [cohort](/docs/users/cohorts) filter if you want users who did a particular event at any point to be excluded from entering the funnel.
@@ -176,10 +172,9 @@ Select an event from the list and choose whether you would like the event to be 
 
 ## Saved Funnel Behaviors
 
-You can save the Funnel Behavior you built and reuse it in other reports. This can be helpful when there is a sequence of events that you frequently analyze (such as sign-up flow), or if you want to analyze your Funnels Behavior along-side other metrics in an Insights report.
+You can save the Funnel Behavior you built and reuse it in other reports. This can be helpful when there is a sequence of events that you frequently analyze (such as sign-up flow), or if you want to analyze your Funnels Behavior alongside other metrics in an Insights report.
 
-Select the "..." button in the top right corner of the metric, then click "Save Behavior".\
-Note that saving a behavior and saving a metric are different; a saved behavior consists of the events/Funnels/Retention, while a saved metric consists of the saved behavior and the measurements of the behavior.
+Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric are different; a saved behavior consists of the events/Funnels/Retention, while a saved metric consists of the saved behavior and the measurements of the behavior.
 
 <Frame>
   ![/saved-funnel-behavior1.png](/images/saved-funnel-behavior1.png)
@@ -196,7 +191,7 @@ You have a variety of options to measure your funnel behavior.
 | Counting Method | Description |
 | --- | --- |
 | Uniques | Users will enter the funnel the first time that they track Step 1 in the time period selected. When a breakdown is applied, they can enter up to once per segment. |
-| Totals | Users can re-enter a total funnel after they have exited their previous attempt through the funnel. Users exit in three ways: successful conversion through the funnel, time out of the [conversion window](/docs/reports/funnels/funnels-advanced#conversion-window), or track an [exclusion step](/docs/reports/funnels/funnels-advanced#exclusion-steps-exclude-users-who-did). |
+| Totals | Users can re-enter a totals funnel after they have exited their previous attempt through the funnel. Users exit in three ways: successful conversion through the funnel, time out of the [conversion window](/docs/reports/funnels/funnels-advanced#conversion-window), or track an [exclusion step](/docs/reports/funnels/funnels-advanced#exclusion-steps-exclude-users-who-did). |
 | Sessions | Users can enter the funnel in each session that qualifies. |
 
 ### Measurements
@@ -206,8 +201,8 @@ You have a variety of options to measure your funnel behavior.
 | Conversion Rate | The rate at which funnels are completed for the selected steps of the funnel. | Uniques (default), Totals, or Sessions. |
 | Unique Users | The number of users who completed the selected steps of the funnel. | Uniques |
 | Total Conversions | The total number of funnels that have reached the selected step of the funnel. | Totals |
-| Total Sessions | The total number of unique user sessions that reached the selected step of the funnel | Sessions |
-| Time to Convert | Allows for selection of an aggregation: Average, Median, Percentile, Min, and Max. Measures the aggregated time to convert for the selected steps of the funnel. See more [here](/docs/reports/funnels/funnels-advanced#time-to-convert-measurement). | Totals |
+| Total Sessions | The total number of unique users sessions that reached the selected step of the funnel | Sessions |
+| Time to Convert | Allows for selection of an aggregation: Average, Median, Percentile, Min and Max. Measures the aggregated time to convert for the selected steps of the funnel. See more [here](/docs/reports/funnels/funnels-advanced#time-to-convert-measurement). | Totals |
 | Property Sum | Sums up a chosen property value for each step of the funnel, and measures the total amount of the property converted for the selected step of the funnel. See more [here](/docs/reports/funnels/funnels-advanced#property-sum). | Totals |
 
 ### Step Selection
@@ -250,7 +245,7 @@ This measurement type allows you to visualize a numeric event property through a
 
 **Note**: For many e-commerce flows, you will want to pair the property sum with [hold property constant](/docs/reports/funnels/funnels-advanced#hold-property-constant) on item ID so you can track each individual item.
 
-To use this property, select Property Sum from the measurement menu, and select a numeric property.
+To use this property, select Property Sum from the measurement menu and select a numeric property.
 
 <Frame>
   ![funnels\_property\_sum.png](/images/funnels_property_sum.png)
@@ -304,7 +299,7 @@ To do this, click on the ”…” menu and select “Event Comparison”
 
 ### User Count in Breakdown
 
-Users will count in each breakdown segment in which they qualify. In order to qualify for a new segment, the user must have exited their previous funnel attempt unless the funnel is [holding a property constant](/docs/reports/funnels/funnels-advanced#hold-property-constant). The breakdown segment value is determined by the selected [property attribution.](/docs/reports/funnels/funnels-advanced#property-attribution)
+Users will count in each breakdown segment in which they qualify. In order to qualify for a new segment, the user must have exited their previous funnel attempt unless the funnel is [holding a property constant](/docs/reports/funnels/funnels-advanced#hold-property-constant). The breakdown segment value is determined by the selected [property attribution](/docs/reports/funnels/funnels-advanced#property-attribution).
 
 For example, let's say a user tracks the following:
 
@@ -426,7 +421,7 @@ For example, say that the user is shopping on your website and you want to track
 
 ### Per-Step Attribution
 
-You can choose to attribute a property value from any step to the whole funnel by selecting the step number. Note that with this option you may see an “undefined” null value for the property, as this option is not tied to when the property value was defined.
+You can choose to attribute a property value from any step to the whole funnel by selecting the step number. Note that with this option, you may see an “undefined” null value for the property, as this option is not tied to when the property value was defined.
 
 ## View as Flow
 

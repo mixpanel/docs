@@ -9,7 +9,7 @@ sidebarTitle: "Flows"
   ![/flows\_header.png](/images/flows_header.png)
 </Frame>
 
-Flows identify the most frequent paths taken by users to or from any event. Use Flows to understand how your users sequentially perform events in your product and analyze drop-offs or unsuccessful behavior.
+A Flows report identifies the most frequent paths taken by users to or from any event. Use Flows to understand how your users sequentially perform events in your product and analyze drop-offs or unsuccessful behavior.
 
 Flows can be accessed from the left-side navigation by clicking the '\+ Create New' button.
 
@@ -40,7 +40,7 @@ Building a report in Flows takes just a few clicks, and results arrive in second
 
 ### Step 1: Choose Events
 
-Events are the basic building block of a Flow. In this case, since we want to know how users navigated from the landing page to signing up, we would add two events, "Landing Page" and "Sign Up" within the "Steps" section.
+Events are the basic building block of a Flow. In this case, since we want to know how users navigated from the landing page to signing up, we would add two events, "Landing Page" and "Sign Up", within the "Steps" section.
 
 ### Step 2: Choose Steps Before/After Events
 
@@ -60,7 +60,7 @@ Filters exclude unwanted data. In this case, we only care about events performed
 
 ### Step 4: Expand The Events
 
-Transforms a high-level view of a certain flow step into a more granular, segmented analysis at any given point. However, if we wanted to see how the flow varies by city for a "Check Out" event, we could expand the "Check Out" event by "City", which can either be an event property or user profile property.
+Transforms a high-level view of a certain flow step into a more granular, segmented analysis at any given point. However, if we wanted to see how the flow varies by city for a "Check Out" event, we could expand the "Check Out" event by "City", which can either be an event property or a user profile property.
 
 ### Step 5: Choose Breakdowns
 
@@ -228,7 +228,7 @@ The maximum amount of time you can choose for the conversion window is 366 days,
 
 Holding a property constant in flows requires that a user retain the same value of a given event property for an event to be considered part of the flow.
 
-For example, let's say your product is an e-commerce retail site, and you want to see flows between Add to Cart \> Purchase as long as they purchased the same item - meaning they must be interacting with the same item in every step of the flow - you would hold the Item Name property constant.
+For example, let's say your product is an e-commerce retail site, and you want to see flows between Add to Cart -\> Purchase as long as they purchased the same item - meaning they must be interacting with the same item in every step of the flow - you would hold the Item Name property constant.
 
 The way this is calculated depends on whether you have selected a counting method that does not allow users to re-enter the flow ("Uniques") or allows re-entry ("Totals" or "Sessions).
 
