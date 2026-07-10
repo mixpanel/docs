@@ -7,7 +7,7 @@ title: "Implement Feature Flags (React Native)"
 
 This developer guide will assist you in configuring your React Native application for Feature Flags using the [Mixpanel React Native SDK](/docs/tracking-methods/sdks/react-native). Feature Flags allow you to control the rollout of your features, conduct A/B testing, and manage application behavior without deploying new code.
 
-Feature Flags in the React Native SDK work across iOS, Android, Expo, and React Native Web platforms.
+Feature Flags in the React Native SDK work across iOS, Android, and React Native Web platforms.
 
 For complete React Native SDK documentation, see the [React Native SDK guide](/docs/tracking-methods/sdks/react-native).
 
@@ -33,11 +33,7 @@ The React Native SDK operates in two modes that affect how feature flags are eva
 | Mode | Platforms | How It Works |
 |------|-----------|-------------|
 | **Native** | iOS, Android | Bridges to the native Swift and Android SDKs for flag evaluation |
-| **JavaScript** | Expo, React Native Web | Uses a pure JavaScript implementation (aligned with mixpanel-js) |
-
-<Note>
-Expo apps automatically use JavaScript mode since native modules are not available. You do not need to configure this manually.
-</Note>
+| **JavaScript** | React Native Web | Uses a pure JavaScript implementation (aligned with mixpanel-js) |
 
 The mode is determined by the `useNative` parameter in the `Mixpanel` constructor:
 
@@ -47,7 +43,7 @@ import { Mixpanel } from 'mixpanel-react-native';
 // Native mode (default for bare React Native apps)
 const mixpanel = new Mixpanel("YOUR_PROJECT_TOKEN", true);
 
-// JavaScript mode (for Expo or React Native Web)
+// JavaScript mode (for React Native Web)
 const mixpanel = new Mixpanel("YOUR_PROJECT_TOKEN", true, false);
 ```
 
@@ -67,7 +63,7 @@ import { Mixpanel } from 'mixpanel-react-native';
 // For native apps (iOS/Android)
 const mixpanel = new Mixpanel("YOUR_PROJECT_TOKEN", true);
 
-// For Expo or React Native Web, use JavaScript mode:
+// For React Native Web, use JavaScript mode:
 // const mixpanel = new Mixpanel("YOUR_PROJECT_TOKEN", true, false);
 
 await mixpanel.init(
@@ -311,22 +307,6 @@ if (variant.experiment_id) {
 }
 ```
 
-**Callback Pattern**
-
-All async methods also support a callback-style API:
-
-```javascript
-mixpanel.flags.getVariantValue("my-feature-flag", "control", (value) => {
-  console.log(`Variant value: ${value}`);
-});
-
-mixpanel.flags.isEnabled("my-boolean-flag", false, (isEnabled) => {
-  if (isEnabled) {
-    showNewFeature();
-  }
-});
-```
-
 ### Sync Evaluation
 
 Synchronous methods return values immediately without waiting. Use these when you need to evaluate flags in render paths or other synchronous contexts.
@@ -366,20 +346,12 @@ for (const [flagName, variant] of allFlags) {
 
 **Asynchronous**
 
-`getAllVariants` returns a `Map` via a callback or a Promise. If flags have not been loaded yet, it will attempt to fetch them before returning. On failure, it resolves to an empty `Map` rather than rejecting.
+`getAllVariants` returns a Promise resolving to a `Map`. If flags have not been loaded yet, it will attempt to fetch them before returning. On failure, it resolves to an empty `Map` rather than rejecting.
 
 ```javascript
-// Promise pattern
 const flags = await mixpanel.flags.getAllVariants();
 flags.forEach((variant, flagName) => {
   console.log(`${flagName}: ${variant.value}`);
-});
-
-// Callback pattern
-mixpanel.flags.getAllVariants((flags) => {
-  flags.forEach((variant, flagName) => {
-    console.log(`${flagName}: ${variant.value}`);
-  });
 });
 ```
 
@@ -424,17 +396,7 @@ The React Native SDK supports both camelCase and snake_case method names, aligne
 4. **Check flags readiness**: Use `areFlagsReady()` to check if flags have been loaded before using sync evaluation methods.
 5. **Enable debug logging**: Call `mixpanel.setLoggingEnabled(true)` to see detailed information about flag requests and responses.
 
-### Why does `{ replace: true }` have no effect in native mode?
-
-`updateContext` works in both native and JavaScript modes, but the two modes differ in how they merge context.
-
-- **JavaScript mode** honors the `replace` option. Pass `{ replace: true }` to replace the existing context, or omit it (the default) to merge.
-- **Native mode** always merges the new context with the existing context. `{ replace: true }` is accepted for API parity but is ignored on native.
-
-If you need replace semantics on native, call `mixpanel.reset()` and re-initialize with the desired context.
-
 ### Which mode should I use?
 
 - **Bare React Native apps** (iOS/Android): Use **native mode** (`new Mixpanel(token, true)`) for best performance, as it delegates to the optimized native SDKs.
-- **Expo apps**: Use **JavaScript mode** (`new Mixpanel(token, true, false)`), which is the automatic default in Expo since native modules are not available.
-- **React Native Web**: Use **JavaScript mode**.
+- **React Native Web**: Use **JavaScript mode** (`new Mixpanel(token, true, false)`).
