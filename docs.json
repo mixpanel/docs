@@ -1288,14 +1288,6 @@
   },
   "redirects": [
     {
-      "source": "/reference/get-flag-definitions-3",
-      "destination": "/reference/get-flag-definitions"
-    },
-    {
-      "source": "/reference/get-variant-assignments-3",
-      "destination": "/reference/get-variant-assignments"
-    },
-    {
       "source": "/changelogs/*",
       "destination": "/changelogs"
     },
