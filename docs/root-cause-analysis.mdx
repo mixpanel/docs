@@ -22,6 +22,8 @@ Cards stream into the Board as each step completes, with a live progress banner 
 
 <Info>
     **What the numbers mean.** The percentage change (sometimes called "lift") compares the data point you flagged against a baseline, which is the average of the periods just before it: `(flagged value - baseline) / baseline`. So +30% means the flagged point came in 30% above the recent norm, and a negative number means it came in below. Each segment's contribution percentage is that segment's share of the total change: `(how much the segment moved) / (how much the whole metric moved)`. For example, if a metric dropped by 500 overall and one country accounts for 400 of that drop, that country shows an 80% contribution.
+
+    **Confidence works differently.** Unlike the percentages above, confidence is not a calculated number. It's a label ("High," "Medium," or "Low") that the AI assigns to each finding based on its own read of how strong the evidence is. That read leans on two things: how unusual the change is versus normal fluctuation (the z-score), and how cleanly a single segment explains the move (a high contribution percentage). A big, clear change driven mostly by one segment earns higher confidence; a smaller change spread thinly across many segments, or one that looks like a normal seasonal pattern, earns lower confidence.
 </Info>
 
 ## Where to launch RCA
