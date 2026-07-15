@@ -20,6 +20,10 @@ When you run an RCA, Mixpanel immediately launches a new Board and exposes the a
 
 Cards stream into the Board as each step completes, with a live progress banner at the top while the agent is still working.
 
+<Info>
+    **What the numbers mean.** The percentage change (sometimes called "lift") compares the data point you flagged against a baseline, which is the average of the periods just before it: `(flagged value - baseline) / baseline`. So +30% means the flagged point came in 30% above the recent norm, and a negative number means it came in below. Each segment's contribution percentage is that segment's share of the total change: `(how much the segment moved) / (how much the whole metric moved)`. For example, if a metric dropped by 500 overall and one country accounts for 400 of that drop, that country shows an 80% contribution.
+</Info>
+
 ## Where to launch RCA
 
 <Steps>
