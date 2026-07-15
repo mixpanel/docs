@@ -1190,14 +1190,14 @@
               {
                 "group": "Get Flag Definitions",
                 "pages": [
-                  "reference/get-flag-definitions-3"
+                  "reference/get-flag-definitions"
                 ],
                 "root": "reference/get-flag-definitions"
               },
               {
                 "group": "Get Variant Assignments",
                 "pages": [
-                  "reference/get-variant-assignments-3"
+                  "reference/get-variant-assignments"
                 ],
                 "root": "reference/get-variant-assignments"
               }
