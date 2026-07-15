@@ -10,7 +10,7 @@ A custom event is a virtual event that was created from one or more events, opti
 - Merge two events into a single event ("User Signup" + "Account Created" -> "Signup")
 - Create an event based on a filter on another event ("Purchase" where Country = "US" -> "US Purchases")
 
-Imagine your business has two ways for users to track ads: they can convert from ad, or simply view it. You represent each of these actions with Mixpanel events named "Ad Conversion" and "Ad Impression," respectively. Later, you decide that you want to setup a funnel to track how many users are seeing any ads at all. So what do you do?
+Imagine your business has two ways for users to track ads: they can convert from ad, or simply view it. You represent each of these actions with Mixpanel events named "Ad Conversion" and "Ad Impression," respectively. Later, you decide that you want to setup a funnel to track how many users are seeing any ads at all. So what do you do?
 
 You can create a custom event containing "Ad Conversion" and "Ad Impression," and then save it as "Watch Ads.” Now you can use the "Watch Ads" custom event as a funnel step just like a regular event. Then, any time a user performs an "Ad Conversion" or "Ad Impression" action, they'll be included in that step. You can also use this new custom event in your other reports, such as Retention.
 
@@ -23,29 +23,33 @@ You can create a custom event containing "Ad Conversion" and "Ad Impression," an
 1. Open the Metrics menu by clicking "Select Metrics" in an Insights report, or clicking "Select Step/Events" in the Funnels/Retention/Flows report.
 2. Select "Create New", then choose "Custom Event" in the right column.
 3. Select the events and properties you’d like to include.
-4. Name your custom event, and click **Save**.
+4. Name your custom event, and click **Save**.
 
 <Note>
   A Custom Event definition can include up to 25 events.
 </Note>
 
+<Note>
+  Custom events can't include session events (Session Start and Session End). A custom event that references a session event won't return results. To analyze sessions, use the Session Start and Session End events directly in your report.
+</Note>
+
 ## Edit and Delete Custom Events
 
-To view, edit, or delete any custom event, navigate to [Lexicon](/docs/data-governance/lexicon).
+To view, edit, or delete any custom event, navigate to [Lexicon](/docs/data-governance/lexicon).
 
 <Frame>
 ![image](/images/efc4b36e-d8d9-4699-8a48-98b793532b20.png)
 </Frame>
 
-In Lexicon, click on the **Custom Events** tab.
+In Lexicon, click on the **Custom Events** tab.
 
 <Frame>
 ![image](/images/fb4e1680-3b20-4f24-90de-0101cb097c54.png)
 </Frame>
 
-Here you can see a list of all the custom events in the project. Click on the **name** of the event to edit its details.
+Here you can see a list of all the custom events in the project. Click on the **name** of the event to edit its details.
 
-To delete a custom event, check the **box** beside the title of all the custom events you want to delete, then click the **delete** button at the top of the list.
+To delete a custom event, check the **box** beside the title of all the custom events you want to delete, then click the **delete** button at the top of the list.
 
 <Frame>
 ![image](/images/8004da2b-db3c-48c0-a494-e500e1cc5bf7.png)
