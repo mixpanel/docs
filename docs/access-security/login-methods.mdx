@@ -26,7 +26,7 @@ By default, Mixpanel users authenticate in a password-less manner using Magic Li
 You can set a password for your user account if you prefer to log in by providing an email and password instead of the Magic Link.
 
 To set a password for your account:
-1. Click the settings button (gear icon) in the top right corner of the UI
+1. Click the settings button (gear icon) in the bottom left corner of the UI
 2. Select “Personal Settings”
 3. Navigate to “Your Profile”
 4. Click the pencil icon to set your password.
@@ -34,6 +34,45 @@ To set a password for your account:
 <Frame>
 ![image](/images/personal-profile-setting.png)
 </Frame>
+
+## Passkey Login
+
+Passkeys offer a modern, phishing-resistant way to sign in to Mixpanel without a password. Instead of typing a password or a one-time code, you authenticate with something you already use to unlock your device - Touch ID, Face ID, Windows Hello, or a hardware security key.
+
+Passkeys are built on the WebAuthn/FIDO2 standard. The credential never leaves your device, and it is cryptographically bound to Mixpanel's domain, so it cannot be phished, reused on a fake login page, or replayed by an attacker.
+
+To set a passkey for your account:
+1. Click the settings button (gear icon) in the bottom left corner of the UI
+2. Select “Personal Settings”
+3. Navigate to “Your Profile”
+4. Under the Passkeys section, click the "Register passkey" button
+5. Follow your device’s prompt to confirm with your fingerprint, face, PIN, or security key
+
+<Frame>
+![image](/images/passkey_settings.jpg)
+</Frame>
+
+Once created, the passkey is immediately available for login. You can optionally enable skip password so Mixpanel uses your passkey as the primary login method, giving you a fully passwordless sign-in experience (this does not bypass org-mandated SSO requirements.)
+
+### Logging in with a passkey
+
+1. On the [login page](https://mixpanel.com/login), click "Login with passkey", or enter your email and continue
+2. When prompted, choose to sign in with your passkey
+3. Confirm with your device (fingerprint, face, PIN, or security key). You're in!
+
+<Frame>
+![image](/images/passkey_login.jpg)
+</Frame>
+
+### Recovery codes
+
+When you enable passkeys, Mixpanel generates a set of single-use recovery codes. These let you sign in if you ever lose access to the device that holds your passkey.
+
+<Warning>
+Recovery codes are shown only once. Save them somewhere safe (a password manager is ideal) - Mixpanel cannot show them to you again after this point.
+</Warning>
+
+Each recovery code can be used only once. You can regenerate your recovery codes at any time from the Passkeys section of your personal settings; regenerating invalidates the previous set. To sign in with a recovery code, choose the "Use recovery code" option on the login screen and enter one of your saved codes.
 
 ## Organization-wide Access Settings
 Additional access security requirements may be configured across an Organization that impacts how a user logs in to Mixpanel. Organization Owners and Admins can require users who are inside of their organization to use 2FA, and force any users with an email from a claimed domain to use SSO for login.
