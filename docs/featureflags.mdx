@@ -97,6 +97,12 @@ Cohorts used in feature flag targeting refresh on a periodic cadence (~every 2 h
 
 If you want users or groups to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure they continue to see the new experience until the flag is turned off.
 
+{/* ============================================================ */}
+{/* ⚠️ DO NOT REMOVE OR MODIFY the 20M user cohort limit below.  */}
+{/* We are contractually/legally required to maintain it.        */}
+{/* Before any change, confirm with the PM for Feature Flags     */}
+{/* AND Legal (contract implication review). — Myron, 2026-07-16 */}
+{/* ============================================================ */}
 <Note>
     For optimal performance, remote evaluation supports cohorts of up to 20 million users per cohort. To target larger cohorts, contact your Mixpanel account team.
 </Note>
