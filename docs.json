@@ -649,19 +649,7 @@
                 "pages": [
                   "guides/guides-by-topic/continuous-innovation",
                   "guides/guides-by-topic/govern-data",
-                  "guides/guides-by-topic/features",
-                  {
-                    "group": "Core Reports",
-                    "root": "guides/guides-by-topic/core-reports",
-                    "pages": [
-                      "guides/guides-by-topic/core-reports/create-boards",
-                      "guides/guides-by-topic/core-reports/discover-insights",
-                      "guides/guides-by-topic/core-reports/analyze-conversions",
-                      "guides/guides-by-topic/core-reports/build-user-flows",
-                      "guides/guides-by-topic/core-reports/track-user-retention",
-                      "guides/guides-by-topic/core-reports/define-cohorts"
-                    ]
-                  }
+                  "guides/guides-by-topic/features"
                 ]
               }
             ]
@@ -708,37 +696,6 @@
                       "guides/strategic-playbooks/product-analytics-strategy/advanced",
                       "guides/strategic-playbooks/product-analytics-strategy/expert",
                       "guides/strategic-playbooks/product-analytics-strategy/finale"
-                    ]
-                  },
-                  {
-                    "group": "Onboarding Playbook",
-                    "root": "guides/strategic-playbooks/onboarding-playbook",
-                    "pages": [
-                      {
-                        "group": "Plan",
-                        "pages": [
-                          "guides/strategic-playbooks/onboarding-playbook/plan/setup",
-                          "guides/strategic-playbooks/onboarding-playbook/plan/framework",
-                          "guides/strategic-playbooks/onboarding-playbook/plan/tracking-strategy"
-                        ]
-                      },
-                      {
-                        "group": "Implement",
-                        "pages": [
-                          "guides/strategic-playbooks/onboarding-playbook/implement/send-your-data",
-                          "guides/strategic-playbooks/onboarding-playbook/implement/qa-data-audit",
-                          "guides/strategic-playbooks/onboarding-playbook/implement/establish-governance"
-                        ]
-                      },
-                      {
-                        "group": "Launch",
-                        "pages": [
-                          "guides/strategic-playbooks/onboarding-playbook/launch/roll-out",
-                          "guides/strategic-playbooks/onboarding-playbook/launch/train-users",
-                          "guides/strategic-playbooks/onboarding-playbook/launch/drive-adoption"
-                        ]
-                      },
-                      "guides/strategic-playbooks/onboarding-playbook/beyond-onboarding"
                     ]
                   },
                   "guides/strategic-playbooks/project-migration"
