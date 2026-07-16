@@ -673,6 +673,7 @@
               "guides/board-templates",
               {
                 "group": "Strategic Playbooks",
+                "root": "/guides/strategic-playbooks",
                 "pages": [
                   {
                     "group": "Guide to Product Analytics",
@@ -3907,6 +3908,14 @@
     {
       "source": "/docs/features/spark",
       "destination": "/docs/mixpanel-agent"
+    },
+    {
+      "source": "/guides/guides-by-topic/core-reports/*",
+      "destination":"/docs/reports"
+    },
+    {
+      "source": "/guides/strategic-playbooks/onboarding-playbook/*",
+      "destination":"/guides/strategic-playbooks"
     }
   ]
 }
