@@ -40,7 +40,7 @@ Most vendors have a dedicated exposure event you can export. You can usually exp
 
 Each vendor's exposure event corresponds to a different Mixpanel event depending on whether it came from a feature gate, an experiment, or a dynamic config. Use this table to find the equivalent for your setup:
 
-| Mixpanel Entity | Statsig | LaunchDarkly | Optimizely | GrowthBook |
+| Mixpanel Feature Flag Type | Statsig Equivalent | LaunchDarkly Equivalent | Optimizely Equivalent | GrowthBook Equivalent |
 | :-- | :-- | :-- | :-- | :-- |
 | Experiment | statsig::experiment\_exposure | feature event w/ inExperiment=true (streaming); evaluation\_events rows w/ experiment\_iteration\_id (warehouse) | campaign\_activated event / decisions dataset | Experiment Viewed |
 | Feature Gate | statsig::gate\_exposure | feature event (boolean flag eval) | — (no decision event for deliveries/rollouts) | — (no gate exposure concept) |
