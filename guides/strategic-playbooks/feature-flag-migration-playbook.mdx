@@ -29,24 +29,18 @@ An exposure event records that a user was enrolled in an experiment, and was buc
 
 ### Export exposure events from your vendor
 
-Most vendors have a dedicated exposure event you can export. Each event should have the following at minimum:
+Most vendors have a dedicated exposure event you can export. You can usually export them directly from the UI or by using the vendor API.
 
 - The enrollment ID: This is either the user ID, device ID, or group ID
 - Timestamp
 - The experiment or feature flag name
 - The assigned variant
 
-You can export them in a few ways:
-
-- **Programmatic**: Use the Statsig Console API to pull the data.
-- **One-off**: From the Console, open the experiment's Pulse Results page and click _Export Report_ to download exposures and raw data as CSV.
-- **Bulk / ongoing**: Use a Data Warehouse Export or the generic Event Webhook to stream raw exposure events out.
-
 #### E**quivalent events**
 
 Each vendor's exposure event corresponds to a different Mixpanel event depending on whether it came from a feature gate, an experiment, or a dynamic config. Use this table to find the equivalent for your setup:
 
-| Mixpanel | Statsig | LaunchDarkly | Optimizely | GrowthBook |
+| Mixpanel Entity | Statsig | LaunchDarkly | Optimizely | GrowthBook |
 | :-- | :-- | :-- | :-- | :-- |
 | Experiment | statsig::experiment\_exposure | feature event w/ inExperiment=true (streaming); evaluation\_events rows w/ experiment\_iteration\_id (warehouse) | campaign\_activated event / decisions dataset | Experiment Viewed |
 | Feature Gate | statsig::gate\_exposure | feature event (boolean flag eval) | — (no decision event for deliveries/rollouts) | — (no gate exposure concept) |
@@ -77,17 +71,9 @@ This section moves the configurations themselves into Mixpanel. It covers both e
 
 ### Export configurations from your vendor
 
-Use your vendor's management API to export each configuration. Ensure you list and fetch definitions for feature gates, experiments, and dynamic configurations.
+Use your vendor's management API to export each configuration. Ensure you list and fetch definitions for feature gates, experiments, and dynamic configurations. 
 
-In **Statsig**, call the Console API (base [https://statsigapi.net/console/v1](https://statsigapi.net/console/v1), header STATSIG-API-KEY) to list and fetch definitions:
-
-- `GET /gates` and `GET /gates/{id}` — feature gates (boolean flags), with their rules and rollout
-- `GET /dynamic_configs` — dynamic configs (multi-value configurations)
-- `GET /experiments` and `GET /experiments/{id}` — experiments, including groups/variants, allocation %, targeting, and the unit ID type
-
-For other vendors, substitute the equivalent read endpoints (LaunchDarkly flags API, Optimizely flags API, etc.).
-
-### Import the setup into Mixpanel
+### Import the setup via Mixpanel API 
 
 Now that you've brought over your historical exposure data, it's time to bring over the configurations themselves.
 
@@ -107,21 +93,21 @@ You will need to make two API calls:
 ```javascript
 {
   "name": "Checkout Button Optimization",
-  "description": "Migrated from Statsig experiment: checkout_button_test",
+  "description": "Migrated from original experiment: checkout_button_test",
   "hypothesis": "Larger, more prominent checkout buttons will increase conversion rate",
   "variants": [
     {
       "name": "control",
-      "description": "Original Statsig group: Large Button"
+      "description": "Original group: Large Button"
     },
     {
       "name": "treatment",
-      "description": "Original Statsig group: Green Button"
+      "description": "Original group: Green Button"
     }
   ],
   "metrics": [],
   "settings": {
-    "traffic_fraction": 0.8
+    "traffic_fraction": 0.8 // this is the rollout perecentage
   }
 }
 ```
@@ -154,7 +140,7 @@ You will need to make two API calls:
         "is_control": true,
         "is_sticky": false,
         "split": 0.5,
-        "description": "Original Statsig group: Large Button"
+        "description": "Original group: Large Button"
       },
       {
         "key": "treatment",
@@ -162,7 +148,7 @@ You will need to make two API calls:
         "is_control": false,
         "is_sticky": false,
         "split": 0.5,
-        "description": "Original Statsig group: Green Button"
+        "description": "Original group: Green Button"
       }
     ],
     "rollout": [
@@ -174,7 +160,7 @@ You will need to make two API calls:
         "variant_override": null,
         "rollout_percentage": 0.8,
         "variant_splits": {
-          "treatment_a": 1
+          "treatment": 1
         }
       }
     ]
@@ -211,7 +197,7 @@ You will need to make two API calls:
         "is_control": true,
         "is_sticky": false,
         "split": 0.5,
-        "description": "Control — Migrated from Statsig"
+        "description": "Control — Migrated"
       },
       {
         "key": "treatment",
@@ -219,7 +205,7 @@ You will need to make two API calls:
         "is_control": false,
         "is_sticky": false,
         "split": 0.5,
-        "description": "Treatment — Migrated from Statsig. Original: pass"
+        "description": "Treatment — Migrated"
       }
     ],
     "rollout": [
@@ -264,7 +250,7 @@ You will need to make two API calls:
     "variants": [
       {
         "key": "control",
-        "value": {
+        "value": { // send as an object for Dynamic Config
           "max_results": 50,
           "boost_recent": true,
           "relevance_threshold": 0.7,
@@ -277,7 +263,7 @@ You will need to make two API calls:
         "is_control": true,
         "is_sticky": false,
         "split": 0.5,
-        "description": "Control — Migrated from Statsig"
+        "description": "Control — Migrated"
       },
       {
         "key": "treatment",
@@ -294,7 +280,7 @@ You will need to make two API calls:
         "is_control": false,
         "is_sticky": false,
         "split": 0.5,
-        "description": "Treatment — Migrated from Statsig. Original: pass"
+        "description": "Treatment — Migrated"
       }
     ],
     "rollout": [
