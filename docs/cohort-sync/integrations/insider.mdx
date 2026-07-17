@@ -12,18 +12,16 @@ You must be a Mixpanel project admin to enable the Insider integration.
 
 ## Enable the Integration
 
-1. Select **Settings > Integrations** tab in the bottom left navigation bar of Mixpanel.
-
-2. From the Integrations page, select the Insider dropdown, and select **Connect**.
+1. Navigate to **Data** in the nav bar, then select **Destinations**.
+2. Click **Add Destination**, select Insider, and click **Connect**.
 
 <Note>
-    If you set a User ID Property, it should be a Mixpanel user property that matches the email or phone number set in Insider.
+  If you set a User ID Property, it should be a Mixpanel user property that matches the email or phone number set in Insider.
 </Note>
 
 <Frame>
-![insider 2 Image](/images/insider2.png)
+  ![insider 2 Image](/images/insider2.png)
 </Frame>
-
 
 3. The Insider integration will show a **Connected** tag in the UI once the connection succeeds.
 
@@ -37,24 +35,34 @@ Note that exports are used solely for matching user identities between products 
 
 ## Export a Cohort
 
-1. Navigate to **Lexicon**, then select the **Cohorts** tab to view all of your cohorts.
+<Tabs>
+  <Tab title="From the Destinations page (recommended)">
+    1. Navigate to **Data** in the nav bar, then select **Destinations**.
+    2. Find the Insider destination in the list and click on it.
+    3. Click the **Syncs** tab, then click **Add Cohort Sync**.
+    4. Select the cohort you want to export and configure the sync (one-time or dynamic). Click **Start Sync**.
+  </Tab>
+  <Tab title="From Lexicon">
+    1. Navigate to **Lexicon**, then select the **Cohorts** tab to view all of your cohorts.
+    2. Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort.
+    3. Click Export to \> Insider. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-2. Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort.
-
-3. Click Export to > Insider. Select either one-time sync or dynamic sync. Click **Start Sync**.
-
-<Frame>
-![insider 3 Image](/images/insider3.png)
-</Frame>
+    <Frame>
+      ![insider 3 Image](/images/insider3.png)
+    </Frame>
+  </Tab>
+</Tabs>
 
 ## Sync Types
 
 This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
 
 ### One-Time Export
+
 In a one-time export, Mixpanel sends Insider a static export of users who currently qualify for the cohort. The cohort data will not be updated in Insider after a one-time export.
 
 ### Dynamic Sync
+
 In dynamic sync, Mixpanel initiates sync between a cohort and Insider every 15 minutes. The exported cohort will be updated every 15 minutes to reflect the most recent list of users in a cohort.
 
 ## Select the Custom Segment in Insider
@@ -62,5 +70,5 @@ In dynamic sync, Mixpanel initiates sync between a cohort and Insider every 15 m
 Once the export completes, you will see a custom segment reflecting the set of users from your Mixpanel cohort. (e.g. "7days-cart-abandoners")
 
 <Frame>
-![insider 4 Image](/images/insider4.png)
+  ![insider 4 Image](/images/insider4.png)
 </Frame>
