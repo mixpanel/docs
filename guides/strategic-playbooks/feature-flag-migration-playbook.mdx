@@ -1,11 +1,11 @@
 ---
 title: "Migrating Your Feature Flags and Experiments to Mixpanel  "
-sidebarTitle: "Feature Flag Migration Playbook"
+sidebarTitle: "Feature Flag & Experiments Migration Playbook"
 ---
 
 This guide walks through migrating your feature flags and experiments to Mixpanel from another platform. It's for teams currently running flags and experiments on a third-party vendor who want to consolidate that work in Mixpanel instead.
 
-By the end, your flags and experiments will be set up in Mixpanel, your historical results will carry over, and your application code will be evaluating flags through Mixpanel rather than your old provider.
+By the end of this, your flags and experiments will be set up in Mixpanel, your historical results will carry over, and your application code will be evaluating flags through Mixpanel rather than your old provider.
 
 <Note>
   This guide is a reusable template. The steps below are vendor-agnostic. To migrate from a provider (Statsig, LaunchDarkly, Optimizely, Firebase Remote Config, VWO, GrowthBook, or any OpenFeature setup), substitute that vendor's export API in each "Export" step — the Mixpanel side stays the same.
@@ -25,7 +25,11 @@ Here's how to work through each step.
 
 ## Step 1. Migrate past experiment exposure events
 
-An exposure event records that a user was enrolled in an experiment, and was bucketed into an experiment variant. To keep your historical data, export your existing exposure events from your current vendor and ingest them to Mixpanel as `$experiment_started` events. Running migrations for experiment mid-flight is high risk as user variant assignment and exposure events need to be tallied throughout the entire experiment rollout. As such, we recommend running the migration only for completed experiments.
+An exposure event records that a user was enrolled in an experiment, and was bucketed into an experiment variant. To keep your historical data, export your existing exposure events from your current vendor and ingest them to Mixpanel as `$experiment_started` events. 
+
+<Warning>
+  Running migrations for experiments mid-flight is high risk, as user variant assignment and exposure events need to be tallied throughout the entire experiment rollout. As such, we recommend running the migration only for completed experiments.
+</Warning>
 
 ### Export exposure events from your vendor
 
@@ -42,9 +46,9 @@ Each vendor's exposure event corresponds to a different Mixpanel event depending
 
 | Mixpanel Feature Flag Type | Statsig Equivalent | LaunchDarkly Equivalent | Optimizely Equivalent | GrowthBook Equivalent |
 | :-- | :-- | :-- | :-- | :-- |
-| Experiment | statsig::experiment\_exposure | feature event w/ inExperiment=true (streaming); evaluation\_events rows w/ experiment\_iteration\_id (warehouse) | campaign\_activated event / decisions dataset | Experiment Viewed |
+| Experiment | statsig::experiment\_exposure | feature event within Experiment=true (streaming); evaluation\_events rows with experiment\_iteration\_id (warehouse) | campaign\_activated event/decisions dataset | Experiment Viewed |
 | Feature Gate | statsig::gate\_exposure | feature event (boolean flag eval) | — (no decision event for deliveries/rollouts) | — (no gate exposure concept) |
-| Dynamic Configuration | statsig::config\_exposure | feature event (multivariate/JSON flag eval) | — (variable values returned w/o decision event) | — (no config exposure concept) |
+| Dynamic Configuration | statsig::config\_exposure | feature event (multivariate/JSON flag eval) | — (variable values returned without decision event) | — (no config exposure concept) |
 
 ### Import events into Mixpanel as `$experiment_started`
 
@@ -107,7 +111,7 @@ You will need to make two API calls:
   ],
   "metrics": [],
   "settings": {
-    "traffic_fraction": 0.8 // this is the rollout perecentage
+    "traffic_fraction": 0.8 // This is the rollout perecentage
   }
 }
 ```
@@ -136,7 +140,7 @@ You will need to make two API calls:
     "variants": [
       {
         "key": "control",
-        "value": "control", // send this as a string for Experiments
+        "value": "control", // Send this as a string for Experiments
         "is_control": true,
         "is_sticky": false,
         "split": 0.5,
@@ -144,7 +148,7 @@ You will need to make two API calls:
       },
       {
         "key": "treatment",
-        "value": "treatment", // send this as a string for Experiments
+        "value": "treatment", // Send this as a string for Experiments
         "is_control": false,
         "is_sticky": false,
         "split": 0.5,
@@ -193,7 +197,7 @@ You will need to make two API calls:
     "variants": [
       {
         "key": "control",
-        "value": true, // send this as a boolean for Feature Gates
+        "value": true, // Send this as a boolean for Feature Gates
         "is_control": true,
         "is_sticky": false,
         "split": 0.5,
@@ -201,7 +205,7 @@ You will need to make two API calls:
       },
       {
         "key": "treatment",
-        "value": false, // send this as a boolean for Feature Gates
+        "value": false, // Send this as a boolean for Feature Gates
         "is_control": false,
         "is_sticky": false,
         "split": 0.5,
@@ -250,7 +254,7 @@ You will need to make two API calls:
     "variants": [
       {
         "key": "control",
-        "value": { // send as an object for Dynamic Config
+        "value": { // Send as an object for Dynamic Config
           "max_results": 50,
           "boost_recent": true,
           "relevance_threshold": 0.7,
@@ -336,9 +340,9 @@ In the case of live experiments, migration might result in users getting reassig
 2. **If your code uses your vendor's SDK directly**: Replace those evaluation calls with the equivalent Mixpanel SDK calls for your language (for example, a boolean gate check becomes a Mixpanel boolean flag evaluation; a dynamic config read becomes a Mixpanel variant/JSON lookup).
 
 ```javascript
-// the following is for client side JS SDK experiments implementation
+// The following is for client side JS SDK experiments implementation
 
-// Step 1: initialize the JS SDK
+// Step 1: Initialize the JS SDK
 mixpanel.init("YOUR_PROJECT_TOKEN", {
   flags: {
     persistence: {
@@ -348,20 +352,20 @@ mixpanel.init("YOUR_PROJECT_TOKEN", {
   },
 });
 
-// Step 2: check the variant value when you want to trigger the experiment
+// Step 2: Check the variant value when you want to trigger the experiment
 // The async get_variant_value waits for the call to succeed and
 // falls back to the persisted value if it exists.
 const variant_value = await mixpanel.flags.get_variant_value("my-feature-flag", "control");
 ```
 
 ```javascript
-// the following is for server side Node.js SDK experiments implementation
+// The following is for server side Node.js SDK experiments implementation
 
 const Mixpanel = require('mixpanel');
 
 const mixpanel = Mixpanel.init('YOUR_PROJECT_TOKEN', {
-    // this experiment setup is with local evaluation, suited for low latency.
-    // the SDK will poll Mixpanel servers for feature flag configurations.
+    // This experiment setup is with local evaluation, suited for low latency.
+    // The SDK will poll Mixpanel servers for feature flag configurations.
     // Assignment of user contexts to variants will be done locally within the SDK.
     local_flags_config: {
         api_host: 'api.mixpanel.com',
