@@ -3985,7 +3985,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004499323*",
-      "destination": "/docs/data-structure/property-reference"
+      "destination": "/docs/"
     },
     {
       "source": "/hc/en-us/articles/115004499383*",
@@ -4041,7 +4041,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004507486*",
-      "destination": "/docs/tracking-methods/sdks/javascript"
+      "destination": "/docs/tracking-methods/sdks/javascript#hosted-subdomains"
     },
     {
       "source": "/hc/en-us/articles/115004511006*",
@@ -4053,11 +4053,11 @@
     },
     {
       "source": "/hc/en-us/articles/115004511126*",
-      "destination": "/docs/reports/apps"
+      "destination": "/docs/"
     },
     {
       "source": "/hc/en-us/articles/115004511206*",
-      "destination": "/docs/data-structure/property-reference"
+      "destination": "/docs/cohort-sync/integrations/salesforce-marketing-cloud"
     },
     {
       "source": "/hc/en-us/articles/115004511226*",
@@ -4105,7 +4105,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004551623*",
-      "destination": "/docs/tracking-methods/data-inspector"
+      "destination": "/docs/tracking-best-practices/debugging#debugging-with-events"
     },
     {
       "source": "/hc/en-us/articles/115004551663*",
@@ -4177,7 +4177,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004563123*",
-      "destination": "/docs/reports"
+      "destination": "/docs/"
     },
     {
       "source": "/hc/en-us/articles/115004563223*",
@@ -4325,15 +4325,15 @@
     },
     {
       "source": "/hc/en-us/articles/115004582646*",
-      "destination": "/docs/reports"
+      "destination": "/docs/"
     },
     {
       "source": "/hc/en-us/articles/115004582706*",
-      "destination": "/docs/reports/insights"
+      "destination": "/docs/"
     },
     {
       "source": "/hc/en-us/articles/115004582746*",
-      "destination": "/docs/boards"
+      "destination": "/docs/"
     },
     {
       "source": "/hc/en-us/articles/115004598183*",
@@ -4433,11 +4433,11 @@
     },
     {
       "source": "/hc/en-us/articles/115004615486*",
-      "destination": "/docs/experiments"
+      "destination": "/docs/"
     },
     {
       "source": "/hc/en-us/articles/115004615566*",
-      "destination": "/docs/tracking-methods/autocapture"
+      "destination": "/docs/"
     },
     {
       "source": "/hc/en-us/articles/115004615626*",
@@ -4489,7 +4489,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004617306*",
-      "destination": "/docs/experiments"
+      "destination": "/docs/"
     },
     {
       "source": "/hc/en-us/articles/115004617386*",
@@ -4605,7 +4605,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004695303*",
-      "destination": "/docs/export-methods"
+      "destination": "/docs/"
     },
     {
       "source": "/hc/en-us/articles/115004702823*",
