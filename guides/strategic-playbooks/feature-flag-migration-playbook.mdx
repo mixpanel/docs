@@ -56,11 +56,11 @@ The two required properties are **Experiment name** and **Variant name**. Keep t
 {
 	"event": "$experiment_started",
 	"properties": {
-		"distinct_id": "alice@example.com",
-		"time": 1709275888,
-		"$insert_id": "statsig_exp_4821_alice_1709275888",
-		"Experiment name": "checkout_flow_test",
-		"Variant name": "treatment"
+		"distinct_id": "alice@example.com", // enrollment ID
+		"time": 1709275888, // Timestamp
+		"$insert_id": "exp_4821_alice_1709275888",
+		"Experiment name": "checkout_flow_test", // The experiment or feature flag name
+		"Variant name": "treatment" // The assigned variant
 	}
 }
 ```
