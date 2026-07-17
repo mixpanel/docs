@@ -4,7 +4,7 @@ title: "Facebook Ads"
 
 ## Overview
 
-Export Mixpanel cohorts to Facebook Ads to use targeted advertisements in Facebook. Manage the Facebook Ads integration from the Mixpanel integrations page. The integration currently supports data from Mixpanel into Facebook Business.
+Export Mixpanel cohorts to Facebook Ads to use targeted advertisements in Facebook. Manage the Facebook Ads integration from the Mixpanel Destinations page. The integration currently supports data from Mixpanel into Facebook Business.
 
 > You must have a Facebook Business account connected to [Business Manager](https://audience.42matters.com/blog/how-to-connect-your-facebook-ad-account-to-business-manager-to-use-custom-audiences) to use this integration.
 
@@ -89,17 +89,17 @@ If Meta is unable to match a cohort member with a user in their system, that mem
 
 Below are some common blocking errors (e.g. Error Message: Invalid OAuth 2.0 Access Token) that may occur when authorizing or using this connection:
 
-#### Login Token Expired. Please disconnect and reconnect from Integrations Page.
+#### Login Token Expired. Please disconnect and reconnect from the Destinations page.
 
 [Facebook tokens expire after 60 days of inactivity](https://developers.facebook.com/docs/facebook-login/auth-vs-data/). Users will have to log in again to resume the cohort exports.
 
 #### (#200) The current user can not update audience XXXXXXXXXXX
 
-Verify the permissions for the user who created the sync, and then disconnect and reconnect from the Integrations page. Disconnecting and Reconnecting will resume your existing exports.
+Verify the permissions for the user who created the sync, and then disconnect and reconnect from the Destinations page. Disconnecting and Reconnecting will resume your existing exports.
 
 #### Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.
 
-Facebook sometimes invalidates the access token if they detect suspicious activity. Disconnect and reconnect the Facebook connection with a new token from the Integrations page to resume syncs.
+Facebook sometimes invalidates the access token if they detect suspicious activity. Disconnect and reconnect the Facebook connection with a new token from the Destinations page to resume syncs.
 
 #### Error validating access token: The user has not authorized application XXXXXXXXXX.
 
@@ -115,7 +115,7 @@ We generally force a window to accept the terms and conditions for the users. In
 
 #### Two factor authentication required. User have to enter a code from SMS or TOTP code generator to pass 2fac.
 
-Please disable two factor authentication and re-establish the connection from the Integrations page.
+Please disable two factor authentication and re-establish the connection from the Destinations page.
 
 #### (#2654) Customer List Audiences Are Not Available: Ad accounts owned by businesses new to Facebook Products can create customer file Custom Audiences after several weeks of following our policies.
 
