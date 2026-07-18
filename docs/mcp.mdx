@@ -1,7 +1,7 @@
 ---
-sidebarTitle: "MCP Server"
 title: "Mixpanel MCP Server"
-tags: [mcp, model context protocol, ai, agents, cursor, anthropic, chatgpt, openai, claude, codex, codex cli, cli, claude code, gemini, natural language, mixpanel, llm]
+sidebarTitle: "MCP Server"
+tags: ["mcp", "model context protocol", "ai", "agents", "cursor", "anthropic", "chatgpt", "openai", "claude", "codex", "codex cli", "cli", "claude code", "gemini", "natural language", "mixpanel", "llm"]
 ---
 
 ## Overview
@@ -9,6 +9,7 @@ tags: [mcp, model context protocol, ai, agents, cursor, anthropic, chatgpt, open
 Mixpanel provides a hosted [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that gives AI assistants direct access to your Mixpanel data. Once connected, you can query events, funnels, flows, retention, session replays, and more using natural language — no dashboard navigation required.
 
 A typical workflow looks like:
+
 1. **Discover**: Find your projects, events, and properties
 2. **Query**: Run insights, funnels, flows, or retention analyses
 3. **Create**: Build dashboards, organize Lexicon, or manage data quality issues
@@ -17,61 +18,79 @@ A typical workflow looks like:
 ## Available Tools
 
 | Category | Tool | Description |
-| -------- | ---- | ----------- |
+| --- | --- | --- |
 | **Analytics** | `Run-Query` | Execute insights, funnels, flows, and retention queries |
-| | `Get-Query-Schema` | Get the full JSON schema for building a query |
-| | `Get-Report` | Retrieve a saved report, optionally including results |
-| | `Display-Query` | Display an interactive chart widget for a previously-run query |
+|  | `Get-Query-Schema` | Get the full JSON schema for building a query |
+|  | `Get-Report` | Retrieve a saved report, optionally including results |
+|  | `Display-Query` | Display an interactive chart widget for a previously-run query |
 | **Dashboards** (Boards) | `Create-Dashboard` | Create a new dashboard with text cards and reports |
-| | `List-Dashboards` | Browse dashboards in a project |
-| | `Get-Dashboard` | Retrieve a dashboard's metadata, text cards, and reports |
-| | `Update-Dashboard` | Modify a dashboard's metadata, rows, and layout |
-| | `Duplicate-Dashboard` | Create a copy of an existing dashboard |
-| | `Delete-Dashboard` | Delete a dashboard |
+|  | `List-Dashboards` | Browse dashboards in a project |
+|  | `Get-Dashboard` | Retrieve a dashboard's metadata, text cards, and reports |
+|  | `Update-Dashboard` | Modify a dashboard's metadata, rows, and layout |
+|  | `Duplicate-Dashboard` | Create a copy of an existing dashboard |
+|  | `Delete-Dashboard` | Delete a dashboard |
 | **Data Discovery** | `Get-Business-Context` | Get org- and project-specific business context, vocabulary, and query instructions |
-| | `Get-Projects` | List your projects and workspaces |
-| | `List-Organizations` | List organizations the current user belongs to |
-| | `Get-Events` | Browse and search events in a project, optionally including full metadata |
-| | `List-Properties` | List and search event or user properties in a project |
-| | `Get-Property-Values` | Discover values for a specific property |
-| | `Search-Entities` | Search across dashboards, reports, experiments, feature flags, and more |
-| | `Get-Issues` | Get data quality issues filtered by event, property, type, or date |
-| | `Get-Lexicon-URL` | Get a direct link to an event or property in Lexicon |
+|  | `Get-Projects` | List your projects and workspaces |
+|  | `List-Organizations` | List organizations the current user belongs to |
+|  | `Get-Events` | Browse and search events in a project, optionally including full metadata |
+|  | `List-Properties` | List and search event or user properties in a project |
+|  | `Get-Property-Values` | Discover values for a specific property |
+|  | `Search-Entities` | Search across dashboards, reports, experiments, feature flags, and more |
+|  | `Get-Issues` | Get data quality issues filtered by event, property, type, or date |
+|  | `Get-Lexicon-URL` | Get a direct link to an event or property in Lexicon |
 | **Data Management** | `Edit-Event` | Update event description, display name, tags, or visibility |
-| | `Edit-Property` | Update property description, display name, hidden status, or PII classification |
-| | `Bulk-Edit-Events` | Edit multiple events at once (up to 50) with uniform or per-event fields |
-| | `Bulk-Edit-Properties` | Edit multiple properties at once (up to 50) with uniform or per-property fields |
-| | `Create-Tag` | Create a new tag in Lexicon |
-| | `Rename-Tag` | Rename an existing tag across all associated events and properties |
-| | `Delete-Tag` | Remove a tag from your project |
-| | `Dismiss-Issues` | Bulk-dismiss data quality issues by event, property, or type |
-| | `Update-Business-Context` | Update business context at the project or organization level |
+|  | `Edit-Property` | Update property description, display name, hidden status, or PII classification |
+|  | `Bulk-Edit-Events` | Edit multiple events at once (up to 50) with uniform or per-event fields |
+|  | `Bulk-Edit-Properties` | Edit multiple properties at once (up to 50) with uniform or per-property fields |
+|  | `Create-Tag` | Create a new tag in Lexicon |
+|  | `Rename-Tag` | Rename an existing tag across all associated events and properties |
+|  | `Delete-Tag` | Remove a tag from your project |
+|  | `Dismiss-Issues` | Bulk-dismiss data quality issues by event, property, or type |
+|  | `Update-Business-Context` | Update business context at the project or organization level |
+|  | `Find-Duplicate-Groups` | Find groups of duplicate or near-duplicate names in a Mixpanel project for events and event properties |
+|  | `Dismiss-Duplicate-Group` | Dismiss a duplicate-group suggestion |
+|  | `Merge-Group` | Merge a group of duplicate names into one entity |
+| **Custom Properties** | `Create-Custom-Property` | Create a custom property |
+|  | `Get-Custom-Property` | Get the definition and details of a custom property |
+|  | `Update-Custom-Property` | Update an existing custom property's definition |
+| **Cohorts** | `Create-Cohort` | Create a new cohort |
+|  | `Get-Cohort` | Retrieve a cohort's metadata and definition by ID or name |
+|  | `Update-Cohort` | Update an existing cohort |
+|  | `Delete-Cohort` | Delete an existing cohort |
+|  | `List-Cohorts` | List cohorts in project |
+|  | `Describe-Cohort-Schema` | Returns documentation and reference information about the structure of cohort definitions |
+| **Lookup Tables** | `Create-Lookup-Table` | Create a new lookup table |
+|  | `Get-Lookup-Table` | Read a lookup table's schema, row count, and a preview of its rows by ID/name |
+|  | `Update-Lookup-Table` | Update an existing lookup table |
 | **Metrics** | `Create-Metric` | Create a saved metric (behavior or formula) for reuse across experiments |
-| | `Get-Metric` | Get the full definition of a saved metric |
-| | `List-Metrics` | List all saved metrics in a project |
-| | `Update-Metric` | Update a saved metric's name, definition, or description |
+|  | `Get-Metric` | Get the full definition of a saved metric |
+|  | `List-Metrics` | List all saved metrics in a project |
+|  | `Update-Metric` | Update a saved metric's name, definition, or description |
 | **Session Replays** | `Get-User-Replays-Data` | Analyze a specific user's replays alongside their event data |
-| **Experiments** *(Beta)* | `List-Experiments` | List and search experiments in a project |
-| | `Get-Experiment` | Retrieve experiment details, configuration, and results |
-| | `Create-Experiment` | Create a new experiment |
-| | `Update-Experiment` | Modify an experiment's configuration or manage its lifecycle |
-| | `Get-Experiment-Setup-Guidance` | Get best-practice guidance for designing an experiment |
-| | `Get-Experiment-Results-Interpretation-Guidance` | Get best-practice guidance for interpreting experiment results |
-| **Feature Flags** *(Beta)* | `List-Feature-Flags` | List and search feature flags in a project |
-| | `Get-Feature-Flag` | Retrieve feature flag details and targeting rules |
-| | `Create-Feature-Flag` | Create a new feature flag |
-| | `Update-Feature-Flag` | Modify a feature flag's configuration or targeting |
-| | `Get-Feature-Flag-Setup-Guidance` | Get best-practice guidance for creating and configuring a feature flag |
-| | `Get-Feature-Flag-Lifecycle-Guidance` | Get best-practice guidance for rollout, kill-switch, and cleanup of a feature flag |
+| **Experiments**_(Beta)_ | `List-Experiments` | List and search experiments in a project |
+|  | `Get-Experiment` | Retrieve experiment details, configuration, and results |
+|  | `Create-Experiment` | Create a new experiment |
+|  | `Update-Experiment` | Modify an experiment's configuration or manage its lifecycle |
+|  | `Get-Experiment-Setup-Guidance` | Get best-practice guidance for designing an experiment |
+|  | `Get-Experiment-Results-Interpretation-Guidance` | Get best-practice guidance for interpreting experiment results |
+|  | `Explain-Experiment-Health-Check` | Explain why an experiment's health check is firing, or confirm it's healthy |
+|  | `Run-Experiment-Pre-Launch-Checks` | Cross-reference a draft experiment's config against best practices before launch |
+|  | `Search-Prior-Experiments` | Search the project's experiment store for prior tests on the same surface |
+| **Feature Flags**_(Beta)_ | `List-Feature-Flags` | List and search feature flags in a project |
+|  | `Get-Feature-Flag` | Retrieve feature flag details and targeting rules |
+|  | `Create-Feature-Flag` | Create a new feature flag |
+|  | `Update-Feature-Flag` | Modify a feature flag's configuration or targeting |
+|  | `Get-Feature-Flag-Setup-Guidance` | Get best-practice guidance for creating and configuring a feature flag |
+|  | `Get-Feature-Flag-Lifecycle-Guidance` | Get best-practice guidance for rollout, kill-switch, and cleanup of a feature flag |
 
-<Warning type="warning">
-**Experiments and Feature Flags tools are in open beta** and available to all users. Audience targeting and cohort editing are not yet supported via MCP — use the Mixpanel UI instead.
+<Warning>
+  **Experiments and Feature Flags tools are in open beta** and available to all users. Audience targeting and cohort editing are not yet supported via MCP — use the Mixpanel UI instead.
 </Warning>
 
 ## MCP Server URLs
 
 | Region | URL |
-| ------ | --- |
+| --- | --- |
 | US | `https://mcp.mixpanel.com/mcp` |
 | EU | `https://mcp-eu.mixpanel.com/mcp` |
 | IN | `https://mcp-in.mixpanel.com/mcp` |
@@ -89,7 +108,7 @@ Once enabled, any Mixpanel user in your organization can connect. Users authenti
 Mixpanel's MCP server supports two authentication methods:
 
 - **OAuth** — Users sign in through a browser with their Mixpanel credentials. Best for interactive use in AI assistants like Claude, ChatGPT, or Cursor.
-- **Service Accounts** *(Beta)* — A static credential header with no browser login required. Best for CI/CD pipelines, automated agents, and shared team setups.
+- **Service Accounts** _(Beta)_ — A static credential header with no browser login required. Best for CI/CD pipelines, automated agents, and shared team setups.
 
 Choose the method that fits your use case below.
 
@@ -116,6 +135,7 @@ Then authenticate by running `/mcp` inside Claude Code and completing the Mixpan
 [Add Mixpanel to ChatGPT](https://chatgpt.com/apps/mixpanel/asdk_app_69b2e9aed45c8191b254b207dfcc2bb4) and complete the Mixpanel OAuth flow.
 
 For EU or IN regions, or to publish the connector to your workspace so teammates can use it:
+
 1. Go to **Settings → Connectors → Advanced** and enable Developer Mode
 2. Add a new connector — set the [MCP Server URL](#mcp-server-urls) to your regional endpoint and Authentication to **OAuth**
 3. Complete the Mixpanel OAuth flow
@@ -123,7 +143,7 @@ For EU or IN regions, or to publish the connector to your workspace so teammates
 
 ### Codex
 
-1. Go to **Settings → MCP Servers → + Add Server**
+1. Go to **Settings → MCP Servers → \+ Add Server**
 2. Provide a name (e.g. Mixpanel) and select **Streamable HTTP**
 3. Enter your [MCP Server URL](#mcp-server-urls) and click **Save**
 
@@ -145,9 +165,8 @@ codex mcp login mixpanel
 ### Notion
 
 1. Create a new Agent from the **Agents** section in the Notion sidebar
-2. In the Agent's **Settings**, go to **Tools and Access → + Add Connection**
+2. In the Agent's **Settings**, go to **Tools and Access → \+ Add Connection**
 3. Select **Mixpanel** and complete the OAuth flow
- 
 
 ### Gemini CLI
 
@@ -217,7 +236,7 @@ echo -n "<username>:<secret>" | base64
 
 This outputs a base64-encoded string. The full header value is:
 
-```
+```text
 Authorization: Bearer Basic <base64-encoded-credentials>
 ```
 
@@ -284,7 +303,7 @@ Set `MIXPANEL_SA_TOKEN` to your base64-encoded credentials before starting Claud
 
 ### Codex
 
-1. Go to **Settings → MCP Servers → + Add Server**
+1. Go to **Settings → MCP Servers → \+ Add Server**
 2. Provide a name (e.g. Mixpanel) and select **Streamable HTTP**
 3. Enter your [MCP Server URL](#mcp-server-urls)
 4. Add the [authorization header](#generating-the-authorization-header) and click **Save**
@@ -361,53 +380,62 @@ Any client that supports the MCP JSON config format, including Microsoft Copilot
 Once connected, try asking your AI assistant:
 
 **Understand your data**
+
 - "What projects do I have access to?"
 - "What are the most fired events this week?"
 - "Which properties on `checkout_completed` are marked as PII?"
 
 **Query & analyze**
+
 - "How many sign ups did we have in February?"
 - "What's our signup-to-purchase conversion rate this month vs last month?"
 - "Show 7-day retention for users who completed onboarding in Q1"
 - "Which acquisition channels have the best 30-day retention?"
 
 **Create & build**
+
 - "Create a board of purchase metrics"
 - "Build a weekly growth dashboard with signups, activations, and churn"
 
 **Automate Lexicon work**
+
 - "Add descriptions to any events that don't have one"
 - "Tag all checkout-related events with 'Checkout'"
 - "Hide any events that haven't fired in the last 90 days"
 - "Find all properties that look like PII but aren't flagged yet"
 
 **Triage data quality**
+
 - "Show me all open data quality issues for the Signup event"
 - "Dismiss all issues for events we deprecated last quarter"
 
 **Test & ship**
+
 - "Create an experiment to test whether showing a progress indicator during onboarding increases activation rate"
 - "Create a feature flag for our new AI-powered search"
 - "How did our checkout experiment perform? Did it reach significance?"
 
 **Investigate users**
+
 - "This user reported a bug — what happened in their last 3 sessions?"
-- "Walk me through what [user ID] did before they churned"
+- "Walk me through what \[user ID\] did before they churned"
 
 ## Security Considerations
 
-<Warning type="warning">
+<warning>
   The MCP server does not currently support HIPAA requirements. Mixpanel's Business Associate Agreement (BAA) does not cover this feature.
-</Warning>
+</warning>
 
 When connected, the AI assistant can both **read and write** to Mixpanel on your behalf. Your Mixpanel data is also sent to whichever AI provider you're using (Claude, ChatGPT, etc.), so review that provider's data handling policies before connecting.
 
 **Access controls**
+
 - MCP must be explicitly enabled by an org admin. It is off by default
 - Users can only access projects they already have permission to view in Mixpanel
 - All existing roles and project-level permissions remain in effect
 
 **Other considerations**
+
 - Check applicable compliance requirements (GDPR, CCPA, etc.) before connecting to projects with personal data
 - If using a shared AI environment (e.g., a team workspace), be aware that conversation history may be visible to others
 
@@ -419,6 +447,7 @@ When connected, the AI assistant can both **read and write** to Mixpanel on your
 - **Desktop app doesn't pick up config changes**: Restart the application after editing the config file.
 
 ## Rate Limits
+
 - A maximum of 600 MCP requests/hour per user
 
 ## Building Custom Integrations (OAuth)
@@ -429,20 +458,21 @@ If you're building a third-party MCP client or custom integration, use the follo
 
 Mixpanel's MCP server supports OAuth discovery via two well-known endpoints, following RFC 8414 and RFC 9728:
 
-**Protected Resource Metadata (RFC 9728):**
-Discover which authorization servers can issue tokens for this resource:
-```
+**Protected Resource Metadata (RFC 9728):** Discover which authorization servers can issue tokens for this resource:
+
+```text
 https://mcp.mixpanel.com/.well-known/oauth-protected-resource/mcp
 ```
 
-**Authorization Server Metadata (RFC 8414):**
-Discover authorization, token, and registration endpoints:
-```
+**Authorization Server Metadata (RFC 8414):** Discover authorization, token, and registration endpoints:
+
+```text
 https://mcp.mixpanel.com/.well-known/oauth-authorization-server/mcp
 ```
 
 The following endpoints are deprecated but still available:
-```
+
+```text
 /.well-known/oauth-protected-resource
 /.well-known/oauth-authorization-server
 ```
@@ -450,14 +480,14 @@ The following endpoints are deprecated but still available:
 ### Dynamic Client Registration
 
 | Region | Registration Endpoint |
-| ------ | --------------------- |
-| US     | `https://mixpanel.com/oauth/mcp/register/` |
-| EU     | `https://eu.mixpanel.com/oauth/mcp/register/` |
-| IN     | `https://in.mixpanel.com/oauth/mcp/register/` |
+| --- | --- |
+| US | `https://mixpanel.com/oauth/mcp/register/` |
+| EU | `https://eu.mixpanel.com/oauth/mcp/register/` |
+| IN | `https://in.mixpanel.com/oauth/mcp/register/` |
 
 ### Authorization Code Flow with PKCE
 
-Mixpanel uses **Authorization Code + PKCE (S256)**:
+Mixpanel uses **Authorization Code \+ PKCE (S256)**:
 
 - **Authorization endpoint:** `https://{mixpanel_domain}/oauth/authorize`
 - **Token endpoint:** `https://{mixpanel_domain}/oauth/token/`
@@ -468,12 +498,14 @@ Mixpanel uses **Authorization Code + PKCE (S256)**:
 ### Required OAuth Scopes
 
 **Mandatory:**
-```
+
+```text
 projects analysis events insights segmentation retention data:read funnels flows data_definitions
 ```
 
 **Optional:**
-```
+
+```text
 dashboard_reports bookmarks user_details business_context
 ```
 
