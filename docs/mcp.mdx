@@ -152,7 +152,7 @@ codex mcp login mixpanel
 ### Gemini CLI
 
 ```bash
-gemini mcp add mixpanel npx -y mcp-remote https://mcp.mixpanel.com/mcp
+gemini mcp add --transport http mixpanel https://mcp.mixpanel.com/mcp
 ```
 
 Or edit `~/.gemini/settings.json` manually and add:
@@ -161,8 +161,7 @@ Or edit `~/.gemini/settings.json` manually and add:
 {
   "mcpServers": {
     "mixpanel": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.mixpanel.com/mcp"]
+      "httpUrl": "https://mcp.mixpanel.com/mcp"
     }
   }
 }
@@ -177,8 +176,7 @@ Or edit `~/.gemini/settings.json` manually and add:
 {
   "mcpServers": {
     "mixpanel": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.mixpanel.com/mcp"]
+      "url": "https://mcp.mixpanel.com/mcp"
     }
   }
 }
@@ -306,8 +304,7 @@ Service accounts are not supported through the Notion agent connector. Use [Curs
 ### Gemini CLI
 
 ```bash
-gemini mcp add mixpanel npx -y mcp-remote https://mcp.mixpanel.com/mcp \
-  --header "Authorization:Bearer Basic <base64-encoded-credentials>"
+gemini mcp add --transport http --header "Authorization: ****** <base64-encoded-credentials>" mixpanel https://mcp.mixpanel.com/mcp
 ```
 
 Or edit `~/.gemini/settings.json` manually and add (use the EU or IN URL if needed):
@@ -316,14 +313,9 @@ Or edit `~/.gemini/settings.json` manually and add (use the EU or IN URL if need
 {
   "mcpServers": {
     "mixpanel": {
-      "command": "npx",
-      "args": [
-        "-y", "mcp-remote",
-        "https://mcp.mixpanel.com/mcp",
-        "--header", "Authorization:${AUTH_HEADER}"
-      ],
-      "env": {
-        "AUTH_HEADER": "Bearer Basic <base64-encoded-credentials>"
+      "httpUrl": "https://mcp.mixpanel.com/mcp",
+      "headers": {
+        "Authorization": "****** <base64-encoded-credentials>"
       }
     }
   }
