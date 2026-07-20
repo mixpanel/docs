@@ -1,6 +1,6 @@
 ---
-sidebarTitle: "Root Cause Analysis"
 title: "Root Cause Analysis: AI-generated explanations for why your metrics changed"
+sidebarTitle: "Root Cause Analysis"
 ---
 
 ## Overview
@@ -23,16 +23,16 @@ Cards stream into the Board as each step completes, with a live progress banner 
 ## Where to launch RCA
 
 <Steps>
+  <Step title="From an Insights report">
+    Open any Insights chart, hover over a data point that looks unexpected, and choose **Root Cause Analysis** from the popover. RCA launches scoped to that event, segment, and time window.
 
-<Step title="From an Insights report">
-
-Open any Insights chart, hover over a data point that looks unexpected, and choose **Root Cause Analysis** from the popover. RCA launches scoped to that event, segment, and time window.
-</Step>
-
-<Step title="From a fired alert">
-
-When an alert fires, the notification (Slack, email, or webhook) includes a link that runs Root Cause Analysis and generates a Board for that alert. See [Alerts](/docs/features/alerts#root-cause-analysis) for how RCA fits into alerting.
-</Step>
+    <Frame>
+      ![Image](/images/image-6.png)
+    </Frame>
+  </Step>
+  <Step title="From a fired alert">
+    When an alert fires, the notification (Slack, email, or webhook) includes a link that runs Root Cause Analysis and generates a Board for that alert. See [Alerts](/docs/features/alerts#root-cause-analysis) for how RCA fits into alerting.
+  </Step>
 </Steps>
 
 ## The RCA Board
@@ -41,7 +41,7 @@ Because RCA generates a standard Mixpanel Board, it inherits all the capabilitie
 
 - **Anyone in your project can open it.** RCA Boards are project-shared by default, so teammates can pick up the analysis where you left off.
 - **You can edit it like any Board.** Add cards, rearrange, annotate, or duplicate it if you want a private working copy.
-- **Cards include contribution factor analysis.** Each ranked dimension lands as its own card with the breakdown, contribution percentage, and supporting context. You can edit this as needed before sharing. 
+- **Cards include contribution factor analysis.** Each ranked dimension lands as its own card with the breakdown, contribution percentage, and supporting context. You can edit this as needed before sharing.
 - **The interpretation card summarizes findings.** The AI's written explanation, confidence level, and suggested next steps live at the top of the Board so anyone scanning the results gets the punchline first.
 
 ## Custom RCA Settings
@@ -51,7 +51,7 @@ Oftentimes, customers know which properties matter for their business and want t
 In the AI Settings tab of your Project Settings, you can specify which event properties RCA should prioritize during analysis. For example, a marketing team that knows anomalies usually trace back to `utm_campaign_id` can point RCA at that dimension so it's always considered first. Properties you prioritize are combined with Mixpanel's automatic suggestions, so you never lose the agent's broader view — you just guide it toward the dimensions you care most about.
 
 <Info>
-    These settings only influence which properties RCA prioritizes. They don't control RCA's analysis sequencing or methodology — regardless of the instructions you provide, the agent still validates the anomaly, runs its breakdowns, ranks contributing dimensions, and writes up its interpretation the same way.
+  These settings only influence which properties RCA prioritizes. They don't control RCA's analysis sequencing or methodology — regardless of the instructions you provide, the agent still validates the anomaly, runs its breakdowns, ranks contributing dimensions, and writes up its interpretation the same way.
 </Info>
 
 ## Feedback
