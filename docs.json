@@ -3950,6 +3950,782 @@
     {
       "source": "/docs/features/spark",
       "destination": "/docs/mixpanel-agent"
+    },
+    {
+      "source": "/hc/en-us/articles/115004490463*",
+      "destination": "/docs/orgs-and-projects/managing-projects"
+    },
+    {
+      "source": "/hc/en-us/articles/115004490883*",
+      "destination": "/docs/pricing"
+    },
+    {
+      "source": "/hc/en-us/articles/115004493723*",
+      "destination": "/docs/tracking-best-practices/developer-environments#send-data-to-multiple-projects"
+    },
+    {
+      "source": "/hc/en-us/articles/115004494043*",
+      "destination": "/docs/orgs-and-projects/roles-and-permissions"
+    },
+    {
+      "source": "/hc/en-us/articles/115004494843*",
+      "destination": "/docs/access-security"
+    },
+    {
+      "source": "/hc/en-us/articles/115004496863*",
+      "destination": "/docs/tracking-methods/id-management"
+    },
+    {
+      "source": "/hc/en-us/articles/115004499163*",
+      "destination": "/docs/tracking-methods/id-management"
+    },
+    {
+      "source": "/hc/en-us/articles/115004499223*",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/hc/en-us/articles/115004499323*",
+      "destination": "/docs/"
+    },
+    {
+      "source": "/hc/en-us/articles/115004499383*",
+      "destination": "/docs/features/sessions"
+    },
+    {
+      "source": "/hc/en-us/articles/115004499423*",
+      "destination": "/docs/tracking-best-practices/debugging"
+    },
+    {
+      "source": "/hc/en-us/articles/115004499443*",
+      "destination": "/docs/tracking-best-practices/geolocation"
+    },
+    {
+      "source": "/hc/en-us/articles/115004499483*",
+      "destination": "/docs/tracking-best-practices/debugging"
+    },
+    {
+      "source": "/hc/en-us/articles/115004499503*",
+      "destination": "/docs/tracking-methods/data-inspector"
+    },
+    {
+      "source": "/hc/en-us/articles/115004499523*",
+      "destination": "/docs/tracking-best-practices/debugging"
+    },
+    {
+      "source": "/hc/en-us/articles/115004501646*",
+      "destination": "/docs/pricing"
+    },
+    {
+      "source": "/hc/en-us/articles/115004501866*",
+      "destination": "/docs/pricing"
+    },
+    {
+      "source": "/hc/en-us/articles/115004502326*",
+      "destination": "/docs/pricing"
+    },
+    {
+      "source": "/hc/en-us/articles/115004502386*",
+      "destination": "/docs/pricing#view-events-usage"
+    },
+    {
+      "source": "/hc/en-us/articles/115004505546*",
+      "destination": "/docs/orgs-and-projects/roles-and-permissions#project-roles"
+    },
+    {
+      "source": "/hc/en-us/articles/115004506346*",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/hc/en-us/articles/115004506386*",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/hc/en-us/articles/115004507486*",
+      "destination": "/docs/tracking-methods/sdks/javascript#hosted-subdomains"
+    },
+    {
+      "source": "/hc/en-us/articles/115004511006*",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/hc/en-us/articles/115004511106*",
+      "destination": "/docs/tracking-best-practices/debugging"
+    },
+    {
+      "source": "/hc/en-us/articles/115004511126*",
+      "destination": "/docs/"
+    },
+    {
+      "source": "/hc/en-us/articles/115004511206*",
+      "destination": "/docs/cohort-sync/integrations/salesforce-marketing-cloud"
+    },
+    {
+      "source": "/hc/en-us/articles/115004511226*",
+      "destination": "/docs/tracking-best-practices/geolocation"
+    },
+    {
+      "source": "/hc/en-us/articles/115004519306*",
+      "destination": "/docs/quickstart/install-mixpanel"
+    },
+    {
+      "source": "/hc/en-us/articles/115004519426*",
+      "destination": "/docs/tracking-best-practices/tracking-plan"
+    },
+    {
+      "source": "/hc/en-us/articles/115004519846*",
+      "destination": "/docs/tracking-best-practices/tracking-plan"
+    },
+    {
+      "source": "/hc/en-us/articles/115004545603*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004545783*",
+      "destination": "/docs/tracking-methods/sdks"
+    },
+    {
+      "source": "/hc/en-us/articles/115004546823*",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/hc/en-us/articles/115004546903*",
+      "destination": "/docs/reports/retention"
+    },
+    {
+      "source": "/hc/en-us/articles/115004547023*",
+      "destination": "/docs/data-structure/property-reference/data-type"
+    },
+    {
+      "source": "/hc/en-us/articles/115004551563*",
+      "destination": "/docs/features/revenue-analytics"
+    },
+    {
+      "source": "/hc/en-us/articles/115004551603*",
+      "destination": "/docs/reports/funnels"
+    },
+    {
+      "source": "/hc/en-us/articles/115004551623*",
+      "destination": "/docs/tracking-best-practices/debugging#debugging-with-events"
+    },
+    {
+      "source": "/hc/en-us/articles/115004551663*",
+      "destination": "/docs/reports/funnels"
+    },
+    {
+      "source": "/hc/en-us/articles/115004551743*",
+      "destination": "/docs/reports/apps/jql"
+    },
+    {
+      "source": "/hc/en-us/articles/115004552703*",
+      "destination": "/docs/reports"
+    },
+    {
+      "source": "/hc/en-us/articles/115004552803*",
+      "destination": "/docs/experiments"
+    },
+    {
+      "source": "/hc/en-us/articles/115004553843*",
+      "destination": "/docs/experiments"
+    },
+    {
+      "source": "/hc/en-us/articles/115004553863*",
+      "destination": "/docs/data-structure/user-profiles"
+    },
+    {
+      "source": "/hc/en-us/articles/115004553923*",
+      "destination": "/docs/features/revenue-analytics"
+    },
+    {
+      "source": "/hc/en-us/articles/115004554003*",
+      "destination": "/docs/reports/retention"
+    },
+    {
+      "source": "/hc/en-us/articles/115004554023*",
+      "destination": "/docs/reports/funnels"
+    },
+    {
+      "source": "/hc/en-us/articles/115004560746*",
+      "destination": "/docs/migration/google-analytics"
+    },
+    {
+      "source": "/hc/en-us/articles/115004560766*",
+      "destination": "/docs/what-to-track"
+    },
+    {
+      "source": "/hc/en-us/articles/115004561806*",
+      "destination": "/docs/quickstart/install-mixpanel"
+    },
+    {
+      "source": "/hc/en-us/articles/115004561826*",
+      "destination": "/docs/tracking-methods/integrations/google-tag-manager"
+    },
+    {
+      "source": "/hc/en-us/articles/115004562503*",
+      "destination": "/docs/data-structure/property-reference/default-properties"
+    },
+    {
+      "source": "/hc/en-us/articles/115004562563*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004562703*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115004562783*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115004563123*",
+      "destination": "/docs/"
+    },
+    {
+      "source": "/hc/en-us/articles/115004563223*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115004563263*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115004564286*",
+      "destination": "/docs/data-structure/group-analytics"
+    },
+    {
+      "source": "/hc/en-us/articles/115004564486*",
+      "destination": "/docs/features/alerts"
+    },
+    {
+      "source": "/hc/en-us/articles/115004565046*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115004565926*",
+      "destination": "/docs/tracking-best-practices/debugging"
+    },
+    {
+      "source": "/hc/en-us/articles/115004565986*",
+      "destination": "/docs/features/custom-buckets"
+    },
+    {
+      "source": "/hc/en-us/articles/115004566066*",
+      "destination": "/docs/reports/retention"
+    },
+    {
+      "source": "/hc/en-us/articles/115004566106*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115004567006*",
+      "destination": "/docs/reports/retention"
+    },
+    {
+      "source": "/hc/en-us/articles/115004567026*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004567363*",
+      "destination": "/docs/boards"
+    },
+    {
+      "source": "/hc/en-us/articles/115004567826*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115004567846*",
+      "destination": "/docs/reports/retention"
+    },
+    {
+      "source": "/hc/en-us/articles/115004567906*",
+      "destination": "/docs/tracking-best-practices/traffic-attribution"
+    },
+    {
+      "source": "/hc/en-us/articles/115004567946*",
+      "destination": "/docs/tracking-best-practices/bot-traffic"
+    },
+    {
+      "source": "/hc/en-us/articles/115004567966*",
+      "destination": "/docs/tracking-best-practices/bot-traffic"
+    },
+    {
+      "source": "/hc/en-us/articles/115004568026*",
+      "destination": "/docs/features/annotations"
+    },
+    {
+      "source": "/hc/en-us/articles/115004568086*",
+      "destination": "/docs/tracking-methods/autocapture"
+    },
+    {
+      "source": "/hc/en-us/articles/115004568106*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115004568543*",
+      "destination": "/docs/reports/apps/signal"
+    },
+    {
+      "source": "/hc/en-us/articles/115004568583*",
+      "destination": "/docs/reports/apps/signal"
+    },
+    {
+      "source": "/hc/en-us/articles/115004568603*",
+      "destination": "/docs/reports/apps/signal"
+    },
+    {
+      "source": "/hc/en-us/articles/115004568743*",
+      "destination": "/docs/reports/retention"
+    },
+    {
+      "source": "/hc/en-us/articles/115004568823*",
+      "destination": "/docs/reports/apps/signal"
+    },
+    {
+      "source": "/hc/en-us/articles/115004569503*",
+      "destination": "/docs/data-governance/lexicon"
+    },
+    {
+      "source": "/hc/en-us/articles/115004575586*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115004575866*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115004575886*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115004580746*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004580826*",
+      "destination": "/docs/reports/apps/signal"
+    },
+    {
+      "source": "/hc/en-us/articles/115004580906*",
+      "destination": "/docs/reports/apps/signal"
+    },
+    {
+      "source": "/hc/en-us/articles/115004582086*",
+      "destination": "/docs/reports/apps/signal"
+    },
+    {
+      "source": "/hc/en-us/articles/115004582126*",
+      "destination": "/docs/reports/apps/signal"
+    },
+    {
+      "source": "/hc/en-us/articles/115004582186*",
+      "destination": "/docs/boards"
+    },
+    {
+      "source": "/hc/en-us/articles/115004582446*",
+      "destination": "/docs/reports/apps/signal"
+    },
+    {
+      "source": "/hc/en-us/articles/115004582646*",
+      "destination": "/docs/"
+    },
+    {
+      "source": "/hc/en-us/articles/115004582706*",
+      "destination": "/docs/"
+    },
+    {
+      "source": "/hc/en-us/articles/115004582746*",
+      "destination": "/docs/"
+    },
+    {
+      "source": "/hc/en-us/articles/115004598183*",
+      "destination": "/docs/tracking-methods/autocapture"
+    },
+    {
+      "source": "/hc/en-us/articles/115004598283*",
+      "destination": "/docs/tracking-methods/autocapture"
+    },
+    {
+      "source": "/hc/en-us/articles/115004600303*",
+      "destination": "/docs/tracking-methods/autocapture"
+    },
+    {
+      "source": "/hc/en-us/articles/115004600443*",
+      "destination": "/docs/tracking-methods/autocapture"
+    },
+    {
+      "source": "/hc/en-us/articles/115004600463*",
+      "destination": "/docs/tracking-methods/autocapture"
+    },
+    {
+      "source": "/hc/en-us/articles/115004600543*",
+      "destination": "/docs/tracking-methods/autocapture"
+    },
+    {
+      "source": "/hc/en-us/articles/115004600583*",
+      "destination": "/docs/tracking-methods/sdks/android"
+    },
+    {
+      "source": "/hc/en-us/articles/115004600623*",
+      "destination": "/docs/tracking-methods/sdks/ios"
+    },
+    {
+      "source": "/hc/en-us/articles/115004600783*",
+      "destination": "/docs/experiments"
+    },
+    {
+      "source": "/hc/en-us/articles/115004601066*",
+      "destination": "/docs/features/alerts"
+    },
+    {
+      "source": "/hc/en-us/articles/115004601166*",
+      "destination": "/docs/features/alerts"
+    },
+    {
+      "source": "/hc/en-us/articles/115004601443*",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/hc/en-us/articles/115004601463*",
+      "destination": "/docs/tracking-methods/sdks/unity"
+    },
+    {
+      "source": "/hc/en-us/articles/115004601483*",
+      "destination": "/docs/tracking-methods/sdks/android"
+    },
+    {
+      "source": "/hc/en-us/articles/115004601523*",
+      "destination": "/docs/data-structure/property-reference/default-properties"
+    },
+    {
+      "source": "/hc/en-us/articles/115004601543*",
+      "destination": "/docs/tracking-methods/sdks"
+    },
+    {
+      "source": "/hc/en-us/articles/115004601563*",
+      "destination": "/docs/data-structure/property-reference"
+    },
+    {
+      "source": "/hc/en-us/articles/115004602143*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004602603*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004602683*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004602703*",
+      "destination": "/docs/data-structure/property-reference/reserved-properties"
+    },
+    {
+      "source": "/hc/en-us/articles/115004613366*",
+      "destination": "/docs/tracking-methods/autocapture"
+    },
+    {
+      "source": "/hc/en-us/articles/115004613466*",
+      "destination": "/docs/tracking-methods/autocapture"
+    },
+    {
+      "source": "/hc/en-us/articles/115004613606*",
+      "destination": "/docs/tracking-methods/autocapture"
+    },
+    {
+      "source": "/hc/en-us/articles/115004615486*",
+      "destination": "/docs/"
+    },
+    {
+      "source": "/hc/en-us/articles/115004615566*",
+      "destination": "/docs/"
+    },
+    {
+      "source": "/hc/en-us/articles/115004615626*",
+      "destination": "/docs/tracking-methods/autocapture"
+    },
+    {
+      "source": "/hc/en-us/articles/115004615646*",
+      "destination": "/docs/tracking-methods/autocapture"
+    },
+    {
+      "source": "/hc/en-us/articles/115004615706*",
+      "destination": "/docs/data-structure/property-reference"
+    },
+    {
+      "source": "/hc/en-us/articles/115004615726*",
+      "destination": "/docs/data-structure/user-profiles"
+    },
+    {
+      "source": "/hc/en-us/articles/115004615766*",
+      "destination": "/docs/data-structure/property-reference/data-type"
+    },
+    {
+      "source": "/hc/en-us/articles/115004615786*",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/hc/en-us/articles/115004615826*",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/hc/en-us/articles/115004616366*",
+      "destination": "/docs/features/revenue-analytics"
+    },
+    {
+      "source": "/hc/en-us/articles/115004616386*",
+      "destination": "/docs/tracking-methods/sdks"
+    },
+    {
+      "source": "/hc/en-us/articles/115004616426*",
+      "destination": "/docs/tracking-methods/sdks/android"
+    },
+    {
+      "source": "/hc/en-us/articles/115004616466*",
+      "destination": "/docs/data-structure/property-reference/properties"
+    },
+    {
+      "source": "/hc/en-us/articles/115004617246*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004617306*",
+      "destination": "/docs/"
+    },
+    {
+      "source": "/hc/en-us/articles/115004617386*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004617426*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004617486*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004617506*",
+      "destination": "/docs/data-structure/user-profiles#faq"
+    },
+    {
+      "source": "/hc/en-us/articles/115004617526*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004617566*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004670543*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004670563*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004670603*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004670703*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004670743*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004670763*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004686363*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004686443*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004686503*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004686543*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004687563*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004687583*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004687743*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004688423*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004688623*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004690006*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004690046*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004690066*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004690086*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004690106*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004690126*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004690166*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004695303*",
+      "destination": "/docs/"
+    },
+    {
+      "source": "/hc/en-us/articles/115004702823*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004706666*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004706906*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004706966*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004707726*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004707786*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004707946*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115004708066*",
+      "destination": "/docs/features/sessions"
+    },
+    {
+      "source": "/hc/en-us/articles/115004714446*",
+      "destination": "/docs/pricing"
+    },
+    {
+      "source": "/hc/en-us/articles/115004714506*",
+      "destination": "/docs/cohort-sync/integrations/salesforce-marketing-cloud"
+    },
+    {
+      "source": "/hc/en-us/articles/115005061226*",
+      "destination": "/docs/export-methods"
+    },
+    {
+      "source": "/hc/en-us/articles/115005061286*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115005593506*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115005635306*",
+      "destination": "/docs/cohort-sync/integrations/salesforce-marketing-cloud"
+    },
+    {
+      "source": "/hc/en-us/articles/115005641306*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115005665706*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115005694643*",
+      "destination": "/docs/cohort-sync/integrations/marketo"
+    },
+    {
+      "source": "/hc/en-us/articles/115005694663*",
+      "destination": "/docs/cohort-sync/integrations/airship"
+    },
+    {
+      "source": "/hc/en-us/articles/115005697363*",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/hc/en-us/articles/115005700166*",
+      "destination": "/docs/cohort-sync/integrations/marketo"
+    },
+    {
+      "source": "/hc/en-us/articles/115005700186*",
+      "destination": "/docs/cohort-sync/integrations/airship"
+    },
+    {
+      "source": "/hc/en-us/articles/115005702243*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115005702623*",
+      "destination": "/docs/users/cohorts"
+    },
+    {
+      "source": "/hc/en-us/articles/115005707803*",
+      "destination": "/docs/reports/retention"
+    },
+    {
+      "source": "/hc/en-us/articles/115005708166*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115005714386*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115005714426*",
+      "destination": "/docs/reports/funnels/funnels-overview"
+    },
+    {
+      "source": "/hc/en-us/articles/115005714446*",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/hc/en-us/articles/115005717546*",
+      "destination": "/docs"
+    },
+    {
+      "source": "/hc/en-us/articles/115005736163*",
+      "destination": "/docs/reports/funnels"
     }
   ]
 }
