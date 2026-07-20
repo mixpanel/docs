@@ -1304,10 +1304,6 @@
       "destination": "/docs/what-is-mixpanel"
     },
     {
-      "source": "/android-push-notifications",
-      "destination": "/docs"
-    },
-    {
       "source": "/changelogs/*",
       "destination": "/changelogs"
     },
@@ -1716,8 +1712,8 @@
       "destination": "/docs/experiments"
     },
     {
-      "source": "/docs/reports/experiments",
-      "destination": "/docs/experiments"
+      "source": "/docs/android-push-notifications",
+      "destination": "/docs"
     },
     {
       "source": "/docs/analysis/advanced/group-analytics",
@@ -1958,6 +1954,10 @@
     {
       "source": "/docs/insights",
       "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/docs/ios-push-notifications",
+      "destination": "/docs"
     },
     {
       "source": "/docs/javascript",
@@ -2296,6 +2296,10 @@
       "destination": "/docs/what-to-track"
     },
     {
+      "source": "/docs/reports/experiments",
+      "destination": "/docs/experiments"
+    },
+    {
       "source": "/docs/reports/funnels#counting-method",
       "destination": "/docs/reports/funnels#measurements"
     },
@@ -2326,6 +2330,10 @@
     {
       "source": "/docs/session-replay/session-replay-android",
       "destination": "/docs/session-replay/implement-session-replay/session-replay-android"
+    },
+    {
+      "source": "/docs/sms-notifications",
+      "destination": "/docs"
     },
     {
       "source": "/docs/tracking-best-practices/distinct-id-limits",
@@ -4734,14 +4742,6 @@
     {
       "source": "/hc/en-us/articles/115005736163*",
       "destination": "/docs/reports/funnels"
-    },
-    {
-      "source": "/ios-push-notifications",
-      "destination": "/docs"
-    },
-    {
-      "source": "/sms-notifications",
-      "destination": "/docs"
     },
     {
       "source": "/troubleshooting/docs/features/sessions",
