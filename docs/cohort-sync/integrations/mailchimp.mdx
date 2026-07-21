@@ -2,10 +2,9 @@
 title: "Mailchimp"
 ---
 
-
 ## Overview
 
-Export Mixpanel cohorts to Mailchimp to create custom audiences that you can apply in your Mailchimp campaigns. Manage the Mailchimp integration from the Mixpanel integrations page.
+Export Mixpanel cohorts to Mailchimp to create custom audiences that you can apply in your Mailchimp campaigns. Manage the Mailchimp integration from the Mixpanel Destinations page.
 
 ## Permissions
 
@@ -17,12 +16,11 @@ The Mailchimp integration requires initial configuration through your Mailchimp 
 
 Follow these steps to enable the integration with Mailchimp:
 
-1. Select **Settings > Integrations** tab in the bottom left navigation bar of Mixpanel.
-
-2. From the Integrations page, select the Mailchimp dropdown, and select **Connect**.
+1. Navigate to **Data** in the nav bar, then select **Destinations**.
+2. Click **Add Destination**, select Mailchimp, and click **Connect**.
 
 <Frame>
-![mailchimp 2 Image](/images/mailchimp2.png)
+  ![mailchimp 2 Image](/images/mailchimp2.png)
 </Frame>
 
 You will need to provide an API key (referred to as an Authorization token in Mailchimp) to authorize the connection. Mailchimp will provide this token during the integration initialization flow.
@@ -39,24 +37,34 @@ In order to match an exported Mixpanel user to Mailchimp, the user's Mixpanel pr
 
 ## Export a Cohort
 
-1. Navigate to **Lexicon**, then select the **Cohorts** tab to view all of your cohorts.
+<Tabs>
+  <Tab title="From the Destinations page (recommended)">
+    1. Navigate to **Data** in the nav bar, then select **Destinations**.
+    2. Find the Mailchimp destination in the list and click on it.
+    3. Click the **Syncs** tab, then click **Add Cohort Sync**.
+    4. Select the cohort you want to export and configure the sync (one-time or dynamic). Click **Start Sync**.
+  </Tab>
+  <Tab title="From Lexicon">
+    1. Navigate to **Lexicon**, then select the **Cohorts** tab to view all of your cohorts.
+    2. Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort.
+    3. Click **Export to \> Mailchimp**. Select either one-time sync or dynamic sync. Click **Start Sync**.
 
-2. Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort.
-
-3. Click **Export to > Mailchimp**. Select either one-time sync or dynamic sync. Click **Start Sync**.
-
-<Frame>
-![mailchimp 3 Image](/images/mailchimp3.png)
-</Frame>
+    <Frame>
+      ![mailchimp 3 Image](/images/mailchimp3.png)
+    </Frame>
+  </Tab>
+</Tabs>
 
 ## Sync Types
 
 This integration supports two types of exports: one-time export and dynamic sync. When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
 
 ### One-Time Export
+
 In a one-time export, Mixpanel sends Mailchimp a static export of users who currently qualify for the cohort. The cohort data will not be updated in Mailchimp after a one-time export.
 
 ### Dynamic Sync
+
 In dynamic sync, Mixpanel initiates sync between a cohort and Mailchimp every 2 hours. The exported cohort will be updated every two hours to reflect the most recent list of users in a cohort.
 
 ## Observe the Audience in Mailchimp
@@ -64,7 +72,7 @@ In dynamic sync, Mixpanel initiates sync between a cohort and Mailchimp every 2 
 Once the export completes, you will see updates in your Mailchimp dashboard reflecting your synced audience:
 
 <Frame>
-![mailchimp 4 Image](/images/mailchimp4.png)
+  ![mailchimp 4 Image](/images/mailchimp4.png)
 </Frame>
 
 ## MTU exemptions
@@ -80,6 +88,3 @@ The following events are exempt from MTU calculations:
 - Mailchimp - Sent To
 - Mailchimp - Unsubscribed
 - Mailchimp - Bounced
-
-
-
