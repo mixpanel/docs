@@ -16,7 +16,7 @@ By the end of this, your flags and experiments will be set up in Mixpanel, your 
 A complete migration has five parts:
 
 1. **Migrate past experiment exposure events** so your historical results carry over.
-2. **Migrate flag, experiment, and dynamic config configurations** (both the setup and the reporting).
+2. **Migrate feature gate, experiment, and dynamic config configurations** (both the setup and the reporting).
 3. **Complete setup of Feature Flags and Experiments** in the Mixpanel UI.
 4. **Recreate critical flags and experiments** in your application code.
 5. **Verify migration status**, including number of feature flags migrated and exposure count.
@@ -28,17 +28,19 @@ Here's how to work through each step.
 An exposure event records that a user was enrolled in an experiment, and was bucketed into an experiment variant. To keep your historical data, export your existing exposure events from your current vendor and ingest them to Mixpanel as `$experiment_started` events. 
 
 <Warning>
-  Running migrations for experiments mid-flight is high risk, as user variant assignment and exposure events need to be tallied throughout the entire experiment rollout. As such, we recommend running the migration only for completed experiments.
+  Running migrations for experiments mid-flight is a high risk task. As the Mixpanel SDK will randomly assign variant assignments in your app, it is impossible to maintain the same variant assignment in your current set up. 
 </Warning>
 
 ### Export exposure events from your vendor
 
-Most vendors have a dedicated exposure event you can export. You can usually export them directly from the UI or by using the vendor API.
+Most vendors have a dedicated exposure event you can export. You can usually export them directly from the UI or by using the vendor API. You will need the following fields at minimum:
 
 - The enrollment ID: This is either the user ID, device ID, or group ID
 - Timestamp
 - The experiment or feature flag name
 - The assigned variant
+
+ Details can be found at  [https://docs.mixpanel.com/docs/experiments#implementation-for-experimentation](https://docs.mixpanel.com/docs/experiments#implementation-for-experimentation). 
 
 #### E**quivalent events**
 
@@ -47,8 +49,8 @@ Each vendor's exposure event corresponds to a different Mixpanel event depending
 | Mixpanel Feature Flag Type | Statsig Equivalent | LaunchDarkly Equivalent | Optimizely Equivalent | GrowthBook Equivalent |
 | :-- | :-- | :-- | :-- | :-- |
 | Experiment | statsig::experiment\_exposure | feature event within Experiment=true (streaming); evaluation\_events rows with experiment\_iteration\_id (warehouse) | campaign\_activated event/decisions dataset | Experiment Viewed |
-| Feature Gate | statsig::gate\_exposure | feature event (boolean flag eval) | — (no decision event for deliveries/rollouts) | — (no gate exposure concept) |
-| Dynamic Configuration | statsig::config\_exposure | feature event (multivariate/JSON flag eval) | — (variable values returned without decision event) | — (no config exposure concept) |
+| Feature Gate | statsig::gate\_exposure | feature event (boolean flag eval) | Feature Rollout | — (no gate exposure concept) |
+| Dynamic Configuration | statsig::config\_exposure | feature event (multivariate/JSON flag eval) | Flag with Variables | — (no config exposure concept) |
 
 ### Import events into Mixpanel as `$experiment_started`
 
@@ -81,7 +83,7 @@ Use your vendor's management API to export each configuration. Ensure you list a
 
 Now that you've brought over your historical exposure data, it's time to bring over the configurations themselves.
 
-Recreate each configuration in Mixpanel using Mixpanel APIs. Create experiments first, then flags that reference them.
+Recreate each configuration in Mixpanel using Mixpanel APIs. Create experiments first, then flags that reference them. You can refer to the Mixpanel Feature Flags API for more details: [https://docs.mixpanel.com/reference/feature-flags-api](https://docs.mixpanel.com/reference/feature-flags-api) 
 
 <Tip>
   **Tip**: Test by migrating a few low-risk flags to validate the process first.
@@ -175,7 +177,7 @@ You will need to make two API calls:
 #### Feature Gate
 
 - **Create Feature Flag**: POST [`/api/app/projects/{project_id}/workspaces/{workspace_id}/feature-flags`](https://docs.mixpanel.com/reference/create-feature-flag-1).
-  - For a Feature Gate, the key is to specify the control and treatment values in the `variants.value` object as a boolean value.
+  - For a Feature Gate, ensure you specify the control and treatment values in the `variants.value` object as a boolean value.
 
 ```javascript
 {
@@ -334,10 +336,12 @@ Map each of your vendor's experiment metrics to a Mixpanel metric so the same su
 
 With configurations and history in Mixpanel, update your application to evaluate flags through Mixpanel. How much changes depends on how your code calls flags today.
 
-In the case of live experiments, migration might result in users getting reassigned to a different variant mid-experiment. We recommend completing any existing experiments and importing the historical exposure events into Mixpanel, then launching the equivalent experiment fresh in Mixpanel post-cutover.
+In the case of live experiments, migration will result in users getting reassigned to a different variant mid-experiment. We recommend completing any existing experiments and importing the historical exposure events into Mixpanel, then launching the equivalent experiment fresh in Mixpanel post-cutover.
 
 1. **If your code uses OpenFeature**: Swap the provider — replace your current provider with the Mixpanel provider and leave your existing evaluation calls unchanged, as long as your flag keys carried over identically.
 2. **If your code uses your vendor's SDK directly**: Replace those evaluation calls with the equivalent Mixpanel SDK calls for your language (for example, a boolean gate check becomes a Mixpanel boolean flag evaluation; a dynamic config read becomes a Mixpanel variant/JSON lookup).
+
+If you are currently using LLMs, we also recommend exploring this migration approach with the Mixpanel MCP server: [https://docs.mixpanel.com/docs/mcp](https://docs.mixpanel.com/docs/mcp).  The MCP server can read all the flags and experiments in your project, and will be a good assistant in making code changes. 
 
 ```javascript
 // The following is for client side JS SDK experiments implementation
