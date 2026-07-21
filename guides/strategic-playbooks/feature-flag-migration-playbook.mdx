@@ -25,7 +25,7 @@ Here's how to work through each step.
 
 ## Step 1. Migrate past experiment exposure events
 
-An exposure event records that a user was enrolled in an experiment, and was bucketed into an experiment variant. To keep your historical data, export your existing exposure events from your current vendor and ingest them to Mixpanel as `$experiment_started` events. 
+An exposure event records that a user was enrolled in a feature gate, an experiment, or a dynamic config, and was bucketed into an experiment variant. To keep your historical data, export your existing exposure events from your current vendor and ingest them to Mixpanel as `$experiment_started` events. 
 
 <Warning>
   Running migrations for experiments mid-flight is a high risk task. As the Mixpanel SDK will randomly assign variant assignments in your app, it is impossible to maintain the same variant assignment in your current set up. 
