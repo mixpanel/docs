@@ -4,9 +4,10 @@ title: "Segment"
 
 ## Overview
 
- This integration allows you to export Cohorts of users from Mixpanel to Segment so that you can better target users across many downstream connections.
- 
- ## Permissions
+This integration allows you to export Cohorts of users from Mixpanel to Segment so that you can better target users across many downstream connections.
+
+## Permissions
+
 You must be a Mixpanel project admin to enable the Segment integration.
 
 ## Enable the Integration
@@ -15,43 +16,41 @@ This connection requires set up on both Segment and Mixpanel.
 
 ### Segment Setup
 
-The connection requires a Segment Write Key. You can obtain this key via Segment's UI: 
+The connection requires a Segment Write Key. You can obtain this key via Segment's UI:
 
 1. Log into your Segment workspace and click **Sources** under **Connections** in the menu bar on the left.
-
 2. Click **Add Source** button on the right side above the sources table.
-
 3. Search for **Mixpanel Cohorts**, select and hit next
 
 <Frame>
-![Segment 1 Image](/images/segment1.png)
+  ![Segment 1 Image](/images/segment1.png)
 </Frame>
 
 4. Create a Mixpanel Cohorts source.
 
 <Frame>
-![Segment 2 Image](/images/segment2.png)
+  ![Segment 2 Image](/images/segment2.png)
 </Frame>
 
-5. Copy the** Write Key** displayed there.
+5. Copy the **Write Key** displayed there.
 
 <Frame>
-![Segment 3 Image](/images/segment3.png)
+  ![Segment 3 Image](/images/segment3.png)
 </Frame>
 
 ### Mixpanel Setup
 
 We will use the Write Key from Segment to enable the connection in Mixpanel.
 
-1. Navigate to **Settings** in the bottom left, then select **Integrations**.
-2. Then select Segment, click **Connect**, and paste the** Write Key** that you generated in Segment.
+1. Navigate to **Data** in the nav bar, then select **Destinations**.
+2. Click **Add Destination**, select Segment, click **Connect**, and paste the **Write Key** that you generated in Segment.
 
 <Note>
-    If you set a User ID Property, it should be a Mixpanel user property that matches the Segment User ID.
+  If you set a User ID Property, it should be a Mixpanel user property that matches the Segment User ID.
 </Note>
 
 <Frame>
-![Segment 5 Image](/images/segment5.png)
+  ![Segment 5 Image](/images/segment5.png)
 </Frame>
 
 3. Click **Continue** to complete the process.
@@ -60,31 +59,43 @@ We will use the Write Key from Segment to enable the connection in Mixpanel.
 
 To export a Mixpanel cohort into Segment.
 
-1. Navigate to **Lexicon**, then select the **Cohorts** tab to view all of your cohorts.
+<Tabs>
+  <Tab title="From the Destinations page (recommended)">
+    1. Navigate to **Data** in the nav bar, then select **Destinations**.
+    2. Find the Segment destination in the list and click on it.
+    3. Click the **Syncs** tab, then click **Add Cohort Sync**.
+    4. Select the cohort you want to export and configure the sync (one-time or dynamic). Click **Start Sync**.
+  </Tab>
+  <Tab title="From Lexicon">
+    1. Navigate to **Lexicon**, then select the **Cohorts** tab to view all of your cohorts.
+    2. Select the overflow menu on cohort that you want to export and click Export to... → Segment.
 
-2. Select the overflow menu on cohort that you want to export and click Export to... → Segment.
+    <Frame>
+      ![Segment 6 Image](/images/segment6.png)
+    </Frame>
 
-<Frame>
-![Segment 6 Image](/images/segment6.png)
-</Frame>
-
-3. Select either one-time sync or dynamic sync, Click **Start Sync**.
+    3. Select either one-time sync or dynamic sync, Click **Start Sync**.
+  </Tab>
+</Tabs>
 
 ## Sync Types
 
 There are two types of sync: one-time and dynamic. When you generate a one-time export or dynamic sync, it overwrites the previous export with an updated export that reflects users who qualify for the cohort at the time of export.
 
 ### One-Time
+
 In this sync, Mixpanel sends Segment the static set of users who currently qualify for the cohort. The cohort data will not be updated in Segment after a one-time export.
 
 ### Dynamic
+
 In dynamic sync, Mixpanel initiates sync between a cohort and Segment every 15 minutes. The exported cohort will be updated every 15 minutes to reflect the most recent list of users in a cohort.
 
-## Verifying in Segment 
+## Verifying in Segment
+
 Once the export completes, you can open the debugger on the source you created in Segment above and you'll see "identify" calls flowing in for each user that has been added or removed from the cohort.
 
 <Frame>
-![Segment 7 Image](/images/segment7.png)
+  ![Segment 7 Image](/images/segment7.png)
 </Frame>
 
 Mixpanel sets a property on the user's profile in Segment indicating whether they are currently part of the cohort.
@@ -100,6 +111,7 @@ We send the following identify call to Segment when a user enters the cohort:
   "userId": "user@email.com" // we use the distinct_id property here
 }
 ```
+
 We send the following when a user exits the cohort:
 
 ```json
@@ -111,6 +123,3 @@ We send the following when a user exits the cohort:
   "userId": "user@email.com" // we use the distinct_id property here
 }
 ```
-
-
-
