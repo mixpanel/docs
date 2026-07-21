@@ -9,6 +9,21 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-07-17">
+  ## Destinations: a simpler way to send data out of Mixpanel
+
+  We've reworked the Integrations page to make it easier to create and manage Destinations, Cohort Syncs, and Data Pipelines.
+
+  With this update:
+
+  - **"Integrations" is now "Destinations":** The new name makes the page's purpose clearer — it's for connecting data flowing out of Mixpanel — and reduces confusion for users who came looking for ways to bring data in.
+  - **Destinations lives in the Data menu:** Find it under **Data → Destinations** in the main nav. It's still available in the settings menu for now, but that entry point will be removed eventually.
+  - **Onboard cohort syncs directly from Destinations:** No more bouncing between the Integrations page and Lexicon. Open a connected destination, go to the **Syncs** tab, and click **Add Cohort Sync**. Onboarding from Lexicon still works.
+  - **Separate views for connected and available destinations:** Your connected destinations and the full library are now split, making it easier to see what's already connected and to add something new.
+
+  [Learn more →](/docs/cohort-sync)
+</Update>
+
 <Update label="2026-07-14">
   ## Passkeys
 
@@ -763,63 +778,67 @@ Get all the latest updates in your inbox.
 </Update>
 
 <Update label="2026-02-20">
-## Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for EU Projects
+  ## Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for EU Projects
 
-> **🚨 UPDATE: July 1, 2026 – US-to-EU Data Forwarding has officially ended.** <br /><br />
-> 
-> As scheduled, we have sunset US-to-EU data forwarding. <br /> **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI and Query API endpoints until August 1, 2026.**<br /><br />
->
-> **How events are being filtered**<br />
-> 
-> [July 1, 2026 - August 1, 2026]: New US->EU Forwarded events have not been deleted. However, they are temporarily hidden from the UI and Query API endpoints if they match all of the following criteria:
-> * The event was processed after July 1st (UTC) (`mp_processing_time_ms` > `<July 1st UTC>`).
-> * The event was forwarded from the US (`$mp_is_forwarded` is defined).
->
-> These events are not deleted — they remain accessible via the Raw Export API during this period, and will be un-hidden on August 1, 2026, so your reporting counts may change at that time. <br /><br />**Events that are still being sent to the US after August 1, 2026 for EU Projects will not be accepted.** <br /><br /> **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss after August 1, 2026.**<br /><br />
-> 
-> *Need help or want to opt out? If you wish to opt out of this UI preview and un-hide your forwarded events early, please [contact support](https://mixpanel.com/get-support).* 
->
-> >⏳ **Note:** Some projects have an extended timeline through **December 31, 2026**. These projects are not affected by the temporary event-hiding described above. If this applies to your project, we've already reached out with a notification. If you did not receive a notification, your deadline is **August 1, 2026**.
+  > **🚨 UPDATE: July 1, 2026 – US-to-EU Data Forwarding has officially ended.** <br /><br />
+  >
+  > As scheduled, we have sunset US-to-EU data forwarding. <br /> **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI and Query API endpoints until August 1, 2026.**<br /><br />
+  >
+  > **How events are being filtered**<br />
+  >
+  > \[July 1, 2026 - August 1, 2026\]: New US-\>EU Forwarded events have not been deleted. However, they are temporarily hidden from the UI and Query API endpoints if they match all of the following criteria:
+  >
+  > - The event was processed after July 1st (UTC) (`mp_processing_time_ms` \> `<July 1st UTC>`).
+  > - The event was forwarded from the US (`$mp_is_forwarded` is defined).
+  >
+  > These events are not deleted — they remain accessible via the Raw Export API during this period, and will be un-hidden on August 1, 2026, so your reporting counts may change at that time. <br /><br />**Events that are still being sent to the US after August 1, 2026 for EU Projects will not be accepted.** <br /><br /> **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss after August 1, 2026.**<br /><br />
+  >
+  > _Need help or want to opt out? If you wish to opt out of this UI preview and un-hide your forwarded events early, please [contact support](https://mixpanel.com/get-support)._
+  >
+  > > ⏳ **Note:** Some projects have an extended timeline through **December 31, 2026**. These projects are not affected by the temporary event-hiding described above. If this applies to your project, we've already reached out with a notification. If you did not receive a notification, your deadline is **August 1, 2026**.
 
-Starting July 2026, we will be sunsetting the legacy automated US-to-EU Data Forwarding process for [EU Data Residency projects](/docs/privacy/eu-residency) to align with data residency best practices and improve ingestion performance.
-After this date, data sent to our US Ingestion Servers for EU Data Residency projects will no longer be forwarded, which can result in data loss.
+  Starting July 2026, we will be sunsetting the legacy automated US-to-EU Data Forwarding process for [EU Data Residency projects](/docs/privacy/eu-residency) to align with data residency best practices and improve ingestion performance. After this date, data sent to our US Ingestion Servers for EU Data Residency projects will no longer be forwarded, which can result in data loss.
 
-## Is my project affected?
-- **EU Projects created before August 18, 2025: If your implementation sends data to Mixpanel's US Ingestion Servers (`api.mixpanel.com`), you may be affected by this change. Please review the action required below.**
-- EU Projects created on or after August 18, 2025: These projects already require direct ingestion to our EU Servers. No action is needed.
+  ## Is my project affected?
 
-## Required Action for EU Projects sending data to US Servers
+  - **EU Projects created before August 18, 2025: If your implementation sends data to Mixpanel's US Ingestion Servers (`api.mixpanel.com`), you may be affected by this change. Please review the action required below.**
+  - EU Projects created on or after August 18, 2025: These projects already require direct ingestion to our EU Servers. No action is needed.
 
-To avoid any disruption to data ingestion for your EU Projects, **please review and update your implementations to use the dedicated Ingestion API EU Subdomain (`api-eu.mixpanel.com`).** This ensures your data is routed directly to its intended destination.
+  ## Required Action for EU Projects sending data to US Servers
 
-**Guidance**
+  To avoid any disruption to data ingestion for your EU Projects, **please review and update your implementations to use the dedicated Ingestion API EU Subdomain (`api-eu.mixpanel.com`).** This ensures your data is routed directly to its intended destination.
 
-1. **Verify which projects have EU Data Residency:** Navigate to [Organization Settings](/docs/orgs-and-projects/managing-projects#viewing-project-information) > Projects and click into each Project to confirm whether Data Residency is set to EU.
-2. **Identify Traffic:** In your EU Project(s), create an Insights Report and break down “All Events” by the API Endpoint (`$mp_api_endpoint` ) event property to determine which Ingestion Servers your events came from. `$mp_api_endpoint=api-eu.mixpanel.com` is EU and `$mp_api_endpoint=api.mixpanel.com` or `api-js.mixpanel.com` is US.
-3. **Update and Review Implementation:** If your project has EU Data Residency, please follow the guides below that apply to your setup to ensure your data routes to our EU Servers.
+  **Guidance**
 
-If you are using Mixpanel’s SDKs, the documentation linked below has instructions on updating your implementation code to EU:
-- [Javascript](/docs/tracking-methods/sdks/javascript#eu-data-residency)
-- [React Native](/docs/tracking-methods/sdks/react-native#eu-data-residency)
-- [Android](/docs/tracking-methods/sdks/android#eu-data-residency)
-- [iOS (Objective-C)](/docs/tracking-methods/sdks/ios#eu-data-residency)
-- [iOS (Swift)](/docs/tracking-methods/sdks/swift#eu-data-residency)
-- [Flutter](/docs/tracking-methods/sdks/flutter#eu-data-residency)
-- [Unity](/docs/tracking-methods/sdks/unity#eu-data-residency)
-- [Python](/docs/tracking-methods/sdks/python#eu-data-residency)
-- [Node.js](/docs/tracking-methods/sdks/nodejs#eu-data-residency)
-- [Ruby](/docs/tracking-methods/sdks/ruby#eu-data-residency)
-- [PHP](/docs/tracking-methods/sdks/php#eu-data-residency)
-- [Go](/docs/tracking-methods/sdks/go#eu-data-residency)
-- [Java](/docs/tracking-methods/sdks/java#eu-data-residency)
+  1. **Verify which projects have EU Data Residency:** Navigate to [Organization Settings](/docs/orgs-and-projects/managing-projects#viewing-project-information) \> Projects and click into each Project to confirm whether Data Residency is set to EU.
+  2. **Identify Traffic:** In your EU Project(s), create an Insights Report and break down “All Events” by the API Endpoint (`$mp_api_endpoint` ) event property to determine which Ingestion Servers your events came from. `$mp_api_endpoint=api-eu.mixpanel.com` is EU and `$mp_api_endpoint=api.mixpanel.com` or `api-js.mixpanel.com` is US.
+  3. **Update and Review Implementation:** If your project has EU Data Residency, please follow the guides below that apply to your setup to ensure your data routes to our EU Servers.
 
-If you are using Mixpanel’s Ingestion API Endpoints, Proxy Server, or an Implementation not listed above:
-- Please update your Ingestion API Base URL to the [EU Residency Server](/reference/overview): `api-eu.mixpanel.com`
+  If you are using Mixpanel’s SDKs, the documentation linked below has instructions on updating your implementation code to EU:
 
-If you are using Partner Integrations that send data into Mixpanel (e.g., CDPs, Messaging, AB Testing):
-- Please contact the Partner’s Support Team for instructions on how to set the integration to point to Mixpanel’s EU Server URL.
+  - [Javascript](/docs/tracking-methods/sdks/javascript#eu-data-residency)
+  - [React Native](/docs/tracking-methods/sdks/react-native#eu-data-residency)
+  - [Android](/docs/tracking-methods/sdks/android#eu-data-residency)
+  - [iOS (Objective-C)](/docs/tracking-methods/sdks/ios#eu-data-residency)
+  - [iOS (Swift)](/docs/tracking-methods/sdks/swift#eu-data-residency)
+  - [Flutter](/docs/tracking-methods/sdks/flutter#eu-data-residency)
+  - [Unity](/docs/tracking-methods/sdks/unity#eu-data-residency)
+  - [Python](/docs/tracking-methods/sdks/python#eu-data-residency)
+  - [Node.js](/docs/tracking-methods/sdks/nodejs#eu-data-residency)
+  - [Ruby](/docs/tracking-methods/sdks/ruby#eu-data-residency)
+  - [PHP](/docs/tracking-methods/sdks/php#eu-data-residency)
+  - [Go](/docs/tracking-methods/sdks/go#eu-data-residency)
+  - [Java](/docs/tracking-methods/sdks/java#eu-data-residency)
 
-If you have questions about which specific projects we have observed US Traffic on or need further assistance, please don’t hesitate to reach out to [Mixpanel’s Support Team](/docs/response-times#contacting-mixpanel-support).
+  If you are using Mixpanel’s Ingestion API Endpoints, Proxy Server, or an Implementation not listed above:
+
+  - Please update your Ingestion API Base URL to the [EU Residency Server](/reference/overview): `api-eu.mixpanel.com`
+
+  If you are using Partner Integrations that send data into Mixpanel (e.g., CDPs, Messaging, AB Testing):
+
+  - Please contact the Partner’s Support Team for instructions on how to set the integration to point to Mixpanel’s EU Server URL.
+
+  If you have questions about which specific projects we have observed US Traffic on or need further assistance, please don’t hesitate to reach out to [Mixpanel’s Support Team](/docs/response-times#contacting-mixpanel-support).
 </Update>
 
 <Update label="2026-02-17">
