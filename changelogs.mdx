@@ -9,6 +9,37 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-07-17">
+  ## Destinations: a simpler way to send data out of Mixpanel
+
+  We've reworked the Integrations page to make it easier to create and manage Destinations, Cohort Syncs, and Data Pipelines.
+
+  With this update:
+
+  - **"Integrations" is now "Destinations":** The new name makes the page's purpose clearer — it's for connecting data flowing out of Mixpanel — and reduces confusion for users who came looking for ways to bring data in.
+  - **Destinations lives in the Data menu:** Find it under **Data → Destinations** in the main nav. It's still available in the settings menu for now, but that entry point will be removed eventually.
+  - **Onboard cohort syncs directly from Destinations:** No more bouncing between the Integrations page and Lexicon. Open a connected destination, go to the **Syncs** tab, and click **Add Cohort Sync**. Onboarding from Lexicon still works.
+  - **Separate views for connected and available destinations:** Your connected destinations and the full library are now split, making it easier to see what's already connected and to add something new.
+
+  [Learn more →](/docs/cohort-sync)
+</Update>
+
+<Update label="2026-07-14">
+  ## Passkeys
+
+  You can now sign in to Mixpanel with a passkey - no password and no one-time code. Register a passkey once and authenticate with the same Touch ID, Face ID, Windows Hello, or hardware security key you already use to unlock your device.
+
+  Passkeys are built on the WebAuthn/FIDO2 standard. The credential never leaves your device and is cryptographically bound to Mixpanel's domain, so it can't be phished, replayed, or used on a fake login page.
+
+  With this update, you can:
+
+  - **Sign in without a password:** Enable "skip password" for a fully passwordless login (org-mandated SSO still applies)
+  - **Manage your passkeys:** Register, name, and remove passkeys from Personal Settings, one per device
+  - **Stay covered if you lose a device:** Generate single-use recovery codes to sign in when you can't present a passkey
+
+  [Learn more →](/docs/access-security/login-methods#passkey-login)
+</Update>
+
 <Update label="2026-06-25">
   ## Introducing Mixpanel Agent: your always-on product analyst
 
@@ -749,25 +780,18 @@ Get all the latest updates in your inbox.
 <Update label="2026-02-20">
   ## Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for EU Projects
 
-  > **🚨 UPDATE: July 1, 2026 – US-to-EU Data Forwarding has officially ended.** \
+  > **🚨 UPDATE: July 1, 2026 – US-to-EU Data Forwarding has officially ended.** <br /><br />
   >
-  > As scheduled, we have sunset US-to-EU data forwarding. \
-  > **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI until August 1, 2026.**\
-  > \\
+  > As scheduled, we have sunset US-to-EU data forwarding. <br /> **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI and Query API endpoints until August 1, 2026.**<br /><br />
   >
-  > **How events are being filtered**\\
+  > **How events are being filtered**<br />
   >
-  > \[July 1, 2026 - August 1, 2026\]: New US-\>EU Forwarded events have not been deleted. However, they are temporarily hidden from the UI if they match all of the following criteria:
+  > \[July 1, 2026 - August 1, 2026\]: New US-\>EU Forwarded events have not been deleted. However, they are temporarily hidden from the UI and Query API endpoints if they match all of the following criteria:
   >
   > - The event was processed after July 1st (UTC) (`mp_processing_time_ms` \> `<July 1st UTC>`).
   > - The event was forwarded from the US (`$mp_is_forwarded` is defined).
   >
-  > These events will be un-hidden on August 1, 2026, so your reporting counts may change at that time. \
-  > \
-  > Events that are still being sent to the US after August 1, 2026 for EU Projects will not be accepted. \
-  > \
-  > **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss after August 1, 2026.**\
-  > \\
+  > These events are not deleted — they remain accessible via the Raw Export API during this period, and will be un-hidden on August 1, 2026, so your reporting counts may change at that time. <br /><br />**Events that are still being sent to the US after August 1, 2026 for EU Projects will not be accepted.** <br /><br /> **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss after August 1, 2026.**<br /><br />
   >
   > _Need help or want to opt out? If you wish to opt out of this UI preview and un-hide your forwarded events early, please [contact support](https://mixpanel.com/get-support)._
   >
