@@ -512,7 +512,7 @@
                   "docs/cohort-sync/webhooks",
                   "docs/cohort-sync/build-an-integration",
                   {
-                    "group": "Destinations",
+                    "group": "Integrations",
                     "root": "docs/cohort-sync/integrations",
                     "pages": [
                       "docs/cohort-sync/integrations/abtasty",
