@@ -56,7 +56,7 @@ Each vendor has its own definition of exposure event and they can be mapped to M
 
 Transform each exported exposure row into a Mixpanel `$experiment_started` event and send it through the **Mixpanel Import API**.
 
-The two required properties are **Experiment name** and **Variant name**. Keep the original exposure timestamp so historical analysis is accurate, and include a unique `$insert_id` so re-runs don't create duplicates.
+Ensure **Experiment name** and **Variant name** are correctly translated. Keep the original exposure timestamp so historical analysis is accurate, and include a unique `$insert_id` so re-runs don't create duplicates.
 
 ```javascript
 {
