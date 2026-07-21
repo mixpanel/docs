@@ -641,6 +641,7 @@
                   "guides/guides-by-workflow/embed-data",
                   "guides/guides-by-workflow/ensure-data-quality",
                   "guides/guides-by-workflow/data-privacy",
+                  "links/write-business-context",
                   "guides/guides-by-workflow/sync-with-mirror"
                 ]
               },
