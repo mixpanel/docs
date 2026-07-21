@@ -641,7 +641,6 @@
                   "guides/guides-by-workflow/embed-data",
                   "guides/guides-by-workflow/ensure-data-quality",
                   "guides/guides-by-workflow/data-privacy",
-                  "links/write-business-context",
                   "guides/guides-by-workflow/sync-with-mirror"
                 ]
               },
@@ -1301,10 +1300,6 @@
   },
   "redirects": [
     {
-      "source": "/",
-      "destination": "/docs/what-is-mixpanel"
-    },
-    {
       "source": "/changelogs/*",
       "destination": "/changelogs"
     },
@@ -1386,7 +1381,7 @@
     },
     {
       "source": "/developer-docs-redirect/data-warehouse-export",
-      "destination": "/reference/create-warehouse-pipeline"
+      "destination": "https://developer.mixpanel.com/reference/create-warehouse-pipeline"
     },
     {
       "source": "/developer-docs-redirect/flutter",
@@ -1546,7 +1541,7 @@
     },
     {
       "source": "/developer-docs-redirect/raw-export-pipeline",
-      "destination": "/reference/raw-data-export-api"
+      "destination": "https://developer.mixpanel.com/reference/raw-data-export-api"
     },
     {
       "source": "/developer-docs-redirect/react-native",
@@ -1617,1276 +1612,16 @@
       "destination": "/docs/reports/apps/jql"
     },
     {
-      "source": "/docs",
+      "source": "/",
       "destination": "/docs/what-is-mixpanel"
-    },
-    {
-      "source": "/docs/access-security/single-sign-on/overview",
-      "destination": "/docs/access-security/single-sign-on"
-    },
-    {
-      "source": "/docs/admin/data-governance/data-audit",
-      "destination": "/docs/data-governance/data-views-and-classification"
-    },
-    {
-      "source": "/docs/admin/data-governance/data-views-data-classification",
-      "destination": "/docs/data-governance/data-views-and-classification"
-    },
-    {
-      "source": "/docs/admin/data-governance/event-approval",
-      "destination": "/docs/data-governance/event-approval"
-    },
-    {
-      "source": "/docs/admin/data-governance/lexicon",
-      "destination": "/docs/data-governance/lexicon"
-    },
-    {
-      "source": "/docs/admin/organizations-projects",
-      "destination": "/docs/orgs-and-projects"
-    },
-    {
-      "source": "/docs/admin/organizations-projects/manage-organization",
-      "destination": "/docs/orgs-and-projects/organizations"
-    },
-    {
-      "source": "/docs/admin/organizations-projects/manage-projects",
-      "destination": "/docs/orgs-and-projects/managing-projects"
-    },
-    {
-      "source": "/docs/admin/organizations-projects/manage-team-members",
-      "destination": "/docs/orgs-and-projects/roles-and-permissions"
-    },
-    {
-      "source": "/docs/admin/pricing-and-plans/mixpanel-for-startups",
-      "destination": "/docs/pricing/startup-program"
-    },
-    {
-      "source": "/docs/admin/pricing-and-plans/pricing",
-      "destination": "/docs/pricing"
-    },
-    {
-      "source": "/docs/admin/pricing-plans",
-      "destination": "/docs/pricing"
-    },
-    {
-      "source": "/docs/admin/sso",
-      "destination": "/docs/access-security/single-sign-on"
-    },
-    {
-      "source": "/docs/admin/sso/azure",
-      "destination": "/docs/access-security/single-sign-on/azure"
-    },
-    {
-      "source": "/docs/admin/sso/okta",
-      "destination": "/docs/access-security/single-sign-on/okta"
-    },
-    {
-      "source": "/docs/admin/two-factor-authentication",
-      "destination": "/docs/access-security/two-factor-authentication"
-    },
-    {
-      "source": "/docs/analysis/advanced/alerts",
-      "destination": "/docs/features/alerts"
-    },
-    {
-      "source": "/docs/analysis/advanced/attribution",
-      "destination": "/docs/features/computed-properties#attribution"
-    },
-    {
-      "source": "/docs/analysis/advanced/cohorts",
-      "destination": "/docs/users/cohorts"
-    },
-    {
-      "source": "/docs/analysis/advanced/custom-events",
-      "destination": "/docs/features/custom-events"
-    },
-    {
-      "source": "/docs/analysis/advanced/custom-properties",
-      "destination": "/docs/features/custom-properties"
-    },
-    {
-      "source": "/docs/analysis/advanced/embeds",
-      "destination": "/docs/features/embeds"
-    },
-    {
-      "source": "/docs/analysis/advanced/experiments",
-      "destination": "/docs/experiments"
-    },
-    {
-      "source": "/docs/android-push-notifications",
-      "destination": "/docs"
-    },
-    {
-      "source": "/docs/analysis/advanced/group-analytics",
-      "destination": "/docs/data-structure/advanced/group-analytics"
-    },
-    {
-      "source": "/docs/analysis/advanced/impact",
-      "destination": "/docs/reports/apps/impact"
-    },
-    {
-      "source": "/docs/analysis/advanced/other-advanced-features",
-      "destination": "/docs/features/advanced"
-    },
-    {
-      "source": "/docs/analysis/advanced/other-advanced-features.md",
-      "destination": "/docs/features/advanced"
-    },
-    {
-      "source": "/docs/analysis/advanced/sessions",
-      "destination": "/docs/features/sessions"
-    },
-    {
-      "source": "/docs/analysis/advanced/signal",
-      "destination": "/docs/reports/apps/signal"
-    },
-    {
-      "source": "/docs/analysis/boards",
-      "destination": "/docs/boards"
-    },
-    {
-      "source": "/docs/analysis/boards/advanced",
-      "destination": "/docs/boards/advanced"
-    },
-    {
-      "source": "/docs/analysis/boards/boards-on-boards",
-      "destination": "/docs/boards/boards-on-boards"
-    },
-    {
-      "source": "/docs/analysis/boards/public-boards",
-      "destination": "/docs/boards/public-boards"
-    },
-    {
-      "source": "/docs/analysis/boards/templates",
-      "destination": "/docs/boards/templates"
-    },
-    {
-      "source": "/docs/analysis/how-tos/engagement",
-      "destination": "/guides/strategic-playbooks/guide-to-product-analytics/analyze-user-engagement"
-    },
-    {
-      "source": "/docs/analysis/how-tos/growth",
-      "destination": "/guides/strategic-playbooks/guide-to-product-analytics/grow-and-scale"
-    },
-    {
-      "source": "/docs/analysis/how-tos/retention",
-      "destination": "/guides/strategic-playbooks/guide-to-product-analytics/retain-your-users"
-    },
-    {
-      "source": "/docs/analysis/reports",
-      "destination": "/docs/reports"
-    },
-    {
-      "source": "/docs/analysis/reports/flows",
-      "destination": "/docs/reports/flows"
-    },
-    {
-      "source": "/docs/analysis/reports/funnels",
-      "destination": "/docs/reports/funnels"
-    },
-    {
-      "source": "/docs/analysis/reports/insights",
-      "destination": "/docs/reports/insights"
-    },
-    {
-      "source": "/docs/analysis/reports/retention",
-      "destination": "/docs/reports/retention"
-    },
-    {
-      "source": "/docs/analysis/users",
-      "destination": "/docs/users"
-    },
-    {
-      "source": "/docs/best-practices/analytics-strategy/engagement",
-      "destination": "/docs/tracking-best-practices/tracking-plan"
-    },
-    {
-      "source": "/docs/best-practices/adoption",
-      "destination": "https://mixpanel.com/blog/establish-a-product-analytics-practice"
-    },
-    {
-      "source": "/docs/best-practices/analytics-strategy",
-      "destination": "/guides/plan/framework"
-    },
-    {
-      "source": "/docs/best-practices/analytics-strategy/overview",
-      "destination": "/guides/plan/framework"
-    },
-    {
-      "source": "/docs/best-practices/analytics-strategy/retention",
-      "destination": "/guides/launch/track-user-retention"
-    },
-    {
-      "source": "/docs/best-practices/create-a-tracking-plan",
-      "destination": "/docs/tracking-best-practices/tracking-plan"
-    },
-    {
-      "source": "/docs/best-practices/developer-environments",
-      "destination": "/docs/tracking-best-practices/developer-environments"
-    },
-    {
-      "source": "/docs/best-practices/project-setup",
-      "destination": "/docs/orgs-and-projects/managing-projects"
-    },
-    {
-      "source": "/docs/best-practices/server-side-best-practices",
-      "destination": "/docs/tracking-best-practices/server-side-best-practices"
-    },
-    {
-      "source": "/docs/boards/advanced",
-      "destination": "/docs/boards"
-    },
-    {
-      "source": "/docs/boards/overview",
-      "destination": "/docs/boards"
-    },
-    {
-      "source": "/docs/cohort-sync/overview",
-      "destination": "/docs/cohort-sync"
-    },
-    {
-      "source": "/docs/data-pipelines/integrations/amazon-s3",
-      "destination": "/docs/data-pipelines/old-pipelines/integrations/schematized-aws-pipeline"
-    },
-    {
-      "source": "/docs/data-pipelines/integrations/aws-raw-pipeline",
-      "destination": "/docs/data-pipelines/integrations/raw-aws-pipeline"
-    },
-    {
-      "source": "/docs/data-pipelines/integrations/azure-raw-pipeline",
-      "destination": "/docs/data-pipelines/old-pipelines/integrations/raw-azure-pipeline"
-    },
-    {
-      "source": "/docs/data-pipelines/integrations/google-cloud-storage",
-      "destination": "/docs/data-pipelines/old-pipelines/integrations/schematized-gcs-pipeline"
-    },
-    {
-      "source": "/docs/data-pipelines/integrations/google-cloud-storage-raw-pipeline",
-      "destination": "/docs/data-pipelines/old-pipelines/integrations/raw-gcs-pipeline"
-    },
-    {
-      "source": "/docs/data-pipelines/integrations/raw-aws-pipeline",
-      "destination": "/docs/data-pipelines/old-pipelines/integrations/raw-aws-pipeline"
-    },
-    {
-      "source": "/docs/data-pipelines/old-pipelines/overview",
-      "destination": "/docs/data-pipelines/old-pipelines"
-    },
-    {
-      "source": "/docs/data-pipelines/overview",
-      "destination": "/docs/data-pipelines"
-    },
-    {
-      "source": "/docs/data-pipelines/schematized-export-pipeline",
-      "destination": "/docs/data-pipelines/old-pipelines/schematized-export-pipeline"
-    },
-    {
-      "source": "/docs/data-structure/advanced/ad-spend",
-      "destination": "/docs/tracking-methods/integrations/ad-spend"
-    },
-    {
-      "source": "/docs/data-structure/advanced/group-analytics",
-      "destination": "/docs/data-structure/group-analytics"
-    },
-    {
-      "source": "/docs/data-structure/advanced/utm-tags",
-      "destination": "/docs/tracking-best-practices/traffic-attribution"
-    },
-    {
-      "source": "/docs/debugging/bot-traffic",
-      "destination": "/docs/tracking-best-practices/bot-traffic"
-    },
-    {
-      "source": "/docs/debugging/distinct-id-limits",
-      "destination": "/docs/tracking-best-practices/hot-shard-limits"
-    },
-    {
-      "source": "/docs/debugging/overview",
-      "destination": "/docs/tracking-best-practices/debugging"
-    },
-    {
-      "source": "/docs/features/revenue_analytics",
-      "destination": "/guides/launch/revenue-analytics"
-    },
-    {
-      "source": "/docs/features/session-replay",
-      "destination": "/docs/session-replay"
-    },
-    {
-      "source": "/docs/formulas",
-      "destination": "/changelogs/2023-09-19-formulas"
-    },
-    {
-      "source": "/docs/funnels",
-      "destination": "/docs/reports/funnels"
-    },
-    {
-      "source": "/docs/getting-started",
-      "destination": "/docs/what-is-mixpanel"
-    },
-    {
-      "source": "/docs/getting-started/plan-your-implementation",
-      "destination": "/docs/what-to-track"
-    },
-    {
-      "source": "/docs/getting-started/what-is-mixpanel",
-      "destination": "/docs/what-is-mixpanel"
-    },
-    {
-      "source": "/docs/getting-started/what-should-i-track",
-      "destination": "/docs/what-to-track"
-    },
-    {
-      "source": "/docs/getting-started/what-should-i-track#how-to-track",
-      "destination": "/docs/what-to-track#we-recommend-server-side-tracking"
-    },
-    {
-      "source": "/docs/how-it-works/concepts",
-      "destination": "/docs/data-structure/concepts"
-    },
-    {
-      "source": "/docs/how-it-works/infrastructure",
-      "destination": "https://engineering.mixpanel.com/under-the-hood-of-mixpanels-infrastructure-0c7682125e9b"
-    },
-    {
-      "source": "/docs/implement-mixpanel",
-      "destination": "/docs/what-is-mixpanel"
-    },
-    {
-      "source": "/docs/insights",
-      "destination": "/docs/reports/insights"
-    },
-    {
-      "source": "/docs/ios-push-notifications",
-      "destination": "/docs"
-    },
-    {
-      "source": "/docs/javascript",
-      "destination": "/docs/tracking-methods/sdks/javascript"
-    },
-    {
-      "source": "/docs/migration/overview",
-      "destination": "/docs/migration"
-    },
-    {
-      "source": "/docs/orgs-and-projects/overview",
-      "destination": "/docs/orgs-and-projects"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/airship",
-      "destination": "/docs/cohort-sync/integrations/airship"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/appcues",
-      "destination": "/docs/cohort-sync/integrations/appcues"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/apptimize",
-      "destination": "/docs/cohort-sync/integrations/apptimize"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/braze",
-      "destination": "/docs/cohort-sync/integrations/braze"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/build-an-integration",
-      "destination": "/docs/cohort-sync/build-an-integration"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/chameleon",
-      "destination": "/docs/cohort-sync/integrations/chameleon"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/clevertap",
-      "destination": "/docs/cohort-sync/integrations/clevertap"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/cohort-webhooks",
-      "destination": "/docs/cohort-sync/webhooks"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/facebook-ads",
-      "destination": "/docs/cohort-sync/integrations/facebook-ads"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/google-ads",
-      "destination": "/docs/cohort-sync/integrations/google-ads"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/insider",
-      "destination": "/docs/cohort-sync/integrations/insider"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/iterable",
-      "destination": "/docs/cohort-sync/integrations/iterable"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/kameleoon",
-      "destination": "/docs/cohort-sync/integrations/kameleoon"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/leanplum",
-      "destination": "/docs/cohort-sync/integrations/leanplum"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/mailchimp",
-      "destination": "/docs/cohort-sync/integrations/mailchimp"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/marketo",
-      "destination": "/docs/cohort-sync/integrations/marketo"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/moengage",
-      "destination": "/docs/cohort-sync/integrations/moengage"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/onesignal",
-      "destination": "/docs/cohort-sync/integrations/onesignal"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/overview",
-      "destination": "/docs/cohort-sync"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/salesforce-marketing-cloud",
-      "destination": "/docs/cohort-sync/integrations/salesforce-marketing-cloud"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/segment",
-      "destination": "/docs/cohort-sync/integrations/segment"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/taplytics",
-      "destination": "/docs/cohort-sync/integrations/taplytics"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/vwo",
-      "destination": "/docs/cohort-sync/integrations/vwo"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/webengage",
-      "destination": "/docs/cohort-sync/integrations/webengage"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/webhooks",
-      "destination": "/docs/cohort-sync/webhooks"
-    },
-    {
-      "source": "/docs/other-bits/cohort-syncs/xtremepush",
-      "destination": "/docs/cohort-sync/integrations/xtremepush"
-    },
-    {
-      "source": "/docs/other-bits/community",
-      "destination": "/docs/community/guidelines"
-    },
-    {
-      "source": "/docs/other-bits/data-pipelines",
-      "destination": "/docs/data-pipelines"
-    },
-    {
-      "source": "/docs/other-bits/data-pipelines/aws-raw-pipeline",
-      "destination": "/docs/data-pipelines/integrations/aws-raw-pipeline"
-    },
-    {
-      "source": "/docs/other-bits/data-pipelines/azure-blob-storage",
-      "destination": "/docs/data-pipelines/integrations/azure-blob-storage"
-    },
-    {
-      "source": "/docs/other-bits/data-pipelines/azure-raw-pipeline",
-      "destination": "/docs/data-pipelines/integrations/azure-raw-pipeline"
-    },
-    {
-      "source": "/docs/other-bits/data-pipelines/gcs",
-      "destination": "/docs/data-pipelines/integrations/google-cloud-storage"
-    },
-    {
-      "source": "/docs/other-bits/data-pipelines/gcs-raw-pipeline",
-      "destination": "/docs/data-pipelines/integrations/google-cloud-storage-raw-pipeline"
-    },
-    {
-      "source": "/docs/other-bits/data-pipelines/mixpanel-amazon-s3-export",
-      "destination": "/docs/data-pipelines/old-pipelines/integrations/schematized-aws-pipeline"
-    },
-    {
-      "source": "/docs/other-bits/data-pipelines/mixpanel-bigquery-export-design",
-      "destination": "/docs/data-pipelines/integrations/bigquery"
-    },
-    {
-      "source": "/docs/other-bits/data-pipelines/mixpanel-snowflake-export",
-      "destination": "/docs/data-pipelines/integrations/snowflake"
-    },
-    {
-      "source": "/docs/other-bits/data-pipelines/schematized-export-pipeline",
-      "destination": "/docs/data-pipelines/old-pipelines/schematized-export-pipeline"
-    },
-    {
-      "source": "/docs/other-bits/jql-overview",
-      "destination": "/docs/reports/apps/jql"
-    },
-    {
-      "source": "/docs/other-bits/privacy-and-security",
-      "destination": "/docs/privacy"
-    },
-    {
-      "source": "/docs/other-bits/privacy-and-security/eu-residency",
-      "destination": "/docs/privacy/eu-residency"
-    },
-    {
-      "source": "/docs/other-bits/privacy-and-security/export-or-delete-end-user-data",
-      "destination": "/docs/privacy/end-user-data-management"
-    },
-    {
-      "source": "/docs/other-bits/privacy-and-security/gdpr-compliance",
-      "destination": "/docs/privacy/gdpr-compliance"
-    },
-    {
-      "source": "/docs/other-bits/rate-limits",
-      "destination": "/reference/query-api#rate-limits"
-    },
-    {
-      "source": "/docs/other-bits/support-and-community/community",
-      "destination": "/docs/community/guidelines"
-    },
-    {
-      "source": "/docs/other-bits/support-and-community/support",
-      "destination": "/docs/response-times"
-    },
-    {
-      "source": "/docs/other-bits/tutorials",
-      "destination": "/docs/what-is-mixpanel"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/adoption-reference-guide",
-      "destination": "/docs/best-practices/adoption"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/analytics-strategy",
-      "destination": "/docs/best-practices/analytics-strategy/overview"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/creating-a-tracking-plan",
-      "destination": "/docs/best-practices/create-a-tracking-plan"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/developers/mixpanel-for-developers-commonly-asked-questions",
-      "destination": "/docs/debugging/overview"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/developers/mixpanel-for-developers-fundamentals",
-      "destination": "/docs/how-it-works/concepts"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/developers/mixpanel-for-developers-id-management",
-      "destination": "/docs/tracking-methods/id-management/identifying-users"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/developers/mixpanel-for-developers-implementation",
-      "destination": "/docs/quickstart/install-mixpanel"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/how-to-clean-your-data",
-      "destination": "/docs/data-governance/data-clean-up"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/migration-guides",
-      "destination": "/docs/migration"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-adobe-analytics",
-      "destination": "/docs/migration/adobe-analytics"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude",
-      "destination": "/docs/migration/amplitude"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics",
-      "destination": "/docs/migration/google-analytics"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/mixpanel-analysis",
-      "destination": "/docs/how-it-works/concepts#overview"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/mixpanel-analysis/board",
-      "destination": "/docs/boards"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/mixpanel-analysis/cohort",
-      "destination": "/docs/users/cohorts"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/mixpanel-analysis/data-management",
-      "destination": "/docs/data-governance/lexicon"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/mixpanel-analysis/data-model",
-      "destination": "/docs/how-it-works/concepts"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/mixpanel-analysis/flows",
-      "destination": "/docs/reports/flows"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/mixpanel-analysis/funnels",
-      "destination": "/docs/reports/funnels"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/mixpanel-analysis/impact",
-      "destination": "/docs/reports/apps/impact"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/mixpanel-analysis/insights",
-      "destination": "/docs/reports/insights"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/mixpanel-analysis/overview",
-      "destination": "/docs/how-it-works/concepts"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/mixpanel-analysis/retention",
-      "destination": "/docs/reports/retention"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/mixpanel-analysis/signal",
-      "destination": "/docs/reports/apps/signal"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/recommended-boards",
-      "destination": "/docs/boards/templates"
-    },
-    {
-      "source": "/docs/other-bits/tutorials/setting-up-mixpanel",
-      "destination": "/docs/best-practices/project-setup"
-    },
-    {
-      "source": "/docs/other-bits/under-the-hoo",
-      "destination": "/docs/how-it-works/infrastructure"
-    },
-    {
-      "source": "/docs/other-bits/under-the-hood",
-      "destination": "/docs/how-it-works/infrastructure"
-    },
-    {
-      "source": "/docs/pricing/billing",
-      "destination": "/docs/pricing"
-    },
-    {
-      "source": "/docs/pricing/pricing-faqs",
-      "destination": "/docs/pricing#faqs"
-    },
-    {
-      "source": "/docs/pricing/pricing_faqs",
-      "destination": "/docs/pricing#faqs"
-    },
-    {
-      "source": "/docs/privacy/overview",
-      "destination": "/docs/privacy"
-    },
-    {
-      "source": "/docs/quickstart/connect-your-data",
-      "destination": "/docs/quickstart/install-mixpanel"
-    },
-    {
-      "source": "/docs/quickstart/track-events",
-      "destination": "/docs/quickstart/capture-events/track-events"
-    },
-    {
-      "source": "/docs/quickstart/what-to-track",
-      "destination": "/docs/what-to-track"
-    },
-    {
-      "source": "/docs/reports/experiments",
-      "destination": "/docs/experiments"
-    },
-    {
-      "source": "/docs/reports/funnels#counting-method",
-      "destination": "/docs/reports/funnels#measurements"
-    },
-    {
-      "source": "/docs/reports/overview",
-      "destination": "/docs/reports"
-    },
-    {
-      "source": "/docs/reports/segmentation",
-      "destination": "/docs/reports/insights"
-    },
-    {
-      "source": "/docs/search",
-      "destination": "/docs/what-is-mixpanel"
-    },
-    {
-      "source": "/docs/session-replay/session-replay-web#server-side-stitching-beta",
-      "destination": "/docs/session-replay#server-side-stitching"
-    },
-    {
-      "source": "/docs/session-replay/session-replay-web",
-      "destination": "/docs/session-replay/implement-session-replay/session-replay-web"
-    },
-    {
-      "source": "/docs/session-replay/session-replay-ios",
-      "destination": "/docs/session-replay/implement-session-replay/session-replay-ios"
-    },
-    {
-      "source": "/docs/session-replay/session-replay-android",
-      "destination": "/docs/session-replay/implement-session-replay/session-replay-android"
-    },
-    {
-      "source": "/docs/sms-notifications",
-      "destination": "/docs"
-    },
-    {
-      "source": "/docs/tracking-best-practices/distinct-id-limits",
-      "destination": "/docs/tracking-best-practices/hot-shard-limits"
-    },
-    {
-      "source": "/docs/tracking-methods/data-warehouse",
-      "destination": "/docs/tracking-methods/warehouse-connectors"
-    },
-    {
-      "source": "/docs/tracking-methods/data-warehouse#mirror",
-      "destination": "/docs/tracking-methods/warehouse-connectors#mirror"
-    },
-    {
-      "source": "/docs/tracking-methods/data-warehouse/bigquery",
-      "destination": "/docs/tracking-methods/warehouse-connectors"
-    },
-    {
-      "source": "/docs/tracking-methods/data-warehouse/column-types",
-      "destination": "/docs/tracking-methods/warehouse-connectors"
-    },
-    {
-      "source": "/docs/tracking-methods/data-warehouse/databricks",
-      "destination": "/docs/tracking-methods/warehouse-connectors"
-    },
-    {
-      "source": "/docs/tracking-methods/data-warehouse/overview",
-      "destination": "/docs/tracking-methods/warehouse-connectors"
-    },
-    {
-      "source": "/docs/tracking-methods/data-warehouse/redshift",
-      "destination": "/docs/tracking-methods/warehouse-connectors"
-    },
-    {
-      "source": "/docs/tracking-methods/data-warehouse/sending-events",
-      "destination": "/docs/tracking-methods/warehouse-connectors"
-    },
-    {
-      "source": "/docs/tracking-methods/data-warehouse/sending-user-profiles",
-      "destination": "/docs/tracking-methods/warehouse-connectors"
-    },
-    {
-      "source": "/docs/tracking-methods/data-warehouse/snowflake",
-      "destination": "/docs/tracking-methods/warehouse-connectors"
-    },
-    {
-      "source": "/docs/tracking-methods/id-management/identifying-users",
-      "destination": "/docs/tracking-methods/id-management/identifying-users-simplified"
-    },
-    {
-      "source": "/docs/tracking-methods/id-management/identity-management",
-      "destination": "/docs/tracking-methods/id-management"
-    },
-    {
-      "source": "/docs/tracking-methods/identifying-users",
-      "destination": "/docs/tracking-methods/id-management/identifying-users"
-    },
-    {
-      "source": "/docs/tracking/advanced/javascript-full-api-reference",
-      "destination": "/docs/tracking-methods/sdks/javascript"
-    },
-    {
-      "source": "/docs/tracking/bigquery",
-      "destination": "/docs/tracking-methods/data-warehouse/bigquery"
-    },
-    {
-      "source": "/docs/tracking/data-warehouse",
-      "destination": "/docs/tracking-methods/data-warehouse/overview"
-    },
-    {
-      "source": "/docs/tracking/data-warehouse/bigquery",
-      "destination": "/docs/tracking-methods/data-warehouse/bigquery"
-    },
-    {
-      "source": "/docs/tracking/data-warehouse/databricks",
-      "destination": "/docs/tracking-methods/data-warehouse/databricks"
-    },
-    {
-      "source": "/docs/tracking/data-warehouse/events",
-      "destination": "/docs/tracking-methods/data-warehouse/sending-events"
-    },
-    {
-      "source": "/docs/tracking/data-warehouse/groups",
-      "destination": "/docs/tracking-methods/data-warehouse/sending-group-profiles"
-    },
-    {
-      "source": "/docs/tracking/data-warehouse/redshift",
-      "destination": "/docs/tracking-methods/data-warehouse/redshift"
-    },
-    {
-      "source": "/docs/tracking/data-warehouse/snowflake",
-      "destination": "/docs/tracking-methods/data-warehouse/snowflake"
-    },
-    {
-      "source": "/docs/tracking/data-warehouse/users",
-      "destination": "/docs/tracking-methods/data-warehouse/sending-user-profiles"
-    },
-    {
-      "source": "/docs/tracking/how-tos/ad-spend",
-      "destination": "/docs/data-structure/advanced/ad-spend"
-    },
-    {
-      "source": "/docs/tracking/how-tos/api-credentials",
-      "destination": "/docs/quickstart/install-mixpanel"
-    },
-    {
-      "source": "/docs/tracking/how-tos/debugging",
-      "destination": "/docs/debugging/overview"
-    },
-    {
-      "source": "/docs/tracking/how-tos/effective-server",
-      "destination": "/docs/best-practices/server-side-best-practices"
-    },
-    {
-      "source": "/docs/tracking/how-tos/effective-server-side-tracking",
-      "destination": "/docs/best-practices/server-side-best-practices"
-    },
-    {
-      "source": "/docs/tracking/how-tos/event-properties",
-      "destination": "/docs/data-structure/events-and-properties"
-    },
-    {
-      "source": "/docs/tracking/how-tos/events-and-properties",
-      "destination": "/docs/data-structure/events-and-properties"
-    },
-    {
-      "source": "/docs/tracking/how-tos/identifying-users",
-      "destination": "/docs/tracking-methods/id-management/identifying-users"
-    },
-    {
-      "source": "/docs/tracking/how-tos/lookup-tables",
-      "destination": "/docs/data-structure/lookup-tables"
-    },
-    {
-      "source": "/docs/tracking/how-tos/privacy-friendly-tracking",
-      "destination": "/docs/privacy/protecting-user-data"
-    },
-    {
-      "source": "/docs/tracking/how-tos/set-up-projects",
-      "destination": "/docs/best-practices/developer-environments"
-    },
-    {
-      "source": "/docs/tracking/how-tos/tracking-utm-tags",
-      "destination": "/docs/data-structure/advanced/utm-tags"
-    },
-    {
-      "source": "/docs/tracking/how-tos/tracking-via-proxy",
-      "destination": "/docs/tracking-methods/sdks/javascript"
-    },
-    {
-      "source": "/docs/tracking/how-tos/user-profiles",
-      "destination": "/docs/data-structure/user-profiles"
-    },
-    {
-      "source": "/docs/tracking/how-tos/utm",
-      "destination": "/docs/data-structure/advanced/utm-tags"
-    },
-    {
-      "source": "/docs/tracking/http-api",
-      "destination": "/docs/quickstart/track-events?sdk=httpapi"
-    },
-    {
-      "source": "/docs/tracking/integrations/bigquery",
-      "destination": "/docs/tracking-methods/data-warehouse/bigquery"
-    },
-    {
-      "source": "/docs/tracking/integrations/freshpaint",
-      "destination": "/docs/tracking-methods/integrations/freshpaint"
-    },
-    {
-      "source": "/docs/tracking/integrations/gcs-import",
-      "destination": "/docs/tracking-methods/integrations/google-tag-manager"
-    },
-    {
-      "source": "/docs/tracking/integrations/google-pubsub",
-      "destination": "/docs/tracking-methods/integrations/google-pubsub"
-    },
-    {
-      "source": "/docs/tracking/integrations/google-tag-manager",
-      "destination": "/docs/tracking-methods/integrations/google-tag-manager"
-    },
-    {
-      "source": "/docs/tracking/integrations/mparticle",
-      "destination": "/docs/tracking-methods/integrations/mparticle"
-    },
-    {
-      "source": "/docs/tracking/integrations/rudderstack",
-      "destination": "/docs/tracking-methods/integrations/rudderstack"
-    },
-    {
-      "source": "/docs/tracking/integrations/s3-import",
-      "destination": "/docs/tracking-methods/integrations/amazon-s3"
-    },
-    {
-      "source": "/docs/tracking/integrations/segment",
-      "destination": "/docs/tracking-methods/integrations/segment"
-    },
-    {
-      "source": "/docs/tracking/integrations/snowflake",
-      "destination": "/docs/tracking-methods/data-warehouse/snowflake"
-    },
-    {
-      "source": "/docs/tracking/integrations/snowplow",
-      "destination": "/docs/tracking-methods/integrations/snowplow"
-    },
-    {
-      "source": "/docs/tracking/javascript-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=javascript"
-    },
-    {
-      "source": "/docs/tracking/mobile",
-      "destination": "/docs/tracking/reference/mobile-sdk"
-    },
-    {
-      "source": "/docs/tracking/mobile/android",
-      "destination": "/docs/tracking-methods/sdks/android"
-    },
-    {
-      "source": "/docs/tracking/reference/android",
-      "destination": "/docs/tracking-methods/sdks/android"
-    },
-    {
-      "source": "/docs/tracking/reference/data-model",
-      "destination": "/docs/how-it-works/concepts"
-    },
-    {
-      "source": "/docs/tracking/reference/default-properties",
-      "destination": "/docs/data-structure/property-reference"
-    },
-    {
-      "source": "/docs/tracking/reference/distinct-id-limits",
-      "destination": "/docs/tracking-best-practices/hot-shard-limits"
-    },
-    {
-      "source": "/docs/tracking/reference/flutter",
-      "destination": "/docs/tracking-methods/sdks/flutter"
-    },
-    {
-      "source": "/docs/tracking/reference/go",
-      "destination": "/docs/tracking-methods/sdks/go"
-    },
-    {
-      "source": "/docs/tracking/reference/ios",
-      "destination": "/docs/tracking-methods/sdks/ios"
-    },
-    {
-      "source": "/docs/tracking/reference/java",
-      "destination": "/docs/tracking-methods/sdks/java"
-    },
-    {
-      "source": "/docs/tracking/reference/javascript",
-      "destination": "/docs/tracking-methods/sdks/javascript"
-    },
-    {
-      "source": "/docs/tracking/reference/javascript-full-api-reference",
-      "destination": "/docs/tracking-methods/sdks/javascript"
-    },
-    {
-      "source": "/docs/tracking/reference/mobile-sdk",
-      "destination": "/docs/tracking-methods/sdks/android"
-    },
-    {
-      "source": "/docs/tracking/reference/nodejs",
-      "destination": "/docs/tracking-methods/sdks/nodejs"
-    },
-    {
-      "source": "/docs/tracking/reference/php",
-      "destination": "/docs/tracking-methods/sdks/php"
-    },
-    {
-      "source": "/docs/tracking/reference/python",
-      "destination": "/docs/tracking-methods/sdks/python"
-    },
-    {
-      "source": "/docs/tracking/reference/react-native",
-      "destination": "/docs/tracking-methods/sdks/react-native"
-    },
-    {
-      "source": "/docs/tracking/reference/ruby",
-      "destination": "/docs/tracking-methods/sdks/ruby"
-    },
-    {
-      "source": "/docs/tracking/reference/swift",
-      "destination": "/docs/tracking-methods/sdks/swift"
-    },
-    {
-      "source": "/docs/tracking/reference/unity",
-      "destination": "/docs/tracking-methods/sdks/unity"
-    },
-    {
-      "source": "/docs/tracking/server",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=python"
-    },
-    {
-      "source": "/docs/tutorials/analytics-strategy",
-      "destination": "/guides/analytics-strategy"
-    },
-    {
-      "source": "/docs/tutorials/beyond-onboarding",
-      "destination": "/guides/beyond-onboarding"
-    },
-    {
-      "source": "/docs/tutorials/developers",
-      "destination": "/docs/how-it-works/concepts"
-    },
-    {
-      "source": "/docs/tutorials/implement/establish-governance",
-      "destination": "/guides/implement/establish-governance"
-    },
-    {
-      "source": "/docs/tutorials/implement/qa-data-audit",
-      "destination": "/guides/implement/qa-data-audit"
-    },
-    {
-      "source": "/docs/tutorials/implement/send-your-data",
-      "destination": "/guides/implement/send-your-data"
-    },
-    {
-      "source": "/docs/tutorials/launch/analyze-conversions",
-      "destination": "/guides/launch/analyze-conversions"
-    },
-    {
-      "source": "/docs/tutorials/launch/build-user-flows",
-      "destination": "/guides/launch/build-user-flows"
-    },
-    {
-      "source": "/docs/tutorials/launch/create-boards",
-      "destination": "/guides/launch/create-boards"
-    },
-    {
-      "source": "/docs/tutorials/launch/define-cohorts",
-      "destination": "/guides/launch/define-cohorts"
-    },
-    {
-      "source": "/docs/tutorials/launch/discover-insights",
-      "destination": "/guides/launch/discover-insights"
-    },
-    {
-      "source": "/docs/tutorials/launch/track-user-retention",
-      "destination": "/guides/launch/track-user-retention"
-    },
-    {
-      "source": "/docs/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics",
-      "destination": "/docs/migration/google-analytics"
-    },
-    {
-      "source": "/docs/tutorials/mixpanel-analysis",
-      "destination": "/docs/how-it-works/concepts#overview"
-    },
-    {
-      "source": "/docs/tutorials/mixpanel-analysis/insights",
-      "destination": "/docs/reports/insights"
-    },
-    {
-      "source": "/docs/tutorials/mixpanel-analysis/retention",
-      "destination": "/docs/reports/retention"
-    },
-    {
-      "source": "/docs/tutorials/onboarding-overview",
-      "destination": "/guides/onboarding-overview"
-    },
-    {
-      "source": "/docs/tutorials/plan/framework",
-      "destination": "/guides/plan/framework"
-    },
-    {
-      "source": "/docs/tutorials/plan/setup",
-      "destination": "/guides/plan/setup"
-    },
-    {
-      "source": "/docs/tutorials/plan/tracking-strategy",
-      "destination": "/guides/plan/tracking-strategy"
-    },
-    {
-      "source": "/docs/users/overview",
-      "destination": "/docs/users"
-    },
-    {
-      "source": "/docs/features/attribution",
-      "destination": "/docs/features/computed-properties#attribution"
-    },
-    {
-      "source": "/docs/session-replay/implement-session-replay",
-      "destination": "/docs/session-replay"
-    },
-    {
-      "source": "/docs/session-replay/implement-session-replay/session-replay-web",
-      "destination": "/docs/tracking-methods/sdks/javascript/javascript-replay"
-    },
-    {
-      "source": "/docs/session-replay/implement-session-replay/session-replay-ios",
-      "destination": "/docs/tracking-methods/sdks/swift/swift-replay"
-    },
-    {
-      "source": "/docs/session-replay/implement-session-replay/session-replay-android",
-      "destination": "/docs/tracking-methods/sdks/android/android-replay"
-    },
-    {
-      "source": "/docs/features/advanced",
-      "destination": "/docs/reports"
-    },
-    {
-      "source": "/docs/features/mcp",
-      "destination": "/docs/mcp"
-    },
-    {
-      "source": "/docs/mixpanel-ai/mcp",
-      "destination": "/docs/mcp"
-    },
-    {
-      "source": "/docs/features/saved-behaviors",
-      "destination": "/docs/features/saved-metrics-and-behaviors"
-    },
-    {
-      "source": "/docs/feature-flags/runtime-events",
-      "destination": "/docs/featureflags"
-    },
-    {
-      "source": "/docs/integration-libraries/javascript-full-%20api",
-      "destination": "/docs/tracking-methods/sdks/javascript"
-    },
-    {
-      "source": "/docs/migration/flurry",
-      "destination": "/docs/migration"
-    },
-    {
-      "source": "/docs/reports/apps/experiments",
-      "destination": "/docs/experiments"
-    },
-    {
-      "source": "/docs/features/spark",
-      "destination": "/docs/mixpanel-agent"
-    },
-    {
-      "source": "/guides",
-      "destination": "/guides/mixpanel-introduction"
-    },
-    {
-      "source": "/guides/analytics-strategy",
-      "destination": "/guides/plan/framework"
-    },
-    {
-      "source": "/guides/onboarding-overview",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook"
-    },
-    {
-      "source": "/guides/plan/setup",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/setup"
-    },
-    {
-      "source": "/guides/plan/framework",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/framework"
-    },
-    {
-      "source": "/guides/plan/tracking-strategy",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/tracking-strategy"
-    },
-    {
-      "source": "/guides/implement/send-your-data",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/send-your-data"
-    },
-    {
-      "source": "/guides/implement/qa-data-audit",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/qa-data-audit"
-    },
-    {
-      "source": "/guides/implement/establish-governance",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/establish-governance"
-    },
-    {
-      "source": "/guides/launch/create-boards",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/launch/create-boards"
-    },
-    {
-      "source": "/guides/launch/discover-insights",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/launch/discover-insights"
-    },
-    {
-      "source": "/guides/launch/analyze-conversions",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/launch/analyze-conversions"
-    },
-    {
-      "source": "/guides/launch/build-user-flows",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/launch/build-user-flows"
-    },
-    {
-      "source": "/guides/launch/track-user-retention",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/launch/track-user-retention"
-    },
-    {
-      "source": "/guides/launch/define-cohorts",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/launch/define-cohorts"
-    },
-    {
-      "source": "/guides/launch/revenue-analytics",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/launch/revenue-analytics"
-    },
-    {
-      "source": "/guides/beyond-onboarding",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/beyond-onboarding"
-    },
-    {
-      "source": "/guides/what-is-mixpanel",
-      "destination": "/guides/mixpanel-introduction"
-    },
-    {
-      "source": "/guides/guides-by-use-case/driving-product-innovation",
-      "destination": "/guides/guides-by-use-case/engage-your-users/drive-product-innovation"
-    },
-    {
-      "source": "/guides/guides-by-use-case/ensuring-data-quality",
-      "destination": "/guides/guides-by-workflow/ensure-data-quality"
-    },
-    {
-      "source": "/guides/guides-by-use-case/build-a-tracking-strategy",
-      "destination": "/guides/guides-by-workflow/build-tracking-strategy"
-    },
-    {
-      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/create-boards",
-      "destination": "/guides/guides-by-topic/core-reports/create-boards"
-    },
-    {
-      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/discover-insights",
-      "destination": "/guides/guides-by-topic/core-reports/discover-insights"
-    },
-    {
-      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/analyze-conversions",
-      "destination": "/guides/guides-by-topic/core-reports/analyze-conversions"
-    },
-    {
-      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/build-user-flows",
-      "destination": "/guides/guides-by-topic/core-reports/build-user-flows"
-    },
-    {
-      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/define-cohorts",
-      "destination": "/guides/guides-by-topic/core-reports/define-cohorts"
-    },
-    {
-      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/track-user-retention",
-      "destination": "/guides/guides-by-topic/core-reports/track-user-retention"
-    },
-    {
-      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/revenue-analytics",
-      "destination": "/docs/features/revenue-analytics"
-    },
-    {
-      "source": "/guides/playbooks/project-migration",
-      "destination": "/guides/strategic-playbooks/project-migration"
     },
     {
       "source": "/hc/en-us",
       "destination": "/"
+    },
+    {
+      "source": "/docs/search",
+      "destination": "/docs/what-is-mixpanel"
     },
     {
       "source": "/hc",
@@ -2957,10 +1692,6 @@
       "destination": "https://mixpanel.com/legal/privacy-policy"
     },
     {
-      "source": "/hc/en-us/articles/115004494783-EU-US-Privacy-Shield-Framework",
-      "destination": "https://mixpanel.com/legal/privacy-policy"
-    },
-    {
       "source": "/hc/en-us/articles/115004494803*",
       "destination": "/docs/privacy/protecting-user-data#disabling-geolocation"
     },
@@ -3003,10 +1734,6 @@
     {
       "source": "/hc/en-us/articles/115004505106*",
       "destination": "/docs/orgs-and-projects/managing-projects#creating-projects"
-    },
-    {
-      "source": "/hc/en-us/articles/115004507523-How-is-Mixpanel-different-from-Google-Analytics-",
-      "destination": "https://mixpanel.com/compare-to/google-analytics"
     },
     {
       "source": "/hc/en-us/articles/115004507523*",
@@ -3078,11 +1805,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004560686*",
-      "destination": "https://mixpanel.com/blog/what-is-web-analytics/"
-    },
-    {
-      "source": "/hc/en-us/articles/115004560686-Why-measure-events-vs-page-views-",
-      "destination": "https://mixpanel.com/blog/what-is-web-analytics/"
+      "destination": "https://mixpanel.com/blog/the-death-of-the-pageview/"
     },
     {
       "source": "/hc/en-us/articles/115004560846*",
@@ -3166,7 +1889,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004602563*",
-      "destination": "/reference/raw-event-export"
+      "destination": "https://developer.mixpanel.com/reference/raw-event-export"
     },
     {
       "source": "/hc/en-us/articles/115004613766*",
@@ -3862,15 +2585,15 @@
     },
     {
       "source": "/hc/en-us/articles/7646382971796*",
-      "destination": "/guides/strategic-playbooks/guide-to-product-analytics/analyze-user-engagement"
+      "destination": "https://mixpanel.com/content/guide-to-product-analytics/chapter_3/"
     },
     {
       "source": "/hc/en-us/articles/7647069378196*",
-      "destination": "/guides/strategic-playbooks/guide-to-product-analytics/retain-your-users"
+      "destination": "https://mixpanel.com/content/guide-to-product-analytics/chapter_4/"
     },
     {
       "source": "/hc/en-us/articles/7647365321620*",
-      "destination": "/guides/strategic-playbooks/guide-to-product-analytics/grow-and-scale"
+      "destination": "https://mixpanel.com/content/guide-to-product-analytics/chapter_5/"
     },
     {
       "source": "/hc/en-us/articles/7651210894740*",
@@ -3967,6 +2690,1266 @@
     {
       "source": "/hc/en-us/sections/360008533532*",
       "destination": "/docs/what-is-mixpanel"
+    },
+    {
+      "source": "/docs",
+      "destination": "/docs/what-is-mixpanel"
+    },
+    {
+      "source": "/docs/access-security/single-sign-on/overview",
+      "destination": "/docs/access-security/single-sign-on"
+    },
+    {
+      "source": "/docs/admin/data-governance/data-audit",
+      "destination": "/docs/data-governance/data-views-and-classification"
+    },
+    {
+      "source": "/docs/admin/data-governance/data-views-data-classification",
+      "destination": "/docs/data-governance/data-views-and-classification"
+    },
+    {
+      "source": "/docs/admin/data-governance/event-approval",
+      "destination": "/docs/data-governance/event-approval"
+    },
+    {
+      "source": "/docs/admin/data-governance/lexicon",
+      "destination": "/docs/data-governance/lexicon"
+    },
+    {
+      "source": "/docs/admin/organizations-projects",
+      "destination": "/docs/orgs-and-projects"
+    },
+    {
+      "source": "/docs/admin/organizations-projects/manage-organization",
+      "destination": "/docs/orgs-and-projects/organizations"
+    },
+    {
+      "source": "/docs/admin/organizations-projects/manage-projects",
+      "destination": "/docs/orgs-and-projects/managing-projects"
+    },
+    {
+      "source": "/docs/admin/organizations-projects/manage-team-members",
+      "destination": "/docs/orgs-and-projects/roles-and-permissions"
+    },
+    {
+      "source": "/docs/admin/pricing-and-plans/mixpanel-for-startups",
+      "destination": "/docs/pricing/startup-program"
+    },
+    {
+      "source": "/docs/admin/pricing-and-plans/pricing",
+      "destination": "/docs/pricing"
+    },
+    {
+      "source": "/docs/admin/pricing-plans",
+      "destination": "/docs/pricing"
+    },
+    {
+      "source": "/docs/admin/sso",
+      "destination": "/docs/access-security/single-sign-on"
+    },
+    {
+      "source": "/docs/admin/sso/azure",
+      "destination": "/docs/access-security/single-sign-on/azure"
+    },
+    {
+      "source": "/docs/admin/sso/okta",
+      "destination": "/docs/access-security/single-sign-on/okta"
+    },
+    {
+      "source": "/docs/admin/two-factor-authentication",
+      "destination": "/docs/access-security/two-factor-authentication"
+    },
+    {
+      "source": "/docs/analysis/advanced/alerts",
+      "destination": "/docs/features/alerts"
+    },
+    {
+      "source": "/docs/analysis/advanced/attribution",
+      "destination": "/docs/features/computed-properties#attribution"
+    },
+    {
+      "source": "/docs/analysis/advanced/cohorts",
+      "destination": "/docs/users/cohorts"
+    },
+    {
+      "source": "/docs/analysis/advanced/custom-events",
+      "destination": "/docs/features/custom-events"
+    },
+    {
+      "source": "/docs/analysis/advanced/custom-properties",
+      "destination": "/docs/features/custom-properties"
+    },
+    {
+      "source": "/docs/analysis/advanced/embeds",
+      "destination": "/docs/features/embeds"
+    },
+    {
+      "source": "/docs/analysis/advanced/experiments",
+      "destination": "/docs/experiments"
+    },
+    {
+      "source": "/docs/reports/experiments",
+      "destination": "/docs/experiments"
+    },
+    {
+      "source": "/docs/analysis/advanced/group-analytics",
+      "destination": "/docs/data-structure/advanced/group-analytics"
+    },
+    {
+      "source": "/docs/analysis/advanced/impact",
+      "destination": "/docs/reports/apps/impact"
+    },
+    {
+      "source": "/docs/analysis/advanced/other-advanced-features",
+      "destination": "/docs/features/advanced"
+    },
+    {
+      "source": "/docs/analysis/advanced/other-advanced-features.md",
+      "destination": "/docs/features/advanced"
+    },
+    {
+      "source": "/docs/analysis/advanced/sessions",
+      "destination": "/docs/features/sessions"
+    },
+    {
+      "source": "/docs/analysis/advanced/signal",
+      "destination": "/docs/reports/apps/signal"
+    },
+    {
+      "source": "/docs/analysis/boards",
+      "destination": "/docs/boards"
+    },
+    {
+      "source": "/docs/analysis/boards/advanced",
+      "destination": "/docs/boards/advanced"
+    },
+    {
+      "source": "/docs/analysis/boards/boards-on-boards",
+      "destination": "/docs/boards/boards-on-boards"
+    },
+    {
+      "source": "/docs/analysis/boards/public-boards",
+      "destination": "/docs/boards/public-boards"
+    },
+    {
+      "source": "/docs/analysis/boards/templates",
+      "destination": "/docs/boards/templates"
+    },
+    {
+      "source": "/docs/analysis/how-tos/engagement",
+      "destination": "https://mixpanel.com/content/guide-to-product-analytics/chapter_3/"
+    },
+    {
+      "source": "/docs/analysis/how-tos/growth",
+      "destination": "https://mixpanel.com/content/guide-to-product-analytics/chapter_5/"
+    },
+    {
+      "source": "/docs/analysis/how-tos/retention",
+      "destination": "https://mixpanel.com/content/guide-to-product-analytics/chapter_4/"
+    },
+    {
+      "source": "/docs/analysis/reports",
+      "destination": "/docs/reports"
+    },
+    {
+      "source": "/docs/analysis/reports/flows",
+      "destination": "/docs/reports/flows"
+    },
+    {
+      "source": "/docs/analysis/reports/funnels",
+      "destination": "/docs/reports/funnels"
+    },
+    {
+      "source": "/docs/analysis/reports/insights",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/docs/analysis/reports/retention",
+      "destination": "/docs/reports/retention"
+    },
+    {
+      "source": "/docs/analysis/users",
+      "destination": "/docs/users"
+    },
+    {
+      "source": "/docs/best-practices/analytics-strategy/engagement",
+      "destination": "/docs/tracking-best-practices/tracking-plan"
+    },
+    {
+      "source": "/docs/best-practices/adoption",
+      "destination": "https://mixpanel.com/blog/establish-a-product-analytics-practice/"
+    },
+    {
+      "source": "/docs/best-practices/analytics-strategy",
+      "destination": "/guides/plan/framework"
+    },
+    {
+      "source": "/docs/best-practices/analytics-strategy/overview",
+      "destination": "/guides/plan/framework"
+    },
+    {
+      "source": "/docs/best-practices/analytics-strategy/retention",
+      "destination": "/guides/launch/track-user-retention"
+    },
+    {
+      "source": "/docs/best-practices/create-a-tracking-plan",
+      "destination": "/docs/tracking-best-practices/tracking-plan"
+    },
+    {
+      "source": "/docs/best-practices/developer-environments",
+      "destination": "/docs/tracking-best-practices/developer-environments"
+    },
+    {
+      "source": "/docs/best-practices/project-setup",
+      "destination": "/docs/orgs-and-projects/managing-projects"
+    },
+    {
+      "source": "/docs/best-practices/server-side-best-practices",
+      "destination": "/docs/tracking-best-practices/server-side-best-practices"
+    },
+    {
+      "source": "/docs/boards/advanced",
+      "destination": "/docs/boards"
+    },
+    {
+      "source": "/docs/boards/overview",
+      "destination": "/docs/boards"
+    },
+    {
+      "source": "/docs/cohort-sync/overview",
+      "destination": "/docs/cohort-sync"
+    },
+    {
+      "source": "/docs/data-pipelines/integrations/amazon-s3",
+      "destination": "/docs/data-pipelines/old-pipelines/integrations/schematized-aws-pipeline"
+    },
+    {
+      "source": "/docs/data-pipelines/integrations/aws-raw-pipeline",
+      "destination": "/docs/data-pipelines/integrations/raw-aws-pipeline"
+    },
+    {
+      "source": "/docs/data-pipelines/integrations/azure-raw-pipeline",
+      "destination": "/docs/data-pipelines/old-pipelines/integrations/raw-azure-pipeline"
+    },
+    {
+      "source": "/docs/data-pipelines/integrations/google-cloud-storage",
+      "destination": "/docs/data-pipelines/old-pipelines/integrations/schematized-gcs-pipeline"
+    },
+    {
+      "source": "/docs/data-pipelines/integrations/google-cloud-storage-raw-pipeline",
+      "destination": "/docs/data-pipelines/old-pipelines/integrations/raw-gcs-pipeline"
+    },
+    {
+      "source": "/docs/data-pipelines/integrations/raw-aws-pipeline",
+      "destination": "/docs/data-pipelines/old-pipelines/integrations/raw-aws-pipeline"
+    },
+    {
+      "source": "/docs/data-pipelines/old-pipelines/overview",
+      "destination": "/docs/data-pipelines/old-pipelines"
+    },
+    {
+      "source": "/docs/data-pipelines/overview",
+      "destination": "/docs/data-pipelines"
+    },
+    {
+      "source": "/docs/data-pipelines/schematized-export-pipeline",
+      "destination": "/docs/data-pipelines/old-pipelines/schematized-export-pipeline"
+    },
+    {
+      "source": "/docs/data-structure/advanced/ad-spend",
+      "destination": "/docs/tracking-methods/integrations/ad-spend"
+    },
+    {
+      "source": "/docs/data-structure/advanced/group-analytics",
+      "destination": "/docs/data-structure/group-analytics"
+    },
+    {
+      "source": "/docs/data-structure/advanced/utm-tags",
+      "destination": "/docs/tracking-best-practices/traffic-attribution"
+    },
+    {
+      "source": "/docs/debugging/bot-traffic",
+      "destination": "/docs/tracking-best-practices/bot-traffic"
+    },
+    {
+      "source": "/docs/debugging/distinct-id-limits",
+      "destination": "/docs/tracking-best-practices/hot-shard-limits"
+    },
+    {
+      "source": "/docs/debugging/overview",
+      "destination": "/docs/tracking-best-practices/debugging"
+    },
+    {
+      "source": "/docs/features/revenue_analytics",
+      "destination": "/guides/launch/revenue-analytics"
+    },
+    {
+      "source": "/docs/features/session-replay",
+      "destination": "/docs/session-replay"
+    },
+    {
+      "source": "/docs/formulas",
+      "destination": "/changelogs/2023-09-19-formulas"
+    },
+    {
+      "source": "/docs/funnels",
+      "destination": "/docs/reports/funnels"
+    },
+    {
+      "source": "/docs/getting-started",
+      "destination": "/docs/what-is-mixpanel"
+    },
+    {
+      "source": "/docs/getting-started/plan-your-implementation",
+      "destination": "/docs/what-to-track"
+    },
+    {
+      "source": "/docs/getting-started/what-is-mixpanel",
+      "destination": "/docs/what-is-mixpanel"
+    },
+    {
+      "source": "/docs/getting-started/what-should-i-track",
+      "destination": "/docs/what-to-track"
+    },
+    {
+      "source": "/docs/getting-started/what-should-i-track#how-to-track",
+      "destination": "/docs/what-to-track#we-recommend-server-side-tracking"
+    },
+    {
+      "source": "/docs/how-it-works/concepts",
+      "destination": "/docs/data-structure/concepts"
+    },
+    {
+      "source": "/docs/how-it-works/infrastructure",
+      "destination": "https://engineering.mixpanel.com/under-the-hood-of-mixpanels-infrastructure-0c7682125e9b"
+    },
+    {
+      "source": "/docs/implement-mixpanel",
+      "destination": "/docs/what-is-mixpanel"
+    },
+    {
+      "source": "/docs/insights",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/docs/javascript",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/docs/migration/overview",
+      "destination": "/docs/migration"
+    },
+    {
+      "source": "/docs/orgs-and-projects/overview",
+      "destination": "/docs/orgs-and-projects"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/airship",
+      "destination": "/docs/cohort-sync/integrations/airship"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/appcues",
+      "destination": "/docs/cohort-sync/integrations/appcues"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/apptimize",
+      "destination": "/docs/cohort-sync/integrations/apptimize"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/braze",
+      "destination": "/docs/cohort-sync/integrations/braze"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/build-an-integration",
+      "destination": "/docs/cohort-sync/build-an-integration"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/chameleon",
+      "destination": "/docs/cohort-sync/integrations/chameleon"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/clevertap",
+      "destination": "/docs/cohort-sync/integrations/clevertap"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/cohort-webhooks",
+      "destination": "/docs/cohort-sync/webhooks"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/facebook-ads",
+      "destination": "/docs/cohort-sync/integrations/facebook-ads"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/google-ads",
+      "destination": "/docs/cohort-sync/integrations/google-ads"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/insider",
+      "destination": "/docs/cohort-sync/integrations/insider"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/iterable",
+      "destination": "/docs/cohort-sync/integrations/iterable"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/kameleoon",
+      "destination": "/docs/cohort-sync/integrations/kameleoon"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/leanplum",
+      "destination": "/docs/cohort-sync/integrations/leanplum"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/mailchimp",
+      "destination": "/docs/cohort-sync/integrations/mailchimp"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/marketo",
+      "destination": "/docs/cohort-sync/integrations/marketo"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/moengage",
+      "destination": "/docs/cohort-sync/integrations/moengage"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/onesignal",
+      "destination": "/docs/cohort-sync/integrations/onesignal"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/overview",
+      "destination": "/docs/cohort-sync"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/salesforce-marketing-cloud",
+      "destination": "/docs/cohort-sync/integrations/salesforce-marketing-cloud"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/segment",
+      "destination": "/docs/cohort-sync/integrations/segment"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/taplytics",
+      "destination": "/docs/cohort-sync/integrations/taplytics"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/vwo",
+      "destination": "/docs/cohort-sync/integrations/vwo"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/webengage",
+      "destination": "/docs/cohort-sync/integrations/webengage"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/webhooks",
+      "destination": "/docs/cohort-sync/webhooks"
+    },
+    {
+      "source": "/docs/other-bits/cohort-syncs/xtremepush",
+      "destination": "/docs/cohort-sync/integrations/xtremepush"
+    },
+    {
+      "source": "/docs/other-bits/community",
+      "destination": "/docs/community/guidelines"
+    },
+    {
+      "source": "/docs/other-bits/data-pipelines",
+      "destination": "/docs/data-pipelines"
+    },
+    {
+      "source": "/docs/other-bits/data-pipelines/aws-raw-pipeline",
+      "destination": "/docs/data-pipelines/integrations/aws-raw-pipeline"
+    },
+    {
+      "source": "/docs/other-bits/data-pipelines/azure-blob-storage",
+      "destination": "/docs/data-pipelines/integrations/azure-blob-storage"
+    },
+    {
+      "source": "/docs/other-bits/data-pipelines/azure-raw-pipeline",
+      "destination": "/docs/data-pipelines/integrations/azure-raw-pipeline"
+    },
+    {
+      "source": "/docs/other-bits/data-pipelines/gcs",
+      "destination": "/docs/data-pipelines/integrations/google-cloud-storage"
+    },
+    {
+      "source": "/docs/other-bits/data-pipelines/gcs-raw-pipeline",
+      "destination": "/docs/data-pipelines/integrations/google-cloud-storage-raw-pipeline"
+    },
+    {
+      "source": "/docs/other-bits/data-pipelines/mixpanel-amazon-s3-export",
+      "destination": "/docs/data-pipelines/old-pipelines/integrations/schematized-aws-pipeline"
+    },
+    {
+      "source": "/docs/other-bits/data-pipelines/mixpanel-bigquery-export-design",
+      "destination": "/docs/data-pipelines/integrations/bigquery"
+    },
+    {
+      "source": "/docs/other-bits/data-pipelines/mixpanel-snowflake-export",
+      "destination": "/docs/data-pipelines/integrations/snowflake"
+    },
+    {
+      "source": "/docs/other-bits/data-pipelines/schematized-export-pipeline",
+      "destination": "/docs/data-pipelines/old-pipelines/schematized-export-pipeline"
+    },
+    {
+      "source": "/docs/other-bits/jql-overview",
+      "destination": "/docs/reports/apps/jql"
+    },
+    {
+      "source": "/docs/other-bits/privacy-and-security",
+      "destination": "/docs/privacy"
+    },
+    {
+      "source": "/docs/other-bits/privacy-and-security/eu-residency",
+      "destination": "/docs/privacy/eu-residency"
+    },
+    {
+      "source": "/docs/other-bits/privacy-and-security/export-or-delete-end-user-data",
+      "destination": "/docs/privacy/end-user-data-management"
+    },
+    {
+      "source": "/docs/other-bits/privacy-and-security/gdpr-compliance",
+      "destination": "/docs/privacy/gdpr-compliance"
+    },
+    {
+      "source": "/docs/other-bits/rate-limits",
+      "destination": "https://developer.mixpanel.com/reference/query-api#rate-limits"
+    },
+    {
+      "source": "/docs/other-bits/support-and-community/community",
+      "destination": "/docs/community/guidelines"
+    },
+    {
+      "source": "/docs/other-bits/support-and-community/support",
+      "destination": "/docs/response-times"
+    },
+    {
+      "source": "/docs/other-bits/tutorials",
+      "destination": "/docs/what-is-mixpanel"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/adoption-reference-guide",
+      "destination": "/docs/best-practices/adoption"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/analytics-strategy",
+      "destination": "/docs/best-practices/analytics-strategy/overview"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/creating-a-tracking-plan",
+      "destination": "/docs/best-practices/create-a-tracking-plan"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/developers/mixpanel-for-developers-commonly-asked-questions",
+      "destination": "/docs/debugging/overview"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/developers/mixpanel-for-developers-fundamentals",
+      "destination": "/docs/how-it-works/concepts"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/developers/mixpanel-for-developers-id-management",
+      "destination": "/docs/tracking-methods/id-management/identifying-users"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/developers/mixpanel-for-developers-implementation",
+      "destination": "/docs/quickstart/install-mixpanel"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/how-to-clean-your-data",
+      "destination": "/docs/data-governance/data-clean-up"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/migration-guides",
+      "destination": "/docs/migration"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-adobe-analytics",
+      "destination": "/docs/migration/adobe-analytics"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-amplitude",
+      "destination": "/docs/migration/amplitude"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics",
+      "destination": "/docs/migration/google-analytics"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/mixpanel-analysis",
+      "destination": "/docs/how-it-works/concepts#overview"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/mixpanel-analysis/board",
+      "destination": "/docs/boards"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/mixpanel-analysis/cohort",
+      "destination": "/docs/users/cohorts"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/mixpanel-analysis/data-management",
+      "destination": "/docs/data-governance/lexicon"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/mixpanel-analysis/data-model",
+      "destination": "/docs/how-it-works/concepts"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/mixpanel-analysis/flows",
+      "destination": "/docs/reports/flows"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/mixpanel-analysis/funnels",
+      "destination": "/docs/reports/funnels"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/mixpanel-analysis/impact",
+      "destination": "/docs/reports/apps/impact"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/mixpanel-analysis/insights",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/mixpanel-analysis/overview",
+      "destination": "/docs/how-it-works/concepts"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/mixpanel-analysis/retention",
+      "destination": "/docs/reports/retention"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/mixpanel-analysis/signal",
+      "destination": "/docs/reports/apps/signal"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/recommended-boards",
+      "destination": "/docs/boards/templates"
+    },
+    {
+      "source": "/docs/other-bits/tutorials/setting-up-mixpanel",
+      "destination": "/docs/best-practices/project-setup"
+    },
+    {
+      "source": "/docs/other-bits/under-the-hoo",
+      "destination": "/docs/how-it-works/infrastructure"
+    },
+    {
+      "source": "/docs/other-bits/under-the-hood",
+      "destination": "/docs/how-it-works/infrastructure"
+    },
+    {
+      "source": "/docs/pricing/billing",
+      "destination": "/docs/pricing"
+    },
+    {
+      "source": "/docs/pricing/pricing-faqs",
+      "destination": "/docs/pricing#faqs"
+    },
+    {
+      "source": "/docs/pricing/pricing_faqs",
+      "destination": "/docs/pricing#faqs"
+    },
+    {
+      "source": "/docs/privacy/overview",
+      "destination": "/docs/privacy"
+    },
+    {
+      "source": "/docs/quickstart/connect-your-data",
+      "destination": "/docs/quickstart/install-mixpanel"
+    },
+    {
+      "source": "/docs/quickstart/track-events",
+      "destination": "/docs/quickstart/capture-events/track-events"
+    },
+    {
+      "source": "/docs/quickstart/what-to-track",
+      "destination": "/docs/what-to-track"
+    },
+    {
+      "source": "/docs/reports/funnels#counting-method",
+      "destination": "/docs/reports/funnels#measurements"
+    },
+    {
+      "source": "/docs/reports/overview",
+      "destination": "/docs/reports"
+    },
+    {
+      "source": "/docs/reports/segmentation",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/docs/session-replay/session-replay-web#server-side-stitching-beta",
+      "destination": "/docs/session-replay#server-side-stitching"
+    },
+    {
+      "source": "/docs/session-replay/session-replay-web",
+      "destination": "/docs/session-replay/implement-session-replay/session-replay-web"
+    },
+    {
+      "source": "/docs/session-replay/session-replay-ios",
+      "destination": "/docs/session-replay/implement-session-replay/session-replay-ios"
+    },
+    {
+      "source": "/docs/session-replay/session-replay-android",
+      "destination": "/docs/session-replay/implement-session-replay/session-replay-android"
+    },
+    {
+      "source": "/docs/tracking-best-practices/distinct-id-limits",
+      "destination": "/docs/tracking-best-practices/hot-shard-limits"
+    },
+    {
+      "source": "/docs/tracking-methods/data-warehouse",
+      "destination": "/docs/tracking-methods/warehouse-connectors"
+    },
+    {
+      "source": "/docs/tracking-methods/data-warehouse#mirror",
+      "destination": "/docs/tracking-methods/warehouse-connectors#mirror"
+    },
+    {
+      "source": "/docs/tracking-methods/data-warehouse/bigquery",
+      "destination": "/docs/tracking-methods/warehouse-connectors"
+    },
+    {
+      "source": "/docs/tracking-methods/data-warehouse/column-types",
+      "destination": "/docs/tracking-methods/warehouse-connectors"
+    },
+    {
+      "source": "/docs/tracking-methods/data-warehouse/databricks",
+      "destination": "/docs/tracking-methods/warehouse-connectors"
+    },
+    {
+      "source": "/docs/tracking-methods/data-warehouse/overview",
+      "destination": "/docs/tracking-methods/warehouse-connectors"
+    },
+    {
+      "source": "/docs/tracking-methods/data-warehouse/redshift",
+      "destination": "/docs/tracking-methods/warehouse-connectors"
+    },
+    {
+      "source": "/docs/tracking-methods/data-warehouse/sending-events",
+      "destination": "/docs/tracking-methods/warehouse-connectors"
+    },
+    {
+      "source": "/docs/tracking-methods/data-warehouse/sending-user-profiles",
+      "destination": "/docs/tracking-methods/warehouse-connectors"
+    },
+    {
+      "source": "/docs/tracking-methods/data-warehouse/snowflake",
+      "destination": "/docs/tracking-methods/warehouse-connectors"
+    },
+    {
+      "source": "/docs/tracking-methods/id-management/identifying-users",
+      "destination": "/docs/tracking-methods/id-management/identifying-users-simplified"
+    },
+    {
+      "source": "/docs/tracking-methods/id-management/identity-management",
+      "destination": "/docs/tracking-methods/id-management"
+    },
+    {
+      "source": "/docs/tracking-methods/identifying-users",
+      "destination": "/docs/tracking-methods/id-management/identifying-users"
+    },
+    {
+      "source": "/docs/tracking/advanced/javascript-full-api-reference",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/docs/tracking/bigquery",
+      "destination": "/docs/tracking-methods/data-warehouse/bigquery"
+    },
+    {
+      "source": "/docs/tracking/data-warehouse",
+      "destination": "/docs/tracking-methods/data-warehouse/overview"
+    },
+    {
+      "source": "/docs/tracking/data-warehouse/bigquery",
+      "destination": "/docs/tracking-methods/data-warehouse/bigquery"
+    },
+    {
+      "source": "/docs/tracking/data-warehouse/databricks",
+      "destination": "/docs/tracking-methods/data-warehouse/databricks"
+    },
+    {
+      "source": "/docs/tracking/data-warehouse/events",
+      "destination": "/docs/tracking-methods/data-warehouse/sending-events"
+    },
+    {
+      "source": "/docs/tracking/data-warehouse/groups",
+      "destination": "/docs/tracking-methods/data-warehouse/sending-group-profiles"
+    },
+    {
+      "source": "/docs/tracking/data-warehouse/redshift",
+      "destination": "/docs/tracking-methods/data-warehouse/redshift"
+    },
+    {
+      "source": "/docs/tracking/data-warehouse/snowflake",
+      "destination": "/docs/tracking-methods/data-warehouse/snowflake"
+    },
+    {
+      "source": "/docs/tracking/data-warehouse/users",
+      "destination": "/docs/tracking-methods/data-warehouse/sending-user-profiles"
+    },
+    {
+      "source": "/docs/tracking/how-tos/ad-spend",
+      "destination": "/docs/data-structure/advanced/ad-spend"
+    },
+    {
+      "source": "/docs/tracking/how-tos/api-credentials",
+      "destination": "/docs/quickstart/install-mixpanel"
+    },
+    {
+      "source": "/docs/tracking/how-tos/debugging",
+      "destination": "/docs/debugging/overview"
+    },
+    {
+      "source": "/docs/tracking/how-tos/effective-server",
+      "destination": "/docs/best-practices/server-side-best-practices"
+    },
+    {
+      "source": "/docs/tracking/how-tos/effective-server-side-tracking",
+      "destination": "/docs/best-practices/server-side-best-practices"
+    },
+    {
+      "source": "/docs/tracking/how-tos/event-properties",
+      "destination": "/docs/data-structure/events-and-properties"
+    },
+    {
+      "source": "/docs/tracking/how-tos/events-and-properties",
+      "destination": "/docs/data-structure/events-and-properties"
+    },
+    {
+      "source": "/docs/tracking/how-tos/identifying-users",
+      "destination": "/docs/tracking-methods/id-management/identifying-users"
+    },
+    {
+      "source": "/docs/tracking/how-tos/lookup-tables",
+      "destination": "/docs/data-structure/lookup-tables"
+    },
+    {
+      "source": "/docs/tracking/how-tos/privacy-friendly-tracking",
+      "destination": "/docs/privacy/protecting-user-data"
+    },
+    {
+      "source": "/docs/tracking/how-tos/set-up-projects",
+      "destination": "/docs/best-practices/developer-environments"
+    },
+    {
+      "source": "/docs/tracking/how-tos/tracking-utm-tags",
+      "destination": "/docs/data-structure/advanced/utm-tags"
+    },
+    {
+      "source": "/docs/tracking/how-tos/tracking-via-proxy",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/docs/tracking/how-tos/user-profiles",
+      "destination": "/docs/data-structure/user-profiles"
+    },
+    {
+      "source": "/docs/tracking/how-tos/utm",
+      "destination": "/docs/data-structure/advanced/utm-tags"
+    },
+    {
+      "source": "/docs/tracking/http-api",
+      "destination": "/docs/quickstart/track-events?sdk=httpapi"
+    },
+    {
+      "source": "/docs/tracking/integrations/bigquery",
+      "destination": "/docs/tracking-methods/data-warehouse/bigquery"
+    },
+    {
+      "source": "/docs/tracking/integrations/freshpaint",
+      "destination": "/docs/tracking-methods/integrations/freshpaint"
+    },
+    {
+      "source": "/docs/tracking/integrations/gcs-import",
+      "destination": "/docs/tracking-methods/integrations/google-tag-manager"
+    },
+    {
+      "source": "/docs/tracking/integrations/google-pubsub",
+      "destination": "/docs/tracking-methods/integrations/google-pubsub"
+    },
+    {
+      "source": "/docs/tracking/integrations/google-tag-manager",
+      "destination": "/docs/tracking-methods/integrations/google-tag-manager"
+    },
+    {
+      "source": "/docs/tracking/integrations/mparticle",
+      "destination": "/docs/tracking-methods/integrations/mparticle"
+    },
+    {
+      "source": "/docs/tracking/integrations/rudderstack",
+      "destination": "/docs/tracking-methods/integrations/rudderstack"
+    },
+    {
+      "source": "/docs/tracking/integrations/s3-import",
+      "destination": "/docs/tracking-methods/integrations/amazon-s3"
+    },
+    {
+      "source": "/docs/tracking/integrations/segment",
+      "destination": "/docs/tracking-methods/integrations/segment"
+    },
+    {
+      "source": "/docs/tracking/integrations/snowflake",
+      "destination": "/docs/tracking-methods/data-warehouse/snowflake"
+    },
+    {
+      "source": "/docs/tracking/integrations/snowplow",
+      "destination": "/docs/tracking-methods/integrations/snowplow"
+    },
+    {
+      "source": "/docs/tracking/javascript-quickstart",
+      "destination": "/docs/quickstart/install-mixpanel?sdk=javascript"
+    },
+    {
+      "source": "/docs/tracking/mobile",
+      "destination": "/docs/tracking/reference/mobile-sdk"
+    },
+    {
+      "source": "/docs/tracking/mobile/android",
+      "destination": "/docs/tracking-methods/sdks/android"
+    },
+    {
+      "source": "/docs/tracking/reference/android",
+      "destination": "/docs/tracking-methods/sdks/android"
+    },
+    {
+      "source": "/docs/tracking/reference/data-model",
+      "destination": "/docs/how-it-works/concepts"
+    },
+    {
+      "source": "/docs/tracking/reference/default-properties",
+      "destination": "/docs/data-structure/property-reference"
+    },
+    {
+      "source": "/docs/tracking/reference/distinct-id-limits",
+      "destination": "/docs/tracking-best-practices/hot-shard-limits"
+    },
+    {
+      "source": "/docs/tracking/reference/flutter",
+      "destination": "/docs/tracking-methods/sdks/flutter"
+    },
+    {
+      "source": "/docs/tracking/reference/go",
+      "destination": "/docs/tracking-methods/sdks/go"
+    },
+    {
+      "source": "/docs/tracking/reference/ios",
+      "destination": "/docs/tracking-methods/sdks/ios"
+    },
+    {
+      "source": "/docs/tracking/reference/java",
+      "destination": "/docs/tracking-methods/sdks/java"
+    },
+    {
+      "source": "/docs/tracking/reference/javascript",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/docs/tracking/reference/javascript-full-api-reference",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/docs/tracking/reference/mobile-sdk",
+      "destination": "/docs/tracking-methods/sdks/android"
+    },
+    {
+      "source": "/docs/tracking/reference/nodejs",
+      "destination": "/docs/tracking-methods/sdks/nodejs"
+    },
+    {
+      "source": "/docs/tracking/reference/php",
+      "destination": "/docs/tracking-methods/sdks/php"
+    },
+    {
+      "source": "/docs/tracking/reference/python",
+      "destination": "/docs/tracking-methods/sdks/python"
+    },
+    {
+      "source": "/docs/tracking/reference/react-native",
+      "destination": "/docs/tracking-methods/sdks/react-native"
+    },
+    {
+      "source": "/docs/tracking/reference/ruby",
+      "destination": "/docs/tracking-methods/sdks/ruby"
+    },
+    {
+      "source": "/docs/tracking/reference/swift",
+      "destination": "/docs/tracking-methods/sdks/swift"
+    },
+    {
+      "source": "/docs/tracking/reference/unity",
+      "destination": "/docs/tracking-methods/sdks/unity"
+    },
+    {
+      "source": "/docs/tracking/server",
+      "destination": "/docs/quickstart/install-mixpanel?sdk=python"
+    },
+    {
+      "source": "/docs/tutorials/analytics-strategy",
+      "destination": "/guides/analytics-strategy"
+    },
+    {
+      "source": "/docs/tutorials/beyond-onboarding",
+      "destination": "/guides/beyond-onboarding"
+    },
+    {
+      "source": "/docs/tutorials/developers",
+      "destination": "/docs/how-it-works/concepts"
+    },
+    {
+      "source": "/docs/tutorials/implement/establish-governance",
+      "destination": "/guides/implement/establish-governance"
+    },
+    {
+      "source": "/docs/tutorials/implement/qa-data-audit",
+      "destination": "/guides/implement/qa-data-audit"
+    },
+    {
+      "source": "/docs/tutorials/implement/send-your-data",
+      "destination": "/guides/implement/send-your-data"
+    },
+    {
+      "source": "/docs/tutorials/launch/analyze-conversions",
+      "destination": "/guides/launch/analyze-conversions"
+    },
+    {
+      "source": "/docs/tutorials/launch/build-user-flows",
+      "destination": "/guides/launch/build-user-flows"
+    },
+    {
+      "source": "/docs/tutorials/launch/create-boards",
+      "destination": "/guides/launch/create-boards"
+    },
+    {
+      "source": "/docs/tutorials/launch/define-cohorts",
+      "destination": "/guides/launch/define-cohorts"
+    },
+    {
+      "source": "/docs/tutorials/launch/discover-insights",
+      "destination": "/guides/launch/discover-insights"
+    },
+    {
+      "source": "/docs/tutorials/launch/track-user-retention",
+      "destination": "/guides/launch/track-user-retention"
+    },
+    {
+      "source": "/docs/tutorials/migration-guides/migrating-to-mixpanel-from-google-analytics",
+      "destination": "/docs/migration/google-analytics"
+    },
+    {
+      "source": "/docs/tutorials/mixpanel-analysis",
+      "destination": "/docs/how-it-works/concepts#overview"
+    },
+    {
+      "source": "/docs/tutorials/mixpanel-analysis/insights",
+      "destination": "/docs/reports/insights"
+    },
+    {
+      "source": "/docs/tutorials/mixpanel-analysis/retention",
+      "destination": "/docs/reports/retention"
+    },
+    {
+      "source": "/docs/tutorials/onboarding-overview",
+      "destination": "/guides/onboarding-overview"
+    },
+    {
+      "source": "/docs/tutorials/plan/framework",
+      "destination": "/guides/plan/framework"
+    },
+    {
+      "source": "/docs/tutorials/plan/setup",
+      "destination": "/guides/plan/setup"
+    },
+    {
+      "source": "/docs/tutorials/plan/tracking-strategy",
+      "destination": "/guides/plan/tracking-strategy"
+    },
+    {
+      "source": "/docs/users/overview",
+      "destination": "/docs/users"
+    },
+    {
+      "source": "/guides",
+      "destination": "/guides/mixpanel-introduction"
+    },
+    {
+      "source": "/guides/analytics-strategy",
+      "destination": "/guides/plan/framework"
+    },
+    {
+      "source": "/docs/features/attribution",
+      "destination": "/docs/features/computed-properties#attribution"
+    },
+    {
+      "source": "/docs/session-replay/implement-session-replay",
+      "destination": "/docs/session-replay"
+    },
+    {
+      "source": "/docs/session-replay/implement-session-replay/session-replay-web",
+      "destination": "/docs/tracking-methods/sdks/javascript/javascript-replay"
+    },
+    {
+      "source": "/docs/session-replay/implement-session-replay/session-replay-ios",
+      "destination": "/docs/tracking-methods/sdks/swift/swift-replay"
+    },
+    {
+      "source": "/docs/session-replay/implement-session-replay/session-replay-android",
+      "destination": "/docs/tracking-methods/sdks/android/android-replay"
+    },
+    {
+      "source": "/docs/features/advanced",
+      "destination": "/docs/reports"
+    },
+    {
+      "source": "/docs/features/mcp",
+      "destination": "/docs/mcp"
+    },
+    {
+      "source": "/docs/mixpanel-ai/mcp",
+      "destination": "/docs/mcp"
+    },
+    {
+      "source": "/guides/onboarding-overview",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
+    },
+    {
+      "source": "/guides/plan/setup",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/setup"
+    },
+    {
+      "source": "/guides/plan/framework",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/framework"
+    },
+    {
+      "source": "/guides/plan/tracking-strategy",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/tracking-strategy"
+    },
+    {
+      "source": "/guides/implement/send-your-data",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/send-your-data"
+    },
+    {
+      "source": "/guides/implement/qa-data-audit",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/qa-data-audit"
+    },
+    {
+      "source": "/guides/implement/establish-governance",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/establish-governance"
+    },
+    {
+      "source": "/guides/launch/create-boards",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook/launch/create-boards"
+    },
+    {
+      "source": "/guides/launch/discover-insights",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook/launch/discover-insights"
+    },
+    {
+      "source": "/guides/launch/analyze-conversions",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook/launch/analyze-conversions"
+    },
+    {
+      "source": "/guides/launch/build-user-flows",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook/launch/build-user-flows"
+    },
+    {
+      "source": "/guides/launch/track-user-retention",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook/launch/track-user-retention"
+    },
+    {
+      "source": "/guides/launch/define-cohorts",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook/launch/define-cohorts"
+    },
+    {
+      "source": "/guides/launch/revenue-analytics",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook/launch/revenue-analytics"
+    },
+    {
+      "source": "/guides/beyond-onboarding",
+      "destination": "/guides/strategic-playbooks/onboarding-playbook/beyond-onboarding"
+    },
+    {
+      "source": "/guides/what-is-mixpanel",
+      "destination": "/guides/mixpanel-introduction"
+    },
+    {
+      "source": "/guides/guides-by-use-case/driving-product-innovation",
+      "destination": "/guides/guides-by-use-case/engage-your-users/drive-product-innovation"
+    },
+    {
+      "source": "/guides/guides-by-use-case/ensuring-data-quality",
+      "destination": "/guides/guides-by-workflow/ensure-data-quality"
+    },
+    {
+      "source": "/guides/guides-by-use-case/build-a-tracking-strategy",
+      "destination": "/guides/guides-by-workflow/build-tracking-strategy"
+    },
+    {
+      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/create-boards",
+      "destination": "/guides/guides-by-topic/core-reports/create-boards"
+    },
+    {
+      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/discover-insights",
+      "destination": "/guides/guides-by-topic/core-reports/discover-insights"
+    },
+    {
+      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/analyze-conversions",
+      "destination": "/guides/guides-by-topic/core-reports/analyze-conversions"
+    },
+    {
+      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/build-user-flows",
+      "destination": "/guides/guides-by-topic/core-reports/build-user-flows"
+    },
+    {
+      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/define-cohorts",
+      "destination": "/guides/guides-by-topic/core-reports/define-cohorts"
+    },
+    {
+      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/track-user-retention",
+      "destination": "/guides/guides-by-topic/core-reports/track-user-retention"
+    },
+    {
+      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/revenue-analytics",
+      "destination": "/docs/features/revenue-analytics"
+    },
+    {
+      "source": "/docs/features/saved-behaviors",
+      "destination": "/docs/features/saved-metrics-and-behaviors"
+    },
+    {
+      "source": "/docs/feature-flags/runtime-events",
+      "destination": "/docs/featureflags"
+    },
+    {
+      "source": "/docs/integration-libraries/javascript-full-%20api",
+      "destination": "/docs/tracking-methods/sdks/javascript"
+    },
+    {
+      "source": "/docs/migration/flurry",
+      "destination": "/docs/migration"
+    },
+    {
+      "source": "/docs/reports/apps/experiments",
+      "destination": "/docs/experiments"
+    },
+    {
+      "source": "/guides/playbooks/project-migration",
+      "destination": "/guides/strategic-playbooks/project-migration"
+    },
+    {
+      "source": "/troubleshooting/docs/features/sessions",
+      "destination": "/docs/features/sessions"
+    },
+    {
+      "source": "/troubleshooting/docs/tracking-best-practices/traffic-attribution",
+      "destination": "/docs/tracking-best-practices/traffic-attribution"
+    },
+    {
+      "source": "/docs/features/spark",
+      "destination": "/docs/mixpanel-agent"
     },
     {
       "source": "/hc/en-us/articles/115004490463*",
@@ -4743,14 +4726,6 @@
     {
       "source": "/hc/en-us/articles/115005736163*",
       "destination": "/docs/reports/funnels"
-    },
-    {
-      "source": "/troubleshooting/docs/features/sessions",
-      "destination": "/docs/features/sessions"
-    },
-    {
-      "source": "/troubleshooting/docs/tracking-best-practices/traffic-attribution",
-      "destination": "/docs/tracking-best-practices/traffic-attribution"
     }
   ]
 }
