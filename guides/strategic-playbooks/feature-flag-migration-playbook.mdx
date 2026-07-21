@@ -310,6 +310,8 @@ You will need to make two API calls:
 
 Now that you've recreated your flags and experiments through the API, it's time to continue the Feature Flag and Experiment setup in Mixpanel.
 
+Go to 'Feature Flags' and search for the name of the feature flag that you have imported via the Mixpanel API. 
+
 ### Feature Flag setup
 
 There are custom configurations that require additional effort to set up in Mixpanel, such as user attribute targeting, cohort conditions, and runtime evaluation. Set these up in Mixpanel directly.
@@ -320,10 +322,10 @@ There are custom configurations that require additional effort to set up in Mixp
 
 ### Experiment setup
 
-Once you have imported the `$experiment_started` events into Mixpanel, you need to create a corresponding Mixpanel Experiment report. Go to Experiments \> New Experiment, and select _3rd Party Feature Flag_.
+Once you have imported the experiment into Mixpanel, a corresponding Mixpanel Experiment report will be created. You will need to continue populating this experiment with the right  configuration and metrics. Go to Experiments, and search for your experiment by name.
 
 <Frame>
-  ![Experiment Setup](/images/ExperimentSetup.png)
+  ![Screenshot 2026 07 21 At 4 36 21 PM](/images/Screenshot-2026-07-21-at-4.36.21-PM.png)
 </Frame>
 
 Map each of your vendor's experiment metrics to a Mixpanel metric so the same success criteria are measured.
