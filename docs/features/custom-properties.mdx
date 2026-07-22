@@ -1,6 +1,6 @@
 ---
-sidebarTitle: "Custom Properties"
 title: "Custom Properties: Calculate new properties on the fly"
+sidebarTitle: "Custom Properties"
 ---
 
 <Note>
@@ -14,38 +14,31 @@ Custom properties let you combine existing properties into new properties on the
 ## Creating a Custom Property
 
 <Steps>
+  <Step title="Click the plus button to the right of the search bar, then select either “Custom Event Property” or “Custom User Property” to open the property builder">
+    <Frame>
+      ![image](/images/1_create_a_custom_property.png)
+    </Frame>
+  </Step>
+  <Step title="Give your property a name">
+    <Frame>
+      ![image](/images/2_assign_a_name.png)
+    </Frame>
+  </Step>
+  <Step title="Click the formula bar to start defining the calculations to perform for your property">
+    If you're new to this feature, we recommend starting with one of the examples. Click the **Insert Example** drop down to populate the box with a use-case specific custom property.
 
+    When writing your formula, click **Ctrl \+ Space** to see a list of all the available [functions and their descriptions](/docs/features/custom-properties#functions). Type **period (.)** to open the menu for choosing an event/profile properties to add to the custom property definition.
 
-<Step title="Click the plus button to the right of the search bar, then select either “Custom Event Property” or “Custom User Property” to open the property builder">
+    If you are creating a “Custom Event Property” both event and user profile properties will be available to select. If you are creating a “Custom Profile Property” only user profile properties will be available for use in the custom property.
 
-<Frame>
-![image](/images/1_create_a_custom_property.png)
-</Frame>
-</Step>
+    <Note>
+      Note that the formula used to compose your custom property can't be longer than 20,000 characters.
+    </Note>
 
-<Step title="Give your property a name">
-
-<Frame>
-![image](/images/2_assign_a_name.png)
-</Frame>
-</Step>
-
-<Step title="Click the formula bar to start defining the calculations to perform for your property">
-
-If you're new to this feature, we recommend starting with one of the examples. Click the **Insert Example** drop down to populate the box with a use-case specific custom property.
-
-When writing your formula, click **Ctrl + Space** to see a list of all the available [functions and their descriptions](/docs/features/custom-properties#functions). Type **period (.)** to open the menu for choosing an event/profile properties to add to the custom property definition. 
-
-If you are creating a “Custom Event Property” both event and user profile properties will be available to select. If you are creating a “Custom Profile Property” only user profile properties will be available for use in the custom property.
-
-<Note>
-Note that the formula used to compose your custom property can't be longer than 20,000 characters.
-</Note>
-
-<Frame>
-![image](/images/98a4e5f0-6b9b-414b-8dfe-feecdb837078.png)
-</Frame>
-</Step>
+    <Frame>
+      ![image](/images/98a4e5f0-6b9b-414b-8dfe-feecdb837078.png)
+    </Frame>
+  </Step>
 </Steps>
 
 ## Saving and Reusing a Custom Property
@@ -59,14 +52,15 @@ When you create custom properties and select **Save as Custom Property**, your c
 **Grouping Marketing Channels**
 
 If you're a marketer, using Mixpanel to show the impact of various channels on acquisition, you might want to group your UTM Sources into higher level buckets. For example:
-* Facebook, Instagram, Twitter → Social
-* Google, Bing → Search
-* Everything else → Organic
+
+- Facebook, Instagram, Twitter → Social
+- Google, Bing → Search
+- Everything else → Organic
 
 You can also use the [Channel Classifier](/changelogs/2023-11-16-channel-classifier) template in custom properties as a starting point.
 
 <Frame>
-![image](/images/channel-classifier.png "Channel Classifier")
+  ![image](/images/channel-classifier.png)
 </Frame>
 
 **Compute Properties Mathematically from Other Properties**
@@ -74,9 +68,8 @@ You can also use the [Channel Classifier](/changelogs/2023-11-16-channel-classif
 If you have an e-commerce app, you can combine "price" and "quantity" properties into a "total price" property as follows:
 
 <Frame>
-![image](/images/b514f908-6838-45ff-bdea-feb6969e0340.png)
+  ![image](/images/b514f908-6838-45ff-bdea-feb6969e0340.png)
 </Frame>
-
 
 **Compute the Number of Days Between Two Date Properties**
 
@@ -85,7 +78,7 @@ Use custom properties to compute the date/time difference between two date prope
 A new custom property can be defined by taking into account the “Created” property and using the following transformation:
 
 <Frame>
-![image](/images/3f099385-9b2c-4e5c-9f73-e72a807e133e.png)
+  ![image](/images/3f099385-9b2c-4e5c-9f73-e72a807e133e.png)
 </Frame>
 
 **Compare Different Properties**
@@ -99,7 +92,7 @@ A company wants to find out what percentage of purchases are being made by users
 They can create a custom property to determine whether the two country values are the same with this transformation:
 
 <Frame>
-![image](/images/c9b2a70a-60d7-4563-9b59-b21d3c5b86cc.png)
+  ![image](/images/c9b2a70a-60d7-4563-9b59-b21d3c5b86cc.png)
 </Frame>
 
 **Extract Domain from Email Address**
@@ -107,7 +100,7 @@ They can create a custom property to determine whether the two country values ar
 Extract the domain of the email from an email address. You can parse out parts of a string after "@" using the SPLIT function:
 
 <Frame>
-![image](/images/daf38804-4bfc-40a4-bed2-8d391bd4ebda.png)
+  ![image](/images/daf38804-4bfc-40a4-bed2-8d391bd4ebda.png)
 </Frame>
 
 **Query a List with an Index**
@@ -117,11 +110,38 @@ Let's say you have a list of recommendations as a property, and you’d like to 
 You can parse out the first delivery ID in a list property with several DeliveryIDs:
 
 <Frame>
-![image](/images/7532e7ea-d9cb-44c1-aa8b-48a343ec3d9a.png)
+  ![image](/images/7532e7ea-d9cb-44c1-aa8b-48a343ec3d9a.png)
 </Frame>
 
 The same syntax works with objects.
 
+## Additional Examples
+
+Below are more formulas for common transformations, covering date math, string parsing, URL handling, and working with lists of objects. You would have to adjust these to meet your use case. Click into any example to see the formula applied in a sample report.
+
+<Note>
+  It requires a Mixpanel account and being part of the Demo project to view the example reports.
+</Note>
+
+| Use Case | Formula | Explanation |
+| --- | --- | --- |
+| [Time difference in minutes](https://mixpanel.com/s/4zgrQZ) between two date properties (e.g. `Updated at` & `Created`) | `(NUMBER(Updated at) - NUMBER(Created)) / 60` | Converts dates into Epoch time using `NUMBER()`, calculates the difference, then divides by 60 to get minutes. |
+| [Check if a URL parameter exists](https://mixpanel.com/s/3kBvKa) (e.g. `ref=email`) | `IF("ref=email" IN Current URL, TRUE, FALSE)` | Returns `TRUE` if the parameter exists in the URL, otherwise `FALSE`. |
+| [Combine two string properties](https://mixpanel.com/s/1JC9zr) (e.g. `Name` & `Email`) | `Name + " - " + Email` | Uses the `+` operator for string concatenation to join the two properties with `" - "` in between. |
+| [Years since a date](https://mixpanel.com/s/2aTWC4) (e.g. `Date of Birth`) | `DATEDIF(Date of Birth, TODAY(), "Y")` | Uses `DATEDIF()` to subtract two dates (`TODAY()` − `Date of Birth`) and return the difference in years. |
+| [Match a URL pattern](https://mixpanel.com/s/KcJx8) against a specific structure | `REGEX_MATCH(Current URL, "https://.*/example/blog/.*/one")` | Returns `TRUE` if the URL starts with `https://`, followed by any domain, `/example/blog/`, any string, and `/one`. Otherwise `FALSE`. |
+| [Rename property values](https://mixpanel.com/s/1jJpQt) depending on the current value | `IFS(Page Variant == "A", "First test", Page Variant == "B", "Second test", DEFINED(Page Variant), "Others")` | Assigns a new string for each existing value. Unmatched values are classified as `"Others"`. |
+| [Days since first event](https://mixpanel.com/s/2YAcV9) (e.g. within 365 days of `First Seen`) | `DATEDIF(First Seen, Time, "D")` | Uses `DATEDIF()` to return the difference between the first and queried event in days. |
+| [Extract the hour](https://mixpanel.com/s/3d0L9K) from an ISO date property | `NUMBER(MID(STRING(Time), 12, 2))` | Uses `MID()` to extract the hour, starting at index 12 for 2 characters. |
+| [Split events into time buckets](https://mixpanel.com/s/4BImgV) (e.g. work shifts) | `LET(X, NUMBER(MID(Time, 12, 2)), IFS(X >= 0 AND X < 6, "Dawn Shift", X >= 6 AND X < 11, "Morning Shift", X >= 11 AND X < 18, "Afternoon Shift", X >= 18 AND X < 24, "Night Shift"))` | Uses `LET()` to assign the extracted hour to a variable, then groups it into a named shift. |
+| [Group by platform](https://mixpanel.com/s/3eshLv) (Mobile vs. Desktop) | `IFS(Operating System == "Android", "Mobile", Operating System == "iOS", "Mobile", Operating System == "Windows", "Desktop", Operating System == "Mac OS X", "Desktop", TRUE, Operating System)` | Classifies known Operating System values into Mobile or Desktop groups. |
+| [Map "not set" to a different value](https://mixpanel.com/s/L9I5t) (e.g. `0`) | `IF(DEFINED(cost), cost, 0)` | `DEFINED()` checks if the property is defined; keeps the value if so, otherwise returns the default. |
+| [Event within X seconds/hours/days](https://mixpanel.com/s/42DPMV) of a user date property | `IF((NUMBER(Time) - NUMBER(Registration Date) >= 0) AND (NUMBER(Time) - NUMBER(Registration Date) <= 172800), TRUE, FALSE)` | Converts both dates to numbers and checks if the difference is under 48 hours (172,800 seconds). |
+| [Filter events between an hour and minute](https://mixpanel.com/s/2YApuz) (e.g. before 17:30) | `LET(TIME_STR, SPLIT(STRING(Time), "T", 2), HOUR, NUMBER(LEFT(TIME_STR, 2)), MIN, NUMBER(MID(TIME_STR, 4, 2)), IF(HOUR < 17 OR (HOUR == 17 AND MIN <= 30), TRUE, FALSE))` | Extracts the time string, then hour/minute, and checks if the timestamp falls before or at 17:30. |
+| [Sum a property in a list if another matches](https://mixpanel.com/s/1xnyzD) (e.g. sum `Price` where `Category` is `sneakers`) | `SUM(MAP(X, cart, IF(X["Category"] == "sneakers", X["Price"], FALSE)))` | Loops through the list; sums the `Price` value wherever `Category` equals `sneakers`. |
+| [Return a UTM parameter from the URL](https://mixpanel.com/s/JKdp4) not automatically extracted | `REGEX_REPLACE((REGEX_EXTRACT(Current URL, "utm_source=([^&]*)", 1)), "%20", " ")` | Extracts the text following `utm_source=` up to the next `&`, then replaces encoded spaces (`%20`) with blank spaces. |
+| [Change the data type of a value in a list of objects](https://mixpanel.com/s/3Do1pl) (e.g. `Price` to string) | `MAP(X, cart, STRING(X["Price"]))` | Loops through the list of objects, converting each `Price` number value to a string. |
+| [Time difference in seconds](https://mixpanel.com/s/2UisC1) across mixed units (seconds & milliseconds) | `((NUMBER(Time Processed (UTC)) / 1000) - NUMBER(Time)) +/- (HOURS IN SECONDS)` | Converts both dates to Epoch time, dividing the millisecond timestamp by 1000 to align units, then adjusts for the UTC/project timezone offset. |
 
 ## Borrowed Properties
 
@@ -133,7 +153,7 @@ Borrowed properties allow you to take a property from a prior event and automati
 - Track a single event property and apply it to subsequent events. Example: It may be hard to track whether every event has dark mode enabled. You would need to keep track of the state of dark mode, and then add a “dark mode” property to every event that you track. Using borrowed events, you can just track one event with a property that indicates whether dark mode has been enabled or not, and have subsequent events borrow the property from that event.
 
 <Note>
-Each project can use up to 20 borrowed properties.
+  Each project can use up to 20 borrowed properties.
 </Note>
 
 ### Creating Borrowed Properties
@@ -143,49 +163,36 @@ The following is a demonstration of Borrowed Properties using the [E-Commerce de
 In this demonstration, we present an event called **"Purchase Completed"**, which lacks the event property **"Search term"**. To enable a breakdown by **"Search term"**, we apply the Borrowed Property feature, leveraging the property from another event called **"Product Searched"**.
 
 <Steps>
-
-
-<Step title="Purchase Completed does not have “Search term”">
-
-<Frame>
-![image](/images/purchase_completed.png)
-</Frame>
-</Step>
-
-<Step title="Products Searched does have “Search term”">
-
-<Frame>
-![image](/images/products_searched.png)
-</Frame>
-</Step>
-
-<Step title="Create a custom event property">
-
-<Frame>
-![image](/images/1_create_custom_event_property.png)
-</Frame>
-</Step>
-
-<Step title="Add a borrowed property">
-
-<Frame>
-![image](/images/2_add_borrowed_property.png)
-</Frame>
-</Step>
-
-<Step title="Select an event to borrow from">
-
-<Frame>
-![image](/images/3_select_products_searched.png)
-</Frame>
-</Step>
-
-<Step title="Select the property to borrow">
-
-<Frame>
-![image](/images/4_select_search_terms.png)
-</Frame>
-</Step>
+  <Step title="Purchase Completed does not have “Search term”">
+    <Frame>
+      ![image](/images/purchase_completed.png)
+    </Frame>
+  </Step>
+  <Step title="Products Searched does have “Search term”">
+    <Frame>
+      ![image](/images/products_searched.png)
+    </Frame>
+  </Step>
+  <Step title="Create a custom event property">
+    <Frame>
+      ![image](/images/1_create_custom_event_property.png)
+    </Frame>
+  </Step>
+  <Step title="Add a borrowed property">
+    <Frame>
+      ![image](/images/2_add_borrowed_property.png)
+    </Frame>
+  </Step>
+  <Step title="Select an event to borrow from">
+    <Frame>
+      ![image](/images/3_select_products_searched.png)
+    </Frame>
+  </Step>
+  <Step title="Select the property to borrow">
+    <Frame>
+      ![image](/images/4_select_search_terms.png)
+    </Frame>
+  </Step>
 </Steps>
 
 ### Borrowing Mechanics
@@ -197,40 +204,31 @@ We apply a seven-day lookback window, so the second event must occur within seve
 The video below demonstrates how to create a borrowed property.
 
 <Frame>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/fEh-ObL7EIQ"
-      frameBorder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowFullScreen
-    ></iframe>
+  <iframe src="https://www.youtube-nocookie.com/embed/fEh-ObL7EIQ" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen />
 </Frame>
 
 Some key notes
+
 - Borrowed property creation is limited to Admin & Owner Roles only
+- List properties are excluded from borrowed properties
 - A project can have a maximum of 20 borrowed properties. Hence, you are encouraged to only create borrowed properties useful to the larger team
 - A borrowed property, once created, is like any other custom property. It can be accessed by all in the project, depending on permissions
 - Borrowing of a property is strictly from the most recent event in the 7-day lookback window. To elaborate
-    - Say on event “purchase”, you want to borrow property “search term” from an event “search product”. If there are multiple events “search product” before “purchase”, the property will be borrowed from the most recent “search product” event where the property is set.
-    - Lookback is also fixed to a 7-day window. Say the “purchase” event occurred on 31st Jan, if the  most recent “search product” occurred on 20th Jan, the borrow functionality will return “search term” = (not set), since this event happened 11 days ago, which is outside the lookback window range.
+  - Say on event “purchase”, you want to borrow property “search term” from an event “search product”. If there are multiple events “search product” before “purchase”, the property will be borrowed from the most recent “search product” event where the property is set.
+  - Lookback is also fixed to a 7-day window. Say the “purchase” event occurred on 31st Jan, if the  most recent “search product” occurred on 20th Jan, the borrow functionality will return “search term” = (not set), since this event happened 11 days ago, which is outside the lookback window range.
 
-To use a borrowed property with other [functions](/docs/features/custom-properties#functions), you would need to: 
+To use a borrowed property with other [functions](/docs/features/custom-properties#functions), you would need to:
 
-1. Create a custom property with just the borrowed property on its own
-![image](/images/borrowed-property.png "Borrowed Property")<br />
-
-2. Create a separate custom property using the borrowed property (i.e., the 1st custom property)
-![image](/images/borrowed-property-in-custom-property.png "Borrowed Property in Custom Property")<br />
-
-3. Here's an example of a [report](https://mixpanel.com/s/1c4Pl9) with *Searched Category* custom property using *Search term (Products Searched)* borrowed property
-![image](/images/borrowed-property-in-custom-property-report.png "Borrowed Property in Custom Property Report Example")<br />
-
+1. Create a custom property with just the borrowed property on its own <img src="/images/borrowed-property.png" alt="image" title="Borrowed Property" />\\
+2. Create a separate custom property using the borrowed property (i.e., the 1st custom property) <img src="/images/borrowed-property-in-custom-property.png" alt="image" title="Borrowed Property in Custom Property" />\\
+3. Here's an example of a [report](https://mixpanel.com/s/1c4Pl9) with _Searched Category_ custom property using _Search term (Products Searched)_ borrowed property <img src="/images/borrowed-property-in-custom-property-report.png" alt="image" title="Borrowed Property in Custom Property Report Example" />\\
 
 ## Reference
 
 ### Functions
 
 {/* this doenst work in mintlify - can't add a codeblock inside a markdown table */}
+
 export const letExpression = `
 // define a variable "spend" and use it in an expression
 
@@ -249,42 +247,41 @@ Use the following functions in the **Formula** field to modify your custom prope
 
 | Function | Definition | Syntax & Example |
 | --- | --- | --- |
-| if | Evaluates if an expression is true or false. | if(condition, value if true, value if false) <br /> <br /> Example: <br /> `if(A=="Facebook" or A=="Twitter", "Social", A)` <br /> |
-| ifs | Runs multiple checks and returns a value corresponding to the first true result. If no conditions are true, undefined is returned. | ifs(condition1, value1, condition2, value2, …) <br /> <br /> Example: <br /> `ifs( A<60,"Less than 1 hour",` <br /> `A<120, "More than 1 hour but less than 2 hours",` <br /> `A>=120, "More than 2 hours")` |
-| not | Returns values that are not true. | not(condition) <br /> <br />Example:<br /> `not(A == "Facebook")` |
-| and | Returns true if both conditions are met. Else, returns false. | x and y <br /> <br />Example:<br /> `if(A=="San Francisco" and B=="Chrome", "Valid user", "Invalid User")` |
-| or | Returns true if either condition is met. Else, returns false. | x or y <br /> <br />Example:<br />  `if(A=="San Francisco" or B=="Chrome", "Valid user", "Invalid User")` |
-| in | Returns true if the first condition is contained in the second condition. | x in condition <br /><br />Example:<br /> `if("Facebook" in A, "Facebook Corporation", A)` <br /> <br /> This can also be used to check against a list of values:<br /> `if(A in ["Chrome","Firefox","Edge"],"Acceptable browser","Unsupported browser")` |
-| boolean | Casts the argument to a boolean. | boolean(value)->false, boolean(alternate value)-> true <br /> <br />Example:<br />  `boolean(A)` |
-| number | Casts the argument to a number. | number(value to cast) <br /> <br />Example:<br /> `number(A)` |
+| if | Evaluates if an expression is true or false. | if(condition, value if true, value if false) <br /><br /> Example: <br />`if(A=="Facebook" or A=="Twitter", "Social", A)`<br /> |
+| ifs | Runs multiple checks and returns a value corresponding to the first true result. If no conditions are true, undefined is returned. | ifs(condition1, value1, condition2, value2, …) <br /><br /> Example: <br />`ifs( A<60,"Less than 1 hour",`<br />`A<120, "More than 1 hour but less than 2 hours",`<br />`A>=120, "More than 2 hours")` |
+| not | Returns values that are not true. | not(condition) <br /><br />Example:<br />`not(A == "Facebook")` |
+| and | Returns true if both conditions are met. Else, returns false. | x and y <br /><br />Example:<br />`if(A=="San Francisco" and B=="Chrome", "Valid user", "Invalid User")` |
+| or | Returns true if either condition is met. Else, returns false. | x or y <br /><br />Example:<br />`if(A=="San Francisco" or B=="Chrome", "Valid user", "Invalid User")` |
+| in | Returns true if the first condition is contained in the second condition. | x in condition <br /><br />Example:<br />`if("Facebook" in A, "Facebook Corporation", A)`<br /><br /> This can also be used to check against a list of values:<br />`if(A in ["Chrome","Firefox","Edge"],"Acceptable browser","Unsupported browser")` |
+| boolean | Casts the argument to a boolean. | boolean(value)-\>false, boolean(alternate value)-\> true <br /><br />Example:<br />`boolean(A)` |
+| number | Casts the argument to a number. | number(value to cast) <br /><br />Example:<br />`number(A)` |
 | string | Casts the argument to a string. | string(value to cast)<br /><br /> Example:<br />`string(A)` |
-| defined | Determines if a value exists. If a property is not defined on a parent event or profile, this will return false, otherwise this will return true. | defined(variable to check for existence) <br /><br />Example:<br /> `defined(A)` |
-| has_prefix | Determines whether a string starts with another string. This comparison is case-insensitive. | has_prefix(string to check, prefix)<br /> <br />Example:<br />`has_prefix(A, "United")` |
-| has_suffix | Determines whether a string ends with another string. This comparison is case-insensitive. | has_suffix(string to check, suffix)<br /><br />Example:<br />`has_suffix(A,"States")` |
+| defined | Determines if a value exists. If a property is not defined on a parent event or profile, this will return false, otherwise this will return true. | defined(variable to check for existence) <br /><br />Example:<br />`defined(A)` |
+| has\_prefix | Determines whether a string starts with another string. This comparison is case-insensitive. | has\_prefix(string to check, prefix)<br /><br />Example:<br />`has_prefix(A, "United")` |
+| has\_suffix | Determines whether a string ends with another string. This comparison is case-insensitive. | has\_suffix(string to check, suffix)<br /><br />Example:<br />`has_suffix(A,"States")` |
 | min | Determines the minimum value between two numbers. | min(number, number)<br /><br />Example:<br />`min(A,B)` |
 | max | Determines the maximum value between two numbers. | max(number, number)<br /><br />Example:<br />`max(A,B)` |
 | floor | Returns the largest integer that is smaller than or equal to the input (ie: rounds down to the nearest integer). | floor(number)<br /><br />Example:<br />`floor(A)` |
 | ceil | Returns the smallest integer value greater than or equal to the input (ie: rounds up to the nearest integer). | ceil(number)<br /><br />Example:<br />`ceil(A)` |
 | round | Returns the nearest integer value of the input value. | round(number)<br /><br />Example:<br />`round(A)` |
-| upper | Cast string property values to uppercase. | upper(string property)<br /><br />Example:<br />`upper(A); upper("hello")` -> "HELLO" |
-| lower | Cast string property values to lowercase. | lower(string property)<br /><br />Example:<br />`lower(A); lower("FacEBook")` -> "facebook" |
-|parse_url()| Extracts the part of the url that is specified: domain(google) or full_domain(google.co.uk) | parse_url(string property, "domain") or parse_url(string property, "full_domain") <br /><br />Example: parse_url(A,"domain") |
-| regex_extract | If haystack is a string and pattern matches at least one substring, extracts the result from the first pattern match in haystack. The result is a string equal to the entire regex match, or if a capture group is specified, only that portion of the match. We use the PCRE2 regex engine. | regex_extract(haystack, pattern, &lt;optional capture group#&gt;)<br /><br />Example:<br />`regex_extract("iPhone5.1","iPhone(...)",1)` ->5.1 |
-| regex_match | Returns true if the pattern matches any part of the string. We use the PCRE2 regex engine. | regex_match(haystack, pattern)<br /><br />Example:<br />`regex_match("zzhaystackzz", "ha(..)ack")` -> true <br /> // Use (?-i) for case-sensitive matching: `regex_match("HAYSTACK", "(?-i)haystack")` -> false |
-| regex_replace | Replaces the parts of a string that match a regular expression with a different string. We use the PCRE2 regex engine. | regex_replace(haystack, pattern, replacement)<br /><br />Example:<br />  // convert currency string to number: `regex_replace("$1,234,567", "[^.0-9]\*", ""))` -> `1234567` |
-| datedif | Subtract two dates. Units:<br />D: days.<br />M:  months.<br />Y: years<br />MD:  days remaining after subtracting whole months.<br />YM:  months remaining after subtracting whole years.<br />YD:  days, assuming start_date and end_date are within 1 year.<br />Use TODAY() for current day. |<br />datedif(start_date,end_date,unit)<br /><br />Example:<br />`datedif(registration_date,TODAY(), "M")` -> 5 |
-| len | Returns the length of the string or the list. | len(string) or len(list)<br /><br />Example:<br /> `len("Canada")` -> 6 |
-| left | Returns characters from the beginning of a given string. | left(string, num_of_characters)<br /><br />Example:<br />`left("Canada",3)` -> "Can" |
-| right | Returns characters from the end of a given string | right(string, num_of_characters)<br /><br />Example:<br />`right("Canada",3)` -> "ada" |
-| mid | Returns characters from the middle of a given string | mid(string, first_index, num_of_characters)<br /><br />Example:<br />`mid("Canada",1,4)` -> "Cana" |
-| split | Splits a string into different parts based on a user-specified delimiter, and lets you select a particular split. Delimiter must be a single ASCII character. To fetch a list of all splits, don't pass a third argument. The first split is accessible by passing n=1 (second with n=2, ...) | split(input string, delimiter, [n: optional]) → string <br /> <br />Examples with 1 split:<br />`split("dwight@dm.com","@",2)` -> "dm.com"<br />`split("dwight@dm.com","@",4)` -> undefined<br />`split("dwight@dm.com","/",2)` -> `dwight@dm.com` <br />`split("empty//string/","/",2)` -> "" <br /> <br />Examples with all splits:<br />`split("dwight@dm.com","@")` -> ["dwight", "dm.com"]<br />`split("a/b/c/d", "/")` -> ["a", "b", "c", "d"]<br />`split("a/b/c/d", "-")` -> ["a/b/c/d"]<br />`split("a//b/c/d", "/")` -> ["a", "", "b", "c", "d"] |
-| let | Define a variable and use it in an expression. This helps keep the custom property definition neat and non-repetitive. Variables are only active within the scope of the LET function. You can nest multiple let functions to define multiple variables. | let(name, definition, expression)<br /><br />`// define a variable "spend" and use it in an expression`<br/><br/>`let(`<br/>  `spend, <price> * <quantity>,`<br/>  `ifs(`<br/>    `spend < 50, "no discount",`<br/>    `spend < 200, "gold discount",`<br/>    `spend > 200, "platinum discount",`<br/>    `TRUE, "invalid"`<br/>  `)`<br/>`)`<br/> <br /> _Note: \<price> and \<quantity> are event properties._ |
-| any | Evaluates to TRUE if the given expression is true for any value in the given list. The expression can refer to the current list element by the given name. | any(name, list, expr) <br /><br /> Example:<br />Let's say you had a list of numbers called priceList= [5,205,178,12,22]<br />`any(X, priceList, X > 300)` -> false.<br />`any(X, priceList, X >= 5 and X < 300)` -> true. |
-| all | Evaluates to TRUE if the given expression is true for all values in the given list. The expression can refer to the current list element by the given name. | all(name, list, expr) <br /><br /> Example:<br />Let's say you had a list of numbers called priceList= [5,205,178,12,22]<br />`all(X, priceList, X > 5 and X < 200)` -> false.<br />`all(X, priceList, X >= 5 and X < 300)` -> true. |
-| filter | Filters the given list to only include items for which the given expression is true. The expression can refer to the current list element by the given name. | filter(name, list, expr) <br /><br /> Example: <br />Let's say you had a list of numbers called priceList= [5,205,178,12,22]<br />`filter(X, priceList, X>100)` -> new shortened list = [205,178] |
-| map | Transforms each value in the given list using the given expression. The expression can refer to the current list element by the given name. | map(name, list, expr) <br /><br /> Example:<br />Let's say you had a list of states = ["Georgia","Florida","Texas"]<br />`map(X, states, lower(X))` -> ["georgia","florida","texas"] |
-| sum | Sums all numbers in the given list. Non-numeric items in the list are ignored. | sum(list) <br /><br /> Example:<br />Let's say you had a list of numbers called priceList= [5,205,178,12,22]<br />`sum(priceList)` -> 422.<br /><br />`sum(filter(X, priceList, X>100))` -> 383, because `filter(X,priceList, X>100)` -> [205,178] and `sum([205,178])` -> 383. |
-
+| upper | Cast string property values to uppercase. | upper(string property)<br /><br />Example:<br />`upper(A); upper("hello")` -\> "HELLO" |
+| lower | Cast string property values to lowercase. | lower(string property)<br /><br />Example:<br />`lower(A); lower("FacEBook")` -\> "facebook" |
+| parse\_url() | Extracts the part of the url that is specified: domain(google) or full\_domain(google.co.uk) | parse\_url(string property, "domain") or parse\_url(string property, "full\_domain") <br /><br />Example: parse\_url(A,"domain") |
+| regex\_extract | If haystack is a string and pattern matches at least one substring, extracts the result from the first pattern match in haystack. The result is a string equal to the entire regex match, or if a capture group is specified, only that portion of the match. We use the PCRE2 regex engine. | regex\_extract(haystack, pattern, \<optional capture group#\>)<br /><br />Example:<br />`regex_extract("iPhone5.1","iPhone(...)",1)` -\>5.1 |
+| regex\_match | Returns true if the pattern matches any part of the string. We use the PCRE2 regex engine. | regex\_match(haystack, pattern)<br /><br />Example:<br />`regex_match("zzhaystackzz", "ha(..)ack")` -\> true <br /> // Use (?-i) for case-sensitive matching: `regex_match("HAYSTACK", "(?-i)haystack")` -\> false |
+| regex\_replace | Replaces the parts of a string that match a regular expression with a different string. We use the PCRE2 regex engine. | regex\_replace(haystack, pattern, replacement)<br /><br />Example:<br />  // convert currency string to number: `regex_replace("$1,234,567", "[^.0-9]\*", ""))` -\> `1234567` |
+| datedif | Subtract two dates. Units:<br />D: days.<br />M:  months.<br />Y: years<br />MD:  days remaining after subtracting whole months.<br />YM:  months remaining after subtracting whole years.<br />YD:  days, assuming start\_date and end\_date are within 1 year.<br />Use TODAY() for current day. | <br />datedif(start\_date,end\_date,unit)<br /><br />Example:<br />`datedif(registration_date,TODAY(), "M")` -\> 5 |
+| len | Returns the length of the string or the list. | len(string) or len(list)<br /><br />Example:<br />`len("Canada")` -\> 6 |
+| left | Returns characters from the beginning of a given string. | left(string, num\_of\_characters)<br /><br />Example:<br />`left("Canada",3)` -\> "Can" |
+| right | Returns characters from the end of a given string | right(string, num\_of\_characters)<br /><br />Example:<br />`right("Canada",3)` -\> "ada" |
+| mid | Returns characters from the middle of a given string | mid(string, first\_index, num\_of\_characters)<br /><br />Example:<br />`mid("Canada",1,4)` -\> "Cana" |
+| split | Splits a string into different parts based on a user-specified delimiter, and lets you select a particular split. Delimiter must be a single ASCII character. To fetch a list of all splits, don't pass a third argument. The first split is accessible by passing n=1 (second with n=2, ...) | split(input string, delimiter, \[n: optional\]) → string <br /><br />Examples with 1 split:<br />`split("dwight@dm.com","@",2)` -\> "dm.com"<br />`split("dwight@dm.com","@",4)` -\> undefined<br />`split("dwight@dm.com","/",2)` -\> `dwight@dm.com`<br />`split("empty//string/","/",2)` -\> "" <br /><br />Examples with all splits:<br />`split("dwight@dm.com","@")` -\> \["dwight", "dm.com"\]<br />`split("a/b/c/d", "/")` -\> \["a", "b", "c", "d"\]<br />`split("a/b/c/d", "-")` -\> \["a/b/c/d"\]<br />`split("a//b/c/d", "/")` -\> \["a", "", "b", "c", "d"\] |
+| let | Define a variable and use it in an expression. This helps keep the custom property definition neat and non-repetitive. Variables are only active within the scope of the LET function. You can nest multiple let functions to define multiple variables. | let(name, definition, expression)<br /><br />`// define a variable "spend" and use it in an expression`<br /><br />`let(`<br />`spend, <price> * <quantity>,`<br />`ifs(`<br />`spend < 50, "no discount",`<br />`spend < 200, "gold discount",`<br />`spend > 200, "platinum discount",`<br />`TRUE, "invalid"`<br />`)`<br />`)`<br /><br />_Note: \<price\> and \<quantity\> are event properties._ |
+| any | Evaluates to TRUE if the given expression is true for any value in the given list. The expression can refer to the current list element by the given name. | any(name, list, expr) <br /><br /> Example:<br />Let's say you had a list of numbers called priceList= \[5,205,178,12,22\]<br />`any(X, priceList, X > 300)` -\> false.<br />`any(X, priceList, X >= 5 and X < 300)` -\> true. |
+| all | Evaluates to TRUE if the given expression is true for all values in the given list. The expression can refer to the current list element by the given name. | all(name, list, expr) <br /><br /> Example:<br />Let's say you had a list of numbers called priceList= \[5,205,178,12,22\]<br />`all(X, priceList, X > 5 and X < 200)` -\> false.<br />`all(X, priceList, X >= 5 and X < 300)` -\> true. |
+| filter | Filters the given list to only include items for which the given expression is true. The expression can refer to the current list element by the given name. | filter(name, list, expr) <br /><br /> Example: <br />Let's say you had a list of numbers called priceList= \[5,205,178,12,22\]<br />`filter(X, priceList, X>100)` -\> new shortened list = \[205,178\] |
+| map | Transforms each value in the given list using the given expression. The expression can refer to the current list element by the given name. | map(name, list, expr) <br /><br /> Example:<br />Let's say you had a list of states = \["Georgia","Florida","Texas"\]<br />`map(X, states, lower(X))` -\> \["georgia","florida","texas"\] |
+| sum | Sums all numbers in the given list. Non-numeric items in the list are ignored. | sum(list) <br /><br /> Example:<br />Let's say you had a list of numbers called priceList= \[5,205,178,12,22\]<br />`sum(priceList)` -\> 422.<br /><br />`sum(filter(X, priceList, X>100))` -\> 383, because `filter(X,priceList, X>100)` -\> \[205,178\] and `sum([205,178])` -\> 383. |
 
 ### Numeric Operators
 
@@ -308,6 +305,7 @@ Use the following comparison operators in the **Formula** field to modify your c
 - `!=`: The first argument is not equal to the second argument. If both arguments are strings, the comparison is case-insensitive.
 
 ### Constants
+
 - `false`: Represents the literal value of boolean false.
 - `true`: Represents the literal value of boolean true.
 - `undefined`: Represents the literal value of cases that aren't defined.
