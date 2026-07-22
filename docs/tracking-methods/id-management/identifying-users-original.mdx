@@ -63,7 +63,7 @@ This is triggered when calling `.alias` using the client-side SDKs.
 
 Multiple alias ID can point to the same Distinct ID, aliases can be daisy-chained; but the same alias ID cannot point to multiple different Distinct IDs. Not all server-side SDKs support alias() method.
 
-This is a legacy function for projects not using ID Merge. Learn more about the alias function [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md).
+This is a legacy function for projects not using ID Merge. Learn more about the alias function [here](https://github.com/mixpanel/docs-legacy/blob/main/legacy/aliases.md).
 
 Here is a technical definition of the [\$create_alias event in our API reference](/reference/identity-create-alias).
 
@@ -241,5 +241,5 @@ For cohort syncs out to 3rd-party systems, we recommend designating a user prope
 
 Prior to March 2020, the only way to connect users together was the `.alias()` method. This was very limited and was not retroactive; this meant that if a user used two devices and then logged in, you would lose activity for the user from one of the devices.
 
-If you set up Mixpanel prior to 2020, you may have implemented using the `.alias()` method. Alias is still supported in its original state and we have preserved its documentation [here](https://github.com/mixpanel/docs/blob/main/legacy/aliases.md), but if you want to revisit your identity management strategy, we recommend setting up a new Mixpanel project and using the best practices outlined in this guide.
+If you set up Mixpanel prior to 2020, you may have implemented using the `.alias()` method. Alias is still supported in its original state and we have preserved its documentation [here](https://github.com/mixpanel/docs-legacy/blob/main/legacy/aliases.md), but if you want to revisit your identity management strategy, we recommend setting up a new Mixpanel project and using the best practices outlined in this guide.
 

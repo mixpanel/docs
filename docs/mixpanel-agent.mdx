@@ -1,15 +1,11 @@
 ---
-title: Mixpanel Agent
-tags: [mixpanel agent, agent, ai, spark, copilot, subagent, llm]
+title: "Mixpanel Agent"
+tags: ["mixpanel agent", "agent", "ai", "spark", "copilot", "subagent", "llm"]
 ---
 
 ## Overview
 
 Mixpanel Agent is an AI analyst built into Mixpanel. Ask it questions or give it tasks and the Agent interprets your intent and selects the right tools automatically. A single prompt can run an analysis, build a report, create a cohort, or walk you through a user's session replays without you specifying each step.
-
-<Note>
-Mixpanel Agent is currently in beta and is coming to all customers soon. 
-</Note>
 
 ## Core Capabilities
 
@@ -26,19 +22,21 @@ The Mixpanel Agent has access to a broad set of Mixpanel capabilities and select
 | Session replay analysis | From a prompt or existing playlist, Mixpanel curates relevant replays, analyzes them alongside your events data, summarizes findings for follow-up questions, and surfaces timestamps for key moments |
 | Experiments & Feature Flags | Reference experiments and feature flags in any investigation, interpret experiment results in plain language, and create new experiments or flags through a conversational flow |
 | Mixpanel Docs | Answer questions about how Mixpanel features work |
+| Root Cause Analysis | Run a root cause analysis for a metric change. [See Root Cause Analysis for details](/docs/root-cause-analysis) |
 
 **Working on an analysis?** The Agent automatically picks up your current page as context. Ask it to explain a trend, dig into an anomaly, or modify what's in front of you. No need to describe what you're looking at first.
 
 ## Access
 
 Where you'll find the Mixpanel Agent:
-- **Side navigation:** Click Mixpanel Agent to open a full-page experience 
-- **Contextual panel:** Click New Chat or "Open in side view" to open the Agent in a side panel so you can bring the Agent with you as you navigate Mixpanel
+
+- **Side navigation:** Click Mixpanel Agent to open a full-page experience
+- **Contextual panel:** Click "Open in side view" to open the Agent in a side panel so you can bring the Agent with you as you navigate Mixpanel
+- **Create New:** Click Mixpanel Agent from the Create New menu
 
 <Frame>
-![Mixpanel Agent Access](/images/mixpanel-agent-access.png)
+  ![Image](/images/image-4.png)
 </Frame>
-
 
 ## Example Use Cases
 
@@ -46,53 +44,53 @@ Where you'll find the Mixpanel Agent:
 
 You have a theory or idea. The Mixpanel Agent helps you test it quickly.
 
-*Does our new onboarding flow actually improve activation?*
+_Does our new onboarding flow actually improve activation?_
 
-*I think users who invite a teammate in their first week retain better. Can you validate that?*
+_I think users who invite a teammate in their first week retain better. Can you validate that?_
 
 ### Put your ideas into action
 
 You've landed on a direction. Now ship the change and measure the impact.
 
-*Set up an experiment to test a simplified checkout against the current flow*
+_Set up an experiment to test a simplified checkout against the current flow_
 
-*Roll out the new pricing page to 10% of users behind a feature flag*
+_Roll out the new pricing page to 10% of users behind a feature flag_
 
 ### Investigate what happened
 
 Something moved in your metrics. The Agent helps you get a clear picture to get to the bottom of it.
 
-*Explain this spike in signups*
+_Explain this spike in signups_
 
-*Did anything unusual happen with our checkout flow*
+_Did anything unusual happen with our checkout flow_
 
 ### Get up to speed fast
 
 You need context before a meeting or decision. The Agent searches what already exists in your project so you're not starting from scratch.
 
-*Show me our top of funnel KPIs.*
+_Show me our top of funnel KPIs._
 
-*Summarize this analysis for me before my meeting*
+_Summarize this analysis for me before my meeting_
 
-*What tracking do we have on our messaging feature*
+_What tracking do we have on our messaging feature_
 
 ### Build your analysis
 
 Build out boards, reports, metrics, and cohorts to share across your team for analysis.
 
-*Make a Board for our weekly growth review*
+_Make a Board for our weekly growth review_
 
-*Save our activation definition*
+_Save our activation definition_
 
-*Create a cohort of power users so we can target them in experiments*
+_Create a cohort of power users so we can target them in experiments_
 
 ### Understand your users
 
 Dive deeper to understand what individual users or segments actually experienced.
 
-*Find sessions where users hit an error during checkout, walk me through what they did, and surface timestamps of key moments*
+_Find sessions where users hit an error during checkout, walk me through what they did, and surface timestamps of key moments_
 
-*This user churned after 3 days. Walk me through their sessions*
+_This user churned after 3 days. Walk me through their sessions_
 
 ## Business Context
 
@@ -104,41 +102,62 @@ Admins can control what data the Agent surfaces by enabling Verified Mode in Pro
 
 When unverified data is excluded from a response, users are notified that additional relevant data exists but wasn't included.
 
-## Security & Privacy
+## Sharing
 
-**Your data stays within your existing access.** Enabling the Agent doesn't change any data or user permissions.
-
-**Your data is not used to train AI models.** Queries are processed by a third-party AI provider to generate responses, but customer data is not used for model training. Additionally, Mixpanel's contracts with third-parties prohibit them from using your data to train or improve their models.
-
-**Disabling Mixpanel AI.** Mixpanel AI features can be disabled at any time from Organization settings. This removes access for all users.
+To share a Mixpanel Agent chat, click on the chat name and select **Share Link.**
 
 <Frame>
-![Mixpanel AI Settings](/images/mixpanel-ai-settings.png)
+  ![Agent Share Link](/images/image-1.png)
 </Frame>
 
-AI features are disabled by default for customers that have enrolled in EU or India Data Residency, but can be enabled by your Mixpanel admin. AI features are disabled for signed Business Associate Addenda (BAAs) with Mixpanel (and cannot be enabled).
+Shared chats are view-only. Anyone with the link who has access to the project can view the chat.
 
-For more details:
-- [Mixpanel Agent Beta Service Addendum](https://mixpanel.com/legal/supplemental-terms/#mixpanel-agent-beta-service-addendum)
-- [Mixpanel's Data Processing Addendum](https://mixpanel.com/legal/dpa/)
+<Frame>
+  ![Agent Chat Sharing](/images/image.png)
+</Frame>
+
+The link shows the chat as it existed when you generated it, up to the most recent message at that time.
+
+Optionally, you can share the chat along with the current page content. This is useful if the context of your chat is about a Board, Report, Experiment, or Session Replay Playlist.
+
+To make a chat private again, select **Keep Private**. Existing share links stop working once the chat is private.
+
+## Chat History
+
+Access more options for managing chats from the chat header, including: 
+
+- **New Chat:** Click the pencil icon to start a new chat. When you start a new chat, your previously active chat is still available in history.
+- **Rename chat:** Change the title of a chat
+- **Delete chat:** Remove a chat from history
+- **Chat history:** Access all your previous chats when working in the side panel. If you're viewing the Agent as a full page you will see the chat history on the left automatically. 
+
+<Frame>
+  ![2026 07 16 15 12 54](/images/2026-07-16_15-12-54.png)
+</Frame>
+
+## Security & Privacy
+
+Mixpanel’s AI is built with privacy-by-design principles. For details:
+
+- [Mixpanel AI Compliance](https://mixpanel.com/legal/ai-compliance/)
+- [Mixpanel’s Data Processing Addendum](https://mixpanel.com/legal/dpa/)
 
 ## FAQ
 
-**1. Is the Agent free?**<br/>
-Mixpanel Agent is free to use during beta.
+**1. What AI models does it use?**<br />The Mixpanel Agent is powered by Claude.
 
-**2. What AI models does it use?**<br/>
-The Mixpanel Agent is powered by Claude.
+**2. How can I influence what Mixpanel Agent surfaces?**<br />Adding Organization and Project [Business Context](/docs/business-context). Saving [Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors). [Verifying Data](/docs/data-governance/lexicon#verify-data). The Agent uses all this context you provide to craft the best response for your prompt.
 
-**3. How can I influence what Mixpanel Agent surfaces?**<br/>
-Adding Organization and Project [Business Context](/docs/business-context). Saving [Metrics and Behaviors](docs/features/saved-metrics-and-behaviors). [Verifying Data](/docs/data-governance/lexicon#verify-data). The Agent uses all this context you provide to craft the best response for your prompt. 
-
-**4. How do I share feedback or request new capabilities?**<br/>
-Use the feedback buttons inside the Agent experience to share what's working, what's missing, or what you'd like to see. We're actively building. Your feedback directly shapes the roadmap.
+**3. How do I share feedback or request new capabilities?**<br />Use the feedback buttons inside the Agent experience to share what's working, what's missing, or what you'd like to see. We're actively building. Your feedback directly shapes the roadmap.
 
 <Frame>
-![Mixpanel Agent Feedback](/images/mixpanel-agent-feedback.png)
+  ![Mixpanel Agent Feedback](/images/mixpanel-agent-feedback.png)
 </Frame>
 
-**5. What happened to Spark?**<br/>
-Mixpanel Agent is the next evolution of [Spark](/docs/features/spark). If you still have access to Spark, you'll get Mixpanel Agent as soon as we complete the rollout to all customers.
+**5. How can I enable or disable AI features?**<br />Access to Mixpanel AI features can be managed from your Org settings. Org Admins can change these settings. Note, disabling Mixpanel AI removes access for all users.
+
+<Frame>
+  ![Mixpanel AI Settings](/images/image-3.png)
+</Frame>
+
+**6. What happened to Spark?**<br />Looking for Spark? This is the right page. Mixpanel Agent is the next evolution of Spark.
