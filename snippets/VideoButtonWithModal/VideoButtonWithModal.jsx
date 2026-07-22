@@ -143,7 +143,14 @@ export const VideoButtonWithModal = ({ src, title = "Video about this feature", 
   };
 
   const getLoomShareURL = (embedURL) => {
-    if (!embedURL?.includes("loom.com")) return null;
+    if (!embedURL) return null;
+    let hostname;
+    try {
+      hostname = new URL(embedURL).hostname;
+    } catch {
+      return null;
+    }
+    if (hostname !== "loom.com" && !hostname.endsWith(".loom.com")) return null;
     return embedURL.replace("/embed/", "/share/");
   };
 
