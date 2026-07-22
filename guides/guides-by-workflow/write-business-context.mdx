@@ -1,0 +1,181 @@
+---
+title: "Write business context that grounds AI answers"
+sidebarTitle: "Write Business Context"
+---
+
+### Overview
+
+Mixpanel Agent, MCP, and Headless can all draw on your project's business context to ground their answers. Without it, they guess at what "activation" means or which report is the source of truth.
+
+This guide is for anyone with project owner or admin access who already has one of those surfaces turned on and is staring at a blank business context field, unsure what to put in it.
+
+If you’re looking for details on how to use one of those surfaces or define your event schema, check out the guides on [Mixpanel Agent](/guides/guides-by-use-case/empower-your-team/mixpanel-agent), [MCP](/guides/guides-by-use-case/empower-your-team/mcp), [Headless](/guides/guides-by-use-case/empower-your-team/headless), or [event schema](/docs/data-structure/events-and-properties).
+
+### What makes context useful, not just present
+
+[Business context](/docs/business-context) has a structure: markdown text at the organization level and the project level, read by AI assistants across Mixpanel Agent, MCP, and Headless.
+
+Filling in the structure correctly isn't the same as filling it in well. A field labeled "North Star Metric" with a metric name in it tells an AI assistant nothing it can compute. A field with the actual formula does.
+
+The difference comes down to a handful of things:
+
+- **Keep it tight.** Each point should read like something you'd tell a new hire in one sentence, not a page of documentation.
+- **Formulas, not names.** "North Star Metric: Weekly Active Analyzers" is a label. "Weekly Active Analyzers = users who create, edit, or share a report at least once in a seven-day window, excluding internal seats" is something an assistant can act on.
+- **Event semantics, stated.** If an event name could mean two different things, say which one. `completed_project` could mean saved a draft or published. Write down which.
+- **Scope and boundaries.** Say whom an analysis applies to and where it stops. "This metric applies to self-serve accounts, not enterprise" prevents an answer that's technically correct for the wrong segment.
+- **Restraint on anything that goes stale.** Live usage numbers, like query volume and dashboard counts, feel like context but age out fast. Include a number only if it's genuinely load-bearing for how an answer gets built, not because it makes the context feel more complete.
+- **Description, not direction.** Business context works best as facts about your business, not instructions for how the AI should behave. Something like "our north star metric is X" is reliable. Something like "always respond in three bullet points" isn't guaranteed to be followed, and isn't what this field is for. If you want to shape how an assistant responds, that's a prompting or settings question, not a context question.
+
+Context has a generous size limit, but it's headroom, not a target. Well-written context for most projects uses a fraction of it. If you're approaching the limit, that's usually a sign some of what you've written belongs in Lexicon descriptions instead, not that you need more room.
+
+<Info>
+  It's tempting to pull live stats straight from your project into context because they're easy to grab and look thorough. Resist it. A metric formula stays true indefinitely. A count of active users, team members, or accounts is wrong by next quarter.
+</Info>
+
+### How to structure context
+
+Business context works at two levels, and they're not interchangeable.
+
+#### Organization context
+
+**Organization context** applies to every project and is shared across your whole team. [Only organization admins can edit it](/docs/business-context#edit-organization-context); everyone with access can read it.
+
+Think of it as what any AI assistant should know about your business no matter which one of your Mixpanel projects it's working in: the big picture that doesn't change from one project to the next. It ideally covers:
+
+- **Company background**: What the business does
+- **Business model**: How the business generates value, whether that's revenue, subscriptions, usage, or another growth driver
+- **North star metrics**: With the formula, not just the name
+- **Customer segments**: The groupings that matter for analysis, whether that's individual users, accounts, or organizations
+- **Internal acronyms**: Anything your team abbreviates that an outsider would have to guess at
+
+<Danger>
+  Never put credentials, passwords, or customer PII in business context. It's sent to your connected AI provider as part of the conversation, so treat it the same as anything else leaving your systems.
+</Danger>
+
+#### Project context
+
+**Project context** describes the domain a specific project covers and how it's used. [Project owners and admins, along with anyone assigned a Custom Role that includes the ability to edit project settings, can edit business context](/docs/business-context#edit-project-context); anyone with project access can read it.
+
+This matters most if you run more than one project — for example, separate projects for different business lines, or per-region deployments, since each project's event taxonomy and dashboards can differ.
+
+If you run a single project, some of this may already be obvious from the org context, but it's still worth stating anything project-specific that Mixpanel Agent, MCP, or Headless wouldn't otherwise know.
+
+Project context covers:
+
+- **Product overview**: What the project tracks and the main user actions
+- **Event taxonomy**: Naming conventions and what each major event represents
+- **Property conventions**: Units, formats, and what specific properties mean
+- **Key dashboards**: Where the canonical reports live, and why they're canonical
+- **Team norms**: How your team defines active users, churned users, or qualified leads
+- **Operating procedures**: The kind of thing you'd tell a new hire on day one, like which cohort to use for marketing analyses
+
+### How to add context
+
+You can write business context two ways:
+
+1. **Mixpanel UI**: Go to either of the following locations and use the textbox to edit it directly.
+   1. Settings → Org → AI Settings → Company Context
+   2. Settings → Project → AI Settings → Project Context
+2. **Mixpanel MCP**: If you're already connected through MCP, ask your AI assistant to update it for you, in the same conversation you're already having.
+
+Either way, the same permissions apply as above: for org context, only organization admins; for project context, anyone who has access to edit project settings, such as project owners or admins.
+
+MCP doesn't grant any additional access. If your account can't edit context in Settings, asking your AI assistant to do it through MCP will fail.
+
+The MCP path is often faster once you're mid-conversation and realize the assistant is missing something. No need to switch to Settings to fix it.
+
+<Warning>
+  The `Update-Business-Context` MCP tool always performs a full replace — there's no append or merge mode. To add something without losing what's already there, ask your assistant to fetch the current context first, then write the updated version with both the old content and your addition included, before saving.
+</Warning>
+
+### Worked examples
+
+Here's what dense context looks like in practice. This is a composite example, not real customers' actual context, but it's built to the same level of specificity you should aim for.
+
+The specific metrics, event names, and terminology are illustrative, and only your own context will actually match your data.
+
+<Tabs>
+  <Tab title="E-commerce / Subscription">
+    **Organization context**
+
+    ```text
+    ## Business Overview
+    B2C e-commerce retailer selling pet supplies.
+    
+    ## Business Model
+    Revenue from direct purchases plus a recurring subscription program for replenishment purchases.
+    
+    ## North Star Metric
+    Subscription Conversion Rate = % of first-time purchasers who place a second order via subscription within 30 days of their first purchase.
+    
+    ## Customer Segments
+    - New vs. returning customers
+    - Subscribers vs. one-time purchasers
+    - High-value: loyalty program members with 5+ lifetime orders
+    
+    ## Internal Acronyms
+    - "KM" = Key Milestone: the framework for tracking user milestones  (first order, first subscription signup, first category expansion)
+    - "OMS" = Order Management System, the server-side order source of truth
+    ```
+
+    **Project context**
+
+    ```text
+    ## Product Overview
+    This project tracks the pet supplies shopping funnel, account registration, and the subscription program lifecycle. Order data comes from both storefront clickstream and the order management system (OMS).
+    
+    ## Event Taxonomy
+    - Order data arrives from two sources, storefront clickstream and OMS, with each source using a different event name for the same action. A custom event, "Order Placed", combines them so you can analyze orders from both sources together under one name instead of running separate queries for each raw event.
+    - Naming convention: Title Case for events (e.g. "Product Added to Cart"), not snake_case.
+    - Verb-Noun pattern is standard ("Registration Succeeded", not "Registration").
+    
+    ## Property Conventions
+    - Subscription status lives on the user profile, not the event (property: current_subscription_status).
+    - "New to [Category]" properties flag first-time category purchases, used for cross-sell targeting, not just reporting.
+    
+    ## Key Dashboards
+    - "Subscription Health" is the source of truth for subscription metrics: conversion, churn, reactivation. Don't rebuild from raw events; the board is built on the "Order Placed" custom event and already excludes test accounts.
+    - "Revenue Attribution" is the canonical view for channel performance. It's built on the "Order Placed" custom event, so orders are counted consistently regardless of which system originally recorded them.
+    
+    ## Team Norms
+    - "Active user" = placed an order or logged in within the last 30 days.
+    
+    ## Operating Procedures
+    - Use the "Order Placed" custom event, not the individual raw OMS or clickstream events, so orders from both sources are analyzed together under one name.
+    - Legacy notification events (email/SMS delivery telemetry) are in the schema but not used in current reporting. Their presence doesn't mean they're relevant. Ignore them unless someone specifically asks about email or SMS delivery.
+    ```
+  </Tab>
+</Tabs>
+
+Notice what's absent from the finished example: no counts of active users or team members, no query volumes, no dashboard counts. Everything here is something an AI assistant would otherwise have to guess at, and nothing here goes stale on its own.
+
+### Common mistakes
+
+Most of what goes wrong with business context isn't a formatting mistake. It's writing context as if it's a one-time setup task instead of something that needs upkeep, or mistaking a copy of your schema for something an AI assistant actually needed to be told.
+
+- **Writing context once and never touching it again.** Context should change when your taxonomy changes, not just when someone remembers it exists.
+- **Copying schema instead of explaining it.** An AI tool connected through MCP can already see your schema in Lexicon. Context is the part it can't infer, such as how your team defines the terms it uses internally, and who or what those terms actually apply to.
+- **Trying to document every event in business context.** As your event and property list grows, documenting each one individually will burn through the character limit fast, and that level of detail belongs in Lexicon event descriptions instead, which Mixpanel AI surfaces also read.
+- **Trying to control behavior through context.** Writing instructions like "always summarize in three bullet points" isn't what this field is for and isn't guaranteed to work.
+- **Skipping the org level entirely.** Project context without org context tells an AI assistant how your data is shaped but not what business it's shaped for.
+
+### Beyond business context
+
+Business context isn't the only thing that shapes what an AI assistant knows about your data. A few other things are worth investing in alongside it:
+
+- [**Lexicon**](/docs/data-governance/lexicon) descriptions, sample values, and tags document individual events and properties. If business context is the big picture, Lexicon is the detail underneath it.
+- [**Verified Mode**](/docs/mixpanel-agent#verified-mode) flags which events, metrics, behaviors, and cohorts your team has vetted as trustworthy, so an AI assistant (and your teammates) can tell the difference between something reviewed and something not.
+- [**Annotations**](/docs/features/annotations) mark specific moments on your data, like a launch or an incident, that explain why a metric moved on a given day.
+
+This guide covers business context specifically. These are separate, complementary practices, not something business context replaces.
+
+### Key takeaways
+
+- Write formulas and specifics into context, like metric definitions, event semantics, scope, and boundaries, not just labels.
+- Skip anything that goes stale fast (live usage stats) and anything that reads as an instruction rather than a fact.
+- Never include credentials, passwords, or PII. Context leaves Mixpanel and goes to your connected AI tool.
+- Keep organization context about the business and project context about how that specific project is used; don't blend them.
+- Updates through Settings or MCP always fully replace what was there. Fetch the current context before making a change.
+- Revisit context whenever something it describes changes, whether that's your event taxonomy, your customer segments, or how the business measures success. Stale context can be worse than none.
+
+Not sure which surface fits your team? Compare [Mixpanel Agent](/docs/mixpanel-agent), [MCP](/docs/mcp), and [Headless](/docs/mixpanel-headless) to see which one matches how you work, and then start to use it with your updated context.

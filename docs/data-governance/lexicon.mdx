@@ -146,7 +146,7 @@ This data lets you easily discover the parts of your implementation that are mos
 Only project owners may block and unblock data from the Lexicon. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
 </Note>
 
-In Lexicon, you can intercept and block incoming events or properties. Mixpanel won’t store any **new data** for the event or property you select to block. **Warning: You cannot recover event data after you block it.**
+In Lexicon, you can intercept and block incoming events or properties. Mixpanel won't store any **new data** for the event or property you select to block. **Warning: You cannot recover event data after you block it.**
 
 When an event is blocked, all events of that type that have previously been ingested (before blocking it) will still show in the interface. Only project owners can block events and properties. **Note: It takes a few hours for Mixpanel to process the blocked event.**
 
@@ -159,6 +159,10 @@ Sample use cases for blocking events and properties are:
 **Better Organization:** Events and properties that are no longer useful can cause a cluttered Mixpanel project. Blocking unnecessary events and properties optimizes your code for a clean and streamlined project implementation.
 
 **Blocking Events**
+
+<Info>
+Previously, Block was called "Drop" in Lexicon. Events that formerly showed a "Dropped" status now show a "Blocked" status.
+</Info>
 
 By blocking an event, you can intercept and block incoming events. Mixpanel will not store any new data for the event you select to block.
 
@@ -355,7 +359,7 @@ For Session Replay setup and configuration, see our [Session Replay documentatio
 
 ## Export and Import Lexicon Data
 
-Mixpanel supports exporting and importing Lexicon data dictionaries. Project owners, admins, analysts, and consumers can click **Export** in Lexicon to receive a CSV file via email that contains the events and properties, and/or user profile properties data from a project.
+Mixpanel supports exporting and importing Lexicon data dictionaries. Project owners, admins, and analysts can click **Export** in Lexicon to receive a CSV file via email that contains the events and properties, and/or user profile properties data from a project.
 
 <Frame>
 ![Lexicon Export](/images/lexiconExport.png)
