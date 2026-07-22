@@ -4,12 +4,12 @@ title: "Reports Overview"
 
 A report is a visual display of your tracked Mixpanel data.
 
-Mixpanel has several types of reports: [Insights](/docs/reports/insights), [Funnels](/docs/reports/funnels/funnels-overview), [Flows](/docs/reports/flows), [Retention](/docs/reports/retention) and other advanced reports, each with their specialized use, and they can be accessed from the top-left side of the screen by clicking the '+ Create New' button.
+Mixpanel has several types of reports: [Insights](/docs/reports/insights), [Funnels](/docs/reports/funnels/funnels-overview), [Flows](/docs/reports/flows), [Retention](/docs/reports/retention) and other advanced reports, each with their specialized use, and they can be accessed from the top-left side of the screen by clicking the '\+ Create New' button.
 
 This article focuses on the key concepts that are applicable across the four basic report types (Insights/Funnels/Flows/Retention).
 
 <Note>
-    Mixpanel's core reports are available on all free and paid subscription plans.
+  Mixpanel's core reports are available on all free and paid subscription plans.
 </Note>
 
 ## Metrics
@@ -27,7 +27,7 @@ The measurement tells the metric how to evaluate the behaviors. Some examples of
 Depending on the behavior, certain measurements may not be possible. For example, you cannot use the conversion rate measurement when the metric only has a single event.  The measurement is selected in the bottom-left area of the metric.
 
 <Frame>
-![measurement](/images/report-measurement.png)
+  ![measurement](/images/report-measurement.png)
 </Frame>
 
 ## Visualizations
@@ -35,7 +35,7 @@ Depending on the behavior, certain measurements may not be possible. For example
 You can change the type of visualization by clicking the dropdown in the upper right corner of the report. The options available will depend on the type of report that you started with. In this case, we switched to a bar view, allowing us to see the total number of "login" events across the entire time range, broken down by the "Platform" property.
 
 <Frame>
-![/Screen_Shot_2022-07-11_at_3.07.02_PM.png](/images/Screen_Shot_2022-07-11_at_3.07.02_PM.png)
+  ![/Screen\_Shot\_2022-07-11\_at\_3.07.02\_PM.png](/images/Screen_Shot_2022-07-11_at_3.07.02_PM.png)
 </Frame>
 
 ## Filters
@@ -47,7 +47,7 @@ Filters are used to narrow events or behaviors that qualify for analysis. For ex
 A global filter applies to the entire report. Filter by properties or cohorts by clicking the **Filter** button. This will filter the results of the entire report to show only data with that property or cohort.
 
 <Frame>
-![image](/images/global-filter.png)
+  ![image](/images/global-filter.png)
 </Frame>
 
 ### Inline Filters
@@ -57,13 +57,13 @@ An inline filter applies to one particular event in the report.
 Add a filter to your query by clicking on the **…** icon beside an event, profile, cohort, or step.
 
 <Frame>
-![image](/images/3e36bd7e-f5b8-462a-890c-bf396ff98f69.png)
+  ![image](/images/3e36bd7e-f5b8-462a-890c-bf396ff98f69.png)
 </Frame>
 
 Then, select a property from the drop-down list that appears and specify which values to filter.
 
 <Frame>
-![image](/images/c7cce429-3c9c-4759-8ea1-b09345fa0b4e.png)
+  ![image](/images/c7cce429-3c9c-4759-8ea1-b09345fa0b4e.png)
 </Frame>
 
 In Funnels, filtering a step by a particular property will limit the data you see in the funnel to events with that property value.
@@ -73,26 +73,26 @@ You can choose multiple property filters for each item in your query.
 You can select whether you would like the query to match any of these filters, or all of the filters, by clicking on **and/or** beside the filters.
 
 <Frame>
-![image](/images/9e3bcd31-2b12-48d1-b04f-cdda85dd2584.png)
+  ![image](/images/9e3bcd31-2b12-48d1-b04f-cdda85dd2584.png)
 </Frame>
 
 ### First Time Ever Filter
+
 Sometimes, you might want to filter an event to only the first time that it's performed by a user. This helps answer the following questions:
 
-* How many users sign up or perform another key event for the first time each week?
-* Which referrers do most first-time users come from?
-* How quickly do users make a purchase after their first time engaging with the app?
-* How well do users retain after performing a key event for the first time?
-* What events do users perform before and after making their first purchase?
+- How many users sign up or perform another key event for the first time each week?
+- Which referrers do most first-time users come from?
+- How quickly do users make a purchase after their first time engaging with the app?
+- How well do users retain after performing a key event for the first time?
+- What events do users perform before and after making their first purchase?
 
 You can do this by adding a First Time Filter to any event in Mixpanel. This filters the event down to only the first instance of the event performed by a user:
 
 <Frame>
-![233894752-93851682-9d83-4c87-937d-8fd90db465c6.png](https://user-images.githubusercontent.com/2077899/233894752-93851682-9d83-4c87-937d-8fd90db465c6.png)
+  ![233894752-93851682-9d83-4c87-937d-8fd90db465c6.png](https://user-images.githubusercontent.com/2077899/233894752-93851682-9d83-4c87-937d-8fd90db465c6.png)
 </Frame>
 
-Mixpanel computes this on-the-fly by scanning each user's history to determine if this was the first instance of the event performed by the user, based on timestamp.
-Note that when there's a tie in the timestamps of the first event (e.g., the user does multiple first-time Purchases in the same second), all of those events will be considered the "first time" and will match the filter. The impact will be that Mixpanel includes multiple events for those users, so if you break down by user ID, you may see that the user did multiple first events.
+Mixpanel computes this on-the-fly by scanning each user's history to determine if this was the first instance of the event performed by the user, based on timestamp. Note that when there's a tie in the timestamps of the first event (e.g., the user does multiple first-time Purchases in the same second), all of those events will be considered the "first time" and will match the filter. The impact will be that Mixpanel includes multiple events for those users, so if you break down by user ID, you may see that the user did multiple first events.
 
 ## Breakdowns
 
@@ -103,7 +103,7 @@ This feature is useful for determining if a group factor, such as browser type, 
 Select the **Breakdown** button, and select the property or cohort you want to break down your results by.
 
 <Frame>
-![image](/images/report-breakdown.png)
+  ![image](/images/report-breakdown.png)
 </Frame>
 
 For cohorts, you will be shown groups of users both in and not in the cohort in your results.
@@ -119,50 +119,57 @@ By default, the event menu shows all events, except for [hidden events](/docs/d
 If you organize your events using [tags](/docs/data-governance/lexicon) in Lexicon, the tags will show up as filtering options in the event menu. When you select a tag, a list of events that share the same tag appears:
 
 <Frame>
-![/Untitled__1_.png](/images/Untitled__1_.png)
+  ![/Untitled\_\_1\_.png](/images/Untitled__1_.png)
 </Frame>
 
 ## Properties Menu
 
 This menu appears when adding a filter, an inline filter on an event, or a breakdown.
 
-By default, the menu shows "all properties". This includes event properties, profile properties, group properties, lookup properties, and cohorts.
+By default, the menu shows all properties; this includes event properties, profile properties, group properties, lookup properties, and cohorts.
 
 You can select the following filtering options to show a subset of the properties in the menu:
 
-- Select "event properties" to show only the [Event properties](/docs/data-structure/events-and-properties).
-- Select "user properties" to show only the [Profile properties](/docs/data-structure/events-and-properties).
-- Select "cohorts" to show only the [Cohorts](/docs/users/cohorts).
-- If you set up [Group Analytics](/docs/data-structure/advanced/group-analytics), the Group keys will show up individually under their display names. You can select any Group key to show only the Group properties relevant to the selected Group key:
-- If you set up [Experiments](/docs/experiments), the Experiments will show up individually under their display names.
-
+- Select "Event" to show only the [Event properties](/docs/data-structure/events-and-properties).
+- Select "User" to show only the [Profile properties](/docs/data-structure/events-and-properties).
+- Select "Computed" to show only the [Computed properties](/docs/features/computed-properties).
+- If you set up [Group Analytics](/docs/data-structure/advanced/group-analytics), the group keys will appear individually under their respective display names. You can select any Group key to show only the Group properties relevant to the selected Group key.
+- Select "Cohorts" to show only the [Cohorts](/docs/users/cohorts).
+- If you set up [Experiments](/docs/experiments), they will appear individually under their respective display names.
 
 <Frame>
-![/prefix.png](/images/prefix.png)
+  ![/insights\_properties\_section.png](/insights_properties_section.png)
 </Frame>
 
 ### Duplicating Metrics
 
-To duplicate any metrics or properties in your query, select the inline action menu and choose **Duplicate**. Delete any events or properties by clicking the **trash** icon.
+To duplicate any metrics or properties in your query, select the inline action menu and choose **Duplicate**. Delete any events or properties by clicking the **Remove** button.
 
 <Frame>
-![image](/images/f496b609-47a3-4287-95f8-e9e6f2ac915d.png)
+  <img
+    src="/images/event_options.png"
+    alt="Event Options"
+    title="Event Options"
+    className="mx-auto"
+    style={{ width:"57%" }}
+  />
 </Frame>
 
 ## Date Range
 
 Determine the time range of a query by clicking on the date range selector. The date range selector is common across all reports.
 
-All dates and times in Mixpanel reflect the project timezone. The default on most reports is “Last 30 days” (displayed as "30D"), but there are a variety of preset options, as well as the option to select a custom date range.
+All dates and times in Mixpanel reflect the project's timezone [(by default, UTC)](/docs/orgs-and-projects/managing-projects#changing-your-timezone). The default for most reports is “Last 30 days” (displayed as "30D"), but there are a variety of preset options, as well as the option to select a custom date range.
 
 <Frame>
-![date rate](/images/date-range.png)
+  ![new date rate](/images/new_date_range.png)
 </Frame>
 
-For these date ranges, the output shows results from the last complete 30 days, plus any results from the current incomplete day.
+For these date ranges, the output shows results from the last complete days, plus any results from the current incomplete day.
 
 | Preset | Description |
 | --- | --- |
+| Custom | Gives multiple customization possibilities, explained below. |
 | Today | Includes the current incomplete day up to the current second. |
 | Yesterday | Includes the whole of the previous day from midnight to midnight. |
 | Last 7 days | Last 7 days and the query count from the current incomplete day up to the current second. |
@@ -170,59 +177,106 @@ For these date ranges, the output shows results from the last complete 30 days, 
 | Last 3 months | Last 3 months and the query count from the current incomplete day up to the current second. |
 | Last 6 months | Last 6 months and the query count from the current incomplete day up to the current second. |
 | Last 12 months | Last 12 months and the query count from the current incomplete day up to the current second. |
-| Week to Date | From midnight of the start of the current week up to the current second. |
-| Month to Date | From midnight of the start of the current month up to the current second. |
-| Quarter to Date | From midnight of the start of the current quarter up to the current second. |
-| Year to Date | From midnight of the start of the current year up to the current second. |
 
-### Select a Date Range
+### Custom
 
-Selecting **Custom** on the date range selector opens up some additional options: "Last", "Fixed", and "Since".
+Selecting **Custom** on the date range selector opens up some additional options: "Recently Applied", "Fixed", Last", Since", "Period to date", and "Previous period".
 
-### Last
+### Recently Applied
 
-“In the last” allows you to select a rolling time range similar to the default “last 30 days”, but you have the flexibility to choose the time value and scale, either days, weeks, or months.
+This option will give you access to a prompt field, where you can type the range you're looking for (_'last 16 days starting on June 4th'_) for the AI to resolve for you, and also see a list of the last ranges used.
 
 <Frame>
-![/Screen_Shot_2022-07-11_at_3.17.05_PM.png](/images/Screen_Shot_2022-07-11_at_3.17.05_PM.png)
-</Frame>
-
-If you need to, you can click on the **+ Ending** button and shift back the desired time window by a selected number of days. So, for instance, in the example below, we are still looking at a 2-week window that is shifted by 7 days back. This is a rolling date range, and if this report is saved as a bookmark or added to a board, the actual dates will continue to update to show this relative time period vs. today.
-
-<Frame>
-![/Screen_Shot_2022-07-11_at_3.18.03_PM.png](/images/Screen_Shot_2022-07-11_at_3.18.03_PM.png)
+  <img
+    src="/images/date_picker_recently_applied.png"
+    alt="Date Picker Recently Applied"
+    title="Date Picker Recently Applied"
+    className="mx-auto"
+  />
 </Frame>
 
 ### Fixed
 
-“Fixed” allows you to select two dates to query between, by entering the same start & end date. If you save this report as a bookmark or add it to a board, the date range selection will always persist.
+“Fixed” allows you to select two dates to query between by entering the same start and end date. If you save this report as a bookmark or add it to a board, the date range selection will always persist.
 
 <Frame>
-![/Screen_Shot_2022-07-11_at_3.21.03_PM.png](/images/Screen_Shot_2022-07-11_at_3.21.03_PM.png)
+  <img
+    src="/images/date_picker_fixed.png"
+    alt="Date Picker Fixed"
+    title="Date Picker Fixed"
+    className="mx-auto"
+  />
+</Frame>
+
+### Last
+
+“Last" allows you to select a rolling time range similar to the default “last 30 days”, but you have the flexibility to choose the time value and scale, either days, weeks, months, or quarters.
+
+<Frame>
+  <img
+    src="/images/date_picker_last.png"
+    alt="Date Picker Last"
+    title="Date Picker Last"
+    className="mx-auto"
+  />
+</Frame>
+
+If needed, you can adjust the desired time window backward by the selected number of days in the "Ending" section. For instance, in the example below, we are still looking at a 2-week window that is shifted 7 days back. This is a rolling date range, and if this report is saved as a bookmark or added to a board, the actual dates will continue to update to show this relative time period vs. today.
+
+<Frame>
+  ![Date Picker Last Rolling Window](/images/date_picker_last_rolling_window.png)
 </Frame>
 
 ### Since
 
 “Since” allows you to select a specific date to query for all data since that start date.
 
-### To Date
+<Frame>
+  <img
+    src="/images/date_picker_since.png"
+    alt="Date Picker Since"
+    title="Date Picker Since"
+    className="mx-auto"
+  />
+</Frame>
 
-"To Date" allows you to select a date range that will update dynamically to fit the current interval. You can choose 'Week to Date', 'Month to Date', 'Quarter to Date', and 'Year to Date'. When the boundary of the interval is passed, the date range will automatically update to include only the current interval. For example, if "Month to Date" was selected, and the date was February 27, the date range would include Feb 1 - Feb 27. The next week, after the month boundary has passed, the date range would include Mar 1 - Mar 4.
-To Date respects start of week and start of quarter settings under project settings.
+### Period to date
+
+This option allows you to select a date range that will update dynamically to fit the current interval - you can choose "Day", "Week", "Month", "Quarter", and "Year". When the boundary of the interval is passed, the date range will automatically update to include only the current interval. For example, if "Month" was selected on June 27, the date range would include Jun 1 - Jun 27. The next month, after June has passed, the date range would include Jul 1 - Jul 8, as shown in the image below.\
+"Period to date" respects the start of the week and start of quarter settings under Project Settings.
+
+<Frame>
+  ![Date Picker Period To Date](/images/date_picker_period_to_date.png)
+</Frame>
+
+### Previous period
+
+Choosing this option allows you to query information tracked only in the selected period: "Day", "Week", "Month", "Quarter", and "Year".
+
+<Frame>
+  ![Date Picker Previous Period](/images/date_picker_previous_period.png)
+</Frame>
 
 ### Minute Level Granularity
 
+Enable hourly and minute-level granularity by clicking the "Enable Time Ranges" toggle on the bottom-left side of the date range picker. This enables you to select time ranges up to the minute. You can also use this for the "Last" time range to monitor only the past few hours or minutes.\
+This setting only works for the "Fixed", "Last", and "Since" options; it's not available for "Period to date" and "Previous period".
+
 <Frame>
-![minute level granularity](/images/enable-minute-granularity.png)
+  <img
+    src="/images/date_picker_fixed_time_ranges.png"
+    alt="Date Picker Fixed Time Ranges"
+    title="Date Picker Fixed Time Ranges"
+    className="mx-auto"
+  />
 </Frame>
 
-Enable hourly and minute-level granularity by going to the advanced submenu under "custom" date range selection. This enables you to select time ranges up to the minute. You can also use this for the "Last" time range to monitor only the past few hours or minutes. When doing time series using minute or hourly intervals, there is a lower time range limit supported.
+## Zoom In
 
-#### Zoom In
 To zoom in, click on the graph and drag to highlight a specific window of time in your report. Click **Reset zoom** to return to the previous view.
 
 <Frame>
-![zoom (1)](/images/3add64ad-3fea-4d74-a3bf-303fcc1f4d9d.gif)
+  ![zoom (1)](/images/3add64ad-3fea-4d74-a3bf-303fcc1f4d9d.gif)
 </Frame>
 
 ## Comparisons
@@ -234,13 +288,13 @@ Comparisons allow you to compare metrics or broken-down segments of metrics agai
 'Compare to Past' allows for comparing a metric against itself on a different time period. You are able to compare against the previous day, week, month, quarter, and year. You are also able to choose a custom time comparison window.
 
 <Frame>
-![/compare_to_past.png](/images/compare_to_past.png)
+  ![/compare\_to\_past.png](/images/compare_to_past.png)
 </Frame>
 
 By default, Mixpanel will visualize the values for both time periods. If you wish to see the lift of the current time period against the past time period, you can select the "Percent Change over Baseline" option to see the lift of your metric over time.
 
 <Frame>
-![/compare_to_past_lift.png](/images/compare_to_past_lift.png)
+  ![/compare\_to\_past\_lift.png](/images/compare_to_past_lift.png)
 </Frame>
 
 ### Compare to Segment
@@ -248,7 +302,7 @@ By default, Mixpanel will visualize the values for both time periods. If you wis
 Compare to segment allows you to set a property value as a baseline and see how every other property compares.
 
 <Frame>
-![/compare_to_segment.png](/images/compare_to_segment.png)
+  ![/compare\_to\_segment.png](/images/compare_to_segment.png)
 </Frame>
 
 ### Compare to Overall
@@ -256,7 +310,7 @@ Compare to segment allows you to set a property value as a baseline and see how 
 'Compare to Overall' allows you to compare each segment value and see what proportion it makes of the overall value.
 
 <Frame>
-![/compare_to_overall.png](/images/compare_to_overall.png)
+  ![/compare\_to\_overall.png](/images/compare_to_overall.png)
 </Frame>
 
 #### Supported Charts
@@ -279,15 +333,20 @@ Comparisons are supported across all insights chart types. Depending on the exac
 ## Saving to a board
 
 <Note>
-    Free plans allow each user to save up to 5 reports. Growth and Enterprise plan users can save an unlimited number of reports. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+  Free plans allow each user to save up to 5 reports, while Growth and Enterprise plan users can save an unlimited number of reports. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Note>
 
-When you are satisfied with the analysis and decide that this is something that you are likely to revisit, Mixpanel recommends that you save the report to a [board](/docs/boards). You can do this by pressing "Save" in the top right and selecting the board you would like to save to, or creating a new board.
+When you are satisfied with the analysis and decide that this is something that you are likely to revisit, you save the report to a [board](/docs/boards) by pressing "Save" in the top right and selecting the board you would like to save to, or creating a new board.
 
 All reports are saved to a board, which inherits the sharing settings and permissions applied to that board. Learn more about saving, sharing, and permission for your reports and boards [here](/docs/boards/sharing-and-permission).
 
 <Frame>
-![/Screen_Shot_2022-07-08_at_5.40.30_PM.png](/images/Screen_Shot_2022-07-08_at_5.40.30_PM.png)
+  <img
+    src="/images/reports_save_to_board.png"
+    alt="Reports Save To Board"
+    title="Reports Save To Board"
+    className="mx-auto"
+  />
 </Frame>
 
 ## Typecasting
@@ -295,7 +354,7 @@ All reports are saved to a board, which inherits the sharing settings and permis
 Mixpanel allows you to force Properties into another [data type](https://help.mixpanel.com/hc/en-us/articles/115004547063) by using the **"Data Type"** option in the overflow menu for property filters and breakdowns.
 
 <Frame>
-![/Kapture_2022-01-04_at_11.38.41.gif](/images/Kapture_2022-01-04_at_11.38.41.gif)
+  ![/Kapture\_2022-01-04\_at\_11.38.41.gif](/images/Kapture_2022-01-04_at_11.38.41.gif)
 </Frame>
 
 Typecasting is helpful when one of your properties is a number but is sent to Mixpanel as a string, and you want to see histogram data for that property. Or if one of your properties is a Unix timestamp and got sent as a number, and you want it to be treated as a date Property instead.
@@ -306,7 +365,7 @@ Insights will automatically bucket high-cardinality segments of number data type
 
 You can either customize the ranges by clicking "[Customize Range](/docs/features/advanced#custom-buckets)".
 
-Or alternatively, if you'd like to see the exact numeric values, you can typecast the Number property to a String to remove the range bucketing.
+Alternatively, if you'd like to see the exact numeric values, you can typecast the Number property to a String to remove the range bucketing.
 
 ## View Users
 
@@ -319,13 +378,13 @@ View Users can help you:
 - Export these users to a CSV file.
 
 <Frame>
-![/View_Users_Insights_gif.gif](/images/View_Users_Insights_gif.gif)
+  ![Reports View Users](/images/reports_view_users.gif)
 </Frame>
 
 ## Segment Limits and Ordering
 
 <Warning>
-When you encounter a "cardinality limit" error or see a "-" in your report despite having data, it indicates that the query returned more unique segments than the UI can display. To resolve this, narrow the time range, apply filters to specific events or properties, or reduce the number of breakdowns. These steps limit the segments, making your report easier to interpret and reducing the strain on the querying capacity of your projects.
+  When you encounter a "cardinality limit" error or see a "-" in your report despite having data, it indicates that the query returned more unique segments than the UI can display. To resolve this, narrow the time range, apply filters to specific events or properties, or reduce the number of breakdowns. These steps limit the segments, making your report easier to interpret and reducing the strain on the querying capacity of your projects.
 </Warning>
 
 In order to keep the interactive analysis experience snappy for projects of all sizes, Mixpanel limits how many segments are returned when using breakdowns. When breakdown (also referred to as segmentation) limits are reached, the response will be truncated to only return the top N segments. We have higher limits available via CSV exports.
@@ -373,35 +432,39 @@ Since our top N logic is determined per metric, multi-metric and formula reports
 
 ### Multi-breakdown reports
 
-For multi-segmentation or multi-breakdowns, we define the top N segments based on the top N flattened segments, which are the combination of the individual segment values across all breakdowns. For example, for a breakdown by Country and Browser, we treat “United States/Chrome” as one flattened segment for our segmentation limits. 
+For multi-segmentation or multi-breakdowns, we define the top N segments based on the top N flattened segments, which are the combination of the individual segment values across all breakdowns. For example, for a breakdown by Country and Browser, we treat “United States/Chrome” as one flattened segment for our segmentation limits.
 
 ### How will I know if my results are being truncated?
 
 You will see a banner at the top of your report indicating that results were truncated, what limit was applied, and what CSV export limit is available.
 
 <Frame>
-![image](/images/Segment_limits.png)
+  ![image](/images/Segment_limits.png)
 </Frame>
 
 ## Query Time Sampling
 
 <Note>
-    This feature is available to customers with an Enterprise subscription plan in projects with over 2 billion monthly events.
+  This feature is available to customers with an Enterprise subscription plan in projects with over 2 billion monthly events.
 </Note>
 
 Query-time sampling allows you to query a subset of users and shorten the time it takes for a report to load results. The Insights, Funnels, Retention, and Flows reports all support sampling at query time.
 
 ### Enable Sampling
 
-From the report in which you would like to use sampling, click the **lightning bolt** in the upper right corner of the query builder.
+From the report in which you would like to use sampling, click the **lightning bolt** in the upper-right corner of the query builder. This will enable sampling on the report and will be indicated by the lightning bolt symbol turning blue.\
+The percentage of the total that is included in the query calculations will be indicated in the banner shown above the report.
 
 <Frame>
-![/13109650264596](/images/13109650264596.png)
+  <img
+    src="/images/reports_query_time_sampling.png"
+    alt="Reports Query Time Sampling"
+    title="Reports Query Time Sampling"
+    className="mx-auto"
+  />
 </Frame>
 
-This will enable sampling on the report and will be indicated by the lightning bolt symbol turning blue. The percentage of the total that is included in the query calculations will be indicated in the top right corner of the query builder.
-
-To turn off sampling, click the lightning bolt symbol in the upper right corner of the query builder again. The lightning bolt symbol will turn grey to indicate that sampling is disabled.
+To turn off sampling, simply click the lightning bolt toggle again.
 
 ### Query Time Sampling Calculation and Presentation
 
@@ -419,7 +482,7 @@ The following occurs when sampling is enabled:
 6. Mixpanel adds an annotation to reports.
 
 <Note>
-    If you save a report that uses query time sampling, then a version of the report *without* sampling is saved. This ensures that boards and saved reports are computed on the entire dataset for high fidelity.
+  If you save a report that uses query time sampling, then a version of the report _without_ sampling is saved. This ensures that boards and saved reports are computed on the entire dataset for high fidelity.
 </Note>
 
 ## Query Result Caching
@@ -441,19 +504,19 @@ While this highlights the default server cache behavior, you can always refresh 
 To refresh the query results cache, navigate to the report, click the three dots overflow menu at the top of the report and select **Refresh Data**.
 
 <Frame>
-![public/Refresh_Data_Report.png](/images/Refresh_Data_Report.png)
+  ![public/Refresh\_Data\_Report.png](/images/Refresh_Data_Report.png)
 </Frame>
 
 To refresh the query results' cache in a board, click the three dots overflow menu at the top of the board and select **Refresh Data**.
 
 <Frame>
-![public/Refresh_Data_Board.png](/images/Refresh_Data_Board.png)
+  ![public/Refresh\_Data\_Board.png](/images/Refresh_Data_Board.png)
 </Frame>
 
-To refresh the query results' cache in a board card, click the three dots overflow menu at the top of the card and select **Refresh Data**. 
+To refresh the query results' cache in a board card, click the three dots overflow menu at the top of the card and select **Refresh Data**.
 
 <Frame>
-![public/Refresh_Data_Board_Card.png](/images/Refresh_Data_Board_Card.png)
+  ![public/Refresh\_Data\_Board\_Card.png](/images/Refresh_Data_Board_Card.png)
 </Frame>
 
 ## Find Interesting Segments
@@ -475,7 +538,7 @@ User properties are not yet supported.
 View the top and bottom converting segments in your funnel by clicking the **Find interesting segments** button at the bottom of the segmentation chart.
 
 <Frame>
-![/10038188905364](/images/10038188905364.png)
+  ![/10038188905364](/images/10038188905364.png)
 </Frame>
 
 Rather than searching through multiple property breakdowns to find significant data, this feature automatically identifies this data for you. Mixpanel combs through your event properties and cohorts to show you which of those segments convert higher or lower than average, and are therefore statistically significant.
@@ -509,7 +572,7 @@ Mixpanel automatically compares the currently selected date period to the previo
 View the top and bottom converting segments in your retention report by clicking the **Find interesting segments** button at the bottom of the retention chart. This feature is not currently available for Frequency Retention.
 
 <Frame>
-![/10037069627156](/images/10037069627156.png)
+  ![/10037069627156](/images/10037069627156.png)
 </Frame>
 
 Rather than searching through multiple segment breakdowns to find significant data, this feature automatically identifies that data for you. Mixpanel combs through your event properties and cohorts and shows you which of those segments retain at a higher or lower rate than average.

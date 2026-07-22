@@ -76,3 +76,55 @@ ul.contains-task-list > li.task-list-item:before {
 .mxp-cookie-preferences-link:hover {
   opacity: 1;
 }
+
+/* Changelog subscribe button + modal. Mintlify's Tailwind build ships a fixed
+   utility subset that omits arbitrary-value (e.g. from-[#7856ff]), gradient,
+   and backdrop utilities, so the brand styles are defined here instead. */
+.mxp-subscribe-button {
+  background-image: linear-gradient(to top, #7856ff, #9075ff);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.mxp-subscribe-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mxp-subscribe-dialog {
+  /* Tailwind's Preflight resets margin to 0 on every element, which overrides
+     the UA style that centers a modal <dialog>; restore it. */
+  margin: auto;
+}
+
+.mxp-subscribe-dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.8);
+}
+
+.mxp-subscribe-modal {
+  background-color: #fbf9f9;
+}
+
+.dark .mxp-subscribe-modal {
+  background-color: #201f24;
+}
+
+.mxp-subscribe-error {
+  color: #cc332b;
+}
+
+/* Quickstart / funnels "next step" CTA (ExtendedButton). Same Tailwind gaps as
+   above: the gradient, arbitrary colors, py-2.5, and hover:shadow-md aren't in
+   Mintlify's build. */
+.mxp-extended-button {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  background-image: linear-gradient(to bottom, #9b7eff, #7856ff);
+}
+
+.mxp-extended-button:hover {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.mxp-extended-button:active {
+  background-image: linear-gradient(to bottom, #9b7eff, #5028c0);
+}
