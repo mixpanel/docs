@@ -4713,43 +4713,43 @@
     },
     {
       "source": "/guides/guides-by-topic/core-reports/create-boards",
-      "destination":"/docs/reports"
+      "destination":"/guides/guides-by-topic/core-reports"
     },
     {
       "source": "/guides/guides-by-topic/core-reports/discover-insights",
-      "destination":"/docs/reports"
+      "destination":"/guides/guides-by-topic/core-reports"
     },
     {
       "source": "/guides/guides-by-topic/core-reports/analyze-conversions",
-      "destination":"/docs/reports"
+      "destination":"/guides/guides-by-topic/core-reports"
     },
     {
       "source": "/guides/guides-by-topic/core-reports/build-user-flows",
-      "destination":"/docs/reports"
+      "destination":"/guides/guides-by-topic/core-reports"
     },
     {
       "source": "/guides/guides-by-topic/core-reports/track-user-retention",
-      "destination":"/docs/reports"
+      "destination":"/guides/guides-by-topic/core-reports"
     },
     {
       "source": "/guides/guides-by-topic/core-reports/define-cohorts",
-      "destination":"/docs/reports"
+      "destination":"/guides/guides-by-topic/core-reports"
     },
     {
       "source": "/guides/strategic-playbooks/onboarding-playbook/plan/*",
-      "destination":"/guides/strategic-playbooks"
+      "destination":"/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/strategic-playbooks/onboarding-playbook/implement/*",
-      "destination":"/guides/strategic-playbooks"
+      "destination":"/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/strategic-playbooks/onboarding-playbook/launch/*",
-      "destination":"/guides/strategic-playbooks"
+      "destination":"/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/strategic-playbooks/onboarding-playbook/beyond-onboarding",
-      "destination":"/guides/strategic-playbooks"
+      "destination":"/guides/strategic-playbooks/onboarding-playbook"
     }
   ]
 }
