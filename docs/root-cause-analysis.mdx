@@ -1,6 +1,6 @@
 ---
-sidebarTitle: "Root Cause Analysis"
 title: "Root Cause Analysis: AI-generated explanations for why your metrics changed"
+sidebarTitle: "Root Cause Analysis"
 ---
 
 ## Overview
@@ -13,26 +13,30 @@ Mixpanel's **AI-Powered Root Cause Analysis (RCA)** feature does that work for y
 
 When you run an RCA, Mixpanel immediately launches a new Board and exposes the agent's reasoning as it works:
 
-1. **Validates the anomaly.** Confirms there's a real change to explain before going further, using a z-score to check the change is well outside normal day-to-day variation rather than routine noise or seasonality.
+1. **Validates the anomaly.** Confirms there's a real change to explain before going further. RCA compares your flagged point against a baseline window that ends right before it, sized automatically from your chart's time grain (hourly uses roughly the prior 24 hours, daily ~14 days, weekly ~9 weeks, monthly ~6 months); if your chart shows a longer range than that, RCA uses your range instead. It then measures how many standard deviations your point sits from that window's average (the z-score), with 2 or more being the bar for a real anomaly rather than routine noise. A seasonality check compares like-for-like periods (same weekday for daily data, same hour-of-day for hourly) so normal recurring patterns don't get flagged.
 2. **Selects properties to analyze.** An LLM agent picks which properties to break down on, combining properties Mixpanel suggests for the event with any you've prioritized in [Custom RCA Settings](#custom-rca-settings). It spreads picks across plausible cause categories (acquisition, audience, platform, data quality, user identity), filters out high-cardinality identifiers and near-duplicates, and factors in your project's business context.
 3. **Runs breakdowns.** Executes the chosen breakdowns to see which segments actually moved.
 4. **Writes an interpretation.** Fills the Board with contribution factor analysis (each segment's share of the total change), ranked dimensions, an AI-written explanation of the likely cause, a confidence level, and suggested next steps.
 
 Cards stream into the Board as each step completes, with a live progress banner at the top while the agent is still working.
 
+<Info>
+    **What the numbers mean.** The percentage change (sometimes called "lift") compares the data point you flagged against a baseline, which is the average of the periods just before it: `(flagged value - baseline) / baseline`, so +30% means it came in 30% above the recent norm and a negative number means below. Each segment's contribution percentage is its share of the total change: `(how much the segment moved) / (how much the whole metric moved)`, so if a metric dropped by 500 overall and one country accounts for 400 of that, it shows an 80% contribution. Confidence works differently: it's not a calculated number but a label ("High," "Medium," or "Low") the AI assigns to each finding based on how unusual the change is versus normal fluctuation (the z-score) and how cleanly a single segment explains it, so a big, clear change driven by one segment earns higher confidence than a small change spread across many segments or one that looks seasonal.
+</Info>
+
 ## Where to launch RCA
 
 <Steps>
+  <Step title="From an Insights report">
+    Open any Insights chart, hover over a data point that looks unexpected, and choose **Root Cause Analysis** from the popover. RCA launches scoped to that event, segment, and time window.
 
-<Step title="From an Insights report">
-
-Open any Insights chart, hover over a data point that looks unexpected, and choose **Root Cause Analysis** from the popover. RCA launches scoped to that event, segment, and time window.
-</Step>
-
-<Step title="From a fired alert">
-
-When an alert fires, the notification (Slack, email, or webhook) includes a link that runs Root Cause Analysis and generates a Board for that alert. See [Alerts](/docs/features/alerts#root-cause-analysis) for how RCA fits into alerting.
-</Step>
+    <Frame>
+      ![Image](/images/image-6.png)
+    </Frame>
+  </Step>
+  <Step title="From a fired alert">
+    When an alert fires, the notification (Slack, email, or webhook) includes a link that runs Root Cause Analysis and generates a Board for that alert. See [Alerts](/docs/features/alerts#root-cause-analysis) for how RCA fits into alerting.
+  </Step>
 </Steps>
 
 ## The RCA Board
@@ -41,7 +45,7 @@ Because RCA generates a standard Mixpanel Board, it inherits all the capabilitie
 
 - **Anyone in your project can open it.** RCA Boards are project-shared by default, so teammates can pick up the analysis where you left off.
 - **You can edit it like any Board.** Add cards, rearrange, annotate, or duplicate it if you want a private working copy.
-- **Cards include contribution factor analysis.** Each ranked dimension lands as its own card with the breakdown, contribution percentage, and supporting context. You can edit this as needed before sharing. 
+- **Cards include contribution factor analysis.** Each ranked dimension lands as its own card with the breakdown, contribution percentage, and supporting context. You can edit this as needed before sharing.
 - **The interpretation card summarizes findings.** The AI's written explanation, confidence level, and suggested next steps live at the top of the Board so anyone scanning the results gets the punchline first.
 
 ## Custom RCA Settings
@@ -51,7 +55,7 @@ Oftentimes, customers know which properties matter for their business and want t
 In the AI Settings tab of your Project Settings, you can specify which event properties RCA should prioritize during analysis. For example, a marketing team that knows anomalies usually trace back to `utm_campaign_id` can point RCA at that dimension so it's always considered first. Properties you prioritize are combined with Mixpanel's automatic suggestions, so you never lose the agent's broader view — you just guide it toward the dimensions you care most about.
 
 <Info>
-    These settings only influence which properties RCA prioritizes. They don't control RCA's analysis sequencing or methodology — regardless of the instructions you provide, the agent still validates the anomaly, runs its breakdowns, ranks contributing dimensions, and writes up its interpretation the same way.
+  These settings only influence which properties RCA prioritizes. They don't control RCA's analysis sequencing or methodology — regardless of the instructions you provide, the agent still validates the anomaly, runs its breakdowns, ranks contributing dimensions, and writes up its interpretation the same way.
 </Info>
 
 ## Feedback
