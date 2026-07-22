@@ -377,6 +377,7 @@
             "icon": "/icons/ai.svg",
             "pages": [
               "docs/mixpanel-agent",
+              "docs/slack-bot",
               "docs/agentic-automations",
               "docs/root-cause-analysis",
               "docs/mcp",
@@ -641,7 +642,7 @@
                   "guides/guides-by-workflow/embed-data",
                   "guides/guides-by-workflow/ensure-data-quality",
                   "guides/guides-by-workflow/data-privacy",
-                  "links/write-business-context",
+                  "guides/guides-by-workflow/write-business-context",
                   "guides/guides-by-workflow/sync-with-mirror"
                 ]
               },
@@ -675,7 +676,8 @@
               "guides/guides-by-use-case/empower-your-team/mcp",
               "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry",
               "guides/guides-by-use-case/empower-your-team/mcp/integrations",
-              "guides/guides-by-use-case/empower-your-team/headless"
+              "guides/guides-by-use-case/empower-your-team/headless",
+              "guides/guides-by-workflow/write-business-context"
             ]
           },
           {
