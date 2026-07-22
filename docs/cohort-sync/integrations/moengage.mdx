@@ -1,11 +1,11 @@
 ---
-sidebarTitle: "MoEngage"
 title: "Moengage"
+sidebarTitle: "MoEngage"
 ---
 
 ## Overview
 
-Export Mixpanel cohorts to MoEngage to create custom segments that you can apply in your MoEngage campaigns. Manage the MoEngage integration from the Mixpanel integrations page.
+Export Mixpanel cohorts to MoEngage to create custom segments that you can apply in your MoEngage campaigns. Manage the MoEngage integration from the Mixpanel Destinations page.
 
 # Permissions
 
@@ -13,16 +13,15 @@ You must be a Mixpanel project admin to enable the MoEngage integration.
 
 ## Enable the Integration
 
-1. Select **Settings > Integrations** tab in the bottom left navigation bar of Mixpanel.
-
-2. From the Integrations page, select the MoEngage dropdown, and select **Connect**.
+1. Navigate to **Data** in the nav bar, then select **Destinations**.
+2. Click **Add Destination**, select MoEngage, and click **Connect**.
 
 <Note>
-    If you set a User ID Property, it should be a Mixpanel user property that matches the MoEngage External ID. If you do not select one, Mixpanel will default to using the `$moengage_user_id` property to match users between MoEngage and Mixpanel. See more about [matching users between MoEngage and Mixpanel](/docs/cohort-sync/integrations/moengage#matching-users-between-moengage-and-mixpanel).
+  If you set a User ID Property, it should be a Mixpanel user property that matches the MoEngage External ID. If you do not select one, Mixpanel will default to using the `$moengage_user_id` property to match users between MoEngage and Mixpanel. See more about [matching users between MoEngage and Mixpanel](/docs/cohort-sync/integrations/moengage#matching-users-between-moengage-and-mixpanel).
 </Note>
 
 <Frame>
-![Moengage 2 Image](/images/moengage2.png)
+  ![Moengage 2 Image](/images/moengage2.png)
 </Frame>
 
 3. The connection uses a Basic Authorization Username/Password system. You will need to provide two credentials to authorize the connection:
@@ -37,7 +36,7 @@ You will additionally provide one credential to authorize the cohort exports:
 You can find these values in your MoEngage settings page - note that MoEngage App ID is used in both the Username and MOE-APPKEY fields.
 
 <Frame>
-![Moengage 3 Image](/images/moengage3.png)
+  ![Moengage 3 Image](/images/moengage3.png)
 </Frame>
 
 4. The MoEngage integration will show a **Connected** tag in the UI once the connection succeeds.
@@ -45,14 +44,14 @@ You can find these values in your MoEngage settings page - note that MoEngage Ap
 ## Matching Users between MoEngage and Mixpanel
 
 <Warning>
-    **Warning:** Projects using the [Simplified ID merge system](/docs/tracking-methods/id-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
+  **Warning:** Projects using the [Simplified ID merge system](/docs/tracking-methods/id-management#identity-merge-apis) must have the `$user_id` in Mixpanel match the user identifier in the partner service. Using any alternative partner properties to match users between tools may result in partner events not being attributed to the correct user in Mixpanel. Any partner properties mentioned in the below section are primarily applicable to projects on the original ID merge system.
 </Warning>
 
 Mixpanel only exports identified user profiles to match to MoEngage - users without user profile properties (i.e. anonymous users) will not export.
 
-If the values you provide for users' distinct_id differ from the values used for MoEngage's Unique ID, the user's Mixpanel profile must contain a user property, `$moengage_user_id`, whose value is a string representing that user's Unique ID in MoEngage. Exports will include this joining key to match the corresponding Unique ID in MoEngage.
+If the values you provide for users' distinct\_id differ from the values used for MoEngage's Unique ID, the user's Mixpanel profile must contain a user property, `$moengage_user_id`, whose value is a string representing that user's Unique ID in MoEngage. Exports will include this joining key to match the corresponding Unique ID in MoEngage.
 
-In addition, when our ingestion service detects calls setting this user property, Mixpanel will also auto-alias the value of `$moengage_user_id` to the user's distinct_id. This ensures that messaging data passed from MoEngage to Mixpanel still attributes to the correct user.
+In addition, when our ingestion service detects calls setting this user property, Mixpanel will also auto-alias the value of `$moengage_user_id` to the user's distinct\_id. This ensures that messaging data passed from MoEngage to Mixpanel still attributes to the correct user.
 
 Note that exports are used solely for matching user identities between products - the integration will not send the full set of a user's profile properties to MoEngage, nor will it generate new user profiles in MoEngage.
 
@@ -60,11 +59,19 @@ Note that exports are used solely for matching user identities between products 
 
 To export a cohort to MoEngage:
 
-1. Navigate to **Lexicon**, then select the **Cohorts** tab to view all of your cohorts.
-
-2. Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort and click **Export to MoEngage**.
-
-3. Click **Start Sync**.
+<Tabs>
+  <Tab title="From the Destinations page (recommended)">
+    1. Navigate to **Data** in the nav bar, then select **Destinations**.
+    2. Find the MoEngage destination in the list and click on it.
+    3. Click the **Syncs** tab, then click **Add Cohort Sync**.
+    4. Select the cohort you want to export and configure the sync. Click **Start Sync**.
+  </Tab>
+  <Tab title="From Lexicon">
+    1. Navigate to **Lexicon**, then select the **Cohorts** tab to view all of your cohorts.
+    2. Select the cohort that you want to export. Click on the three-dot icon on the right side of the cohort and click **Export to MoEngage**.
+    3. Click **Start Sync**.
+  </Tab>
+</Tabs>
 
 ## Sync Types
 
@@ -83,7 +90,7 @@ In dynamic sync, Mixpanel initiates sync between a cohort and MoEngage every 15 
 Once the export completes, you will see a custom segment reflecting the set of users from your Mixpanel cohort (e.g. "Power Users"):
 
 <Frame>
-![Moengage 6 Image](/images/moengage6.png)
+  ![Moengage 6 Image](/images/moengage6.png)
 </Frame>
 
 ## MoEngage Events into Mixpanel & MTU exemptions
@@ -107,7 +114,7 @@ The following MoEngage events are exempt from MTU calculations:
 - Email Soft Bounced
 - Notification Received Android
 - Notification Sent iOS
-- NOTIFICATION_RECEIVED_IOS_MOE
+- NOTIFICATION\_RECEIVED\_IOS\_MOE
 - Notification Received Web
 - SMS Sent
 - SMS Delivered
