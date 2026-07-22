@@ -981,6 +981,12 @@
             ]
           },
           {
+            "group": "EXAMPLE API",
+            "pages": [
+              "reference/example"
+            ]
+          },
+          {
             "group": "DATA PIPELINES API",
             "pages": [
               "reference/overview-2",
