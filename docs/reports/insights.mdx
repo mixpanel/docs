@@ -333,7 +333,7 @@ Some nuances to note:
 - When a saved metric is updated, it will update across all reports it’s being used in
 - A saved formula can’t reference another formula
 
-To access and re-use saved formulas, click on “\+Formula”, and then see the list of saved formulas. You can also look at all the saved formulas in the Lexicon tab “Formulas”. Some callouts regarding permissions:
+To access and re-use saved formulas, click on “\+Formula”, and then see the list of saved formulas. You can also look at all the saved formulas in the Lexicon tab “Metrics”. Some callouts regarding permissions:
 
 - All roles can create a saved formula, but only some roles can share them with the whole project for re-use
 - You can only look at saved formulas created by you or shared with you
@@ -553,15 +553,20 @@ See this [video walkthrough](https://www.loom.com/share/5568e266532b4804a1c2d36d
 Click on a chart segment in Insights and view the raw events that made up that metric. You will be redirected to the Events page.
 
 <Frame>
-  ![View Events](/images/advanced-view-events.gif)
+  <img
+    src="/images/reports_view_events.gif"
+    alt="Reports View Events"
+    title="Reports View Events"
+    className="mx-auto"
+  />
 </Frame>
 
 ### View Sample Events
 
-You can hover over any event and in the context panel, you now have the ability to "View Sample Events", which redirects you to the Events page with the 100 most recent samples of that hovered event: You can see a few samples of an event to help you decide whether that's the right event you want for your analysis or which property you should use for filters/breakdowns.
+If you hover over any event and click "View Sample Events" in the context panel, it redirects you to the Events page with the 100 most-recent samples of that hovered event. You can see a few samples of an event to help you decide whether that's the right event you want for your analysis, or which property you should use for filters/breakdowns.
 
 <Frame>
-  ![View Sample Events](/images/advanced-view-sample-events.gif)
+  ![Reports View Sample Events](/images/reports_view_sample_events.gif)
 </Frame>
 
 ### Date Range Guardrails

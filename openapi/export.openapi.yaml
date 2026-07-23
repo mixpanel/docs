@@ -69,7 +69,8 @@ paths:
         name: event
         schema:
           type: string
-        description: The event or events that you wish to get data for, encoded as a JSON array.
+          example: '["signup","purchase"]'
+        description: The event or events that you wish to get data for, encoded as a JSON array (for example, `["signup","purchase"]`).
       - in: query
         name: where
         schema:
