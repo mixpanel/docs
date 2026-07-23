@@ -3,10 +3,6 @@ title: "Feature Flags: Rollout with precision control"
 sidebarTitle: "Feature Flags"
 ---
 
-<Note>
-    Feature Flags is a separately priced product add-on. It is currently only offered to those on the Enterprise Plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
-</Note>
-
 ## Overview
 
 **Feature Flags** let you control who sees a feature and when. Use them to:
@@ -95,8 +91,21 @@ Control variant by is always set to non-sticky. This is to ensure this is the on
 
 Feature flags may consist of one or more rollout groups. Users are evaluated against each rollout group in order until one is found that the user qualifies for.
 
-You can target 'All Users', or optionally target rollout of your feature flags to subsets of your user base rather than to all your users with [Cohorts](/docs/users/cohorts).
-These are dynamic audiences of Mixpanel users based on user behavior or properties. Use these to target feature flags to specific subsets of your user base. For example, target only users who did 5 purchases in the last week.
+You can target 'All Users', or optionally target rollout of your feature flags to subsets of your user base rather than to all your users with [Cohorts](/docs/users/cohorts). These are dynamic audiences of Mixpanel users based on user behavior or properties. Use these to target feature flags to specific subsets of your user base. For example, target only users who did 5 purchases in the last week.
+
+Cohorts used in feature flag targeting refresh on a periodic cadence (~every 2 hours). So once a user or group entity qualifies for a cohort, it can take up to 2 hours before they see a desired experience.
+
+If you want users or groups to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure they continue to see the new experience until the flag is turned off.
+
+{/* ============================================================ */}
+{/* ⚠️ DO NOT REMOVE OR MODIFY the 20M user cohort limit below.  */}
+{/* We are contractually/legally required to maintain it.        */}
+{/* Before any change, confirm with the PM for Feature Flags     */}
+{/* AND Legal (contract implication review). — Myron, 2026-07-16 */}
+{/* ============================================================ */}
+<Note>
+    For optimal performance, remote evaluation supports cohorts of up to 20 million users per cohort. To target larger cohorts, contact your Mixpanel account team.
+</Note>
 
 **Group Cohort Targeting**
 
@@ -105,12 +114,6 @@ When the Variant Assignment Key is set to a group key (e.g., `company_id`, `acco
 - Group cohorts are created in the same [cohort builder](/docs/users/cohorts), scoped to the relevant group key.
 - The cohort builder automatically corresponds to the the flag's assignment key.
 - Example: A flag with assignment key `company_id` lets you target a cohort like "Enterprise companies with >50 seats."
-
-<Note>
- - Cohorts used in feature flag targeting refresh on a periodic cadence (~every 2 hours). So once a user or group entity qualifies for a cohort, it can take up to 2 hours before they see a desired experience.
- - If you want users or groups to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure they continue to see the new experience until the flag is turned off.
- - For the optimal performance, cohorts used in feature flag targeting are officially limited to 20 million users.
-</Note>
 
 <Warning>
 Note that cohort targeting for `device_id` assignment key flags builds cohorts against Users, not devices. Furthermore, since this targeting is against Users, it will only target authenticated Users, which could defeat the purpose of using an auth-insensitive `device_id` rollout.  If you wish to do group cohort targeting against devices, make device a Data Group and then use group targeting against it.  
@@ -439,43 +442,49 @@ If the assignment key is _not_ present in the destination project, the operation
 
 Pricing Unit: Feature Flags are priced based on Feature Flag API Requests, and number of 'active' feature flags at any time
 
-**What is a Feature Flag API Request?**
+
+**1. How are feature flags counted for billing?**
+
+Mixpanel counts every active feature flag toward your plan capacity. Specifically, it is defined as a feature flag having the same flag key across projects within the organization. If the same feature flag key is used in different projects in your organization, it will only be counted once. Disabling or archiving a feature flag frees up your plan capacity
+
+**2. What is a Feature Flag API Request?**
 
 A feature flag API request is a call made by your application to a Feature Flag system’s API to determine **which all features** should be enabled or disabled, or which variant should be served to a user. All the active flags in the system are evaluated as part of this API request.  
 
-**How can I estimate Feature Flag API requests?**
+**3. How can I estimate Feature Flag API requests?**
 
 In general, you can expect every user session to have 1 API request. When the session starts, all the flags for the user are fetched in the single API request. So monthly API requests is at minimum equivalent to the total user sessions that month. 
 Few notes: 
 - If you have multiple sdk inits each session, that would increase the count of API requests in a session
 - Considering above, general rule of thumb: would consider API requests to be 1.5 x User Sessions considering implementation challenges, or multiple sdk inits in a session
 
-**How do I estimate API requests if implementing via server side sdk?**
+**4. How do I estimate API requests if implementing via server side sdk?**
 
 - If you are using server side sdk, with only local evaluation: your API requests depend on a) how many server instances you have and b) how frequently you poll your servers
 - If you are using server side sdk, but with remote evaluation or leveraging cohorts: your API request estimation is similar to client-side sdk requests laid our above
 
-**What happens if I go over my purchased Feature Flag API Request bucket?**
+**5. What happens if I go over my purchased Feature Flag API Request bucket?**
 
 You can continue using Mixpanel Feature Flags, but you will be charged a higher rate for the overages. 
 
-**Is there any limit on number of feature flags per API request?**
+**6. Is there any limit on number of feature flags per API request?**
 
 Yes, there is a limit depending on the plan you purchase. You can choose from 3 plans: to have upto 50, 200 or 1000 'active flags' per API request.
 - Once you reach this limit, no more flags will will be fetched as part of the API request until you disable some others or upgrade your plan 
 - Active flags are flags which are marked 'Enabled'. Only these flags are counted under the 'active flag' limit
 - If you are on the 50 active flag limit, the first 50 flags based on the 'start' date are fetched
 
-**Do I get double charged if I create the same feature flag across projects?**
+**7. Do I get double charged if I create the same feature flag across projects?**
 
 No. We charge based on active 'feature flag keys'. If the same flag-key is used across projects, it will be charged only once.
 
-**How can I monitor my account’s Feature Flag API requests consumption?**
+**8. How can I monitor my account’s Feature Flag API requests consumption?**
 
 You can see your feature flag usage by going to Organization settings > Plan Details & Billing.
 
-**If I purchase the feature flag add-on, do I still need to purchase the experimentation add-on as well?**
+**9. If I purchase the Experiment add-on, do I need to purchase the Feature Flag add-on as well?**
 
-Yes. Both these are separate add-ons to ensure we're compatible with your tech stack. So, if you are also looking to analyze experiments, please check our [experimentation offering.] (https://docs.mixpanel.com/docs/experiments) 
+Feature flags are included with the Experimentation add-on and are not billed or metered separately.
+
 
 
