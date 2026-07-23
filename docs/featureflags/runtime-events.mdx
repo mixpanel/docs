@@ -97,6 +97,10 @@ Click **"+ Filter"** to add conditions on event properties. This lets you target
 For example:
 - Event: `Purchase` where `amount > 100` (only high-value purchases)
 - Event: `Page View` where `page_path contains '/checkout'` (only checkout views)
+
+<Note>
+  These property filters apply to properties of the selected runtime **event** — they narrow which occurrences of the tracked event count toward activation. If you want to target based on a value your application sends at request time (for example, an `organization_id`), use a [Runtime Property](/docs/featureflags#runtime-properties) filter instead.
+</Note>
 </Step>
 
 <Step title="Assign Variants">

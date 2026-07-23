@@ -31,7 +31,7 @@ sidebarTitle: "Feature Flags"
     - **Cohort Filter** - a targeting method that uses Mixpanel cohorts to target users or group entities
     - **Runtime Filter** - a targeting method that checks data available at runtime against a Runtime Property or Runtime Event
     - **Rollout %** — percentage of the audience that receives the flag if they are eligible for the rollout group
-- **Runtime Properties** — request-time attributes (e.g., URL path, app version) used to target immediately.
+- **Runtime Properties** — any key/value attributes your application passes in the flag-evaluation request context (`context` / `custom_properties`) at request time; the flag compares these values directly (e.g. equals / contains). They are not limited to device or platform values — any attribute your app can supply at request time, such as `organization_id`, works, making them the right tool for use cases like organization- or account-based targeting.
 - **Runtime Events** — event-based targeting (e.g., user clicked button, completed purchase) used to target users immediately after they perform actions.
 - **Assignment vs Exposure** — assignment is deciding the variant; exposure is when your app **uses** that variant to render.
 - **Feature Flag API Request** - is a call made to a feature flag API to retrieve the current state or configuration of one or more feature flags. This request allows an application to dynamically determine which features should be active for a user
@@ -123,8 +123,13 @@ Runtime targeting enables immediate, per-request decisions. There are two types 
 
 **Filter by Runtime Property**
 
-This method enables targeting users immediately based on device or platform properties. For example, only users who are on Android devices and in the UK.
-- Runtime properties (e.g., `platform`, `path`, `country`) should be passed by the SDK at request time for immediate, per-request decisions.
+This method enables targeting users immediately based on arbitrary key/value attributes your application sends in the flag-evaluation request context (`context` / `custom_properties`) at request time. The flag compares these values directly (e.g. equals / contains) for immediate, per-request decisions.
+- Runtime Properties are **not** limited to device or platform values. They can be any attribute your frontend or app supplies at request time — for example, `platform`, `path`, `country`, or a custom value like `organization_id`. This makes them the right tool for use cases such as organization- or account-based targeting, in addition to device/platform targeting. For example, only users who are on Android devices and in the UK, or only requests belonging to a specific organization.
+- These attributes should be passed to the SDK in the `context` / `custom_properties` parameter at the time the flag is evaluated.
+
+<Note>
+  **Runtime Property** (targeting based on values your app *sends* in the request context) is distinct from **Runtime Event** (targeting based on Mixpanel events the user *triggers* via `mixpanel.track()`). See the section below for details on Runtime Event filters.
+</Note>
 
 **Filter by Runtime Event**
 
