@@ -652,18 +652,7 @@
                   "guides/guides-by-topic/continuous-innovation",
                   "guides/guides-by-topic/govern-data",
                   "guides/guides-by-topic/features",
-                  {
-                    "group": "Core Reports",
-                    "root": "guides/guides-by-topic/core-reports",
-                    "pages": [
-                      "guides/guides-by-topic/core-reports/create-boards",
-                      "guides/guides-by-topic/core-reports/discover-insights",
-                      "guides/guides-by-topic/core-reports/analyze-conversions",
-                      "guides/guides-by-topic/core-reports/build-user-flows",
-                      "guides/guides-by-topic/core-reports/track-user-retention",
-                      "guides/guides-by-topic/core-reports/define-cohorts"
-                    ]
-                  }
+                  "guides/guides-by-topic/core-reports"
                 ]
               }
             ]
@@ -688,6 +677,7 @@
               "guides/board-templates",
               {
                 "group": "Strategic Playbooks",
+                "root": "guides/strategic-playbooks",
                 "pages": [
                   {
                     "group": "Guide to Product Analytics",
@@ -713,37 +703,7 @@
                       "guides/strategic-playbooks/product-analytics-strategy/finale"
                     ]
                   },
-                  {
-                    "group": "Onboarding Playbook",
-                    "root": "guides/strategic-playbooks/onboarding-playbook",
-                    "pages": [
-                      {
-                        "group": "Plan",
-                        "pages": [
-                          "guides/strategic-playbooks/onboarding-playbook/plan/setup",
-                          "guides/strategic-playbooks/onboarding-playbook/plan/framework",
-                          "guides/strategic-playbooks/onboarding-playbook/plan/tracking-strategy"
-                        ]
-                      },
-                      {
-                        "group": "Implement",
-                        "pages": [
-                          "guides/strategic-playbooks/onboarding-playbook/implement/send-your-data",
-                          "guides/strategic-playbooks/onboarding-playbook/implement/qa-data-audit",
-                          "guides/strategic-playbooks/onboarding-playbook/implement/establish-governance"
-                        ]
-                      },
-                      {
-                        "group": "Launch",
-                        "pages": [
-                          "guides/strategic-playbooks/onboarding-playbook/launch/roll-out",
-                          "guides/strategic-playbooks/onboarding-playbook/launch/train-users",
-                          "guides/strategic-playbooks/onboarding-playbook/launch/drive-adoption"
-                        ]
-                      },
-                      "guides/strategic-playbooks/onboarding-playbook/beyond-onboarding"
-                    ]
-                  },
+                  "guides/strategic-playbooks/onboarding-playbook",
                   "guides/strategic-playbooks/project-migration"
                 ]
               },
@@ -4753,6 +4713,46 @@
     {
       "source": "/troubleshooting/docs/tracking-best-practices/traffic-attribution",
       "destination": "/docs/tracking-best-practices/traffic-attribution"
+    },
+    {
+      "source": "/guides/guides-by-topic/core-reports/create-boards",
+      "destination":"/guides/guides-by-topic/core-reports"
+    },
+    {
+      "source": "/guides/guides-by-topic/core-reports/discover-insights",
+      "destination":"/guides/guides-by-topic/core-reports"
+    },
+    {
+      "source": "/guides/guides-by-topic/core-reports/analyze-conversions",
+      "destination":"/guides/guides-by-topic/core-reports"
+    },
+    {
+      "source": "/guides/guides-by-topic/core-reports/build-user-flows",
+      "destination":"/guides/guides-by-topic/core-reports"
+    },
+    {
+      "source": "/guides/guides-by-topic/core-reports/track-user-retention",
+      "destination":"/guides/guides-by-topic/core-reports"
+    },
+    {
+      "source": "/guides/guides-by-topic/core-reports/define-cohorts",
+      "destination":"/guides/guides-by-topic/core-reports"
+    },
+    {
+      "source": "/guides/strategic-playbooks/onboarding-playbook/plan/*",
+      "destination":"/guides/strategic-playbooks/onboarding-playbook"
+    },
+    {
+      "source": "/guides/strategic-playbooks/onboarding-playbook/implement/*",
+      "destination":"/guides/strategic-playbooks/onboarding-playbook"
+    },
+    {
+      "source": "/guides/strategic-playbooks/onboarding-playbook/launch/*",
+      "destination":"/guides/strategic-playbooks/onboarding-playbook"
+    },
+    {
+      "source": "/guides/strategic-playbooks/onboarding-playbook/beyond-onboarding",
+      "destination":"/guides/strategic-playbooks/onboarding-playbook"
     }
   ]
 }
