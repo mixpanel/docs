@@ -677,6 +677,7 @@
               "guides/board-templates",
               {
                 "group": "Strategic Playbooks",
+                "root": "guides/strategic-playbooks",
                 "pages": [
                   {
                     "group": "Guide to Product Analytics",
