@@ -31,7 +31,7 @@ The power of segmentation comes from the ability to define custom expressions ba
 | `user["$email"] == "allison@example.com"` | Returns `true` if `$email` user property is "[allison@example.com](mailto:allison@example.com)" otherwise `false`. |
 | `defined(properties["My Prop"])` | Returns `true` if `My Prop` event property has any value, otherwise `false`. This is the same as "is set" in the UI. |
 | `not defined(properties["city"])` | Returns `false` if `city` event property has any value, otherwise `true`. This is the same as "is not set" in the UI. |
-| `event["$time"] >= datetime("YYYY-MM-DDT00:00:00")` | Returns `true` if the `$time` event property is on or after the given date, otherwise `false`. Replace `YYYY-MM-DD` with the date you want to filter from. |
+| `event["$time"] >= datetime("YYYY-MM-DDT00:00:00")` | For the Event Export API: Returns `true` if the `$time` event property is on or after the given date, otherwise `false`. Replace `YYYY-MM-DD` with the date you want to filter from. |
 
 ## Typecast Operations
 
