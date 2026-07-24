@@ -98,10 +98,14 @@ A typical workflow looks like:
 ## Permissions & Access
 
 <Note>
-  **Admin setup required.** An organization admin must enable MCP in **Settings → Org → Overview** before anyone can connect. Changes can take up to 15 minutes to take effect.
+  **New free and growth accounts (created after August 1, 2026):** MCP is enabled by default — no admin action required. Organization admins can disable it in **Settings → Org → Overview** if needed.
+
+  **All other accounts:** An organization admin must enable MCP in **Settings → Org → Overview** before anyone can connect.
+
+  Changes can take up to 15 minutes to take effect.
 </Note>
 
-Once enabled, any Mixpanel user in your organization can connect. Users authenticate with their own Mixpanel credentials, so all existing project permissions and roles apply — users can only see data from projects they already have access to.
+Once MCP is enabled, any Mixpanel user in your organization can connect. Users authenticate with their own Mixpanel credentials, so all existing project permissions and roles apply — users can only see data from projects they already have access to.
 
 ## Connecting to the MCP Server
 
@@ -224,7 +228,7 @@ Use service accounts when you need a headless MCP connection, such as CI/CD pipe
 1. **Create a service account** in your [Organization settings](https://mixpanel.com/settings/org#serviceaccounts) or [Project settings](https://mixpanel.com/settings/project#serviceaccounts). You need Owner or Admin permissions to do this.
 2. **Save the username and secret** — you won't be able to view the secret again after creation.
 3. **Ensure the service account has access** to the projects you want to query via MCP.
-4. **MCP must be enabled** by an org admin in **Settings → Org → Overview**.
+4. **MCP must be enabled** by an org admin in **Settings → Org → Overview** (free and growth accounts created after August 1, 2026 have it enabled by default).
 
 ### Generating the Authorization Header
 
@@ -429,8 +433,7 @@ Once connected, try asking your AI assistant:
 When connected, the AI assistant can both **read and write** to Mixpanel on your behalf. Your Mixpanel data is also sent to whichever AI provider you're using (Claude, ChatGPT, etc.), so review that provider's data handling policies before connecting.
 
 **Access controls**
-
-- MCP must be explicitly enabled by an org admin. It is off by default
+- MCP must be enabled by an org admin in **Settings → Org → Overview** (free and growth accounts created after August 1, 2026 have it on by default; admins can still disable it)
 - Users can only access projects they already have permission to view in Mixpanel
 - All existing roles and project-level permissions remain in effect
 
