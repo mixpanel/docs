@@ -48,9 +48,9 @@ Each vendor has its own definition of exposure event and they can be mapped to M
 
 | Mixpanel Feature Flag Type | [Statsig Equivalent](https://docs.statsig.com/integrations/event_webhook#event-format) | LaunchDarkly Equivalent | [Optimizely Equivalent](https://docs.developers.optimizely.com/experimentation-data/docs/event-api-getting-started#activate-users) | [GrowthBook Equivalent](https://docs.growthbook.io/app/event-forwarder#experiment-view-events) |
 | :-- | :-- | :-- | :-- | :-- |
-| Experiment | `statsig::experiment_exposure` | *[Streaming](https://launchdarkly.com/docs/integrations/data-export/schema-reference#feature-events)*: <br/>- `Feature` <br/>- `reason.inExperiment` = true<br/><br/>*[Warehouse](https://launchdarkly.com/docs/integrations/data-export/warehouse-schema-reference#evaluation-events)*: <br/>- `evaluation_events` <br/>- `experiment_iteration_id` != NULL | `campaign_activated` | Experiment Viewed |
-| Feature Gate | `statsig::gate_exposure` | *Streaming*: <br/>- `Feature` <br/>- `reason.inExperiment` is absent/false<br/><br/>*Warehouse*: <br/>- `evaluation_events` <br/>- `experiment_iteration_id` is absent | Feature Rollout | (no gate exposure concept) |
-| Dynamic Configuration | `statsig::config_exposure` | *Streaming*: <br/>- `Feature` <br/>- `reason.inExperiment` is absent/false<br/><br/>*Warehouse*: <br/>- `evaluation_events` <br/>- `experiment_iteration_id` is absent | Flag with Variables | (no config exposure concept) |
+| Experiment | `statsig::experiment_exposure` | *[Streaming](https://launchdarkly.com/docs/integrations/data-export/schema-reference#feature-events)*: <br/>`Feature` event where `reason.inExperiment` = true<br/><br/>*[Warehouse](https://launchdarkly.com/docs/integrations/data-export/warehouse-schema-reference#evaluation-events)*: <br/>`evaluation_events` where `experiment_iteration_id` != NULL | `campaign_activated` | Experiment Viewed |
+| Feature Gate | `statsig::gate_exposure` | *Streaming*: <br/>`Feature` event where `reason.inExperiment` is absent/false<br/><br/>*Warehouse*: <br/>`evaluation_events` where `experiment_iteration_id` is absent | Feature Rollout | (no gate exposure concept) |
+| Dynamic Configuration | `statsig::config_exposure` | *Streaming*: <br/>`Feature` event where `reason.inExperiment` is absent/false<br/><br/>*Warehouse*: <br/>`evaluation_events` where `experiment_iteration_id` is absent | Flag with Variables | (no config exposure concept) |
 
 ### Import events into Mixpanel as `$experiment_started`
 
