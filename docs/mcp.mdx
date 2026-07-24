@@ -103,6 +103,10 @@ A typical workflow looks like:
 
 Once enabled, any Mixpanel user in your organization can connect. Users authenticate with their own Mixpanel credentials, so all existing project permissions and roles apply — users can only see data from projects they already have access to.
 
+<Note>
+  **Verified Mode.** If an admin has enabled [Verified Mode](/docs/mixpanel-agent#verified-mode) in Project Settings, the MCP server's responses are limited to Lexicon **Verified Data** — the events, metrics, behaviors, and cohorts your team has reviewed and verified — the same as other Mixpanel AI surfaces. When unverified data is excluded from a response, users are notified that additional relevant data exists but wasn't included.
+</Note>
+
 ## Connecting to the MCP Server
 
 Mixpanel's MCP server supports two authentication methods:
