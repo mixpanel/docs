@@ -299,7 +299,7 @@ Use Formulas to make calculations using simple arithmetic operators.
 Mixpanel supports the following operators:
 
 - \+ : Add
-- - : Subtract
+- \- : Subtract
 - \* : Multiply
 - / : Divide
 - () : Use parentheses to influence the order of operations
@@ -333,7 +333,7 @@ Some nuances to note:
 - When a saved metric is updated, it will update across all reports it’s being used in
 - A saved formula can’t reference another formula
 
-To access and re-use saved formulas, click on “\+Formula”, and then see the list of saved formulas. You can also look at all the saved formulas in the Lexicon tab “Formulas”. Some callouts regarding permissions:
+To access and re-use saved formulas, click on “\+Formula”, and then see the list of saved formulas. You can also look at all the saved formulas in the Lexicon tab “Metrics”. Some callouts regarding permissions:
 
 - All roles can create a saved formula, but only some roles can share them with the whole project for re-use
 - You can only look at saved formulas created by you or shared with you
@@ -533,8 +533,7 @@ Allows you to change the metric being measured. Access by going into the advance
   ![Rolling and Cumulative](/images/rolling-cumulative.png)
 </Frame>
 
-- **Rolling Average:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month, or quarter) for each data point in the graph.\
-   For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported on each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
+- **Rolling Average:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month, or quarter) for each data point in the graph.<br />For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported on each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
 - **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
 
 {/* <Frame>
@@ -554,15 +553,20 @@ See this [video walkthrough](https://www.loom.com/share/5568e266532b4804a1c2d36d
 Click on a chart segment in Insights and view the raw events that made up that metric. You will be redirected to the Events page.
 
 <Frame>
-  ![View Events](/images/advanced-view-events.gif)
+  <img
+    src="/images/reports_view_events.gif"
+    alt="Reports View Events"
+    title="Reports View Events"
+    className="mx-auto"
+  />
 </Frame>
 
 ### View Sample Events
 
-You can hover over any event and in the context panel, you now have the ability to "View Sample Events", which redirects you to the Events page with the 100 most recent samples of that hovered event: You can see a few samples of an event to help you decide whether that's the right event you want for your analysis or which property you should use for filters/breakdowns.
+If you hover over any event and click "View Sample Events" in the context panel, it redirects you to the Events page with the 100 most-recent samples of that hovered event. You can see a few samples of an event to help you decide whether that's the right event you want for your analysis, or which property you should use for filters/breakdowns.
 
 <Frame>
-  ![View Sample Events](/images/advanced-view-sample-events.gif)
+  ![Reports View Sample Events](/images/reports_view_sample_events.gif)
 </Frame>
 
 ### Date Range Guardrails

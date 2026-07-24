@@ -377,6 +377,7 @@
             "icon": "/icons/ai.svg",
             "pages": [
               "docs/mixpanel-agent",
+              "docs/slack-bot",
               "docs/agentic-automations",
               "docs/root-cause-analysis",
               "docs/mcp",
@@ -512,7 +513,7 @@
                   "docs/cohort-sync/webhooks",
                   "docs/cohort-sync/build-an-integration",
                   {
-                    "group": "Integrations",
+                    "group": "Destinations",
                     "root": "docs/cohort-sync/integrations",
                     "pages": [
                       "docs/cohort-sync/integrations/abtasty",
@@ -641,6 +642,7 @@
                   "guides/guides-by-workflow/embed-data",
                   "guides/guides-by-workflow/ensure-data-quality",
                   "guides/guides-by-workflow/data-privacy",
+                  "guides/guides-by-workflow/write-business-context",
                   "guides/guides-by-workflow/sync-with-mirror"
                 ]
               },
@@ -674,7 +676,8 @@
               "guides/guides-by-use-case/empower-your-team/mcp",
               "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry",
               "guides/guides-by-use-case/empower-your-team/mcp/integrations",
-              "guides/guides-by-use-case/empower-your-team/headless"
+              "guides/guides-by-use-case/empower-your-team/headless",
+              "guides/guides-by-workflow/write-business-context"
             ]
           },
           {

@@ -21,7 +21,7 @@ Retention can be accessed from the left-side navigation by clicking the '\+ Crea
 
 Here are some of the sample questions you can answer in Retention:
 
-- On average, how many users are still active after two weeks from signing up?
+- On average, how many users are still active after two weeks of signing up?
 - What percent of all users are still sending messages after seven days?
 - How has my 7-day messaging retention changed over time?
 - What percent of users sent messages in 2, 3, or 4 distinct hours of the day?
@@ -32,17 +32,17 @@ Here are some of the sample questions you can answer in Retention:
   <iframe src="https://www.youtube-nocookie.com/embed/W8yqLYuSIaU" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen />
 </Frame>
 
-Building a Retention report follows the same high-level steps as building any other report. You can read about report building basics [here](/docs/reports).
+Building a Retention report follows the same high-level steps as building any other report. You can read about report-building basics [here](/docs/reports).
 
 ### Step 1: Define your Retention Behavior
 
-The Retention Behavior is the basic building block of a Retention report. A Retention Behavior is doing an event and then coming back to do another event. In this case, since we want to know retention after signup, choose "Sign Up Completed" in the first event slot. Then, we want to know if users are coming back and using the product, so choose "Any Event" in the second event slot. At this point, your query should look like this:
+The Retention Behavior is the basic building block of a Retention report. A Retention Behavior is doing an event and then coming back to do another event. In this case, since we want to know retention after signup, choose "Sign Up Completed" in the first event slot. Then, we want to know if users are coming back and using the product, so we choose "Any Event" in the second event slot. At this point, your query should look like this:
 
 <Frame>
   ![/retention\_beta\_1.png](/images/retention_beta_1.png)
 </Frame>
 
-You can save the Retention Behavior you built and reuse it in other reports. Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metric consists of the saved behavior and the measurements of the behavior.
+You can save the Retention Behavior you built and reuse it in other reports. Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric are different: a saved behavior consists of the events/Funnels/Retention, while a saved metric consists of the saved behavior and the measurements of the behavior.
 
 Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
 
@@ -52,22 +52,20 @@ After your retention behavior is defined, you can choose how you want to measure
 
 There are 4 types of measurement
 
-- Retention Rate: Percentage of users retained within window
-- Unique Users: Absolute number of users retained within window
-- Property Sum: Total sum of property within a window  (eg.  total video watch duration)
-- Property Average: Average across users of sum of property within window (eg average watch time per user)
+- Retention Rate: Percentage of users retained within the window.
+- Unique Users: Absolute number of users retained within the window.
+- Property Sum: Total sum of property within a window (eg, total video watch duration).
+- Property Average: Average across users of the sum of properties within the window (e.g., average watch time per user).
 
 <Frame>
   ![/Updated\_retention\_measurements.png](/images/Updated_retention_measurements.png)
 </Frame>
 
-Your Retention Behavior combined with the measurement forms a Metric. You can save the Retention Metric you built and reuse it in other reports (such as the Insights report). Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metric consists of the saved behavior and the measurements of the behavior.
-
-Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
+Your Retention Behavior, combined with the measurement, forms a Metric, which you can also save like a Retention Metric.
 
 ### Step 3: Choose Filters
 
-Filters exclude unwanted data. In this case, we only care about events performed on the Chrome browser. Therefore, add a "Browser" filter, where Browser equals "Chrome". At this point, your query should look like this:
+Filters exclude unwanted data. In this case, we only care about events performed on the "Chrome" browser. Therefore, add a "Browser" filter, where Browser equals "Chrome". At this point, your query should look like this:
 
 <Frame>
   ![/Retention\_Filter.png](/images/Retention_Filter.png)
@@ -75,7 +73,7 @@ Filters exclude unwanted data. In this case, we only care about events performed
 
 ### Step 4: Choose Breakdowns
 
-Breakdowns segment data into groups. In this case, we want to break our report down based on the browser version they are using to Sign Up. Therefore, add an "Browser Version" breakdown. At this point, your query should look like this:
+Breakdowns segment data into groups. In this case, we want to break our report down based on the browser version they are using to Sign Up. Therefore, add a "Browser Version" breakdown. At this point, your query should look like this:
 
 <Frame>
   ![/Retention\_Breakdown.png](/images/Retention_Breakdown.png)
@@ -85,8 +83,8 @@ Breakdowns segment data into groups. In this case, we want to break our report d
 
 You can visualize your metric in a variety of ways. Mixpanel allows you to choose how you would like to visualize your data. Select "Retention Curve" in the top right to change your visualization. In Retention, you can choose:
 
-- Retention Curve - see how users retain over time. Users are bucketed by when they initially entered the product.
-- Line - see how your metric is trending over time. Used to see a particular retention group rate is trending over time.
+- Retention Curve - see how users are retaining over time. Users are bucketed based on when they initially entered the product.
+- Line - see how your metric is trending over time. Used to see if a particular retention group rate is trending over time.
 - Metric - see a summary view of your metric
 
 <Frame>
@@ -107,9 +105,9 @@ The retention curve chart displays retention data as both a line chart and a tab
   ![/Screen\_Shot\_2021-05-27\_at\_7.49.12\_AM.png](/images/Screen_Shot_2021-05-27_at_7.49.12_AM.png)
 </Frame>
 
-**Incomplete Buckets** Boxes with an asterisk (\*) indicate that the data is still in flux and not set yet because the time is still ongoing. Hover over a box to see when the last qualifying date for that bucket will occur.
+**Incomplete Buckets:** Boxes with an asterisk (\*) indicate that the data is still in flux and not set yet because the time is still ongoing. Hover over a box to see when the last qualifying date for that bucket will occur.
 
-**Color Mapping** Each box within a row is assigned a shade of purple. The shading gets darker the higher the retention percentage. It's important to note that the scale is relative to each cohort row.
+**Color Mapping:** Each box within a row is assigned a shade of purple. The shading gets darker the higher the retention percentage. It's important to note that the scale is relative to each cohort row.
 
 ### Line chart
 
@@ -123,7 +121,7 @@ Select **Line** from the visualization drop-down list to see how your retentio
 
 Retention counts users, not event totals. In other words, each of the user cohort buckets will include every unique user that met the "A event" criteria in that time window, starting at 0:00 of the first day of the bucket and ending at midnight of the last day. A customer can only be counted once per bucket, but can be included in more than one bucket.
 
-The first column (Date) indicates the day/week/month when the user performed the "A event". The Size column indicates the number of users that performed the "A event" within the time period.
+The first column (Date) indicates the day/week/month when the user performed the "A event". The Size column indicates the number of users who performed the "A event" within the time period.
 
 For example, if you are bucketing based on your "Item Purchased" event and creating weekly buckets, a customer who purchased at least one item each week will be in every bucket, not just the bucket of their first purchase.
 
@@ -147,27 +145,27 @@ We think "On or After" retention is a better fit for most businesses, and it is 
 
 "On" Retention calculates the percentage of users who come back on a specific time unit (e.g., day, week, month).
 
-After a user completes the “A criteria”, they will belong to a time unit cohort that corresponds with when they did the "A event," and the Retention report will start the clock counting from the time that particular user performed that "A event". When using "On" Retention, that same user must return to fulfill the “came back and did B criteria” on a specific and exact time unit relative to when they did the A criteria to be counted as retained.
+After a user completes the “A criteria”, they will belong to a time unit cohort that corresponds with when they did the "A event", and the Retention report will start the clock counting from the time that particular user performed that "A event". When using "On" Retention, that same user must return to fulfill the “came back and did B criteria” on a specific and exact time unit relative to when they did the A criteria to be counted as retained.
 
 For example, day 5 retention is the percentage of users who “came back and did B” exactly on the fifth day after they did the A event.
 
-"On" retention is useful to understand high-level usage patterns.  We also recommend using "on" retention when your product relies on users returning in each and every time unit.
+"On" retention is useful to understand high-level usage patterns.  We also recommend using "on" retention when your product relies on users returning on every time unit.
 
 #### 'On or Before' time interval
 
-“On or Before” is a retention criteria most commonly used with measurement type of property sum or average. It looks at total activity done during the period between the start and end event
+“On or Before” is a retention criterion most commonly used with a measurement type of property sum or average. It looks at the total activity done during the period between the start and end events.
 
-For example, if you want to look at 30 Day LTV (Lifetime value) of e-commerce users, you would look at total money spent on purchases from sign-up for 30 Days. This includes looking at revenue spent from Day 0, Day 1 ..to Day 30, where revenue is a property on the event purchase.  Similarly, if you want to look  at 30-day ARPU (average revenue per user), you would look at averaging the total revenue spent per user within the first 30 days
+For example, if you want to look at the 30-day LTV (lifetime value) of e-commerce users, you would look at the total money spent on purchases from sign-up for 30 Days. This includes looking at revenue spent from Day 0, Day 1, ..., to Day 30, where revenue is a property on the event purchase.  Similarly, if you want to look  at 30-day ARPU (average revenue per user), you would look at averaging the total revenue spent per user within the first 30 days.
 
 #### 'Streak mode'
 
 “Streak mode” is mostly meant to count unique users doing consecutive actions across time intervals. If the birth event and retention event are the same, the birth event will count towards the streak.
 
-For example played a game for 5 consecutive days since sign-up, or visited the doctor for 8 consecutive months since registering for a clinic.
+For example, played a game for 5 consecutive days since sign-up, or visited the doctor for 8 consecutive months since registering for a clinic.
 
 #### Advanced Use-Cases
 
-These use-cases, use a combination of different retention criteria & measurement types
+These use-cases use a combination of different retention criteria & measurement types
 
 <Frame>
   <iframe src="https://www.youtube-nocookie.com/embed/zTkQVsMgPc0" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen />
@@ -179,7 +177,7 @@ These use-cases, use a combination of different retention criteria & measurement
 - What is the average video watch-time for a new subscriber in their first 30 days since subscription? How has this changed over time?
   - Retention Criteria: On or Before
   - Measurement: Property Average; 30 Days
-- How many new users have a wordle streak for 5 days or 10 days?
+- How many new users have a Wordle streak for 5 days or 10 days?
   - Retention Criteria: Streak Mode
   - Measurement: Unique Users; 5 days
 
@@ -191,19 +189,19 @@ Custom bracket retention gives you the flexibility to split up your retention bu
 
 #### Use Cases
 
-For example, let's answer an important mobile gaming question: How often do my users come back and play a game between 15 and 30 days after sign-up to represent mid-term players?
+For example, let's answer an important mobile gaming question: How often do my users come back and play a game between 15 and 30 days after signing up to represent mid-term players?
 
-In mobile gaming, industry-standard intervals typically examine retention for users who came back and played a game on Day \< 1, Days 1-3, Days 4-7, Days 8-14, and Day 15-30.
+In mobile gaming, industry-standard intervals typically examine retention for users who came back and play a game on Day \< 1, Days 1-3, Days 4-7, Days 8-14, and Days 15-30.
 
-Typical "exact day" retention buckets don't quite solve for this use case because users should be able to play a game on any day between Day 15 and 30 and be counted in a single bucket to understand how many users were retained in that entire period. Exact day retention will log users in each individual day bucket (15, 16, 17, ..., 30), which, while more granular, doesn't give a retention percentage for the entire interval. Instead, we want to know how many users played a game at all in any of the days 15-30.
+Typical "exact day" retention buckets don't quite solve for this use case because users should be able to play a game on any day between day 15 and 30 and be counted in a single bucket to understand how many users were retained in that entire period. Exact day retention will log users in each day bucket (15, 16, 17, ..., 30), which, while more granular, doesn't give a retention percentage for the entire interval. Instead, we want to know how many users played a game at all in any of the days 15-30.
 
-**Free trials:** If you want to understand how many users come back to use the product during a 7-day free trial and also who came back and kept using the product in the 30 days after the free trial is up, you could do something like this:
+**Free trials:** If you want to understand how many users come back to use the product during a 7-day free trial, and also who came back and kept using the product in the 30 days after the free trial is up, you could do something like this:
 
 <Frame>
   ![Retention 7 30](/images/Retention_7_30.png)
 </Frame>
 
-**In between cadences:** Are you somewhere in between a DAU or WAU product? You can group daily buckets to understand how your users retain every 3 days (bi-weekly).
+**In between cadences:** Are you somewhere between a DAU or WAU product? You can group daily buckets to understand how your users retain every 3 days (bi-weekly).
 
 <Frame>
   ![Retention 3 3](/images/Retention_3_3.png)
@@ -211,19 +209,19 @@ Typical "exact day" retention buckets don't quite solve for this use case becaus
 
 #### Setting Custom Brackets
 
-First, go into the time unit drop-down in the Retention query builder and select **Custom**
+First, go into the time unit drop-down in the Retention query builder and select **Custom.**
 
 <Frame>
   ![Setting Custom Buckets](/images/Retention_Setting_Custom.png)
 </Frame>
 
-Then, select the size of each bracket for the given time unit. In this example, we are selecting the number of days that are in each custom bracket. Apply.
+Then, select the size of each bracket for the given time unit and click "Apply". In this example, we are selecting the number of days that are in each custom bracket.
 
 <Frame>
   ![Retention 3 3](/images/Retention_3_3.png)
 </Frame>
 
-Each of these intervals is its own retention bucket, and if the user does the "come back and did B" event anytime inside that bucket, they are counted as retained. Now I will be able to understand what percent of users come back to play at least one game in any day between day 15 and day 30 from signing up.
+Each of these intervals is its own retention bucket, and if the user does the "come back and did B" event anytime inside that bucket, they are counted as retained. Now I will be able to understand what percent of users come back to play at least one game on any day between day 15 and day 30 from signing up.
 
 #### Calendar Retention Mode
 
@@ -233,7 +231,7 @@ You can go into the advanced menu under Retention Criteria to switch the retenti
   ![/13599603833876.png](/images/13599603833876.png)
 </Frame>
 
-This may be useful in scenarios where you want to check engagement on a strict day basis, OR if you want to check retention of your user base for the entire month and when they return, regardless of when in the month they first entered or when in the next month they returned.
+This may be useful in scenarios where you want to check engagement on a strict day basis, OR if you want to check retention of your user base for the entire month, and when they return, regardless of when in the month they first entered or when in the next month they returned.
 
 <Frame>
   ![/13599765981076.png](/images/13599765981076.png)
@@ -241,28 +239,28 @@ This may be useful in scenarios where you want to check engagement on a strict d
 
 In the above example, we're looking at retention on a calendar week basis.
 
-- In the \< Week 1 bucket, there were 6 users who did "Sign Up" at any point during the week of Dec 23 - Dec 30, and returned to do "Post Content" in that same week of Dec 23 - Dec 30.
-- In the Week 1 bucket, there were 10 users who did "Sign Up" in the same Dec 23 - Dec 30 interval, but returned to do "Post Content" only sometime between Dec 30 - Jan 6.
+- In the \< Week 1 bucket, 6 users did "Sign Up" at any point of the week of Dec 23 - Dec 30, and returned to do "Post Content" in that same week of Dec 23 - Dec 30.
+- In the Week 1 bucket, 10 users did "Sign Up" in the same Dec 23 - Dec 30 interval, but returned to do "Post Content" only sometime between Dec 30 - Jan 6.
 
 ##### How is this different than the basic retention mode?
 
-This [loom video](https://www.loom.com/share/5484c7bdd61a4332818ceef20f475176) should provide an overview of what calendar interval retention is and how it works vs the default rolling window retention
+This [Loom video](https://www.loom.com/share/5484c7bdd61a4332818ceef20f475176) should provide an overview of what calendar interval retention is and how it works vs the default rolling window retention
 
-**\[Basic\] Rolling interval retention** - Considers time intervals based on user’s time of birth; i.e
+**\[Basic\] Rolling interval retention** - Considers time intervals based on the user’s time of birth; i.e:
 
 - Day 1 retention = 24-48 hrs since person’s birth
 - Week 1 retention = 7-14 days since person’s birth
 - Month 1 retention = 30-60 days since person’s birth
 
-**\[Advanced\] Calendar interval retention** - Considers time intervals based on ‘calendar’ time; i.e
+**\[Advanced\] Calendar interval retention** - Considers time intervals based on ‘calendar’ time; i.e:
 
-- Day 1 retention = next ‘calendar’ day since person’s birth. If a person did an activity at 8pm on Monday and then 6am on Tuesday, the person is counted under Day 1 retention even though it’s just 10 hrs later
-- Week 1 retention = next ‘calendar’ week since person’s birth. If a person did an activity on Friday and then Monday, person is counted under Week 1 retention even though it’s just 3 days, since the ‘calendar’ week changed
+- Day 1 retention = next ‘calendar’ day since person’s birth. If a person did an activity at 8 pm on Monday and then 6 am on Tuesday, the person is counted under Day 1 retention even though it’s just 10 hrs later
+- Week 1 retention = next ‘calendar’ week since person’s birth. If a person did an activity on Friday and then Monday, the person is counted under Week 1 retention even though it’s just 3 days, since the ‘calendar’ week changed
 - Month 1 retention = next ‘calendar’ month since person’s birth. Similarly, if a person made a purchase on 25th Feb and then again on 3rd March, the person will be counted under Month 1 retention metrics
 
-NOTE — All the above cases would NOT qualify under Day 1 or Week 1 or Month 1 rolling interval retention
+NOTE — All the above cases would NOT qualify under Day 1, Week 1, or Month 1 rolling interval retention.
 
-**When should you use the calendar vs rolling interval retention mode? **
+**When should you use the calendar vs rolling interval retention mode?**
 
 Both modes are extremely useful. It totally depends on the use-case you’re trying to answer. Some examples -
 
@@ -271,17 +269,16 @@ Both modes are extremely useful. It totally depends on the use-case you’re try
 | Day 1 retention for apps focused on “daily engagement” like music, meditation, or workout apps | Calendar-interval |
 | How many users come back after month 1 (30 days)? How many come back after 3 months (90 days)? | Rolling-interval |
 | Understanding the effect of a marketing promotion, how many people came back the week after the promotion ended? | Calendar-interval |
-| What’s Mixpanel's quarterly revenue retention? How was gross and net retention in Q4 vs Q3? | Calendar-interval |
-| How many users renewed their Netflix subscription? To note, renewals happen 30 days after last payment | Rolling-interval |
+| What’s Mixpanel's quarterly revenue retention? How were gross and net retention in Q4 vs Q3? | Calendar-interval |
+| How many users renewed their Netflix subscription? To note, renewals happen 30 days after the last payment | Rolling-interval |
 
-As stated above, the general expectation is that product use-cases which focus on user stickiness are likely to use rolling interval mode. Marketing & Revenue teams which focus on calendar dates for their activities are likely to use calendar interval mode.
+Above said, the general expectation is that product use-cases which focus on user stickiness are likely to use rolling interval mode. Marketing & Revenue teams that focus on calendar dates for their activities are likely to use the calendar interval model.
 
 ### Saved Retention Behaviors
 
-You can save the Funnel Behavior you built and reuse it in other reports. This can be helpful when there is a sequence of events that you frequently analyze (such as sign up flow), or if you want to analyze your Funnel Behavior alongside other metrics in an Insights report.
+You can save the Funnel Behavior you built and reuse it in other reports. This can be helpful when there is a sequence of events that you frequently analyze (such as sign-up flow), or if you want to analyze your Funnels Behavior alongside other metrics in an Insights report.
 
-Select the "..." button in the top right corner of the metric, then click "Save Behavior". Note that saving a behavior and saving a metric is different; a saved behavior consists of the events/Funnels/Retention, while a saved metric consists of the saved behavior and the measurements of the behavior.
-
+Select the "..." button in the top right corner of the metric, then click "Save Behavior".\
 Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
 
 ### Frequency View
@@ -292,7 +289,7 @@ Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-
 
 You can use the Frequency report to learn how frequently users return to use your product or service.
 
-To generate Frequency reports, click **Reports**, **Retention,** and select the **Frequency** option under the toggle for retention.
+To generate Frequency reports, click **Reports**, **Retention**, and select the **Frequency** option under the toggle for retention.
 
 <Frame>
   ![/Screen\_Shot\_2022-07-05\_at\_4.41.04\_PM.png](/images/Screen_Shot_2022-07-05_at_4.41.04_PM.png)
@@ -300,7 +297,7 @@ To generate Frequency reports, click **Reports**, **Retention,** and select t
 
 Mixpanel groups unique users in time-incremented buckets when they first complete an action, and then groups those same users in subsequent buckets when they return and perform the same or different actions.
 
-The buckets measure the number of unique time buckets in which a user was active. Depending on the interval chosen, this will one of:
+The buckets measure the number of unique time buckets in which a user was active. Depending on the interval chosen, this will be one of:
 
 - unique hours in a day
 - unique days in a week
@@ -316,32 +313,31 @@ This will show how engaged users are with an action.
 
 ## FAQ
 
-### Retention reports do not extend beyond 60 days. How can I look beyond the 60-day mark?
+**1. Retention reports do not extend beyond 60 days. How can I look beyond the 60-day mark?**
 
 Currently, when using "Day" retention, Retention reports are limited to 60 days. One way to extend it would be to switch "Each Day" to "Each Week/Month" under the Retention Criteria.
 
-### How is Retention calculated?
+**2.How is Retention calculated?**
 
 When you create an unsegmented retention query (i.e., a retention query that is not segmented by a property or cohort), Mixpanel will automatically intervalize the retention calculation.
 
-In other words, we will calculate the retention of each and every cohort based upon the selected birth interval unit (day/week/month cadence that the user performed the A action) and then summarize it into one line by taking the average of all complete buckets. You can see the retention of each individual interval by expanding the Average Retention column:
+In other words, we will calculate the retention of each and every cohort based upon the selected birth interval unit (day/week/month cadence that the user performed the A action) and then summarize it into one line by taking the average of all complete buckets. You can see the retention of each interval by expanding the Average Retention column:
 
 <Frame>
   ![/intervalized\_retention.png](/images/intervalized_retention.png)
 </Frame>
 
-Segmented queries are now calculated with that same intervalized average method, but for each particular property value or cohort segment. You can now expand out any particular segment's name in a retention query to see the retention of each day, week, or month interval within that segment:
+Segmented queries are now calculated with that same intervalized average method, but for each particular property value or cohort segment. You can now expand any particular segment's name in a retention query to see the retention of each day, week, or month interval within that segment:
 
 <Frame>
   ![/segemented\_intervalized\_retention.png](/images/segemented_intervalized_retention.png)
 </Frame>
 
 Intervalized averages to segmented retention queries have two key advantages:
+- **Not including users in incomplete periods:** The non-intervalized method did not give all users an equal chance to qualify for the later retention buckets. Newer, more recent users to come into the query towards the end of your date range would not have enough time to pass to have the opportunity to be retained in the later date buckets. This would sandbag the last retention buckets in your query. With intervalized retention, Mixpanel only counts the completed time periods into the Average Retention calculation so that all users have the same opportunity to be retained.
+- **More granular analysis:** Users are now able to see how the individual birth interval cohorts are performing within a particular segment. This unlocks the ability to get more answers and dive deeper into particular cohorts of interest.
 
-1. **Not including users in incomplete periods:** The non-intervalized method did not give all users an equal chance to qualify for the later retention buckets. Newer, more recent users who come into the query towards the end of your date range would not have enough time pass to have the opportunity to be retained in the later date buckets. This would sandbag the last retention buckets in your query. With intervalized retention, Mixpanel only counts the completed time periods into the Average Retention calculation so that all users have the same opportunity to be retained.
-2. **More granular analysis:** Users are now able to see how the individual birth interval cohorts are performing within a particular segment. This unlocks the ability to get more answers and dive deeper into particular cohorts of interest.
-
-### How is the "Average" row for Retention reports calculated?
+**3. How is the "Average" row for Retention reports calculated?**
 
 Mixpanel calculates the "Average" row values by taking the average of all the completed buckets, **weighted** by the number of users who enter. Let's walk through an example using this sample data:
 
@@ -351,9 +347,9 @@ Mixpanel calculates the "Average" row values by taking the average of all the co
 | March 2 | 500 | 400 |
 | March 3 | 700 | 10 (incomplete) |
 
-From our sample data, the average value for day 1 retained users is calculated as follows:
+From our sample data, the average value for day-1 retained users is calculated as follows:
 
-#### When examining a Retention report in % / Retention Rate view:
+**When examining a Retention report in the % / Retention Rate view:**
 
 C\_March 1 = 500 (count retained for March 1)
 
@@ -371,7 +367,7 @@ P\_March 2 = 500 (total profiles for March 2)
 
 In our sample data, this computes to: ( 500 \* 0.66 ) \+ ( 400 \* 0.33 ) = 466.66
 
-Next, we have to get the weighted average of the total profiles that were eligible for being retained
+Next, we have to get the weighted average of the total profiles that were eligible for being retained.
 
 \*\*Weighted Average of Total Users = P\_March 1 \* W\_March 1 \+ P\_March 2 \* W\_March 2
 
@@ -383,7 +379,7 @@ Finally,
 
 In our sample data, this computes to: 466.66/833.33 \* 100% = 56%
 
-#### When examining a Retention report in # / Absolute view:
+**When examining a Retention report in # / Absolute view:**
 
 C\_March 1 = 500 (count retained for March 1)
 
@@ -397,6 +393,6 @@ W\_March 2 = 500 / 1500 (weight for March 2)
 
 In our sample data, this computes to:(500 \* (1000 / 1500)) \+ (400 \* (500 / 1500)) = 466.67
 
-### What does the Metric view in the Retention Trends report show?
+**4. What does the Metric view in the Retention Trends report show?**
 
-The Metric view in the Retention Trends Report shows the **_overall value_** for the retention trend for that time period.  There is a `Cohortize` option under the `Advanced` menu that, when enabled will show the **_weighted average bucket_** for that retention trend.
+The Metric view in the Retention Trends Report shows the **_overall value_** for the retention trend for that time period.  There is a `Cohortize` option under the `Advanced` menu that, when enabled, will show the **_weighted average bucket_** for that retention trend. 
