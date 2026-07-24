@@ -48,9 +48,9 @@ Each vendor has its own definition of exposure event and they can be mapped to M
 
 | Mixpanel Feature Flag Type | Statsig Equivalent | LaunchDarkly Equivalent | Optimizely Equivalent | GrowthBook Equivalent |
 | :-- | :-- | :-- | :-- | :-- |
-| Experiment | statsig::experiment\_exposure | feature event within Experiment=true (streaming); evaluation\_events rows with experiment\_iteration\_id (warehouse) | campaign\_activated event/decisions dataset | Experiment Viewed |
-| Feature Gate | statsig::gate\_exposure | feature event (boolean flag eval) | Feature Rollout | — (no gate exposure concept) |
-| Dynamic Configuration | statsig::config\_exposure | feature event (multivariate/JSON flag eval) | Flag with Variables | — (no config exposure concept) |
+| Experiment | statsig::experiment\_exposure | in Streaming, feature event where reason.inExperiment = true<br />in Warehouse, evaluation\_events row where experiment\_iteration\_id IS NOT NULL | campaign\_activated event/decisions dataset | Experiment Viewed |
+| Feature Gate | statsig::gate\_exposure | in Streaming, feature event where reason.inExperiment is absent/false<br />in Warehouse, evaluation\_events row where experiment\_iteration\_id IS NULL (boolean flag) | Feature Rollout | — (no gate exposure concept) |
+| Dynamic Configuration | statsig::config\_exposure | in Streaming, feature event where reason.inExperiment is absent/false<br />in Warehouse, evaluation\_events row where experiment\_iteration\_id IS NULL (non-boolean flag) | Flag with Variables | — (no config exposure concept) |
 
 ### Import events into Mixpanel as `$experiment_started`
 
@@ -325,7 +325,7 @@ There are custom configurations that require additional effort to set up in Mixp
 Once you have imported the experiment into Mixpanel, a corresponding Mixpanel Experiment report will be created. You will need to continue populating this experiment with the right  configuration and metrics. Go to Experiments, and search for your experiment by name.
 
 <Frame>
-  ![Screenshot 2026 07 21 At 4 36 21 PM](/images/Screenshot-2026-07-21-at-4.36.21-PM.png)
+  ![Screenshot 2026 07 21 At 4 36 21 PM](/images/Screenshot-2026-07-21-at-4.36.21-PM.png "Screenshot 2026 07 21 At 4 36 21 PM")
 </Frame>
 
 Map each of your vendor's experiment metrics to a Mixpanel metric so the same success criteria are measured.
