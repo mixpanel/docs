@@ -768,10 +768,11 @@ Both events automatically include `current_page_title` (the screen name) and `$m
 Both methods accept an optional `properties` parameter. For example, forwarding UTM params from a deep link:
 
 ```swift
+let queryItems = urlComponents.queryItems
 let utmProps: Properties = [
-    "utm_source": urlComponents.queryItems?["utm_source"] ?? "",
-    "utm_medium": urlComponents.queryItems?["utm_medium"] ?? "",
-    "utm_campaign": urlComponents.queryItems?["utm_campaign"] ?? ""
+    "utm_source": queryItems?.first(where: { $0.name == "utm_source" })?.value ?? "",
+    "utm_medium": queryItems?.first(where: { $0.name == "utm_medium" })?.value ?? "",
+    "utm_campaign": queryItems?.first(where: { $0.name == "utm_campaign" })?.value ?? ""
 ]
 Mixpanel.mainInstance().autocapture.trackScreenView(
     screenName: "PromoScreen", properties: utmProps

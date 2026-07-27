@@ -538,6 +538,29 @@ Both events automatically include `current_page_title` (the screen name) and `$m
           }
         });
       }
+
+      @override
+      void didReplace({Route? newRoute, Route? oldRoute}) {
+        super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
+        _mixpanelFuture.then((mp) async {
+          if (oldRoute?.settings.name != null) {
+            await mp.autocapture.trackScreenLeave(oldRoute!.settings.name!);
+          }
+          if (newRoute?.settings.name != null) {
+            await mp.autocapture.trackScreenView(newRoute!.settings.name!);
+          }
+        });
+      }
+
+      @override
+      void didRemove(Route route, Route? previousRoute) {
+        super.didRemove(route, previousRoute);
+        _mixpanelFuture.then((mp) async {
+          if (route.settings.name != null) {
+            await mp.autocapture.trackScreenLeave(route.settings.name!);
+          }
+        });
+      }
     }
     ```
 
