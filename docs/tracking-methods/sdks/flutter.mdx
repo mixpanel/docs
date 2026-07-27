@@ -489,9 +489,11 @@ A few commonly used group methods are highlighted below:
 
 ## Autocapture
 
-Flutter apps use widget-based routing with `Navigator`, `GoRouter`, or other packages, each handling screen transitions differently. This makes it impractical for the SDK to automatically detect screen boundaries. Instead, Mixpanel provides explicit methods on the `autocapture` object that you hook into your app's navigation, giving you full control over what counts as a screen and when transitions happen.
+The Mixpanel Flutter SDK provides methods on the `autocapture` object to help you track common user interactions with minimal instrumentation. These methods fire standardized events that are recognized by the Mixpanel platform.
 
 ### Screen View & Screen Leave
+
+Flutter apps use widget-based routing with `Navigator`, `GoRouter`, or other packages, each handling screen transitions differently. This makes it impractical for the SDK to automatically detect screen boundaries. Instead, you hook `trackScreenView` and `trackScreenLeave` into your app's navigation, giving you full control over what counts as a screen and when transitions happen.
 
 Track screen navigations using `trackScreenView` and `trackScreenLeave`. These methods fire the following events:
 
