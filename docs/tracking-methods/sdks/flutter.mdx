@@ -487,6 +487,80 @@ A few commonly used group methods are highlighted below:
   </Tab>
 </Tabs>
 
+## Autocapture
+
+Flutter apps use widget-based routing with `Navigator`, `GoRouter`, or other packages, each handling screen transitions differently. This makes it impractical for the SDK to automatically detect screen boundaries. Instead, Mixpanel provides explicit methods on the `autocapture` object that you hook into your app's navigation, giving you full control over what counts as a screen and when transitions happen.
+
+### Screen View & Screen Leave
+
+Track screen navigations using `trackScreenView` and `trackScreenLeave`. These methods fire the following events:
+
+| Method | Mixpanel Event |
+| --- | --- |
+| `trackScreenView()` | `$mp_page_view` |
+| `trackScreenLeave()` | `$mp_page_leave` |
+
+Both events automatically include `current_page_title` (the screen name) and `$mp_autocapture: true`.
+
+<Tabs>
+  <Tab title="Navigator">
+    Create a `NavigatorObserver` and attach it to your `MaterialApp`:
+
+    ```dart
+    class MixpanelNavigatorObserver extends NavigatorObserver {
+      final Future<Mixpanel> _mixpanelFuture;
+      MixpanelNavigatorObserver(this._mixpanelFuture);
+
+      @override
+      void didPush(Route route, Route? previousRoute) {
+        super.didPush(route, previousRoute);
+        _mixpanelFuture.then((mp) async {
+          if (previousRoute?.settings.name != null) {
+            await mp.autocapture.trackScreenLeave(previousRoute!.settings.name!);
+          }
+          if (route.settings.name != null) {
+            await mp.autocapture.trackScreenView(route.settings.name!);
+          }
+        });
+      }
+
+      @override
+      void didPop(Route route, Route? previousRoute) {
+        super.didPop(route, previousRoute);
+        _mixpanelFuture.then((mp) async {
+          if (route.settings.name != null) {
+            await mp.autocapture.trackScreenLeave(route.settings.name!);
+          }
+          if (previousRoute?.settings.name != null) {
+            await mp.autocapture.trackScreenView(previousRoute!.settings.name!);
+          }
+        });
+      }
+    }
+    ```
+
+    ```dart
+    MaterialApp(
+      navigatorObservers: [MixpanelNavigatorObserver(mixpanelFuture)],
+      // ...
+    );
+    ```
+  </Tab>
+</Tabs>
+
+#### Passing Custom Properties
+
+Both methods accept an optional `properties` parameter. For example, forwarding UTM params from a deep link:
+
+```dart
+final utmProps = {
+  "utm_source": uri.queryParameters["utm_source"],
+  "utm_medium": uri.queryParameters["utm_medium"],
+  "utm_campaign": uri.queryParameters["utm_campaign"],
+};
+await mixpanel.autocapture.trackScreenView("PromoScreen", properties: utmProps);
+```
+
 ## Debug Mode
 
 To enable debug mode, call [`.setLoggingEnabled()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/setLoggingEnabled.html) with `true`.

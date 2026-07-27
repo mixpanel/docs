@@ -596,6 +596,65 @@ const variantValue = await mixpanel.flags.getVariantValue('my-feature-flag', 'co
 
 See the [Feature Flags (React Native)](/docs/tracking-methods/sdks/react-native/react-native-flags) guide for the full API, including runtime targeting, persistence policies, sync evaluation, and context updates.
 
+## Autocapture
+
+React Native apps use JavaScript-driven navigators like React Navigation or Expo Router, each handling screen transitions differently. This makes it impractical for the SDK to automatically detect screen boundaries. Instead, Mixpanel provides explicit methods on the `autocapture` object that you hook into your app's navigation, giving you full control over what counts as a screen and when transitions happen.
+
+### Screen View & Screen Leave
+
+Track screen navigations using `trackScreenView` and `trackScreenLeave`. These methods fire the following events:
+
+| Method | Mixpanel Event |
+| --- | --- |
+| `trackScreenView()` | `$mp_page_view` |
+| `trackScreenLeave()` | `$mp_page_leave` |
+
+Both events automatically include `current_page_title` (the screen name) and `$mp_autocapture: true`.
+
+<Tabs>
+  <Tab title="React Navigation">
+    Use `onReady` and `onStateChange` on the `NavigationContainer` to track screen transitions:
+
+    ```tsx
+    const navigationRef = useNavigationContainerRef();
+    const previousRouteRef = useRef<string | undefined>();
+
+    <NavigationContainer
+      ref={navigationRef}
+      onReady={() => {
+        const route = navigationRef.getCurrentRoute()?.name;
+        previousRouteRef.current = route;
+        if (route) mixpanel.autocapture.trackScreenView(route);
+      }}
+      onStateChange={() => {
+        const current = navigationRef.getCurrentRoute()?.name;
+        const previous = previousRouteRef.current;
+
+        if (current !== previous) {
+          if (previous) mixpanel.autocapture.trackScreenLeave(previous);
+          if (current) mixpanel.autocapture.trackScreenView(current);
+        }
+        previousRouteRef.current = current;
+      }}
+    />
+    ```
+  </Tab>
+</Tabs>
+
+#### Passing Custom Properties
+
+Both methods accept an optional properties object. For example, forwarding UTM params from a deep link:
+
+```tsx
+const url = new URL(deepLinkUrl);
+const utmProps = {
+  utm_source: url.searchParams.get("utm_source"),
+  utm_medium: url.searchParams.get("utm_medium"),
+  utm_campaign: url.searchParams.get("utm_campaign"),
+};
+mixpanel.autocapture.trackScreenView("PromoScreen", utmProps);
+```
+
 ## Session Replay
 
 Session Replay records the mobile UI of your React Native app so you can see what your users saw. Recording ships as a separate package, `@mixpanel/react-native-session-replay`, and installs alongside the main `mixpanel-react-native` SDK.
