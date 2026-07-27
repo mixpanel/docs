@@ -17,6 +17,25 @@ Even if you start with strong data governance and best practices about how to st
 
 In this section, we will look at tips and tricks on how to clean up messy data when it gets out of hand.
 
+### Automatically find duplicates with Magic Merge
+
+Over time, the same concept often ends up tracked under several names — `Add to Cart`, `add_to_cart`, and `addToCart`, or `from_date` and `from-date`. These duplicates clutter Lexicon, split your data across reports, and make analysis harder.
+
+Magic Merge automatically discovers these potential duplicates in your project for you, so you don't have to hunt for them by hand. It groups near-duplicate **events** and **event properties** together and suggests merging each group into a single canonical name — which you can do with the click of a button.
+
+<Info>
+Magic Merge covers events and event properties only. User (profile) properties cannot be merged at this time.
+</Info>
+
+To use Magic Merge:
+
+1. Open [Lexicon](/docs/data-governance/lexicon). Magic Merge surfaces its suggested groups of duplicate events and event properties.
+2. Review a suggested group. Each group shows the near-duplicate names it found and the suggested canonical name to merge them into (the most popular variant in the group).
+3. Click to merge the group. Mixpanel merges the duplicates into the canonical name, just like a [manual merge](/docs/data-governance/lexicon#merging-data) — the underlying raw data is unaffected, and the merge can be undone from Lexicon.
+4. Dismiss any suggestion you don't want to act on, and it won't be shown again.
+
+Because a merge behaves exactly like a manual Lexicon merge, the same considerations apply: after merging, update any reports or custom events that referenced the old names, and note that [Autocapture](/docs/tracking-methods/autocapture) events cannot be merged.
+
 ### Leverage Lexicon for a quick spot check
 
 #### Blocking events that are not queried
