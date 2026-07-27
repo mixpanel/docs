@@ -21,20 +21,24 @@ In this section, we will look at tips and tricks on how to clean up messy data w
 
 Over time, the same concept often ends up tracked under several names — `Add to Cart`, `add_to_cart`, and `addToCart`, or `from_date` and `from-date`. These duplicates clutter Lexicon, split your data across reports, and make analysis harder.
 
-Magic Merge automatically discovers these potential duplicates in your project for you, so you don't have to hunt for them by hand. It groups near-duplicate **events** and **event properties** together and suggests merging each group into a single canonical name — which you can do with the click of a button.
+Magic Merge automatically discovers these potential duplicates in your project for you, so you don't have to hunt for them by hand. It groups near-duplicate **events** and **event properties** together and suggests a single canonical name for each group, so you can clean them up in bulk instead of merging one pair at a time.
 
 <Info>
-Magic Merge covers events and event properties only. User (profile) properties cannot be merged at this time.
+Magic Merge is available to organizations on an **Enterprise** plan that also have **Copilot** (Mixpanel's AI features) enabled. See our [pricing page](https://mixpanel.com/pricing/) for more details. Magic Merge covers events and event properties only — user (profile) properties cannot be merged at this time.
 </Info>
 
 To use Magic Merge:
 
-1. Open [Lexicon](/docs/data-governance/lexicon). Magic Merge surfaces its suggested groups of duplicate events and event properties.
-2. Review a suggested group. Each group shows the near-duplicate names it found and the suggested canonical name to merge them into (the most popular variant in the group).
-3. Click to merge the group. Mixpanel merges the duplicates into the canonical name, just like a [manual merge](/docs/data-governance/lexicon#merging-data) — the underlying raw data is unaffected, and the merge can be undone from Lexicon.
-4. Dismiss any suggestion you don't want to act on, and it won't be shown again.
+1. Open [Lexicon](/docs/data-governance/lexicon) and click **Tidy Up**, then **Reduce clutter**. The **Merge Duplicate Events and Properties** window opens, listing the suggested groups of duplicates in two sections — Events and Event Properties.
+2. Review the suggestions. **Every group is selected by default.** Each group shows the near-duplicate names it found and the canonical name they'll merge into. To change the canonical name or drop a name from a group, edit the group before submitting.
+3. Uncheck any group you don't want to merge, or use **Select all** / **Deselect all** to adjust the whole list at once.
+4. Click **Merge Duplicates** to submit.
 
-Because a merge behaves exactly like a manual Lexicon merge, the same considerations apply: after merging, update any reports or custom events that referenced the old names, and note that [Autocapture](/docs/tracking-methods/autocapture) events cannot be merged.
+<Warning>
+Submitting is a single batch action: **selected groups are merged, and every unselected group is dismissed** so it won't be suggested again. If you want to keep a suggestion for later, leave the window without submitting rather than deselecting it.
+</Warning>
+
+Merging behaves exactly like a [manual Lexicon merge](/docs/data-governance/lexicon#merging-data) — the underlying raw data is unaffected, and a merge can be undone from Lexicon. As with any merge, update any reports or custom events that referenced the old names afterward, and note that [Autocapture](/docs/tracking-methods/autocapture) events cannot be merged. Merging requires the same permission as a manual merge.
 
 ### Leverage Lexicon for a quick spot check
 
