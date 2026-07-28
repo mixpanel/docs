@@ -639,6 +639,58 @@ A few commonly used group methods are highlighted below:
   </Tab>
 </Tabs>
 
+## Autocapture
+
+The Mixpanel Android SDK provides methods on the `autocapture` object to help you track common user interactions with minimal instrumentation. These methods fire standardized events that are recognized by the Mixpanel platform.
+
+### Screen View & Screen Leave
+
+Modern mobile apps use a variety of UI frameworks and architectural patterns — single-Activity apps with Jetpack Compose, multi-Activity apps with Fragments, or a mix of both. Each defines and transitions between "screens" differently, making it impractical for the SDK to automatically detect screen boundaries across all setups. Instead, you hook `trackScreenView` and `trackScreenLeave` into your app's navigation, giving you full control over what counts as a screen and when transitions happen.
+
+Track screen navigations using `trackScreenView` and `trackScreenLeave`. These methods fire the following events:
+
+| Method | Mixpanel Event |
+| --- | --- |
+| `trackScreenView()` | `$mp_page_view` |
+| `trackScreenLeave()` | `$mp_page_leave` |
+
+Both events automatically include `current_page_title` (the screen name) and `$mp_autocapture: true`.
+
+<Tabs>
+  <Tab title="Jetpack Compose">
+    Observe the navigation controller's current route inside a `LaunchedEffect`:
+
+    ```kotlin
+    val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
+    var previousRoute by remember { mutableStateOf<String?>(null) }
+
+    LaunchedEffect(currentRoute) {
+        currentRoute?.let { route ->
+            val mixpanel = MixpanelAPI.getInstance(context, "YOUR_TOKEN", true)
+
+            previousRoute?.let { mixpanel.autocapture.trackScreenLeave(it) }
+            mixpanel.autocapture.trackScreenView(route)
+
+            previousRoute = route
+        }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+#### Passing Custom Properties
+
+Both methods accept an optional `JSONObject` parameter for custom properties. For example, forwarding UTM params from a deep link:
+
+```kotlin
+val utmProps = JSONObject().apply {
+    put("utm_source", uri.getQueryParameter("utm_source"))
+    put("utm_medium", uri.getQueryParameter("utm_medium"))
+    put("utm_campaign", uri.getQueryParameter("utm_campaign"))
+}
+mixpanel.autocapture.trackScreenView("PromoScreen", utmProps)
+```
+
 ## Session Replay
 
 Install the [Session Replay SDK for Android](/docs/tracking-methods/sdks/android/android-replay) to record replay data. Learn more about [Session Replay](/docs/session-replay) and [implementing Session Replay on Android](/docs/tracking-methods/sdks/android/android-replay).
