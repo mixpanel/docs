@@ -218,6 +218,21 @@ Always send imported data to Mixpanel in UTC to ensure it displays correctly in 
 
 Mixpanel stores your data in UTC, then uses your project timezone setting to output data in your selected timezone. For projects created before January 1st, 2023, your UTC timestamps are converted to the project's timezone before ingestion, meaning that your event data is stored in the project's timezone.
 
+## Time Period Settings
+
+Time period settings control how Mixpanel groups data into weeks and quarters across reports in your project. They are configured at the project level and apply to every report.
+
+To configure these settings, navigate to **Settings** -> **Project Settings**. You can set:
+
+- **Start of week** — the day Mixpanel treats as the first day of the week (for example, changing it from Monday to Saturday). This affects weekly bucketing and any report that groups or rolls up data by week.
+- **Start of quarter** — the month Mixpanel treats as the first month of each quarter, for organizations whose fiscal calendar doesn't begin in January.
+
+<Note>
+These settings are respected by relative date range presets. For example, [Week to Date](/docs/reports#to-date) begins counting from your configured start of week.
+</Note>
+
+Viewing and editing time period settings is governed by the **Access Time Period Settings** permission. Editing requires a role with edit access (project Owners and Admins), while Analysts and Consumers have view-only access. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+
 ## Transfer Project to Another Organization
 
 Organization owners and project owners in a project can transfer that project to another organization to which they have permission.

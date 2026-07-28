@@ -46,7 +46,7 @@ With UI Controls, teams can manage Session Replay sampling directly from the Mix
 
 To use UI Controls, your project must meet the following requirements:
 
-- **Paid Session Replay Add-On**: UI Controls is available exclusively with the paid Session Replay Add-On.
+- **Paid Session Replay Add-On**: UI Controls is available exclusively to customers who have purchased additional Session Replays beyond [the free Replay allowance](/docs/session-replay#plan-availability).
 - **Remote configuration enabled in your SDK**: Your SDK must have remote configuration enabled so it can receive sampling updates from the UI. See the platform-specific guides for setup instructions:
   - [JavaScript](/docs/tracking-methods/sdks/javascript/javascript-replay#remote-configuration)
   - [Android](/docs/tracking-methods/sdks/android/android-replay#remote-configuration)
@@ -296,6 +296,10 @@ On our mobile SDKs (iOS, Android, and React Native), you control capture with a 
 #### How long are replays stored?
 
 By default, replays are stored for 30 days after the time of ingestion. Once a replay is expired, there is no way to view that replay. Enterprise plan customers with the paid session replay add-on can customize this retention period between 7 days and 360 days. For more information, reach out to your Account Manager or our sales team.
+
+<Note>
+  Purchasing a custom retention period does not change your retention period automatically. Once the entitlement is provisioned, an org Owner or Admin needs to set the desired retention period from the Session Replay settings in the UI.
+</Note>
 
 #### Why does it say the player failed to load?
 

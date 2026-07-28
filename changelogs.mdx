@@ -9,6 +9,64 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-07-20">
+  ## MCP: New Tools added
+
+  Several new tools are now generally available on MCP Server.
+
+  Note that to access the new tools you need to disconnect and reconnect Mixpanel MCP to authorize the new scopes.
+
+  **Cohorts**:
+
+  - `Create-Cohort`
+  - `Get-Cohort`
+  - `Update-Cohort`
+  - `Delete-Cohort`
+  - `List-Cohorts`
+  - `Describe-Cohort-Schema`
+
+  **Lookup Tables**:
+
+  - `Create-Lookup-Table`
+  - `Get-Lookup-Table`
+  - `Update-Lookup-Table`
+
+  **Custom Properties**:
+
+  - `Create-Custom-Property`
+  - `Get-Custom-Property`
+  - `Update-Custom-Property`
+
+  **Duplicate/entity merging**:
+
+  - `Find-Duplicate-Groups`
+  - `Dismiss-Duplicate-Group`
+  - `Merge-Group`
+
+  **Experiments additions**:
+
+  - `Explain-Experiment-Health-Check`
+  - `Run-Experiment-Pre-Launch-Checks`
+  - `Search-Prior-Experiments`
+
+  See the full list of tools in the [MCP Server documentation](/docs/mcp#available-tools).
+</Update>
+
+<Update label="2026-07-17">
+  ## Destinations: a simpler way to send data out of Mixpanel
+
+  We've reworked the Integrations page to make it easier to create and manage Destinations, Cohort Syncs, and Data Pipelines.
+
+  With this update:
+
+  - **"Integrations" is now "Destinations":** The new name makes the page's purpose clearer — it's for connecting data flowing out of Mixpanel — and reduces confusion for users who came looking for ways to bring data in.
+  - **Destinations lives in the Data menu:** Find it under **Data → Destinations** in the main nav. It's still available in the settings menu for now, but that entry point will be removed eventually.
+  - **Onboard cohort syncs directly from Destinations:** No more bouncing between the Integrations page and Lexicon. Open a connected destination, go to the **Syncs** tab, and click **Add Cohort Sync**. Onboarding from Lexicon still works.
+  - **Separate views for connected and available destinations:** Your connected destinations and the full library are now split, making it easier to see what's already connected and to add something new.
+
+  [Learn more →](/docs/cohort-sync)
+</Update>
+
 <Update label="2026-07-14">
   ## Passkeys
 
@@ -23,6 +81,22 @@ Get all the latest updates in your inbox.
   - **Stay covered if you lose a device:** Generate single-use recovery codes to sign in when you can't present a passkey
 
   [Learn more →](/docs/access-security/login-methods#passkey-login)
+</Update>
+
+<Update label="2026-07-10">
+  ## Feature Flags: React Native SDK
+
+  Feature flagging is now generally available in the main React Native SDK (v3.5.0), with full parity to native iOS and Android.
+
+  Previously, React Native customers had no supported native way to use feature flags — flags were beta-only and limited to JavaScript mode (Expo and RN Web), so teams on the main SDK couldn't gate features or run flag-based experiments.
+
+  With this update, you can:
+
+  - **Use flags across all RN modes:** Feature flagging works whether you're on the main React Native SDK, Expo, or RN Web.
+  - **Get full native parity:** Evaluation, variant assignment, and automatic exposure tracking all work the same as they do on native iOS and Android.
+  - **Gate features and run experiments:** Ship rollouts and flag-based experiments in React Native apps using the same workflow as the rest of your stack.
+
+  Available in React Native SDK v3.5.0. [Learn more →](/docs/tracking-methods/sdks/react-native/react-native-flags)
 </Update>
 
 <Update label="2026-06-25">
@@ -60,6 +134,38 @@ Get all the latest updates in your inbox.
   - **Move seamlessly between reports and replays:** Filter Flutter replays with the same Mixpanel events, properties, and cohorts you already use.
 
   [Learn more →](/docs/tracking-methods/sdks/flutter/flutter-replay)
+</Update>
+
+<Update label="2026-06-18">
+  ## Experiments: Breakdowns in Experiment Results
+
+  You can now break experiment results down by a property — like country or platform — to spot per-segment effects that would otherwise be hidden in the aggregate.
+
+  Previously, experiment results only showed the aggregate effect, hiding heterogeneous impact. A treatment could help mobile while hurting desktop, and you'd never see it. This was one of our most requested experiment enhancements.
+
+  With this update, you can:
+
+  - **Segment results by any property:** Break down experiment results by country, platform, plan, or any other property to see how the treatment lands across your user base.
+  - **Get guardrails on post-hoc segmentation:** A built-in warning surfaces the risk of false positives when you segment after the fact.
+  - **Trust the numbers:** Benjamini-Hochberg correction is applied automatically to control false discovery rate as the number of segment-level tests grows.
+
+  [Learn more →](/docs/experiments#advanced-statistical-methods)
+</Update>
+
+<Update label="2026-06-18">
+  ## Experiments: Benjamini-Hochberg Correction
+
+  Segmented experiment results now use Benjamini-Hochberg correction to preserve statistical power while still guarding against false positives.
+
+  When you break experiment results into segments, the number of statistical tests explodes. Bonferroni correction becomes far too strict once multiplied by segment counts, killing statistical power and hiding real effects.
+
+  With this update, you can:
+
+  - **Preserve power in segmented analysis:** Benjamini-Hochberg controls the false discovery rate instead of family-wise error, so real segment-level effects still show up as significant.
+  - **Stay protected from false positives:** BH still applies a principled correction — it just does so without over-penalizing the way Bonferroni does at scale.
+  - **Get it automatically:** BH correction is auto-enabled the moment you segment experiment results, with an undo toast if you want to revert.
+
+  [Learn more →](/docs/experiments#advanced-statistical-methods)
 </Update>
 
 <Update label="2026-06-02">
@@ -451,6 +557,86 @@ Get all the latest updates in your inbox.
   [Learn more about audit log →](/docs/access-security/audit-log)
 </Update>
 
+<Update label="2026-04-05">
+  ## Experiments: CUPED
+
+  Reach significance faster on high-variance metrics. Engagement, revenue, and retention often take a long time to reach statistical significance because of natural user-to-user variance — slowing down decisions on real effects.
+
+  CUPED (Controlled-experiment Using Pre-Experiment Data) uses each user's pre-experiment behavior to strip out that baseline variance from the analysis.
+
+  With this update, you can:
+
+  - **Tighten confidence intervals without shifting means:** CUPED removes variance driven by pre-existing user differences, so treatment effects surface more clearly.
+  - **Ship decisions sooner:** With less noise, experiments cross the significance threshold with fewer users and less time.
+  - **Apply it broadly:** CUPED is available for primary, secondary, and guardrail metrics.
+
+  [Learn more →](/docs/experiments#advanced-statistical-methods)
+</Update>
+
+<Update label="2026-04-05">
+  ## Experiments: Winsorization
+
+  Stop outliers from dominating your experiment results. A single extreme value — one \$100k order, one user who binged 10,000 events — can swamp revenue and value metrics and mask the real treatment effect.
+
+  Winsorization caps values beyond a chosen percentile so results reflect the typical user, not rare extremes.
+
+  With this update, you can:
+
+  - **Cap extreme values:** Set a percentile threshold and let Winsorization clip outliers on either tail before computing the metric.
+  - **See the typical user's experience:** Results reflect what most users saw, not what a handful of extreme cases pulled the average toward.
+  - **Diagnose outlier-driven conclusions:** If your significance or direction flips materially after applying Winsorization, that's itself a signal your original result was outlier-driven.
+
+  [Learn more →](/docs/experiments#advanced-statistical-methods)
+</Update>
+
+<Update label="2026-04-05">
+  ## Experiments: Pre-Experiment Bias Health Check
+
+  Catch bad randomization before you act on it. Lift observed during an experiment might be a pre-existing difference between the assigned groups — bad randomization or biased assignment logic — rather than a true treatment effect. Until now, there was no built-in way to spot this.
+
+  Pre-Experiment Bias runs a "Retro A/A" on a pre-experiment window you choose (1, 2, or 4 weeks) before exposure and re-applies the same analysis.
+
+  With this update, you can:
+
+  - **Detect non-equivalent groups:** Significant "lift" in the pre-experiment period is a red flag that your variant groups weren't actually equivalent going in.
+  - **Choose the right window:** Configure a 1, 2, or 4 week pre-experiment window based on how much stable history you have.
+  - **Fix it with confidence:** When bias is detected, the check prompts you to apply a CUPED correction or review your assignment logic before trusting the primary results.
+
+  [Learn more →](/docs/experiments#advanced-statistical-methods)
+</Update>
+
+<Update label="2026-04-05">
+  ## Experiments: Sample Ratio Mismatch (SRM) Health Check
+
+  Detect bucketing bugs before they invalidate your results. A bug in bucketing, tracking, or assignment can skew the observed variant split — you configured 50/50 but got 60/40 — silently invalidating everything downstream.
+
+  SRM is an opt-in health check that flags when the observed allocation drifts from the configured split beyond what chance would explain.
+
+  With this update, you can:
+
+  - **Catch skewed splits early:** A Chi-squared test compares observed vs. configured allocation and warns when the deviation is beyond chance.
+  - **Opt in per experiment:** SRM isn't always-on — you enable it (and can disable it) so it doesn't fire on experiments where a mismatch is expected.
+  - **Take corrective action:** When SRM triggers, pause the experiment, fix the root cause, and restart with confidence.
+
+  [Learn more →](/docs/experiments#advanced-statistical-methods)
+</Update>
+
+<Update label="2026-04-05">
+  ## Experiments: Bonferroni Correction
+
+  Guard against false positives when testing multiple metrics or variants. Testing many metrics at 95% confidence inflates the odds that at least one "win" is a false positive — the classic many-dice problem.
+
+  Bonferroni correction tightens the significance threshold based on the number of comparisons you're running.
+
+  With this update, you can:
+
+  - **Control family-wise error:** Bonferroni divides your confidence threshold by the number of comparisons (metrics × non-control variants), reducing false positives across the whole experiment.
+  - **Trust multi-metric readouts:** When you track many metrics at once, Bonferroni makes sure a single flashy result isn't just noise.
+  - **Pair with the right method:** For segmented results, Mixpanel automatically switches to Benjamini-Hochberg, which preserves more power at scale.
+
+  [Learn more →](/docs/experiments#advanced-statistical-methods)
+</Update>
+
 <Update label="2026-03-24">
   ## Mixpanel MCP: Talk to Your Data
 
@@ -763,63 +949,67 @@ Get all the latest updates in your inbox.
 </Update>
 
 <Update label="2026-02-20">
-## Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for EU Projects
+  ## Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for EU Projects
 
-> **🚨 UPDATE: July 1, 2026 – US-to-EU Data Forwarding has officially ended.** <br /><br />
-> 
-> As scheduled, we have sunset US-to-EU data forwarding. <br /> **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI and Query API endpoints until August 1, 2026.**<br /><br />
->
-> **How events are being filtered**<br />
-> 
-> [July 1, 2026 - August 1, 2026]: New US->EU Forwarded events have not been deleted. However, they are temporarily hidden from the UI and Query API endpoints if they match all of the following criteria:
-> * The event was processed after July 1st (UTC) (`mp_processing_time_ms` > `<July 1st UTC>`).
-> * The event was forwarded from the US (`$mp_is_forwarded` is defined).
->
-> These events are not deleted — they remain accessible via the Raw Export API during this period, and will be un-hidden on August 1, 2026, so your reporting counts may change at that time. <br /><br />**Events that are still being sent to the US after August 1, 2026 for EU Projects will not be accepted.** <br /><br /> **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss after August 1, 2026.**<br /><br />
-> 
-> *Need help or want to opt out? If you wish to opt out of this UI preview and un-hide your forwarded events early, please [contact support](https://mixpanel.com/get-support).* 
->
-> >⏳ **Note:** Some projects have an extended timeline through **December 31, 2026**. These projects are not affected by the temporary event-hiding described above. If this applies to your project, we've already reached out with a notification. If you did not receive a notification, your deadline is **August 1, 2026**.
+  > **🚨 UPDATE: July 1, 2026 – US-to-EU Data Forwarding has officially ended.** <br /><br />
+  >
+  > As scheduled, we have sunset US-to-EU data forwarding. <br /> **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI and Query API endpoints until August 1, 2026.**<br /><br />
+  >
+  > **How events are being filtered**<br />
+  >
+  > \[July 1, 2026 - August 1, 2026\]: New US-\>EU Forwarded events have not been deleted. However, they are temporarily hidden from the UI and Query API endpoints if they match all of the following criteria:
+  >
+  > - The event was processed after July 1st (UTC) (`mp_processing_time_ms` \> `<July 1st UTC>`).
+  > - The event was forwarded from the US (`$mp_is_forwarded` is defined).
+  >
+  > These events are not deleted — they remain accessible via the Raw Export API during this period, and will be un-hidden on August 1, 2026, so your reporting counts may change at that time. <br /><br />**Events that are still being sent to the US after August 1, 2026 for EU Projects will not be accepted.** <br /><br /> **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss after August 1, 2026.**<br /><br />
+  >
+  > _Need help or want to opt out? If you wish to opt out of this UI preview and un-hide your forwarded events early, please [contact support](https://mixpanel.com/get-support)._
+  >
+  > > ⏳ **Note:** Some projects have an extended timeline through **December 31, 2026**. These projects are not affected by the temporary event-hiding described above. If this applies to your project, we've already reached out with a notification. If you did not receive a notification, your deadline is **August 1, 2026**.
 
-Starting July 2026, we will be sunsetting the legacy automated US-to-EU Data Forwarding process for [EU Data Residency projects](/docs/privacy/eu-residency) to align with data residency best practices and improve ingestion performance.
-After this date, data sent to our US Ingestion Servers for EU Data Residency projects will no longer be forwarded, which can result in data loss.
+  Starting July 2026, we will be sunsetting the legacy automated US-to-EU Data Forwarding process for [EU Data Residency projects](/docs/privacy/eu-residency) to align with data residency best practices and improve ingestion performance. After this date, data sent to our US Ingestion Servers for EU Data Residency projects will no longer be forwarded, which can result in data loss.
 
-## Is my project affected?
-- **EU Projects created before August 18, 2025: If your implementation sends data to Mixpanel's US Ingestion Servers (`api.mixpanel.com`), you may be affected by this change. Please review the action required below.**
-- EU Projects created on or after August 18, 2025: These projects already require direct ingestion to our EU Servers. No action is needed.
+  ## Is my project affected?
 
-## Required Action for EU Projects sending data to US Servers
+  - **EU Projects created before August 18, 2025: If your implementation sends data to Mixpanel's US Ingestion Servers (`api.mixpanel.com`), you may be affected by this change. Please review the action required below.**
+  - EU Projects created on or after August 18, 2025: These projects already require direct ingestion to our EU Servers. No action is needed.
 
-To avoid any disruption to data ingestion for your EU Projects, **please review and update your implementations to use the dedicated Ingestion API EU Subdomain (`api-eu.mixpanel.com`).** This ensures your data is routed directly to its intended destination.
+  ## Required Action for EU Projects sending data to US Servers
 
-**Guidance**
+  To avoid any disruption to data ingestion for your EU Projects, **please review and update your implementations to use the dedicated Ingestion API EU Subdomain (`api-eu.mixpanel.com`).** This ensures your data is routed directly to its intended destination.
 
-1. **Verify which projects have EU Data Residency:** Navigate to [Organization Settings](/docs/orgs-and-projects/managing-projects#viewing-project-information) > Projects and click into each Project to confirm whether Data Residency is set to EU.
-2. **Identify Traffic:** In your EU Project(s), create an Insights Report and break down “All Events” by the API Endpoint (`$mp_api_endpoint` ) event property to determine which Ingestion Servers your events came from. `$mp_api_endpoint=api-eu.mixpanel.com` is EU and `$mp_api_endpoint=api.mixpanel.com` or `api-js.mixpanel.com` is US.
-3. **Update and Review Implementation:** If your project has EU Data Residency, please follow the guides below that apply to your setup to ensure your data routes to our EU Servers.
+  **Guidance**
 
-If you are using Mixpanel’s SDKs, the documentation linked below has instructions on updating your implementation code to EU:
-- [Javascript](/docs/tracking-methods/sdks/javascript#eu-data-residency)
-- [React Native](/docs/tracking-methods/sdks/react-native#eu-data-residency)
-- [Android](/docs/tracking-methods/sdks/android#eu-data-residency)
-- [iOS (Objective-C)](/docs/tracking-methods/sdks/ios#eu-data-residency)
-- [iOS (Swift)](/docs/tracking-methods/sdks/swift#eu-data-residency)
-- [Flutter](/docs/tracking-methods/sdks/flutter#eu-data-residency)
-- [Unity](/docs/tracking-methods/sdks/unity#eu-data-residency)
-- [Python](/docs/tracking-methods/sdks/python#eu-data-residency)
-- [Node.js](/docs/tracking-methods/sdks/nodejs#eu-data-residency)
-- [Ruby](/docs/tracking-methods/sdks/ruby#eu-data-residency)
-- [PHP](/docs/tracking-methods/sdks/php#eu-data-residency)
-- [Go](/docs/tracking-methods/sdks/go#eu-data-residency)
-- [Java](/docs/tracking-methods/sdks/java#eu-data-residency)
+  1. **Verify which projects have EU Data Residency:** Navigate to [Organization Settings](/docs/orgs-and-projects/managing-projects#viewing-project-information) \> Projects and click into each Project to confirm whether Data Residency is set to EU.
+  2. **Identify Traffic:** In your EU Project(s), create an Insights Report and break down “All Events” by the API Endpoint (`$mp_api_endpoint` ) event property to determine which Ingestion Servers your events came from. `$mp_api_endpoint=api-eu.mixpanel.com` is EU and `$mp_api_endpoint=api.mixpanel.com` or `api-js.mixpanel.com` is US.
+  3. **Update and Review Implementation:** If your project has EU Data Residency, please follow the guides below that apply to your setup to ensure your data routes to our EU Servers.
 
-If you are using Mixpanel’s Ingestion API Endpoints, Proxy Server, or an Implementation not listed above:
-- Please update your Ingestion API Base URL to the [EU Residency Server](/reference/overview): `api-eu.mixpanel.com`
+  If you are using Mixpanel’s SDKs, the documentation linked below has instructions on updating your implementation code to EU:
 
-If you are using Partner Integrations that send data into Mixpanel (e.g., CDPs, Messaging, AB Testing):
-- Please contact the Partner’s Support Team for instructions on how to set the integration to point to Mixpanel’s EU Server URL.
+  - [Javascript](/docs/tracking-methods/sdks/javascript#eu-data-residency)
+  - [React Native](/docs/tracking-methods/sdks/react-native#eu-data-residency)
+  - [Android](/docs/tracking-methods/sdks/android#eu-data-residency)
+  - [iOS (Objective-C)](/docs/tracking-methods/sdks/ios#eu-data-residency)
+  - [iOS (Swift)](/docs/tracking-methods/sdks/swift#eu-data-residency)
+  - [Flutter](/docs/tracking-methods/sdks/flutter#eu-data-residency)
+  - [Unity](/docs/tracking-methods/sdks/unity#eu-data-residency)
+  - [Python](/docs/tracking-methods/sdks/python#eu-data-residency)
+  - [Node.js](/docs/tracking-methods/sdks/nodejs#eu-data-residency)
+  - [Ruby](/docs/tracking-methods/sdks/ruby#eu-data-residency)
+  - [PHP](/docs/tracking-methods/sdks/php#eu-data-residency)
+  - [Go](/docs/tracking-methods/sdks/go#eu-data-residency)
+  - [Java](/docs/tracking-methods/sdks/java#eu-data-residency)
 
-If you have questions about which specific projects we have observed US Traffic on or need further assistance, please don’t hesitate to reach out to [Mixpanel’s Support Team](/docs/response-times#contacting-mixpanel-support).
+  If you are using Mixpanel’s Ingestion API Endpoints, Proxy Server, or an Implementation not listed above:
+
+  - Please update your Ingestion API Base URL to the [EU Residency Server](/reference/overview): `api-eu.mixpanel.com`
+
+  If you are using Partner Integrations that send data into Mixpanel (e.g., CDPs, Messaging, AB Testing):
+
+  - Please contact the Partner’s Support Team for instructions on how to set the integration to point to Mixpanel’s EU Server URL.
+
+  If you have questions about which specific projects we have observed US Traffic on or need further assistance, please don’t hesitate to reach out to [Mixpanel’s Support Team](/docs/response-times#contacting-mixpanel-support).
 </Update>
 
 <Update label="2026-02-17">

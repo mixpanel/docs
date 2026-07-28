@@ -1,7 +1,8 @@
 ---
-openapi: /openapi/identity.openapi.yaml POST /import
-title: Import Events
+title: "Import Events"
+openapi: "/openapi/ingestion.openapi.yaml POST /import"
 ---
+
 Use this API to send batches of events from your servers to Mixpanel.
 
 ## Request Format
@@ -11,6 +12,7 @@ Each request ingests a batch of events into Mixpanel. We accept up to 2000 event
 We support Content-Type `application/json` or `application/x-ndjson`:
 
 <CodeGroup>
+
 ```json JSON
 [
   {"event": "Signup", "properties": {"time": 1618716477000,"distinct_id": "91304156-cafc-4673-a237-623d1129c801","$insert_id": "29fc2962-6d9c-455d-95ad-95b84f09b9e4","Referred by": "Friend","URL": "mixpanel.com/signup"}},
@@ -22,6 +24,7 @@ We support Content-Type `application/json` or `application/x-ndjson`:
 {"event": "Signup", "properties": {"time": 1618716477000,"distinct_id": "91304156-cafc-4673-a237-623d1129c801","$insert_id": "29fc2962-6d9c-455d-95ad-95b84f09b9e4","Referred by": "Friend","URL": "mixpanel.com/signup"}}
 {"event": "Purchase", "properties": {"time": 1618716477000,"distinct_id": "91304156-cafc-4673-a237-623d1129c801","$insert_id": "935d87b1-00cd-41b7-be34-b9d98dd08b42","Item": "Coffee", "Amount": 5.0}}
 ```
+
 </CodeGroup>
 
 We also support `Content-Encoding: gzip` to reduce network egress.
@@ -38,12 +41,12 @@ If you provide the `strict=1` parameter (recommended), `/import` will validate t
 
 ### High-level requirements
 
-* Each event must be properly formatted JSON.
-* Each event must contain an event name, time, distinct\_id, and \$insert\_id. These are used to deduplicate events so that this endpoint can be safely retried.
-* Each event must be smaller than 1MB of uncompressed JSON.
-* Each event must have fewer than 255 properties.
-* All nested object properties must have fewer than 255 keys and a max nesting depth is 3.
-* All array properties must have fewer than 255 elements.
+- Each event must be properly formatted JSON.
+- Each event must contain an event name, time, distinct\_id, and \$insert\_id. These are used to deduplicate events so that this endpoint can be safely retried.
+- Each event must be smaller than 1MB of uncompressed JSON.
+- Each event must have fewer than 255 properties.
+- All nested object properties must have fewer than 255 keys and a max nesting depth is 3.
+- All array properties must have fewer than 255 elements.
 
 ### Example of an event
 
@@ -87,7 +90,7 @@ If no distinct\_id is provided, Mixpanel will use the ip address of the incoming
 
 To prevent accidental implementation mistakes, we disallow the following values for distinct\_id:
 
-```
+```text
 - 00000000-0000-0000-0000-000000000000
 - anon
 - anonymous
@@ -151,6 +154,7 @@ If you do not supply an `ip` property in your event payload, the IP address of t
 This is an example of an event before and after enrichment:
 
 <CodeGroup>
+
 ```json Pre-Enrichment
 {
   "event": "Signed up",
@@ -180,31 +184,32 @@ This is an example of an event before and after enrichment:
   }
 }
 ```
+
 </CodeGroup>
 
 ## Rate Limit
 
-To ensure real-time ingestion and quality-of-service, we have a rate limit of 2GB of uncompressed JSON/minute or \~30k events per second, measured on a rolling 1 minute basis.
+To ensure real-time ingestion and quality-of-service, we have a rate limit of 2GB of uncompressed JSON/minute or ~30k events per second, measured on a rolling 1 minute basis.
 
 We recommend the following when it comes to sending data to our API at scale:
 
-* Send data as quickly as possible with concurrent clients until the server returns 429. We see the best results with 10-20 concurrent clients sending 2K events per batch.
-* When you see 429s, employ an [exponential backoff with jitter](https://docs.aws.amazon.com/general/latest/gr/api-retries.html) strategy. We recommend starting with a backoff of 2s and doubling backoff until 60s, with 1-5s of jitter.
-* We recommend gzip compression and using `Content-Encoding: gzip` to reduce network egress and transfer time.
-* In the rare event that our API returns a 502 or 503 status code, we recommend employing the same exponential backoff strategy as with 429s.
-* Please do not retry validation errors (400 status code), as they will consistently fail and count toward the rate limit.
+- Send data as quickly as possible with concurrent clients until the server returns 429. We see the best results with 10-20 concurrent clients sending 2K events per batch.
+- When you see 429s, employ an [exponential backoff with jitter](https://docs.aws.amazon.com/general/latest/gr/api-retries.html) strategy. We recommend starting with a backoff of 2s and doubling backoff until 60s, with 1-5s of jitter.
+- We recommend gzip compression and using `Content-Encoding: gzip` to reduce network egress and transfer time.
+- In the rare event that our API returns a 502 or 503 status code, we recommend employing the same exponential backoff strategy as with 429s.
+- Please do not retry validation errors (400 status code), as they will consistently fail and count toward the rate limit.
 
 If you are an enterprise customer and require a higher limit for a 1-time backfill, please reach out to your sales representative with your project\_id and use-case.
 
 ## Common Issues
 
-`$insert_id` is required on all events. This makes it safe to retry `/import` requests. If your events don't already have a unique ID (eg: a UUID/GUID), we recommend computing a hash of some set of properties that make the event semantically unique (eg: distinct\_id + timestamp + some other property) and using the first 36 characters of that hash as the \$insert\_id.
+`$insert_id` is required on all events. This makes it safe to retry `/import` requests. If your events don't already have a unique ID (eg: a UUID/GUID), we recommend computing a hash of some set of properties that make the event semantically unique (eg: distinct\_id \+ timestamp \+ some other property) and using the first 36 characters of that hash as the \$insert\_id.
 
 We truncate all strings down to 255 characters. Here's what we recommend for the various cases in which this typically happens:
 
-* URLs: We recommend parsing the URL and tracking its individual components (host, path, url params) as properties. This is more useful in analysis, as you can segment events by hostname or a particular URL parameter.
-* JSON encoded strings: Sometimes a long string may be a JSON object encoded as a string. We recommend parsing the JSON and flattening it into properties to send with the event. This is similarly much more useful in analysis, as you can filter or breakdown by any key within the JSON.
-* Free text / user generated content: Some long fields may include full-text (eg: a search term or a comment). If this property isn't useful for analysis, we recommend excluding it from tracking to Mixpanel to avoid accidentally sending over any PII.
+- URLs: We recommend parsing the URL and tracking its individual components (host, path, url params) as properties. This is more useful in analysis, as you can segment events by hostname or a particular URL parameter.
+- JSON encoded strings: Sometimes a long string may be a JSON object encoded as a string. We recommend parsing the JSON and flattening it into properties to send with the event. This is similarly much more useful in analysis, as you can filter or breakdown by any key within the JSON.
+- Free text / user generated content: Some long fields may include full-text (eg: a search term or a comment). If this property isn't useful for analysis, we recommend excluding it from tracking to Mixpanel to avoid accidentally sending over any PII.
 
 ## Guides
 
