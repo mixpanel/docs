@@ -1,5 +1,5 @@
 ---
-title: "OpenFeature Provider (Node.js)"
+title: OpenFeature Provider (Node.js)
 ---
 
 ## Overview
@@ -46,7 +46,7 @@ if (showNewFeature) {
 ### Local Evaluation (Recommended)
 
 <Warning>
-Targeting by Mixpanel cohorts and sticky variants are not supported in Local Evaluation mode.
+  Targeting by Mixpanel cohorts and sticky variants are not supported in Local Evaluation mode.
 </Warning>
 
 ```typescript
@@ -78,7 +78,7 @@ const provider = new MixpanelProvider(localFlags);
 ### Flag Types and Evaluation Methods
 
 | Mixpanel Flag Type | Variant Values | OpenFeature Method |
-|---|---|---|
+| --- | --- | --- |
 | Feature Gate | `true` / `false` | `getBooleanValue()` |
 | Experiment | boolean, string, number, or JSON object | `getBooleanValue()`, `getStringValue()`, `getNumberValue()`, or `getObjectValue()` |
 | Dynamic Config | JSON object | `getObjectValue()` |
@@ -115,7 +115,7 @@ const value = await client.getBooleanValue("premium-feature", false, {
 ```
 
 <Note>
-Unlike some providers, `targetingKey` is not used as a special bucketing key. It is passed as another context property. Mixpanel's server-side configuration determines which properties are used for targeting and bucketing.
+  Unlike some providers, `targetingKey` is not used as a special bucketing key. It is passed as another context property. Mixpanel's server-side configuration determines which properties are used for targeting and bucketing.
 </Note>
 
 ### Full Resolution Details
@@ -149,7 +149,7 @@ await OpenFeature.close();
 ## Error Handling
 
 | Error Code | When |
-|---|---|
+| --- | --- |
 | `PROVIDER_NOT_READY` | Flags evaluated before the local provider has finished loading definitions |
 | `FLAG_NOT_FOUND` | The requested flag does not exist in Mixpanel |
 | `TYPE_MISMATCH` | The flag value type does not match the requested type |

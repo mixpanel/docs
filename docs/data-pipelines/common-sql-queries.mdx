@@ -1,8 +1,8 @@
 ---
-title: "Common SQL Queries"
+title: Common SQL Queries
 ---
 
-### Total daily count with deduplication logic and timezone adjustment 
+### Total daily count with deduplication logic and timezone adjustment
 
 Events exported via pipelines (i.e. raw exports) can contain duplicates. Deduplication should be performed using 4 event properties: `event_name`, `time`, `distinct_id`, and `insert_id` (docs [here](/reference/event-deduplication)). This is an example of a total daily count, converted to a specific timezone and deduplicated.
 
@@ -67,7 +67,7 @@ LIMIT
   20
 ```
 
-### Querying duplicate events 
+### Querying duplicate events
 
 Raw exported events can contain duplicates. You can use these 4 event properties to identify duplicates: `event_name`, `time`, `distinct_id`, and `insert_id` (docs [here](/reference/event-deduplication)). This is an example of a query you can use to identify duplicate events in your raw data.
 
@@ -86,5 +86,4 @@ ORDER BY
  DATE(time, 'America/Los_Angeles'),
  event_name,
  time
- ```
-
+```

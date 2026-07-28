@@ -1,7 +1,6 @@
 ---
-title: "Setup Google Workspace SSO"
+title: Setup Google Workspace SSO
 ---
-
 
 ## Overview
 
@@ -30,25 +29,25 @@ B.  Follow [Google Workspace's documentation on setting up a new application](ht
 A. If you use the Mixpanel app from the store, the following SAML configuration is already built into the app.
 
 <Frame>
-![use_existing_app](https://github.com/user-attachments/assets/4d42cf48-9b1e-4be2-8b56-ec76edaad118)
+  ![use\_existing\_app](https://github.com/user-attachments/assets/4d42cf48-9b1e-4be2-8b56-ec76edaad118)
 </Frame>
 
 B. If you create a custom app, you must fill out the form found in the **Configure SAML** menu in Google Workspace. Make sure that the following fields are adjusted to exactly match the corresponding values:
 
-- **ACS URL:** https://sso.mixpanel.com/sso/saml2
-- **Entity ID:** https://mixpanel.com/security/sso/v2/authorize/
-- **Start URL:** https://mixpanel.com/security/sso/v2/authorize/?org_id=YOUR_ORG_ID
+- **ACS URL:** [https://sso.mixpanel.com/sso/saml2](https://sso.mixpanel.com/sso/saml2)
+- **Entity ID:** [https://mixpanel.com/security/sso/v2/authorize/](https://mixpanel.com/security/sso/v2/authorize/)
+- **Start URL:** [https://mixpanel.com/security/sso/v2/authorize/?org\_id=YOUR\_ORG\_ID](https://mixpanel.com/security/sso/v2/authorize/?org_id=YOUR_ORG_ID)
 
 The following screenshot highlights what you should place in the fields:
 
 <Frame>
-![custom_saml_app](https://github.com/user-attachments/assets/be8660ff-084f-409e-9dec-49e17b7563e6)
+  ![custom\_saml\_app](https://github.com/user-attachments/assets/be8660ff-084f-409e-9dec-49e17b7563e6)
 </Frame>
 
 Additionally, it is required that you use `email` as an attribute statement; other attributes we recommend include `firstName` and `lastName`.
 
 <Frame>
-![attr_mapping](https://github.com/user-attachments/assets/b10ea8bf-ff1a-4270-8b97-0d078ae46fde)
+  ![attr\_mapping](https://github.com/user-attachments/assets/b10ea8bf-ff1a-4270-8b97-0d078ae46fde)
 </Frame>
 
 ### Obtain Information From Google Workspace
@@ -58,7 +57,7 @@ To configure Mixpanel use with Google Workspace, you must first obtain your **Pu
 To access this information, access the Mixpanel app in Google Workspace (or create a custom app) first select **DOWNLOAD METADATA**. Then, grab the **SSO URL** and **Entity ID** as well as the certificate to upload in Mixpanel (we recommend adding the expiration date to the file name to make it easier to manage in Mixpanel).
 
 <Frame>
-![google_metadata](https://github.com/user-attachments/assets/d1ea2115-eaf7-4cde-a01d-b9bb248314e3)
+  ![google\_metadata](https://github.com/user-attachments/assets/d1ea2115-eaf7-4cde-a01d-b9bb248314e3)
 </Frame>
 
 ### Enable SSO
@@ -66,7 +65,7 @@ To access this information, access the Mixpanel app in Google Workspace (or crea
 From Mixpanel, navigate to your **Organization Settings** and then the **Access Security** tab. From the **2FA & SSO** menu, upload your **Public Certificate** and add your **SSO URL** and **Entity ID** to the **Identity Provider Sign-In URL** and **Issuer URL**, respectively.
 
 <Frame>
-![sso_settings_in_mp](https://github.com/user-attachments/assets/e97be4c6-dc1f-44d1-adb4-530679bca9ba)
+  ![sso\_settings\_in\_mp](https://github.com/user-attachments/assets/e97be4c6-dc1f-44d1-adb4-530679bca9ba)
 </Frame>
 
 Optionally, toggle **Require Single Sign-On** to prevent your users from logging in with a username and password. Organization Owners and Admins will still be able to log in using username and password in case SSO is not set up correctly.
@@ -74,7 +73,5 @@ Optionally, toggle **Require Single Sign-On** to prevent your users from logging
 ### Troubleshooting
 
 1. If a Mixpanel account has already been created with the Google Workspace user's email (their Google Workspace Username) and that account is **not a member** of your Mixpanel organization, provisioning setup for that Google Workspace user will fail. To resolve this, manually invite the existing user to your organization.
-
 2. Provisioning will also fail if the domain of the user's email has not been claimed by your organization. To resolve this, manually invite the existing user to your organization.
-
-3. If seeing the "Error 403: app_not_configured" message when trying to log in, please follow [these instructions](https://knowledge.workspace.google.com/admin/apps/saml-app-error-messages#403_app_not_configured) to grant the necessary permissions to the user's account.
+3. If seeing the "Error 403: app\_not\_configured" message when trying to log in, please follow [these instructions](https://knowledge.workspace.google.com/admin/apps/saml-app-error-messages#403_app_not_configured) to grant the necessary permissions to the user's account.
