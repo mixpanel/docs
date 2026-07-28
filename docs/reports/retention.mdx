@@ -313,11 +313,11 @@ This will show how engaged users are with an action.
 
 ## FAQ
 
-### Retention reports do not extend beyond 60 days. How can I look beyond the 60-day mark?
+**1. Retention reports do not extend beyond 60 days. How can I look beyond the 60-day mark?**
 
 Currently, when using "Day" retention, Retention reports are limited to 60 days. One way to extend it would be to switch "Each Day" to "Each Week/Month" under the Retention Criteria.
 
-### How is Retention calculated?
+**2.How is Retention calculated?**
 
 When you create an unsegmented retention query (i.e., a retention query that is not segmented by a property or cohort), Mixpanel will automatically intervalize the retention calculation.
 
@@ -334,11 +334,10 @@ Segmented queries are now calculated with that same intervalized average method,
 </Frame>
 
 Intervalized averages to segmented retention queries have two key advantages:
+- **Not including users in incomplete periods:** The non-intervalized method did not give all users an equal chance to qualify for the later retention buckets. Newer, more recent users to come into the query towards the end of your date range would not have enough time to pass to have the opportunity to be retained in the later date buckets. This would sandbag the last retention buckets in your query. With intervalized retention, Mixpanel only counts the completed time periods into the Average Retention calculation so that all users have the same opportunity to be retained.
+- **More granular analysis:** Users are now able to see how the individual birth interval cohorts are performing within a particular segment. This unlocks the ability to get more answers and dive deeper into particular cohorts of interest.
 
-1. **Not including users in incomplete periods:** The non-intervalized method did not give all users an equal chance to qualify for the later retention buckets. Newer, more recent users to come into the query towards the end of your date range would not have enough time to pass to have the opportunity to be retained in the later date buckets. This would sandbag the last retention buckets in your query. With intervalized retention, Mixpanel only counts the completed time periods into the Average Retention calculation so that all users have the same opportunity to be retained.
-2. **More granular analysis:** Users are now able to see how the individual birth interval cohorts are performing within a particular segment. This unlocks the ability to get more answers and dive deeper into particular cohorts of interest.
-
-### How is the "Average" row for Retention reports calculated?
+**3. How is the "Average" row for Retention reports calculated?**
 
 Mixpanel calculates the "Average" row values by taking the average of all the completed buckets, **weighted** by the number of users who enter. Let's walk through an example using this sample data:
 
@@ -350,7 +349,7 @@ Mixpanel calculates the "Average" row values by taking the average of all the co
 
 From our sample data, the average value for day-1 retained users is calculated as follows:
 
-#### When examining a Retention report in the % / Retention Rate view:
+**When examining a Retention report in the % / Retention Rate view:**
 
 C\_March 1 = 500 (count retained for March 1)
 
@@ -380,7 +379,7 @@ Finally,
 
 In our sample data, this computes to: 466.66/833.33 \* 100% = 56%
 
-#### When examining a Retention report in # / Absolute view:
+**When examining a Retention report in # / Absolute view:**
 
 C\_March 1 = 500 (count retained for March 1)
 
@@ -394,6 +393,6 @@ W\_March 2 = 500 / 1500 (weight for March 2)
 
 In our sample data, this computes to:(500 \* (1000 / 1500)) \+ (400 \* (500 / 1500)) = 466.67
 
-### What does the Metric view in the Retention Trends report show?
+**4. What does the Metric view in the Retention Trends report show?**
 
-The Metric view in the Retention Trends Report shows the **_overall value_** for the retention trend for that time period.  There is a `Cohortize` option under the `Advanced` menu that, when enabled, will show the **_weighted average bucket_** for that retention trend.
+The Metric view in the Retention Trends Report shows the **_overall value_** for the retention trend for that time period.  There is a `Cohortize` option under the `Advanced` menu that, when enabled, will show the **_weighted average bucket_** for that retention trend. 
