@@ -5,10 +5,10 @@ sidebarTitle: "Feature Flag & Experiments Migration Playbook"
 
 This guide walks through migrating your feature flags and experiments hosted in another platform into Mixpanel. It's for teams currently running flags and experiments on a third-party vendor who want to consolidate that work in Mixpanel instead.
 
-By the end of this, your flags and experiments will be set up in Mixpanel, your historical results will carry over, and your application code will be evaluating flags through Mixpanel rather than your old provider.
+By following this guide, your flags and experiments will be set up in Mixpanel, your historical results will carry over, and your application code will be evaluating flags through Mixpanel rather than your old provider.
 
 <Note>
-  This guide is a reusable template. The steps below are vendor-agnostic. To migrate from a provider (Statsig, LaunchDarkly, Optimizely, GrowthBook, or any OpenFeature setup), substitute that vendor's export API in each "Export" step — the Mixpanel side stays the same.
+  This guide is a reusable template. The steps below are vendor-agnostic. To migrate from a provider (Statsig, LaunchDarkly, Optimizely, GrowthBook, OpenFeature, or any setup), substitute that vendor's export API in each "Export" step — the Mixpanel side stays the same.
 </Note>
 
 ## Migration overview
@@ -25,7 +25,7 @@ Here's how to work through each step.
 
 ## Step 1. Migrate past experiment exposure events
 
-An exposure event records that a user was enrolled in a feature gate, an experiment, or a dynamic config, and was bucketed into an experiment variant. To keep your historical data, export your existing exposure events from your current vendor and ingest them to Mixpanel as `$experiment_started` events. 
+An exposure event records that a user was enrolled in a feature gate, an experiment, or a dynamic config, and was exposed to a specific variant. To keep your historical data, export your existing exposure events from your current vendor and ingest them to Mixpanel as `$experiment_started` events. 
 
 <Warning>
   Running migrations for experiments mid-flight is a high risk task. As the Mixpanel SDK will randomly assign variant assignments in your app, it is impossible to maintain the same variant assignment in your current set up. 
@@ -33,24 +33,24 @@ An exposure event records that a user was enrolled in a feature gate, an experim
 
 ### Export exposure events from your vendor
 
-Most vendors have a dedicated exposure event you can export. You can usually export them directly from the UI or by using the vendor API. You will need the following fields at minimum:
+Most vendors have a dedicated exposure event you can export. You can usually export them directly from the UI or by using the vendor's API. You will need the following fields at minimum:
 
-- The enrollment ID: This is either the user ID, device ID, or group ID
-- Timestamp
+- The enrollment ID: user ID, device ID, or group ID exposed to the experiment or feature flag
+- Timestamp of the exposure
 - The experiment or feature flag name
 - The assigned variant
 
- Details can be found at  [https://docs.mixpanel.com/docs/experiments#implementation-for-experimentation](https://docs.mixpanel.com/docs/experiments#implementation-for-experimentation). 
+Details about Mixpanel's `$experiment_started` event can be found [here](/docs/experiments#implementation-for-experimentation). 
 
-#### E**quivalent events**
+#### **Equivalent events**
 
 Each vendor has its own definition of exposure event and they can be mapped to Mixpanel's exposure event depending on the Mixpanel Feature Flag type (feature gate, an experiment, or a dynamic config). Use this table to find the equivalent for your setup:
 
 | Mixpanel Feature Flag Type | [Statsig Equivalent](https://docs.statsig.com/integrations/event_webhook#event-format) | LaunchDarkly Equivalent | [Optimizely Equivalent](https://docs.developers.optimizely.com/experimentation-data/docs/event-api-getting-started#activate-users) | [GrowthBook Equivalent](https://docs.growthbook.io/app/event-forwarder#experiment-view-events) |
 | :-- | :-- | :-- | :-- | :-- |
-| Experiment | `statsig::experiment_exposure` | [_Streaming_](https://launchdarkly.com/docs/integrations/data-export/schema-reference#feature-events): <br />`Feature` event where `reason.inExperiment` = true<br /><br />[_Warehouse_](https://launchdarkly.com/docs/integrations/data-export/warehouse-schema-reference#evaluation-events): <br />`evaluation_events` where `experiment_iteration_id` != NULL | `campaign_activated` | Experiment Viewed |
-| Feature Gate | `statsig::gate_exposure` | _Streaming_: <br />`Feature` event where `reason.inExperiment` is absent/false<br /><br />_Warehouse_: <br />`evaluation_events` where `experiment_iteration_id` is absent | Feature Rollout | (no gate exposure concept) |
-| Dynamic Configuration | `statsig::config_exposure` | _Streaming_: <br />`Feature` event where `reason.inExperiment` is absent/false<br /><br />_Warehouse_: <br />`evaluation_events` where `experiment_iteration_id` is absent | Flag with Variables | (no config exposure concept) |
+| Experiment | `statsig::experiment_exposure` | [_Streaming_](https://launchdarkly.com/docs/integrations/data-export/schema-reference#feature-events) <br />`Feature` event where `reason.inExperiment` = true<br /><br />[_Warehouse_](https://launchdarkly.com/docs/integrations/data-export/warehouse-schema-reference#evaluation-events) <br />`evaluation_events` where `experiment_iteration_id` != NULL | `campaign_activated` | `Experiment Viewed` |
+| Feature Gate | `statsig::gate_exposure` | _Streaming_ <br />`Feature` event where `reason.inExperiment` is absent/false<br /><br />_Warehouse_ <br />`evaluation_events` where `experiment_iteration_id` is absent | Feature Rollout | (no gate exposure concept) |
+| Dynamic Configuration | `statsig::config_exposure` | _Streaming_ <br />`Feature` event where `reason.inExperiment` is absent/false<br /><br />_Warehouse_ <br />`evaluation_events` where `experiment_iteration_id` is absent | Flag with Variables | (no config exposure concept) |
 
 ### Import events into Mixpanel as `$experiment_started`
 
@@ -63,27 +63,25 @@ Ensure **Experiment name** and **Variant name** are correctly translated. Keep t
 	"event": "$experiment_started",
 	"properties": {
 		"distinct_id": "alice@example.com", // enrollment ID
-		"time": 1709275888, // Timestamp
-		"$insert_id": "exp_4821_alice_1709275888", // for deduplication
+		"time": 1709275888, // Timestamp of exposure
+		"$insert_id": "exp_4821_alice_1709275888", // for re-run deduplication
 		"Experiment name": "checkout_flow_test", // The experiment or feature flag name
 		"Variant name": "treatment" // The assigned variant
 	}
 }
 ```
 
-## Step 2. Migrate flag, experiment, and dynamic config configurations
+## Step 2. Migrate feature gate, experiment, and dynamic config configurations
 
-This section moves the configurations themselves into Mixpanel. It covers both experiment **setup** and experiment **reporting**.
+Now that you've brought over your historical exposure data, it's time to bring over the configurations themselves. This section guides you in moving configurations for experiment and feature flag **setup**, as well as, experiment **reporting**.
 
 ### Export configurations from your vendor
 
-Your vendor may have a UI export, API export, or warehouse export option. Ensure you list and fetch definitions for feature gates, experiments, and dynamic configurations. 
+Your vendor may have a UI export, API export, or warehouse export options. Ensure you list and fetch definitions for feature gates, experiments, and dynamic configurations by consulting your vendor's documentation.
 
 ### Import the setup via Mixpanel API 
 
-Now that you've brought over your historical exposure data, it's time to bring over the configurations themselves.
-
-Recreate each configuration in Mixpanel using Mixpanel APIs. Create experiments first, then flags that reference them. You can refer to the Mixpanel Feature Flags API for more details: [https://docs.mixpanel.com/reference/feature-flags-api](https://docs.mixpanel.com/reference/feature-flags-api) 
+Recreate each configuration in Mixpanel using Mixpanel APIs. Create experiments first, then the feature flags that reference them. You can refer to the [Mixpanel Feature Flags](/reference/feature-flags-api) API for more details.
 
 <Tip>
   **Tip**: Test by migrating a few low-risk flags to validate the process first.
@@ -93,32 +91,30 @@ Recreate each configuration in Mixpanel using Mixpanel APIs. Create experiments 
 
 You will need to make two API calls:
 
-- **Create Experiment**: POST [`/api/app/workspaces/{workspace_id}/experiments`](https://docs.mixpanel.com/reference/create-experiment).
+- **Create Experiment**: POST [`/api/app/workspaces/{workspace_id}/experiments`](/reference/create-experiment).
   - This creates the experiment entity.
 
-- **Create Feature Flag**: POST [`/api/app/projects/{project_id}/workspaces/{workspace_id}/feature-flags`](https://docs.mixpanel.com/reference/create-feature-flag-1).
+- **Create Feature Flag**: POST [`/api/app/projects/{project_id}/workspaces/{workspace_id}/feature-flags`](/reference/create-feature-flag-1).
   - This creates the **feature flag** that references the experiment.
-  - For an Experiment, the key is to provide values for`experiment_id`,`is_experiment_active` ,and ensure the control and treatment values in the `variants.value` object are sent strings.
+  - For an Experiment, the key is to provide values for`experiment_id`,`is_experiment_active`, and ensure the control and treatment values in the `ruleset.variants.value` are sent as strings.
 
 #### Feature Gate
 
-- **Create Feature Flag**: POST [`/api/app/projects/{project_id}/workspaces/{workspace_id}/feature-flags`](https://docs.mixpanel.com/reference/create-feature-flag-1).
-  - For a Feature Gate, ensure you specify the control and treatment values in the `variants.value` object as a boolean value.
+- **Create Feature Flag**: POST [`/api/app/projects/{project_id}/workspaces/{workspace_id}/feature-flags`](/reference/create-feature-flag-1).
+  - For a Feature Gate, ensure you specify the control and treatment values in the `ruleset.variants.value` as a boolean value.
 
 #### Dynamic Config
 
-- **Create Feature Flag**: POST [`/api/app/projects/{project_id}/workspaces/{workspace_id}/feature-flags`](https://docs.mixpanel.com/reference/create-feature-flag-1).
-  - For a Dynamic Config, the key is to specify the control and treatment values in the `variants.value` object as an object.
+- **Create Feature Flag**: POST [`/api/app/projects/{project_id}/workspaces/{workspace_id}/feature-flags`](/reference/create-feature-flag-1).
+  - For a Dynamic Config, the key is to specify the control and treatment values in the `ruleset.variants.value` as an object.
 
-## Step 3. Continue setup in the Mixpanel UI
+## Step 3. Complete setup of Feature Flags and Experiments in the Mixpanel UI
 
-Now that you've recreated your flags and experiments through the API, it's time to continue the Feature Flag setup in Mixpanel.
-
-Go to 'Feature Flags' and search for the name of the feature flag that you have imported via the Mixpanel API. 
+Now that you've recreated your flags and experiments base configurations through the Mixpanel API, complete the rest of the detailed setup via Mixpanel UI.
 
 ### Feature Flag setup
 
-There are custom configurations that require additional effort to set up in Mixpanel, such as user targeting, rollout conditions, and runtime evaluation. Set these up in Mixpanel directly.
+There are custom configurations that require additional effort to set up in Mixpanel, such as user targeting, rollout conditions, and runtime evaluation. Set these up in Mixpanel directly under the [Feature Flags](/docs/featureflags) menu by searching for the name of the feature flag that you have created via the Mixpanel API. 
 
 <Frame>
   ![Feature Flag Setup](/images/FeatureFlagSetup.png)
@@ -126,7 +122,7 @@ There are custom configurations that require additional effort to set up in Mixp
 
 ### Experiment setup
 
-This step is relevant if you are importing experiments. Once you have imported the experiment into Mixpanel, a corresponding Mixpanel Experiment report will be created. You will need to continue populating this experiment with the right configuration and metrics. Go to Experiments, and search for your experiment by name.
+This step is only relevant if you have imported experiments into Mixpanel. A corresponding [Mixpanel Experiment](/docs/experiments#monitor-your-experiment) report will be created for every experiment you've imported. You will need to continue populating this experiment with the right configuration and metrics. Go to [Experiments](/docs/experiments) menu, and search for your experiment by name.
 
 <Frame>
   ![Screenshot 2026 07 21 At 4 36 21 PM](/images/Screenshot-2026-07-21-at-4.36.21-PM.png "Screenshot 2026 07 21 At 4 36 21 PM")
@@ -140,14 +136,14 @@ Map each of your vendor's experiment metrics to a Mixpanel metric so the same su
 
 ## Step 4. Recreate critical flags and experiments in your code
 
-With your feature flag configurations now migrated to Mixpanel, update your application code. How much changes depends on how your code calls flags today.
+With your feature flag configurations now migrated to Mixpanel, update your application code to use Mixpanel methods for flag evaluation and exposure. How much code changes depends on how your code calls your flags today.
 
 In the case of live experiments, migration will result in users getting reassigned to a different variant mid-experiment. We recommend completing any existing experiments and importing the historical exposure events into Mixpanel, then launching the equivalent experiment fresh in Mixpanel post-cutover.
 
-1. **If your code uses OpenFeature**: Swap the provider — replace your current provider with the Mixpanel provider and leave your existing evaluation calls unchanged, as long as your flag keys carried over identically.
+1. **If your code uses OpenFeature**: Swap the provider — replace your current provider with the Mixpanel provider and leave your existing evaluation calls unchanged, as long as your flag keys are carried over identically.
 2. **If your code uses your vendor's SDK directly**: Replace those evaluation calls with the equivalent Mixpanel SDK calls for your language (for example, a boolean gate check becomes a Mixpanel boolean flag evaluation; a dynamic config read becomes a Mixpanel variant/JSON lookup).
 
-If you are currently using LLMs, we also recommend exploring this migration approach with the Mixpanel MCP server: [https://docs.mixpanel.com/docs/mcp](https://docs.mixpanel.com/docs/mcp).  The MCP server can read all the flags and experiments in your project, and will be a good assistant in making code changes. 
+If you are currently using LLMs, we also recommend exploring this migration approach with the [Mixpanel MCP server](/docs/mcp). The MCP server can read all the flags and experiments in your project, and will be a good assistant in making code changes.
 
 ```javascript
 // The following is for client side JS SDK experiments implementation
@@ -228,4 +224,4 @@ Ensure you run a parity check. Things to verify include:
 
 The result is a clean, reviewed migration of your feature flags and experiments into Mixpanel: configurations recreated, historical results preserved, and your release workflow intact. Your Mixpanel team will partner with you through each step.
 
-For the full reference on how flags and experiments work in Mixpanel - including targeting, rollout groups, and variant management - see [Feature Flags](https://docs.mixpanel.com/docs/featureflags) and [Experiments](https://docs.mixpanel.com/docs/experiments).
+For the full reference on how flags and experiments work in Mixpanel - including targeting, rollout groups, and variant management - see [Feature Flags](/docs/featureflags) and [Experiments](/docs/experiments).
