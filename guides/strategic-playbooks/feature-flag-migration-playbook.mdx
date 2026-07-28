@@ -48,9 +48,9 @@ Each vendor has its own definition of exposure event and they can be mapped to M
 
 | Mixpanel Feature Flag Type | [Statsig Equivalent](https://docs.statsig.com/integrations/event_webhook#event-format) | LaunchDarkly Equivalent | [Optimizely Equivalent](https://docs.developers.optimizely.com/experimentation-data/docs/event-api-getting-started#activate-users) | [GrowthBook Equivalent](https://docs.growthbook.io/app/event-forwarder#experiment-view-events) |
 | :-- | :-- | :-- | :-- | :-- |
-| Experiment | `statsig::experiment_exposure` | *[Streaming](https://launchdarkly.com/docs/integrations/data-export/schema-reference#feature-events)*: <br/>`Feature` event where `reason.inExperiment` = true<br/><br/>*[Warehouse](https://launchdarkly.com/docs/integrations/data-export/warehouse-schema-reference#evaluation-events)*: <br/>`evaluation_events` where `experiment_iteration_id` != NULL | `campaign_activated` | Experiment Viewed |
-| Feature Gate | `statsig::gate_exposure` | *Streaming*: <br/>`Feature` event where `reason.inExperiment` is absent/false<br/><br/>*Warehouse*: <br/>`evaluation_events` where `experiment_iteration_id` is absent | Feature Rollout | (no gate exposure concept) |
-| Dynamic Configuration | `statsig::config_exposure` | *Streaming*: <br/>`Feature` event where `reason.inExperiment` is absent/false<br/><br/>*Warehouse*: <br/>`evaluation_events` where `experiment_iteration_id` is absent | Flag with Variables | (no config exposure concept) |
+| Experiment | `statsig::experiment_exposure` | [_Streaming_](https://launchdarkly.com/docs/integrations/data-export/schema-reference#feature-events): <br />`Feature` event where `reason.inExperiment` = true<br /><br />[_Warehouse_](https://launchdarkly.com/docs/integrations/data-export/warehouse-schema-reference#evaluation-events): <br />`evaluation_events` where `experiment_iteration_id` != NULL | `campaign_activated` | Experiment Viewed |
+| Feature Gate | `statsig::gate_exposure` | _Streaming_: <br />`Feature` event where `reason.inExperiment` is absent/false<br /><br />_Warehouse_: <br />`evaluation_events` where `experiment_iteration_id` is absent | Feature Rollout | (no gate exposure concept) |
+| Dynamic Configuration | `statsig::config_exposure` | _Streaming_: <br />`Feature` event where `reason.inExperiment` is absent/false<br /><br />_Warehouse_: <br />`evaluation_events` where `experiment_iteration_id` is absent | Flag with Variables | (no config exposure concept) |
 
 ### Import events into Mixpanel as `$experiment_started`
 
@@ -96,225 +96,29 @@ You will need to make two API calls:
 - **Create Experiment**: POST [`/api/app/workspaces/{workspace_id}/experiments`](https://docs.mixpanel.com/reference/create-experiment).
   - This creates the experiment entity.
 
-```javascript
-{
-  "name": "Checkout Button Optimization",
-  "description": "Migrated from original experiment: checkout_button_test",
-  "hypothesis": "Larger, more prominent checkout buttons will increase conversion rate",
-  "variants": [
-    {
-      "name": "control",
-      "description": "Original group: Large Button"
-    },
-    {
-      "name": "treatment",
-      "description": "Original group: Green Button"
-    }
-  ],
-  "metrics": [],
-  "settings": {
-    "traffic_fraction": 0.8 // This is the rollout perecentage
-  }
-}
-```
-
 - **Create Feature Flag**: POST [`/api/app/projects/{project_id}/workspaces/{workspace_id}/feature-flags`](https://docs.mixpanel.com/reference/create-feature-flag-1).
   - This creates the **feature flag** that references the experiment.
-  - For an Experiment, the key is to specify the control and treatment values in the `variants.value` object as strings.
-
-```javascript
-{
-  "name": "Checkout Button Optimization",
-  "key": "checkout_button_test",
-  "description": "Testing different checkout button designs",
-  "tags": ["checkout", "conversion"],
-  "status": "enabled",
-  "data_group_id": null,
-  "serving_method": "client",
-  "experiment_id": 12345, // an ID assigned in Mixpanel when you create the feature flag. Ensure your IDs do not conflict with any existing feature flags in Mixpanel
-  "workspace_id": null,
-  "is_experiment_active": null, // this will set the experiment to disabled in the UI. Upon confirming configuration, you can re-enable it
-  "hash_salt": null,
-  "reset_hash_salt": null,
-  "context": "distinct_id",
-  "ruleset": {
-    "test": null,
-    "variants": [
-      {
-        "key": "control",
-        "value": "control", // Send this as a string for Experiments
-        "is_control": true,
-        "is_sticky": false,
-        "split": 0.5,
-        "description": "Original group: Large Button"
-      },
-      {
-        "key": "treatment",
-        "value": "treatment", // Send this as a string for Experiments
-        "is_control": false,
-        "is_sticky": false,
-        "split": 0.5,
-        "description": "Original group: Green Button"
-      }
-    ],
-    "rollout": [
-      {
-        "name": null,
-        "runtime_evaluation_rule": null,
-        "runtime_event_rule": null,
-        "cohort_hash": null,
-        "variant_override": null,
-        "rollout_percentage": 0.8,
-        "variant_splits": {
-          "treatment": 1
-        }
-      }
-    ]
-  }
-}
-```
+  - For an Experiment, the key is to provide values for`experiment_id`,`is_experiment_active` ,and ensure the control and treatment values in the `variants.value` object are sent strings.
 
 #### Feature Gate
 
 - **Create Feature Flag**: POST [`/api/app/projects/{project_id}/workspaces/{workspace_id}/feature-flags`](https://docs.mixpanel.com/reference/create-feature-flag-1).
   - For a Feature Gate, ensure you specify the control and treatment values in the `variants.value` object as a boolean value.
 
-```javascript
-{
-  "name": "New Dashboard UI",
-  "key": "new_dashboard_ui",
-  "description": "Enable the redesigned dashboard interface",
-  "tags": ["ui", "dashboard"],
-  "status": "enabled",
-  "data_group_id": null,
-  "serving_method": "client",
-  "experiment_id": null, // an ID assigned in Mixpanel when you create the feature flag. Ensure your IDs do not conflict with any existing feature flags in Mixpanel
-  "workspace_id": null,
-  "is_experiment_active": null, // // this will set the experiment to disabled in the UI. Upon confirming configuration, you can re-enable it
-  "hash_salt": null,
-  "reset_hash_salt": null,
-  "context": "distinct_id",
-  "ruleset": {
-    "test": null,
-    "variants": [
-      {
-        "key": "control",
-        "value": true, // Send this as a boolean for Feature Gates
-        "is_control": true,
-        "is_sticky": false,
-        "split": 0.5,
-        "description": "Control — Migrated"
-      },
-      {
-        "key": "treatment",
-        "value": false, // Send this as a boolean for Feature Gates
-        "is_control": false,
-        "is_sticky": false,
-        "split": 0.5,
-        "description": "Treatment — Migrated"
-      }
-    ],
-    "rollout": [
-      {
-        "name": null,
-        "runtime_evaluation_rule": null,
-        "runtime_event_rule": null,
-        "cohort_hash": null,
-        "variant_override": null,
-        "rollout_percentage": 0.25,
-        "variant_splits": {
-          "treatment": 1.0
-        }
-      }
-    ]
-  }
-}
-```
-
 #### Dynamic Config
 
 - **Create Feature Flag**: POST [`/api/app/projects/{project_id}/workspaces/{workspace_id}/feature-flags`](https://docs.mixpanel.com/reference/create-feature-flag-1).
   - For a Dynamic Config, the key is to specify the control and treatment values in the `variants.value` object as an object.
 
-```javascript
-{
-  "name": "Search Algorithm Configuration",
-  "key": "search_algorithm_config",
-  "description": "Dynamic parameters for search ranking algorithm",
-  "tags": ["search", "algorithm"],
-  "status": "enabled",
-  "data_group_id": null,
-  "serving_method": "server",
-  "experiment_id": null, // an ID assigned in Mixpanel when you create the feature flag. Ensure your IDs do not conflict with any existing feature flags in Mixpanel
-  "workspace_id": null,
-  "is_experiment_active": null, //// this will set the experiment to disabled in the UI. Upon confirming configuration, you can re-enable it
-  "hash_salt": null,
-  "reset_hash_salt": null,
-  "context": "distinct_id",
-  "ruleset": {
-    "test": null,
-    "variants": [
-      {
-        "key": "control",
-        "value": { // Send as an object for Dynamic Config
-          "max_results": 50,
-          "boost_recent": true,
-          "relevance_threshold": 0.7,
-          "ranking_weights": {
-            "title_match": 2.0,
-            "content_match": 1.0,
-            "recency": 0.5
-          }
-        },
-        "is_control": true,
-        "is_sticky": false,
-        "split": 0.5,
-        "description": "Control — Migrated"
-      },
-      {
-        "key": "treatment",
-        "value": {
-          "max_results": 50,
-          "boost_recent": true,
-          "relevance_threshold": 0.7,
-          "ranking_weights": {
-            "title_match": 2.0,
-            "content_match": 1.0,
-            "recency": 0.5
-          }
-        },
-        "is_control": false,
-        "is_sticky": false,
-        "split": 0.5,
-        "description": "Treatment — Migrated"
-      }
-    ],
-    "rollout": [
-      {
-        "name": null,
-        "runtime_evaluation_rule": null,
-        "runtime_event_rule": null,
-        "cohort_hash": null,
-        "variant_override": null,
-        "rollout_percentage": 1.0,
-        "variant_splits": {
-          "treatment": 1.0
-        }
-      }
-    ]
-  }
-}
-```
-
 ## Step 3. Continue setup in the Mixpanel UI
 
-Now that you've recreated your flags and experiments through the API, it's time to continue the Feature Flag and Experiment setup in Mixpanel.
+Now that you've recreated your flags and experiments through the API, it's time to continue the Feature Flag setup in Mixpanel.
 
 Go to 'Feature Flags' and search for the name of the feature flag that you have imported via the Mixpanel API. 
 
 ### Feature Flag setup
 
-There are custom configurations that require additional effort to set up in Mixpanel, such as user attribute targeting, cohort conditions, and runtime evaluation. Set these up in Mixpanel directly.
+There are custom configurations that require additional effort to set up in Mixpanel, such as user targeting, rollout conditions, and runtime evaluation. Set these up in Mixpanel directly.
 
 <Frame>
   ![Feature Flag Setup](/images/FeatureFlagSetup.png)
@@ -322,7 +126,7 @@ There are custom configurations that require additional effort to set up in Mixp
 
 ### Experiment setup
 
-Once you have imported the experiment into Mixpanel, a corresponding Mixpanel Experiment report will be created. You will need to continue populating this experiment with the right  configuration and metrics. Go to Experiments, and search for your experiment by name.
+This step is relevant if you are importing experiments. Once you have imported the experiment into Mixpanel, a corresponding Mixpanel Experiment report will be created. You will need to continue populating this experiment with the right configuration and metrics. Go to Experiments, and search for your experiment by name.
 
 <Frame>
   ![Screenshot 2026 07 21 At 4 36 21 PM](/images/Screenshot-2026-07-21-at-4.36.21-PM.png "Screenshot 2026 07 21 At 4 36 21 PM")
@@ -336,7 +140,7 @@ Map each of your vendor's experiment metrics to a Mixpanel metric so the same su
 
 ## Step 4. Recreate critical flags and experiments in your code
 
-With configurations and history in Mixpanel, update your application to evaluate flags through Mixpanel. How much changes depends on how your code calls flags today.
+With your feature flag configurations now migrated to Mixpanel, update your application code. How much changes depends on how your code calls flags today.
 
 In the case of live experiments, migration will result in users getting reassigned to a different variant mid-experiment. We recommend completing any existing experiments and importing the historical exposure events into Mixpanel, then launching the equivalent experiment fresh in Mixpanel post-cutover.
 
@@ -424,4 +228,4 @@ Ensure you run a parity check. Things to verify include:
 
 The result is a clean, reviewed migration of your feature flags and experiments into Mixpanel: configurations recreated, historical results preserved, and your release workflow intact. Your Mixpanel team will partner with you through each step.
 
-For the full reference on how flags and experiments work in Mixpanel — including targeting, rollout groups, and variant management — see [Feature Flags](https://docs.mixpanel.com/docs/featureflags) and [Experiments](https://docs.mixpanel.com/docs/experiments).
+For the full reference on how flags and experiments work in Mixpanel - including targeting, rollout groups, and variant management - see [Feature Flags](https://docs.mixpanel.com/docs/featureflags) and [Experiments](https://docs.mixpanel.com/docs/experiments).
