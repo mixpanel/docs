@@ -755,21 +755,21 @@ Both events automatically include `current_page_title` (the screen name) and `$m
             swizzle(#selector(viewDidAppear(_:)), with: #selector(mp_viewDidAppear(_:)))
             swizzle(#selector(viewWillDisappear(_:)), with: #selector(mp_viewWillDisappear(_:)))
         }
-
+    
         @objc private func mp_viewDidAppear(_ animated: Bool) {
             mp_viewDidAppear(animated)
             let name = String(describing: type(of: self))
             guard !name.hasPrefix("UI"), !name.hasPrefix("_") else { return }
             Mixpanel.mainInstance().autocapture.trackScreenView(screenName: name)
         }
-
+    
         @objc private func mp_viewWillDisappear(_ animated: Bool) {
             mp_viewWillDisappear(animated)
             let name = String(describing: type(of: self))
             guard !name.hasPrefix("UI"), !name.hasPrefix("_") else { return }
             Mixpanel.mainInstance().autocapture.trackScreenLeave(screenName: name)
         }
-
+    
         private static func swizzle(_ original: Selector, with swizzled: Selector) {
             guard let m1 = class_getInstanceMethod(UIViewController.self, original),
                   let m2 = class_getInstanceMethod(UIViewController.self, swizzled)

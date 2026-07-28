@@ -651,7 +651,7 @@ Both events automatically include `current_page_title` (the screen name) and `$m
     ```tsx
     const navigationRef = useNavigationContainerRef();
     const previousRouteRef = useRef<string | undefined>();
-
+    
     <NavigationContainer
       ref={navigationRef}
       onReady={() => {
@@ -662,7 +662,7 @@ Both events automatically include `current_page_title` (the screen name) and `$m
       onStateChange={() => {
         const current = navigationRef.getCurrentRoute()?.name;
         const previous = previousRouteRef.current;
-
+    
         if (current !== previous) {
           if (previous) mixpanel.autocapture.trackScreenLeave(previous);
           if (current) mixpanel.autocapture.trackScreenView(current);

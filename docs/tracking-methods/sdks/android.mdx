@@ -684,14 +684,14 @@ Both events automatically include `current_page_title` (the screen name) and `$m
     ```kotlin
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
     var previousRoute by remember { mutableStateOf<String?>(null) }
-
+    
     LaunchedEffect(currentRoute) {
         currentRoute?.let { route ->
             val mixpanel = MixpanelAPI.getInstance(context, "YOUR_TOKEN", true)
-
+    
             previousRoute?.let { mixpanel.autocapture.trackScreenLeave(it) }
             mixpanel.autocapture.trackScreenView(route)
-
+    
             previousRoute = route
         }
     }

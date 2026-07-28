@@ -22,20 +22,20 @@ Explore curated Board templates designed to solve common product questions. Clic
     target="_blank"
     className="sgt-cta"
     style={{
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '8px',
-    fontWeight: 600,
-    fontSize: '15px',
-    padding: '10px 14px',
-    borderRadius: '10px',
-    border: '1px solid rgb(139, 92, 246)',
-    color: 'var(--sgt-title)',
-    background: 'var(--sgt-card-bg)',
-    textDecoration: 'none',
-    boxShadow: '0 4px 16px rgba(0,0,0,.12)',
-    transition: 'transform .2s ease, box-shadow .2s ease, background .2s ease',
-  }}
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '8px',
+  fontWeight: 600,
+  fontSize: '15px',
+  padding: '10px 14px',
+  borderRadius: '10px',
+  border: '1px solid rgb(139, 92, 246)',
+  color: 'var(--sgt-title)',
+  background: 'var(--sgt-card-bg)',
+  textDecoration: 'none',
+  boxShadow: '0 4px 16px rgba(0,0,0,.12)',
+  transition: 'transform .2s ease, box-shadow .2s ease, background .2s ease',
+}}
   >
     Ready to build? Create a Board
     <span aria-hidden>→</span>
@@ -44,18 +44,18 @@ Explore curated Board templates designed to solve common product questions. Clic
 
 <style jsx global>
   {`
-    /* CTA interactions reuse component look & feel */
-    .sgt-cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.18);
-      background: rgba(139, 92, 246, 0.08);
-    }
-    .sgt-cta:focus-visible {
-      outline: 2px solid rgb(139, 92, 246);
-      outline-offset: 3px;
-      border-radius: 10px;
-    }
-    `}
+      /* CTA interactions reuse component look & feel */
+      .sgt-cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px rgba(139, 92, 246, 0.18);
+        background: rgba(139, 92, 246, 0.08);
+      }
+      .sgt-cta:focus-visible {
+        outline: 2px solid rgb(139, 92, 246);
+        outline-offset: 3px;
+        border-radius: 10px;
+      }
+      `}
 </style>
 
 <div
@@ -88,41 +88,41 @@ Foundational views to monitor product health, user retention, and core growth me
 
 <BoardTemplates
   templates={[
-  {
-    title: 'Company KPIs',
-    bg: COLORS.indigo,
-    description: "Measure product health across engagement, retention, and growth in one unified dashboard.",
-    img: '/images/templates/CompanyKPIs_Preview.webp',
-    previewUrl: 'https://mixpanel.com/p/QLBHa24vdYuK2MJLiNUA1S'
-  },
-  {
-    title: 'Feature Launch',
-    bg: COLORS.teal,
-    description: "Understand if your new feature is being adopted, retained, and impacting your core product experience.",
-    img: '/images/templates/FeatureLaunch_Preview.webp',
-    previewUrl: 'https://mixpanel.com/p/5dbqyToAtFMaDJVJNzUeuG'
-  },
-  {
-    title: 'Web Analytics',
-    bg: COLORS.maroon,
-    description: "Get a complete view of your website's performance with essential user, session, and page-level metrics.",
-    img: '/images/templates/WebAnalytics_Preview.webp',
-    previewUrl: 'https://mixpanel.com/p/BkaDwovdEpEcMJp33R6sah'
-  },
-  {
-    title: 'Marketing KPIs',
-    bg: COLORS.brown,
-    description: "Connect campaign activity to business outcomes across the full marketing funnel.",
-    img: '/images/templates/MarketingKPIs_Preview.webp',
-    previewUrl: 'https://mixpanel.com/p/MKDgQSoYBZciN4AGgY7Mgh'
-  },
-  {
-    title: 'Lifecycle Analysis',
-    bg: COLORS.indigo,
-    description: "See what's driving your active users by segmenting them into new, retained, resurrected, and dormant cohorts.",
-    img: '/images/templates/LifecycleAnalysis_Preview.webp',
-    previewUrl: 'https://mixpanel.com/p/CEngFwLvPa5zvTSLvFTHNH'
-  },
+{
+  title: 'Company KPIs',
+  bg: COLORS.indigo,
+  description: "Measure product health across engagement, retention, and growth in one unified dashboard.",
+  img: '/images/templates/CompanyKPIs_Preview.webp',
+  previewUrl: 'https://mixpanel.com/p/QLBHa24vdYuK2MJLiNUA1S'
+},
+{
+  title: 'Feature Launch',
+  bg: COLORS.teal,
+  description: "Understand if your new feature is being adopted, retained, and impacting your core product experience.",
+  img: '/images/templates/FeatureLaunch_Preview.webp',
+  previewUrl: 'https://mixpanel.com/p/5dbqyToAtFMaDJVJNzUeuG'
+},
+{
+  title: 'Web Analytics',
+  bg: COLORS.maroon,
+  description: "Get a complete view of your website's performance with essential user, session, and page-level metrics.",
+  img: '/images/templates/WebAnalytics_Preview.webp',
+  previewUrl: 'https://mixpanel.com/p/BkaDwovdEpEcMJp33R6sah'
+},
+{
+  title: 'Marketing KPIs',
+  bg: COLORS.brown,
+  description: "Connect campaign activity to business outcomes across the full marketing funnel.",
+  img: '/images/templates/MarketingKPIs_Preview.webp',
+  previewUrl: 'https://mixpanel.com/p/MKDgQSoYBZciN4AGgY7Mgh'
+},
+{
+  title: 'Lifecycle Analysis',
+  bg: COLORS.indigo,
+  description: "See what's driving your active users by segmenting them into new, retained, resurrected, and dormant cohorts.",
+  img: '/images/templates/LifecycleAnalysis_Preview.webp',
+  previewUrl: 'https://mixpanel.com/p/CEngFwLvPa5zvTSLvFTHNH'
+},
 ]}
 />
 
@@ -132,27 +132,27 @@ Custom-built frameworks optimized for E-commerce, SaaS, and Finance workflows.
 
 <BoardTemplates
   templates={[
-  {
-    title: 'Ecommerce',
-    bg: COLORS.teal,
-    description: "Track revenue, analyze purchases, optimize conversions, and identify your best acquisition channels.",
-    img: '/images/templates/Ecommerce_Preview.webp',
-    previewUrl: 'https://mixpanel.com/p/2cv24kB3k5n9reXr9bSJKU'
-  },
-  {
-    title: 'AI Company',
-    bg: COLORS.maroon,
-    description: "Track AI agent engagement, cost efficiency, response performance, and user feedback.",
-    img: '/images/templates/AICompany_Preview.webp',
-    previewUrl: 'https://mixpanel.com/p/NaKPyubj6EuA4oV75taqrq'
-  },
-  {
-    title: 'SaaS Business KPIs',
-    bg: COLORS.brown,
-    description: "Understand your MRR trends, what's driving month-over-month revenue changes, and where churn is concentrated.",
-    img: '/images/templates/SaaSBusinessKPIs_Preview.webp',
-    previewUrl: 'https://mixpanel.com/p/8R2b9DRvnZfrNXYVqNxFLH'
-  }
+{
+  title: 'Ecommerce',
+  bg: COLORS.teal,
+  description: "Track revenue, analyze purchases, optimize conversions, and identify your best acquisition channels.",
+  img: '/images/templates/Ecommerce_Preview.webp',
+  previewUrl: 'https://mixpanel.com/p/2cv24kB3k5n9reXr9bSJKU'
+},
+{
+  title: 'AI Company',
+  bg: COLORS.maroon,
+  description: "Track AI agent engagement, cost efficiency, response performance, and user feedback.",
+  img: '/images/templates/AICompany_Preview.webp',
+  previewUrl: 'https://mixpanel.com/p/NaKPyubj6EuA4oV75taqrq'
+},
+{
+  title: 'SaaS Business KPIs',
+  bg: COLORS.brown,
+  description: "Understand your MRR trends, what's driving month-over-month revenue changes, and where churn is concentrated.",
+  img: '/images/templates/SaaSBusinessKPIs_Preview.webp',
+  previewUrl: 'https://mixpanel.com/p/8R2b9DRvnZfrNXYVqNxFLH'
+}
 ]}
 />
 

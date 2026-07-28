@@ -25,14 +25,7 @@ Deduplication occurs when a subset of the event data (event name, distinct\_id, 
 
 **Required [Event Object](/docs/data-model#anatomy-of-an-event) attributes**
 
-|
-|
-| <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span> |
-| <span style={{ fontFamily: "courier" }}>Object</span><br /><span style={{ color: "red" }}>required</span> |  |
-| <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span> |
-| <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span> |
-| <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span> |
-| <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span> |
+| | | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span> | | <span style={{ fontFamily: "courier" }}>Object</span><br /><span style={{ color: "red" }}>required</span> |  | | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span> | | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span> | | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span> | | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span> |
 
 In other words, each event containing an `$insert_id` is checked for duplication after being minimized to the following shape:
 
