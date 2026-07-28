@@ -93,7 +93,7 @@ If you are using a Mixpanel SDK, you _must_ configure it to talk to the correct 
 | [EU Data Residency](/docs/privacy/eu-residency) | `api-eu.mixpanel.com` |
 | [India Data Residency](/docs/privacy/in-residency) | `api-in.mixpanel.com` |
 
-**⚠️ Important:** Projects with India Data Residency _must_ configure SDKs with the `api-in.mixpanel.com` host or events will be rejected and will be missing from your project.
+**⚠️ Important:** Projects with EU or India Data Residency must configure their SDK with the matching regional host (`api-eu.mixpanel.com` or `api-in.mixpanel.com`). Events sent to the wrong host will not be ingested in your Mixpanel project.
 
 ### Customize Flush Interval (Mobile)
 

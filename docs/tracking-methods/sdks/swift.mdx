@@ -714,6 +714,89 @@ A few commonly used group methods are highlighted below:
   </Tab>
 </Tabs>
 
+## Autocapture
+
+The Mixpanel Swift SDK provides methods on the `autocapture` object to help you track common user interactions with minimal instrumentation. These methods fire standardized events that are recognized by the Mixpanel platform.
+
+### Screen View & Screen Leave
+
+Modern iOS apps use a variety of UI frameworks — UIKit with view controllers, SwiftUI with `NavigationStack`, or a mix of both. Each defines and transitions between "screens" differently, making it impractical for the SDK to automatically detect screen boundaries across all setups. Instead, you hook `trackScreenView` and `trackScreenLeave` into your app's navigation, giving you full control over what counts as a screen and when transitions happen.
+
+Track screen navigations using `trackScreenView` and `trackScreenLeave`. These methods fire the following events:
+
+| Method | Mixpanel Event |
+| --- | --- |
+| `trackScreenView()` | `$mp_page_view` |
+| `trackScreenLeave()` | `$mp_page_leave` |
+
+Both events automatically include `current_page_title` (the screen name) and `$mp_autocapture: true`.
+
+<Tabs>
+  <Tab title="Manual">
+    Call these methods from any view controller or SwiftUI view:
+
+    ```swift
+    Mixpanel.mainInstance().autocapture.trackScreenView(screenName: "HomeScreen")
+    Mixpanel.mainInstance().autocapture.trackScreenLeave(screenName: "HomeScreen")
+    ```
+  </Tab>
+  <Tab title="UIKit (Swizzling)">
+    Swizzle `viewDidAppear` and `viewWillDisappear` once at launch to track every view controller automatically:
+
+    ```swift
+    // In AppDelegate.didFinishLaunchingWithOptions:
+    Mixpanel.initialize(token: "YOUR_TOKEN", trackAutomaticEvents: true)
+    UIViewController.setupAutomaticScreenTracking()
+    ```
+
+    ```swift
+    extension UIViewController {
+        static func setupAutomaticScreenTracking() {
+            swizzle(#selector(viewDidAppear(_:)), with: #selector(mp_viewDidAppear(_:)))
+            swizzle(#selector(viewWillDisappear(_:)), with: #selector(mp_viewWillDisappear(_:)))
+        }
+
+        @objc private func mp_viewDidAppear(_ animated: Bool) {
+            mp_viewDidAppear(animated)
+            let name = String(describing: type(of: self))
+            guard !name.hasPrefix("UI"), !name.hasPrefix("_") else { return }
+            Mixpanel.mainInstance().autocapture.trackScreenView(screenName: name)
+        }
+
+        @objc private func mp_viewWillDisappear(_ animated: Bool) {
+            mp_viewWillDisappear(animated)
+            let name = String(describing: type(of: self))
+            guard !name.hasPrefix("UI"), !name.hasPrefix("_") else { return }
+            Mixpanel.mainInstance().autocapture.trackScreenLeave(screenName: name)
+        }
+
+        private static func swizzle(_ original: Selector, with swizzled: Selector) {
+            guard let m1 = class_getInstanceMethod(UIViewController.self, original),
+                  let m2 = class_getInstanceMethod(UIViewController.self, swizzled)
+            else { return }
+            method_exchangeImplementations(m1, m2)
+        }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+#### Passing Custom Properties
+
+Both methods accept an optional `properties` parameter. For example, forwarding UTM params from a deep link:
+
+```swift
+let queryItems = urlComponents.queryItems
+let utmProps: Properties = [
+    "utm_source": queryItems?.first(where: { $0.name == "utm_source" })?.value ?? "",
+    "utm_medium": queryItems?.first(where: { $0.name == "utm_medium" })?.value ?? "",
+    "utm_campaign": queryItems?.first(where: { $0.name == "utm_campaign" })?.value ?? ""
+]
+Mixpanel.mainInstance().autocapture.trackScreenView(
+    screenName: "PromoScreen", properties: utmProps
+)
+```
+
 ## Session Replay
 
 Install the [Session Replay SDK for Swift](/docs/tracking-methods/sdks/swift/swift-replay) to record replay data. Learn more about [Session Replay](/docs/session-replay) and [implementing Session Replay on iOS](/docs/tracking-methods/sdks/swift/swift-replay).
