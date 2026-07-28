@@ -24,7 +24,17 @@
       "post": {
         "operationId": "create_thing_for_project",
         "summary": "Create Thing For Project",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "schema": {
+              "title": "Project Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
