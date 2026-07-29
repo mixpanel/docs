@@ -606,7 +606,6 @@
                       {
                         "group": "Use Mixpanel Agent",
                         "pages": [
-                          "guides/guides-by-use-case/empower-your-team/mixpanel-agent",
                           "guides/guides-by-use-case/empower-your-team/mixpanel-agent/use-cases"
                         ]
                       },
@@ -629,7 +628,6 @@
                           "guides/guides-by-use-case/empower-your-team/mcp/integrations"
                         ]
                       },
-                      "guides/guides-by-use-case/empower-your-team/headless",
                       "guides/guides-by-use-case/empower-your-team/close-strategy-execution-gap",
                       "guides/guides-by-use-case/empower-your-team/see-replays"
                     ]
@@ -663,9 +661,13 @@
             "icon": "/icons/flower.svg",
             "pages": [
               "guides/guides-by-use-case/empower-your-team/mixpanel-agent",
+              "guides/guides-by-use-case/empower-your-team/mixpanel-agent",
+              "guides/guides-by-use-case/empower-your-team/mcp",
               "guides/guides-by-use-case/empower-your-team/mcp",
               "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry",
+              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry",
               "guides/guides-by-use-case/empower-your-team/mcp/integrations",
+              "guides/guides-by-use-case/empower-your-team/headless",
               "guides/guides-by-use-case/empower-your-team/headless",
               "guides/guides-by-workflow/write-business-context"
             ]
