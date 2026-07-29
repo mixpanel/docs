@@ -114,36 +114,32 @@ We support the following types of Flags:
     </Warning>
   </Step>
   <Step title="Runtime Targeting">
+
     Runtime targeting enables immediate, per-request decisions. There are two types of Runtime Filters:
 
     **Filter by Runtime Property**
 
-    This method enables targeting users immediately based on device or platform properties. For example, only users who are on Android devices and in the UK.
-
-    - Runtime properties (e.g., `platform`, `path`, `country`) should be passed by the SDK at request time for immediate, per-request decisions.
-
-    **Filter by Runtime Event**
-
     This method enables targeting users immediately based on arbitrary key/value attributes your application sends in the flag-evaluation request context (`context` / `custom_properties`) at request time. The flag compares these values directly (e.g. equals / contains) for immediate, per-request decisions.
-
     - Runtime Properties are **not** limited to device or platform values. They can be any attribute your frontend or app supplies at request time — for example, `platform`, `path`, `country`, or a custom value like `organization_id`. This makes them the right tool for **immediate**, per-request targeting, such as organization- or account-based targeting where you need decisions to take effect right away. If a periodic cohort refresh (approximately every 2 hours) is acceptable, [group cohort targeting](#rollout-groups) is an alternative approach for org/account-based use cases.
     - These attributes should be passed to the SDK in the `context` / `custom_properties` parameter at the time the flag is evaluated.
 
     <Note>
-      **Runtime Property** (targeting based on values your app _sends_ in the request context) is distinct from **Runtime Event** (targeting based on Mixpanel events the user _triggers_ via `mixpanel.track()`). See the section below for details on Runtime Event filters.
+      **Runtime Property** (targeting based on values your app *sends* in the request context) is distinct from **Runtime Event** (targeting based on Mixpanel events the user *triggers* via `mixpanel.track()`). See the section below for details on Runtime Event filters.
     </Note>
 
+    **Filter by Runtime Event**
+
+    This method enables targeting users immediately when they perform specific actions tracked with `mixpanel.track()`. For example, show a feature to users the first time they complete onboarding, or target users who added items to cart.
     - When adding a new filter to your rollout group, navigate to `+ Create New`, then click on `Runtime Event` to add a new runtime event filter.
     - Select an event, then optionally enable **"First Time"** to trigger only on the user's first occurrence of that event.
     - Configure the **duration** to control how long the variant persists: "End of Session" or "Indefinitely".
     - Add **property filters** for more fine-grained control (e.g., `purchase_amount > 100`, `page_path contains '/checkout'`).
     - **Examples**:
-
       - Target users the first time they complete the 'Sign Up' event
-      - Target users who trigger 'Add to Cart' event with product\_category = 'premium'
+      - Target users who trigger 'Add to Cart' event with product_category = 'premium'
 
     <Note>
-      For detailed configuration options and examples, see our [Runtime Events guide](/docs/featureflags/runtime-events).
+        For detailed configuration options and examples, see our [Runtime Events guide](/docs/featureflags/runtime-events).
     </Note>
   </Step>
   <Step title="Rollout Percentage">
