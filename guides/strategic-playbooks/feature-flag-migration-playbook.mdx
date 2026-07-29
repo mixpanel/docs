@@ -49,8 +49,8 @@ Each vendor has its own definition of exposure event and they can be mapped to M
 | Mixpanel Feature Flag Type | [Statsig Equivalent](https://docs.statsig.com/integrations/event_webhook#event-format) | LaunchDarkly Equivalent | [Optimizely Equivalent](https://docs.developers.optimizely.com/experimentation-data/docs/event-api-getting-started#activate-users) | [GrowthBook Equivalent](https://docs.growthbook.io/app/event-forwarder#experiment-view-events) |
 | :-- | :-- | :-- | :-- | :-- |
 | Experiment | `statsig::experiment_exposure` | [_Streaming_](https://launchdarkly.com/docs/integrations/data-export/schema-reference#feature-events) <br />`Feature` event where `reason.inExperiment` = true<br /><br />[_Warehouse_](https://launchdarkly.com/docs/integrations/data-export/warehouse-schema-reference#evaluation-events) <br />`evaluation_events` where `experiment_iteration_id` != NULL | `campaign_activated` | `Experiment Viewed` |
-| Feature Gate | `statsig::gate_exposure` | _Streaming_ <br />`Feature` event where `reason.inExperiment` is absent/false<br /><br />_Warehouse_ <br />`evaluation_events` where `experiment_iteration_id` is absent | Feature Rollout | (no gate exposure concept) |
-| Dynamic Configuration | `statsig::config_exposure` | _Streaming_ <br />`Feature` event where `reason.inExperiment` is absent/false<br /><br />_Warehouse_ <br />`evaluation_events` where `experiment_iteration_id` is absent | Flag with Variables | (no config exposure concept) |
+| Feature Gate | `statsig::gate_exposure` | **_<u>Streaming</u>_** <br />`Feature` event where `reason.inExperiment` is absent/false<br /><br />**_<u>Warehouse</u>_** <br />`evaluation_events` where `experiment_iteration_id` is absent | Feature Rollout | (no gate exposure concept) |
+| Dynamic Configuration | `statsig::config_exposure` | **_<u>Streaming</u>_** <br />`Feature` event where `reason.inExperiment` is absent/false<br /><br />**_<u>Warehouse</u>_** <br />`evaluation_events` where `experiment_iteration_id` is absent | Flag with Variables | (no config exposure concept) |
 
 ### Import events into Mixpanel as `$experiment_started`
 
