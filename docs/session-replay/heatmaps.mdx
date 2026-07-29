@@ -149,7 +149,9 @@ To collect Scrollmap data, your implementation must meet the following requireme
 
 - Mixpanel JavaScript SDK **v2.71 or higher**
 - Session Replay enabled
-- Either `record_heatmap_data` set to `true`, or `page_leave` autocapture enabled
+- `record_heatmap_data` set to `true` in your Session Replay configuration
+
+Setting `record_heatmap_data: true` is what captures the Page Leave data that the scroll fold line is derived from, so it is required for Scrollmaps.
 
 **Example Usage**
 
