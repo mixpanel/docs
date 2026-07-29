@@ -17,7 +17,7 @@ We offer two types of heatmaps:
   Note: Traditional heatmaps may show some inaccuracies on modern websites due to dynamic elements like modals, dropdowns, fixed elements, and cookie banners that change the page layout. Click maps can be used to confirm and clarify these interactions by showing exactly which elements users are engaging with.
 </Note>
 
-Future versions of heatmaps may also include hovers, scroll depth, and other interaction types.
+Future versions of heatmaps may also include hovers and other interaction types.
 
 Enabling Heatmaps does not affect billing. They are included with the Session Replay add-on and do not generate additional billable events.
 
@@ -134,3 +134,32 @@ UI States are subject to the same retention policies as your session replays. On
 <Warning>
   Heatmaps only track scrolling on the main page (window). If your site scrolls inside a nested container (like a div with its own scrollbar), heatmaps and interactive mode may not display data correctly. The interactive UI States feature lets you customize your UI State, but click positions within nested scrollable elements will still not be fully reflected.
 </Warning>
+
+## Scrollmaps
+
+Scrollmaps visualize how far down a page users scroll, helping you understand how much of your content is actually seen and where users drop off. Like Click Maps and Traditional Heatmaps, Scrollmaps are part of the Heatmaps and Session Replay feature set.
+
+<Note>
+  Scrollmaps are currently available for web only. They are not yet available on our Mobile Session Replay SDKs.
+</Note>
+
+### Requirements
+
+To collect Scrollmap data, your implementation must meet the following requirements:
+
+- Mixpanel JavaScript SDK **v2.71 or higher**
+- Session Replay enabled
+- Either `record_heatmap_data` set to `true`, or `page_leave` autocapture enabled
+
+**Example Usage**
+
+```javascript Javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  record_sessions_percent: 1, // Session Replay enabled, recording 1% of all sessions
+  record_heatmap_data: true   // Enable Heatmap and Scrollmap data collection
+});
+```
+
+### Average Fold Line
+
+Scrollmaps include an **Average Fold Line**, which marks the average point on the page where content falls below the fold (below the initially visible portion of the viewport). This value is derived from the `[Auto] Page Leave - Fold Line Percentage` property.
