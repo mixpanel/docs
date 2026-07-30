@@ -1,7 +1,7 @@
 ---
-sidebarTitle: Business Context
-tags: ["business context","mcp","ai","spark","context","mixpanel","llm"]
 title: "Business Context: Help your AI assistant understand your business"
+sidebarTitle: Business Context
+tags: ["business context", "mcp", "ai", "spark", "context", "mixpanel", "llm"]
 ---
 
 Business Context is markdown text that AI assistants read through MCP to ground their answers in your organization's structure and goals. Add context at the organization level (who you are as a company) and at the project level (how a specific project is set up).
@@ -108,3 +108,7 @@ Not yet from the in-product UI. For now, write context manually based on what yo
 #### How do I clear context?
 
 Either delete the text in the Settings editor and save, or ask your AI assistant to call `Update-Business-Context` with an empty string at the level you want to clear.
+
+#### How does Mixpanel Agent decide to use Organization or Project level context?
+
+Mixpanel Agent looks at both. Project context is meant to refine Organization context. If there are contradicting details in Project and Organization context, then Mixpanel Agent will give preference to Project context. If there are complementary details (e.g. Org defines terms, Project adds specifics), then the Agent uses both together. 
