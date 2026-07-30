@@ -1,6 +1,6 @@
 ---
-sidebarTitle: "Session Replay (Swift)"
-title: "Implement Session Replay (iOS)"
+sidebarTitle: Session Replay (Swift)
+title: Implement Session Replay (iOS)
 ---
 
 ## Overview
@@ -8,13 +8,13 @@ title: "Implement Session Replay (iOS)"
 This developer guide will assist you in configuring your Swift app for [Session Replay](/docs/session-replay) using the [Session Replay SDK (Swift)](/docs/tracking-methods/sdks/swift/swift-replay). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
 
 <Note>
-  **iOS 26+ with Xcode 26: SwiftUI Automasking Issue — Fixed in [v1.2.1](https://github.com/mixpanel/mixpanel-ios-session-replay-package/releases/tag/v1.2.1)**
+  **iOS 26\+ with Xcode 26: SwiftUI Automasking Issue — Fixed in [v1.2.1](https://github.com/mixpanel/mixpanel-ios-session-replay-package/releases/tag/v1.2.1)**
 
   The iOS 26 "Liquid Glass" rendering changes that affected automasking in Session Replay for SwiftUI apps have been addressed in v1.2.1. Upgrade to v1.2.1 to get the fix.
 
-  **Who was affected:** SwiftUI apps using automasking for text or images, built with Xcode 26, and running on iOS 26+.
+  **Who was affected:** SwiftUI apps using automasking for text or images, built with Xcode 26, and running on iOS 26\+.
 
-  **If you are on v1.2.0:** Session Replay is disabled by default for apps built with Xcode 26+ running on iOS 26+. Upgrade to v1.2.1 and enable session replay by setting `config.enableSessionReplayOniOS26AndLater = true` during SDK initialization.
+  **If you are on v1.2.0:** Session Replay is disabled by default for apps built with Xcode 26\+ running on iOS 26\+. Upgrade to v1.2.1 and enable session replay by setting `config.enableSessionReplayOniOS26AndLater = true` during SDK initialization.
 
   **If you re-enabled Session Replay on v1.2.0:** Upgrade to v1.2.1 to get the fix.
 
@@ -43,7 +43,7 @@ To capture Session Replays in your app, add the [Session Replay SDK](/docs/track
 
 ### Initialize
 
-You should have the main Mixpanel Swift SDK installed (minimum version `v4.3.1`), if not, please refer to [Prerequisite](/docs/tracking-methods/sdks/swift/swift-replay#prerequisite). 
+You should have the main Mixpanel Swift SDK installed (minimum version `v4.3.1`), if not, please refer to [Prerequisite](/docs/tracking-methods/sdks/swift/swift-replay#prerequisite).
 
 Add the following code to your **SwiftUI** or **UIKit** app.
 
@@ -102,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ## Data Residency
 
 <Info>
-Available in Session Replay SDK version `1.5.1` and later.
+  Available in Session Replay SDK version `1.5.1` and later.
 </Info>
 
 If your Mixpanel project lives in the EU or India data center, or you route all Mixpanel traffic through a self-hosted proxy, set the `serverURL` on `MPSessionReplayConfig`. The SDK exposes a `DataResidency` enum with the managed region URLs so you don't have to hardcode them.
@@ -142,7 +142,7 @@ Learn more about [EU Data Residency](/docs/privacy/eu-residency) and [India Data
 ## Capturing Replays
 
 <Warning>
-	Test in a sandbox project and start with a 100% sampling rate. This allows you to monitor performance, usage, and ensure your privacy rules align with your company policies.
+  Test in a sandbox project and start with a 100% sampling rate. This allows you to monitor performance, usage, and ensure your privacy rules align with your company policies.
 </Warning>
 
 You can capture replay data using a sampling method (recommended), or customize when and where replays are captured manually using methods provided by the Session Replay Swift SDK.
@@ -155,7 +155,7 @@ To enable Session Replay and set your sampling rate, create a `MPSessionReplayCo
 
 To start, we recommend using an 100% sampling rate to ensure replay capture is behaving as expected, then adjust according to your specific analytics needs.
 
-Upon initialization, recording starts automatically if the sampling check passes. 
+Upon initialization, recording starts automatically if the sampling check passes.
 
 **Example Usage**
 
@@ -166,7 +166,7 @@ MPSessionReplayConfig(recordingSessionsPercent: 100.0)
 
 ### Manual Recording
 
-To programatically start and stop replay capture, use the `.startRecording()` and `.stopRecording()` methods. 
+To programatically start and stop replay capture, use the `.startRecording()` and `.stopRecording()` methods.
 
 #### Start Recording Replay Data
 
@@ -174,8 +174,7 @@ Calling `.startRecording()` will force recording to begin regardless of the `rec
 
 Recording automatically stops when the app goes into the background. If `autoStartRecording` is `true` (default) recording automatically re-starts when the app comes back to the foreground.
 
-Calling `.startRecording()` has no effect while recording is already in progress.
-**Example Usage**
+Calling `.startRecording()` has no effect while recording is already in progress. **Example Usage**
 
 ```swift Swift
 // manually force recording to begin for 100% of sessions
@@ -216,9 +215,9 @@ MPSessionReplay.getInstance()?.captureScreenshot(withTouchEvent: touchEvent)
 
 #### Example Use Cases for Manual Capture
 
-| Scenario | Guidance | 
+| Scenario | Guidance |
 | --- | --- |
-| We have a sensitive screen we don't want to capture | When user is about to access the sensitive screen, call `.stopRecording()`. To resume recording once they leave this screen, you can resume recording with `.startRecording()`  | 
+| We have a sensitive screen we don't want to capture | When user is about to access the sensitive screen, call `.stopRecording()`. To resume recording once they leave this screen, you can resume recording with `.startRecording()` |
 | We only want to record certain types of users (e.g. Free plan users only) | Using your application code, determine if current user meets the criteria of users you wish to capture. If they do, then call `.startRecording()` to begin recording |
 | We only want to users utilizing certain features | When user is about to access the feature you wish to capture replays for, call `.startRecording()` to begin recording |
 
@@ -228,18 +227,19 @@ Upon initialization you can provide a `MPSessionReplayConfig` object to customiz
 
 Currently, there are seven config options:
 
-| Option | Description | Default | 
+| Option | Description | Default |
 | --- | --- | --- |
-| `wifiOnly` | When `true`, replay events will only be flushed to the server when the device has a WiFi connection. If there is no wifi, flushes are skipped and the events remain in the in-memory queue until wifi is restored (or until the queue reaches its limit and the oldest events are evicted to make room for newer events). <br/> When `false`, replay events will be flushed with any network connection, including cellular. | `true` |
+| `wifiOnly` | When `true`, replay events will only be flushed to the server when the device has a WiFi connection. If there is no wifi, flushes are skipped and the events remain in the in-memory queue until wifi is restored (or until the queue reaches its limit and the oldest events are evicted to make room for newer events). <br /> When `false`, replay events will be flushed with any network connection, including cellular. | `true` |
 | `autoMaskedViews` | This is a `Set` of enum options for the types of views that should be masked by the SDK automatically. | `[.image, .text, .web, .map]` |
-| `autoStartRecording` | This is a boolean value that determines whether or not recording begins automatically upon initialization and when returning to the foreground. <br/> **Deprecated in v1.3.0:** Use `recordingSessionsPercent` set to `0.0` to disable automatic recording. | `true` |
-| `recordingSessionsPercent` | This is a value between `0.0` and `100.0` (default) that controls the sampling rate for automatically triggered session replays. <br/> At `0.0` no sessions will be recorded. At `100.0` all sessions will be recorded.  | `100.0` |
+| `autoStartRecording` | This is a boolean value that determines whether or not recording begins automatically upon initialization and when returning to the foreground. <br /> **Deprecated in v1.3.0:** Use `recordingSessionsPercent` set to `0.0` to disable automatic recording. | `true` |
+| `recordingSessionsPercent` | This is a value between `0.0` and `100.0` (default) that controls the sampling rate for automatically triggered session replays. <br /> At `0.0` no sessions will be recorded. At `100.0` all sessions will be recorded. | `100.0` |
 | `flushInterval` | Specifies the flush interval (in seconds) at which session replay events are sent to the Mixpanel server. | `10` |
 | `enableLogging` | This is a boolean value that determines whether or not debugging logs are printed to the console. | `false` |
 | `remoteSettingsMode` | Setting for handling remote configuration during SDK initialization. Can be `.disabled`, `.fallback`, `.strict`. | `.disabled` |
-| `enableSessionReplayOniOS26AndLater` | Forces Session Replay to be enabled on iOS 26+, bypassing compatibility checks. Session Replay is disabled by default for apps built with Xcode 26+ running on iOS 26+ due to SwiftUI automasking issues. See the warning callout above for details. | `false` |
+| `enableSessionReplayOniOS26AndLater` | Forces Session Replay to be enabled on iOS 26\+, bypassing compatibility checks. Session Replay is disabled by default for apps built with Xcode 26\+ running on iOS 26\+ due to SwiftUI automasking issues. See the warning callout above for details. | `false` |
 
 **autoMaskedViews Example Usage**
+
 ```swift Swift
 // mask images only
 MPSessionReplayConfig(autoMaskedViews: [.image])
@@ -249,6 +249,7 @@ MPSessionReplayConfig(autoMaskedViews: [])
 ```
 
 Alternatively:
+
 ```swift Swift
 // mask images only
 MPSessionReplay.getInstance()?.autoMaskedViews = [.image]
@@ -258,6 +259,7 @@ MPSessionReplay.getInstance()?.autoMaskedViews = []
 ```
 
 **enableSessionReplayOniOS26AndLater Example Usage**
+
 ```swift Swift
 let config = MPSessionReplayConfig(
     autoMaskedViews: [],  // Disable automasking if using SwiftUI
@@ -327,6 +329,7 @@ Three modes are available:
 Can use this setting to quickly update and adjust configurations to your liking.
 
 List of currently supported remote settings:
+
 - `recordingSessionsPercent`
 
 Settings that are not yet supported, will not appear in the remote configuration. These non-included options will use the value from the SDK initialization config.
@@ -360,7 +363,7 @@ To ensure Server-Side Stitching works, call [`identify()`](/docs/tracking-method
 ## Debugging
 
 <Note>
-`$mp_session_record` is exempt from your plan data allowance.
+  `$mp_session_record` is exempt from your plan data allowance.
 </Note>
 
 To check your implementation, select **Session Replay** from the side navigation in your Mixpanel project to see whether replays are being captured and appearing as expected. When a capture begins, a "Session Recording Checkpoint" event (`$mp_session_record`) also appears in your project; you can use this to verify that Session Replay is implemented correctly.
@@ -372,10 +375,12 @@ If you are using the [recommended sampling method](/docs/tracking-methods/sdks/s
 ### Troubleshooting
 
 If you are still struggling with either of the following common issues:
+
 - Replays are not showing up in my project
 - Replays are not displaying my UI correctly
 
 Please [submit a request to our Support team](https://mixpanel.com/get-support) and include the following information:
+
 - Whether your issue is with iOS, Android, or both
 - Your Session Replay (SR) code snippet
 - Where you initialize the Mobile Session Replay SDK
@@ -455,6 +460,7 @@ bgImage.mpReplaySensitive = false
 By default, Mixpanel retains Session Replays for 30 days from the date the replay is ingested and becomes available for viewing within Mixpanel. Customers on our [Enterprise plan](https://mixpanel.com/pricing/) can customize this retention period between 7 days and 360 days. Once a replay is expired, there is no way to view that replay.
 
 ## Known Product Limitations
+
 - SwiftUI apps have limited support for automatic masking of sensitive views. If your app uses SwiftUI, manually mark sensitive views and test thoroughly to ensure masking is working as expected.
 - At this time, webview masking is all-or-none. Embedded webviews in your mobile app can only be masked entirely or not at all. This may reduce the value of Session Replay for apps with many webviews. Be sure to test thoroughly to confirm your masking configuration meets your privacy requirements.
 
@@ -464,9 +470,9 @@ By default, Mixpanel retains Session Replays for 30 days from the date the repla
 
 #### How does Session Replay work in iOS?
 
-Session Replay observes user interactions within your app, capturing UI hierarchy changes and storing them as images, which are then sent to Mixpanel. Mixpanel reconstructs these images, applying recorded events as an end-user completes them. 
+Session Replay observes user interactions within your app, capturing UI hierarchy changes and storing them as images, which are then sent to Mixpanel. Mixpanel reconstructs these images, applying recorded events as an end-user completes them.
 
-Within Mixpanel's platform, you can view a reconstruction of your end-user's screen as they navigate your app. 
+Within Mixpanel's platform, you can view a reconstruction of your end-user's screen as they navigate your app.
 
 However, Session Replay is not a literal video recording of your end-user's screen; end-user actions are not video-recorded.
 
@@ -484,7 +490,7 @@ When you enable Session Replay, use the above proxy metric to determine a starti
 
 #### How does Session Replay affect my app's performance?
 
-There is no impact on your app's performance when there are no user interactions or nothing changes on the screen. When there are user interactions, we expect negligible impact on CPU usage and memory consumption. There is no impact on disk I/O because Session Replay does not write anything to your disk. 
+There is no impact on your app's performance when there are no user interactions or nothing changes on the screen. When there are user interactions, we expect negligible impact on CPU usage and memory consumption. There is no impact on disk I/O because Session Replay does not write anything to your disk.
 
 In our own testing, the overhead is unnoticeable, however this testing was not exhaustive, and you may discover the recording overhead may negatively impact your mobile application performance depending on your application specifications. If you experience any performance degradations after installing Session Replay, please [reach out to our Support team](https://mixpanel.com/get-support).
 
@@ -509,14 +515,17 @@ Session Replay for mobile does not work in offline mode.
 Yes, Objective-C and Swift are fully interoperable.
 
 #### Does Mobile Session Replay work with my CDP?
+
 Yes — but only if the Mixpanel Session Replay SDK is installed client-side.
 
 Mobile Session Replay is compatible with CDPs like Segment and mParticle, but you must integrate the Mixpanel Session Replay SDK directly in your mobile app. Without it, replays won’t be captured.
 
 Key Considerations:
+
 - If you’re using Segment server-side, session replays will not be recorded, since the SDK isn’t running in the app.
-- For Segment’s client-side Analytics-Swift SDK, you can use Segment’s Plugin Architecture to enrich events with the \$mp_replay_id property, ensuring they’re linked to their replays.
-- The Mixpanel Session Replay SDK is separate from the standard Mixpanel tracking SDK. You do not need the regular SDK, but the Replay SDK must be configured with a distinct_id and project token.
+- For Segment’s client-side Analytics-Swift SDK, you can use Segment’s Plugin Architecture to enrich events with the \$mp\_replay\_id property, ensuring they’re linked to their replays.
+- The Mixpanel Session Replay SDK is separate from the standard Mixpanel tracking SDK. You do not need the regular SDK, but the Replay SDK must be configured with a distinct\_id and project token.
 - Events can be linked to replays either by:
-    - Manually attaching the current replay ID to each event
-    - Using server-side stitching after the fact
+
+  - Manually attaching the current replay ID to each event
+  - Using server-side stitching after the fact

@@ -1,6 +1,6 @@
 ---
-sidebarTitle: "Redshift Spectrum"
-title: "AWS Redshift Spectrum"
+sidebarTitle: Redshift Spectrum
+title: AWS Redshift Spectrum
 ---
 
 <Note>
@@ -12,7 +12,7 @@ Mixpanel's JSON pipelines enable direct export of your Mixpanel data into an S3 
 ## Design
 
 <Frame>
-![image](/images/dad7fe54-caf6-4952-bedc-90da7a4650da.png)
+  ![image](/images/dad7fe54-caf6-4952-bedc-90da7a4650da.png)
 </Frame>
 
 Mixpanel exports data to your S3 bucket and simultaneously updates the necessary schema in the AWS Glue Data Catalog. This allows seamless integration with [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html) for querying your data.
@@ -34,7 +34,7 @@ Mixpanel writes and updates schemas in your Glue instance, ensuring that new dat
 - Name your database and click **Create database**.
 
 <Frame>
-![image](/images/230698403-de71ee8f-03c2-4528-abd7-94be5a5d1e30.png)
+  ![image](/images/230698403-de71ee8f-03c2-4528-abd7-94be5a5d1e30.png)
 </Frame>
 
 ### Step 2: Create Data Modification Policy
@@ -46,6 +46,7 @@ To enable Mixpanel to manage partitions (e.g., `mp_date`) and schemas in Glue, y
 - Go to the **IAM** service on the AWS console.
 - Click **Policies** in the sidebar and then **Create policy**.
 - Under the **JSON** tab, input the following policy to manage tables and partitions:
+
   ```json
   {
     "Version": "2012-10-17",
@@ -205,10 +206,11 @@ Use the steps below, and refer to [IAM in Redshift Serverless](https://docs.aws.
 Create a new Redshift database or utilize an existing one. Here is how to create a new Redshift database:
 
 <Frame>
-![image](/images/48198342-27dc-43b1-bab8-434b31f97e34.png)
+  ![image](/images/48198342-27dc-43b1-bab8-434b31f97e34.png)
 </Frame>
+
 <Frame>
-![image](/images/0867f1d8-3649-4f9e-b0d2-9a3b73cfbe97.png)
+  ![image](/images/0867f1d8-3649-4f9e-b0d2-9a3b73cfbe97.png)
 </Frame>
 
 ### Step 5: Grant Privilege to Database User
@@ -220,6 +222,7 @@ To enable Mixpanel's external schema creation for pipeline operations, grant the
 Follow these steps to grant the `CREATE` privilege:
 
 - Go to the **CloudShell** service on the AWS console and assume the IAM role. Replace `<role-arn>` with the full ARN of the role you created in Step 2.
+
   ```bash
   aws sts assume-role --role-arn <role-arn> --role-session-name MixpanelSession
   ```
@@ -247,14 +250,15 @@ Follow these steps to grant the `CREATE` privilege:
     ]
   }
   ```
-
 - Configure AWS CLI with the temporary credentials.
+
   ```bash
   aws configure set aws_access_key_id "<YOUR_ACCESS_KEY_ID>"
   aws configure set aws_secret_access_key "<YOUR_SECRET_ACCESS_KEY>"
   aws configure set aws_session_token "<YOUR_SESSION_TOKEN>"
   ```
 - Run this command in your terminal, replacing the placeholders with your actual values, and trigger the db user `IAMR:<mixpanel-role-name>` creation in Redshift.
+
   ```bash
   aws redshift-data execute-statement \
   --workgroup-name <your-workgroup-arn> \
@@ -276,8 +280,7 @@ Follow these steps to grant the `CREATE` privilege:
 
 ## Provide Necessary Details for Pipeline Creation
 
-Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline)
-to create data pipeline via UI. It is essential to provide specific details to Mixpanel:
+Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline) to create data pipeline via UI. It is essential to provide specific details to Mixpanel:
 
 **S3**
 

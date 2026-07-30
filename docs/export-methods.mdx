@@ -1,5 +1,5 @@
 ---
-sidebarTitle: "Export Methods"
+sidebarTitle: Export Methods
 title: "Export Methods: Export raw data and reports from Mixpanel"
 ---
 
@@ -58,7 +58,7 @@ By default, only the columns that are shown in the UI will be exported. You can 
 Select the option to include “All event properties” if you are interested in all of the event properties.
 
 <Frame>
-![image](/images/event-csv-export-settings.png)
+  ![image](/images/event-csv-export-settings.png)
 </Frame>
 
 ## Exporting Profiles
@@ -118,14 +118,14 @@ Sample payload:
 }
 ```
 
-By default, all profile properties are returned. Use the output_properties parameter to specify specific profile properties to return.
+By default, all profile properties are returned. Use the output\_properties parameter to specify specific profile properties to return.
 
 Example: `output_properties=["$last_name", "$email", "Total Spent"]`
 
 You may export specific cohorts by using the `filter_by_cohort` parameter. You may find the `cohort_id` in the UI next to your cohort or by using the [cohorts-list API](/reference/cohorts-list).
 
 <Frame>
-![image](/images/cohort-id-viz.png)
+  ![image](/images/cohort-id-viz.png)
 </Frame>
 
 #### Group Profile Export via API
@@ -133,7 +133,7 @@ You may export specific cohorts by using the `filter_by_cohort` parameter. You m
 You can also leverage the [Engage API](/reference/engage-query) to export Group Profiles. To do so, provide  the `data_group_id` parameter in your Engage API request. You can find the `data_group_id` for your group keys in your project settings.
 
 <Frame>
-![image](/images/data_group_id_project_settings.png)
+  ![image](/images/data_group_id_project_settings.png)
 </Frame>
 
 ### CSV User Profile Export
@@ -147,7 +147,7 @@ Only the columns shown in the UI will be exported in the CSV. You may modify the
 To export Group Profiles as a CSV, switch the group key to your group of choice by clicking the “Analyze Uniques by” button in the top left of the UI
 
 <Frame>
-![image](/images/switch_group_key.png)
+  ![image](/images/switch_group_key.png)
 </Frame>
 
 ## Exporting Reports
@@ -157,6 +157,7 @@ To export Group Profiles as a CSV, switch the group key to your group of choice 
 </Note>
 
 ### Downloading Reports via the UI
+
 You can download any reports as a CSV, PNG, or PDF by clicking the "..." button in the top right corner of the report UI, and then selecting "Export".
 
 **Enterprise plan customers:** When you export a CSV from an Insights report in Bar, Stacked Bar, Pie, Table, or Metric view, you can export up to 50,000 rows of data. For all other views and reports, you can export up to 10,000 rows. If a report exceeds these limits, the export returns only the first rows in ascending order, up to the applicable limit.
@@ -165,7 +166,7 @@ You can download any reports as a CSV, PNG, or PDF by clicking the "..." button 
 
 ### Exporting Reports via API
 
-You may use our [Query API](/reference/query-api) to export the formatted results that you see in our web app. Learn more about the [Insights API](/reference/insights-query), [Funnels API](/reference/funnels-query), and [Retention API](/reference/retention-query). 
+You may use our [Query API](/reference/query-api) to export the formatted results that you see in our web app. Learn more about the [Insights API](/reference/insights-query), [Funnels API](/reference/funnels-query), and [Retention API](/reference/retention-query).
 
 The Flows report cannot be exported using API. Please use the export method from the UI outlined above.
 

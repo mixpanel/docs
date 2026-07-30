@@ -1,6 +1,7 @@
 ---
 title: Project Token
 ---
+
 Every Mixpanel project has a unique alphanumerical token for collecting data. A project's token is not a secret value. In front-end implementation, such as our javascript library, this token will be available to anyone visiting your page.
 
 With that in mind, it is important to note that a project's token is not a form of authorization. It is an identification sent along with each piece of data you send to your project.
@@ -10,6 +11,7 @@ With that in mind, it is important to note that a project's token is not a form 
 For [Track Events](/reference/track-event), tokens are provided as values inside of the data sent to Mixpanel. Where this value is stored is dependent on the API endpoint used. Information on the specific location can be found in the Ingestion API's specification.
 
 <CodeGroup>
+
 ```json Event Data
 {
     "event": "Signup",
@@ -29,6 +31,7 @@ For [Track Events](/reference/track-event), tokens are provided as values inside
     }
 }
 ```
+
 </CodeGroup>
 
 If you are are using our SDKs you will notice that that the project token is required when initializing the library. This token will automatically be included in the data sent out from that instance.
@@ -58,6 +61,7 @@ MixpanelAPI mixpanel = MixpanelAPI.getInstance(context, MIXPANEL_TOKEN);
 from mixpanel import Mixpanel
 mp = Mixpanel("projectoken")
 ```
+
 </CodeGroup>
 
 For [Import Events](/reference/import-events), the token is provided in the header as the basic auth username value with an empty password.
