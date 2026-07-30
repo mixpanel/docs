@@ -1,6 +1,6 @@
 ---
-title: "Syncing cohorts to a custom webhook"
-sidebarTitle: "Webhooks"
+title: Syncing cohorts to a custom webhook
+sidebarTitle: Webhooks
 ---
 
 Mixpanel lets you sync cohorts to a custom webhook URL that you provide through the Destinations page. After you establish a sync, Mixpanel sends the full cohort to the URL and then sends incremental updates that include users who enter or exit the cohort since the previous sync.
@@ -53,10 +53,12 @@ Mixpanel will automatically include `email`, `mixpanel_distinct_id`, `first_name
 Our webhook format has the following structure in the body of a `POST` request:
 
 - **action**: The action defines the type of message we are sending. It will be one of:
+
   - `members`: All members of the cohort, sent the first time the cohort is being synced or to refresh the cohort if there are any intermediate errors. When you get this message, replace the users you have in the cohort with the copy provided by us.
   - `add_members`: A diff consisting of users who have entered the cohort since the last sync.
   - `remove_members`: A diff consisting of users who have exited the cohort since the last sync.
 - **parameters**
+
   - **mixpanel\_project\_id**: the ID for the Mixpanel project that produced this cohort.
   - **mixpanel\_cohort\_id**: unique identifier of the cohort.
   - **mixpanel\_cohort\_name**: The cohort name, editable via the Mixpanel UI.
@@ -107,6 +109,7 @@ We expect a JSON response of the following shape.
 - **action**: Must match the action we sent.
 - **status**: Must be either `success` or `failure`.
 - **error**: Only expected on failure.
+
   - **message**: details about the error.
   - **code**: an HTTP status code.
 

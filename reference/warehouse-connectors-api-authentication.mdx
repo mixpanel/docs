@@ -1,9 +1,11 @@
 ---
 title: Authentication
 ---
+
 A [service account](/reference/service-accounts) is necessary to authenticate Warehouse Connectors API requests. Once you have created a service account and obtained your user name and secret, you can make a request to trigger a warehouse import.
 
 <CodeGroup>
+
 ```bash cURL Basic Auth
 curl -X PUT https://mixpanel.com/api/app/projects/<your_project_id>/warehouse-sources/imports/<your_import_id>/manual-sync \
 	--user "<serviceaccount_username>:<serviceaccount_secret>"
@@ -21,4 +23,5 @@ requests.put(
   auth=('<serviceaccount_username>', '<serviceaccount_secret>'),
 )
 ```
+
 </CodeGroup>

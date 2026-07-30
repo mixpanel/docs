@@ -1,6 +1,6 @@
 ---
-sidebarTitle: "Ensure Data Quality"
-title: "Ensuring Data Quality in Mixpanel"
+sidebarTitle: Ensure Data Quality
+title: Ensuring Data Quality in Mixpanel
 ---
 
 Poor data quality leads to misleading insights and wasted effort. The fastest way to prevent this is to treat QA and auditing as a required step in your Mixpanel implementation, not an optional one.
@@ -10,16 +10,17 @@ The steps below are the must-do practices for every team to keep insights accura
 ## Always Use Separate Projects
 
 From day one, set up **two projects** in Mixpanel:
+
 - **Development Project** → used for testing event tracking, identity management, and property values
 - **Production Project** → where only clean, validated data is ingested
 
 This separation ensures:
-1.  Developers can experiment safely without polluting your production dataset
-2.  Data teams have confidence that every event in production has been tested
 
-- ✅ **Do** enforce a rule: *“Nothing hits production until it passes QA.”*
-- ❌ **Do not** shortcut by sending test events to production.  
+1. Developers can experiment safely without polluting your production dataset
+2. Data teams have confidence that every event in production has been tested
 
+- ✅ **Do** enforce a rule: _“Nothing hits production until it passes QA.”_
+- ❌ **Do not** shortcut by sending test events to production.
 
 ## QA Before You Launch
 
@@ -37,9 +38,10 @@ Steps to take:
 1. Trigger events in the development app/site.
 2. Inspect the network calls or SDK logs.
 3. Confirm the following:
-    - Event names match your tracking plan
-    - Properties have expected values
-    - No API errors are returned
+
+   - Event names match your tracking plan
+   - Properties have expected values
+   - No API errors are returned
 
 #### Enable Debug Mode
 
@@ -49,6 +51,7 @@ Developers should [enable debug mode](/docs/tracking-best-practices/debugging#en
 - Mobile: view logs in Xcode (iOS) or Android Studio (Android)
 
 Debug Mode surfaces:
+
 - Client-side errors
 - API ingestion errors
 - Successful ingestion
@@ -63,12 +66,13 @@ Steps to take:
 1. Walk through real flows in your app (sign up, purchase, upgrade, etc.)
 2. Confirm events fire as expected at each step.
 3. Check Mixpanel UI:
-    - [Events](/docs/tracking-best-practices/debugging#debugging-with-events) appear in reports
-    - [User profiles](/docs/tracking-best-practices/debugging#debugging-with-user-profiles) are created or updated correctly
-    - [Identity stitching](/docs/tracking-methods/id-management/identifying-users-simplified) works when a user moves from anonymous to known
+
+   - [Events](/docs/tracking-best-practices/debugging#debugging-with-events) appear in reports
+   - [User profiles](/docs/tracking-best-practices/debugging#debugging-with-user-profiles) are created or updated correctly
+   - [Identity stitching](/docs/tracking-methods/id-management/identifying-users-simplified) works when a user moves from anonymous to known
 
 <Note>
-**Pro tip**: Involve non-developers in your User Flows QA. Product managers and data analysts often catch issues developers miss because they think in terms of *business flows* rather than code.
+  **Pro tip**: Involve non-developers in your User Flows QA. Product managers and data analysts often catch issues developers miss because they think in terms of _business flows_ rather than code.
 </Note>
 
 Learn more about [QA workflows](/docs/tracking-best-practices/debugging).
@@ -91,12 +95,12 @@ Schedule audits quarterly or alongside product releases to check for:
 - [Events report](/docs/tracking-best-practices/debugging#debugging-with-events): to spot-test events in real time
 
 <Note>
-**Pro tip**: Treat auditing like regression testing; it is not about fixing what is broken now, but preventing broken data from piling up unnoticed.
+  **Pro tip**: Treat auditing like regression testing; it is not about fixing what is broken now, but preventing broken data from piling up unnoticed.
 </Note>
 
 ## Key Takeaways
 
-- **Two projects, always**: Development + Production
+- **Two projects, always**: Development \+ Production
 - **QA before production**: Run both code-level and user flow QA
 - **Use Debug Mode**: Catch ingestion issues instantly
 - **Audit often**: Data quality is not set-and-forget

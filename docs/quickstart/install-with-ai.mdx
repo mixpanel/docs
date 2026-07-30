@@ -1,5 +1,5 @@
 ---
-title: "Install with AI"
+title: Install with AI
 ---
 
 The Mixpanel Implementation Skill installs Mixpanel into your project through your AI coding agent. It handles SDK selection, identity management, event tracking, and compliance gates through a guided conversation — with paths ranging from a one-session Quick Start to a full production-ready rollout.
@@ -10,7 +10,8 @@ Before starting, make sure you have:
 
 - A Mixpanel account with Admin or Owner access ([sign up](https://www.mixpanel.com/signup) if you don't have one)
 - An AI coding agent with access to your project files (Claude Code, Cursor, ChatGPT, GitHub Copilot, Windsurf, etc.)
-    - Use the most advanced model your tool offers
+
+  - Use the most advanced model your tool offers
 - A development or staging environment where you can test the changes
 
 ## Step 1: Get Your Mixpanel Project Token
@@ -18,8 +19,7 @@ Before starting, make sure you have:
 1. **Log into your Mixpanel account** at [mixpanel.com/login](https://www.mixpanel.com/login).
 2. **Open project settings** by clicking the gear icon in the bottom left.
 3. **Click "Overview"** in the left sidebar.
-4. **Copy your Project Token** from the Access Keys section. It's a long string of letters and numbers.
-   *Note: You'll need to be an Admin or Owner in your project.*
+4. **Copy your Project Token** from the Access Keys section. It's a long string of letters and numbers. _Note: You'll need to be an Admin or Owner in your project._
 5. **Keep this handy** — you'll give it to your coding agent in the next step.
 
 ## Step 2: Run the Mixpanel Implementation Skill
@@ -29,7 +29,7 @@ The skill runs inside your coding agent. To start it:
 1. **Open your AI coding agent** and make sure it has access to your project files.
 2. **Paste this prompt** into the chat:
 
-```
+```text
 Set up Mixpanel tracking in this project.
 Use the Mixpanel setup skill: https://storage.googleapis.com/cdn-mxpnl-com/libs/mixpanel-skill/skill.md
 ```
@@ -41,7 +41,7 @@ Use the Mixpanel setup skill: https://storage.googleapis.com/cdn-mxpnl-com/libs/
 The skill starts by asking which mode fits your goal:
 
 | Mode | What it covers |
-|------|----------------|
+| --- | --- |
 | **Quick Start** | Get your first two events into Mixpanel in one session — sign-up plus your Value Moment. |
 | **Full Implementation** | Build a complete, production-ready setup: discovery, analytics strategy, data model, tracking plan, identity, and governance. |
 | **Add Tracking** | Extend an existing Mixpanel implementation with new events. |
@@ -132,5 +132,5 @@ The skill works whether or not you know how to code. If you don't have codebase 
 Yes. If you route data through Segment, Rudderstack, or mParticle, the skill skips direct SDK installation and configures Mixpanel through your CDP instead.
 
 <Warning>
-    The skill generates production code. Always review what your AI agent writes before merging or deploying. Human oversight is recommended for every integration.
+  The skill generates production code. Always review what your AI agent writes before merging or deploying. Human oversight is recommended for every integration.
 </Warning>
