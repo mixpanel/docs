@@ -1,5 +1,5 @@
 ---
-title: "OpenFeature Provider (Android)"
+title: OpenFeature Provider (Android)
 ---
 
 ## Overview
@@ -11,7 +11,7 @@ For the native Mixpanel SDK approach, see the [Feature Flags (Android)](/docs/tr
 ## Prerequisites
 
 - Enterprise subscription plan with Feature Flags enabled
-- Android SDK 21+
+- Android SDK 21\+
 - Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Installation
@@ -62,7 +62,7 @@ OpenFeatureAPI.setProviderAndWait(provider)
 ```
 
 <Warning>
-This provider does **not** call `mixpanel.identify()` or `mixpanel.track()`. If you need to update the logged-in user or use [Runtime Events](/docs/featureflags/runtime-events) for targeting, call these methods on the **same `MixpanelAPI` instance** whose `Flags` object was passed to the provider.
+  This provider does **not** call `mixpanel.identify()` or `mixpanel.track()`. If you need to update the logged-in user or use [Runtime Events](/docs/featureflags/runtime-events) for targeting, call these methods on the **same `MixpanelAPI` instance** whose `Flags` object was passed to the provider.
 </Warning>
 
 ```kotlin
@@ -78,7 +78,7 @@ provider.mixpanel?.track("Purchase Completed")
 ### Flag Types and Evaluation Methods
 
 | Mixpanel Flag Type | Variant Values | OpenFeature Method |
-|---|---|---|
+| --- | --- | --- |
 | Feature Gate | `true` / `false` | `getBooleanValue()` |
 | Experiment | boolean, string, number, or JSON object | `getBooleanValue()`, `getStringValue()`, `getIntegerValue()`, `getDoubleValue()`, or `getObjectValue()` |
 | Dynamic Config | JSON object | `getObjectValue()` |
@@ -120,7 +120,7 @@ OpenFeatureAPI.setContext(ImmutableContext(
 ```
 
 <Warning>
-Per-evaluation context (the optional `context` parameter on evaluation methods) is **not supported** by this provider. Context must be set globally via `OpenFeatureAPI.setContext()`, which triggers a re-fetch of flag values from Mixpanel.
+  Per-evaluation context (the optional `context` parameter on evaluation methods) is **not supported** by this provider. Context must be set globally via `OpenFeatureAPI.setContext()`, which triggers a re-fetch of flag values from Mixpanel.
 </Warning>
 
 ### Runtime Properties
@@ -139,7 +139,7 @@ OpenFeatureAPI.setContext(ImmutableContext(
 ```
 
 <Note>
-Unlike some providers, `targetingKey` is not used as a special bucketing key. It is passed as another context property. Mixpanel's server-side configuration determines which properties are used for targeting and bucketing.
+  Unlike some providers, `targetingKey` is not used as a special bucketing key. It is passed as another context property. Mixpanel's server-side configuration determines which properties are used for targeting and bucketing.
 </Note>
 
 ### Full Resolution Details
@@ -164,7 +164,7 @@ provider.mixpanel?.identify("user-123")
 ## Error Handling
 
 | Error Code | When |
-|---|---|
+| --- | --- |
 | `PROVIDER_NOT_READY` | Flags evaluated before the provider has finished initializing |
 | `FLAG_NOT_FOUND` | The requested flag does not exist in Mixpanel |
 | `TYPE_MISMATCH` | The flag value type does not match the requested type |

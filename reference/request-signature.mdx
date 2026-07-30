@@ -1,9 +1,9 @@
 ---
-title: Request Signature [Deprecated]
+title: "Request Signature [Deprecated]"
 ---
 
 <Danger>
-**Deprecation Warning**
+  **Deprecation Warning**
 
   API authentication via request signature is an outdated authentication. The documentation below has been included for your reference. Please migrate existing code to use Service Account authentication.
 </Danger>
@@ -14,10 +14,7 @@ Request signature authentication is the process of creating an encrypted token u
 
 In order to generate a request signature you will need the following information:
 
-**api\_key**: This is the token from the corresponding to the project you wish to consume from.
-**api\_secret**: This is a secret API key corresponding to the project.
-**expire**: UTC time in seconds; used to expire an API request.
-**all other request parameters**: All of the information for the API request being performed
+**api\_key**: This is the token from the corresponding to the project you wish to consume from. **api\_secret**: This is a secret API key corresponding to the project. **expire**: UTC time in seconds; used to expire an API request. **all other request parameters**: All of the information for the API request being performed
 
 Calculating the signature is done in parts:
 

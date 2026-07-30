@@ -1,5 +1,5 @@
 ---
-title: "Changelogs"
+title: Changelogs
 ---
 
 import { SubscribeButtonWithModal } from "/snippets/SubscribeButtonWithModal/SubscribeButtonWithModal.jsx";
@@ -8,6 +8,22 @@ import { VideoButtonWithModal } from "/snippets/VideoButtonWithModal/VideoButton
 Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
+
+<Update label="2026-07-28">
+  ## AI-Powered Data Governance: merge suggestions for duplicate events and properties
+
+  Over time, the same concept often ends up tracked under several names — `Add to Cart`, `add_to_cart`, and `addToCart`, or `from_date` and `from-date`. These duplicates clutter Lexicon, split your data across reports, and make analysis harder. Mixpanel can now automatically discover these potential duplicates for you, so you no longer have to hunt for them by hand.
+
+  With this update, you can:
+
+  - **Automatically discover duplicates:** From **Lexicon → Tidy Up**, Mixpanel surfaces groups of near-duplicate events and event properties in your project — no manual searching required.
+  - **Clean up in bulk:** Every suggested group comes with a canonical name and is selected by default, so you can review the list and merge them all in one submission instead of pair by pair.
+  - **Stay in control:** Merges behave exactly like a manual Lexicon merge — the raw data is unaffected and the action can be undone. Unselected groups are dismissed on submit so they won't be suggested again.
+
+  Merge suggestions cover events and event properties (not user/profile properties) and are available to organizations on an Enterprise plan with AI features enabled.
+
+  [Learn more →](/docs/data-governance/ai-powered-data-governance#merge-suggestions)
+</Update>
 
 <Update label="2026-07-20">
   ## MCP: New Tools added
@@ -111,12 +127,15 @@ Get all the latest updates in your inbox.
   **Three ways to start using it today:**
 
   - **Self-serve answers:** Ask anything about your product and get an answer in seconds. No query builder, no data team required. _Try asking:_
+
     - _"How many users signed up for a trial last month"_
     - _"Summarize the insights from this analysis and give me top 3 takeaways."_
     - _"Build a dashboard for this new feature launch"_
   - **Root cause analysis:** When a metric moves unexpectedly, Mixpanel Agent automatically investigates the likely drivers and helps you get to the bottom of it. 
+
     - _Try asking: "Why did my activation rate drop last week?"_
   - **KPI monitoring:** Set up a monitor for any metric you own and Mixpanel Agent will surface what moved on your schedule, whether that’s daily, weekly, or monthly. 
+
     - _Try it: Open Automations and set up a monitor for a key metric you own today._
 
   [Get started →](https://mixpanel.com/agent) |[Learn more from our docs →](/docs/mixpanel-agent)
@@ -823,6 +842,7 @@ Get all the latest updates in your inbox.
 
   1. In an Insights report, select `All Events` as the primary metric
   2. Break down by the [following properties](/docs/data-structure/property-reference/default-properties), depending on your tracking SDK(s)
+
      - JavaScript (Web): Browser (`$browser`) and Browser Version (`$browser_version`)
      - Mobile: Operating System (`$os`), OS Version (`$os_version`)
 
@@ -878,6 +898,7 @@ Get all the latest updates in your inbox.
   - Connect your Postgres database directly from the Mixpanel UI.
   - Sync tables from Postgres into Mixpanel without intermediate services.
   - Compatible with all Postgres versions and major managed providers including:
+
     - DigitalOcean Managed PostgreSQL
     - Google Cloud SQL
     - Supabase
@@ -2243,6 +2264,7 @@ Get all the latest updates in your inbox.
   ### Merging data from client-side to server-side
 
   - **Scenario**: You want to understand which restaurant category leads to the most confirmed purchases.
+
     - “Order placed” is a client-side event that has a property called restaurant category.
     - “Transaction completed” is the server-side event of interest that you’d like to break down by restaurant category.
   - **Solution**: Borrow the restaurant category property from “Order placed” onto “Transaction completed” and poof! It’s like “Transaction completed” always had the restaurant category property.
@@ -2250,6 +2272,7 @@ Get all the latest updates in your inbox.
   ### Analyzing across two different teams
 
   - **Scenario**: One team created a “Speed Mode” feature that runs the app faster. There’s a “Speed Mode” event with the property Speed Mode Enabled.
+
     - Another team wants to know how Speed Mode impacts how many pages are viewed. But the “Page View” event doesn’t have the Speed Mode Enabled property.
   - **Solution**: Borrow the Speed Mode Enabled property onto “Page View” and teams can instantly understand how page views differed when Speed Mode was turned on.
 
@@ -3125,6 +3148,7 @@ Get all the latest updates in your inbox.
   That’s why we’ve updated our our [Mixpanel Javascript SDK](/docs/tracking-methods/sdks/javascript) to automatically collect:
 
   - UTM Tags (default: on) — automatically adds these parameters to all events:
+
     - utm\_source: track the source where traffic is coming from, including a website or advertiser
     - utm\_medium: track the advertising medium, including email and banner ads
     - utm\_campaign: track the campaign name associated with the traffic
@@ -3132,6 +3156,7 @@ Get all the latest updates in your inbox.
     - utm\_term: track keywords associated with campaigns
     - Initial UTM: tracks the first time a user reaches any of the above parameters Tracking UTM tags help fuel attribution analysis so you can understand which campaigns, ads, or content is contributing the most, or least, to conversion.
   - Page Views (default: off) —  auto-track page views to build metrics like:
+
     1. Total Views: identify top performing pages to learn what content your users like best
     2. Bounce Rate: percentage of visitors who leave your website within 10s of viewing it
     3. Conversion Rate: percentage of visitors who complete a key action after visiting a page. Tracking the performance of your pages is the main way to understand if your website is driving value to your users and business. If you want to get started with web analytics, turning on auto-tracking pages can help you get started.

@@ -1,5 +1,5 @@
 ---
-title: "Raw AWS Pipeline"
+title: Raw AWS Pipeline
 ---
 
 <Note>
@@ -13,13 +13,13 @@ The following document summarizes the steps to edit S3 bucket permissions so tha
 To prepare S3 for the incoming data you must:
 
 1. Create an S3 bucket.
-2. Give Mixpanel the required permissions to write to the bucket. 
+2. Give Mixpanel the required permissions to write to the bucket.
 
 ## S3 Bucket Permissions
 
 Mixpanel supports a wide range of configurations to secure and manage your data on S3. To access resources, the pipeline uses AWS cross-account roles.
 
-This section highlights the permissions you must give Mixpanel depending on the configuration of the target S3 bucket.  
+This section highlights the permissions you must give Mixpanel depending on the configuration of the target S3 bucket.
 
 ## Data Modification Policy
 
@@ -51,7 +51,7 @@ Replacing `<BUCKET_NAME>` and `<SID>` with your bucket name and chosen sid befor
 
 ## Server-Side Encryption
 
-Mixpanel always sends data to your S3 bucket on a TLS encrypted connection. To secure your data at rest on S3, you can enable [Server-Side Encryption (SSE)](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html).  
+Mixpanel always sends data to your S3 bucket on a TLS encrypted connection. To secure your data at rest on S3, you can enable [Server-Side Encryption (SSE)](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html).
 
 There are two options when using SSE: Encryption with Amazon S3-Managed Keys (SSE-S3) and Encryption with AWS KMS-Managed Keys (SSE-KMS)
 
@@ -67,7 +67,7 @@ For S3 buckets, you can pick a default key named `aws/s3`. If you opt to use the
 
 In either case you will need to allow Mixpanel to use the key to encrypt the data properly as it is written to your bucket.
 
-To achieve this, create an IAM policy that gives permission to Mixpanel to use the KMS key. Use the following JSON snippet and replace `<KEY_ARN>` and `<SID>` with your custom key's (or aws managed default CMK's) ARN and chosen sid: 
+To achieve this, create an IAM policy that gives permission to Mixpanel to use the KMS key. Use the following JSON snippet and replace `<KEY_ARN>` and `<SID>` with your custom key's (or aws managed default CMK's) ARN and chosen sid:
 
 ```json JSON Example with Variables
 {
@@ -91,9 +91,7 @@ To achieve this, create an IAM policy that gives permission to Mixpanel to use t
 }
 ```
 
-
-
-You must configure your pipeline by passing `s3_encryption=kms` and `s3_kms_key_id=<KEY_ARN>` when calling the Mixpanel Data Warehouse Export API. 
+You must configure your pipeline by passing `s3_encryption=kms` and `s3_kms_key_id=<KEY_ARN>` when calling the Mixpanel Data Warehouse Export API.
 
 ## S3 Access Role
 
@@ -102,7 +100,7 @@ After creating the policies in the sections above, you must create a cross accou
 - Go to the \_AWS IAM \_service on the console.
 - Click **Roles** in the sidebar.
 - Click **Create Role**.
-- Select **Other AWS Accounts **on the trust policy page and enter "485438090326" for the account ID.
+- Select \*\*Other AWS Accounts \*\*on the trust policy page and enter "485438090326" for the account ID.
 - In the _Permissions_ page, find and select the policies you created above.
 - In the \_Review \_page, enter a name and description for the role and click **Save**.
 
@@ -113,7 +111,7 @@ Next, limit the trust relationship to the Mixpanel export user to ensure only Mi
 - Find and click the role you just created.
 - Navigate to the _Trust Relationships_ tab.
 - Click **Edit trust relationship**.
-- Replace the contents with the following JSON: 
+- Replace the contents with the following JSON:
 
 ```json
 {
@@ -131,11 +129,9 @@ Next, limit the trust relationship to the Mixpanel export user to ensure only Mi
 }
 ```
 
-
-
 ## Using AWS External ID
 
-Amazon introduced the use of external id for cross-account access because of [the confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html). As Mixpanel uses cross account access to export data, you can make use of this feature to make the data transfer more secure. 
+Amazon introduced the use of external id for cross-account access because of [the confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html). As Mixpanel uses cross account access to export data, you can make use of this feature to make the data transfer more secure.
 
 Mixpanel uses your project token as external ID when talking to AWS. In order to enable this, you simply need to edit the trust relationship you created as part of the previous step and add a condition to check the passed external id is in fact your Mixpanel project token. So, the final JSON for your trust relationship would be:
 

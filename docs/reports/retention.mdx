@@ -1,6 +1,6 @@
 ---
 title: "Retention: Measure engagement over time"
-sidebarTitle: "Retention"
+sidebarTitle: Retention
 ---
 
 ## Overview
@@ -172,12 +172,15 @@ These use-cases use a combination of different retention criteria & measurement 
 </Frame>
 
 - What is the total revenue (or LTV) for new users in the first 7 days? How has this changed over time
+
   - Retention Criteria: On or Before
   - Measurement: Property Sum; 7 Days
 - What is the average video watch-time for a new subscriber in their first 30 days since subscription? How has this changed over time?
+
   - Retention Criteria: On or Before
   - Measurement: Property Average; 30 Days
 - How many new users have a Wordle streak for 5 days or 10 days?
+
   - Retention Criteria: Streak Mode
   - Measurement: Unique Users; 5 days
 
@@ -278,8 +281,7 @@ Above said, the general expectation is that product use-cases which focus on use
 
 You can save the Funnel Behavior you built and reuse it in other reports. This can be helpful when there is a sequence of events that you frequently analyze (such as sign-up flow), or if you want to analyze your Funnels Behavior alongside other metrics in an Insights report.
 
-Select the "..." button in the top right corner of the metric, then click "Save Behavior".\
-Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
+Select the "..." button in the top right corner of the metric, then click "Save Behavior".<br />Learn more about [Saved Metrics and Behaviors](/docs/features/saved-metrics-and-behaviors).
 
 ### Frequency View
 
@@ -334,6 +336,7 @@ Segmented queries are now calculated with that same intervalized average method,
 </Frame>
 
 Intervalized averages to segmented retention queries have two key advantages:
+
 - **Not including users in incomplete periods:** The non-intervalized method did not give all users an equal chance to qualify for the later retention buckets. Newer, more recent users to come into the query towards the end of your date range would not have enough time to pass to have the opportunity to be retained in the later date buckets. This would sandbag the last retention buckets in your query. With intervalized retention, Mixpanel only counts the completed time periods into the Average Retention calculation so that all users have the same opportunity to be retained.
 - **More granular analysis:** Users are now able to see how the individual birth interval cohorts are performing within a particular segment. This unlocks the ability to get more answers and dive deeper into particular cohorts of interest.
 
@@ -395,4 +398,4 @@ In our sample data, this computes to:(500 \* (1000 / 1500)) \+ (400 \* (500 / 15
 
 **4. What does the Metric view in the Retention Trends report show?**
 
-The Metric view in the Retention Trends Report shows the **_overall value_** for the retention trend for that time period.  There is a `Cohortize` option under the `Advanced` menu that, when enabled, will show the **_weighted average bucket_** for that retention trend. 
+The Metric view in the Retention Trends Report shows the **_overall value_** for the retention trend for that time period.  There is a `Cohortize` option under the `Advanced` menu that, when enabled, will show the **_weighted average bucket_** for that retention trend.

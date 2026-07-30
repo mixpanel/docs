@@ -1,10 +1,10 @@
 ---
-sidebarTitle: "Runtime Events"
+sidebarTitle: Runtime Events
 title: "Runtime Events: Target Users Based on Behavior"
 ---
 
 <Note>
-    Runtime Events is part of Feature Flags, a separately priced product add-on available to organizations on the Enterprise Plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+  Runtime Events is part of Feature Flags, a separately priced product add-on available to organizations on the Enterprise Plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Note>
 
 ## Overview
@@ -32,12 +32,12 @@ Think of Runtime Events as a "tripwire" that activates once. Here's the flow:
 
 1. User requests flag evaluation from your app
 2. The flag service recognizes the user hasn't triggered the event yet
-4. The SDK watches for the specified event
+3. The SDK watches for the specified event
 
 ### When the Event Occurs
 
 1. User performs the tracked event (e.g., "Purchase Complete")
-3. The SDK reports the event to Mixpanel
+2. The SDK reports the event to Mixpanel
 
 ### After the Event
 
@@ -50,68 +50,54 @@ Think of Runtime Events as a "tripwire" that activates once. Here's the flow:
 To add a Runtime Event targeting rule to your feature flag:
 
 <Steps>
+  <Step title="Navigate to Rollout Groups">
+    Open your feature flag and scroll to the **Rollout Groups** section. Click on a rollout group card or create a new one.
+  </Step>
+  <Step title="Add a Runtime Event Filter">
+    In the Rollout Group editor, click **"\+ Add"**, then select **"Runtime Event"**. A new filter box for configuring runtime events will appear.
+  </Step>
+  <Step title="Select the Event">
+    Click on the event dropdown (shows "Select Event" initially) and choose the Mixpanel event you want to trigger on. This can be any event tracked via `mixpanel.track()`.
 
+    For example: `Purchase`, `Sign Up Complete`, `Dashboard Viewed`
+  </Step>
+  <Step title="Configure Time Window">
+    The **"While Flag Enabled"** dropdown controls when events count toward activation. Currently, only events that occur while the flag is enabled will activate the variant.
 
-<Step title="Navigate to Rollout Groups">
+    <Note>
+      Only events that occur **after** the flag is enabled count toward activation. Historical events from before the flag was created or enabled are not counted.
+    </Note>
+  </Step>
+  <Step title="(Optional) Add First Time Filter">
+    Click the overflow menu (**...**) and select **"First Time"** to make this a first-time event trigger.
 
-Open your feature flag and scroll to the **Rollout Groups** section. Click on a rollout group card or create a new one.
-</Step>
+    When enabled, a second row appears showing:
 
-<Step title="Add a Runtime Event Filter">
+    - **"for the"** `First Time` **"until"** `[Duration]`
 
-In the Rollout Group editor, click **"+ Add"**, then select **"Runtime Event"**. A new filter box for configuring runtime events will appear.
-</Step>
+    The **Duration** dropdown offers:
 
-<Step title="Select the Event">
+    - **End of Session**: Variant expires when the user's session ends
+    - **Indefinitely**: Variant persists in subsequent sessions
+  </Step>
+  <Step title="(Optional) Add Property Filters">
+    Click **"\+ Filter"** to add conditions on event properties. This lets you target more specific behaviors.
 
-Click on the event dropdown (shows "Select Event" initially) and choose the Mixpanel event you want to trigger on. This can be any event tracked via `mixpanel.track()`.
+    For example:
 
-For example: `Purchase`, `Sign Up Complete`, `Dashboard Viewed`
-</Step>
+    - Event: `Purchase` where `amount > 100` (only high-value purchases)
+    - Event: `Page View` where `page_path contains '/checkout'` (only checkout views)
 
-<Step title="Configure Time Window">
-
-The **"While Flag Enabled"** dropdown controls when events count toward activation. Currently, only events that occur while the flag is enabled will activate the variant.
-
-<Note>
-    Only events that occur **after** the flag is enabled count toward activation. Historical events from before the flag was created or enabled are not counted.
-</Note>
-</Step>
-
-<Step title="(Optional) Add First Time Filter">
-
-Click the overflow menu (**...**) and select **"First Time"** to make this a first-time event trigger.
-
-When enabled, a second row appears showing:
-- **"for the"** `First Time` **"until"** `[Duration]`
-
-The **Duration** dropdown offers:
-- **End of Session**: Variant expires when the user's session ends
-- **Indefinitely**: Variant persists in subsequent sessions
-</Step>
-
-<Step title="(Optional) Add Property Filters">
-
-Click **"+ Filter"** to add conditions on event properties. This lets you target more specific behaviors.
-
-For example:
-- Event: `Purchase` where `amount > 100` (only high-value purchases)
-- Event: `Page View` where `page_path contains '/checkout'` (only checkout views)
-
-<Note>
-  These property filters apply to properties of the selected runtime **event** — they narrow which occurrences of the tracked event count toward activation. If you want to target based on a value your application sends at request time (for example, an `organization_id`), use a [Runtime Property](/docs/featureflags#runtime-targeting) filter instead.
-</Note>
-</Step>
-
-<Step title="Assign Variants">
-
-On the right side of the rollout card, configure which variant users receive when they trigger the event. You can set variant splits (e.g., 50% variant A, 50% variant B) just like standard targeting.
-</Step>
-
-<Step title="Save the Flag">
-
-Click **Save** to activate your configuration. The SDK will begin watching for the specified event.
-</Step>
+    <Note>
+      These property filters apply to properties of the selected runtime **event** — they narrow which occurrences of the tracked event count toward activation. If you want to target based on a value your application sends at request time (for example, an `organization_id`), use a [Runtime Property](/docs/featureflags#runtime-targeting) filter instead.
+    </Note>
+  </Step>
+  <Step title="Assign Variants">
+    On the right side of the rollout card, configure which variant users receive when they trigger the event. You can set variant splits (e.g., 50% variant A, 50% variant B) just like standard targeting.
+  </Step>
+  <Step title="Save the Flag">
+    Click **Save** to activate your configuration. The SDK will begin watching for the specified event.
+  </Step>
 </Steps>
 
 ## Frequently Asked Questions

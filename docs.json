@@ -408,7 +408,8 @@
                   "docs/data-governance/event-approval",
                   "docs/data-governance/data-volume-monitoring",
                   "docs/data-governance/warehouse-sync-monitoring",
-                  "docs/data-governance/data-clean-up"
+                  "docs/data-governance/data-clean-up",
+        "docs/data-governance/ai-powered-data-governance"
                 ]
               },
               {

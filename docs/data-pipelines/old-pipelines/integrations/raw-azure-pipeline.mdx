@@ -1,5 +1,5 @@
 ---
-title: "Raw Azure Pipeline"
+title: Raw Azure Pipeline
 ---
 
 <Note>
@@ -12,7 +12,7 @@ The following document summarizes the steps to configure Azure permissions so th
 
 ## Edit Mixpanel Permission
 
-Since the Azure authentication mechanisms do not allow for cross-account access, you must provide  Azure credentials to use with their Blob storage container. 
+Since the Azure authentication mechanisms do not allow for cross-account access, you must provide  Azure credentials to use with their Blob storage container.
 
 To achieve this, Mixpanel uses Service Principals created in your Azure Active Directory deployment. To create a Service Principal,  use the Azure command line tool and run the following command (with redacted output):
 
@@ -31,8 +31,6 @@ $ az ad sp create-for-rbac --sdk-auth
   "managementEndpointUrl": "https://management.core.windows.net/"
 }
 ```
-
-
 
 If the above step is successful, go to the Azure. Navigate to a blob storage container of your choice and assign the “Storage Blob Data Contributor” to the Service Principal from above.
 

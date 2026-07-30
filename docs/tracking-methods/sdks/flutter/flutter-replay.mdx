@@ -1,6 +1,6 @@
 ---
 title: Implement Session Replay (Flutter)
-sidebarTitle: "Session Replay (Flutter)"
+sidebarTitle: Session Replay (Flutter)
 ---
 
 ## Overview
@@ -13,16 +13,16 @@ Session Replay provides powerful insights into user behavior, but it also introd
 
 ## Prerequisites
 
-* You are already a Mixpanel customer.
-* [Optional] We recommend having the latest [Mixpanel Flutter SDK](/docs/tracking-methods/sdks/flutter) installed. The Mixpanel Flutter SDK provides a `distinctId` (via `mixpanel.distinctId`) that you can pass to Session Replay during initialization to associate replays with your Mixpanel analytics identity.
+- You are already a Mixpanel customer.
+- \[Optional\] We recommend having the latest [Mixpanel Flutter SDK](/docs/tracking-methods/sdks/flutter) installed. The Mixpanel Flutter SDK provides a `distinctId` (via `mixpanel.distinctId`) that you can pass to Session Replay during initialization to associate replays with your Mixpanel analytics identity.
 
 | Platform | Minimum Version |
 | --- | --- |
-| Flutter | 3.38+ |
-| Dart | 3.8+ |
-| iOS | 13.0+ |
-| Android | API 24 (7.0+) |
-| macOS | 10.15+ |
+| Flutter | 3.38\+ |
+| Dart | 3.8\+ |
+| iOS | 13.0\+ |
+| Android | API 24 (7.0\+) |
+| macOS | 10.15\+ |
 
 ## Installation
 
@@ -144,7 +144,7 @@ See [Masking Behavior](/docs/tracking-methods/sdks/flutter/flutter-replay#maskin
 ## Capturing Replays
 
 <Warning>
-	Test in a sandbox project and start with a 100% sample rate. This allows you to monitor performance, usage, and ensure your privacy rules align with your company policies.
+  Test in a sandbox project and start with a 100% sample rate. This allows you to monitor performance, usage, and ensure your privacy rules align with your company policies.
 </Warning>
 
 By default, recording begins automatically upon initialization, configurable via the `autoRecordSessionsPercent` option.
@@ -244,7 +244,7 @@ final result = await MixpanelSessionReplay.initialize(
 When non-null, enables debug features such as colored overlays showing masked, auto-masked, and unmasked regions.
 
 <Frame>
-<img src="/images/Tracking/flutter-session-replay/flutter_debug_overlay.png" alt="Debug overlay demo showing orange auto-mask, red MixpanelMask, and green MixpanelUnmask regions" />
+  ![Debug overlay demo showing orange auto-mask, red MixpanelMask, and green MixpanelUnmask regions](/images/Tracking/flutter-session-replay/flutter_debug_overlay.png)
 </Frame>
 
 The overlay is a development tool only and is not visible in the captured replay. A few specifics worth knowing:
@@ -337,6 +337,7 @@ final result = await MixpanelSessionReplay.initialize(
 ```
 
 List of currently supported remote settings:
+
 - `autoRecordSessionsPercent`
 
 Settings that are not yet supported will not appear in the remote configuration. These non-included options will use the value from the SDK initialization config.
@@ -380,7 +381,7 @@ final result = await MixpanelSessionReplay.initialize(
 ## Debugging
 
 <Note>
-`$mp_session_record` is exempt from your plan data allowance.
+  `$mp_session_record` is exempt from your plan data allowance.
 </Note>
 
 To check your implementation, select **Session Replay** from the side navigation in your Mixpanel project to see whether replays are being captured and appearing as expected. When a capture begins, a "Session Recording Checkpoint" event (`$mp_session_record`) also appears in your project; you can use this to verify that Session Replay is implemented correctly.
@@ -458,7 +459,7 @@ This section documents how `MixpanelMask`, `MixpanelUnmask`, auto-masking, and s
 
 ### Sensitive Container
 
-```
+```text
 MixpanelMask                  ← container rect + context=mask
   └─ Column
     ├─ Text("Name")            ← MASKED (context=mask)
@@ -467,14 +468,14 @@ MixpanelMask                  ← container rect + context=mask
 ```
 
 <Frame>
-<img src="/images/Tracking/flutter-session-replay/proposal_mask_container.png" alt="Sensitive container" />
+  ![Sensitive container](/images/Tracking/flutter-session-replay/proposal_mask_container.png)
 </Frame>
 
 `MixpanelMask` masks all descendants — auto-masking config is irrelevant.
 
 ### Insensitive Container
 
-```
+```text
 MixpanelUnmask                 context=unmask
   └─ Column
     └─ Container
@@ -486,14 +487,14 @@ MixpanelUnmask                 context=unmask
 ```
 
 <Frame>
-<img src="/images/Tracking/flutter-session-replay/proposal_unmask_container.png" alt="Insensitive container" />
+  ![Insensitive container](/images/Tracking/flutter-session-replay/proposal_unmask_container.png)
 </Frame>
 
 `MixpanelUnmask` overrides auto-masking. Text entry is always masked regardless.
 
 ### Sensitive Container with Overflow
 
-```
+```text
 MixpanelMask (150x80)          ← container rect + context=mask
   └─ Column
     └─ Stack(clip: none)
@@ -503,14 +504,14 @@ MixpanelMask (150x80)          ← container rect + context=mask
 ```
 
 <Frame>
-<img src="/images/Tracking/flutter-session-replay/proposal_overflow_masked.png" alt="Overflow masked" />
+  ![Overflow masked](/images/Tracking/flutter-session-replay/proposal_overflow_masked.png)
 </Frame>
 
 Leaf rects ensure overflow children are masked even outside container bounds.
 
-### MixpanelMask > MixpanelUnmask
+### MixpanelMask \> MixpanelUnmask
 
-```
+```text
 MixpanelMask                   ← container rect + context=mask
   └─ Column
     ├─ Text("Header")          ← MASKED (context=mask)
@@ -521,14 +522,14 @@ MixpanelMask                   ← container rect + context=mask
 ```
 
 <Frame>
-<img src="/images/Tracking/flutter-session-replay/proposal_mask_then_unmask.png" alt="MixpanelMask then MixpanelUnmask" />
+  ![MixpanelMask then MixpanelUnmask](/images/Tracking/flutter-session-replay/proposal_mask_then_unmask.png)
 </Frame>
 
 The inner unmask is tracked but visually covered by the outer container rect unless the child overflows.
 
-### MixpanelMask > MixpanelUnmask with Overflow
+### MixpanelMask \> MixpanelUnmask with Overflow
 
-```
+```text
 MixpanelMask (150x80)            ← container rect + context=mask
   └─ Column
     └─ Stack(clip: none)
@@ -539,14 +540,14 @@ MixpanelMask (150x80)            ← container rect + context=mask
 ```
 
 <Frame>
-<img src="/images/Tracking/flutter-session-replay/proposal_mask_unmask_overflow.png" alt="MixpanelMask with MixpanelUnmask overflow" />
+  ![MixpanelMask with MixpanelUnmask overflow](/images/Tracking/flutter-session-replay/proposal_mask_unmask_overflow.png)
 </Frame>
 
 Unmasked children that overflow the container rect bounds are visible.
 
-### MixpanelUnmask > MixpanelMask
+### MixpanelUnmask \> MixpanelMask
 
-```
+```text
 MixpanelUnmask                 context=unmask
   └─ Column
     ├─ Text("Public")          ← visible (unmask context)
@@ -556,14 +557,14 @@ MixpanelUnmask                 context=unmask
 ```
 
 <Frame>
-<img src="/images/Tracking/flutter-session-replay/proposal_unmask_then_mask.png" alt="MixpanelUnmask then MixpanelMask" />
+  ![MixpanelUnmask then MixpanelMask](/images/Tracking/flutter-session-replay/proposal_unmask_then_mask.png)
 </Frame>
 
 Innermost directive wins — the inner `MixpanelMask` overrides the outer unmask for its subtree.
 
 ### Text Entry Security
 
-```
+```text
 MixpanelUnmask                        context=unmask
   └─ Column
     ├─ Text("Username")               ← visible (unmask context)
@@ -573,14 +574,14 @@ MixpanelUnmask                        context=unmask
 ```
 
 <Frame>
-<img src="/images/Tracking/flutter-session-replay/proposal_text_entry_security.png" alt="Text entry security" />
+  ![Text entry security](/images/Tracking/flutter-session-replay/proposal_text_entry_security.png)
 </Frame>
 
 Text entry fields (`TextField`, `CupertinoTextField`, `EditableText`) are **always** masked regardless of directives or auto-masking config.
 
 ### Auto-masking (no explicit directive)
 
-```
+```text
 Column                    context=none (default)
   ├─ Text("Hello World")  ← visible (text not in autoMaskedViews)
   ├─ Image(photo.jpg)     ← MASKED (image in autoMaskedViews)
@@ -588,7 +589,7 @@ Column                    context=none (default)
 ```
 
 <Frame>
-<img src="/images/Tracking/flutter-session-replay/proposal_auto_masking.png" alt="Auto-masking" />
+  ![Auto-masking](/images/Tracking/flutter-session-replay/proposal_auto_masking.png)
 </Frame>
 
 Without any masking directive, auto-masking applies based on `autoMaskedViews` config. Text entry is always masked regardless.
@@ -638,8 +639,10 @@ Yes — but only if the Mixpanel Session Replay SDK is installed client-side.
 Mobile Session Replay is compatible with CDPs like Segment and mParticle, but you must integrate the Mixpanel Flutter Session Replay SDK directly in your app. Without it, replays won't be captured.
 
 Key Considerations:
+
 - If you're using Segment server-side, session replays will not be recorded, since the SDK isn't running in the app.
 - The Mixpanel Session Replay SDK is separate from the standard Mixpanel tracking SDK. You do not need the regular SDK, but the Replay SDK must be configured with a `distinctId` and project token.
 - Events can be linked to replays either by:
-    - Manually attaching the current replay ID (`$mp_replay_id`) to each event
-    - Using server-side stitching after the fact
+
+  - Manually attaching the current replay ID (`$mp_replay_id`) to each event
+  - Using server-side stitching after the fact
