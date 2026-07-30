@@ -330,6 +330,20 @@ Comparisons are supported across all insights chart types. Depending on the exac
 | Retention Curve | No | Yes | No |
 | Retention Trends | Yes | Yes | No |
 
+## Excluding Incomplete Periods
+
+Mixpanel can exclude incomplete or partial time-period data from a report, so trends and aggregates only reflect fully completed periods. This avoids misleading dips or spikes caused by data from a period that's still in progress, such as "today" or the current week or month.
+
+Use the **Exclude** dropdown in the report toolbar to choose what to leave out:
+
+- **Today** — excludes the current, in-progress day.
+- **Current week** — excludes the in-progress week.
+- **Current month** — excludes the in-progress month.
+- **Current quarter** — excludes the in-progress quarter.
+- **Incomplete periods** — excludes any partial period based on the chart's selected time unit. For example, an hour-based chart excludes the current hour because it's still incomplete.
+
+The Exclude feature is available in all core reports.
+
 ## Saving to a board
 
 <Note>
