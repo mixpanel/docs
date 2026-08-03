@@ -1,13 +1,10 @@
 ---
-title: "Databricks"
+title: Databricks
 ---
 
 <Note>
-  Customers on an Enterprise or Growth plan can access Data Pipeline as an
-  add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more
-  details.
+  Customers on an Enterprise or Growth plan can access Data Pipeline as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Note>
-
 
 Export your Mixpanel data to Databricks using Unity Catalog Managed Volumes. This integration supports all Databricks clouds (AWS, GCP, and Azure).
 
@@ -81,8 +78,10 @@ A Service Principal is a Databricks identity that Mixpanel will use to access yo
 <Note>
   Creating a new catalog requires the `CREATE CATALOG` privilege, which is a metastore-level permission. Contact your **metastore admin** or **account admin** to grant this privilege.
 </Note>
+
 <Note>
   If you are using an existing shared catalog, contact the **catalog owner** or a **metastore admin** to grant the following privileges:
+
   ```sql
   GRANT USE CATALOG ON CATALOG <catalog> TO `<user>`;
   GRANT CREATE SCHEMA ON CATALOG <catalog> TO `<user>`;
@@ -118,10 +117,10 @@ GRANT CREATE VOLUME ON SCHEMA mixpanel_export.json_pipelines
   TO `<service-principal-application-id>`;
 ```
 
-**For Metastore Privilege Version 1.1+**, additionally grant "CREATE VIEW" on schema:
+**For Metastore Privilege Version 1.1\+**, additionally grant "CREATE VIEW" on schema:
 
 - **Version 1.0**: privilege `CREATE TABLE` covers both tables and views
-- **Version 1.1+**: Separate `CREATE VIEW` privilege required
+- **Version 1.1\+**: Separate `CREATE VIEW` privilege required
 
 ```sql
 -- Check your metastore privilege version by PrivilegeModelVersion
@@ -137,7 +136,7 @@ GRANT CREATE VIEW ON SCHEMA mixpanel_export.json_pipelines
 - `USE SCHEMA`: Required to access objects in the schema
 - `CREATE TABLE`: Create raw tables to store event data
 - `CREATE VOLUME`: Create temporary volumes for uploading files
-- `CREATE VIEW`: Create views with typed columns (metastore v1.1+ only)
+- `CREATE VIEW`: Create views with typed columns (metastore v1.1\+ only)
 
 **Note**: The Service Principal automatically becomes the **owner** of all objects it creates (tables, views, volumes), which grants it full permissions (SELECT, MODIFY, READ FILES, WRITE FILES, etc.) on those objects. No additional grants needed.
 
@@ -159,6 +158,7 @@ The Service Principal needs permission to use the SQL Warehouse to execute queri
 
 1. In the same SQL Warehouse, go to the **Connection details** tab
 2. Note the following values:
+
    - **Server hostname**: e.g., `abc123.cloud.databricks.com`
    - **HTTP Path**: e.g., `/sql/1.0/warehouses/xyz789`
 
@@ -208,6 +208,7 @@ Mixpanel creates a raw table and a view with typed columns:
 
 <Note>
   Remember to grant necessary permissions to any user who wants to query the table
+
   ```sql
   GRANT USE CATALOG ON CATALOG mixpanel_export TO `<user>`;
   GRANT USE SCHEMA ON SCHEMA mixpanel_export.json_pipelines TO `<user>`;

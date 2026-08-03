@@ -1,5 +1,5 @@
 ---
-title: "Segment"
+title: Segment
 ---
 
 ## Overview
@@ -7,9 +7,10 @@ title: "Segment"
 Segment, a Customer Data Platform (CDP), enables you to track event data and route it to various downstream destinations. As a native partner, Mixpanel seamlessly integrates with Segment. If you use Segment for tracking, you can send your data to Mixpanel with just a few clicks.
 
 ## How the Integration Works
+
 In the simplest form, the Segment libraries (“Sources”) generate messages about what is happening in your site or app, and send them to the Segment servers. Segment then translates the content of those messages into different formats for use by other tools (which we call ‘Destinations’), and sends the translated messages to those tools. The Segment servers also archive a copy of the data, and can send data to your storage systems (such as databases, warehouses, or bulk-storage buckets).
 
-Mixpanel is one of the supported Segment destinations. With this integration, you can easily send your data collected from your Segment source into your Mixpanel project as a downstream destination. 
+Mixpanel is one of the supported Segment destinations. With this integration, you can easily send your data collected from your Segment source into your Mixpanel project as a downstream destination.
 
 For detailed instructions on how to install the Segment tracking library, please refer to the [Segment Getting Started Guide](https://segment.com/docs/getting-started/02-simple-install/).
 
@@ -36,7 +37,7 @@ Lastly, track your users' actions using [Segment's track API call](https://segme
 ## Configure the Destination
 
 <Note>
-    We recommend using the [Mixpanel Actions destination](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/).
+  We recommend using the [Mixpanel Actions destination](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/).
 </Note>
 
 Once you have installed the Segment library and see tracked data in your Segment instance, get your data into your Mixpanel project by setting up a destination [following the Segment documentation here](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/).
@@ -46,59 +47,60 @@ Below is a high-level summary of the steps to setup the Mixpanel destination:
 1. In Segment, click the **Catalog** tab, filter for **Destinations**, and select Mixpanel to add the destination.
 
 <Frame>
-![segment_catalog](/images/segment_catalog_destination.png)
+  ![segment\_catalog](/images/segment_catalog_destination.png)
 </Frame>
 
 2. Select a Segment source to stream to the destination.
 
 <Frame>
-![segment_source](/images/segment_source.png)
+  ![segment\_source](/images/segment_source.png)
 </Frame>
 
 3. Set a name for the destination then choose a framework. We recommend **Actions** destination. ([Learn more about the framework options](https://segment.com/blog/mixpanel-actions-vs-classic-destinations-in-segment/))
 
 <Frame>
-![segment_action_select](/images/segment_action_select.png)
+  ![segment\_action\_select](/images/segment_action_select.png)
 </Frame>
 
 4. Provide your Mixpanel project credentials in the Basic Settings, then click the toggle at the bottom to enable the destination. The project credentials are found in [your project settings](https://mixpanel.com/settings/project/).
 
 <Frame>
-![segment_enable_setting](/images/segment_enable_setting.png)
+  ![segment\_enable\_setting](/images/segment_enable_setting.png)
 </Frame>
 
 ## Data Mapping
 
-Segment's Actions framework allows you to configure how Segment sends the data it receives from your source to Mixpanel. 
+Segment's Actions framework allows you to configure how Segment sends the data it receives from your source to Mixpanel.
 
 ### Preset Actions
+
 The Mixpanel Actions destination comes with a preset of default mappings that you can use out the box. You can find them in the "Mappings" tab of the destination settings.
 
-| Preset Name           | Segment Trigger                                     | Mixpanel Action |
-|-----------------------|-----------------------------------------------------|-----------------|
-| Order Completed Calls | [Event type = "track"](https://segment.com/docs/connections/spec/track/) and event = "Order Completed"  | [Import Event](/reference/import-events) "Order Completed"  |
-| Track Calls           | [Event type = "track"](https://segment.com/docs/connections/spec/track/) and event != "Order Completed" | [Import Event](/reference/import-events)     |
-| Screen Calls          | [Event type = "screen"](https://segment.com/docs/connections/spec/screen/)                               | [Import Event](/reference/import-events) "Viewed \{name\}"     |
-| Identify Calls        | [Event type = "identify"](https://segment.com/docs/connections/spec/identify/)                             | Identify User ([Simplified API](/docs/tracking-methods/id-management/identifying-users-simplified#user_id) /[Original API](/reference/create-identity)) and [Set Profile Properties](/reference/profile-set)   |
-| Page Calls            | [Event type = "page"](https://segment.com/docs/connections/spec/page/)                                 | [Import Event](/reference/import-events) "Viewed \{name\}"    |
-| Group Calls           | [Event type = "group"](https://segment.com/docs/connections/spec/group/)                                | [Identify Group](/reference/group-set-property)  |
+| Preset Name | Segment Trigger | Mixpanel Action |
+| --- | --- | --- |
+| Order Completed Calls | [Event type = "track"](https://segment.com/docs/connections/spec/track/) and event = "Order Completed" | [Import Event](/reference/import-events) "Order Completed" |
+| Track Calls | [Event type = "track"](https://segment.com/docs/connections/spec/track/) and event != "Order Completed" | [Import Event](/reference/import-events) |
+| Screen Calls | [Event type = "screen"](https://segment.com/docs/connections/spec/screen/) | [Import Event](/reference/import-events) "Viewed \{name\}" |
+| Identify Calls | [Event type = "identify"](https://segment.com/docs/connections/spec/identify/) | Identify User ([Simplified API](/docs/tracking-methods/id-management/identifying-users-simplified#user_id) /[Original API](/reference/create-identity)) and [Set Profile Properties](/reference/profile-set) |
+| Page Calls | [Event type = "page"](https://segment.com/docs/connections/spec/page/) | [Import Event](/reference/import-events) "Viewed \{name\}" |
+| Group Calls | [Event type = "group"](https://segment.com/docs/connections/spec/group/) | [Identify Group](/reference/group-set-property) |
 
 <Note>
-    Note that the `id` Segment event property is a reserved property that is mapped to `distinct_id` in Mixpanel. Avoid sending events with an `id` event property from Segment.
+  Note that the `id` Segment event property is a reserved property that is mapped to `distinct_id` in Mixpanel. Avoid sending events with an `id` event property from Segment.
 </Note>
 
 ### Customize Mappings
 
 <Warning>
-    Note that `context` ([learn more here](https://segment.com/docs/connections/spec/common/#context)) is a Segment concept which does not have an equivalent in Mixpanel's data model. If there are keys inside of the `context` dictionary that you need to add to your event and it is not a default property that is already in the mapping, you will need to edit the `properties` object to manually include it.
+  Note that `context` ([learn more here](https://segment.com/docs/connections/spec/common/#context)) is a Segment concept which does not have an equivalent in Mixpanel's data model. If there are keys inside of the `context` dictionary that you need to add to your event and it is not a default property that is already in the mapping, you will need to edit the `properties` object to manually include it.
 </Warning>
 
-You can customize the preset actions mapping or create new mappings to further configure your event payload before they are sent to Mixpanel. 
+You can customize the preset actions mapping or create new mappings to further configure your event payload before they are sent to Mixpanel.
 
 To edit an existing mapping, click the "..." button in the actions table. To create a new mapping, click the "New Mapping" button in the top right of the UI.
 
 <Frame>
-![segment_mapping](/images/segment_mapping.png)
+  ![segment\_mapping](/images/segment_mapping.png)
 </Frame>
 
 Editing or creating new mappings is done in 4 steps.
@@ -110,7 +112,7 @@ Define the [conditions](https://segment.com/docs/connections/destinations/action
 Let's say you want to create a mapping that is triggered for any events tracked on Android. In this case, we can set the condition to **Event Type** equal `Track` and **Event Property** `platform` equal `android`:
 
 <Frame>
-![segment_condition](/images/segment_condition.png)
+  ![segment\_condition](/images/segment_condition.png)
 </Frame>
 
 **2. Sample Payload**
@@ -122,7 +124,7 @@ Ensure that this example payload matches the condition you set above so that the
 Since we're creating a mapping for any events tracked on Android, we insert a test event payload that includes the property `platform` set to `android`:
 
 <Frame>
-![segment_sample_payload](/images/segment_sample_payload.png)
+  ![segment\_sample\_payload](/images/segment_sample_payload.png)
 </Frame>
 
 **3. Edit Mapping**
@@ -134,35 +136,37 @@ On the left side of the UI, you can configure the output value using the availab
 If we want to append "ANDROID" to the names of events coming from this Android actions mapping, specify this in the Event Name row on the left-hand side:
 
 <Frame>
-![segment_mapping_name](/images/segment_mapping_name.png)
+  ![segment\_mapping\_name](/images/segment_mapping_name.png)
 </Frame>
 
 To include the `messageId` from the sample Segment payload as a Mixpanel event property called "Segment Message ID", edit the Event Properties mapping:
 
 <Frame>
-![segment_mapping_properties](/images/segment_mapping_properties.png)
+  ![segment\_mapping\_properties](/images/segment_mapping_properties.png)
 </Frame>
 
 <Note>
-    By default, the track preset takes the entire `properties` object from the Segment payload and uses it to generate "Event Properties" for the Mixpanel event payload. To edit the event properties mapping, you will need to manually define each property key-value pairs manually. 
-    <Frame>
-    ![segment_mapping_properties_edit](/images/segment_mapping_properties_edit.png)
-    </Frame>
-</Note>    
+  By default, the track preset takes the entire `properties` object from the Segment payload and uses it to generate "Event Properties" for the Mixpanel event payload. To edit the event properties mapping, you will need to manually define each property key-value pairs manually.
+
+  <Frame>
+    ![segment\_mapping\_properties\_edit](/images/segment_mapping_properties_edit.png)
+  </Frame>
+</Note>
 
 **4. Preview Payload**
 
 Once you are done with configuring the mapping, preview how your sample payload is mapped through the Action by expanding on the "Event context". You can also ingest the sample payload into Mixpanel to see how it will appear in your project by clicking "Send test event to destination".
 
 <Note>
-    Note that while the Event Content tab is helpful for showing how your properties are getting mapped through the Action, your payload will go through additional processing before getting ingested in Mixpanel. Send the test payload to destination in order to preview how your event will appear inside your project.
+  Note that while the Event Content tab is helpful for showing how your properties are getting mapped through the Action, your payload will go through additional processing before getting ingested in Mixpanel. Send the test payload to destination in order to preview how your event will appear inside your project.
 </Note>
 
 <Frame>
-![segment_test_event](/images/segment_test_event.png)
+  ![segment\_test\_event](/images/segment_test_event.png)
 </Frame>
 
 ## Implementing Group Analytics using Segment
+
 There are 4 parts to implementing Group Analytics via Segment. Learn more about [Group Analytics here](/docs/data-structure/group-analytics) and the Segment Group Spec here.
 
 **1. Define the Group Key in Mixpanel**
@@ -170,23 +174,23 @@ There are 4 parts to implementing Group Analytics via Segment. Learn more about 
 Create the Group Key in Mixpanel Project Settings. In this example, we are setting `company_id` as the group key.
 
 <Frame>
-![1groupkey_projectsettings](/images/835de9fa-eea2-47b0-9965-4a922ebd39ab.gif)
+  ![1groupkey\_projectsettings](/images/835de9fa-eea2-47b0-9965-4a922ebd39ab.gif)
 </Frame>
 
 **2. Configure your Group Actions Mapping**
 
 <Note>
-    If a Group Key mapping is not specified, Segment will use `$group_id` as the group key by default. In this case, set your group key in Mixpanel to `$group_id`.
+  If a Group Key mapping is not specified, Segment will use `$group_id` as the group key by default. In this case, set your group key in Mixpanel to `$group_id`.
 </Note>
 
-Edit the Group action preset or create a new action mapping to target your group calls. You should manually type in the group key in the mapping to the same as it appears in the Mixpanel settings. 
+Edit the Group action preset or create a new action mapping to target your group calls. You should manually type in the group key in the mapping to the same as it appears in the Mixpanel settings.
 
 Additionally, make sure the "Group ID" is mapped to the value of the groupId.
 
 Since we set the group key to `company_id` earlier, we manually enter it as the Group Key in the mapping. The `groupId` is the default key that Segment uses as the identifier for a group, so we map it to the Group ID.
 
 <Frame>
-![segment_group_mapping](/images/segment_group_mapping.png)
+  ![segment\_group\_mapping](/images/segment_group_mapping.png)
 </Frame>
 
 **3. Create Group Profiles**
@@ -206,7 +210,7 @@ analytics.group("some_company", {
 Example Group Profile/Group Profile Properties created from the group method above:
 
 <Frame>
-![4groupprofile](/images/b8b7ab18-4c65-4dff-965a-d532ae49cffc.png)
+  ![4groupprofile](/images/b8b7ab18-4c65-4dff-965a-d532ae49cffc.png)
 </Frame>
 
 **4. Add Group Key as a User Profile Property**
@@ -214,8 +218,9 @@ Example Group Profile/Group Profile Properties created from the group method abo
 In order to use Group Profile Properties when analyzing User Profiles, the user profile must have the Group Key/Group ID Value as a profile property.
 
 Declare the Group Key in the identify method as a profile property (trait):
+
 <Frame>
-![5identify](/images/41cc54c4-2e52-4e77-833d-cc178d1fb107.png)
+  ![5identify](/images/41cc54c4-2e52-4e77-833d-cc178d1fb107.png)
 </Frame>
 
 **5. Add Group Key as an Event Property to Events**
@@ -225,34 +230,43 @@ In order to connect events to a Group, the event must have the Group Key/Group I
 The Group Key must be explicitly declared as an event property on every event track call in order for the event to be compatible with Group Analytics.
 
 <Frame>
-![6trackcall](/images/9609917d-f00b-4450-a9d5-7d77bd338f9d.png)
+  ![6trackcall](/images/9609917d-f00b-4450-a9d5-7d77bd338f9d.png)
 </Frame>
 
 If you are using [Segment Device Mode](https://segment.com/docs/connections/destinations/catalog/mixpanel/#group-using-device-mode) (Classic destination):
 
-* Declare the Group Key as a [Super Property](https://segment.com/docs/connections/destinations/catalog/mixpanel/#register-super-properties) so that the Group Key is sent in as an Event Property to client-side events.
-* By default, all traits specified in the identify call will be registered as super properties. This means if you have the [“Automatically set all Traits as Super Properties and People Properties”](https://segment.com/docs/connections/destinations/catalog/mixpanel/#settings) setting turned on, all traits specified in the identify call will be added as both a super property and profile property for the user.
+- Declare the Group Key as a [Super Property](https://segment.com/docs/connections/destinations/catalog/mixpanel/#register-super-properties) so that the Group Key is sent in as an Event Property to client-side events.
+- By default, all traits specified in the identify call will be registered as super properties. This means if you have the [“Automatically set all Traits as Super Properties and People Properties”](https://segment.com/docs/connections/destinations/catalog/mixpanel/#settings) setting turned on, all traits specified in the identify call will be added as both a super property and profile property for the user.
 
 ## Debugging
+
 For debugging purposes, it can be useful to see exactly what Segment is sending to Mixpanel. You can validate this data through the [Segment Source Debugger](https://segment.com/docs/connections/sources/debugger/). In the Segment Source Debugger, you can select the event you are looking to validate:
+
 <Frame>
-<img width="1080" alt="debugger screenshot" src="/images/6ee0bbcd-8bf2-4f86-83a7-b0a3c39108e4.png" />
+  <img
+    width="1080"
+    alt="debugger screenshot"
+    src="/images/6ee0bbcd-8bf2-4f86-83a7-b0a3c39108e4.png"
+  />
 </Frame>
 
 Click the “Validate” button in the top right corner and choose “Mixpanel” as the destination. After the event has been sent, you can click to view the request from Segment to grab the data payload:
+
 <Frame>
-![pasted image 0 (1)](/images/0344decc-dc96-4569-ac3d-cc530c63bdb3.png)
+  ![pasted image 0 (1)](/images/0344decc-dc96-4569-ac3d-cc530c63bdb3.png)
 </Frame>
 
 You can then copy the data payload and decode it in a [base64 decoder](https://www.base64decode.org/) to see the JSON event that was sent to Mixpanel.
 
 ## Setting up Autocapture with Segment
 
-<Note>Note: In most cases, we do not recommend implementing Autocapture with Segment to minimize the risks of identity management issues. Please consult with a member of our team if you choose to use this approach.</Note>
+<Note>
+  Note: In most cases, we do not recommend implementing Autocapture with Segment to minimize the risks of identity management issues. Please consult with a member of our team if you choose to use this approach.
+</Note>
 
 It is possible to use Mixpanel’s Autocapture in conjunction with Segment; the following tutorial will show you how to implement Autocapture on your website in a way that integrated with [cloud mode](https://segment.com/docs/connections/sources/catalog/libraries/mobile/apple/cloud-mode-destinations/).
 
-The Segment SDK does not currently support an Autocapture mechanism, so the way to integrate is to load the Mixpanel Javascript SDK on your website, and then use a snippet which implements Segment’s middleware pattern to ensure that the user and device_ids match in the Segment and autocaptured data.
+The Segment SDK does not currently support an Autocapture mechanism, so the way to integrate is to load the Mixpanel Javascript SDK on your website, and then use a snippet which implements Segment’s middleware pattern to ensure that the user and device\_ids match in the Segment and autocaptured data.
 
 In this setup, the autocaptured event data will go directly to Mixpanel and will not pass through the Segment pipeline - however the user’s identity will be kept in sync between both systems allowing you to have consistent user flows in Mixpanel that properly join autocaptured data and Segment tracked data.
 
@@ -261,11 +275,14 @@ In the following code snippet we:
 - Embed the Segment SDK in our app
 - Send an event (`app loaded`) to Segment; this event is forwarded to Mixpanel
 - Embed the Mixpanel SDK in our app
-    - Activate Autocapture to track all track clicks
-    - Ensure that Mixpanel, when loaded looks for Segment’s user and device_ids
+
+  - Activate Autocapture to track all track clicks
+  - Ensure that Mixpanel, when loaded looks for Segment’s user and device\_ids
 - Register middleware with Segment to ensure that, when Segment loads, it propagates identity data to Mixpanel
 
-<Note>Important: the following snippet includes options for both simplified and original identity merge; please comment out the method you are not using.</Note>
+<Note>
+  Important: the following snippet includes options for both simplified and original identity merge; please comment out the method you are not using.
+</Note>
 
 ```HTML
 <!DOCTYPE html>
@@ -348,25 +365,25 @@ In the following code snippet we:
 ```
 
 ## FAQ
+
 **1. Why are my Segment data not appearing in my project?**
 
 This could be due to several reasons:
-* **Storing data in the EU:** A common issue is that the data in Segment is enabled to be sent to an EU endpoint but the Mixpanel data is still being stored outside of the EU. Both endpoints for Segment and Mixpanel need to point to the EU as described [here](https://segment.com/docs/connections/destinations/catalog/mixpanel/#enable-european-union-endpoint). If you have an existing Mixpanel project, you might need to have your data migrated to the EU. Please find further information [here](/docs/privacy/eu-residency#existing-customers).
 
-* **[Cloud implementation vs. device implementation (Only applies to Classic destination; Action is cloud-mode only)](https://segment.com/docs/connections/destinations/#connection-modes):** Segment can be implemented via a cloud-based implementation or as an SDK on the device directly. Device implementation will send the data to Mixpanel directly while the cloud implementation will send it to Segment first. You can confirm your implementation by querying for the Mixpanel library property of the events in your project:
-    - Cloud Mode will show as Mixpanel Library: Segment: analytics.js
+- **Storing data in the EU:** A common issue is that the data in Segment is enabled to be sent to an EU endpoint but the Mixpanel data is still being stored outside of the EU. Both endpoints for Segment and Mixpanel need to point to the EU as described [here](https://segment.com/docs/connections/destinations/catalog/mixpanel/#enable-european-union-endpoint). If you have an existing Mixpanel project, you might need to have your data migrated to the EU. Please find further information [here](/docs/privacy/eu-residency#existing-customers).
+- **[Cloud implementation vs. device implementation (Only applies to Classic destination; Action is cloud-mode only)](https://segment.com/docs/connections/destinations/#connection-modes):** Segment can be implemented via a cloud-based implementation or as an SDK on the device directly. Device implementation will send the data to Mixpanel directly while the cloud implementation will send it to Segment first. You can confirm your implementation by querying for the Mixpanel library property of the events in your project:
 
-    - Device Mode will show as Mixpanel Library: Segment: web
-
-* **No user profile data in Mixpanel (Classic destination only)**: [Segment does not track Mixpanel People by default](https://segment.com/docs/connections/destinations/catalog/mixpanel/#people). This is a setting you need to enable in your Segment settings. To enable Mixpanel People, change the “Use Mixpanel People” setting in your Segment Settings UI.
+  - Cloud Mode will show as Mixpanel Library: Segment: analytics.js
+  - Device Mode will show as Mixpanel Library: Segment: web
+- **No user profile data in Mixpanel (Classic destination only)**: [Segment does not track Mixpanel People by default](https://segment.com/docs/connections/destinations/catalog/mixpanel/#people). This is a setting you need to enable in your Segment settings. To enable Mixpanel People, change the “Use Mixpanel People” setting in your Segment Settings UI.
 
 **2. Why are there duplicated Segment events in my project?**
 
-Mixpanel SDKs assign an [\$insert_id](/reference/import-events#propertiesinsert_id) to each tracked event.
+Mixpanel SDKs assign an [\$insert\_id](/reference/import-events#propertiesinsert_id) to each tracked event.
 
-This allows Mixpanel to ensure no event is tracked more than once and events will be deduplicated based on the insert_id. Segment does not assign an insert_id to events. If the ingestion of an event is not confirmed by Mixpanel’s servers fast enough, Segment will retry to send the event.
+This allows Mixpanel to ensure no event is tracked more than once and events will be deduplicated based on the insert\_id. Segment does not assign an insert\_id to events. If the ingestion of an event is not confirmed by Mixpanel’s servers fast enough, Segment will retry to send the event.
 
-This can lead to duplicate events in Mixpanel, they will likely have different insert_ids as Mixpanel assigns each event without an insert_id a unique new one. This behavior can be caused by sending huge batches of data at the same time and can be avoided by reducing the batch size and frequency of event sending from Segment to Mixpanel.
+This can lead to duplicate events in Mixpanel, they will likely have different insert\_ids as Mixpanel assigns each event without an insert\_id a unique new one. This behavior can be caused by sending huge batches of data at the same time and can be avoided by reducing the batch size and frequency of event sending from Segment to Mixpanel.
 
 **3. How do I register super properties using Segment?**
 
@@ -379,7 +396,7 @@ In analytics.js, a Page call is included in the initialization snippet by defaul
 For the Preset Action, the default Event Name mapping for page call is `Viewed {name}`. To consolidate event names (e.g. "Page Viewed" or "Loaded a Page"), modify the Event Name mapping.
 
 <Frame>
-![segment_page_name_mapping](/images/segment_page_name_mapping.png)
+  ![segment\_page\_name\_mapping](/images/segment_page_name_mapping.png)
 </Frame>
 
 **5. How can I filter for events that originate from Segment in my project?**

@@ -1,5 +1,5 @@
 ---
-title: "OpenFeature Provider (Swift)"
+title: OpenFeature Provider (Swift)
 ---
 
 ## Overview
@@ -11,8 +11,8 @@ For the native Mixpanel SDK approach, see the [Feature Flags (Swift)](/docs/trac
 ## Prerequisites
 
 - Enterprise subscription plan with Feature Flags enabled
-- iOS 14.0+ / tvOS 14.0+ / macOS 11.0+ / watchOS 7.0+
-- Swift 5.5+
+- iOS 14.0\+ / tvOS 14.0\+ / macOS 11.0\+ / watchOS 7.0\+
+- Swift 5.5\+
 - Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Installation
@@ -66,7 +66,7 @@ await OpenFeatureAPI.shared.setProviderAndWait(provider: provider)
 ```
 
 <Warning>
-This provider does **not** call `mixpanel.identify()` or `mixpanel.track()`. If you need to update the logged-in user or use [Runtime Events](/docs/featureflags/runtime-events) for targeting, call these methods on the **same Mixpanel instance** that was passed to the provider.
+  This provider does **not** call `mixpanel.identify()` or `mixpanel.track()`. If you need to update the logged-in user or use [Runtime Events](/docs/featureflags/runtime-events) for targeting, call these methods on the **same Mixpanel instance** that was passed to the provider.
 </Warning>
 
 ```swift
@@ -85,7 +85,7 @@ mixpanelInstance.identify(distinctId: "user-123")
 ### Flag Types and Evaluation Methods
 
 | Mixpanel Flag Type | Variant Values | OpenFeature Method |
-|---|---|---|
+| --- | --- | --- |
 | Feature Gate | `true` / `false` | `getBooleanValue()` |
 | Experiment | boolean, string, number, or JSON object | `getBooleanValue()`, `getStringValue()`, `getIntegerValue()`, `getDoubleValue()`, or `getObjectValue()` |
 | Dynamic Config | JSON object | `getObjectValue()` |
@@ -142,7 +142,7 @@ await OpenFeatureAPI.shared.setEvaluationContext(evaluationContext: ctx)
 ```
 
 <Note>
-Unlike some providers, `targetingKey` is not used as a special bucketing key. It is passed as another context property. Mixpanel's server-side configuration determines which properties are used for targeting and bucketing.
+  Unlike some providers, `targetingKey` is not used as a special bucketing key. It is passed as another context property. Mixpanel's server-side configuration determines which properties are used for targeting and bucketing.
 </Note>
 
 ### Full Resolution Details
@@ -159,7 +159,7 @@ print(details.errorCode)
 ## Error Handling
 
 | Error Code | When |
-|---|---|
+| --- | --- |
 | `PROVIDER_NOT_READY` | Flags evaluated before the provider has finished initializing |
 | `FLAG_NOT_FOUND` | The requested flag does not exist in Mixpanel |
 | `TYPE_MISMATCH` | The flag value type does not match the requested type |

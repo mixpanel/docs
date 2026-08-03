@@ -1,5 +1,5 @@
 ---
-title: "Changelogs"
+title: Changelogs
 ---
 
 import { SubscribeButtonWithModal } from "/snippets/SubscribeButtonWithModal/SubscribeButtonWithModal.jsx";
@@ -8,6 +8,93 @@ import { VideoButtonWithModal } from "/snippets/VideoButtonWithModal/VideoButton
 Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
+
+<Update label="2026-07-28">
+  ## AI-Powered Data Governance: merge suggestions for duplicate events and properties
+
+  Over time, the same concept often ends up tracked under several names — `Add to Cart`, `add_to_cart`, and `addToCart`, or `from_date` and `from-date`. These duplicates clutter Lexicon, split your data across reports, and make analysis harder. Mixpanel can now automatically discover these potential duplicates for you, so you no longer have to hunt for them by hand.
+
+  With this update, you can:
+
+  - **Automatically discover duplicates:** From **Lexicon → Tidy Up**, Mixpanel surfaces groups of near-duplicate events and event properties in your project — no manual searching required.
+  - **Clean up in bulk:** Every suggested group comes with a canonical name and is selected by default, so you can review the list and merge them all in one submission instead of pair by pair.
+  - **Stay in control:** Merges behave exactly like a manual Lexicon merge — the raw data is unaffected and the action can be undone. Unselected groups are dismissed on submit so they won't be suggested again.
+
+  Merge suggestions cover events and event properties (not user/profile properties) and are available to organizations on an Enterprise plan with AI features enabled.
+
+  [Learn more →](/docs/data-governance/ai-powered-data-governance#merge-suggestions)
+</Update>
+
+<Update label="2026-07-26">
+  ## Mixpanel Agent updates
+
+  A roundup of more recent updates to Mixpanel Agent based on what you've been telling us.
+
+  **Retention curves:** Mixpanel Agent now builds retention curves by default for retention analysis. 
+
+  **Cohorts saved automatically:** Cohorts the Agent creates are now saved to Lexicon, making it easy to use Agent cohorts.
+
+  **Board date ranges:** When you ask the Agent to create a report from a Board, it uses the date range you're already viewing. Data stays consistent when you add the report to the board.
+
+  **Artifacts:** Everything the Agent generates now appears in an Artifacts section at the bottom of the response. Reports, cohorts, custom properties, all in one place.
+
+  **Lookup table properties:** The Agent can now find and use lookup table properties in analysis.
+
+  **Answers grounded in Mixpanel Docs:** When you ask the Agent how Mixpanel works, it pulls from the actual documentation. 
+
+  **More types of page context:** The Agent now knows what you're looking at on Users and Events pages, so you can use it in more places.
+</Update>
+
+<Update label="2026-07-23">
+  ## Mixpanel Agent now works in the background
+
+  Close the tab. Lose your connection. Start a new conversation. The Agent keeps going.
+
+  Now you can send off a question to the Agent, go about your day, and the answer will be waiting whenever you're ready.
+</Update>
+
+<Update label="2026-07-20">
+  ## MCP: New Tools added
+
+  Several new tools are now generally available on MCP Server.
+
+  Note that to access the new tools you need to disconnect and reconnect Mixpanel MCP to authorize the new scopes.
+
+  **Cohorts**:
+
+  - `Create-Cohort`
+  - `Get-Cohort`
+  - `Update-Cohort`
+  - `Delete-Cohort`
+  - `List-Cohorts`
+  - `Describe-Cohort-Schema`
+
+  **Lookup Tables**:
+
+  - `Create-Lookup-Table`
+  - `Get-Lookup-Table`
+  - `Update-Lookup-Table`
+
+  **Custom Properties**:
+
+  - `Create-Custom-Property`
+  - `Get-Custom-Property`
+  - `Update-Custom-Property`
+
+  **Duplicate/entity merging**:
+
+  - `Find-Duplicate-Groups`
+  - `Dismiss-Duplicate-Group`
+  - `Merge-Group`
+
+  **Experiments additions**:
+
+  - `Explain-Experiment-Health-Check`
+  - `Run-Experiment-Pre-Launch-Checks`
+  - `Search-Prior-Experiments`
+
+  See the full list of tools in the [MCP Server documentation](/docs/mcp#available-tools).
+</Update>
 
 <Update label="2026-07-17">
   ## Destinations: a simpler way to send data out of Mixpanel
@@ -40,6 +127,32 @@ Get all the latest updates in your inbox.
   [Learn more →](/docs/access-security/login-methods#passkey-login)
 </Update>
 
+<Update label="2026-06-26">
+  ## **Share Mixpanel Agent chats**
+
+  Now you can send a link to any Agent chat and let your team read exactly what you asked and what it found.
+
+  Chats are private by default. When you're ready to share, click the chat name and select "Share link."
+
+  [Learn more →](/docs/mixpanel-agent#sharing)
+</Update>
+
+<Update label="2026-07-10">
+  ## Feature Flags: React Native SDK
+
+  Feature flagging is now generally available in the main React Native SDK (v3.5.0), with full parity to native iOS and Android.
+
+  Previously, React Native customers had no supported native way to use feature flags — flags were beta-only and limited to JavaScript mode (Expo and RN Web), so teams on the main SDK couldn't gate features or run flag-based experiments.
+
+  With this update, you can:
+
+  - **Use flags across all RN modes:** Feature flagging works whether you're on the main React Native SDK, Expo, or RN Web.
+  - **Get full native parity:** Evaluation, variant assignment, and automatic exposure tracking all work the same as they do on native iOS and Android.
+  - **Gate features and run experiments:** Ship rollouts and flag-based experiments in React Native apps using the same workflow as the rest of your stack.
+
+  Available in React Native SDK v3.5.0. [Learn more →](/docs/tracking-methods/sdks/react-native/react-native-flags)
+</Update>
+
 <Update label="2026-06-25">
   ## Introducing Mixpanel Agent: your always-on product analyst
 
@@ -52,12 +165,15 @@ Get all the latest updates in your inbox.
   **Three ways to start using it today:**
 
   - **Self-serve answers:** Ask anything about your product and get an answer in seconds. No query builder, no data team required. _Try asking:_
+
     - _"How many users signed up for a trial last month"_
     - _"Summarize the insights from this analysis and give me top 3 takeaways."_
     - _"Build a dashboard for this new feature launch"_
   - **Root cause analysis:** When a metric moves unexpectedly, Mixpanel Agent automatically investigates the likely drivers and helps you get to the bottom of it. 
+
     - _Try asking: "Why did my activation rate drop last week?"_
   - **KPI monitoring:** Set up a monitor for any metric you own and Mixpanel Agent will surface what moved on your schedule, whether that’s daily, weekly, or monthly. 
+
     - _Try it: Open Automations and set up a monitor for a key metric you own today._
 
   [Get started →](https://mixpanel.com/agent) |[Learn more from our docs →](/docs/mixpanel-agent)
@@ -75,6 +191,38 @@ Get all the latest updates in your inbox.
   - **Move seamlessly between reports and replays:** Filter Flutter replays with the same Mixpanel events, properties, and cohorts you already use.
 
   [Learn more →](/docs/tracking-methods/sdks/flutter/flutter-replay)
+</Update>
+
+<Update label="2026-06-18">
+  ## Experiments: Breakdowns in Experiment Results
+
+  You can now break experiment results down by a property — like country or platform — to spot per-segment effects that would otherwise be hidden in the aggregate.
+
+  Previously, experiment results only showed the aggregate effect, hiding heterogeneous impact. A treatment could help mobile while hurting desktop, and you'd never see it. This was one of our most requested experiment enhancements.
+
+  With this update, you can:
+
+  - **Segment results by any property:** Break down experiment results by country, platform, plan, or any other property to see how the treatment lands across your user base.
+  - **Get guardrails on post-hoc segmentation:** A built-in warning surfaces the risk of false positives when you segment after the fact.
+  - **Trust the numbers:** Benjamini-Hochberg correction is applied automatically to control false discovery rate as the number of segment-level tests grows.
+
+  [Learn more →](/docs/experiments#advanced-statistical-methods)
+</Update>
+
+<Update label="2026-06-18">
+  ## Experiments: Benjamini-Hochberg Correction
+
+  Segmented experiment results now use Benjamini-Hochberg correction to preserve statistical power while still guarding against false positives.
+
+  When you break experiment results into segments, the number of statistical tests explodes. Bonferroni correction becomes far too strict once multiplied by segment counts, killing statistical power and hiding real effects.
+
+  With this update, you can:
+
+  - **Preserve power in segmented analysis:** Benjamini-Hochberg controls the false discovery rate instead of family-wise error, so real segment-level effects still show up as significant.
+  - **Stay protected from false positives:** BH still applies a principled correction — it just does so without over-penalizing the way Bonferroni does at scale.
+  - **Get it automatically:** BH correction is auto-enabled the moment you segment experiment results, with an undo toast if you want to revert.
+
+  [Learn more →](/docs/experiments#advanced-statistical-methods)
 </Update>
 
 <Update label="2026-06-02">
@@ -466,6 +614,86 @@ Get all the latest updates in your inbox.
   [Learn more about audit log →](/docs/access-security/audit-log)
 </Update>
 
+<Update label="2026-04-05">
+  ## Experiments: CUPED
+
+  Reach significance faster on high-variance metrics. Engagement, revenue, and retention often take a long time to reach statistical significance because of natural user-to-user variance — slowing down decisions on real effects.
+
+  CUPED (Controlled-experiment Using Pre-Experiment Data) uses each user's pre-experiment behavior to strip out that baseline variance from the analysis.
+
+  With this update, you can:
+
+  - **Tighten confidence intervals without shifting means:** CUPED removes variance driven by pre-existing user differences, so treatment effects surface more clearly.
+  - **Ship decisions sooner:** With less noise, experiments cross the significance threshold with fewer users and less time.
+  - **Apply it broadly:** CUPED is available for primary, secondary, and guardrail metrics.
+
+  [Learn more →](/docs/experiments#advanced-statistical-methods)
+</Update>
+
+<Update label="2026-04-05">
+  ## Experiments: Winsorization
+
+  Stop outliers from dominating your experiment results. A single extreme value — one \$100k order, one user who binged 10,000 events — can swamp revenue and value metrics and mask the real treatment effect.
+
+  Winsorization caps values beyond a chosen percentile so results reflect the typical user, not rare extremes.
+
+  With this update, you can:
+
+  - **Cap extreme values:** Set a percentile threshold and let Winsorization clip outliers on either tail before computing the metric.
+  - **See the typical user's experience:** Results reflect what most users saw, not what a handful of extreme cases pulled the average toward.
+  - **Diagnose outlier-driven conclusions:** If your significance or direction flips materially after applying Winsorization, that's itself a signal your original result was outlier-driven.
+
+  [Learn more →](/docs/experiments#advanced-statistical-methods)
+</Update>
+
+<Update label="2026-04-05">
+  ## Experiments: Pre-Experiment Bias Health Check
+
+  Catch bad randomization before you act on it. Lift observed during an experiment might be a pre-existing difference between the assigned groups — bad randomization or biased assignment logic — rather than a true treatment effect. Until now, there was no built-in way to spot this.
+
+  Pre-Experiment Bias runs a "Retro A/A" on a pre-experiment window you choose (1, 2, or 4 weeks) before exposure and re-applies the same analysis.
+
+  With this update, you can:
+
+  - **Detect non-equivalent groups:** Significant "lift" in the pre-experiment period is a red flag that your variant groups weren't actually equivalent going in.
+  - **Choose the right window:** Configure a 1, 2, or 4 week pre-experiment window based on how much stable history you have.
+  - **Fix it with confidence:** When bias is detected, the check prompts you to apply a CUPED correction or review your assignment logic before trusting the primary results.
+
+  [Learn more →](/docs/experiments#advanced-statistical-methods)
+</Update>
+
+<Update label="2026-04-05">
+  ## Experiments: Sample Ratio Mismatch (SRM) Health Check
+
+  Detect bucketing bugs before they invalidate your results. A bug in bucketing, tracking, or assignment can skew the observed variant split — you configured 50/50 but got 60/40 — silently invalidating everything downstream.
+
+  SRM is an opt-in health check that flags when the observed allocation drifts from the configured split beyond what chance would explain.
+
+  With this update, you can:
+
+  - **Catch skewed splits early:** A Chi-squared test compares observed vs. configured allocation and warns when the deviation is beyond chance.
+  - **Opt in per experiment:** SRM isn't always-on — you enable it (and can disable it) so it doesn't fire on experiments where a mismatch is expected.
+  - **Take corrective action:** When SRM triggers, pause the experiment, fix the root cause, and restart with confidence.
+
+  [Learn more →](/docs/experiments#advanced-statistical-methods)
+</Update>
+
+<Update label="2026-04-05">
+  ## Experiments: Bonferroni Correction
+
+  Guard against false positives when testing multiple metrics or variants. Testing many metrics at 95% confidence inflates the odds that at least one "win" is a false positive — the classic many-dice problem.
+
+  Bonferroni correction tightens the significance threshold based on the number of comparisons you're running.
+
+  With this update, you can:
+
+  - **Control family-wise error:** Bonferroni divides your confidence threshold by the number of comparisons (metrics × non-control variants), reducing false positives across the whole experiment.
+  - **Trust multi-metric readouts:** When you track many metrics at once, Bonferroni makes sure a single flashy result isn't just noise.
+  - **Pair with the right method:** For segmented results, Mixpanel automatically switches to Benjamini-Hochberg, which preserves more power at scale.
+
+  [Learn more →](/docs/experiments#advanced-statistical-methods)
+</Update>
+
 <Update label="2026-03-24">
   ## Mixpanel MCP: Talk to Your Data
 
@@ -652,6 +880,7 @@ Get all the latest updates in your inbox.
 
   1. In an Insights report, select `All Events` as the primary metric
   2. Break down by the [following properties](/docs/data-structure/property-reference/default-properties), depending on your tracking SDK(s)
+
      - JavaScript (Web): Browser (`$browser`) and Browser Version (`$browser_version`)
      - Mobile: Operating System (`$os`), OS Version (`$os_version`)
 
@@ -707,6 +936,7 @@ Get all the latest updates in your inbox.
   - Connect your Postgres database directly from the Mixpanel UI.
   - Sync tables from Postgres into Mixpanel without intermediate services.
   - Compatible with all Postgres versions and major managed providers including:
+
     - DigitalOcean Managed PostgreSQL
     - Google Cloud SQL
     - Supabase
@@ -2072,6 +2302,7 @@ Get all the latest updates in your inbox.
   ### Merging data from client-side to server-side
 
   - **Scenario**: You want to understand which restaurant category leads to the most confirmed purchases.
+
     - “Order placed” is a client-side event that has a property called restaurant category.
     - “Transaction completed” is the server-side event of interest that you’d like to break down by restaurant category.
   - **Solution**: Borrow the restaurant category property from “Order placed” onto “Transaction completed” and poof! It’s like “Transaction completed” always had the restaurant category property.
@@ -2079,6 +2310,7 @@ Get all the latest updates in your inbox.
   ### Analyzing across two different teams
 
   - **Scenario**: One team created a “Speed Mode” feature that runs the app faster. There’s a “Speed Mode” event with the property Speed Mode Enabled.
+
     - Another team wants to know how Speed Mode impacts how many pages are viewed. But the “Page View” event doesn’t have the Speed Mode Enabled property.
   - **Solution**: Borrow the Speed Mode Enabled property onto “Page View” and teams can instantly understand how page views differed when Speed Mode was turned on.
 
@@ -2954,6 +3186,7 @@ Get all the latest updates in your inbox.
   That’s why we’ve updated our our [Mixpanel Javascript SDK](/docs/tracking-methods/sdks/javascript) to automatically collect:
 
   - UTM Tags (default: on) — automatically adds these parameters to all events:
+
     - utm\_source: track the source where traffic is coming from, including a website or advertiser
     - utm\_medium: track the advertising medium, including email and banner ads
     - utm\_campaign: track the campaign name associated with the traffic
@@ -2961,6 +3194,7 @@ Get all the latest updates in your inbox.
     - utm\_term: track keywords associated with campaigns
     - Initial UTM: tracks the first time a user reaches any of the above parameters Tracking UTM tags help fuel attribution analysis so you can understand which campaigns, ads, or content is contributing the most, or least, to conversion.
   - Page Views (default: off) —  auto-track page views to build metrics like:
+
     1. Total Views: identify top performing pages to learn what content your users like best
     2. Bounce Rate: percentage of visitors who leave your website within 10s of viewing it
     3. Conversion Rate: percentage of visitors who complete a key action after visiting a page. Tracking the performance of your pages is the main way to understand if your website is driving value to your users and business. If you want to get started with web analytics, turning on auto-tracking pages can help you get started.

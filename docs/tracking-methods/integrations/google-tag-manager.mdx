@@ -1,5 +1,5 @@
 ---
-title: "Google Tag Manager"
+title: Google Tag Manager
 ---
 
 This page walks through Mixpanel's native integration with Google Tag Manager (GTM). The source code is hosted [here](https://github.com/mixpanel/mixpanel-gtm-template) for reference.
@@ -10,11 +10,8 @@ Our [video walkthrough](https://user-images.githubusercontent.com/556882/1541259
 
 <Frame>
   <video playsInline controls className="nx-rounded-lg">
-    <source
-      src='https://user-images.githubusercontent.com/556882/154125933-b584de10-b7fa-4668-b815-7429192d867a.mp4'
-      type='video/mp4'
-    />
-</video>
+    <source src="https://user-images.githubusercontent.com/556882/154125933-b584de10-b7fa-4668-b815-7429192d867a.mp4" type="video/mp4" />
+  </video>
 </Frame>
 
 The easiest way to install the custom template is to locate it in the [Google Tag Manager community template gallery](https://tagmanager.google.com/gallery/#/owners/mixpanel/templates/mixpanel-gtm-template). You can install the template via the Google Tag Manager user interface.
@@ -115,9 +112,12 @@ Feature Flags allow you to control feature rollout, conduct A/B testing, and man
 
 1. Open your Mixpanel `init` tag in GTM
 2. Under Feature Flags,
+
    - a) Select Enabled to enable feature flag fetching.
    - b) If your flags use a data group key as a custom Variant Assignment Key (e.g., `company_id`) or Runtime Targeting, you'll need to pass a context object.
+
      - You can create a **Custom JavaScript Variable** that returns the flags config object:
+
        ```javascript Javascript
        function() {
          return {

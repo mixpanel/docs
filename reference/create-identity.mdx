@@ -1,7 +1,8 @@
 ---
-openapi: /openapi/identity.openapi.yaml POST /track#create-identity
+openapi: "/openapi/identity.openapi.yaml POST /track#create-identity"
 title: Create Identity
 ---
+
 <Note>
   The `$identify` event payload is only useful for projects using the Original ID Merge system; it has no functionality in other ID management systems. Please review [this section of our documentation](/docs/tracking-methods/id-management#identity-merge-apis) for more information.
 </Note>
@@ -27,17 +28,18 @@ curl --request POST \
 ```
 
 **Identify Criteria:**
+
 <Frame className="bg-white">
-![](/images/reference/d0066f0-ID_management_identify_3-HTTP.png)
+  ![](/images/reference/d0066f0-ID_management_identify_3-HTTP.png)
 </Frame>
 
 **Required[Event Object](/docs/data-structure/concepts#anatomy-of-an-event) attributes**
 
-| Event Object property          | Type                                                                                                        | Description                                                                                                                                                                                         |
-| :----------------------------- | :---------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **event**                      | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | value must be: `$identify`                                                                                                                                                                          |
-| **properties**                 | <span style={{ fontFamily: "courier" }}>Object</span><br /><span style={{ color: "red" }}>required</span>   |                                                                                                                                                                                                     |
-| **properties.distinct\_id**    | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "green" }}>optional</span> | The distinct ID post-identification (same as \$identified\_id - it will be inferred from \$identified\_id if not included)                                                                            |
-| **properties.\$identified\_id** | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | A distinct\_id to merge with the \$anon\_id.                                                                                                                                                         |
-| **properties.\$anon\_id**       | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | A distinct\_id to merge with the \$identified\_id. The \$anon\_id must be [UUID v4](https://en.wikipedia.org/wiki/Universally_unique_identifier) format and not already merged to an \$identified\_id. |
-| **properties.token**           | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span>   | The project token.                                                                                                                                                                                  |
+| Event Object property | Type | Description |
+| :-- | :-- | :-- |
+| **event** | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span> | value must be: `$identify` |
+| **properties** | <span style={{ fontFamily: "courier" }}>Object</span><br /><span style={{ color: "red" }}>required</span> |  |
+| **properties.distinct\_id** | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "green" }}>optional</span> | The distinct ID post-identification (same as \$identified\_id - it will be inferred from \$identified\_id if not included) |
+| **properties.\$identified\_id** | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span> | A distinct\_id to merge with the \$anon\_id. |
+| **properties.\$anon\_id** | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span> | A distinct\_id to merge with the \$identified\_id. The \$anon\_id must be [UUID v4](https://en.wikipedia.org/wiki/Universally_unique_identifier) format and not already merged to an \$identified\_id. |
+| **properties.token** | <span style={{ fontFamily: "courier" }}>String</span><br /><span style={{ color: "red" }}>required</span> | The project token. |

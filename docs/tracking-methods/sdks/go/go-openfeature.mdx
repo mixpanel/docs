@@ -1,5 +1,5 @@
 ---
-title: "OpenFeature Provider (Go)"
+title: OpenFeature Provider (Go)
 ---
 
 ## Overview
@@ -61,7 +61,7 @@ func main() {
 Flag definitions are fetched from Mixpanel and evaluated locally. This is faster and works offline after the initial fetch.
 
 <Warning>
-Targeting by Mixpanel cohorts and sticky variants are not supported in Local Evaluation mode.
+  Targeting by Mixpanel cohorts and sticky variants are not supported in Local Evaluation mode.
 </Warning>
 
 ```go
@@ -90,7 +90,7 @@ provider, err := mixpanelopenfeature.NewProvider(mp.LocalFlags)
 ### Flag Types and Evaluation Methods
 
 | Mixpanel Flag Type | Variant Values | OpenFeature Method |
-|---|---|---|
+| --- | --- | --- |
 | Feature Gate | `true` / `false` | `BooleanValue()` |
 | Experiment | boolean, string, number, or JSON object | `BooleanValue()`, `StringValue()`, `FloatValue()`, `IntValue()`, or `ObjectValue()` |
 | Dynamic Config | JSON object | `ObjectValue()` |
@@ -127,7 +127,7 @@ enabled, _ := client.BooleanValue(ctx, "premium-feature", false, evalCtx)
 ```
 
 <Note>
-Unlike some providers, `targetingKey` is not used as a special bucketing key. It is passed as another context property. Mixpanel's server-side configuration determines which properties are used for targeting and bucketing.
+  Unlike some providers, `targetingKey` is not used as a special bucketing key. It is passed as another context property. Mixpanel's server-side configuration determines which properties are used for targeting and bucketing.
 </Note>
 
 ### Full Resolution Details
@@ -160,7 +160,7 @@ provider.Shutdown()
 ## Error Handling
 
 | Error Code | When |
-|---|---|
+| --- | --- |
 | `PROVIDER_NOT_READY` | Flags evaluated before the local provider has finished fetching definitions |
 | `FLAG_NOT_FOUND` | The requested flag does not exist in Mixpanel |
 | `TYPE_MISMATCH` | The flag value type does not match the requested type |

@@ -1,5 +1,5 @@
 ---
-title: "Kafka"
+title: Kafka
 ---
 
 This guide demonstrates how to plug Mixpanel into an event collection pipeline by AWS Kafka. Once set up, your events will route to Mixpanel and be available in real-time for analytics. This approach is serverless and open-source, and takes ~5 minutes to set up.
@@ -46,14 +46,14 @@ finally:
     consumer.close()
 ```
 
-
 To run this code:
 
 1. Install Kafka and start a Kafka broker.
 2. Install necessary Python packages:
-    - pip install confluent-kafka
-    - pip install mixpanel
-3. Replace 'YOUR_MIXPANEL_TOKEN' with your actual Mixpanel token.
+
+   - pip install confluent-kafka
+   - pip install mixpanel
+3. Replace 'YOUR\_MIXPANEL\_TOKEN' with your actual Mixpanel token.
 4. Run the code.
 
 Google has a [great reference](https://cloud.google.com/pubsub/docs/handling-failures) on best practices for handling both retryable and non-retryable errors.

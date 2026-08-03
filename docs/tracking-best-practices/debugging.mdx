@@ -1,6 +1,6 @@
 ---
 title: "Debugging: Validate your data and troubleshoot your implementation"
-sidebarTitle: "Debugging"
+sidebarTitle: Debugging
 ---
 
 This document walks through best practices for data validation and debugging your Mixpanel implementation.
@@ -77,6 +77,7 @@ If you're using Mixpanel in a web application, you can use your browser's develo
 2. Open your browser's developer console and navigate to the Network \> Fetch/XHR tab.
 3. Perform an action that triggers the `mixpanel.track` call.
 4. Look for requests to the Mixpanel API and troubleshoot any error messages.
+
    - If your project has US Data Residency, look for a request triggered to `api.mixpanel.com/track`.
    - If your project has [EU Data Residency](/docs/privacy/eu-residency), look for a request triggered to  `api-eu.mixpanel.com/track`.
    - If your project has [India Data Residency](/docs/privacy/in-residency), look for a request triggered to  `api-in.mixpanel.com/track`.
@@ -92,7 +93,7 @@ If you are using a Mixpanel SDK, you _must_ configure it to talk to the correct 
 | [EU Data Residency](/docs/privacy/eu-residency) | `api-eu.mixpanel.com` |
 | [India Data Residency](/docs/privacy/in-residency) | `api-in.mixpanel.com` |
 
-**⚠️ Important:** Projects with India Data Residency _must_ configure SDKs with the `api-in.mixpanel.com` host or events will be rejected and will be missing from your project.
+**⚠️ Important:** Projects with EU or India Data Residency must configure their SDK with the matching regional host (`api-eu.mixpanel.com` or `api-in.mixpanel.com`). Events sent to the wrong host will not be ingested in your Mixpanel project.
 
 ### Customize Flush Interval (Mobile)
 
