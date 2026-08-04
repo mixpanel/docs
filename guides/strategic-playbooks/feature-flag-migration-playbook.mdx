@@ -28,7 +28,7 @@ Here's how to work through each step.
 An exposure event records that a user was enrolled in a feature gate, an experiment, or a dynamic config, and was exposed to a specific variant. To keep your historical data, export your existing exposure events from your current vendor and ingest them to Mixpanel as `$experiment_started` events.
 
 <Warning>
-  Running migrations for experiments mid-flight is a high risk task. As the Mixpanel SDK will randomly assign variant assignments in your app, it is impossible to maintain the same variant assignment in your current set up. 
+  Running migrations for experiments mid-flight is a high risk task. As the Mixpanel SDK will randomly assign variant assignments in your app, it is impossible to maintain the same variant assignment in your current set up.
 </Warning>
 
 ### Export exposure events from your vendor
@@ -79,7 +79,7 @@ Now that you've brought over your historical exposure data, it's time to bring o
 
 Your vendor may have a UI export, API export, or warehouse export options. Ensure you list and fetch definitions for feature gates, experiments, and dynamic configurations by consulting your vendor's documentation.
 
-### Import the setup via Mixpanel API 
+### Import the setup via Mixpanel API
 
 Recreate each configuration in Mixpanel using Mixpanel APIs. Create experiments first, then the feature flags that reference them. You can refer to the [Mixpanel Feature Flags](/reference/feature-flags-api) API for more details.
 
@@ -223,4 +223,4 @@ Ensure you run a parity check. Things to verify include:
 
 The result is a clean, reviewed migration of your feature flags and experiments into Mixpanel: configurations recreated, historical results preserved, and your release workflow intact. Your Mixpanel team will partner with you through each step.
 
-For the full reference on how flags and experiments work in Mixpanel - including targeting, rollout groups, and variant management - see [Feature Flags](/docs/featureflags) and [Experiments](/docs/experiments).
+For the full reference on how flags and experiments work in Mixpanel — including targeting, rollout groups, and variant management — see [Feature Flags](/docs/featureflags) and [Experiments](/docs/experiments).
