@@ -7,7 +7,7 @@ sidebarTitle: "Write Business Context"
 
 Mixpanel Agent, MCP, and Headless can all draw on your project's business context to ground their answers. Without it, they guess at what "activation" means or which report is the source of truth.
 
-This guide is for anyone with project owner or admin access who already has one of those surfaces turned on and is staring at a blank business context field, unsure what to put in it.
+This guide is for anyone with project owner or admin access who already has one of these tools turned on and is staring at a blank business context field, unsure what to put in it.
 
 If you’re looking for details on how to use one of those surfaces or define your event schema, check out the guides on [Mixpanel Agent](/guides/guides-by-use-case/empower-your-team/mixpanel-agent), [MCP](/guides/guides-by-use-case/empower-your-team/mcp), [Headless](/guides/guides-by-use-case/empower-your-team/headless), or [event schema](/docs/data-structure/events-and-properties).
 
@@ -21,7 +21,7 @@ The difference comes down to a handful of things:
 
 - **Keep it tight.** Each point should read like something you'd tell a new hire in one sentence, not a page of documentation.
 - **Formulas, not names.** "North Star Metric: Weekly Active Analyzers" is a label. "Weekly Active Analyzers = users who create, edit, or share a report at least once in a seven-day window, excluding internal seats" is something an assistant can act on.
-- **Event semantics, stated.** If an event name could mean two different things, say which one. `completed_project` could mean saved a draft or published. Write down which.
+- **Event semantics, stated.** If an event name could mean two different things, say which one. For example, `completed_project` could mean saved a draft or published. Write down which.
 - **Scope and boundaries.** Say whom an analysis applies to and where it stops. "This metric applies to self-serve accounts, not enterprise" prevents an answer that's technically correct for the wrong segment.
 - **Restraint on anything that goes stale.** Live usage numbers, like query volume and dashboard counts, feel like context but age out fast. Include a number only if it's genuinely load-bearing for how an answer gets built, not because it makes the context feel more complete.
 - **Description, not direction.** Business context works best as facts about your business, not instructions for how the AI should behave. Something like "our north star metric is X" is reliable. Something like "always respond in three bullet points" isn't guaranteed to be followed, and isn't what this field is for. If you want to shape how an assistant responds, that's a prompting or settings question, not a context question.
@@ -274,4 +274,4 @@ This guide covers business context specifically. These are separate, complementa
 - Updates through Settings or MCP always fully replace what was there. Fetch the current context before making a change.
 - Revisit context whenever something it describes changes, whether that's your event taxonomy, your customer segments, or how the business measures success. Stale context can be worse than none.
 
-Not sure which surface fits your team? Compare [Mixpanel Agent](/docs/mixpanel-agent), [MCP](/docs/mcp), and [Headless](/docs/mixpanel-headless) to see which one matches how you work, and then start to use it with your updated context.
+Not sure which tool fits your team? Compare [Mixpanel Agent](/docs/mixpanel-agent), [MCP](/docs/mcp), and [Headless](/docs/mixpanel-headless) to see which one matches how you work, and then start to use it with your updated context.
