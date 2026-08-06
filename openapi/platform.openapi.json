@@ -116,7 +116,7 @@
             }
           }
         },
-        "description": "Query an organization's audit logs.",
+        "description": "Query an organization's audit logs.\n\n**Required role:** the caller must have one of the following roles: `owner`, `admin`. See [Roles and permissions](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions).",
         "tags": [
           "Organizations",
           "Audit Log"
@@ -135,6 +135,10 @@
           {
             "ServiceAccountAuth": []
           }
+        ],
+        "x-required-roles": [
+          "owner",
+          "admin"
         ]
       }
     }
@@ -839,8 +843,8 @@
     "securitySchemes": {
       "ServiceAccountAuth": {
         "type": "http",
-        "scheme": "basic",
-        "description": "This endpoint uses [Service Account](/reference/service-accounts#authenticating-with-a-service-account) authentication."
+        "description": "This endpoint uses [Service Account](https://docs.mixpanel.com/reference/service-accounts#authenticating-with-a-service-account) authentication. Access additionally depends on the calling account's [role](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions) — see the roles required for each endpoint.",
+        "scheme": "basic"
       }
     }
   }
