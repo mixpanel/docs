@@ -116,7 +116,7 @@
             }
           }
         },
-        "description": "Query an organization's audit logs.\n\n**Required role:** the caller must have one of the following roles: `owner`, `admin`. See [Roles and permissions](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions).",
+        "description": "Query an organization's audit logs.\n\n<small><Badge color=\"gray\" size=\"sm\">Owner</Badge> <Badge color=\"gray\" size=\"sm\">Admin</Badge> [Roles](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions)</small>",
         "tags": [
           "Organizations",
           "Audit Log"
@@ -137,8 +137,8 @@
           }
         ],
         "x-required-roles": [
-          "owner",
-          "admin"
+          "Owner",
+          "Admin"
         ]
       }
     }
