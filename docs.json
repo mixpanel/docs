@@ -1210,6 +1210,12 @@
                 "root": "reference/archive-experiment"
               }
             ]
+          },
+          {
+            "group": "AUDIT LOG API",
+            "pages": [
+              "reference/query-organization-audit-logs"
+            ]
           }
         ]
       }

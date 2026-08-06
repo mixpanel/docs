@@ -1,0 +1,851 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Mixpanel Platform API",
+    "version": "1",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "https://platform-us.mixpanel.com",
+      "description": "US"
+    },
+    {
+      "url": "https://platform-eu.mixpanel.com",
+      "description": "EU"
+    },
+    {
+      "url": "https://platform-in.mixpanel.com",
+      "description": "IN"
+    }
+  ],
+  "paths": {
+    "/v1/organizations/{organization_id}/audit-logs/query": {
+      "post": {
+        "operationId": "query_organization_audit_logs",
+        "summary": "Query Organization Audit Logs",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "default": 100,
+              "description": "Items per page.",
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Page Size",
+              "type": "integer"
+            },
+            "required": false,
+            "description": "Items per page."
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Previous or next cursor used to paginate.",
+              "title": "Cursor"
+            },
+            "required": false,
+            "description": "Previous or next cursor used to paginate."
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "schema": {
+              "default": "desc",
+              "description": "Sort order of results: 'asc' for oldest first, 'desc' for newest first.",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "title": "Order",
+              "type": "string"
+            },
+            "required": false,
+            "description": "Sort order of results: 'asc' for oldest first, 'desc' for newest first."
+          },
+          {
+            "in": "path",
+            "name": "organization_id",
+            "schema": {
+              "title": "Organization ID",
+              "type": "string"
+            },
+            "required": true,
+            "description": "The unique identifier for the organization."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryAuditLogResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request validation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "Query an organization's audit logs.\n\n<small><Icon icon=\"lock\" size={14} /> [Roles](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions) <Badge color=\"gray\" size=\"sm\">Owner</Badge> <Badge color=\"gray\" size=\"sm\">Admin</Badge></small>",
+        "tags": [
+          "Organizations",
+          "Audit Log"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryAuditLogRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "ServiceAccountAuth": []
+          }
+        ],
+        "x-required-roles": [
+          "Owner",
+          "Admin"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AuditLog": {
+        "properties": {
+          "project_id": {
+            "description": "ID of the project the audited action occurred in.",
+            "title": "Project Id",
+            "type": "string"
+          },
+          "organization_id": {
+            "description": "ID of the organization the audited action occurred in.",
+            "title": "Organization Id",
+            "type": "string"
+          },
+          "service": {
+            "description": "Mixpanel service that emitted the audit log entry.",
+            "title": "Service",
+            "type": "string"
+          },
+          "event_category": {
+            "description": "High-level category describing the type of audited event.",
+            "title": "Event Category",
+            "type": "string"
+          },
+          "organization_name": {
+            "description": "Name of the organization at the time the audited action occurred.",
+            "title": "Organization Name",
+            "type": "string"
+          },
+          "ttl_timestamp": {
+            "description": "UTC timestamp at which the audit log entry expires and may be deleted.",
+            "format": "date-time",
+            "title": "Ttl Timestamp",
+            "type": "string"
+          },
+          "client_ip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "IP address of the client that initiated the audited action.",
+            "title": "Client Ip"
+          },
+          "http_method": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "HTTP method of the request that triggered the audited action (e.g. GET, POST).",
+            "title": "Http Method"
+          },
+          "http_request_headers": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "HTTP request headers from the request that triggered the audited action.",
+            "title": "Http Request Headers"
+          },
+          "http_request_size": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Size of the HTTP request body in bytes.",
+            "title": "Http Request Size"
+          },
+          "http_response_headers": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "HTTP response headers returned for the request that triggered the audited action.",
+            "title": "Http Response Headers"
+          },
+          "http_response_size": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Size of the HTTP response body in bytes.",
+            "title": "Http Response Size"
+          },
+          "http_status": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "HTTP status code returned for the request that triggered the audited action.",
+            "title": "Http Status"
+          },
+          "http_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "URL of the request that triggered the audited action.",
+            "title": "Http Url"
+          },
+          "http_user_agent": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "User-Agent header from the request that triggered the audited action.",
+            "title": "Http User Agent"
+          },
+          "project_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Name of the project at the time the audited action occurred.",
+            "title": "Project Name"
+          },
+          "user_email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Email of the user who performed the audited action.",
+            "title": "User Email"
+          },
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "ID of the user who performed the audited action.",
+            "title": "User Id"
+          },
+          "user_roles": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Comma-separated list of roles held by the user at the time of the audited action.",
+            "title": "User Roles"
+          },
+          "created": {
+            "description": "UTC timestamp when the audit log entry was created.",
+            "format": "date-time",
+            "title": "Created",
+            "type": "string"
+          },
+          "id": {
+            "description": "Unique identifier for the audit log entry.",
+            "title": "Id",
+            "type": "string"
+          },
+          "was_impersonated_by_staff": {
+            "description": "Whether the action was performed by a Mixpanel staff member acting on behalf of your organization.",
+            "title": "Was Impersonated By Staff",
+            "type": "boolean"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/AuditLogEntity",
+            "description": "The entity that was acted upon, including its type, action, and action-specific payload."
+          }
+        },
+        "required": [
+          "project_id",
+          "organization_id",
+          "service",
+          "event_category",
+          "organization_name",
+          "ttl_timestamp",
+          "created",
+          "id",
+          "was_impersonated_by_staff",
+          "entity"
+        ],
+        "title": "AuditLog",
+        "type": "object"
+      },
+      "AuditLogEntity": {
+        "description": "The target entity of an audit log entry.",
+        "properties": {
+          "entity_id": {
+            "description": "Unique identifier for the entity targeted by the audit log entry.",
+            "title": "Entity Id",
+            "type": "string"
+          },
+          "entity_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Name of the entity targeted by the audit log entry.",
+            "title": "Entity Name"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/AuditLogPayload",
+            "description": "The payload of the audit log entry, which contains the details of the action performed."
+          },
+          "action": {
+            "description": "Action performed on the entity targeted by the audit log entry.",
+            "title": "Action",
+            "type": "string"
+          },
+          "entity_type": {
+            "description": "Type of the entity targeted by the audit log entry.",
+            "title": "Entity Type",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of the audit log entry, which is a combination of the entity type and action.",
+            "readOnly": true,
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "entity_id",
+          "entity_name",
+          "payload",
+          "action",
+          "entity_type",
+          "type"
+        ],
+        "title": "AuditLogEntity",
+        "type": "object"
+      },
+      "AuditLogPayload": {
+        "additionalProperties": true,
+        "properties": {},
+        "title": "AuditLogPayload",
+        "type": "object"
+      },
+      "CursorPaginationResponse": {
+        "additionalProperties": false,
+        "description": "Response model for cursor-based pagination, containing the cursors for the next and previous pages.",
+        "properties": {
+          "previous_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Cursor for the previous page.",
+            "title": ""
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Cursor for the next page.",
+            "title": ""
+          }
+        },
+        "title": "CursorPaginationResponse",
+        "type": "object"
+      },
+      "QueryAuditLogResponse": {
+        "description": "Response model for the audit log query endpoint.",
+        "properties": {
+          "results": {
+            "description": "List of items for the current page.",
+            "items": {
+              "$ref": "#/components/schemas/AuditLog"
+            },
+            "title": "Results",
+            "type": "array"
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/CursorPaginationResponse",
+            "description": "Pagination cursors to navigate through the results."
+          }
+        },
+        "required": [
+          "results",
+          "pagination"
+        ],
+        "title": "QueryAuditLogResponse",
+        "type": "object"
+      },
+      "QueryAuditLogRequest": {
+        "additionalProperties": false,
+        "description": "The set of filters to apply to the audit log query. All filters are optional, and if none are provided, all audit logs for the organization will be returned.",
+        "properties": {
+          "project_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "List of Project IDs to filter audit logs by. If not provided, audit logs for all projects in the organization as well as organization-level audit logs will be returned.",
+            "title": "Project Ids"
+          },
+          "user_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Filter to audit logs by the IDs of the users who performed the actions.",
+            "title": "User Ids"
+          },
+          "user_emails": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Filter to audit logs by the emails of the users who performed the actions.",
+            "title": "User Emails"
+          },
+          "exclude_user_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "List of user IDs to exclude from the results. Audit logs performed by these users will not be included in the response.",
+            "title": "Exclude User Ids"
+          },
+          "exclude_user_emails": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "List of user emails to exclude from the results. Audit logs performed by these users will not be included in the response.",
+            "title": "Exclude User Emails"
+          },
+          "types": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "List of entity types and actions to filter audit logs by. See https://docs.mixpanel.com/docs/access-security/audit-log-reference for a list of valid types.",
+            "title": "Types"
+          },
+          "created_before": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Filter to audit logs created before this timestamp.",
+            "title": "Created Before"
+          },
+          "created_after": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Filter to audit logs created after this timestamp.",
+            "title": "Created After"
+          },
+          "user_email_search": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Case-insensitive substring match against user email addresses.",
+            "title": "User Email Search"
+          }
+        },
+        "title": "QueryAuditLogRequest",
+        "type": "object"
+      },
+      "ErrorResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "A stable reference that identifies the problem type, if applicable.",
+            "title": ""
+          },
+          "status": {
+            "description": "The HTTP status code generated by the origin server for this occurrence of the problem.",
+            "title": "",
+            "type": "integer"
+          },
+          "instance": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "A stable reference that identifies the specific occurrence of the problem, if applicable.",
+            "title": ""
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "A human-readable explanation specific to this occurrence of the problem, if applicable.",
+            "title": ""
+          },
+          "error_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Opaque identifier for this error occurrence. Include it when contacting support so the corresponding server-side error can be located.",
+            "title": ""
+          },
+          "title": {
+            "description": "A short, human-readable summary of the problem type.",
+            "readOnly": true,
+            "title": "",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "title"
+        ],
+        "title": "ErrorResponse",
+        "type": "object"
+      },
+      "RequestValidationErrorItem": {
+        "properties": {
+          "type": {
+            "description": "Machine-readable validation error type, e.g. 'missing'.",
+            "title": "Type",
+            "type": "string"
+          },
+          "loc": {
+            "description": "Location of the offending value in the request.",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Loc",
+            "type": "array"
+          },
+          "msg": {
+            "description": "Human-readable description of the error.",
+            "title": "Msg",
+            "type": "string"
+          },
+          "ctx": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Additional context about the error, if any.",
+            "title": "Ctx"
+          }
+        },
+        "required": [
+          "type",
+          "loc",
+          "msg"
+        ],
+        "title": "RequestValidationErrorItem",
+        "type": "object"
+      },
+      "RequestValidationErrorResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "A stable reference that identifies the problem type, if applicable.",
+            "title": ""
+          },
+          "status": {
+            "description": "The HTTP status code generated by the origin server for this occurrence of the problem.",
+            "title": "",
+            "type": "integer"
+          },
+          "instance": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "A stable reference that identifies the specific occurrence of the problem, if applicable.",
+            "title": ""
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "A human-readable explanation specific to this occurrence of the problem, if applicable.",
+            "title": ""
+          },
+          "error_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Opaque identifier for this error occurrence. Include it when contacting support so the corresponding server-side error can be located.",
+            "title": ""
+          },
+          "errors": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/RequestValidationErrorItem"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "The set of request validation errors.",
+            "title": ""
+          },
+          "title": {
+            "description": "A short, human-readable summary of the problem type.",
+            "readOnly": true,
+            "title": "",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "title"
+        ],
+        "title": "RequestValidationErrorResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "ServiceAccountAuth": {
+        "type": "http",
+        "description": "This endpoint uses [Service Account](https://docs.mixpanel.com/reference/service-accounts#authenticating-with-a-service-account) authentication.",
+        "scheme": "basic"
+      }
+    }
+  }
+}
