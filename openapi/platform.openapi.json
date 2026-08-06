@@ -839,7 +839,8 @@
     "securitySchemes": {
       "ServiceAccountAuth": {
         "type": "http",
-        "scheme": "basic"
+        "scheme": "basic",
+        "description": "This endpoint uses [Service Account](/reference/service-accounts#authenticating-with-a-service-account) authentication."
       }
     }
   }
