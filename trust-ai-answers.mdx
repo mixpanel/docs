@@ -50,7 +50,7 @@ Most MCP-compatible AI tools, such as Claude, let you set permissions per connec
 - Require approval
 - Block
 
-Scoping your Mixpanel MCP connection to read-only — so that it can only answer questions and never change anything — lives entirely on the AI tool's side, independent of anything configured in Mixpanel.
+Your AI tool's connector permissions control whether the connection is scoped to read-only, so it can only answer questions and never change anything in Mixpanel. That's separate from your existing Mixpanel role: You'll only ever see the projects and data you already have permission to view in Mixpanel, regardless of how the connector is scoped.
 
 #### If you allow write access
 
