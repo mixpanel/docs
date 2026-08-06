@@ -1,13 +1,13 @@
 ---
-title: Write business context that grounds AI answers
-sidebarTitle: Write Business Context
+title: "Write business context that grounds AI answers"
+sidebarTitle: "Write Business Context"
 ---
 
 ### Overview
 
 Mixpanel Agent, MCP, and Headless can all draw on your project's business context to ground their answers. Without it, they guess at what "activation" means or which report is the source of truth.
 
-This guide is for anyone with project owner or admin access who already has one of those surfaces turned on and is staring at a blank business context field, unsure what to put in it.
+This guide is for anyone with project owner or admin access who already has one of these tools turned on and is staring at a blank business context field, unsure what to put in it.
 
 If you’re looking for details on how to use one of those surfaces or define your event schema, check out the guides on [Mixpanel Agent](/guides/guides-by-use-case/empower-your-team/mixpanel-agent), [MCP](/guides/guides-by-use-case/empower-your-team/mcp), [Headless](/guides/guides-by-use-case/empower-your-team/headless), or [event schema](/docs/data-structure/events-and-properties).
 
@@ -21,7 +21,7 @@ The difference comes down to a handful of things:
 
 - **Keep it tight.** Each point should read like something you'd tell a new hire in one sentence, not a page of documentation.
 - **Formulas, not names.** "North Star Metric: Weekly Active Analyzers" is a label. "Weekly Active Analyzers = users who create, edit, or share a report at least once in a seven-day window, excluding internal seats" is something an assistant can act on.
-- **Event semantics, stated.** If an event name could mean two different things, say which one. `completed_project` could mean saved a draft or published. Write down which.
+- **Event semantics, stated.** If an event name could mean two different things, say which one. For example, `completed_project` could mean saved a draft or published. Write down which.
 - **Scope and boundaries.** Say whom an analysis applies to and where it stops. "This metric applies to self-serve accounts, not enterprise" prevents an answer that's technically correct for the wrong segment.
 - **Restraint on anything that goes stale.** Live usage numbers, like query volume and dashboard counts, feel like context but age out fast. Include a number only if it's genuinely load-bearing for how an answer gets built, not because it makes the context feel more complete.
 - **Description, not direction.** Business context works best as facts about your business, not instructions for how the AI should behave. Something like "our north star metric is X" is reliable. Something like "always respond in three bullet points" isn't guaranteed to be followed, and isn't what this field is for. If you want to shape how an assistant responds, that's a prompting or settings question, not a context question.
@@ -38,7 +38,7 @@ Business context works at two levels, and they're not interchangeable.
 
 #### Organization context
 
-**Organization context** applies to every project and is shared across your whole team. [Only organization admins can edit it](/docs/business-context#edit-organization-context); everyone with access can read it.
+**Organization context** applies to all of your projects and is shared across your whole team. [Only organization admins can edit it](/docs/business-context#edit-organization-context); everyone with access can read it.
 
 Think of it as what any AI assistant should know about your business no matter which one of your Mixpanel projects it's working in: the big picture that doesn't change from one project to the next. It ideally covers:
 
@@ -74,7 +74,6 @@ Project context covers:
 You can write business context two ways:
 
 1. **Mixpanel UI**: Go to either of the following locations and use the textbox to edit it directly.
-
    1. Settings → Org → AI Settings → Company Context
    2. Settings → Project → AI Settings → Project Context
 2. **Mixpanel MCP**: If you're already connected through MCP, ask your AI assistant to update it for you, in the same conversation you're already having.
@@ -91,15 +90,15 @@ The MCP path is often faster once you're mid-conversation and realize the assist
 
 ### Worked examples
 
-Here's what dense context looks like in practice. This is a composite example, not real customers' actual context, but it's built to the same level of specificity you should aim for.
+Here's what dense context looks like in practice. These are composite examples, not real customers' actual context, but each is built to the same level of specificity you should aim for.
 
-The specific metrics, event names, and terminology are illustrative, and only your own context will actually match your data.
+Pick the tab closest to your business as a reference point, not something to copy in directly. The specific metrics, event names, and terminology are illustrative, and only your own context will actually match your data.
 
 <Tabs>
   <Tab title="E-commerce / Subscription">
     **Organization context**
 
-    ```text
+    ```text wrap
     ## Business Overview
     B2C e-commerce retailer selling pet supplies.
     
@@ -121,14 +120,14 @@ The specific metrics, event names, and terminology are illustrative, and only yo
 
     **Project context**
 
-    ```text
+    ```text wrap
     ## Product Overview
     This project tracks the pet supplies shopping funnel, account registration, and the subscription program lifecycle. Order data comes from both storefront clickstream and the order management system (OMS).
     
     ## Event Taxonomy
     - Order data arrives from two sources, storefront clickstream and OMS, with each source using a different event name for the same action. A custom event, "Order Placed", combines them so you can analyze orders from both sources together under one name instead of running separate queries for each raw event.
     - Naming convention: Title Case for events (e.g. "Product Added to Cart"), not snake_case.
-    - Verb-Noun pattern is standard ("Registration Succeeded", not "Registration").
+    - Noun-Verb pattern is standard ("Registration Succeeded", not "Registration").
     
     ## Property Conventions
     - Subscription status lives on the user profile, not the event (property: current_subscription_status).
@@ -146,15 +145,111 @@ The specific metrics, event names, and terminology are illustrative, and only yo
     - Legacy notification events (email/SMS delivery telemetry) are in the schema but not used in current reporting. Their presence doesn't mean they're relevant. Ignore them unless someone specifically asks about email or SMS delivery.
     ```
   </Tab>
+  <Tab title="B2B SaaS">
+    **Organization context**
+
+    ```text wrap
+    ## Business Overview
+    B2B SaaS platform serving individual users through enterprise organizations.
+    
+    ## Business Model
+    Usage-based and tiered subscription revenue, spanning free-tier individual use through paid enterprise contracts.
+    
+    ## North Star Metric
+    Org Activation Rate = % of newly registered organizations that reach paid-tier usage within 30 days of signup.
+    
+    ## Customer Segments
+    - Individual users (free tier) vs. paid organizations
+    - Segmented by firmographic data (company size, industry) enriched from CRM systems, not just in-product behavior
+    
+    ## Internal Acronyms
+    - "Org" = the top-level account entity in the product, encompassing multiple users or teams, distinct from an individual user
+    ```
+
+    **Project context**
+
+    ```text wrap
+    ## Product Overview
+    This project tracks the organization lifecycle, from registration through initial product setup and ongoing usage across web and integrated third-party tools.
+    
+    ## Event Taxonomy
+    - Event data comes from two sources: client-side web tracking and a periodic data warehouse sync. If a question needs near-real-time data, check whether the relevant event is warehouse-sourced first, since batch syncs run on a delay. Warehouse-sourced events carry a data_source: warehouse property.
+    - Naming convention: Title Case is standard for events (e.g. "Account Created"), with a strong Noun-Verb pattern.
+    - Group Analytics is enabled and used for organization-level reporting, since most business questions are about org-level behavior, not individual user behavior.
+    
+    ## Property Conventions
+    - Customer properties are enriched with CRM and firmographic data (company size, industry), not just tracked in-product behavior, since org segmentation depends heavily on company-level context.
+    - An event property named bot_traffic marks non-human traffic, separate from any user-agent or behavior-based heuristic. Exclude events where bot_traffic is true from any analysis of real user behavior, unless the question is specifically about bots.
+    - Marketing and channel attribution relies on UTM properties.
+    
+    ## Key Dashboards
+    The "Org Activation Funnel" dashboard is the source of truth for how organizations move from registration to their first paid action.
+    
+    ## Team Norms
+    - "Active organization" = at least one user at the organization took a core product action (e.g. created an item, invited a teammate, completed a workflow step) in at least 3 of the past 4 weeks. Recurring engagement is what distinguishes an active org from a dormant one.
+    
+    ## Operating Procedures
+    - Use Group Analytics for any question about organization behavior; individual user-level analysis undercounts activity for accounts with multiple team members.
+    - Prefer verified events and metrics over raw equivalents when both exist, since raw versions haven't been vetted for accuracy.
+    ```
+  </Tab>
+  <Tab title="QSR / Multi-channel Ordering">
+    **Organization context**
+
+    ```text wrap
+    ## Business Overview
+    Quick-service restaurant (QSR) chain with ordering available across mobile app, web, and in-store kiosk.
+    
+    ## Business Model
+    Revenue from food and beverage purchases made across multiple ordering channels rather than one primary channel.
+    
+    ## North Star Metric
+    Cross-Channel Order Conversion Rate = % of sessions across app, web, or kiosk that result in a completed purchase within that same session.
+    
+    ## Customer Segments
+    - Channel used to order: app vs. web vs. in-store kiosk
+    - Repeat purchasers vs. first-time or occasional purchasers
+    
+    ## Internal Acronyms
+    - "AOV" = Average Order Value, used alongside standard revenue-per-user metrics as a core financial measure
+    ```
+
+    **Project context**
+
+    ```text wrap
+    ## Product Overview
+    This project tracks the ordering funnel across three channels: app (iOS and Android), web, and in-store kiosk. Data is a mix of user-driven ordering actions and system-level telemetry, such as errors and login issues.
+    
+    ## Event Taxonomy
+    - Checkout funnel events use short, snake_case step names (e.g. cart_viewed, checkout_started), unlike the curated Metrics and Formulas layer, which uses Title Case.
+    - A small number of saved metrics and formulas are treated as the source of truth for core funnel reporting, rather than raw event queries.
+    
+    ## Property Conventions
+    - A property named order_source (values: app, web, or kiosk) identifies which ordering channel a purchase event originated from. Break down by this property when comparing channel performance, since a single event name can represent purchases from more than one channel.
+    - Marketing-driven sessions are flagged separately from organic ones, so campaign performance isn't conflated with unpaid engagement when reporting on channel performance.
+    
+    ## Key Dashboards
+    - The "Order Funnel Overview" dashboard is the source of truth for overall conversion, covering app, web, and kiosk together, not one platform in isolation.
+    - A dedicated "In-Store Ordering" dashboard tracks the in-store flow specifically, since kiosk behavior (queue time, order errors) differs enough from app and web to need its own view.
+    
+    ## Team Norms
+    - "Repeat purchaser" = 4 or more completed orders within a 90-day window, evaluated per customer across all channels, not per channel.
+    - Login errors and failed checkout attempts are tracked as a standing reliability signal. Check these first when conversion drops, not just when someone reports an outage.
+    
+    ## Operating Procedures
+    - Use the "Order Funnel Conversion" metric for any conversion reporting; rebuilding from raw events risks missing the cross-channel unification these metrics already handle.
+    - Always exclude marketing-attributed sessions before assessing organic engagement, since campaign-driven traffic is tracked separately for this reason.
+    ```
+  </Tab>
 </Tabs>
 
-Notice what's absent from the finished example: no counts of active users or team members, no query volumes, no dashboard counts. Everything here is something an AI assistant would otherwise have to guess at, and nothing here goes stale on its own.
+Notice what's absent from the finished examples: no counts of active users or team members, no query volumes, no dashboard counts. Everything here is something an AI assistant would otherwise have to guess at, and nothing here goes stale on its own.
 
 ### Common mistakes
 
 Most of what goes wrong with business context isn't a formatting mistake. It's writing context as if it's a one-time setup task instead of something that needs upkeep, or mistaking a copy of your schema for something an AI assistant actually needed to be told.
 
-- **Writing context once and never touching it again.** Context should change when your taxonomy changes, not just when someone remembers it exists.
+- **Writing context once and never touching it again.** Context should change when your taxonomy or strategy change, not just when someone remembers it exists.
 - **Copying schema instead of explaining it.** An AI tool connected through MCP can already see your schema in Lexicon. Context is the part it can't infer, such as how your team defines the terms it uses internally, and who or what those terms actually apply to.
 - **Trying to document every event in business context.** As your event and property list grows, documenting each one individually will burn through the character limit fast, and that level of detail belongs in Lexicon event descriptions instead, which Mixpanel AI surfaces also read.
 - **Trying to control behavior through context.** Writing instructions like "always summarize in three bullet points" isn't what this field is for and isn't guaranteed to work.
@@ -179,4 +274,4 @@ This guide covers business context specifically. These are separate, complementa
 - Updates through Settings or MCP always fully replace what was there. Fetch the current context before making a change.
 - Revisit context whenever something it describes changes, whether that's your event taxonomy, your customer segments, or how the business measures success. Stale context can be worse than none.
 
-Not sure which surface fits your team? Compare [Mixpanel Agent](/docs/mixpanel-agent), [MCP](/docs/mcp), and [Headless](/docs/mixpanel-headless) to see which one matches how you work, and then start to use it with your updated context.
+Not sure which tool fits your team? Compare [Mixpanel Agent](/docs/mixpanel-agent), [MCP](/docs/mcp), and [Headless](/docs/mixpanel-headless) to see which one matches how you work, and then start to use it with your updated context.
