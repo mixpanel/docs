@@ -540,7 +540,19 @@ To enable this, open the **Experiment Event Format** settings and set **Experime
 }
 ```
 
-**List (Ordered values):** experiments and their variants are recorded as ordered values rather than as key-value pairs. This format is also available when "Experiments in each Exposure Event" is set to "More than one" — configure its exact shape in the **Experiment Event Format** settings, which define the structure Mixpanel expects.
+**List (Ordered values):** experiments are recorded as an ordered array under a single list property (default key `Experiments`), where each entry pairs the experiment key with its variant key joined by a configurable **String Separator** (default `:`), i.e. `[Experiment Key]:[Variant Key]`:
+
+```json
+{
+  "event": "$experiment_started",
+  "properties": {
+    "Experiments": [
+      "[Experiment Key]:[Variant Key]",
+      "[Another Experiment Key]:[Another Variant Key]"
+    ]
+  }
+}
+```
 
 ### When to track an exposure event? 
 - An exposure event  ONLY needs to be sent the first time a user is exposed to an experiment, as long as the user is always in the initial bucketed variant. Exposure events don’t have to be sent subsequently in new sessions.
