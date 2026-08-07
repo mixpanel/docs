@@ -522,6 +522,26 @@ You can specify the event and property that should be used as the exposure event
 ![image](/images/exp_settings_rescale.png)
 </Frame>
 
+#### Sending multiple experiments in a single exposure event
+
+By default, each `$experiment_started` event records a single experiment and its variant. If a user is exposed to several experiments at the same time, you can instead record all of them on one exposure event, rather than sending a separate event per experiment.
+
+To enable this, open the **Experiment Event Format** settings and set **Experiments in each Exposure Event** to **More than one**. When you do, the **Experiment and Variant format** options change from "Separate values"/"Combined value" to **Dictionary (Key-value pairs)** or **List (Ordered values)**. The exposure event name stays `$experiment_started` in every case.
+
+**Dictionary (Key-value pairs):** each experiment key becomes a property key on the event, and its value is the variant key the user was bucketed into for that experiment:
+
+```json
+{
+  "event": "$experiment_started",
+  "properties": {
+    "[Experiment Key]": "[Variant Key]",
+    "[Another Experiment Key]": "[Another Variant Key]"
+  }
+}
+```
+
+**List (Ordered values):** experiments and their variants are recorded as ordered values rather than as key-value pairs. This format is also available when "Experiments in each Exposure Event" is set to "More than one" — configure its exact shape in the **Experiment Event Format** settings, which define the structure Mixpanel expects.
+
 ### When to track an exposure event? 
 - An exposure event  ONLY needs to be sent the first time a user is exposed to an experiment, as long as the user is always in the initial bucketed variant. Exposure events don’t have to be sent subsequently in new sessions.
 - If a user is part of multiple experiments, send a corresponding exposure event for each experiment.
