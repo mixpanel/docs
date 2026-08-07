@@ -544,7 +544,7 @@ To enable this, open the **Experiment Event Format** settings and set **Experime
 
 ### When to track an exposure event? 
 - An exposure event  ONLY needs to be sent the first time a user is exposed to an experiment, as long as the user is always in the initial bucketed variant. Exposure events don’t have to be sent subsequently in new sessions.
-- If a user is part of multiple experiments, send a corresponding exposure event for each experiment.
+- If a user is part of multiple experiments, by default send a separate exposure event for each experiment. Alternatively, if you set **Experiments in each Exposure Event** to **More than one** in the **Experiment Event Format** settings, you can record all of a user's experiments on a single exposure event (see "Sending multiple experiments in a single exposure event" above).
 - Send exposure event only when a user is actually exposed, not at the start of a session.
     
     For example, if you want to run an experiment on the payment page of a ride-sharing app, you only really care about users who open the app, book a ride, and then reach the payment page. Users who only open the app and do other activities shouldn't be considered in the sample size. So exposure event should ideally be implemented to track only once the payment page is reached. 
