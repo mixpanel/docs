@@ -1,10 +1,4 @@
 {
-  "api": {
-    "params": {
-      "expand": "all",
-      "post": ["x-required-roles"]
-    }
-  },
   "$schema": "https://mintlify.com/docs.json",
   "theme": "sequoia",
   "name": "Mixpanel",
@@ -1218,7 +1212,11 @@
             ]
           },
           {
-            "group": "Platform API",
+            "group": "AUDIT LOG API",
+            "openapi": "reference/query-organization-audit-logs"
+          },
+          {
+            "group": "PLATFORM API",
             "openapi": "openapi/platform.openapi.json"
           }
         ]
