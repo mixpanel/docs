@@ -118,6 +118,19 @@ We support the following types of Flags:
     - Runtime Properties are **not** limited to device or platform values. They can be any attribute your frontend or app supplies at request time — for example, `platform`, `path`, `country`, or a custom value like `organization_id`. This makes them the right tool for **immediate**, per-request targeting, such as organization- or account-based targeting where you need decisions to take effect right away. If a periodic cohort refresh (approximately every 2 hours) is acceptable, [group cohort targeting](#rollout-groups) is an alternative approach for org/account-based use cases.
     - These attributes should be passed to the SDK in the `context` / `custom_properties` parameter at the time the flag is evaluated.
 
+    #### Data types for runtime values
+
+    Each condition has a **Data Type** that controls how Mixpanel interprets and compares the value. The value your application sends at request time (in `context` / `custom_properties`) must be in the format expected for the chosen data type. If the value can't be parsed as that type, the condition will not match. The operators available in the condition adjust automatically to the selected data type.
+
+    | Data Type | What your app should send | Matching behavior |
+    | --- | --- | --- |
+    | **String** (default) | A string, e.g. `"enterprise"` | Case-insensitive string match. Operators: `is`, `is not`, `contains`, `in`, `<`, `<=`, `>`, `>=` |
+    | **Number** | A number, e.g. `42` | Numeric comparison. Operators: `is`, `is not`, `<`, `<=`, `>`, `>=` |
+    | **True/False** | A boolean, `true` or `false` | Boolean match. Operators: `is True`, `is False` |
+
+    - **Lists**: if the value your app sends is a list, you can require that **any** or **all** elements satisfy the condition. Each element is compared using the element's data type according to the rules above.
+    - **Fuzzy** is a legacy, case-insensitive loose-match type retained for conditions authored before typed matching existed (for example, `"5"` matches `5`, and `"1"` matches `true`). It is not offered when creating new conditions. Prefer an explicit data type instead.
+
     <Note>
       **Runtime Property** (targeting based on values your app _sends_ in the request context) is distinct from **Runtime Event** (targeting based on Mixpanel events the user _triggers_ via `mixpanel.track()`). See the section below for details on Runtime Event filters.
     </Note>
