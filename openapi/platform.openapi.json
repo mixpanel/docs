@@ -24,6 +24,13 @@
       "post": {
         "operationId": "query_organization_audit_logs",
         "summary": "Query Organization Audit Logs",
+        "x-mint": {
+          "content": "test-content",
+          "href": "test-href",
+          "metadata": {
+            "description": "test-metadata-description"
+          }
+        },
         "parameters": [
           {
             "in": "query",
@@ -117,9 +124,6 @@
           }
         },
         "description": "Query an organization's audit logs.",
-        "x-mint": {
-          "content": "<small><Icon icon=\"lock\" size={14} /> [Roles](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions) <Badge color=\"gray\" size=\"sm\">Owner</Badge> <Badge color=\"gray\" size=\"sm\">Admin</Badge></small>"
-        },
         "tags": [
           "Organizations",
           "Audit Log"
