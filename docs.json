@@ -4762,5 +4762,9 @@
       "source": "/guides/strategic-playbooks/onboarding-playbook/beyond-onboarding",
       "destination":"/guides/strategic-playbooks/onboarding-playbook"
     }
-  ]
+  ],
+  "api": {
+    "expanded": "all",
+    "post": ["x-required-roles"]
+  }
 }
