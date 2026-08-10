@@ -273,6 +273,10 @@ Note: AWS does not support granular resources when granting Glue access. So you 
   ![image](/images/230698416-039e4357-f8f3-4c9a-bba9-c6b0a16311b6.png)
 </Frame>
 
+<Warning>
+  If your Glue Data Catalog is governed by [AWS Lake Formation](https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html), the IAM policy above is not sufficient on its own. Also grant the Mixpanel Glue role `CREATE_TABLE` (and a **Data location** permission on your registered S3 path) at the Glue **database** level in Lake Formation, not only on the table — Mixpanel may recreate the table, and missing database-level grants cause `AccessDeniedException: Insufficient Lake Formation permission(s)`.
+</Warning>
+
 ##### Configuring Table Partitions in Glue
 
 Mixpanel partitions the Glue table by default if it has the proper AWS permissions. The partition key type and name are `string` and `mp_date` respectively and the partition values are dates in the project timezone e.g. `2021-02-03`. To enable partitioning in Glue, the Glue Data Modification Policy must include the following actions:
