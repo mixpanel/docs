@@ -1,4 +1,10 @@
 {
+  "api": {
+    "params": {
+      "expand": "all",
+      "post": ["x-required-roles"]
+    }
+  },
   "$schema": "https://mintlify.com/docs.json",
   "theme": "sequoia",
   "name": "Mixpanel",
