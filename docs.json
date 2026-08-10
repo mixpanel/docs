@@ -1212,13 +1212,12 @@
             ]
           },
           {
-            "group": "AUDIT LOG API",
-            "pages": [
-              "reference/query-organization-audit-logs"
-            ]
+            "group": "Platform API",
+            "openapi": "openapi/platform.openapi.json"
           }
         ]
       }
+    
     ],
     "global": {
       "anchors": [
