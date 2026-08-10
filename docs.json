@@ -4764,7 +4764,9 @@
     }
   ],
   "api": {
-    "expanded": "all",
-    "post": ["x-required-roles"]
+    "params": {
+      "expanded": "all",
+      "post": ["x-required-roles"]
+    }
   }
 }
