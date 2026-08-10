@@ -1213,7 +1213,7 @@
           },
           {
             "group": "AUDIT LOG API",
-            "openapi": "reference/query-organization-audit-logs"
+            "pages": ["reference/query-organization-audit-logs"]
           },
           {
             "group": "PLATFORM API",
