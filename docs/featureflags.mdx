@@ -122,13 +122,13 @@ We support the following types of Flags:
 
     Each condition has a **Data Type** that controls how Mixpanel interprets and compares the value. The value your application sends at request time (in the `custom_properties` object) must be in the format expected for the chosen data type. If the value can't be parsed as that type, the condition will not match. The operators available in the condition adjust automatically to the selected data type.
 
-    | Data Type | What your app should send | How it matches | Operators |
-    | --- | --- | --- | --- |
-    | **String** | A string, e.g. `"enterprise"` | Case-insensitive text match for all operators. Ordered comparisons such as Greater Than, Greater than or equal to, Less than, or Less than or equal to compare strings in lexicographical order.| <ul><li>Is</li><li>Is not</li><li>Contains</li><li>In</li><li>Greater than</li><li>Greater than or equal to</li><li>Less than</li><li>Less than or equal to</li></ul> |
-    | **Number** | A number, e.g. `42` | Numeric comparison. | <ul><li>Is</li><li>Is not</li><li>Greater than</li><li>Greater than or equal to</li><li>Less than</li><li>Less than or equal to</li></ul> |
-    | **True/False** | A boolean, `true` or `false` | Boolean match | <ul><li>is True</li><li>is False</li></ul> |
-    | **List** | A list of values, e.g. `["a", "b"]` | Requires any or all elements to satisfy the condition. Each element is compared using its own data type, following that type's rules above. | <ul><li>any</li><li>all</li></ul> |
-    | **Fuzzy** | Any primitive value | Case-insensitive loose match that coerces across types before comparing, so `"5"` matches `5` and `"1"` matches `true`. | <ul><li>Is</li></ul> |
+| Data Type | What your app should send | How it matches | Operators |
+| --- | --- | --- | --- |
+| **String** | A string, e.g. `"enterprise"` | Case-insensitive text match for all operators. Ordered comparisons such as Greater Than, Greater than or equal to, Less than, or Less than or equal to compare strings in lexicographical order.| <ul><li>Is</li><li>Is not</li><li>Contains</li><li>In</li><li>Greater than</li><li>Greater than or equal to</li><li>Less than</li><li>Less than or equal to</li></ul> |
+| **Number** | An integer or floating point number, e.g. `42`, `23.54` | Numeric comparison. | <ul><li>Is</li><li>Is not</li><li>Greater than</li><li>Greater than or equal to</li><li>Less than</li><li>Less than or equal to</li></ul> |
+| **True/False** | A boolean, `true` or `false` | Boolean match | <ul><li>is True</li><li>is False</li></ul> |
+| **List** | A list of values, e.g. `["a", "b"]` | Requires any or all elements to satisfy the condition. Each element is compared using its own data type, following that type's rules above. | <ul><li>any</li><li>all</li></ul> |
+| **Fuzzy** | Any primitive value | Case-insensitive loose match that coerces across types before comparing, so `"5"` matches `5` and `"1"` matches `true`. | <ul><li>Is</li></ul> |
 
     <Note>
       **Runtime Property** (targeting based on values your app _sends_ in the request context) is distinct from **Runtime Event** (targeting based on Mixpanel events the user _triggers_ via `mixpanel.track()`). See the section below for details on Runtime Event filters.
