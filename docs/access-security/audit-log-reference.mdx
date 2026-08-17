@@ -2,6 +2,11 @@
 title: Audit Log Reference
 ---
 
+{/*
+  This page is automatically generated and kept in sync — do not edit it directly, as
+  any changes will be overwritten.
+*/}
+
 Mixpanel's Audit Log tracks activity within your organization and projects, providing visibility into who made changes, when they occurred, and what was modified. This page is the authoritative catalog of every event type the Audit Log records.
 
 For an overview of the Audit Log — how to access it in the UI, retention by plan, the CSV export workflow, and FAQ — see the [Audit Log overview](/docs/access-security/audit-log).
@@ -98,6 +103,7 @@ The events Mixpanel records are listed below. The **Available Since** date on ea
 | `profile.batch_deleted` | Profiles Batch Deleted | A batch of user profiles were removed. Only tracked when initiated through the Mixpanel web application. API calls and direct updates using the Mixpanel SDK are not currently logged. | Project and organization | May 20, 2026 |
 | `profile.batch_updated` | Profiles Batch Updated | A batch of user profiles were updated. Only tracked when initiated through the Mixpanel web application. API calls and direct updates using the Mixpanel SDK are not currently logged. | Project and organization | May 20, 2026 |
 | `property_definition.created` | Property Definition Created | A new property definition was created. | Project and organization | May 20, 2026 |
+| `property_definition.deleted` | Property Definition Deleted | A property definition was deleted. | Project and organization | July 2, 2026 |
 | `property_definition.updated` | Property Definition Updated | A property definition was modified. | Project and organization | May 20, 2026 |
 | `user_data_deletion.canceled` | User Data Deletion Canceled | A pending user data deletion request was canceled. | Project and organization | April 5, 2026 |
 | `user_data_deletion.created` | User Data Deletion Requested | A request to delete user profile data was submitted. | Project and organization | April 5, 2026 |
@@ -195,6 +201,7 @@ The events Mixpanel records are listed below. The **Available Since** date on ea
 
 | Event Type | Display Name | Description | Scope | Available Since |
 | --- | --- | --- | --- | --- |
+| `user.twofactor_disabled` | User Disabled Two-Factor Auth | A user deactivated two-factor authentication. | Organization only | August 16, 2026 |
 | `user.twofactor_enabled` | User Enabled Two-Factor Auth | A user activated two-factor authentication. | Organization only | April 5, 2026 |
 | `session.logged_in` | User Logged In | A user successfully logged into the organization. | Organization only | April 5, 2026 |
 | `session.logged_out` | User Logged Out | A user logged out of the organization. | Organization only | April 5, 2026 |

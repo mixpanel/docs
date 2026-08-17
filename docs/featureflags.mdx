@@ -32,7 +32,7 @@ sidebarTitle: "Feature Flags"
   - **Cohort Filter** - a targeting method that uses Mixpanel cohorts to target users or group entities
   - **Runtime Filter** - a targeting method that checks data available at runtime against a Runtime Property or Runtime Event
   - **Rollout %** — percentage of the audience that receives the flag if they are eligible for the rollout group
-- **Runtime Properties** — any key/value attributes your application passes in the flag-evaluation request context (`context` / `custom_properties`) at request time; the flag compares these values directly (e.g. equals / contains). They are not limited to device or platform values — any attribute your app can supply at request time, such as `organization_id`, works. Use Runtime Properties when you need **immediate**, per-request targeting on these values (e.g. organization- or account-based targeting). If periodic cohort refresh is acceptable, [group cohort targeting](#rollout-groups) is an alternative for org/account-based use cases.
+- **Runtime Properties** — any key/value attributes your application passes as properties in a `custom_properties` object nested within the flag-evaluation `context` at request time; the flag compares these values directly (e.g. equals / contains). They are not limited to device or platform values — any attribute your app can supply at request time, such as `organization_id`, works. Use Runtime Properties when you need **immediate**, per-request targeting on these values (e.g. organization- or account-based targeting). If periodic cohort refresh is acceptable, [group cohort targeting](#rollout-groups) is an alternative for org/account-based use cases.
 - **Runtime Events** — event-based targeting (e.g., user clicked button, completed purchase) used to target users immediately after they perform actions.
 - **Assignment vs Exposure** — assignment is deciding the variant; exposure is when your app **uses** that variant to render.
 - **Feature Flag API Request** - is a call made to a feature flag API to retrieve the current state or configuration of one or more feature flags. This request allows an application to dynamically determine which features should be active for a user
@@ -114,10 +114,22 @@ We support the following types of Flags:
 
     **Filter by Runtime Property**
 
-    This method enables targeting users immediately based on arbitrary key/value attributes your application sends in the flag-evaluation request context (`context` / `custom_properties`) at request time. The flag compares these values directly (e.g. equals / contains) for immediate, per-request decisions.
+    This method enables targeting users immediately based on arbitrary key/value attributes your application sends as properties in a `custom_properties` object nested within the flag-evaluation `context` at request time. The flag compares these values directly (e.g. equals / contains) for immediate, per-request decisions.
 
     - Runtime Properties are **not** limited to device or platform values. They can be any attribute your frontend or app supplies at request time — for example, `platform`, `path`, `country`, or a custom value like `organization_id`. This makes them the right tool for **immediate**, per-request targeting, such as organization- or account-based targeting where you need decisions to take effect right away. If a periodic cohort refresh (approximately every 2 hours) is acceptable, [group cohort targeting](#rollout-groups) is an alternative approach for org/account-based use cases.
-    - These attributes should be passed to the SDK in the `context` / `custom_properties` parameter at the time the flag is evaluated.
+    - These attributes should be passed to the SDK as properties in a `custom_properties` object that is a sub-node of the feature flag `context`, at the time the flag is evaluated.
+
+    #### Data types for runtime values
+
+    Each condition has a **Data Type** that controls how Mixpanel interprets and compares the value. The value your application sends at request time (in the `custom_properties` object) must be in the format expected for the chosen data type. If the value can't be parsed as that type, the condition will not match. The operators available in the condition adjust automatically to the selected data type.
+
+| Data Type | What your app should send | How it matches | Operators |
+| --- | --- | --- | --- |
+| **String** | A string, e.g. `"enterprise"` | Case-insensitive text match for all operators. Ordered comparisons such as Greater Than, Greater than or equal to, Less than, or Less than or equal to compare strings in lexicographical order.| <ul><li>Is</li><li>Is not</li><li>Contains</li><li>In</li><li>Greater than</li><li>Greater than or equal to</li><li>Less than</li><li>Less than or equal to</li></ul> |
+| **Number** | An integer or floating point number, e.g. `42`, `23.54` | Numeric comparison. | <ul><li>Is</li><li>Is not</li><li>Greater than</li><li>Greater than or equal to</li><li>Less than</li><li>Less than or equal to</li></ul> |
+| **True/False** | A boolean, `true` or `false` | Boolean match | <ul><li>is True</li><li>is False</li></ul> |
+| **List** | A list of values, e.g. `["a", "b"]` | Requires any or all elements to satisfy the condition. Each element is compared using its own data type, following that type's rules above. | <ul><li>any</li><li>all</li></ul> |
+| **Fuzzy** | Any primitive value | Case-insensitive loose match that coerces across types before comparing, so `"5"` matches `5` and `"1"` matches `true`. | <ul><li>Is</li></ul> |
 
     <Note>
       **Runtime Property** (targeting based on values your app _sends_ in the request context) is distinct from **Runtime Event** (targeting based on Mixpanel events the user _triggers_ via `mixpanel.track()`). See the section below for details on Runtime Event filters.

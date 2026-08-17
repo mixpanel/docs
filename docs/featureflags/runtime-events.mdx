@@ -89,8 +89,10 @@ To add a Runtime Event targeting rule to your feature flag:
     - Event: `Purchase` where `amount > 100` (only high-value purchases)
     - Event: `Page View` where `page_path contains '/checkout'` (only checkout views)
 
+    Each property filter has a **Data Type** (String, Number, or True/False) that controls how the event property value is compared. The value tracked on the event must be in the format expected for the chosen type, or the filter will not match. See [Data types for runtime values](/docs/featureflags#data-types-for-runtime-values) for the expected formats and operators.
+
     <Note>
-      These property filters apply to properties of the selected runtime **event** — they narrow which occurrences of the tracked event count toward activation. If you want to target based on a value your application sends at request time (for example, an `organization_id`), use a [Runtime Property](/docs/featureflags#runtime-targeting) filter instead.
+      These property filters apply to properties of the selected runtime **event**. They narrow which occurrences of the tracked event count toward activation. If you want to target based on a value your application sends at request time (for example, an `organization_id`), use a [Runtime Property](/docs/featureflags#runtime-targeting) filter instead.
     </Note>
   </Step>
   <Step title="Assign Variants">
