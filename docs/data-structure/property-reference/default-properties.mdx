@@ -34,7 +34,7 @@ Do note that Mixpanel's default user properties are only updated when you send o
 | \$city | City | The city of the user parsed from the IP property or the Latitude and Longitude properties. |
 | \$region | Region | The region (state or province) of the user parsed from the IP property or the Latitude and Longitude properties. |
 | \$country\_code | Country Code | The country of the user parsed from the IP property or the Latitude and Longitude properties. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI. |
-| \$geo\_source | Geo Source | Set to "reverse\_geocoding" if profile geolocation properties (Country Code, Region, and City) were determined through [Latitude and Longitude](/docs/tracking-best-practices/server-side-best-practices#tracking-geolocation-latitude-and-longitude). |
+| \$geo\_source | Geo Source | Set to "reverse\_geocoding" if profile geolocation properties (Country Code, Region, and City) were determined through [Latitude and Longitude](/docs/tracking-best-practices/server-side-best-practices#tracking-geolocation-server-side). |
 | \$timezone | Timezone | Timezone of the user parsed from the IP property or the Latitude and Longitude properties. |
 | \$last\_seen | Updated at | The last time a user profile property was set or updated **(this should not be set manually)**. Passing `$ignore_time` as `true`, typically for server-side updates, will skip updating the \$last\_seen property. See example [here](/docs/tracking-methods/sdks/php#setting-profile-properties). |
 

@@ -1771,11 +1771,11 @@
     },
     {
       "source": "/docs/best-practices/analytics-strategy",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/framework"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/docs/best-practices/analytics-strategy/overview",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/framework"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/docs/best-practices/analytics-strategy/retention",
@@ -2127,7 +2127,7 @@
     },
     {
       "source": "/docs/other-bits/tutorials/analytics-strategy",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/framework"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/docs/other-bits/tutorials/creating-a-tracking-plan",
@@ -2595,7 +2595,7 @@
     },
     {
       "source": "/docs/tutorials/analytics-strategy",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/framework"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/docs/tutorials/beyond-onboarding",
@@ -2607,15 +2607,15 @@
     },
     {
       "source": "/docs/tutorials/implement/establish-governance",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/establish-governance"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/docs/tutorials/implement/qa-data-audit",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/qa-data-audit"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/docs/tutorials/implement/send-your-data",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/send-your-data"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/docs/tutorials/launch/analyze-conversions",
@@ -2663,15 +2663,15 @@
     },
     {
       "source": "/docs/tutorials/plan/framework",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/framework"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/docs/tutorials/plan/setup",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/setup"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/docs/tutorials/plan/tracking-strategy",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/tracking-strategy"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/docs/users/overview",
@@ -2739,7 +2739,7 @@
     },
     {
       "source": "/guides/analytics-strategy",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/framework"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/onboarding-overview",
@@ -2747,27 +2747,27 @@
     },
     {
       "source": "/guides/plan/setup",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/setup"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/plan/framework",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/framework"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/plan/tracking-strategy",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/tracking-strategy"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/implement/send-your-data",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/send-your-data"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/implement/qa-data-audit",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/qa-data-audit"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/implement/establish-governance",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/establish-governance"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/launch/create-boards",
