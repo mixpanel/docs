@@ -24,32 +24,29 @@ import re
 
 EXCLUDED_DIRS = {"snippets", "openapi"}
 
-# Matches the opening fence of a code block; captures the language (may be empty).
-# The fence may be indented (e.g. inside a <Tab>).
-FENCE_OPEN_RE = re.compile(r"^[ \t]*`{3,}([^\n`]*)$", re.MULTILINE)
-
-
-def check_file(path: str) -> list[str]:
+def check_file(path: str, display: str) -> list[str]:
     errors = []
     with open(path, encoding="utf-8") as fh:
         content = fh.read()
 
-    in_block = False
+    fence_len = 0  # 0 = outside a block; otherwise the opening fence's length
     for lineno, line in enumerate(content.splitlines(), 1):
         stripped = line.strip()
-        if stripped.startswith("```"):
-            if in_block:
-                # Closing fence
-                in_block = False
-            else:
-                # Opening fence — extract language token
-                rest = stripped[3:].strip()
-                lang = rest.split()[0] if rest else ""
-                if not lang:
-                    errors.append(
-                        f"{path}:{lineno}: code block is missing a language identifier"
-                    )
-                in_block = True
+        if not stripped.startswith("```"):
+            continue
+        ticks = len(stripped) - len(stripped.lstrip("`"))
+        rest = stripped[ticks:].strip()
+        if fence_len:
+            # Only a bare fence at least as long as the opener closes the block,
+            # so a ```python block nested inside ````mdx does not end it early.
+            if ticks >= fence_len and not rest:
+                fence_len = 0
+            continue
+        if not rest:
+            errors.append(
+                f"{display}:{lineno}: code block is missing a language identifier"
+            )
+        fence_len = ticks
 
     return errors
 
@@ -69,7 +66,7 @@ def main() -> int:
         rel = os.path.relpath(path, root)
         if is_excluded(rel):
             continue
-        all_errors.extend(check_file(path))
+        all_errors.extend(check_file(path, rel))
         checked += 1
 
     if all_errors:

@@ -4,12 +4,15 @@ CI gate: validate the 'redirects' section of docs.json.
 
 Checks performed:
   1. No duplicate redirect source paths.
-  2. Every redirect destination resolves to an existing page OR is itself
-     the source of another redirect (chained redirects are allowed).
+  2. No redirect loops (a self-redirect or a cycle).
+  3. Every redirect destination resolves to an existing page OR is itself
+     the source of another redirect, including a wildcard one (chained
+     redirects are allowed).
      Wildcard destinations (containing '*') are skipped because their
      validity is structural rather than path-based.
 """
 
+import fnmatch
 import json
 import os
 import sys
@@ -59,9 +62,35 @@ def main() -> int:
     for dup in sorted(duplicates):
         all_errors.append(f"docs.json: duplicate redirect source '{dup}'")
 
-    # ── 2. Destinations resolve to a known page or another redirect source ──
+    # ── 2. Redirect loops (self-redirects and cycles) ───────────────────────
+    dest_by_source = {r.get("source", ""): r.get("destination", "") for r in redirects}
+    reported_loops: set[str] = set()
+    for start in dest_by_source:
+        hops = {start}
+        node = dest_by_source[start]
+        while node in dest_by_source:
+            if node in hops:
+                if node not in reported_loops:
+                    reported_loops.add(node)
+                    all_errors.append(
+                        f"docs.json: redirect loop starting at '{start}' revisits '{node}'"
+                    )
+                break
+            hops.add(node)
+            node = dest_by_source[node]
+
+    # ── 3. Destinations resolve to a known page or another redirect source ──
     file_paths = build_file_paths(root)
-    source_set = set(sources)  # redirect sources are also valid destinations
+    exact_sources = {s for s in sources if "*" not in s}
+    wildcard_sources = [s for s in sources if "*" in s]
+
+    def resolves(path: str) -> bool:
+        """A destination is valid if it is a real page, an exact redirect
+        source, or matched by a wildcard redirect source. The last case is a
+        chained redirect, which the CDN follows to a final landing page."""
+        if path in file_paths or path in exact_sources:
+            return True
+        return any(fnmatch.fnmatch(path, pat) for pat in wildcard_sources)
 
     for redir in redirects:
         dest = redir.get("destination", "")
@@ -78,7 +107,7 @@ def main() -> int:
         # Strip anchors and query strings from destination
         dest_path = normalise(dest.split("#")[0])
 
-        if dest_path not in file_paths and dest_path not in source_set:
+        if not resolves(dest_path):
             all_errors.append(
                 f"docs.json: redirect destination '{dest}' does not resolve "
                 f"to a known page (source: '{redir.get('source')}')"

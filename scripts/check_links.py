@@ -42,6 +42,30 @@ HREF_RE = re.compile(r"""href=["']([^"']+)["']""")
 MD_LINK_RE = re.compile(r"(?<!!)\[(?:[^\]]*)\]\(([^)]+)\)")
 
 
+INLINE_CODE_RE = re.compile(r"`[^`\n]*`")
+
+
+def strip_code(content: str) -> str:
+    """Blank out fenced code blocks and inline code spans so that example
+    links inside them are not treated as real links. Line count is preserved
+    so reported line numbers stay accurate."""
+    out: list[str] = []
+    fence_len = 0
+    for line in content.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            ticks = len(stripped) - len(stripped.lstrip("`"))
+            if fence_len:
+                if ticks >= fence_len and not stripped[ticks:].strip():
+                    fence_len = 0
+            else:
+                fence_len = ticks
+            out.append("")
+            continue
+        out.append("" if fence_len else INLINE_CODE_RE.sub("", line))
+    return "\n".join(out)
+
+
 def extract_links(content: str) -> list[str]:
     links: list[str] = []
     for m in HREF_RE.finditer(content):
@@ -129,7 +153,7 @@ def main() -> int:
         checked += 1
 
         with open(path, encoding="utf-8") as fh:
-            content = fh.read()
+            content = strip_code(fh.read())
 
         for raw_link in extract_links(content):
             if not is_internal(raw_link):

@@ -29,8 +29,11 @@ def check_file(path: str) -> list[str]:
         return errors
 
     fm = m.group(1)
-    if not re.search(r"^\s*title\s*:", fm, re.MULTILINE):
+    title_match = re.search(r"^\s*title\s*:\s*(.*)$", fm, re.MULTILINE)
+    if not title_match:
         errors.append(f"{path}: front-matter is missing required 'title' field")
+    elif not title_match.group(1).strip().strip("\"'"):
+        errors.append(f"{path}: front-matter 'title' is empty")
 
     return errors
 
