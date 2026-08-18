@@ -194,7 +194,6 @@
                     "group": "Warehouse Connectors",
                     "root": "docs/tracking-methods/warehouse-connectors",
                     "pages": [
-                      "docs/tracking-methods/warehouse-connectors",
                       "docs/tracking-methods/warehouse-connectors/bigquery",
                       "docs/tracking-methods/warehouse-connectors/snowflake",
                       "docs/tracking-methods/warehouse-connectors/databricks",
