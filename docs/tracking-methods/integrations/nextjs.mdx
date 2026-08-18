@@ -31,8 +31,12 @@ import { dataItems } from "/snippets/utils/constants.mdx";
        console.warn('Mixpanel token is missing! Check your .env file.');
        return;
      }
-    
+
      mixpanel.init(MIXPANEL_TOKEN, { autocapture: true });
+   }
+
+   export const trackPageView = (url) => {
+     mixpanel.track('Page View', { url });
    }
    ```
 4. Initialize Mixpanel in your Next.js application
@@ -89,7 +93,7 @@ import { dataItems } from "/snippets/utils/constants.mdx";
    Next, open or create the file `layout.js` or `layout.tsx` in your app/ directory and wrap the body component with the MixpanelProvider.
 
    ```javascript
-   import { MixpanelProvider } from '../components/MixpanelProvider';
+   import MixpanelProvider from '../components/MixpanelProvider';
 
    export default function RootLayout({ children }) {
 
