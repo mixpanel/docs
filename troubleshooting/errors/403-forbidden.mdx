@@ -1,68 +1,43 @@
 ---
-title: "403 Forbidden"
-description: "Troubleshoot 403 Forbidden errors from the Mixpanel API"
+title: 403 Forbidden
+description: "Which Mixpanel ingestion endpoints return a 403, what the response looks like, and how it differs from a 401"
 ---
 
-A **403 Forbidden** response from the Mixpanel API means that your credentials were recognized but you do not have permission to perform the requested action. Unlike a [401 Unauthorized](/troubleshooting/errors/401-unauthorized) error, a 403 confirms your identity — it just means you are not allowed to do what you are trying to do.
+A 403 means Mixpanel recognized the request but refused it. Among the ingestion endpoints, only `/track`, `/engage`, and `/groups` return a 403.
 
-## Common Causes
+<Note>
+  `/import` does not return a 403. It responds with 200, 400, 401, 413, or 429. If you are debugging an `/import` failure, see [401 Unauthorized](/troubleshooting/errors/401-unauthorized) for credential problems.
+</Note>
 
-### Service Account Lacks Required Role
+## What the Response Looks Like
 
-If you are using a [Service Account](https://developer.mixpanel.com/reference/service-accounts) to make API calls, it must have the appropriate role for the operation:
+```json
+{
+  "error": "...",
+  "status": "error"
+}
+```
 
-| Operation | Minimum Required Role |
-|---|---|
-| Read data (query, export) | Analyst |
-| Write data (import events, update profiles) | Member |
-| Manage project settings | Admin |
+This shape differs from the other ingestion errors: there is no `code` field.
 
-To check and update Service Account roles:
+## 403 Compared to 401
 
-1. Log in to [mixpanel.com](https://mixpanel.com)
-2. Go to **Organization Settings** → **Service Accounts**
-3. Verify that the Service Account has the correct role for the project
+| Status | Meaning |
+| --- | --- |
+| 401 | Mixpanel could not authenticate the request at all — the credentials were missing, malformed, or invalid |
+| 403 | The credentials were understood, but the request is not permitted |
 
-### Using the Wrong Project's Credentials
+## How to Fix It
 
-Service Account credentials are scoped to an organization. If you are targeting a project in a different organization, or if the Service Account has not been granted access to the specific project you are calling, a 403 error will be returned.
+**Confirm the project token** belongs to the project you intend to write to. See [find your project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
 
-Confirm that the Service Account is granted access to the intended project and that you are using the correct `project_id` in your request URL.
+**Check the endpoint and host match your project's data residency.** EU and India projects use `api-eu.mixpanel.com` and `api-in.mixpanel.com`.
 
-### Attempting a Disallowed Operation
+**Enable debug mode in your SDK** to log the exact request being sent, including headers and payload. See [debugging your implementation](/docs/tracking-best-practices/debugging#enable-debug-mode).
 
-Some operations are not available on all plans. For example:
+If the request still fails with a 403 and the token is correct, [contact support](https://mixpanel.com/get-support) with the full request and response, minus the credentials.
 
-- Accessing certain query API endpoints may require a paid plan
-- Data export features may be restricted based on your subscription
+## Related
 
-Review the [Mixpanel pricing page](https://mixpanel.com/pricing/) for plan-level feature availability.
-
-### User Profile Operation on a Restricted Project
-
-For user profile endpoints (`/engage`), the project must have user profiles enabled. If profiles have been disabled in your project settings, write operations against them will return a 403 error.
-
-## How to Diagnose
-
-1. **Check the response body** — A 403 response includes an error message explaining what was denied:
-
-   ```json
-   {
-     "code": 0,
-     "error": "You do not have access to this resource."
-   }
-   ```
-
-2. **Verify Service Account permissions** — In Mixpanel's **Organization Settings**, confirm the Service Account role for the target project.
-
-3. **Check the project ID** — Ensure you are calling the API with the correct `project_id` for the project the Service Account has access to.
-
-4. **Check your plan** — Confirm that the feature you are trying to use is available on your current Mixpanel plan.
-
-## Fix
-
-1. In **Organization Settings → Service Accounts**, update the Service Account role to grant the permissions needed for the operation.
-2. If the Service Account does not have access to the project, add it via **Project Settings → Access & Permissions**.
-3. Confirm you are using the correct project credentials for the project you intend to write to or read from.
-
-For more help, see the [Debugging guide](/docs/tracking-best-practices/debugging) or the [Ingestion API reference](/reference/ingestion-api).
+- [401 Unauthorized](/troubleshooting/errors/401-unauthorized)
+- [Service Accounts](/reference/service-accounts)

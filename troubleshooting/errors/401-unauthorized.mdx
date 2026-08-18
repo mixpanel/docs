@@ -1,79 +1,67 @@
 ---
-title: "401 Unauthorized"
-description: "Troubleshoot 401 Unauthorized errors from the Mixpanel API"
+title: 401 Unauthorized
+description: "Why Mixpanel's ingestion API returns a 401, which credentials each endpoint accepts, and how regional data residency affects authentication"
 ---
 
-A **401 Unauthorized** response from the Mixpanel API means that the credentials provided in your request are missing or invalid. Mixpanel cannot authenticate the request.
+A 401 means Mixpanel could not authenticate the request. The credentials were missing, malformed, or not valid for the project you addressed.
+
+## What the Response Looks Like
+
+```json
+{
+  "code": 401,
+  "error": "Invalid credentials",
+  "status": "Unauthorized"
+}
+```
+
+## Which Credentials Each Endpoint Accepts
+
+| Endpoint | Accepted credentials |
+| --- | --- |
+| `/import` | An Owner or Admin [Service Account](/reference/service-accounts) with `project_id`, a [Project Token](/reference/project-token) as the basic-auth username with an empty password, or an OAuth token |
+| `/track`, `/engage`, `/groups` | A project token sent in the payload |
+
+<Note>
+  A bad project token on `/track` does not produce a 401. The endpoint returns `200` with a body of `1`, which confirms the payload was well-formed but says nothing about whether the token is valid. Add `?verbose=1` to get a JSON response instead, and check your project's live view to confirm events are arriving.
+</Note>
 
 ## Common Causes
 
-### Missing or Incorrect Project Token
+### Service Account Lacks the Required Role
 
-For client-side event tracking (using `/track` or `/record`), the `token` property in each event's `properties` object identifies your project. If the token is missing or wrong, events will not be associated with any project.
+`/import` requires an Owner or Admin Service Account. A Service Account with a lower role authenticates but is not permitted to import.
 
-Make sure you are using the correct project token. You can find it in your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens):
+### Missing `project_id`
 
-1. Log in to [mixpanel.com](https://mixpanel.com)
-2. Click your project name → **Project Settings**
-3. Copy the **Project Token** (not the API Secret)
+When authenticating with a Service Account, `project_id` is required. Without it, Mixpanel cannot tell which project the credentials apply to.
 
-### Incorrect Service Account Credentials
+### Wrong Regional Endpoint
 
-Server-side API calls (such as `/import`, `/engage`, or data export endpoints) use [Service Account](https://developer.mixpanel.com/reference/service-accounts) authentication via HTTP Basic Auth. The username is the Service Account username and the password is the Service Account secret.
+Projects with EU or India data residency use different hosts. Sending correct credentials to the wrong host fails, because the project does not exist there.
 
-Common mistakes:
-- Swapping the username and password
-- Using the Project Token where a Service Account username is expected
-- Using an expired or revoked Service Account secret
-- Encoding the credentials incorrectly (they must be Base64-encoded as `username:secret`)
+| Residency | Host |
+| --- | --- |
+| US | `api.mixpanel.com` |
+| EU | `api-eu.mixpanel.com` |
+| India | `api-in.mixpanel.com` |
 
-### Wrong Authentication for the Endpoint
+See [EU Residency](/docs/privacy/eu-residency) and [India Residency](/docs/privacy/in-residency).
 
-Some Mixpanel endpoints accept only specific authentication methods:
+### Malformed Basic Auth Header
 
-| Endpoint | Authentication |
-|---|---|
-| `/track`, `/record` | Project Token (in payload) |
-| `/import` | Service Account or Project Secret (Basic Auth) |
-| `/engage` (user profiles) | Project Token (in payload) or Service Account (Basic Auth) |
-| Export / Query APIs | Service Account (Basic Auth) |
+Basic auth expects a base64-encoded `username:password` pair. A common mistake is encoding only the username, or omitting the colon when the password is empty.
 
-Using the wrong authentication type for an endpoint will result in a 401 error.
+## How to Fix It
 
-### Mismatched Data Residency
+**Confirm the credential type** matches what the endpoint accepts, using the table above.
 
-If your project is hosted in the **EU** or **India** data residency region, you must send requests to the correct regional API endpoint:
+**Check the Service Account's role** at Project Settings → Service Accounts. It must be Owner or Admin for `/import`.
 
-| Region | API Base URL |
-|---|---|
-| US (default) | `https://api.mixpanel.com` |
-| EU | `https://api-eu.mixpanel.com` |
-| India | `https://api-in.mixpanel.com` |
+**Verify your project's residency** and send to the matching host.
 
-Sending authenticated requests to the wrong regional endpoint will return a 401 error because your credentials are not recognized there. Learn more about [EU Residency](/docs/privacy/eu-residency) and [India Residency](/docs/privacy/in-residency).
+## Related
 
-## How to Diagnose
-
-1. **Check the response body** — A 401 response includes an error message:
-
-   ```json
-   {
-     "code": 0,
-     "error": "Invalid credentials."
-   }
-   ```
-
-2. **Verify your credentials** — Double-check that the project token or Service Account credentials match what is shown in your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
-
-3. **Confirm the correct endpoint** — Ensure you are calling the right regional API URL for your project's data residency.
-
-4. **Test with a minimal request** — Isolate the authentication issue by sending the simplest possible valid request with the suspected credentials.
-
-## Fix
-
-1. Navigate to **Project Settings** in Mixpanel to confirm your token and credentials.
-2. Update your code or configuration with the correct credentials.
-3. If you rotated a Service Account secret, make sure all environments are updated to use the new secret.
-4. If you changed your project's data residency region, update the API base URL in your implementation.
-
-For more help, see the [Debugging guide](/docs/tracking-best-practices/debugging) or the [Ingestion API reference](/reference/ingestion-api).
+- [Service Accounts](/reference/service-accounts)
+- [403 Forbidden](/troubleshooting/errors/403-forbidden)
+- [Find your project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)

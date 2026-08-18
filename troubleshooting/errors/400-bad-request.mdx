@@ -1,99 +1,65 @@
 ---
-title: "400 Bad Request"
-description: "Troubleshoot 400 Bad Request errors from the Mixpanel API"
+title: 400 Bad Request
+description: "Why Mixpanel's /import endpoint rejects events with a 400, how to read the failed_records response, and how to correct each validation error"
 ---
 
-A **400 Bad Request** response from the Mixpanel ingestion API means that one or more records in your request failed validation. The data was received but could not be processed because it did not meet the required format or content rules.
+`/import` returns a 400 when one or more events in the batch fail validation. Mixpanel still ingests the events that passed, so a 400 is a partial success rather than a total rejection.
+
+## What the Response Looks Like
+
+With `strict=1` (recommended), the response body names every event that failed and why.
+
+```json
+{
+  "code": 400,
+  "error": "some data points in the request failed validation",
+  "status": "Bad Request",
+  "num_records_imported": 999,
+  "failed_records": [
+    {
+      "index": 0,
+      "insert_id": "13c0b661-f48b-51cd-ba54-97c5999169c0",
+      "field": "properties.time",
+      "message": "'properties.time' is invalid: must be specified as seconds since epoch"
+    }
+  ]
+}
+```
+
+`num_records_imported` tells you how many events landed. `failed_records` carries the `insert_id` of each rejected event, which is what you use to find and correct it.
 
 ## Common Causes
 
-### Missing or Invalid `distinct_id`
+### Invalid `distinct_id`
 
-Every event sent to Mixpanel must include a non-empty `distinct_id` property. This is the identifier that associates an event with a specific user or device.
+`distinct_id` identifies the user who performed the event. If an event is not associated with any user, set it to the empty string — those events are accepted, but they are excluded from all behavioral analysis.
 
-**Example of a valid event payload:**
+Mixpanel rejects a list of placeholder values that usually indicate an implementation mistake, including `anon`, `anonymous`, `nil`, `none`, `null`, `n/a`, and `00000000-0000-0000-0000-000000000000`. See [Import Events](/reference/import-events) for the full list.
 
-```json
-{
-  "event": "Page View",
-  "properties": {
-    "distinct_id": "user-12345",
-    "token": "YOUR_PROJECT_TOKEN",
-    "url": "https://example.com/pricing"
-  }
-}
-```
+### Missing or Malformed `$insert_id`
 
-If `distinct_id` is missing, `null`, or an empty string, the event will be rejected with a 400 error.
+`$insert_id` is required on every event. It is what makes retrying an `/import` request safe, because Mixpanel uses it to deduplicate. If your events have no natural unique ID, hash a set of properties that make the event semantically unique — such as `distinct_id` plus timestamp — and use the first 36 characters.
 
-### Missing or Invalid Project Token
+### Invalid `time`
 
-The `token` property is required in every event's `properties` object. Make sure you are using the correct project token from your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
+`time` is required, in seconds or milliseconds since epoch. Mixpanel rejects events dated before 1971-01-01 or more than one hour in the future, measured on Mixpanel's servers.
 
-Common mistakes:
-- Using a token from the wrong project
-- Using a Service Account username/secret instead of the project token
-- Including extra whitespace in the token string
+If you are backfilling history through `/track` rather than `/import`, note that `/track` accepts events from the **last 5 days only**. `/import` accepts anything after 1971-01-01. Sending older events to `/track` is a common reason backfilled data never appears.
 
-### Malformed JSON
+### Event Too Large
 
-The request body must be valid JSON. Common JSON formatting errors include:
+Each event must be under 1MB of uncompressed JSON. Strings longer than 255 characters are truncated rather than rejected, so a long URL or free-text field will not cause a 400 on its own.
 
-- Trailing commas in arrays or objects
-- Unquoted property keys
-- Using single quotes instead of double quotes
+## How to Fix It
 
-### Invalid Event Timestamp
+**Read `failed_records`** and correct the events it names. Each entry gives you the `field` and a `message` describing the problem.
 
-The `time` property must be a Unix timestamp in **seconds** or **milliseconds** since UTC epoch. Mixpanel accepts both formats and will reject events with timestamps that fall outside an acceptable range.
+**Do not blindly retry a 400.** Validation errors fail consistently and still count against your rate limit. Fix the payload first.
 
-```json
-{
-  "event": "Sign Up",
-  "properties": {
-    "distinct_id": "user-12345",
-    "token": "YOUR_PROJECT_TOKEN",
-    "time": 1718716477
-  }
-}
-```
+**Resend the corrected events.** Because `$insert_id` deduplicates, resending events that already landed is safe.
 
-### Event or Property Name Too Long
+## Related
 
-- Event names cannot exceed 255 characters
-- Property names cannot exceed 255 characters
-- String property values cannot exceed 255 characters (longer values are truncated, not rejected)
-
-### Payload Structure Mismatch
-
-When using the `/import` endpoint (strict mode), all records in a batch must be valid. A single invalid record causes the entire batch to return a 400 error. When using the `/track` endpoint, invalid records are silently dropped but valid ones are accepted.
-
-## How to Diagnose
-
-1. **Inspect the response body** — The 400 response includes an `error` field describing the specific validation failure. For example:
-
-   ```json
-   {
-     "code": 0,
-     "error": "some data points in the request failed validation",
-     "failed_records": [
-       {
-         "index": 0,
-         "field": "properties.distinct_id",
-         "message": "distinct_id must not be empty"
-       }
-     ]
-   }
-   ```
-
-2. **Enable debug mode** — If using an SDK, [enable debug mode](/docs/tracking-best-practices/debugging#enable-debug-mode) to log the full request payload and response.
-
-3. **Test with the Events view** — Send a test event and check the [Events view](https://mixpanel.com/report/events) in Mixpanel to confirm events are arriving correctly.
-
-4. **Use the browser console** — For web implementations, open Developer Tools → Network, filter by requests to `api.mixpanel.com`, and inspect the request payload and response.
-
-## Fix
-
-Review the error message in the response body, correct the offending records, and resend the request. If you are batching events, consider sending records one at a time to isolate the problematic event.
-
-For more help, see the [Debugging guide](/docs/tracking-best-practices/debugging) or the [Ingestion API reference](/reference/ingestion-api).
+- [400 on a batch you thought was fine? Check the payload size](/troubleshooting/errors/413-payload-too-large)
+- [Import Events API reference](/reference/import-events)
+- [Debugging your implementation](/docs/tracking-best-practices/debugging)
