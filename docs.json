@@ -651,6 +651,7 @@
                 "group": "Guides by Topic",
                 "pages": [
                   "guides/guides-by-topic/continuous-innovation",
+                  "guides/guides-by-topic/trust-ai-answers",
                   "guides/guides-by-topic/govern-data",
                   "guides/guides-by-topic/features",
                   "guides/guides-by-topic/core-reports"
@@ -2946,7 +2947,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004499463*",
-      "destination": "/docs/tracking-methods/sdks/javascript#how-to-set-up-a-proxy"
+      "destination": "/docs/tracking-methods/sdks/javascript#tracking-via-proxy"
     },
     {
       "source": "/hc/en-us/articles/115004501926*",
