@@ -1,5 +1,5 @@
 ---
-title: "OpenFeature Provider (Web)"
+title: OpenFeature Provider (Web)
 ---
 
 ## Overview
@@ -51,7 +51,7 @@ if (showNewFeature) {
 ### Flag Types and Evaluation Methods
 
 | Mixpanel Flag Type | Variant Values | OpenFeature Method |
-|---|---|---|
+| --- | --- | --- |
 | Feature Gate | `true` / `false` | `getBooleanValue()` |
 | Experiment | boolean, string, number, or JSON object | `getBooleanValue()`, `getStringValue()`, `getNumberValue()`, or `getObjectValue()` |
 | Dynamic Config | JSON object | `getObjectValue()` |
@@ -87,7 +87,7 @@ await OpenFeature.setContext({
 ```
 
 <Warning>
-Per-evaluation context (the optional third argument to evaluation methods) is **not supported** by this provider. Context must be set globally via `OpenFeature.setContext()`, which triggers a re-fetch of flag values from Mixpanel.
+  Per-evaluation context (the optional third argument to evaluation methods) is **not supported** by this provider. Context must be set globally via `OpenFeature.setContext()`, which triggers a re-fetch of flag values from Mixpanel.
 </Warning>
 
 ### Runtime Properties
@@ -105,7 +105,7 @@ await OpenFeature.setContext({
 ```
 
 <Note>
-Unlike some providers, `targetingKey` is not used as a special bucketing key. It is passed as another context property. Mixpanel's server-side configuration determines which properties are used for targeting and bucketing.
+  Unlike some providers, `targetingKey` is not used as a special bucketing key. It is passed as another context property. Mixpanel's server-side configuration determines which properties are used for targeting and bucketing.
 </Note>
 
 ### Full Resolution Details
@@ -166,7 +166,7 @@ mixpanel.identify('user-123');
 ## Error Handling
 
 | Error Code | When |
-|---|---|
+| --- | --- |
 | `PROVIDER_NOT_READY` | Flags evaluated before the provider has finished initializing |
 | `FLAG_NOT_FOUND` | The requested flag does not exist in Mixpanel |
 | `TYPE_MISMATCH` | The flag value type does not match the requested type |
@@ -182,6 +182,7 @@ await OpenFeature.setProviderAndWait(provider);
 ### Flags Always Return Default Values
 
 1. **Feature flags not enabled:** Ensure Mixpanel was initialized with `flags` enabled:
+
    ```typescript
    mixpanel.init('YOUR_TOKEN', { flags: { context: { plan: 'premium' } } });
    ```

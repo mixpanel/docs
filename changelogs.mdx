@@ -9,6 +9,23 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-08-07">
+  ## Session Replay: Mobile Autocapture (Screen Views)
+
+  Mobile teams can now autocapture screen view and screen leave events across our React Native, Swift, Android, and Flutter SDKs, with a one-time setup instead of per-screen instrumentation.
+
+  Previously, autocapture was only available in our JS SDK. Mobile teams had no low-lift way to start capturing behavior, so getting basic screen-level data meant hand-instrumenting a track call on every screen, in every SDK, before they could answer even simple "which screens do people visit" questions.
+
+  Autocapture hooks into your routing library, so screen view and screen leave events fire automatically after a one-time setup, with no per-screen tracking code. Teams get screen-level navigation data on mobile from a single integration with their router, with no ongoing per-screen tracking to write or maintain.
+
+  Live across all four mobile SDKs:
+
+  - [React Native](/docs/tracking-methods/sdks/react-native#autocapture)
+  - [Swift](/docs/tracking-methods/sdks/swift#autocapture)
+  - [Android](/docs/tracking-methods/sdks/android#autocapture)
+  - [Flutter](/docs/tracking-methods/sdks/flutter#autocapture)
+</Update>
+
 <Update label="2026-07-28">
   ## AI-Powered Data Governance: merge suggestions for duplicate events and properties
 
@@ -23,6 +40,34 @@ Get all the latest updates in your inbox.
   Merge suggestions cover events and event properties (not user/profile properties) and are available to organizations on an Enterprise plan with AI features enabled.
 
   [Learn more →](/docs/data-governance/ai-powered-data-governance#merge-suggestions)
+</Update>
+
+<Update label="2026-07-26">
+  ## Mixpanel Agent updates
+
+  A roundup of more recent updates to Mixpanel Agent based on what you've been telling us.
+
+  **Retention curves:** Mixpanel Agent now builds retention curves by default for retention analysis.
+
+  **Cohorts saved automatically:** Cohorts the Agent creates are now saved to Lexicon, making it easy to use Agent cohorts.
+
+  **Board date ranges:** When you ask the Agent to create a report from a Board, it uses the date range you're already viewing. Data stays consistent when you add the report to the board.
+
+  **Artifacts:** Everything the Agent generates now appears in an Artifacts section at the bottom of the response. Reports, cohorts, custom properties, all in one place.
+
+  **Lookup table properties:** The Agent can now find and use lookup table properties in analysis.
+
+  **Answers grounded in Mixpanel Docs:** When you ask the Agent how Mixpanel works, it pulls from the actual documentation.
+
+  **More types of page context:** The Agent now knows what you're looking at on Users and Events pages, so you can use it in more places.
+</Update>
+
+<Update label="2026-07-23">
+  ## Mixpanel Agent now works in the background
+
+  Close the tab. Lose your connection. Start a new conversation. The Agent keeps going.
+
+  Now you can send off a question to the Agent, go about your day, and the answer will be waiting whenever you're ready.
 </Update>
 
 <Update label="2026-07-20">
@@ -113,6 +158,16 @@ Get all the latest updates in your inbox.
   - **Gate features and run experiments:** Ship rollouts and flag-based experiments in React Native apps using the same workflow as the rest of your stack.
 
   Available in React Native SDK v3.5.0. [Learn more →](/docs/tracking-methods/sdks/react-native/react-native-flags)
+</Update>
+
+<Update label="2026-06-26">
+  ## **Share Mixpanel Agent chats**
+
+  Now you can send a link to any Agent chat and let your team read exactly what you asked and what it found.
+
+  Chats are private by default. When you're ready to share, click the chat name and select "Share link."
+
+  [Learn more →](/docs/mixpanel-agent#sharing)
 </Update>
 
 <Update label="2026-06-25">

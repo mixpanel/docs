@@ -1,5 +1,5 @@
 ---
-title: "AB Tasty"
+title: AB Tasty
 ---
 
 ## Overview
@@ -84,6 +84,7 @@ This property uses a REGEX function to extract the campaign name.
 1. **Create a new Custom Property.**
 2. Name it. `AB Tasty Campaign Name` is recommended, but the name does not need to exactly match this format.
 3. Use the following formula:
+
    ```text
    REGEX_EXTRACT(properties["AB Tasty"], "^\\[\\d+\\](.*?)(?=\\[\\d+\\])", 1)
    ```
@@ -102,6 +103,7 @@ This property uses a nested SPLIT function to isolate the variation name.
 1. **Create another new Custom Property.**
 2. Name it. `AB Tasty Variant Name` is recommended, but the name does not need to exactly match this format.
 3. Use the following formula:
+
    ```text
    SPLIT(SPLIT(properties["AB Tasty"], "[", 3), "]", 1)
    ```
@@ -120,6 +122,7 @@ With your Custom Properties created, you can now tell Mixpanel how to recognize 
 1. Navigate to your **Project Settings**.
 2. Scroll to the **Experiment Event Settings** section.
 3. Define the mapping for your AB Tasty experiments:
+
    - **Experiment Event**: Select the `"Event"` event.
    - **Experiment Name**: Map this to your new custom property, `AB Tasty Campaign Name`.
    - **Variant Name**: Map this to your new custom property, `AB Tasty Variation Name`.

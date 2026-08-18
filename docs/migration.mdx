@@ -1,5 +1,5 @@
 ---
-title: "Migrating to Mixpanel"
+title: Migrating to Mixpanel
 ---
 
 If you’re reading this, congrats on considering making the switch from another analytics provider to Mixpanel 🎊  Our migration guides are intended to outline how a migration works, what to expect, and how to mitigate the risks and switching costs of a migration whilst accelerate time to value.
@@ -42,7 +42,7 @@ Depending on your current setup, the steps for migrating your live data tracking
 
 ### Data audit
 
-We’ve found from experience that \<20% of the data in a product analytics tool is used for 80%+ of the queries. This is especially true the longer you have been using a tool - over time teams add more and more tracking for new events and properties, and without strong data governance practices, you will inevitably have some messy data in your current analytics tool(s).
+We’ve found from experience that \<20% of the data in a product analytics tool is used for 80%\+ of the queries. This is especially true the longer you have been using a tool - over time teams add more and more tracking for new events and properties, and without strong data governance practices, you will inevitably have some messy data in your current analytics tool(s).
 
 In the spirit of making sense of the mess, we don't recommended that you bring all historical data into Mixpanel. A common practice is to leverage your current providers' tooling to understand which reports, events, and properties are queried by your users. No queries in the past 30 days? These events and properties have probably gone stale - there is low value and high effort in bringing them to Mixpanel, so cut them from your import and do not migrate the existing tracking.
 
@@ -54,7 +54,7 @@ This data audit step is optional, but highly recommended - It is a larger upfron
 
 To backfill data, we recommend the following approaches:
 
-- If you have a data warehouse: Leverage our [data warehouse connector](/docs/tracking-methods/warehouse-connectors) or our [Import API](/reference/import-events) to import to Mixpanel. 
+- If you have a data warehouse: Leverage our [data warehouse connector](/docs/tracking-methods/warehouse-connectors) or our [Import API](/reference/import-events) to import to Mixpanel.
 - If you have a data warehouse without your current provider's data: Export your data to the data warehouse so you have a record, and then use our data warehouse connector or Import API
 - If you do not have a data warehouse: Since there is no historical record of data, for this method you will need to export your data from your current provider and move it into Mixpanel - we provide an easy to use helper function for this [here](https://github.com/mixpanel/mixpanel-utils)
 
@@ -64,7 +64,7 @@ To perform a successful historical data load, we recommend:
 - Load a limited subset of the data into a test project (for example, a single day or data or a sample of the entire dataset) to get started. This will help you identify any errors in the end to end process before you do a full historical data load.
 - Load a year’s worth (or less) of historical data during your migration. This will allow your team to review year-over-year trends easily and do historical analysis as needed, without sending a bunch of data which is stale and unlikely to be used.
 
-For a more in-depth look into the steps required for a successful project migration, check out our [project migration playbook](/guides/strategic-playbooks/project-migration). 
+For a more in-depth look into the steps required for a successful project migration, check out our [project migration playbook](/guides/strategic-playbooks/project-migration).
 
 Note that backfilling historical data can have significant impact on your billing. Refer to [this section](/docs/pricing#are-monthly-events-calculated-based-on-ingestion-time-or-event-timestamp) for more details.
 
@@ -96,4 +96,4 @@ You can read more about how we do this [here](https://mixpanel.com/blog/establis
 
 ## Not sure where to start or need help?
 
-Mixpanel’s Customer Success team has worked with 10,000+ customers over the past 10+ years to help drive outcomes with product analytics. We’re always happy to discuss your team’s individual needs, our migration process, the support you’ll receive, or any other question you have — drop us a line at [success@mixpanel.com](mailto:success@mixpanel.com).
+Mixpanel’s Customer Success team has worked with 10,000\+ customers over the past 10\+ years to help drive outcomes with product analytics. We’re always happy to discuss your team’s individual needs, our migration process, the support you’ll receive, or any other question you have — drop us a line at [success@mixpanel.com](mailto:success@mixpanel.com).

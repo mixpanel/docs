@@ -1,5 +1,5 @@
 ---
-title: "Choosing the Right Method"
+title: Choosing the Right Method
 ---
 
 If you use our SDKs, there are two general approaches to track events: client-side and server-side. The approach you choose has implications on the quality and comprehensiveness of your data.
@@ -9,7 +9,7 @@ We recommend tracking everything you possibly can via your servers, and only sup
 Note: If you already track events via a CDP, Tag Manager, or via your DWH using something like Snowplow, you can route those events to Mixpanel with our native integrations. See the [Segment](https://segment.com/docs/connections/destinations/catalog/actions-mixpanel/), [Rudderstack](https://rudderstack.com/integration/mixpanel/), or [GTM](https://github.com/mixpanel/mixpanel-gtm-template#readme) docs for a walkthrough. We can also load data directly from data warehouses like [Snowflake](/docs/data-pipelines/integrations/snowflake) and [BigQuery](/docs/data-pipelines/integrations/bigquery).
 
 <Frame>
-![client-side vs server-side](/images/tracking_methods.webp)
+  ![client-side vs server-side](/images/tracking_methods.webp)
 </Frame>
 
 ## Server-Side Tracking
@@ -64,4 +64,5 @@ In this method, events are generated on the client device and sent to the Mixpan
 > Note: Mixpanel client-side SDK uses [/track API endpoint](/reference/track-event#limits) which by default only ingests events in the last 5 days.
 
 ### Client-Side Tracking via a Proxy
+
 A proxy is helpful in a client-side web setting to [reduce the likelihood of ad-blockers impacting your tracking](https://www.youtube.com/watch?v=8Pv6tmRfqr8). Please see [this article](/docs/tracking-methods/sdks/javascript#tracking-via-proxy) on how to set up a proxy.

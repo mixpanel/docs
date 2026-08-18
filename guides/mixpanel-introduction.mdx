@@ -1,5 +1,5 @@
 ---
-title: "Mixpanel Introduction"
+title: Mixpanel Introduction
 ---
 
 import {FrameColumn} from "/snippets/FrameColumn.jsx";
@@ -14,12 +14,7 @@ Mixpanel is a **digital analytics platform** that helps teams continuously impro
 
 ## See Mixpanel in Action
 
-<FrameColumn 
-  src="https://www.youtube-nocookie.com/embed/sRQCfmvh3vg"
-  title="Mixpanel Overview"
-  description="In this 5-minute overview, learn how Mixpanel powers the continuous innovation loop––from observation to impact."
-  link="https://youtu.be/sRQCfmvh3vg"
-/>
+<FrameColumn src="https://www.youtube-nocookie.com/embed/sRQCfmvh3vg" title="Mixpanel Overview" description="In this 5-minute overview, learn how Mixpanel powers the continuous innovation loop––from observation to impact." link="https://youtu.be/sRQCfmvh3vg" />
 
 ---
 
@@ -27,25 +22,20 @@ Mixpanel is a **digital analytics platform** that helps teams continuously impro
 
 <Columns cols={2}>
   <div>
+  Mixpanel is built around a simple but powerful framework for continuous improvement: **Observe → Analyze → Decide → Act (OADA)**.
 
-Mixpanel is built around a simple but powerful framework for continuous improvement: **Observe → Analyze → Decide → Act (OADA)**.
-
-Each stage in the OADA framework connects directly to Mixpanel’s tools, helping you move from data to observation to action–—all in one platform.
-
-  </div>
+  Each stage in the OADA framework connects directly to Mixpanel’s tools, helping you move from data to observation to action–—all in one platform.
+</div>
 
   <div>
-
-<Frame caption="The cycle of continuous innovation.">
-![OADA Loop diagram](/images/oada-loop-simple-wide-fcf9fa.png)
-</Frame>
-
-  </div>
+  <Frame caption="The cycle of continuous innovation.">
+    ![OADA Loop diagram](/images/oada-loop-simple-wide-fcf9fa.png)
+  </Frame>
+</div>
 </Columns>
 
-
 | 👀 **Observe** | 📊 **Analyze** | 💡 **Decide** | 🚀 **Act** |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | See what’s happening in your product with [Session Replay](/docs/session-replay), [Heatmaps](/docs/session-replay/heatmaps), [Autocapture](/docs/tracking-methods/autocapture), and [Alerts](/docs/features/alerts). | Explore [Insights](/docs/reports/insights), [Funnels](/docs/reports/funnels), [Flows](/docs/reports/flows), [Retention](/docs/reports/retention), and [Cohorts](/docs/users/cohorts) to find what moves your metrics. | Align on what to change next with [Metric Trees](/docs/metric_tree), [Boards](/docs/boards), [Annotations](/docs/features/annotations), and shared insights. | Measure impact with [Experiments](/docs/experiments) and ship improvements with [Feature Flags](/docs/featureflags). |
 
 All of this is powered by Mixpanel’s modern data foundation—–bringing together AI-assisted analysis through features like [MCP Server](/docs/features/mcp), robust [data governance](/docs/data-governance) for accuracy and trust, and built-in collaboration tools that help teams move from insight to action faster.
@@ -57,15 +47,15 @@ All of this is powered by Mixpanel’s modern data foundation—–bringing toge
 ## Mixpanel Data Model
 
 Everything in Mixpanel starts with **events**––the building blocks of your data model.
-   
-An event represents something a **user** does (like *Signed Up*, *Viewed a Product*, or *Completed Purchase*). Each event can include **event properties** that add context, such as the user’s plan type, location, or device. 
+
+An event represents something a **user** does (like _Signed Up_, _Viewed a Product_, or _Completed Purchase_). Each event can include **event properties** that add context, such as the user’s plan type, location, or device.
 
 Alongside events, Mixpanel also tracks **user profiles**––records that represent individual people. These profiles store demographic attributes known as **user properties** (like name, email, or signup date), which help you understand who your users are and analyze behavior at the individual level.
 
 Optionally, you can analyze data at the group level using [Group Analytics](/docs/data-structure/group-analytics).
 
 <Frame>
-![Data Model](/images/Data_Model_with_Group_Analytics.png)
+  ![Data Model](/images/Data_Model_with_Group_Analytics.png)
 </Frame>
 
 Together, these events and properties form a flexible data model that mirrors how people actually use your product. Once instrumented, you can analyze this data instantly—–without writing SQL or waiting on an analyst.
@@ -79,7 +69,7 @@ Together, these events and properties form a flexible data model that mirrors ho
 Keep building your Mixpanel expertise with these resources designed to help you learn, connect, and put insights into action.
 
 | Resource | Purpose | Link |
-|-----------|--------------|------|
+| --- | --- | --- |
 | **Community** | Connect with other Mixpanel users, share ideas, and learn how peers are tackling similar challenges. | [Open →](https://community.mixpanel.com/) |
 | **Developer Docs** | Build and extend Mixpanel with SDKs, APIs, and advanced implementation guides. | [Open →](/reference/overview) |
 | **Docs** | Explore product capabilities, setup guides, and detailed feature references. | [Open →](/) |

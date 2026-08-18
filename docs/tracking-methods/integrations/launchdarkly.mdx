@@ -1,18 +1,20 @@
 ---
-title: "LaunchDarkly"
+title: LaunchDarkly
 ---
 
 ## Overview
+
 This guide helps send LaunchDarkly feature flag impressions as events to Mixpanel. This is useful if you want to answer questions like:
-* What did my users do after being exposed to an experiment?
-* Did users who were exposed convert better than users who didn't?
-* Were the right set of users exposed to my experiment?
+
+- What did my users do after being exposed to an experiment?
+- Did users who were exposed convert better than users who didn't?
+- Were the right set of users exposed to my experiment?
 
 Doing this involves sending impression events from LaunchDarkly to Mixpanel and doing the analysis in Mixpanel.
 
 ## Exporting data from LaunchDarkly
 
-In order to perform its analyses, Mixpanel needs impression events. These events tell Mixpanel which user was exposed to which variant at which time. 
+In order to perform its analyses, Mixpanel needs impression events. These events tell Mixpanel which user was exposed to which variant at which time.
 
 These events must be called `$experiment_started` and must have the `Experiment name` and `Variant name` properties -- Mixpanel recognizes these events and uses them to autopopulate the [Experiments report](/docs/experiments).
 
@@ -29,9 +31,9 @@ These events must be called `$experiment_started` and must have the `Experiment 
 ```
 
 LaunchDarkly does not export this by default, so there are two options:
+
 1. Pay to [export](https://docs.launchdarkly.com/home/getting-started) from LaunchDarkly to Pubsub. If you go this route, you will need to write some code that pulls from PubSub and pushes to Mixpanel. We have a sample guide [here](/docs/tracking-methods/integrations/google-pubsub). This is server-side, so will likely be more accurate, but requires more work to integrate.
 2. Log assignments with wrapper code (see [below](#logging-assignments-with-wrapper-code)). This is more convenient, but can be less reliable due to the limitations of client-side tracking.
-
 
 ## Logging assignments with wrapper code
 
@@ -39,7 +41,7 @@ To manually log LaunchDarkly assignments, you'll need to find all places in your
 
 ### Find all places where feature flags are being invoked
 
-LaunchDarkly’s SDK exposes methods for retrieving whether or not a feature is enabled for the current user. 
+LaunchDarkly’s SDK exposes methods for retrieving whether or not a feature is enabled for the current user.
 
 ```js
 const variation = client.variation("YOUR_EXPERIMENT_KEY", "control");
@@ -76,7 +78,7 @@ function checkFeatureEnabled(experimentKey, defaultValue) {
 It is possible that an engineer on your team could call this new function before showing the new feature to the user. Be sure that the assignment event is only sent once the user experiences the feature you are experimenting on.
 
 ## Using the events in Mixpanel
+
 If you track events according to the above spec, you can use the [Experiments report](/docs/experiments) to get a bird's eye view of all experiments you have running.
 
 You can also build [cohorts](/docs/users/cohorts) of users in each variant, and then filter/breakdown by those cohorts in any report in Mixpanel.
-

@@ -1,17 +1,18 @@
 ---
-openapi: /openapi/lexicon-schemas.openapi.yaml POST /projects/{projectId}/schemas/{entityType}/{name}
+openapi: "/openapi/lexicon-schemas.openapi.yaml POST /projects/{projectId}/schemas/{entityType}/{name}"
 title: Create/Replace One
 ---
+
 Upload a schema for a single entity. If a schema already exists for a specified entity, it will be replaced by the one you upload.
 
 <Warning>
-**Metadata merging behavior**
+  **Metadata merging behavior**
 
   If the new schema is missing `metadata` properties that are currently set in the existing schema for that entity, those properties will be merged into the new schema. For example, if your current schema has `{"metadata": {"com.mixpanel": {"hidden": true}}}` and you upload a new schema without "hidden", we will merge `"hidden": true` to your uploaded schema's metadata. If you want to remove that property, set the value to `null`.
 </Warning>
 
 <Note>
-**Adding a schema for User Profiles**
+  **Adding a schema for User Profiles**
 
   To add a schema for your [User Profiles](https://help.mixpanel.com/hc/en-us/articles/115004501966-User-Profiles), specify the `entityType` as `profile` and the `name` as `$user`.
 </Note>

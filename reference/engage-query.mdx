@@ -2,6 +2,7 @@
 openapi: /openapi/query.openapi.yaml POST /engage
 title: Query Profiles
 ---
+
 Query user (or group) profile data and return list of users (or groups) that fit specified parameters.
 
 API responses will return at most `page_size` records for each request. To request additional records, callers should repeat their call to the API using the same `where` param, but provide a `session_id` parameter with a value taken from the first response, and include a `page` parameter with a value one greater than the value of page in the response.

@@ -1,7 +1,9 @@
 ---
-sidebarTitle: "B2B SaaS"
-title: "MCP for B2B SaaS: Use Cases and Sample Prompts"
+sidebarTitle: B2B SaaS
+title: "MCP for B2B SaaS"
+description: "Use Cases and Sample Prompts"
 ---
+
 B2B SaaS companies sit at the intersection of product usage and commercial outcomes — but those two worlds usually live in separate systems. The Mixpanel MCP server lets you combine digital analytics with CRM data, support tickets, billing records, and engineering tools, so you can answer the questions that matter most: who's ready to buy, who's at risk of churning, and what's actually driving expansion.
 
 ## Use Cases
@@ -61,7 +63,7 @@ Onboarding investment is often justified by intuition rather than data. This joi
 Account health scores built on aggregate usage miss the user-level signal that matters most: when a champion goes quiet. This join surfaces individual user inactivity inside your highest-value accounts, routed to the right CSM before the account flags at renewal.
 
 <Warning>
-  **Pitfall**: Accounts where one user does all the activity look healthy in aggregate but carry significant key-person risk. Filter for accounts where a single user accounts for 80%+ of events — those are worth a proactive check-in regardless of overall engagement levels.
+  **Pitfall**: Accounts where one user does all the activity look healthy in aggregate but carry significant key-person risk. Filter for accounts where a single user accounts for 80%\+ of events — those are worth a proactive check-in regardless of overall engagement levels.
 </Warning>
 
 ### Release Impact × Bug Reports
@@ -82,7 +84,7 @@ These are starting points. Adjust the time ranges, segments, and metrics to matc
 <Tabs>
   <Tab title="Product Manager">
     - Show me a funnel from signup to workspace created to first invite to first report built, by plan type.
-    - What's the weekly retention for users who completed 3+ key actions in their first session?
+    - What's the weekly retention for users who completed 3\+ key actions in their first session?
     - Which features have the highest usage on Enterprise vs. Pro plan?
     - What's the average time-to-value (how long to reach our "aha moment" event)?
     - Compare feature adoption between invited users vs. workspace creators.
@@ -105,28 +107,28 @@ These are starting points. Adjust the time ranges, segments, and metrics to matc
     - Week-over-week trends for our top 10 events — any significant decline?
   </Tab>
   <Tab title="RevOps / Sales Lead">
-    - Which trial accounts completed 3+ activation milestones this week?
+    - Which trial accounts completed 3\+ activation milestones this week?
     - Trial-to-paid conversion rate by acquisition channel for the past quarter?
     - Usage pattern difference between trials that convert vs. don't — what predicts conversion?
-    - Which enterprise trials invited 5+ team members? Those are strong signals.
+    - Which enterprise trials invited 5\+ team members? Those are strong signals.
     - Average time from trial start to paid conversion, by `company_size`?
-    - Accounts where usage increased 50%+ month-over-month (expansion candidates)
+    - Accounts where usage increased 50%\+ month-over-month (expansion candidates)
     - Which features are most used by accounts that expand within 12 months?
     - Trial accounts that hit PQL threshold this month but haven't been contacted?
     - Win rate for deals where the champion is a heavy user vs. outbound-sourced deals?
     - Engagement of pipeline accounts vs. churned accounts — what's the early warning signal?
   </Tab>
   <Tab title="Customer Success Manager">
-    - Health check for [Account Name]: WAU, feature adoption breadth, trend vs. baseline
-    - Which accounts have seen a 20%+ usage decline over the past 30 days?
+    - Health check for \[Account Name\]: WAU, feature adoption breadth, trend vs. baseline
+    - Which accounts have seen a 20%\+ usage decline over the past 30 days?
     - Feature adoption gap between my healthiest and at-risk accounts?
-    - Accounts with users who haven't logged in for 14+ days but were previously active weekly?
+    - Accounts with users who haven't logged in for 14\+ days but were previously active weekly?
     - Onboarding completion status for accounts started in the past 60 days?
     - Accounts only using 1–2 features — these are shallow adoption and at risk
     - Engagement summary for all accounts in my book, sorted by declining usage
     - Accounts where one user does all the activity — that's key-person risk
     - Support event pattern for my top 5 largest accounts?
-    - This quarter's usage for [Account Name] vs. last quarter — what changed?
+    - This quarter's usage for \[Account Name\] vs. last quarter — what changed?
   </Tab>
   <Tab title="Engineering Lead">
     - After our last deploy, did error event volume or rate change?

@@ -1,6 +1,6 @@
 ---
-sidebarTitle: "Feature Flags (Java)"
-title: "Implement Feature Flags (Java)"
+sidebarTitle: Feature Flags (Java)
+title: Implement Feature Flags (Java)
 ---
 
 ## Overview
@@ -25,8 +25,7 @@ For remote evaluation, the SDK will make a network call to Mixpanel servers at a
 ## Local Evaluation
 
 <Warning>
-  Targeting by Mixpanel cohorts and sticky variants are not supported in Local
-  Evaluation mode.
+  Targeting by Mixpanel cohorts and sticky variants are not supported in Local Evaluation mode.
 </Warning>
 
 - The SDK is configured with a `LocalFlagsConfig` object that specifies parameters:
@@ -34,7 +33,6 @@ For remote evaluation, the SDK will make a network call to Mixpanel servers at a
   1. `apiHost` - If your project is in the EU/IN region, this should be set to route to `api-eu.mixpanel.com`/`api-in.mixpanel.com` respectively.
   2. `enablePolling` - This should be set to `true` to enable local evaluation.
   3. `pollingIntervalSeconds` - This is the interval in seconds at which the SDK will poll Mixpanel servers for feature flag configurations.
-
 - The SDK will continue to poll for the lifetime of the SDK instance or until stopped.
 
 ```java
@@ -134,6 +132,7 @@ mixpanel.close();
 
 - `projectToken(String)` - Your Mixpanel project token (required)
 - `apiHost(String)` - API host without protocol (default: `"api.mixpanel.com"`)
+
   - For EU region: `"api-eu.mixpanel.com"`
   - For India region: `"api-in.mixpanel.com"`
 - `enablePolling(boolean)` - Whether to enable automatic polling (default: `true`)
@@ -144,6 +143,7 @@ mixpanel.close();
 
 - `projectToken(String)` - Your Mixpanel project token (required)
 - `apiHost(String)` - API host without protocol (default: `"api.mixpanel.com"`)
+
   - For EU region: `"api-eu.mixpanel.com"`
   - For India region: `"api-in.mixpanel.com"`
 - `requestTimeoutSeconds(int)` - Request timeout in seconds (default: `5`)

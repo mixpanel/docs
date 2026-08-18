@@ -1,6 +1,6 @@
 ---
-sidebarTitle: "Session Replay (Javascript)"
-title: "Implement Session Replay (Web)"
+sidebarTitle: Session Replay (Javascript)
+title: Implement Session Replay (Web)
 ---
 
 ## Overview
@@ -40,7 +40,7 @@ Learn more about [EU Data Residency](/docs/privacy/eu-residency) and [India Data
 ## Capturing Replays
 
 <Warning>
-	Test in a sandbox project and start with a 100% sample rate. This allows you to monitor performance, usage, and ensure your privacy rules align with your company policies.
+  Test in a sandbox project and start with a 100% sample rate. This allows you to monitor performance, usage, and ensure your privacy rules align with your company policies.
 </Warning>
 
 You can capturing replay data using a sampling method (recommended), or customize when and where replays are captured manually using Session Replay methods provided by the SDK.
@@ -54,8 +54,9 @@ When the SDK initializes, it makes a sampling decision based on your configured 
 To enable Session Replay and set your sampling rate, set the `recording_sessions_percent` when initializing the SDK. This is the only change needed in your existing JavaScript SDK implementation to enable Session Replay.
 
 <Note>
-To start, we recommend using an 100% sampling rate to ensure replay capture is behaving as expected, then adjust according to your specific analytics needs.
+  To start, we recommend using an 100% sampling rate to ensure replay capture is behaving as expected, then adjust according to your specific analytics needs.
 </Note>
+
 **Example Usage**
 
 ```javascript Javascript
@@ -73,7 +74,7 @@ To programatically start and stop replay capture, use the `start_session_recordi
 
 #### Start Capturing Replay Data
 
-Call `start_session_recording()` to force recording to begin, regardless of the `record_sessions_percent` init option. 
+Call `start_session_recording()` to force recording to begin, regardless of the `record_sessions_percent` init option.
 
 This will have no effect if replay data collection is already in progress.
 
@@ -85,6 +86,7 @@ mixpanel.start_session_recording();
 ```
 
 #### Pause Capturing Replay Data
+
 Call `pause_session_recording()` to pause any active replay data collection but do not clear the active recording.
 
 **Example Usage**
@@ -95,6 +97,7 @@ mixpanel.pause_session_recording();
 ```
 
 #### Resume Capturing Replay Data
+
 Call `resume_session_recording()` to resume replay data collection.
 
 This will have no effect if there is no non-active recording that was previously paused.
@@ -108,7 +111,7 @@ mixpanel.resume_session_recording();
 
 #### Stop Capturing Replay Data
 
-Call `stop_session_recording()` to stop any active replay data collection. 
+Call `stop_session_recording()` to stop any active replay data collection.
 
 This will have no effect if there is no replay data collection in progress.
 
@@ -121,16 +124,15 @@ mixpanel.stop_session_recording();
 
 #### Example Scenarios
 
-| Scenario | Guidance | 
+| Scenario | Guidance |
 | --- | --- |
-| We have a sensitive screen we don't want to capture | When user is about to access the sensitive screen, call `mixpanel.stop_session_recording()`. To resume recording once they leave this screen, you can resume recording with `mixpanel.start_session_recording()`  | 
+| We have a sensitive screen we don't want to capture | When user is about to access the sensitive screen, call `mixpanel.stop_session_recording()`. To resume recording once they leave this screen, you can resume recording with `mixpanel.start_session_recording()` |
 | We only want to record certain types of users (e.g. Free plan users only) | Using your application code, determine if current user meets the criteria of users you wish to capture. If they do, then call `mixpanel.start_session_recording()` to force recording on |
 | We only want to record users utilizing certain features | When user is about to access the feature you wish to capture replays for, call `mixpanel.start_session_recording()` to force recording on |
 
-
 #### Cross-Origin iFrame Recording (Requires minimum SDK version: 2.76)
 
-Session Replay captures content from cross-origin iframes embedded within your page, delivering a unified replay experience across parent pages and embedded third-party content. To enable this feature, you must explicitly allowlist domains using record_allowed_iframe_origins for security purposes.
+Session Replay captures content from cross-origin iframes embedded within your page, delivering a unified replay experience across parent pages and embedded third-party content. To enable this feature, you must explicitly allowlist domains using record\_allowed\_iframe\_origins for security purposes.
 
 **Example Usage**
 
@@ -174,18 +176,18 @@ mixpanel.init(
 
 | Option | Description | Default |
 | --- | --- | --- |
-| `record_block_class` | CSS class name or regular expression for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `new RegExp('^(mp-block\|fs-exclude\|amp-block\|rr-block\|ph-no-capture)$')` <br/> (common industry block classes) |
-| `record_block_selector` | CSS selector for elements which will be replaced with an empty element of the same dimensions, blocking all contents.  | `"img, video"` |
-| `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a contiguous replay. A new replay collection will start when active again. | `1800000`<br/>(30 minutes) |
+| `record_block_class` | CSS class name or regular expression for elements which will be replaced with an empty element of the same dimensions, blocking all contents. | `new RegExp('^(mp-block\|fs-exclude\|amp-block\|rr-block\|ph-no-capture)$')` <br /> (common industry block classes) |
+| `record_block_selector` | CSS selector for elements which will be replaced with an empty element of the same dimensions, blocking all contents. | `"img, video"` |
+| `record_idle_timeout_ms` | Duration of inactivity in milliseconds before ending a contiguous replay. A new replay collection will start when active again. | `1800000`<br />(30 minutes) |
 | `record_mask_all_text` | When `true`, all text is masked by default. Use `record_unmask_text_selector` to selectively reveal elements. | `true` |
 | `record_mask_text_selector` | CSS selector or array of selectors for elements to mask. Only applies when `record_mask_all_text` is `false`. | `undefined` |
 | `record_unmask_text_selector` | CSS selector or array of selectors for elements to unmask. Only applies when `record_mask_all_text` is `true`. | `undefined` |
-| `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. Included for backward compatibility. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` <br/> (common industry mask classes) |
+| `record_mask_text_class` | CSS class name or regular expression for elements that will have their text contents masked. Included for backward compatibility. | `new RegExp('^(mp-mask\|fs-mask\|amp-mask\|rr-mask\|ph-mask)$')` <br /> (common industry mask classes) |
 | `record_mask_all_inputs` | When `true`, all inputs are masked by default. Use `record_unmask_input_selector` to selectively reveal inputs. Note: [certain input types](/docs/session-replay/session-replay-privacy-controls#always-masked-inputs) are always masked regardless of this setting. | `true` |
 | `record_mask_input_selector` | CSS selector or array of selectors for inputs to mask. Only applies when `record_mask_all_inputs` is `false`. | `undefined` |
 | `record_unmask_input_selector` | CSS selector or array of selectors for inputs to unmask. Only applies when `record_mask_all_inputs` is `true`. | `undefined` |
-| `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`<br/>(24 hours) |
-| `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`<br/>(0 seconds) |
+| `record_max_ms` | Maximum length of a single replay in milliseconds. Up to 24 hours is supported. Once a replay has reached the maximum length, a new one will begin. | `86400000`<br />(24 hours) |
+| `record_min_ms` | Minimum length of a single replay in milliseconds. Up to 8 seconds is supported. If a replay does not meet the minimum length, it will be discarded. | `0`<br />(0 seconds) |
 | `record_sessions_percent` | Percentage of SDK initializations that will qualify for replay data capture. A value of "1" = 1%. | `0` |
 | `record_canvas` | When true, Mixpanel will record snapshots of `<canvas>` elements on your site at up to 15 frames per second | `false` |
 | `record_heatmap_data` | When true, Mixpanel will capture click events during replays to populate Heatmaps. You can learn more [here](/docs/session-replay/heatmaps). | `false` |
@@ -194,7 +196,7 @@ mixpanel.init(
 | `record_network_options` | Configuration for network recording behavior, including which headers/bodies to capture. See [Network Recording Options](/docs/tracking-methods/sdks/javascript/javascript-replay#network-recording-options). | `{}` |
 | `remote_settings_mode` | Setting for handling remote configuration during SDK initialization. Can be `disabled`, `fallback`, `strict`. | `disabled` |
 
-Note: Canvas recording (record_canvas) utilizes [rrweb's](https://github.com/rrweb-io/rrweb) UNSAFE_replayCanvas option, which is experimental and not fully supported. We recommend testing thoroughly before deploying to production.
+Note: Canvas recording (record\_canvas) utilizes [rrweb's](https://github.com/rrweb-io/rrweb) UNSAFE\_replayCanvas option, which is experimental and not fully supported. We recommend testing thoroughly before deploying to production.
 
 **Example Usage**
 
@@ -217,10 +219,11 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
     record_mask_input_selector: '.sensitive-input'
 });
 ```
+
 ## Network Recording
 
 <Note>
-Network recording is available in SDK version `v2.76.0` and above.
+  Network recording is available in SDK version `v2.76.0` and above.
 </Note>
 
 Session Replay can capture network requests made during a replay, giving you visibility into API calls, resource loads, and other network activity alongside the visual playback. This is useful for debugging issues where network behavior (failed requests, slow responses, etc.) is relevant to the user experience.
@@ -288,7 +291,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 | `recordInitialRequests` | `boolean` | When `true`, captures resource timing entries for requests that completed before recording started (e.g., initial page load resources). | `false` |
 
 <Warning>
-**Privacy Note:** Be mindful of what headers and bodies you choose to record. Avoid recording headers or bodies that contain sensitive information such as authentication tokens, personally identifiable information (PII), or other confidential data. Use the allowlist-based approach (`recordHeaders` and `recordBodyUrls`) to explicitly opt in to only the data you need.
+  **Privacy Note:** Be mindful of what headers and bodies you choose to record. Avoid recording headers or bodies that contain sensitive information such as authentication tokens, personally identifiable information (PII), or other confidential data. Use the allowlist-based approach (`recordHeaders` and `recordBodyUrls`) to explicitly opt in to only the data you need.
 </Warning>
 
 ### How It Works
@@ -315,11 +318,13 @@ Three modes are available:
 Can use this setting to quickly update and adjust configurations to your liking.
 
 List of currently supported remote settings:
+
 - `record_sessions_percent`
 
 Settings that are not yet supported, will not appear in the remote configuration. These non-included options will use the value that was initially set by the user for all `remote_settings_mode` options.
 
 **Example Usage**
+
 ```javascript
 mixpanel.init('YOUR_PROJECT_TOKEN', {
     record_sessions_percent: 100,
@@ -330,7 +335,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 ## Cross-Origin Iframe Recording
 
 <Note>
-Cross-origin iframe recording requires SDK version 2.77.0 or later.
+  Cross-origin iframe recording requires SDK version 2.77.0 or later.
 </Note>
 
 Session Replay can capture content from cross-origin iframes embedded within your page, providing a unified replay experience across parent pages and embedded third-party content. This is useful when your application embeds widgets, checkout flows, or other cross-origin content that you want to include in your replays.
@@ -373,7 +378,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 Origins must be specified in the format `protocol://domain[:port]`. The SDK performs exact matching, so ensure your origins are formatted correctly.
 
 | Format | Example | Valid |
-|--------|---------|-------|
+| --- | --- | --- |
 | HTTPS domain | `https://example.com` | ✓ |
 | HTTP with port | `http://localhost:3000` | ✓ |
 | No protocol | `example.com` | ✗ |
@@ -399,7 +404,7 @@ mixpanel.get_session_recording_properties();
 ### Server-side Stitching
 
 <Warning>
-	We still recommend including the `$mp_replay_id` property on your events regardless of Server-side Stitching for guaranteed accuracy.
+  We still recommend including the `$mp_replay_id` property on your events regardless of Server-side Stitching for guaranteed accuracy.
 </Warning>
 
 Server-Side Stitching allows you to easily watch Replays for events that were not fired from the SDK.
@@ -413,7 +418,7 @@ To ensure Server-Side Stitching works, call [`identify()`](/docs/tracking-method
 ## Replay URL
 
 <Note>
-	Replay URLs are accessible only by authenticated users with the necessary permissions for the Mixpanel project.
+  Replay URLs are accessible only by authenticated users with the necessary permissions for the Mixpanel project.
 </Note>
 
 You can programatically generate URL links to view the current Replay in the Mixpanel UI using the `get_session_replay_url()` method. The method will return null if there is no Replay in progress.
@@ -479,7 +484,7 @@ Clicks captured by Autocapture are billable events that are counted against your
 ## Debugging
 
 <Note>
-`$mp_session_record` is exempt from your plan data allowance.
+  `$mp_session_record` is exempt from your plan data allowance.
 </Note>
 
 To check your implementation, select **Session Replay** from the side navigation in your Mixpanel project to see whether replays are being captured and appearing as expected. When a capture begins, a "Session Recording Checkpoint" event (`$mp_session_record`) also appears in your project; you can use this to verify that Session Replay is implemented correctly.
@@ -540,6 +545,7 @@ To use the direct integration:
 
 1. Ensure you have the mParticle Mixpanel Web integration enabled for your web workspace. This will load the Mixpanel JavaScript SDK and Session Replay on your site automatically via mParticle (no separate SDK install in your app code is required).
 2. Configure Session Replay settings in your [mParticle Mixpanel connection settings](https://docs.mparticle.com/integrations/mixpanel/event/#connection-settings), including:
+
    - **Session Recording Percentage**: Percentage of SDK initializations that will qualify for replay data capture
    - **Record Heatmap Data**: Enable heatmap, rage click, and dead click collection
    - Additional privacy and configuration options as needed
@@ -548,11 +554,10 @@ The direct integration automatically includes session replay properties (`$mp_re
 
 ### Rudderstack: Cloud Mode
 
-Rudderstack's Javascript SDK has a `.getAnonymousId()` method which can be used to [retrieve the device_id](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/supported-api/#retrieving-anonymous-id). In the following example, we use this method to bind Rudderstack's anonymousId to Mixpanel's device_id, as well as patching [track](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/supported-api/#track) and [page](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/supported-api/#page) event methods to include session replay properties on every Rudderstack event.
-
+Rudderstack's Javascript SDK has a `.getAnonymousId()` method which can be used to [retrieve the device\_id](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/supported-api/#retrieving-anonymous-id). In the following example, we use this method to bind Rudderstack's anonymousId to Mixpanel's device\_id, as well as patching [track](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/supported-api/#track) and [page](https://www.rudderstack.com/docs/sources/event-streams/sdks/rudderstack-javascript-sdk/supported-api/#page) event methods to include session replay properties on every Rudderstack event.
 
 <Note>
-**Race Condition Note (RudderStack + Heatmaps):** If you are using `record_heatmap_data`, set it to `false` at init and enable it via `set_config()` only after the RudderStack anonymousId has been registered. This prevents heatmap click events from firing with Mixpanel's default `$device_id` before your custom identity binding completes, which can create orphaned anonymous profiles and inflate MTU counts.
+  **Race Condition Note (RudderStack \+ Heatmaps):** If you are using `record_heatmap_data`, set it to `false` at init and enable it via `set_config()` only after the RudderStack anonymousId has been registered. This prevents heatmap click events from firing with Mixpanel's default `$device_id` before your custom identity binding completes, which can create orphaned anonymous profiles and inflate MTU counts.
 </Note>
 
 ```javascript Javascript
@@ -619,12 +624,15 @@ Once that is added, you can add a new Mixpanel tag to your workspace which turns
 - In the `Option key` / `Option value` dropdown, ensure you choose `record_sessions_percent` and the value should be a number between 1 and 100.
 - This is also where you can configure other [Session Replay options](/docs/tracking-methods/sdks/javascript#init-options) like `record_block_class` etc...
 - For the `Triggering` section, you'll want to choose something [early in the GTM lifecycle](https://support.google.com/tagmanager/answer/7679319?hl=en); typically this is `Initialization - All Pages` or `Consent Initialization - All Pages` to ensure that Session Replay starts recording as soon as the GTM container is initialized.
-- Save + Deploy this template to your website and you should be up and going with session replay
+- Save \+ Deploy this template to your website and you should be up and going with session replay
 
 Here's a screenshot of a working session replay tag for a visual comparison:
 
 <Frame>
-<img src="https://github.com/user-attachments/assets/0905abdf-7f7a-4c3d-9759-6ca0605a66cb" width="400"/>
+  <img
+    src="https://github.com/user-attachments/assets/0905abdf-7f7a-4c3d-9759-6ca0605a66cb"
+    width="400"
+  />
 </Frame>
 
 ## Privacy
@@ -637,21 +645,22 @@ By default, all text and inputs on a page are masked. You can selectively unmask
 
 Note that [certain sensitive input types](/docs/session-replay/session-replay-privacy-controls#always-masked-inputs) (password, email, tel, hidden, and inputs with autocomplete attributes) are always masked regardless of your configuration.
 
-Along with other data, the SDK respects all Do Not Track (DNT) settings as well as manual opt-out for any replay data. 
+Along with other data, the SDK respects all Do Not Track (DNT) settings as well as manual opt-out for any replay data.
 
 ### Retention
 
-User replays are stored for 30 days after the time of ingestion by default. Customers with the custom volumes of Session Replay can customize this value between 7 and 365 days as an additional paid add-on. 
+User replays are stored for 30 days after the time of ingestion by default. Customers with the custom volumes of Session Replay can customize this value between 7 and 365 days as an additional paid add-on.
 
 ### Browser Storage
 
 Session Replay stores temporary replay data in the browser using IndexedDB with dynamically generated key names prefixed with `__mprec_` (short for "Mixpanel Recording"). These keys are used for session recording batchers and are constructed dynamically, for example:
 
-```
+```text
 __mprec_<instance_name>_<project_token>_<replay_id>
 ```
 
 Where:
+
 - `__mprec_` identifies the data as Session Replay recording data
 - `<instance_name>` is the Mixpanel instance name (from `getConfig('name')`)
 - `<project_token>` is your Mixpanel project token
@@ -689,4 +698,4 @@ We have tested the SDK extensively and it generally has minimal impact on how yo
 
 #### Does session recording persist across page loads?
 
-Session recording does persist across page load for SDK v2.61.0+. See [the release note](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.61.0).
+Session recording does persist across page load for SDK v2.61.0\+. See [the release note](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.61.0).
