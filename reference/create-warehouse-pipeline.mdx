@@ -1,6 +1,7 @@
 ---
 openapi: /openapi/data-pipelines.openapi.yaml POST /nessie/pipeline/create
 title: Create Pipeline
+description: "This request creates an export pipeline"
 ---
 
 This request creates an export pipeline. The `type` parameter defines the kind of pipeline that is initiated. Note that only 2 recurring and 1 non-recurring events pipelines (**data\_source**: `events`) are allowed per project.
