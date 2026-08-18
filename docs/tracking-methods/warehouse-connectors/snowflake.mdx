@@ -1,0 +1,137 @@
+---
+sidebarTitle: Snowflake
+title: "Snowflake Warehouse Connector"
+description: "Connect Snowflake to Mixpanel and sync your data warehouse tables"
+---
+
+This guide covers how to connect Snowflake to Mixpanel using Warehouse Connectors. For an overview of Warehouse Connectors, including table types, sync modes, and FAQs, see the [Warehouse Connectors overview](/docs/tracking-methods/warehouse-connectors).
+
+## Connect Snowflake
+
+Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report/settings/%23project%2F%24project_id%24%2Fwarehousesources/). Select **Snowflake** and follow the instructions to connect it. Note: you only need to do this once.
+
+<Frame>
+  <iframe src="https://www.youtube-nocookie.com/embed/i-ytJQdojio" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen />
+</Frame>
+
+To connect to Snowflake, you will need:
+
+- Your [Snowflake account identifier](https://docs.snowflake.com/user-guide/admin-account-identifier), which you can find in the URL of your Snowflake account (`https://YOUR_ACCOUNT_NAME.snowflakecomputing.com/`).
+- A dedicated Mixpanel user account and role. The user account can use either key-pair or password authentication. If using key-pair authentication, Mixpanel will generate a secure key-pair during the connection process. The public key will be provided during the setup process, and the private key will be encrypted and stored securely.
+
+  ```jsx
+  CREATE ROLE MIXPANEL_ROLE;
+  # one of
+  CREATE USER MIXPANEL PASSWORD='?????' DEFAULT_ROLE=MIXPANEL_ROLE;
+  CREATE USER MIXPANEL RSA_PUBLIC_KEY='<mixpanel-provided-key>' DEFAULT_ROLE=MIXPANEL_IMPORT_ROLE;
+  # then
+  GRANT ROLE MIXPANEL_ROLE TO USER MIXPANEL;
+  ```
+- A Snowflake [WAREHOUSE](https://docs.snowflake.com/en/sql-reference/sql/create-warehouse) Mixpanel will use to unload data. We recommend creating a dedicated warehouse for Mixpanel to avoid impacting other workloads.
+
+  ```jsx
+  CREATE WAREHOUSE MIXPANEL_WAREHOUSE WITH
+    WAREHOUSE_SIZE = XSMALL # consider increasing for larger datasets
+    AUTO_SUSPEND = 60
+    AUTO_RESUME = TRUE
+    INITIALLY_SUSPENDED = TRUE;
+  GRANT USAGE ON MIXPANEL_WAREHOUSE TO ROLE MIXPANEL_ROLE;
+  GRANT MONITOR ON MIXPANEL_WAREHOUSE TO ROLE MIXPANEL_ROLE;
+  ```
+- A Snowflake [STORAGE INTEGRATION](https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration) Mixpanel will use to unload data. This integration can optionally restrict STORAGE\_ALLOWED\_LOCATIONS to the unique Mixpanel-managed bucket created to receive data for this connection.
+
+  ```jsx
+  CREATE STORAGE INTEGRATION MIXPANEL_STORAGE_INTEGRATION
+    TYPE = EXTERNAL_STAGE
+    STORAGE_PROVIDER = 'GCS'
+    ENABLED = TRUE
+    STORAGE_ALLOWED_LOCATIONS = ("<mixpanel-provided-bucket-name>"); # optional
+  GRANT USAGE ON INTEGRATION MIXPANEL_STORAGE_INTEGRATION TO MIXPANEL_ROLE;
+  ```
+- A new, empty `MIXPANEL` [SCHEMA](https://docs.snowflake.com/en/sql-reference/sql/create-schema) the Mixpanel user has the `USAGE` and `CREATE STREAM` permission for (if you are using [Mirror](/docs/tracking-methods/warehouse-connectors#mirror)).
+
+  ```jsx
+  CREATE SCHEMA <database>.MIXPANEL;
+  GRANT USAGE ON DATABASE <database> TO ROLE MIXPANEL_ROLE;
+  GRANT USAGE ON SCHEMA <database>.MIXPANEL TO ROLE MIXPANEL_ROLE;
+  GRANT CREATE STREAM ON SCHEMA <database>.MIXPANEL TO ROLE MIXPANEL_ROLE;
+  ```
+- The Mixpanel user needs the `USAGE` and `SELECT` permissions to have read-only access to any tables and views you plan to sync. Adjust this example to fine-tune permissions.
+
+  ```jsx
+  GRANT USAGE ON DATABASE <database> TO ROLE MIXPANEL_ROLE;
+  GRANT USAGE ON ALL SCHEMAS IN DATABASE <database> TO ROLE MIXPANEL_ROLE;
+  GRANT USAGE ON FUTURE SCHEMAS IN DATABASE <database> TO ROLE MIXPANEL_ROLE;
+  GRANT SELECT ON ALL TABLES IN DATABASE <database> TO ROLE MIXPANEL_ROLE;
+  GRANT SELECT ON FUTURE TABLES IN DATABASE <database> TO ROLE MIXPANEL_ROLE;
+  GRANT SELECT ON ALL VIEWS IN DATABASE <database> TO ROLE MIXPANEL_ROLE;
+  GRANT SELECT ON FUTURE VIEWS IN DATABASE <database> TO ROLE MIXPANEL_ROLE;
+  GRANT SELECT ON ALL MATERIALIZED VIEWS IN DATABASE <database> TO ROLE MIXPANEL_ROLE;
+  GRANT SELECT ON FUTURE MATERIALIZED VIEWS IN DATABASE <database> TO ROLE MIXPANEL_ROLE;
+  ```
+
+### IP Allowlist
+
+If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-guide/network-policies) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
+
+**US**
+
+```jsx
+34.31.112.201
+35.184.21.33
+35.225.176.74
+```
+
+**EU**
+
+```jsx
+34.147.68.192
+35.204.164.122
+35.204.177.251
+```
+
+**IN**
+
+```jsx
+34.47.224.29
+34.93.42.83
+35.244.19.238
+```
+
+- Some users report seeing the following error `ErrorMessage=SQL compilation error: Cannot unload to an inlined external location. Please create a stage first and unload to the stage instead.`. To resolve this error, you may set the following account security setting:
+
+```jsx
+ALTER ACCOUNT SET PREVENT_UNLOAD_TO_INLINE_URL = FALSE;
+```
+
+See the [Snowflake documentation on this setting](https://docs.snowflake.com/en/sql-reference/parameters#prevent-unload-to-inline-url) before making the change.
+
+## Mirror Mode
+
+Mirror syncs work by having Snowflake compute which rows have been inserted, modified, or deleted and sending this list of changes to Mixpanel.
+
+Mirror uses [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro) to track changes to Snowflake tables or views. The only requirement to use Mirror on a Snowflake table or view is to enable [change tracking](https://docs.snowflake.com/en/user-guide/streams-manage):
+
+```jsx
+ALTER TABLE <table> SET CHANGE_TRACKING = TRUE;
+# or
+ALTER VIEW <view> SET CHANGE_TRACKING = TRUE;
+```
+
+Mixpanel will create and manage the necessary STREAM objects in the `MIXPANEL` schema created during [Connect Snowflake](#connect-snowflake).
+
+**Considerations when using Mirror with Snowflake:**
+
+- Snowflake Streams only maintain change tracking metadata for a limited number of days determined by the larger of [DATA\_RETENTION\_TIME\_IN\_DAYS and MAX\_DATA\_EXTENSION\_TIME\_IN\_DAYS](https://docs.snowflake.com/en/user-guide/streams-manage#avoiding-stream-staleness) (default is 14 days for MAX\_DATA\_EXTENSION\_TIME\_IN\_DAYS). Make sure that the Mixpanel sync does not go longer than this number of days without running. Mixpanel recommends leaving the default of 14 days to ensure that if Mixpanel loses access to the warehouse unexpectedly (e.g., a credentials change), there is time to correct the issue.
+- Snowflake Streams do not work if a table is deleted and re-created with the same name. If using a tool like DBT to model data in Snowflake, make sure to use an [incremental model](https://docs.getdbt.com/docs/build/incremental-models) so that DBT does not replace the table each time it runs.
+- Snowflake streams don't capture changes when a column is deleted or renamed, so deletion of columns won't be synced to Mixpanel.
+- Snowflake has specific requirements when using [Streams on Views](https://docs.snowflake.com/en/user-guide/streams-intro#streams-on-views) that must be met when using Mirror with views.
+- While Snowflake Streams are a very efficient way of tracking changes, there are some performance implications when using [Streams on VIEWs that contain JOINs](https://docs.snowflake.com/en/user-guide/streams-intro#join-results-behavior). If you find yourself needing such a JOIN in event data, we recommend considering if syncing the joined data as [User Profiles](/docs/tracking-methods/warehouse-connectors#user-profiles), [Group Profiles](/docs/tracking-methods/warehouse-connectors#group-profiles), or a [Lookup Table](/docs/tracking-methods/warehouse-connectors#lookup-tables) would work instead.
+
+**Handling schema changes when using Mirror with Snowflake:** Adding new, default-NULL columns to Mirror-tracked tables/views is fully supported.
+
+```jsx
+ALTER TABLE <table> ADD COLUMN <column> VARCHAR DEFAULT NULL;
+```
+
+We recommend avoiding other types of schema changes. Snowflake streams only reflect changes to tables from DML statements. DDL statements that logically modify data (e.g., adding new columns with default values, dropping existing columns, or renaming columns) will be reflected in future data sent to Mixpanel, but the Stream will not update historical data with changes caused by DDL statements.

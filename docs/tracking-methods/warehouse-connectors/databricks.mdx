@@ -1,0 +1,135 @@
+---
+sidebarTitle: Databricks
+title: "Databricks Warehouse Connector"
+description: "Connect Databricks to Mixpanel and sync your data warehouse tables"
+---
+
+This guide covers how to connect Databricks to Mixpanel using Warehouse Connectors. For an overview of Warehouse Connectors, including table types, sync modes, and FAQs, see the [Warehouse Connectors overview](/docs/tracking-methods/warehouse-connectors).
+
+## Connect Databricks
+
+<Note>
+  The connection to Databricks only supports connecting directly to clusters or jobs compute. Connecting directly to SQL warehouses is not supported.
+</Note>
+
+Complete the following steps to get your Databricks connector up and running:
+
+### Step 1: Set up authentication
+
+Mixpanel connects to Databricks using a service principal. You can authenticate with either a personal access token or OAuth (recommended).
+
+**Option A: Service Principal OAuth (Recommended)**
+
+OAuth M2M (machine-to-machine) authentication uses a client ID and client secret instead of a token. OAuth secrets can be managed and rotated without affecting other integrations.
+
+1. [Create the service principal](https://docs.databricks.com/en/admin/users-groups/service-principals.html#manage-service-principals-in-your-account) in your Databricks account if it doesn't already exist.
+2. Generate an OAuth secret for the service principal:
+
+   - In your Databricks workspace, navigate to **Settings** → **Identity and access** → **Service principals**.
+   - Click on the service principal you want to use.
+   - Go to the **Secrets** tab.
+   - Click **Generate secret**.
+   - Copy the **Client ID** and **Secret** immediately — the secret won't be shown again.
+3. Save both the Client ID and Secret — you'll need them when connecting in Mixpanel.
+
+**Option B: Personal Access Token**
+
+1. [Create the service principal](https://docs.databricks.com/en/admin/users-groups/service-principals.html#manage-service-principals-in-your-account) in your Databricks account if it doesn't already exist.
+2. Generate a token for the service principal using the Databricks CLI:
+
+```bash
+databricks configure --token
+databricks token-management create-obo-token <application_id_of_service_principal> --lifetime-seconds 31536000 --comment "Mixpanel warehouse connector service principal token"
+```
+
+3. Save the generated token — you'll need it when connecting in Mixpanel.
+
+### Step 2: Grant permissions
+
+The user or service principal you're connecting with needs the following permissions. The exact permissions depend on which compute type you plan to use.
+
+**Compute permissions:**
+
+| Permission | All-Purpose Compute | Jobs Compute |
+| --- | --- | --- |
+| `CAN ATTACH TO` on the cluster | Required | Not needed |
+| `CAN RESTART` on the cluster | Required if the cluster auto-suspends | Not needed |
+| Cluster creation permissions | Not needed | Required |
+
+For all-purpose compute, the cluster must be a **shared** compute resource, not a single-user cluster (unless the service principal created the cluster).
+
+You can set these in Databricks under **Compute → your cluster → Edit Permissions**.
+
+**Data permissions:**
+
+Grant read access to the catalogs and schemas you want to sync to Mixpanel. You can do this in Databricks under **Catalog → your catalog → Permissions → Grant**, and select the **Data Reader** role.
+
+Mixpanel also needs file-level permissions to read table data and write intermediate results to cloud storage. Run the following SQL in a Databricks notebook or SQL editor:
+
+```sql
+GRANT SELECT ON ANY FILE TO `<application_id_or_username>`;
+GRANT MODIFY ON ANY FILE TO `<application_id_or_username>`;
+```
+
+### Step 3: Connect in Mixpanel
+
+1. Navigate to **Project Settings**, then select **Warehouse Sources**.
+2. Click on `+ Add Connection` and select **Databricks**.
+3. Fill out the following fields, then click **Create Source**:
+
+   - **Server Hostname** — The hostname of your Databricks workspace. Find this in your workspace URL, or under your cluster's [JDBC/ODBC settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step).
+   - **Authentication** — Choose one of the following:
+
+     - **Personal Access Token** — The service principal token from Option A above.
+     - **OAuth Client ID** and **OAuth Client Secret** — The client credentials from Option B above.
+   - **Compute Type** — Select your preferred compute option:
+
+     - **All-Purpose Compute** — Uses an existing cluster. Faster sync start times, but the cluster stays running after the sync completes until it times out. Best for development.
+     - **Jobs Compute (Beta)** — Creates a dedicated job for each sync. You're only billed for the exact job duration, making it more cost-effective. Syncs take ~5-6 minutes longer to start due to cluster spin-up, and data preview in the Mixpanel UI is not supported. Best for production.
+   - **HTTP Path** — For all-purpose compute, the HTTP path of your cluster. Find this under your cluster's [JDBC/ODBC settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step).
+4. Confirm that the credentials are validated and the source is added.
+
+### IP Allowlist
+
+If you are using [IP Access List](https://docs.databricks.com/en/security/network/front-end/ip-access-list.html) to restrict access to your instance, you might need to add the following IP addresses to the allowed list.
+
+**US**
+
+```jsx
+34.31.112.201
+35.184.21.33
+35.225.176.74
+```
+
+**EU**
+
+```jsx
+34.147.68.192
+35.204.164.122
+35.204.177.251
+```
+
+**IN**
+
+```jsx
+34.47.224.29
+34.93.42.83
+35.244.19.238
+```
+
+## Mirror Mode
+
+Mirror syncs work by having Databricks compute which rows have been inserted, modified, or deleted and sending this list of changes to Mixpanel.
+
+Mirror uses Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) to track changes to Databricks tables. The only requirement to use Mirror on a Databricks table is to enable [change data feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html#enable-change-data-feed) on those entities.
+
+```jsx
+ALTER TABLE <table> SET TBLPROPERTIES (delta.enableChangeDataFeed = true);
+```
+
+**Considerations when using Mirror with Databricks:**
+
+- Mirror is not supported on views in Databricks
+- Databricks Change Data Feed only maintains change history for a limited number of days determined by [delta.logRetentionDuration](https://docs.databricks.com/en/delta/history.html#retrieve-delta-table-history) (default is 30 days). Make sure that the Mixpanel sync does not go longer than this number of days without running. Mixpanel recommends leaving the default of 30 days to ensure that if Mixpanel loses access to the warehouse unexpectedly (e.g., a credentials change), there is time to correct the issue.
+- Databricks Change Data Feed does not work if a table is deleted and re-created with the same name. If using a tool like DBT to model data in Databricks, make sure to use an [incremental model](https://docs.getdbt.com/docs/build/incremental-models) so that DBT does not replace the table each time it runs.
+- While Databricks Change Data Feed works with adding new columns to the table, there are certain limitations when it comes to dropping columns or renaming columns that use [column mappings](https://docs.databricks.com/en/delta/delta-change-data-feed.html#change-data-feed-limitations-for-tables-with-column-mapping-enabled). In such scenarios, Mixpanel recommends deleting the sync (along with the data) and re-creating the sync.
