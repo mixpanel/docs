@@ -10,11 +10,11 @@ This document walks through best practices for data validation and debugging you
 
 ### Create a Test Project
 
-Mixpanel recommends that you create a [separate development Mixpanel project](/docs/best-practices/developer-environments#separate-development-data) to validate your event data. This ensures that your testing data does not contaminate your production environment.
+Mixpanel recommends that you create a [separate development Mixpanel project](/docs/tracking-best-practices/developer-environments#separate-development-data) to validate your event data. This ensures that your testing data does not contaminate your production environment.
 
 ### Send Events
 
-Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](/docs/quickstart/connect-your-data?sdk=javascript), [Server](/docs/quickstart/connect-your-data?sdk=python), and [Mobile](/docs/quickstart/connect-your-data?sdk=ios). We have a simple [HTTP API](/docs/quickstart/connect-your-data?sdk=httpapi) for any languages we don't support.
+Mixpanel doesn't receive any data until you start sending events. If you haven't started sending data to Mixpanel, check out our quickstart guides for [JavaScript](/docs/quickstart/install-mixpanel?sdk=javascript), [Server](/docs/quickstart/install-mixpanel?sdk=python), and [Mobile](/docs/quickstart/install-mixpanel?sdk=ios). We have a simple [HTTP API](/docs/quickstart/install-mixpanel?sdk=httpapi) for any languages we don't support.
 
 🎉 Congratulations, you're ready to debug! Theres are two primary places to inspect your raw events as they flow into your Mixpanel project: Events and User Profiles.
 
@@ -211,7 +211,7 @@ Two systems will always track data differently due to their nature. It might ver
 
 ### Ad Blockers and Do Not Track Settings
 
-Client-Side Tracking can be unreliable, you may lose events for 30-50% of your users. You can resolve this by [sending events through a proxy](/docs/tracking-methods/sdks/javascript), but it requires a bit more effort. We [recommend](/docs/debugging/overview#client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
+Client-Side Tracking can be unreliable, you may lose events for 30-50% of your users. You can resolve this by [sending events through a proxy](/docs/tracking-methods/sdks/javascript), but it requires a bit more effort. We [recommend](/docs/tracking-best-practices/debugging#client-side-vs-server-side-tracking) server-side tracking, since it is more reliable and easier to maintain than web/mobile tracking.
 
 ### Different Timezones
 
