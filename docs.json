@@ -727,6 +727,7 @@
           {
             "group": "FAQs",
             "pages": [
+              "troubleshooting/faqs",
               "troubleshooting/general",
               "troubleshooting/sending-data",
               "troubleshooting/identity-management",
@@ -4767,10 +4768,6 @@
     {
       "source": "/guides/strategic-playbooks/onboarding-playbook/beyond-onboarding",
       "destination": "/guides/strategic-playbooks/onboarding-playbook"
-    },
-    {
-      "source": "/troubleshooting/faqs",
-      "destination": "/troubleshooting/general"
     }
   ]
 }
