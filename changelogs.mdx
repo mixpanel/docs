@@ -1,5 +1,5 @@
 ---
-title: Changelogs
+title: "Changelogs"
 ---
 
 import { SubscribeButtonWithModal } from "/snippets/SubscribeButtonWithModal/SubscribeButtonWithModal.jsx";
@@ -8,6 +8,23 @@ import { VideoButtonWithModal } from "/snippets/VideoButtonWithModal/VideoButton
 Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
+
+<Update label="2026-08-07">
+  ## Session Replay: Mobile Autocapture (Screen Views)
+
+  Mobile teams can now autocapture screen view and screen leave events across our React Native, Swift, Android, and Flutter SDKs, with a one-time setup instead of per-screen instrumentation.
+
+  Previously, autocapture was only available in our JS SDK. Mobile teams had no low-lift way to start capturing behavior, so getting basic screen-level data meant hand-instrumenting a track call on every screen, in every SDK, before they could answer even simple "which screens do people visit" questions.
+
+  Autocapture hooks into your routing library, so screen view and screen leave events fire automatically after a one-time setup, with no per-screen tracking code. Teams get screen-level navigation data on mobile from a single integration with their router, with no ongoing per-screen tracking to write or maintain.
+
+  Live across all four mobile SDKs:
+
+  - [React Native](/docs/tracking-methods/sdks/react-native#autocapture)
+  - [Swift](/docs/tracking-methods/sdks/swift#autocapture)
+  - [Android](/docs/tracking-methods/sdks/android#autocapture)
+  - [Flutter](/docs/tracking-methods/sdks/flutter#autocapture)
+</Update>
 
 <Update label="2026-07-28">
   ## AI-Powered Data Governance: merge suggestions for duplicate events and properties
@@ -30,7 +47,7 @@ Get all the latest updates in your inbox.
 
   A roundup of more recent updates to Mixpanel Agent based on what you've been telling us.
 
-  **Retention curves:** Mixpanel Agent now builds retention curves by default for retention analysis. 
+  **Retention curves:** Mixpanel Agent now builds retention curves by default for retention analysis.
 
   **Cohorts saved automatically:** Cohorts the Agent creates are now saved to Lexicon, making it easy to use Agent cohorts.
 
@@ -40,7 +57,7 @@ Get all the latest updates in your inbox.
 
   **Lookup table properties:** The Agent can now find and use lookup table properties in analysis.
 
-  **Answers grounded in Mixpanel Docs:** When you ask the Agent how Mixpanel works, it pulls from the actual documentation. 
+  **Answers grounded in Mixpanel Docs:** When you ask the Agent how Mixpanel works, it pulls from the actual documentation.
 
   **More types of page context:** The Agent now knows what you're looking at on Users and Events pages, so you can use it in more places.
 </Update>
@@ -127,16 +144,6 @@ Get all the latest updates in your inbox.
   [Learn more →](/docs/access-security/login-methods#passkey-login)
 </Update>
 
-<Update label="2026-06-26">
-  ## **Share Mixpanel Agent chats**
-
-  Now you can send a link to any Agent chat and let your team read exactly what you asked and what it found.
-
-  Chats are private by default. When you're ready to share, click the chat name and select "Share link."
-
-  [Learn more →](/docs/mixpanel-agent#sharing)
-</Update>
-
 <Update label="2026-07-10">
   ## Feature Flags: React Native SDK
 
@@ -153,6 +160,16 @@ Get all the latest updates in your inbox.
   Available in React Native SDK v3.5.0. [Learn more →](/docs/tracking-methods/sdks/react-native/react-native-flags)
 </Update>
 
+<Update label="2026-06-26">
+  ## **Share Mixpanel Agent chats**
+
+  Now you can send a link to any Agent chat and let your team read exactly what you asked and what it found.
+
+  Chats are private by default. When you're ready to share, click the chat name and select "Share link."
+
+  [Learn more →](/docs/mixpanel-agent#sharing)
+</Update>
+
 <Update label="2026-06-25">
   ## Introducing Mixpanel Agent: your always-on product analyst
 
@@ -165,15 +182,12 @@ Get all the latest updates in your inbox.
   **Three ways to start using it today:**
 
   - **Self-serve answers:** Ask anything about your product and get an answer in seconds. No query builder, no data team required. _Try asking:_
-
     - _"How many users signed up for a trial last month"_
     - _"Summarize the insights from this analysis and give me top 3 takeaways."_
     - _"Build a dashboard for this new feature launch"_
   - **Root cause analysis:** When a metric moves unexpectedly, Mixpanel Agent automatically investigates the likely drivers and helps you get to the bottom of it. 
-
     - _Try asking: "Why did my activation rate drop last week?"_
   - **KPI monitoring:** Set up a monitor for any metric you own and Mixpanel Agent will surface what moved on your schedule, whether that’s daily, weekly, or monthly. 
-
     - _Try it: Open Automations and set up a monitor for a key metric you own today._
 
   [Get started →](https://mixpanel.com/agent) |[Learn more from our docs →](/docs/mixpanel-agent)
@@ -880,7 +894,6 @@ Get all the latest updates in your inbox.
 
   1. In an Insights report, select `All Events` as the primary metric
   2. Break down by the [following properties](/docs/data-structure/property-reference/default-properties), depending on your tracking SDK(s)
-
      - JavaScript (Web): Browser (`$browser`) and Browser Version (`$browser_version`)
      - Mobile: Operating System (`$os`), OS Version (`$os_version`)
 
@@ -936,7 +949,6 @@ Get all the latest updates in your inbox.
   - Connect your Postgres database directly from the Mixpanel UI.
   - Sync tables from Postgres into Mixpanel without intermediate services.
   - Compatible with all Postgres versions and major managed providers including:
-
     - DigitalOcean Managed PostgreSQL
     - Google Cloud SQL
     - Supabase
@@ -2302,7 +2314,6 @@ Get all the latest updates in your inbox.
   ### Merging data from client-side to server-side
 
   - **Scenario**: You want to understand which restaurant category leads to the most confirmed purchases.
-
     - “Order placed” is a client-side event that has a property called restaurant category.
     - “Transaction completed” is the server-side event of interest that you’d like to break down by restaurant category.
   - **Solution**: Borrow the restaurant category property from “Order placed” onto “Transaction completed” and poof! It’s like “Transaction completed” always had the restaurant category property.
@@ -2310,7 +2321,6 @@ Get all the latest updates in your inbox.
   ### Analyzing across two different teams
 
   - **Scenario**: One team created a “Speed Mode” feature that runs the app faster. There’s a “Speed Mode” event with the property Speed Mode Enabled.
-
     - Another team wants to know how Speed Mode impacts how many pages are viewed. But the “Page View” event doesn’t have the Speed Mode Enabled property.
   - **Solution**: Borrow the Speed Mode Enabled property onto “Page View” and teams can instantly understand how page views differed when Speed Mode was turned on.
 
@@ -3186,7 +3196,6 @@ Get all the latest updates in your inbox.
   That’s why we’ve updated our our [Mixpanel Javascript SDK](/docs/tracking-methods/sdks/javascript) to automatically collect:
 
   - UTM Tags (default: on) — automatically adds these parameters to all events:
-
     - utm\_source: track the source where traffic is coming from, including a website or advertiser
     - utm\_medium: track the advertising medium, including email and banner ads
     - utm\_campaign: track the campaign name associated with the traffic
@@ -3194,7 +3203,6 @@ Get all the latest updates in your inbox.
     - utm\_term: track keywords associated with campaigns
     - Initial UTM: tracks the first time a user reaches any of the above parameters Tracking UTM tags help fuel attribution analysis so you can understand which campaigns, ads, or content is contributing the most, or least, to conversion.
   - Page Views (default: off) —  auto-track page views to build metrics like:
-
     1. Total Views: identify top performing pages to learn what content your users like best
     2. Bounce Rate: percentage of visitors who leave your website within 10s of viewing it
     3. Conversion Rate: percentage of visitors who complete a key action after visiting a page. Tracking the performance of your pages is the main way to understand if your website is driving value to your users and business. If you want to get started with web analytics, turning on auto-tracking pages can help you get started.

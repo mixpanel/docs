@@ -1,0 +1,23 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Mixpanel Platform API",
+    "version": "1",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "https://platform-us.mixpanel.com",
+      "description": "US"
+    },
+    {
+      "url": "https://platform-eu.mixpanel.com",
+      "description": "EU"
+    },
+    {
+      "url": "https://platform-in.mixpanel.com",
+      "description": "IN"
+    }
+  ],
+  "paths": {}
+}
