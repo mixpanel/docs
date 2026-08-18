@@ -110,6 +110,10 @@ To ensure secure operations, limit the trust relationship to the Mixpanel export
   }
   ```
 
+<Warning>
+  If your Glue Data Catalog is governed by [AWS Lake Formation](https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html), the IAM permissions above are not sufficient on their own. Lake Formation enforces its own permission layer, so you'll also need to grant the Mixpanel Glue role permissions inside Lake Formation: `CREATE_TABLE` on the Glue **database**, plus a **Data location** permission on your registered S3 export path. Grant these at the database and data-location level, not only on the table.
+</Warning>
+
 ## Setting Redshift Spectrum Permissions
 
 This section outlines the necessary steps for configuring permissions to allow Mixpanel to create external schemas in Redshift Spectrum.
