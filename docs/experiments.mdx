@@ -73,9 +73,13 @@ Enter either the sample size (the number of users to be exposed to the experimen
 
 Mixpanel has set default automatic configurations, seen below. If required, please modify them as needed for the experiment
 
-1. **Experiment Model type**: Sequential
-2. **Confidence Threshold**: 95%
+1. **Experiment Model type**: Sequential. You can also choose Frequentist or Bayesian; see [Experiment Model Types](#experiment-model-types) for how they differ.
+2. **Confidence Threshold**: 95%. On a Bayesian experiment this setting is labeled **Decision Threshold** and sets the minimum Chance to Beat Control required to highlight a variant as a winner.
 3. **Experiment Start Date**: Date of the first user exposed to the experiment
+
+<Note>
+The Confidence Threshold and the Bayesian Decision Threshold are the same underlying setting: if you switch an experiment's model type, your chosen number carries over and is reinterpreted for the new model.
+</Note>
 
 ### Experiment JSON Parameters
 
@@ -104,7 +108,7 @@ See the [JavaScript Feature Flags guide](/docs/tracking-methods/sdks/javascript/
 
 ### Changing Settings Mid-Experiment
 
-Mixpanel analyzes your experiment on the fly, so you can adjust settings at any time if needed. If you notice a configuration mistake - like selecting Frequentist when you meant Sequential - feel free to correct it, even if the experiment has been running for weeks.
+Mixpanel analyzes your experiment on the fly, so you can adjust settings at any time if needed. If you notice a configuration mistake - like selecting Frequentist when you meant Sequential or Bayesian - feel free to correct it, even if the experiment has been running for weeks.
 
 The one thing to avoid is changing settings because the current results aren't what you hoped for. If you adjust the confidence level, metrics, or duration in search of a significant result, you're more likely to find something that looks meaningful but is actually noise. When you roll out that change, it may not deliver the improvement you expected.
 
@@ -121,12 +125,19 @@ Once your experiment is running, you can track its progress in the Experiments d
 
 ## Interpret Your Results
 
-The Experiments report identifies significant differences between the Control and Variant groups. Every metric has two key attributes: 
+The Experiments report identifies meaningful differences between the Control and Variant groups. Every metric has two key attributes, and which ones you see depends on your [experiment model type](#experiment-model-types).
+
+**Frequentist and Sequential models:**
 
 - p-value: this shows if the variants’ delta impact vs the control is statistically significant
 - lift: the variants’ delta impact on the metric vs control
 
-Metric rows in the table are highlighted when any difference is calculated with high confidence. Specifically, if the difference is greater than the confidence interval you set up during the experiment configuration
+**Bayesian model:**
+
+- Chance to Beat Control: the probability that the variant's true metric value is better than the control's
+- lift: the variants’ delta impact on the metric vs control
+
+Metric rows in the table are highlighted when a difference is calculated with high confidence. For Frequentist and Sequential experiments, this is when the difference is greater than the confidence interval you set up during the experiment configuration. For Bayesian experiments, a variant is highlighted when its Chance to Beat Control reaches your Decision Threshold. For example, at a 95% threshold, a variant is flagged as a winner at 95% or above, and as a loser at 5% or below.
 
 - Positive differences, where the variant value is in the target direction compared to the control, are highlighted in green
 - Negative differences, where the variant value is opposite the target direction compared to the control, are highlighted in red
@@ -138,15 +149,17 @@ Hover over a value in a metric row to see more detail behind the numbers and to 
 
 ### How do you read statistical significance?
 
-Statistical significance (p-value) helps you determine whether your experiment results are likely to hold true for the full rollout, giving you confidence in your decisions.
+Statistical significance (p-value) helps you determine whether your experiment results are likely to hold true for the full rollout, giving you confidence in your decisions. On Bayesian experiments, the equivalent signal is the Chance to Beat Control, described under [Bayesian](#bayesian) below.
 
 <Frame>
 ![image](/images/exp_stat_sig.png)
 </Frame>
 
-#### Statistical Significance Calculation
+#### How Mixpanel Calculates Results
 
-Mixpanel uses Frequentist statistical methods to compute p-values and confidence intervals. The specific approach depends on your metric type and experiment model.
+How Mixpanel evaluates your experiment depends on two things: the [experiment model type](#experiment-model-types) you selected, and the type of each metric. The Frequentist and Sequential models compute p-values and confidence intervals; the Bayesian model computes a probability that each variant beats control.
+
+##### Frequentist and Sequential
 
 **Metric Types and Their Distributions:**
 
@@ -196,7 +209,7 @@ So, if an experiment's results show
 - p ≤ 0.025: results are statistically significant for this metric, i.e, you can be 95% confident in the lift seen if the change is rolled out to all users.
 - p > 0.025: results are not statistically significant for this metric, i.e, you cannot be very confident in the results if the change is rolled out broadly.
 
-#### Example: E-commerce Checkout Experiment
+###### Example: E-commerce Checkout Experiment
 
 To illustrate how these calculations work in practice, let's walk through a concrete example.
 
@@ -222,6 +235,62 @@ To illustrate how these calculations work in practice, let's walk through a conc
 4. **Z-score and p-value:** Computed using the same Z-test framework
 
 This example shows why larger sample sizes are crucial—with only 10 users per group, even a 10-point difference in conversion rate isn't statistically significant.
+
+##### Bayesian
+
+The Bayesian model answers a different question than the Frequentist and Sequential models. Instead of asking "how surprising would this data be if the treatment had no effect?" (a p-value), it estimates a distribution of plausible values for each variant's metric and reports **how likely it is that the variant is actually better than control**. That probability is surfaced as the **Chance to Beat Control** column.
+
+**Priors:**
+
+Bayesian analysis combines the data you observed with a *prior*, an assumption about what the metric's value is likely to be before looking at the results. Mixpanel uses **weakly informative priors** that are automatically scaled to your experiment's own data. The prior is centered on the pooled metric value across control and the variant being compared, weighted by each one's exposures; its spread comes from the pooled variance of that same data; and its strength is a single pseudo-observation.
+
+That last point is what makes it weakly informative. The prior is strong enough to keep results stable when a variant has very few users, and negligible once real data accumulates: at the thousands of exposures a typical experiment reaches, it has effectively no influence on the outcome. You don't have to supply a prior, and the prior won't push results toward a value you didn't choose. It is not a fixed uniform prior, and it is not derived from control alone.
+
+**Models by metric type:**
+
+| Metric type | Data model | Prior |
+| --- | --- | --- |
+| Averages, totals, sessions | Normal distribution over per-user values | Normal-Inverse-Gamma |
+| Conversion rates, retention rates, unique users | Bernoulli (binary converted / didn't convert) | Beta |
+| Formula metrics | Normal, using propagation of uncertainty across the formula's components | Normal-Inverse-Gamma |
+
+<Note>
+Total and session metrics are modeled as normally distributed per-user counts, on the same per-user scale used for averages, rather than as Poisson counts. This differs from the Frequentist path, which applies a Poisson variance on the totals scale.
+</Note>
+
+**How it's computed:**
+
+Each variant's distribution is calculated in closed form, then Mixpanel draws 50,000 samples from the control and variant distributions and compares them to derive the Chance to Beat Control and the interval around the lift. The sampler uses a fixed seed, so you get identical numbers on every reload.
+
+Each variant is compared against control only. In an experiment with three or more variants, you get one independent comparison per variant, each reported as its own Chance to Beat Control. Mixpanel does not report a probability that a given variant is the best of all of them.
+
+**Reading Chance to Beat Control:**
+
+With a Decision Threshold of 95%:
+
+- **97%**: above the threshold, highlighted as a winner.
+- **60%**: the variant is more likely better than not, but well short of the threshold. You don't yet have enough data to act.
+- **2%**: below the 5% lower bound, highlighted as a loser. The variant is very likely *worse* than control.
+
+This value can read exactly 100% or 0% when none of the 50,000 samples fell on the other side.
+
+**Credible intervals:**
+
+Alongside the lift, Bayesian results include a **credible interval**, the range that contains your chosen share of the plausible lift values (95% by default). A credible interval supports the reading that people often incorrectly apply to a frequentist confidence interval: there is a 95% probability the true lift falls inside it.
+
+Compared to other Bayesian tools:
+
+- The interval is a **highest-density interval**, the *narrowest* range containing 95% of the plausible values. Many Bayesian A/B tools instead report an equal-tailed interval, which trims 2.5% from each end and can be wider.
+- It is computed on relative lift (percentage difference from control), not on the absolute difference between the two groups.
+- Because of this, the interval is generally asymmetric around the reported lift, rather than "lift ± some margin."
+
+The lift shown for Bayesian metrics is the median of the plausible relative-lift values, chosen because it is robust to the long tails a ratio can produce and always falls inside the credible interval.
+
+**Supported metrics:**
+
+The Bayesian model supports averages, totals, sessions, unique users, conversion rates (including funnel conversion rate), retention rates, and formula metrics built from any of these.
+
+Some metric configurations are not yet supported by the Bayesian model, including total-based funnel conversion rates, retention-frequency metrics, and metrics that roll up user or cohort properties. When a metric isn't supported, its values still appear in the results table but without any statistics: no Chance to Beat Control, lift, or interval. If you rely on one of these metrics, use the Frequentist or Sequential model for that experiment. For formula metrics, every component must be supported, or the whole formula shows no statistics.
 
 ### How do you read lift?
 
@@ -305,7 +374,9 @@ Once the ‘Test Duration’ setup during configuration is complete, we show a b
 1. Sample size to be exposed
 2. Number of days you’d like to run the experiment
 
-NOTE: If you are using a 'sequential' testing experiment model type, you can always peek at the results sooner. Learn more about what sequential testing is [here](#experiment-model-types)
+NOTE: If you are using a 'sequential' or 'bayesian' experiment model type, you can always peek at the results sooner. Learn more about the [experiment model types](#experiment-model-types).
+
+A Chance to Beat Control describes the data you have collected so far, so unlike a fixed-horizon p-value it does not depend on having reached a predetermined sample size. Mixpanel does not, however, apply an always-valid correction on the Bayesian path the way the Sequential model applies mSPRT. If you want a formal guarantee about stopping early, Sequential is the model built for that. For small expected effects, still run your planned duration: a Chance to Beat Control computed on a few hundred users is very uncertain.
 
 ### Diagnosing experiments further in regular Mixpanel reports
 Click 'Analyze' on a metric to dive deeper into the results. This will open a normal Mixpanel insights report for the time range being analyzed with the experiment breakdown applied. This allows you to view users, view replays, or apply additional breakdowns to further analyze the results.
@@ -372,12 +443,23 @@ Mixpanel offers several advanced statistical options to help you get more reliab
 
 | Technique | What It Does | When to Use | Actions to Take |
 | --- | --- | --- | --- |
-| **Bonferroni Correction** | Makes significance thresholds stricter to account for testing multiple metrics/variants at once | You're tracking multiple metrics or testing multiple variants and want maximum protection against any false positive | If a metric loses significance after correction, don't treat it as a confirmed winner. Run a follow-up experiment focused on that metric alone. |
-| **Benjamini-Hochberg Correction** | Controls the proportion of significant results that are false positives (false discovery rate) | You're tracking many metrics and want to correct for multiple comparisons without being overly conservative | Treat the surviving significant results as your set of likely winners, knowing a small share may still be false positives. Validate the most important ones in a follow-up. |
-| **Winsorization** | Caps extreme outlier values at a percentile you choose | Revenue or value-based metrics where outliers are common | If results change substantially after Winsorization, this indicates your original results were driven by outliers. Decide whether your business decision is about typical users or extreme ones. |
+| **Bonferroni Correction** | Makes significance thresholds stricter to account for testing multiple metrics/variants at once | You're tracking multiple metrics or testing multiple variants and want maximum protection against any false positive. Frequentist and Sequential only | If a metric loses significance after correction, don't treat it as a confirmed winner. Run a follow-up experiment focused on that metric alone. |
+| **Benjamini-Hochberg Correction** | Controls the proportion of significant results that are false positives (false discovery rate) | You're tracking many metrics and want to correct for multiple comparisons without being overly conservative. Frequentist and Sequential only | Treat the surviving significant results as your set of likely winners, knowing a small share may still be false positives. Validate the most important ones in a follow-up. |
+| **Winsorization** | Caps extreme outlier values at a percentile you choose | Revenue or value-based metrics where outliers are common | If results change substantially after Winsorization, this indicates your original results were driven by outliers. Decide whether your business decision is about typical users or extreme ones. Applies to all experiment model types. |
 | **SRM** | Checks whether your variant split matches the configured allocation | Always on as a health check | Pause the experiment. Identify and fix the root cause of the mismatch, then restart the experiment. |
 | **Pre-Experiment Bias** | Checks whether variant groups were already different *before* the experiment started | Always on as a health check | Your groups had pre-existing bias. Consider enabling CUPED to correct for it. Investigate your assignment logic to prevent it in future experiments. |
 | **CUPED** | Uses pre-experiment behavior to adjust for natural variance and pre-existing bias, helping you reach significance faster | Your users have pre-experiment history and your metrics have high natural variance | If confidence intervals don't noticeably tighten, pre-experiment behavior isn't predictive for your metrics. Results are still valid, you just won't get faster detection. |
+
+### Which methods apply to Bayesian experiments
+
+Most of the methods below are independent of your experiment model type and work the same way on a Bayesian experiment:
+
+- **Winsorization**, **CUPED**, **segmentation**, **SRM**, and **Pre-Experiment Bias** all apply. They operate on the metric data before the statistical model runs, so the Bayesian model consumes the adjusted values. With CUPED, the effect shows up as narrower credible intervals while the reported lift stays roughly the same.
+- **Multiple testing corrections (Bonferroni and Benjamini-Hochberg)** don't apply. Both work by adjusting p-value thresholds, and Bayesian results don't produce a p-value; the decision comes directly from the Chance to Beat Control. The setting is hidden on Bayesian experiments, including when you add a breakdown.
+
+<Note>
+The caution about [post-hoc segmentation](#the-risk-of-post-hoc-segmentation) still applies to Bayesian experiments. Inspecting many segments looking for one that "worked" raises your odds of finding a variant that looks like a winner by chance, whether you're reading p-values or probabilities. Treat a winning segment as a lead to test in a fresh experiment.
+</Note>
 
 ### Bonferroni Correction
 
@@ -648,6 +730,8 @@ You can see your experiment MEU usage by going to Organization settings > Plan D
     
 - Frequentist: Capable of detecting smaller lifts, but requires you to keep experiments for the full duration. You’re discouraged from preemptively making decisions before the test duration is complete. **When to use?** For very small changes (~1% lift) when precision matters.
 
+- Bayesian: Reports the probability that each variant beats control instead of a p-value, and can be read at any point during the experiment. **When to use?** When you're reporting results to an audience that doesn't work in p-values. Note that a few metric configurations aren't supported, listed under [Bayesian](#bayesian).
+
 ### Experiment metric types
 - **Primary Metrics:**  Main goals you're trying to improve. These are metrics used to determine if the experiment succeeded. Examples: revenue, conversion rates, ARPU.
 - **Guardrail Metrics:** These are other important metrics that you want to ensure haven’t been negatively affected while focusing on the primary metrics. Examples: CSAT, churn rate.
@@ -658,13 +742,13 @@ You can see your experiment MEU usage by going to Organization settings > Plan D
 Once the experiment is ready to review, you can choose to 'End Analysis'. Use these guidelines to make informed decisions:
 
 ### When to Ship a Variant
-- **Statistical significance achieved** AND **practical significance met** (lift meets your minimum threshold)
+- **Statistical significance achieved** (or, on a Bayesian experiment, **Chance to Beat Control has reached your Decision Threshold**) AND **practical significance met** (lift meets your minimum threshold)
 - **Guardrail metrics remain stable** (no significant negative impacts)
 - **Sample size is adequate** for your confidence requirements
 - **Results align with your hypothesis** and business objectives
 
 ### When to Ship None
-- **No statistical significance** achieved after adequate test duration
+- **No statistical significance** achieved after adequate test duration; on a Bayesian experiment, Chance to Beat Control has stayed short of your Decision Threshold
 - **Statistically significant but practically insignificant** (lift too small to matter)
 - **Negative impact on guardrail metrics** outweighs primary metric gains
 - **Results contradict** your hypothesis significantly
