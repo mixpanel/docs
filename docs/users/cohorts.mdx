@@ -1,6 +1,7 @@
 ---
 sidebarTitle: Cohorts
-title: "Cohorts: Group users by demographic and behavior"
+title: "Cohorts"
+description: "Group users by demographic and behavior"
 ---
 
 Cohorts are groups of users that share a certain set of properties or who perform a similar sequence of events. Mixpanel lets you visually define cohorts, view the list of users that comprise them, compare them in your analysis, and share them with the rest of your company.
@@ -213,3 +214,7 @@ If you were to select multiple cohorts in the filter ([example](https://mixpanel
 
 - User is not in Cohort A (fulfils the criteria), but is in Cohort B
 - User is not in Cohort B (fulfils the criteria), but is in Cohort A
+
+### How do I create a cohort based on users who did the same event in different time intervals?
+
+If you want to filter for users that have done an event on X time units within a given timeframe, you can filter for the event, change 'Total Events' to 'Aggregate Property --> Distinct Count', then select the property 'Time' and the time unit you wish to filter for. You can then indicate the number of time units and the time frame as needed. This will show you e.g. the number of users who did an event on 5 different days within the last 2 months.
