@@ -382,7 +382,8 @@
               "docs/root-cause-analysis",
               "docs/mcp",
               "docs/mixpanel-headless",
-              "docs/business-context"
+              "docs/business-context",
+              "docs/docs-for-ai-agents"
             ]
           },
           {

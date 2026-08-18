@@ -1,0 +1,52 @@
+---
+title: Docs for AI Agents
+---
+
+## Overview
+
+Mixpanel documentation is available in machine-readable formats so that AI agents, coding assistants, and LLM-powered tools can access and understand it programmatically. These endpoints let you feed Mixpanel's documentation directly into a context window, retrieval system, or agentic workflow.
+
+## Available Formats
+
+### llms.txt
+
+A concise index of Mixpanel documentation following the [llms.txt standard](https://llmstxt.org/). It lists the most important pages with short descriptions — optimized for fitting into an LLM context window.
+
+```
+https://docs.mixpanel.com/llms.txt
+```
+
+### llms-full.txt
+
+The full content of Mixpanel documentation in a single plain-text file. Use this when you need complete coverage rather than a curated index.
+
+```
+https://docs.mixpanel.com/llms-full.txt
+```
+
+### OpenAPI
+
+Mixpanel's Ingestion and Query APIs are described using the OpenAPI specification. Use these to generate client code, validate requests, or give an agent precise knowledge of available endpoints.
+
+| API | OpenAPI spec |
+| --- | --- |
+| Ingestion API | `https://docs.mixpanel.com/openapi/ingestion.yaml` |
+| Query API | `https://docs.mixpanel.com/openapi/query.yaml` |
+
+## Usage Examples
+
+### Add to a system prompt
+
+Paste the output of `llms.txt` (or a subset of `llms-full.txt`) directly into your system prompt or tool context to give the agent background knowledge about Mixpanel before it answers questions.
+
+### Use with the MCP server
+
+The [Mixpanel MCP Server](/docs/mcp) gives AI assistants live access to your Mixpanel data. The machine-readable docs complement the MCP server by providing static product knowledge, while the MCP server provides real-time data access.
+
+### Use with Mixpanel Headless
+
+[Mixpanel Headless](/docs/mixpanel-headless) is a Python SDK for coding agents. Pair `llms.txt` or `llms-full.txt` with Headless to give a coding agent both the API reference and the conceptual documentation it needs to write correct Mixpanel code.
+
+### RAG pipelines
+
+Ingest `llms-full.txt` into a vector store or retrieval-augmented generation (RAG) pipeline to power a custom docs chatbot or support tool on top of Mixpanel documentation.
