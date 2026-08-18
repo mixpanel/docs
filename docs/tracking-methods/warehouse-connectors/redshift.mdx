@@ -70,7 +70,7 @@ Mirror syncs work by having Redshift compute which rows have been inserted, modi
 Mirror takes Redshift table snapshots and runs queries to compute the change stream between two snapshots using the computed MD5 hash value for each row. Snapshots are stored in a staging schema created during [Connect Redshift](#connect-redshift).
 
 - If two rows in the Redshift table are identical across _all_ columns, the md5 hash value Mirror computes for each row will be the same, and Mixpanel will consider them the same row, causing only one copy to appear in Mixpanel. We recommend ensuring that one of your columns is a unique row ID to avoid this.
-- The table snapshots managed by Mixpanel are automatically deleted after 21 days. Make sure that the sync does not go longer than 21 days without running.
+- The table snapshots managed by Mixpanel are automatically cleaned up. Under normal conditions, Mirror maintains only one snapshot per sync and removes the older run's snapshot as soon as it has been used by the subsequent sync run. These snapshots will incur some additional storage cost.
 
 **How changes are detected:**
 
