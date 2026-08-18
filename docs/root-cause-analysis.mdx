@@ -1,5 +1,6 @@
 ---
-title: "Root Cause Analysis: AI-generated explanations for why your metrics changed"
+title: "Root Cause Analysis"
+description: "AI-generated explanations for why your metrics changed"
 sidebarTitle: Root Cause Analysis
 ---
 
@@ -51,6 +52,22 @@ Because RCA generates a standard Mixpanel Board, it inherits all the capabilitie
   RCA only surfaces data the person running it already has permission to see. It won't expose personal information (PII) that wouldn't otherwise be visible to that user.
 </Note>
 
+## Re-run with added context
+
+RCA doesn't always land the right answer on the first pass. It might miss a property that matters, or go down a path you already know isn't the real story. Instead of accepting the result or starting over, you can tell RCA what to do differently and re-run it in place.
+
+Every RCA Board has an entry point at the top to dig deeper with the [Mixpanel Agent](/docs/mixpanel-agent). Describe what you want changed in plain English, for example:
+
+- _"Go deeper on Android."_
+- _"This isn't the main cause, try looking at plan type instead."_
+- _"Ignore the bot traffic and re-check acquisition channels."_
+
+RCA re-runs on top of the original inputs, applying your feedback, and updates the same Board in place. Prior iterations stay accessible from a dropdown on the Board, so you can compare runs or go back to an earlier one.
+
+<Info>
+  Each re-run counts as a run against your project's daily RCA cap. See [Limits](#limits).
+</Info>
+
 ## Custom RCA Settings
 
 Oftentimes, customers know which properties matter for their business and want to direct the root cause analysis to focus there first.
@@ -63,9 +80,11 @@ In the AI Settings tab of your Project Settings, you can specify which event pro
 
 ## Feedback
 
-Every generated Board has a thumbs-up / thumbs-down feedback widget. We use this signal to evaluate RCA quality and improve future runs. If RCA missed the mark, please rate it — it's the most direct way to influence what we work on next.
+If RCA missed the mark, the fastest fix is to [re-run it with added context](#re-run-with-added-context) and tell the agent what to do differently.
+
+Every generated Board also has a thumbs-up / thumbs-down feedback widget. We use this signal to evaluate RCA quality and improve future runs, so please rate it either way. It's the most direct way to influence what we work on next.
 
 ## Limits
 
-- Daily RCA runs per project are capped by plan: Enterprise 300/day, Growth 70/day, Free 10/day.
+- Daily RCA runs per project are capped by plan: Enterprise 300/day, Growth 70/day, Free 10/day. Re-runs count toward this cap.
 - RCA today reasons over events and properties. Adjacent context like annotations, session replays, experiments, and metric trees aren't included in the V0 agent's reasoning.
