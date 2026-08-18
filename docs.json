@@ -602,33 +602,6 @@
                   {
                     "group": "Empower Your Team",
                     "pages": [
-                      {
-                        "group": "Use Mixpanel Agent",
-                        "pages": [
-                          "guides/guides-by-use-case/empower-your-team/mixpanel-agent",
-                          "guides/guides-by-use-case/empower-your-team/mixpanel-agent/use-cases"
-                        ]
-                      },
-                      {
-                        "group": "Use Mixpanel MCP",
-                        "root": "guides/guides-by-use-case/empower-your-team/mcp",
-                        "pages": [
-                          {
-                            "group": "MCP by Industry",
-                            "root": "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry",
-                            "pages": [
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/ai",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/b2bsaas",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/ecommerce",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/finance",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/healthcare",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/media"
-                            ]
-                          },
-                          "guides/guides-by-use-case/empower-your-team/mcp/integrations"
-                        ]
-                      },
-                      "guides/guides-by-use-case/empower-your-team/headless",
                       "guides/guides-by-use-case/empower-your-team/close-strategy-execution-gap",
                       "guides/guides-by-use-case/empower-your-team/see-replays"
                     ]
@@ -662,12 +635,40 @@
             "group": "MIXPANEL AI",
             "icon": "/icons/flower.svg",
             "pages": [
-              "guides/guides-by-use-case/empower-your-team/mixpanel-agent",
-              "guides/guides-by-use-case/empower-your-team/mcp",
-              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry",
-              "guides/guides-by-use-case/empower-your-team/mcp/integrations",
-              "guides/guides-by-use-case/empower-your-team/headless",
-              "guides/guides-by-workflow/write-business-context"
+              {
+                        "group": "Use Mixpanel Agent",
+                        "root": "guides/mixpanel-agent",
+                        "pages": [
+                          "guides/mixpanel-agent/use-cases"
+                        ]
+                      },
+              {
+                        "group": "Use Mixpanel MCP",
+                        "root": "guides/mcp",
+                        "pages": [
+                          {
+                            "group": "MCP by Industry",
+                            "root": "guides/mcp/mcp-by-industry",
+                            "pages": [
+                              "guides/mcp/mcp-by-industry/ai",
+                              "guides/mcp/mcp-by-industry/b2bsaas",
+                              "guides/mcp/mcp-by-industry/ecommerce",
+                              "guides/mcp/mcp-by-industry/finance",
+                              "guides/mcp/mcp-by-industry/healthcare",
+                              "guides/mcp/mcp-by-industry/media"
+                            ]
+                          },
+                          "guides/mcp/integrations"
+                        ]
+                      },
+                      "guides/headless",
+                      {
+                        "group": "Use Mixpanel AI",
+                        "pages": [
+                          "guides/guides-by-workflow/write-business-context",
+                          "guides/guides-by-topic/trust-ai-answers"
+                        ]
+                      }
             ]
           },
           {
