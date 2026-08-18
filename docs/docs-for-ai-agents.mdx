@@ -1,52 +1,89 @@
 ---
 title: Docs for AI Agents
+sidebarTitle: Docs for Agents
+description: "Machine-readable formats for Mixpanel documentation: llms.txt, per-page Markdown, OpenAPI specs, and the documentation MCP server"
 ---
 
-## Overview
-
-Mixpanel documentation is available in machine-readable formats so that AI agents, coding assistants, and LLM-powered tools can access and understand it programmatically. These endpoints let you feed Mixpanel's documentation directly into a context window, retrieval system, or agentic workflow.
+Mixpanel documentation is available in machine-readable formats so that AI agents, coding assistants, and LLM-powered tools can read it programmatically. Use these endpoints to feed documentation into a context window, a retrieval system, or an agentic workflow.
 
 ## Available Formats
 
+### Individual Page Markdown
+
+Append `.md` to any documentation URL to get that single page as plain Markdown. This is the cheapest option when an agent needs one topic rather than the whole corpus.
+
+| Page | Markdown |
+| --- | --- |
+| [docs.mixpanel.com/docs/quickstart](https://docs.mixpanel.com/docs/quickstart) | [docs.mixpanel.com/docs/quickstart.md](https://docs.mixpanel.com/docs/quickstart.md) |
+
+Every link in `llms.txt` already points at the `.md` form, so an agent can read the index and fetch pages directly.
+
 ### llms.txt
 
-A concise index of Mixpanel documentation following the [llms.txt standard](https://llmstxt.org/). It lists the most important pages with short descriptions — optimized for fitting into an LLM context window.
+An index of every Mixpanel documentation page, following the [llms.txt standard](https://llmstxt.org/). Each entry links to the page's Markdown version, and many carry a one-line description. The file is roughly 50 KB, so it fits comfortably in most context windows.
 
-```
-https://docs.mixpanel.com/llms.txt
-```
+[https://docs.mixpanel.com/llms.txt](https://docs.mixpanel.com/llms.txt)
 
 ### llms-full.txt
 
-The full content of Mixpanel documentation in a single plain-text file. Use this when you need complete coverage rather than a curated index.
+The full text of every documentation page in a single file, currently about 3.5 MB. It exceeds most context windows, so chunk it or load it into a retrieval system rather than pasting it whole.
 
-```
-https://docs.mixpanel.com/llms-full.txt
-```
+[https://docs.mixpanel.com/llms-full.txt](https://docs.mixpanel.com/llms-full.txt)
 
-### OpenAPI
+### OpenAPI Specifications
 
-Mixpanel's Ingestion and Query APIs are described using the OpenAPI specification. Use these to generate client code, validate requests, or give an agent precise knowledge of available endpoints.
+Every Mixpanel API is described by an OpenAPI specification. Use these to generate client code, validate requests, or give an agent precise knowledge of the available endpoints.
 
 | API | OpenAPI spec |
 | --- | --- |
-| Ingestion API | `https://docs.mixpanel.com/openapi/ingestion.yaml` |
-| Query API | `https://docs.mixpanel.com/openapi/query.yaml` |
+| Ingestion | `https://docs.mixpanel.com/openapi/ingestion.openapi.yaml` |
+| Query | `https://docs.mixpanel.com/openapi/query.openapi.yaml` |
+| Raw Data Export | `https://docs.mixpanel.com/openapi/export.openapi.yaml` |
+| Identity | `https://docs.mixpanel.com/openapi/identity.openapi.yaml` |
+| Service Accounts | `https://docs.mixpanel.com/openapi/service-accounts.openapi.yaml` |
+| Lexicon Schemas | `https://docs.mixpanel.com/openapi/lexicon-schemas.openapi.yaml` |
+| Annotations | `https://docs.mixpanel.com/openapi/annotations.openapi.yaml` |
+| GDPR & CCPA | `https://docs.mixpanel.com/openapi/gdpr.openapi.yaml` |
+| Feature Flags | `https://docs.mixpanel.com/openapi/feature-flags.openapi.yaml` |
+| Feature Flags Management | `https://docs.mixpanel.com/openapi/feature-flags-management.openapi.yaml` |
+| Experiments | `https://docs.mixpanel.com/openapi/experiments.openapi.yaml` |
+| Data Pipelines | `https://docs.mixpanel.com/openapi/data-pipelines.openapi.yaml` |
+| Warehouse Connectors | `https://docs.mixpanel.com/openapi/warehouse-connectors.openapi.yaml` |
+
+The same list appears under `## OpenAPI Specs` in [llms.txt](https://docs.mixpanel.com/llms.txt).
 
 ## Usage Examples
 
-### Add to a system prompt
+### Copy or Open Any Page
 
-Paste the output of `llms.txt` (or a subset of `llms-full.txt`) directly into your system prompt or tool context to give the agent background knowledge about Mixpanel before it answers questions.
+Every documentation page has a menu in the top right for copying the page as Markdown or opening it directly in ChatGPT, Claude, Perplexity, Grok, Cursor, or VS Code. Use it for one-off questions when you don't want to wire up an integration.
 
-### Use with the MCP server
+### Add to a System Prompt
 
-The [Mixpanel MCP Server](/docs/mcp) gives AI assistants live access to your Mixpanel data. The machine-readable docs complement the MCP server by providing static product knowledge, while the MCP server provides real-time data access.
+Paste the contents of `llms.txt` into your system prompt or tool context to give an agent a map of the documentation, then let it fetch the specific `.md` pages it needs. Avoid pasting `llms-full.txt` — at 3.5 MB it will overflow the context window.
+
+### Use with the Documentation MCP Server
+
+Mixpanel hosts a Model Context Protocol server for the documentation itself at `https://docs.mixpanel.com/mcp`. It exposes search and retrieval tools over the docs, so an agent can look up a topic on demand instead of loading the full corpus up front. Add it to any MCP-compatible client:
+
+```json
+{
+  "mcpServers": {
+    "mixpanel-docs": {
+      "url": "https://docs.mixpanel.com/mcp"
+    }
+  }
+}
+```
+
+### Use with the Mixpanel MCP Server
+
+The [Mixpanel MCP Server](/docs/mcp) is a separate server that gives AI assistants live access to your own Mixpanel project data. Use the documentation endpoints for product knowledge and the Mixpanel MCP Server for querying your events.
 
 ### Use with Mixpanel Headless
 
-[Mixpanel Headless](/docs/mixpanel-headless) is a Python SDK for coding agents. Pair `llms.txt` or `llms-full.txt` with Headless to give a coding agent both the API reference and the conceptual documentation it needs to write correct Mixpanel code.
+[Mixpanel Headless](/docs/mixpanel-headless) is a Python SDK for coding agents. Pair it with `llms.txt` to give a coding agent both the API reference and the conceptual documentation it needs to write correct Mixpanel code.
 
-### RAG pipelines
+### RAG Pipelines
 
-Ingest `llms-full.txt` into a vector store or retrieval-augmented generation (RAG) pipeline to power a custom docs chatbot or support tool on top of Mixpanel documentation.
+Ingest `llms-full.txt` into a vector store or retrieval-augmented generation pipeline to power a custom docs chatbot or support tool. Chunk it first — the file is a single 3.5 MB document.
