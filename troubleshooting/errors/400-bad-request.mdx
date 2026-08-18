@@ -1,0 +1,99 @@
+---
+title: "400 Bad Request"
+description: "Troubleshoot 400 Bad Request errors from the Mixpanel API"
+---
+
+A **400 Bad Request** response from the Mixpanel ingestion API means that one or more records in your request failed validation. The data was received but could not be processed because it did not meet the required format or content rules.
+
+## Common Causes
+
+### Missing or Invalid `distinct_id`
+
+Every event sent to Mixpanel must include a non-empty `distinct_id` property. This is the identifier that associates an event with a specific user or device.
+
+**Example of a valid event payload:**
+
+```json
+{
+  "event": "Page View",
+  "properties": {
+    "distinct_id": "user-12345",
+    "token": "YOUR_PROJECT_TOKEN",
+    "url": "https://example.com/pricing"
+  }
+}
+```
+
+If `distinct_id` is missing, `null`, or an empty string, the event will be rejected with a 400 error.
+
+### Missing or Invalid Project Token
+
+The `token` property is required in every event's `properties` object. Make sure you are using the correct project token from your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
+
+Common mistakes:
+- Using a token from the wrong project
+- Using a Service Account username/secret instead of the project token
+- Including extra whitespace in the token string
+
+### Malformed JSON
+
+The request body must be valid JSON. Common JSON formatting errors include:
+
+- Trailing commas in arrays or objects
+- Unquoted property keys
+- Using single quotes instead of double quotes
+
+### Invalid Event Timestamp
+
+The `time` property must be a Unix timestamp in **seconds** or **milliseconds** since UTC epoch. Mixpanel accepts both formats and will reject events with timestamps that fall outside an acceptable range.
+
+```json
+{
+  "event": "Sign Up",
+  "properties": {
+    "distinct_id": "user-12345",
+    "token": "YOUR_PROJECT_TOKEN",
+    "time": 1718716477
+  }
+}
+```
+
+### Event or Property Name Too Long
+
+- Event names cannot exceed 255 characters
+- Property names cannot exceed 255 characters
+- String property values cannot exceed 255 characters (longer values are truncated, not rejected)
+
+### Payload Structure Mismatch
+
+When using the `/import` endpoint (strict mode), all records in a batch must be valid. A single invalid record causes the entire batch to return a 400 error. When using the `/track` endpoint, invalid records are silently dropped but valid ones are accepted.
+
+## How to Diagnose
+
+1. **Inspect the response body** — The 400 response includes an `error` field describing the specific validation failure. For example:
+
+   ```json
+   {
+     "code": 0,
+     "error": "some data points in the request failed validation",
+     "failed_records": [
+       {
+         "index": 0,
+         "field": "properties.distinct_id",
+         "message": "distinct_id must not be empty"
+       }
+     ]
+   }
+   ```
+
+2. **Enable debug mode** — If using an SDK, [enable debug mode](/docs/tracking-best-practices/debugging#enable-debug-mode) to log the full request payload and response.
+
+3. **Test with the Events view** — Send a test event and check the [Events view](https://mixpanel.com/report/events) in Mixpanel to confirm events are arriving correctly.
+
+4. **Use the browser console** — For web implementations, open Developer Tools → Network, filter by requests to `api.mixpanel.com`, and inspect the request payload and response.
+
+## Fix
+
+Review the error message in the response body, correct the offending records, and resend the request. If you are batching events, consider sending records one at a time to isolate the problematic event.
+
+For more help, see the [Debugging guide](/docs/tracking-best-practices/debugging) or the [Ingestion API reference](/reference/ingestion-api).

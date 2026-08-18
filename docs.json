@@ -723,8 +723,23 @@
       },
       {
         "tab": "FAQs",
-        "pages": [
-          "troubleshooting/faqs"
+        "groups": [
+          {
+            "group": "FAQs",
+            "pages": [
+              "troubleshooting/faqs"
+            ]
+          },
+          {
+            "group": "Error Troubleshooting",
+            "pages": [
+              "troubleshooting/errors/400-bad-request",
+              "troubleshooting/errors/401-unauthorized",
+              "troubleshooting/errors/403-forbidden",
+              "troubleshooting/errors/413-payload-too-large",
+              "troubleshooting/errors/429-rate-limit-exceeded"
+            ]
+          }
         ]
       },
       {

@@ -1,0 +1,107 @@
+---
+title: "413 Payload Too Large"
+description: "Troubleshoot 413 Payload Too Large errors from the Mixpanel API"
+---
+
+A **413 Payload Too Large** (also known as **413 Request Entity Too Large**) response means that the request body exceeded Mixpanel's size limits for a single API call. The request was rejected before any records were processed.
+
+## Size Limits
+
+| Endpoint | Limit |
+|---|---|
+| `/import` | 2 MB per request |
+| `/track` | 2 MB per request |
+| `/record` | 2 MB per request |
+| Individual event | 1 MB per event |
+| Batch size | 2,000 events per request |
+
+## Common Causes
+
+### Sending Too Many Events in a Single Request
+
+Batching is recommended for efficiency, but a single batch should not exceed 2,000 events or 2 MB. If you build batches based only on record count without checking payload size, large events (with many properties or long string values) can push the total over the limit.
+
+### Individual Events with Large Property Values
+
+Although individual string property values are truncated at 255 characters during ingestion, other property types (such as arrays or JSON objects set as strings) can be large enough to push a single event toward the 1 MB limit.
+
+### Sending Compressed vs. Uncompressed Payloads
+
+The 2 MB limit applies to the **uncompressed** request body. When gzip compression is used, the limit applies to the uncompressed size — compression allows you to send more data per request because the compressed payload sent over the network is smaller, but Mixpanel decompresses and evaluates it against the 2 MB limit.
+
+## How to Fix
+
+### Split Large Batches
+
+Divide your events into smaller batches:
+
+```python
+import requests
+import json
+
+events = [...]  # Your full list of events
+
+BATCH_SIZE = 500  # Well below the 2,000 limit
+
+for i in range(0, len(events), BATCH_SIZE):
+    batch = events[i:i + BATCH_SIZE]
+    response = requests.post(
+        "https://api.mixpanel.com/import",
+        auth=("SERVICE_ACCOUNT_USERNAME", "SERVICE_ACCOUNT_SECRET"),
+        params={"project_id": "YOUR_PROJECT_ID"},
+        headers={"Content-Type": "application/json"},
+        data=json.dumps(batch)
+    )
+```
+
+### Enable Gzip Compression
+
+Compressing the request body significantly reduces payload size and helps avoid 413 errors:
+
+```python
+import gzip
+
+compressed = gzip.compress(json.dumps(batch).encode("utf-8"))
+response = requests.post(
+    "https://api.mixpanel.com/import",
+    auth=("SERVICE_ACCOUNT_USERNAME", "SERVICE_ACCOUNT_SECRET"),
+    params={"project_id": "YOUR_PROJECT_ID"},
+    headers={
+        "Content-Type": "application/json",
+        "Content-Encoding": "gzip"
+    },
+    data=compressed
+)
+```
+
+### Trim Oversized Properties
+
+Review your event properties for unusually large values. Common culprits include:
+
+- Full HTML or JSON blobs stored as string properties
+- Base64-encoded images or binary data
+- Deeply nested objects serialized as strings
+
+Remove or truncate these properties before sending events to Mixpanel. The recommended maximum for string property values is 255 characters.
+
+## How to Diagnose
+
+1. **Check the response status code** — A 413 response body typically includes:
+
+   ```json
+   {
+     "code": 0,
+     "error": "Payload Too Large"
+   }
+   ```
+
+2. **Measure your payload size** — Log the size of the request body before sending:
+
+   ```python
+   payload = json.dumps(batch).encode("utf-8")
+   print(f"Payload size: {len(payload) / 1024:.1f} KB")
+   ```
+
+3. **Check batch event count** — Ensure no single request contains more than 2,000 events.
+
+For more help, see the [Debugging guide](/docs/tracking-best-practices/debugging) or the [Ingestion API reference](/reference/ingestion-api).

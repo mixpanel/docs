@@ -1,0 +1,79 @@
+---
+title: "401 Unauthorized"
+description: "Troubleshoot 401 Unauthorized errors from the Mixpanel API"
+---
+
+A **401 Unauthorized** response from the Mixpanel API means that the credentials provided in your request are missing or invalid. Mixpanel cannot authenticate the request.
+
+## Common Causes
+
+### Missing or Incorrect Project Token
+
+For client-side event tracking (using `/track` or `/record`), the `token` property in each event's `properties` object identifies your project. If the token is missing or wrong, events will not be associated with any project.
+
+Make sure you are using the correct project token. You can find it in your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens):
+
+1. Log in to [mixpanel.com](https://mixpanel.com)
+2. Click your project name → **Project Settings**
+3. Copy the **Project Token** (not the API Secret)
+
+### Incorrect Service Account Credentials
+
+Server-side API calls (such as `/import`, `/engage`, or data export endpoints) use [Service Account](https://developer.mixpanel.com/reference/service-accounts) authentication via HTTP Basic Auth. The username is the Service Account username and the password is the Service Account secret.
+
+Common mistakes:
+- Swapping the username and password
+- Using the Project Token where a Service Account username is expected
+- Using an expired or revoked Service Account secret
+- Encoding the credentials incorrectly (they must be Base64-encoded as `username:secret`)
+
+### Wrong Authentication for the Endpoint
+
+Some Mixpanel endpoints accept only specific authentication methods:
+
+| Endpoint | Authentication |
+|---|---|
+| `/track`, `/record` | Project Token (in payload) |
+| `/import` | Service Account or Project Secret (Basic Auth) |
+| `/engage` (user profiles) | Project Token (in payload) or Service Account (Basic Auth) |
+| Export / Query APIs | Service Account (Basic Auth) |
+
+Using the wrong authentication type for an endpoint will result in a 401 error.
+
+### Mismatched Data Residency
+
+If your project is hosted in the **EU** or **India** data residency region, you must send requests to the correct regional API endpoint:
+
+| Region | API Base URL |
+|---|---|
+| US (default) | `https://api.mixpanel.com` |
+| EU | `https://api-eu.mixpanel.com` |
+| India | `https://api-in.mixpanel.com` |
+
+Sending authenticated requests to the wrong regional endpoint will return a 401 error because your credentials are not recognized there. Learn more about [EU Residency](/docs/privacy/eu-residency) and [India Residency](/docs/privacy/in-residency).
+
+## How to Diagnose
+
+1. **Check the response body** — A 401 response includes an error message:
+
+   ```json
+   {
+     "code": 0,
+     "error": "Invalid credentials."
+   }
+   ```
+
+2. **Verify your credentials** — Double-check that the project token or Service Account credentials match what is shown in your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
+
+3. **Confirm the correct endpoint** — Ensure you are calling the right regional API URL for your project's data residency.
+
+4. **Test with a minimal request** — Isolate the authentication issue by sending the simplest possible valid request with the suspected credentials.
+
+## Fix
+
+1. Navigate to **Project Settings** in Mixpanel to confirm your token and credentials.
+2. Update your code or configuration with the correct credentials.
+3. If you rotated a Service Account secret, make sure all environments are updated to use the new secret.
+4. If you changed your project's data residency region, update the API base URL in your implementation.
+
+For more help, see the [Debugging guide](/docs/tracking-best-practices/debugging) or the [Ingestion API reference](/reference/ingestion-api).

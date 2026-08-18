@@ -1,0 +1,119 @@
+---
+title: "429 Too Many Requests"
+description: "Troubleshoot 429 Too Many Requests errors from the Mixpanel API"
+---
+
+A **429 Too Many Requests** response means your application has exceeded Mixpanel's API rate limits. The server is temporarily refusing to process additional requests until the rate limit window resets.
+
+## Rate Limits
+
+Mixpanel enforces rate limits on its ingestion API to ensure service stability. When a limit is exceeded, the API returns a 429 status with a `Retry-After` header indicating how many seconds to wait before retrying.
+
+| Endpoint | Rate Limit |
+|---|---|
+| `/import` | 2 GB of data per hour |
+| `/track`, `/record` | No strict limit; bursts handled with exponential backoff |
+
+## Common Causes
+
+### Sending Too Many Requests in a Short Window
+
+Sending large numbers of individual events as separate HTTP requests instead of batching them is a common trigger for rate limits. Each individual call to the API counts against your rate quota.
+
+**Solution:** Batch events into groups of up to 2,000 per request. Batching reduces the number of HTTP requests by orders of magnitude, making rate limits much less likely to be hit.
+
+### Backfilling Large Historical Datasets
+
+Importing large volumes of historical data all at once can exhaust the per-hour ingestion quota. This is especially common when doing a one-time data migration or backfill.
+
+**Solution:** Spread your backfill across time using a controlled import rate. Aim to stay well within the 2 GB/hour limit by metering your requests.
+
+### Runaway Retry Logic Without Backoff
+
+If your code retries failed requests immediately in a tight loop, a temporary issue can turn into a sustained flood of requests that triggers rate limiting.
+
+**Solution:** Implement exponential backoff with jitter for all retry logic (see below).
+
+## How to Handle 429 Errors
+
+### Respect the `Retry-After` Header
+
+When Mixpanel returns a 429, the response includes a `Retry-After` header with the number of seconds to wait before retrying:
+
+```
+HTTP/1.1 429 Too Many Requests
+Retry-After: 60
+```
+
+Always read this header and wait the specified time before retrying.
+
+### Implement Exponential Backoff
+
+If no `Retry-After` header is present, use exponential backoff with jitter:
+
+```python
+import time
+import random
+import requests
+
+def send_with_backoff(url, payload, auth, max_retries=5):
+    for attempt in range(max_retries):
+        response = requests.post(url, json=payload, auth=auth)
+        if response.status_code == 429:
+            retry_after = int(response.headers.get("Retry-After", 2 ** attempt))
+            jitter = random.uniform(0, 1)
+            wait_time = retry_after + jitter
+            print(f"Rate limited. Retrying in {wait_time:.1f}s (attempt {attempt + 1})")
+            time.sleep(wait_time)
+        elif response.status_code == 200:
+            return response
+        else:
+            response.raise_for_status()
+    raise Exception("Max retries exceeded")
+```
+
+### Batch Events Efficiently
+
+Instead of one API call per event, batch up to 2,000 events per request:
+
+```python
+BATCH_SIZE = 500
+
+for i in range(0, len(events), BATCH_SIZE):
+    batch = events[i:i + BATCH_SIZE]
+    send_with_backoff(
+        "https://api.mixpanel.com/import",
+        batch,
+        auth=("SERVICE_ACCOUNT_USERNAME", "SERVICE_ACCOUNT_SECRET")
+    )
+```
+
+### Throttle Historical Imports
+
+For bulk imports, add a deliberate delay between batches to stay within hourly limits:
+
+```python
+import time
+
+for i in range(0, len(events), BATCH_SIZE):
+    batch = events[i:i + BATCH_SIZE]
+    send_with_backoff(url, batch, auth=auth)
+    time.sleep(0.1)  # 100ms between batches = ~600 batches/minute max
+```
+
+## How to Diagnose
+
+1. **Check the response status code** — A 429 response body typically includes:
+
+   ```json
+   {
+     "code": 0,
+     "error": "Too Many Requests"
+   }
+   ```
+
+2. **Review your send rate** — Log the number of API requests per second/minute. If you are consistently hitting limits, restructure your code to batch more aggressively.
+
+3. **Check for retry storms** — If 429 errors appear in bursts, look for retry logic that does not implement backoff.
+
+For more help, see the [Debugging guide](/docs/tracking-best-practices/debugging) or the [Ingestion API reference](/reference/ingestion-api).
