@@ -11,8 +11,8 @@ import { dataItems } from "/snippets/utils/constants.mdx";
 
    b. Then, add your Mixpanel [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
 
-   ```javascript
-   // Paste in your token
+   ```bash
+   # Paste in your token
    NEXT_PUBLIC_MIXPANEL_TOKEN=YOUR_PROJECT_TOKEN
    ```
 3. Create a utility file to initialize the Mixpanel SDK in your Next.js application
@@ -33,38 +33,20 @@ import { dataItems } from "/snippets/utils/constants.mdx";
      }
 
      mixpanel.init(MIXPANEL_TOKEN, { autocapture: true });
-   }
-
-   export const trackPageView = (url) => {
-     mixpanel.track('Page View', { url });
-   }
+   };
    ```
 4. Initialize Mixpanel in your Next.js application
 
-   a. **If using page router**, open or create the file `_app.js` or `app.tsx` in your pages/ directory. Then import and initialize Mixpanel inside `useEffect`. You’ll also need to track pageviews manually using `useRouter`.
+   a. **If using page router**, open or create the file `_app.js` or `_app.tsx` in your `pages/` directory. Then import and initialize Mixpanel inside `useEffect`. Autocapture tracks pageviews on route change for you, so you don't need to track them manually.
 
    ```javascript
    import { useEffect } from 'react';
-   import { useRouter } from 'next/router';
-   import { initMixpanel, trackPageView } from '../lib/mixpanelClient';
+   import { initMixpanel } from '../lib/mixpanelClient';
 
    function MyApp({ Component, pageProps }) {
-     const router = useRouter();
-
      useEffect(() => {
        initMixpanel(); // Initialize Mixpanel
-
-       const handleRouteChange = (url) => {
-         trackPageView(url); // Track pageviews
-       };
-
-       // Track page views on route change
-       router.events.on('routeChangeComplete', handleRouteChange);
-
-       return () => {
-         router.events.off('routeChangeComplete', handleRouteChange);
-       };
-     }, [router.events]);
+     }, []);
 
      return <Component {...pageProps} />;
    }
