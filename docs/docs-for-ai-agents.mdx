@@ -18,6 +18,14 @@ Append `.md` to any documentation URL to get that single page as plain Markdown.
 
 Every link in `llms.txt` already points at the `.md` form, so an agent can read the index and fetch pages directly.
 
+You can also request Markdown for the original URL by sending an `Accept: text/markdown` header, which returns the same content as the `.md` variant. Use whichever fits your client: the suffix when you control the URL, the header when you are fetching canonical links you'd rather not rewrite.
+
+```bash
+curl -H "Accept: text/markdown" https://docs.mixpanel.com/docs/quickstart
+```
+
+Without the header, the same URL returns HTML.
+
 ### llms.txt
 
 An index of every Mixpanel documentation page, following the [llms.txt standard](https://llmstxt.org/). Each entry links to the page's Markdown version, and many carry a one-line description. The file is roughly 50 KB, so it fits comfortably in most context windows.
