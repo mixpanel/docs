@@ -1,0 +1,89 @@
+---
+title: "States and Monitoring"
+sidebarTitle: "States & Monitoring"
+description: "Reference for Destination and Sync states, audit logging, and the observability panel for Real-Time Event Streams."
+---
+
+<Note>
+  Real-Time Event Streams are in private beta. Contact your Mixpanel account team to enable the feature for your project.
+</Note>
+
+Every Sync and Destination has an explicit state that is visible without opening the detail view. This page is the reference for what each state means, how state transitions are logged, and which metrics you can use to monitor health.
+
+## Sync states
+
+Sync state is shown as a status badge on the Syncs list view.
+
+| State | Meaning |
+| --- | --- |
+| `enabled` | The Sync is actively streaming matching events. |
+| `unhealthy` | Deliveries are partially failing but the Sync has not tripped the error threshold. Investigate soon. |
+| `disabled` | The Sync is manually paused by a Project Admin. Events are discarded; no backlog accumulates. |
+| `error` | Persistent delivery failures. Triggered when more than 50% of events fail for more than 15 minutes. |
+| `paused_rate_limit` | Temporarily paused after a `429` response from the destination. Auto-resumes when the destination recovers. |
+
+<Warning>
+  When a Sync is `disabled`, events matching the filter are **discarded**. Mixpanel does not accumulate a backlog to replay when the Sync is re-enabled.
+</Warning>
+
+{/* PLACEHOLDER: Add exact thresholds for the `unhealthy` state once finalized — e.g., failure rate and time window. */}
+
+## Destination states
+
+<Info>
+  Destination-level state (separate from Sync state) is a Phase 2 feature. During the private beta, authentication status is visible on the Destination card, but the full Destination state model below reflects the target design.
+</Info>
+
+| State | Meaning |
+| --- | --- |
+| `authenticated` | Credentials are valid and have been tested against the endpoint. |
+| `auth_error` | Credentials are invalid or expired. Deliveries are failing on auth. |
+| `disabled` | The Destination has been manually disabled by a Project Admin. |
+
+Authentication failures on delivery immediately flip the Destination to `auth_error` — the failure is never silently swallowed. Re-authenticating updates the existing Destination in place; you do not need to delete and recreate it. See [Webhook authentication](/docs/real-time-event-streams/setup#webhook-authentication).
+
+## Audit logging
+
+All state changes are audit-logged with a timestamp and the acting user. Use the audit log to trace who paused a Sync, when credentials were rotated, or when a Destination first tripped into `auth_error`.
+
+{/* PLACEHOLDER: Link to the general audit-log page and describe which specific events are captured (enable, disable, template change, auth update, filter change). */}
+
+## Observability panel
+
+<Info>
+  The full observability panel is a P1 requirement scheduled to land before GA. Some metrics may be limited or presented differently during the private beta.
+</Info>
+
+Each Sync has a dedicated metrics view for monitoring delivery health.
+
+### Metrics
+
+- **Events delivered** — counts over the last 1 hour, 24 hours, and 7 days.
+- **Delivery success rate** — percentage of events that received a 2xx response within the retry window.
+- **Events failed after max retries** — count, with retained payload samples and destination response.
+- **Pending retry queue depth** — number of events currently waiting in the retry queue.
+- **p95 delivery latency estimate** — end-to-end latency from ingestion to a confirmed 2xx response.
+- **Webhook URL domains** — the destination domains this Sync is delivering to.
+
+Metrics refresh approximately every 5 minutes. A health indicator on the Syncs list view reflects the current error state without a page load.
+
+{/* PLACEHOLDER: Screenshot of the observability panel and describe filters/time-range controls. */}
+
+## Recommended monitoring practices
+
+- **Alert on `error` and `auth_error`.** These states indicate customer action is required and will not self-heal.
+- **Watch `unhealthy` early.** It often precedes `error` and gives you time to investigate before events start hitting the failed events log.
+- **Track failed events during rollouts.** After changing your endpoint or payload template, check the failed events log for 4xx errors before assuming success.
+- **Review audit log entries.** Especially when a Sync unexpectedly stops streaming — it may have been disabled by another admin.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Delivery and reliability" icon="shield-check" href="/docs/real-time-event-streams/delivery-and-reliability">
+    Retry policy, failed events log, and at-least-once delivery.
+  </Card>
+
+  <Card title="Set up a Sync" icon="gear" href="/docs/real-time-event-streams/setup">
+    Create a Destination and configure a webhook Sync.
+  </Card>
+</CardGroup>

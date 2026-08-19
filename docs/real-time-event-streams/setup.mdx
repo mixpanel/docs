@@ -1,0 +1,154 @@
+---
+title: "Set Up a Webhook Sync"
+sidebarTitle: "Set Up a Sync"
+description: "Configure a Destination, filter events, authenticate outbound requests, and shape the payload with a Liquid template."
+---
+
+<Note>
+  Real-Time Event Streams are in private beta. Contact your Mixpanel account team to enable the feature for your project.
+</Note>
+
+This page walks through creating a webhook Sync end to end: configuring the Destination, selecting which events stream, adding property-level filters, authenticating outbound requests, and shaping the payload with a Liquid template.
+
+## Prerequisites
+
+- Your project is enrolled in the Real-Time Event Streams private beta.
+- You have Project Admin permissions.
+- You have an HTTPS endpoint that can accept POST requests and return a 2xx response.
+
+{/* PLACEHOLDER: Add exact permission name and any org-level entitlement steps once finalized. */}
+
+## Create a Sync
+
+<Steps>
+  <Step title="Open Real-Time Event Streams">
+    {/* PLACEHOLDER: Add the exact navigation path in the Mixpanel UI (e.g., Data Management → Real-Time Event Streams). */}
+  </Step>
+  <Step title="Add a Destination">
+    Create a new webhook Destination with the endpoint URL and authentication method. See [Webhook authentication](#webhook-authentication).
+  </Step>
+  <Step title="Select events to stream">
+    Choose one or more event types. See [Event-type filtering](#event-type-filtering).
+
+    <Warning>
+      There is no "All events" default. You must explicitly select event types to prevent accidentally streaming a firehose of data.
+    </Warning>
+  </Step>
+  <Step title="Add property conditions (optional)">
+    Narrow the stream further using [property-level filters](#property-level-filters).
+  </Step>
+  <Step title="Write the payload template">
+    Define the outbound request body using [Liquid template syntax](#liquid-payload-template).
+  </Step>
+  <Step title="Save and enable">
+    Mixpanel validates the template on save. Once enabled, matching events begin streaming within seconds.
+  </Step>
+</Steps>
+
+## Event-type filtering
+
+Users select one or more event types to stream. Only matching events are forwarded; all others are discarded before entering the streaming pipeline. Filtering happens before delivery, so unmatched events do not consume retry budget or queue capacity.
+
+- You must explicitly select at least one event type. There is no "All events" option.
+- You can update the selected event types at any time without recreating the Sync.
+
+{/* PLACEHOLDER: Screenshot of the event-type selector. */}
+
+## Property-level filters
+
+Add one or more property conditions that must all be true for an event to stream. Conditions are combined with logical AND.
+
+**Example:** Stream `Purchase Completed` events only when `plan = "premium"` AND `country = "US"`.
+
+- Filters apply to event properties.
+- All conditions must evaluate to true for the event to be forwarded.
+- Events that fail filter evaluation are discarded and never counted against retry or delivery metrics.
+
+{/* PLACEHOLDER: Screenshot of the property filter builder and the list of supported operators (equals, not equals, contains, etc.). */}
+
+## Webhook authentication
+
+Configure how Mixpanel authenticates outbound requests. The current authentication method is always visible on the Destination card.
+
+<Tabs>
+  <Tab title="API key header">
+    Set a custom header name and value. Mixpanel adds this header to every outbound request.
+
+    ```http
+    X-API-Key: abc123
+    ```
+  </Tab>
+  <Tab title="Bearer token">
+    Standard `Authorization: Bearer <token>` header.
+
+    ```http
+    Authorization: Bearer eyJhbGciOi...
+    ```
+  </Tab>
+  <Tab title="No auth">
+    No authentication header is added. Use this only for internal endpoints that are otherwise protected (for example, IP-allowlisted or on a private network).
+  </Tab>
+</Tabs>
+
+<Warning>
+  If the destination returns an authentication failure, the Destination immediately moves to the `auth_error` state. Authentication failures are never silently swallowed. Re-authenticating updates the existing Destination in place — you do not need to delete and recreate it.
+</Warning>
+
+{/* PLACEHOLDER: Confirm exactly which HTTP status codes / response signatures trigger auth_error (typically 401 and 403). */}
+
+## Liquid payload template
+
+The full outbound request body is customer-controlled via a [Liquid](https://shopify.github.io/liquid/) template. This is the primary mechanism for shaping payloads, naming fields, and including identity information. There is no separate field-mapping UI.
+
+### Available template variables
+
+| Variable | Description |
+| --- | --- |
+| `{{ distinct_id }}` | Mixpanel user identifier |
+| `{{ event.name }}` | Event name |
+| `{{ event.time }}` | Event timestamp (ISO 8601) |
+| `{{ event.insert_id }}` | Mixpanel deduplication ID |
+| `{{ event.properties.<key> }}` | Any event property |
+| `{{ user.<key> }}` | Any user property, resolved at stream time |
+
+### Example template
+
+```liquid Payload template
+{
+  "user_id": "{{ distinct_id }}",
+  "event": "{{ event.name }}",
+  "timestamp": "{{ event.time }}",
+  "insert_id": "{{ event.insert_id }}",
+  "properties": {
+    "plan": "{{ user.plan }}",
+    "country": "{{ event.properties.country }}",
+    "revenue": {{ event.properties.revenue }}
+  }
+}
+```
+
+### Validation
+
+Template syntax is validated on save. Invalid syntax surfaces a clear error and blocks the Sync from enabling, so you cannot ship a broken template into production.
+
+<Tip>
+  Include `{{ event.insert_id }}` in your payload if you plan to deduplicate on the destination side using the body rather than the `X-Mixpanel-Insert-Id` header. See [At-least-once delivery](/docs/real-time-event-streams/delivery-and-reliability#at-least-once-delivery).
+</Tip>
+
+{/* PLACEHOLDER: Add supported Liquid filters/tags (e.g., default, upcase, date formatting) once finalized. */}
+
+## Editing a live Sync
+
+{/* PLACEHOLDER: Describe which changes can be made in place (event types, filters, template, auth) and which require pausing the Sync. Clarify how in-flight events are handled during edits. */}
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Delivery and reliability" icon="shield-check" href="/docs/real-time-event-streams/delivery-and-reliability">
+    Retries, failed events log, and at-least-once delivery.
+  </Card>
+
+  <Card title="States and monitoring" icon="chart-line" href="/docs/real-time-event-streams/states-and-monitoring">
+    Destination and Sync states, plus how to monitor health.
+  </Card>
+</CardGroup>
