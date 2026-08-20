@@ -5,197 +5,196 @@ description: "Common questions about ingesting data into Mixpanel: SDKs, missing
 
 Common questions about getting data into Mixpanel and diagnosing events that never arrive.
 
-<AccordionGroup>
-  <Accordion title="Why can’t I see any data in my Mixpanel project?" section="Sending Data to Mixpanel">
-    There are several common reasons why you might not see any data in your Mixpanel project:
+## Why can’t I see any data in my Mixpanel project?
 
-    1. **Incorrect Project Token** - Using the wrong project token in your initialization code will lead to your tracked data not arriving to your project. Always verify that the token matches [the token shown in your project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
-    2. **Mismatched Data Residency** - If your Mixpanel project data residency setting does not match the API endpoint you are sending data to, your data will **not be ingested**. If your project data residency is set to EU or India, make sure to route your data to the correct API server URL in your initialization code. Learn more about [EU Residency](/docs/privacy/eu-residency) and [India Residency](/docs/privacy/in-residency).
-    3. **Implementation Issues** - Implementation errors can prevent Mixpanel SDK methods from triggering as expected. To help identify and resolve these issues during development, [enable debug mode in your SDK](/docs/tracking-best-practices/debugging#enable-debug-mode). This will provide logs of the Mixpanel requests being triggered, along with the associated payloads.
+There are several common reasons why you might not see any data in your Mixpanel project:
 
-    Learn more about [debugging your implementation](/docs/tracking-best-practices/debugging).
-  </Accordion>
+1. **Incorrect Project Token** - Using the wrong project token in your initialization code will lead to your tracked data not arriving to your project. Always verify that the token matches [the token shown in your project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
+2. **Mismatched Data Residency** - If your Mixpanel project data residency setting does not match the API endpoint you are sending data to, your data will **not be ingested**. If your project data residency is set to EU or India, make sure to route your data to the correct API server URL in your initialization code. Learn more about [EU Residency](/docs/privacy/eu-residency) and [India Residency](/docs/privacy/in-residency).
+3. **Implementation Issues** - Implementation errors can prevent Mixpanel SDK methods from triggering as expected. To help identify and resolve these issues during development, [enable debug mode in your SDK](/docs/tracking-best-practices/debugging#enable-debug-mode). This will provide logs of the Mixpanel requests being triggered, along with the associated payloads.
 
-  <Accordion title="What methods are available for importing data into Mixpanel?" section="Sending Data to Mixpanel">
-    You can use any [Mixpanel SDKs](/docs/tracking-methods/sdks) to track and send events directly from your applications, both on the client and server side.
+Learn more about [debugging your implementation](/docs/tracking-best-practices/debugging).
 
-    Mixpanel supports direct imports from data warehouses such as Snowflake, BigQuery, Redshift, and Databricks through [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors). You can set up [recurring syncs](/docs/tracking-methods/warehouse-connectors#sync-modes) to keep Mixpanel in sync with your warehouse data.
+## What methods are available for importing data into Mixpanel?
 
-    If you use a CDP like Segment or Rudderstack, you can add Mixpanel as a downstream destination to receive your data. Learn more about [data ingestion integrations](/docs/tracking-methods/integrations).
-  </Accordion>
+You can use any [Mixpanel SDKs](/docs/tracking-methods/sdks) to track and send events directly from your applications, both on the client and server side.
 
-  <Accordion title="How does ad-blockers affect Mixpanel tracking?" section="Sending Data to Mixpanel">
-    Ad-blockers can significantly affect Mixpanel tracking, particularly when using the client-side JavaScript SDK. These blockers and privacy extensions often target known analytics endpoints (such as Mixpanel's), preventing events from being sent and recorded. As a result, users with ad blockers enabled may not be tracked in Mixpanel, leading to discrepancies between backend data and Mixpanel reports. Depending on your audience and the types of blockers in use, an estimated 30% or more of client-side events may be impacted.
+Mixpanel supports direct imports from data warehouses such as Snowflake, BigQuery, Redshift, and Databricks through [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors). You can set up [recurring syncs](/docs/tracking-methods/warehouse-connectors#sync-modes) to keep Mixpanel in sync with your warehouse data.
 
-    To reduce the impact of ad-blockers, use server-side tracking for critical events (server-side requests are not subject to ad blocking) and implement a proxy server to route client-side requests through your own domain (making them less likely to be blocked).
+If you use a CDP like Segment or Rudderstack, you can add Mixpanel as a downstream destination to receive your data. Learn more about [data ingestion integrations](/docs/tracking-methods/integrations).
 
-    Read more about [the differences between client-side and server-side tracking](/docs/tracking-methods/choosing-the-right-method).
-  </Accordion>
+## How does ad-blockers affect Mixpanel tracking?
 
-  <Accordion title="How do I exclude bots from my tracking?" section="Sending Data to Mixpanel">
-    By default, [Mixpanel's JavaScript SDK](/docs/tracking-methods/sdks/javascript) automatically blocks traffic from known web crawlers, as listed [here](https://github.com/mixpanel/mixpanel-js/blob/8ac526e5cb8563d11e2206046ab986c6491ac6d7/src/utils.js#L900C1-L925C3). All other traffic is processed normally and ingested into your project.
+Ad-blockers can significantly affect Mixpanel tracking, particularly when using the client-side JavaScript SDK. These blockers and privacy extensions often target known analytics endpoints (such as Mixpanel's), preventing events from being sent and recorded. As a result, users with ad blockers enabled may not be tracked in Mixpanel, leading to discrepancies between backend data and Mixpanel reports. Depending on your audience and the types of blockers in use, an estimated 30% or more of client-side events may be impacted.
 
-    To further control bot traffic, you can implement custom filtering in your code. This involves identifying common patterns among your bots and setting the super property `$ignore: true` to exclude those events at ingestion.
+To reduce the impact of ad-blockers, use server-side tracking for critical events (server-side requests are not subject to ad blocking) and implement a proxy server to route client-side requests through your own domain (making them less likely to be blocked).
 
-    Learn more about [managing bot traffic](/docs/tracking-best-practices/bot-traffic).
-  </Accordion>
+Read more about [the differences between client-side and server-side tracking](/docs/tracking-methods/choosing-the-right-method).
 
-  <Accordion title="Why are my user profiles all set to the same location?" section="Sending Data to Mixpanel">
-    If all user profiles in Mixpanel display the same location, it is likely because you are sending data through a server-side implementation or a CDP (like Segment or Rudderstack). In these cases, Mixpanel uses the server's IP address for geolocation instead of the end user's, resulting in all users being assigned the same location (such as Boardman, Oregon for Segment or Ashburn, Virginia for Rudderstack).
+## How do I exclude bots from my tracking?
 
-    By default, Mixpanel updates a user's geolocation each time a user property is created or modified. If you don't explicitly include the user's real IP address in your payload, Mixpanel defaults to the server's IP.
+By default, [Mixpanel's JavaScript SDK](/docs/tracking-methods/sdks/javascript) automatically blocks traffic from known web crawlers, as listed [here](https://github.com/mixpanel/mixpanel-js/blob/8ac526e5cb8563d11e2206046ab986c6491ac6d7/src/utils.js#L900C1-L925C3). All other traffic is processed normally and ingested into your project.
 
-    To resolve this, you can:
+To further control bot traffic, you can implement custom filtering in your code. This involves identifying common patterns among your bots and setting the super property `$ignore: true` to exclude those events at ingestion.
 
-    - Pass the actual client IP using the `$ip`  in your payload,
-    - Manually set geolocation properties like `$city`, `$region`, and `$country_code`, or
-    - Set `$ip` to `0` to prevent Mixpanel from updating the geolocation entirely.
+Learn more about [managing bot traffic](/docs/tracking-best-practices/bot-traffic).
 
-    Learn more about [geolocation](/docs/tracking-best-practices/geolocation) and other [server-side implementation best practices](/docs/tracking-best-practices/server-side-best-practices).
-  </Accordion>
+## Why are my user profiles all set to the same location?
 
-  <Accordion title="How do I override the default geolocation set by Mixpanel when sending data from a server?" section="Sending Data to Mixpanel">
-    By default, Mixpanel determines the geolocation of users and events based on the IP address of the request. When using client-side tracking, this reflects the end user's location. With server-side tracking, it reflects the server's location.
+If all user profiles in Mixpanel display the same location, it is likely because you are sending data through a server-side implementation or a CDP (like Segment or Rudderstack). In these cases, Mixpanel uses the server's IP address for geolocation instead of the end user's, resulting in all users being assigned the same location (such as Boardman, Oregon for Segment or Ashburn, Virginia for Rudderstack).
 
-    To override the default geolocation set by Mixpanel, you can:
+By default, Mixpanel updates a user's geolocation each time a user property is created or modified. If you don't explicitly include the user's real IP address in your payload, Mixpanel defaults to the server's IP.
 
-    - Pass the actual client IP using the `$ip`  in your payload
-    - Manually set geolocation properties such as `$city`, `$region`, and `$country_code`
-    - Specify the exact coordinates by setting the `$latitude` and `$longitude` properties in your payload
+To resolve this, you can:
 
-    Learn more about [geolocation](/docs/tracking-best-practices/geolocation).
-  </Accordion>
+- Pass the actual client IP using the `$ip`  in your payload,
+- Manually set geolocation properties like `$city`, `$region`, and `$country_code`, or
+- Set `$ip` to `0` to prevent Mixpanel from updating the geolocation entirely.
 
-  <Accordion title="How do I track downloads and installs from Apple App Store and Google Play Store?" section="Sending Data to Mixpanel">
-    Tracking downloads and installs from the Apple App Store and Google Play Store in Mixpanel cannot be done directly, as neither app store provides this data to Mixpanel out-of-the-box.
+Learn more about [geolocation](/docs/tracking-best-practices/geolocation) and other [server-side implementation best practices](/docs/tracking-best-practices/server-side-best-practices).
 
-    **For Google Play Store (Android):** You can use the [**Play Install Referrer Library**](https://developer.android.com/google/play/installreferrer/library) to retrieve the referrer URL when the app is first opened. This allows you to capture some attribution data (such as campaign source) and send it to Mixpanel as event properties. However, this only works for a subset of attribution data and does not provide the total number of downloads—only installs where the app is opened and the referrer is available
+## How do I override the default geolocation set by Mixpanel when sending data from a server?
 
-    **For Apple App Store (iOS):** The App Store strips attribution data before the user downloads the app, so you cannot directly track the source or count of installs via Mixpanel. To track channel attribution on iOS, you need to use a mobile attribution partner (such as Adjust, AppsFlyer, or Branch). These partners can capture install and attribution data and send it to Mixpanel for analysis.
+By default, Mixpanel determines the geolocation of users and events based on the IP address of the request. When using client-side tracking, this reflects the end user's location. With server-side tracking, it reflects the server's location.
 
-    Learn more about [Traffic Attribution](/docs/tracking-best-practices/traffic-attribution) and our [attribution integration partners](https://mixpanel.com/partners/integrations?categories=attribution-deep-linking).
-  </Accordion>
+To override the default geolocation set by Mixpanel, you can:
 
-  <Accordion title="How do I track first-touch UTM tags?" section="Sending Data to Mixpanel">
-    To track first-touch UTM tags in Mixpanel, you can rely on the default behavior of the Mixpanel JavaScript SDK. When a user visits your site for the first time with UTM parameters in the URL, the SDK will:
+- Pass the actual client IP using the `$ip`  in your payload
+- Manually set geolocation properties such as `$city`, `$region`, and `$country_code`
+- Specify the exact coordinates by setting the `$latitude` and `$longitude` properties in your payload
 
-    - Automatically capture the UTM parameters from the landing page URL (such as `utm_source`, `utm_medium`, `utm_campaign`, etc.) and add them to events fired from that page load.
-    - Store these first-seen UTM parameters as user profile properties prefixed with `initial_` (e.g., `initial_utm_source`, `initial_utm_campaign`). These properties represent the first-touch attribution and will persist on the user profile for future reference.
+Learn more about [geolocation](/docs/tracking-best-practices/geolocation).
 
-    **No extra configuration is needed** for first-touch tracking if you are using the default SDK settings and identifying users normally. The UTM parameters will be persisted as [super properties](/docs/data-structure/events-and-properties#super-properties) in a last-touch manner and the initial values will be set on the user profile automatically in a first-touch manner.
+## How do I track downloads and installs from Apple App Store and Google Play Store?
 
-    If you are using a server-side implementation or a third-party integration, you must manually set these UTM properties.
+Tracking downloads and installs from the Apple App Store and Google Play Store in Mixpanel cannot be done directly, as neither app store provides this data to Mixpanel out-of-the-box.
 
-    We recommend disabling UTM persistence for compatibility with the [Attribution](/docs/features/computed-properties#attribution) feature. To disable UTM persistence, set `stop_utm_persistence: true` when initializing the SDK.
+**For Google Play Store (Android):** You can use the [**Play Install Referrer Library**](https://developer.android.com/google/play/installreferrer/library) to retrieve the referrer URL when the app is first opened. This allows you to capture some attribution data (such as campaign source) and send it to Mixpanel as event properties. However, this only works for a subset of attribution data and does not provide the total number of downloads—only installs where the app is opened and the referrer is available
 
-    Learn more about [UTM tracking](/docs/tracking-best-practices/traffic-attribution#web-attribution).
-  </Accordion>
+**For Apple App Store (iOS):** The App Store strips attribution data before the user downloads the app, so you cannot directly track the source or count of installs via Mixpanel. To track channel attribution on iOS, you need to use a mobile attribution partner (such as Adjust, AppsFlyer, or Branch). These partners can capture install and attribution data and send it to Mixpanel for analysis.
 
-  <Accordion title="How do I track last-touch UTM tags?" section="Sending Data to Mixpanel">
-    By default, UTM parameters are persisted as [super properties](/docs/data-structure/events-and-properties#super-properties) in all events and is updated when a new UTM parameter is detected in subsequent page loads (which aligns with last-touch attribution).
+Learn more about [Traffic Attribution](/docs/tracking-best-practices/traffic-attribution) and our [attribution integration partners](https://mixpanel.com/partners/integrations?categories=attribution-deep-linking).
 
-    We recommend disabling UTM persistence for compatibility with the [Attribution](/docs/features/computed-properties#attribution) feature. To disable UTM persistence, set `stop_utm_persistence: true` when initializing the SDK.
+## How do I track first-touch UTM tags?
 
-    Learn more about UTM tracking [here](/docs/tracking-best-practices/traffic-attribution#web-attribution).
-  </Accordion>
+To track first-touch UTM tags in Mixpanel, you can rely on the default behavior of the Mixpanel JavaScript SDK. When a user visits your site for the first time with UTM parameters in the URL, the SDK will:
 
-  <Accordion title="Why do I see Session Start and Session End events in my project?" section="Sending Data to Mixpanel">
-    **Session Start** and **Session End** events are automatically computed based on the events already in your project. These are **virtual events;** they are not sent from your application but are generated by Mixpanel at query time within the UI and reports. These virtual events do not count toward your data allowance.
+- Automatically capture the UTM parameters from the landing page URL (such as `utm_source`, `utm_medium`, `utm_campaign`, etc.) and add them to events fired from that page load.
+- Store these first-seen UTM parameters as user profile properties prefixed with `initial_` (e.g., `initial_utm_source`, `initial_utm_campaign`). These properties represent the first-touch attribution and will persist on the user profile for future reference.
 
-    The definition of a session, when it starts and ends, depends on your project's session settings, which may be [timeout-based](/docs/features/sessions#timeout-based-sessions), [event-based](/docs/features/sessions#event-based-sessions), or [property-based](/docs/features/sessions#property-based-sessions). You can use these virtual events in reports such as Insights, Funnels, and Flows. However, they do not appear in your raw events list and cannot be exported via the API, as they are not stored as actual events in your data store.
+**No extra configuration is needed** for first-touch tracking if you are using the default SDK settings and identifying users normally. The UTM parameters will be persisted as [super properties](/docs/data-structure/events-and-properties#super-properties) in a last-touch manner and the initial values will be set on the user profile automatically in a first-touch manner.
 
-    Learn more about [Sessions](/docs/features/sessions).
-  </Accordion>
+If you are using a server-side implementation or a third-party integration, you must manually set these UTM properties.
 
-  <Accordion title="What are super properties?" section="Sending Data to Mixpanel">
-    [Super properties](/docs/data-structure/events-and-properties#super-properties) in Mixpanel are event properties that you define once and are automatically included with every event tracked from the client-side SDKs. They are stored in the user's local storage or cookie, so you don't need to manually add them to each event. This is useful for properties that provide important context across multiple events, such as user type, app version, or campaign source.
+We recommend disabling UTM persistence for compatibility with the [Attribution](/docs/features/computed-properties#attribution) feature. To disable UTM persistence, set `stop_utm_persistence: true` when initializing the SDK.
 
-    You can register super properties with the [JavaScript SDK](/docs/tracking-methods/sdks/javascript#setting-super-properties), [Android SDK](/docs/tracking-methods/sdks/android#setting-super-properties), [Swift SDK](/docs/tracking-methods/sdks/swift#setting-super-properties), [iOS SDK](/docs/tracking-methods/sdks/ios#setting-super-properties), and the [React SDK](/docs/tracking-methods/sdks/react-native#setting-super-properties).
-  </Accordion>
+Learn more about [UTM tracking](/docs/tracking-best-practices/traffic-attribution#web-attribution).
 
-  <Accordion title="How can I edit the event data inside my project?" section="Sending Data to Mixpanel">
-    You cannot directly edit the raw event data that has already been ingested into your Mixpanel project; events are immutable once received (unless imported via a [mirror sync warehouse connector](/docs/tracking-methods/warehouse-connectors#mirror)). However, you can [hide unwanted events](/docs/data-governance/lexicon#hiding-data) from appearing in your reports and delete unwanted data.
+## How do I track last-touch UTM tags?
 
-    Learn more about [Lexicon](/docs/data-governance/lexicon), [Data Deletion](/docs/data-governance/data-clean-up#2-deleting-problematic-data), and [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors).
-  </Accordion>
+By default, UTM parameters are persisted as [super properties](/docs/data-structure/events-and-properties#super-properties) in all events and is updated when a new UTM parameter is detected in subsequent page loads (which aligns with last-touch attribution).
 
-  <Accordion title="How can I send data from my data warehouse to Mixpanel?" section="Sending Data to Mixpanel">
-    You can send data from your data warehouse to Mixpanel using [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors), which offer native integrations with Redshift, Snowflake, BigQuery, and Databricks. This codeless setup allows you to configure recurring syncs, ensuring Mixpanel stays up to date with your warehouse data.
-  </Accordion>
+We recommend disabling UTM persistence for compatibility with the [Attribution](/docs/features/computed-properties#attribution) feature. To disable UTM persistence, set `stop_utm_persistence: true` when initializing the SDK.
 
-  <Accordion title="How can I do a one-time import of historic events? How much does it cost?" section="Sending Data to Mixpanel">
-    To do an initial import of data into Mixpanel, there are several methods available:
+Learn more about UTM tracking [here](/docs/tracking-best-practices/traffic-attribution#web-attribution).
 
-    **1. SDKs (Software Development Kits)**: You can use [Mixpanel's SDKs](/docs/tracking-methods/sdks) to send data directly from your application. This is a common approach for ongoing event tracking, but it can also be used for initial imports if you replay historical events through the SDKs.
+## Why do I see Session Start and Session End events in my project?
 
-    **2. Import API**: Mixpanel provides an [Import API](/reference/import-events) that allows you to send data directly to Mixpanel. This method is managed by your team, and you can automate API calls to send data as needed.
+**Session Start** and **Session End** events are automatically computed based on the events already in your project. These are **virtual events;** they are not sent from your application but are generated by Mixpanel at query time within the UI and reports. These virtual events do not count toward your data allowance.
 
-    **3. Data Warehouse Connector(Add-on)**: Mixpanel offers a [data warehouse connector](/docs/tracking-methods/warehouse-connectors) as an add-on for organizations on the Enterprise plan, which allows you to point Mixpanel to your data warehouse table, and Mixpanel manages the sync and cadence of data import. This is a managed solution and is easier for teams that want Mixpanel to handle the process. Contact your account manager to learn more about the pricing.
+The definition of a session, when it starts and ends, depends on your project's session settings, which may be [timeout-based](/docs/features/sessions#timeout-based-sessions), [event-based](/docs/features/sessions#event-based-sessions), or [property-based](/docs/features/sessions#property-based-sessions). You can use these virtual events in reports such as Insights, Funnels, and Flows. However, they do not appear in your raw events list and cannot be exported via the API, as they are not stored as actual events in your data store.
 
-    Learn more about the pricing for historical events on the [Billing & Pricing doc](/docs/pricing#is-old-event-data-billed-when-imported-to-mixpanel).
-  </Accordion>
+Learn more about [Sessions](/docs/features/sessions).
 
-  <Accordion title="Why do I see CORS errors in the console when Mixpanel requests in my website?" section="Sending Data to Mixpanel">
-    CORS (Cross-Origin Resource Sharing) errors appear in your console when Mixpanel requests from your website are blocked by the browser's security policy. This typically happens because the Mixpanel server response does not include the necessary CORS headers (like `Access-Control-Allow-Origin`) to allow your domain to access the resource.
+## What are super properties?
 
-    Mixpanel requires you to send cross-origin HTTP requests (requests sent to a different server than the one hosting your web application), so you need to setup your environment to allow this. Use browser developer tools to inspect the failed request and see which headers are missing or mismatched.
+[Super properties](/docs/data-structure/events-and-properties#super-properties) in Mixpanel are event properties that you define once and are automatically included with every event tracked from the client-side SDKs. They are stored in the user's local storage or cookie, so you don't need to manually add them to each event. This is useful for properties that provide important context across multiple events, such as user type, app version, or campaign source.
 
-    Learn more about [CORS errors](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS/Errors).
-  </Accordion>
+You can register super properties with the [JavaScript SDK](/docs/tracking-methods/sdks/javascript#setting-super-properties), [Android SDK](/docs/tracking-methods/sdks/android#setting-super-properties), [Swift SDK](/docs/tracking-methods/sdks/swift#setting-super-properties), [iOS SDK](/docs/tracking-methods/sdks/ios#setting-super-properties), and the [React SDK](/docs/tracking-methods/sdks/react-native#setting-super-properties).
 
-  <Accordion title="How do we send data to Mixpanel?" section="Sending Data to Mixpanel">
-    You can use [Mixpanel's SDKs](/docs/tracking-methods/sdks) to track and send events directly from your applications, both on the client and server side.
+## How can I edit the event data inside my project?
 
-    Mixpanel supports direct imports from data warehouses such as Snowflake, BigQuery, Redshift, and Databricks through [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors). You can set up recurring syncs to keep Mixpanel in sync with your warehouse data.
+You cannot directly edit the raw event data that has already been ingested into your Mixpanel project; events are immutable once received (unless imported via a [mirror sync warehouse connector](/docs/tracking-methods/warehouse-connectors#mirror)). However, you can [hide unwanted events](/docs/data-governance/lexicon#hiding-data) from appearing in your reports and delete unwanted data.
 
-    If you use a CDP like Segment or Rudderstack, you can add Mixpanel as a downstream destination to receive your data.
+Learn more about [Lexicon](/docs/data-governance/lexicon), [Data Deletion](/docs/data-governance/data-clean-up#2-deleting-problematic-data), and [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors).
 
-    Learn more about [Tracking Methods](/docs/tracking-methods).
-  </Accordion>
+## How can I send data from my data warehouse to Mixpanel?
 
-  <Accordion title="Can Mixpanel integrate with our current data model or database?" section="Sending Data to Mixpanel">
-    Mixpanel is flexible and can integrate with most data models or databases, either directly or through data transformation and import methods.
+You can send data from your data warehouse to Mixpanel using [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors), which offer native integrations with Redshift, Snowflake, BigQuery, and Databricks. This codeless setup allows you to configure recurring syncs, ensuring Mixpanel stays up to date with your warehouse data.
 
-    If your data is stored in a data warehouse (such as BigQuery, Redshift, Snowflake, or Databricks), Mixpanel's [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors) allow you to sync tables or views from your warehouse into Mixpanel. This integration is codeless and can keep your Mixpanel data in sync with your backend systems
+## How can I do a one-time import of historic events? How much does it cost?
 
-    If you are using a CDP such as Segment or Rudderstack, you can set Mixpanel as a downstream destination to stream data from your existing sources.
+To do an initial import of data into Mixpanel, there are several methods available:
 
-    Learn more about [Tracking Methods](/docs/tracking-methods).
-  </Accordion>
+**1. SDKs (Software Development Kits)**: You can use [Mixpanel's SDKs](/docs/tracking-methods/sdks) to send data directly from your application. This is a common approach for ongoing event tracking, but it can also be used for initial imports if you replay historical events through the SDKs.
 
-  <Accordion title="How do we handle sensitive or private data?" section="Sending Data to Mixpanel">
-    Mixpanel does not store personally identifiable information (PII) unless you explicitly choose to track it. You have full control over the data you send and should avoid including raw PII (such as names, email addresses, or phone numbers) unless absolutely necessary.
+**2. Import API**: Mixpanel provides an [Import API](/reference/import-events) that allows you to send data directly to Mixpanel. This method is managed by your team, and you can automate API calls to send data as needed.
 
-    Mixpanel also provides tools to help you honor user privacy, including options to support opt-out requests and manage data responsibly. Learn more about how to [protect user data](/docs/privacy/protecting-user-data).
+**3. Data Warehouse Connector(Add-on)**: Mixpanel offers a [data warehouse connector](/docs/tracking-methods/warehouse-connectors) as an add-on for organizations on the Enterprise plan, which allows you to point Mixpanel to your data warehouse table, and Mixpanel manages the sync and cadence of data import. This is a managed solution and is easier for teams that want Mixpanel to handle the process. Contact your account manager to learn more about the pricing.
 
-    With [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview), you can create filtered views of your project data and assign access to specific teams or users.
+Learn more about the pricing for historical events on the [Billing & Pricing doc](/docs/pricing#is-old-event-data-billed-when-imported-to-mixpanel).
 
-    Additionally, [Data Classification](/docs/data-governance/data-views-and-classification#data-classification) lets you mark certain properties as classified, restricting visibility to only authorized users within your project.
-  </Accordion>
+## Why do I see CORS errors in the console when Mixpanel requests in my website?
 
-  <Accordion title="What is the best way to send both client-side and server-side events?" section="Sending Data to Mixpanel">
-    The best practice for sending both client-side and server-side events in Mixpanel is to use a **hybrid approach**:
+CORS (Cross-Origin Resource Sharing) errors appear in your console when Mixpanel requests from your website are blocked by the browser's security policy. This typically happens because the Mixpanel server response does not include the necessary CORS headers (like `Access-Control-Allow-Origin`) to allow your domain to access the resource.
 
-    - **Track critical business events** (such as purchases, sign-ups, and revenue events) **on the server side**. This ensures greater accuracy and reliability, as server-side events are not impacted by ad blockers, network interruptions, or client-side manipulation. Use Mixpanel’s server-side SDKs or direct API ingestion for this purpose.
-    - **Track user interactions and UI events** (such as button clicks and page views) **on the client side**. These events reflect real-time user behavior that only occurs in the browser or app and are best captured using Mixpanel’s client-side SDKs.
+Mixpanel requires you to send cross-origin HTTP requests (requests sent to a different server than the one hosting your web application), so you need to setup your environment to allow this. Use browser developer tools to inspect the failed request and see which headers are missing or mismatched.
 
-    Learn more about [choosing the right tracking method](/docs/tracking-methods/choosing-the-right-method).
-  </Accordion>
+Learn more about [CORS errors](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS/Errors).
 
-  <Accordion title="How do we ensure the data is accurate and implementation is correct?" section="Sending Data to Mixpanel">
-    To ensure your Mixpanel data is accurate and your implementation is correct, follow these best practices:
+## How do we send data to Mixpanel?
 
-    1. **Use Separate Development and Production Projects:** Always set up at least two Mixpanel projects, one for development and one for production. Implement and test all tracking in the development project first. This prevents test or incorrect data from polluting your production analytics. Learn more about setting up [developer environments](/docs/tracking-best-practices/developer-environments).
-    2. **Validate Events and Properties:** Use Mixpanel's Events view to confirm that events are arriving as expected. Manually trigger events and search for them using user-level identifiers (like `distinct_id`). Inspect event properties for correctness, data type, and naming conventions (Mixpanel is case sensitive). Learn more about [debugging your implementation](/docs/tracking-best-practices/debugging).
-    3. **Iterate and Update Tracking Plan:** After each product update or when adding new events, update your tracking plan, get sign-off from a data governance owner, and repeat the QA process in the development project before deploying to production. Learn more about [creating a tracking plan](/docs/tracking-best-practices/tracking-plan) and establishing [data standards](/docs/data-governance/data-standards).
-  </Accordion>
+You can use [Mixpanel's SDKs](/docs/tracking-methods/sdks) to track and send events directly from your applications, both on the client and server side.
 
-  <Accordion title="How do I anonymize an actual known user?" section="Sending Data to Mixpanel">
-    Mixpanel does not require any identifying information about users. You can generate a hash of a unique user ID (such as your internal user ID) and use that hash as the user's ID when calling the `.identify()` method in the SDKs. This way, the user cannot be traced back to their real identity, but you can still analyze their behavior in aggregate. The hash should only be reversible by you, not by Mixpanel or anyone else.
+Mixpanel supports direct imports from data warehouses such as Snowflake, BigQuery, Redshift, and Databricks through [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors). You can set up recurring syncs to keep Mixpanel in sync with your warehouse data.
 
-    To anonymize a user who has already been tracked, first export all data associated with that user. Then, delete the user's data using Mixpanel's GDPR-compliant deletion methods. After reviewing the exported data, remove any personally identifiable information (PII), and reimport the sanitized data as needed once the deletion has been fully processed.
+If you use a CDP like Segment or Rudderstack, you can add Mixpanel as a downstream destination to receive your data.
 
-    Learn more about [anonymizing users](/docs/privacy/protecting-user-data#anonymizing-users) and submitting [GDPR requests](/docs/privacy/end-user-data-management).
-  </Accordion>
-</AccordionGroup>
+Learn more about [Tracking Methods](/docs/tracking-methods).
+
+## Can Mixpanel integrate with our current data model or database?
+
+Mixpanel is flexible and can integrate with most data models or databases, either directly or through data transformation and import methods.
+
+If your data is stored in a data warehouse (such as BigQuery, Redshift, Snowflake, or Databricks), Mixpanel's [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors) allow you to sync tables or views from your warehouse into Mixpanel. This integration is codeless and can keep your Mixpanel data in sync with your backend systems
+
+If you are using a CDP such as Segment or Rudderstack, you can set Mixpanel as a downstream destination to stream data from your existing sources.
+
+Learn more about [Tracking Methods](/docs/tracking-methods).
+
+## How do we handle sensitive or private data?
+
+Mixpanel does not store personally identifiable information (PII) unless you explicitly choose to track it. You have full control over the data you send and should avoid including raw PII (such as names, email addresses, or phone numbers) unless absolutely necessary.
+
+Mixpanel also provides tools to help you honor user privacy, including options to support opt-out requests and manage data responsibly. Learn more about how to [protect user data](/docs/privacy/protecting-user-data).
+
+With [Data Views](/docs/data-governance/data-views-and-classification#data-views-overview), you can create filtered views of your project data and assign access to specific teams or users.
+
+Additionally, [Data Classification](/docs/data-governance/data-views-and-classification#data-classification) lets you mark certain properties as classified, restricting visibility to only authorized users within your project.
+
+## What is the best way to send both client-side and server-side events?
+
+The best practice for sending both client-side and server-side events in Mixpanel is to use a **hybrid approach**:
+
+- **Track critical business events** (such as purchases, sign-ups, and revenue events) **on the server side**. This ensures greater accuracy and reliability, as server-side events are not impacted by ad blockers, network interruptions, or client-side manipulation. Use Mixpanel’s server-side SDKs or direct API ingestion for this purpose.
+- **Track user interactions and UI events** (such as button clicks and page views) **on the client side**. These events reflect real-time user behavior that only occurs in the browser or app and are best captured using Mixpanel’s client-side SDKs.
+
+Learn more about [choosing the right tracking method](/docs/tracking-methods/choosing-the-right-method).
+
+## How do we ensure the data is accurate and implementation is correct?
+
+To ensure your Mixpanel data is accurate and your implementation is correct, follow these best practices:
+
+1. **Use Separate Development and Production Projects:** Always set up at least two Mixpanel projects, one for development and one for production. Implement and test all tracking in the development project first. This prevents test or incorrect data from polluting your production analytics. Learn more about setting up [developer environments](/docs/tracking-best-practices/developer-environments).
+2. **Validate Events and Properties:** Use Mixpanel's Events view to confirm that events are arriving as expected. Manually trigger events and search for them using user-level identifiers (like `distinct_id`). Inspect event properties for correctness, data type, and naming conventions (Mixpanel is case sensitive). Learn more about [debugging your implementation](/docs/tracking-best-practices/debugging).
+3. **Iterate and Update Tracking Plan:** After each product update or when adding new events, update your tracking plan, get sign-off from a data governance owner, and repeat the QA process in the development project before deploying to production. Learn more about [creating a tracking plan](/docs/tracking-best-practices/tracking-plan) and establishing [data standards](/docs/data-governance/data-standards).
+
+## How do I anonymize an actual known user?
+
+Mixpanel does not require any identifying information about users. You can generate a hash of a unique user ID (such as your internal user ID) and use that hash as the user's ID when calling the `.identify()` method in the SDKs. This way, the user cannot be traced back to their real identity, but you can still analyze their behavior in aggregate. The hash should only be reversible by you, not by Mixpanel or anyone else.
+
+To anonymize a user who has already been tracked, first export all data associated with that user. Then, delete the user's data using Mixpanel's GDPR-compliant deletion methods. After reviewing the exported data, remove any personally identifiable information (PII), and reimport the sanitized data as needed once the deletion has been fully processed.
+
+Learn more about [anonymizing users](/docs/privacy/protecting-user-data#anonymizing-users) and submitting [GDPR requests](/docs/privacy/end-user-data-management).
+
 
