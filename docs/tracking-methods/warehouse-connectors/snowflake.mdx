@@ -27,38 +27,38 @@ To connect to Snowflake, you will need:
 - Your [Snowflake account identifier](https://docs.snowflake.com/user-guide/admin-account-identifier), which you can find in the URL of your Snowflake account (`https://YOUR_ACCOUNT_NAME.snowflakecomputing.com/`).
 - A dedicated Mixpanel user account and role. The user account can use either key-pair or password authentication. If using key-pair authentication, Mixpanel will generate a secure key-pair during the connection process. The public key will be provided during the setup process, and the private key will be encrypted and stored securely.
 
-  ```jsx
+  ```sql
   CREATE ROLE MIXPANEL_ROLE;
-  # one of
+  -- one of
   CREATE USER MIXPANEL PASSWORD='?????' DEFAULT_ROLE=MIXPANEL_ROLE;
-  CREATE USER MIXPANEL RSA_PUBLIC_KEY='<mixpanel-provided-key>' DEFAULT_ROLE=MIXPANEL_IMPORT_ROLE;
-  # then
+  CREATE USER MIXPANEL RSA_PUBLIC_KEY='<mixpanel-provided-key>' DEFAULT_ROLE=MIXPANEL_ROLE;
+  -- then
   GRANT ROLE MIXPANEL_ROLE TO USER MIXPANEL;
   ```
 - A Snowflake [WAREHOUSE](https://docs.snowflake.com/en/sql-reference/sql/create-warehouse) Mixpanel will use to unload data. We recommend creating a dedicated warehouse for Mixpanel to avoid impacting other workloads.
 
-  ```jsx
+  ```sql
   CREATE WAREHOUSE MIXPANEL_WAREHOUSE WITH
-    WAREHOUSE_SIZE = XSMALL # consider increasing for larger datasets
+    WAREHOUSE_SIZE = XSMALL -- consider increasing for larger datasets
     AUTO_SUSPEND = 60
     AUTO_RESUME = TRUE
     INITIALLY_SUSPENDED = TRUE;
-  GRANT USAGE ON MIXPANEL_WAREHOUSE TO ROLE MIXPANEL_ROLE;
-  GRANT MONITOR ON MIXPANEL_WAREHOUSE TO ROLE MIXPANEL_ROLE;
+  GRANT USAGE ON WAREHOUSE MIXPANEL_WAREHOUSE TO ROLE MIXPANEL_ROLE;
+  GRANT MONITOR ON WAREHOUSE MIXPANEL_WAREHOUSE TO ROLE MIXPANEL_ROLE;
   ```
 - A Snowflake [STORAGE INTEGRATION](https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration) Mixpanel will use to unload data. This integration can optionally restrict STORAGE\_ALLOWED\_LOCATIONS to the unique Mixpanel-managed bucket created to receive data for this connection.
 
-  ```jsx
+  ```sql
   CREATE STORAGE INTEGRATION MIXPANEL_STORAGE_INTEGRATION
     TYPE = EXTERNAL_STAGE
     STORAGE_PROVIDER = 'GCS'
     ENABLED = TRUE
-    STORAGE_ALLOWED_LOCATIONS = ("<mixpanel-provided-bucket-name>"); # optional
-  GRANT USAGE ON INTEGRATION MIXPANEL_STORAGE_INTEGRATION TO MIXPANEL_ROLE;
+    STORAGE_ALLOWED_LOCATIONS = ("<mixpanel-provided-bucket-name>"); -- optional
+  GRANT USAGE ON INTEGRATION MIXPANEL_STORAGE_INTEGRATION TO ROLE MIXPANEL_ROLE;
   ```
 - A new, empty `MIXPANEL` [SCHEMA](https://docs.snowflake.com/en/sql-reference/sql/create-schema) the Mixpanel user has the `USAGE` and `CREATE STREAM` permission for (if you are using [Mirror](/docs/tracking-methods/warehouse-connectors#mirror)).
 
-  ```jsx
+  ```sql
   CREATE SCHEMA <database>.MIXPANEL;
   GRANT USAGE ON DATABASE <database> TO ROLE MIXPANEL_ROLE;
   GRANT USAGE ON SCHEMA <database>.MIXPANEL TO ROLE MIXPANEL_ROLE;
@@ -66,7 +66,7 @@ To connect to Snowflake, you will need:
   ```
 - The Mixpanel user needs the `USAGE` and `SELECT` permissions to have read-only access to any tables and views you plan to sync. Adjust this example to fine-tune permissions.
 
-  ```jsx
+  ```sql
   GRANT USAGE ON DATABASE <database> TO ROLE MIXPANEL_ROLE;
   GRANT USAGE ON ALL SCHEMAS IN DATABASE <database> TO ROLE MIXPANEL_ROLE;
   GRANT USAGE ON FUTURE SCHEMAS IN DATABASE <database> TO ROLE MIXPANEL_ROLE;
