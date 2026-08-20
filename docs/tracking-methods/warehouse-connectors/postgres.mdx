@@ -27,10 +27,7 @@ Complete the following steps to get your Postgres connector up and running:
    - **Database** - This is the name of the database you want to connect to.
    - **User Name** - This is the username you want to connect with. The user should have read-only permissions on your Postgres instance, as Mixpanel only needs to read data. Follow the principle of least privilege by granting access only to the specific schemas and tables you intend to sync.
    - **Password** - This is the password for the user you want to connect with.
-   - **Postgres SSL Mode** - To keep your data secure, Mixpanel requires encryption for Postgres connections. You can choose between two SSL [modes](https://www.postgresql.org/docs/current/libpq-ssl.html):
-
-     - **verify-full** (default, recommended) - Verifies both the server certificate and that the hostname matches the certificate.
-     - **verify-ca** - Verifies the server certificate against a trusted certificate authority.
+   - **Postgres SSL Mode** - To keep your data secure, Mixpanel requires encryption for Postgres connections. Choose between `verify-full` and `verify-ca`; see [SSL Modes](#ssl-modes) below for the difference.
    - **Server CA Certificate** (Optional) - If your cloud provider doesn't use a public certificate registry (e.g., Google Cloud SQL, Supabase), you can upload a CA bundle as a PEM file to authenticate your server.
    - **SSH Tunnel** (Optional) - If you need to connect through an SSH tunnel, enable and configure the following:
 
@@ -43,6 +40,46 @@ Complete the following steps to get your Postgres connector up and running:
 <Warning>
   The Postgres connector only supports IPv4 connections. If you are using a database provider like Supabase, you may need to explicitly use an IPv4 connection.
 </Warning>
+
+### Database Permissions
+
+Mixpanel only reads from your database, so connect with a dedicated read-only role rather than an existing application user. Grant access only to the schemas you intend to sync.
+
+Run the following as a superuser or as the owner of the schema, replacing `your_database` and `your_schema`:
+
+```sql
+-- Create a dedicated login role for Mixpanel.
+CREATE ROLE mixpanel_reader WITH LOGIN PASSWORD 'choose_a_strong_password';
+
+-- Let the role open a connection to the database.
+GRANT CONNECT ON DATABASE your_database TO mixpanel_reader;
+
+-- Let the role see the schema holding the tables you want to sync.
+GRANT USAGE ON SCHEMA your_schema TO mixpanel_reader;
+
+-- Grant read access to the tables that exist today.
+GRANT SELECT ON ALL TABLES IN SCHEMA your_schema TO mixpanel_reader;
+
+-- Grant read access to tables created in this schema later, so new
+-- tables do not silently fail to sync.
+ALTER DEFAULT PRIVILEGES IN SCHEMA your_schema
+  GRANT SELECT ON TABLES TO mixpanel_reader;
+```
+
+Repeat the `USAGE`, `SELECT`, and `ALTER DEFAULT PRIVILEGES` statements for each additional schema you sync. Without `USAGE` on the schema, the connector authenticates but cannot see any tables, and validation fails.
+
+### SSL Modes
+
+Mixpanel requires an encrypted connection. Both supported [SSL modes](https://www.postgresql.org/docs/current/libpq-ssl.html) encrypt traffic; they differ in how far they go to prove the server is who it claims to be.
+
+| Mode | Encrypts traffic | Verifies certificate authority | Verifies hostname |
+| --- | --- | --- | --- |
+| `verify-full` (default, recommended) | Yes | Yes | Yes |
+| `verify-ca` | Yes | Yes | No |
+
+Use `verify-full` unless it fails. Because `verify-ca` skips the hostname check, it accepts any server presenting a certificate signed by a trusted authority, which leaves the connection open to an on-path attacker holding such a certificate. Choose it only when your certificate's common name or SAN cannot match the host you connect to — for example when connecting by IP address, or with a managed provider that issues certificates for an internal hostname.
+
+If your provider doesn't use a public certificate registry, upload its CA bundle in **Server CA Certificate** so `verify-full` can succeed.
 
 ### IP Allowlist
 
