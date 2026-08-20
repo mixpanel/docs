@@ -1299,7 +1299,7 @@
     },
     {
       "source": "/developer-docs-redirect/client-side-vs-server-side-tracking",
-      "destination": "/docs/getting-started/plan-your-implementation#need-to-start-tracking-product-data"
+      "destination": "/docs/what-to-track"
     },
     {
       "source": "/developer-docs-redirect/cloud-import-overview",
@@ -1879,7 +1879,7 @@
     },
     {
       "source": "/docs/formulas",
-      "destination": "/changelogs/2023-09-19-formulas"
+      "destination": "/changelogs"
     },
     {
       "source": "/docs/funnels",
@@ -2171,7 +2171,7 @@
     },
     {
       "source": "/docs/other-bits/tutorials/mixpanel-analysis",
-      "destination": "/docs/how-it-works/concepts#overview"
+      "destination": "/docs/data-structure/concepts#overview"
     },
     {
       "source": "/docs/other-bits/tutorials/mixpanel-analysis/board",
@@ -2647,7 +2647,7 @@
     },
     {
       "source": "/docs/tutorials/mixpanel-analysis",
-      "destination": "/docs/how-it-works/concepts#overview"
+      "destination": "/docs/data-structure/concepts#overview"
     },
     {
       "source": "/docs/tutorials/mixpanel-analysis/insights",
@@ -2871,7 +2871,7 @@
     },
     {
       "source": "/hc/en-us/articles/10147279357076*",
-      "destination": "/docs/debugging/overview#data-discrepancies"
+      "destination": "/docs/tracking-best-practices/debugging#data-discrepancies"
     },
     {
       "source": "/hc/en-us/articles/10503460589972*",
@@ -2907,11 +2907,11 @@
     },
     {
       "source": "/hc/en-us/articles/115004491523*",
-      "destination": "/docs/best-practices/developer-environments#send-data-to-multiple-projects"
+      "destination": "/docs/tracking-best-practices/developer-environments#send-data-to-multiple-projects"
     },
     {
       "source": "/hc/en-us/articles/115004491683*",
-      "destination": "/docs/best-practices/developer-environments#when-to-use-multiple-production-projects"
+      "destination": "/docs/tracking-best-practices/developer-environments#when-to-use-multiple-production-projects"
     },
     {
       "source": "/hc/en-us/articles/115004493763*",
@@ -2939,11 +2939,11 @@
     },
     {
       "source": "/hc/en-us/articles/115004499343*",
-      "destination": "/docs/best-practices/server-side-best-practices#tracking-geolocation"
+      "destination": "/docs/tracking-best-practices/server-side-best-practices"
     },
     {
       "source": "/hc/en-us/articles/115004499403*",
-      "destination": "/docs/features/advanced#undefined-and-null-properties"
+      "destination": "/docs/reports"
     },
     {
       "source": "/hc/en-us/articles/115004499463*",
@@ -3027,7 +3027,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004547063*",
-      "destination": "/docs/how-it-works/concepts#supported-data-types"
+      "destination": "/docs/data-structure/concepts"
     },
     {
       "source": "/hc/en-us/articles/115004547203*",
@@ -3115,7 +3115,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004600723*",
-      "destination": "/docs/data-structure/advanced/utm-tags#mobile-attribution"
+      "destination": "/docs/tracking-best-practices/traffic-attribution#mobile-attribution"
     },
     {
       "source": "/hc/en-us/articles/115004600763*",
@@ -3187,7 +3187,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004734463*",
-      "destination": "/docs/quickstart/track-events#http-api"
+      "destination": "/docs/quickstart/capture-events/track-events"
     },
     {
       "source": "/hc/en-us/articles/115004958823*",
@@ -3227,23 +3227,23 @@
     },
     {
       "source": "/hc/en-us/articles/13174988269844*",
-      "destination": "/changelogs/2022-12-01-improvements"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13175102961428*",
-      "destination": "/changelogs/2022-12-13-boards"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13175146659732*",
-      "destination": "/changelogs/2023-01-18-table-boards"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13175184938260*",
-      "destination": "/changelogs/2023-01-23-users-flows"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13175224500628*",
-      "destination": "/changelogs/2023-01-31-embed"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13271005313556*",
@@ -3251,39 +3251,39 @@
     },
     {
       "source": "/hc/en-us/articles/13395179786644*",
-      "destination": "/changelogs/2022-07-08-reorient"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395198918804*",
-      "destination": "/changelogs/2022-11-03-session-improvements"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395199893652*",
-      "destination": "/changelogs/2022-11-07-millisecond"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395205961236*",
-      "destination": "/changelogs/2022-07-01-view-users"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395233184916*",
-      "destination": "/changelogs/2022-06-16-faster-workflow"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395235568660*",
-      "destination": "/changelogs/2022-05-31-improve-conversion-flow"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395324158868*",
-      "destination": "/changelogs/2022-05-24-lexicon-context"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395325754772*",
-      "destination": "/changelogs/2022-04-18-relative-comparison"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395328448404*",
-      "destination": "/changelogs/2022-03-29-text-boards"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13530857626132*",
@@ -3291,7 +3291,7 @@
     },
     {
       "source": "/hc/en-us/articles/13756463065492*",
-      "destination": "/changelogs/2023-02-28-retention-calendar-interval"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/14202292561172*",
@@ -3311,7 +3311,7 @@
     },
     {
       "source": "/hc/en-us/articles/15235786397716*",
-      "destination": "/docs/data-structure/advanced/ad-spend#gathering-data-from-ad-networks"
+      "destination": "/docs/tracking-methods/integrations/ad-spend#gathering-data-from-ad-networks"
     },
     {
       "source": "/hc/en-us/articles/15266196509972*",
@@ -3319,7 +3319,7 @@
     },
     {
       "source": "/hc/en-us/articles/15271983688212*",
-      "destination": "/docs/features/attribution#overview"
+      "destination": "/docs/features/computed-properties#attribution"
     },
     {
       "source": "/hc/en-us/articles/15418504274580*",
@@ -3411,11 +3411,11 @@
     },
     {
       "source": "/hc/en-us/articles/360001354886*",
-      "destination": "/docs/best-practices/developer-environments#separate-development-data"
+      "destination": "/docs/tracking-best-practices/developer-environments#separate-development-data"
     },
     {
       "source": "/hc/en-us/articles/360001355146*",
-      "destination": "/docs/best-practices/server-side-best-practices#tracking-browser-device-and-os"
+      "destination": "/docs/tracking-best-practices/server-side-best-practices#tracking-browser-device-and-os"
     },
     {
       "source": "/hc/en-us/articles/360001355166*",
@@ -3431,7 +3431,7 @@
     },
     {
       "source": "/hc/en-us/articles/360001355466*",
-      "destination": "/docs/best-practices/server-side-best-practices#identifying-users"
+      "destination": "/docs/tracking-best-practices/server-side-best-practices#identifying-users"
     },
     {
       "source": "/hc/en-us/articles/360001355506*",
@@ -3443,7 +3443,7 @@
     },
     {
       "source": "/hc/en-us/articles/360001360643*",
-      "destination": "/docs/features/advanced#top-segments-logic"
+      "destination": "/docs/reports#top-segments-logic"
     },
     {
       "source": "/hc/en-us/articles/360001361023*",
@@ -3539,7 +3539,7 @@
     },
     {
       "source": "/hc/en-us/articles/360027754631*",
-      "destination": "/docs/features/advanced#query-result-caching"
+      "destination": "/docs/reports#query-result-caching"
     },
     {
       "source": "/hc/en-us/articles/360028142571*",
@@ -3675,11 +3675,11 @@
     },
     {
       "source": "/hc/en-us/articles/360047094171*",
-      "destination": "/docs/features/advanced#list-property-support"
+      "destination": "/docs/reports"
     },
     {
       "source": "/hc/en-us/articles/360048486671*",
-      "destination": "/docs/debugging/overview#inactive-events-and-properties"
+      "destination": "/docs/tracking-best-practices/debugging#inactive-events-and-properties"
     },
     {
       "source": "/hc/en-us/articles/360049332572*",
@@ -3755,7 +3755,7 @@
     },
     {
       "source": "/hc/en-us/articles/4402828400020*",
-      "destination": "/docs/features/advanced#limits-and-ordering"
+      "destination": "/docs/reports"
     },
     {
       "source": "/hc/en-us/articles/4402837164948*",
@@ -3779,7 +3779,7 @@
     },
     {
       "source": "/hc/en-us/articles/4409841288724*",
-      "destination": "/docs/boards/advanced#faq"
+      "destination": "/docs/boards"
     },
     {
       "source": "/hc/en-us/articles/4409850288276*",
@@ -3851,7 +3851,7 @@
     },
     {
       "source": "/hc/en-us/articles/7715039510548*",
-      "destination": "/docs/features/advanced#query-builder-features"
+      "destination": "/docs/reports"
     },
     {
       "source": "/hc/en-us/articles/7716920767124*",
@@ -3875,7 +3875,7 @@
     },
     {
       "source": "/hc/en-us/categories/115001031023*",
-      "destination": "/docs/how-it-works/concepts#overview"
+      "destination": "/docs/data-structure/concepts#overview"
     },
     {
       "source": "/hc/en-us/categories/115001157746*",
