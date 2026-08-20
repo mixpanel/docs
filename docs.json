@@ -377,7 +377,6 @@
             "icon": "/icons/ai.svg",
             "pages": [
               "docs/mixpanel-agent",
-              "docs/slack-bot",
               "docs/agentic-automations",
               "docs/root-cause-analysis",
               "docs/mcp",
@@ -1280,6 +1279,10 @@
     {
       "source": "/",
       "destination": "/docs/what-is-mixpanel"
+    },
+    {
+      "source": "/docs/slack-bot",
+      "destination": "/docs/mixpanel-agent"
     },
     {
       "source": "/changelogs/*",
