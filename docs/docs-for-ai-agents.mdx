@@ -72,7 +72,15 @@ Paste the contents of `llms.txt` into your system prompt or tool context to give
 
 ### Use with the Documentation MCP Server
 
-Mixpanel hosts a Model Context Protocol server for the documentation itself at `https://docs.mixpanel.com/mcp`. It exposes search and retrieval tools over the docs, so an agent can look up a topic on demand instead of loading the full corpus up front. Add it to any MCP-compatible client:
+Mixpanel hosts a Model Context Protocol server for the documentation itself at `https://docs.mixpanel.com/mcp`. It exposes search and retrieval tools over the docs, so an agent can look up a topic on demand instead of loading the full corpus up front. No authentication is required.
+
+Add it to Claude Code with one command:
+
+```bash
+claude mcp add --transport http mixpanel-docs https://docs.mixpanel.com/mcp
+```
+
+For Cursor, add it to `.cursor/mcp.json` in your project (or `~/.cursor/mcp.json` for every project):
 
 ```json
 {
@@ -83,6 +91,8 @@ Mixpanel hosts a Model Context Protocol server for the documentation itself at `
   }
 }
 ```
+
+Any other MCP-compatible client can use the same URL with streamable HTTP transport.
 
 ### Use with the Mixpanel MCP Server
 
