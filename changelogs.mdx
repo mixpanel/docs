@@ -9,6 +9,23 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-08-20">
+  ## Feature Flags: Typed Runtime Property Values
+
+  Feature Flags can now target Runtime Properties by their actual data type — string, number, list, or fuzzy — instead of treating every value as a string. Targeting rules match correctly on numbers and lists, not just text.
+
+  Previously, Runtime Property filters compared everything as a string. That meant no real numeric or boolean comparisons, making flag targeting less predictable and reliable.
+
+  With this update, each targeting condition has a Data Type that controls how it's parsed and compared:
+
+  - **String:** case-insensitive match, ordered comparisons in lexicographical order
+  - **Number:** true numeric comparison (Is, Greater than, Less than, etc.)
+  - **List:** match any/all elements, each evaluated by its own type
+  - **Fuzzy:** loose, cross-type match (e.g. `"5"` matches `5`, `"1"` matches `true`)
+
+  [Learn more →](/docs/featureflags#data-types-for-runtime-values)
+</Update>
+
 <Update label="2026-08-07">
   ## Session Replay: Mobile Autocapture (Screen Views)
 
