@@ -733,6 +733,7 @@
           {
             "group": "Error Troubleshooting",
             "pages": [
+              "troubleshooting/errors",
               "troubleshooting/errors/400-bad-request",
               "troubleshooting/errors/401-unauthorized",
               "troubleshooting/errors/403-forbidden",
