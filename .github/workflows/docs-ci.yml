@@ -1,0 +1,44 @@
+name: Docs CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: docs-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Docs checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+      - name: Install OpenAPI validator
+        run: pip install --quiet pyyaml openapi-spec-validator
+      # continue-on-error is deliberately absent: each check is a hard gate.
+      # Steps run in order and the job reports the first failure.
+      - name: Check frontmatter
+        run: python scripts/check_frontmatter.py
+      - name: Check code samples
+        if: '!cancelled()'
+        run: python scripts/check_code_samples.py
+      - name: Check internal links
+        if: '!cancelled()'
+        run: python scripts/check_links.py
+      - name: Check redirects
+        if: '!cancelled()'
+        run: python scripts/check_redirects.py
+      - name: Check OpenAPI specs
+        if: '!cancelled()'
+        run: python scripts/check_openapi.py
