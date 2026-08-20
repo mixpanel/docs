@@ -1,0 +1,73 @@
+---
+title: "Duplicate events appearing in reports"
+sidebarTitle: "Duplicate events"
+description: "How Mixpanel deduplicates events with $insert_id, why duplicates still show in reports and raw exports, and how to generate insert IDs correctly"
+---
+
+The same event appears more than once in your reports. Mixpanel deduplicates on `$insert_id`, so duplicates almost always mean the ID is missing, reused, or the four-part key does not match exactly.
+
+## How Deduplication Works
+
+Mixpanel treats two events as duplicates only when **all four** of these match:
+
+- `event` (the event name)
+- `time`
+- `distinct_id`
+- `$insert_id`
+
+Only these four are considered. Other properties are ignored for deduplication, and when a duplicate is found, only the latest ingested copy is surfaced in queries.
+
+There is no deduplication time window. A duplicate is decided by that exact key match, not by how far apart the two events arrived.
+
+## Two Different Passes
+
+Deduplication happens twice, and they behave differently. This is the most common source of confusion.
+
+| | Query-time | Compaction-time |
+| --- | --- | --- |
+| When | Immediately, whenever you query in the UI | Periodically in the backend — typically after a few hours, and again after roughly 20 days |
+| Matching | All four properties must match exactly | Same event name, `distinct_id`, and `$insert_id`; the timestamp only has to fall on the same calendar day |
+| Visible in reports | Yes | Yes |
+| Visible in raw export | **No** | Yes, once it has run |
+
+<Warning>
+  Compaction "does not run at a guaranteed or deterministic time. The process can take several hours to days to complete, and in some cases may not run at all." Never rely on it to correct data you already sent.
+</Warning>
+
+## Why You Are Seeing Duplicates
+
+### The Events Have No `$insert_id`
+
+`$insert_id` is required on every `/import` event. If an event arrives without one, Mixpanel generates a value for it, but "it will not qualify for the deduplication process." Those events can never be deduplicated.
+
+### The Same `$insert_id` Was Reused
+
+Setting `$insert_id` to something that is not unique per event — a user's `distinct_id`, for example — causes the opposite problem. Mixpanel warns that reusing it "can cause unintended deduplication and data loss." Events you meant to keep disappear instead.
+
+### The Timestamps Differ
+
+Query-time deduplication needs an exact `time` match. If a retry recomputes the timestamp instead of resending the original, the four-part key no longer matches and both copies are kept.
+
+### You Are Looking at a Raw Export
+
+Query-time deduplication "is visible in the Mixpanel UI and reports, but not in raw data exports. Raw event export will contain all data as they were ingested, without any deduplication." Duplicates in an export are expected until compaction has run.
+
+### The Events Are Genuinely Distinct
+
+Mixpanel does not guarantee upsert behavior. Re-sending a corrected event with the same `$insert_id` does not overwrite the original.
+
+## How to Fix It
+
+**Send a `$insert_id` on every event.** It must be 36 bytes or fewer and contain only alphanumeric characters and `-`. The placeholder values Mixpanel rejects for `distinct_id` — `anon`, `null`, `n/a`, `0`, `-1`, and the rest — are rejected here too.
+
+**Generate it from the event, not the user.** If your events have no natural unique ID, hash a set of properties that make the event semantically unique, such as `distinct_id` plus timestamp plus one more property, and use the first 36 characters.
+
+**Retry with the original payload.** Because the key includes `time`, a retry must resend the identical event for deduplication to work. This is what makes `/import` retries safe.
+
+**Check the delete-and-reimport trap.** If you re-import data while the original is soft deleted and reuse the same `$insert_id`, "our deduplication systems may keep the old (deleted) event and toss the new event." Regenerate the `$insert_id` when reimporting.
+
+## Related
+
+- [Event Deduplication](/reference/event-deduplication) — the full reference
+- [Import Events API](/reference/import-events)
+- [400 Bad Request](/troubleshooting/errors/400-bad-request)

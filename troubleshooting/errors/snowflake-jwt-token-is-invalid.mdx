@@ -1,0 +1,107 @@
+---
+title: "Snowflake error 390144: JWT token is invalid"
+sidebarTitle: "Snowflake: JWT token is invalid"
+description: "Why a Snowflake warehouse connector fails with 390144 JWT token is invalid, how to read the real underlying error code, and how to fix each cause"
+---
+
+Your Snowflake warehouse connector fails to authenticate and Snowflake returns:
+
+```text
+390144 (08004): JWT token is invalid.
+```
+
+Depending on which driver reports it, the SQLSTATE may appear as `08004` or `08001`. The error code `390144` is the part that matters.
+
+## What It Means
+
+`390144` is Snowflake's generic key-pair authentication failure (`JWT_TOKEN_INVALID`). Snowflake's own reference describes it only as "There is a general issue with the JWT token."
+
+The specific causes have their own codes, and Snowflake returns those instead when it can identify the problem. So a bare `390144` usually means the JWT was malformed or addressed to the wrong account, rather than a key mismatch.
+
+<Note>
+  Mixpanel generates the key pair for you during connector setup and stores the private key encrypted. You never create, convert, or upload a private key, so causes involving key generation — PKCS#1 versus PKCS#8, passphrase-encrypted keys, wrong `openssl` flags — do not apply to Mixpanel connections.
+</Note>
+
+## Find the Real Error Code First
+
+The failure message contains a UUID in square brackets. Snowflake stores the specific reason against that UUID, and reading it turns a generic `390144` into an actionable code.
+
+A Snowflake administrator runs:
+
+```sql
+SELECT JSON_EXTRACT_PATH_TEXT(
+  SYSTEM$GET_LOGIN_FAILURE_DETAILS('0ce9eb56-821d-4ca9-a774-04ae89a0cf5a'),
+  'errorCode');
+```
+
+This requires the `MONITOR` privilege. Match the result against the table below.
+
+| Code | Meaning |
+| --- | --- |
+| `390144` | General JWT problem. Work through the causes below. |
+| `394300` | The user name in the token's issuer does not exist in the Snowflake account. |
+| `394301` | The token is missing an issue time or an expiration time. |
+| `394302` | Snowflake received the token more than 60 seconds after it was issued. |
+| `394303` | The token is expired. |
+| `394304` | The public key fingerprint in the token does not match the one stored for the user. |
+| `394305` | The token was not signed with RS256. |
+| `394306` | Snowflake could not verify the signature. The private key does not pair with the registered public key. |
+| `394307` | The account in the token is not the account in the request URL. |
+
+## Common Causes
+
+### The Account Identifier Contains Periods
+
+Snowflake requires that periods in an account identifier be replaced with hyphens, because "periods in an account identifier cause the JWT to be invalid."
+
+This bites Mixpanel users specifically. The connector setup tells you to take the identifier from your Snowflake URL, and legacy `account.region.cloud` forms and `.privatelink` suffixes both contain periods.
+
+### The Account Identifier Is Wrong
+
+The account in the connection must match the account named inside the token. If you copied the identifier from a browser URL, confirm it does not include the `snowflakecomputing.com` suffix or a trailing path.
+
+### The Public Key Was Never Applied
+
+Mixpanel shows you a public key during setup, and it only takes effect once you run `ALTER USER` in Snowflake. If that step was skipped or run against a different user, authentication fails.
+
+Check what Snowflake actually has:
+
+```sql
+DESC USER MIXPANEL;
+```
+
+Look at `RSA_PUBLIC_KEY`, `RSA_PUBLIC_KEY_FP`, and `LOGIN_NAME`.
+
+### The Key Is On the Wrong User
+
+Snowflake matches on `LOGIN_NAME`, not on the user's `NAME`. These are often different, and the connector must connect as the `LOGIN_NAME`.
+
+## How to Fix It
+
+**Read the underlying code** with `SYSTEM$GET_LOGIN_FAILURE_DETAILS` and use the table above. Everything else is guesswork without it.
+
+**Confirm the key is on the right user.** Run `DESC USER` and check that `RSA_PUBLIC_KEY_FP` is populated and `LOGIN_NAME` matches what the connector uses.
+
+**Re-apply the public key** Mixpanel gave you, without the PEM delimiters:
+
+```sql
+ALTER USER MIXPANEL SET RSA_PUBLIC_KEY='MIIBIjANBgkqh...';
+```
+
+Snowflake requires you to "exclude the public key delimiters in the SQL statement" — do not include the `-----BEGIN PUBLIC KEY-----` and `-----END PUBLIC KEY-----` lines.
+
+Setting a key requires either `OWNERSHIP` on the user or the `MODIFY PROGRAMMATIC AUTHENTICATION METHODS` privilege:
+
+```sql
+GRANT MODIFY PROGRAMMATIC AUTHENTICATION METHODS ON USER MIXPANEL
+  TO ROLE MY_SERVICE_OWNER_ROLE;
+```
+
+**Check the account identifier** for periods, and replace them with hyphens.
+
+If the connector still fails after the underlying code checks out, [contact support](https://mixpanel.com/get-support) with the failure UUID.
+
+## Related
+
+- [Snowflake Warehouse Connector](/docs/tracking-methods/warehouse-connectors) — setup, required grants, and the IP allowlist
+- [Snowflake: key-pair authentication troubleshooting](https://docs.snowflake.com/en/user-guide/key-pair-auth-troubleshooting)

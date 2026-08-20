@@ -1,0 +1,69 @@
+---
+title: "Backfilled or historical events are not appearing"
+sidebarTitle: "Historical events missing"
+description: "Why events older than 5 days sent to /track are never ingested, which endpoint accepts historical data, and the time range Mixpanel rejects"
+---
+
+You backfilled historical events, the API returned success, and the events never showed up. The usual cause is the endpoint: `/track` silently drops anything older than five days.
+
+## Check Which Endpoint You Used
+
+| | `/track` | `/import` |
+| --- | --- | --- |
+| Ingesting historical events | **Last 5 days only** | Any time after 1971-01-01 |
+| Authentication | Project token, intended for untrusted clients | Service account or project token, intended for server-side |
+| Events per request | 2,000 | 2,000 |
+| Content type | `application/x-www-form-urlencoded` | `application/json` or `application/x-ndjson` |
+
+If you sent events older than five days to `/track`, they were not ingested. Resend them through `/import`.
+
+Mixpanel's guidance is to "use `/import` for server-side integrations as it is more scalable and supports ingesting historical data," and to reserve `/track` for client-side environments without SDK support.
+
+## Why the Response Looked Successful
+
+`/track` returns `200` with a body of `1` when at least one object in the payload is well-formed. That `1` "does not signify a valid project token or secret," and it does not confirm the events were retained.
+
+Add `?verbose=1` to get a JSON body with `status` and `error` fields instead of a bare integer. It is far more useful while debugging.
+
+## Other Reasons Historical Events Are Rejected
+
+### The Timestamp Is Outside the Accepted Range
+
+`/import` rejects events with a `time` before 1971-01-01 or more than one hour in the future, measured on Mixpanel's servers. Events dated in the future are not rejected outright — the timestamp "will be overwritten with the current present time at ingestion," which silently moves them to today.
+
+### `time` Is in the Wrong Unit
+
+`time` must be seconds or milliseconds since epoch. A value in the wrong unit usually lands far enough outside the accepted range to be rejected.
+
+### The Batch Returned a 400 You Did Not Log
+
+`/import` with `strict=1` ingests the events that pass and reports the rest. If you did not read `failed_records`, a partial failure looks like success. See [400 Bad Request](/troubleshooting/errors/400-bad-request).
+
+## Confirming What Arrived
+
+Two default properties tell you when an event was ingested rather than when it happened:
+
+- `$import` is set to `true` on events sent through `/import`.
+- `mp_processing_time_ms` is the UTC timestamp in milliseconds when Mixpanel processed the event.
+
+Use these to distinguish "never arrived" from "arrived late."
+
+<Note>
+  Reports can change retroactively as backfills land. If the same report over the same date range returns different numbers from one day to the next, late-arriving data is the usual explanation.
+</Note>
+
+## Backfill Guidance
+
+**Import recent data first.** Mixpanel recommends loading the last 7 or 30 days before older history, because autocomplete menus populate from the last 30 days and let you confirm the shape of the data early.
+
+**Let a day stabilize before backfilling it**, so you do not have to run the same backfill twice.
+
+**Partition large files** into roughly 200MB of JSON, or about 200K records, when loading from cloud storage.
+
+**Log every 400.** Those are non-retryable and indicate malformed data.
+
+## Related
+
+- [Import Events API](/reference/import-events)
+- [Track Events API](/reference/track-event)
+- [429 Too Many Requests](/troubleshooting/errors/429-rate-limit-exceeded) — pacing a large backfill

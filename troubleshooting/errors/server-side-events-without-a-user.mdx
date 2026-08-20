@@ -1,0 +1,55 @@
+---
+title: "Server-side events with no logged-in user"
+sidebarTitle: "Events with no user"
+description: "What to set distinct_id to on server-side events that have no identified user, why omitting it groups unrelated users together, and the ID values Mixpanel rejects"
+---
+
+You are sending events from a server where no user is logged in — a webhook, a cron job, a system event — and there is no obvious value for `distinct_id`. Set it to the empty string.
+
+```json
+{
+  "event": "Subscription Renewed",
+  "properties": {
+    "time": 1618716477000,
+    "distinct_id": "",
+    "$insert_id": "29fc2962-6d9c-455d-95ad-95b84f09b9e4"
+  }
+}
+```
+
+"Events with an empty distinct_id will be excluded from all behavioral analysis." They are still ingested and still queryable as event volume; they just cannot participate in per-user analysis, which is the correct outcome for an event that belongs to no user.
+
+## Do Not Omit `distinct_id`
+
+If you leave it out entirely, "Mixpanel will use the ip address of the incoming request and compute a distinct_id using a hash function."
+
+Every event from the same server then shares one synthetic user. That is worse than the empty string: it silently invents a user, inflates per-user metrics, and can concentrate enough volume on a single ID to trigger [hot shard limits](/docs/tracking-best-practices/hot-shard-limits).
+
+The empty string avoids this. Mixpanel spreads those events across shards rather than keying them to one ID.
+
+## Do Not Use a Placeholder
+
+Mixpanel rejects a list of values that usually indicate a mistake:
+
+```text
+00000000-0000-0000-0000-000000000000, anon, anonymous, nil, none, null,
+n/a, na, undefined, unknown, <nil>, 0, -1, true, false, [], {}
+```
+
+An event carrying one of these fails validation with a [400](/troubleshooting/errors/400-bad-request). The same list applies to `$insert_id`.
+
+## When There Is a User
+
+If the event does belong to a known user, send the identifiers rather than setting `distinct_id` yourself. Mixpanel recommends "not setting the `distinct_id` directly; instead you should set the `$device_id` and `$user_id` and have our API determine the `distinct_id` for you."
+
+On Simplified ID Merge, `distinct_id` is derived automatically: it takes the value of `$user_id` when present, otherwise `$device_id` prefixed with `$device:`. If you do set it manually, "it should be the same value as the `$user_id`."
+
+<Note>
+  This page describes Simplified ID Merge, the default for organizations created from April 2024. Check which system your project uses in [project settings](https://mixpanel.com/settings/project/id-management). On Original ID Merge, server-side anonymous events set `distinct_id` to the anonymous ID directly and identification happens through a `$identify` event.
+</Note>
+
+## Related
+
+- [Identifying Users (Simplified)](/docs/tracking-methods/id-management/identifying-users-simplified)
+- [Import Events API](/reference/import-events)
+- [400 Bad Request](/troubleshooting/errors/400-bad-request)
