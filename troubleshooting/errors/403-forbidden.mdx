@@ -1,0 +1,43 @@
+---
+title: 403 Forbidden
+description: "Which Mixpanel ingestion endpoints return a 403, what the response looks like, and how it differs from a 401"
+---
+
+A 403 means Mixpanel recognized the request but refused it. Among the ingestion endpoints, only `/track`, `/engage`, and `/groups` return a 403.
+
+<Note>
+  `/import` does not return a 403. It responds with 200, 400, 401, 413, or 429. If you are debugging an `/import` failure, see [401 Unauthorized](/troubleshooting/errors/401-unauthorized) for credential problems.
+</Note>
+
+## What the Response Looks Like
+
+```json
+{
+  "error": "...",
+  "status": "error"
+}
+```
+
+This shape differs from the other ingestion errors: there is no `code` field.
+
+## 403 Compared to 401
+
+| Status | Meaning |
+| --- | --- |
+| 401 | Mixpanel could not authenticate the request at all — the credentials were missing, malformed, or invalid |
+| 403 | The credentials were understood, but the request is not permitted |
+
+## How to Fix It
+
+**Confirm the project token** belongs to the project you intend to write to. See [find your project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
+
+**Check the endpoint and host match your project's data residency.** EU and India projects use `api-eu.mixpanel.com` and `api-in.mixpanel.com`.
+
+**Enable debug mode in your SDK** to log the exact request being sent, including headers and payload. See [debugging your implementation](/docs/tracking-best-practices/debugging#enable-debug-mode).
+
+If the request still fails with a 403 and the token is correct, [contact support](https://mixpanel.com/get-support) with the full request and response, minus the credentials.
+
+## Related
+
+- [401 Unauthorized](/troubleshooting/errors/401-unauthorized)
+- [Service Accounts](/reference/service-accounts)

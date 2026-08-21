@@ -1,0 +1,63 @@
+---
+title: "Duplicate or orphaned user profiles"
+sidebarTitle: "Duplicate user profiles"
+description: "Why one person appears as several Mixpanel users, what can and cannot be merged on Simplified versus Original ID Merge, and how to prevent split identities"
+---
+
+One person appears in Mixpanel as two or more users. This happens when the same human is assigned more than one `distinct_id`, because "Mixpanel identifies users based on the `distinct_id` value. If the same user receives two different IDs, Mixpanel treats them as separate users, even if they share other properties."
+
+What you can do about it depends on which identity system your project uses. Check that first, in [project settings](https://mixpanel.com/settings/project/id-management).
+
+## What Can Be Merged
+
+| | Simplified ID Merge | Original ID Merge |
+| --- | --- | --- |
+| Merge a device with a user | Automatic, when `$device_id` and `$user_id` first appear on the same event | Via `$identify` |
+| Merge two identified users | **Not possible** | Via the `$merge` API, up to 500 IDs per cluster |
+| IDs per cluster | Unlimited `$device_id`s, exactly one `$user_id` | 500 total |
+
+On Simplified, "it is not possible to merge 2 `$user_id`s together using the Simplified API." Mixpanel's guidance is prevention: "having a single, unchanging `$user_id` for each user and pointing all other IDs for that user to that single `$user_id`."
+
+On Original, `$merge` can join two clusters, but note that it is irreversible — "you **cannot** unmerge `distinct_id`" — and it accepts exactly two IDs per call.
+
+<Warning>
+  `$merge`, `$identify`, and `$create_alias` are silently ignored on Simplified ID Merge projects. They return no error and trigger no merge, so a script written for Original appears to succeed while doing nothing.
+</Warning>
+
+## Common Causes
+
+### A Second Identifier Was Sent as a Device ID
+
+On Simplified, a value sent as `$device_id` gets the `$device:` prefix and is treated as anonymous. If you send a second real identifier — a phone number, a CRM ID — in that field, it forms its own cluster instead of joining the user's.
+
+### The User Was Identified Inconsistently Across Platforms
+
+Web, mobile, and server-side each assigning a different ID produces one profile per platform. The fix is upstream: "review all data sources and ensure that each user is consistently assigned a single unifying user ID during identification across every platform."
+
+### A CSV Import Mapped the Wrong Column
+
+Selecting the wrong column as `$distinct_id` during a profile import creates a profile per row. "As a best practice, always check the sample values shown in the import module for each selected profile property."
+
+### The Merge Has Not Propagated Yet
+
+A new mapping appears in the Activity Feed immediately, but "it may take up to 24 hours for this mapping to propagate to all other parts of the system." Check the age of the merge before treating it as broken.
+
+## Deleting a Profile Does Not Remove Its Events
+
+"Deleting a user profile removes only the user property data. It does not delete the user's tracked events; instead, those events continue to appear in your project as if they were tracked by anonymous users without user profile properties."
+
+Deleting the duplicate profile therefore tidies the Users report but does not reunite the event streams.
+
+## Preventing It
+
+**Pick one stable `$user_id` per user** — Mixpanel suggests "an ID that is unique to each user and does not change, for example, a database ID." Avoid email addresses, not because of their format but because they change.
+
+**Send `$device_id` and `$user_id` and let Mixpanel derive `distinct_id`.**
+
+**Set the identity system before sending any data.** It cannot be changed once a project contains data, and a newly created project inherits the organization default rather than Simplified, so override it explicitly on every new project.
+
+## Related
+
+- [Identifying Users (Simplified)](/docs/tracking-methods/id-management/identifying-users-simplified)
+- [Identifying Users (Original)](/docs/tracking-methods/id-management/identifying-users-original)
+- [Server-side events with no logged-in user](/troubleshooting/errors/server-side-events-without-a-user)

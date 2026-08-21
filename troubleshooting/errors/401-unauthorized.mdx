@@ -1,0 +1,67 @@
+---
+title: 401 Unauthorized
+description: "Why Mixpanel's ingestion API returns a 401, which credentials each endpoint accepts, and how regional data residency affects authentication"
+---
+
+A 401 means Mixpanel could not authenticate the request. The credentials were missing, malformed, or not valid for the project you addressed.
+
+## What the Response Looks Like
+
+```json
+{
+  "code": 401,
+  "error": "Invalid credentials",
+  "status": "Unauthorized"
+}
+```
+
+## Which Credentials Each Endpoint Accepts
+
+| Endpoint | Accepted credentials |
+| --- | --- |
+| `/import` | An Owner or Admin [Service Account](/reference/service-accounts) with `project_id`, a [Project Token](/reference/project-token) as the basic-auth username with an empty password, or an OAuth token |
+| `/track`, `/engage`, `/groups` | A project token sent in the payload |
+
+<Note>
+  A bad project token on `/track` does not produce a 401. The endpoint returns `200` with a body of `1`, which confirms the payload was well-formed but says nothing about whether the token is valid. Add `?verbose=1` to get a JSON response instead, and check your project's live view to confirm events are arriving.
+</Note>
+
+## Common Causes
+
+### Service Account Lacks the Required Role
+
+`/import` requires an Owner or Admin Service Account. A Service Account with a lower role authenticates but is not permitted to import.
+
+### Missing `project_id`
+
+When authenticating with a Service Account, `project_id` is required. Without it, Mixpanel cannot tell which project the credentials apply to.
+
+### Wrong Regional Endpoint
+
+Projects with EU or India data residency use different hosts. Sending correct credentials to the wrong host fails, because the project does not exist there.
+
+| Residency | Host |
+| --- | --- |
+| US | `api.mixpanel.com` |
+| EU | `api-eu.mixpanel.com` |
+| India | `api-in.mixpanel.com` |
+
+See [EU Residency](/docs/privacy/eu-residency) and [India Residency](/docs/privacy/in-residency).
+
+### Malformed Basic Auth Header
+
+Basic auth expects a base64-encoded `username:password` pair. A common mistake is encoding only the username, or omitting the colon when the password is empty.
+
+## How to Fix It
+
+**Confirm the credential type** matches what the endpoint accepts, using the table above.
+
+**Check the Service Account's role** at Project Settings → Service Accounts. It must be Owner or Admin for `/import`.
+
+**Verify your project's residency** and send to the matching host.
+
+## Related
+
+- [Service Accounts](/reference/service-accounts)
+- [403 Forbidden](/troubleshooting/errors/403-forbidden)
+- [Find your project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)

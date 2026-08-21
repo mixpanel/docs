@@ -1,0 +1,79 @@
+---
+title: 429 Too Many Requests
+description: "Mixpanel's ingestion rate limit, the exponential backoff strategy to use when you hit it, and how to run a large backfill without throttling yourself"
+---
+
+A 429 means your project exceeded Mixpanel's ingestion rate limit. Retry with exponential backoff.
+
+## What the Response Looks Like
+
+```json
+{
+  "code": 429,
+  "error": "Project exceeded rate limits. Please retry the request with exponential backoff.",
+  "status": "Too Many Requests"
+}
+```
+
+<Note>
+  Mixpanel does not return a `Retry-After` header. Compute your own backoff interval using the strategy below.
+</Note>
+
+## The Rate Limit
+
+| Endpoint | Limit |
+| --- | --- |
+| `/import` | 2GB of uncompressed JSON per minute, or roughly 30k events per second, measured on a rolling one-minute basis |
+| `/track` | The same limits as `/import` |
+
+The limit is per project.
+
+## How to Fix It
+
+### Retry With Exponential Backoff and Jitter
+
+Start with a 2-second backoff, double it up to a maximum of 60 seconds, and add 1–5 seconds of jitter so that concurrent clients do not retry in lockstep.
+
+```python
+import random
+import time
+
+import requests
+
+MAX_ATTEMPTS = 8
+
+
+def send_batch(url, auth, events):
+    for attempt in range(MAX_ATTEMPTS):
+        response = requests.post(
+            url, auth=auth, params={"strict": 1}, json=events, timeout=30
+        )
+
+        # 502 and 503 are transient too, so back off the same way.
+        if response.status_code not in (429, 502, 503):
+            return response
+
+        # Start at 2s, double to a 60s ceiling, then add jitter.
+        wait_time = min(2 ** (attempt + 1), 60) + random.uniform(1, 5)
+        time.sleep(wait_time)
+
+    raise RuntimeError(f"giving up after {MAX_ATTEMPTS} attempts")
+```
+
+**Do not retry a 400.** Validation errors fail consistently and still count toward your rate limit. See [400 Bad Request](/troubleshooting/errors/400-bad-request).
+
+### Run Backfills at Full Speed Until Throttled
+
+Rather than pacing requests with a fixed sleep, send as fast as you can with concurrent clients and let 429s tell you when to slow down. Mixpanel sees the best results with **10–20 concurrent clients sending 2,000 events per batch**.
+
+A fixed delay between requests almost always underuses the available throughput and makes a large backfill take far longer than it needs to.
+
+### Ask for a Higher Limit
+
+If you are an Enterprise customer and a one-time backfill needs more headroom, contact your CSM with your `project_id` and the use case.
+
+## Related
+
+- [400 Bad Request](/troubleshooting/errors/400-bad-request)
+- [413 Payload Too Large](/troubleshooting/errors/413-payload-too-large)
+- [Import Events API reference](/reference/import-events)
