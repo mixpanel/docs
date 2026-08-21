@@ -1,5 +1,5 @@
 ---
-title: "Data Clean-Up"
+title: Data Clean-Up
 ---
 
 ## Types of data clean-up
@@ -16,6 +16,10 @@ In this page, we'll help you address both forms of data clean-up
 Even if you start with strong data governance and best practices about how to structure your data, data can get messy over time (e.g. as your product expands or is updated, or as new data governance owners move on).
 
 In this section, we will look at tips and tricks on how to clean up messy data when it gets out of hand.
+
+### Automatically find duplicates with merge suggestions
+
+If you're on an Enterprise plan with AI features enabled, Mixpanel can automatically discover duplicate events and event properties for you and merge them in bulk. See [AI-Powered Data Governance → Merge suggestions](/docs/data-governance/ai-powered-data-governance#merge-suggestions).
 
 ### Leverage Lexicon for a quick spot check
 
@@ -123,14 +127,16 @@ You may undo Data Deletion requests **for only 7 days after submitting**, after 
 3. Click ‘Undo’ button in the Deletion Data column
 
 <Warning>
-    While the deletion becomes permanent after 7 days, the process to fully clean the data from the storage can take up to 30 days total. During this time, said data will not appear in reports, or formatted API queries, but might appear in raw exports while it's being fully removed
+  While the deletion becomes permanent after 7 days, the process to fully clean the data from the storage can take up to 30 days total. During this time, said data will not appear in reports, or formatted API queries, but might appear in raw exports while it's being fully removed
 </Warning>
 
 ### Reminders with ETL approach
 
 - For projects created prior to 1 Jan 2023 offset your timestamps
+
   - If your project was created prior to 1 Jan 2023, you cannot just clean the data you don't want and re-import it. Your data is stored in project time, so you need to adjust the offset before importing
 - Don’t forget to regenerate \$insert\_id’s when you ETL
+
   - When you submit a deletion request, we hide your data immediately from your project to reduce any privacy concerns. We call this “soft deletion”, an interim phase before our “hard deletion” kicks in (where your data is permanently deleted from our servers) so that you can review the impact of your changes and undo when necessary. If you re-import data while the data is soft deleted **with the same \$insert\_id**, our deduplication systems may keep the old (deleted) event and toss the new event. Since this data is soft-deleted, your re-import won’t reflect the data as imported. Thus, when the ETL is done, you should regenerate the \$insert\_id value if possible, to avoid this possible collision
 
 ### Frequently asked questions
@@ -156,7 +162,7 @@ You might find this useful if you:
 
 - Have **unwanted events** (e.g. test or staging events) leaking into your production project
 - Are dealing with **noisy events** that clutter your project without adding analytical value
-- Want to stop ingesting **high-volume events** that aren't being queried
+- Have **malformed or deprecated events** you no longer intend to send
 
 <Note>
   Drop Filters only affect events going forward. To remove data already in your project, use [Data Deletion](#2-deleting-problematic-data).

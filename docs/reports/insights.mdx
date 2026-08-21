@@ -1,6 +1,7 @@
 ---
-title: "Insights: Visualize trends and compositions within your data"
-sidebarTitle: "Insights"
+title: "Insights"
+description: "Visualize trends and compositions within your data"
+sidebarTitle: Insights
 ---
 
 ## Overview
@@ -24,17 +25,20 @@ Insights can be accessed from the left-side navigation by clicking the '\+ Creat
 Here are some of the sample questions you can answer in Insights:
 
 - Product Analytics
+
   - How is my WAU changing over time? (unique users)
   - How often are my users getting value? (frequency analysis)
   - What is the distribution of my users across regions/devices etc? (property breakdown)
   - [Lifecycle analysis](https://mixpanel.com/blog/growth-through-segmentation-lifecycle-analysis-to-understand-your-users/)
 - B2B (in this case, a messaging application)
+
   - How many messages were sent in the US in the past 30 days? (total events, filtered)
   - How many users had a mobile app session yesterday? (unique events)
   - How many messages are sent per session? (formulas)
   - How much revenue was generated on plans purchased in the past year? (property aggregation)
   - How has the power users cohort grown over the past 6 months? (cohort trends)
 - Marketing
+
   - Which advertising campaigns generate the most checkouts? (property breakdown)
 
 #### Frequency Analysis
@@ -148,12 +152,14 @@ If you hit this limit, you can:
 Insights feature multiple visualizations to help you view the query results in the clearest chart type. By default, Insights displays the results on the line chart, which helps you understand how metrics trend over time. However, another chart type might present the results with more clarity. In Insights, you can choose to get a metric calculated either across the entire time period selected in the date picker or on a time-segmented view of the metric (e.g. daily breakdown).
 
 - Metric calculated across the entire time period
+
   - Bar chart
   - Stacked bar chart
   - Pie chart
   - Metric chart
   - Table chart
 - Metric time-segmented
+
   - Line chart
   - Stacked line chart
   - Column chart
@@ -333,7 +339,7 @@ Some nuances to note:
 - When a saved metric is updated, it will update across all reports it’s being used in
 - A saved formula can’t reference another formula
 
-To access and re-use saved formulas, click on “\+Formula”, and then see the list of saved formulas. You can also look at all the saved formulas in the Lexicon tab “Formulas”. Some callouts regarding permissions:
+To access and re-use saved formulas, click on “\+Formula”, and then see the list of saved formulas. You can also look at all the saved formulas in the Lexicon tab “Metrics”. Some callouts regarding permissions:
 
 - All roles can create a saved formula, but only some roles can share them with the whole project for re-use
 - You can only look at saved formulas created by you or shared with you
@@ -448,14 +454,17 @@ If you select the DAU, WAU, or MAU function for a date range that includes the c
 Assuming we would like to find the MAU of the last 6 months (e.g. Jul 5, 2023 to Jan 1, 2024)
 
 - If the time interval is "Month": [https://mixpanel.com/s/3LC8ll](https://mixpanel.com/s/3LC8ll)
+
   - For each month, we will look at the last date in the time frame, and count 30 days back from that.
   - So for the month of Dec, we will count the total number of active users from Dec 2 to Dec 31
   - As long as the user watches video once, anytime between Dec 2 to Dec 31, they will be counted as part of the MAU for Dec
 - If the time interval is "Day": [https://mixpanel.com/s/47YhnE](https://mixpanel.com/s/47YhnE)
+
   - For each day, we will look at the last date in the time frame, and count 30 days back from that.
   - So for Nov 1, we will count the total number of active users from Oct 3 to Nov 1
   - As long as the user watches video once, anytime between Oct 3 to Nov 1, they will be counted as part of the MAU for Nov 1
 - If the time interval is "Week": [https://mixpanel.com/s/dA5BK](https://mixpanel.com/s/dA5BK)
+
   - For each week, we will look at the last date in the time frame, and count 30 days back from that.
   - So for the week of Nov 27 to Dec 3, we will count the total number of active users from Nov 4 to Dec 3
   - As long as the user watches video once, anytime between Nov 4 to Dec 3, they will be counted as part of the MAU for Nov 27 to Dec 3.
@@ -533,8 +542,7 @@ Allows you to change the metric being measured. Access by going into the advance
   ![Rolling and Cumulative](/images/rolling-cumulative.png)
 </Frame>
 
-- **Rolling Average:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month, or quarter) for each data point in the graph.\
-   For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported on each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
+- **Rolling Average:** Rolling analysis calculates the rolling average of the data set. A rolling average curve is a series of averages from subsets of data. Use rolling average analysis to remove noise or spikes from data and smooth out trends over time. Mixpanel calculates the rolling average based on the selected time interval (hour, day, week, month, or quarter) for each data point in the graph.<br />For example, if you make a rolling analysis query for the past 30 days, Mixpanel calculates the rolling 7-day average by default. The value reported on each day in the line graph is the average of the values from the 7 days leading to that day. In the case of the first 6 days in your selected time period, the 7-day-average calculation will include days before the selected time period.
 - **Cumulative:** Adds up the values of each point on the graph as it goes along, so the height of the line will increase over time.
 
 {/* <Frame>
@@ -554,15 +562,20 @@ See this [video walkthrough](https://www.loom.com/share/5568e266532b4804a1c2d36d
 Click on a chart segment in Insights and view the raw events that made up that metric. You will be redirected to the Events page.
 
 <Frame>
-  ![View Events](/images/advanced-view-events.gif)
+  <img
+    src="/images/reports_view_events.gif"
+    alt="Reports View Events"
+    title="Reports View Events"
+    className="mx-auto"
+  />
 </Frame>
 
 ### View Sample Events
 
-You can hover over any event and in the context panel, you now have the ability to "View Sample Events", which redirects you to the Events page with the 100 most recent samples of that hovered event: You can see a few samples of an event to help you decide whether that's the right event you want for your analysis or which property you should use for filters/breakdowns.
+If you hover over any event and click "View Sample Events" in the context panel, it redirects you to the Events page with the 100 most-recent samples of that hovered event. You can see a few samples of an event to help you decide whether that's the right event you want for your analysis, or which property you should use for filters/breakdowns.
 
 <Frame>
-  ![View Sample Events](/images/advanced-view-sample-events.gif)
+  ![Reports View Sample Events](/images/reports_view_sample_events.gif)
 </Frame>
 
 ### Date Range Guardrails

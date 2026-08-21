@@ -1,5 +1,5 @@
 ---
-title: "Schematized Export Pipeline"
+title: Schematized Export Pipeline
 ---
 
 <Note>
@@ -60,8 +60,7 @@ Pipelines export event data as they appear when Mixpanel ingests them. This mean
 
 Mixpanel automatically exports the ID mapping table when you create a people export pipeline from a project with ID merge enabled.
 
-Note: When using the ID mappings table, you should use the **resolved** `distinct_id` in place of the non-resolved `distinct_id` whenever present. If there is no resolved `distinct_id`, you can then use the `distinct_id` from the existing people or events table.
-}
+Note: When using the ID mappings table, you should use the **resolved** `distinct_id` in place of the non-resolved `distinct_id` whenever present. If there is no resolved `distinct_id`, you can then use the `distinct_id` from the existing people or events table. \}
 
 Examples of how to do this are available for [BigQuery](/docs/data-pipelines/old-pipelines/integrations/schematized-bigquery-pipeline#querying-the-identity-mapping-table) and [Snowflake](/docs/data-pipelines/old-pipelines/integrations/schematized-snowflake-pipeline#querying-the-identity-mapping-table).
 
@@ -104,7 +103,7 @@ Mixpanel applies these rules for table and column names:
 - Maximum name length is 128 characters (The name is truncated after 128 characters.)
 - Properties that start with a `$` (dollar sign) have a prefix of `mp_`.
 - Properties that conflict with reserved keywords are prefixed with `res_`.
-- When there are multiple types for the same property name, we append suffix `_<type>` (e.g., `_string`, `_number) to the column names to differentiate them.
+- When there are multiple types for the same property name, we append suffix `_<type>` (e.g., `_string`, \`\_number) to the column names to differentiate them.
 
 #### Naming Conflicts
 
@@ -115,8 +114,8 @@ Capitalized letters are converted to lower case. Any duplicate strings has a num
 For example if values “XY” and “Xy” are sent in:
 
 - Both are transformed to “xy”.
-- If “Xy” is sent in after "XY", it becomes “xy_1”.
-- Any subsequent “xy” values inherit incremental numeric values (i.e. xy_2, xy_3, etc.).
+- If “Xy” is sent in after "XY", it becomes “xy\_1”.
+- Any subsequent “xy” values inherit incremental numeric values (i.e. xy\_2, xy\_3, etc.).
 
 #### Type Conflicts
 
@@ -124,7 +123,7 @@ Mixpanel transforms values to resolve type conflicts.
 
 If a property value is passed with a particular data type and is passed subsequently with a different data type, then the new data type appends to the property name.
 
-For example, if “X” appears with type INT first, then subsequently appears as type STRING (or VARCHAR), then the property name will be transformed to "x_string" with a data type of string.
+For example, if “X” appears with type INT first, then subsequently appears as type STRING (or VARCHAR), then the property name will be transformed to "x\_string" with a data type of string.
 
 #### New Properties
 
@@ -141,37 +140,39 @@ This section describes how Schematized Export Pipeline creates the schema for th
 #### Common Properties
 
 Regardless of whether you're using a single table or multiple tables, the following properties will be always present in the schema:
+
 | name | type | description |
-| :---------- | :----- | :-------------------------------------------------- |
+| :-- | :-- | :-- |
 | time | int | The timestamp representing when the event occurred. |
-| distinct_id | string | The unique ID of the user who triggered the event. |
+| distinct\_id | string | The unique ID of the user who triggered the event. |
 
 For a single table schema, you will also have an extra property for event name:
 
-| name          | type   | description           |
-| :------------ | :----- | :-------------------- |
-| mp_event_name | string | the name of the event |
+| name | type | description |
+| :-- | :-- | :-- |
+| mp\_event\_name | string | the name of the event |
 
 Please note that the types in the above tables are generic. The exact type can be different based on your export destination.
 
 #### Limits
 
 The schema for each table cannot exceed 9500 unique properties. If a tables schema reaches this limit all new properties added to the schema will be included in a JSON like property called `mp_properties`.
+
 | name | type | pipeline destination |
-| :------------ | :--------------- | :-------------------- |
-| mp_properties | json | BigQuery |
-| mp_properties | object | Snowflake |
-| mp_properties | json-like string | AWS Glue |
-| mp_properties | json-like string | GCS |
-| mp_properties | json-like string | Azure |
+| :-- | :-- | :-- |
+| mp\_properties | json | BigQuery |
+| mp\_properties | object | Snowflake |
+| mp\_properties | json-like string | AWS Glue |
+| mp\_properties | json-like string | GCS |
+| mp\_properties | json-like string | Azure |
 
 #### Using One Table for All Events
 
 In this schema, all your Mixpanel data exists in a single table. Mixpanel recommends a single table schema because it makes querying simpler.
 
-If you select the single table schema, the export pipeline creates a *mp_master_event *table. The table has one column per unique property name across all events in the history of the dataset.
+If you select the single table schema, the export pipeline creates a \*mp\_master\_event \*table. The table has one column per unique property name across all events in the history of the dataset.
 
-Suppose you have an event with a `purchase_amount` property and one with a `referrer` property, the table will have a _purchase_amount_ column and a _referrer_ column. Events that don’t have a property contain a NULL value in that column.
+Suppose you have an event with a `purchase_amount` property and one with a `referrer` property, the table will have a _purchase\_amount_ column and a _referrer_ column. Events that don’t have a property contain a NULL value in that column.
 
 For examples of one table for all events, see [One Table for All Events](#one-table-for-all-events).
 
@@ -186,7 +187,7 @@ Each table for each event has one column per unique property name across all eve
 For an example of one table for each event, see [One Table for Each Event](#one-table-for-each-event).
 
 <Note>
-One table for each event is not available during the trial period.
+  One table for each event is not available during the trial period.
 </Note>
 
 #### Table Example
@@ -225,13 +226,13 @@ Here is an example dataset to view different schema options in either one table 
 
 ##### One Table for All Events
 
-Single table: _mixpanel_events_
+Single table: _mixpanel\_events_
 
-| mp_event_name | time | distinct_id | plan   | browser   | product_id | ab_test |
-| :------------ | :--- | :---------- | :----- | :-------- | :--------- | :------ |
-| “Signup”      | 123  | 1           | "free" | "chrome"  | NULL       | NULL    |
-| “Purchase”    | 124  | 1           | NULL   | "chrome"  | 123        | NULL    |
-| “Signup”      | 125  | 2           | "paid" | "firefox" | NULL       | 1       |
+| mp\_event\_name | time | distinct\_id | plan | browser | product\_id | ab\_test |
+| :-- | :-- | :-- | :-- | :-- | :-- | :-- |
+| “Signup” | 123 | 1 | "free" | "chrome" | NULL | NULL |
+| “Purchase” | 124 | 1 | NULL | "chrome" | 123 | NULL |
+| “Signup” | 125 | 2 | "paid" | "firefox" | NULL | 1 |
 
 ##### One Table for Each Event
 
@@ -239,13 +240,13 @@ Two tables: _signup \_and \_purchase_
 
 Table: _signup_
 
-| time | distinct_id | plan   | browser   | ab_test |
-| :--- | :---------- | :----- | :-------- | :------ |
-| 123  | 1           | "free" | "chrome"  | NULL    |
-| 125  | 2           | "paid" | "firefox" | 1       |
+| time | distinct\_id | plan | browser | ab\_test |
+| :-- | :-- | :-- | :-- | :-- |
+| 123 | 1 | "free" | "chrome" | NULL |
+| 125 | 2 | "paid" | "firefox" | 1 |
 
 Table: _purchase_
 
-| time | distinct_id | browser  | product_id |
-| :--- | :---------- | :------- | :--------- |
-| 124  | 1           | "chrome" | 123        |
+| time | distinct\_id | browser | product\_id |
+| :-- | :-- | :-- | :-- |
+| 124 | 1 | "chrome" | 123 |

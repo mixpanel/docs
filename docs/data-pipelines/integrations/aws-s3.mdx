@@ -1,5 +1,5 @@
 ---
-title: "AWS S3"
+title: AWS S3
 ---
 
 <Note>
@@ -52,11 +52,9 @@ For encryption with AWS KMS, you have the option to use either the default `aws/
 - Using the Default Key
 
   Simply select `KMS` from the **Encryption** dropdown menu and leave the `KMS Key ID` field empty when creating your pipeline.
-
 - Using Custom Key
 
   1. Select `KMS` from the **Encryption** dropdown menu and enter your custom key's ARN in the `KMS Key ID` field.
-
   2. Create an IAM policy allowing Mixpanel to use your KMS key, as shown in the JSON snippet below. Replace `<KEY_ARN>` with your key's ARN:
 
      ```json
@@ -116,21 +114,23 @@ To ensure secure operations, limit the trust relationship to the Mixpanel export
     ]
   }
   ```
-
 - Click **Update policy** and save.
 
 This setup utilizes an external ID to prevent [the confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html), enhancing the security of cross-account access as Mixpanel interacts with AWS using your project token.
 
 ### Step 4: Provide Mixpanel with S3 Details
 
-Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline)
-to create data pipeline via UI. It is essential to provide specific details to ensure that Mixpanel can accurately direct the data exports to your S3 bucket:
+Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline) to create data pipeline via UI. It is essential to provide specific details to ensure that Mixpanel can accurately direct the data exports to your S3 bucket:
 
 - **Bucket**: Specify the S3 bucket where Mixpanel data should be exported.
 - **Region**: Indicate the AWS region where your S3 bucket is located.
 - **Role**: Provide the AWS Role ARN that Mixpanel should assume when writing to your S3, e.g., `arn:aws:iam:::role/example-s3-role`.
 - **Encryption (optional)**: Specify the type of at-rest encryption used by the S3 bucket.
 - **KMS Key ID (optional)**: If using KMS encryption, you can provide the custom key ID that you wish to use.
+
+<Note>
+  If you'll query this data through Glue or Redshift Spectrum and your account uses AWS Lake Formation, see [Setting Glue Permissions](/docs/data-pipelines/integrations/redshift-spectrum#setting-glue-permissions) for the additional Lake Formation grants you'll need.
+</Note>
 
 ## Supported AWS Regions
 

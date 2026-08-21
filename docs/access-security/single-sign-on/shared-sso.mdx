@@ -1,6 +1,7 @@
 ---
-sidebarTitle: "Shared SSO"
-title: "Shared SSO: Use the same SSO setting for multiple Mixpanel organizations"
+sidebarTitle: Shared SSO
+title: "Shared SSO"
+description: "Use the same SSO setting for multiple Mixpanel organizations"
 ---
 
 ## Overview
@@ -12,7 +13,7 @@ With a shared SSO setup, Single Sign-On settings and Claimed Domains are adminis
 This feature is available to customers on an Enterprise Plan.
 
 <Note>
-    Shared SSO is available by request. Please contact your Account Manager if you are interested in enabling this feature.
+  Shared SSO is available by request. Please contact your Account Manager if you are interested in enabling this feature.
 </Note>
 
 ## Admin Organizations
@@ -24,7 +25,7 @@ An "Admin" Organization is different from a regular Organization in that it will
 An Admin Organization can have multiple Linked Organizations which will share SSO settings. A regular Organization can only be linked to one Admin Organization.
 
 <Frame>
-![SSO Admin Organization Image](/images/sso_view_admin_org.png)
+  ![SSO Admin Organization Image](/images/sso_view_admin_org.png)
 </Frame>
 
 ## How It Works
@@ -38,40 +39,39 @@ This configuration supports [SCIM](/docs/access-security/single-sign-on#scim).
 ## Differences From Single-Organization SSO
 
 - In single-Organization SSO, SSO is configured in each Organization. In Shared SSO, SSO is configured in the "Admin" Organization, and shared by any Linked Organizations.
-
 - In single-Organization SSO, claimed domains belong to each Organization. In Shared SSO, claimed domains belong to the Admin Organization and are shared by any Linked Organizations.
-
 - In single-Organization SSO, SCIM groups in the IDP map to Teams in Mixpanel, with the IDP group name matching the Mixpanel Team **name**. In Shared SSO, SCIM groups in the IDP map to Linked Organizations, with the IDP group name matching the Linked Organization's **SCIM Name**.
 
- ---|**Single-Organization SSO**|**Shared SSO**
-:-----:|:-----:|:-----:
-SSO Configuration|In each Organization|In the Admin Organization
-Claimed Domains|In each Organization|In the Admin Organization
-SCIM|IDP Groups = Mixpanel Teams|IDP Groups = Mixpanel Linked Organizations*
+| --- | **Single-Organization SSO** | **Shared SSO** |
+| :-: | :-: | :-: |
+| SSO Configuration | In each Organization | In the Admin Organization |
+| Claimed Domains | In each Organization | In the Admin Organization |
+| SCIM | IDP Groups = Mixpanel Teams | IDP Groups = Mixpanel Linked Organizations\* |
 
 \* With Shared SSO, SCIM cannot manage Mixpanel Team membership. Team membership will need to be managed manually.
 
 ## Setting Up Shared SSO
 
 <Warning>
-    If you already use Azure for SSO with Mixpanel, you must [remove existing SSO configuration](/docs/access-security/single-sign-on#remove-sso-configuration) before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID).” Contact Mixpanel by [opening a Mixpanel support ticket](https://mixpanel.com/get-support).
+  If you already use Azure for SSO with Mixpanel, you must [remove existing SSO configuration](/docs/access-security/single-sign-on#remove-sso-configuration) before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID).” Contact Mixpanel by [opening a Mixpanel support ticket](https://mixpanel.com/get-support).
 </Warning>
 
 ### 1. Create an Admin Organization in Mixpanel
 
-For an existing Organization in Mixpanel, go to Organization Settings > Access Security > Shared SSO.
+For an existing Organization in Mixpanel, go to Organization Settings \> Access Security \> Shared SSO.
 
 <Frame>
-![SSO Create Admin Organization Image](/images/sso_create_admin_org1.png)
+  ![SSO Create Admin Organization Image](/images/sso_create_admin_org1.png)
 </Frame>
 
 <Frame>
-![SSO Create Admin Organization Image](/images/sso_create_admin_org2.png)
+  ![SSO Create Admin Organization Image](/images/sso_create_admin_org2.png)
 </Frame>
 
 The new Admin Organization will be listed in the left nav in Organization Settings.
+
 <Frame>
-![SSO Admin Organization Navigation Image](/images/sso_admin_org_nav.png)
+  ![SSO Admin Organization Navigation Image](/images/sso_admin_org_nav.png)
 </Frame>
 
 ### 2. [Set up SSO](/docs/access-security/single-sign-on) for the Admin Organization
@@ -81,19 +81,19 @@ Follow the steps to set up SSO in the Admin Organization as you would for a regu
 ### 3. Link any Organizations to the Admin Organization in Mixpanel
 
 <Warning>
-    Any existing SSO settings in the "Linked" Organization will be ignored after this step.
+  Any existing SSO settings in the "Linked" Organization will be ignored after this step.
 </Warning>
 
 Start by generating a linking code in the new Admin Organization. In the "Linked Organizations" section, click "Link Organization", then copy the generated linking code.
 
 <Frame>
-![SSO Generate Linking Code Image](/images/sso_generate_linking_code.png)
+  ![SSO Generate Linking Code Image](/images/sso_generate_linking_code.png)
 </Frame>
 
 Then complete the linking by entering the linking code in the Organization to be linked.
 
 <Frame>
-![SSO Enter Linking Code Image](/images/sso_enter_linking_code.png)
+  ![SSO Enter Linking Code Image](/images/sso_enter_linking_code.png)
 </Frame>
 
 The Organizations are now linked. The Linked Organization will now follow the SSO settings and claimed domains from the Admin Org.
@@ -103,7 +103,7 @@ The Organizations are now linked. The Linked Organization will now follow the SS
 Once your organizations are linked, you can then transfer any domains you might have claimed from the Linked Organization to the Admin Organization. Go to domain claiming on the Linked Organization and click the “Transfer domain” button for all the domains you want to transfer.
 
 <Frame>
-![SSO Domain Transfer Image](/images/sso_domain_transfer_image.png)
+  ![SSO Domain Transfer Image](/images/sso_domain_transfer_image.png)
 </Frame>
 
 ### 5. (Optional) Set up [SCIM](/docs/access-security/single-sign-on#scim)
@@ -111,7 +111,7 @@ Once your organizations are linked, you can then transfer any domains you might 
 The configurable "SCIM Name" for the Linked Organization must match a group in your IDP. Members of the matching group will be added to the Linked Organization.
 
 <Frame>
-![SSO Linked Organizations Image](/images/sso_linked_orgs.png)
+  ![SSO Linked Organizations Image](/images/sso_linked_orgs.png)
 </Frame>
 
 ## SCIM With Shared SSO
@@ -123,13 +123,13 @@ With Shared SSO, the SCIM process works a little differently. Users are pushed t
 With Shared SSO, SCIM cannot manage Mixpanel Team membership. Team membership will need to be managed manually.
 
 <Note>
-    With Shared SSO, the SCIM process cannot create, delete or alter the linked Organizations in Mixpanel like it would with a Mixpanel Team. The SCIM process can only add and remove Users, and assign those users to the linked Organization.
+  With Shared SSO, the SCIM process cannot create, delete or alter the linked Organizations in Mixpanel like it would with a Mixpanel Team. The SCIM process can only add and remove Users, and assign those users to the linked Organization.
 </Note>
 
 ## Migrating To Shared SSO
 
 <Warning>
-    If you already use Azure for SSO with Mixpanel, you must [open a Mixpanel support ticket](https://mixpanel.com/get-support) before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID)”
+  If you already use Azure for SSO with Mixpanel, you must [open a Mixpanel support ticket](https://mixpanel.com/get-support) before migrating, due to constraints with “Issuer URL” and “Identifier (Entity ID)”
 </Warning>
 
 If you have Single Sign-On configured for an Organization, and want to use the same email domains with a Shared SSO; you will need to follow these steps to migrate and minimize the time Single Sign-On is unavailable for your users.
@@ -142,10 +142,9 @@ Be sure to follow these steps in this order, or there will be more downtime for 
 4. (Optional) In your IDP, set up SCIM for the newly configured app, but **do not start pushing groups**
 5. In Mixpanel, [link the original Organization to the Admin Organization](#3-link-any-organizations-to-the-admin-organization-in-mixpanel). Users should be able to log in via SSO again.
 6. In Mixpanel, transfer claimed Domains from the original Organization to the Admin Organization. (see [Transfer Existing Domains](#4-optional-transfer-existing-domains) above)
-
-
 7. Deactivate the original SSO application in your IDP
 8. (Optional) Finish setting up SCIM
-    1. In your IDP, establish a Group for the users who have access to the original Organization
-    2. In Mixpanel, edit the SCIM name of the original Organization to match the name of this group
-    3. Configure your IDP to push this group to Mixpanel
+
+   1. In your IDP, establish a Group for the users who have access to the original Organization
+   2. In Mixpanel, edit the SCIM name of the original Organization to match the name of this group
+   3. Configure your IDP to push this group to Mixpanel

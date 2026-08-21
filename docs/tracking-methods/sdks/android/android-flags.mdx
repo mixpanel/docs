@@ -1,6 +1,6 @@
 ---
-sidebarTitle: "Feature Flags (Android)"
-title: "Implement Feature Flags (Android)"
+sidebarTitle: Feature Flags (Android)
+title: Implement Feature Flags (Android)
 ---
 
 ## Overview
@@ -18,8 +18,7 @@ Before implementing Feature Flags, ensure:
 
 ## Flag Initialization
 
-Initializing the SDK with feature flags enabled requires passing a `FeatureFlagOptions` configuration to `MixpanelOptions`. This enables making an outbound request to Mixpanel servers with the current user context.
-The server will assign the user context to a variant for each feature flag according to how they are configured in the Mixpanel UX.
+Initializing the SDK with feature flags enabled requires passing a `FeatureFlagOptions` configuration to `MixpanelOptions`. This enables making an outbound request to Mixpanel servers with the current user context. The server will assign the user context to a variant for each feature flag according to how they are configured in the Mixpanel UX.
 
 The response will include an assigned variant for each flag that the user context is in a rollout group for. If a flag is not returned, it most likely signifies that the user was either not in the rollout percentage for a flag or in the configured targeting cohort.
 
@@ -152,18 +151,18 @@ mixpanel.flags.getVariant("my-feature-flag", fallback, new FlagCompletionCallbac
 When a variant is served, the `$experiment_started` exposure event includes:
 
 - `$variant_source` — `"network"` or `"persistence"`
-- `$persisted_at_in_ms` — epoch ms when the variant set was persisted *(persistence only)*
-- `$ttl_in_ms` — the configured TTL in ms *(persistence only)*
+- `$persisted_at_in_ms` — epoch ms when the variant set was persisted _(persistence only)_
+- `$ttl_in_ms` — the configured TTL in ms _(persistence only)_
 
 <Note>
-Persisted variants are tied to the current `distinct_id`. Calling `identify()` with a new ID or calling `reset()` clears persisted data and triggers a fresh fetch.
+  Persisted variants are tied to the current `distinct_id`. Calling `identify()` with a new ID or calling `reset()` clears persisted data and triggers a fresh fetch.
 </Note>
 
 ## Flag Reload
 
 Following initialization, you can reload feature flag assignments in a couple of ways:
 
-1) After a user logs in or out of your application and you call `identify`, a feature flag reload will be triggered.
+1. After a user logs in or out of your application and you call `identify`, a feature flag reload will be triggered.
 
 ```java
 String updatedDistinctId = "";
@@ -171,14 +170,14 @@ String updatedDistinctId = "";
 mixpanel.identify(updatedDistinctId);
 ```
 
-2) To refresh flag variants that may have changed during the lifetime of your app, you can manually reload flags:
+2. To refresh flag variants that may have changed during the lifetime of your app, you can manually reload flags:
 
 ```java
 // Manually reload flags if desired
 mixpanel.flags.loadFlags();
 ```
 
-3) To update the feature flags context after initialization and trigger a reload with the new values, use `setContext`. This completely replaces the previously set custom context.
+3. To update the feature flags context after initialization and trigger a reload with the new values, use `setContext`. This completely replaces the previously set custom context.
 
 ```java
 Map<String, Object> newContext = new HashMap<>();
@@ -196,7 +195,7 @@ mixpanel.flags.setContext(newContext, new FlagCompletionCallback<Boolean>() {
 });
 ```
 
-4) Calling `reset()` clears all feature flag assignments from memory and triggers a new fetch for the updated `distinct_id`. Requires SDK version [`v8.7.0`](https://github.com/mixpanel/mixpanel-android/releases/tag/v8.7.0) or later.
+4. Calling `reset()` clears all feature flag assignments from memory and triggers a new fetch for the updated `distinct_id`. Requires SDK version [`v8.7.0`](https://github.com/mixpanel/mixpanel-android/releases/tag/v8.7.0) or later.
 
 ```java
 mixpanel.reset();
@@ -227,8 +226,7 @@ When `prefetchFlags` is set to `false`, flags will not be loaded until you expli
 
 ## Flag Evaluation
 
-Lookup the assigned value for a feature flag.
-This action triggers tracking an exposure event, `$experiment_started` to your Mixpanel project *if* the user context is in a rollout group for the feature flag.
+Lookup the assigned value for a feature flag. This action triggers tracking an exposure event, `$experiment_started` to your Mixpanel project _if_ the user context is in a rollout group for the feature flag.
 
 ### Asynchronous Flag Variant Retrieval
 
@@ -290,6 +288,7 @@ if (flagValue.equals("variant_a")) {
 ```
 
 **Feature Gates: Check if Flag is Enabled/Disabled**
+
 ```java
 // Check if a boolean flag is enabled
 boolean fallback = false; // the value to use if the user doesn't match any of the flag's rollout rules
@@ -338,17 +337,22 @@ mixpanel.flags.getAllVariants(new FlagCompletionCallback<Map<String, MixpanelFla
 ### What if I'm not receiving any flags on SDK initialization?
 
 1. **Check your project token**:
-  - Ensure you're using the correct project token from your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+
+- Ensure you're using the correct project token from your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+
 2. **Review flag configuration**:
-  - Make sure your feature flag is enabled
-  - Check the flag's rollout percentage
-    - User contexts that are not assigned to the rollout percentage will not receive flags
-  - If you are using a targeting cohort, verify on the mixpanel 'Users' page that the user's `distinct_id` is a member of that cohort.
+
+- Make sure your feature flag is enabled
+- Check the flag's rollout percentage
+
+  - User contexts that are not assigned to the rollout percentage will not receive flags
+- If you are using a targeting cohort, verify on the mixpanel 'Users' page that the user's `distinct_id` is a member of that cohort.
 
 3. **Review SDK parameters**:
-  - Ensure `FeatureFlagOptions` is configured with `.enabled(true)` and passed to `MixpanelOptions`
-  - If using a custom Variant Assignment Key, ensure it is included in the `FeatureFlagOptions` `.context()` JSONObject
-  - If using Runtime Targeting, ensure all properties used in targeting are included in the `custom_properties` object within the `FeatureFlagOptions` context
+
+- Ensure `FeatureFlagOptions` is configured with `.enabled(true)` and passed to `MixpanelOptions`
+- If using a custom Variant Assignment Key, ensure it is included in the `FeatureFlagOptions` `.context()` JSONObject
+- If using Runtime Targeting, ensure all properties used in targeting are included in the `custom_properties` object within the `FeatureFlagOptions` context
 
 4. **Check flags readiness**: Use `areFlagsReady()` to check if flags have been loaded before making synchronous calls
 5. **Enable debug logging**: Check Android logs for detailed information about flag requests and responses

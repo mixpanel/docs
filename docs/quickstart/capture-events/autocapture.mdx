@@ -1,11 +1,11 @@
 ---
-title: "Autocapture"
+title: Autocapture
 ---
 
 import { dataItems } from "/snippets/utils/constants.mdx";
 
-
 Starting with SDK version 2.60.0, the Javascript SDK can autocapture events when you enable it. To do so, enable the autocapture configuration:
+
 ```javascript
 // create an instance of the Mixpanel object
 mixpanel.init('YOUR_PROJECT_TOKEN', {
@@ -14,6 +14,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 ```
 
 If you'd like to change the default Autocapture settings, you can use custom configs. These are the default configs:
+
 ```javascript
 mixpanel.init('YOUR_PROJECT_TOKEN', {
   autocapture: {
@@ -28,4 +29,5 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
   },
 });
 ```
+
 [You can read more about custom configuration of Autocapture here](/docs/tracking-methods/sdks/javascript).

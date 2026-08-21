@@ -1,16 +1,17 @@
 ---
-sidebarTitle: "Chart Customization"
-title: "Chart Customization: Configure your report axis and color"
+sidebarTitle: Chart Customization
+title: "Chart Customization"
+description: "Configure your report axis and color"
 ---
 
 ## Overview
 
 Chart customization allows you to have finer grain control in how you want to visualize your charts in Mixpanel. You can customize the color theme of the visualization, as well as control the axis boundaries, axis labels, choose to use a secondary y-axis, and more. You are able to save these changes to your report and your board so you can present a clearer picture of what is happening with your data.
 
-
 ## Axis Customization
 
 Axis customization is available for all visualizations with a y-axis. The supported visualization types are:
+
 - Line
 - Stacked Line
 - Column
@@ -21,7 +22,7 @@ Axis customization is available for all visualizations with a y-axis. The suppor
 ### Left & Right Y-Axis
 
 <Frame>
-![Left Axis](/images/left-axis.png)
+  ![Left Axis](/images/left-axis.png)
 </Frame>
 
 For each of the left and right y-axes, you have access to several customizations:
@@ -36,7 +37,7 @@ For each of the left and right y-axes, you have access to several customizations
 ### X-Axis
 
 <Frame>
-![X Axis](/images/x-axis.png)
+  ![X Axis](/images/x-axis.png)
 </Frame>
 
 For the x-axis, you have access to the follow customizations:
@@ -44,6 +45,7 @@ For the x-axis, you have access to the follow customizations:
 - **Visibility**: "Visible" or "Hidden". Use this to visually hide the x-axis.
 - **Label**: the x-axis label
 - **Weekends**: "Visible" or "Hidden". Use this to visually hide weekends from Line and Column charts.
+
   - Weekend days are determined by your project's weekend settings.
   - This is a visual change only - alerts and aggregations (such as average, max, or sum) are not affected.
   - Annotations from hidden weekends are grouped with the datapoint just before the weekend.
@@ -51,7 +53,7 @@ For the x-axis, you have access to the follow customizations:
 ### Axis Assignment
 
 <Frame>
-![Axis Assigment](/images/axis-assignment.png)
+  ![Axis Assigment](/images/axis-assignment.png)
 </Frame>
 
 For every metric in your report, they by default assigned to the left y-axis. To visualize correlation between different metrics on different scales, it can be useful to use a secondary y-axis on the right. You can select the left or right buttons for each metric to choose which axis the metric is assigned to.
@@ -59,12 +61,13 @@ For every metric in your report, they by default assigned to the left y-axis. To
 ## Metric Units
 
 <Frame>
-![Metric Unit](/images/metric-unit.png)
+  ![Metric Unit](/images/metric-unit.png)
 </Frame>
 
 You will find unit configuration in the bottom left of every metric block. This space allows you to configure various aspects of a metric. These selections will update in the chart, tooltip, and the table below the chart. This is saveable to your report, and it will in turn persist to the board view.
 
 Available configurations:
+
 - Unit: choose from the presets, or choose custom to choose any unit for your metric. For certain metrics like conversion rate, Mixpanel will default to the appropriate unit
 - Abbreviation: choose whether or not the result should be abbreviated. Useful for large numbers
 - Precision: choose how much decimal precision should appear for values
@@ -72,7 +75,7 @@ Available configurations:
 ### Units on Formula
 
 <Frame>
-![Formula Unit](/images/lexicon-formula-unit.png)
+  ![Formula Unit](/images/lexicon-formula-unit.png)
 </Frame>
 
 For any formula, you can save the unit configuration associated with it. In the example above, this formula is a percentage based metric. The `%` unit is saved to this formula. Any future usage of this formula across all reports will automatically use the `%` unit.
@@ -80,11 +83,10 @@ For any formula, you can save the unit configuration associated with it. In the 
 ### Units on Numeric Properties
 
 <Frame>
-![Numeric Property Unit](/images/lexicon-property-unit.png)
+  ![Numeric Property Unit](/images/lexicon-property-unit.png)
 </Frame>
 
 In lexicon, for any numeric property you can save the unit configuration associated with it. For example, if you have a `price` property that you know is in `$`. You can set this, and any future usage of this property in measurements will default to using `$` so this no longer needs to be set on every usage.
-
 
 ## Theme Customization
 
@@ -95,13 +97,13 @@ Currently, theme and color customization is available only for customers on our 
 ### Selecting a Theme
 
 <Frame>
-![Select Theme](/images/theme-select-1-updated.png)
+  ![Select Theme](/images/theme-select-1-updated.png)
 </Frame>
 
 When creating a Mixpanel report, look for the "Chart" tab in the query builder panel. This is located in the top right of the page by default. After selecting "Chart", go to the "Theme" section.
 
 <Frame>
-![Select Theme](/images/theme-select-2.png)
+  ![Select Theme](/images/theme-select-2.png)
 </Frame>
 
 You'll see the current default theme, along with other theme options. You can select any of the available themes to apply to your report. You can also [create](/docs/features/chart-customization#creating-&-editing-a-theme) a theme.
@@ -109,10 +111,11 @@ You'll see the current default theme, along with other theme options. You can se
 ### Creating & Editing a Theme
 
 <Frame>
-![Create Theme](/images/theme-create.png)
+  ![Create Theme](/images/theme-create.png)
 </Frame>
 
 Hit "New" in the theme section to create a theme. You will be able to create a theme using the currently selected theme as the starting point. You are able to make these modifications to a theme:
+
 - selecting a color in the theme, then typing in a color hex code, or using the color picker to select the color
 - pressing the "plus" button to add an additional color to the theme
 - pressing the "trashcan" button to remove a color from the theme
@@ -121,7 +124,7 @@ Hit "New" in the theme section to create a theme. You will be able to create a t
 Once you are satisfied with the theme, you can press "Apply" to apply the theme for only this report. You can also choose to [save](/docs/features/chart-customization#saving-a-theme) your theme to reuse in other reports.
 
 <Frame>
-![Edit Theme](/images/theme-edit.png)
+  ![Edit Theme](/images/theme-edit.png)
 </Frame>
 
 When in the theme panel, for any saved theme that you have access to, select the overflow in the top right of the theme, then select "Edit". You'll be able to make any edits to the theme. When ready, select "Update Theme" to completing editing the theme.
@@ -131,7 +134,7 @@ When in the theme panel, for any saved theme that you have access to, select the
 After creating or making modifications to a theme, select "Save Theme".
 
 <Frame>
-![Save Theme](/images/theme-save.png)
+  ![Save Theme](/images/theme-save.png)
 </Frame>
 
 You'll be able to see the colors of the theme in light and dark mode. After giving the theme a name, you can save your theme. You can also choose to give other users in your project access to your theme. Choose "Viewer" if you wish other users to have access to your theme, but not to modify it. Choose "Editor" if you wish other users to have full access to your theme.
@@ -139,7 +142,7 @@ You'll be able to see the colors of the theme in light and dark mode. After givi
 ### Deleting a Theme
 
 <Frame>
-![Delete Theme](/images/theme-delete.png)
+  ![Delete Theme](/images/theme-delete.png)
 </Frame>
 
 When in the theme panel, for any theme that you have access to, select the overflow in the top right of the theme, then select "Delete". You'll be prompted to confirm, and then the theme will be deleted. Any existing report that was using the theme will continue using the same colors of the theme, as if it were using an unsaved theme.
@@ -147,7 +150,7 @@ When in the theme panel, for any theme that you have access to, select the overf
 ### Setting a Project Default Theme
 
 <Frame>
-![Project Default Theme](/images/theme-customization-default.png)
+  ![Project Default Theme](/images/theme-customization-default.png)
 </Frame>
 
 You can set a theme as the default theme for a project. This means that any report that has not configured a theme and any new report created will use the chosen theme going forward. By default, every project uses the "Mixpanel" theme. In "Project Settings", under "Overview", go to "Color Theme Settings" and hit the edit icon. Then select your desired theme and press save.
@@ -155,11 +158,11 @@ You can set a theme as the default theme for a project. This means that any repo
 ## Segment Coloring
 
 <Frame>
-![Segment Color](/images/segment-coloring-1.png)
+  ![Segment Color](/images/segment-coloring-1.png)
 </Frame>
 
 Select a segment from the legend and set the color for that segment. By default, Mixpanel will automatically assign a color for the segment, but you have the option to choose a color from the current theme, or choosing a color from outside the theme. You are able to select the segment from the legend in either Boards or in report.
 
 <Frame>
-![Segment Color](/images/segment-coloring-2.png)
+  ![Segment Color](/images/segment-coloring-2.png)
 </Frame>

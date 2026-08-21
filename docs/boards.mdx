@@ -1,5 +1,6 @@
 ---
-title: "Boards: Collect your reports into a single view"
+title: "Boards"
+description: "Collect your reports into a single view"
 ---
 
 <Frame>
@@ -138,17 +139,13 @@ A row will start life at the minimum possible height.
 
 ### Step 5: Board-wide Date Ranges and Filters
 
-<Note>
-  Applying date ranges and filters on a Board does not alter the queries saved in individual reports. Instead, it updates the data displayed when you view those reports on the current Board. However, when you access a report from the Board, Mixpanel retains the date range and filters to ensure data consistency between the Board and the report. If you navigate directly to the report, it will display the report's original saved date range and filters.
-</Note>
-
-Boards allow you to alter some aspects of the queries within each of the reports on that board, making it simple to ensure every report is showing results from a consistent set of data.  Both date ranges and filters can be added by clicking "Add Filter" at the top right of the board.  This will open a row, shown below, where the date range can be selected, and filters can be applied.
+Boards allow you to alter some aspects of the queries within each of the reports on that board, making it simple to ensure every report is showing results from a consistent set of data.  Both date ranges and filters can be added by clicking "Add Filter" at the top right of the board.  
 
 <Frame>
   ![/Screen\_Shot\_2022-01-07\_at\_2.35.49\_PM.png](/images/Screen_Shot_2022-01-07_at_2.35.49_PM.png)
 </Frame>
 
-The date ranges and filters applied to the board using the caret dropdown are temporary, enabling you to explore the data without altering the Board.
+The date ranges and filters applied to the board are temporary unless saved. This allows you to explore the data without altering the Board for other users.
 
 To make permanent changes to the board filters, use the Mixpanel [Pinned Filters](/changelogs/2025-01-10-pinned-filters), which can be accessed by clicking the overflow menu on the filter and then clicking "Edit". Note that changes are not saved automatically, so make sure to click the "Save" button on the right after editing.
 
@@ -156,7 +153,13 @@ To make permanent changes to the board filters, use the Mixpanel [Pinned Filters
   ![/Board\_Pinned\_Filters-Edit.png](/images/Board_Pinned_Filters-Edit.png)
 </Frame>
 
-The "Default" Board date range does not apply a Board-wide date range to the reports. Instead, it allows each report to display data based on the date ranges set within the individual report.
+#### **Board Dates**
+
+"Default" means each report uses its own saved date range.
+
+Choosing any other date range at the Board level sets all reports on that Board to use the same date.
+
+Use "Default" when you want reports to show different time windows (e.g., one report showing last 30 days, another showing last 60 days). Set a specific Board-level date range when you want all reports to use the same timeframe, such as from a product launch date.
 
 ## Board Subscriptions
 

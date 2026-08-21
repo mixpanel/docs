@@ -1,6 +1,6 @@
 ---
-sidebarTitle: "Feature Flags (React Native)"
-title: "Implement Feature Flags (React Native)"
+sidebarTitle: Feature Flags (React Native)
+title: Implement Feature Flags (React Native)
 ---
 
 ## Overview
@@ -20,10 +20,11 @@ Before implementing Feature Flags, ensure:
 - For iOS native apps, run `cd ios && pod install` after installing the SDK.
 
 <Note>
-**Data Residency:** Use the server URL that matches your Mixpanel project's data residency region:
-- **US** (default): `https://api.mixpanel.com`
-- **EU**: `https://api-eu.mixpanel.com`
-- **India**: `https://api-in.mixpanel.com`
+  **Data Residency:** Use the server URL that matches your Mixpanel project's data residency region:
+
+  - **US** (default): `https://api.mixpanel.com`
+  - **EU**: `https://api-eu.mixpanel.com`
+  - **India**: `https://api-in.mixpanel.com`
 </Note>
 
 ## Execution Modes
@@ -31,7 +32,7 @@ Before implementing Feature Flags, ensure:
 The React Native SDK operates in two modes that affect how feature flags are evaluated:
 
 | Mode | Platforms | How It Works |
-|------|-----------|-------------|
+| --- | --- | --- |
 | **Native** | iOS, Android | Bridges to the native Swift and Android SDKs for flag evaluation |
 | **JavaScript** | React Native Web | Uses a pure JavaScript implementation (aligned with mixpanel-js) |
 
@@ -203,7 +204,7 @@ When a variant is served, the `$experiment_started` exposure event includes:
 - `$persisted_at_in_ms`. Epoch milliseconds when the variant set was persisted (persistence only).
 
 <Note>
-Persistence is scoped to the current `distinct_id`. Calling `identify()` with a new ID or calling `reset()` clears persisted flag state and triggers a fresh fetch.
+  Persistence is scoped to the current `distinct_id`. Calling `identify()` with a new ID or calling `reset()` clears persisted flag state and triggers a fresh fetch.
 </Note>
 
 ## Flag Reload
@@ -251,7 +252,7 @@ await mixpanel.flags.updateContext(
 ```
 
 <Note>
-In **native mode**, the SDK always merges the new context with the existing context. The `{ replace: true }` option is accepted for API parity but has no effect on native.
+  In **native mode**, the SDK always merges the new context with the existing context. The `{ replace: true }` option is accepted for API parity but has no effect on native.
 </Note>
 
 ## Flag Evaluation
@@ -312,7 +313,7 @@ if (variant.experiment_id) {
 Synchronous methods return values immediately without waiting. Use these when you need to evaluate flags in render paths or other synchronous contexts.
 
 <Warning>
-Sync methods return the fallback value if flags have not finished loading. Always check `areFlagsReady()` before relying on sync results.
+  Sync methods return the fallback value if flags have not finished loading. Always check `areFlagsReady()` before relying on sync results.
 </Warning>
 
 ```javascript
@@ -363,10 +364,10 @@ Calling `isEnabled`, `isEnabledSync`, `getVariantValue`, `getVariantValueSync`, 
 
 ## Method Name Aliases
 
-The React Native SDK supports both camelCase and snake_case method names, aligned with mixpanel-js conventions:
+The React Native SDK supports both camelCase and snake\_case method names, aligned with mixpanel-js conventions:
 
-| camelCase | snake_case |
-|-----------|------------|
+| camelCase | snake\_case |
+| --- | --- |
 | `areFlagsReady()` | `are_flags_ready()` |
 | `getVariant()` | `get_variant()` |
 | `getVariantSync()` | `get_variant_sync()` |
@@ -384,15 +385,21 @@ The React Native SDK supports both camelCase and snake_case method names, aligne
 ### What if I'm not receiving any flags on SDK initialization?
 
 1. **Check your project token**:
-  - Ensure you're using the correct project token from your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
+
+- Ensure you're using the correct project token from your [Mixpanel project settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
+
 2. **Review flag configuration**:
-  - Make sure your feature flag is enabled.
-  - Check the flag's rollout percentage. User contexts that are not assigned to the rollout percentage will not receive flags.
-  - If you are using a targeting cohort, verify on the Mixpanel 'Users' page that the user's `distinct_id` is a member of that cohort.
+
+- Make sure your feature flag is enabled.
+- Check the flag's rollout percentage. User contexts that are not assigned to the rollout percentage will not receive flags.
+- If you are using a targeting cohort, verify on the Mixpanel 'Users' page that the user's `distinct_id` is a member of that cohort.
+
 3. **Review SDK parameters**:
-  - Ensure `featureFlagsOptions` with `enabled: true` is passed to `init()`.
-  - If using a custom Variant Assignment Key, ensure it is included in the `context` object.
-  - If using Runtime Targeting, ensure all properties used in targeting are included in the `custom_properties` object within `context`.
+
+- Ensure `featureFlagsOptions` with `enabled: true` is passed to `init()`.
+- If using a custom Variant Assignment Key, ensure it is included in the `context` object.
+- If using Runtime Targeting, ensure all properties used in targeting are included in the `custom_properties` object within `context`.
+
 4. **Check flags readiness**: Use `areFlagsReady()` to check if flags have been loaded before using sync evaluation methods.
 5. **Enable debug logging**: Call `mixpanel.setLoggingEnabled(true)` to see detailed information about flag requests and responses.
 

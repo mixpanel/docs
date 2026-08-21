@@ -1,12 +1,12 @@
 ---
-title: "Schematized Azure Pipeline"
+title: Schematized Azure Pipeline
 ---
 
 <Note>
   Customers on an Enterprise or Growth plan can access Data Pipeline as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Note>
 
-Mixpanel’s Azure Blob Export is one type of [Schematized Export Pipeline](/docs/data-pipelines/old-pipelines/schematized-export-pipeline) that exports Mixpanel events and people data and imports them into an Azure Blob storage instance. 
+Mixpanel’s Azure Blob Export is one type of [Schematized Export Pipeline](/docs/data-pipelines/old-pipelines/schematized-export-pipeline) that exports Mixpanel events and people data and imports them into an Azure Blob storage instance.
 
 Azure Export enables the use of SQL to query your event data, either for expressing new types of queries or for joining against other data already present in your data environment.
 
@@ -16,7 +16,7 @@ In order to export data to Azure Blob Storage, you must first give Mixpanel perm
 
 ## Edit Mixpanel Permission
 
-Since the Azure authentication mechanisms do not allow for cross-account access, you must provide  Azure credentials to use with their Blob storage container. 
+Since the Azure authentication mechanisms do not allow for cross-account access, you must provide  Azure credentials to use with their Blob storage container.
 
 To achieve this, Mixpanel uses Service Principals created in your Azure Active Directory deployment. To create a Service Principal,  use the Azure command line tool and run the following command (with redacted output):
 

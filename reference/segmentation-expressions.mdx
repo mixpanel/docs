@@ -1,6 +1,7 @@
 ---
 title: Segmentation Expressions
 ---
+
 Segmentation Expressions are used in [Query API](/reference/query-api) and [Raw Data Export API](/reference/raw-data-export-api) to allow for more specificity when querying your data.
 
 The power of segmentation comes from the ability to define custom expressions based on property names in the where and on parameters. An expression consists of a property, combined with one or more operators that can perform mathematical operations, logical operations, or typecasts. Expression are then applied in the where and on parameters of the segmentation API. The full grammar for expressions is given here:
@@ -31,6 +32,7 @@ The power of segmentation comes from the ability to define custom expressions ba
 | `user["$email"] == "allison@example.com"` | Returns `true` if `$email` user property is "[allison@example.com](mailto:allison@example.com)" otherwise `false`. |
 | `defined(properties["My Prop"])` | Returns `true` if `My Prop` event property has any value, otherwise `false`. This is the same as "is set" in the UI. |
 | `not defined(properties["city"])` | Returns `false` if `city` event property has any value, otherwise `true`. This is the same as "is not set" in the UI. |
+| `event["$time"] >= datetime("YYYY-MM-DDT00:00:00")` | For the Event Export API: Returns `true` if the `$time` event property is on or after the given date, otherwise `false`. Replace `YYYY-MM-DD` with the date you want to filter from. |
 
 ## Typecast Operations
 
