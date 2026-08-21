@@ -10,7 +10,7 @@ Mixpanel's [Data Ingestion APIs](/reference/ingestion-api) and [Client-Side SDKs
 
 Mixpanel’s ingestion APIs can collect user geolocation data (City, Region, Country) as properties if IP address is present. Our client-side SDKs by default pull the user’s IP address when sending data to our ingestion APIs. The IP address is then cross-referenced against a local copy of MaxMind’s ([third-party IP geolocator](https://www.maxmind.com/en/home)) GeoIP database to estimate geolocation data. Mixpanel does not store the IP address and is discarded once geolocation data is derived.
 
-To disable capturing of geolocation properties (i.e. City, Region, Country) refer to the respective SDKs or API documentation. For a quick reference, refer to examples on [disabling geolocation on client-side SDKs](/docs/privacy/protecting-user-data#disabling-geolocation) and [server-side best practice on tracking geolocation](/docs/best-practices/server-side-best-practices#tracking-geolocation-server-side). Note that there is currently no means to selectively disable one or two of the three geolocation properties.
+To disable capturing of geolocation properties (i.e. City, Region, Country) refer to the respective SDKs or API documentation. For a quick reference, refer to examples on [disabling geolocation on client-side SDKs](/docs/privacy/protecting-user-data#disabling-geolocation) and [server-side best practice on tracking geolocation](/docs/tracking-best-practices/server-side-best-practices#tracking-geolocation-server-side). Note that there is currently no means to selectively disable one or two of the three geolocation properties.
 
 ### Event Properties
 
@@ -34,7 +34,7 @@ Do note that Mixpanel's default user properties are only updated when you send o
 | \$city | City | The city of the user parsed from the IP property or the Latitude and Longitude properties. |
 | \$region | Region | The region (state or province) of the user parsed from the IP property or the Latitude and Longitude properties. |
 | \$country\_code | Country Code | The country of the user parsed from the IP property or the Latitude and Longitude properties. The value is stored as a 2-letter country code in the raw data and parsed into the country name in the UI. |
-| \$geo\_source | Geo Source | Set to "reverse\_geocoding" if profile geolocation properties (Country Code, Region, and City) were determined through [Latitude and Longitude](/docs/best-practices/server-side-best-practices#tracking-geolocation-latitude-and-longitude). |
+| \$geo\_source | Geo Source | Set to "reverse\_geocoding" if profile geolocation properties (Country Code, Region, and City) were determined through [Latitude and Longitude](/docs/tracking-best-practices/server-side-best-practices#tracking-geolocation-server-side). |
 | \$timezone | Timezone | Timezone of the user parsed from the IP property or the Latitude and Longitude properties. |
 | \$last\_seen | Updated at | The last time a user profile property was set or updated **(this should not be set manually)**. Passing `$ignore_time` as `true`, typically for server-side updates, will skip updating the \$last\_seen property. See example [here](/docs/tracking-methods/sdks/php#setting-profile-properties). |
 

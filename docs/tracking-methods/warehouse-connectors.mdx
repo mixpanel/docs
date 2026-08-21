@@ -414,7 +414,7 @@ Select a table or view representing an event from your warehouse and tell Mixpan
 
 ## Table Types
 
-Mixpanel’s [Data Model](/docs/how-it-works/concepts) consists of 4 types: Events, User Profiles, Group Profiles, and Lookup Tables. Each has properties, which are arbitrary JSON. Warehouse Connectors lets you turn any table or view in your warehouse into one of these 4 types of tables, provided they match the required schema.
+Mixpanel’s [Data Model](/docs/data-structure/concepts) consists of 4 types: Events, User Profiles, Group Profiles, and Lookup Tables. Each has properties, which are arbitrary JSON. Warehouse Connectors lets you turn any table or view in your warehouse into one of these 4 types of tables, provided they match the required schema.
 
 ### Events
 
@@ -434,7 +434,7 @@ Here are more details about the schema we expect for events:
 | Event Name | Yes | String | The name of the event. E.g.: Purchase Completed or Support Ticket Filed. Note: you can specify this value statically, it doesn’t need to be a column in the table. |
 | Time | Yes | Timestamp | The time at which the event occurred. |
 | User ID | No | String or Integer | The unique identifier of the user who performed the event. E.g.: 12345 or [grace@example.com](mailto:grace@example.com). |
-| Device ID | No | String or Integer | An identifier for anonymous users, useful for tracking pre-login data. Learn more [here](/docs/tracking-methods/id-management/identifying-users) |
+| Device ID | No | String or Integer | An identifier for anonymous users, useful for tracking pre-login data. Learn more [here](/docs/tracking-methods/id-management/identifying-users-simplified) |
 | JSON Properties | No | JSON or Object | A field that contains key-value properties in JSON format. If provided, Mixpanel will flatten this field out into properties. |
 | All other columns | No | Any | These can be anything. Mixpanel will auto-detect these columns and attach them to the event as properties. |
 
@@ -499,7 +499,7 @@ Source table requirements:
 
 ### Group Profiles
 
-A Group Profile is a table that describes an entity (most often an Account, if you’re a B2B company). They are functionally identical to User Profiles, just used for other non-User entities. Group Profiles are only available if you have the Group Analytics add-on. Learn more about Group Analytics [here](/docs/data-structure/advanced/group-analytics).
+A Group Profile is a table that describes an entity (most often an Account, if you’re a B2B company). They are functionally identical to User Profiles, just used for other non-User entities. Group Profiles are only available if you have the Group Analytics add-on. Learn more about Group Analytics [here](/docs/data-structure/group-analytics).
 
 Here’s an example table that illustrates what can be loaded as group profiles in Mixpanel. The only important column is the Group Key, which is the primary key of the table.
 
