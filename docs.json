@@ -190,6 +190,7 @@
                     ]
                   },
                   "docs/tracking-methods/autocapture",
+                  "docs/tracking-methods/first-party-domains",
                   "docs/tracking-methods/warehouse-connectors",
                   {
                     "group": "Integrations",
