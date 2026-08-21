@@ -1,0 +1,131 @@
+---
+sidebarTitle: BigQuery
+title: "BigQuery Warehouse Connector"
+description: "Connect BigQuery to Mixpanel and sync your data warehouse tables"
+---
+
+This guide covers how to connect Google BigQuery to Mixpanel using Warehouse Connectors. For an overview of Warehouse Connectors, including table types, sync modes, and FAQs, see the [Warehouse Connectors overview](/docs/tracking-methods/warehouse-connectors).
+
+<Note>
+  Organizations on a paid _event-based_ plan receive Warehouse Connector as a free add-on when they update or renew their plan. Learn more on our [pricing page](https://mixpanel.com/pricing/).
+</Note>
+
+<Note>
+  To set up Warehouse Connectors, you must have an admin or owner project role. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+</Note>
+
+## Connect BigQuery
+
+Navigate to [Project Settings → Warehouse Sources](https://mixpanel.com/report/settings/%23project%2F%24project_id%24%2Fwarehousesources/). Select **BigQuery** and follow the instructions to connect it. Note: you only need to do this once.
+
+<Frame>
+  <iframe src="https://www.youtube-nocookie.com/embed/9u60IdyxIVY" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen />
+</Frame>
+
+The BigQuery connector works by giving a Mixpanel-managed service account permission to read from BigQuery in your GCP project. You will need:
+
+- Your GCP Project ID, which you can find in the URL of Google Cloud Console (`https://console.cloud.google.com/bigquery?project=YOUR_GCP_PROJECT`).
+- Your unique Mixpanel service account ID, which is generated the first time you create a BigQuery connection in the Mixpanel UI (e.g. `project-?????@mixpanel-warehouse-1.iam.gserviceaccount.com`).
+- A new, empty `mixpanel` dataset in your BigQuery instance (if you are using [Mirror](/docs/tracking-methods/warehouse-connectors#mirror)).
+
+```jsx
+  CREATE SCHEMA `<gcp-project>`.`mixpanel`
+    OPTIONS (
+      description = 'Mixpanel connector staging dataset',
+      location = '<same-as-the-tables-to-be-synced>',
+    );
+```
+
+Grant the Mixpanel service the following permissions:
+
+- `roles/bigquery.jobUser` - Allows Mixpanel to run BigQuery jobs to unload data.
+
+  ```jsx
+  gcloud projects add-iam-policy-binding --member serviceAccount:<mixpanel-service-account> --role roles/bigquery.jobUser
+  ```
+- `roles/bigquery.dataViewer` on the datasets and/or tables to sync. Gives Mixpanel read-only access to the datasets.
+
+  ```jsx
+  GRANT `roles/bigquery.dataViewer`
+    ON SCHEMA `<gcp-project>`.`<dataset-to-be-synced>`
+    TO "<mixpanel-service-account>"
+  ```
+- `roles/bigquery.dataOwner` on the `mixpanel` dataset. Gives Mixpanel read-write access to the `mixpanel` dataset.
+
+  ```jsx
+  GRANT `roles/bigquery.dataOwner`
+    ON SCHEMA `<gcp-project>`.`mixpanel`
+    TO "<mixpanel-service-account>"
+  ```
+
+JSON columns mapped in BigQuery containing multiple properties are subject to a hard limit of 1MB per record. This limitation is imposed by Google Cloud's handling of JSON objects and applies during the intermediate step where data is written to the GCS bucket.
+
+### VPC Service Controls
+
+IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-controls/docs/use-access-levels#limitations_of_using_access_levels_with) for BigQuery because Mixpanel's infrastructure runs on GCP, and inter-project communication in Google Cloud routes through internal Google IPs rather than public IPs. Instead, configure an ingress rule to allow access based on other attributes such as the project or service account. The service account is `project-<your-project-id>@mixpanel-warehouse-1.iam.gserviceaccount.com`. The Mixpanel project is `745258754925` for US, `848893383328` for EU, and `1054291822741` for IN. In addition, you may need to configure an egress rule to write data to `mixpanel-warehouse-1` project `435324298685`.
+
+## Mirror Mode
+
+Mirror syncs work by having BigQuery compute which rows have been inserted, modified, or deleted and sending this list of changes to Mixpanel.
+
+Mirror takes BigQuery [table snapshots](https://cloud.google.com/bigquery/docs/table-snapshots-intro) and runs queries to compute the change stream between two snapshots. Snapshots are stored in the `mixpanel` dataset created during [Connect BigQuery](#connect-bigquery).
+
+**Considerations when using Mirror with BigQuery:**
+
+- Mirror is not supported on views in BigQuery.
+- If two rows in BigQuery are identical across _all_ columns, the checksums Mirror computes for each row will be the same, and Mixpanel will consider them the same row, causing only one copy to appear in Mixpanel. We recommend ensuring that one of your columns is a unique row ID to avoid this.
+- The table snapshots managed by Mixpanel are always created to expire after 21 days. This ensures that the snapshots are deleted even if Mixpanel loses access to them unexpectedly. Make sure that the sync does not go longer than 21 days without running, as each sync run needs access to the previous sync run's snapshot (under normal conditions, Mirror maintains only one snapshot per sync and removes the older run's snapshot as soon as it has been used by the subsequent sync run).
+
+**How changes are detected:**
+
+Changed rows are detected by checksumming the values of all columns except trailing NULL-valued columns. For example, in the following table would use these per-row checksums:
+
+| ID | Song Name | Artist | Genre | **Computed checksum** |
+| --- | --- | --- | --- | --- |
+| 12345 | One Dance | Drake | NULL | `CHECKSUM(12345, 'One Dance', 'Drake')` |
+| 45678 | Voyager | Daft Punk | Electronic | `CHECKSUM(45678, 'Voyager', 'Daft Punk', 'Electronic')` |
+| 83921 | NULL | NULL | Classical | `CHECKSUM(83921, NULL, NULL, 'Classical')` |
+
+Trailing NULL values are excluded from the checksum to ensure that adding new columns does not change the checksum of existing rows. For example, if a new column is added to the example table:
+
+```jsx
+ALTER TABLE songs ADD COLUMN Tag STRING NULL;
+```
+
+It would not change the computed checksums:
+
+| ID | Song Name | Artist | Genre | Tag | Computed checksum |
+| --- | --- | --- | --- | --- | --- |
+| 12345 | One Dance | Drake | NULL | NULL | `CHECKSUM(12345, 'One Dance', 'Drake')` |
+| 45678 | Voyager | Daft Punk | Electronic | NULL | `CHECKSUM(45678, 'Voyager', 'Daft Punk', 'Electronic')` |
+| 83921 | NULL | NULL | Classical | NULL | `CHECKSUM(83921, NULL, NULL, 'Classical')` |
+
+Until values are written to the new column:
+
+| ID | Song Name | Artist | Genre | Tag | Computed checksum |
+| --- | --- | --- | --- | --- | --- |
+| 12345 | One Dance | Drake | NULL | tag1 | `CHECKSUM(12345, 'One Dance', 'Drake', NULL, 'tag1')` |
+| 45678 | Voyager | Daft Punk | Electronic | tag2 | `CHECKSUM(45678, 'Voyager', 'Daft Punk', 'Electronic', 'tag2')` |
+| 83921 | NULL | NULL | Classical | NULL | `CHECKSUM(83921, NULL, NULL, 'Classical')` |
+
+**Handling schema changes when using Mirror with BigQuery:**
+
+Adding new, default-NULL columns to Mirror-tracked tables/views is fully supported, as described in the previous section.
+
+```jsx
+ALTER TABLE <table> ADD COLUMN <column> STRING NULL;
+```
+
+If you have a JSON column in the table/view which you map to `JSON Properties` in the import setup, as the whole JSON object for that column is used to calculate the checksum for the row, **any changes to the JSON object will result in a change to the checksum**, even if the change is to add new keys with null values. As such, consider conditional formatting when building the JSON object to only update it when a new non-null value is available for a row.
+
+We recommend avoiding other types of schema changes on large tables. Other schema changes may cause the checksum of every row to change, effectively re-sending the entire table to Mixpanel. For example, if we were to remove the Genre column in the example above, the checksum of every row would be different:
+
+| ID | Song Name | Artist | Tag | Computed checksum |
+| --- | --- | --- | --- | --- |
+| 12345 | One Dance | Drake | tag1 | `CHECKSUM(12345, 'One Dance', 'Drake', 'tag1')` |
+| 45678 | Voyager | Daft Punk | tag2 | `CHECKSUM(45678, 'Voyager', 'Daft Punk', 'tag2')` |
+| 83921 | NULL | NULL | NULL | `CHECKSUM(83921)` |
+
+**Handling partitioned tables:**
+
+When syncing [time partitioned](https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables) or [ingestion-time partitioned](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time) tables, Mirror will use partition metadata to skip processing partitions that have not changed between sync runs. This will make the computation of the change stream much more efficient on large partitioned tables where only a small percentage of partitions are updated between runs. For example, in a day-partitioned table with two years of data, where only the last five days of data are normally updated, only five partitions' worth of data will be scanned each time the sync runs.
