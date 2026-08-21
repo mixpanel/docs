@@ -4,7 +4,7 @@ description: "Send Mixpanel tracking traffic through a domain you own"
 ---
 
 <Note>
-  First-Party Domains are available on the Enterprise plan and are currently in beta. Contact your Mixpanel account team to have them enabled for your organization. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+  First-Party Domains are available on the Enterprise plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Note>
 
 ## Overview
@@ -25,13 +25,13 @@ You can achieve a similar result by [running your own proxy server](/docs/tracki
 | TLS certificate | Provisioned and renewed by Mixpanel | You manage it |
 | Setup | Two DNS records | Server config and deployment |
 | Can also proxy SDK assets from `cdn.mxpnl.com` | No | Yes |
-| Availability | Enterprise, beta | Any plan |
+| Availability | Enterprise | Any plan |
 
 If you need to serve Mixpanel's SDK bundles and async modules from your own domain as well, a self-hosted proxy is still the right choice. See [Supported endpoints](#supported-endpoints).
 
 ## Requirements
 
-- An Enterprise plan, with the First-Party Domains beta enabled for your organization.
+- An Enterprise plan.
 - Permission to edit organization settings (Organization Owner or Admin).
 - A domain you control, with access to add DNS records at its DNS provider.
 - The domain you configure must be a **subdomain** (such as `track.yourcompany.com`), not an apex domain like `yourcompany.com`.
