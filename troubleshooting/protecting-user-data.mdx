@@ -1,0 +1,29 @@
+---
+title: Protecting User Data FAQ
+description: "Common questions about privacy in Mixpanel: opt-outs, handling PII, and geolocation controls"
+---
+
+Common questions about protecting user data and meeting privacy requirements.
+
+## How can users opt out of tracking?
+
+When building your Mixpanel implementation, you can use the opt-out methods provided in Mixpanel’s client-side SDKs to offer users to ability to opt out of tracking. You can also initialize client-side SDKs to have users opted out by default until they opt in. The [Protecting User Data doc](/docs/privacy/protecting-user-data) has more information.
+
+## Where can I learn more about user privacy regulations and opting users out of tracking?
+
+The [Privacy](/docs/privacy) section of the docs has information around privacy regulations. This includes the [Protecting User Data](/docs/privacy/protecting-user-data) doc, which goes into how to opt users out and includes FAQs. There is also the [GDPR compliance](/docs/privacy/gdpr-compliance) doc for GDPR-specific information.
+
+## How can we anonymize users and avoid sending PII?
+
+Mixpanel does not know, or need to know, any identifying information about users (like email or phone number). Mixpanel only needs to know that a set of events were performed by a particular user ID. You choose the ID and you choose how you want to send that ID to Mixpanel. The [Protecting User Data](/docs/privacy/protecting-user-data) doc has more information.
+
+## How do we disable geolocation or prevent IP address usage?
+
+The exact method will depend on the SDK being used. See the [Disabling Geolocation](/docs/privacy/protecting-user-data#disabling-geolocation) section of the docs for more information, along with the [Geolocation](/docs/tracking-best-practices/geolocation) doc.
+
+## How do we handle the accidental sending of PII?
+
+If you accidentally send PII, you can use the data deletion feature to remove it. The [Data Clean-up](/docs/data-governance/data-clean-up#2-deleting-problematic-data) doc has more information. If that doesn’t work for your specific event data, have an organization or project owner open a ticket with [Support via the web form.](https://mixpanel.com/get-support)
+
+User profile data can be deleted via the [Engage API](/reference/delete-profile).
+

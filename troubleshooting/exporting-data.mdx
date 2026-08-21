@@ -1,0 +1,40 @@
+---
+title: Exporting Data FAQ
+description: "Common questions about exporting data from Mixpanel with the export APIs, Data Pipelines, and scheduled exports"
+---
+
+Common questions about getting your data back out of Mixpanel.
+
+## How do data pipeline exports work? How is the data structured and what can I expect?
+
+Data Pipelines is a feature that exports data from your Mixpanel project to a Cloud Storage bucket or Data Warehouse of your choice. It is available as an add-on for Growth and Enterprise plans. You can read more about the setup and exported data in the [Data Pipelines doc](/docs/data-pipelines).
+
+## How can I export my data from Mixpanel?
+
+Event data can be exported via the [Export API](/reference/raw-data-export-api), while user profile data can be exported via the [Engage API](/reference/engage-query). We also have a handy [Mixpanel-utils Python module](https://github.com/mixpanel/mixpanel-utils#export-events) that hits the APIs directly.
+
+Alternatively, you can purchase the [Data Pipelines](/docs/data-pipelines) add-on to export data directly to cloud storage or a data warehouse.
+
+Learn more about exporting data [here](/docs/export-methods).
+
+## Can I automate data exports (e.g., schedule CSV delivery or direct warehouse sync)?
+
+If you have the [Data Pipelines](/docs/data-pipelines) add on, data will automatically be synced to your warehouse at the scheduled cadence (daily or hourly).
+
+At a board level, you can set up a [board subscription](/docs/boards#board-subscriptions) to automatically receive a snapshot of a board sent as an email or a Slack message. It isn’t possible to schedule a CSV delivery of a specific report within the UI. However, the [Query API](/reference/query-api) can be used by paid plans to export report data on your end.
+
+## Is there an additional cost for exporting data?
+
+It depends on how you want to export the data! All plans can access the [Export API](/reference/raw-data-export-api) to export event data at no additional cost. Profile data can be exported from the [Engage API](/reference/engage-query) at no cost as well.
+
+The [Query API](/reference/query-api) is included for Growth and Enterprise plans. If you want to use [Data Pipelines](/docs/data-pipelines) to export the data, you would need to purchase it as an add-on.
+
+## Can I export specific data, such as cohorts, user lists, or raw events?
+
+Yes! You can see a list of [specific APIs here](/reference/overview) to export event, report, and user data. A [cohort sync](/docs/cohort-sync) can be used to export cohorts. Learn more about exporting data [here](/docs/export-methods).
+
+## What if my data warehouse is not natively supported?
+
+You can use a [reverse ETL (rETL) tool such as Census or Hightouch](/guides/implement/send-your-data#data-warehouses). These third-party tools allow you to transform and schedule syncs from your warehouse to Mixpanel, even if your warehouse isn’t directly supported. Another option is to use Mixpanel’s Import API to send data directly from your warehouse to Mixpanel.
+
+
