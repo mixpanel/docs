@@ -1,6 +1,7 @@
 ---
 openapi: "/openapi/ingestion.openapi.yaml POST /engage#profile-set-once"
 title: Set User Profile Property Once
+description: "Set a user profile property only if it is not already set, without overwriting existing values"
 ---
 
 Works just like "\$set", except it will not overwrite existing property values. This is useful for properties like "First login date".
