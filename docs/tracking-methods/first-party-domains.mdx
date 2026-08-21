@@ -1,0 +1,257 @@
+---
+title: First-Party Domains
+description: "Send Mixpanel tracking traffic through a domain you own"
+---
+
+<Note>
+  First-Party Domains are available on the Enterprise plan and are currently in beta. Contact your Mixpanel account team to have them enabled for your organization. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+</Note>
+
+## Overview
+
+Ad blockers, content blockers, and browser tracking protection commonly block requests to known analytics endpoints like `api.mixpanel.com`. When a request is blocked, the event never reaches Mixpanel and the data is lost.
+
+A **first-party domain** lets you send tracking traffic to a subdomain you own — for example `track.yourcompany.com` — instead of `api.mixpanel.com`. Because the request goes to your own domain, it isn't matched by blocklists that target Mixpanel's endpoints, so more of your events arrive.
+
+Mixpanel hosts and operates the endpoint for you. You point a DNS record at Mixpanel, and Mixpanel provisions and renews the TLS certificate and forwards traffic to its ingestion API. There is no proxy server for you to run, scale, or patch.
+
+### First-party domain vs. self-hosted proxy
+
+You can achieve a similar result by [running your own proxy server](/docs/tracking-methods/sdks/javascript#tracking-via-proxy). The tradeoffs:
+
+| | First-party domain | Self-hosted proxy |
+| --- | --- | --- |
+| Infrastructure to run | None | You run and scale the proxy |
+| TLS certificate | Provisioned and renewed by Mixpanel | You manage it |
+| Setup | Two DNS records | Server config and deployment |
+| Can also proxy SDK assets from `cdn.mxpnl.com` | No | Yes |
+| Availability | Enterprise, beta | Any plan |
+
+If you need to serve Mixpanel's SDK bundles and async modules from your own domain as well, a self-hosted proxy is still the right choice. See [Supported endpoints](#supported-endpoints).
+
+## Requirements
+
+- An Enterprise plan, with the First-Party Domains beta enabled for your organization.
+- Permission to edit organization settings (Organization Owner or Admin).
+- A domain you control, with access to add DNS records at its DNS provider.
+- The domain you configure must be a **subdomain** (such as `track.yourcompany.com`), not an apex domain like `yourcompany.com`.
+
+Each organization can have up to **3** first-party domains.
+
+## How it works
+
+```
+Your app ──► track.yourcompany.com ──► Mixpanel ingestion API
+             (CNAME to Mixpanel)
+```
+
+1. You add a domain in Mixpanel. Mixpanel creates a DNS authorization and a managed TLS certificate for it.
+2. You add two CNAME records at your DNS provider: one that routes traffic to Mixpanel, and one that proves to the certificate authority that you control the domain.
+3. Once the records resolve, the certificate is issued automatically and the domain goes **Active**.
+4. You point your Mixpanel SDK at the domain. Requests terminate TLS at Mixpanel's edge and are routed to the same ingestion backends that serve `api.mixpanel.com`.
+
+Your project token continues to identify the project, exactly as before. Using a first-party domain does not change how events are attributed, stored, or billed.
+
+## Set up a first-party domain
+
+### Step 1: Add the domain in Mixpanel
+
+1. Go to **Organization Settings** → **First-Party Domains**.
+2. Click **Add Domain**.
+3. Enter the subdomain you want to use, for example `track.yourcompany.com`.
+4. Select the **region** that matches your project's data residency — **US**, **EU**, or **IN**.
+5. Click **Add domain**.
+
+<Warning>
+  The region must match the data residency of the projects sending traffic to this domain. A domain created in the US region forwards to Mixpanel's US ingestion; it cannot serve an [EU-resident](/docs/privacy/eu-residency) or [IN-resident](/docs/privacy/in-residency) project. If you have projects in more than one region, create a separate domain for each.
+</Warning>
+
+### Step 2: Add the DNS records
+
+After you add the domain, Mixpanel shows two CNAME records. Add both at your DNS provider exactly as shown.
+
+| Type | Name | Value |
+| --- | --- | --- |
+| CNAME | `track.yourcompany.com` | The Mixpanel proxy host for your region (see [Regions](#regions)) |
+| CNAME | `_acme-challenge.track.yourcompany.com` | A unique `.authorize.certificatemanager.goog` target shown in the UI |
+
+The first record routes your tracking traffic to Mixpanel. The second one authorizes certificate issuance and renewal — **leave it in place permanently**. If you remove it, Mixpanel cannot renew the certificate and the domain will eventually stop serving traffic.
+
+You can reopen these records at any time from the **⋯** menu on the domain row → **View setup instructions**.
+
+<Note>
+  If your DNS is behind a proxying CDN (such as Cloudflare's orange-cloud mode), set the tracking record to **DNS-only**. Proxying it prevents certificate validation and can break TLS for your domain.
+</Note>
+
+### Step 3: Wait for the certificate
+
+Certificate issuance begins automatically once the DNS records resolve. This usually completes within minutes, but can take longer depending on your DNS provider's TTL and propagation time. Return to the First-Party Domains page to check the status.
+
+| Status | Meaning | What to do |
+| --- | --- | --- |
+| **Pending DNS validation** | Mixpanel hasn't seen the required DNS records yet. | Confirm both CNAME records exist and match the values shown in the UI. |
+| **Issuing certificate** | Records verified; the TLS certificate is being issued. | Wait — no action needed. |
+| **Active** | The domain is serving tracking traffic. | Point your SDK at it. |
+| **Certificate error** | Validation or issuance failed. | Confirm the DNS records match exactly, including the trailing portion of the value. |
+
+Don't send production traffic to the domain until it shows **Active**.
+
+### Step 4: Point your SDK at the domain
+
+Once the domain is **Active**, set your SDK's API host to `https://track.yourcompany.com`. The domain serves the same paths as `api.mixpanel.com`, so no path prefix is needed.
+
+<CodeGroup>
+
+```javascript JavaScript
+mixpanel.init("YOUR_PROJECT_TOKEN", {
+    api_host: "https://track.yourcompany.com",
+});
+```
+
+```javascript Node.js
+const mixpanel = Mixpanel.init("YOUR_PROJECT_TOKEN", {
+    host: "track.yourcompany.com",
+});
+```
+
+```python Python
+mp = mixpanel.Mixpanel(
+    "YOUR_PROJECT_TOKEN",
+    consumer=mixpanel.Consumer(api_host="track.yourcompany.com"),
+)
+```
+
+```swift Swift
+let options = MixpanelOptions(
+    token: "YOUR_PROJECT_TOKEN",
+    serverURL: "https://track.yourcompany.com"
+)
+Mixpanel.initialize(options: options)
+```
+
+```javascript React Native
+await mixpanel.init(false, {}, "https://track.yourcompany.com");
+```
+
+</CodeGroup>
+
+The option name differs by SDK. Refer to the relevant SDK page for exact syntax:
+
+| SDK | Option |
+| --- | --- |
+| [JavaScript](/docs/tracking-methods/sdks/javascript) | `api_host` |
+| [Node.js](/docs/tracking-methods/sdks/nodejs) | `host` |
+| [Python](/docs/tracking-methods/sdks/python) | `api_host` on `Consumer` |
+| [Swift](/docs/tracking-methods/sdks/swift) / [iOS](/docs/tracking-methods/sdks/ios) | `serverURL` |
+| [Android](/docs/tracking-methods/sdks/android) | `setServerURL()` |
+| [React Native](/docs/tracking-methods/sdks/react-native) | `serverURL` |
+| [Flutter](/docs/tracking-methods/sdks/flutter) | `setServerURL()` |
+| [Ruby](/docs/tracking-methods/sdks/ruby) | Request URLs on the consumer |
+| [PHP](/docs/tracking-methods/sdks/php) | `host` |
+| [Unity](/docs/tracking-methods/sdks/unity) | **API Host Address** in project settings |
+
+### Step 5: Verify traffic is flowing
+
+After deploying the change, confirm events are arriving on the new domain:
+
+- Check that events appear in [Events](/docs/data-structure/events-and-properties) or the [Data Inspector](/docs/tracking-methods/data-inspector) for the affected projects.
+- In your browser's network tab, confirm requests are going to `track.yourcompany.com` and returning `200`.
+- Compare event volume against your baseline before and after the change.
+
+## Supported endpoints
+
+A first-party domain serves Mixpanel's ingestion and client-configuration paths:
+
+| Path | Used for |
+| --- | --- |
+| `/track`, `/engage`, `/people`, `/groups` | Event and profile ingestion |
+| `/import`, `/lookup-tables` | Server-side import and lookup tables |
+| `/record` | [Session Replay](/docs/session-replay) ingestion |
+| `/flags`, `/decide` | [Feature flags](/docs/featureflags) and client config |
+| `/settings` | SDK settings |
+
+Any other path returns a `404`.
+
+<Warning>
+  A first-party domain does **not** serve Mixpanel's CDN assets from `cdn.mxpnl.com`. Do not set the JavaScript SDK's `lib_base_path` (or `MIXPANEL_CUSTOM_LIB_URL`) to your first-party domain — those requests will 404.
+
+  This matters most for [Session Replay](/docs/session-replay) on web: replay ingestion at `/record` goes through your domain, but the recorder module itself still loads from `cdn.mxpnl.com` and can be blocked. If you need to serve SDK assets from your own domain too, use a [self-hosted proxy](/docs/tracking-methods/sdks/javascript#tracking-via-proxy) for those paths.
+</Warning>
+
+## Regions
+
+Point the tracking CNAME record at the host for your project's data residency. The exact value is always shown in the Mixpanel UI — use that as the source of truth.
+
+| Region | CNAME target |
+| --- | --- |
+| US | `api-proxy.mixpanel.com` |
+| EU | `api-proxy-eu.mixpanel.com` |
+| IN | `api-proxy-in.mixpanel.com` |
+
+## Delete a first-party domain
+
+Deleting a domain is a destructive change: once it is torn down, any SDK still pointing at it will fail to send data. To protect against accidental deletion, Mixpanel applies a **5-day grace period**.
+
+To delete a domain:
+
+1. On the domain row, open the **⋯** menu and choose **Delete domain**.
+2. Type the domain name to confirm.
+
+The domain moves to **Deletion scheduled** and **keeps serving tracking traffic for the full 5 days**. After the grace period elapses, Mixpanel removes the certificate and the domain permanently stops serving traffic.
+
+Before deleting, make sure you have:
+
+- Updated every SDK and server-side integration so it no longer points at the domain.
+- Verified that tracking traffic is no longer flowing to the domain across all projects.
+
+### Cancel a scheduled deletion
+
+While a domain is in the grace period, open the **⋯** menu and choose **Cancel deletion**. The domain stays active and the scheduled teardown is cancelled.
+
+Once the grace period has elapsed and teardown has begun, the deletion can no longer be cancelled. You'll need to add the domain again and repeat DNS setup.
+
+After a domain is fully deleted, you can safely remove its two CNAME records from your DNS provider.
+
+## Troubleshooting
+
+| Symptom | Likely cause |
+| --- | --- |
+| Domain stuck on **Pending DNS validation** | One or both CNAME records are missing, misspelled, or not yet propagated. Verify with `dig CNAME track.yourcompany.com`. |
+| **Certificate error** | The `_acme-challenge` record doesn't match the value Mixpanel shows, or a proxying CDN is intercepting validation. |
+| TLS or certificate warnings in the browser | The domain isn't **Active** yet, or the tracking CNAME is being proxied by a CDN instead of resolving directly. |
+| Requests return `404` | The path isn't served by first-party domains — see [Supported endpoints](#supported-endpoints). Commonly caused by setting `lib_base_path` to the domain. |
+| Events send successfully but don't appear in the expected project | The domain's region doesn't match the project's data residency. Create a domain in the matching region. |
+| Certificate stopped renewing after a period of working | The `_acme-challenge` CNAME record was removed. It must stay in place for the life of the domain. |
+| **Add Domain** is disabled | Your organization has reached the 3-domain limit. Delete an unused domain first. |
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Does this eliminate all data loss from ad blockers?">
+    No. A first-party domain avoids blocklists that target Mixpanel's endpoints, which recovers a meaningful share of otherwise-blocked traffic. It does not defeat blockers that inspect request payloads, block based on script names, or prevent the SDK from loading in the first place.
+  </Accordion>
+
+  <Accordion title="Can I use one domain for multiple projects?">
+    Yes. A first-party domain is configured at the organization level and can serve any number of projects in the same region. The project token in each request determines where the data lands.
+  </Accordion>
+
+  <Accordion title="Do I need to change my project token or API secret?">
+    No. Only the API host changes.
+  </Accordion>
+
+  <Accordion title="Does using a first-party domain affect data residency?">
+    No. Traffic is forwarded to the ingestion backend for the region you selected, so [EU](/docs/privacy/eu-residency) and [IN](/docs/privacy/in-residency) residency guarantees are unchanged — provided the domain's region matches your project's.
+  </Accordion>
+
+  <Accordion title="Can I use an apex domain like yourcompany.com?">
+    No. First-party domains must be a subdomain, because setup relies on a CNAME record. Apex domains generally cannot hold a CNAME.
+  </Accordion>
+
+  <Accordion title="Who can add or delete a domain?">
+    Users with permission to edit organization settings — Organization Owners and Admins. See [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+  </Accordion>
+
+  <Accordion title="What happens if my certificate fails to renew?">
+    The domain moves to **Certificate error** and will stop serving traffic once the existing certificate expires. Confirm the `_acme-challenge` CNAME record is still present and matches the value shown in the UI.
+  </Accordion>
+</AccordionGroup>

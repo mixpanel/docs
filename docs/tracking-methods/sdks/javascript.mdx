@@ -1006,6 +1006,10 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 
 You can route events from Mixpanel's SDKs via a proxy in your own domain, which can reduce the likelihood of ad-blockers impacting your tracking.
 
+<Note>
+  Enterprise customers can get the same benefit without running a proxy server. [First-Party Domains](/docs/tracking-methods/first-party-domains) let you point a subdomain you own at Mixpanel, which manages the endpoint and TLS certificate for you. Continue with the steps below if you also need to serve Mixpanel's SDK assets from your own domain, which first-party domains do not cover.
+</Note>
+
 <Frame>
   ![image](/images/3ec6f3c2-aed0-4a18-9395-36838c3b53f1.png)
 </Frame>
