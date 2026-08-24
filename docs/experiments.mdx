@@ -4,11 +4,23 @@ description: "Measure the impact of a/b testing"
 sidebarTitle: "Experiments"
 ---
 
-<Note>
-    The Experiment Report is a separately priced product add-on. It is currently only offered to those on the Enterprise Plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+## Plan Availability
 
-    Customers who have not purchased the Experiment add-on will be able to create up to 3 experiments per project. Please note that creation is irreversible, so you would not be able to delete experiments. If you are interested in exploring the features fully, you can request a trial from your account team.
+Experiments is available on all Mixpanel plans. Each plan includes a set amount of usage, measured in Monthly Experiment Users (MEU) — users exposed to an experiment in a calendar month. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+
+| Plan | Included Usage | How to Get More |
+| --- | --- | --- |
+| Free | 1k MEU per month, unlimited experiments | Upgrade to a Growth plan via the [pricing page](https://mixpanel.com/pricing/). |
+| Growth | 5k MEU per month, unlimited experiments | Purchase additional MEU (up to 100k per month) by selecting **Upgrade Plan** under Organization Settings > Plan Details & Billing, adding Experiments to your plan, and checking out. |
+| Enterprise | 3 created experiments | Purchase the Experiments add-on for unlimited experiments — [contact us](https://mixpanel.com/contact-us/sales/) or reach out to your account team. |
+
+On the Free plan, once you pass your included MEU in a calendar month, experiment metrics stop being computed for the remainder of the month; your feature flags continue to serve and route traffic. On Growth and Enterprise plans, usage beyond your included or purchased MEU is billed at an overage rate.
+
+<Note>
+    Experiment creation is irreversible — experiments cannot be deleted.
 </Note>
+
+Every Experiments plan includes usage of [Feature Flags](/docs/featureflags), with limits on active flags and cohort targeting that vary by plan. See [Feature Flags plan availability](/docs/featureflags#plan-availability) for details.
 
 ## Why Experiment?
 
@@ -704,9 +716,6 @@ Both are correct. The funnel conversion rate answers: "For users who started the
 In this example, the variant brought more users into the funnel (8,676 entrants vs 7,504). Those additional users lowered the funnel completion rate, but the variant still converted a larger share of its total exposed population. Lift uses the per-exposure rate because it measures the overall impact of the variant on your entire user base, not just on users who happened to enter the funnel.
 
 ## Experimentation Pricing FAQ
-<Note>
-    The Experiment Report is a separately priced product offered to organizations on the Enterprise Plan. Please [contact us](https://mixpanel.com/contact-us/sales/) for more details.
-</Note>
 
 ### Pricing Unit
 Experimentation is priced based on MEUs - Monthly Experiment Users. Only users exposed to an experiment in a month are counted towards this tally.
@@ -728,14 +737,14 @@ If not running experiments, below are some rough estimations of MEU's based on t
 #### Does it matter how many experiments a user is exposed to within the month? 
 We’ve accounted for an MEU to be exposed to up to 30 experiments per month. If the average number of experiment exposure events per MEU is over 30, then the MEUs will be calculated as the total number of exposure events divided by 30.
 
-#### What happens if I go over my purchased MEU bucket? 
-You can continue using Mixpanel Experiment Report, but you will be charged a higher rate for the overages. 
+#### What happens if I go over my included or purchased MEU?
+On the Free plan, experiment metrics stop being computed for the remainder of the calendar month; your feature flags continue to serve and route traffic. On Growth and Enterprise plans, you can continue using Experiments, and usage beyond your included or purchased MEU is billed at an overage rate. Growth plans can purchase up to 100k MEU per month; for more, [contact us](https://mixpanel.com/contact-us/sales/) about an Enterprise plan.
 
-#### Can I analyze experiments prior to the purchase date? 
-No. You can only analyze experiments starting from your experimentation purchase date. This means that the date used in your experiment cannot start prior to the purchase date.
+#### Can I analyze experiments prior to my Experiments purchase date?
+No. If you purchase additional Experiments volume, you can only analyze experiments starting from your purchase date. This means that the date used in your experiment cannot start prior to the purchase date.
 
 #### But I am already paying for exposure events in my regular plan. Am I getting double-charged?
-If you buy the Experimentation offering, we waive the charge for exposure events in your regular Mixpanel plan. You only get charged for the exposure events via the MEU calculation.
+No. Exposure events covered by your Experiments usage are waived from your regular Mixpanel plan. They are only counted via the MEU calculation.
 
 #### How can I monitor my account’s MEU consumption?
 You can see your experiment MEU usage by going to Organization settings > Plan Details & Billing.
@@ -784,7 +793,7 @@ Once the experiment is ready to review, you can choose to 'End Analysis'. Use th
 
 ### Decision Options in Mixpanel
 
-- **Ship Variant (any of the variants)**: You had a statistically significant result. You have made a decision to ship a variant to all users. NOTE: Shipping variant here is just a log; it does not actually trigger rolling out the feature flag unless you are using Mixpanel feature flags **(in beta today)**.
+- **Ship Variant (any of the variants)**: You had a statistically significant result. You have made a decision to ship a variant to all users. NOTE: Shipping variant here is just a log; it does not actually trigger rolling out the feature flag unless you are using [Mixpanel feature flags](/docs/featureflags).
 - **Ship None**: You may not have had any statistically significant results, or even if you have statistically significant results, the lift is not sufficient to warrant a change in user experience. You decide not to ship the change.
 - **Defer Decision**: You may have a direction you want to go, but need to sync with other stakeholders before confirming the decision. This is an example where you might defer a decision and come back at a later date and log the final decision.
 
