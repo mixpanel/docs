@@ -4,11 +4,13 @@ description: "Rollout with precision control"
 sidebarTitle: "Feature Flags"
 ---
 
-Mixpanel Feature Flags let you control who sees a feature and when — gradual rollouts, cohort targeting, kill switches, and variant delivery for experiments.
+Ship a feature to a subset of users, roll it back without a deploy, and measure what it changed — all from the same project your analytics already live in.
 
 ## Plan Availability
 
-Feature Flags is available for customers on Free, Growth, and Enterprise plans. It comes bundled with [Experiments](/docs/experiments) at no extra cost, and you can use flags on their own — you don't have to create or run an experiment. Each plan includes a set number of active flags: the number of flags you can have **Enabled** at once, counted across your organization. There is no limit on the total number of flags you create, and no limit on API requests. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+Feature Flags is available for customers on Free, Growth, and Enterprise plans, and is included with [Experiments](/docs/experiments) on every plan. You can use flags on their own — you don't have to run an experiment.
+
+Each plan limits your **active flags**: flags marked Enabled, counted across your organization. Creating flags is unlimited. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 
 | Plan | Active Flag Allowance | Cohort Targeting | How to Access |
 | --- | --- | --- | --- |
@@ -16,9 +18,9 @@ Feature Flags is available for customers on Free, Growth, and Enterprise plans. 
 | Growth | 50, or 500 with purchased Experiments volume | Cohorts up to 20M users | Purchase Experiments volume under Organization Settings \> Plan Details & Billing. |
 | Enterprise | 3, or 500 with purchased Experiments | Cohorts up to 20M users | Purchase Experiments to raise your limit to 500 active flags — [contact us](https://mixpanel.com/contact-us/sales/) or reach out to your account team. |
 
-On a Free plan, you can use cohort targeting conditions in one rollout group, and you cannot save cohorts for reuse.
+The Enterprise allowance of 3 active flags is a trial amount for evaluating Feature Flags; purchasing Experiments raises it to 500.
 
-Enterprise customers who need Feature Flags on a contract that excludes Experiments can [contact us](https://mixpanel.com/contact-us/sales/) about a standalone arrangement, which is priced on Feature Flag API requests.
+Enterprise customers who need Feature Flags without Experiments can [contact us](https://mixpanel.com/contact-us/sales/) about a standalone arrangement, which is priced on Feature Flag API requests. On every other plan, API requests are unlimited.
 
 ## Overview
 
@@ -114,7 +116,7 @@ We support the following types of Flags:
     <Note>
       - Cohorts used in feature flag targeting refresh on a periodic cadence (~every 2 hours). So once a user or group entity qualifies for a cohort, it can take up to 2 hours before they see a desired experience.
       - If you want users or groups to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure they continue to see the new experience until the flag is turned off.
-      - For the optimal performance, cohorts used in feature flag targeting are officially limited to 20 million users on Growth and Enterprise plans, and 100k users on Free plans.
+      - For the optimal performance, cohorts used in feature flag targeting are officially limited to 20 million users on Growth and Enterprise plans, and 100,000 users on Free plans.
       - On a Free plan, you can use cohort targeting conditions in one rollout group, and you cannot save cohorts for reuse.
     </Note>
 

@@ -4,13 +4,13 @@ description: "Measure the impact of a/b testing"
 sidebarTitle: "Experiments"
 ---
 
-Mixpanel Experiments measures how a change affects your metrics, so you can decide which variant to roll out. Because your product analytics data already lives in Mixpanel, you can evaluate results against the metrics you already track.
+Mixpanel Experiments measures how a change affects your metrics, so you can decide which variant to roll out.
 
 ## Plan Availability
 
-Experiments is available for customers on Free, Growth, and Enterprise plans. Usage is measured in Monthly Experiment Users (MEU): the number of distinct users exposed to an experiment during a calendar month. A user exposed to three experiments in one month counts as one MEU, not three. MEU and experiment counts apply across your whole organization unless noted. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+Experiments is available for customers on Free, Growth, and Enterprise plans. Usage is measured in Monthly Experiment Users (MEU): the number of distinct users exposed to an experiment during a calendar month. A user exposed to several experiments in one month counts as one MEU, up to 30 experiments — past that, see [how MEU is calculated](#does-it-matter-how-many-experiments-a-user-is-exposed-to-within-the-month). MEU and experiment counts apply across your whole organization unless noted. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 
-| Plan | Allowance | How to Access |
+| Plan | MEU Allowance | How to Access |
 | --- | --- | --- |
 | Free | 1k MEU per month; unlimited experiments | Switch plans from the [pricing page](https://mixpanel.com/pricing/). |
 | Growth | 5k MEU per month; unlimited experiments | Purchase 10k to 100k MEU per month under Organization Settings \> Plan Details & Billing. |
@@ -69,7 +69,7 @@ Before creating an experiment report, ensure you have:
 ## Setup & Launch Your Experiment
 
 <Warning>
-  On an Enterprise plan without purchased Experiments, creating an experiment is irreversible: each of your 3 experiments per project is consumed permanently and cannot be recovered from the UI.
+  On an Enterprise plan without purchased Experiments, creating an experiment uses one of the 3 you get per project, and you can't free it up again from the UI.
 </Warning>
 
 ### Step 1: Select an Experiment
