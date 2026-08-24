@@ -4,17 +4,21 @@ description: "Rollout with precision control"
 sidebarTitle: "Feature Flags"
 ---
 
+Mixpanel Feature Flags let you control who sees a feature and when — gradual rollouts, cohort targeting, kill switches, and variant delivery for experiments.
+
 ## Plan Availability
 
-Feature Flags is available on all Mixpanel plans as part of [Experiments](/docs/experiments). Each plan includes a set number of active flags — flags that are marked Enabled at the same time — with no limit on API requests. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+Feature Flags is available for customers on Free, Growth, and Enterprise plans. It comes bundled with [Experiments](/docs/experiments) at no extra cost, and you can use flags on their own — you don't have to create or run an experiment. Each plan includes a set number of active flags: the number of flags you can have **Enabled** at once, counted across your organization. There is no limit on the total number of flags you create, and no limit on API requests. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 
-| Plan | Active Flags | Cohort Targeting | How to Get More |
+| Plan | Active Flag Allowance | Cohort Targeting | How to Access |
 | --- | --- | --- | --- |
-| Free | 10 | 1 rollout group with cohort targeting conditions; cohorts up to 100k users | Upgrade to a Growth plan via the [pricing page](https://mixpanel.com/pricing/). |
-| Growth | 50 (500 with purchased Experiments volume) | Cohorts up to 20 million users | Purchase additional Experiments volume by selecting **Upgrade Plan** under Organization Settings > Plan Details & Billing. |
-| Enterprise | 3 (500 with the Experiments add-on) | Cohorts up to 20 million users | [Contact us](https://mixpanel.com/contact-us/sales/) or reach out to your account team. |
+| Free | 10 | Cohorts up to 100k users, in one rollout group | Switch plans from the [pricing page](https://mixpanel.com/pricing/). |
+| Growth | 50, or 500 with purchased Experiments volume | Cohorts up to 20M users | Purchase Experiments volume under Organization Settings \> Plan Details & Billing. |
+| Enterprise | 3, or 500 with purchased Experiments | Cohorts up to 20M users | Purchase Experiments to raise your limit to 500 active flags — [contact us](https://mixpanel.com/contact-us/sales/) or reach out to your account team. |
 
-Standalone Feature Flags without Experiments is available to Enterprise plan customers — [contact us](https://mixpanel.com/contact-us/sales/) for details.
+On a Free plan, you can use cohort targeting conditions in one rollout group, and you cannot save cohorts for reuse.
+
+Enterprise customers who need Feature Flags on a contract that excludes Experiments can [contact us](https://mixpanel.com/contact-us/sales/) about a standalone arrangement, which is priced on Feature Flag API requests.
 
 ## Overview
 
@@ -111,7 +115,7 @@ We support the following types of Flags:
       - Cohorts used in feature flag targeting refresh on a periodic cadence (~every 2 hours). So once a user or group entity qualifies for a cohort, it can take up to 2 hours before they see a desired experience.
       - If you want users or groups to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure they continue to see the new experience until the flag is turned off.
       - For the optimal performance, cohorts used in feature flag targeting are officially limited to 20 million users on Growth and Enterprise plans, and 100k users on Free plans.
-      - Free plans can use cohort targeting conditions in 1 rollout group, and cannot save cohorts.
+      - On a Free plan, you can use cohort targeting conditions in one rollout group, and you cannot save cohorts for reuse.
     </Note>
 
     <Warning>
@@ -478,31 +482,49 @@ Removing an inter-project connection from the "Other Environments" menu unlinks 
 Feature Flag rollouts may include configuration that references data groups in a given project. For instance, if you change the "Assignment Key" of a flag to a data group key, both the source and destination projects _must_ include the referenced data group in order to duplicate or push changes. If the assignment key is _not_ present in the destination project, the operation will fail.
 
 <Info>
-  **Billing across projects:** You aren't double-charged for using the same feature flag across multiple projects. Mixpanel charges based on active feature flag keys, so the same flag-key shared across projects is counted once.
+  **Flag limits across projects:** The same feature flag key used across multiple projects counts once against your plan's active flag limit.
 </Info>
 
 ## Feature Flagging Pricing FAQ
 
-**How is Feature Flags priced?**
+#### How is Feature Flags priced?
 
-Feature Flags is included with [Experiments](/docs/experiments) on every Mixpanel plan. Usage is limited by the number of active flags and the maximum cohort size for targeting — see [Plan Availability](#plan-availability). API requests are unlimited on all plans.
+Feature Flags is included with [Experiments](/docs/experiments) on every Mixpanel plan. Usage is limited by the number of active flags and the maximum cohort size for targeting — see [Plan Availability](#plan-availability). When Feature Flags is included with Experiments, API requests are unlimited. Standalone Feature Flags, purchased without Experiments on an Enterprise plan, is priced on Feature Flag API requests.
 
-**What counts as an active flag?**
+#### What counts as an active flag?
 
-Active flags are flags which are marked 'Enabled'. Only these flags are counted under your plan's active flag limit. There is no limit on the total number of flags you create.
+Active flags are flags which are marked **Enabled**. Only these flags are counted under your plan's active flag limit. There is no limit on the total number of flags you create.
 
-**What happens when I reach my active flag limit?**
+#### What happens when I reach my active flag limit?
 
-No more flags will be fetched as part of the API request until you disable some others or upgrade your plan. If you are at your limit, the flags fetched are the first ones based on the 'start' date, up to your limit.
+No more flags are fetched as part of the API request until you disable some others or upgrade your plan. Mixpanel fetches the flags with the earliest start dates, up to your limit; flags started after that are not returned. A flag's start date is the date it was first enabled.
 
-**Do I get double charged if I create the same feature flag across projects?**
+#### Does the same flag count twice if I create it across projects?
 
-No. Limits are based on active 'feature flag keys'. If the same flag-key is used across projects, it is counted only once.
+No. Limits are based on active feature flag keys. If the same flag key is used across projects, it is counted only once.
 
-**How can I monitor my account’s Feature Flags usage?**
+#### How can I monitor my account’s Feature Flags usage?
 
-You can see your feature flag usage by going to Organization settings \> Plan Details & Billing.
+You can see your feature flag usage by going to Organization Settings \> Plan Details & Billing.
 
-**Can I purchase Feature Flags without Experiments?**
+#### What is a Feature Flag API Request?
 
-Standalone Feature Flags is available to Enterprise plan customers. Please [contact us](https://mixpanel.com/contact-us/sales/) for more details.
+A feature flag API request is a call made by your application to a feature flag system's API to determine which features should be enabled or disabled, or which variant should be served to a user. All the active flags in the system are evaluated as part of this API request.
+
+#### How can I estimate Feature Flag API requests?
+
+API requests are unlimited when Feature Flags is included with Experiments, but the estimate is useful for capacity planning, and it determines the price of a standalone Enterprise arrangement.
+
+In general, you can expect every user session to have 1 API request. When the session starts, all the flags for the user are fetched in the single API request, so monthly API requests are at minimum equivalent to the total user sessions that month. Two notes:
+
+- If you have multiple SDK inits each session, that increases the count of API requests in a session.
+- As a general rule of thumb, consider API requests to be 1.5 x user sessions, to account for implementation differences and multiple SDK inits in a session.
+
+For a server-side SDK:
+
+- With local evaluation only, your API requests depend on how many server instances you have and how frequently you poll.
+- With remote evaluation, or when using cohorts, your estimate is similar to the client-side SDK estimate above.
+
+#### Can I purchase Feature Flags without Experiments?
+
+Standalone Feature Flags is available to Enterprise plan customers. [Contact us](https://mixpanel.com/contact-us/sales/) for more details.

@@ -4,23 +4,25 @@ description: "Measure the impact of a/b testing"
 sidebarTitle: "Experiments"
 ---
 
+Mixpanel Experiments measures how a change affects your metrics, so you can decide which variant to roll out. Because your product analytics data already lives in Mixpanel, you can evaluate results against the metrics you already track.
+
 ## Plan Availability
 
-Experiments is available on all Mixpanel plans. Each plan includes a set amount of usage, measured in Monthly Experiment Users (MEU) — users exposed to an experiment in a calendar month. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+Experiments is available for customers on Free, Growth, and Enterprise plans. Usage is measured in Monthly Experiment Users (MEU): the number of distinct users exposed to an experiment during a calendar month. A user exposed to three experiments in one month counts as one MEU, not three. MEU and experiment counts apply across your whole organization unless noted. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 
-| Plan | Included Usage | How to Get More |
+| Plan | Allowance | How to Access |
 | --- | --- | --- |
-| Free | 1k MEU per month, unlimited experiments | Upgrade to a Growth plan via the [pricing page](https://mixpanel.com/pricing/). |
-| Growth | 5k MEU per month, unlimited experiments | Purchase additional MEU (up to 100k per month) by selecting **Upgrade Plan** under Organization Settings > Plan Details & Billing, adding Experiments to your plan, and checking out. |
-| Enterprise | 3 created experiments | Purchase the Experiments add-on for unlimited experiments — [contact us](https://mixpanel.com/contact-us/sales/) or reach out to your account team. |
+| Free | 1k MEU per month; unlimited experiments | Switch plans from the [pricing page](https://mixpanel.com/pricing/). |
+| Growth | 5k MEU per month; unlimited experiments | Purchase 10k to 100k MEU per month under Organization Settings \> Plan Details & Billing. |
+| Enterprise | Unlimited MEU; 3 experiments per project until you purchase Experiments | Purchase Experiments for unlimited experiments, or request a trial — [contact us](https://mixpanel.com/contact-us/sales/) or reach out to your account team. |
 
-On the Free plan, once you pass your included MEU in a calendar month, experiment metrics stop being computed for the remainder of the month; your feature flags continue to serve and route traffic. On Growth and Enterprise plans, usage beyond your included or purchased MEU is billed at an overage rate.
+Every plan includes [Feature Flags](/docs/featureflags) alongside Experiments, with limits on active flags and cohort targeting that vary by plan. See [Feature Flags plan availability](/docs/featureflags#plan-availability) for details.
 
-<Note>
-    Experiment creation is irreversible — experiments cannot be deleted.
-</Note>
+### Reaching Your MEU Allowance
 
-Every Experiments plan includes usage of [Feature Flags](/docs/featureflags), with limits on active flags and cohort targeting that vary by plan. See [Feature Flags plan availability](/docs/featureflags#plan-availability) for details.
+If you reach your included MEU in a calendar month without purchased volume, Experiments is paused: you can't create, edit, or view experiments until your usage resets at the start of the next calendar month, or you add volume to your plan. Your feature flags keep serving and routing traffic, so what your users see doesn't change — but any experiment you're running stops producing new results for the rest of that month.
+
+Once you purchase Experiments volume, usage beyond what you purchased is billed at an overage rate instead of pausing. Track your usage under Organization Settings \> Plan Details & Billing.
 
 ## Why Experiment?
 
@@ -61,6 +63,10 @@ Before creating an experiment report, ensure you have:
 - Proper exposure event tracking implemented
 
 ## Setup & Launch Your Experiment
+
+<Warning>
+  On an Enterprise plan without purchased Experiments, creating an experiment is irreversible: each of your 3 experiments per project is consumed permanently and cannot be recovered from the UI.
+</Warning>
 
 ### Step 1: Select an Experiment
 
@@ -461,7 +467,7 @@ If your experiment targets a cohort, Mixpanel assumes the event properties refer
 Removing an inter-project connection from the "Other Environments" menu unlinks the two experiments — it does **not** delete the experiment in the destination project. The copied experiment remains in the destination project and continues to function independently; it simply loses its link to the original.
 
 <Info>
-  **Billing across projects:** You aren't double-charged for using the same feature flag across multiple projects. Mixpanel charges based on active feature flag keys, so the same flag-key shared across projects is counted once.
+  **Flag limits across projects:** The same feature flag key used across multiple projects counts once against your plan's active flag limit.
 </Info>
 
 ## Advanced Statistical Methods
@@ -718,7 +724,7 @@ In this example, the variant brought more users into the funnel (8,676 entrants 
 ## Experimentation Pricing FAQ
 
 ### Pricing Unit
-Experimentation is priced based on MEUs - Monthly Experiment Users. Only users exposed to an experiment in a month are counted towards this tally.
+Experiments usage is measured in MEU - Monthly Experiment Users. Only users exposed to an experiment in a month are counted towards this tally.
 #### How are MEUs different than MTUs (Monthly Tracked Users)?
 MTUs count any user who has tracked an event to the project in the calendar month. MEU is a subset of MTU; it’s only users who have tracked an exposure experiment event (ie, `$experiment_started`) in the calendar month.
 
@@ -738,16 +744,16 @@ If not running experiments, below are some rough estimations of MEU's based on t
 We’ve accounted for an MEU to be exposed to up to 30 experiments per month. If the average number of experiment exposure events per MEU is over 30, then the MEUs will be calculated as the total number of exposure events divided by 30.
 
 #### What happens if I go over my included or purchased MEU?
-On the Free plan, experiment metrics stop being computed for the remainder of the calendar month; your feature flags continue to serve and route traffic. On Growth and Enterprise plans, you can continue using Experiments, and usage beyond your included or purchased MEU is billed at an overage rate. Growth plans can purchase up to 100k MEU per month; for more, [contact us](https://mixpanel.com/contact-us/sales/) about an Enterprise plan.
+If you reach your included MEU without purchased volume, Experiments is paused until your usage resets at the start of the next calendar month, or you add volume to your plan. Your feature flags keep serving and routing traffic. Once you purchase Experiments volume, usage beyond what you purchased is billed at an overage rate instead of pausing. On a Growth plan you can purchase up to 100k MEU per month; for more, [contact us](https://mixpanel.com/contact-us/sales/) about an Enterprise plan.
 
-#### Can I analyze experiments prior to my Experiments purchase date?
-No. If you purchase additional Experiments volume, you can only analyze experiments starting from your purchase date. This means that the date used in your experiment cannot start prior to the purchase date.
+#### Can I analyze experiments that started before I purchased Experiments volume?
+No. If you purchase Experiments volume, you can only analyze experiments that start on or after your purchase date. Experiments running within your plan's included MEU are not affected by this restriction.
 
 #### But I am already paying for exposure events in my regular plan. Am I getting double-charged?
 No. Exposure events covered by your Experiments usage are waived from your regular Mixpanel plan. They are only counted via the MEU calculation.
 
 #### How can I monitor my account’s MEU consumption?
-You can see your experiment MEU usage by going to Organization settings > Plan Details & Billing.
+You can see your experiment MEU usage by going to Organization Settings \> Plan Details & Billing.
 
 ## References
 
