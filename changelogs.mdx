@@ -9,6 +9,45 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-08-24">
+  ## Experiments and Feature Flags: Now on Free and Growth plans
+
+  Run experiments and manage rollouts from the same place you do your analytics. Identify opportunities, spin up tests, interpret results, and ship the winner, all driven by AI that fits your workflow.
+
+  With this update, you can:
+
+  - **Move at the speed of AI:** Full MCP and Mixpanel Agent support means your AI assistant can propose tests from live metrics, launch them, and interpret the results — no context switching, no advanced stats knowledge required.
+  - **Trust every result:** Sequential testing, CUPED, Benjamini-Hochberg correction, and SRM monitoring run automatically to keep every experiment statistically sound.
+  - **Target by behavior, not just identity:** Roll out to the cohorts and events you already use in Mixpanel.
+  - **Ship with control:** Audit trails, multi-environment support, and dynamic config are all included.
+
+  **What's included:**
+
+  - **Free plan:** Unlimited experiments, 1k Monthly Experiment Users (MEU), up to 10 active feature flags.
+  - **Growth plan:** 5k MEU/month, up to 50 active feature flags. Add up to 100k MEU/month and up to 500 active feature flags with additional MEUs.
+
+  MEU = number of users exposed to an experiment.
+
+  Get started: [Experiment & Optimize tour](/guides/self-guided-tours#experiment-&-optimize) | [Experiments docs](/docs/experiments) | [Feature Flags docs](/docs/featureflags)
+</Update>
+
+<Update label="2026-08-20">
+  ## Feature Flags: Typed Runtime Property Values
+
+  Feature Flags can now target Runtime Properties by their actual data type — string, number, list, or fuzzy — instead of treating every value as a string. Targeting rules match correctly on numbers and lists, not just text.
+
+  Previously, Runtime Property filters compared everything as a string. That meant no real numeric or boolean comparisons, making flag targeting less predictable and reliable.
+
+  With this update, each targeting condition has a Data Type that controls how it's parsed and compared:
+
+  - **String:** case-insensitive match, ordered comparisons in lexicographical order
+  - **Number:** true numeric comparison (Is, Greater than, Less than, etc.)
+  - **List:** match any/all elements, each evaluated by its own type
+  - **Fuzzy:** loose, cross-type match (e.g. `"5"` matches `5`, `"1"` matches `true`)
+
+  [Learn more →](/docs/featureflags#data-types-for-runtime-values)
+</Update>
+
 <Update label="2026-08-07">
   ## Session Replay: Mobile Autocapture (Screen Views)
 
