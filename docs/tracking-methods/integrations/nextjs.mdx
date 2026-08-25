@@ -1,5 +1,6 @@
 ---
 title: Next.js
+description: "Integrate Mixpanel tracking into your Next.js application"
 ---
 
 import { dataItems } from "/snippets/utils/constants.mdx";
@@ -11,8 +12,8 @@ import { dataItems } from "/snippets/utils/constants.mdx";
 
    b. Then, add your Mixpanel [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
 
-   ```bash
-   # Paste in your token
+   ```javascript
+   // Paste in your token
    NEXT_PUBLIC_MIXPANEL_TOKEN=YOUR_PROJECT_TOKEN
    ```
 3. Create a utility file to initialize the Mixpanel SDK in your Next.js application
@@ -31,22 +32,36 @@ import { dataItems } from "/snippets/utils/constants.mdx";
        console.warn('Mixpanel token is missing! Check your .env file.');
        return;
      }
-
+    
      mixpanel.init(MIXPANEL_TOKEN, { autocapture: true });
-   };
+   }
    ```
 4. Initialize Mixpanel in your Next.js application
 
-   a. **If using page router**, open or create the file `_app.js` or `_app.tsx` in your `pages/` directory. Then import and initialize Mixpanel inside `useEffect`. Autocapture tracks pageviews on route change for you, so you don't need to track them manually.
+   a. **If using page router**, open or create the file `_app.js` or `app.tsx` in your pages/ directory. Then import and initialize Mixpanel inside `useEffect`. You’ll also need to track pageviews manually using `useRouter`.
 
    ```javascript
    import { useEffect } from 'react';
-   import { initMixpanel } from '../lib/mixpanelClient';
+   import { useRouter } from 'next/router';
+   import { initMixpanel, trackPageView } from '../lib/mixpanelClient';
 
    function MyApp({ Component, pageProps }) {
+     const router = useRouter();
+
      useEffect(() => {
        initMixpanel(); // Initialize Mixpanel
-     }, []);
+
+       const handleRouteChange = (url) => {
+         trackPageView(url); // Track pageviews
+       };
+
+       // Track page views on route change
+       router.events.on('routeChangeComplete', handleRouteChange);
+
+       return () => {
+         router.events.off('routeChangeComplete', handleRouteChange);
+       };
+     }, [router.events]);
 
      return <Component {...pageProps} />;
    }
@@ -75,7 +90,7 @@ import { dataItems } from "/snippets/utils/constants.mdx";
    Next, open or create the file `layout.js` or `layout.tsx` in your app/ directory and wrap the body component with the MixpanelProvider.
 
    ```javascript
-   import MixpanelProvider from '../components/MixpanelProvider';
+   import { MixpanelProvider } from '../components/MixpanelProvider';
 
    export default function RootLayout({ children }) {
 
