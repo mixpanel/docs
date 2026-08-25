@@ -24,7 +24,7 @@ You can achieve a similar result by [running your own proxy server](/docs/tracki
 | Infrastructure to run | None | You run and scale the proxy |
 | TLS certificate | Provisioned and renewed by Mixpanel | You manage it |
 | Setup | Two DNS records | Server config and deployment |
-| Can also proxy SDK assets from `cdn.mxpnl.com` | No | Yes |
+| Proxies `cdn.mxpnl.com` assets | No | Yes |
 | Availability | Enterprise | Any plan |
 
 If you need to serve Mixpanel's SDK bundles and async modules from your own domain as well, a self-hosted proxy is still the right choice. See [Supported endpoints](#supported-endpoints).
@@ -80,7 +80,7 @@ The first record routes your tracking traffic to Mixpanel. The second one author
 You can reopen these records at any time from the **⋯** menu on the domain row → **View setup instructions**.
 
 <Note>
-  If your DNS is behind a proxying CDN (such as Cloudflare's orange-cloud mode), set the tracking record to **DNS-only**. Proxying it prevents certificate validation and can break TLS for your domain.
+  If your DNS is behind a proxying CDN (such as Cloudflare), disable proxying for the tracking record so it resolves directly to Mixpanel. In Cloudflare, for example, set the record's **Proxy status** to **DNS only**. Proxying prevents certificate validation and can break TLS for your domain.
 </Note>
 
 ### Step 3: Wait for the certificate
@@ -94,7 +94,7 @@ Certificate issuance begins automatically once the DNS records resolve. This usu
 | **Active** | The domain is serving tracking traffic. | Point your SDK at it. |
 | **Certificate error** | Validation or issuance failed. | Confirm the DNS records match exactly, including the trailing portion of the value. |
 
-Don't send production traffic to the domain until it shows **Active**.
+Don't send production traffic to the domain until it shows **Active**. Until the certificate is issued, TLS connections to the domain fail, so requests never reach Mixpanel and those events are lost.
 
 ### Step 4: Point your SDK at the domain
 
