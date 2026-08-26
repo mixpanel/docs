@@ -603,33 +603,6 @@
                   {
                     "group": "Empower Your Team",
                     "pages": [
-                      {
-                        "group": "Use Mixpanel Agent",
-                        "pages": [
-                          "guides/guides-by-use-case/empower-your-team/mixpanel-agent",
-                          "guides/guides-by-use-case/empower-your-team/mixpanel-agent/use-cases"
-                        ]
-                      },
-                      {
-                        "group": "Use Mixpanel MCP",
-                        "root": "guides/guides-by-use-case/empower-your-team/mcp",
-                        "pages": [
-                          {
-                            "group": "MCP by Industry",
-                            "root": "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry",
-                            "pages": [
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/ai",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/b2bsaas",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/ecommerce",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/finance",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/healthcare",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/media"
-                            ]
-                          },
-                          "guides/guides-by-use-case/empower-your-team/mcp/integrations"
-                        ]
-                      },
-                      "guides/guides-by-use-case/empower-your-team/headless",
                       "guides/guides-by-use-case/empower-your-team/close-strategy-execution-gap",
                       "guides/guides-by-use-case/empower-your-team/see-replays"
                     ]
@@ -643,7 +616,6 @@
                   "guides/guides-by-workflow/embed-data",
                   "guides/guides-by-workflow/ensure-data-quality",
                   "guides/guides-by-workflow/data-privacy",
-                  "guides/guides-by-workflow/write-business-context",
                   "guides/guides-by-workflow/sync-with-mirror"
                 ]
               },
@@ -651,7 +623,6 @@
                 "group": "Guides by Topic",
                 "pages": [
                   "guides/guides-by-topic/continuous-innovation",
-                  "guides/guides-by-topic/trust-ai-answers",
                   "guides/guides-by-topic/govern-data",
                   "guides/guides-by-topic/features",
                   "guides/guides-by-topic/core-reports"
@@ -663,12 +634,40 @@
             "group": "MIXPANEL AI",
             "icon": "/icons/flower.svg",
             "pages": [
-              "guides/guides-by-use-case/empower-your-team/mixpanel-agent",
-              "guides/guides-by-use-case/empower-your-team/mcp",
-              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry",
-              "guides/guides-by-use-case/empower-your-team/mcp/integrations",
-              "guides/guides-by-use-case/empower-your-team/headless",
-              "guides/guides-by-workflow/write-business-context"
+              {
+                        "group": "Use Mixpanel Agent",
+                        "root": "guides/mixpanel-agent",
+                        "pages": [
+                          "guides/mixpanel-agent/use-cases"
+                        ]
+                      },
+              {
+                        "group": "Use Mixpanel MCP",
+                        "root": "guides/mcp",
+                        "pages": [
+                          {
+                            "group": "MCP by Industry",
+                            "root": "guides/mcp/mcp-by-industry",
+                            "pages": [
+                              "guides/mcp/mcp-by-industry/ai",
+                              "guides/mcp/mcp-by-industry/b2bsaas",
+                              "guides/mcp/mcp-by-industry/ecommerce",
+                              "guides/mcp/mcp-by-industry/finance",
+                              "guides/mcp/mcp-by-industry/healthcare",
+                              "guides/mcp/mcp-by-industry/media"
+                            ]
+                          },
+                          "guides/mcp/integrations"
+                        ]
+                      },
+                      "guides/headless",
+                      {
+                        "group": "Use Mixpanel AI",
+                        "pages": [
+                          "guides/use-mixpanel-ai/write-business-context",
+                          "guides/use-mixpanel-ai/trust-ai-answers"
+                        ]
+                      }
             ]
           },
           {
@@ -4760,6 +4759,34 @@
     {
       "source": "/guides/strategic-playbooks/onboarding-playbook/beyond-onboarding",
       "destination":"/guides/strategic-playbooks/onboarding-playbook"
+    },
+    {
+      "source": "/guides/guides-by-use-case/empower-your-team/mixpanel-agent",
+      "destination":"/guides/mixpanel-agent"
+    },
+    {
+      "source": "/guides/guides-by-use-case/empower-your-team/mixpanel-agent/use-cases",
+      "destination":"/guides/mixpanel-agent/use-cases"
+    },
+    {
+      "source": "/guides/guides-by-use-case/empower-your-team/mcp",
+      "destination":"/guides/mcp"
+    },
+    {
+      "source": "/guides/guides-by-use-case/empower-your-team/mcp/*",
+      "destination":"/guides/mcp/*"
+    },
+    {
+      "source": "/guides/guides-by-use-case/empower-your-team/headless",
+      "destination":"/guides/headless"
+    },
+    {
+      "source": "/guides/guides-by-workflow/write-business-context",
+      "destination":"/guides/use-mixpanel-ai/write-business-context"
+    },
+    {
+      "source": "/guides/guides-by-topic/trust-ai-answers",
+      "destination":"/guides/use-mixpanel-ai/trust-ai-answers"
     }
   ]
 }
