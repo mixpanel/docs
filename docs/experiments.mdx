@@ -95,7 +95,7 @@ Enter either the sample size (the number of users to be exposed to the experimen
 
 Mixpanel has set default automatic configurations, seen below. If required, please modify them as needed for the experiment
 
-1. **Experiment Model type**: Sequential. You can also choose Frequentist or Bayesian; see [Experiment Model Types](#experiment-model-types) for how they differ.
+1. **Experiment Model type**: Sequential. You can also choose Frequentist, or Bayesian if your project is in the [closed beta](#bayesian); see [Experiment Model Types](#experiment-model-types) for how they differ.
 2. **Confidence Threshold**: 95%. On a Bayesian experiment this setting is labeled **Decision Threshold** and sets the minimum Chance to Beat Control required to highlight a variant as a winner.
 3. **Experiment Start Date**: Date of the first user exposed to the experiment
 
@@ -275,7 +275,13 @@ To illustrate how these calculations work in practice, let's walk through a conc
 
 This example shows why larger sample sizes are crucial—with only 10 users per group, even a 10-point difference in conversion rate isn't statistically significant.
 
+<span id="bayesian" />
+
 ##### Bayesian
+
+<Note>
+  **Closed beta.** The Bayesian model is in closed beta and is not enabled for all projects. If you don't see it in the Experiment Model type picker, reach out to your account team to request access. Behavior described below may change before general availability.
+</Note>
 
 The Bayesian model answers a different question than the Frequentist and Sequential models. Instead of asking "how surprising would this data be if the treatment had no effect?" (a p-value), it estimates a distribution of plausible values for each variant's metric and reports **how likely it is that the variant is actually better than control**. That probability is surfaced as the **Chance to Beat Control** column.
 
@@ -766,7 +772,7 @@ You can see your experiment MEU usage by going to Organization Settings \> Plan 
     
 - Frequentist: Capable of detecting smaller lifts, but requires you to keep experiments for the full duration. You’re discouraged from preemptively making decisions before the test duration is complete. **When to use?** For very small changes (~1% lift) when precision matters.
 
-- Bayesian: Reports the probability that each variant beats control instead of a p-value, and can be read at any point during the experiment. **When to use?** When you're reporting results to an audience that doesn't work in p-values. Note that a few metric configurations aren't supported, listed under [Bayesian](#bayesian).
+- Bayesian (closed beta): Reports the probability that each variant beats control instead of a p-value, and can be read at any point during the experiment. **When to use?** When you're reporting results to an audience that doesn't work in p-values. Note that this model is in [closed beta](#bayesian) and a few metric configurations aren't supported.
 
 ### Experiment metric types
 - **Primary Metrics:**  Main goals you're trying to improve. These are metrics used to determine if the experiment succeeded. Examples: revenue, conversion rates, ARPU.
