@@ -9,6 +9,17 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-08-27">
+  ## First-Party Domains: Route tracking through a subdomain you control
+
+  Ad blockers, content blockers, and browser tracking protection may sometimes block requests to known analytics endpoints like `api.mixpanel.com`. When that happens, events never reach Mixpanel and the data is lost.
+
+  First-Party Domains allow Enterprise organizations to route Mixpanel traffic through a subdomain they own instead, like `track.yourcompany.com`. Requests look like traffic to your own infrastructure, so they're far less likely to be blocked. Add a subdomain from **Organization Settings → First-Party Domains**, point two CNAME records at it, and Mixpanel automatically issues and renews the TLS certificate — no manual setup required. 
+
+  First-Party Domains require a subdomain (not an apex domain), Organization Owner or Admin permissions, and DNS access. Up to 3 domains per organization. Available to organizations on an **Enterprise** plan. 
+
+  [Learn more →](/docs/tracking-methods/first-party-domains)
+</Update>
 <Update label="2026-08-24">
   ## Mixpanel plugin for Claude Code: analytics skills in one install
 
