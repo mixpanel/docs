@@ -4,13 +4,66 @@ title: Mixpanel Headless
 
 Mixpanel Headless is an open-source SDK that exposes the full Mixpanel platform — every query engine, report type, and configuration — as a single Python object. Build agents, notebooks, scheduled scripts, or ETL pipelines that work with your product data the same way a human analyst would, without a browser.
 
-## When to use Mixpanel Headless
+## Choosing between Headless and MCP
 
-Headless is for coding agents and developers — anything that writes or generates Python to call Mixpanel.
+Mixpanel makes your data accessible through several interfaces:
 
 - [**Mixpanel Agent**](/docs/mixpanel-agent) is the conversational AI inside the Mixpanel UI.
-- [**MCP Server**](/docs/mcp) connects chatbots (Claude, ChatGPT, and others) to your data for natural-language Q&A.
-- **Mixpanel Headless** is the SDK for coding agents (Claude Code, Codex, Cursor) and for scripts, notebooks, and pipelines you write yourself.
+- [**MCP Server**](/docs/mcp) connects chat assistants (Claude, ChatGPT, and others) to your data for natural-language Q&A.
+- **Mixpanel Headless** is the Python SDK for coding agents (Claude Code, Codex, Cursor) and for scripts, notebooks, and pipelines you write yourself.
+
+Headless and MCP both give AI tools access to Mixpanel, but they solve different problems. Neither is strictly more capable than the other — the question is what you're building.
+
+### Use MCP to plug an LLM into Mixpanel
+
+MCP is the fastest path to an assistant that can query your data. The server is hosted, the tools are curated, and any MCP-compatible client works out of the box with no code to write.
+
+The fixed tool set is a feature. Each tool has a defined schema and a predictable result, which is what you want in a chat session where a person reads each answer and asks the next question.
+
+**Choose MCP when:**
+
+- You want natural-language Q&A inside Claude, ChatGPT, Cursor, or another assistant
+- A person is in the loop, reading results and deciding what to ask next
+- You value low lift and predictable behavior over customization
+- What you need is already covered by an existing tool
+
+### Use Headless to build on top of Mixpanel
+
+Headless takes the opposite approach: instead of a fixed menu of tools, it gives the agent Python.
+
+That distinction matters more than it first appears. Writing code is what coding agents are best at, and code composes in ways a sequence of tool calls can't. An agent using Headless can run several queries, join the results, apply a filter no tool parameter exposes, and loop the whole thing over every project in the org. Results come back as typed objects with a `.df` property, so anything you can do to a DataFrame, an agent can do to your Mixpanel data.
+
+Two capabilities follow from that:
+
+- **Combining with other data sources.** Because results are DataFrames, a script can join Mixpanel data against your warehouse, a CSV, a billing export, or a CRM pull. An assistant with several MCP servers connected can compare figures in conversation, but joining full datasets is a job for code.
+- **Custom output.** The agent generates the chart, report, or interface you actually want, rather than the visualizations a tool happens to return.
+
+Headless also covers the full product surface — every report type, configuration, and asset — where MCP exposes a curated subset.
+
+**Choose Headless when:**
+
+- You're building something custom: an agent, a pipeline, a scheduled job, or a notebook
+- The analysis is complex or multi-step enough that expressing it in code beats chaining tool calls
+- You need to combine Mixpanel data with other sources
+- You want custom visualizations or output formats
+- You need a capability outside the MCP tool set
+
+### Side by side
+
+|  | MCP Server | Headless |
+| --- | --- | --- |
+| **Built for** | Chat assistants | Coding agents |
+| **Best at** | Natural-language Q&A | Custom agents, scripts, and pipelines |
+| **Interface** | Fixed set of tools | Python |
+| **Setup** | Connect a hosted server | `pip install`, then write code |
+| **Surface area** | Curated subset | Full product surface |
+| **Analysis** | What a tool exposes | Anything expressible in code |
+| **Other data sources** | Compared in conversation | Joined in code |
+| **Output** | Tool results and charts | Whatever you generate |
+
+<Info>
+  The two aren't mutually exclusive. A common pattern is MCP for interactive exploration, then Headless for the automated workloads that come out of it.
+</Info>
 
 ## Get started
 
@@ -18,7 +71,7 @@ Headless is for coding agents and developers — anything that writes or generat
 pip install mixpanel-headless
 ```
 
-Then follow the [quickstart on GitHub](https://mixpanel.github.io/mixpanel-headless/getting-started/installation/).
+Then follow the [quickstart on GitHub](https://mixpanel.github.io/mixpanel-headless/getting-started/quickstart/).
 
 ## Rate limits
 
