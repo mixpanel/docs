@@ -20,6 +20,76 @@ Get all the latest updates in your inbox.
 
   [Learn more →](/docs/tracking-methods/first-party-domains)
 </Update>
+<Update label="2026-08-24">
+  ## Mixpanel plugin for Claude Code: analytics skills in one install
+
+  Claude Code users can now install the Mixpanel plugin — 12 skills that guide tracking implementation, metric investigation, dashboard creation, experiments, feature flags, and Lexicon management. The skills work through the [Mixpanel MCP server](/docs/mcp) (any region) or the [mixpanel-headless](/docs/mixpanel-headless) Python SDK.
+
+  ```bash
+  claude plugin marketplace add mixpanel/ai-plugins
+  claude plugin install mixpanel
+  ```
+
+  Then run `/mixpanel:install` once per project to set up an engine and region. The skills are open source at [github.com/mixpanel/ai-plugins](https://github.com/mixpanel/ai-plugins).
+
+  [Learn more →](/docs/mcp#claude-code-plugin)
+</Update>
+
+<Update label="2026-08-24">
+  ## Experiments and Feature Flags: Now on Free and Growth plans
+
+  Run experiments and manage rollouts from the same place you do your analytics. Identify opportunities, spin up tests, interpret results, and ship the winner, all driven by AI that fits your workflow.
+
+  With this update, you can:
+
+  - **Move at the speed of AI:** Full MCP and Mixpanel Agent support means your AI assistant can propose tests from live metrics, launch them, and interpret the results — no context switching, no advanced stats knowledge required.
+  - **Trust every result:** Pre-Experiment Bias and SRM checks run automatically, and advanced methodologies like CUPED, Winsorization, Bonferroni, Benjamini-Hochberg are available to keep every experiment statistically sound
+  - **Target by behavior, not just identity:** Roll out to the cohorts and events you already use in Mixpanel.
+  - **Ship with control:** Audit trails, multi-environment support, and dynamic config are all included.
+
+  **What's included:**
+
+  - **Free plan:** Unlimited experiments, 1k Monthly Experiment Users (MEU), up to 10 active feature flags.
+  - **Growth plan:** 5k MEU/month, up to 50 active feature flags. Add up to 100k MEU/month and up to 500 active feature flags with additional MEUs.
+
+  MEU = number of users exposed to an experiment.
+
+  Get started: [Experiment & Optimize tour](/guides/self-guided-tours#experiment-&-optimize) | [Experiments docs](/docs/experiments) | [Feature Flags docs](/docs/featureflags)
+</Update>
+
+<Update label="2026-08-20">
+  ## Feature Flags: Typed Runtime Property Values
+
+  Feature Flags can now target Runtime Properties by their actual data type — string, number, list, or fuzzy — instead of treating every value as a string. Targeting rules match correctly on numbers and lists, not just text.
+
+  Previously, Runtime Property filters compared everything as a string. That meant no real numeric or boolean comparisons, making flag targeting less predictable and reliable.
+
+  With this update, each targeting condition has a Data Type that controls how it's parsed and compared:
+
+  - **String:** case-insensitive match, ordered comparisons in lexicographical order
+  - **Number:** true numeric comparison (Is, Greater than, Less than, etc.)
+  - **List:** match any/all elements, each evaluated by its own type
+  - **Fuzzy:** loose, cross-type match (e.g. `"5"` matches `5`, `"1"` matches `true`)
+
+  [Learn more →](/docs/featureflags#data-types-for-runtime-values)
+</Update>
+
+<Update label="2026-08-07">
+  ## Automated Metadata Enrichment
+
+  Raw event names rarely explain themselves. `btn_clk_add_crt` means something to the engineer who instrumented it and little to anyone else, including Mixpanel Agent and MCP, which rely on Lexicon to understand your data. Writing a display name and description for every event takes time, so most projects have gaps. Mixpanel can now fill them for you. 
+  With this update, you can:
+
+  - **Fill every gap in one action**: From Lexicon → Tidy Up → Fill in the blanks, Mixpanel generates a display name and description for each event missing one and applies them across your project.
+  - **Get names that fit your data**: Suggestions draw on the event name, sample property values, and your project's Business Context, and follow your naming convention when Data Standards is enabled.
+  - **Keep what you wrote**: Enrichment only fills gaps. Events with an existing display name or description keep what you gave them.
+  - **See what changed**: Every enriched field is recorded in the event's history, attributed to the user who ran the fill, marked as AI-applied, and written to your audit log like any other Lexicon edit.
+
+  The same fill is available to agents over MCP via the Fill-Event-Metadata tool and inside Mixpanel Agent.
+  This release covers events. Property enrichment is next.
+
+  [Learn more →](/docs/data-governance/ai-powered-data-governance#automated-metadata-enrichment)
+</Update>
 
 <Update label="2026-08-07">
   ## Session Replay: Mobile Autocapture (Screen Views)
