@@ -54,7 +54,7 @@ Use Real-Time Event Streams when latency matters and your workflow needs individ
 
 - **Destination** — the webhook endpoint and its authentication configuration.
 - **Sync** — a rule that binds a set of filtered events and a Liquid payload template to a Destination.
-- **Failed events log** — a 72-hour record of events that could not be delivered after all retries, retained with full payload and destination response for debugging.
+- **Failed events log** — a 72-hour record of events that could not be delivered after all retries, retained with the destination HTTP response for debugging.
 
 <Tip>
   {/* PLACEHOLDER: Add a customer-facing diagram showing ingestion → filter → Liquid template → webhook. */}

@@ -76,16 +76,23 @@ After 5 failed retries, the event moves to a **failed events log** retained in-p
 
 - Event timestamp
 - Event type
-- Full outbound payload (as rendered by your Liquid template)
 - Destination HTTP response (status code, headers, body)
 
-Use the log to debug specific failures, replay after fixing your endpoint, or feed samples into support tickets.
+<Note>
+  The failed events log records the destination's HTTP response but **not** the outbound payload. If you need to inspect the exact body Mixpanel sent, log requests on your endpoint or in an intermediate proxy.
+</Note>
+
+Use the log to debug destination-side failures and feed samples into support tickets.
 
 {/* PLACEHOLDER: Document how to replay failed events (manual retry, bulk replay, or export) once the flow is confirmed. */}
 
-## Alerting on failure rate
+## Alerting on failure
 
-A Sync where **more than 5% of events fail over any 15-minute window** triggers an in-product alert to Project Admins. This catches partial outages and misconfigurations early, before they accumulate in the failed events log.
+<Info>
+  Rate-based alerting (for example, "more than X% of events failed over Y minutes") is planned for GA but not available during the private beta. It depends on shared rate-tracking infrastructure that is still being built.
+</Info>
+
+During the private beta, failure alerting is per-event: any event that exhausts all 5 retries moves the Sync into the `error` state and pauses streaming until a Project Admin re-enables it. See [States and monitoring](/docs/real-time-event-streams/states-and-monitoring) for state transitions.
 
 {/* PLACEHOLDER: Describe how alerts are delivered — in-app notification, email, both — and where alert history is viewable. */}
 

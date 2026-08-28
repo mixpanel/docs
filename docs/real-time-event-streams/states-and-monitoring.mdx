@@ -17,16 +17,16 @@ Sync state is shown as a status badge on the Syncs list view.
 | State | Meaning |
 | --- | --- |
 | `enabled` | The Sync is actively streaming matching events. |
-| `unhealthy` | Deliveries are partially failing but the Sync has not tripped the error threshold. Investigate soon. |
 | `disabled` | The Sync is manually paused by a Project Admin. Events are discarded; no backlog accumulates. |
-| `error` | Persistent delivery failures. Triggered when more than 50% of events fail for more than 15 minutes. |
+| `error` | The Sync was paused after an event exhausted all 5 retries. Streaming stops until a Project Admin re-enables the Sync. |
+| `unhealthy` | Deliveries are partially failing but no event has exhausted its retries yet. Investigate soon. |
 | `paused_rate_limit` | Temporarily paused after a `429` response from the destination. Auto-resumes when the destination recovers. |
 
 <Warning>
   When a Sync is `disabled`, events matching the filter are **discarded**. Mixpanel does not accumulate a backlog to replay when the Sync is re-enabled.
 </Warning>
 
-{/* PLACEHOLDER: Add exact thresholds for the `unhealthy` state once finalized — e.g., failure rate and time window. */}
+{/* PLACEHOLDER: Add exact thresholds for the `unhealthy` state once finalized — e.g., failure rate and time window. During the private beta, `error` is triggered per-event after 5 retries (STREAM-367) because the shared remote cache used for rate-based tripping isn't built yet. */}
 
 ## Destination states
 

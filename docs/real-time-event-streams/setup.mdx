@@ -104,25 +104,29 @@ The full outbound request body is customer-controlled via a [Liquid](https://sho
 
 | Variable | Description |
 | --- | --- |
+| `{{ event_name }}` | Event name |
+| `{{ event_time }}` | Event timestamp (ISO 8601) |
 | `{{ distinct_id }}` | Mixpanel user identifier |
-| `{{ event.name }}` | Event name |
-| `{{ event.time }}` | Event timestamp (ISO 8601) |
-| `{{ event.insert_id }}` | Mixpanel deduplication ID |
-| `{{ event.properties.<key> }}` | Any event property |
-| `{{ user.<key> }}` | Any user property, resolved at stream time |
+| `{{ insert_id }}` | Mixpanel deduplication ID |
+| `{{ project_id }}` | Mixpanel project ID |
+| `{{ properties['key'] }}` | Any event property |
+
+<Note>
+  User properties are **not** available in the payload template during the private beta. Only event properties and the top-level variables above are supported. If you need user attributes on the destination side, include them as event properties at tracking time or enrich after delivery.
+</Note>
 
 ### Example template
 
 ```liquid Payload template
 {
   "user_id": "{{ distinct_id }}",
-  "event": "{{ event.name }}",
-  "timestamp": "{{ event.time }}",
-  "insert_id": "{{ event.insert_id }}",
+  "event": "{{ event_name }}",
+  "timestamp": "{{ event_time }}",
+  "insert_id": "{{ insert_id }}",
   "properties": {
-    "plan": "{{ user.plan }}",
-    "country": "{{ event.properties.country }}",
-    "revenue": {{ event.properties.revenue }}
+    "plan": "{{ properties['plan'] }}",
+    "country": "{{ properties['country'] }}",
+    "revenue": "{{ properties['revenue'] }}"
   }
 }
 ```
@@ -132,7 +136,7 @@ The full outbound request body is customer-controlled via a [Liquid](https://sho
 Template syntax is validated on save. Invalid syntax surfaces a clear error and blocks the Sync from enabling, so you cannot ship a broken template into production.
 
 <Tip>
-  Include `{{ event.insert_id }}` in your payload if you plan to deduplicate on the destination side using the body rather than the `X-Mixpanel-Insert-Id` header. See [At-least-once delivery](/docs/real-time-event-streams/delivery-and-reliability#at-least-once-delivery).
+  Include `{{ insert_id }}` in your payload if you plan to deduplicate on the destination side using the body rather than the `X-Mixpanel-Insert-Id` header. See [At-least-once delivery](/docs/real-time-event-streams/delivery-and-reliability#at-least-once-delivery).
 </Tip>
 
 {/* PLACEHOLDER: Add supported Liquid filters/tags (e.g., default, upcase, date formatting) once finalized. */}
