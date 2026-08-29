@@ -1,0 +1,54 @@
+{
+  "$schema": "https://assets.gtx.dev/config-schema.json",
+  "_comment": "STAGED — not active. Move to the repo root only after the docs.json languages array exists (see i18n/nav/README.md) and GT is chosen over Mintlify-native translations (see i18n/03-tooling-evaluation.md). Adapted from mintlify/docs' own gt.config.json.",
+
+  "defaultLocale": "en",
+  "locales": ["en", "ko"],
+
+  "files": {
+    "mdx": {
+      "include": ["./docs/**/*.mdx", "./guides/**/*.mdx"],
+      "exclude": [
+        "./[locales]/**/*.mdx",
+        "./reference/**/*.mdx",
+        "./changelogs.mdx",
+        "./snippets/**/*.mdx"
+      ],
+      "transform": {
+        "match": "^(.*)$",
+        "replace": "{locale}/$1"
+      }
+    },
+    "json": {
+      "include": ["./docs.json"]
+    }
+  },
+
+  "options": {
+    "jsonSchema": {
+      "./docs.json": {
+        "composite": {
+          "$.navigation.languages": {
+            "type": "array",
+            "key": "$.language",
+            "include": ["$..group", "$..tab", "$..item", "$..anchor", "$..dropdown"],
+            "transform": {
+              "$..pages[*]": { "match": "^(.*)$", "replace": "{locale}/$1" },
+              "$..root": { "match": "^(.*)$", "replace": "{locale}/$1" }
+            },
+            "experimentalSort": "locales"
+          }
+        }
+      }
+    },
+
+    "docsUrlPattern": "/[locale]",
+    "generateRedirects": "./docs.json",
+
+    "experimentalLocalizeStaticUrls": true,
+    "experimentalHideDefaultLocale": true,
+    "docsHideDefaultLocaleImport": true,
+    "experimentalAddHeaderAnchorIds": "mintlify",
+    "experimentalClearLocaleDirs": true
+  }
+}

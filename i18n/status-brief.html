@@ -1,0 +1,698 @@
+<title>Korean Docs, Staged</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+
+<style>
+  :root {
+    --paper:        #faf9fc;
+    --surface:      #ffffff;
+    --surface-sunk: #f2f0f7;
+    --ink:          #1b1626;
+    --ink-soft:     #3d3552;
+    --muted:        #6b6580;
+    --rule:         #e2dfeb;
+    --rule-strong:  #cfcadd;
+    --accent:       #6d4aff;
+    --accent-soft:  #ede9ff;
+    --ready:        #1a7a55;
+    --ready-soft:   #e2f3ec;
+    --gate:         #8f6410;
+    --gate-soft:    #f9efd9;
+    --held:         #6b6580;
+    --held-soft:    #eeecf3;
+
+    --measure: 68ch;
+    --rail: 8.5rem;
+
+    --fs-micro: 0.7rem;
+    --fs-small: 0.83rem;
+    --fs-body:  1.0rem;
+    --fs-lead:  1.16rem;
+    --fs-h3:    1.12rem;
+    --fs-h2:    1.62rem;
+    --fs-h1:    2.7rem;
+
+    --sans: "IBM Plex Sans KR", ui-sans-serif, system-ui, sans-serif;
+    --serif: "IBM Plex Serif", "IBM Plex Sans KR", Georgia, serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:        #16121f;
+      --surface:      #201b2d;
+      --surface-sunk: #191424;
+      --ink:          #f0edf7;
+      --ink-soft:     #cec8dd;
+      --muted:        #9a93ac;
+      --rule:         #322b44;
+      --rule-strong:  #453c5c;
+      --accent:       #a992ff;
+      --accent-soft:  #2c2444;
+      --ready:        #63c79c;
+      --ready-soft:   #1b2e28;
+      --gate:         #d9a94a;
+      --gate-soft:    #302713;
+      --held:         #9a93ac;
+      --held-soft:    #262133;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:        #16121f;
+    --surface:      #201b2d;
+    --surface-sunk: #191424;
+    --ink:          #f0edf7;
+    --ink-soft:     #cec8dd;
+    --muted:        #9a93ac;
+    --rule:         #322b44;
+    --rule-strong:  #453c5c;
+    --accent:       #a992ff;
+    --accent-soft:  #2c2444;
+    --ready:        #63c79c;
+    --ready-soft:   #1b2e28;
+    --gate:         #d9a94a;
+    --gate-soft:    #302713;
+    --held:         #9a93ac;
+    --held-soft:    #262133;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: var(--fs-body);
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4.5rem) clamp(1.15rem, 4vw, 3rem) 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.75rem, 5vw, 4rem);
+  }
+
+  /* ---------- shared type ---------- */
+
+  .label {
+    font-family: var(--mono);
+    font-size: var(--fs-micro);
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  h1, h2, h3 { font-family: var(--sans); text-wrap: balance; margin: 0; }
+
+  h1 {
+    font-size: var(--fs-h1);
+    font-weight: 700;
+    letter-spacing: -0.022em;
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: var(--fs-h2);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.22;
+  }
+
+  h3 {
+    font-size: var(--fs-h3);
+    font-weight: 600;
+    letter-spacing: -0.008em;
+    line-height: 1.35;
+  }
+
+  p { margin: 0; max-width: var(--measure); }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  code, .m { font-family: var(--mono); font-size: 0.87em; }
+  code {
+    background: var(--surface-sunk);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.08em 0.34em;
+    color: var(--ink-soft);
+  }
+
+  strong { font-weight: 600; color: var(--ink); }
+  em { font-style: italic; }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+    padding-bottom: 2.25rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .masthead .kicker {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.65rem 1.4rem;
+  }
+
+  .masthead .lede {
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 54ch;
+  }
+
+  /* the bilingual pairing is the subject; let it show once, at scale */
+  .hangul {
+    font-family: var(--sans);
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+
+  .standing {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.7rem;
+    align-items: center;
+  }
+
+  /* ---------- status pills: form encodes state ---------- */
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    font-family: var(--mono);
+    font-size: var(--fs-micro);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.6rem;
+    border-radius: 2px;
+    border: 1px solid currentColor;
+    white-space: nowrap;
+  }
+  .pill::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex: none;
+  }
+  .pill.is-ready  { color: var(--ready); background: var(--ready-soft); }
+  .pill.is-gate   { color: var(--gate);  background: var(--gate-soft); }
+  .pill.is-held   { color: var(--held);  background: var(--held-soft); }
+
+  /* ---------- section with mono rail ---------- */
+
+  section { display: grid; gap: 1.5rem; }
+
+  @media (min-width: 62rem) {
+    section {
+      grid-template-columns: var(--rail) minmax(0, 1fr);
+      column-gap: 2.5rem;
+    }
+    section > .rail { grid-column: 1; padding-top: 0.5rem; }
+    section > :not(.rail) { grid-column: 2; }
+  }
+
+  .rail { display: flex; flex-direction: column; gap: 0.3rem; }
+  .rail .n {
+    font-family: var(--mono);
+    font-size: var(--fs-small);
+    color: var(--rule-strong);
+    font-weight: 500;
+  }
+
+  .stack { display: flex; flex-direction: column; gap: 1.15rem; }
+
+  /* ---------- findings ---------- */
+
+  .findings { display: grid; gap: 1.15rem; }
+  @media (min-width: 46rem) { .findings { grid-template-columns: 1fr 1fr; } }
+
+  .finding {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--accent);
+    padding: 1.4rem 1.5rem 1.55rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .finding h3 { max-width: 30ch; }
+  .finding p { font-size: var(--fs-small); line-height: 1.6; color: var(--ink-soft); }
+  .finding .tag {
+    font-family: var(--mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ---------- figures strip ---------- */
+
+  .figures {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .fig {
+    background: var(--surface);
+    padding: 1.1rem 1.15rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+  }
+  .fig .v {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 1.55rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .fig .k {
+    font-size: var(--fs-small);
+    line-height: 1.35;
+    color: var(--muted);
+    font-family: var(--sans);
+  }
+  .fig.is-alarm .v { color: var(--gate); }
+
+  /* ---------- tables ---------- */
+
+  .scroll { overflow-x: auto; border: 1px solid var(--rule); background: var(--surface); }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 34rem;
+    font-family: var(--sans);
+    font-size: var(--fs-small);
+  }
+  th, td {
+    text-align: left;
+    padding: 0.72rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  thead th {
+    font-family: var(--mono);
+    font-size: var(--fs-micro);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--surface-sunk);
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.what { color: var(--ink); font-weight: 500; }
+  td .sub { display: block; color: var(--muted); font-size: var(--fs-micro); margin-top: 0.18rem; line-height: 1.45; }
+
+  /* ---------- option comparison ---------- */
+
+  .options { display: grid; gap: 1rem; }
+  @media (min-width: 52rem) { .options { grid-template-columns: repeat(3, 1fr); } }
+
+  .opt {
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    padding: 1.2rem 1.25rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .opt.is-pick { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .opt h3 { font-size: 1rem; }
+  .opt ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.42rem; }
+  .opt li {
+    font-family: var(--sans);
+    font-size: var(--fs-small);
+    line-height: 1.45;
+    color: var(--ink-soft);
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .opt li::before {
+    position: absolute;
+    left: 0;
+    font-family: var(--mono);
+    font-weight: 600;
+  }
+  .opt li.y::before { content: "+"; color: var(--ready); }
+  .opt li.n::before { content: "\2212"; color: var(--gate); }
+  .opt li.q::before { content: "?"; color: var(--muted); }
+  .opt .verdict {
+    margin-top: auto;
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .opt.is-pick .verdict { color: var(--accent); }
+  .opt:not(.is-pick) .verdict { color: var(--muted); }
+
+  /* ---------- asks ---------- */
+
+  .asks { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--rule); }
+  .ask {
+    display: grid;
+    gap: 0.35rem 1.5rem;
+    padding: 1.15rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  @media (min-width: 46rem) {
+    .ask { grid-template-columns: 11rem minmax(0, 1fr); align-items: start; }
+  }
+  .ask .who {
+    font-family: var(--mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    padding-top: 0.28rem;
+  }
+  .ask p { font-size: var(--fs-small); line-height: 1.58; color: var(--ink-soft); }
+  .ask .h { font-family: var(--sans); font-weight: 600; color: var(--ink); font-size: var(--fs-body); }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  footer p { font-size: var(--fs-small); color: var(--muted); }
+
+  .note {
+    background: var(--surface-sunk);
+    border-left: 2px solid var(--rule-strong);
+    padding: 0.9rem 1.1rem;
+    font-size: var(--fs-small);
+    line-height: 1.58;
+    color: var(--ink-soft);
+    max-width: var(--measure);
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="kicker">
+      <span class="label">Mixpanel Docs &middot; Localization</span>
+      <span class="label">29 Aug 2026</span>
+    </div>
+    <h1>docs.mixpanel.com, <span class="hangul">한국어로</span></h1>
+    <p class="lede">
+      The groundwork for Korean docs is built and staged. Nothing is switched on —
+      <code>docs.json</code> is untouched, no workflow is installed, no <code>ko/</code> tree exists at the
+      repo root. Two findings changed the shape of the project, and one decision unblocks the rest of it.
+    </p>
+    <div class="standing">
+      <span class="pill is-ready">M1 built</span>
+      <span class="pill is-gate">M2 needs a decision</span>
+      <span class="pill is-gate">M3 staged</span>
+      <span class="pill is-held">M4 planned</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="rail"><span class="label">Findings</span><span class="n">2</span></div>
+    <div class="stack">
+      <h2>Two things worth knowing before anyone translates a page</h2>
+      <div class="findings">
+
+        <article class="finding">
+          <span class="tag">Reframes M2 + M3</span>
+          <h3>Mintlify already sells the pipeline we were about to build</h3>
+          <p>
+            Native AI translations — Pro and Enterprise — bulk-translates the docs and opens a PR in this
+            repo on every change, never publishing without a human merge. That is M2's bulk translation plus
+            all of M3.
+          </p>
+          <p>
+            Every signal says Mixpanel is on Enterprise: custom domain, custom CSS and JS, self-hosted
+            Garnett fonts, 881 redirects — and the README puts the Mintlify web editor behind Okta, which is
+            SSO, which is Enterprise. <strong>One person opening Settings → Translations settles it.</strong>
+          </p>
+        </article>
+
+        <article class="finding">
+          <span class="tag">Changes the engine criteria</span>
+          <h3>710 internal links will break silently the moment a heading is translated</h3>
+          <p>
+            Every heading anchor in this repo derives from its English text. Translate
+            <code>## Anatomy of an Event</code> and the anchor changes — so 710 deep links land at the top of
+            the page instead of the right section. Nothing errors. Nothing shows in a diff.
+          </p>
+          <p>
+            The fix is mechanical — pin <code>## <span class="hangul">이벤트의 구조</span> [#anatomy-of-an-event]</code> —
+            but <strong>the engine has to do it</strong>, and not every candidate can. It became the
+            disqualifying criterion.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="rail"><span class="label">The corpus</span></div>
+    <div class="stack">
+      <h2>What the engine actually has to survive</h2>
+      <p>
+        Measured from the repo, not estimated. This is not a generic Markdown corpus, and the numbers are
+        why the tooling question has a right answer.
+      </p>
+      <div class="figures">
+        <div class="fig"><span class="v">295</span><span class="k">pages in the launch tier</span></div>
+        <div class="fig"><span class="v">352,500</span><span class="k">prose words to translate</span></div>
+        <div class="fig"><span class="v">914</span><span class="k"><code>&lt;Frame&gt;</code> components</span></div>
+        <div class="fig"><span class="v">117</span><span class="k">files importing <code>/snippets/*.jsx</code></span></div>
+        <div class="fig"><span class="v">2,721</span><span class="k">internal links to re-prefix</span></div>
+        <div class="fig is-alarm"><span class="v">710</span><span class="k">of those carry a <code>#fragment</code></span></div>
+      </div>
+      <p class="note">
+        Half the volume sits in five sections. <code>docs/tracking-methods</code> alone is 91,529 words
+        across 68 files — the biggest block, but the <em>cheapest</em> per word: the same headings recur
+        13–14× across every SDK, so translation memory and the glossary do most of the work. It should be
+        reviewed as one batch by one reviewer.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="rail"><span class="label">Decision</span><span class="n">open</span></div>
+    <div class="stack">
+      <h2>Which translation engine?</h2>
+      <p>
+        This is the one blocking decision. It should be settled before bulk translation starts, because the
+        three paths produce different repos.
+      </p>
+
+      <div class="options">
+
+        <article class="opt is-pick">
+          <h3>Mintlify native</h3>
+          <ul>
+            <li class="y">Almost certainly already paid for</li>
+            <li class="y">Implements M3 outright — PR per change, human gate</li>
+            <li class="y">Zero repo surface, first-party MDX semantics</li>
+            <li class="q">No published glossary or do-not-translate control</li>
+            <li class="q">Silent on heading anchors and OpenAPI</li>
+          </ul>
+          <span class="verdict">Start here</span>
+        </article>
+
+        <article class="opt">
+          <h3>General Translation</h3>
+          <ul>
+            <li class="y"><strong>Mintlify's own docs repo runs on it</strong></li>
+            <li class="y">Pins heading anchors — solves the 710</li>
+            <li class="y">Localizes <code>docs.json</code> nav automatically</li>
+            <li class="y">Can localize the OpenAPI specs</li>
+            <li class="n">Second vendor, second contract</li>
+          </ul>
+          <span class="verdict">Documented fallback</span>
+        </article>
+
+        <article class="opt">
+          <h3>Lingo.dev</h3>
+          <ul>
+            <li class="y">Cheapest per word; open source</li>
+            <li class="n">No heading-anchor pinning</li>
+            <li class="n">No <code>docs.json</code> nav localization</li>
+            <li class="n">No OpenAPI localization</li>
+          </ul>
+          <span class="verdict">Not recommended</span>
+        </article>
+
+      </div>
+
+      <p class="note">
+        <strong>How to settle it in an afternoon.</strong> Twelve pages, chosen to cover every structural
+        pattern in the corpus. Run each candidate over them and score with
+        <code>validate-mdx-parity.mjs</code> — the answer comes out as a number, not an opinion. Then four
+        human checks on those twelve only: glossary adherence, the
+        <span class="hangul">리텐션</span>/<span class="hangul">데이터 보관</span> split, particles after
+        Latin words, and register.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="rail"><span class="label">Built</span><span class="n">22 files</span></div>
+    <div class="stack">
+      <h2>What exists now, and what each thing unblocks</h2>
+      <p>
+        All of it is engine-independent — nothing here is wasted by whichever way the decision goes.
+      </p>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr><th scope="col">Artifact</th><th scope="col">What it does</th><th scope="col">Issue</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="what">Parity validator<span class="sub">431 lines, zero dependencies</span></td>
+              <td>Catches what review cannot: renamed JSX, translated code identifiers, localized image paths, dropped imports, unprefixed links, drifted anchors. Quiet on a correct translation, specific on a broken one.</td>
+              <td class="num">DF-827<span class="sub">+ the M3 gate</span></td>
+            </tr>
+            <tr>
+              <td class="what">Korean navigation<span class="sub">128 labels, 390 page paths</span></td>
+              <td>Full <code>ko</code> nav tree plus a generator that rebuilds it from <code>docs.json</code> and fails CI if labels drift out of sync.</td>
+              <td class="num">DF-824</td>
+            </tr>
+            <tr>
+              <td class="what">Scope &amp; preservation spec</td>
+              <td>What gets translated, what survives byte-for-byte, and the two rules that came out of actually translating pages — heading anchors and code comments.</td>
+              <td class="num">DF-826</td>
+            </tr>
+            <tr>
+              <td class="what">Korean glossary<span class="sub">121 terms, 60 do-not-translate</span></td>
+              <td>Terminology policy built on one fact: the product UI is English-only, so feature names stay phonetically recognisable against the button the reader is looking at.</td>
+              <td class="num">DF-826</td>
+            </tr>
+            <tr>
+              <td class="what">Pilot translations<span class="sub">3 pages, hand-translated</span></td>
+              <td>The quality bar engines get scored against. All three pass the validator on its strictest settings, zero warnings.</td>
+              <td class="num">DF-828</td>
+            </tr>
+            <tr>
+              <td class="what">Staged pipeline<span class="sub">config + CI workflow</span></td>
+              <td>Adapted from Mintlify's own. Deliberately parked outside the paths that would make it run — and deleted outright if native translations win.</td>
+              <td class="num">DF-830, DF-831</td>
+            </tr>
+            <tr>
+              <td class="what">Rollout playbook</td>
+              <td>Which language is next, the per-language checklist, and the reviewer checklist the automated PR points at.</td>
+              <td class="num">DF-833</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="rail"><span class="label">Next</span></div>
+    <div class="stack">
+      <h2>Three things that need a person</h2>
+      <div class="asks">
+
+        <div class="ask">
+          <span class="who">5 minutes</span>
+          <div>
+            <p class="h">Open the Mintlify dashboard → Settings → Translations</p>
+            <p>
+              If the page exists and lets you add a locale, DF-823 closes and the engine decision gets much
+              easier. While there, capture whether the feature exposes any glossary or do-not-translate
+              control — that single answer decides how much pipeline we build.
+            </p>
+          </div>
+        </div>
+
+        <div class="ask">
+          <span class="who">An afternoon</span>
+          <div>
+            <p class="h">Run the 12-page bake-off</p>
+            <p>
+              Scored by the validator, so it produces a number rather than a preference. Twelve pages to find
+              out beats guessing across 295.
+            </p>
+          </div>
+        </div>
+
+        <div class="ask">
+          <span class="who">Name a person</span>
+          <div>
+            <p class="h">Who reviews the Korean, and when?</p>
+            <p>
+              Roughly 3–5 days per language, and the only step in the whole pipeline that does not compress.
+              Worth settling before bulk translation runs, not after — machine output that sits unreviewed is
+              not a shipped locale.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="rail"><span class="label">After Korean</span></div>
+    <div class="stack">
+      <h2>The next language is probably Japanese</h2>
+      <p>
+        Mixpanel already publishes <code>hreflang</code> alternates for exactly four locales —
+        <span class="m">en-US</span>, <span class="m">ko-KR</span>, <span class="m">ja-JP</span>,
+        <span class="m">id-ID</span>. Marketing has already decided which non-English markets are worth
+        translating for and paid for it. Docs should follow that list rather than invent a new one.
+      </p>
+      <p class="note">
+        Do not extend past Japanese on inference. <code>docs.json</code> already reports into a Mixpanel
+        project, so docs pageviews by locale — and the measured lift after <span class="m">/ko</span> ships —
+        are a report away. That one report also settles whether the API reference ever gets translated, for
+        every language at once. We sell this product; we should use it.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Working files in <code>i18n/</code>. Findings and status posted to each Linear issue.</p>
+    <p class="label">Nothing live &middot; docs.json untouched</p>
+  </footer>
+
+</div>
