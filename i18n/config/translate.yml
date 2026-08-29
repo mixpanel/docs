@@ -1,0 +1,94 @@
+# STAGED — not active.
+# Move to .github/workflows/translate.yml only when:
+#   1. the engine decision in i18n/03-tooling-evaluation.md is made (if Mintlify-native wins,
+#      delete this file — Mintlify opens the PR itself and this workflow is redundant), and
+#   2. GT_API_KEY / GT_PROJECT_ID exist as repo secrets.
+# Until both are true this workflow would fail on every merge to main.
+#
+# Linear: DF-831
+
+name: Translate docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**/*.mdx"
+      - "guides/**/*.mdx"
+      - "docs.json"
+      - "i18n/glossary/**"
+  workflow_dispatch:
+    inputs:
+      full:
+        description: "Full re-translation instead of delta (slow, expensive)"
+        type: boolean
+        default: false
+
+concurrency:
+  # Never let two translation runs race; a later push supersedes an in-flight run.
+  group: translate-docs
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  translate:
+    name: Delta-translate and open a PR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # gt-lock.json is what makes this a delta: only content whose hash changed is sent.
+      - name: Translate changed content
+        env:
+          GT_API_KEY: ${{ secrets.GT_API_KEY }}
+          GT_PROJECT_ID: ${{ secrets.GT_PROJECT_ID }}
+        run: npx gtx-cli translate --config gt.config.json ${{ inputs.full && '--no-cache' || '' }}
+
+      # The gate. A translation that breaks JSX, code, links, or heading anchors must never
+      # reach a reviewer looking like a normal diff — it fails here instead.
+      - name: Validate MDX structure parity
+        run: |
+          node i18n/scripts/validate-mdx-parity.mjs \
+            --source docs --target ko/docs \
+            --locale ko --link-prefix --require-anchors --allow-code-comments
+          node i18n/scripts/validate-mdx-parity.mjs \
+            --source guides --target ko/guides \
+            --locale ko --link-prefix --require-anchors --allow-code-comments
+
+      - name: Check the generated navigation is in sync
+        run: node i18n/scripts/build-locale-nav.mjs ko --check
+
+      - name: Check the glossary artifacts are in sync
+        run: node i18n/scripts/build-glossary.mjs ko --check
+
+      - name: Open translation PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: i18n/translate-main
+          base: main
+          title: "i18n: update translations for ${{ github.sha }}"
+          commit-message: "i18n: update translations"
+          labels: i18n, translation
+          delete-branch: true
+          body: |
+            Automated translation update for ${{ github.sha }}.
+
+            Structure parity passed — JSX, code fences, imports, image paths, internal links,
+            and heading anchors are verified identical to the English source. **What still needs a
+            human is whether the Korean reads correctly.**
+
+            Reviewer checklist — see `i18n/04-rollout-playbook.md#reviewing-a-translation-pr`:
+            - [ ] Glossary terms match `i18n/glossary/ko.csv`
+            - [ ] `리텐션` (report) vs `데이터 보관` (policy) not confused
+            - [ ] Particles after Latin words read correctly (`Mixpanel을`, not `Mixpanel를`)
+            - [ ] Register is `-합니다 / -하세요` throughout
+            - [ ] Rendered spot-check in `mintlify dev` — no layout breakage from string length
