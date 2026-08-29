@@ -1,19 +1,31 @@
 # Staged pipeline config
 
-**Nothing here is active.** `gt.config.json` sits here rather than at the repo root, where it would be live.
+**Nothing here is active.** Both files sit outside the paths that would make them run.
 
 | File | Moves to | When |
 | --- | --- | --- |
 | `gt.config.json` | repo root | If General Translation is chosen **and** `docs.json` has a `languages` array |
+| `translate.yml` | `.github/workflows/` | Same, **and** `GT_API_KEY` / `GT_PROJECT_ID` exist as repo secrets |
 
-Move it early and it fails immediately: it targets a `$.navigation.languages` path that does not exist yet.
-
-The CI workflow that consumes it lands separately (DF-831).
+Move either one early and it fails on every merge to `main`: the workflow has no secrets to authenticate
+with, and `gt.config.json` targets a `$.navigation.languages` path that does not exist yet.
 
 ## If Mintlify-native translations win
 
-**Delete this file.** Mintlify opens the translation PR itself — no config, no workflow, no third-party
+**Delete both files.** Mintlify opens the translation PR itself — no config, no workflow, no third-party
 secret. See [`../03-tooling-evaluation.md`](../03-tooling-evaluation.md).
+
+Keep the three validation steps from `translate.yml` either way, as a small `verify-i18n.yml`:
+
+```yaml
+- run: node i18n/scripts/validate-mdx-parity.mjs --source docs --target ko/docs \
+         --locale ko --link-prefix --require-anchors --allow-code-comments
+- run: node i18n/scripts/build-locale-nav.mjs ko --check
+- run: node i18n/scripts/build-glossary.mjs ko --check
+```
+
+Whatever produces the translation, something has to prove it did not break 914 `<Frame>` tags, 2,721 links,
+and 3,723 heading anchors. Mintlify's PR needs that gate exactly as much as ours would.
 
 ## About `gt.config.json`
 
