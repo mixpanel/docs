@@ -1,0 +1,1159 @@
+{
+  "language": "ko",
+  "tabs": [
+    {
+      "tab": "문서",
+      "groups": [
+        {
+          "group": "소개",
+          "icon": "/icons/wave.svg",
+          "pages": [
+            "ko/docs/what-is-mixpanel",
+            "ko/docs/what-to-track",
+            {
+              "group": "빠른 시작",
+              "root": "ko/docs/quickstart",
+              "pages": [
+                "ko/docs/quickstart/install-mixpanel",
+                "ko/docs/quickstart/identify-users",
+                {
+                  "group": "이벤트 수집",
+                  "root": "ko/docs/quickstart/capture-events",
+                  "pages": [
+                    "ko/docs/quickstart/capture-events/autocapture",
+                    "ko/docs/quickstart/capture-events/track-events"
+                  ]
+                },
+                "ko/docs/quickstart/install-with-ai"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "데이터 수집",
+          "icon": "/icons/data-in.svg",
+          "pages": [
+            {
+              "group": "트래킹 방법",
+              "root": "ko/docs/tracking-methods",
+              "pages": [
+                "ko/docs/tracking-methods/choosing-the-right-method",
+                {
+                  "group": "SDK",
+                  "root": "ko/docs/tracking-methods/sdks",
+                  "pages": [
+                    {
+                      "group": "JavaScript",
+                      "root": "ko/docs/tracking-methods/sdks/javascript",
+                      "pages": [
+                        "ko/docs/tracking-methods/sdks/javascript/javascript-replay",
+                        "ko/docs/tracking-methods/sdks/javascript/javascript-flags",
+                        "ko/docs/tracking-methods/sdks/javascript/javascript-openfeature"
+                      ]
+                    },
+                    {
+                      "group": "React Native",
+                      "root": "ko/docs/tracking-methods/sdks/react-native",
+                      "pages": [
+                        "ko/docs/tracking-methods/sdks/react-native/react-native-flags",
+                        "ko/docs/tracking-methods/sdks/react-native/react-native-replay"
+                      ]
+                    },
+                    {
+                      "group": "Android",
+                      "root": "ko/docs/tracking-methods/sdks/android",
+                      "pages": [
+                        "ko/docs/tracking-methods/sdks/android/android-replay",
+                        "ko/docs/tracking-methods/sdks/android/android-flags",
+                        "ko/docs/tracking-methods/sdks/android/android-openfeature"
+                      ]
+                    },
+                    "ko/docs/tracking-methods/sdks/ios",
+                    {
+                      "group": "iOS (Swift)",
+                      "root": "ko/docs/tracking-methods/sdks/swift",
+                      "pages": [
+                        "ko/docs/tracking-methods/sdks/swift/swift-replay",
+                        "ko/docs/tracking-methods/sdks/swift/swift-flags",
+                        "ko/docs/tracking-methods/sdks/swift/swift-openfeature"
+                      ]
+                    },
+                    {
+                      "group": "Flutter",
+                      "root": "ko/docs/tracking-methods/sdks/flutter",
+                      "pages": [
+                        "ko/docs/tracking-methods/sdks/flutter/flutter-replay",
+                        "ko/docs/tracking-methods/sdks/flutter/flutter-flags"
+                      ]
+                    },
+                    "ko/docs/tracking-methods/sdks/unity",
+                    {
+                      "group": "Python",
+                      "root": "ko/docs/tracking-methods/sdks/python",
+                      "pages": [
+                        "ko/docs/tracking-methods/sdks/python/python-flags",
+                        "ko/docs/tracking-methods/sdks/python/python-openfeature"
+                      ]
+                    },
+                    {
+                      "group": "Node.js",
+                      "root": "ko/docs/tracking-methods/sdks/nodejs",
+                      "pages": [
+                        "ko/docs/tracking-methods/sdks/nodejs/nodejs-flags",
+                        "ko/docs/tracking-methods/sdks/nodejs/nodejs-openfeature"
+                      ]
+                    },
+                    {
+                      "group": "Ruby",
+                      "root": "ko/docs/tracking-methods/sdks/ruby",
+                      "pages": [
+                        "ko/docs/tracking-methods/sdks/ruby/ruby-flags",
+                        "ko/docs/tracking-methods/sdks/ruby/ruby-openfeature"
+                      ]
+                    },
+                    "ko/docs/tracking-methods/sdks/php",
+                    {
+                      "group": "Go",
+                      "root": "ko/docs/tracking-methods/sdks/go",
+                      "pages": [
+                        "ko/docs/tracking-methods/sdks/go/go-flags",
+                        "ko/docs/tracking-methods/sdks/go/go-openfeature"
+                      ]
+                    },
+                    {
+                      "group": "Java",
+                      "pages": [
+                        "ko/docs/tracking-methods/sdks/java/index",
+                        "ko/docs/tracking-methods/sdks/java/java-flags",
+                        "ko/docs/tracking-methods/sdks/java/java-openfeature"
+                      ]
+                    },
+                    "ko/links/mixpanel-utils"
+                  ]
+                },
+                "ko/docs/tracking-methods/autocapture",
+                "ko/docs/tracking-methods/first-party-domains",
+                "ko/docs/tracking-methods/warehouse-connectors",
+                {
+                  "group": "연동",
+                  "root": "ko/docs/tracking-methods/integrations",
+                  "pages": [
+                    "ko/docs/tracking-methods/integrations/ad-spend",
+                    "ko/docs/tracking-methods/integrations/amazon-s3",
+                    "ko/docs/tracking-methods/integrations/aws-kafka",
+                    "ko/docs/tracking-methods/integrations/cms-ecommerce",
+                    "ko/links/customerio",
+                    "ko/docs/tracking-methods/integrations/freshpaint",
+                    "ko/docs/tracking-methods/integrations/google-cloud-storage",
+                    "ko/docs/tracking-methods/integrations/google-pubsub",
+                    "ko/docs/tracking-methods/integrations/google-sheets",
+                    "ko/docs/tracking-methods/integrations/google-tag-manager",
+                    "ko/docs/tracking-methods/integrations/langfuse",
+                    "ko/docs/tracking-methods/integrations/launchdarkly",
+                    "ko/docs/tracking-methods/integrations/mparticle",
+                    "ko/docs/tracking-methods/integrations/nextjs",
+                    "ko/docs/tracking-methods/integrations/mobile-attribution-tracking",
+                    "ko/docs/tracking-methods/integrations/rudderstack",
+                    "ko/docs/tracking-methods/integrations/segment",
+                    "ko/docs/tracking-methods/integrations/shopify",
+                    "ko/docs/tracking-methods/integrations/snowplow",
+                    "ko/docs/tracking-methods/integrations/stripe",
+                    "ko/docs/tracking-methods/integrations/tealium",
+                    "ko/docs/tracking-methods/integrations/vendo"
+                  ]
+                },
+                {
+                  "group": "ID 관리",
+                  "root": "ko/docs/tracking-methods/id-management",
+                  "pages": [
+                    "ko/docs/tracking-methods/id-management/identifying-users-simplified",
+                    "ko/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system"
+                  ]
+                },
+                "ko/docs/tracking-methods/data-inspector"
+              ]
+            },
+            {
+              "group": "데이터 구조",
+              "root": "ko/docs/data-structure",
+              "pages": [
+                "ko/docs/data-structure/concepts",
+                "ko/docs/data-structure/events-and-properties",
+                "ko/docs/data-structure/user-profiles",
+                {
+                  "group": "그룹 애널리틱스",
+                  "root": "ko/docs/data-structure/group-analytics",
+                  "pages": [
+                    "ko/docs/data-structure/group-analytics/group-analytics-implementation",
+                    "ko/docs/data-structure/group-analytics/group-analytics-faq"
+                  ]
+                },
+                "ko/docs/data-structure/lookup-tables",
+                {
+                  "group": "속성 레퍼런스",
+                  "root": "ko/docs/data-structure/property-reference",
+                  "pages": [
+                    "ko/docs/data-structure/property-reference/properties",
+                    "ko/docs/data-structure/property-reference/data-type",
+                    "ko/docs/data-structure/property-reference/default-properties",
+                    "ko/docs/data-structure/property-reference/reserved-properties"
+                  ]
+                }
+              ]
+            },
+            {
+              "group": "마이그레이션",
+              "root": "ko/docs/migration",
+              "pages": [
+                "ko/docs/migration/adobe-analytics",
+                "ko/docs/migration/amplitude",
+                "ko/docs/migration/google-analytics"
+              ]
+            },
+            {
+              "group": "모범 사례",
+              "root": "ko/docs/tracking-best-practices",
+              "pages": [
+                "ko/docs/tracking-best-practices/bot-traffic",
+                "ko/docs/tracking-best-practices/debugging",
+                "ko/docs/tracking-best-practices/developer-environments",
+                "ko/docs/tracking-best-practices/geolocation",
+                "ko/docs/tracking-best-practices/hot-shard-limits",
+                "ko/docs/tracking-best-practices/server-side-best-practices",
+                "ko/docs/tracking-best-practices/tracking-plan",
+                "ko/docs/tracking-best-practices/traffic-attribution",
+                "ko/docs/tracking-best-practices/warehouse-best-practices"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "분석",
+          "icon": "/icons/analysis.svg",
+          "pages": [
+            {
+              "group": "리포트",
+              "root": "ko/docs/reports",
+              "pages": [
+                "ko/docs/reports/insights",
+                {
+                  "group": "퍼널",
+                  "root": "ko/docs/reports/funnels",
+                  "pages": [
+                    "ko/docs/reports/funnels/funnels-overview",
+                    "ko/docs/reports/funnels/funnels-quickstart",
+                    "ko/docs/reports/funnels/funnels-advanced",
+                    "ko/docs/reports/funnels/funnels-faq"
+                  ]
+                },
+                "ko/docs/reports/retention",
+                "ko/docs/reports/flows",
+                {
+                  "group": "앱",
+                  "root": "ko/docs/reports/apps",
+                  "pages": [
+                    "ko/docs/reports/apps/impact",
+                    "ko/docs/reports/apps/signal",
+                    "ko/docs/reports/apps/jql"
+                  ]
+                }
+              ]
+            },
+            {
+              "group": "보드",
+              "root": "ko/docs/boards",
+              "pages": [
+                "ko/docs/boards/sharing-and-permission",
+                "ko/docs/boards/templates",
+                "ko/docs/boards/boards-on-boards",
+                "ko/docs/boards/public-boards",
+                "ko/docs/boards/move-boards"
+              ]
+            },
+            {
+              "group": "기능 플래그",
+              "root": "ko/docs/featureflags",
+              "pages": [
+                "ko/docs/featureflags/runtime-events"
+              ]
+            },
+            "ko/docs/experiments",
+            "ko/docs/metric_tree",
+            {
+              "group": "사용자",
+              "root": "ko/docs/users",
+              "pages": [
+                "ko/docs/users/cohorts"
+              ]
+            },
+            {
+              "group": "세션 리플레이",
+              "root": "ko/docs/session-replay",
+              "pages": [
+                "ko/docs/session-replay/session-replay-privacy-controls",
+                "ko/docs/session-replay/heatmaps"
+              ]
+            },
+            {
+              "group": "기능",
+              "root": "ko/docs/features",
+              "pages": [
+                "ko/docs/features/alerts",
+                "ko/docs/features/annotations",
+                "ko/docs/features/embeds",
+                "ko/docs/features/chart-customization",
+                "ko/docs/features/comments",
+                "ko/docs/features/custom-buckets",
+                "ko/docs/features/custom-events",
+                "ko/docs/features/custom-properties",
+                "ko/docs/features/computed-properties",
+                "ko/docs/features/revenue-analytics",
+                "ko/docs/features/saved-metrics-and-behaviors",
+                "ko/docs/features/sessions",
+                "ko/docs/features/slack-integration"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Mixpanel AI",
+          "icon": "/icons/ai.svg",
+          "pages": [
+            "ko/docs/mixpanel-agent",
+            "ko/docs/agentic-automations",
+            "ko/docs/root-cause-analysis",
+            "ko/docs/mcp",
+            "ko/docs/mixpanel-headless",
+            "ko/docs/business-context"
+          ]
+        },
+        {
+          "group": "관리",
+          "icon": "/icons/admin.svg",
+          "pages": [
+            {
+              "group": "조직 및 프로젝트",
+              "root": "ko/docs/orgs-and-projects",
+              "pages": [
+                "ko/docs/orgs-and-projects/organizations",
+                "ko/docs/orgs-and-projects/managing-projects",
+                "ko/docs/orgs-and-projects/roles-and-permissions"
+              ]
+            },
+            {
+              "group": "데이터 거버넌스",
+              "root": "ko/docs/data-governance",
+              "pages": [
+                "ko/docs/data-governance/lexicon",
+                "ko/docs/data-governance/data-views-and-classification",
+                "ko/docs/data-governance/data-standards",
+                "ko/docs/data-governance/event-approval",
+                "ko/docs/data-governance/data-volume-monitoring",
+                "ko/docs/data-governance/warehouse-sync-monitoring",
+                "ko/docs/data-governance/data-clean-up",
+                "ko/docs/data-governance/ai-powered-data-governance"
+              ]
+            },
+            {
+              "group": "접근 보안",
+              "root": "ko/docs/access-security",
+              "pages": [
+                "ko/docs/access-security/login-methods",
+                "ko/docs/access-security/two-factor-authentication",
+                {
+                  "group": "싱글 사인온(SSO)",
+                  "root": "ko/docs/access-security/single-sign-on",
+                  "pages": [
+                    "ko/docs/access-security/single-sign-on/azure",
+                    "ko/docs/access-security/single-sign-on/jumpcloud",
+                    "ko/docs/access-security/single-sign-on/okta",
+                    "ko/docs/access-security/single-sign-on/shared-sso",
+                    "ko/docs/access-security/single-sign-on/google"
+                  ]
+                },
+                {
+                  "group": "감사 로그",
+                  "root": "ko/docs/access-security/audit-log",
+                  "pages": [
+                    "ko/docs/access-security/audit-log-reference"
+                  ]
+                }
+              ]
+            },
+            {
+              "group": "개인정보 보호",
+              "root": "ko/docs/privacy",
+              "pages": [
+                "ko/docs/privacy/protecting-user-data",
+                "ko/links/legal-hub",
+                "ko/docs/privacy/gdpr-compliance",
+                "ko/docs/privacy/eu-residency",
+                "ko/docs/privacy/in-residency",
+                "ko/docs/privacy/end-user-data-management"
+              ]
+            },
+            {
+              "group": "요금제",
+              "root": "ko/docs/pricing",
+              "pages": [
+                "ko/docs/pricing/legacy-mtu-billing",
+                "ko/docs/pricing/startup-program"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "데이터 내보내기",
+          "icon": "/icons/data-out.svg",
+          "pages": [
+            "ko/docs/export-methods",
+            {
+              "group": "데이터 파이프라인",
+              "root": "ko/docs/data-pipelines",
+              "pages": [
+                "ko/docs/data-pipelines/json-pipelines",
+                "ko/docs/data-pipelines/common-sql-queries",
+                {
+                  "group": "연동",
+                  "root": "ko/docs/data-pipelines/integrations",
+                  "pages": [
+                    "ko/docs/data-pipelines/integrations/aws-s3",
+                    "ko/docs/data-pipelines/integrations/azure-blob-storage",
+                    "ko/docs/data-pipelines/integrations/bigquery",
+                    "ko/docs/data-pipelines/integrations/databricks",
+                    "ko/docs/data-pipelines/integrations/gcp-gcs",
+                    "ko/docs/data-pipelines/integrations/redshift-spectrum",
+                    "ko/docs/data-pipelines/integrations/snowflake"
+                  ]
+                },
+                {
+                  "group": "이전 버전",
+                  "root": "ko/docs/data-pipelines/old-pipelines",
+                  "pages": [
+                    "ko/docs/data-pipelines/old-pipelines/schematized-export-pipeline",
+                    {
+                      "group": "연동",
+                      "root": "ko/docs/data-pipelines/old-pipelines/integrations",
+                      "pages": [
+                        "ko/docs/data-pipelines/old-pipelines/integrations/raw-aws-pipeline",
+                        "ko/docs/data-pipelines/old-pipelines/integrations/raw-azure-pipeline",
+                        "ko/docs/data-pipelines/old-pipelines/integrations/raw-gcs-pipeline",
+                        "ko/docs/data-pipelines/old-pipelines/integrations/schematized-bigquery-pipeline",
+                        "ko/docs/data-pipelines/old-pipelines/integrations/schematized-aws-pipeline",
+                        "ko/docs/data-pipelines/old-pipelines/integrations/schematized-azure-pipeline",
+                        "ko/docs/data-pipelines/old-pipelines/integrations/schematized-gcs-pipeline",
+                        "ko/docs/data-pipelines/old-pipelines/integrations/schematized-snowflake-pipeline"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "group": "코호트 동기화",
+              "root": "ko/docs/cohort-sync",
+              "pages": [
+                "ko/docs/cohort-sync/webhooks",
+                "ko/docs/cohort-sync/build-an-integration",
+                {
+                  "group": "전송 대상",
+                  "root": "ko/docs/cohort-sync/integrations",
+                  "pages": [
+                    "ko/docs/cohort-sync/integrations/abtasty",
+                    "ko/docs/cohort-sync/integrations/airship",
+                    "ko/docs/cohort-sync/integrations/appcues",
+                    "ko/docs/cohort-sync/integrations/apptimize",
+                    "ko/docs/cohort-sync/integrations/braze",
+                    "ko/docs/cohort-sync/integrations/chameleon",
+                    "ko/docs/cohort-sync/integrations/clevertap",
+                    "ko/docs/cohort-sync/integrations/facebook-ads",
+                    "ko/docs/cohort-sync/integrations/google-ads",
+                    "ko/docs/cohort-sync/integrations/insider",
+                    "ko/links/intercom",
+                    "ko/docs/cohort-sync/integrations/iterable",
+                    "ko/docs/cohort-sync/integrations/kameleoon",
+                    "ko/docs/cohort-sync/integrations/leanplum",
+                    "ko/docs/cohort-sync/integrations/mailchimp",
+                    "ko/docs/cohort-sync/integrations/marketo",
+                    "ko/docs/cohort-sync/integrations/moengage",
+                    "ko/docs/cohort-sync/integrations/mparticle",
+                    "ko/docs/cohort-sync/integrations/onesignal",
+                    "ko/docs/cohort-sync/integrations/salesforce-marketing-cloud",
+                    "ko/docs/cohort-sync/integrations/segment",
+                    "ko/docs/cohort-sync/integrations/taplytics",
+                    "ko/docs/cohort-sync/integrations/vwo",
+                    "ko/docs/cohort-sync/integrations/webengage",
+                    "ko/docs/cohort-sync/integrations/xtremepush"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "group": "지원",
+          "icon": "/icons/support.svg",
+          "pages": [
+            {
+              "group": "커뮤니티",
+              "root": "ko/docs/community",
+              "pages": [
+                "ko/links/slack",
+                "ko/docs/community/guidelines"
+              ]
+            },
+            "ko/links/get-help",
+            "ko/docs/response-times",
+            "ko/links/hire-an-expert"
+          ]
+        }
+      ]
+    },
+    {
+      "tab": "가이드",
+      "groups": [
+        {
+          "group": "둘러보기",
+          "icon": "/icons/flower.svg",
+          "pages": [
+            "ko/guides/mixpanel-introduction",
+            "ko/guides/self-guided-tours",
+            "ko/links/whats-new"
+          ]
+        },
+        {
+          "group": "워크플로",
+          "icon": "/icons/rocket.svg",
+          "pages": [
+            {
+              "group": "활용 사례별 가이드",
+              "root": "ko/guides/guides-by-use-case",
+              "pages": [
+                {
+                  "group": "사용자 참여 높이기",
+                  "pages": [
+                    "ko/guides/guides-by-use-case/engage-your-users/drive-product-innovation",
+                    "ko/guides/guides-by-use-case/engage-your-users/ship-features"
+                  ]
+                },
+                {
+                  "group": "사용자 늘리기",
+                  "pages": [
+                    "ko/guides/guides-by-use-case/grow-your-usership/grow-revenue"
+                  ]
+                },
+                {
+                  "group": "팀 역량 강화하기",
+                  "pages": [
+                    "ko/guides/guides-by-use-case/empower-your-team/close-strategy-execution-gap",
+                    "ko/guides/guides-by-use-case/empower-your-team/see-replays"
+                  ]
+                }
+              ]
+            },
+            {
+              "group": "워크플로별 가이드",
+              "pages": [
+                "ko/guides/guides-by-workflow/build-tracking-strategy",
+                "ko/guides/guides-by-workflow/embed-data",
+                "ko/guides/guides-by-workflow/ensure-data-quality",
+                "ko/guides/guides-by-workflow/data-privacy",
+                "ko/guides/guides-by-workflow/sync-with-mirror"
+              ]
+            },
+            {
+              "group": "주제별 가이드",
+              "pages": [
+                "ko/guides/guides-by-topic/continuous-innovation",
+                "ko/guides/guides-by-topic/govern-data",
+                "ko/guides/guides-by-topic/features",
+                "ko/guides/guides-by-topic/core-reports"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Mixpanel AI",
+          "icon": "/icons/flower.svg",
+          "pages": [
+            {
+              "group": "Mixpanel Agent 사용하기",
+              "root": "ko/guides/mixpanel-agent",
+              "pages": [
+                "ko/guides/mixpanel-agent/use-cases"
+              ]
+            },
+            {
+              "group": "Mixpanel MCP 사용하기",
+              "root": "ko/guides/mcp",
+              "pages": [
+                {
+                  "group": "산업별 MCP",
+                  "root": "ko/guides/mcp/mcp-by-industry",
+                  "pages": [
+                    "ko/guides/mcp/mcp-by-industry/ai",
+                    "ko/guides/mcp/mcp-by-industry/b2bsaas",
+                    "ko/guides/mcp/mcp-by-industry/ecommerce",
+                    "ko/guides/mcp/mcp-by-industry/finance",
+                    "ko/guides/mcp/mcp-by-industry/healthcare",
+                    "ko/guides/mcp/mcp-by-industry/media"
+                  ]
+                },
+                "ko/guides/mcp/integrations"
+              ]
+            },
+            "ko/guides/headless",
+            {
+              "group": "Mixpanel AI 사용하기",
+              "pages": [
+                "ko/guides/use-mixpanel-ai/write-business-context",
+                "ko/guides/use-mixpanel-ai/trust-ai-answers"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "플레이북",
+          "icon": "/icons/note.svg",
+          "pages": [
+            "ko/guides/benchmarks",
+            "ko/guides/board-templates",
+            {
+              "group": "전략 플레이북",
+              "root": "ko/guides/strategic-playbooks",
+              "pages": [
+                {
+                  "group": "제품 분석 가이드",
+                  "pages": [
+                    "ko/guides/strategic-playbooks/guide-to-product-analytics/intro",
+                    "ko/guides/strategic-playbooks/guide-to-product-analytics/measure-value",
+                    "ko/guides/strategic-playbooks/guide-to-product-analytics/get-to-know-your-users",
+                    "ko/guides/strategic-playbooks/guide-to-product-analytics/analyze-user-engagement",
+                    "ko/guides/strategic-playbooks/guide-to-product-analytics/retain-your-users",
+                    "ko/guides/strategic-playbooks/guide-to-product-analytics/grow-and-scale",
+                    "ko/guides/strategic-playbooks/guide-to-product-analytics/conclusion"
+                  ]
+                },
+                {
+                  "group": "제품 분석 전략",
+                  "pages": [
+                    "ko/guides/strategic-playbooks/product-analytics-strategy/get-started",
+                    "ko/guides/strategic-playbooks/product-analytics-strategy/non-existent",
+                    "ko/guides/strategic-playbooks/product-analytics-strategy/novice",
+                    "ko/guides/strategic-playbooks/product-analytics-strategy/intermediate",
+                    "ko/guides/strategic-playbooks/product-analytics-strategy/advanced",
+                    "ko/guides/strategic-playbooks/product-analytics-strategy/expert",
+                    "ko/guides/strategic-playbooks/product-analytics-strategy/finale"
+                  ]
+                },
+                "ko/guides/strategic-playbooks/onboarding-playbook",
+                "ko/guides/strategic-playbooks/project-migration",
+                "ko/guides/strategic-playbooks/feature-flag-migration-playbook"
+              ]
+            },
+            "ko/guides/glossary"
+          ]
+        }
+      ]
+    },
+    {
+      "tab": "변경 로그",
+      "pages": [
+        "ko/changelogs"
+      ]
+    },
+    {
+      "tab": "자주 묻는 질문",
+      "pages": [
+        "ko/troubleshooting/faqs"
+      ]
+    },
+    {
+      "tab": "API 문서",
+      "groups": [
+        {
+          "group": "Mixpanel API",
+          "pages": [
+            "ko/reference/overview",
+            {
+              "group": "인증 방식",
+              "pages": [
+                "ko/reference/service-accounts",
+                "ko/reference/project-token",
+                "ko/reference/project-secret",
+                "ko/reference/request-signature"
+              ],
+              "root": "ko/reference/authentication"
+            },
+            "ko/reference/segmentation-expressions",
+            "ko/reference/rate-limits"
+          ]
+        },
+        {
+          "group": "수집 API",
+          "pages": [
+            {
+              "group": "이벤트",
+              "pages": [
+                "ko/reference/import-events",
+                "ko/reference/track-event",
+                "ko/reference/event-deduplication"
+              ],
+              "root": "ko/reference/import-events"
+            },
+            "ko/reference/ingestion-api",
+            "ko/reference/ingestion-api-authentication",
+            {
+              "group": "그룹 프로필",
+              "pages": [
+                "ko/reference/group-set-property",
+                "ko/reference/group-set-property-once",
+                "ko/reference/group-delete-property",
+                "ko/reference/group-remove-from-list-property",
+                "ko/reference/group-union",
+                "ko/reference/group-batch-update",
+                "ko/reference/delete-group",
+                "ko/reference/limits-1"
+              ],
+              "root": "ko/reference/group-set-property"
+            },
+            {
+              "group": "룩업 테이블",
+              "pages": [
+                "ko/reference/list-lookup-tables",
+                "ko/reference/replace-lookup-table"
+              ],
+              "root": "ko/reference/lookup-tables"
+            },
+            {
+              "group": "사용자 프로필",
+              "pages": [
+                "ko/reference/profile-set",
+                "ko/reference/profile-set-property-once",
+                "ko/reference/profile-numerical-add",
+                "ko/reference/user-profile-union",
+                "ko/reference/profile-append-to-list-property",
+                "ko/reference/profile-remove-from-list-property",
+                "ko/reference/profile-delete-property",
+                "ko/reference/profile-batch-update",
+                "ko/reference/delete-profile",
+                "ko/reference/user-profile-limits"
+              ],
+              "root": "ko/reference/profile-set"
+            }
+          ]
+        },
+        {
+          "group": "아이덴티티 API",
+          "pages": [
+            {
+              "group": "아이덴티티",
+              "pages": [
+                "ko/reference/create-identity",
+                "ko/reference/identity-create-alias",
+                "ko/reference/identity-merge"
+              ],
+              "root": "ko/reference/create-identity"
+            }
+          ]
+        },
+        {
+          "group": "쿼리 API",
+          "pages": [
+            "ko/reference/query-api",
+            {
+              "group": "코호트",
+              "pages": [
+                "ko/reference/cohorts-list"
+              ],
+              "root": "ko/reference/cohorts-list"
+            },
+            {
+              "group": "Engage",
+              "pages": [
+                "ko/reference/engage-query"
+              ],
+              "root": "ko/reference/engage-query"
+            },
+            "ko/reference/query-api-authentication",
+            {
+              "group": "퍼널",
+              "pages": [
+                "ko/reference/funnels-query",
+                "ko/reference/funnels-list-saved"
+              ],
+              "root": "ko/reference/funnels-query"
+            },
+            {
+              "group": "인사이트",
+              "pages": [
+                "ko/reference/insights-query"
+              ],
+              "root": "ko/reference/insights-query"
+            },
+            {
+              "group": "JQL",
+              "pages": [
+                "ko/reference/query-jql",
+                "ko/links/jql"
+              ],
+              "root": "ko/reference/query-jql"
+            },
+            {
+              "group": "리텐션",
+              "pages": [
+                "ko/reference/retention-query",
+                "ko/reference/retention-frequency-query"
+              ],
+              "root": "ko/reference/retention-query"
+            },
+            {
+              "group": "세그멘테이션",
+              "pages": [
+                "ko/reference/segmentation-query",
+                "ko/reference/segmentation-numeric-query",
+                "ko/reference/segmentation-sum-query",
+                "ko/reference/segmentation-query-average"
+              ],
+              "root": "ko/reference/segmentation-query"
+            },
+            {
+              "group": "활동 피드",
+              "pages": [
+                "ko/reference/activity-stream-query"
+              ],
+              "root": "ko/reference/activity-stream-query"
+            },
+            {
+              "group": "이벤트 브레이크다운",
+              "pages": [
+                "ko/reference/list-recent-events",
+                "ko/reference/query-top-events",
+                "ko/reference/query-months-top-event-names",
+                "ko/reference/query-event-properties",
+                "ko/reference/query-events-top-properties",
+                "ko/reference/query-events-top-property-values"
+              ],
+              "root": "ko/reference/list-recent-events"
+            }
+          ]
+        },
+        {
+          "group": "이벤트 내보내기 API",
+          "pages": [
+            {
+              "group": "내보내기",
+              "pages": [
+                "ko/reference/raw-event-export"
+              ],
+              "root": "ko/reference/raw-event-export"
+            },
+            "ko/reference/raw-data-export-api",
+            "ko/reference/raw-data-export-api-authentication"
+          ]
+        },
+        {
+          "group": "Lexicon 스키마 API",
+          "pages": [
+            "ko/reference/lexicon-schemas-api",
+            "ko/reference/lexicon-schemas-api-authentication",
+            {
+              "group": "스키마 생성",
+              "pages": [
+                "ko/reference/upload-schemas-for-project",
+                "ko/reference/upload-schema-by-entity-and-name"
+              ],
+              "root": "ko/reference/upload-schemas-for-project"
+            },
+            {
+              "group": "스키마 삭제",
+              "pages": [
+                "ko/reference/delete-all-schemas-in-project",
+                "ko/reference/delete-schemas-for-entity",
+                "ko/reference/delete-schema-by-entity-and-name"
+              ],
+              "root": "ko/reference/delete-all-schemas-in-project"
+            },
+            {
+              "group": "스키마 조회",
+              "pages": [
+                "ko/reference/list-all-schemas-for-project",
+                "ko/reference/list-schemas-for-entity",
+                "ko/reference/list-schemas-by-entity-and-name"
+              ],
+              "root": "ko/reference/list-all-schemas-for-project"
+            },
+            "ko/reference/limits"
+          ]
+        },
+        {
+          "group": "데이터 파이프라인 API",
+          "pages": [
+            "ko/reference/overview-2",
+            "ko/reference/authentication-2",
+            {
+              "group": "파이프라인 생성",
+              "pages": [
+                "ko/reference/create-warehouse-pipeline"
+              ],
+              "root": "ko/reference/create-warehouse-pipeline"
+            },
+            {
+              "group": "파이프라인 삭제",
+              "pages": [
+                "ko/reference/cancel-warehouse-pipeline"
+              ],
+              "root": "ko/reference/cancel-warehouse-pipeline"
+            },
+            {
+              "group": "파이프라인 수정",
+              "pages": [
+                "ko/reference/edit-warehouse-pipeline"
+              ],
+              "root": "ko/reference/edit-warehouse-pipeline"
+            },
+            {
+              "group": "파이프라인 일시 중지",
+              "pages": [
+                "ko/reference/pause-warehouse-pipeline"
+              ],
+              "root": "ko/reference/pause-warehouse-pipeline"
+            },
+            {
+              "group": "파이프라인 재개",
+              "pages": [
+                "ko/reference/resume-warehouse-pipeline"
+              ],
+              "root": "ko/reference/resume-warehouse-pipeline"
+            },
+            {
+              "group": "파이프라인 조회",
+              "pages": [
+                "ko/reference/list-warehouse-pipeline-jobs",
+                "ko/reference/get-warehouse-pipeline-status",
+                "ko/reference/list-warehouse-pipeline-sync-dates"
+              ],
+              "root": "ko/reference/list-warehouse-pipeline-jobs"
+            }
+          ]
+        },
+        {
+          "group": "서비스 계정 API",
+          "pages": [
+            "ko/reference/service-accounts-api",
+            "ko/reference/service-accounts-api-authentication",
+            {
+              "group": "서비스 계정 생성",
+              "pages": [
+                "ko/reference/create-service-account"
+              ],
+              "root": "ko/reference/create-service-account"
+            },
+            {
+              "group": "서비스 계정 삭제",
+              "pages": [
+                "ko/reference/delete-service-account"
+              ],
+              "root": "ko/reference/delete-service-account"
+            },
+            {
+              "group": "프로젝트 멤버십",
+              "pages": [
+                "ko/reference/list-project-service-accounts",
+                "ko/reference/add-service-accounts-to-projects",
+                "ko/reference/remove-service-accounts-from-projects"
+              ],
+              "root": "ko/reference/list-project-service-accounts"
+            },
+            {
+              "group": "서비스 계정 조회",
+              "pages": [
+                "ko/reference/list-service-accounts",
+                "ko/reference/get-service-account"
+              ],
+              "root": "ko/reference/list-service-accounts"
+            }
+          ]
+        },
+        {
+          "group": "어노테이션 API",
+          "pages": [
+            "ko/reference/overview-1",
+            {
+              "group": "어노테이션 삭제",
+              "pages": [
+                "ko/reference/delete-annotation-1"
+              ],
+              "root": "ko/reference/delete-annotation-1"
+            },
+            {
+              "group": "어노테이션 조회",
+              "pages": [
+                "ko/reference/list-all-annotations-for-project",
+                "ko/reference/get-annotation-1"
+              ],
+              "root": "ko/reference/list-all-annotations-for-project"
+            },
+            {
+              "group": "어노테이션 생성",
+              "pages": [
+                "ko/reference/create-annotation"
+              ],
+              "root": "ko/reference/create-annotation"
+            },
+            {
+              "group": "어노테이션 수정",
+              "pages": [
+                "ko/reference/patch-annotation-1"
+              ],
+              "root": "ko/reference/patch-annotation-1"
+            },
+            {
+              "group": "어노테이션 태그 조회",
+              "pages": [
+                "ko/reference/get-annotation-tags-1"
+              ],
+              "root": "ko/reference/get-annotation-tags-1"
+            },
+            {
+              "group": "어노테이션 태그 생성",
+              "pages": [
+                "ko/reference/create-annotation-tag-1"
+              ],
+              "root": "ko/reference/create-annotation-tag-1"
+            }
+          ]
+        },
+        {
+          "group": "GDPR API",
+          "pages": [
+            "ko/reference/gdpr-api",
+            {
+              "group": "데이터 조회 요청 생성",
+              "pages": [
+                "ko/reference/create-retrieval-1"
+              ],
+              "root": "ko/reference/create-retrieval-1"
+            },
+            {
+              "group": "조회 요청 상태 확인",
+              "pages": [
+                "ko/reference/get-retrieval"
+              ],
+              "root": "ko/reference/get-retrieval"
+            },
+            {
+              "group": "삭제 요청 생성",
+              "pages": [
+                "ko/reference/create-deletion"
+              ],
+              "root": "ko/reference/create-deletion"
+            },
+            {
+              "group": "삭제 요청 상태 확인",
+              "pages": [
+                "ko/reference/get-deletion"
+              ],
+              "root": "ko/reference/get-deletion"
+            },
+            {
+              "group": "삭제 요청 취소",
+              "pages": [
+                "ko/reference/delete-deletion"
+              ],
+              "root": "ko/reference/delete-deletion"
+            }
+          ]
+        },
+        {
+          "group": "웨어하우스 커넥터 API",
+          "pages": [
+            "ko/reference/warehouse-connectors-api",
+            "ko/reference/warehouse-connectors-api-authentication",
+            {
+              "group": "웨어하우스 임포트",
+              "pages": [
+                "ko/reference/run-an-import-1",
+                "ko/reference/list-warehouse-imports",
+                "ko/reference/get-warehouse-import",
+                "ko/reference/update-warehouse-import",
+                "ko/reference/delete-warehouse-import",
+                "ko/reference/create-event-stream-import",
+                "ko/reference/create-people-import",
+                "ko/reference/create-groups-import",
+                "ko/reference/create-lookup-table-import",
+                "ko/reference/get-import-history"
+              ],
+              "root": "ko/reference/run-an-import-1"
+            },
+            "ko/reference/run-an-import"
+          ]
+        },
+        {
+          "group": "기능 플래그 API",
+          "pages": [
+            "ko/reference/feature-flags-api",
+            {
+              "group": "플래그 정의 조회",
+              "pages": [
+                "ko/reference/get-flag-definitions"
+              ],
+              "root": "ko/reference/get-flag-definitions"
+            },
+            {
+              "group": "변형 할당 조회",
+              "pages": [
+                "ko/reference/get-variant-assignments"
+              ],
+              "root": "ko/reference/get-variant-assignments"
+            }
+          ]
+        },
+        {
+          "group": "기능 플래그 관리 API",
+          "pages": [
+            "ko/reference/feature-flags-management-api",
+            {
+              "group": "플래그 관리",
+              "pages": [
+                "ko/reference/list-feature-flags-1",
+                "ko/reference/create-feature-flag-1",
+                "ko/reference/get-feature-flag-1",
+                "ko/reference/delete-feature-flag-1",
+                "ko/reference/update-feature-flag-1"
+              ],
+              "root": "ko/reference/list-feature-flags-1"
+            }
+          ]
+        },
+        {
+          "group": "실험 API",
+          "pages": [
+            {
+              "group": "실험 관리",
+              "pages": [
+                "ko/reference/list-experiments",
+                "ko/reference/create-experiment",
+                "ko/reference/get-experiment",
+                "ko/reference/update-experiment",
+                "ko/reference/delete-experiment"
+              ],
+              "root": "ko/reference/list-experiments"
+            },
+            {
+              "group": "실험 작업",
+              "pages": [
+                "ko/reference/archive-experiment",
+                "ko/reference/unarchive-experiment",
+                "ko/reference/decide-experiment",
+                "ko/reference/force-conclude-experiment",
+                "ko/reference/launch-experiment"
+              ],
+              "root": "ko/reference/archive-experiment"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
