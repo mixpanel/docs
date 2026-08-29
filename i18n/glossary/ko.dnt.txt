@@ -1,0 +1,60 @@
+$anon_id
+$create_alias
+$distinct_id
+$identified_id
+$identify
+/engage
+/import
+/track
+Amazon S3
+Android
+BigQuery
+CSV
+Customer.io
+Databricks
+Flutter
+Freshpaint
+GDPR
+Go
+Google Cloud Storage
+Google Pub/Sub
+Google Tag Manager
+HTTP
+JQL
+JSON
+Java
+JavaScript
+Korean
+Langfuse
+LaunchDarkly
+Lexicon
+MCP
+MTU
+Mixpanel
+Mixpanel Agent
+Mixpanel MCP
+Node.js
+Objective-C
+OpenAPI
+Python
+REST
+React Native
+Redshift
+Ruby
+RudderStack
+SAML
+SSO
+Segment
+Shopify
+Snowflake
+Snowplow
+Stripe
+Swift
+Tealium
+URL
+UUID
+Unity
+YAML
+distinct_id
+mp_*
+token
