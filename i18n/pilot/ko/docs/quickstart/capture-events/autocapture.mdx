@@ -1,0 +1,33 @@
+---
+title: 오토캡처
+---
+
+import { dataItems } from "/snippets/utils/constants.mdx";
+
+SDK 버전 2.60.0부터 JavaScript SDK는 오토캡처를 활성화하면 이벤트를 자동으로 수집할 수 있습니다. 활성화하려면 autocapture 설정을 켜세요.
+
+```javascript
+// create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    autocapture: true,    // enable autocapture
+});
+```
+
+오토캡처의 기본 설정을 변경하고 싶다면 커스텀 설정을 사용할 수 있습니다. 기본 설정은 다음과 같습니다.
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  autocapture: {
+    pageview: "full-url",
+    click: true,    
+    input: true,
+    rage_click: true,
+    dead_click: true,
+    scroll: true,
+    submit: true,
+    capture_text_content: false,
+  },
+});
+```
+
+[오토캡처의 커스텀 설정에 대한 자세한 내용은 여기에서 확인하세요](/ko/docs/tracking-methods/sdks/javascript).
