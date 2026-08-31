@@ -791,7 +791,19 @@ AutocaptureOptions autocaptureOptions = new AutocaptureOptions.Builder()
     .build();
 ```
 
-Autocapture respects opt-out: it does not start when tracking is opted out, and stops and restarts with `optOutTracking()` and `optInTracking()`.
+#### Disabling Click Autocapture
+
+Autocapture is a decision made at initialization: omit `autocaptureOptions` and none of the machinery is constructed. To turn it off in an app that already ships with it enabled, either stop passing the options, or disable each signal:
+
+```java Java
+AutocaptureOptions autocaptureOptions = new AutocaptureOptions.Builder()
+    .clickOptions(new ClickOptions.Builder().enabled(false).build())
+    .rageClickOptions(new RageClickOptions.Builder().enabled(false).build())
+    .deadClickOptions(new DeadClickOptions.Builder().enabled(false).build())
+    .build();
+```
+
+There is no runtime toggle. Autocapture starts or doesn't at initialization, and it respects opt-out: it does not start when tracking is opted out, and stops and restarts with `optOutTracking()` and `optInTracking()`.
 
 #### Tracked Properties
 
@@ -823,8 +835,6 @@ Every click, dead click and rage click event carries:
 
 1. **`Modifier.testTag("...")`**
 2. **`<TagName>_<hash>`** — the anonymous fallback
-
-`contentDescription` is deliberately not a source on either path. It is localized, so the same element would report a different ID per language, and it can carry user data.
 
 **About the hash fallback:** the hash is derived from the element's *position* in the hierarchy, not its instance, so it is identical across app launches. That makes it groupable, but it describes a position rather than a thing: reordering siblings changes it, and two rows of the same list differ by index rather than by content.
 

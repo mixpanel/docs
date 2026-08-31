@@ -872,7 +872,21 @@ let options = MixpanelOptions(
 )
 ```
 
-Autocapture respects opt-out: it does not start when tracking is opted out, and stops and restarts with `optOutTracking()` and `optInTracking()`. It is iOS-only — not available on Mac Catalyst, tvOS, watchOS or visionOS — and does not run inside app extensions.
+Autocapture is iOS-only — not available on Mac Catalyst, tvOS, watchOS or visionOS — and does not run inside app extensions.
+
+#### Disabling Click Autocapture
+
+Autocapture is a decision made at initialization: omit `autocaptureOptions` and none of the machinery is constructed. To turn it off in an app that already ships with it enabled, either stop passing the options, or disable each signal:
+
+```swift Swift
+let autocaptureOptions = AutocaptureOptions(
+    clickOptions: ClickOptions(enabled: false),
+    rageClickOptions: RageClickOptions(enabled: false),
+    deadClickOptions: DeadClickOptions(enabled: false)
+)
+```
+
+There is no runtime toggle. Autocapture starts or doesn't at initialization, and it respects opt-out: it does not start when tracking is opted out, and stops and restarts with `optOutTracking()` and `optInTracking()`.
 
 #### Tracked Properties
 
@@ -904,8 +918,6 @@ Every click, dead click and rage click event carries:
 
 1. **`.accessibilityIdentifier("...")`**, read from SwiftUI's accessibility element tree
 2. **`<ClassName>_<hash>`** — the anonymous fallback
-
-`accessibilityLabel` is deliberately not a source on either path. It is localized, so the same element would report a different ID per language, and it can carry user data.
 
 <Warning>
   **SwiftUI identifiers need iOS 18+.** SwiftUI never sets `accessibilityIdentifier` on the backing UIKit view — it lives in the accessibility element tree, which the SDK reads with `accessibilityHitTest`. That query is available on iOS 18 and later, and returns nothing when the tree has not been materialized. On iOS 15–17, SwiftUI elements fall back to `<ClassName>_<hash>` regardless of the identifier you set. UIKit views are unaffected.
