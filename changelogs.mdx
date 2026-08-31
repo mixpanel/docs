@@ -1,5 +1,5 @@
 ---
-title: "Changelogs"
+title: "Changelogs- **Drive it all with AI:** Full MCP "
 ---
 
 import { SubscribeButtonWithModal } from "/snippets/SubscribeButtonWithModal/SubscribeButtonWithModal.jsx";
@@ -14,12 +14,13 @@ Get all the latest updates in your inbox.
 
   Ad blockers, content blockers, and browser tracking protection may sometimes block requests to known analytics endpoints like `api.mixpanel.com`. When that happens, events never reach Mixpanel and the data is lost.
 
-  First-Party Domains allow Enterprise organizations to route Mixpanel traffic through a subdomain they own instead, like `track.yourcompany.com`. Requests look like traffic to your own infrastructure, so they're far less likely to be blocked. Add a subdomain from **Organization Settings → First-Party Domains**, point two CNAME records at it, and Mixpanel automatically issues and renews the TLS certificate — no manual setup required. 
+  First-Party Domains allow Enterprise organizations to route Mixpanel traffic through a subdomain they own instead, like `track.yourcompany.com`. Requests look like traffic to your own infrastructure, so they're far less likely to be blocked. Add a subdomain from **Organization Settings → First-Party Domains**, point two CNAME records at it, and Mixpanel automatically issues and renews the TLS certificate — no manual setup required.
 
-  First-Party Domains require a subdomain (not an apex domain), Organization Owner or Admin permissions, and DNS access. Up to 3 domains per organization. Available to organizations on an **Enterprise** plan. 
+  First-Party Domains require a subdomain (not an apex domain), Organization Owner or Admin permissions, and DNS access. Up to 3 domains per organization. Available to organizations on an **Enterprise** plan.
 
   [Learn more →](/docs/tracking-methods/first-party-domains)
 </Update>
+
 <Update label="2026-08-24">
   ## Mixpanel plugin for Claude Code: analytics skills in one install
 
@@ -77,16 +78,14 @@ Get all the latest updates in your inbox.
 <Update label="2026-08-07">
   ## Automated Metadata Enrichment
 
-  Raw event names rarely explain themselves. `btn_clk_add_crt` means something to the engineer who instrumented it and little to anyone else, including Mixpanel Agent and MCP, which rely on Lexicon to understand your data. Writing a display name and description for every event takes time, so most projects have gaps. Mixpanel can now fill them for you. 
-  With this update, you can:
+  Raw event names rarely explain themselves. `btn_clk_add_crt` means something to the engineer who instrumented it and little to anyone else, including Mixpanel Agent and MCP, which rely on Lexicon to understand your data. Writing a display name and description for every event takes time, so most projects have gaps. Mixpanel can now fill them for you. With this update, you can:
 
   - **Fill every gap in one action**: From Lexicon → Tidy Up → Fill in the blanks, Mixpanel generates a display name and description for each event missing one and applies them across your project.
   - **Get names that fit your data**: Suggestions draw on the event name, sample property values, and your project's Business Context, and follow your naming convention when Data Standards is enabled.
   - **Keep what you wrote**: Enrichment only fills gaps. Events with an existing display name or description keep what you gave them.
   - **See what changed**: Every enriched field is recorded in the event's history, attributed to the user who ran the fill, marked as AI-applied, and written to your audit log like any other Lexicon edit.
 
-  The same fill is available to agents over MCP via the Fill-Event-Metadata tool and inside Mixpanel Agent.
-  This release covers events. Property enrichment is next.
+  The same fill is available to agents over MCP via the Fill-Event-Metadata tool and inside Mixpanel Agent. This release covers events. Property enrichment is next.
 
   [Learn more →](/docs/data-governance/ai-powered-data-governance#automated-metadata-enrichment)
 </Update>
