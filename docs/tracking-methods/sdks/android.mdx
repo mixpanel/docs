@@ -715,7 +715,7 @@ mixpanel.autocapture.trackScreenView("PromoScreen", utmProps)
 ### Click Events
 
 <Note>
-  Autocaptured click events require Android SDK v8.10.0 or later. They are **disabled by default** — you opt in with `AutocaptureOptions` at initialization.
+  **Beta.** Autocaptured click events are in beta: the events and the properties they capture may change before general availability. They require Android SDK v8.10.0 or later, and are **disabled by default** — you opt in with `AutocaptureOptions` at initialization.
 </Note>
 
 Starting in v8.10.0, the SDK can capture taps for you, with no per-view instrumentation. Once enabled, it intercepts touches across every window in your app — activities, dialogs, bottom sheets — and works with both XML layouts and Jetpack Compose. Three events are produced:
@@ -728,13 +728,13 @@ Starting in v8.10.0, the SDK can capture taps for you, with no per-view instrume
 
 All three carry `$mp_autocapture: true`, alongside the properties described in [Tracked Properties](#tracked-properties).
 
-#### `[BETA]` Click
+#### Click
 
 A `$mp_click` event is emitted for every tap that resolves to an element, whether or not that element handles the tap. Scrolls, swipes and long presses do not produce clicks.
 
 When the tap lands on a non-interactive child — a `TextView` inside a clickable `LinearLayout`, say — the SDK walks up to the nearest clickable ancestor (up to 10 levels) and reports *that* element's identity. This keeps a row from being reported as its label. If no clickable ancestor is found, the tapped element's own identity is used.
 
-#### `[BETA]` Dead Click
+#### Dead Click
 
 A `$mp_dead_click` event is emitted when a tap on an **interactive** element produces no visible response. The SDK snapshots the UI immediately before the click handler runs, watches for layout changes, scrolls and new windows, and — if nothing has changed 500 ms later — emits the event. Any detected change cancels it. A dead click is always accompanied by the `$mp_click` for the same tap.
 
@@ -744,23 +744,15 @@ Only interactive elements are candidates, so tapping a plain label or a decorati
   Detection is based on UI change only — the SDK does not observe network activity. A handler that fires a request but leaves the screen unchanged for 500 ms is reported as a dead click, which is usually the user-perceived truth. Conversely, a response that only changes color, alpha or an animation may not register as a change.
 </Note>
 
-#### `[BETA]` Rage Click
+#### Rage Click
 
 A `$mp_rage_click` event is emitted when **4 or more taps** land within **1000 ms** of each other and within **44 dp** on screen — the signature of a user hammering a control that isn't responding. The event is emitted *in addition to* the individual `$mp_click` events, so four rapid taps produce four clicks and one rage click. Taps spread out in time or across the screen do not qualify.
+
+Rage clicks are a **frustration signal**: alongside dead clicks, they surface the places where your app is failing users without throwing an error. Break them down by `$el_id` to find the specific controls people are fighting with, or use them to segment sessions worth watching in Session Replay.
 
 #### Enabling Click Autocapture
 
 Pass an `AutocaptureOptions` instance through `MixpanelOptions` at initialization. Passing none leaves autocapture entirely uninitialized.
-
-```kotlin Kotlin
-val autocaptureOptions = AutocaptureOptions.Builder().build()
-
-val options = MixpanelOptions.Builder()
-    .autocaptureOptions(autocaptureOptions)
-    .build()
-
-val mixpanel = MixpanelAPI.getInstance(context, "YOUR_TOKEN", true, options)
-```
 
 ```java Java
 AutocaptureOptions autocaptureOptions = new AutocaptureOptions.Builder().build();
@@ -769,7 +761,8 @@ MixpanelOptions options = new MixpanelOptions.Builder()
     .autocaptureOptions(autocaptureOptions)
     .build();
 
-MixpanelAPI mixpanel = MixpanelAPI.getInstance(context, "YOUR_TOKEN", true, options);
+MixpanelAPI mixpanel =
+    MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", false, options);
 ```
 
 Each signal is configurable, and can be turned off independently:
@@ -784,18 +777,18 @@ Each signal is configurable, and can be turned off independently:
 | `DeadClickOptions` | `enabled` | `true` |
 | `DeadClickOptions` | `timeWindowMs` — wait before declaring a click dead | `500` |
 
-```kotlin Kotlin
-val autocaptureOptions = AutocaptureOptions.Builder()
+```java Java
+AutocaptureOptions autocaptureOptions = new AutocaptureOptions.Builder()
     .rageClickOptions(
-        RageClickOptions.Builder()
+        new RageClickOptions.Builder()
             .clickThreshold(5)
             .timeWindowMs(800)
-            .build()
-    )
+            .build())
     .deadClickOptions(
-        DeadClickOptions.Builder().enabled(false).build()
-    )
-    .build()
+        new DeadClickOptions.Builder()
+            .enabled(false)
+            .build())
+    .build();
 ```
 
 Autocapture respects opt-out: it does not start when tracking is opted out, and stops and restarts with `optOutTracking()` and `optInTracking()`.
@@ -821,11 +814,10 @@ Every click, dead click and rage click event carries:
 
 `$el_id` is resolved by the SDK using fixed rules — it is not configurable. Understanding the order is the key to getting readable IDs in your reports.
 
-**XML views** (and anything React Native renders, since React Native draws through the View hierarchy):
+**XML views:**
 
-1. **React Native `nativeID`** — the JS-side prop, read dynamically
-2. **Android resource entry name** — `@+id/checkout_button` resolves to `checkout_button`
-3. **`<SimpleClassName>_<hash>`** — the anonymous fallback
+1. **Android resource entry name** — `@+id/checkout_button` resolves to `checkout_button`
+2. **`<SimpleClassName>_<hash>`** — the anonymous fallback
 
 **Jetpack Compose:**
 
@@ -834,18 +826,15 @@ Every click, dead click and rage click event carries:
 
 `contentDescription` is deliberately not a source on either path. It is localized, so the same element would report a different ID per language, and it can carry user data.
 
-A generated ID — `setId(10001)` in code, rather than an `@+id` resource — has no entry name, so it falls through to the hash.
-
 **About the hash fallback:** the hash is derived from the element's *position* in the hierarchy, not its instance, so it is identical across app launches. That makes it groupable, but it describes a position rather than a thing: reordering siblings changes it, and two rows of the same list differ by index rather than by content.
 
 #### Best Practices
 
-- **Put a stable resource ID on every element you care about.** `android:id="@+id/checkout_button"` in XML, `Modifier.testTag("checkout_button")` in Compose. Anything without one falls back to a positional hash, which is stable but not readable.
-- **Put the ID on the element that handles the tap**, not on a wrapper around it. An ID on a non-interactive ancestor is never used — the walk-up looks for interactivity, then reads identity from what it finds.
-- **Keep IDs static.** Never build an ID from a row index, a timestamp, a product name or any other per-render value: each variant becomes its own `$el_id` and the element can no longer be grouped in reports.
-- **Don't reach for `contentDescription` as a tracking hook.** It is never read as an identifier. Set it for accessibility, and set a resource ID or `testTag` for tracking.
-- **Name IDs for what the element does**, not for how it looks — `checkout_button` rather than `green_button_2`, so the name survives a redesign.
-- **Roll out gradually.** Enable autocapture alongside your existing manual `track()` calls, compare volumes in the dashboard, then retire the manual calls that have become redundant. Keep manual tracking for business-specific events.
+- **Give every element you want to measure a stable ID.** `android:id="@+id/checkout_button"` in XML, `Modifier.testTag("checkout_button")` in Compose. Without one, the element reports a positional hash — groupable, but unreadable in reports, and it changes if you reorder siblings.
+- **Put the ID on the element that handles the tap**, not on a wrapper around it. The walk-up finds the nearest *clickable* ancestor and reads identity from there, so an ID on a non-interactive container is never used.
+- **Keep IDs static across renders.** An ID built from a row index, a timestamp or a product name produces a new `$el_id` per render, which scatters one control across many rows in your reports.
+- **An `@+id` resource, not `setId()`.** IDs assigned in code have no resource entry name, so they fall through to the hash.
+- **Verify with debug logging before you rely on the data.** Enable SDK logs, tap through your key flows, and confirm the `$el_id` values that appear are the ones you expect.
 
 ## Session Replay
 

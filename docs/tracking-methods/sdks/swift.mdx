@@ -800,7 +800,7 @@ Mixpanel.mainInstance().autocapture.trackScreenView(
 ### Click Events
 
 <Note>
-  Autocaptured click events require Swift SDK v6.6.0 or later. They are **disabled by default** — you opt in with `AutocaptureOptions` at initialization.
+  **Beta.** Autocaptured click events are in beta: the events and the properties they capture may change before general availability. They require Swift SDK v6.6.0 or later, and are **disabled by default** — you opt in with `AutocaptureOptions` at initialization.
 </Note>
 
 Starting in v6.6.0, the SDK can capture taps for you, with no per-view instrumentation. Once enabled, it intercepts touches across every window in your app — including presented sheets and alerts — and works with both UIKit and SwiftUI. Three events are produced:
@@ -813,13 +813,13 @@ Starting in v6.6.0, the SDK can capture taps for you, with no per-view instrumen
 
 All three carry `$mp_autocapture: true`, alongside the properties described in [Tracked Properties](#tracked-properties).
 
-#### `[BETA]` Click
+#### Click
 
 A `$mp_click` event is emitted for every tap that resolves to an element, whether or not that element handles the tap. Scrolls, swipes and long presses do not produce clicks.
 
 When the tap lands on a non-interactive child — a `UILabel` inside a `UIButton`, say — the SDK walks up to the nearest interactive ancestor (up to 10 levels) and reports *that* element's identity. This keeps a button from being reported as its label. If no interactive ancestor is found, the tapped element's own identity is used.
 
-#### `[BETA]` Dead Click
+#### Dead Click
 
 A `$mp_dead_click` event is emitted when a tap on an **interactive** element produces no visible response. The SDK snapshots the UI immediately after the tap, then compares it 500 ms later; if nothing has changed, the event is emitted. A dead click is always accompanied by the `$mp_click` for the same tap.
 
@@ -829,9 +829,11 @@ Only interactive elements are candidates, so tapping a plain label or a decorati
   Detection is based on UI change only — the SDK does not observe network activity. A handler that fires a request but leaves the screen unchanged for 500 ms is reported as a dead click, which is usually the user-perceived truth. Conversely, a response that only changes color, alpha or an animation may not register as a change.
 </Note>
 
-#### `[BETA]` Rage Click
+#### Rage Click
 
 A `$mp_rage_click` event is emitted when **4 or more taps** land within **1000 ms** of each other and within **44 pt** on screen — the signature of a user hammering a control that isn't responding. The event is emitted *in addition to* the individual `$mp_click` events, so four rapid taps produce four clicks and one rage click. Taps spread out in time or across the screen do not qualify.
+
+Rage clicks are a **frustration signal**: alongside dead clicks, they surface the places where your app is failing users without throwing an error. Break them down by `$el_id` to find the specific controls people are fighting with, or use them to segment sessions worth watching in Session Replay.
 
 #### Enabling Click Autocapture
 
@@ -893,11 +895,10 @@ Every click, dead click and rage click event carries:
 
 `$el_id` is resolved by the SDK using fixed rules — it is not configurable. Understanding the order is the key to getting readable IDs in your reports.
 
-**UIKit** (and anything React Native renders, since React Native draws through UIKit):
+**UIKit:**
 
-1. **React Native `nativeID`** — the JS-side prop, read through the Objective-C runtime
-2. **`accessibilityIdentifier`** — framework-internal values such as `_private` or `AXID-1` are skipped
-3. **`<ClassName>_<hash>`** — the anonymous fallback
+1. **`accessibilityIdentifier`** — framework-internal values such as `_private` or `AXID-1` are skipped
+2. **`<ClassName>_<hash>`** — the anonymous fallback
 
 **SwiftUI:**
 
@@ -914,13 +915,11 @@ Every click, dead click and rage click event carries:
 
 #### Best Practices
 
-- **Put a stable `accessibilityIdentifier` on every element you care about.** `button.accessibilityIdentifier = "checkout_button"` in UIKit, `.accessibilityIdentifier("checkout_button")` in SwiftUI. Anything without one falls back to a positional hash, which is stable but not readable.
-- **Put the identifier on the element that handles the tap**, not on a wrapper around it. An identifier on a non-interactive ancestor is never used — the walk-up looks for interactivity, then reads identity from what it finds.
-- **Keep identifiers static.** Never build one from a row index, a timestamp, a product name or any other per-render value: each variant becomes its own `$el_id` and the element can no longer be grouped in reports.
-- **Don't reach for `accessibilityLabel` as a tracking hook.** It is never read as an identifier. Set it for VoiceOver, and set `accessibilityIdentifier` for tracking.
-- **On SwiftUI, expect hashes below iOS 18.** If your reports need readable IDs across older versions, wrap the control in a UIKit view you can identify, or rely on manual `trackClick` for those flows.
-- **Name identifiers for what the element does**, not for how it looks — `checkout_button` rather than `blue_button_2`, so the name survives a redesign.
-- **Roll out gradually.** Enable autocapture alongside your existing manual `track()` calls, compare volumes in the dashboard, then retire the manual calls that have become redundant. Keep manual tracking for business-specific events.
+- **Give every element you want to measure a stable `accessibilityIdentifier`.** `button.accessibilityIdentifier = "checkout_button"` in UIKit, `.accessibilityIdentifier("checkout_button")` in SwiftUI. Without one, the element reports a positional hash — groupable, but unreadable in reports, and it changes if you reorder siblings.
+- **Put the identifier on the element that handles the tap**, not on a wrapper around it. The walk-up finds the nearest *interactive* ancestor and reads identity from there, so an identifier on a non-interactive container is never used.
+- **Keep identifiers static across renders.** One built from a row index, a timestamp or a product name produces a new `$el_id` per render, which scatters one control across many rows in your reports.
+- **On SwiftUI below iOS 18, expect hashes.** If those versions matter to your reports, host the control in an identifiable UIKit view, or track those flows manually with `trackClick`.
+- **Verify with debug logging before you rely on the data.** Set `loggingEnabled = true`, tap through your key flows, and confirm the `$el_id` values that appear are the ones you expect.
 
 ## Session Replay
 
