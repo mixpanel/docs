@@ -732,7 +732,7 @@ All three carry `$mp_autocapture: true`, alongside the properties described in [
 
 A `$mp_click` event is emitted for every tap that resolves to an element, whether or not that element handles the tap. Scrolls, swipes and long presses do not produce clicks.
 
-When the tap lands on a non-interactive child — a `TextView` inside a clickable `LinearLayout`, say — the SDK walks up to the nearest clickable ancestor (up to 10 levels) and reports *that* element's identity. This keeps a row from being reported as its label. If no clickable ancestor is found, the tapped element's own identity is used.
+When the tap lands on a non-interactive child — such as a `TextView` inside a clickable `LinearLayout` — the SDK walks up to the nearest clickable ancestor (up to 10 levels) and reports *that* element's identity. This keeps a row from being reported as its label. If no clickable ancestor is found, the tapped element's own identity is used.
 
 #### Dead Click
 
