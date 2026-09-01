@@ -98,9 +98,9 @@ The Mixpanel Agent uses your project's [Business Context](/docs/business-context
 
 ## Verified Mode
 
-Admins can control what data the Agent surfaces by enabling Verified Mode in Project Settings. When enabled, Mixpanel AI will only use [Verified Data](/docs/data-governance/lexicon#verify-data). Verified Data is events, metrics, behaviors, and cohorts that your team has explicitly reviewed and verified in Lexicon. This ensures AI responses are grounded in data your organization trusts.
+Admins can control how the Agent treats data by enabling Verified Mode in Project Settings. When enabled, the Agent still works with all requested data — Verified Mode does not remove or exclude anything — but it prioritizes [Verified Data](/docs/data-governance/lexicon#verify-data): events, metrics, behaviors, and cohorts that your team has explicitly reviewed and verified in Lexicon. The Agent prefers verified equivalents wherever they exist, so AI responses stay grounded in the data your organization trusts.
 
-When unverified data is excluded from a response, users are notified that additional relevant data exists but wasn't included.
+Results that draw on unverified data are flagged as unverified, so users can see which parts of a response haven't yet been reviewed in Lexicon.
 
 ## Sharing
 
