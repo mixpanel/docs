@@ -736,12 +736,12 @@ When the tap lands on a non-interactive child — a `TextView` inside a clickabl
 
 #### Dead Click
 
-A `$mp_dead_click` event is emitted when a tap on an **interactive** element produces no visible response. The SDK snapshots the UI immediately before the click handler runs, watches for layout changes, scrolls and new windows, and — if nothing has changed **500 ms** later — emits the event. Any detected change cancels it. That window is the default `DeadClickOptions.timeWindowMs` and is [configurable](#enabling-click-autocapture). A dead click is always accompanied by the `$mp_click` for the same tap.
+A `$mp_dead_click` event is emitted when a tap on an **interactive** element produces no visible response. The SDK snapshots the UI immediately before the click handler runs, watches for layout changes, scrolls and new windows, and — if nothing has changed **500 ms** later — emits the event. Any detected change cancels it. That time window is the default `DeadClickOptions.timeWindowMs` and is [configurable](#enabling-click-autocapture). A dead click is always accompanied by the `$mp_click` for the same tap.
 
 Only interactive elements are candidates, so tapping a plain label or a decorative image never produces one. Controls with inherent visual feedback are excluded by type, because their response happens in a layer the detector cannot observe: `EditText`, `Switch`, `CheckBox`, `RadioButton`, `ToggleButton`, `SeekBar`, `Spinner`, `DatePicker` and `NumberPicker`, plus the Compose equivalents `TextField`, `BasicTextField`, `Switch`, `Checkbox`, `RadioButton` and `Slider`.
 
 <Note>
-  Detection is based on UI change only — the SDK does not observe network activity. A handler that fires a request but leaves the screen unchanged for the dead click window is reported as a dead click, which is usually the user-perceived truth. Conversely, a response that only changes color, alpha or an animation may not register as a change.
+  Detection is based on UI change only — the SDK does not observe network activity. A handler that fires a request but leaves the screen unchanged for the dead click time window is reported as a dead click, which is usually the user-perceived truth. Conversely, a response that only changes color, alpha or an animation may not register as a change.
 </Note>
 
 #### Rage Click
@@ -772,10 +772,10 @@ Each signal is configurable, and can be turned off independently:
 | `ClickOptions` | `enabled` | `true` |
 | `RageClickOptions` | `enabled` | `true` |
 | `RageClickOptions` | `clickThreshold` — taps required | `4` |
-| `RageClickOptions` | `timeWindowMs` — window they must fall in | `1000` |
+| `RageClickOptions` | `timeWindowMs` — time window they must fall in, in milliseconds | `1000` |
 | `RageClickOptions` | `radius` — spatial threshold, in dp | `44` |
 | `DeadClickOptions` | `enabled` | `true` |
-| `DeadClickOptions` | `timeWindowMs` — wait before declaring a click dead | `500` |
+| `DeadClickOptions` | `timeWindowMs` — time to wait before declaring a click dead, in milliseconds | `500` |
 
 ```java Java
 AutocaptureOptions autocaptureOptions = new AutocaptureOptions.Builder()
@@ -819,7 +819,7 @@ Every click, dead click and rage click event carries:
 | `$mp_autocapture` | Always `true` |
 
 <Note>
-  Autocapture does not capture element text. There is no `$el_text` property, and no `$attr-aria-label`: `contentDescription` is user-facing text that can carry personal data, so it is neither reported nor used as an identifier.
+  Autocapture does not capture element text: there is no `$el_text` property. There is also no `$attr-aria-label` property. `contentDescription` is accessibility metadata — surfaced to assistive technologies such as TalkBack rather than shown on screen — and it can carry personal data, so the SDK neither reports it nor uses it as an identifier.
 </Note>
 
 #### Element ID Resolution
