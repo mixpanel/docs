@@ -583,3 +583,52 @@ When your analysis email says “no interesting segments”, this means that non
 If the analysis request included dates in the past five days and is sent from the mobile SDK, data may be delayed and therefore not included at the time of the analysis. Likewise, the date window selected might still fall under the conversion window, and more conversions have yet to come through.
 
 Results are sorted by taking into consideration the property, the number of users in the report, as well as the deviation from overall conversion or retention behavior to surface the most meaningful segments to you.
+
+## Version History
+
+Version History lets you see a log of every saved version of a report, review what changed in each one, and preview, restore, or duplicate a previous version.
+
+Version History is available on Insights, Funnels, Flows, and Retention reports. Open it by clicking the **clock icon** in the top-right corner of a report.
+
+<Frame>
+  ![Version History panel on a report](/images/version-history.png)
+</Frame>
+
+### How versions are created
+
+Every time a report is saved, Mixpanel creates a new version. For each version, the panel shows:
+
+- The date and time of the save, in the project's timezone.
+- The user who made the save.
+- Key details about what changed from the previous version, such as added, removed, or updated metrics, or a renamed report.
+
+If a report is changed through the [Mixpanel Agent](/docs/mixpanel-agent) or the [MCP server](/docs/mcp), the version is attributed to the user who authorized the changes, not to the agent.
+
+### Preview, restore, or duplicate a version
+
+Click any previous version to preview it. From the version's overflow menu, you can:
+
+- **Restore this version** — makes the selected version the current version of the report.
+- **Duplicate report** — creates a separate copy of the report from the selected version, leaving your current report unchanged.
+- **Copy link** — copies a link to the report.
+
+<Frame>
+  ![Restore, duplicate, or copy a link to a previous version](/images/version-history-restore.png)
+</Frame>
+
+<Warning>
+If you preview an older version, make changes, and save, those changes are logged as a new version and overwrite your current version. To make changes based on an older version while keeping your current version intact, duplicate the older version instead so that you have two separate copies.
+</Warning>
+
+### How long versions are kept
+
+How far back Version History goes depends on your plan:
+
+| Plan | Version history retention |
+| --- | --- |
+| Free & Growth | 90 days |
+| Enterprise | 2 years |
+
+<Note>
+Some actions are not currently shown in Version History, including deleting a report, linking a report to a new board, and moving a report between boards.
+</Note>
