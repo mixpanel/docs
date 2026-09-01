@@ -1,6 +1,6 @@
 ---
-title: Mixpanel MCP Server
-sidebarTitle: MCP Server
+title: "Mixpanel MCP Server"
+sidebarTitle: "MCP Server"
 ---
 
 ## Overview
@@ -66,7 +66,7 @@ A typical workflow looks like:
 |  | `List-Metrics` | List all saved metrics in a project |
 |  | `Update-Metric` | Update a saved metric's name, definition, or description |
 | **Session Replays** | `Get-User-Replays-Data` | Analyze a specific user's replays alongside their event data |
-| **Experiments** _(Beta)_ | `List-Experiments` | List and search experiments in a project |
+| **Experiments** | `List-Experiments` | List and search experiments in a project |
 |  | `Get-Experiment` | Retrieve experiment details, configuration, and results |
 |  | `Create-Experiment` | Create a new experiment |
 |  | `Update-Experiment` | Modify an experiment's configuration or manage its lifecycle |
@@ -75,7 +75,7 @@ A typical workflow looks like:
 |  | `Explain-Experiment-Health-Check` | Explain why an experiment's health check is firing, or confirm it's healthy |
 |  | `Run-Experiment-Pre-Launch-Checks` | Cross-reference a draft experiment's config against best practices before launch |
 |  | `Search-Prior-Experiments` | Search the project's experiment store for prior tests on the same surface |
-| **Feature Flags** _(Beta)_ | `List-Feature-Flags` | List and search feature flags in a project |
+| **Feature Flags** | `List-Feature-Flags` | List and search feature flags in a project |
 |  | `Get-Feature-Flag` | Retrieve feature flag details and targeting rules |
 |  | `Create-Feature-Flag` | Create a new feature flag |
 |  | `Update-Feature-Flag` | Modify a feature flag's configuration or targeting |
@@ -83,7 +83,7 @@ A typical workflow looks like:
 |  | `Get-Feature-Flag-Lifecycle-Guidance` | Get best-practice guidance for rollout, kill-switch, and cleanup of a feature flag |
 
 <Warning>
-  **Experiments and Feature Flags tools are in open beta** and available to all users. Audience targeting and cohort editing are not yet supported via MCP — use the Mixpanel UI instead.
+  Audience targeting and cohort editing are not yet supported via MCP — use the Mixpanel UI instead.
 </Warning>
 
 ## MCP Server URLs
@@ -161,7 +161,7 @@ Once **Developer Mode** is enabled, add a new plugin.
 
 ### Codex
 
-1. Go to **Settings → MCP Servers → \+ Add Server**
+1. Go to **Settings → MCP Servers → + Add Server**
 2. Provide a name (e.g. Mixpanel) and select **Streamable HTTP**
 3. Enter your [MCP Server URL](#mcp-server-urls) and click **Save**
 
@@ -183,7 +183,7 @@ codex mcp login mixpanel
 ### Notion
 
 1. Create a new Agent from the **Agents** section in the Notion sidebar
-2. In the Agent's **Settings**, go to **Tools and Access → \+ Add Connection**
+2. In the Agent's **Settings**, go to **Tools and Access → + Add Connection**
 3. Select **Mixpanel** and complete the OAuth flow
 
 ### Gemini CLI
@@ -321,7 +321,7 @@ Set `MIXPANEL_SA_TOKEN` to your base64-encoded credentials before starting Claud
 
 ### Codex
 
-1. Go to **Settings → MCP Servers → \+ Add Server**
+1. Go to **Settings → MCP Servers → + Add Server**
 2. Provide a name (e.g. Mixpanel) and select **Streamable HTTP**
 3. Enter your [MCP Server URL](#mcp-server-urls)
 4. Add the [authorization header](#generating-the-authorization-header) and click **Save**
@@ -406,7 +406,7 @@ claude plugin install mixpanel
 
 Then, inside Claude Code:
 
-```
+```text
 /mixpanel:install
 ```
 
@@ -476,7 +476,7 @@ Once connected, try asking your AI assistant:
 **Investigate users**
 
 - "This user reported a bug — what happened in their last 3 sessions?"
-- "Walk me through what \[user ID\] did before they churned"
+- "Walk me through what [user ID] did before they churned"
 
 ## Security Considerations
 
@@ -545,7 +545,7 @@ The following endpoints are deprecated but still available:
 
 ### Authorization Code Flow with PKCE
 
-Mixpanel uses **Authorization Code \+ PKCE (S256)**:
+Mixpanel uses **Authorization Code + PKCE (S256)**:
 
 - **Authorization endpoint:** `https://{mixpanel_domain}/oauth/authorize`
 - **Token endpoint:** `https://{mixpanel_domain}/oauth/token/`
