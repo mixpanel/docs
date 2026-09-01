@@ -821,17 +821,17 @@ When the tap lands on a non-interactive child — a `UILabel` inside a `UIButton
 
 #### Dead Click
 
-A `$mp_dead_click` event is emitted when a tap on an **interactive** element produces no visible response. The SDK snapshots the UI immediately after the tap, then compares it 500 ms later; if nothing has changed, the event is emitted. A dead click is always accompanied by the `$mp_click` for the same tap.
+A `$mp_dead_click` event is emitted when a tap on an **interactive** element produces no visible response. The SDK snapshots the UI immediately after the tap, then compares it **500 ms** later; if nothing has changed, the event is emitted. That window is the default `DeadClickOptions.timeWindowMs` and is [configurable](#enabling-click-autocapture). A dead click is always accompanied by the `$mp_click` for the same tap.
 
 Only interactive elements are candidates, so tapping a plain label or a decorative image never produces one. Controls with inherent visual feedback are excluded by type, because their response happens in a layer the detector cannot observe: `UITextField`, `UITextView`, `UISwitch`, `UISlider`, `UIStepper`, `UISegmentedControl`, `UIDatePicker`, `UIPickerView` and `UIPageControl`, plus the SwiftUI equivalents `TextField`, `TextEditor`, `SecureField`, `Toggle`, `Slider`, `Stepper`, `Picker` and `DatePicker`.
 
 <Note>
-  Detection is based on UI change only — the SDK does not observe network activity. A handler that fires a request but leaves the screen unchanged for 500 ms is reported as a dead click, which is usually the user-perceived truth. Conversely, a response that only changes color, alpha or an animation may not register as a change.
+  Detection is based on UI change only — the SDK does not observe network activity. A handler that fires a request but leaves the screen unchanged for the dead click window is reported as a dead click, which is usually the user-perceived truth. Conversely, a response that only changes color, alpha or an animation may not register as a change.
 </Note>
 
 #### Rage Click
 
-A `$mp_rage_click` event is emitted when **4 or more taps** land within **1000 ms** of each other and within **44 pt** on screen — the signature of a user hammering a control that isn't responding. The event is emitted *in addition to* the individual `$mp_click` events, so four rapid taps produce four clicks and one rage click. Taps spread out in time or across the screen do not qualify.
+A `$mp_rage_click` event is emitted when **4 or more taps** land within **1000 ms** of each other and within **44 pt** on screen — the signature of a user hammering a control that isn't responding. These three thresholds are the defaults — `clickThreshold`, `timeWindowMs` and `radius` on `RageClickOptions` — and are [configurable](#enabling-click-autocapture). The event is emitted *in addition to* the individual `$mp_click` events, so four rapid taps produce four clicks and one rage click. Taps spread out in time or across the screen do not qualify.
 
 Rage clicks are a **frustration signal**: alongside dead clicks, they surface the places where your app is failing users without throwing an error. Break them down by `$el_id` to find the specific controls people are fighting with, or use them to segment sessions worth watching in Session Replay.
 
@@ -925,13 +925,17 @@ Every click, dead click and rage click event carries:
 
 **About the hash fallback:** the hash is derived from the element's *position* in the hierarchy, not its instance, so it is identical across app launches. That makes it groupable, but it describes a position rather than a thing: reordering siblings changes it, and two rows of the same list differ by index rather than by content.
 
+<Warning>
+  **Review your identifiers for personal data.** `$el_id` is derived from identifiers you set in your own code, so its contents are under your control — and Mixpanel receives them as-is. An identifier built from user data (`user_4172@example.com_row`, an account number, an order ID) sends that data to Mixpanel as an event property. Before you rely on click autocapture in production, tap through your key flows with SDK logging enabled, review the `$el_id` values the SDK reports, and confirm none of them carry personally identifiable information.
+</Warning>
+
 #### Best Practices
 
 - **Give every element you want to measure a stable `accessibilityIdentifier`.** `button.accessibilityIdentifier = "checkout_button"` in UIKit, `.accessibilityIdentifier("checkout_button")` in SwiftUI. Without one, the element reports a positional hash — groupable, but unreadable in reports, and it changes if you reorder siblings.
 - **Put the identifier on the element that handles the tap**, not on a wrapper around it. The walk-up finds the nearest *interactive* ancestor and reads identity from there, so an identifier on a non-interactive container is never used.
 - **Keep identifiers static across renders.** One built from a row index, a timestamp or a product name produces a new `$el_id` per render, which scatters one control across many rows in your reports.
 - **On SwiftUI below iOS 18, expect hashes.** If those versions matter to your reports, host the control in an identifiable UIKit view, or track those flows manually with `trackClick`.
-- **Verify with debug logging before you rely on the data.** Set `loggingEnabled = true`, tap through your key flows, and confirm the `$el_id` values that appear are the ones you expect.
+- **Verify — and review for PII — before you rely on the data.** Set `loggingEnabled = true`, tap through your key flows, and confirm the reported `$el_id` values are the ones you expect *and* that none of them contain personal data. Identifiers are yours to choose, so keeping PII out of them is yours to confirm.
 
 ## Session Replay
 
