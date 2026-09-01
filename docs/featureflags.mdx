@@ -270,11 +270,7 @@ Keep traffic within region by using the correct project & API hosts.
 Mixpanel analytics downtime will result in suspended cohort membership refreshes, though feature flag variants will continue to be served.
 
 - When using sticky variants, the last available variant per user will be served.
-- In case of Feature flagging service downtime, your fallback variant will be served by the SDKs.
-
-<Note>
-  Service downtime is only one case where the fallback value is served — it's also what's returned for a user who has never been assigned a variant, e.g. someone currently outside the Rollout %, or excluded by targeting filters. Set it to the default experience you want those users to have. This isn't guaranteed for every user outside a rollout, though: if a user was already assigned a variant, Sticky Variants and persisted client-side assignments will keep serving that prior variant even after a later change to rollout % or targeting would otherwise exclude them, rather than switching them to the fallback.
-</Note>
+- In case of Feature flagging service downtime, your fallback variant will be served by the SDKs. See [Fallback Value](#concepts--terminology) for more details about fallback values.
 
 **Performance**
 
