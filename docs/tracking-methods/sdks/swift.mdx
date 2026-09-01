@@ -835,6 +835,35 @@ A `$mp_rage_click` event is emitted when **4 or more taps** land within **1000 m
 
 Rage clicks are a **frustration signal**: alongside dead clicks, they surface the places where your app is failing users without throwing an error. Break them down by `$el_id` to find the specific controls people are fighting with, or use them to segment sessions worth watching in Session Replay.
 
+#### One-Time Setup: Element IDs
+
+Do this once, before you enable click autocapture. It isn't strictly required — autocapture works without it and every tap is still captured — but it's what makes the data readable. An element with no identifier reports a positional hash like `UIButton_a3f21c`: it groups correctly, but it tells you nothing in a report and changes if you reorder siblings.
+
+So give every element you plan to measure a stable identifier first. In both frameworks the identifier belongs on the element that **handles the tap** — the SDK walks up to the nearest interactive ancestor and reads identity from there, so an identifier on a non-interactive wrapper is never used.
+
+<CodeGroup>
+
+```swift UIKit
+let checkoutButton = UIButton(type: .system)
+checkoutButton.setTitle("Checkout", for: .normal)
+checkoutButton.accessibilityIdentifier = "checkout_button"
+```
+
+```swift SwiftUI
+Button("Checkout") {
+    // ...
+}
+.accessibilityIdentifier("checkout_button")
+```
+
+</CodeGroup>
+
+- **UIKit.** For storyboard and XIB views, set the identifier in the **Identity inspector → Accessibility → Identifier** field instead of in code.
+- **SwiftUI.** Reading the identifier back requires iOS 18 or later — see the warning under [Element ID Resolution](#element-id-resolution). On iOS 15–17 these elements fall back to the hash whatever you set, so plan your reports accordingly.
+- **`accessibilityIdentifier` is not `accessibilityLabel`.** The identifier is developer-facing and never announced by VoiceOver, which is what makes it safe to use as an ID; the label is accessibility metadata and is never used as an identifier. Setting only a label leaves the element on the hash fallback.
+
+Full precedence rules are in [Element ID Resolution](#element-id-resolution).
+
 #### Enabling Click Autocapture
 
 Pass an `AutocaptureOptions` instance through `MixpanelOptions` at initialization. Passing none leaves autocapture entirely uninitialized.

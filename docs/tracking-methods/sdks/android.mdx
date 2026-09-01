@@ -750,6 +750,39 @@ A `$mp_rage_click` event is emitted when **4 or more taps** land within **1000 m
 
 Rage clicks are a **frustration signal**: alongside dead clicks, they surface the places where your app is failing users without throwing an error. Break them down by `$el_id` to find the specific controls people are fighting with, or use them to segment sessions worth watching in Session Replay.
 
+#### One-Time Setup: Element IDs
+
+Do this once, before you enable click autocapture. It isn't strictly required — autocapture works without it and every tap is still captured — but it's what makes the data readable. An element with no identifier reports a positional hash like `Button_a3f21c`: it groups correctly, but it tells you nothing in a report and changes if you reorder siblings.
+
+So give every element you plan to measure a stable identifier first. In both frameworks the identifier belongs on the element that **handles the tap** — the SDK walks up to the nearest clickable ancestor and reads identity from there, so an ID on a non-interactive wrapper is never used.
+
+<CodeGroup>
+
+```xml XML Layouts
+<Button
+    android:id="@+id/checkout_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Checkout" />
+```
+
+```kotlin Jetpack Compose
+Button(
+    onClick = { /* ... */ },
+    modifier = Modifier.testTag("checkout_button")
+) {
+    Text("Checkout")
+}
+```
+
+</CodeGroup>
+
+- **XML layouts.** The SDK reports the resource *entry name*, so `@+id/checkout_button` is reported as `checkout_button`. IDs assigned in code with `setId()` or `View.generateViewId()` have no entry name and fall through to the hash.
+- **Jetpack Compose.** `Modifier.testTag` is read directly from the Compose semantics tree, and it's the same tag your Compose UI tests already use. You do **not** need `testTagsAsResourceId = true` — that flag exposes tags to UiAutomator and is unrelated to autocapture.
+- **`contentDescription` is not an alternative.** It's accessibility metadata, so the SDK never uses it as an identifier.
+
+Full precedence rules are in [Element ID Resolution](#element-id-resolution).
+
 #### Enabling Click Autocapture
 
 Pass an `AutocaptureOptions` instance through `MixpanelOptions` at initialization. Passing none leaves autocapture entirely uninitialized.
