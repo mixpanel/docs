@@ -45,7 +45,7 @@ When it's on, AI features lean harder on [verified data](/docs/data-governance/l
 
 This is primarily an enterprise concern. It's most valuable when you're rolling out AI access broadly — to PMs, engineers, and stakeholders who may not know the difference between `checkout_complete` and `checkout_complete_v2`.
 
-The tradeoff: Verified Mode puts the burden of verification on admins, and its payoff scales with how much you've verified. If your team ships events faster than they get verified, agents don't lose access to anything — but more of what they return comes back flagged as unverified, so the labels carry less signal. The mode is most worthwhile once a meaningful share of your high-traffic data is verified. Until then, the default experience — where AI still prioritizes verified and high-usage data, just without leaning as hard on it or labeling the rest — is often the better call.
+The tradeoff: Verified Mode puts the burden of verification on admins, and its payoff scales with how much you've verified. If your team ships events faster than they get verified, agents don't lose access to anything — but more of what they return comes back flagged as unverified, so the labels carry less signal. The mode is most worthwhile once a meaningful share of your high-traffic data is verified.
 
 <Note>
   **Pro tip:** Before enabling Verified Mode, audit your verified events against the queries your team runs most often. Get your high-traffic events verified first, then enable the mode.
