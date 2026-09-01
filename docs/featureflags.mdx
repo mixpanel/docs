@@ -39,7 +39,7 @@ Enterprise customers who need Feature Flags without Experiments can [contact us]
 - **Variant Assignment Key** — the randomization bucket unit: `distinct_id` (user), `device_id`, or a **group key** like `account_id`.
 - **Variants** — experience labels (e.g., `control`, `A`, `B`).
 - **Variant Splits** — allocation across variants (e.g., 90%/10%).
-- **Fallback Value** — the value your app supplies at call time (e.g., to `get_variant_value`) that is used whenever the SDK does not return an assignment. This is the value served to any user the rollout doesn't reach — someone outside the Rollout %, excluded by targeting filters, or affected by feature-flagging service downtime — so treat it as the expected default experience for everyone not explicitly rolled out, not just a downtime safeguard.
+- **Fallback Value** — the value your app supplies at call time (e.g., to `get_variant_value`) that is used whenever the SDK does not return an assignment. This is what's served to a user who has never received an assignment — someone currently outside the Rollout %, excluded by targeting filters, or affected by feature-flagging service downtime — so treat it as the default experience for anyone the rollout hasn't reached, not just a downtime safeguard. It is not guaranteed for every user outside the current rollout, though: a user who was previously assigned a variant can keep seeing it even after a later change to rollout % or targeting would otherwise exclude them, because Sticky Variants and persisted client-side assignments retain prior variants instead of falling back.
 - **Sticky Variants** — the same entity keeps the same variant over time.
 - **Rollout Groups** - the configuration determining which users are in the rollout. This is comprised of:
   - **Filters** — the targeting configuration that determines whether a subject is eligible for this rollout. Filter types include Cohort and Runtime filters
@@ -273,7 +273,7 @@ Mixpanel analytics downtime will result in suspended cohort membership refreshes
 - In case of Feature flagging service downtime, your fallback variant will be served by the SDKs.
 
 <Note>
-  Service downtime is only one case where the fallback value is served — it's also what's returned for every user who isn't covered by the rollout, e.g. anyone outside the Rollout %, or excluded by targeting filters. In a 50% rollout, the other 50% of users see the fallback value on every normal request, not just during an outage. Set it to the default experience you want those users to have.
+  Service downtime is only one case where the fallback value is served — it's also what's returned for a user who has never been assigned a variant, e.g. someone currently outside the Rollout %, or excluded by targeting filters. Set it to the default experience you want those users to have. This isn't guaranteed for every user outside a rollout, though: if a user was already assigned a variant, Sticky Variants and persisted client-side assignments will keep serving that prior variant even after a later change to rollout % or targeting would otherwise exclude them, rather than switching them to the fallback.
 </Note>
 
 **Performance**
