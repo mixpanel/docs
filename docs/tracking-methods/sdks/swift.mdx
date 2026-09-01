@@ -817,7 +817,7 @@ All three carry `$mp_autocapture: true`, alongside the properties described in [
 
 A `$mp_click` event is emitted for every tap that resolves to an element, whether or not that element handles the tap. Scrolls, swipes and long presses do not produce clicks.
 
-When the tap lands on a non-interactive child — a `UILabel` inside a `UIButton`, say — the SDK walks up to the nearest interactive ancestor (up to 10 levels) and reports *that* element's identity. This keeps a button from being reported as its label. If no interactive ancestor is found, the tapped element's own identity is used.
+When the tap lands on a non-interactive child — such as a `UILabel` inside a `UIButton` — the SDK walks up to the nearest interactive ancestor (up to 10 levels) and reports *that* element's identity. This keeps a button from being reported as its label. If no interactive ancestor is found, the tapped element's own identity is used.
 
 #### Dead Click
 
