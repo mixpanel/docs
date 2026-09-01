@@ -858,9 +858,9 @@ Button("Checkout") {
 
 </CodeGroup>
 
-- **UIKit.** For storyboard and XIB views, set the identifier in the **Identity inspector → Accessibility → Identifier** field instead of in code.
-- **SwiftUI.** Reading the identifier back requires iOS 18 or later — see the warning under [Element ID Resolution](#element-id-resolution). On iOS 15–17 these elements fall back to the hash whatever you set, so plan your reports accordingly.
-- **`accessibilityIdentifier` is not `accessibilityLabel`.** The identifier is developer-facing and never announced by VoiceOver, which is what makes it safe to use as an ID; the label is accessibility metadata and is never used as an identifier. Setting only a label leaves the element on the hash fallback.
+- **UIKit:** For storyboard and XIB views, set the identifier in the **Identity inspector → Accessibility → Identifier** field instead of in code.
+- **SwiftUI:** Reading the identifier back requires iOS 18 or later — see the warning under [Element ID Resolution](#element-id-resolution). On iOS 15–17 these elements fall back to the hash whatever you set, so plan your reports accordingly.
+- **`accessibilityIdentifier` is not `accessibilityLabel`:** The identifier is developer-facing and never announced by VoiceOver, which is what makes it safe to use as an ID; the label is accessibility metadata and is never used as an identifier. Setting only a label leaves the element on the hash fallback.
 
 Full precedence rules are in [Element ID Resolution](#element-id-resolution).
 
