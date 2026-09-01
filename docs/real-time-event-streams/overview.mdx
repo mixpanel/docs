@@ -56,10 +56,6 @@ Use Real-Time Event Streams when latency matters and your workflow needs individ
 - **Sync** — a rule that binds a set of filtered events and a Liquid payload template to a Destination.
 - **Failed events log** — a 72-hour record of events that could not be delivered after all retries, retained with the destination HTTP response for debugging.
 
-<Tip>
-  {/* PLACEHOLDER: Add a customer-facing diagram showing ingestion → filter → Liquid template → webhook. */}
-</Tip>
-
 ## Delivery guarantees at a glance
 
 - **At-least-once delivery.** Every outbound request includes an `X-Mixpanel-Insert-Id` header so you can deduplicate on your side.
