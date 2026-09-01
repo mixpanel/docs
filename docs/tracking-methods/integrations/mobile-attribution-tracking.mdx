@@ -1,12 +1,13 @@
 ---
-title: "Mobile Attribution"
+title: Mobile Attribution
 ---
 
 Determining the source and channels for your mobile traffic can be complex to set up yourself, especially for installs, since the user goes mainly through the Google Play Store or the Apple App Store before continuing their journey, and mapping that can be a challenge. In our view, it’s best to partner with a service that can focus on reliably mapping that journey, and [we have a list of partners](https://mixpanel.com/partners/integrations?categories=attribution-deep-linking) that we encourage customers to review for this purpose.
 
-> Specifically for Android installs, the Android SDK itself supports a function called [getInstallReferrer](https://developer.android.com/reference/com/android/installreferrer/api/ReferrerDetails#getInstallReferrer()) which you can leverage to parse some of the source data if you’d prefer to not implement through a partner, although for a smaller subset of the attribution data.
+> Specifically for Android installs, the Android SDK itself supports a function called [getInstallReferrer](https://developer.android.com/reference/com/android/installreferrer/api/ReferrerDetails#getInstallReferrer\(\)) which you can leverage to parse some of the source data if you’d prefer to not implement through a partner, although for a smaller subset of the attribution data.
 
-Mobile attribution partner integrations work in 3 main ways: 
+Mobile attribution partner integrations work in 3 main ways:
+
 - Webhooks/Callbacks: the partner sends the attribution data to your servers
 - SDK → SDK integrations: your app leverages the partner SDK to send the data to Mixpanel
 - Partner Server → Mixpanel integrations; the partner directly sends the data to Mixpanel
@@ -19,11 +20,12 @@ Some of our partners support webhooks (or callbacks); the idea being that you ca
 
 > **Note**: Adjust is just selected alphabetically from the list of partners. We encourage customers to review the list and choose based on the ones that fit their requirements best.
 
-Picking Adjust as a partner to provide an example, we can see their section [on callbacks here](https://help.adjust.com/en/article/server-callbacks#single-activity-callbacks). The callback returns, as one of the values, an `adid` (Adjust device ID). This is also a value you will have available in the SDK in the client. You can send this to your own server from the client so that, when you receive that `adid` value, you know which user this belongs to, so you can send the data to Mixpanel with the right distinct_id.
+Picking Adjust as a partner to provide an example, we can see their section [on callbacks here](https://help.adjust.com/en/article/server-callbacks#single-activity-callbacks). The callback returns, as one of the values, an `adid` (Adjust device ID). This is also a value you will have available in the SDK in the client. You can send this to your own server from the client so that, when you receive that `adid` value, you know which user this belongs to, so you can send the data to Mixpanel with the right distinct\_id.
 
-To fully illustrate the workflow, you could create a table in your DB that holds the attribution data for the device with the `adid` value as the primary key (data that you will receive from the webhook). Then, when the app launches, you will have both the `adid` from the SDK as well as the distinct_id from Mixpanel after you initialize the library, which you can update your table with, and if the user authenticates, you will also have a map of `adid` to authenticated user ID which you can also update. You can then build a view that has the event data you want to send in which you would use the distinct_id from after initializing the library to send the event with and, if you also have the user ID (because the user authenticated), you can create another view for the profile using the user ID as the distinct_id (profiles should be created with the authenticated ID only). Both of those views can be directly connected to the project via the data warehouse connector or you can also design a process that reads from the view and sends the data to our APIs.
+To fully illustrate the workflow, you could create a table in your DB that holds the attribution data for the device with the `adid` value as the primary key (data that you will receive from the webhook). Then, when the app launches, you will have both the `adid` from the SDK as well as the distinct\_id from Mixpanel after you initialize the library, which you can update your table with, and if the user authenticates, you will also have a map of `adid` to authenticated user ID which you can also update. You can then build a view that has the event data you want to send in which you would use the distinct\_id from after initializing the library to send the event with and, if you also have the user ID (because the user authenticated), you can create another view for the profile using the user ID as the distinct\_id (profiles should be created with the authenticated ID only). Both of those views can be directly connected to the project via the data warehouse connector or you can also design a process that reads from the view and sends the data to our APIs.
 
 **Advantages:**
+
 - Highly configurable. Once you receive the data, you can choose how to send the data to Mixpanel, what part of that data, and even transform it before you send it
 - Highest level of data accuracy. As you can edit/transform the data before you send it, it gives you the ability to further clean/transform the data you ultimately send. As a use case, sometimes, the attribution source for a device changes (even for the install). If the partner supports sending you callbacks for each of the values of the attribution, you can receive that data and choose what best fits your use case to then send it to Mixpanel
 
@@ -74,7 +76,7 @@ private void insertJsonProperty(JSONObject props, String name, String value) {
 
 ## Partner Server to Mixpanel
 
-Most of our attribution partners support a form of server-to-server integration. The main idea is that you will install the partner’s SDK in your app and follow their configuration instructions. Part of those instructions usually involve querying Mixpanel’s distinct_id (unique ID for the user) in the device and sending that over to their server. Once the partner has the attribution data, as well as knows which is the distinct_id for that user in that device, they will send said data in the form of events and properties (as well as profile properties) directly from the partner server to Mixpanel.
+Most of our attribution partners support a form of server-to-server integration. The main idea is that you will install the partner’s SDK in your app and follow their configuration instructions. Part of those instructions usually involve querying Mixpanel’s distinct\_id (unique ID for the user) in the device and sending that over to their server. Once the partner has the attribution data, as well as knows which is the distinct\_id for that user in that device, they will send said data in the form of events and properties (as well as profile properties) directly from the partner server to Mixpanel.
 
 **Advantages**:
 

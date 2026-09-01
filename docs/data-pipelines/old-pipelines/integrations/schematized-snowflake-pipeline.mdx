@@ -1,12 +1,12 @@
 ---
-title: "Schematized Snowflake Pipeline"
+title: Schematized Snowflake Pipeline
 ---
 
 <Note>
   Customers on an Enterprise or Growth plan can access Data Pipeline as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details.
 </Note>
 
-This guide describes how Mixpanel data is exported into a [Snowflake](https://docs.snowflake.net/manuals/user-guide-getting-started.html) dataset. [Create a pipeline](/reference/create-warehouse-pipeline) to export your Mixpanel data into Snowflake. Once an export job is scheduled, Mixpanel exports data to Snowflake on a recurring basis. 
+This guide describes how Mixpanel data is exported into a [Snowflake](https://docs.snowflake.net/manuals/user-guide-getting-started.html) dataset. [Create a pipeline](/reference/create-warehouse-pipeline) to export your Mixpanel data into Snowflake. Once an export job is scheduled, Mixpanel exports data to Snowflake on a recurring basis.
 
 ## Design
 
@@ -33,7 +33,7 @@ GRANT MONITOR ON WAREHOUSE <warehouse name> TO ROLE MIXPANEL_EXPORT_ROLE;
 
 ### Step 2: Create a Storage Integration
 
-Mixpanel stages exported data in a GCS bucket (`gcs://mixpanel-export-pipelines-<project-id>`) before loading it into your warehouse. This bucket is created and managed by Mixpanel - you do *not* need to create it yourself. To allow Mixpanel to load data from this bucket into your Snowflake warehouse, create a GCS storage integration and grant it to the role. Replace `<project-id>` with your Mixpanel project ID.
+Mixpanel stages exported data in a GCS bucket (`gcs://mixpanel-export-pipelines-<project-id>`) before loading it into your warehouse. This bucket is created and managed by Mixpanel - you do _not_ need to create it yourself. To allow Mixpanel to load data from this bucket into your Snowflake warehouse, create a GCS storage integration and grant it to the role. Replace `<project-id>` with your Mixpanel project ID.
 
 ```sql
 CREATE STORAGE INTEGRATION MIXPANEL_EXPORT_STORAGE_INTEGRATION
@@ -55,7 +55,7 @@ ALTER USER MIXPANEL_EXPORT_USER SET PASSWORD='<password you provided>';
 GRANT ROLE MIXPANEL_EXPORT_ROLE TO USER MIXPANEL_EXPORT_USER;
 ```
 
-For Snowflake export, we first load the data into a single-column raw (VARIANT type) data table. This data will be a [transformed version](/docs/data-pipelines/old-pipelines/schematized-export-pipeline#section-transformation-rules) of the raw data stored in Mixpanel. Then, we create a view to expose all properties as columns. The view name is the cleaned version of the event name and the raw table name is always the view name suffixed with `_raw`. For example, for `signup` event, you will have a `signup_raw` table and a `signup` view. Please see [Schema](/docs/data-pipelines/old-pipelines/schematized-export-pipeline#schema) for general information about the schemas in Schematized Export Pipelines. 
+For Snowflake export, we first load the data into a single-column raw (VARIANT type) data table. This data will be a [transformed version](/docs/data-pipelines/old-pipelines/schematized-export-pipeline#section-transformation-rules) of the raw data stored in Mixpanel. Then, we create a view to expose all properties as columns. The view name is the cleaned version of the event name and the raw table name is always the view name suffixed with `_raw`. For example, for `signup` event, you will have a `signup_raw` table and a `signup` view. Please see [Schema](/docs/data-pipelines/old-pipelines/schematized-export-pipeline#schema) for general information about the schemas in Schematized Export Pipelines.
 
 ## Partitioning
 
@@ -63,7 +63,7 @@ The data in the raw tables is clustered based on `time` column but in project's 
 
 ## Queries
 
-Mixpanel recommends you place all events into a single table to make querying easier. To get more information about the table schemas, please see [Schema](/docs/data-pipelines/old-pipelines/schematized-export-pipeline#schema). 
+Mixpanel recommends you place all events into a single table to make querying easier. To get more information about the table schemas, please see [Schema](/docs/data-pipelines/old-pipelines/schematized-export-pipeline#schema).
 
 A query is a request for data results. You can perform actions on the data, such as combine data from different tables; add, change, or delete table data; and perform calculations.
 
@@ -77,8 +77,6 @@ FROM mixpanel.mp_master_event_raw
 WHERE data:mp_event_name::string = “Signup”;
 ```
 
-
-
 Here is an example of how you can query the view when using one table for all the events:
 
 ```sql
@@ -86,8 +84,6 @@ SELECT count(*)
 FROM mixpanel.mp_master_event
 WHERE mp_event_name = “Signup”;
 ```
-
-
 
 Here is an example of how you can query the raw table when using multiple tables for the events:
 
@@ -97,8 +93,6 @@ FROM mixpanel.signup_raw
 WHERE data:distinct_id::string = “1”;
 ```
 
-
-
 Here is an example of how you can query the view when using multiple tables for the events:
 
 ```sql
@@ -106,8 +100,6 @@ SELECT count(*)
 FROM mixpanel.signup
 WHERE distinct_id = “1”;
 ```
-
-
 
 ### Getting the number of events in each day
 
@@ -119,8 +111,6 @@ FROM "<DB_NAME>"."PUBLIC"."MP_MASTER_EVENT"
 WHERE ttime>=TO_DATE('2021-12-03') AND ttime<=TO_DATE('2021-12-07')
 GROUP BY ttime
 ```
-
-
 
 This example returns the number of events in each day in project timezone for a monoschema export pipeline and an example date range. `PROJECT_TIMEZONE` and `DB_NAME` should be replaced by your Mixpanel project timezone and your snowflake database name. You can adjust the query for multi-schema by putting the right table name in the query.
 

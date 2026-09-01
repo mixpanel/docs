@@ -1,5 +1,5 @@
 ---
-title: "OpenFeature Provider (Python)"
+title: OpenFeature Provider (Python)
 ---
 
 ## Overview
@@ -10,7 +10,7 @@ For the native Mixpanel SDK approach, see the [Feature Flags (Python)](/docs/tra
 
 ## Prerequisites
 
-- Enterprise subscription plan with Feature Flags enabled
+- A Mixpanel project with Feature Flags — see [plan availability](/docs/featureflags#plan-availability)
 - Python 3.9 or higher
 - Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
@@ -51,7 +51,7 @@ The provider supports three initialization methods depending on your evaluation 
 Evaluates flags locally using cached flag definitions polled from Mixpanel. This minimizes latency since there is no network call at evaluation time.
 
 <Warning>
-Targeting by Mixpanel cohorts and sticky variants are not supported in Local Evaluation mode.
+  Targeting by Mixpanel cohorts and sticky variants are not supported in Local Evaluation mode.
 </Warning>
 
 ```python
@@ -98,7 +98,7 @@ provider = MixpanelProvider(mp.local_flags)
 ### Flag Types and Evaluation Methods
 
 | Mixpanel Flag Type | Variant Values | OpenFeature Method |
-|---|---|---|
+| --- | --- | --- |
 | Feature Gate | `True` / `False` | `get_boolean_value()` |
 | Experiment | boolean, string, number, or JSON object | `get_boolean_value()`, `get_string_value()`, `get_integer_value()`, `get_float_value()`, or `get_object_value()` |
 | Dynamic Config | JSON object | `get_object_value()` |
@@ -140,7 +140,7 @@ value = client.get_boolean_value("premium-feature", False, context)
 ```
 
 <Note>
-Unlike some providers, `targetingKey` is not used as a special bucketing key. It is passed as another context property. Mixpanel's server-side configuration determines which properties are used for targeting and bucketing.
+  Unlike some providers, `targetingKey` is not used as a special bucketing key. It is passed as another context property. Mixpanel's server-side configuration determines which properties are used for targeting and bucketing.
 </Note>
 
 ### Full Resolution Details
@@ -173,7 +173,7 @@ provider.shutdown()
 The provider uses OpenFeature's standard error codes:
 
 | Error Code | When |
-|---|---|
+| --- | --- |
 | `PROVIDER_NOT_READY` | Flags evaluated before local provider has finished loading definitions |
 | `FLAG_NOT_FOUND` | The requested flag does not exist in Mixpanel |
 | `TYPE_MISMATCH` | The flag value type does not match the requested type |

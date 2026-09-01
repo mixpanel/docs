@@ -1,6 +1,6 @@
 ---
-sidebarTitle: "Sync with Mirror"
-title: "Eliminate Data Drift Between Your Warehouse and Mixpanel Using Mirror"
+sidebarTitle: Sync with Mirror
+title: Eliminate Data Drift Between Your Warehouse and Mixpanel Using Mirror
 ---
 
 When your warehouse is the source of truth, you need Mixpanel to stay in sync with it — not just ingest a snapshot and drift. [Mirror sync mode](/docs/tracking-methods/warehouse-connectors#mirror) does that by tracking every change in your warehouse (new rows, updates, and deletions) and reflecting them in Mixpanel automatically. The result is a Mixpanel project that always matches your warehouse, without manual reconciliation.
@@ -12,6 +12,7 @@ Getting there takes more than pointing a connector at a table. How you model you
 Mirror is one of several sync modes in [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors). It uses Change Data Capture (CDC) to detect and replicate changes, which means every row update or deletion in your source counts as a billable event in Mixpanel. That makes data modeling decisions consequential — not just for accuracy, but for cost.
 
 You'll need:
+
 - Access to a [supported warehouse](/docs/tracking-methods/warehouse-connectors#step-1-connect-a-warehouse), such as Snowflake, BigQuery, Databricks, or Redshift
 - Read-only credentials (SELECT access) scoped to the tables you intend to sync
 - A clear picture of what each warehouse table represents — event log, current profile state, or historical state changes
@@ -49,13 +50,13 @@ There's a soft limit of 5,000 distinct event names in Mixpanel. Exceeding it mak
 | --- | --- | --- | --- |
 | Event Name | Yes | String | The action performed |
 | Time | Yes | Timestamp | When the event occurred |
-| User ID | No* | String or Integer | Maps to `distinct_id` for identified users |
-| Device ID | No* | String or Integer | Maps to `distinct_id` for anonymous tracking |
+| User ID | No\* | String or Integer | Maps to `distinct_id` for identified users |
+| Device ID | No\* | String or Integer | Maps to `distinct_id` for anonymous tracking |
 | JSON Properties | No | JSON or Object | Flattened automatically by Mixpanel |
 | Group Key(s) | No | String or Integer | Required for group-level analysis |
 | All other columns | No | Any | Auto-detected as event properties |
 
-\* *User ID or Device ID is technically optional in connector setup, but without one, events can't be linked to a user profile or attributed to a consistent identity.*
+\* _User ID or Device ID is technically optional in connector setup, but without one, events can't be linked to a user profile or attributed to a consistent identity._
 
 Each event supports a maximum of 255 properties. Property names longer than 255 characters are truncated. For [data type](/docs/data-structure/property-reference/data-type) details and a full list of [events and properties limits](/docs/data-structure/events-and-properties#what-are-the-limits-of-events-and-properties), refer to the Mixpanel docs.
 
@@ -114,10 +115,12 @@ For slower-changing data like profiles, daily is usually sufficient. For transac
 If your data pipeline runs on a schedule, the Advanced Sync API lets you trigger a sync programmatically after a transformation job completes — so Mixpanel always reflects your most recent warehouse run.
 
 Once live, monitor regularly:
+
 - **Sync status**: Check for failures, delays, or mapping errors. Sync success is your primary signal for data parity.
 - **Event volume alerts**: Set automated alerts in [Data Volume Monitoring](/docs/data-governance/data-volume-monitoring) to catch unexpected spikes. These often signal an upstream warehouse issue or an unplanned schema change triggering a resync.
 
 ## Key Takeaways
+
 - Mirror uses CDC to reflect every warehouse change — new rows, updates, and deletions — but every change counts as a billable event, so modeling decisions directly affect cost.
 - Match sync mode to how your data changes: Mirror for transactional events and profile history, Full Sync for current-state profiles and lookup tables, Append for immutable high-volume logs.
 - Profile History (SCD Type 2) enables as-of analysis — associating each event with the user's state at the moment it occurred — but requires flat column structures and explicit churn rows to work correctly.

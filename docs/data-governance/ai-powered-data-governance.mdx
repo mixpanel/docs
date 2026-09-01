@@ -37,3 +37,16 @@ Submitting is a single batch action: **selected groups are merged, and every uns
 </Warning>
 
 Merging behaves exactly like a [manual Lexicon merge](/docs/data-governance/lexicon#merging-data) — the underlying raw data is unaffected, and a merge can be undone from Lexicon. As with any merge, update any reports or custom events that referenced the old names afterward, and note that [Autocapture](/docs/tracking-methods/autocapture) events cannot be merged. Merging requires the same permission as a manual merge.
+
+## Automated Metadata Enrichment
+
+Raw event names rarely explain themselves. `btn_clk_add_crt` means something to the engineer who instrumented it and little to anyone else, including Mixpanel Agent and MCP, which rely on Lexicon to understand your data. Writing a display name and description for every event takes time, so most projects have gaps. Mixpanel can now fill them for you. 
+With this update, you can:
+
+- **Fill every gap in one action**: From Lexicon → Tidy Up → Fill in the blanks, Mixpanel generates a display name and description for each event missing one and applies them across your project.
+- **Get names that fit your data**: Suggestions draw on the event name, sample property values, and your project's Business Context, and follow your naming convention when Data Standards is enabled.
+- **Keep what you wrote**: Enrichment only fills gaps. Events with an existing display name or description keep what you gave them.
+- **See what changed**: Every enriched field is recorded in the event's history, attributed to the user who ran the fill, marked as AI-applied, and written to your audit log like any other Lexicon edit.
+
+The same fill is available to agents over MCP via the Fill-Event-Metadata tool and inside Mixpanel Agent.
+This release covers events. Property enrichment is next.

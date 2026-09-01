@@ -1,13 +1,32 @@
 ---
-title: "Experiments: Measure the impact of a/b testing"
+title: "Experiments"
+description: "Measure the impact of a/b testing"
 sidebarTitle: "Experiments"
 ---
 
-<Note>
-    The Experiment Report is a separately priced product add-on. It is currently only offered to those on the Enterprise Plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+Mixpanel Experiments measures how a change affects your metrics, so you can decide which variant to roll out.
 
-    Customers who have not purchased the Experiment add-on will be able to create up to 3 experiments per project. Please note that creation is irreversible, so you would not be able to delete experiments. If you are interested in exploring the features fully, you can request a trial from your account team.
-</Note>
+## Plan Availability
+
+Experiments is available for customers on Free, Growth, and Enterprise plans. Usage is measured in Monthly Experiment Users (MEU): the number of distinct users exposed to an experiment during a calendar month. A user exposed to several experiments in one month counts as one MEU, up to 30 experiments — past that, see [how MEU is calculated](#does-it-matter-how-many-experiments-a-user-is-exposed-to-within-the-month). MEU and experiment counts apply across your whole organization unless noted. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+
+| Plan | MEU Allowance | How to Access |
+| --- | --- | --- |
+| Free | 1k MEU per month; unlimited experiments | Switch plans from the [pricing page](https://mixpanel.com/pricing/). |
+| Growth | 5k MEU per month; unlimited experiments | Purchase 10k to 100k MEU per month under Organization Settings \> Plan Details & Billing. |
+| Enterprise | Unlimited MEU; 3 experiments per project until you purchase Experiments | Purchase Experiments for unlimited experiments, or request a trial — [contact us](https://mixpanel.com/contact-us/sales/) or reach out to your account team. |
+
+Every plan includes [Feature Flags](/docs/featureflags) alongside Experiments, with limits on active flags and cohort targeting that vary by plan. See [Feature Flags plan availability](/docs/featureflags#plan-availability) for details.
+
+### Reaching Your MEU Allowance
+
+What happens when you reach your allowance depends on your plan.
+
+On a **Free** plan, Experiments pauses: you can't create, edit, or view experiments until your usage resets at the start of the next calendar month, or you upgrade. Your feature flags keep serving and routing traffic, so what your users see doesn't change — but any experiment you're running stops producing new results for the rest of that month.
+
+On a **Growth** plan, Experiments keeps working and usage beyond your included or purchased MEU is billed at an overage rate. Purchasing a larger MEU tier raises the amount included before overage applies.
+
+Track your usage under Organization Settings \> Plan Details & Billing.
 
 ## Why Experiment?
 
@@ -49,6 +68,10 @@ Before creating an experiment report, ensure you have:
 
 ## Setup & Launch Your Experiment
 
+<Warning>
+  On an Enterprise plan without purchased Experiments, creating an experiment uses one of the 3 you get per project, and you can't free it up again from the UI.
+</Warning>
+
 ### Step 1: Select an Experiment
 
 Click 'New Experiment' from the Experiment report menu and select your experiment. Both experiments run through Mixpanel Feature Flags and experiments tracked via exposure events are detected and populated in the dropdown. To keep the dropdown focused on experiments you're likely to care about, we hide Mixpanel Feature Flag experiments once their flag is archived, and we hide exposure-event experiments that haven't received an exposure event in the last 30 days. To analyze an exposure-event experiment beyond that window, you can hard-code the experiment name by typing `$experiment:Experiment name` as a filter or breakdown property, where `Experiment name` is the value of whichever property you configured as the experiment name on your exposure events.
@@ -72,9 +95,13 @@ Enter either the sample size (the number of users to be exposed to the experimen
 
 Mixpanel has set default automatic configurations, seen below. If required, please modify them as needed for the experiment
 
-1. **Experiment Model type**: Sequential
-2. **Confidence Threshold**: 95%
+1. **Experiment Model type**: Sequential. You can also choose Frequentist or Bayesian; see [Experiment Model Types](#experiment-model-types) for how they differ.
+2. **Confidence Threshold**: 95%. On a Bayesian experiment this setting is labeled **Decision Threshold** and sets the minimum Chance to Beat Control required to highlight a variant as a winner.
 3. **Experiment Start Date**: Date of the first user exposed to the experiment
+
+<Note>
+The Confidence Threshold and the Bayesian Decision Threshold are the same underlying setting: if you switch an experiment's model type, your chosen number carries over and is reinterpreted for the new model.
+</Note>
 
 ### Experiment JSON Parameters
 
@@ -103,11 +130,28 @@ See the [JavaScript Feature Flags guide](/docs/tracking-methods/sdks/javascript/
 
 ### Changing Settings Mid-Experiment
 
-Mixpanel analyzes your experiment on the fly, so you can adjust settings at any time if needed. If you notice a configuration mistake - like selecting Frequentist when you meant Sequential - feel free to correct it, even if the experiment has been running for weeks.
+Mixpanel analyzes your experiment on the fly, so you can adjust settings at any time if needed. If you notice a configuration mistake - like selecting Frequentist when you meant Sequential or Bayesian - feel free to correct it, even if the experiment has been running for weeks.
 
 The one thing to avoid is changing settings because the current results aren't what you hoped for. If you adjust the confidence level, metrics, or duration in search of a significant result, you're more likely to find something that looks meaningful but is actually noise. When you roll out that change, it may not deliver the improvement you expected.
 
 If you want to test a different configuration, restart the experiment instead. This resets the data and ensures your analysis starts fresh.
+
+### Reopening a Decided Experiment
+
+Once you've made a decision on an experiment, you can reopen it in place instead of duplicating it.
+
+On the decided banner, use the **Change Decision** dropdown:
+
+- **Edit Decision**: Revise the decision you recorded (for example, change which variant you shipped or update the notes) while keeping the experiment decided.
+- **Undo Decision**: Revert the experiment to its concluded, pre-decision state so the decision can be revisited.
+
+Editing settings on a decided experiment also reopens it. If you change the date range, the duration or end condition, or any analysis configuration, the recorded decision is cleared and the experiment is reopened. Mixpanel shows a warning before this happens so you can confirm you want to discard the decision.
+
+Reopen an experiment to fix a genuine mistake, like a misconfigured setting or a decision you recorded in error. Don't reopen it just to change your mind because you didn't like the results. This matters most for Frequentist experiments. Revisiting a decision after you've seen the results inflates the false-positive rate. Each time you look at the data and then keep collecting or re-decide, you give a non-significant result more chances to cross the threshold by chance. That makes a significant outcome less trustworthy. Repeatedly restarting an experiment in search of significance may lead you to incorrect decisions.
+
+<Note>
+For Mixpanel feature-flag experiments, undoing a decision does **not** automatically re-enable the feature flag. If you need the flag serving its variants again, re-enable it separately from the Feature Flags page.
+</Note>
 
 ## Monitor Your Experiment
 
@@ -120,12 +164,19 @@ Once your experiment is running, you can track its progress in the Experiments d
 
 ## Interpret Your Results
 
-The Experiments report identifies significant differences between the Control and Variant groups. Every metric has two key attributes: 
+The Experiments report identifies meaningful differences between the Control and Variant groups. Every metric has two key attributes, and which ones you see depends on your [experiment model type](#experiment-model-types).
+
+**Frequentist and Sequential models:**
 
 - p-value: this shows if the variants’ delta impact vs the control is statistically significant
 - lift: the variants’ delta impact on the metric vs control
 
-Metric rows in the table are highlighted when any difference is calculated with high confidence. Specifically, if the difference is greater than the confidence interval you set up during the experiment configuration
+**Bayesian model:**
+
+- Chance to Beat Control: the probability that the variant's true metric value is better than the control's
+- lift: the variants’ delta impact on the metric vs control
+
+Metric rows in the table are highlighted when a difference is calculated with high confidence. For Frequentist and Sequential experiments, this is when the difference is greater than the confidence interval you set up during the experiment configuration. For Bayesian experiments, a variant is highlighted when its Chance to Beat Control reaches your Decision Threshold. For example, at a 95% threshold, a variant is flagged as a winner at 95% or above, and as a loser at 5% or below.
 
 - Positive differences, where the variant value is in the target direction compared to the control, are highlighted in green
 - Negative differences, where the variant value is opposite the target direction compared to the control, are highlighted in red
@@ -137,15 +188,17 @@ Hover over a value in a metric row to see more detail behind the numbers and to 
 
 ### How do you read statistical significance?
 
-Statistical significance (p-value) helps you determine whether your experiment results are likely to hold true for the full rollout, giving you confidence in your decisions.
+Statistical significance (p-value) helps you determine whether your experiment results are likely to hold true for the full rollout, giving you confidence in your decisions. On Bayesian experiments, the equivalent signal is the Chance to Beat Control, described under [Bayesian](#bayesian) below.
 
 <Frame>
 ![image](/images/exp_stat_sig.png)
 </Frame>
 
-#### Statistical Significance Calculation
+#### How Mixpanel Calculates Results
 
-Mixpanel uses Frequentist statistical methods to compute p-values and confidence intervals. The specific approach depends on your metric type and experiment model.
+How Mixpanel evaluates your experiment depends on two things: the [experiment model type](#experiment-model-types) you selected, and the type of each metric. The Frequentist and Sequential models compute p-values and confidence intervals; the Bayesian model computes a probability that each variant beats control.
+
+##### Frequentist and Sequential
 
 **Metric Types and Their Distributions:**
 
@@ -195,7 +248,7 @@ So, if an experiment's results show
 - p ≤ 0.025: results are statistically significant for this metric, i.e, you can be 95% confident in the lift seen if the change is rolled out to all users.
 - p > 0.025: results are not statistically significant for this metric, i.e, you cannot be very confident in the results if the change is rolled out broadly.
 
-#### Example: E-commerce Checkout Experiment
+###### Example: E-commerce Checkout Experiment
 
 To illustrate how these calculations work in practice, let's walk through a concrete example.
 
@@ -221,6 +274,62 @@ To illustrate how these calculations work in practice, let's walk through a conc
 4. **Z-score and p-value:** Computed using the same Z-test framework
 
 This example shows why larger sample sizes are crucial—with only 10 users per group, even a 10-point difference in conversion rate isn't statistically significant.
+
+##### Bayesian
+
+The Bayesian model answers a different question than the Frequentist and Sequential models. Instead of asking "how surprising would this data be if the treatment had no effect?" (a p-value), it estimates a distribution of plausible values for each variant's metric and reports **how likely it is that the variant is actually better than control**. That probability is surfaced as the **Chance to Beat Control** column.
+
+**Priors:**
+
+Bayesian analysis combines the data you observed with a *prior*, an assumption about what the metric's value is likely to be before looking at the results. Mixpanel uses **weakly informative priors** that are automatically scaled to your experiment's own data. The prior is centered on the pooled metric value across control and the variant being compared, weighted by each one's exposures; its spread comes from the pooled variance of that same data; and its strength is a single pseudo-observation.
+
+That last point is what makes it weakly informative. The prior is strong enough to keep results stable when a variant has very few users, and negligible once real data accumulates: at the thousands of exposures a typical experiment reaches, it has effectively no influence on the outcome. You don't have to supply a prior, and the prior won't push results toward a value you didn't choose. It is not a fixed uniform prior, and it is not derived from control alone.
+
+**Models by metric type:**
+
+| Metric type | Data model | Prior |
+| --- | --- | --- |
+| Averages, totals, sessions | Normal distribution over per-user values | Normal-Inverse-Gamma |
+| Conversion rates, retention rates, unique users | Bernoulli (binary converted / didn't convert) | Beta |
+| Formula metrics | Normal, using propagation of uncertainty across the formula's components | Normal-Inverse-Gamma |
+
+<Note>
+Total and session metrics are modeled as normally distributed per-user counts, on the same per-user scale used for averages, rather than as Poisson counts. This differs from the Frequentist path, which applies a Poisson variance on the totals scale.
+</Note>
+
+**How it's computed:**
+
+Each variant's distribution is calculated in closed form, then Mixpanel draws 50,000 samples from the control and variant distributions and compares them to derive the Chance to Beat Control and the interval around the lift. The sampler uses a fixed seed, so you get identical numbers on every reload.
+
+Each variant is compared against control only. In an experiment with three or more variants, you get one independent comparison per variant, each reported as its own Chance to Beat Control. Mixpanel does not report a probability that a given variant is the best of all of them.
+
+**Reading Chance to Beat Control:**
+
+With a Decision Threshold of 95%:
+
+- **97%**: above the threshold, highlighted as a winner.
+- **60%**: the variant is more likely better than not, but well short of the threshold. You don't yet have enough data to act.
+- **2%**: below the 5% lower bound, highlighted as a loser. The variant is very likely *worse* than control.
+
+This value can read exactly 100% or 0% when none of the 50,000 samples fell on the other side.
+
+**Credible intervals:**
+
+Alongside the lift, Bayesian results include a **credible interval**, the range that contains your chosen share of the plausible lift values (95% by default). A credible interval supports the reading that people often incorrectly apply to a frequentist confidence interval: there is a 95% probability the true lift falls inside it.
+
+Compared to other Bayesian tools:
+
+- The interval is a **highest-density interval**, the *narrowest* range containing 95% of the plausible values. Many Bayesian A/B tools instead report an equal-tailed interval, which trims 2.5% from each end and can be wider.
+- It is computed on relative lift (percentage difference from control), not on the absolute difference between the two groups.
+- Because of this, the interval is generally asymmetric around the reported lift, rather than "lift ± some margin."
+
+The lift shown for Bayesian metrics is the median of the plausible relative-lift values, chosen because it is robust to the long tails a ratio can produce and always falls inside the credible interval.
+
+**Supported metrics:**
+
+The Bayesian model supports averages, totals, sessions, unique users, conversion rates (including funnel conversion rate), retention rates, and formula metrics built from any of these.
+
+Some metric configurations are not yet supported by the Bayesian model, including total-based funnel conversion rates, retention-frequency metrics, and metrics that roll up user or cohort properties. When a metric isn't supported, its values still appear in the results table but without any statistics: no Chance to Beat Control, lift, or interval. If you rely on one of these metrics, use the Frequentist or Sequential model for that experiment. For formula metrics, every component must be supported, or the whole formula shows no statistics.
 
 ### How do you read lift?
 
@@ -304,7 +413,9 @@ Once the ‘Test Duration’ setup during configuration is complete, we show a b
 1. Sample size to be exposed
 2. Number of days you’d like to run the experiment
 
-NOTE: If you are using a 'sequential' testing experiment model type, you can always peek at the results sooner. Learn more about what sequential testing is [here](#experiment-model-types)
+NOTE: If you are using a 'sequential' or 'bayesian' experiment model type, you can always peek at the results sooner. Learn more about the [experiment model types](#experiment-model-types).
+
+A Chance to Beat Control describes the data you have collected so far, so unlike a fixed-horizon p-value it does not depend on having reached a predetermined sample size. Mixpanel does not, however, apply an always-valid correction on the Bayesian path the way the Sequential model applies mSPRT. If you want a formal guarantee about stopping early, Sequential is the model built for that. For small expected effects, still run your planned duration: a Chance to Beat Control computed on a few hundred users is very uncertain.
 
 ### Diagnosing experiments further in regular Mixpanel reports
 Click 'Analyze' on a metric to dive deeper into the results. This will open a normal Mixpanel insights report for the time range being analyzed with the experiment breakdown applied. This allows you to view users, view replays, or apply additional breakdowns to further analyze the results.
@@ -360,7 +471,7 @@ If your experiment targets a cohort, Mixpanel assumes the event properties refer
 Removing an inter-project connection from the "Other Environments" menu unlinks the two experiments — it does **not** delete the experiment in the destination project. The copied experiment remains in the destination project and continues to function independently; it simply loses its link to the original.
 
 <Info>
-  **Billing across projects:** You aren't double-charged for using the same feature flag across multiple projects. Mixpanel charges based on active feature flag keys, so the same flag-key shared across projects is counted once.
+  **Flag limits across projects:** The same feature flag key used across multiple projects counts once against your plan's active flag limit.
 </Info>
 
 ## Advanced Statistical Methods
@@ -371,12 +482,23 @@ Mixpanel offers several advanced statistical options to help you get more reliab
 
 | Technique | What It Does | When to Use | Actions to Take |
 | --- | --- | --- | --- |
-| **Bonferroni Correction** | Makes significance thresholds stricter to account for testing multiple metrics/variants at once | You're tracking multiple metrics or testing multiple variants and want maximum protection against any false positive | If a metric loses significance after correction, don't treat it as a confirmed winner. Run a follow-up experiment focused on that metric alone. |
-| **Benjamini-Hochberg Correction** | Controls the proportion of significant results that are false positives (false discovery rate) | You're tracking many metrics and want to correct for multiple comparisons without being overly conservative | Treat the surviving significant results as your set of likely winners, knowing a small share may still be false positives. Validate the most important ones in a follow-up. |
-| **Winsorization** | Caps extreme outlier values at a percentile you choose | Revenue or value-based metrics where outliers are common | If results change substantially after Winsorization, this indicates your original results were driven by outliers. Decide whether your business decision is about typical users or extreme ones. |
+| **Bonferroni Correction** | Makes significance thresholds stricter to account for testing multiple metrics/variants at once | You're tracking multiple metrics or testing multiple variants and want maximum protection against any false positive. Frequentist and Sequential only | If a metric loses significance after correction, don't treat it as a confirmed winner. Run a follow-up experiment focused on that metric alone. |
+| **Benjamini-Hochberg Correction** | Controls the proportion of significant results that are false positives (false discovery rate) | You're tracking many metrics and want to correct for multiple comparisons without being overly conservative. Frequentist and Sequential only | Treat the surviving significant results as your set of likely winners, knowing a small share may still be false positives. Validate the most important ones in a follow-up. |
+| **Winsorization** | Caps extreme outlier values at a percentile you choose | Revenue or value-based metrics where outliers are common | If results change substantially after Winsorization, this indicates your original results were driven by outliers. Decide whether your business decision is about typical users or extreme ones. Applies to all experiment model types. |
 | **SRM** | Checks whether your variant split matches the configured allocation | Always on as a health check | Pause the experiment. Identify and fix the root cause of the mismatch, then restart the experiment. |
 | **Pre-Experiment Bias** | Checks whether variant groups were already different *before* the experiment started | Always on as a health check | Your groups had pre-existing bias. Consider enabling CUPED to correct for it. Investigate your assignment logic to prevent it in future experiments. |
 | **CUPED** | Uses pre-experiment behavior to adjust for natural variance and pre-existing bias, helping you reach significance faster | Your users have pre-experiment history and your metrics have high natural variance | If confidence intervals don't noticeably tighten, pre-experiment behavior isn't predictive for your metrics. Results are still valid, you just won't get faster detection. |
+
+### Which methods apply to Bayesian experiments
+
+Most of the methods below are independent of your experiment model type and work the same way on a Bayesian experiment:
+
+- **Winsorization**, **CUPED**, **segmentation**, **SRM**, and **Pre-Experiment Bias** all apply. They operate on the metric data before the statistical model runs, so the Bayesian model consumes the adjusted values. With CUPED, the effect shows up as narrower credible intervals while the reported lift stays roughly the same.
+- **Multiple testing corrections (Bonferroni and Benjamini-Hochberg)** don't apply. Both work by adjusting p-value thresholds, and Bayesian results don't produce a p-value; the decision comes directly from the Chance to Beat Control. The setting is hidden on Bayesian experiments, including when you add a breakdown.
+
+<Note>
+The caution about [post-hoc segmentation](#the-risk-of-post-hoc-segmentation) still applies to Bayesian experiments. Inspecting many segments looking for one that "worked" raises your odds of finding a variant that looks like a winner by chance, whether you're reading p-values or probabilities. Treat a winning segment as a lead to test in a fresh experiment.
+</Note>
 
 ### Bonferroni Correction
 
@@ -522,9 +644,41 @@ You can specify the event and property that should be used as the exposure event
 ![image](/images/exp_settings_rescale.png)
 </Frame>
 
+#### Sending multiple experiments in a single exposure event
+
+By default, each `$experiment_started` event records a single experiment and its variant. If a user is exposed to several experiments at the same time, you can instead record all of them on one exposure event, rather than sending a separate event per experiment.
+
+To enable this, open the **Experiment Event Format** settings and set **Experiments in each Exposure Event** to **More than one**. When you do, the **Experiment and Variant format** options change from "Separate values"/"Combined value" to **Dictionary (Key-value pairs)** or **List (Ordered values)**. The exposure event name stays `$experiment_started` in every case.
+
+**Dictionary (Key-value pairs):** each experiment key becomes a property key on the event, and its value is the variant key the user was bucketed into for that experiment:
+
+```json
+{
+  "event": "$experiment_started",
+  "properties": {
+    "[Experiment Key]": "[Variant Key]",
+    "[Another Experiment Key]": "[Another Variant Key]"
+  }
+}
+```
+
+**List (Ordered values):** experiments are recorded as an ordered array under a single list property (default key `Experiments`), where each entry pairs the experiment key with its variant key joined by a configurable **String Separator** (default `:`), i.e. `[Experiment Key]:[Variant Key]`:
+
+```json
+{
+  "event": "$experiment_started",
+  "properties": {
+    "Experiments": [
+      "[Experiment Key]:[Variant Key]",
+      "[Another Experiment Key]:[Another Variant Key]"
+    ]
+  }
+}
+```
+
 ### When to track an exposure event? 
 - An exposure event  ONLY needs to be sent the first time a user is exposed to an experiment, as long as the user is always in the initial bucketed variant. Exposure events don’t have to be sent subsequently in new sessions.
-- If a user is part of multiple experiments, send a corresponding exposure event for each experiment.
+- If a user is part of multiple experiments, by default send a separate exposure event for each experiment. Alternatively, if you set **Experiments in each Exposure Event** to **More than one** in the **Experiment Event Format** settings, you can record all of a user's experiments on a single exposure event (see "Sending multiple experiments in a single exposure event" above).
 - Send exposure event only when a user is actually exposed, not at the start of a session.
     
     For example, if you want to run an experiment on the payment page of a ride-sharing app, you only really care about users who open the app, book a ride, and then reach the payment page. Users who only open the app and do other activities shouldn't be considered in the sample size. So exposure event should ideally be implemented to track only once the payment page is reached. 
@@ -572,12 +726,9 @@ Both are correct. The funnel conversion rate answers: "For users who started the
 In this example, the variant brought more users into the funnel (8,676 entrants vs 7,504). Those additional users lowered the funnel completion rate, but the variant still converted a larger share of its total exposed population. Lift uses the per-exposure rate because it measures the overall impact of the variant on your entire user base, not just on users who happened to enter the funnel.
 
 ## Experimentation Pricing FAQ
-<Note>
-    The Experiment Report is a separately priced product offered to organizations on the Enterprise Plan. Please [contact us](https://mixpanel.com/contact-us/sales/) for more details.
-</Note>
 
 ### Pricing Unit
-Experimentation is priced based on MEUs - Monthly Experiment Users. Only users exposed to an experiment in a month are counted towards this tally.
+Experiments usage is measured in MEU - Monthly Experiment Users. Only users exposed to an experiment in a month are counted towards this tally.
 #### How are MEUs different than MTUs (Monthly Tracked Users)?
 MTUs count any user who has tracked an event to the project in the calendar month. MEU is a subset of MTU; it’s only users who have tracked an exposure experiment event (ie, `$experiment_started`) in the calendar month.
 
@@ -596,17 +747,17 @@ If not running experiments, below are some rough estimations of MEU's based on t
 #### Does it matter how many experiments a user is exposed to within the month? 
 We’ve accounted for an MEU to be exposed to up to 30 experiments per month. If the average number of experiment exposure events per MEU is over 30, then the MEUs will be calculated as the total number of exposure events divided by 30.
 
-#### What happens if I go over my purchased MEU bucket? 
-You can continue using Mixpanel Experiment Report, but you will be charged a higher rate for the overages. 
+#### What happens if I go over my included or purchased MEU?
+On a Free plan, Experiments pauses until your usage resets at the start of the next calendar month, or you upgrade. Your feature flags keep serving and routing traffic. On a Growth plan, Experiments keeps working and usage beyond your included or purchased MEU is billed at an overage rate. You can purchase up to 100k MEU per month on Growth; for more, [contact us](https://mixpanel.com/contact-us/sales/) about an Enterprise plan.
 
-#### Can I analyze experiments prior to the purchase date? 
-No. You can only analyze experiments starting from your experimentation purchase date. This means that the date used in your experiment cannot start prior to the purchase date.
+#### Can I analyze experiments that started before I purchased Experiments volume?
+No. If you purchase Experiments volume, you can only analyze experiments that start on or after your purchase date. Experiments running within your plan's included MEU are not affected by this restriction.
 
 #### But I am already paying for exposure events in my regular plan. Am I getting double-charged?
-If you buy the Experimentation offering, we waive the charge for exposure events in your regular Mixpanel plan. You only get charged for the exposure events via the MEU calculation.
+No. Exposure events covered by your Experiments usage are waived from your regular Mixpanel plan. They are only counted via the MEU calculation.
 
 #### How can I monitor my account’s MEU consumption?
-You can see your experiment MEU usage by going to Organization settings > Plan Details & Billing.
+You can see your experiment MEU usage by going to Organization Settings \> Plan Details & Billing.
 
 ## References
 
@@ -614,6 +765,8 @@ You can see your experiment MEU usage by going to Organization settings > Plan D
 - Sequential: Allows you to detect lift and conclude experiments quickly, but may fail to reach significance for very small lifts. **When to use?** For large changes (~10%+ lift) when you want to stop early once significance is reached.
     
 - Frequentist: Capable of detecting smaller lifts, but requires you to keep experiments for the full duration. You’re discouraged from preemptively making decisions before the test duration is complete. **When to use?** For very small changes (~1% lift) when precision matters.
+
+- Bayesian: Reports the probability that each variant beats control instead of a p-value, and can be read at any point during the experiment. **When to use?** When you're reporting results to an audience that doesn't work in p-values. Note that a few metric configurations aren't supported, listed under [Bayesian](#bayesian).
 
 ### Experiment metric types
 - **Primary Metrics:**  Main goals you're trying to improve. These are metrics used to determine if the experiment succeeded. Examples: revenue, conversion rates, ARPU.
@@ -625,13 +778,13 @@ You can see your experiment MEU usage by going to Organization settings > Plan D
 Once the experiment is ready to review, you can choose to 'End Analysis'. Use these guidelines to make informed decisions:
 
 ### When to Ship a Variant
-- **Statistical significance achieved** AND **practical significance met** (lift meets your minimum threshold)
+- **Statistical significance achieved** (or, on a Bayesian experiment, **Chance to Beat Control has reached your Decision Threshold**) AND **practical significance met** (lift meets your minimum threshold)
 - **Guardrail metrics remain stable** (no significant negative impacts)
 - **Sample size is adequate** for your confidence requirements
 - **Results align with your hypothesis** and business objectives
 
 ### When to Ship None
-- **No statistical significance** achieved after adequate test duration
+- **No statistical significance** achieved after adequate test duration; on a Bayesian experiment, Chance to Beat Control has stayed short of your Decision Threshold
 - **Statistically significant but practically insignificant** (lift too small to matter)
 - **Negative impact on guardrail metrics** outweighs primary metric gains
 - **Results contradict** your hypothesis significantly
@@ -650,7 +803,7 @@ Once the experiment is ready to review, you can choose to 'End Analysis'. Use th
 
 ### Decision Options in Mixpanel
 
-- **Ship Variant (any of the variants)**: You had a statistically significant result. You have made a decision to ship a variant to all users. NOTE: Shipping variant here is just a log; it does not actually trigger rolling out the feature flag unless you are using Mixpanel feature flags **(in beta today)**.
+- **Ship Variant (any of the variants)**: You had a statistically significant result. You have made a decision to ship a variant to all users. NOTE: Shipping variant here is just a log; it does not actually trigger rolling out the feature flag unless you are using [Mixpanel feature flags](/docs/featureflags).
 - **Ship None**: You may not have had any statistically significant results, or even if you have statistically significant results, the lift is not sufficient to warrant a change in user experience. You decide not to ship the change.
 - **Defer Decision**: You may have a direction you want to go, but need to sync with other stakeholders before confirming the decision. This is an example where you might defer a decision and come back at a later date and log the final decision.
 

@@ -1,6 +1,7 @@
 ---
-title: "Alerts: Get notified about anomalies in your data"
-sidebarTitle: "Alerts"
+title: "Alerts"
+description: "Get notified about anomalies in your data"
+sidebarTitle: Alerts
 ---
 
 {/*
@@ -64,20 +65,20 @@ Create an alert for your Insights and Funnels reports and be notified when repor
 
 **To create an alert, follow these steps:**
 
-1. Open a saved report and click the **bell icon** in the report header.
-   _Note: You won't be able to create an alert if the report has unsaved changes. Save your report before setting up an alert._
-   If no alerts exist on the report, the modal will show _"No alerts for this report."_ Click **Create Alert** in the bottom right of the modal.
+1. Open a saved report and click the **bell icon** in the report header. _Note: You won't be able to create an alert if the report has unsaved changes. Save your report before setting up an alert._ If no alerts exist on the report, the modal will show _"No alerts for this report."_ Click **Create Alert** in the bottom right of the modal.
 2. **Enter a name** for your alert.
 3. If your report has more than one event, select an event to track. If your report has a breakdown applied, either select a specific segment to alert on, or select **Any segment** to be alerted when any segment matches the alert criteria.
 4. **Set your alert criteria.** Depending on the report type, choose between Anomaly Detection or Custom Threshold. See [Alert Criteria Types](#alert-criteria-types) below for details on each.
-5. **Set your notification frequency.** Choose how often _at most_ you'll receive an alert — from hourly up to monthly.
-   _Note:_
+5. **Set your notification frequency.** Choose how often _at most_ you'll receive an alert — from hourly up to monthly. _Note:_
+
    - _For time-series reports, how often Mixpanel checks your data is determined by the time bucket of your report visualization. For example, if your chart is hourly, the alert will be evaluated at an hourly interval._
    - _If you have an hourly chart but set the alert frequency to daily, Mixpanel checks for a match every hour. If a match is found, the alert fires and won't check again until the next day._
 6. **Set your notification timing.** Choose when the alert is allowed to fire:
+
    - **Any time** — the alert fires whenever the condition is met, regardless of day or time.
    - **During Selected Windows** — restrict the alert to specific days and/or time ranges. See [Notification Windows](#notification-windows) below.
 7. **Set your notification delivery preferences.** When alert conditions are met, Mixpanel can notify you via email, Slack, or webhook.
+
    - **Email** — enter the recipient's email address. You can enter any email, not just Mixpanel users.
    - **Slack** — select the Slack channels to notify. Private Slack channels are not supported. You may need to configure the Mixpanel Slack app first — click **Add Mixpanel to Slack** and follow the prompts.
    - **Webhook** — select a configured webhook from the dropdown. See [Webhook Alerts](#webhook-alerts) for setup instructions.
@@ -190,6 +191,7 @@ Webhook Alerts allow you to send alert notifications from Mixpanel to third-part
 1. Navigate to **Gear Icon** \> **Destinations** \> **Notification Webhook**. Note this is separate from [Custom Webhooks](/docs/cohort-sync/webhooks) (which are used to sync cohorts).
 2. Under Project Webhooks, click **"\+ Add Webhook"**.
 3. Complete the webhook configuration:
+
    - **Name** — enter a descriptive name (e.g., "Production Alerts").
    - **URL** — enter the HTTPS endpoint where alert payloads will be sent.
    - **Username** — if your endpoint requires HTTP Basic Authentication, enter the username.

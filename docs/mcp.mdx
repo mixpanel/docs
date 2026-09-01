@@ -1,7 +1,6 @@
 ---
-title: "Mixpanel MCP Server"
-sidebarTitle: "MCP Server"
-tags: ["mcp", "model context protocol", "ai", "agents", "cursor", "anthropic", "chatgpt", "openai", "claude", "codex", "codex cli", "cli", "claude code", "gemini", "natural language", "mixpanel", "llm"]
+title: Mixpanel MCP Server
+sidebarTitle: MCP Server
 ---
 
 ## Overview
@@ -138,16 +137,27 @@ claude mcp add --transport http mixpanel https://mcp.mixpanel.com/mcp
 
 Then authenticate by running `/mcp` inside Claude Code and completing the Mixpanel OAuth flow in your browser.
 
+<Tip>
+  The [Mixpanel plugin for Claude Code](#claude-code-plugin) adds skills on top of this connection — guided workflows for tracking implementation, metric investigation, dashboards, and experiments — and can set up the MCP connection for you.
+</Tip>
+
 ### ChatGPT
 
 [Add Mixpanel to ChatGPT](https://chatgpt.com/apps/mixpanel/asdk_app_69b2e9aed45c8191b254b207dfcc2bb4) and complete the Mixpanel OAuth flow.
 
-For EU or IN regions, or to publish the connector to your workspace so teammates can use it:
+**Note:** If your workspace is in the **EU or IN region** **or** you want to publish a custom plugin to your workspace for teammates to use, you must first enable **Developer Mode**.
 
-1. Go to **Settings → Connectors → Advanced** and enable Developer Mode
-2. Add a new connector — set the [MCP Server URL](#mcp-server-urls) to your regional endpoint and Authentication to **OAuth**
-3. Complete the Mixpanel OAuth flow
-4. Optionally publish the connector to your workspace so teammates can use it
+Go to **Settings → Security and login**, then enable **Developer Mode**.
+
+Once **Developer Mode** is enabled, add a new plugin.
+
+<Frame>
+  ![Image](/images/image-8.png "Image")
+</Frame>
+
+1. Go to Plugins **→** add a New Plugin — set the [MCP Server URL](#mcp-server-urls) to your regional endpoint and Authentication to **OAuth**
+2. Complete the Mixpanel OAuth flow
+3. Optionally publish the connector to your workspace so teammates can use it
 
 ### Codex
 
@@ -383,6 +393,46 @@ Or edit `~/.gemini/settings.json` manually and add (use the EU or IN URL if need
 
 Any client that supports the MCP JSON config format, including Microsoft Copilot, can connect using the same JSON snippet from the Cursor section above — adding the `headers` object with the [authorization header](#generating-the-authorization-header).
 
+## Claude Code Plugin
+
+The [Mixpanel plugin for Claude Code](https://github.com/mixpanel/ai-plugins) adds a set of skills — guided workflows for the analytics work Mixpanel customers do most. The skills work through whichever engine you set up: the MCP server (any region) or the [`mixpanel-headless`](/docs/mixpanel-headless) Python SDK.
+
+**Install the plugin**, then run the install skill once per project to set up an engine and region:
+
+```bash
+claude plugin marketplace add mixpanel/ai-plugins
+claude plugin install mixpanel
+```
+
+Then, inside Claude Code:
+
+```
+/mixpanel:install
+```
+
+If you already connected the MCP server (see [Claude Code](#claude-code) above), the skills use that connection automatically — no extra setup.
+
+### Included Skills
+
+Claude invokes skills automatically based on your request, or you can invoke one directly with `/mixpanel:skill-name` (for example, `/mixpanel:deep-research`).
+
+| Skill | What It Does |
+| --- | --- |
+| `install` | Sets up a Mixpanel engine for a project — MCP server (US/EU/India), mixpanel-headless SDK, or your own integration |
+| `analyze-report` | Reads and explains an existing report or chart — what it shows and what's notable |
+| `create-dashboard` | Builds a well-designed dashboard with validated reports, text cards, and narrative layout |
+| `deep-research` | Runs a structured root-cause investigation into why a metric changed |
+| `learn-mcp` | Onboards you to the MCP server through guided, interactive modules |
+| `manage-boards` | Full dashboard lifecycle: create, template, clone, inventory, and clean up boards |
+| `manage-experiment` | Coaches you through experiment design, launch, mid-flight monitoring, and interpretation |
+| `manage-feature-flags` | Creates, rolls out, debugs, and cleans up feature flags |
+| `manage-lexicon` | Audits, scores, enriches, and cleans up Lexicon metadata |
+| `monitor-metrics` | Detects anomalies and drift in a metric and diagnoses root cause |
+| `prepare-ai-readiness` | Sets up business context and Lexicon metadata so Mixpanel's AI assistants understand your data |
+| `tracking-implementation` | Guides an analytics implementation: quick start, full setup, adding tracking, or an audit |
+
+The plugin's skills are open source at [github.com/mixpanel/ai-plugins](https://github.com/mixpanel/ai-plugins). When the engine is the MCP server, the same [Permissions & Access](#permissions--access) rules apply — MCP must be enabled for your organization, and Claude can only see projects your Mixpanel user can access.
+
 ## Example Queries
 
 Once connected, try asking your AI assistant:
@@ -437,6 +487,7 @@ Once connected, try asking your AI assistant:
 When connected, the AI assistant can both **read and write** to Mixpanel on your behalf. Your Mixpanel data is also sent to whichever AI provider you're using (Claude, ChatGPT, etc.), so review that provider's data handling policies before connecting.
 
 **Access controls**
+
 - MCP must be enabled by an org admin in **Settings → Org → Overview** (free and growth accounts created after August 1, 2026 have it on by default; admins can still disable it)
 - Users can only access projects they already have permission to view in Mixpanel
 - All existing roles and project-level permissions remain in effect

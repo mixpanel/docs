@@ -1,5 +1,5 @@
 ---
-title: "Snowflake"
+title: Snowflake
 ---
 
 <Note>
@@ -17,6 +17,7 @@ Mixpanel exports data to your database. We first load the data into a single-col
 Mixpanel Data Pipelines supports static IP addresses for Snowflake connections when IP restrictions are configured on your Snowflake instance. If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-guide/network-policies) to restrict access to your instance, you might need to add the following IP addresses to the allowed list:
 
 **US**
+
 ```jsx
 34.31.112.201
 35.184.21.33
@@ -24,6 +25,7 @@ Mixpanel Data Pipelines supports static IP addresses for Snowflake connections w
 ```
 
 **EU**
+
 ```jsx
 34.147.68.192
 35.204.164.122
@@ -31,6 +33,7 @@ Mixpanel Data Pipelines supports static IP addresses for Snowflake connections w
 ```
 
 **IN**
+
 ```jsx
 34.47.224.29
 34.93.42.83
@@ -54,7 +57,7 @@ GRANT MONITOR ON WAREHOUSE <warehouse name> TO ROLE MIXPANEL_EXPORT_ROLE;
 
 ### Step 2: Create a Storage Integration
 
-Mixpanel stages exported data in a GCS bucket (`gcs://mixpanel-export-pipelines-<project-id>`) before loading it into your warehouse. This bucket is created and managed by Mixpanel — you do *not* need to create it yourself. To allow Mixpanel to load data from this bucket into your Snowflake warehouse, create a GCS storage integration and grant it to the role. Replace `<project-id>` with your Mixpanel project ID.
+Mixpanel stages exported data in a GCS bucket (`gcs://mixpanel-export-pipelines-<project-id>`) before loading it into your warehouse. This bucket is created and managed by Mixpanel — you do _not_ need to create it yourself. To allow Mixpanel to load data from this bucket into your Snowflake warehouse, create a GCS storage integration and grant it to the role. Replace `<project-id>` with your Mixpanel project ID.
 
 ```sql
 CREATE STORAGE INTEGRATION MIXPANEL_EXPORT_STORAGE_INTEGRATION
@@ -67,11 +70,9 @@ GRANT USAGE ON INTEGRATION MIXPANEL_EXPORT_STORAGE_INTEGRATION TO MIXPANEL_EXPOR
 
 ### Step 3: Authenticate the User
 
-Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline)
-to create a data pipeline via the UI.
+Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-the-pipeline) to create a data pipeline via the UI.
 
-We provide two different authentication methods: password and key-pair. In the example, create a user with either a password or public key and then grant the role to the user. You can find the public key in the Snowflake pipeline creation UI.
-If you already have a user, change the fields and grant the role.
+We provide two different authentication methods: password and key-pair. In the example, create a user with either a password or public key and then grant the role to the user. You can find the public key in the Snowflake pipeline creation UI. If you already have a user, change the fields and grant the role.
 
 password authentication
 

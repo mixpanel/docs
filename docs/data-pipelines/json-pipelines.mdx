@@ -1,5 +1,5 @@
 ---
-title: "JSON Pipelines"
+title: JSON Pipelines
 ---
 
 <Note>
@@ -16,9 +16,9 @@ Follow the instructions here in the [Overview](/docs/data-pipelines).
 
 ## Destination and Date Range Restrictions
 
-To prevent data duplication and conflicts, the system enforces the following rule: **you cannot create multiple event pipelines that export to the same destination with overlapping date ranges**. 
+To prevent data duplication and conflicts, the system enforces the following rule: **you cannot create multiple event pipelines that export to the same destination with overlapping date ranges**.
 
-For example, if you already have a pipeline exporting to BigQuery dataset "my_dataset" for dates January 1-31, you cannot create another pipeline exporting to the same dataset with dates January 15 - February 15, as the January 15-31 period would overlap.
+For example, if you already have a pipeline exporting to BigQuery dataset "my\_dataset" for dates January 1-31, you cannot create another pipeline exporting to the same dataset with dates January 15 - February 15, as the January 15-31 period would overlap.
 
 This constraint ensures data integrity and prevents duplicate exports to the same destination tables or storage locations.
 
@@ -32,29 +32,29 @@ The following are examples of the output in **BigQuery** for each data source pi
 
 ### Events
 
-| name        | Type      | description                                                             |
-| :---------- | :-------- | :---------------------------------------------------------------------- |
-| device_id   | STRING    | Unique ID used to track a device while the user remains anonymous       |
-| distinct_id | STRING    | Unique ID for the user who triggered the event                          |
-| event_name  | STRING    | Name of the event                                                       |
-| insert_id   | STRING    | Unique ID used to deduplicate events that are sent multiple times       |
-| properties  | JSON      | JSON object containing all the properties associated with the event     |
-| time        | TIMESTAMP | Timestamp marking when the event occurred                               |
-| user_id     | STRING    | Unique ID used to track a user across different devices when identified |
+| name | Type | description |
+| :-- | :-- | :-- |
+| device\_id | STRING | Unique ID used to track a device while the user remains anonymous |
+| distinct\_id | STRING | Unique ID for the user who triggered the event |
+| event\_name | STRING | Name of the event |
+| insert\_id | STRING | Unique ID used to deduplicate events that are sent multiple times |
+| properties | JSON | JSON object containing all the properties associated with the event |
+| time | TIMESTAMP | Timestamp marking when the event occurred |
+| user\_id | STRING | Unique ID used to track a user across different devices when identified |
 
 ### User Profiles
 
-| name        | Type   | description                                |
-| :---------- | :----- | :----------------------------------------- |
-| distinct_id | STRING | Unique ID for the user                     |
-| properties  | JSON   | JSON object containing all user properties |
+| name | Type | description |
+| :-- | :-- | :-- |
+| distinct\_id | STRING | Unique ID for the user |
+| properties | JSON | JSON object containing all user properties |
 
 ### Identity Mappings
 
-| name                 | Type   | description                                    |
-| :------------------- | :----- | :--------------------------------------------- |
-| distinct_id          | STRING | Unique ID for the user who triggered the event |
-| resolved_distinct_id | STRING | Unique ID of the user after merging            |
+| name | Type | description |
+| :-- | :-- | :-- |
+| distinct\_id | STRING | Unique ID for the user who triggered the event |
+| resolved\_distinct\_id | STRING | Unique ID of the user after merging |
 
 ## Events Data Sync
 
@@ -147,22 +147,17 @@ With incremental pipelines, the next export iteration begins after the previous 
 ## Change Log
 
 <Accordion title="2025-09-29: Sync Enabled by Default for JSON Pipelines">
+  Removed sync toggle from JSON pipeline creation UI. All new JSON pipelines now have incremental sync enabled by default to ensure data consistency without requiring manual configuration.
 
-Removed sync toggle from JSON pipeline creation UI. All new JSON pipelines now have incremental sync enabled by default to ensure data consistency without requiring manual configuration.
-
-**Impact**: New JSON pipelines automatically include sync functionality - no longer optional through UI toggle.
+  **Impact**: New JSON pipelines automatically include sync functionality - no longer optional through UI toggle.
 </Accordion>
 
 <Accordion title="2025-08-14: Incremental Export Deployed for US Pipelines">
+  We have deployed the Incremental Export Improvement for newly created pipelines with US data residency.
 
-We have deployed the Incremental Export Improvement for newly created pipelines with US data residency.
-
-The rollout of these updates to existing pipelines in US residency is scheduled for the near future.
-Your pipeline will automatically transition to the new system when ready.
-Your data quality and completeness remain the same; only the processing method has improved.
+  The rollout of these updates to existing pipelines in US residency is scheduled for the near future. Your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain the same; only the processing method has improved.
 </Accordion>
 
 <Accordion title="2025-06-26: Introducing Incremental Export for Event Pipelines">
-
-We're rolling out an improved pipeline system to improve the efficiency and reliability of your data exports. We're deploying these improvements for newly created pipelines in our EU and IN data residency. New pipelines in projects with US residency and migrating existing pipelines in all regions will follow after. Your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain the same - only the processing method has improved.
+  We're rolling out an improved pipeline system to improve the efficiency and reliability of your data exports. We're deploying these improvements for newly created pipelines in our EU and IN data residency. New pipelines in projects with US residency and migrating existing pipelines in all regions will follow after. Your pipeline will automatically transition to the new system when ready. Your data quality and completeness remain the same - only the processing method has improved.
 </Accordion>

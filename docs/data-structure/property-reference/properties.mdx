@@ -1,15 +1,17 @@
 ---
-sidebarTitle: "Types of Properties"
-title: "Types of Properties in Mixpanel"
+sidebarTitle: Types of Properties
+title: Types of Properties in Mixpanel
+description: "The property types in Mixpanel: event, super, user profile, group profile, lookup table, default, and reserved properties, and when each applies"
 ---
 
 ## Overview
+
 Properties are attributes that help you define the specifics of an **Event**, a **User**, or a **Group**.
 
 Mixpanel has many Properties defined in its Data Model.
 
 | **Property Type** | **Description** |
-| ----------------- | --------------- |
+| --- | --- |
 | [Event Properties](/docs/data-structure/events-and-properties) | Event Properties describes the events that are tracked within your product. |
 | [Super Properties](/docs/tracking-methods/sdks/javascript#super-properties) | Super Properties are a logical term for global Event Properties that, after registration, are saved into the end user's device, and appended to every event from that device until persistence is cleared. This logical term is mostly applicable to our client-side libraries. |
 | [User Profile Properties](/docs/data-structure/user-profiles) | User Profile Properties describe your users (they typically store current demographic information). User profiles are joined to events based on [Distinct ID](/docs/tracking-methods/id-management/identifying-users-simplified#what-is-distinct-id). |

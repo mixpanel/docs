@@ -1,5 +1,5 @@
 ---
-title: "Migrating from Amplitude"
+title: Migrating from Amplitude
 ---
 
 If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/migration) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Amplitude.
@@ -42,7 +42,8 @@ We also support additional data for extending your use cases with Mixpanel:
 ## Loading historical data
 
 ### Mixpanel's Migration Service
-If you have under 15M events in Amplitude, you can migrate your historical Amplitude data using Mixpanel's free migration service. 
+
+If you have under 15M events in Amplitude, you can migrate your historical Amplitude data using Mixpanel's free migration service.
 
 Note that while the migration tool is free to use, backfilling historical event data can have significant impact on your billing. Refer to [this section](/docs/pricing#are-monthly-events-calculated-based-on-ingestion-time-or-event-timestamp) for more details.
 
@@ -61,24 +62,27 @@ curl --request POST \
   }'
 ```
 
-This service will use your provided credentials to export Amplitude data, transform the data, and load event + user profiles into your Mixpanel project. If no dates are provided, the service defaults to a 30 day duration relative to the present.
+This service will use your provided credentials to export Amplitude data, transform the data, and load event \+ user profiles into your Mixpanel project. If no dates are provided, the service defaults to a 30 day duration relative to the present.
 
 [Watch the demo tutorial](https://www.loom.com/share/f947d42db01541a0b74953461e3c6cc0?sid=43c1ef52-d008-4b6d-9015-afa14b05901c) for more in-depth instructions on how to use the migration service.
 
 Notes:
-* Any events ingested via this method in the current month will count toward your plan. We recommend testing this while on a Free plan first. You may also pass a `"DRY_RUN" : true` param in the JSON which will show you how many events will be migrated.
-* If you are using Mixpanel or Amplitude's EU data residency, pass `"REGION": "EU"` with your request.
-* This migration service is in beta -- if you have questions or run into issues, please reach out to us [here](mailto:amplitude-migration@mixpanel.com).
 
+- Any events ingested via this method in the current month will count toward your plan. We recommend testing this while on a Free plan first. You may also pass a `"DRY_RUN" : true` param in the JSON which will show you how many events will be migrated.
+- If you are using Mixpanel or Amplitude's EU data residency, pass `"REGION": "EU"` with your request.
+- This migration service is in beta -- if you have questions or run into issues, please reach out to us [here](mailto:amplitude-migration@mixpanel.com).
 
-### Data Warehouse Connectors 
+### Data Warehouse Connectors
+
 If you have access to your Amplitude data in your data warehouse, the most scalable way to bring this historical data into Mixpanel is by using our warehouse connector. At a high-level, the migration consists of 3 steps:
-1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/id-management#identity-merge-apis). 
-2. Transform Amplitude data in your data warehouse (sample SQL transformation included below).   
-3. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/warehouse-connectors) to initiate data sync from your data warehouse to Mixpanel. 
+
+1. Set up a new Mixpanel project which is on [Simplified ID Merge system](/docs/tracking-methods/id-management#identity-merge-apis).
+2. Transform Amplitude data in your data warehouse (sample SQL transformation included below).
+3. Set up [Mixpanel Warehouse Connector](/docs/tracking-methods/warehouse-connectors) to initiate data sync from your data warehouse to Mixpanel.
 
 ##### Amplitude event schema
-SQL query to flatten the JSON columns into individual columns: 
+
+SQL query to flatten the JSON columns into individual columns:
 
 ```jsx
 SELECT
@@ -116,12 +120,14 @@ JSON_EXTRACT_SCALAR(user_properties, "$['lifetime_purchase']") AS lifetime_purch
 
 FROM `project.dataset.tablename`
 ```
+
 Note: Make the `event_time` column as NOT NULLABLE so that it can be chosen to be a Full Sync.
 
 Amplitude does not export `insert_id` column but even when it is an optional field in Mixpanel, it is recommended to generate it and pass it as best practice.
 
 ##### Amplitude user schema
-For Users too, it would be important to flatten the JSON columns into individual columns. It is also important to reduce unnecessary engage calls hence, we’ll be extracting the latest event time of that user_id to get all the user properties.
+
+For Users too, it would be important to flatten the JSON columns into individual columns. It is also important to reduce unnecessary engage calls hence, we’ll be extracting the latest event time of that user\_id to get all the user properties.
 
 ```jsx
 SELECT
@@ -145,32 +151,34 @@ ON t1.user_id = t2.user_id AND t1.event_time = t2.max_event_time
 ```
 
 ## Setting up Warehouse Connectors
+
 Once you've transformed your data in your data warehouse, you can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/warehouse-connectors) to migrate your historical data into Mixpanel. We'd recommend first sending a month of data into a test project for validation.
 
 You can learn more about event mappings [here](/docs/tracking-methods/warehouse-connectors#events). Here's an example of mappings for event table:
 
 <Frame>
-![image](/images/amp_event_warehouse_connector.png)
+  ![image](/images/amp_event_warehouse_connector.png)
 </Frame>
 
-You can learn more about user mappings [here](/docs/tracking-methods/warehouse-connectors#user-profiles). Here's an example of mappings for user table: 
+You can learn more about user mappings [here](/docs/tracking-methods/warehouse-connectors#user-profiles). Here's an example of mappings for user table:
 
 <Frame>
-![image](/images/amp_user_warehouse_connector.png)
+  ![image](/images/amp_user_warehouse_connector.png)
 </Frame>
 
 ##### Post-migration data validation
-You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check that your data has successfully been ingested. However, if your historical events are older than 30 days, they will not show up on Lexicon, Events page or in the event dropdown menu across all reports. In this case, you can leverage our [Insights report](/docs/reports/insights) to validate the historical events, by selecting the import time frame and filtering by the following default properties: 
+
+You can use our [Lexicon](/docs/data-governance/lexicon) or Events page to check that your data has successfully been ingested. However, if your historical events are older than 30 days, they will not show up on Lexicon, Events page or in the event dropdown menu across all reports. In this case, you can leverage our [Insights report](/docs/reports/insights) to validate the historical events, by selecting the import time frame and filtering by the following default properties:
 
 - Warehouse Import ID (tracked as `$warehouse_import_id`)
 - Warehouse Import Job ID (`$warehouse_import_job_id`)
 - Import = true (`$import`)
 - Source = warehouse-import (`$source`)
 
-Please filter by tracked name, \$warehouse_import_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs:
+Please filter by tracked name, \$warehouse\_import\_id instead of the display name, “Warehouse Import ID”. You can find the properties values on the Warehouse Connector’ sync logs:
 
 <Frame>
-![image](/images/amp_event_validation.png)
+  ![image](/images/amp_event_validation.png)
 </Frame>
 
 ## Identifying your implementation method
@@ -190,12 +198,12 @@ We support the following data collection mechanisms:
 You can set up the [Mixpanel Warehouse Connector](/docs/tracking-methods/warehouse-connectors) to set your implementation to Mixpanel. You can learn more about event mappings [here](/docs/tracking-methods/warehouse-connectors#events) and about user mappings [here](/docs/tracking-methods/warehouse-connectors#user-profiles).
 
 ### Client-side SDKs & Server-side SDKs
-    
-Fortunately, Mixpanel and Amplitude’s client side SDKs have *very similar* developer facing APIs. This makes it fairly easy to “find and replace” embedded Amplitude calls and swap them for Mixpanel calls.
+
+Fortunately, Mixpanel and Amplitude’s client side SDKs have _very similar_ developer facing APIs. This makes it fairly easy to “find and replace” embedded Amplitude calls and swap them for Mixpanel calls.
 
 This section will detail the Javascript SDKs (for the sake of brevity), although both analytics platforms have fairly uniform tracking APIs for other SDKs (mobile, server-side).
 
-Amplitude JS Docs: [https://amplitude.github.io/Amplitude-TypeScript/modules/_amplitude_analytics_browser.html](https://amplitude.github.io/Amplitude-TypeScript/modules/_amplitude_analytics_browser.html)
+Amplitude JS Docs: [https://amplitude.github.io/Amplitude-TypeScript/modules/\_amplitude\_analytics\_browser.html](https://amplitude.github.io/Amplitude-TypeScript/modules/_amplitude_analytics_browser.html)
 
 Mixpanel JS Docs: [https://developer.mixpanel.com/docs/javascript-full-api-reference](https://developer.mixpanel.com/docs/javascript-full-api-reference)
 
@@ -291,11 +299,11 @@ mixpanel.set_group('orgId', 15)
 [Docs Reference](https://developer.mixpanel.com/docs/javascript-full-api-reference#mixpanelset_group)
 
 ### Customer Data Platforms (CDPs)
-    
+
 Since CDPs already collect all your data via 1 SDK and route to many downstream destinations, enabling Mixpanel is straightforward. Simply go to your CDP settings and add Mixpanel as a destination:
 
 <Frame>
-![Segment Connection](https://user-images.githubusercontent.com/129823695/234812593-dffee962-bb34-49b8-9686-96bc0f0565d8.png)
+  ![Segment Connection](https://user-images.githubusercontent.com/129823695/234812593-dffee962-bb34-49b8-9686-96bc0f0565d8.png)
 </Frame>
 
 Once you set up the connection to Mixpanel, you can proceed with configuring key settings like:
@@ -311,9 +319,9 @@ We provide Mixpanel as a destination and setup guides for all of the most popula
 - [Rudderstack](https://www.rudderstack.com/docs/destinations/streaming-destinations/mixpanel/)
 
 Note depending on your CDP provider, they may also be able to help with migrating historical data as well. Features like [Segment Replay](https://segment.com/docs/guides/what-is-replay/) enable you to quickly backfill historical data during your migration versus needing to do this work with your developer resources.
-    
+
 ### Import API
-    
+
 If you currently send data to Amplitude directly to their API, you can simply swap out the Amplitude API with the Mixpanel API.
 
 #### Sending Events
@@ -367,7 +375,7 @@ If you already send data to Amplitude with your data warehouse as the source of 
 Simply go to your RETL settings and add Mixpanel as a connection:
 
 <Frame>
-![Census Connection](https://user-images.githubusercontent.com/129823695/234812805-ded7dcef-9d47-4375-b52e-a229e4832477.png)
+  ![Census Connection](https://user-images.githubusercontent.com/129823695/234812805-ded7dcef-9d47-4375-b52e-a229e4832477.png)
 </Frame>
 
 We provide Mixpanel as a destination and setup guides for all of the most popular RETL tools:
