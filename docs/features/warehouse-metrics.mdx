@@ -33,12 +33,18 @@ If you don't have a warehouse connected yet, follow Step 1 of [Connect a warehou
 
 ## Permissions
 
-| Role | What they can do |
+Working with warehouse metrics depends on whether you have the **Create and Manage Data Warehouses** permission, which sits in the **Data Sources and Definitions** permission category.
+
+| Access | What they can do |
 | --- | --- |
-| **Admin** | Create and run warehouse queries, save them as warehouse metrics, set the refresh frequency, and choose who to share each metric with. |
-| **Other users** | Use a warehouse metric that's been shared with them in new reports they create, and view the metric's data in any report they can access. |
+| **With Create and Manage Data Warehouses** | Create and run warehouse queries, save them as warehouse metrics, set the refresh frequency, and choose who to share each metric with. |
+| **Without it** | Use a warehouse metric that's been shared with them in new reports they create, and view the metric's data in any report they can access. |
+
+On the four default project roles (Owner, Admin, Analyst, Consumer), this permission comes with the Admin role and above. If your organization is on an Enterprise plan and uses [custom roles](/docs/orgs-and-projects/roles-and-permissions#permission-categories), the permission can be granted to or withheld from any role independently, so the Admin role isn't a reliable indicator either way. Check whether your role includes **Create and Manage Data Warehouses**.
 
 ## Creating a warehouse metric
+
+Before you can create a warehouse metric, you need a connected warehouse. If you don't have one yet, follow Step 1 of [Connect a warehouse](/docs/tracking-methods/warehouse-connectors#step-1-connect-a-warehouse) first. See [Before you begin](#before-you-begin) for supported warehouses.
 
 1. Open the warehouse metric builder from either entry point:
    - Insights report: **Add Metric** > **Create New** > **Warehouse Metric**
@@ -76,6 +82,19 @@ For a **Timeseries Metric**, when more than one row from your query falls within
   **"None" and changing the report's time interval**
 
   With **None**, Mixpanel plots your query's rows as-is and doesn't roll them up when the report's time interval changes. If your query returns daily rows and you switch the report to weekly (or any interval that doesn't match your data), the metric shows no data. Choose an aggregation other than **None** if you want the metric to adapt to different time intervals.
+</Note>
+
+### Time zones
+
+For a **Timeseries Metric**, Mixpanel reads the time zone from the values in your **Time Column**:
+
+- **If a value includes a UTC offset, Mixpanel uses it.** In `2026-08-25T02:00:00-04:00`, the trailing `-04:00` means Eastern time; in `2026-08-23T13:00:00+09:00`, the `+09:00` means Korea Standard Time.
+- **If a value has no offset, Mixpanel assumes UTC.** A value like `2026-08-25T02:00:00` is treated as 2:00 AM UTC.
+
+Either way, Mixpanel converts the timestamp to your [project time zone](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects) when displaying the metric on a chart, so warehouse metrics line up with your Mixpanel metrics on the same time axis.
+
+<Note>
+  If your warehouse stores timestamps in local time without an offset, they'll be read as UTC and may land in the wrong time bucket. Include the offset in your query's output, or convert to UTC in your SQL, so the values are unambiguous.
 </Note>
 
 ## Visualizing in Insights
