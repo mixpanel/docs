@@ -413,7 +413,7 @@ MPSessionReplay.getInstance()?.loggingEnabled = true
   **Beta.** Wireframes are in beta. Before shipping to production, inspect the wireframes your app produces with `debugOptions.wireframeEmitter` and confirm that no sensitive information is captured.
 </Note>
 
-Wireframes add AI intelligence to our Mobile Session Replay product by gathering and sending text-based representations of the user's screen. This enables you to summarize a replay with [AI Summaries](/docs/session-replay#ai-summary), or use [Mixpanel Agent](/docs/mixpanel-agent) to curate relevant replays from a prompt, analyze them alongside your events data, and jump straight to the moments that matter.
+Wireframes add AI intelligence to our Mobile Session Replay product by gathering and sending text-based representations of the user’s screen, which we feed into the agent context.
 
 ### Enable wireframe capture
 
