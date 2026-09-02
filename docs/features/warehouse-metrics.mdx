@@ -1,0 +1,148 @@
+---
+title: "Warehouse Metrics"
+sidebarTitle: Warehouse Metrics
+description: "Query your data warehouse and chart the results in Insights"
+---
+
+Warehouse Metrics lets you query, visualize, and analyze data that lives in your data warehouse using Mixpanel's analysis tools. You write SQL against a connected warehouse, and Mixpanel turns the results into a saved metric you can chart in Insights and add to boards alongside your Mixpanel reports.
+
+Your raw data stays in your warehouse. Mixpanel runs the query against your warehouse and brings back only the results: no data is copied into Mixpanel.
+
+<Note>
+  **Early access**
+
+  Warehouse Metrics is currently in early access. Some functionality may change. Request access through your warehouse settings or contact your Mixpanel account manager.
+</Note>
+
+## Before you begin
+
+To use Warehouse Metrics, you first need a connected warehouse. Mixpanel supports:
+
+- Snowflake
+- BigQuery
+- Redshift
+- Databricks
+
+<Note>
+  **Postgres**
+
+  Postgres is supported by [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors) but is not yet supported for Warehouse Metrics.
+</Note>
+
+If you don't have a warehouse connected yet, follow Step 1 of [Connect a warehouse](/docs/tracking-methods/warehouse-connectors#step-1-connect-a-warehouse). This establishes the connection Mixpanel uses to run your queries: you do not need to copy or sync any data into Mixpanel to use Warehouse Metrics.
+
+## Permissions
+
+Working with warehouse metrics depends on whether you have the **Create and Manage Data Warehouses** permission, which sits in the **Data Sources and Definitions** permission category.
+
+| Access | What they can do |
+| --- | --- |
+| **With Create and Manage Data Warehouses** | Create and run warehouse queries, save them as warehouse metrics, set the refresh frequency, and choose who to share each metric with. |
+| **Without it** | Use a warehouse metric that's been shared with them in new reports they create, and view the metric's data in any report they can access. |
+
+On the four default project roles (Owner, Admin, Analyst, Consumer), this permission comes with the Admin role and above. If your organization is on an Enterprise plan and uses [custom roles](/docs/orgs-and-projects/roles-and-permissions#permission-categories), the permission can be granted to or withheld from any role independently, so the Admin role isn't a reliable indicator either way. Check whether your role includes **Create and Manage Data Warehouses**.
+
+## Creating a warehouse metric
+
+Before you can create a warehouse metric, you need a connected warehouse. If you don't have one yet, follow Step 1 of [Connect a warehouse](/docs/tracking-methods/warehouse-connectors#step-1-connect-a-warehouse) first. See [Before you begin](#before-you-begin) for supported warehouses.
+
+1. Open the warehouse metric builder from either entry point:
+   - Insights report: **Add Metric** > **Create New** > **Warehouse Metric**
+   - Project Settings: **Warehouse Data** > **Create** > **Metric**
+
+   Then select the connected warehouse source you want to query.
+2. Write your SQL query. You can query any table the connection has access to.
+3. Run the query to preview the results.
+4. Choose a **Metric Type**:
+   - **Numeric Metric**: a single value from a query that returns one number.
+   - **Timeseries Metric**: a value that changes over time, plotted along a time axis.
+5. Select a **Value Column**: the column from your query results that holds the number Mixpanel plots. This applies to both metric types.
+6. For a **Timeseries Metric**, also select:
+   - **Time Column**: the column that holds the date or timestamp for each row. Only date/timestamp columns can be selected.
+   - **Aggregation**: how rows that fall within the same time bucket are combined into a single value. See [Aggregation options](#aggregation-options).
+7. Set **Syncs**: how frequently the metric is refreshed. Running the query uses compute in your warehouse.
+8. Name and save the metric, and choose who to share it with. Once saved, it becomes available in the metrics menu of the Insights query builder. See [Permissions](#permissions) for how sharing works.
+
+### Aggregation options
+
+For a **Timeseries Metric**, when more than one row from your query falls within the same time bucket (for example, several rows on the same day), the **Aggregation** setting controls how those rows are combined into a single value for that bucket. Choose the option that matches what your metric represents.
+
+| Option | What it does | Example | When to use |
+| --- | --- | --- | --- |
+| **None** | No combining is applied; expects one row per time bucket at the granularity your query returns. | Your query already returns one row per day. | When your SQL already produces a single value per time period and you won't change the report's time interval. |
+| **Sum** | Adds the values in the bucket. | Revenue rows on the same day summed to a daily total. | Additive quantities like revenue, orders, or units. |
+| **Count** | Counts the rows in the bucket. | Number of transactions per day. | Measuring how many rows occurred in each period, regardless of their value. |
+| **Average** | Takes the mean of the values in the bucket. | Average order value per day. | Rates, scores, and per-unit values where a total wouldn't make sense. |
+| **Min** | Takes the smallest value in the bucket. | Lowest account balance that day. | Tracking a floor or worst-case value. |
+| **Max** | Takes the largest value in the bucket. | Peak concurrent users that day. | Tracking a ceiling or high-water mark. |
+| **Median** | Takes the median of the values in the bucket. | Median session length per day. | A typical value that isn't skewed by outliers. |
+| **Last Value** | Takes the last value in the bucket. | Account balance as of the end of the day. | Point-in-time state, where you want the value as it stood at the end of the period. |
+
+<Note>
+  **"None" and changing the report's time interval**
+
+  With **None**, Mixpanel plots your query's rows as-is and doesn't roll them up when the report's time interval changes. If your query returns daily rows and you switch the report to weekly (or any interval that doesn't match your data), the metric shows no data. Choose an aggregation other than **None** if you want the metric to adapt to different time intervals.
+</Note>
+
+### Time zones
+
+For a **Timeseries Metric**, Mixpanel reads the time zone from the values in your **Time Column**:
+
+- **If a value includes a UTC offset, Mixpanel uses it.** In `2026-08-25T02:00:00-04:00`, the trailing `-04:00` means Eastern time; in `2026-08-23T13:00:00+09:00`, the `+09:00` means Korea Standard Time.
+- **If a value has no offset, Mixpanel assumes UTC.** A value like `2026-08-25T02:00:00` is treated as 2:00 AM UTC.
+
+Either way, Mixpanel converts the timestamp to your [project time zone](/docs/orgs-and-projects/managing-projects#manage-timezones-for-projects) when displaying the metric on a chart, so warehouse metrics line up with your Mixpanel metrics on the same time axis.
+
+<Note>
+  If your warehouse stores timestamps in local time without an offset, they'll be read as UTC and may land in the wrong time bucket. Include the offset in your query's output, or convert to UTC in your SQL, so the values are unambiguous.
+</Note>
+
+## Visualizing in Insights
+
+Saved warehouse metrics appear as an option in the Insights query builder, alongside your Mixpanel metrics. You can chart a warehouse metric on its own or place it next to Mixpanel metrics in the same report.
+
+Both metric types are supported:
+
+- **Numeric metrics** show their single value as a constant across the selected date range.
+- **Timeseries metrics** are plotted over time using the time column you selected. Time buckets with no matching rows show as 0.
+
+<Note>
+  **Insights only**
+
+  Warehouse metrics can only be used in **Insights** reports. If you switch a report to a different report type, the warehouse metric is dropped from that report.
+</Note>
+
+## Refresh frequency
+
+Each warehouse metric refreshes on the schedule you set with the **Syncs** setting when you create it: **Hourly**, **Daily**, **Weekly**, or **Manually**. With **Manually**, the metric only updates when you re-run it. On each refresh, Mixpanel re-runs the query against your warehouse and updates the saved results, along with any reports or board cards that use the metric.
+
+Reports and board cards show a freshness indicator based on when the metric last refreshed. Because each metric refreshes on its own schedule, this can differ from the freshness of other cards on the same board.
+
+Because each refresh runs the query in your warehouse, the refresh frequency you choose affects how much warehouse compute the metric uses.
+
+## Data and privacy
+
+- **Your data stays in your warehouse:** Mixpanel runs your query and returns only the results. No raw data is copied into Mixpanel.
+- **You control the query:** Most query results are aggregated (for example, a count of monthly active users). Depending on how a query is written, results can include row-level or identifiable data. You decide which queries to write and run.
+
+## Warehouse costs
+
+Running a query uses compute in your own warehouse, which may affect your warehouse bill. You control how often that compute is used through each metric's refresh frequency. Mixpanel does not add a separate charge for running warehouse queries during early access.
+
+## How Warehouse Metrics is different from Warehouse Connectors
+
+Both features work with your warehouse, but they do different things:
+
+- **[Warehouse Connectors](/docs/tracking-methods/warehouse-connectors)** import data from your warehouse into Mixpanel as events, users, or groups, so it can be analyzed as native Mixpanel data.
+- **Warehouse Metrics** queries your warehouse in place and returns aggregated results, without copying data into Mixpanel.
+
+You use the same warehouse connection for both.
+
+## Current limitations
+
+During early access, the following are not yet supported:
+
+- **Joining warehouse data with Mixpanel data:** A warehouse metric is computed entirely from your SQL query and isn't combined with Mixpanel behavioral data in the same query.
+- **Filters and breakdowns:** Query builder filters, breakdowns, and board-level global filters don't apply to warehouse metrics. To change what's returned, edit the query.
+- **Schema browser:** Available tables and columns aren't listed in Mixpanel; write your query against tables you already know.
+- **Report types other than Insights:** Warehouse metrics work only in Insights reports.

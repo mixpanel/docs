@@ -368,7 +368,8 @@
                   "docs/features/revenue-analytics",
                   "docs/features/saved-metrics-and-behaviors",
                   "docs/features/sessions",
-                  "docs/features/slack-integration"
+                  "docs/features/slack-integration",
+                  "docs/features/warehouse-metrics"
                 ]
               }
             ]
