@@ -748,12 +748,6 @@
             ]
           },
           {
-            "group": "PLATFORM API",
-            "pages": [
-              "reference/platform-api"
-            ]
-          },
-          {
             "group": "INGESTION API",
             "pages": [
               {
@@ -1215,6 +1209,12 @@
                 ],
                 "root": "reference/archive-experiment"
               }
+            ]
+          },
+          {
+            "group": "PLATFORM API",
+            "pages": [
+              "reference/platform-api"
             ]
           }
         ]
