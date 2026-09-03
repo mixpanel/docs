@@ -4,8 +4,6 @@ title: Overview
 
 The Platform API is how you manage your Mixpanel account programmatically. Where the [Ingestion API](/reference/ingestion-api) sends data in and the [Query API](/reference/query-api) reads analysis out, the Platform API operates on the platform itself — the organizations, projects, and the resources and settings inside them.
 
-It is a separate group because it is one consistently designed surface rather than a set of independently grown endpoints. Every Platform API endpoint shares the same base path, authentication, pagination, error format, and versioning contract, and its reference documentation is generated from the same schemas that serve the requests. Mixpanel's older APIs predate those conventions and keep their own; new platform capabilities are added here.
-
 ## Base URL
 
 Every request goes to the regional host for your project's data residency — [EU](/docs/privacy/eu-residency) or [India](/docs/privacy/in-residency) — under the `/v1` base path.
