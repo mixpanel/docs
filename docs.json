@@ -752,8 +752,7 @@
             "group": "PLATFORM API",
             "pages": [
               "reference/platform-api"
-            ],
-            "openapi": "openapi/platform.openapi.json"
+            ]
           },
           {
             "group": "INGESTION API",
