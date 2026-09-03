@@ -22,11 +22,11 @@ If you are an organization admin, you can enable two-factor authentication by do
 
 2. In “Two Factor Authentication”, if the icon is gray, click it to enable. If the icon is purple, click it to disable.
 
-**Note: If your organization has SSO enabled, your organization will not have access to 2FA.**
-
 <Frame>
   ![2FA Enable Image](/images/2fa_enable_2fa.png)
 </Frame>
+
+When SSO is enabled, Two Factor Authentication **will not be enforced for users required to use SSO**, as authentication will be handled through the IDP directly. However, users who are not required to log in through SSO (just have the option), will need to pass two factor authentication if enabled along with SSO.
 
 3. The “Verify Mixpanel password” box will appear.
 
