@@ -1,0 +1,187 @@
+---
+title: Audit Log Streaming
+description: "Continuously deliver your organization's audit log to a cloud destination you control"
+---
+
+<Note>
+  Audit Log Streaming is available on the Enterprise plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+</Note>
+
+## Overview
+
+Audit Log Streaming continuously delivers your organization's [audit log](/docs/access-security/audit-log) to a cloud storage destination that you own and control. Instead of exporting the audit log by hand, Mixpanel pushes new entries to your destination as they are recorded — ready to be picked up by your security monitoring tooling, a log pipeline, or a compliance archive.
+
+A stream is configured once for the whole organization and carries every audit log entry for it, including entries scoped to individual projects. Entries typically arrive at your destination within five minutes of the action that produced them.
+
+## Requirements
+
+- An Enterprise plan.
+- Organization Owner or Admin. Only Owners and Admins can create, edit, pause, resume, or delete a stream.
+- A cloud storage destination you control, and the access to grant Mixpanel permission on it.
+
+Because a stream carries the organization's entire audit log, treat configuring one as a security-sensitive change. Every stream action — create, update, pause, resume, and delete — is itself recorded in your audit log.
+
+## What Gets Streamed
+
+Every audit log entry recorded for your organization is streamed. This is the same set of events listed in the [Audit Log Reference](/docs/access-security/audit-log-reference), covering both organization-level events (logins, service account management, two-factor changes, role changes) and project-level events (report and board changes, data governance changes, exports, and more).
+
+## Set Up a Stream
+
+<Steps>
+  <Step title="Open the stream configuration">
+    Go to **Organization Settings → Audit Log** and click **Configure stream**.
+  </Step>
+
+  <Step title="Select your destination type">
+    Each destination type has its own setup guide under [Destinations](#destinations).
+  </Step>
+
+  <Step title="Grant Mixpanel access to the destination">
+    Follow the setup guide for your destination type. Do this **before** saving in Mixpanel — access is verified at save time, and the stream is only created if that check succeeds.
+  </Step>
+
+  <Step title="Enter the destination details and save">
+    If the access check fails, nothing is saved and Mixpanel returns an error describing what to fix.
+  </Step>
+</Steps>
+
+The same access check runs whenever a stream is created, updated, or resumed, so a bad edit or a revoked permission can't silently break a live stream. How the check is performed is specific to each destination type and is described in its section below.
+
+## Destinations
+
+### Google Cloud Storage
+
+Mixpanel delivers each batch of audit log entries as a gzipped NDJSON object into a Cloud Storage bucket you own, writing as a **Mixpanel-owned service account** that you grant access to on your bucket. There is no key exchange in either direction: you never give Mixpanel a service account key, and Mixpanel never stores credentials for your Google Cloud project. The same service account is used regardless of your organization's data residency (US, EU, or India).
+
+#### Required Permissions
+
+Grant this service account:
+
+```
+audit-log-streaming@mixpanel-prod-1.iam.gserviceaccount.com
+```
+
+the **Storage Admin** (`roles/storage.admin`) role **on the destination bucket** — not at the project level.
+
+Storage Admin is required because delivery overwrites objects: retried batches rewrite the same object name, and the access-verification probe is rewritten in place. Cloud Storage requires delete permission to overwrite an existing object, so object-creation permission alone is not sufficient.
+
+<Note>
+  Mixpanel only writes to your bucket. It never reads, lists, or deletes your existing data, even though Storage Admin technically permits it.
+
+  If your security review requires a narrower grant, **Storage Object Admin** (`roles/storage.objectAdmin`) on the bucket also works, as does a custom role containing `storage.objects.create` and `storage.objects.delete`. **Storage Object Creator is not sufficient** — it cannot overwrite an existing object.
+</Note>
+
+#### Set Up the Bucket
+
+<Steps>
+  <Step title="Create or choose a bucket">
+    Any location, storage class, and lifecycle policy works. Mixpanel does not manage the bucket.
+  </Step>
+
+  <Step title="Grant Mixpanel access on the bucket">
+    ```bash
+    gcloud storage buckets add-iam-policy-binding gs://MY_BUCKET \
+      --member="serviceAccount:audit-log-streaming@mixpanel-prod-1.iam.gserviceaccount.com" \
+      --role="roles/storage.admin"
+    ```
+
+    Or in the Cloud Console: **Cloud Storage → your bucket → Permissions → Grant access**, with the service account above as the principal and **Storage Admin** as the role.
+  </Step>
+
+  <Step title="Configure the stream in Mixpanel">
+    Enter the bucket name and an optional path prefix, then save.
+  </Step>
+
+  <Step title="Confirm delivery">
+    Within a few minutes of any audited action, files begin appearing under your prefix.
+  </Step>
+</Steps>
+
+#### How Mixpanel Verifies Access
+
+When you create, update, or resume a stream, Mixpanel writes a zero-byte probe object named `_mixpanel_healthcheck` under your configured prefix. The probe is rewritten in place on every check, so only one ever exists and it is safe to leave in your bucket.
+
+#### File Layout
+
+Each delivered file lands at:
+
+```
+<path_prefix>/YYYY/MM/DD/HH/MM/<uuid>.ndjson.gz
+```
+
+The timestamp in the path is when Mixpanel batched the entries, not when the file was delivered. This keeps retries idempotent — a redelivered batch overwrites itself at the same object name rather than producing a duplicate file.
+
+#### Bucket Configuration Notes
+
+- **Bucket name** must be a valid Cloud Storage bucket name (3–63 characters; lowercase letters, numbers, dots, hyphens, underscores).
+- **Path prefix** is optional. Leading and trailing slashes are normalized, so `audit-logs`, `/audit-logs`, and `audit-logs/` are equivalent.
+- **Retention locks and object holds** that prevent overwriting an existing object will fail the access check and break retried deliveries. Use a bucket or prefix without an overwrite-blocking retention lock.
+- **Customer-managed encryption keys** work normally. Mixpanel writes through the bucket's default encryption settings.
+- **Your own lifecycle rules** govern how long delivered files live. Mixpanel never deletes anything from your bucket.
+
+## Managing a Stream
+
+| Action | Effect |
+| --- | --- |
+| **Pause** | Delivery stops. Mixpanel keeps collecting your audit logs and holds them for delivery when you resume, subject to the retention rules below. |
+| **Resume** | Mixpanel re-verifies the destination, then restarts delivery and ships whatever held logs are still within the retention window. |
+| **Update** | Replaces the destination configuration. The new destination is verified before it is saved, so a bad edit cannot silently break a live stream. |
+| **Delete** | Delivery stops immediately and permanently. Held logs are discarded and cannot be recovered. Configure a new stream to start over. |
+
+## Pausing and Log Retention
+
+Pausing is safe for short periods, but it is **not** an indefinite hold — Mixpanel does not archive an unbounded backlog on your behalf.
+
+1. **While paused, Mixpanel keeps collecting your audit logs** and holds the undelivered batches, ready to ship when you resume.
+2. **On resume, Mixpanel delivers up to the last 7 days of held logs.** Held logs older than that have aged out and will not be delivered. A stream paused for 3 days and resumed loses nothing; a stream paused for 12 days and resumed receives roughly the most recent 7 days, and the earlier part of the pause is a permanent gap in your destination.
+3. **A stream paused for more than 3 weeks stops collecting altogether.** At that point Mixpanel treats the stream as abandoned: it stops holding new logs, and any still-held logs are discarded. When you resume such a stream, **delivery restarts from the point of resume** — only actions that occur after you resume are streamed. Nothing from during the pause is delivered, regardless of the 7-day window.
+4. **Deleting a stream discards held logs immediately.** There is no grace period and no resume path; delete is not a long pause.
+
+This applies identically whether the pause was manual or automatic (see [Delivery Failures and Automatic Pausing](#delivery-failures-and-automatic-pausing)) — the retention clock starts at the moment the stream was paused, either way.
+
+### Filling a Gap
+
+Any entry that was never delivered — whether from before the stream existed, or from a pause that exceeded the retention window above — is still available in your audit log in Mixpanel. To backfill it, export the audit log (CSV or NDJSON) from **Organization Settings → Audit Log** for the affected time range. Streaming and the audit log read the same underlying records, so a backfilled export reconciles cleanly with streamed files.
+
+## Delivery Failures and Automatic Pausing
+
+Mixpanel retries failed deliveries automatically, so a brief problem at your destination resolves itself with no action from you.
+
+If Mixpanel fails to deliver to your destination too many times in a row, **the stream is paused automatically.** Your organization's Owners and Admins receive a notification email, and the stream shows as **Paused** in Mixpanel along with when it was paused and why. Fix the underlying problem, then click **Resume** — Mixpanel re-verifies the destination before restarting delivery.
+
+An automatic pause that goes unnoticed will quietly become a gap in your destination once it crosses the retention window above, so act on the notification email promptly.
+
+## Troubleshooting
+
+| Symptom | Applies to | Likely cause and fix |
+| --- | --- | --- |
+| Events stopped arriving | All destinations | Check the stream's status in **Organization Settings → Audit Log → Configure stream**. If it shows **Paused**, the pause reason explains why, and your Owners and Admins were emailed. Fix the cause and resume. |
+| Resumed the stream, but earlier entries never arrived | All destinations | The pause exceeded a retention window. See [Pausing and Log Retention](#pausing-and-log-retention), then [fill the gap](#filling-a-gap) with an export. |
+| "Mixpanel doesn't have permission to write to your destination." | Google Cloud Storage | The IAM binding is missing, too narrow, or applied to the wrong resource. Confirm it is on the *bucket* and grants Storage Admin (or an equivalent write role). |
+| "Your destination couldn't be found." | Google Cloud Storage | The bucket name is wrong or the bucket has been deleted. Bucket names are global; check for typos. |
+| "Mixpanel couldn't authenticate with your destination." | Google Cloud Storage | The binding for `audit-log-streaming@mixpanel-prod-1.iam.gserviceaccount.com` has been removed or altered. Re-grant it, then resume the stream. |
+| "Your destination didn't respond. Try again in a few minutes." | Google Cloud Storage | A transient failure reaching the bucket. Retry the save shortly. |
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Can I stream to more than one destination?">
+    No. An organization has one audit log stream at a time. To change where entries go, edit the existing stream's configuration rather than creating a second one.
+  </Accordion>
+
+  <Accordion title="Can the same entry arrive twice?">
+    Delivery is at-least-once. A retried batch is redelivered in place rather than duplicated, but a consumer should still be idempotent on each entry's `id`.
+  </Accordion>
+
+  <Accordion title="Are entries delivered in order?">
+    No. Entries are not ordered within a batch or across batches. Sort by each entry's `created` timestamp after ingestion.
+  </Accordion>
+
+  <Accordion title="Can I recover the logs held by a stream I deleted?">
+    No. Deleting a stream discards held, undelivered logs immediately and irreversibly. Export the audit log to recover the affected range.
+  </Accordion>
+
+  <Accordion title="Does streaming change how long Mixpanel keeps my audit log?">
+    No. Streaming delivers a copy to your destination and does not affect the audit log's retention inside Mixpanel.
+  </Accordion>
+</AccordionGroup>

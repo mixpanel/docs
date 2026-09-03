@@ -433,7 +433,8 @@
                     "group": "Audit Log",
                     "root": "docs/access-security/audit-log",
                     "pages": [
-                      "docs/access-security/audit-log-reference"
+                      "docs/access-security/audit-log-reference",
+                      "docs/access-security/audit-log-streaming"
                     ]
                   }
                 ]
