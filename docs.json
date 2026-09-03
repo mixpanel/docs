@@ -743,7 +743,6 @@
                 ],
                 "root": "reference/authentication"
               },
-              "reference/api-versioning",
               "reference/segmentation-expressions",
               "reference/rate-limits"
             ]

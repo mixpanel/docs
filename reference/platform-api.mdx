@@ -29,7 +29,7 @@ The service account must have access to the organization, project, or workspace 
 
 ## Conventions
 
-These apply across every Platform API endpoint, so you can write them into a client once.
+These apply across every Platform API endpoint.
 
 ### Cursor pagination
 
@@ -39,7 +39,7 @@ Requests accept these query parameters:
 
 | Parameter | Description |
 | --- | --- |
-| `page_size` | Items per page, from 1 to 100. Defaults to 100. |
+| `page_size` | Items per page. |
 | `cursor` | A cursor returned by a previous request. Omit it to fetch the first page. |
 | `order` | `desc` for newest first (the default), or `asc` for oldest first. |
 
@@ -105,7 +105,34 @@ If a request carrying that key is retried, the original response is returned ins
 
 ### API versioning
 
-Mixpanel APIs support an optional, date-based [`Mixpanel-Version` header](/reference/api-versioning) that pins the contract your integration was built against, so a future breaking change doesn't reach code you aren't ready to update. Setting it is recommended for production integrations.
+This API supports an optional `Mixpanel-Version` header, that lets you pin the API contract your integration was built against. It is a **date-based** version: a calendar date such as `2026-08-13`.
+
+```bash
+curl https://<api_host>/<endpoint_path> \
+  --header "Mixpanel-Version: 2026-08-13"
+```
+
+#### If you omit the header
+
+Your request is served by the **latest** version of the API. When we ship a new version, your integration begins receiving the new behavior automatically, and a future release **may introduce a breaking change** to the response contract without warning to your code.
+
+Omitting the header is fine for exploration and for integrations you actively maintain. It is riskier for long-lived, unattended integrations.
+
+#### If you set the header
+
+Set `Mixpanel-Version` to a version date and that version's contract is the one you get. A version you have pinned **will not receive a breaking change** — new versions are published under new dates, and your pinned date keeps serving the shape it always has. When you are ready to adopt newer behavior, you update the date at your own pace and re-test.
+
+We recommend that production integrations set an explicit `Mixpanel-Version`.
+
+Sending a version an endpoint doesn't support returns a `400`, with the supported versions listed in the error's `detail`.
+
+#### What counts as a breaking change
+
+A new version date is introduced only for changes that could break a well-behaved client — for example, removing or renaming a field, changing a field's type, or changing the meaning of an existing value. Additive, backward-compatible changes, such as adding a new optional field to a response, are **not** breaking and may appear within an existing version.
+
+Write clients that tolerate additive change: ignore response fields you don't recognize, and don't assume the set of values an enumerated field can take is closed.
+
+#### Versions
 
 The Platform API supports these versions:
 
