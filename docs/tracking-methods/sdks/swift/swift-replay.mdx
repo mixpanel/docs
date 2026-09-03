@@ -441,12 +441,12 @@ MPSessionReplay.initialize(
 
 Wireframe text passes through four layers, in order. Each layer only sees what survived the one before it. An element is **never removed** by masking — its role and bounds always ship, so the shape of the screen is preserved. Only its text is affected.
 
-| Layer | What it does | Direction |
-| --- | --- | --- |
-| **1. View-level masking** | The existing Session Replay masking decision, made during the same traversal that builds the screenshot. If something is masked in the video, its text is dropped from the wireframe. Covers `autoMaskedViews`, views you marked sensitive with `mpReplaySensitive`, and `UITextField` and other text-entry views. | Removes |
-| **2. Geometric leak prevention** | Any element whose bounds intersect a mask region the screenshot painted loses its text, even if that element was never marked sensitive itself. | Removes |
-| **3. Declared text** | Text you supply with `mpWireframeText` replaces whatever the first two layers produced. Because you authored it rather than the SDK scraping it off the screen, it is sent even for an element you masked in the video. | Adds |
-| **4. Content rules** | `sensitiveRules` — your own strip and redact patterns — applied in declared order to whatever text remains, including text you declared in Layer 3. | Removes / rewrites |
+| Evaluation Order | Layer | What it does | Direction |
+| --- | --- | --- | --- |
+| 1 | **View-level masking** | The existing Session Replay masking decision, made during the same traversal that builds the screenshot. If something is masked in the video, its text is dropped from the wireframe. Covers `autoMaskedViews`, views you marked sensitive with `mpReplaySensitive`, and `UITextField` and other text-entry views. | Removes |
+| 2 | **Geometric leak prevention** | Any element whose bounds intersect a mask region the screenshot painted loses its text, even if that element was never marked sensitive itself. | Removes |
+| 3 | **Declared text** | Text you supply with `mpWireframeText` replaces whatever the first two layers produced. Because you authored it rather than the SDK scraping it off the screen, it is sent even for an element you masked in the video. | Adds |
+| 4 | **Content rules** | `sensitiveRules` — your own strip and redact patterns — applied in declared order to whatever text remains, including text you declared in Layer 3. | Removes / rewrites |
 
 The short version: **the SDK does its best to keep the wireframe consistent with what the replay video shows**, plus two escape hatches you control — one to add a safe description back (Layer 3), one to catch sensitive content by pattern (Layer 4).
 
