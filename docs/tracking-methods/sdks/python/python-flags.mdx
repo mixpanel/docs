@@ -11,7 +11,8 @@ This developer guide will assist you in configuring your server-side Python plat
 
 Before implementing [Feature Flags](/docs/featureflags), ensure:
 
-- You are on an Enterprise subscription plan  and have the appropriate version of the SDK installed (minimum supported version is [`v5.1.0`](https://github.com/mixpanel/mixpanel-python). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+- A Mixpanel project with Feature Flags — see [plan availability](/docs/featureflags#plan-availability)
+- You have the appropriate version of the SDK installed (minimum supported version is [`v5.1.0`](https://github.com/mixpanel/mixpanel-python)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Flag Evaluation Scenarios
@@ -32,15 +33,19 @@ In either case there is also the capability to evaluate all flags for a given us
 
 - The SDK is configured with a `LocalFlagsConfig` object that specifies parameters:
 
-  1. `api_host` - If you project is in the EU/IN region, this should be set to route to `https://api-eu.mixpanel.com`/`https://api-in.mixpanel.com` respectively.
+  1. `api_host` - If your project is in the EU/IN region, set this to `api-eu.mixpanel.com`/`api-in.mixpanel.com` respectively.
   2. `enable_polling` - This should be set to `True` to enable local evaluation.
-  3. `poll_interval` - This is the interval in seconds at which the SDK will poll Mixpanel servers for feature flag configurations.
+  3. `polling_interval_in_seconds` - This is the interval in seconds at which the SDK will poll Mixpanel servers for feature flag configurations.
 - The SDK will continue to poll for the lifetime of the SDK instance or until stopped.
 
 ```python
 import mixpanel
 
-local_config = mixpanel.LocalFlagsConfig(api_host="https://api.mixpanel.com", enable_polling=True, poll_interval=60)
+local_config = mixpanel.LocalFlagsConfig(
+    api_host="api.mixpanel.com",
+    enable_polling=True,
+    polling_interval_in_seconds=60,
+)
 
 mp = mixpanel.Mixpanel("YOUR_PROJECT_TOKEN", local_flags_config=local_config)
 
