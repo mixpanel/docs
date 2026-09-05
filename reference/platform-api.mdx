@@ -1,0 +1,139 @@
+---
+title: Overview
+---
+
+The Platform API is how you manage your Mixpanel account programmatically. Where the [Ingestion API](/reference/ingestion-api) sends data in and the [Query API](/reference/query-api) reads analysis out, the Platform API operates on the platform itself — the organizations, projects, and the resources and settings inside them.
+
+## Base URL
+
+Each request should be sent to the regional host for your project's data residency — [EU](/docs/privacy/eu-residency) or [India](/docs/privacy/in-residency) — under the `/v1` base path.
+
+| Residency | Base URL |
+| --- | --- |
+| US (default) | `https://platform-us.mixpanel.com/v1` |
+| EU | `https://platform-eu.mixpanel.com/v1` |
+| India | `https://platform-in.mixpanel.com/v1` |
+
+## Authentication
+
+The Platform API authenticates with [service accounts](/reference/service-accounts) only. Pass the service account's username and secret as HTTP Basic Auth credentials on every request. No other credential type — project token, project secret, or session cookie — is accepted.
+
+```bash
+curl https://platform-us.mixpanel.com/v1/organizations/{organization_id}/some-resource \
+  --user "<serviceaccount_username>:<serviceaccount_secret>"
+```
+
+The service account must have access to the organization, project, or workspace named in the request path, and some endpoints require a specific role beyond membership. Each endpoint's reference page lists the roles that grant access to it. See [Service Accounts](/reference/service-accounts) for how to create one and manage its access.
+
+## Conventions
+
+These apply across every Platform API endpoint.
+
+### Cursor pagination
+
+Endpoints that return a collection are paginated with an opaque cursor: the response is always a `results` array alongside a `pagination` object, never a bare top-level array, so it can gain fields later without breaking your client.
+
+Requests accept these query parameters:
+
+| Parameter | Description |
+| --- | --- |
+| `page_size` | Items per page. |
+| `cursor` | A cursor returned by a previous request. Omit it to fetch the first page. |
+| `order` | `desc` for newest first (the default), or `asc` for oldest first. |
+
+```json
+{
+  "results": [],
+  "pagination": {
+    "next_cursor": "b3JnPTEyMzQ1Njc4OTA",
+    "previous_cursor": null
+  }
+}
+```
+
+To walk a collection, pass `pagination.next_cursor` back as the `cursor` on the following request and repeat until it comes back `null`. Cursors are opaque strings — pass them through unmodified rather than parsing or constructing them.
+
+### Error responses
+
+Every error returns a JSON body in the [RFC 9457 problem details](https://datatracker.ietf.org/doc/html/rfc9457) format, with the same fields regardless of which endpoint produced it.
+
+| Field | Description |
+| --- | --- |
+| `status` | The HTTP status code, repeated in the body. |
+| `title` | A short, human-readable summary of the problem type. |
+| `type` | A stable reference identifying the problem type, when one applies. Match on this rather than on `detail`. |
+| `detail` | A human-readable explanation specific to this occurrence, when one applies. |
+| `instance` | A stable reference to this specific occurrence, when one applies. |
+| `error_id` | An opaque identifier for this occurrence. Include it when contacting support so we can find the corresponding server-side error. |
+
+```json
+{
+  "status": 404,
+  "title": "Not Found",
+  "type": "resource_not_found",
+  "detail": "No resource with that identifier exists in this organization.",
+  "error_id": "01JQZ8X4T2M6V9BNK3RS7D0FYE"
+}
+```
+
+A `422` adds an `errors` array describing each field that failed validation, with the location of the offending value and a message for it.
+
+### Idempotency
+
+Most `POST` endpoints accept an optional `Idempotency-Key` header that makes the request safe to retry. An endpoint's reference page lists `Idempotency-Key` among its parameters when it supports one. Send a unique value — a UUID v4 is a good choice — of up to 255 printable ASCII characters:
+
+```bash
+curl -X POST https://platform-us.mixpanel.com/v1/organizations/{organization_id}/some-resource \
+  --user "<serviceaccount_username>:<serviceaccount_secret>" \
+  --header "Idempotency-Key: 8f14e45f-ea6c-4b2e-9d3a-1c5b7e0a9d42" \
+  --header "Content-Type: application/json" \
+  --data '{}'
+```
+
+If a request carrying that key is retried, the original response is returned instead of the operation running a second time, and the reply carries `Idempotent-Replayed: true`. Keys are retained for 24 hours.
+
+| Situation | Result |
+| --- | --- |
+| Same key, same request body | The original response is replayed, with `Idempotent-Replayed: true`. |
+| Same key, different request body | `409` with type `idempotency_key_conflict`. Generate a fresh key whenever you change the request. |
+| Same key, first request still running | `409` with type `idempotency_key_in_flight`. Retry with backoff. |
+| Malformed key | `400` with type `invalid_idempotency_key`. |
+
+`GET`, `PUT`, and `DELETE` are already idempotent by HTTP semantics, so the header does nothing on them and retrying is safe without it.
+
+### API versioning
+
+This API supports an optional `Mixpanel-Version` header, that lets you pin the API contract your integration was built against. It is a **date-based** version: a calendar date such as `2026-08-13`.
+
+```bash
+curl https://<api_host>/<endpoint_path> \
+  --header "Mixpanel-Version: 2026-08-13"
+```
+
+#### If you omit the header
+
+Your request is served by the **latest** version of the API. When we ship a new version, your integration begins receiving the new behavior automatically, and a future release **may introduce a breaking change** to the response contract without warning to your code.
+
+Omitting the header is fine for exploration and for integrations you actively maintain. It is riskier for long-lived, unattended integrations.
+
+#### If you set the header
+
+Set `Mixpanel-Version` to a version date and that version's contract is the one you get. A version you have pinned **will not receive a breaking change** — new versions are published under new dates, and your pinned date keeps serving the shape it always has. When you are ready to adopt newer behavior, you update the date at your own pace and re-test.
+
+We recommend that production integrations set an explicit `Mixpanel-Version`.
+
+Sending a version an endpoint doesn't support returns a `400`, with the supported versions listed in the error's `detail`.
+
+#### What counts as a breaking change
+
+A new version date is introduced only for changes that could break a well-behaved client — for example, removing or renaming a field, changing a field's type, or changing the meaning of an existing value. Additive, backward-compatible changes, such as adding a new optional field to a response, are **not** breaking and may appear within an existing version.
+
+Write clients that tolerate additive change: ignore response fields you don't recognize, and don't assume the set of values an enumerated field can take is closed.
+
+#### Versions
+
+The Platform API supports these versions:
+
+| API version | End of support date |
+| --- | --- |
+| `2026-08-13` | Not yet scheduled |

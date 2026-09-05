@@ -1210,6 +1210,12 @@
                 "root": "reference/archive-experiment"
               }
             ]
+          },
+          {
+            "group": "PLATFORM API",
+            "pages": [
+              "reference/platform-api"
+            ]
           }
         ]
       }
