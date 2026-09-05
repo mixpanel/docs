@@ -1,0 +1,134 @@
+---
+title: "Delivery and Reliability"
+sidebarTitle: "Delivery & Reliability"
+description: "How Real-Time Event Streams retry failed deliveries, handle at-least-once semantics, and expose failed events for debugging."
+---
+
+<Note>
+  Real-Time Event Streams are in private beta. Contact your Mixpanel account team to enable the feature for your project.
+</Note>
+
+Real-Time Event Streams are designed for at-least-once delivery with automatic retry of transient failures. This page describes the delivery SLA, retry policy, failed events log, and headers you can use to deduplicate on your side.
+
+## Latency SLA
+
+Events must be delivered to configured webhook endpoints within **p95 ≤ 120 seconds** of ingestion under normal load. This is the baseline definition of "real-time" for the feature.
+
+- Latency is measured from the event ingestion timestamp to a confirmed 2xx response at the destination.
+- Sustained breach of the p95 threshold triggers an internal Mixpanel alert.
+
+{/* PLACEHOLDER: Add customer-facing status page or support process for reporting sustained latency issues during the beta. */}
+
+## At-least-once delivery
+
+Mixpanel guarantees at-least-once delivery. Under retry conditions, your endpoint may receive the same event more than once. To make deduplication straightforward, every outbound request includes the Mixpanel `insert_id` as a standard header:
+
+```http
+X-Mixpanel-Insert-Id: 5f2e4b9c-6d8a-4c1e-9f2b-1a2b3c4d5e6f
+```
+
+- `X-Mixpanel-Insert-Id` is present on 100% of outbound requests.
+- The same value is available in the payload as `{{ event.insert_id }}` if you prefer to deduplicate from the body.
+
+<Tip>
+  Store `insert_id` values you have already processed and drop duplicates on your side. A short-lived cache (for example, 24 hours) is typically enough given the retry window.
+</Tip>
+
+## Retry policy
+
+Transient delivery failures are retried automatically. Permanent failures are not retried and surface as configuration errors.
+
+### What gets retried
+
+| Failure type | Retried? | Notes |
+| --- | --- | --- |
+| `5xx` response | Yes | Server-side error at the destination. |
+| Connection timeout / network error | Yes | Includes DNS failures and TLS handshake errors. |
+| `429 Too Many Requests` | Yes | Handled via backpressure. See [Rate limits](#rate-limits-and-backpressure). |
+| `4xx` response (other than 429) | No | Surfaced immediately as a destination configuration error. |
+
+### Backoff schedule
+
+Up to **5 retries per event** with exponential backoff over approximately **12 minutes**:
+
+| Attempt | Delay before attempt |
+| --- | --- |
+| 1 | Immediate |
+| 2 | 1 second |
+| 3 | 5 seconds |
+| 4 | 30 seconds |
+| 5 | 2 minutes |
+| 6 | 10 minutes |
+
+Retries are processed in a separate queue, so they never block new events from streaming.
+
+### 4xx errors
+
+`4xx` responses (other than `429`) indicate a configuration problem at the destination — for example, a schema mismatch, an unknown route, or a validation error. These are not retried:
+
+- The failure is logged with the request and response for debugging.
+- The Sync is **not** paused; new events continue to stream.
+- The Sync surfaces a destination configuration error banner so you can fix the endpoint or the payload template.
+
+## Failed events log
+
+After 5 failed retries, the event moves to a **failed events log** retained in-product for **72 hours**. Each entry includes:
+
+- Event timestamp
+- Event type
+- Destination HTTP response (status code, headers, body)
+
+<Note>
+  The failed events log records the destination's HTTP response but **not** the outbound payload. If you need to inspect the exact body Mixpanel sent, log requests on your endpoint or in an intermediate proxy.
+</Note>
+
+Use the log to debug destination-side failures and feed samples into support tickets.
+
+{/* PLACEHOLDER: Document how to replay failed events (manual retry, bulk replay, or export) once the flow is confirmed. */}
+
+## Alerting on failure
+
+<Info>
+  Rate-based alerting (for example, "more than X% of events failed over Y minutes") is planned for GA but not available during the private beta. It depends on shared rate-tracking infrastructure that is still being built.
+</Info>
+
+During the private beta, failure alerting is per-event: any event that exhausts all 5 retries moves the Sync into the `error` state and pauses streaming until a Project Admin re-enables it. See [States and monitoring](/docs/real-time-event-streams/states-and-monitoring) for state transitions.
+
+{/* PLACEHOLDER: Describe how alerts are delivered — in-app notification, email, both — and where alert history is viewable. */}
+
+## Rate limits and backpressure
+
+<Info>
+  Rate-limit and backpressure handling is a P1 requirement scheduled to land before GA. The behavior described below reflects the target for GA; specific behavior during the private beta may be more limited.
+</Info>
+
+When a destination returns `429 Too Many Requests`, Mixpanel queues events rather than dropping them and resumes automatically:
+
+- The Sync enters the `paused_rate_limit` state.
+- The `Retry-After` header is respected when present.
+- Queued events are retained for up to **4 hours**. Events older than 4 hours are dropped and logged.
+- Per-Sync queue depth limits are enforced to prevent memory exhaustion.
+- Customers are alerted when events are dropped due to queue overflow, not just when the Sync is rate-limited.
+
+See [States and monitoring](/docs/real-time-event-streams/states-and-monitoring) for the full list of Sync states.
+
+## What to build on your side
+
+To get the most out of the delivery model:
+
+- **Return 2xx quickly.** Acknowledge the request before doing heavy downstream work; process asynchronously on your side.
+- **Deduplicate on `X-Mixpanel-Insert-Id`.** Assume you will occasionally see the same event twice.
+- **Return 4xx for permanent errors, 5xx for transient ones.** This lets Mixpanel retry the right failures and surface the right errors.
+- **Honor `Retry-After`** on `429` responses so Mixpanel can back off cleanly.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="States and monitoring" icon="chart-line" href="/docs/real-time-event-streams/states-and-monitoring">
+    Destination and Sync states, and how to monitor Sync health.
+  </Card>
+
+  <Card title="Set up a Sync" icon="gear" href="/docs/real-time-event-streams/setup">
+    Configure a webhook Destination and Liquid payload template.
+  </Card>
+</CardGroup>
