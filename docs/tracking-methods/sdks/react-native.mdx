@@ -716,7 +716,7 @@ When the tap lands on a non-interactive child — such as a `<Text>` inside a `<
 
 The walk-up matters more in React Native than on either platform natively. Hit-testing returns the deepest view, which for a `<Pressable>` wrapping a `<Text>` is the text — and the text carries no identity of its own. The walk-up is what puts the identity back on the pressable, so put your identifiers there, not on the text inside it.
 
-On iOS there is a second step, because React Native pressables are not clickable as far as the platform is concerned — see [Why iOS needs `accessibilityRole`](#why-ios-needs-accessibilityrole). When no clickable ancestor is found, the iOS SDK falls back to the nearest ancestor carrying a `nativeID` or `testID`, which is what makes `id` resolve on a `<Pressable>` at all.
+On iOS the walk-up only succeeds if you make the pressable recognisable to the platform, because React Native pressables are not clickable as far as iOS is concerned. Without `accessibilityRole="button"` the tap resolves to the `<Text>` and your `id` is never reported — see [Why iOS needs `accessibilityRole`](#why-ios-needs-accessibilityrole). Android needs nothing.
 
 #### Dead Click
 
@@ -725,7 +725,7 @@ A `$mp_dead_click` event is emitted when a tap on an **interactive** element pro
 Only interactive elements are candidates, so tapping a plain `<Text>` or a decorative `<Image>` never produces one. Controls with inherent visual feedback are excluded by type, because their response happens in a layer the detector cannot observe — in React Native terms, `<TextInput>`, `<Switch>`, slider components, and native pickers and date pickers.
 
 <Warning>
-  **On iOS, a `<Pressable>` is not "interactive" unless you say so.** Add `accessibilityRole="button"` to any pressable you want dead click coverage on, or it will never produce `$mp_dead_click` — see [Why iOS needs `accessibilityRole`](#why-ios-needs-accessibilityrole). Android needs nothing.
+  **On iOS, a `<Pressable>` is not "interactive" unless you say so.** Add `accessibilityRole="button"` to any pressable you want dead click coverage on, or it will never produce `$mp_dead_click` — and its `id` will not resolve either. See [Why iOS needs `accessibilityRole`](#why-ios-needs-accessibilityrole). Android needs nothing.
 </Warning>
 
 <Note>
@@ -752,8 +752,8 @@ Use the **`id` prop**. It is the one identifier that resolves the same way on bo
 
 - **`id`, not `testID`.** `testID` diverges by platform: iOS maps it to `accessibilityIdentifier`, which the SDK reports, but on Android React Native's view ids are generated at runtime and have no resource entry name, so the element falls through to the hash. If you already have `testID` values you want to keep, add a matching `id` alongside — the two props coexist.
 - **`accessibilityLabel` is not an identifier.** It is never used as identity on either platform, and never reported as a property. It is localized — the same element would report a different id per language — and it can carry user data.
-- **Put the `id` on the pressable.** Identity resolves from the pressable, so an `id` on the `<Text>` inside a button is never used. On iOS an `id` on an outer non-interactive `<View>` *can* be used as a fallback, which usually attributes the tap to the wrong element — keep the `id` on the control itself.
-- **Add `accessibilityRole="button"` too.** Not needed for `$el_id`, but required for `$mp_dead_click` on iOS — see [Why iOS needs `accessibilityRole`](#why-ios-needs-accessibilityrole).
+- **Put the `id` on the pressable.** Identity resolves from the nearest clickable ancestor, so an `id` on the `<Text>` inside a button, or on a non-clickable `<View>` wrapping it, is never used.
+- **Add `accessibilityRole="button"` too.** On iOS it is what makes the `id` resolve at all, and it is required for `$mp_dead_click` — see [Why iOS needs `accessibilityRole`](#why-ios-needs-accessibilityrole). Android does not need it.
 
 Full precedence rules are in [Element ID Resolution](#element-id-resolution).
 
@@ -858,7 +858,7 @@ Every click, dead click and rage click event carries:
 
 So `id` is stable on both platforms, `testID` is stable on iOS and a hash on Android, and `accessibilityLabel` is never a source on either.
 
-On iOS, when the tapped leaf has no clickable ancestor — the usual case for a `<Pressable>`, see [Why iOS needs `accessibilityRole`](#why-ios-needs-accessibilityrole) — the SDK falls back to the nearest ancestor carrying a `nativeID` or `testID`. Put the `id` on the pressable and it resolves; put it on an outer wrapper and the wrapper wins, which is rarely what you want.
+Which *element* the id is read from is a separate question from which *property* is read. Identity comes from the nearest clickable ancestor, and a named but non-clickable wrapper never absorbs a click that landed on its child — on either platform. On iOS that makes `accessibilityRole="button"` the difference between your `id` being reported and a hash being reported; see [Why iOS needs `accessibilityRole`](#why-ios-needs-accessibilityrole).
 
 **About the hash fallback:** the hash is derived from the element's *position* in the hierarchy, not its instance, so it is identical across app launches — the same un-instrumented button reports `ReactViewGroup_a424435a` every launch. That makes it groupable, but it describes a position rather than a thing: reordering siblings changes it, and two rows of the same list differ by index rather than by content.
 
@@ -887,7 +887,9 @@ There is no signal left for the SDK to read. This is not a limitation Mixpanel c
 
 `accessibilityRole="button"` sets the underlying `UIAccessibilityTraitButton`, which the SDK reads as "this is a control". It is also what VoiceOver needs to announce the element as actionable, so it is worth setting regardless.
 
-**What this affects.** `$mp_click` is unaffected — every tap is captured either way, and `id` resolves without the role. Only `$mp_dead_click` depends on it: without the role, iOS has no interactive element to watch, so no dead click is ever reported for that pressable. Add `accessibilityRole="button"` to the controls you want frustration signals on.
+**What this affects.** Both halves, which is why it is worth doing once, everywhere. The tap is still captured — `$mp_click` fires either way — but without the role it resolves to the `<Text>` inside the button rather than the button, so `$el_id` is a positional hash instead of your `id`. And because iOS has no interactive element to watch, `$mp_dead_click` is never reported for that pressable at all.
+
+Android is unaffected throughout, so until you add the role expect the same app to report ids and dead clicks on Android that it does not report on iOS.
 
 #### Manual Click Tracking
 
@@ -914,7 +916,7 @@ mixpanel.autocapture.trackClick({
 
 - **Give every element you want to measure a stable `id`.** `<Pressable id="checkout_button">`. Without one, the element reports a positional hash — groupable, but unreadable in reports, and it changes if you reorder siblings.
 - **Prefer `id` over `testID`.** `id` resolves on both platforms; `testID` resolves on iOS and falls through to the hash on Android. Keep both if your tests need `testID`.
-- **Put the `id` on the pressable**, not on a wrapper or on the text inside it. Hit-testing lands on the `<Text>`, and identity resolves upward from there — an `id` on an outer wrapper will be picked up on iOS and attribute the tap to the wrong element.
+- **Put the `id` on the pressable**, not on a wrapper or on the text inside it. Hit-testing lands on the `<Text>` and identity resolves up to the nearest *clickable* ancestor, so an `id` on a non-clickable wrapper is never used.
 - **Add `accessibilityRole="button"` to anything you want dead clicks on.** On iOS a `<Pressable>` is indistinguishable from a plain `<View>` without it, so `$mp_dead_click` is never reported. Android is unaffected.
 - **Keep ids static across renders.** One built from a row index, a timestamp or a product name produces a new `$el_id` per render, which scatters one control across many rows in your reports.
 - **Don't reach for `accessibilityLabel`.** It is never used as identity and never reported. Setting only a label leaves the element on the hash fallback.
