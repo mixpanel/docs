@@ -68,7 +68,7 @@ Storage Object Admin is required because delivery overwrites objects: retried ba
 <Note>
   Mixpanel only writes to your bucket. It never reads, lists, or deletes your existing data, even though Storage Object Admin technically permits it.
 
-  If your security review requires a narrower grant, a custom role containing `storage.objects.create` and `storage.objects.delete` should suffice. **Storage Object Creator is not sufficient** — it cannot overwrite an existing object.
+  **Storage Object Creator is not sufficient** — it cannot overwrite an existing object.
 </Note>
 
 #### Set Up the Bucket
