@@ -61,12 +61,12 @@ Grant this service account:
 audit-log-streaming@mixpanel-prod-1.iam.gserviceaccount.com
 ```
 
-the **Storage Object Admin** (`roles/storage.objectAdmin`) role **on the destination bucket**.
+the **Storage Object User** (`roles/storage.objectUser`) role **on the destination bucket**.
 
-Storage Object Admin is required because delivery overwrites objects: retried batches rewrite the same object name, and the access-verification probe is rewritten in place. Cloud Storage requires delete permission to overwrite an existing object, so object-creation permission alone is not sufficient.
+Storage Object User is required because delivery overwrites objects: retried batches rewrite the same object name, and the access-verification probe is rewritten in place. Cloud Storage requires delete permission to overwrite an existing object, so object-creation permission alone is not sufficient.
 
 <Note>
-  Mixpanel only writes to your bucket. It never reads, lists, or deletes your existing data, even though Storage Object Admin technically permits it.
+  Mixpanel only writes to your bucket. It never reads, lists, or deletes your existing data, even though Storage Object User technically permits it.
 
   **Storage Object Creator is not sufficient** — it cannot overwrite an existing object.
 </Note>
@@ -82,7 +82,7 @@ Storage Object Admin is required because delivery overwrites objects: retried ba
     ```bash
     gcloud storage buckets add-iam-policy-binding gs://MY_BUCKET \
       --member="serviceAccount:audit-log-streaming@mixpanel-prod-1.iam.gserviceaccount.com" \
-      --role="roles/storage.objectAdmin"
+      --role="roles/storage.objectUser"
     ```
 
     Or in the Cloud Console: **Cloud Storage → your bucket → Permissions → Grant access**, with the service account above as the principal and **Storage Admin** as the role.
