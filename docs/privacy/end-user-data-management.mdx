@@ -209,7 +209,7 @@ $browser,$city,$country_code,$email,$last_seen,$name,$os,$region,plan,signup_sou
   The download link for a completed export expires 30 days after the export finishes. Submit a new request if you need the data after that.
 </Note>
 
-- The `time` property on an event is a Unix timestamp in seconds, in your project's timezone rather than UTC.
+- The `time` property on an event is a Unix timestamp in seconds. For projects created on or after January 1, 2023, timestamps are stored in UTC. For older projects, timestamps are stored in the project's timezone at ingestion.
 - In `profiles.csv`, a `$transactions` profile property is collapsed to a single number: the sum of every transaction's `$amount`. A GDPR export keeps the full list.
 - In `summary.json`, the three values are sets. The keys hold the information and every value is an empty object.
 
