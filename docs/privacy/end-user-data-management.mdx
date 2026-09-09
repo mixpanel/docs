@@ -83,19 +83,135 @@ You must submit a deletion request to delete end user data. This is done to sati
 
 GDPR requests are specifically designed to satisfy requirements as outlined in the General Data Protection Regulation.
 
-**Export** A GDPR export contains all data connected to the requested distinct\_id.
+**Export** A GDPR export contains all data connected to the requested `distinct_id`, reaching back 10 years. You receive a ZIP archive of three JSON files.
 
-**Deletion** A GDPR deletion includes all data connected to the requested distinct\_id.
+| File | Contents |
+| --- | --- |
+| `events.json` | Every event Mixpanel holds for the requested `distinct_id`, as one JSON object per event. |
+| `people.json` | The user profile, as a `$distinct_id` and `$properties` pair. |
+| `summary.json` | An index of every event name, event property, and profile property found in the other two files. |
+
+The examples below show one record from each file, and a shortened `summary.json`. A real export holds one record per event and the complete property lists.
+
+<CodeGroup>
+
+```json events.json
+{
+  "event": "Document Shared",
+  "properties": {
+    "distinct_id": "9f8c2d41-6b3e-4f0a-8d21-5c7a1e9b4f33",
+    "time": 1730462700,
+    "$insert_id": "c92a7f38-1b64-40de-a5f7-8e30b1c94d27",
+    "$browser": "Chrome",
+    "$os": "Mac OS X",
+    "$city": "Portland",
+    "$current_url": "https://example.com/docs/quarterly-report",
+    "plan": "growth",
+    "recipient_count": 3
+  }
+}
+```
+
+```json people.json
+{
+  "$distinct_id": "9f8c2d41-6b3e-4f0a-8d21-5c7a1e9b4f33",
+  "$properties": {
+    "$email": "alex.rivera@example.com",
+    "$name": "Alex Rivera",
+    "$city": "Portland",
+    "$region": "Oregon",
+    "$country_code": "US",
+    "$last_seen": "2024-11-01T10:05:00",
+    "plan": "growth",
+    "signup_source": "organic_search"
+  }
+}
+```
+
+```json summary.json
+{
+  "event_names": {
+    "Document Shared": {},
+    "Page View": {},
+    "Sign Up": {}
+  },
+  "event_column_names": {
+    "$browser": {},
+    "distinct_id": {},
+    "plan": {},
+    "time": {}
+  },
+  "profile_column_names": {
+    "$email": {},
+    "plan": {},
+    "signup_source": {}
+  }
+}
+```
+
+</CodeGroup>
+
+**Deletion** A GDPR deletion includes all data connected to the requested `distinct_id`.
 
 ### CCPA Requests
 
 CCPA requests are specifically designed to satisfy requirements as outlined in the California Consumer Privacy Act.
 
-**Export** A CCPA export contains all data from the previous year connected to the requested distinct\_id.
+**Export** A CCPA export contains all data from the previous 366 days connected to the requested `distinct_id`. You receive a ZIP archive of CSV files, and which files you get depends on the disclosure type.
 
-**Deletion** A CCPA deletion includes all data connected to the requested distinct\_id.
+| File | Contents |
+| --- | --- |
+| `events.csv` | One row per event. The first column is `event_name`, followed by a column for every event property in the export. |
+| `profiles.csv` | One row per profile. The first column is `distinct_id`, followed by a column for every profile property in the export. |
+| `event_names.csv` | Every event name in the export. |
+| `event_properties.csv` | Every event property name in the export. |
+| `profile_properties.csv` | Every profile property name in the export. |
 
-**Disclosure types** There are three different disclosure types as outlined in the CCPA. To export or delete everything, you can select “Data” as the disclosure type. Select “Categories” to export or delete the data table headers. Select “Sources” to export or delete data connected to the means of data collection.
+A property an event does not carry is an empty cell. The `events.csv` example below shows a subset of columns.
+
+<CodeGroup>
+
+```csv events.csv
+event_name,$browser,$city,$current_url,$os,distinct_id,plan,recipient_count,time
+Page View,"Chrome","Portland","https://example.com/pricing","Mac OS X","9f8c2d41-6b3e-4f0a-8d21-5c7a1e9b4f33",,,1730376000
+Sign Up,"Chrome","Portland","https://example.com/signup","Mac OS X","9f8c2d41-6b3e-4f0a-8d21-5c7a1e9b4f33","free",,1730376240
+Document Shared,"Chrome","Portland","https://example.com/docs/quarterly-report","Mac OS X","9f8c2d41-6b3e-4f0a-8d21-5c7a1e9b4f33","growth",3,1730462700
+```
+
+```csv profiles.csv
+distinct_id,$browser,$city,$country_code,$email,$last_seen,$name,$os,$region,plan,signup_source
+9f8c2d41-6b3e-4f0a-8d21-5c7a1e9b4f33,"Chrome","Portland","US","alex.rivera@example.com","2024-11-01T10:05:00","Alex Rivera","Mac OS X","Oregon","growth","organic_search"
+```
+
+```csv event_names.csv
+Document Shared,Page View,Sign Up
+```
+
+```csv profile_properties.csv
+$browser,$city,$country_code,$email,$last_seen,$name,$os,$region,plan,signup_source
+```
+
+</CodeGroup>
+
+**Deletion** A CCPA deletion includes all data connected to the requested `distinct_id`.
+
+**Disclosure types** There are three different disclosure types as outlined in the CCPA. Select the one that matches the request you received.
+
+| Disclosure Type | What the Export Contains |
+| --- | --- |
+| Data | All five files. The complete export. |
+| Categories | `event_names.csv`, `event_properties.csv`, and `profile_properties.csv` only — the names of the data Mixpanel holds about the end user, and no end user data itself. |
+| Sources | All five files, with the columns in `events.csv` narrowed to the properties that describe how the data was collected, such as browser, operating system, device, location, and referrer. Event names and profile data are not narrowed. |
+
+### Reading an Export
+
+<Note>
+  The download link for a completed export expires 30 days after the export finishes. Submit a new request if you need the data after that.
+</Note>
+
+- The `time` property on an event is a Unix timestamp in seconds, in your project's timezone rather than UTC.
+- In `profiles.csv`, a `$transactions` profile property is collapsed to a single number: the sum of every transaction's `$amount`. A GDPR export keeps the full list.
+- In `summary.json`, the three values are sets. The keys hold the information and every value is an empty object.
 
 ## Opt Out Users
 
