@@ -37,10 +37,8 @@ Working with warehouse metrics depends on whether you have the **Create and Mana
 
 | Access | What they can do |
 | --- | --- |
-| **With Create and Manage Data Warehouses** | Create and run warehouse queries, save them as warehouse metrics, set the refresh frequency, and choose who to share each metric with. |
-| **Without it** | Use a warehouse metric that's been shared with them in new reports they create, and view the metric's data in any report they can access. |
-
-On the four default project roles (Owner, Admin, Analyst, Consumer), this permission comes with the Admin role and above. If your organization is on an Enterprise plan and uses [custom roles](/docs/orgs-and-projects/roles-and-permissions#permission-categories), the permission can be granted to or withheld from any role independently, so the Admin role isn't a reliable indicator either way. Check whether your role includes **Create and Manage Data Warehouses**.
+| **Project Admins** | Create and run warehouse queries, save them as warehouse metrics, set the refresh frequency, and choose who to share each metric with. |
+| **Other Users** | Use a warehouse metric that's been shared with them in new reports they create, and view the metric's data in any report they can access. |
 
 ## Creating a warehouse metric
 
@@ -104,7 +102,7 @@ Saved warehouse metrics appear as an option in the Insights query builder, along
 Both metric types are supported:
 
 - **Numeric metrics** show their single value as a constant across the selected date range.
-- **Timeseries metrics** are plotted over time using the time column you selected. Time buckets with no matching rows show as 0.
+- **Timeseries metrics** are plotted over time using the time column you selected in line and column charts. Time buckets with no matching rows show as 0.
 
 <Note>
   **Insights only**
