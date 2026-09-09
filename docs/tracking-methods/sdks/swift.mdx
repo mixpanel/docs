@@ -797,6 +797,175 @@ Mixpanel.mainInstance().autocapture.trackScreenView(
 )
 ```
 
+### Click Events
+
+<Note>
+  **Beta.** Autocaptured click events are in beta: the events and the properties they capture may change before general availability. They require Swift SDK v6.6.0 or later, and are **disabled by default** — you opt in with `AutocaptureOptions` at initialization.
+</Note>
+
+Starting in v6.6.0, the SDK can capture taps for you, with no per-view instrumentation. Once enabled, it intercepts touches across every window in your app — including presented sheets and alerts — and works with both UIKit and SwiftUI. Three events are produced:
+
+| Event | Fires when |
+| --- | --- |
+| `$mp_click` | The user taps any element |
+| `$mp_dead_click` | A tap on an interactive element produces no UI change |
+| `$mp_rage_click` | The user taps rapidly and repeatedly in the same spot |
+
+All three carry `$mp_autocapture: true`, alongside the properties described in [Tracked Properties](#tracked-properties).
+
+#### Click
+
+A `$mp_click` event is emitted for every tap that resolves to an element, whether or not that element handles the tap. Scrolls, swipes and long presses do not produce clicks.
+
+When the tap lands on a non-interactive child — such as a `UILabel` inside a `UIButton` — the SDK walks up to the nearest interactive ancestor (up to 10 levels) and reports *that* element's identity. This keeps a button from being reported as its label. If no interactive ancestor is found, the tapped element's own identity is used.
+
+#### Dead Click
+
+A `$mp_dead_click` event is emitted when a tap on an **interactive** element produces no visible response. The SDK snapshots the UI immediately after the tap, then compares it **500 ms** later; if nothing has changed, the event is emitted. That time window is the default `DeadClickOptions.timeWindowMs` and is [configurable](#enabling-click-autocapture). A dead click is always accompanied by the `$mp_click` for the same tap.
+
+Only interactive elements are candidates, so tapping a plain label or a decorative image never produces one. Controls with inherent visual feedback are excluded by type, because their response happens in a layer the detector cannot observe: `UITextField`, `UITextView`, `UISwitch`, `UISlider`, `UIStepper`, `UISegmentedControl`, `UIDatePicker`, `UIPickerView` and `UIPageControl`, plus the SwiftUI equivalents `TextField`, `TextEditor`, `SecureField`, `Toggle`, `Slider`, `Stepper`, `Picker` and `DatePicker`.
+
+<Note>
+  Detection is based on UI change only — the SDK does not observe network activity. A handler that fires a request but leaves the screen unchanged for the dead click time window is reported as a dead click, which is usually the user-perceived truth. Conversely, a response that only changes color, alpha or an animation may not register as a change.
+</Note>
+
+#### Rage Click
+
+A `$mp_rage_click` event is emitted when **4 or more taps** land within **1000 ms** of each other and within **44 pt** on screen — the signature of a user hammering a control that isn't responding. These three thresholds are the defaults — `clickThreshold`, `timeWindowMs` and `radius` on `RageClickOptions` — and are [configurable](#enabling-click-autocapture). The event is emitted *in addition to* the individual `$mp_click` events, so four rapid taps produce four clicks and one rage click. Taps spread out in time or across the screen do not qualify.
+
+Rage clicks are a **frustration signal**: alongside dead clicks, they surface the places where your app is failing users without throwing an error. Break them down by `$el_id` to find the specific controls people are fighting with, or use them to segment sessions worth watching in Session Replay.
+
+#### One-Time Setup: Element IDs
+
+Do this once, before you enable click autocapture. It isn't strictly required — autocapture works without it and every tap is still captured — but it's what makes the data readable. An element with no identifier reports a positional hash like `UIButton_a3f21c`: it groups correctly, but it tells you nothing in a report and changes if you reorder siblings.
+
+So give every element you plan to measure a stable identifier first. In both frameworks the identifier belongs on the element that **handles the tap** — the SDK walks up to the nearest interactive ancestor and reads identity from there, so an identifier on a non-interactive wrapper is never used.
+
+<CodeGroup>
+
+```swift UIKit
+let checkoutButton = UIButton(type: .system)
+checkoutButton.setTitle("Checkout", for: .normal)
+checkoutButton.accessibilityIdentifier = "checkout_button"
+```
+
+```swift SwiftUI
+Button("Checkout") {
+    // ...
+}
+.accessibilityIdentifier("checkout_button")
+```
+
+</CodeGroup>
+
+- **UIKit:** For storyboard and XIB views, set the identifier in the **Identity inspector → Accessibility → Identifier** field instead of in code.
+- **SwiftUI:** Reading the identifier back requires iOS 18 or later — see the warning under [Element ID Resolution](#element-id-resolution). On iOS 15–17 these elements fall back to the hash whatever you set, so plan your reports accordingly.
+- **`accessibilityIdentifier` is not `accessibilityLabel`:** The identifier is developer-facing and never announced by VoiceOver, which is what makes it safe to use as an ID; the label is accessibility metadata and is never used as an identifier. Setting only a label leaves the element on the hash fallback.
+
+Full precedence rules are in [Element ID Resolution](#element-id-resolution).
+
+#### Enabling Click Autocapture
+
+Pass an `AutocaptureOptions` instance through `MixpanelOptions` at initialization. Passing none leaves autocapture entirely uninitialized.
+
+```swift Swift
+let options = MixpanelOptions(
+    token: "YOUR_TOKEN",
+    autocaptureOptions: AutocaptureOptions()
+)
+
+let mixpanel = Mixpanel.initialize(options: options)
+```
+
+Each signal is configurable, and can be turned off independently:
+
+| Option | Setting | Default |
+| --- | --- | --- |
+| `ClickOptions` | `enabled` | `true` |
+| `RageClickOptions` | `enabled` | `true` |
+| `RageClickOptions` | `clickThreshold` — taps required | `4` |
+| `RageClickOptions` | `timeWindowMs` — time window they must fall in, in milliseconds | `1000` |
+| `RageClickOptions` | `radius` — spatial threshold, in points | `44` |
+| `DeadClickOptions` | `enabled` | `true` |
+| `DeadClickOptions` | `timeWindowMs` — time to wait before declaring a click dead, in milliseconds | `500` |
+
+```swift Swift
+let autocaptureOptions = AutocaptureOptions(
+    rageClickOptions: RageClickOptions(clickThreshold: 5, timeWindowMs: 800),
+    deadClickOptions: DeadClickOptions(enabled: false)
+)
+
+let options = MixpanelOptions(
+    token: "YOUR_TOKEN",
+    autocaptureOptions: autocaptureOptions
+)
+```
+
+Autocapture is iOS-only — not available on Mac Catalyst, tvOS, watchOS or visionOS — and does not run inside app extensions.
+
+#### Disabling Click Autocapture
+
+Autocapture is a decision made at initialization: omit `autocaptureOptions` and none of the machinery is constructed. To turn it off in an app that already ships with it enabled, either stop passing the options, or disable each signal:
+
+```swift Swift
+let autocaptureOptions = AutocaptureOptions(
+    clickOptions: ClickOptions(enabled: false),
+    rageClickOptions: RageClickOptions(enabled: false),
+    deadClickOptions: DeadClickOptions(enabled: false)
+)
+```
+
+There is no runtime toggle. Autocapture starts or doesn't at initialization, and it respects opt-out: it does not start when tracking is opted out, and stops and restarts with `optOutTracking()` and `optInTracking()`.
+
+#### Tracked Properties
+
+Every click, dead click and rage click event carries:
+
+| Property | Description |
+| --- | --- |
+| `$el_id` | Element identifier — see [Element ID Resolution](#element-id-resolution) |
+| `$el_tag_name` | Class name of the element, e.g. `UIButton` |
+| `$attr-role` | Element role, e.g. `Button`, `Switch` |
+| `$elements` | Ancestor hierarchy, up to 5 levels |
+| `$x`, `$y` | Touch coordinates, in screen points |
+| `$mp_autocapture` | Always `true` |
+
+<Note>
+  Autocapture does not capture element text: there is no `$el_text` property. There is also no `$attr-aria-label` property. `accessibilityLabel` is accessibility metadata — surfaced to assistive technologies such as VoiceOver rather than shown on screen — and it can carry personal data, so the SDK neither reports it nor uses it as an identifier.
+</Note>
+
+#### Element ID Resolution
+
+`$el_id` is resolved by the SDK using fixed rules — it is not configurable. Understanding the order is the key to getting readable IDs in your reports.
+
+**UIKit:**
+
+1. **`accessibilityIdentifier`** — framework-internal values such as `_private` or `AXID-1` are skipped
+2. **`<ClassName>_<hash>`** — the anonymous fallback
+
+**SwiftUI:**
+
+1. **`.accessibilityIdentifier("...")`** — read from SwiftUI's accessibility element tree
+2. **`<ClassName>_<hash>`** — the anonymous fallback
+
+<Warning>
+  **SwiftUI identifiers need iOS 18+.** SwiftUI never sets `accessibilityIdentifier` on the backing UIKit view — it lives in the accessibility element tree, which the SDK reads with `accessibilityHitTest`. That query is available on iOS 18 and later, and returns nothing when the tree has not been materialized. On iOS 15–17, SwiftUI elements fall back to `<ClassName>_<hash>` regardless of the identifier you set. UIKit views are unaffected.
+</Warning>
+
+**About the hash fallback:** the hash is derived from the element's *position* in the hierarchy, not its instance, so it is identical across app launches. That makes it groupable, but it describes a position rather than a thing: reordering siblings changes it, and two rows of the same list differ by index rather than by content.
+
+<Warning>
+  **Review your identifiers for personal data.** `$el_id` is derived from identifiers you set in your own code, so its contents are under your control — and Mixpanel receives them as-is. An identifier built from user data (`user_4172@example.com_row`, an account number, an order ID) sends that data to Mixpanel as an event property. Before you rely on click autocapture in production, tap through your key flows with SDK logging enabled, review the `$el_id` values the SDK reports, and confirm none of them carry personally identifiable information.
+</Warning>
+
+#### Best Practices
+
+- **Give every element you want to measure a stable `accessibilityIdentifier`.** `button.accessibilityIdentifier = "checkout_button"` in UIKit, `.accessibilityIdentifier("checkout_button")` in SwiftUI. Without one, the element reports a positional hash — groupable, but unreadable in reports, and it changes if you reorder siblings.
+- **Put the identifier on the element that handles the tap**, not on a wrapper around it. The walk-up finds the nearest *interactive* ancestor and reads identity from there, so an identifier on a non-interactive container is never used.
+- **Keep identifiers static across renders.** One built from a row index, a timestamp or a product name produces a new `$el_id` per render, which scatters one control across many rows in your reports.
+- **On SwiftUI below iOS 18, expect hashes.** If those versions matter to your reports, host the control in an identifiable UIKit view, or track those flows manually with `trackClick`.
+- **Verify — and review for PII — before you rely on the data.** Set `loggingEnabled = true`, tap through your key flows, and confirm the reported `$el_id` values are the ones you expect *and* that none of them contain personal data. Identifiers are yours to choose, so keeping PII out of them is yours to confirm.
+
 ## Session Replay
 
 Install the [Session Replay SDK for Swift](/docs/tracking-methods/sdks/swift/swift-replay) to record replay data. Learn more about [Session Replay](/docs/session-replay) and [implementing Session Replay on iOS](/docs/tracking-methods/sdks/swift/swift-replay).

@@ -41,11 +41,11 @@ Without it, AI answers are generic. With it, Mixpanel Agent knows your context �
 
 If your project has inconsistent event naming, duplicate metrics, or unverified events, the AI will work with what it finds — and two people asking the same question may get different answers. Verified Mode is how admins control that.
 
-When it's on, all AI features are restricted to [verified data](/docs/data-governance/lexicon#verify-data): events, metrics, behaviors, and cohorts your team has explicitly reviewed in Lexicon. Unverified data stays in your project; it's just off-limits to AI. Users querying AI features will see a notice that results are limited to verified data — this is intentional, so they know it's a setting, not a Mixpanel limitation.
+When it's on, AI features lean harder on [verified data](/docs/data-governance/lexicon#verify-data): events, metrics, behaviors, and cohorts your team has explicitly reviewed in Lexicon. The AI still works with everything you ask about — nothing is removed from its reach — but it strongly prefers verified equivalents and clearly flags any result that draws on unverified data. Users querying AI features see those labels, so they know which parts of an answer haven't been reviewed yet — this is intentional, so they know it's a setting, not a Mixpanel limitation.
 
 This is primarily an enterprise concern. It's most valuable when you're rolling out AI access broadly — to PMs, engineers, and stakeholders who may not know the difference between `checkout_complete` and `checkout_complete_v2`.
 
-The tradeoff: Verified Mode puts the burden of verification on admins. If your team ships events faster than they get verified, the agents will feel incomplete. Before enabling it, make sure your verification workflow can keep pace. If it can't, the default experience, where AI prioritizes verified and high-usage data without being restricted to it, is probably the better call.
+The tradeoff: Verified Mode puts the burden of verification on admins, and its payoff scales with how much you've verified. If your team ships events faster than they get verified, agents don't lose access to anything — but more of what they return comes back flagged as unverified, so the labels carry less signal. The mode is most worthwhile once a meaningful share of your high-traffic data is verified.
 
 <Note>
   **Pro tip:** Before enabling Verified Mode, audit your verified events against the queries your team runs most often. Get your high-traffic events verified first, then enable the mode.
