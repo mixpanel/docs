@@ -95,6 +95,15 @@ Either way, Mixpanel converts the timestamp to your [project time zone](/docs/or
   If your warehouse stores timestamps in local time without an offset, they'll be read as UTC and may land in the wrong time bucket. Include the offset in your query's output, or convert to UTC in your SQL, so the values are unambiguous.
 </Note>
 
+## Editing a warehouse metric
+
+Once a metric is saved, you can reopen the SQL editor from either of two places:
+
+- **From an Insights report:** click the three dots on the metric, then select **Edit Metric**.
+- **From Lexicon:** open the metric in [Lexicon](/docs/data-governance/lexicon) and click **Edit**.
+
+Either path opens the same editor you used to create the metric, where you can revise the query and its settings.
+
 ## Visualizing in Insights
 
 Saved warehouse metrics appear as an option in the Insights query builder, alongside your Mixpanel metrics. You can chart a warehouse metric on its own or place it next to Mixpanel metrics in the same report.
