@@ -106,9 +106,12 @@ You will find your Issuer URL in the third entry labeled **Identity Provider Iss
 
 ### Enable SSO in Mixpanel
 
-After configuring Okta, collect the **Public Certificate**, **Authentication URL**, and **Issuer URL** as described above.
+After configuring Okta:
 
-Then, in Mixpanel, go to **Organization Settings** > **Access Security** > **Single Sign-On**. Enter the **Public Certificate** in the **SAML Certificate** field, the **Authentication URL** in the **Identity Provider Sign-in URL** field, and the **Issuer URL** in the **Issuer URL** field.
+1. Collect the **Public Certificate**, **Authentication URL**, and **Issuer URL** as described above.
+2. In Mixpanel, go to **Organization Settings** > **Access Security** > **Single Sign-On**.
+3. Enter the **Public Certificate** in the **SAML Certificate** field, the **Authentication URL** in the **Identity Provider Sign-in URL** field, and the **Issuer URL** in the **Issuer URL** field.
+4. Click **Update**.
 
 Optionally, enable **Require Single Sign-On** to prevent users from logging in with a username and password. Organization Owners and Admins can still log in with a username and password if SSO is not set up correctly.
 
