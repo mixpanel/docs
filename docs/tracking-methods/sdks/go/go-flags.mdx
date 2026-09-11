@@ -97,6 +97,16 @@ func main() {
 }
 ```
 
+### Local Evaluation Runtime Property Evaluation
+
+Runtime property evaluation evaluates properties passed in the `custom_properties` node within the user context against target values defined in your feature flag. During Local Evaluation the SDK performs this comparison itself.
+
+If any of these conditions use a **Date** or **Semantic Version** type, as described in [Data types for runtime values](/docs/featureflags#data-types-for-runtime-values), ensure your SDK version meets the minimum supported: [`v2.2.0`](https://github.com/mixpanel/mixpanel-go/releases/tag/v2.2.0).
+
+On an earlier version `GetVariant` returns the fallback variant along with an error, and the remaining rollout groups for that flag are not checked.
+
+There is no minimum SDK version when using Remote Evaluation, since Mixpanel servers perform the comparison.
+
 ## Remote Evaluation
 
 - The SDK is configured with a `flags.RemoteFlagsConfig` struct to use remote evaluation.
