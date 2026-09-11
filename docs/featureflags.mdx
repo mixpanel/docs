@@ -152,6 +152,12 @@ We support the following types of Flags:
 | **True/False** | A boolean, `true` or `false` | Boolean match | <ul><li>is True</li><li>is False</li></ul> |
 | **List** | A list of values, e.g. `["a", "b"]` | Requires any or all elements to satisfy the condition. Each element is compared using its own data type, following that type's rules above. | <ul><li>any</li><li>all</li></ul> |
 | **Fuzzy** | Any primitive value | Case-insensitive loose match that coerces across types before comparing, so `"5"` matches `5` and `"1"` matches `true`. | <ul><li>Is</li></ul> |
+| **Date** | An RFC 3339 timestamp, e.g. `"2026-07-16T14:30:00Z"` | Compared as a point in time. The date you select in the rule is interpreted in your project's timezone, and a date with no time of day covers the whole day. | <ul><li>On</li><li>Not on</li><li>Before</li><li>Since</li><li>Between</li></ul> |
+| **Semantic Version** | A version string, e.g. `"2.1.0"` or `"v2.1.0-rc.1"` | Ordered by the [SemVer 2.0.0](https://semver.org/) specification: major, then minor, then patch, with a pre-release ranking below the release it belongs to. A leading `v` is dropped, a partial version such as `1.2` is read as `1.2.0`, and build metadata after `+` is ignored. | <ul><li>Is</li><li>Is not</li><li>Greater than</li><li>Greater than or equal to</li><li>Less than</li><li>Less than or equal to</li><li>Between</li></ul> |
+
+    <Warning>
+      **Date** and **Semantic Version** conditions are compared inside the SDK when a flag is evaluated locally, and when a [Runtime Event](/docs/featureflags/runtime-events) filter is evaluated on the device. Both cases require a recent SDK version. Check the minimum version on your SDK's feature flag guide under [Implementation](#implementation) before you use either type — on an earlier version the condition does not match, so no one is placed in that rollout group.
+    </Warning>
 
     <Note>
       **Runtime Property** (targeting based on values your app _sends_ in the request context) is distinct from **Runtime Event** (targeting based on Mixpanel events the user _triggers_ via `mixpanel.track()`). See the section below for details on Runtime Event filters.

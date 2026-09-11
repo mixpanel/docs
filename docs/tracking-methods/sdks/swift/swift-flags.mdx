@@ -58,6 +58,14 @@ let options = MixpanelOptions(
 Mixpanel.initialize(token: "YOUR_PROJECT_TOKEN", options: options)
 ```
 
+### Date and Semantic Version conditions
+
+Minimum supported SDK version: [`6.7.0`](https://github.com/mixpanel/mixpanel-swift/releases/tag/6.7.0)
+
+Runtime Property conditions are compared by Mixpanel, so the **Date** and **Semantic Version** [types](/docs/featureflags#data-types-for-runtime-values) work on any SDK version.
+
+The version above applies to [Runtime Event](/docs/featureflags/runtime-events) filters, whose property comparisons run on the device. On an earlier version a filter using either type does not match, and the variant is not activated.
+
 ## Flag Persistence
 
 Minimum supported SDK version: [`v6.4.0`](https://github.com/mixpanel/mixpanel-swift/releases/tag/v6.4.0)

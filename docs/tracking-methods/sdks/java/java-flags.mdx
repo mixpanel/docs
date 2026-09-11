@@ -85,6 +85,14 @@ boolean isEnabled = mixpanel.getLocalFlags().isEnabled(flagKey, userContext);
 mixpanel.close();
 ```
 
+### Date and Semantic Version conditions
+
+Minimum supported SDK version: `1.11.0`
+
+The **Date** and **Semantic Version** [runtime property types](/docs/featureflags#data-types-for-runtime-values) are compared inside the SDK during local evaluation, so they require the version above. On an earlier version a condition using either type does not match, and the user context is not placed in that rollout group.
+
+Remote Evaluation is unaffected, since Mixpanel performs the comparison.
+
 ## Remote Evaluation
 
 - The SDK is configured with a `RemoteFlagsConfig` object to use remote evaluation.
