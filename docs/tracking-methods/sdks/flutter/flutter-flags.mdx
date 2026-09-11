@@ -73,6 +73,18 @@ Mixpanel mixpanel = await Mixpanel.init(
 );
 ```
 
+### Runtime Event and Property Evaluation
+
+Developers can pass properties to the SDK for runtime property evaluation or runtime event evaluation.
+
+Runtime event evaluation evaluates tracked runtime events and their properties against the configuration in the feature flag, as detailed in the [Runtime Events guide](/docs/featureflags/runtime-events).
+
+**Date** and **Semantic Version** conditions, as described in [Data types for runtime values](/docs/featureflags#data-types-for-runtime-values), are not yet supported in runtime event property filters on this SDK.
+
+Runtime property evaluation evaluates properties passed in the `custom_properties` node within the context against target values defined in your feature flag.
+
+There is no minimum SDK version for using Date or Semantic Version types in runtime property evaluation, i.e. for any properties passed in the `custom_properties` node above.
+
 ## Flag Persistence
 
 Minimum supported SDK version: [`v2.8.0`](https://github.com/mixpanel/mixpanel-flutter/releases/tag/v2.8.0)

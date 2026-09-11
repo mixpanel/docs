@@ -97,13 +97,15 @@ func main() {
 }
 ```
 
-### Date and Semantic Version conditions
+### Local Evaluation Runtime Property Evaluation
 
-Minimum supported SDK version: [`v2.2.0`](https://github.com/mixpanel/mixpanel-go/releases/tag/v2.2.0)
+Runtime property evaluation evaluates properties passed in the `custom_properties` node within the user context against target values defined in your feature flag. During Local Evaluation the SDK performs this comparison itself.
 
-The **Date** and **Semantic Version** [runtime property types](/docs/featureflags#data-types-for-runtime-values) are compared inside the SDK during local evaluation, so they require the version above. On an earlier version a condition using either type does not match: `GetVariant` returns the fallback variant along with an error, and the remaining rollout groups for that flag are not checked.
+If any of these conditions use a **Date** or **Semantic Version** type, as described in [Data types for runtime values](/docs/featureflags#data-types-for-runtime-values), ensure your SDK version meets the minimum supported: [`v2.2.0`](https://github.com/mixpanel/mixpanel-go/releases/tag/v2.2.0).
 
-Remote Evaluation is unaffected, since Mixpanel performs the comparison.
+On an earlier version `GetVariant` returns the fallback variant along with an error, and the remaining rollout groups for that flag are not checked.
+
+There is no minimum SDK version when using Remote Evaluation, since Mixpanel servers perform the comparison.
 
 ## Remote Evaluation
 
