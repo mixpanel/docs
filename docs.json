@@ -1215,7 +1215,14 @@
           {
             "group": "PLATFORM API",
             "pages": [
-              "reference/platform-api"
+              {
+                "group": "Overview",
+                "pages": [
+                  "reference/permissions"
+                ],
+                "root": "reference/platform-api"
+              }
+
             ]
           }
         ]
