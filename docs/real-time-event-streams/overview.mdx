@@ -54,11 +54,10 @@ Use Real-Time Event Streams when latency matters and your workflow needs individ
 
 - **Destination** — the webhook endpoint and its authentication configuration.
 - **Sync** — a rule that binds a set of filtered events and a Liquid payload template to a Destination.
-- **Failed events log** — a 72-hour record of events that could not be delivered after all retries, retained with the destination HTTP response for debugging.
+- **Failed events log** — an aggregated roll-up of events that could not be delivered after all retries, retained for debugging. Shows the destination, status code, error details, and event count per window (no per-event entries or payloads).
 
 ## Delivery guarantees at a glance
 
-- **At-least-once delivery.** Every outbound request includes an `X-Mixpanel-Insert-Id` header so you can deduplicate on your side.
 - **Automatic retries.** Transient failures (5xx, timeouts, network errors) are retried up to 5 times with exponential backoff over roughly 12 minutes. Permanent failures (4xx) are surfaced as configuration errors.
 - **Latency SLA.** p95 ≤ 120 seconds from ingestion to a confirmed 2xx response at your endpoint under normal load.
 
