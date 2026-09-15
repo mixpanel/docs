@@ -65,7 +65,7 @@ Other `4xx` responses (e.g., `400`, `404`, `422`) indicate the destination is un
 
 ## Failed events log
 
-When events cannot be delivered after retries, they move to a **failed events log** retained in-product for debugging. Each entry is an aggregated roll-up:
+When events cannot be delivered after retries, they move to a **failed events log** retained in-product for debugging. Each entry is an aggregated roll-up per failed stream:
 
 - One row per Sync + status code + error type per window
 - The response status code and error details
