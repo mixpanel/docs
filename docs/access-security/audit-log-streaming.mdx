@@ -47,6 +47,16 @@ Every audit log entry recorded for your organization is streamed. This is the sa
 
 The same access check runs whenever a stream is created, updated, or resumed, so a bad edit or a revoked permission can't silently break a live stream. How the check is performed is specific to each destination type and is described in its section below.
 
+## Delivered Files
+
+All destinations receive batches as gzipped NDJSON files. Each line contains one audit log entry. Files use this path:
+
+```
+[<path_prefix>/]YYYY/MM/DD/HH/MM/<uuid>.ndjson.gz
+```
+
+The path prefix is optional. The timestamp in the path is when Mixpanel batched the entries, not when the file was delivered. This keeps retries idempotent: a redelivered batch overwrites itself at the same object name instead of producing another file.
+
 ## Destinations
 
 ### AWS S3
@@ -86,6 +96,19 @@ mixpanel-audit-log-streaming-<organization-id>
       ]
     }
     ```
+
+    If the bucket uses default SSE-KMS encryption with a customer-managed key, add this statement to the role policy and replace `<KMS_KEY_ARN>` with the key's ARN:
+
+    ```json
+    {
+      "Sid": "MixpanelAuditLogStreamingKmsAccess",
+      "Effect": "Allow",
+      "Action": "kms:GenerateDataKey",
+      "Resource": "<KMS_KEY_ARN>"
+    }
+    ```
+
+    The KMS key policy must also allow the role to use `kms:GenerateDataKey`.
   </Step>
 
   <Step title="Create an IAM role with a custom trust policy">
@@ -115,7 +138,14 @@ mixpanel-audit-log-streaming-<organization-id>
   </Step>
 
   <Step title="Finish configuring the stream in Mixpanel">
-    Return to Mixpanel and enter the S3 bucket details and IAM role ARN. Add an optional path prefix if you want the audit log objects written below a specific path, then save. Mixpanel verifies that it can assume the role and write to the bucket before creating the stream.
+    Return to Mixpanel and enter:
+
+    - **Bucket**: The name of the destination S3 bucket.
+    - **Region**: The AWS region containing the bucket.
+    - **Role ARN**: The ARN of the IAM role Mixpanel should assume.
+    - **Path prefix**: An optional path under which Mixpanel should write the audit log objects.
+
+    Save the configuration. Mixpanel verifies that it can assume the role and write to the bucket before creating the stream.
   </Step>
 
   <Step title="Confirm delivery">
@@ -126,6 +156,10 @@ mixpanel-audit-log-streaming-<organization-id>
 <Note>
   Copy the external ID from Mixpanel instead of entering it manually. It is tied to your organization and differs from the project token used by an AWS S3 Data Pipeline.
 </Note>
+
+#### How Mixpanel Verifies Access
+
+When you create, update, or resume a stream, Mixpanel writes a zero-byte probe object named `_mixpanel_healthcheck` under your configured prefix. The probe is rewritten in place on every check, so only one ever exists and it is safe to leave in your bucket.
 
 ### Google Cloud Storage
 
@@ -152,6 +186,10 @@ Storage Object User is required because delivery overwrites objects: retried bat
 #### Set Up the Bucket
 
 <Steps>
+  <Step title="Start configuring the stream in Mixpanel">
+    Go to **Organization Settings → Audit Log**, click **Configure stream**, and select **Google Cloud Storage**.
+  </Step>
+
   <Step title="Create or choose a bucket">
     Any location, storage class, and lifecycle policy works. Mixpanel does not manage the bucket.
   </Step>
@@ -163,7 +201,7 @@ Storage Object User is required because delivery overwrites objects: retried bat
       --role="roles/storage.objectUser"
     ```
 
-    Or in the Cloud Console: **Cloud Storage → your bucket → Permissions → Grant access**, with the service account above as the principal and **Storage Admin** as the role.
+    Or in the Cloud Console: **Cloud Storage → your bucket → Permissions → Grant access**, with the service account above as the principal and **Storage Object User** as the role.
   </Step>
 
   <Step title="Configure the stream in Mixpanel">
@@ -179,23 +217,12 @@ Storage Object User is required because delivery overwrites objects: retried bat
 
 When you create, update, or resume a stream, Mixpanel writes a zero-byte probe object named `_mixpanel_healthcheck` under your configured prefix. The probe is rewritten in place on every check, so only one ever exists and it is safe to leave in your bucket.
 
-#### File Layout
-
-Each delivered file lands at:
-
-```
-<path_prefix>/YYYY/MM/DD/HH/MM/<uuid>.ndjson.gz
-```
-
-The timestamp in the path is when Mixpanel batched the entries, not when the file was delivered. This keeps retries idempotent — a redelivered batch overwrites itself at the same object name rather than producing a duplicate file.
-
 #### Bucket Configuration Notes
 
 - **Bucket name** must be a valid Cloud Storage bucket name (3–63 characters; lowercase letters, numbers, dots, hyphens, underscores).
 - **Path prefix** is optional. Leading and trailing slashes are normalized, so `audit-logs`, `/audit-logs`, and `audit-logs/` are equivalent.
 - **Retention locks and object holds** that prevent overwriting an existing object will fail the access check and break retried deliveries. Use a bucket or prefix without an overwrite-blocking retention lock.
 - **Customer-managed encryption keys** work normally. Mixpanel writes through the bucket's default encryption settings.
-- **Your own lifecycle rules** govern how long delivered files live. Mixpanel never deletes anything from your bucket.
 
 ## Managing a Stream
 
@@ -219,7 +246,7 @@ This applies identically whether the pause was manual or automatic (see [Deliver
 
 ### Filling a Gap
 
-Any entry that was never delivered — whether from before the stream existed, or from a pause that exceeded the retention window above — is still available in your audit log in Mixpanel. To backfill it, export the audit log (CSV or NDJSON) from **Organization Settings → Audit Log** for the affected time range. Streaming and the audit log read the same underlying records, so a backfilled export reconciles cleanly with streamed files.
+Any entry that was never delivered — whether from before the stream existed, or from a pause that exceeded the retention window above — remains available in Mixpanel until the end of the [audit log retention period](/docs/access-security/audit-log#limitations). To backfill it in the same format as streamed entries, export the audit log as NDJSON from **Organization Settings → Audit Log** for the affected time range. Streaming and the audit log read the same underlying records, so a backfilled export reconciles cleanly with streamed files.
 
 ## Delivery Failures and Automatic Pausing
 
@@ -231,17 +258,14 @@ An automatic pause that goes unnoticed will quietly become a gap in your destina
 
 ## Troubleshooting
 
-| Symptom | Applies to | Likely cause and fix |
-| --- | --- | --- |
-| Events stopped arriving | All destinations | Check the stream's status in **Organization Settings → Audit Log → Configure stream**. If it shows **Paused**, the pause reason explains why, and your Owners and Admins were emailed. Fix the cause and resume. |
-| Resumed the stream, but earlier entries never arrived | All destinations | The pause exceeded a retention window. See [Pausing and Log Retention](#pausing-and-log-retention), then [fill the gap](#filling-a-gap) with an export. |
-| "Mixpanel doesn't have permission to write to your destination." | AWS S3 | Confirm that the IAM role has `s3:PutObject` permission for `arn:aws:s3:::<BUCKET_NAME>/*` and that the policy names the correct bucket. |
-| "Your destination couldn't be found." | AWS S3 | The bucket name or region is wrong, or the bucket has been deleted. Confirm the bucket details in AWS and update the stream. |
-| "Mixpanel couldn't authenticate with your destination." | AWS S3 | Confirm that the role ARN is correct and its trust policy allows the Mixpanel export user to call `sts:AssumeRole` with the exact external ID shown in Mixpanel. |
-| "Mixpanel doesn't have permission to write to your destination." | Google Cloud Storage | The IAM binding is missing, too narrow, or applied to the wrong resource. Confirm it is on the *bucket* and grants Storage Admin (or an equivalent write role). |
-| "Your destination couldn't be found." | Google Cloud Storage | The bucket name is wrong or the bucket has been deleted. Bucket names are global; check for typos. |
-| "Mixpanel couldn't authenticate with your destination." | Google Cloud Storage | The binding for `audit-log-streaming@mixpanel-prod-1.iam.gserviceaccount.com` has been removed or altered. Re-grant it, then resume the stream. |
-| "Your destination didn't respond. Try again in a few minutes." | Google Cloud Storage | A transient failure reaching the bucket. Retry the save shortly. |
+| Symptom | Likely cause and fix |
+| --- | --- |
+| Events stopped arriving | Check the stream's status in **Organization Settings → Audit Log → Configure stream**. If it shows **Paused**, the pause reason explains why, and your Owners and Admins were emailed. Fix the cause and resume. |
+| Resumed the stream, but earlier entries never arrived | The pause exceeded a retention window. See [Pausing and Log Retention](#pausing-and-log-retention), then [fill the gap](#filling-a-gap) with an export. |
+| Mixpanel cannot write to the destination | The destination's write permission is missing, too narrow, or applied to the wrong resource. Review the required permissions for your destination above. If the S3 bucket uses a customer-managed KMS key, also check the role and KMS key policies. |
+| Destination cannot be found | The bucket name or region is wrong, or the bucket has been deleted. Confirm the destination details and update the stream. |
+| Mixpanel cannot authenticate with the destination | The destination's access configuration has been removed or changed. For S3, confirm the role ARN, trust policy, and external ID. For Cloud Storage, confirm the service account's bucket-level IAM binding. |
+| Destination is temporarily unavailable | A transient failure occurred while reaching the destination. Retry the save shortly. |
 
 ## FAQ
 
