@@ -58,19 +58,11 @@ Use Real-Time Event Streams when latency matters and your workflow needs individ
 
 ## Delivery guarantees at a glance
 
-- **At-least-once delivery.** Every outbound request includes an `X-Mixpanel-Insert-Id` header so you can deduplicate on your side.
+- **At-least-once delivery.** You can include an `X-Mixpanel-Insert-Id` header so you can deduplicate on your side.
 - **Automatic retries.** Transient failures (5xx, timeouts, network errors) are retried up to 5 times with exponential backoff over roughly 12 minutes. Permanent failures (4xx) are surfaced as configuration errors.
 - **Latency SLA.** p95 ≤ 120 seconds from ingestion to a confirmed 2xx response at your endpoint under normal load.
 
 See [Delivery and reliability](/docs/real-time-event-streams/delivery-and-reliability) for the full behavior.
-
-## What's not in the beta
-
-The following are intentionally out of scope for Phase 1 and will be evaluated for GA:
-
-- Native destinations (Kafka, Kinesis, Pub/Sub, MarTech, AdTech).
-- A field-mapping UI. Payload shaping is done entirely through the Liquid template.
-- User-property backfill on historical events. Streams operate on newly ingested events only.
 
 {/* PLACEHOLDER: List any additional beta limitations specific to your rollout — e.g., project types, regions, event volume caps. */}
 
