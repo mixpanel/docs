@@ -32,11 +32,11 @@ Stream state is shown as a status badge on the Syncs list view.
 | `auth_error` | Credentials are invalid or expired. Deliveries are failing on auth. |
 | `disabled` | The Destination has been manually disabled by a Project Admin. |
 
-Authentication failures on delivery immediately flip the Destination to `auth_error` — the failure is never silently swallowed. Re-authenticating updates the existing Destination in place; you do not need to delete and recreate it. See [Webhook authentication](/docs/real-time-event-streams/setup#webhook-authentication).
+Authentication failures on delivery immediately flip the Destination to `auth_error`. Re-authenticating updates the existing Destination in place; you do not need to delete and recreate it. See [Webhook authentication](/docs/real-time-event-streams/setup#webhook-authentication).
 
 ## Audit logging
 
-All state changes are audit-logged with a timestamp and the acting user. Use the audit log to trace who paused a Sync, when credentials were rotated, or when a Destination first tripped into `auth_error`.
+All state changes are audit-logged with a timestamp and the acting user. Use the audit log to trace who paused a Stream, when credentials were rotated, or when a Destination first tripped into `auth_error`.
 
 {/* PLACEHOLDER: Link to the general audit-log page and describe which specific events are captured (enable, disable, template change, auth update, filter change). */}
 
