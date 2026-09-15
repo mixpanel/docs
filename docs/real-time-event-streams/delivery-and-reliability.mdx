@@ -50,8 +50,6 @@ Up to **4 retries** (1 initial + 4 retries) with exponential backoff starting at
 
 For `429` responses, the `Retry-After` header is honored when present, capped at 10 seconds.
 
-Retries run inline in the same consumer path, so streaming is not blocked by backoff.
-
 ### 4xx errors
 
 `401` and `403` responses indicate an authentication failure. These are terminal:
