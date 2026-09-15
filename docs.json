@@ -242,8 +242,8 @@
                     "group": "Group Analytics",
                     "root": "docs/data-structure/group-analytics",
                     "pages": [
-                      "docs/data-structure/group-analytics/group-analytics-implementation",
-                      "docs/data-structure/group-analytics/group-analytics-faq"
+                      "docs/data-structure/group-analytics/hierarchical-groups",
+                      "docs/data-structure/group-analytics/standard-group-analytics"
                     ]
                   },
                   "docs/data-structure/lookup-tables",
@@ -1867,6 +1867,14 @@
     {
       "source": "/docs/data-structure/advanced/group-analytics",
       "destination": "/docs/data-structure/group-analytics"
+    },
+    {
+      "source": "/docs/data-structure/group-analytics/group-analytics-implementation",
+      "destination": "/docs/data-structure/group-analytics/standard-group-analytics"
+    },
+    {
+      "source": "/docs/data-structure/group-analytics/group-analytics-faq",
+      "destination": "/docs/data-structure/group-analytics/standard-group-analytics"
     },
     {
       "source": "/docs/data-structure/advanced/utm-tags",
