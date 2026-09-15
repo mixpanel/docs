@@ -8,20 +8,13 @@ description: "How Real-Time Event Streams retry failed deliveries, handle at-lea
   Real-Time Event Streams are in private beta. Contact your Mixpanel account team to enable the feature for your project.
 </Note>
 
-Real-Time Event Streams are designed for at-least-once delivery with automatic retry of transient failures. This page describes the delivery SLA, retry policy, failed events log, and headers you can use to deduplicate on your side.
+Real-Time Event Streams are designed for at-least-once delivery with automatic retry of transient failures. This page describes the delivery, retry policy, failed events log, and headers you can use to deduplicate on your side.
 
-## Latency SLA
+## Latency
 
-Events must be delivered to configured webhook endpoints within **p95 ≤ 120 seconds** of ingestion under normal load. This is the baseline definition of "real-time" for the feature.
-
-- Latency is measured from the event ingestion timestamp to a confirmed 2xx response at the destination.
-- Sustained breach of the p95 threshold triggers an internal Mixpanel alert.
+Events will be delivered to webhook endpoints within **p95 ≤ 120 seconds** of ingestion under normal load. This is the baseline definition of "real-time" for the feature.
 
 {/* PLACEHOLDER: Add customer-facing status page or support process for reporting sustained latency issues during the beta. */}
-
-## At-least-once delivery
-
-Mixpanel guarantees at-least-once delivery. Under retry conditions, your endpoint may receive the same event more than once.
 
 ## Retry policy
 
