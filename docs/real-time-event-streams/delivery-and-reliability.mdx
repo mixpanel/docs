@@ -63,7 +63,7 @@ Other `4xx` responses (e.g., `400`, `404`, `422`) indicate the destination is un
 - The Sync is paused.
 - The error state is visible in the UI so a project admin can fix the endpoint or payload template.
 
-## Failed events log
+## Failed Events Log
 
 When events cannot be delivered after retries, they move to a **failed events log** retained in-product for debugging. Each entry is an aggregated roll-up per failed stream. One row per Sync + status code + error type + count of failed events in that window
 
@@ -71,7 +71,7 @@ When events cannot be delivered after retries, they move to a **failed events lo
 
 ## Alerting on failure
 
-During the private beta, failure alerting happens when a terminal failure is encountered (auth error, or non-auth 4xx after retries): the Sync moves into the `error` state and pauses streaming until a Project Admin re-enables it. See [States and monitoring](/docs/real-time-event-streams/states-and-monitoring) for state transitions.
+Failure alerting happens when a terminal failure is encountered (auth error, or non-auth 4xx after retries): the Sync moves into the `error` state and pauses streaming until a Project Admin re-enables it. See [States and monitoring](/docs/real-time-event-streams/states-and-monitoring) for state transitions.
 
 {/* PLACEHOLDER: Describe how alerts are delivered — in-app notification, email, both — and where alert history is viewable. */}
 
