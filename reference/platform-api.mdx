@@ -31,7 +31,7 @@ These apply across every Platform API endpoint.
 
 ### Cursor pagination
 
-Endpoints that return a collection are paginated with an opaque cursor: the response is always a `results` array alongside a `pagination` object, never a bare top-level array, so it can gain fields later without breaking your client.
+Endpoints that return a collection are paginated with an opaque cursor.
 
 Requests accept these query parameters:
 
