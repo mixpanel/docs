@@ -8,27 +8,23 @@ description: "Reference for Destination and Sync states, audit logging, and the 
   Real-Time Event Streams are in Beta. Contact your Mixpanel account team to enable the feature for your project.
 </Note>
 
-Every Sync and Destination has an explicit state that is visible without opening the detail view. This page is the reference for what each state means, how state transitions are logged, and which metrics you can use to monitor health.
+Every Stream and Destination has an explicit state that is visible without opening the detail view. This page is the reference for what each state means, how state transitions are logged, and which metrics you can use to monitor health.
 
-## Sync states
+## Stream states
 
-Sync state is shown as a status badge on the Syncs list view.
+Stream state is shown as a status badge on the Syncs list view.
 
 | State | Meaning |
 | --- | --- |
-| `enabled` | The Sync is actively streaming matching events. |
-| `disabled` | The Sync is manually paused by a Project Admin. Events are discarded; no backlog accumulates. |
-| `error` | The Sync was paused after a terminal failure (auth error, or non-auth 4xx after retries). An Alert is sent when a stream enters this state and streaming stops until a Project Admin re-enables the Sync. |
+| `enabled` | The Stream is actively streaming matching events. |
+| `disabled` | The Stream is manually paused by a Project Admin. Events are discarded; no backlog accumulates. |
+| `error` | The Stream was paused after a terminal failure (auth error, or non-auth 4xx after retries). An Alert is sent when a stream enters this state and streaming stops until a Project Admin re-enables the Stream. |
 
 <Warning>
-  When a Sync is `disabled`, events matching the filter are **discarded**. Mixpanel does not accumulate a backlog to replay when the Sync is re-enabled.
+  When a Stream is `disabled`, events matching the filter are **discarded**. Mixpanel does not accumulate a backlog to replay when the Stream is re-enabled.
 </Warning>
 
 ## Destination states
-
-<Info>
-  Destination-level state (separate from Sync state) is a Phase 2 feature. During the private beta, authentication status is visible on the Destination card, but the full Destination state model below reflects the target design.
-</Info>
 
 | State | Meaning |
 | --- | --- |
