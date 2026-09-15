@@ -44,25 +44,6 @@ All state changes are audit-logged with a timestamp and the acting user. Use the
 
 {/* PLACEHOLDER: Link to the general audit-log page and describe which specific events are captured (enable, disable, template change, auth update, filter change). */}
 
-## Observability panel
-
-<Info>
-  The full observability panel is a P1 requirement scheduled to land before GA. Some metrics may be limited or presented differently during the private beta.
-</Info>
-
-Each Sync has a dedicated metrics view for monitoring delivery health.
-
-### Metrics
-
-- **Events delivered** — counts over the last 1 hour, 24 hours, and 7 days.
-- **Delivery success rate** — percentage of events that received a 2xx response within the retry window.
-- **Events failed after max retries** — count, with retained payload samples and destination response.
-- **Pending retry queue depth** — number of events currently waiting in the retry queue.
-- **p95 delivery latency estimate** — end-to-end latency from ingestion to a confirmed 2xx response.
-- **Webhook URL domains** — the destination domains this Sync is delivering to.
-
-Metrics refresh approximately every 5 minutes. A health indicator on the Syncs list view reflects the current error state without a page load.
-
 {/* PLACEHOLDER: Screenshot of the observability panel and describe filters/time-range controls. */}
 
 ## Recommended monitoring practices
