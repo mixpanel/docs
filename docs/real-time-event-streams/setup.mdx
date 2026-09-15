@@ -136,12 +136,10 @@ The full outbound request body is customer-controlled via a [Liquid](https://sho
 Template syntax is validated on save. Invalid syntax surfaces a clear error and blocks the Sync from enabling, so you cannot ship a broken template into production.
 
 <Tip>
-  Include `{{ insert_id }}` in your payload if you plan to deduplicate on the destination side using the body rather than the `X-Mixpanel-Insert-Id` header. See [At-least-once delivery](/docs/real-time-event-streams/delivery-and-reliability#at-least-once-delivery).
+  Include `{{ insert_id }}` in your payload if you plan to deduplicate on the destination side
 </Tip>
 
 {/* PLACEHOLDER: Add supported Liquid filters/tags (e.g., default, upcase, date formatting) once finalized. */}
-
-## Editing a live Sync
 
 {/* PLACEHOLDER: Describe which changes can be made in place (event types, filters, template, auth) and which require pausing the Sync. Clarify how in-flight events are handled during edits. */}
 

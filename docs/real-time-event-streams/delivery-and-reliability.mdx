@@ -5,7 +5,7 @@ description: "How Real-Time Event Streams retry failed deliveries, handle at-lea
 ---
 
 <Note>
-  Real-Time Event Streams are in private beta. Contact your Mixpanel account team to enable the feature for your project.
+  Real-Time Event Streams are in Beta. Contact your Mixpanel account team to enable the feature for your project.
 </Note>
 
 Real-Time Event Streams are designed for at-least-once delivery with automatic retry of transient failures. This page describes the delivery, retry policy, failed events log, and headers you can use to deduplicate on your side.
@@ -65,13 +65,7 @@ Other `4xx` responses (e.g., `400`, `404`, `422`) indicate the destination is un
 
 ## Failed events log
 
-When events cannot be delivered after retries, they move to a **failed events log** retained in-product for debugging. Each entry is an aggregated roll-up per failed stream:
-
-- One row per Sync + status code + error type
-
-- Count of failed events in that window
-
-Use the log to understand failure patterns and feed samples into support tickets.
+When events cannot be delivered after retries, they move to a **failed events log** retained in-product for debugging. Each entry is an aggregated roll-up per failed stream. One row per Sync + status code + error type + count of failed events in that window
 
 {/* PLACEHOLDER: Document how to replay failed events (manual retry, bulk replay, or export) once the flow is confirmed. */}
 
@@ -82,10 +76,6 @@ During the private beta, failure alerting happens when a terminal failure is enc
 {/* PLACEHOLDER: Describe how alerts are delivered — in-app notification, email, both — and where alert history is viewable. */}
 
 ## Rate limits and backpressure
-
-<Info>
-  Full rate-limit and backpressure handling is a GA feature. The behavior described below reflects the target for GA; specific behavior during the private beta may be more limited.
-</Info>
 
 When a destination returns `429 Too Many Requests`:
 
