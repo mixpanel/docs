@@ -14,6 +14,12 @@ Real-Time Event Streams are designed for at-least-once delivery with automatic r
 
 Events will be delivered to webhook endpoints within **p95 ≤ 120 seconds** of ingestion under normal load. This is the baseline definition of "real-time" for the feature.
 
+## Batching
+
+Events are batched per Sync before delivery. Mixpanel flushes a batch when it<br />reaches **500 events** or **5 seconds** since the first event in the batch,<br />whichever comes first.<br /><br />Each flush is a single \`POST\` whose body is a \*\*JSON array\*\* of rendered events,<br />even when the array contains only one event:
+
+​json<br />[<br />  \{ "event": "Signup", "user_id": "abc" \},<br />  \{ "event": "Signup", "user_id": "def" \}<br />]<br /><br />Your endpoint must accept a JSON array and return a single 2xx for the whole<br />batch. A non-2xx fails the entire batch (all events are retried together).
+
 {/* PLACEHOLDER: Add customer-facing status page or support process for reporting sustained latency issues during the beta. */}
 
 ## Retry policy
