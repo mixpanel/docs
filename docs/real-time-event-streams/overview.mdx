@@ -43,24 +43,16 @@ Use Real-Time Event Streams when latency matters and your workflow needs individ
 
 [Data Pipelines](/docs/data-pipelines) deliver batches of events to warehouses and object stores on a schedule. Real-Time Event Streams deliver individual events with low latency to an HTTP endpoint you control. Use pipelines for analytics and reporting workloads; use streams when you need to act on events within seconds.
 
-| Capability | Data Pipelines | Real-Time Event Streams |
-| --- | --- | --- |
-| Delivery model | Batched exports | Per-event HTTP delivery |
-| Latency | Minutes to hours | p95 within 120 seconds |
-| Destinations | Warehouses, object storage | Custom webhook (Phase 1) |
-| Best for | Analytics, reporting, BI | Activation, alerting, personalization |
-
-## Concepts
+## Key Concepts
 
 - **Destination** — the webhook endpoint and its authentication configuration.
-- **Sync** — a rule that binds a set of filtered events and a Liquid payload template to a Destination.
-- **Events log** — a 72-hour record of events that could not be delivered after all retries, retained with the destination HTTP response for debugging.
+- **Stream** — a rule that binds a set of filtered events and a Liquid payload template to a Destination.
 
 ## Delivery guarantees at a glance
 
-- **At-least-once delivery.** You can include an `X-Mixpanel-Insert-Id` header so you can deduplicate on your side.
-- **Automatic retries.** Transient failures (5xx, timeouts, network errors) are retried up to 5 times with exponential backoff over roughly 12 minutes. Permanent failures (4xx) are surfaced as configuration errors.
-- **Latency.** p95 ≤ 120 seconds from ingestion to a confirmed 2xx response at your endpoint under normal load.
+- **At-least-once delivery.** You can include the Mixpanel Insert ID property in the payload so you can deduplicate on your side.
+- **Automatic retries.** Transient failures (5xx, timeouts, network errors) are retried up to 4 times with exponential backoff. Permanent failures (4xx) are surfaced as configuration errors.
+- **Latency.** p95 ≤ 120 seconds from ingestion to a confirmed 2xx response at your endpoint under normal load, often times even faster.
 
 See [Delivery and reliability](/docs/real-time-event-streams/delivery-and-reliability) for the full behavior.
 
