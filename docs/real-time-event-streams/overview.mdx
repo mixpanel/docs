@@ -5,7 +5,7 @@ description: "Stream Mixpanel events to a custom webhook within seconds of inges
 ---
 
 <Note>
-  **Private beta.** Real-Time Event Streams are available to a limited set of customers during Phase 1. If you'd like to participate, reach out to your Mixpanel account team.
+  **Private beta.** Real-Time Event Streams are currently available to a limited set of customers during Beta. If you'd like to participate, reach out to your Mixpanel account team.
 </Note>
 
 Real-Time Event Streams deliver Mixpanel events to your infrastructure within seconds of ingestion, so you can react to user behavior without waiting for a batch export. Phase 1 ships a single destination type: a generic, Liquid-templated webhook. Native MarTech and AdTech integrations are planned for later phases based on beta feedback.
@@ -54,10 +54,11 @@ Use Real-Time Event Streams when latency matters and your workflow needs individ
 
 - **Destination** — the webhook endpoint and its authentication configuration.
 - **Sync** — a rule that binds a set of filtered events and a Liquid payload template to a Destination.
-- **Failed events log** — an aggregated roll-up of events that could not be delivered after all retries, retained for debugging. Shows the destination, status code, error details, and event count per window (no per-event entries or payloads).
+- **Events log** — a 72-hour record of events that could not be delivered after all retries, retained with the destination HTTP response for debugging.
 
 ## Delivery guarantees at a glance
 
+- **At-least-once delivery.** Every outbound request includes an `X-Mixpanel-Insert-Id` header so you can deduplicate on your side.
 - **Automatic retries.** Transient failures (5xx, timeouts, network errors) are retried up to 5 times with exponential backoff over roughly 12 minutes. Permanent failures (4xx) are surfaced as configuration errors.
 - **Latency SLA.** p95 ≤ 120 seconds from ingestion to a confirmed 2xx response at your endpoint under normal load.
 
