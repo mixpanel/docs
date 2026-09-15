@@ -49,6 +49,84 @@ The same access check runs whenever a stream is created, updated, or resumed, so
 
 ## Destinations
 
+### AWS S3
+
+Mixpanel delivers each batch of audit log entries as a gzipped NDJSON object into an S3 bucket you own. Mixpanel assumes a cross-account IAM role in your AWS account to write the objects. The role must trust the Mixpanel export user and require the external ID shown while you configure the stream in Mixpanel.
+
+The external ID is unique to your Mixpanel organization and has this format:
+
+```
+mixpanel-audit-log-streaming-<organization-id>
+```
+
+#### Set Up the Bucket and IAM Role
+
+<Steps>
+  <Step title="Start configuring the stream in Mixpanel">
+    Go to **Organization Settings → Audit Log**, click **Configure stream**, and select **AWS S3**. Mixpanel displays the external ID for your organization. Copy it before you configure the IAM role.
+  </Step>
+
+  <Step title="Create or choose an S3 bucket">
+    Create the bucket that will receive the audit logs, or choose an existing bucket. Mixpanel does not create or manage the bucket.
+  </Step>
+
+  <Step title="Create an S3 write policy">
+    In AWS IAM, create a policy that allows the role to write objects to the target bucket. Replace `<BUCKET_NAME>` with the name of your bucket:
+
+    ```json
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "MixpanelAuditLogStreamingS3Access",
+          "Effect": "Allow",
+          "Action": "s3:PutObject",
+          "Resource": "arn:aws:s3:::<BUCKET_NAME>/*"
+        }
+      ]
+    }
+    ```
+  </Step>
+
+  <Step title="Create an IAM role with a custom trust policy">
+    In the AWS console, go to **IAM → Roles → Create role** and select **Custom trust policy**. Use the policy below, replacing `<EXTERNAL_ID_FROM_MIXPANEL>` with the value you copied from the stream configuration:
+
+    ```json
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": {
+            "AWS": "arn:aws:iam::485438090326:user/mixpanel-export"
+          },
+          "Action": "sts:AssumeRole",
+          "Condition": {
+            "StringEquals": {
+              "sts:ExternalId": "<EXTERNAL_ID_FROM_MIXPANEL>"
+            }
+          }
+        }
+      ]
+    }
+    ```
+
+    Requiring the external ID prevents [the confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html). Continue to the permissions step, attach the S3 write policy you created above, and create the role. Then copy its ARN.
+  </Step>
+
+  <Step title="Finish configuring the stream in Mixpanel">
+    Return to Mixpanel and enter the S3 bucket details and IAM role ARN. Add an optional path prefix if you want the audit log objects written below a specific path, then save. Mixpanel verifies that it can assume the role and write to the bucket before creating the stream.
+  </Step>
+
+  <Step title="Confirm delivery">
+    Within a few minutes of any audited action, files begin appearing in the bucket under your configured prefix.
+  </Step>
+</Steps>
+
+<Note>
+  Copy the external ID from Mixpanel instead of entering it manually. It is tied to your organization and differs from the project token used by an AWS S3 Data Pipeline.
+</Note>
+
 ### Google Cloud Storage
 
 Mixpanel delivers each batch of audit log entries as a gzipped NDJSON object into a Cloud Storage bucket you own, writing as a **Mixpanel-owned service account** that you grant access to on your bucket. There is no key exchange in either direction: you never give Mixpanel a service account key, and Mixpanel never stores credentials for your Google Cloud project. The same service account is used regardless of your organization's data residency (US, EU, or India).
@@ -157,6 +235,9 @@ An automatic pause that goes unnoticed will quietly become a gap in your destina
 | --- | --- | --- |
 | Events stopped arriving | All destinations | Check the stream's status in **Organization Settings → Audit Log → Configure stream**. If it shows **Paused**, the pause reason explains why, and your Owners and Admins were emailed. Fix the cause and resume. |
 | Resumed the stream, but earlier entries never arrived | All destinations | The pause exceeded a retention window. See [Pausing and Log Retention](#pausing-and-log-retention), then [fill the gap](#filling-a-gap) with an export. |
+| "Mixpanel doesn't have permission to write to your destination." | AWS S3 | Confirm that the IAM role has `s3:PutObject` permission for `arn:aws:s3:::<BUCKET_NAME>/*` and that the policy names the correct bucket. |
+| "Your destination couldn't be found." | AWS S3 | The bucket name or region is wrong, or the bucket has been deleted. Confirm the bucket details in AWS and update the stream. |
+| "Mixpanel couldn't authenticate with your destination." | AWS S3 | Confirm that the role ARN is correct and its trust policy allows the Mixpanel export user to call `sts:AssumeRole` with the exact external ID shown in Mixpanel. |
 | "Mixpanel doesn't have permission to write to your destination." | Google Cloud Storage | The IAM binding is missing, too narrow, or applied to the wrong resource. Confirm it is on the *bucket* and grants Storage Admin (or an equivalent write role). |
 | "Your destination couldn't be found." | Google Cloud Storage | The bucket name is wrong or the bucket has been deleted. Bucket names are global; check for typos. |
 | "Mixpanel couldn't authenticate with your destination." | Google Cloud Storage | The binding for `audit-log-streaming@mixpanel-prod-1.iam.gserviceaccount.com` has been removed or altered. Re-grant it, then resume the stream. |
