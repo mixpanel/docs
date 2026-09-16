@@ -368,7 +368,8 @@
                   "docs/features/revenue-analytics",
                   "docs/features/saved-metrics-and-behaviors",
                   "docs/features/sessions",
-                  "docs/features/slack-integration"
+                  "docs/features/slack-integration",
+                  "docs/features/warehouse-metrics"
                 ]
               }
             ]
@@ -465,6 +466,17 @@
             "icon": "/icons/data-out.svg",
             "pages": [
               "docs/export-methods",
+              {
+                "group": "Real-Time Event Streams",
+                "tag": "BETA",
+                "root": "docs/real-time-event-streams",
+                "pages": [
+                  "docs/real-time-event-streams/overview",
+                  "docs/real-time-event-streams/setup",
+                  "docs/real-time-event-streams/delivery-and-reliability",
+                  "docs/real-time-event-streams/states-and-monitoring"
+                ]
+              },
               {
                 "group": "Data Pipelines",
                 "root": "docs/data-pipelines",
