@@ -1,7 +1,7 @@
 ---
 sidebarTitle: Hierarchical Groups
 title: "Hierarchical Groups"
-description: "A two-level Company → User data model for B2B products, using the reserved $company_id and $user_id properties"
+description: "A two-level Company → User data model for B2B products, using Mixpanel's reserved company and user ID properties"
 ---
 
 <Note>
@@ -169,7 +169,7 @@ Profiles store metadata about an entity (company, user, and any other groups you
   ![image](/images/hierarchical_groups_user_page_light.png)
 </Frame>
 
-### Groups HTTP API
+#### Groups HTTP API
 
 To create or update company profiles via the HTTP API, use the `/groups` endpoint. There are three key values that must be set in order to properly set profiles for Hierarchical Groups (outside of `$set`) — `$group_key`, `$group_id`, and `$company_id`.
 
