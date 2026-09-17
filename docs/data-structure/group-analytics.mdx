@@ -12,33 +12,33 @@ description: "Group users together as an aggregated unit of measurement"
 
 Mixpanel Group Analytics allows behavioral data analysis at a customized group level (such as account, device—or any other way you want to assess your business).
 
-Historically, Mixpanel grouped events by a single identifier called the distinct\_id. This ultimately grouped events by the individual user. Group Analytics allows you to establish an event property other than the distinct\_id, such as company ID, account ID, project ID, or billing ID, as an identifier by which to analyze your data. Mixpanel supports two models, Hierarchical and Standard, for grouping data. Which one you use depends on whether the relationship between your groups and your users is something you need Mixpanel to enforce.
+Historically, Mixpanel grouped events by a single identifier called the distinct\_id. This ultimately grouped events by the individual user. Group Analytics allows you to establish an event property other than the distinct\_id, such as company ID, account ID, project ID, or billing ID, as an identifier by which to analyze your data. Mixpanel supports two models, hierarchical and independent, for grouping data. Which one you use depends on whether the relationship between your groups and your users is something you need Mixpanel to enforce.
 
-## Hierarchical Groups
+## Group Analytics
 
 A purpose-built model for **B2B SaaS** where users belong to companies. Mixpanel enforces a two-level hierarchy — **Company** (top level) and **User** (bottom level) — using the reserved properties `$company_id` and `$user_id`. Identity is the composite key (`$company_id`, `$user_id`), which means the same `$user_id` in two different companies is treated as two distinct users.
 
-Use Hierarchical Groups when:
+Use Group Analytics when:
 
 - You are a B2B product where every user belongs to exactly one company (or account, workspace, organization, etc.)
 - The company/user relationship is known from the onset of your tracking
 
-[Hierarchical Groups →](/docs/data-structure/group-analytics/hierarchical-groups)
+[Group Analytics →](/docs/data-structure/group-analytics/hierarchical-groups)
 
-## Standard Groups
+## Enterprise Group Analytics
 
 Define one or more **group keys** — event properties like `company_id`, `team_id`, or `project_id` — and analyze uniques, funnels, and retention by those keys instead of (or in addition to) `distinct_id`. Each group key is independent: Mixpanel does not assume any relationship between them or between groups and users.
 
-Use Standard Group Analytics when:
+Use Enterprise Group Analytics when:
 
 - You need flexible, independent grouping dimensions (restaurants, drivers, devices, etc.)
 - Your groups don't have a strict parent-child relationship with users
 
-[Standard Group Analytics →](/docs/data-structure/group-analytics/standard-group-analytics)
+[Enterprise Group Analytics →](/docs/data-structure/group-analytics/enterprise-group-analytics)
 
 ## Choosing Between the Two
 
-|                         | Hierarchical Groups                                  | Standard Group Analytics                                        |
+|                         | Group Analytics                                      | Enterprise Group Analytics                                      |
 | ----------------------- | ---------------------------------------------------- | --------------------------------------------------------------- |
 | **Relationship model**  | Two-level hierarchy: Company → User                  | Flat — group keys are independent                                |
 | **Identity**            | Composite: `$company:<company_id>\|$user:<user_id>`  | `distinct_id` unchanged                                          |
@@ -49,7 +49,7 @@ Use Standard Group Analytics when:
 | **Best for**            | B2B SaaS with company → user structure               | Marketplace, multi-entity, or non-B2B models                     |
 
 <Warning>
-  You cannot migrate a Standard project to Hierarchical (or vice versa) after the project has been created. Choose the model that matches your data before you start sending events.
+  You cannot migrate a project between the independent and hierarchical models after the project has been created. Choose the model that matches your data before you start sending events.
 </Warning>
 
 ### Data Modeling
@@ -117,7 +117,7 @@ Company Analytics is a feature within Group Analytics tailored to B2B SaaS Compa
 
 Company Analytics enables you to understand such account health and activation metrics, which are derived from the underlying user activity.
 
-To use these features, you must [designate the group key as a company key when setting up the group](/docs/data-structure/group-analytics/standard-group-analytics#setup-b2b-company-key).
+To use these features, you must [designate the group key as a company key when setting up the group](/docs/data-structure/group-analytics/enterprise-group-analytics#setup-b2b-company-key).
 
 #### Company Profiles
 
@@ -129,7 +129,7 @@ You can view the definition of each metric by clicking on the metric card, which
 
 To access this page, click on Users/ Companies → Company Profile.
 
-Note: This is only available if you have [set up a B2B Company Key](/docs/data-structure/group-analytics/standard-group-analytics#setup-b2b-company-key), an option available in the Group Analytics package.
+Note: This is only available if you have [set up a B2B Company Key](/docs/data-structure/group-analytics/enterprise-group-analytics#setup-b2b-company-key), an option available in the Group Analytics package.
 
 <Frame>
   ![image](/images/B2B_Company_Profiles.webp)

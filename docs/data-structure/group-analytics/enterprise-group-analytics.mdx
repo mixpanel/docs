@@ -1,14 +1,14 @@
 ---
-sidebarTitle: Standard Groups
-title: "Standard Groups"
+sidebarTitle: Enterprise Group Analytics (independent)
+title: "Enterprise Group Analytics"
 description: "Define independent group keys to count uniques, build funnels, and measure retention at the group level"
 ---
 
 <Note>
-  **Looking for Hierarchical Groups?** If your product has a B2B company → user relationship, see [Hierarchical Groups](/docs/data-structure/group-analytics/hierarchical-groups) instead.
+  **Looking for Group Analytics?** If you need an enforced Company → User hierarchy, see [Group Analytics](/docs/data-structure/group-analytics/hierarchical-groups) instead.
 </Note>
 
-Standard Group Analytics lets you establish event properties other than `distinct_id` as identifiers by which to analyze your data. By defining **group keys** — such as `company_id`, `account_id`, `project_id`, or `billing_id` — you can count uniques, build funnels, and measure retention at the group level rather than (or alongside) the individual user level.
+Enterprise Group Analytics lets you establish event properties other than `distinct_id` as identifiers by which to analyze your data. By defining **group keys** — such as `company_id`, `account_id`, `project_id`, or `billing_id` — you can count uniques, build funnels, and measure retention at the group level rather than (or alongside) the individual user level.
 
 ## Overview
 
@@ -42,7 +42,7 @@ When analyzing by **Group**, Mixpanel counts uniques by `group_id` values, while
 
 ## Limits
 
-The limits below ensure standard group analytics works correctly in Mixpanel:
+The limits below ensure Enterprise Group Analytics works correctly in Mixpanel:
 
 - 1M group profiles per group key (e.g. `company_id`)
 - 1M events per day per group identifier (e.g. `company_id` = "Mixpanel") - see [Hot Shard Limits](/docs/tracking-best-practices/hot-shard-limits)
@@ -51,7 +51,7 @@ The limits below ensure standard group analytics works correctly in Mixpanel:
 
 ## Prerequisites
 
-**Standard Groups only functions on data ingested after group keys are set up.** You must have the groups package enabled on the account and group keys defined in Project Settings before events will start showing up in Groups. Standard groups are not retroactive, meaning any data ingested into Mixpanel prior to setting up the group keys will not be associated with your groups even if that information already has group key and ID set on it.
+**Enterprise Group Analytics only functions on data ingested after group keys are set up.** You must have the groups package enabled on the account and group keys defined in Project Settings before events will start showing up in Groups. Enterprise Group Analytics is not retroactive, meaning any data ingested into Mixpanel prior to setting up the group keys will not be associated with your groups even if that information already has group key and ID set on it.
 
 ## Data Model
 
@@ -93,11 +93,11 @@ Group profiles are key-value stores of metadata about a specific group. They are
 
 ### Identity Management
 
-Standard Group Analytics does **not** change how `distinct_id` or user identity works. Users are still identified by `distinct_id` as normal. Group keys provide an additional, independent axis for counting uniques — they do not replace or modify user identity. It is not possible to merge different group IDs together.
+Enterprise Group Analytics does **not** change how `distinct_id` or user identity works. Users are still identified by `distinct_id` as normal. Group keys provide an additional, independent axis for counting uniques — they do not replace or modify user identity. It is not possible to merge different group IDs together.
 
 ## Implementation
 
-Standard Groups can be implemented using Mixpanel's SDK methods, in addition to Data Warehouse Connectors and HTTP APIs directly.
+Enterprise Group Analytics can be implemented using Mixpanel's SDK methods, in addition to Data Warehouse Connectors and HTTP APIs directly.
 
 ### Group Keys in Project Settings
 
