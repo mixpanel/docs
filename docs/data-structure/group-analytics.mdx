@@ -14,7 +14,7 @@ Mixpanel Group Analytics allows behavioral data analysis at a customized group l
 
 Historically, Mixpanel grouped events by a single identifier called the distinct\_id. This ultimately grouped events by the individual user. Group Analytics allows you to establish an event property other than the distinct\_id, such as company ID, account ID, project ID, or billing ID, as an identifier by which to analyze your data. Mixpanel supports two group models, hierarchical and independent, for grouping data. Which one you use depends on whether the relationship between your groups and your users is something you need Mixpanel to enforce.
 
-## Group Analytics
+## Group Analytics (hierarchical)
 
 A purpose-built model for **B2B SaaS** where users belong to companies. Mixpanel enforces a two-level hierarchy — **Company** (top level) and **User** (bottom level) — using the reserved properties `$company_id` and `$user_id`. Identity is the composite key (`$company_id`, `$user_id`), which means the same `$user_id` in two different companies is treated as two distinct users.
 
@@ -23,9 +23,9 @@ Use Group Analytics when:
 - You are a B2B product where every user belongs to exactly one company (or account, workspace, organization, etc.)
 - The company/user relationship is known from the onset of your tracking
 
-[Group Analytics →](/docs/data-structure/group-analytics/hierarchical-groups)
+[Group Analytics (hierarchical) →](/docs/data-structure/group-analytics/hierarchical-groups)
 
-## Enterprise Group Analytics
+## Enterprise Group Analytics (independent)
 
 Define one or more **group keys** — event properties like `company_id`, `team_id`, or `project_id` — and analyze uniques, funnels, and retention by those keys instead of (or in addition to) `distinct_id`. Each group key is independent: Mixpanel does not assume any relationship between them or between groups and users.
 
@@ -34,7 +34,7 @@ Use Enterprise Group Analytics when:
 - You need flexible, independent grouping dimensions (restaurants, drivers, devices, etc.)
 - Your groups don't have a strict parent-child relationship with users
 
-[Enterprise Group Analytics →](/docs/data-structure/group-analytics/enterprise-group-analytics)
+[Enterprise Group Analytics (independent) →](/docs/data-structure/group-analytics/enterprise-group-analytics)
 
 ## Choosing Between the Two
 
@@ -51,16 +51,6 @@ Use Enterprise Group Analytics when:
 <Warning>
   You cannot migrate a project between the independent and hierarchical group models after the project has been created. Choose the model that matches your data before you start sending events.
 </Warning>
-
-### Data Modeling
-
-Mixpanel Group Analysis allows you to select alternative unique identifiers in reports.
-
-By default, Mixpanel counts unique users by distinct\_id. Group Analytics allows you to uniquely count events by an alternative identifier, such as company ID, invite ID, or another value shared by a group of individuals with different distinct\_ids. This allows behavioral analysis from a business or group level, as opposed to an individual level. You can answer questions such as:
-
-- Which companies are engaging the most with a product?
-- In instances where there are more than one user per account, such as a video streaming service, how are events triggered at an account level?
-- What groups convert through a funnel to a goal event (as opposed to what individual users convert)?
 
 ### Group Profiles
 
