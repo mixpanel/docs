@@ -122,7 +122,7 @@ Developers can pass properties to the SDK for runtime property evaluation or run
 
 Runtime event evaluation evaluates tracked runtime events and their properties against the configuration in the feature flag, as detailed in the [Runtime Events guide](/docs/featureflags/runtime-events).
 
-**Date** and **Semantic Version** conditions, as described in [Data types for runtime values](/docs/featureflags#data-types-for-runtime-values), are not yet supported in runtime event property filters on this SDK.
+If any of these property filters use a **Date** or **Semantic Version** condition, as described in [Data types for runtime values](/docs/featureflags#data-types-for-runtime-values), ensure your SDK version meets the minimum supported: [`v3.8.0`](https://github.com/mixpanel/mixpanel-react-native/releases/tag/v3.8.0).
 
 Runtime property evaluation evaluates properties passed in the `custom_properties` node within the context against target values defined in your feature flag.
 

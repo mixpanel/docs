@@ -157,8 +157,6 @@ We support the following types of Flags:
 
     <Warning>
       **Applies to Local Evaluation and Runtime Event filters.** Date and Semantic Version are compared inside the SDK in these two cases — a server side SDK using [Local Evaluation](#local-evaluation), or a client side SDK evaluating a [Runtime Event](/docs/featureflags/runtime-events) filter on the device — so both require a recent SDK version. Check the minimum version on your SDK's feature flag guide under [Implementation](#implementation) before you use either type. If an SDK version is older than the minimum required, the condition will NOT match, so no one is placed in that rollout group.
-
-      React Native and Flutter do not support Date or Semantic Version in Runtime Event filters yet. Remote Evaluation is unaffected, since Mixpanel performs the comparison.
     </Warning>
 
     <Note>
