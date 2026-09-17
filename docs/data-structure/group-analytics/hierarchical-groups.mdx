@@ -53,7 +53,7 @@ Before enabling Group Analytics, make sure you meet these requirements:
 
 **You must use Simplified ID Merge.** Group Analytics is not supported on projects using Original ID Merge.
 
-**This is a project-creation-time decision.** You cannot convert an existing project on the independent model to the hierarchical model that Group Analytics uses, and you cannot switch a project back to the independent model once the hierarchical model is enabled. Choose your model before sending any data. Existing projects would need their data migrated to a *new* project on the hierarchical model.
+**This is a project-creation-time decision.** You cannot convert an existing project on the independent group model to the hierarchical group model that Group Analytics uses, and once the hierarchical group model is enabled you cannot switch back. Choose your model before sending any data. Existing projects would need their data migrated to a *new* project on the hierarchical group model.
 
 ## Data Model
 
@@ -104,7 +104,7 @@ Merging the `$device_id` to the canonical `$company_id` and `$user_id` composite
 
 ## Implementation
 
-Group Analytics can only be implemented via Data Warehouse Connectors or directly via the HTTP APIs. The groups methods in Mixpanel's SDKs only support the independent model.
+Group Analytics can only be implemented via Data Warehouse Connectors or directly via the HTTP APIs. The groups methods in Mixpanel's SDKs only support the independent group model.
 
 ### Group Keys in Project Settings
 
@@ -154,7 +154,7 @@ When creating a Warehouse Connector for events:
 
 1. **Create a new Warehouse Connector** as you normally would, but stop at the **Map Columns** step.
 2. **Map the column containing your top-level identifier** to **Company ID**.
-3. **Map the column containing your user-level identifier** to **User ID**. This mapping is **required** on the hierarchical model (it is optional on the independent model).
+3. **Map the column containing your user-level identifier** to **User ID**. This mapping is **required** on the hierarchical group model (it is optional on the independent group model).
 4. **Set additional group properties on the event.** They do not require any special mapping in the setup process.
 5. **Complete the sync.**
 
@@ -257,7 +257,7 @@ After import, profiles will have a Distinct ID in the format `$company:<company_
 
 ## FAQ
 
-#### Can I start on the independent model and switch to the hierarchical model later?
+#### Can I start on the independent group model and switch to the hierarchical group model later?
 
 No. Group Analytics must be enabled at project creation. If you later decide you need it, you would create a new project with Group Analytics enabled and re-import your data with correct `$company_id` values on every historical event.
 
