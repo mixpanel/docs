@@ -156,7 +156,9 @@ We support the following types of Flags:
 | **Semantic Version** | A version string, e.g. `"2.1.0"` or `"2.5.0-rc.1"` | Ordered by the [SemVer 2.0.0](https://semver.org/) specification i.e. major, then minor, then patch, with a pre-release ranking below the release it belongs to. A leading `v` is dropped, a partial version such as `1.2` is read as `1.2.0`, and build metadata after `+` is ignored. | <ul><li>Is</li><li>Is not</li><li>Greater than</li><li>Greater than or equal to</li><li>Less than</li><li>Less than or equal to</li><li>Between</li></ul> |
 
     <Warning>
-      **Applies to Local Evaluation and Runtime Event filters.** Date and Semantic Version are compared inside the SDK in these two cases — a server side SDK using [Local Evaluation](#local-evaluation), or a client side SDK evaluating a [Runtime Event](/docs/featureflags/runtime-events) filter on the device — so both require a recent SDK version. Check the minimum version on your SDK's feature flag guide under [Implementation](#implementation) before you use either type. If an SDK version is older than the minimum required, the condition will NOT match, so no one is placed in that rollout group.
+      **Scope of Date and Semantic Version Operator Filters**
+
+      Date and Semantic Version are compared inside the SDK in two cases: a server side SDK using [Local Evaluation](#local-evaluation), or a client side SDK evaluating a [Runtime Event](/docs/featureflags/runtime-events) filter on the device. Both require a recent SDK version. Check the minimum version on your SDK's feature flag guide under [Implementation](#implementation) before you use either type. If an SDK version is older than the minimum required, the condition will NOT match, so no one is placed in that rollout group.
     </Warning>
 
     <Note>
