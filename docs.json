@@ -1222,6 +1222,19 @@
                 "root": "reference/archive-experiment"
               }
             ]
+          },
+          {
+            "group": "PLATFORM API",
+            "pages": [
+              {
+                "group": "Overview",
+                "pages": [
+                  "reference/permissions"
+                ],
+                "root": "reference/platform-api"
+              }
+            ],
+            "openapi": "openapi/platform.openapi.json"
           }
         ]
       }
