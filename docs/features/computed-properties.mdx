@@ -208,6 +208,10 @@ You can apply a filter on an attribution property only after an attribution brea
 
 You may see a "(not set)" segment in your report when using the Attribution feature. This occurs when the attribution property is missing from all events being evaluated for the user.
 
+**5. Why can't I move the "Attributed by" breakdown above my other breakdowns?**
+
+When a report has multiple breakdowns, the "Attributed by" breakdown is always applied last, and any breakdown you add afterward is placed above it. Attribution is calculated within the boundaries of the breakdowns that precede it. For example, if you break down by Country and then by "Attributed by UTM Source", Mixpanel would compute the attribution model separately within each country.
+
 ## Funnels-specific Computed Properties
 
 The [Funnel report](/docs/reports/funnels/funnels-overview) supports two unique computed properties. The [Time to Convert property](/docs/reports/funnels/funnels-advanced#time-to-convert) returns the time in seconds needed to convert between funnel steps, and the [Property Sum property](/docs/reports/funnels/funnels-advanced#property-sum) allows you to sum up a numeric property as a user moves through funnel steps.
