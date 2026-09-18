@@ -124,7 +124,7 @@ Once you hit save, a new row will appear in the Group Keys section with a new gr
 
 #### Import API
 
-When sending events via the Import API, include `$company_id` and `$user_id` as event properties. The `distinct_id` property should also be present, but Mixpanel will override it with the composite identity.
+When sending events via the Import API, include `$company_id` and `$user_id` as event properties along well as any additional group keys you want to use.
 
 ```bash
 curl --request POST \
