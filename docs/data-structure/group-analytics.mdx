@@ -41,7 +41,7 @@ Use Enterprise Group Analytics when:
 |                         | Group Analytics                                      | Enterprise Group Analytics                                      |
 | ----------------------- | ---------------------------------------------------- | --------------------------------------------------------------- |
 | **Relationship model**  | Two-level hierarchy: Company → User                  | Flat — group keys are independent                                |
-| **Identity**            | Composite: `$company:<company_id>\|$user:<user_id>`  | Uniqueness determined by single user or group id                                       |
+| **Identity**            | Composite: `$company:<company_id>\|$user:<user_id>`  | Determined by single user or group id                                       |
 | **User uniqueness**     | `$user_id` scoped to `$company_id`                   | Global `distinct_id`                                             |
 | **Reserved properties** | `$company_id` and `$user_id`                         | None — you define your own group keys                            |
 | **ID Management**       | Simplified ID Merge only                             | Original or Simplified ID Merge                                  |
