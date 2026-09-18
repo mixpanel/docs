@@ -49,7 +49,15 @@ The same access check runs whenever a stream is created, updated, or resumed, so
 
 ## Delivered Files
 
-All destinations receive batches as gzipped NDJSON files. Each line contains one audit log entry. Files use this path:
+All destinations receive batches as gzipped NDJSON files.
+
+### Record Shape
+
+Each line contains one complete audit log entry. See the [Audit Log Reference](/docs/access-security/audit-log-reference) for the record schema and field definitions. In particular, consumers should use `id` to deduplicate entries and `created` to order them.
+
+### Object Path
+
+Files use this path:
 
 ```
 [<path_prefix>/]YYYY/MM/DD/HH/MM/<uuid>.ndjson.gz
@@ -190,8 +198,8 @@ Storage Object User is required because delivery overwrites objects: retried bat
     Go to **Organization Settings → Audit Log**, click **Configure stream**, and select **Google Cloud Storage**.
   </Step>
 
-  <Step title="Create or choose a bucket">
-    Any location, storage class, and lifecycle policy works. Mixpanel does not manage the bucket.
+  <Step title="Create a bucket">
+    Any location, storage class, and lifecycle policy works. Mixpanel does not create or manage the bucket.
   </Step>
 
   <Step title="Grant Mixpanel access on the bucket">
@@ -270,6 +278,14 @@ An automatic pause that goes unnoticed will quietly become a gap in your destina
 ## FAQ
 
 <AccordionGroup>
+  <Accordion title="Is there an API for exporting audit logs?">
+    Yes. You can use the [Query Organization Audit Logs API](https://docs.mixpanel.com/api-reference/organizations/query-organization-audit-logs) to retrieve your audit logs and route them to a destination you manage.
+  </Accordion>
+
+  <Accordion title="What if my destination isn't supported?">
+    If you don't see your destination listed, [reach out to us](https://mixpanel.com/get-support) and tell us about your use case.
+  </Accordion>
+
   <Accordion title="Can I stream to more than one destination?">
     No. An organization has one audit log stream at a time. To change where entries go, edit the existing stream's configuration rather than creating a second one.
   </Accordion>
