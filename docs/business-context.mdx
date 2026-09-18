@@ -44,7 +44,7 @@ Project-level context describes how an individual project is structured — its 
 3. **Write your context** in the markdown editor.
 4. **Click Save.**
 
-Project owners and admins can edit project context. Anyone with project access can read it.
+Project owners and admins, along with anyone assigned a Custom Role that includes the ability to edit project settings, can view and edit project context in Settings. Everyone else with project access has read-only access to it through the in-product Mixpanel AI or MCP.
 
 ## What to Include in Project Context
 
@@ -88,14 +88,14 @@ Ask your AI assistant in plain language:
 
 - **Markdown only** — context must be plain markdown text. Images, structured data, and links inside the context aren't fetched or rendered for the AI assistant.
 - **Full-replace updates** — `Update-Business-Context` overwrites the entire context at the level you target. There is no append or merge mode.
-- **Edit permissions** — organization context can only be edited by organization owners and admins. Project context can only be edited by project owners and admins. Anyone with project access can read both.
+- **Edit permissions** — organization context can only be edited by organization owners and admins. Project context can only be edited by project owners, admins, and custom roles with permission to edit project settings. Everyone with access can read organization context, including in Settings. Project context is readable by everyone with project access through the in-product Mixpanel AI or MCP, but viewing project context in Settings requires edit access to project settings.
 - **Size limit** — each context (organization and project) is capped at 50,000 characters.
 
 ## FAQ
 
 #### Who can read business context?
 
-Anyone in your organization with access to a project can read the context for that project, and the org context that applies to it, through MCP or in Mixpanel Settings. Permissions match your existing project permissions.
+Anyone in your organization with access to a project can read that project's context and the org context that applies to it through the in-product Mixpanel AI or MCP. Org context is also visible in Mixpanel Settings to everyone with access; viewing project context in Settings requires edit access to project settings. Permissions match your existing project permissions.
 
 #### Does business context get sent to my AI provider?
 
