@@ -21,7 +21,7 @@ Group Analytics uses a two-level structure:
 - **Company level** (top): Identified by `$company_id`. Represents an account, organization, workspace, or any top-level entity.
 - **User level** (bottom): Identified by `$user_id`. Represents an individual user within a company.
 
-The relationship is **many-to-one**: each user belongs to exactly one company, but a company can have many users.
+The relationship is **one-to-many**: each user belongs to exactly one company, but a company can have many users.
 
 ### Composite Identity
 
