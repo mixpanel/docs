@@ -1233,8 +1233,8 @@
                 ],
                 "root": "reference/platform-api"
               }
-
-            ]
+            ],
+            "openapi": "openapi/platform.openapi.json"
           }
         ]
       }

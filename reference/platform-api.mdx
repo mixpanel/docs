@@ -23,7 +23,7 @@ curl https://platform-us.mixpanel.com/v1/organizations/{organization_id}/some-re
   --user "<serviceaccount_username>:<serviceaccount_secret>"
 ```
 
-The service account must have access to the organization, project, or workspace named in the request path, and some endpoints require a specific role beyond membership. Each endpoint's reference page lists the roles that grant access to it. See [Service Accounts](/reference/service-accounts) for how to create one and manage its access.
+The service account must have access to the organization, project, or workspace specified in the request path. Each endpoint's reference page lists the required permissions and the default roles that grant them. See [Service Accounts](/reference/service-accounts) to learn how to create a service account and manage its access.
 
 ## Conventions
 
