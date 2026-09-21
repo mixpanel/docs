@@ -1,0 +1,147 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A user accepted an invitation to the organization.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "invitation",
+      "default": "invitation",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "inviter_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "inviter_email": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "organization_role": {
+          "anyOf": [
+            {
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "is_custom_role": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "is_custom_role"
+              ],
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "teams": {
+          "default": [],
+          "items": {
+            "properties": {
+              "team_id": {
+                "type": "string"
+              },
+              "team_name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "team_id",
+              "team_name"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "projects": {
+          "default": [],
+          "items": {
+            "properties": {
+              "project_id": {
+                "type": "string"
+              },
+              "role": {
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "is_custom_role": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "is_custom_role"
+                ],
+                "type": "object"
+              }
+            },
+            "required": [
+              "project_id",
+              "role"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "inviter_id",
+        "inviter_email"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "accepted",
+      "default": "accepted",
+      "type": "string"
+    },
+    "type": {
+      "const": "invitation.accepted",
+      "default": "invitation.accepted",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
