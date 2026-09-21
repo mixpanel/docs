@@ -41,6 +41,18 @@ Funnels include a built-in two-second grace period. This means any consecutive s
 
 What does this mean in terms of your funnel? In a funnel with step A → B, if a user completes event B first and then performs event A within two seconds, the Funnel will count this as a conversion from A → B or B → A.
 
+#### Can I use the same event as Step 1 and Step 2 to measure repeat behavior?
+
+Yes. To measure how many users perform an action and then perform it again within a time window (for example, a 7-day repeat rate), build a two-step funnel with the same event as both Step 1 and Step 2, and set the [conversion window](/docs/reports/funnels/funnels-advanced#conversion-window) to the window you care about.
+
+Funnel steps require the events to be separate instances, so the same tracked event cannot satisfy both Step 1 and Step 2. The second occurrence must be a later event, subject to the two-second grace period described above. The Step 1 → Step 2 conversion rate is your repeat rate over the chosen window.
+
+#### Can I require a minimum time gap between funnel steps, or require the next step to fall on a different calendar day?
+
+No. The [conversion window](/docs/reports/funnels/funnels-advanced#conversion-window) sets the maximum time allowed between Step 1 and the final step (up to 366 days). There is no setting for a minimum time gap between steps and no setting to require the next step to occur on a different calendar day. Aside from the two-second grace period for simultaneous events, any later event that falls inside the conversion window counts.
+
+If you need "different calendar day" or "at least N hours later" semantics, precompute that on your side. For example, track a separate event (such as `Repeat Action - New Day`) only when the repeat occurs after a day boundary or after your required gap, then use that event as Step 2.
+
 #### What is the difference between Inline Filtering and Global Filtering?
 
 You can use both inline and global filters to decide which users and events to include in a funnel. Inline filters apply pre-query to a specified step, while global filters apply post-query based on the [property attribution](/docs/reports/funnels/funnels-advanced#property-attribution) selected.
