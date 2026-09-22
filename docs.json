@@ -408,7 +408,6 @@
                   "docs/data-governance/data-standards",
                   "docs/data-governance/event-approval",
                   "docs/data-governance/data-volume-monitoring",
-                  "docs/data-governance/warehouse-sync-monitoring",
                   "docs/data-governance/data-clean-up",
         "docs/data-governance/ai-powered-data-governance"
                 ]
@@ -1292,6 +1291,10 @@
     {
       "source": "/",
       "destination": "/docs/what-is-mixpanel"
+    },
+    {
+      "source": "/docs/data-governance/warehouse-sync-monitoring",
+      "destination": "/docs/data-governance/data-volume-monitoring"
     },
     {
       "source": "/docs/slack-bot",
