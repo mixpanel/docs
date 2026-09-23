@@ -34,9 +34,9 @@ curl --request POST \
 | `status_callback_urls` | No | A JSON array of HTTPS URLs. A non-HTTPS entry is rejected with a 400. |
 | `subject_request_id` | **Yes, whenever `status_callback_urls` is set** | Your own identifier for the request. Must be a lowercase canonical UUID v4. |
 
-`subject_request_id` is required with callbacks because OpenDSR reserves minting it to you, the controller — a callback keyed on an identifier you never chose is one you cannot correlate. It must be unique within your project.
+OpenDSR reserves minting `subject_request_id` to the controller, so Mixpanel does not generate one for you. It must be unique within your project.
 
-It is echoed on every callback and on the status endpoint's response, so it is the identifier to correlate on rather than Mixpanel's `tracking_id`.
+It is echoed on every callback and on the status endpoint's response. Correlate on it rather than on Mixpanel's `tracking_id`.
 
 ## The callback request
 
@@ -48,7 +48,7 @@ Mixpanel sends an HTTP `POST` with a JSON body and these headers:
 | `X-OpenDSR-Processor-Domain` | `opendsr.mixpanel.com` |
 | `X-OpenDSR-Signature` | Base64 RSA signature over the raw request body |
 
-Your endpoint should return a `2xx`. Any other response, a timeout, or a TLS failure is treated as a failed delivery and retried.
+Return `202 Accepted` once the signature validates, and `401 Unauthorized` if it does not. Mixpanel treats any `2xx` as delivered; any other response, a timeout, or a TLS failure is a failed delivery and is retried.
 
 <Warning>
   Redirects are not followed. The URL you register must accept the POST directly.
@@ -75,8 +75,6 @@ Your endpoint should return a `2xx`. Any other response, a timeout, or a TLS fai
   "subject_request_type": "portability"
 }
 ```
-
-Keys are serialized in sorted order with no whitespace, exactly as shown. See [Verifying the signature](#verifying-the-signature) for why that matters.
 
 | Field | Type | Notes |
 | --- | --- | --- |
@@ -111,10 +109,10 @@ Everything under `extensions` is Mixpanel's own, not part of OpenDSR. A subscrib
 <Warning>
   Verify against the **raw request body**, before anything parses it.
 
-  Mixpanel signs the exact bytes it sends: keys sorted, no whitespace between tokens. If your framework parses the JSON and you re-serialize it to verify, you will produce `{"a": 1}` where Mixpanel signed `{"a":1}`, and every callback will look forged.
-
-  Most frameworks parse before your handler runs. Use `request.get_data()` in Flask, `express.raw()` or a saved raw buffer in Express, `request.body` in Django, and a `ContentCachingRequestWrapper` in Spring.
+  Mixpanel signs the exact bytes it sends. A body that has been parsed and re-serialized is not those bytes and will not verify.
 </Warning>
+
+Most frameworks parse the body before your handler runs. Use `request.get_data()` in Flask, `express.raw()` in Express, `request.body` in Django, or a `ContentCachingRequestWrapper` in Spring.
 
 `X-OpenDSR-Signature` is a base64-encoded RSA signature (PKCS#1 v1.5, SHA-256) over the raw body. Verify it against the public key in Mixpanel's certificate for the domain in `X-OpenDSR-Processor-Domain`.
 
@@ -192,7 +190,7 @@ OpenDSR defines no failure status. A request that errors reports `cancelled` —
   These are not the values the status endpoint returns. `GET /data-deletions/v3.0/{tracking_id}` reports Mixpanel's internal task states — `PENDING`, `STAGING`, `STARTED`, `SUCCESS`, `FAILURE`, `REVOKED` — while callbacks report OpenDSR's four. If you consume both, map them separately rather than assuming one vocabulary.
 </Warning>
 
-The first callback arrives shortly after you create the request, while it is still `pending`. Treat it as an integration check: within one delivery cycle you learn whether your endpoint is reachable and whether your signature verification works against a real body.
+The first callback arrives shortly after you create the request, while it is still `pending`. Use it to confirm your endpoint is reachable and your signature verification works against a real body.
 
 ## Delivery semantics
 
@@ -200,9 +198,9 @@ The first callback arrives shortly after you create the request, while it is sti
 
 **Retry cadence.** Deliveries are attempted every 15 minutes, which is also how quickly a status change reaches a healthy endpoint. A failed delivery is retried on the next cycle.
 
-**When Mixpanel stops.** Retries stop 90 days after the request was created. After that you receive nothing further and the status endpoint is the only answer. This is longer than the 30-day `expected_completion_time` on purpose, so that a request which misses its deadline can still deliver its completion callback.
+**When Mixpanel stops.** Retries stop 90 days after the request was created — longer than the 30-day `expected_completion_time`, so a request that misses its deadline still delivers its completion callback. After 90 days you receive nothing further.
 
-The status endpoint remains the source of truth throughout. If you have not heard from a callback you expected, poll it.
+The status endpoint remains the source of truth throughout. If a callback you expected has not arrived, poll it.
 
 ## Discovery
 
