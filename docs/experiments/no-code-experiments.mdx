@@ -1,0 +1,167 @@
+---
+title: "No-Code Experiments"
+sidebarTitle: "No-Code Experiments"
+description: "Run A/B tests without shipping code"
+---
+
+Visual experiments let you build and launch A/B test variants on your website through a visual editor, with no code deploy per test. You open the page you want to test, click the element you want to change, edit it directly or describe the change to Mixpanel Agent, then launch.
+
+<Warning>
+  No-code experiments are in closed beta. Access is enabled per project. Contact your account team to request to join.
+</Warning>
+
+## Beta Scope
+
+| | Supported in beta |
+| --- | --- |
+| Browser for authoring | Chrome only |
+| Install method | Web snippet in your page's `<head>` |
+| Site type | Best suited to static and marketing sites |
+
+Complex single-page apps are better served by a code experiment. Mutations are applied to the rendered DOM, so the more dynamic the page, the less predictable the result. The visual editor re-applies mutations when elements re-render, but a heavily client-routed app will still behave less reliably than a static page.
+
+Authoring is Chrome-only. The experiment itself runs for all of your end users in any browser, because the variant is delivered by the Mixpanel JavaScript SDK rather than by the extension.
+
+## Visual vs Code Experiments
+
+Mixpanel has two experiment types. You choose one at creation time.
+
+| | Visual Experiment | Code Experiment |
+| --- | --- | --- |
+| Variants built in | The visual editor, on your live site | Your codebase |
+| Code change per test | None | Yes |
+| Who can run it | Anyone with the right permissions | Requires an engineer |
+| Best for | Copy, styling, and layout changes | Backend logic, new components, anything data-driven |
+
+Visual experiments run on [Mixpanel Feature Flags](/docs/featureflags), and the visual editor creates and configures the flag for you. You do not write any flag evaluation code, and you do not need an engineer to implement the flag. The one-time snippet install is the only code change the feature requires.
+
+<Note>
+  The experiment type can't be changed after the experiment is created. If you need to convert a test, create a new experiment.
+</Note>
+
+## Setup
+
+Setup is a one-time job. After it's done, anyone with permission can create and launch experiments without touching code again.
+
+<Steps>
+  <Step title="Add the snippet to your site">
+    Place this in the `<head>` of every page you want to test. It loads the beta build of the Mixpanel JavaScript SDK and turns on flags and visual experiments.
+
+    ```html
+    <script>
+    var MIXPANEL_CUSTOM_LIB_URL = 'https://cdn.mxpnl.com/libs/mixpanel-2.83.0-ve-alpha-1.min.js';
+    (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for (var d = {}, e = ["get_group"].concat(Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
+
+    mixpanel.init("YOUR_PROJECT_TOKEN", { flags: true, visual_experiments: true });
+    </script>
+    ```
+
+    Both `flags` and `visual_experiments` are required. Feature Flags is the mechanism that delivers variants to your users, so visual experiments will not run without it.
+
+    <Note>
+      During beta, the snippet is the only supported install path, and it must point at the pinned build above rather than `mixpanel-2-latest`. Installing through npm with the `visual_experiments` init option is coming at general availability.
+    </Note>
+
+    If you already load `mixpanel-js` on the page, replace that snippet rather than adding a second one, and keep your existing `init` options alongside the two new ones.
+  </Step>
+
+  <Step title="Install the Chrome extension">
+    Install the latest [Mixpanel extension](https://chromewebstore.google.com/detail/mixpanel-beta/ofcgdmpepahnlckcjhnapiakdpkklbkj) from the Chrome Web Store.
+
+    <Warning>
+      Uninstall or disable any older Mixpanel browser extension first in order for the visual editor to work properly.
+    </Warning>
+
+    After installing, refresh your Mixpanel tab. Mixpanel checks for the extension when the page loads, so without a refresh it will keep reporting the extension as missing.
+  </Step>
+
+  <Step title="Create the experiment">
+    From the Experiments report, create a new experiment and choose **Visual Experiment**. Enter the URL of the page you want to test in **Visual Editor URL**, then configure variants, success metrics, and duration the same way you would for any experiment. See [Setup & Launch Your Experiment](/docs/experiments#setup--launch-your-experiment) for those settings.
+  </Step>
+
+  <Step title="Design your variants">
+    Click **Edit in Editor** to open your site with the visual editor overlaid on it. Design each variant, save, and launch.
+  </Step>
+</Steps>
+
+## Designing Variants
+
+The editor opens your live site in a new tab with a toolbar for switching between variants and adding new ones. Select an element to edit it, or open Mixpanel Agent and describe the change you want.
+
+### What You Can Change
+
+| Change | Notes |
+| --- | --- |
+| Text | Replaces the element's text. Markup is not parsed. |
+| Colors | Fill and gradient, through a color picker |
+| Other CSS | Any CSS property, set as an inline style |
+| CSS classes | Add or remove classes |
+| Attributes | Including `src`, which is how you swap an image |
+| Hide | Removes the element from the page for that variant |
+
+Editing raw HTML is not currently supported. Moving, reordering, inserting, and duplicating elements are not available yet.
+
+### Editing With Mixpanel Agent
+
+Mixpanel Agent can apply several changes at once from a single description, such as restyling a set of buttons and swapping the copy in different sections. Agent proposes the changes, you approve them, and they land in the changes list like any other edit. Agent can only author visual changes from inside the editor; the dashboard chat hands off to the editor instead.
+
+### Reviewing and Removing Changes
+
+Every edit is recorded in a changes list in the editor. You can review each change and delete it individually, which is also how you undo a change: e.g., to unhide an element, delete the hide change.
+
+## Targeting a URL
+
+A variant applies to a page when the page's origin and path match the URL saved for that variant.
+
+- Query strings and hash fragments are currently ignored, so `/cart?utm_source=email` matches `/cart`
+- A trailing slash is ignored, so `/cart/` matches `/cart`
+- Matching is case-sensitive, so `/Cart` does not match `/cart`
+- Wildcards, prefixes, and regular expressions are not yet supported
+
+To test several pages, you currently need to create a separate experiment for each one.
+
+### Overlapping Experiments
+
+When you enter a URL that another draft or running visual experiment already targets, Mixpanel warns you in case of potential conflicts. Overlapping visual experiments can interfere with each other and make results hard to attribute. The warning does not block you from saving or launching, so it's on you to decide whether the overlap is acceptable.
+
+## Permissions
+
+Launching a visual experiment requires the **Launch Visual Experiments** permission, which is separate from the ability to create or edit one. This lets you open variant design up to a wider group while keeping control over what reaches your users.
+
+| Role | Can launch visual experiments |
+| --- | --- |
+| Owner | Yes |
+| Admin | Yes |
+| Analyst | Yes |
+| Messenger | No |
+| Consumer | No |
+| Billing Admin | No |
+
+Grant it to a custom role under Organization Settings, in the **Feature Flags and Experimentation** group of project permissions. Without it, a user can design variants and save them, but the launch action stays disabled.
+
+## Limits and Best Practices
+
+<Warning>
+  Variants you create from inside the editor start at a 0% traffic split and are served to nobody until you set their split on the experiment page in Mixpanel. Check your variant splits before you launch.
+</Warning>
+
+- Editing variants on a running experiment changes what live users see immediately and can skew your results
+- An experiment can't launch until at least one variant has an edit
+- Don't edit the flag variant values by hand for a visual experiment; doing so breaks the editor
+- Edits to elements inside dynamic feeds can be inherited by items that render later
+- Visual changes are capped at 32KB per variant
+- One editor session per user at a time. Opening the editor again ends the previous session
+- Editor sessions expire after an hour
+- Concurrent edits to the same variant overwrite each other, so coordinate before multiple people edit one experiment
+
+### The Editor Reports the Extension Is Missing
+
+Refresh the Mixpanel tab. Detection runs on page load. If it still fails, confirm you're on the latest extension and that older Mixpanel extensions are disabled.
+
+### Changes Don't Appear on Your Site
+
+Confirm the snippet loads the pinned beta build and passes both `flags: true` and `visual_experiments: true`. The editor reports an error when it detects that visual experiments are turned off in the SDK. Also check that the URL you're viewing matches the saved URL, keeping case sensitivity in mind.
+
+## Launching and Reading Results
+
+Launching and analysis work the same as any other experiment. Exposures are recorded when a user is assigned a variant, and results appear in the Experiments report. See [Monitor Your Experiment](/docs/experiments#monitor-your-experiment) and [Interpret Your Results](/docs/experiments#interpret-your-results).
