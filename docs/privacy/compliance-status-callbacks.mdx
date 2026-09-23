@@ -78,7 +78,7 @@ Return `202 Accepted` once the signature validates, and `401 Unauthorized` if it
 
 | Field | Type | Notes |
 | --- | --- | --- |
-| `api_version` | string | Always `3.0`. Mixpanel's DSR API version. The discovery document's field of the same name means something else — see [Discovery](#discovery). |
+| `api_version` | string | Always `3.0`. Mixpanel's DSR API version, which is not the discovery document's `api_version`. |
 | `controller_id` | string | Your Mixpanel project ID, as a string. |
 | `expected_completion_time` | string | RFC 3339. The request's creation time plus 30 days — the response window, restated per request. It does not move between callbacks. |
 | `subject_request_id` | string | The identifier you supplied at creation. |
