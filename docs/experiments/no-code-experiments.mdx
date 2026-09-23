@@ -107,22 +107,22 @@ Mixpanel Agent can apply several changes at once from a single description, such
 
 ### Reviewing and Removing Changes
 
-Every edit is recorded in a changes list in the editor. You can review each change and delete it individually, which is also how you undo a change: e.g., to unhide an element, delete the hide change. Clicking a change highlights the element it applies to. Multiple edits to the same element are condensed into a single entry.
+Every edit is recorded in a changes list in the editor. You can review each change and delete it individually, which is also how you undo a change: e.g., to unhide an element, delete the hide change.
 
 ## Targeting a URL
 
 A variant applies to a page when the page's origin and path match the URL saved for that variant.
 
-- Query strings and hash fragments are ignored, so `/cart?utm_source=email` matches `/cart`
+- Query strings and hash fragments are currently ignored, so `/cart?utm_source=email` matches `/cart`
 - A trailing slash is ignored, so `/cart/` matches `/cart`
 - Matching is case-sensitive, so `/Cart` does not match `/cart`
-- Wildcards, prefixes, and regular expressions are not supported
+- Wildcards, prefixes, and regular expressions are not yet supported
 
-To test several pages, create a separate experiment for each one.
+To test several pages, you currently need to create a separate experiment for each one.
 
 ### Overlapping Experiments
 
-When you enter a URL that another draft or running visual experiment already targets, Mixpanel warns you and names the conflicting experiment. Overlapping visual experiments can interfere with each other and make results hard to attribute. The warning does not block you from saving or launching, so it's on you to decide whether the overlap is acceptable.
+When you enter a URL that another draft or running visual experiment already targets, Mixpanel warns you in case of potential conflicts. Overlapping visual experiments can interfere with each other and make results hard to attribute. The warning does not block you from saving or launching, so it's on you to decide whether the overlap is acceptable.
 
 ## Permissions
 
