@@ -78,7 +78,7 @@ Return `202 Accepted` once the signature validates, and `401 Unauthorized` if it
 
 | Field | Type | Notes |
 | --- | --- | --- |
-| `api_version` | string | Always `3.0`. The DSR API version, not the version of the OpenDSR specification. |
+| `api_version` | string | Always `3.0`. Mixpanel's DSR API version. The discovery document's field of the same name means something else — see [Discovery](#discovery). |
 | `controller_id` | string | Your Mixpanel project ID, as a string. |
 | `expected_completion_time` | string | RFC 3339. The request's creation time plus 30 days — the response window, restated per request. It does not move between callbacks. |
 | `subject_request_id` | string | The identifier you supplied at creation. |
@@ -208,7 +208,7 @@ Mixpanel publishes an OpenDSR discovery document at `https://opendsr.mixpanel.co
 
 ```json GET /v1/discovery
 {
-  "api_version": "3.0",
+  "api_version": "2.0",
   "supported_subject_request_types": ["access", "erasure", "portability"],
   "supported_identities": [
     {
@@ -220,7 +220,11 @@ Mixpanel publishes an OpenDSR discovery document at `https://opendsr.mixpanel.co
 }
 ```
 
-`api_version` is the DSR API version — the same value callbacks carry — not the version of the OpenDSR specification.
+<Warning>
+  `api_version` does not mean here what it means in a callback body.
+
+  Here it is the version of the OpenDSR specification Mixpanel implements. In a callback it is Mixpanel's own DSR API version, which is why the two differ.
+</Warning>
 
 `controller_customer_id` with format `raw` is the identity type Mixpanel accepts: it corresponds to the `distinct_id` you already use. The other identity types OpenDSR lists are device and advertising identifiers, which Mixpanel does not resolve requests by.
 
