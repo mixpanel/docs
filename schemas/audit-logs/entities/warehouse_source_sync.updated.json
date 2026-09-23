@@ -1,0 +1,138 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "Warehouse source sync configuration was modified.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "warehouse_source_sync",
+      "default": "warehouse_source_sync",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "import_type": {
+              "type": "string"
+            },
+            "sync_mode": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "table_params": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "warehouse_source_id": {
+              "type": "string"
+            },
+            "source_name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "import_type",
+            "table_params",
+            "warehouse_source_id"
+          ],
+          "type": "object"
+        },
+        "current": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "import_type": {
+              "type": "string"
+            },
+            "sync_mode": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "table_params": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "warehouse_source_id": {
+              "type": "string"
+            },
+            "source_name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "import_type",
+            "table_params",
+            "warehouse_source_id"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "updated",
+      "default": "updated",
+      "type": "string"
+    },
+    "type": {
+      "const": "warehouse_source_sync.updated",
+      "default": "warehouse_source_sync.updated",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
