@@ -46,14 +46,14 @@ To connect to Snowflake, you will need:
   GRANT USAGE ON WAREHOUSE MIXPANEL_WAREHOUSE TO ROLE MIXPANEL_ROLE;
   GRANT MONITOR ON WAREHOUSE MIXPANEL_WAREHOUSE TO ROLE MIXPANEL_ROLE;
   ```
-- A Snowflake [STORAGE INTEGRATION](https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration) Mixpanel will use to unload data. This integration can optionally restrict STORAGE\_ALLOWED\_LOCATIONS to the unique Mixpanel-managed bucket created to receive data for this connection.
+- A Snowflake [STORAGE INTEGRATION](https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration) Mixpanel will use to unload data. Set STORAGE\_ALLOWED\_LOCATIONS to the unique Mixpanel-managed bucket created to receive data for this connection.
 
   ```sql
   CREATE STORAGE INTEGRATION MIXPANEL_STORAGE_INTEGRATION
     TYPE = EXTERNAL_STAGE
     STORAGE_PROVIDER = 'GCS'
     ENABLED = TRUE
-    STORAGE_ALLOWED_LOCATIONS = ("<mixpanel-provided-bucket-name>"); -- optional
+    STORAGE_ALLOWED_LOCATIONS = ('gcs://<mixpanel-provided-bucket-name>/');
   GRANT USAGE ON INTEGRATION MIXPANEL_STORAGE_INTEGRATION TO ROLE MIXPANEL_ROLE;
   ```
 - A new, empty `MIXPANEL` [SCHEMA](https://docs.snowflake.com/en/sql-reference/sql/create-schema) the Mixpanel user has the `USAGE` and `CREATE STREAM` permission for (if you are using [Mirror](/docs/tracking-methods/warehouse-connectors#mirror)).
@@ -138,7 +138,7 @@ Mixpanel will create and manage the necessary STREAM objects in the `MIXPANEL` s
 
 **Handling schema changes when using Mirror with Snowflake:** Adding new, default-NULL columns to Mirror-tracked tables/views is fully supported.
 
-```jsx
+```sql
 ALTER TABLE <table> ADD COLUMN <column> VARCHAR DEFAULT NULL;
 ```
 

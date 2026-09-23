@@ -92,8 +92,8 @@ GRANT MODIFY ON ANY FILE TO `<application_id_or_username>`;
    - **Server Hostname** — The hostname of your Databricks workspace. Find this in your workspace URL, or under your cluster's [JDBC/ODBC settings](https://docs.databricks.com/en/integrations/jdbc-odbc-bi.html#step).
    - **Authentication** — Choose one of the following:
 
-     - **Personal Access Token** — The service principal token from Option A above.
-     - **OAuth Client ID** and **OAuth Client Secret** — The client credentials from Option B above.
+     - **Personal Access Token** — The service principal token from Option B above.
+     - **OAuth Client ID** and **OAuth Client Secret** — The client credentials from Option A above.
    - **Compute Type** — Select your preferred compute option:
 
      - **All-Purpose Compute** — Uses an existing cluster. Faster sync start times, but the cluster stays running after the sync completes until it times out. Best for development.
@@ -135,7 +135,7 @@ Mirror syncs work by having Databricks compute which rows have been inserted, mo
 
 Mirror uses Databricks [Change Data Feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html) to track changes to Databricks tables. The only requirement to use Mirror on a Databricks table is to enable [change data feed](https://docs.databricks.com/en/delta/delta-change-data-feed.html#enable-change-data-feed) on those entities.
 
-```jsx
+```sql
 ALTER TABLE <table> SET TBLPROPERTIES (delta.enableChangeDataFeed = true);
 ```
 

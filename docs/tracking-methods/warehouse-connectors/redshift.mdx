@@ -93,7 +93,7 @@ Changed rows are detected by computing the MD5 hash for concatenated values of a
 Trailing NULL values are excluded from the checksum to ensure that adding new columns does not change the checksum of existing rows. For example, if a new column is added to the example table:
 
 ```sql
-ALTER TABLE songs ADD COLUMN Tag STRING NULL;
+ALTER TABLE songs ADD COLUMN Tag VARCHAR(256) NULL;
 ```
 
 It would not change the computed checksums:
@@ -117,7 +117,7 @@ Until values are written to the new column:
 Adding new, default-NULL columns to Mirror-tracked tables/views is fully supported as described in the previous section.
 
 ```sql
-ALTER TABLE <table> ADD COLUMN <column> STRING NULL;
+ALTER TABLE <table> ADD COLUMN <column> VARCHAR(256) NULL;
 ```
 
 We recommend avoiding other types of schema changes on large tables. Other schema changes may cause the hash value of every row to change, effectively re-sending the entire table to Mixpanel. For example, if we were to remove the Genre column in the example above, the checksum of every row would be different:
