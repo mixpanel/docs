@@ -34,7 +34,7 @@ curl --request POST \
 | `status_callback_urls` | No | A JSON array of up to 5 HTTPS URLs. A non-HTTPS entry, or more than 5, is rejected with a 400. |
 | `subject_request_id` | **Yes, whenever `status_callback_urls` is set** | Your own identifier for the request. Must be a lowercase canonical UUID v4. |
 
-OpenDSR reserves minting `subject_request_id` to the controller, so Mixpanel does not generate one for you. It must be unique within your project.
+Mixpanel does not generate a `subject_request_id` for you. It must be unique within your project.
 
 It is echoed on every callback and on the status endpoint's response. Correlate on it rather than on Mixpanel's `tracking_id`.
 
@@ -54,9 +54,15 @@ Return `202 Accepted` once the signature validates, and `403 Forbidden` if it do
   Redirects are not followed. The URL you register must accept the POST directly.
 </Warning>
 
-### Body
+### Example callback
 
-```json Completed retrieval
+```http Completed retrieval
+POST /mixpanel/dsr-callback HTTP/1.1
+Host: example.com
+Content-Type: application/json
+X-OpenDSR-Processor-Domain: opendsr.mixpanel.com
+X-OpenDSR-Signature: TWl4cGFuZWwgc2lnbmF0dXJlLCBiYXNlNjQtZW5jb2RlZA==
+
 {
   "api_version": "3.0",
   "controller_id": "2195832",
@@ -85,14 +91,10 @@ Return `202 Accepted` once the signature validates, and `403 Forbidden` if it do
 | `subject_request_type` | string | `erasure` for a deletion. `access` for a retrieval, or `portability` for one whose disclosure type is Data. |
 | `request_status` | string | One of `pending`, `in_progress`, `completed`, `cancelled`. See [Status vocabulary](#status-vocabulary). |
 | `status_callback_url` | string | The URL this callback was addressed to. |
-| `results_url` | string or null | The signed export link on a completed retrieval. `null` on deletions, on any non-completed status, and on a retrieval whose export has aged out. |
+| `results_url` | string or null | The signed export link on a completed retrieval, valid for 14 days from completion. `null` on deletions, on any non-completed status, and on a retrieval whose export has aged out. |
 | `extensions` | object | Mixpanel-specific fields, keyed by `opendsr.mixpanel.com`. |
 
 Every field is always present. `results_url` is `null` rather than omitted when it does not apply.
-
-<Note>
-  There is no timestamp in the body. Two callbacks reporting the same status are byte-identical, which is what lets you dedupe on the body. See [Delivery semantics](#delivery-semantics).
-</Note>
 
 #### extensions
 
@@ -114,9 +116,11 @@ Everything under `extensions` is Mixpanel's own, not part of OpenDSR. A subscrib
 
 Most frameworks parse the body before your handler runs. Use `request.get_data()` in Flask, `express.raw()` in Express, `request.body` in Django, or a `ContentCachingRequestWrapper` in Spring.
 
-`X-OpenDSR-Signature` is a base64-encoded RSA signature (PKCS#1 v1.5, SHA-256) over the raw body. Verify it against the public key in Mixpanel's certificate for the domain in `X-OpenDSR-Processor-Domain`.
+First, reject the callback unless `X-OpenDSR-Processor-Domain` is exactly `opendsr.mixpanel.com`. Compare that header against a value you have hardcoded — never treat it as an instruction about which certificate to fetch.
 
-Fetch the certificate from `https://opendsr.mixpanel.com/v1/certificate.pem`. Cache it; do not fetch it per callback.
+`X-OpenDSR-Signature` is a base64-encoded RSA signature (PKCS#1 v1.5, SHA-256) over the raw body. Verify it against the public key from Mixpanel's certificate.
+
+Fetch the certificate once from `https://opendsr.mixpanel.com/v1/certificate.pem` and store it; do not fetch it per callback. When you fetch it, confirm it chains to a trusted authority, was issued to `opendsr.mixpanel.com`, and has not expired.
 
 <CodeGroup>
 
@@ -168,9 +172,7 @@ After verifying the signature, confirm that `status_callback_url` in the body ma
 Mixpanel's certificate is reissued periodically, but **the keypair does not change across renewals**. Extract and pin the public key rather than the certificate, and renewals require no action from you. If you pin the certificate itself, refresh your copy before it expires.
 
 <Note>
-  The signature proves origin, not freshness. There is no timestamp or nonce, so a captured body and its signature remain valid indefinitely — the deliberate cost of the byte-identical property that makes deduplication possible.
-
-  A captured retrieval callback is a lasting copy of `results_url`. Treat a stored callback body as sensitive, do not log it, and treat a callback as a signal to re-read the status endpoint rather than as the authoritative record.
+  There is no timestamp or nonce in the body, so a captured callback and its signature stay valid indefinitely. A retrieval callback carries a working `results_url` — treat a stored body as sensitive and keep it out of your logs.
 </Note>
 
 ## Status vocabulary
@@ -230,4 +232,4 @@ Mixpanel publishes an OpenDSR discovery document at `https://opendsr.mixpanel.co
 
 ## Limitations
 
-Mixpanel's callbacks are **OpenDSR-aligned**, not a full OpenDSR implementation. Field names, status vocabulary, signing and discovery follow the specification, but Mixpanel does not serve `POST /v1/requests` — requests are created through the endpoints above instead — and OpenDSR §3.1 requires it for conformance.
+Mixpanel's callbacks are **OpenDSR-aligned**, not a full OpenDSR implementation. Field names, status vocabulary, signing and discovery follow the specification, but Mixpanel does not serve `POST /v1/requests`. Create requests through the endpoints above instead.
