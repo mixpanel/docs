@@ -31,7 +31,7 @@ curl --request POST \
 
 | Field | Required | Notes |
 | --- | --- | --- |
-| `status_callback_urls` | No | A JSON array of HTTPS URLs. A non-HTTPS entry is rejected with a 400. |
+| `status_callback_urls` | No | A JSON array of up to 5 HTTPS URLs. A non-HTTPS entry, or more than 5, is rejected with a 400. |
 | `subject_request_id` | **Yes, whenever `status_callback_urls` is set** | Your own identifier for the request. Must be a lowercase canonical UUID v4. |
 
 OpenDSR reserves minting `subject_request_id` to the controller, so Mixpanel does not generate one for you. It must be unique within your project.
@@ -48,7 +48,7 @@ Mixpanel sends an HTTP `POST` with a JSON body and these headers:
 | `X-OpenDSR-Processor-Domain` | `opendsr.mixpanel.com` |
 | `X-OpenDSR-Signature` | Base64 RSA signature over the raw request body |
 
-Return `202 Accepted` once the signature validates, and `401 Unauthorized` if it does not. Mixpanel treats any `2xx` as delivered; any other response, a timeout, or a TLS failure is a failed delivery and is retried.
+Return `202 Accepted` once the signature validates, and `403 Forbidden` if it does not, which is what OpenDSR §8.8 asks for. Mixpanel treats any `2xx` as delivered; any other response, a timeout, or a TLS failure is a failed delivery and is retried.
 
 <Warning>
   Redirects are not followed. The URL you register must accept the POST directly.
