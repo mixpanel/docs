@@ -91,7 +91,7 @@ X-OpenDSR-Signature: TWl4cGFuZWwgc2lnbmF0dXJlLCBiYXNlNjQtZW5jb2RlZA==
 | `subject_request_type` | string | `erasure` for a deletion. `access` for a retrieval, or `portability` for one whose disclosure type is Data. |
 | `request_status` | string | One of `pending`, `in_progress`, `completed`, `cancelled`. See [Status vocabulary](#status-vocabulary). |
 | `status_callback_url` | string | The URL this callback was addressed to. |
-| `results_url` | string or null | The signed export link on a completed retrieval, valid for 14 days from completion. `null` on deletions, on any non-completed status, and on a retrieval whose export has aged out. |
+| `results_url` | string or null | The signed export link on a completed retrieval, valid for just under 30 days from completion. Re-reading the status endpoint does not extend it. `null` on deletions, on any non-completed status, and on a retrieval whose export has aged out. |
 | `extensions` | object | Mixpanel-specific fields, keyed by `opendsr.mixpanel.com`. |
 
 Every field is always present. `results_url` is `null` rather than omitted when it does not apply.
