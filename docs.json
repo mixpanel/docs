@@ -335,7 +335,13 @@
                   "docs/featureflags/runtime-events"
                 ]
               },
-              "docs/experiments",
+              {
+                "group": "Experiments",
+                "root": "docs/experiments",
+                "pages": [
+                  "docs/experiments/no-code-experiments"
+                ]
+              },
               "docs/metric_tree",
               {
                 "group": "Users",
