@@ -1,0 +1,64 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "Default access for all users to a project was granted.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "project",
+      "default": "project",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "role": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "is_custom_role": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "is_custom_role"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "role"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "default_access_granted",
+      "default": "default_access_granted",
+      "type": "string"
+    },
+    "type": {
+      "const": "project.default_access_granted",
+      "default": "project.default_access_granted",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
