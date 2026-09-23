@@ -253,6 +253,59 @@ if (isEnabled) {
 }
 ```
 
+### Get All Flag Assignments
+
+Minimum supported SDK version: [`v2.79.0`](https://github.com/mixpanel/mixpanel-js/releases/tag/v2.79.0)
+
+Retrieve every flag assignment the SDK currently holds in a single call. Both methods take no arguments and have no fallback parameter — a flag the user was not assigned is simply absent from the result rather than falling back to a default value.
+
+<Note>
+  Neither method tracks an exposure event. Unlike the single-flag getters above, `get_all_variants` and `get_all_variants_sync` do **not** send `$experiment_started`, so reading every assignment will not enroll the user in an experiment. This is the main reason to reach for these methods — inspecting assignments for debugging, logging, or hydrating your own state. Record the exposure with `get_variant_value` (or another single-flag getter) at the point where the user actually sees the feature.
+</Note>
+
+Both methods return a [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) keyed by flag name — **not** a plain object. `Object.keys(variants)` silently returns an empty array, so iterate the `Map` instead.
+
+**Synchronous**
+
+`get_all_variants_sync()` returns the assignments already in memory. It returns an empty `Map` if flags have not loaded yet, or if the persisted assignments are past their TTL.
+
+```javascript
+const variants = mixpanel.flags.get_all_variants_sync();
+
+variants.forEach((variant, flagName) => {
+  console.log(flagName, variant.key, variant.value);
+});
+
+// for...of works too
+for (const [flagName, variant] of variants) {
+  console.log(flagName, variant.key, variant.value);
+}
+```
+
+**Asynchronous**
+
+`get_all_variants()` waits for an in-flight flag fetch to settle and then resolves with the assignments. It always resolves and never rejects:
+
+- Under `networkOnly`, a failed fetch resolves to an empty `Map`.
+- Under `networkFirst`, a failed fetch resolves to the persisted assignments.
+- Under `persistenceUntilNetworkSuccess`, valid persisted assignments resolve immediately without waiting on the network.
+
+It resolves to an empty `Map` if feature flags were never initialized, and it does not start a fetch of its own — it only awaits one already in progress.
+
+```javascript
+const variants = await mixpanel.flags.get_all_variants();
+
+variants.forEach((variant, flagName) => {
+  console.log(flagName, variant.key, variant.value);
+});
+```
+
+Each value is a full variant object, so [`variant_source`](#variant-source) and the rest of the variant metadata are available on every entry.
+
+<Warning>
+  Both methods hand back the SDK's internal `Map` by reference, not a copy. Mutating the result corrupts the SDK's flag state — copy it first with `new Map(variants)` if you need to modify it.
+</Warning>
+
 ## Frequently Asked Questions
 
 ### What if I'm not receiving any flags on SDK initialization?
