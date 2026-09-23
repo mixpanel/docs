@@ -1,0 +1,231 @@
+---
+title: "Compliance Status Callbacks"
+description: "Receive a signed POST when a GDPR or CCPA request changes status"
+sidebarTitle: Status Callbacks
+---
+
+When you submit a data deletion or data retrieval request, Mixpanel can POST to your endpoint every time that request changes status, instead of you polling the status endpoint.
+
+Callbacks follow the [OpenDSR](https://github.com/opengdpr/OpenDSR) specification: the field names, the status vocabulary and the signature scheme are the spec's. See [Limitations](#limitations) for where Mixpanel stops short of full conformance.
+
+<Note>
+  Callbacks are available on API version 3.0 only, and must be enabled for your project. Contact your Mixpanel representative to request access.
+</Note>
+
+## Subscribing
+
+Pass `status_callback_urls` when you create the request. Every URL you name receives its own copy of every callback.
+
+```bash Create a deletion with callbacks
+curl --request POST \
+  --url 'https://mixpanel.com/api/app/data-deletions/v3.0/?token=YOUR_PROJECT_TOKEN' \
+  --header 'authorization: Bearer YOUR_GDPR_OAUTH_TOKEN' \
+  --header 'content-type: application/json' \
+  --data '{
+    "distinct_ids": ["9f8c2d41-6b3e-4f0a-8d21-5c7a1e9b4f33"],
+    "compliance_type": "GDPR",
+    "subject_request_id": "3f2b8c14-9d7e-4a06-b153-2e8f7c4a9d51",
+    "status_callback_urls": ["https://example.com/mixpanel/dsr-callback"]
+  }'
+```
+
+| Field | Required | Notes |
+| --- | --- | --- |
+| `status_callback_urls` | No | A JSON array of HTTPS URLs. A non-HTTPS entry is rejected with a 400. |
+| `subject_request_id` | **Yes, whenever `status_callback_urls` is set** | Your own identifier for the request. Must be a lowercase canonical UUID v4. |
+
+`subject_request_id` is required with callbacks because OpenDSR reserves minting it to you, the controller — a callback keyed on an identifier you never chose is one you cannot correlate. It must be unique within your project.
+
+It is echoed on every callback and on the status endpoint's response, so it is the identifier to correlate on rather than Mixpanel's `tracking_id`.
+
+## The callback request
+
+Mixpanel sends an HTTP `POST` with a JSON body and these headers:
+
+| Header | Value |
+| --- | --- |
+| `Content-Type` | `application/json` |
+| `X-OpenDSR-Processor-Domain` | `opendsr.mixpanel.com` |
+| `X-OpenDSR-Signature` | Base64 RSA signature over the raw request body |
+
+Your endpoint should return a `2xx`. Any other response, a timeout, or a TLS failure is treated as a failed delivery and retried.
+
+<Warning>
+  Redirects are not followed. The URL you register must accept the POST directly.
+</Warning>
+
+### Body
+
+```json Completed retrieval
+{
+  "api_version": "3.0",
+  "controller_id": "2195832",
+  "expected_completion_time": "2026-10-23T14:22:07.318402Z",
+  "extensions": {
+    "opendsr.mixpanel.com": {
+      "project_id": 2195832,
+      "status": "completed",
+      "tracking_id": "7c4e1a90-3b52-4d68-9f01-6a8d2e5b7c43"
+    }
+  },
+  "request_status": "completed",
+  "results_url": "https://storage.googleapis.com/mixpanel-compliance-exports/...",
+  "status_callback_url": "https://example.com/mixpanel/dsr-callback",
+  "subject_request_id": "3f2b8c14-9d7e-4a06-b153-2e8f7c4a9d51",
+  "subject_request_type": "portability"
+}
+```
+
+Keys are serialized in sorted order with no whitespace, exactly as shown. See [Verifying the signature](#verifying-the-signature) for why that matters.
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `api_version` | string | Always `3.0`. The DSR API version, not the version of the OpenDSR specification. |
+| `controller_id` | string | Your Mixpanel project ID, as a string. |
+| `expected_completion_time` | string | RFC 3339. The request's creation time plus 30 days — the response window, restated per request. It does not move between callbacks. |
+| `subject_request_id` | string | The identifier you supplied at creation. |
+| `subject_request_type` | string | `erasure` for a deletion. `access` for a retrieval, or `portability` for one whose disclosure type is Data. |
+| `request_status` | string | One of `pending`, `in_progress`, `completed`, `cancelled`. See [Status vocabulary](#status-vocabulary). |
+| `status_callback_url` | string | The URL this callback was addressed to. |
+| `results_url` | string or null | The signed export link on a completed retrieval. `null` on deletions, on any non-completed status, and on a retrieval whose export has aged out. |
+| `extensions` | object | Mixpanel-specific fields, keyed by `opendsr.mixpanel.com`. |
+
+Every field is always present. `results_url` is `null` rather than omitted when it does not apply.
+
+<Note>
+  There is no timestamp in the body. Two callbacks reporting the same status are byte-identical, which is what lets you dedupe on the body. See [Delivery semantics](#delivery-semantics).
+</Note>
+
+#### extensions
+
+Everything under `extensions` is Mixpanel's own, not part of OpenDSR. A subscriber that ignores this object entirely still works.
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `tracking_id` | string | Mixpanel's identifier for the request, returned as `task_id` when you created it. Stable across internal retries. |
+| `project_id` | number | The project ID, as a number. |
+| `status` | string | The unmapped status. Identical to `request_status` except on a failure, where this reads `failed`. |
+
+## Verifying the signature
+
+<Warning>
+  Verify against the **raw request body**, before anything parses it.
+
+  Mixpanel signs the exact bytes it sends: keys sorted, no whitespace between tokens. If your framework parses the JSON and you re-serialize it to verify, you will produce `{"a": 1}` where Mixpanel signed `{"a":1}`, and every callback will look forged.
+
+  Most frameworks parse before your handler runs. Use `request.get_data()` in Flask, `express.raw()` or a saved raw buffer in Express, `request.body` in Django, and a `ContentCachingRequestWrapper` in Spring.
+</Warning>
+
+`X-OpenDSR-Signature` is a base64-encoded RSA signature (PKCS#1 v1.5, SHA-256) over the raw body. Verify it against the public key in Mixpanel's certificate for the domain in `X-OpenDSR-Processor-Domain`.
+
+Fetch the certificate from `https://opendsr.mixpanel.com/v1/certificate.pem`. Cache it; do not fetch it per callback.
+
+<CodeGroup>
+
+```python Python
+import base64
+from cryptography.hazmat.primitives import hashes, serialization
+from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.exceptions import InvalidSignature
+from cryptography import x509
+
+with open("opendsr-mixpanel-com.pem", "rb") as f:
+    public_key = x509.load_pem_x509_certificate(f.read()).public_key()
+
+
+def verify(raw_body: bytes, signature_header: str) -> bool:
+    try:
+        public_key.verify(
+            base64.b64decode(signature_header),
+            raw_body,
+            padding.PKCS1v15(),
+            hashes.SHA256(),
+        )
+        return True
+    except InvalidSignature:
+        return False
+```
+
+```javascript Node.js
+const crypto = require("crypto");
+const fs = require("fs");
+
+const certificate = fs.readFileSync("opendsr-mixpanel-com.pem");
+const publicKey = new crypto.X509Certificate(certificate).publicKey;
+
+function verify(rawBody, signatureHeader) {
+  return crypto
+    .createVerify("RSA-SHA256")
+    .update(rawBody)
+    .verify(publicKey, signatureHeader, "base64");
+}
+```
+
+</CodeGroup>
+
+After verifying the signature, confirm that `status_callback_url` in the body matches the endpoint the request arrived on. OpenDSR includes this step so that a valid callback captured from one of your endpoints cannot be replayed against another.
+
+### Certificate renewal
+
+Mixpanel's certificate is reissued periodically, but **the keypair does not change across renewals**. Extract and pin the public key rather than the certificate, and renewals require no action from you. If you pin the certificate itself, refresh your copy before it expires.
+
+<Note>
+  The signature proves origin, not freshness. There is no timestamp or nonce, so a captured body and its signature remain valid indefinitely — the deliberate cost of the byte-identical property that makes deduplication possible.
+
+  A captured retrieval callback is a lasting copy of `results_url`. Treat a stored callback body as sensitive, do not log it, and treat a callback as a signal to re-read the status endpoint rather than as the authoritative record.
+</Note>
+
+## Status vocabulary
+
+`request_status` is always one of OpenDSR's four values. Branch on this field.
+
+| `request_status` | Meaning |
+| --- | --- |
+| `pending` | Accepted, not yet started. |
+| `in_progress` | Running. |
+| `completed` | Finished successfully. On a retrieval, `results_url` is populated. |
+| `cancelled` | Final, without asserting the request was fulfilled. |
+
+OpenDSR defines no failure status. A request that errors reports `cancelled` — the only terminal value that does not assert fulfilment — and `extensions["opendsr.mixpanel.com"].status` reads `failed`. Check that field if you need to distinguish a genuine cancellation from an error.
+
+<Warning>
+  These are not the values the status endpoint returns. `GET /data-deletions/v3.0/{tracking_id}` reports Mixpanel's internal task states — `PENDING`, `STAGING`, `STARTED`, `SUCCESS`, `FAILURE`, `REVOKED` — while callbacks report OpenDSR's four. If you consume both, map them separately rather than assuming one vocabulary.
+</Warning>
+
+The first callback arrives shortly after you create the request, while it is still `pending`. Treat it as an integration check: within one delivery cycle you learn whether your endpoint is reachable and whether your signature verification works against a real body.
+
+## Delivery semantics
+
+**At-least-once.** A retry sends the identical body with the identical signature. Deduplicate on the body, or on the pair of `subject_request_id` and `request_status`. An exactly-once assumption will double-process.
+
+**Retry cadence.** Deliveries are attempted every 15 minutes, which is also how quickly a status change reaches a healthy endpoint. A failed delivery is retried on the next cycle.
+
+**When Mixpanel stops.** Retries stop 90 days after the request was created. After that you receive nothing further and the status endpoint is the only answer. This is longer than the 30-day `expected_completion_time` on purpose, so that a request which misses its deadline can still deliver its completion callback.
+
+The status endpoint remains the source of truth throughout. If you have not heard from a callback you expected, poll it.
+
+## Discovery
+
+Mixpanel publishes an OpenDSR discovery document at `https://opendsr.mixpanel.com/v1/discovery`. It needs no authentication.
+
+```json GET /v1/discovery
+{
+  "api_version": "3.0",
+  "supported_subject_request_types": ["access", "erasure", "portability"],
+  "supported_identities": [
+    {
+      "identity_type": "controller_customer_id",
+      "identity_format": "raw"
+    }
+  ],
+  "processor_certificate": "https://opendsr.mixpanel.com/v1/certificate.pem"
+}
+```
+
+`api_version` is the DSR API version — the same value callbacks carry — not the version of the OpenDSR specification.
+
+`controller_customer_id` with format `raw` is the identity type Mixpanel accepts: it corresponds to the `distinct_id` you already use. The other identity types OpenDSR lists are device and advertising identifiers, which Mixpanel does not resolve requests by.
+
+## Limitations
+
+Mixpanel's callbacks are **OpenDSR-aligned**, not a full OpenDSR implementation. Field names, status vocabulary, signing and discovery follow the specification, but Mixpanel does not serve `POST /v1/requests` — requests are created through the endpoints above instead — and OpenDSR §3.1 requires it for conformance.
