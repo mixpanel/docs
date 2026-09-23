@@ -96,7 +96,7 @@ X-OpenDSR-Signature: TWl4cGFuZWwgc2lnbmF0dXJlLCBiYXNlNjQtZW5jb2RlZA==
 
 Every field is always present. `results_url` is `null` rather than omitted when it does not apply.
 
-#### extensions
+#### Extensions
 
 Everything under `extensions` is Mixpanel's own, not part of OpenDSR. A subscriber that ignores this object entirely still works.
 
@@ -223,9 +223,9 @@ Mixpanel publishes an OpenDSR discovery document at `https://opendsr.mixpanel.co
 ```
 
 <Warning>
-  `api_version` does not mean here what it means in a callback body.
+  `api_version` in this context does not carry the same meaning as in a callback body.
 
-  Here it is the version of the OpenDSR specification Mixpanel implements. In a callback it is Mixpanel's own DSR API version, which is why the two differ.
+  Here, it's the version of the OpenDSR specification Mixpanel implements. In a callback, it is Mixpanel's own DSR API version, which is why the two differ.
 </Warning>
 
 `controller_customer_id` with format `raw` is the identity type Mixpanel accepts: it corresponds to the `distinct_id` you already use. The other identity types OpenDSR lists are device and advertising identifiers, which Mixpanel does not resolve requests by.
