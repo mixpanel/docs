@@ -108,7 +108,7 @@ If you are using [Snowflake Network policy](https://docs.snowflake.com/en/user-g
 
 - Some users report seeing the following error `ErrorMessage=SQL compilation error: Cannot unload to an inlined external location. Please create a stage first and unload to the stage instead.`. To resolve this error, you may set the following account security setting:
 
-```jsx
+```sql
 ALTER ACCOUNT SET PREVENT_UNLOAD_TO_INLINE_URL = FALSE;
 ```
 
@@ -120,9 +120,9 @@ Mirror syncs work by having Snowflake compute which rows have been inserted, mod
 
 Mirror uses [Snowflake Streams](https://docs.snowflake.com/en/user-guide/streams-intro) to track changes to Snowflake tables or views. The only requirement to use Mirror on a Snowflake table or view is to enable [change tracking](https://docs.snowflake.com/en/user-guide/streams-manage):
 
-```jsx
+```sql
 ALTER TABLE <table> SET CHANGE_TRACKING = TRUE;
-# or
+-- or
 ALTER VIEW <view> SET CHANGE_TRACKING = TRUE;
 ```
 

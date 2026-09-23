@@ -45,7 +45,7 @@ Complete the following steps to get your Postgres connector up and running:
 
 Mixpanel only reads from your database, so connect with a dedicated read-only role rather than an existing application user. Grant access only to the schemas you intend to sync.
 
-Run the following as a superuser or as the owner of the schema, replacing `your_database` and `your_schema`:
+Run the following as a superuser (on managed services such as Amazon RDS or Cloud SQL, use an admin role that has `CREATEROLE` and is a member of `table_owner_role`), replacing `your_database`, `your_schema`, and `table_owner_role` (the role that creates tables in the schema, such as your application, dbt, or ETL role):
 
 ```sql
 -- Create a dedicated login role for Mixpanel.
@@ -60,13 +60,16 @@ GRANT USAGE ON SCHEMA your_schema TO mixpanel_reader;
 -- Grant read access to the tables that exist today.
 GRANT SELECT ON ALL TABLES IN SCHEMA your_schema TO mixpanel_reader;
 
--- Grant read access to tables created in this schema later, so new
--- tables do not silently fail to sync.
-ALTER DEFAULT PRIVILEGES IN SCHEMA your_schema
+-- Grant read access to tables that table_owner_role creates in this
+-- schema later, so new tables do not silently fail to sync. Default
+-- privileges apply only to objects created by the role named in FOR ROLE.
+ALTER DEFAULT PRIVILEGES FOR ROLE table_owner_role IN SCHEMA your_schema
   GRANT SELECT ON TABLES TO mixpanel_reader;
 ```
 
 Repeat the `USAGE`, `SELECT`, and `ALTER DEFAULT PRIVILEGES` statements for each additional schema you sync. Without `USAGE` on the schema, the connector authenticates but cannot see any tables, and validation fails.
+
+If more than one role creates tables in a schema, run the `ALTER DEFAULT PRIVILEGES` statement once per creating role. Tables created by a role that isn't listed won't be readable by `mixpanel_reader` until you grant `SELECT` on them directly. To see which roles own existing tables, run `SELECT DISTINCT tableowner FROM pg_tables WHERE schemaname = 'your_schema';`.
 
 ### SSL Modes
 
