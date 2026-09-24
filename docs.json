@@ -1339,7 +1339,7 @@
     },
     {
       "source": "/developer-docs-redirect/cloud-ingestion",
-      "destination": "/docs/quickstart/track-events?sdk=httpapi"
+      "destination": "/docs/quickstart/capture-events/track-events"
     },
     {
       "source": "/developer-docs-redirect/codeless-freshpaint",
@@ -2415,7 +2415,7 @@
     },
     {
       "source": "/docs/tracking/data-warehouse/groups",
-      "destination": "/docs/tracking-methods/data-warehouse/sending-group-profiles"
+      "destination": "/docs/tracking-methods/warehouse-connectors#group-profiles"
     },
     {
       "source": "/docs/tracking/data-warehouse/redshift",
@@ -2491,7 +2491,7 @@
     },
     {
       "source": "/docs/tracking/http-api",
-      "destination": "/docs/quickstart/track-events?sdk=httpapi"
+      "destination": "/docs/quickstart/capture-events/track-events"
     },
     {
       "source": "/docs/tracking/integrations/bigquery",
@@ -2887,7 +2887,7 @@
     },
     {
       "source": "/hc",
-      "destination": "docs/getting-started/what-is-mixpanel"
+      "destination": "/docs/what-is-mixpanel"
     },
     {
       "source": "/hc/admin/general_settings",
@@ -3667,7 +3667,7 @@
     },
     {
       "source": "/hc/en-us/articles/360041995352*",
-      "destination": "/docs/tracking/how-tos/events-properties"
+      "destination": "/docs/data-structure/events-and-properties"
     },
     {
       "source": "/hc/en-us/articles/360042412051*",
@@ -3947,7 +3947,7 @@
     },
     {
       "source": "/hc/en-us/sections/115001308546*",
-      "destination": "/docs/quickstart/track-events?sdk=httpapi"
+      "destination": "/docs/quickstart/capture-events/track-events"
     },
     {
       "source": "/hc/en-us/sections/115001308566*",
@@ -3999,7 +3999,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004499323*",
-      "destination": "/docs/"
+      "destination": "/docs/what-is-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004499383*",
@@ -4067,7 +4067,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004511126*",
-      "destination": "/docs/"
+      "destination": "/docs/what-is-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004511206*",
@@ -4191,7 +4191,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004563123*",
-      "destination": "/docs/"
+      "destination": "/docs/what-is-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004563223*",
@@ -4339,15 +4339,15 @@
     },
     {
       "source": "/hc/en-us/articles/115004582646*",
-      "destination": "/docs/"
+      "destination": "/docs/what-is-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004582706*",
-      "destination": "/docs/"
+      "destination": "/docs/what-is-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004582746*",
-      "destination": "/docs/"
+      "destination": "/docs/what-is-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004598183*",
@@ -4447,11 +4447,11 @@
     },
     {
       "source": "/hc/en-us/articles/115004615486*",
-      "destination": "/docs/"
+      "destination": "/docs/what-is-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004615566*",
-      "destination": "/docs/"
+      "destination": "/docs/what-is-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004615626*",
@@ -4503,7 +4503,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004617306*",
-      "destination": "/docs/"
+      "destination": "/docs/what-is-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004617386*",
@@ -4619,7 +4619,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004695303*",
-      "destination": "/docs/"
+      "destination": "/docs/what-is-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004702823*",

@@ -6,7 +6,7 @@ description: "How events and their properties work in Mixpanel, with naming conv
 
 ## Overview
 
-Events are the core of [Mixpanel's Data Model](/guides/strategic-playbooks/onboarding-playbook/plan/tracking-strategy#the-mixpanel-data-model). All events should have an **Event Name**, a **Timestamp** of when that event has occurred, and a [**Distinct ID**](/docs/tracking-methods/id-management#distinct-id) (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describes the event in more detail.
+Events are the core of [Mixpanel's Data Model](/guides/mixpanel-introduction#mixpanel-data-model). All events should have an **Event Name**, a **Timestamp** of when that event has occurred, and a [**Distinct ID**](/docs/tracking-methods/id-management#distinct-id) (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describes the event in more detail.
 
 - If you're familiar with databases, events are like tables and properties are like columns.
 - If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
@@ -15,7 +15,7 @@ Events are the core of [Mixpanel's Data Model](/guides/strategic-playbooks/onboa
   **Note:** There are a few use cases, such as tracking [Ad Spend](/docs/tracking-methods/integrations/ad-spend), in which the event should not be tied to specific users; as such, these events should be sent without a Distinct ID, but this is the exception.
 </Note>
 
-For more information about events refer to the documentation on [The Mixpanel Data Model](/guides/strategic-playbooks/onboarding-playbook/plan/tracking-strategy#the-mixpanel-data-model).
+For more information about events refer to the documentation on [The Mixpanel Data Model](/guides/mixpanel-introduction#mixpanel-data-model).
 
 ## Examples
 
@@ -62,7 +62,7 @@ We recommend having a consistent naming convention for your events and propertie
 
 For example, don't create an event name like `Purchase (11-01-2019)`. Instead, create an event called `Purchase` and have some property (eg: `Return Date`) set to the dynamic value **"11-01-2019"**.
 
-> **Tip:** Learn more best practices around defining your events and properties under our tutorials for [Creating a Tracking Plan](/guides/strategic-playbooks/onboarding-playbook/plan/tracking-strategy#tracking-plan-methodology).
+> **Tip:** Learn more best practices around defining your events and properties under our tutorials for [Creating a Tracking Plan](/docs/tracking-best-practices/tracking-plan#tracking-plan-methodology).
 
 ### Super Properties
 
