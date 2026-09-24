@@ -162,7 +162,7 @@ The SCIM menu in the Access Security tab of the Organization Settings lets you g
 
 Note that only accounts with an **Enterprise plan** have access to SCIM at the moment.
 
-Review Mixpanel's [official SCIM spec subset](https://datatracker.ietf.org/doc/html/rfc7644). The base endpoint is `https://mixpanel.com/api/app/scim/v2`, which you can hit using the SCIM token as an Authentication Bearer token. For instance, a GET call on `https://mixpanel.com/api/app/scim/v2/Users` using the SCIM token will get you a list of all users in your organization.
+Mixpanel's uses a [SCIM spec subset](https://datatracker.ietf.org/doc/html/rfc7644). The base endpoint is `https://mixpanel.com/api/app/scim/v2`, which you can hit using the SCIM token as an Authentication Bearer token. For instance, a GET call on `https://mixpanel.com/api/app/scim/v2/Users` using the SCIM token will get you a list of all users in your organization.
 
 <Note>
   The SCIM endpoint affects only users whose email has a domain in the list of your verified claimed domains.
