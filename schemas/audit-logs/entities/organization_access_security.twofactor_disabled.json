@@ -1,0 +1,41 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "Organization-wide two-factor authentication was disabled.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "organization_access_security",
+      "default": "organization_access_security",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {},
+      "type": "object"
+    },
+    "action": {
+      "const": "twofactor_disabled",
+      "default": "twofactor_disabled",
+      "type": "string"
+    },
+    "type": {
+      "const": "organization_access_security.twofactor_disabled",
+      "default": "organization_access_security.twofactor_disabled",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

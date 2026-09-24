@@ -4,9 +4,23 @@ description: "Rollout with precision control"
 sidebarTitle: "Feature Flags"
 ---
 
-<Note>
-  Feature Flags is a separately priced product add-on. It is currently only offered to those on the Enterprise Plan. See our [pricing page](https://mixpanel.com/pricing/) for more details.
-</Note>
+Ship a feature to a subset of users, roll it back without a deploy, and measure what it changed — all from the same project your analytics already live in.
+
+## Plan Availability
+
+Feature Flags is available for customers on Free, Growth, and Enterprise plans, and is included with [Experiments](/docs/experiments) on every plan. You can use flags on their own — you don't have to run an experiment.
+
+Each plan limits your **active flags**: flags marked Enabled, counted across your organization. Creating flags is unlimited. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+
+| Plan | Flag Allowance | Cohort Targeting | How to Access |
+| --- | --- | --- | --- |
+| Free | Up to 10 flags simultaneously active | Cohorts up to 100k users, in one rollout group | Switch plans from the [pricing page](https://mixpanel.com/pricing/). |
+| Growth | Up to 50 flags simultaneously active, or 500 with purchased Experiments volume | Cohorts up to 20M users | Purchase Experiments volume under Organization Settings > Plan Details & Billing. |
+| Enterprise | Up to 3 flags created, or 500 simultaneously active with purchased Experiments | Cohorts up to 20M users | Purchase Experiments to raise your limit to 500 active flags — [contact us](https://mixpanel.com/contact-us/sales/) or reach out to your account team. |
+
+The Enterprise allowance of up to 3 flags created is the default Enterprise trial amount for evaluating Feature Flags; purchasing Experiments removes this limitation and allows for up to 500 flags simultaneously active. [Contact us](https://mixpanel.com/contact-us/sales/) to inquire about an unlimited usage Enterprise trial.
+
+Enterprise customers who need Feature Flags without Experiments can [contact us](https://mixpanel.com/contact-us/sales/) about a standalone arrangement, which is priced on Feature Flag API requests. On every other plan, API requests are unlimited.
 
 ## Overview
 
@@ -17,7 +31,7 @@ sidebarTitle: "Feature Flags"
 - **Kill-switch** risky functionality instantly
 - **Serve variants** for A/B/x tests and analyze results with **Mixpanel Experiments**
 
-**Flags** deliver variants to users whereas **Experiments** measure impact with statistical rigor. Use flags to deploy and orchestrate and use experiments to decide.
+**Flags** deliver variants to users, whereas **Experiments** measure impact with statistical rigor. Use flags to deploy and orchestrate, and use experiments to decide.
 
 ## Concepts & terminology
 
@@ -25,14 +39,14 @@ sidebarTitle: "Feature Flags"
 - **Variant Assignment Key** — the randomization bucket unit: `distinct_id` (user), `device_id`, or a **group key** like `account_id`.
 - **Variants** — experience labels (e.g., `control`, `A`, `B`).
 - **Variant Splits** — allocation across variants (e.g., 90%/10%).
-- **Fallback Value** — variant to use when an assignment is unavailable.
+- **Fallback Value** — the value your app supplies at call time (e.g., to `get_variant_value`) that is used whenever the SDK does not return an assignment.  Treat this as the default, control experience for your rollout that's served to a user who has not received an assignment. Reasons may include the user being outside the rollout %, excluded by targeting filters, not having a persisted sticky variant or client-side assignment, or feature flag API call failure.
 - **Sticky Variants** — the same entity keeps the same variant over time.
 - **Rollout Groups** - the configuration determining which users are in the rollout. This is comprised of:
   - **Filters** — the targeting configuration that determines whether a subject is eligible for this rollout. Filter types include Cohort and Runtime filters
   - **Cohort Filter** - a targeting method that uses Mixpanel cohorts to target users or group entities
   - **Runtime Filter** - a targeting method that checks data available at runtime against a Runtime Property or Runtime Event
   - **Rollout %** — percentage of the audience that receives the flag if they are eligible for the rollout group
-- **Runtime Properties** — any key/value attributes your application passes as properties in a `custom_properties` object nested within the flag-evaluation `context` at request time; the flag compares these values directly (e.g. equals / contains). They are not limited to device or platform values — any attribute your app can supply at request time, such as `organization_id`, works. Use Runtime Properties when you need **immediate**, per-request targeting on these values (e.g. organization- or account-based targeting). If periodic cohort refresh is acceptable, [group cohort targeting](#rollout-groups) is an alternative for org/account-based use cases.
+- **Runtime Properties** — any key/value attributes your application passes as properties in a `custom_properties` object nested within the flag-evaluation `context` at request time; the flag compares these values directly (e.g. equals / contains). They are not limited to device or platform values — any attribute your app can supply at request time, such as `organization_id`, works. Use Runtime Properties when you need **immediate**, per-request targeting on these values (e.g. organization- or account-based targeting). If periodic cohort refresh is acceptable, [group cohort targeting](#targeting-&-identity-management) is an alternative for org/account-based use cases.
 - **Runtime Events** — event-based targeting (e.g., user clicked button, completed purchase) used to target users immediately after they perform actions.
 - **Assignment vs Exposure** — assignment is deciding the variant; exposure is when your app **uses** that variant to render.
 - **Feature Flag API Request** - is a call made to a feature flag API to retrieve the current state or configuration of one or more feature flags. This request allows an application to dynamically determine which features should be active for a user
@@ -99,10 +113,18 @@ We support the following types of Flags:
     - The cohort builder automatically corresponds to the the flag's assignment key.
     - Example: A flag with assignment key `company_id` lets you target a cohort like "Enterprise companies with \>50 seats."
 
+{/* ============================================================ */}
+{/* ⚠️ DO NOT REMOVE OR MODIFY the 20M user cohort limit below.  */}
+{/* We are contractually/legally required to maintain it.        */}
+{/* Before any change, confirm with the PM for Feature Flags     */}
+{/* AND Legal (contract implication review). — Myron, 2026-07-16 */}
+{/* ============================================================ */}
+
     <Note>
       - Cohorts used in feature flag targeting refresh on a periodic cadence (~every 2 hours). So once a user or group entity qualifies for a cohort, it can take up to 2 hours before they see a desired experience.
       - If you want users or groups to continue seeing the same variant even if they disqualify from the cohort in the future, couple this with **Sticky Variants.** This will ensure they continue to see the new experience until the flag is turned off.
-      - For the optimal performance, cohorts used in feature flag targeting are officially limited to 20 million users.
+      - For the optimal performance, cohorts used in feature flag targeting are officially limited to 20 million users on Growth and Enterprise plans, and 100,000 users on Free plans.
+      - On a Free plan, you can use cohort targeting conditions in one rollout group, and you cannot save cohorts for reuse.
     </Note>
 
     <Warning>
@@ -116,7 +138,7 @@ We support the following types of Flags:
 
     This method enables targeting users immediately based on arbitrary key/value attributes your application sends as properties in a `custom_properties` object nested within the flag-evaluation `context` at request time. The flag compares these values directly (e.g. equals / contains) for immediate, per-request decisions.
 
-    - Runtime Properties are **not** limited to device or platform values. They can be any attribute your frontend or app supplies at request time — for example, `platform`, `path`, `country`, or a custom value like `organization_id`. This makes them the right tool for **immediate**, per-request targeting, such as organization- or account-based targeting where you need decisions to take effect right away. If a periodic cohort refresh (approximately every 2 hours) is acceptable, [group cohort targeting](#rollout-groups) is an alternative approach for org/account-based use cases.
+    - Runtime Properties are **not** limited to device or platform values. They can be any attribute your frontend or app supplies at request time — for example, `platform`, `path`, `country`, or a custom value like `organization_id`. This makes them the right tool for **immediate**, per-request targeting, such as organization- or account-based targeting where you need decisions to take effect right away. If a periodic cohort refresh (approximately every 2 hours) is acceptable, [group cohort targeting](#targeting-&-identity-management) is an alternative approach for org/account-based use cases.
     - These attributes should be passed to the SDK as properties in a `custom_properties` object that is a sub-node of the feature flag `context`, at the time the flag is evaluated.
 
     #### Data types for runtime values
@@ -130,6 +152,14 @@ We support the following types of Flags:
 | **True/False** | A boolean, `true` or `false` | Boolean match | <ul><li>is True</li><li>is False</li></ul> |
 | **List** | A list of values, e.g. `["a", "b"]` | Requires any or all elements to satisfy the condition. Each element is compared using its own data type, following that type's rules above. | <ul><li>any</li><li>all</li></ul> |
 | **Fuzzy** | Any primitive value | Case-insensitive loose match that coerces across types before comparing, so `"5"` matches `5` and `"1"` matches `true`. | <ul><li>Is</li></ul> |
+| **Date** | Must be a valid RFC3339 timestamp, e.g. `"2026-07-16T14:30:00Z"`. Other formatted timestamps will NOT match. | Compared as a point in time. The date you select in the rule is interpreted in your project's timezone, and a date with no time of day covers the whole day. | <ul><li>On</li><li>Not on</li><li>Before</li><li>Since</li><li>Between</li></ul> |
+| **Semantic Version** | A version string, e.g. `"2.1.0"` or `"2.5.0-rc.1"` | Ordered by the [SemVer 2.0.0](https://semver.org/) specification i.e. major, then minor, then patch, with a pre-release ranking below the release it belongs to. A leading `v` is dropped, a partial version such as `1.2` is read as `1.2.0`, and build metadata after `+` is ignored. | <ul><li>Is</li><li>Is not</li><li>Greater than</li><li>Greater than or equal to</li><li>Less than</li><li>Less than or equal to</li><li>Between</li></ul> |
+
+    <Warning>
+      **Scope of Date and Semantic Version Operator Filters**
+
+      Date and Semantic Version are compared inside the SDK in two cases: a server side SDK using [Local Evaluation](#local-evaluation), or a client side SDK evaluating a [Runtime Event](/docs/featureflags/runtime-events) filter on the device. Both require a recent SDK version. Check the minimum version on your SDK's feature flag guide under [Implementation](#implementation) before you use either type. If an SDK version is older than the minimum required, the condition will NOT match, so no one is placed in that rollout group.
+    </Warning>
 
     <Note>
       **Runtime Property** (targeting based on values your app _sends_ in the request context) is distinct from **Runtime Event** (targeting based on Mixpanel events the user _triggers_ via `mixpanel.track()`). See the section below for details on Runtime Event filters.
@@ -248,7 +278,7 @@ Keep traffic within region by using the correct project & API hosts.
 Mixpanel analytics downtime will result in suspended cohort membership refreshes, though feature flag variants will continue to be served.
 
 - When using sticky variants, the last available variant per user will be served.
-- In case of Feature flagging service downtime, your fallback variant will be served by the SDKs.
+- In case of Feature flagging service downtime, your fallback variant will be served by the SDKs. See [Fallback Value](#concepts--terminology) for more details about fallback values.
 
 **Performance**
 
@@ -469,53 +499,49 @@ Removing an inter-project connection from the "Other Environments" menu unlinks 
 Feature Flag rollouts may include configuration that references data groups in a given project. For instance, if you change the "Assignment Key" of a flag to a data group key, both the source and destination projects _must_ include the referenced data group in order to duplicate or push changes. If the assignment key is _not_ present in the destination project, the operation will fail.
 
 <Info>
-  **Billing across projects:** You aren't double-charged for using the same feature flag across multiple projects. Mixpanel charges based on active feature flag keys, so the same flag-key shared across projects is counted once.
+  **Flag limits across projects:** The same feature flag key used across multiple projects counts once against your plan's active flag limit.
 </Info>
 
 ## Feature Flagging Pricing FAQ
 
-<Note>
-  Feature Flags is a separately priced product offered to organizations on the Enterprise Plan. Please [contact us](https://mixpanel.com/contact-us/sales/) for more details.
-</Note>
+#### How is Feature Flags priced?
 
-Pricing Unit: Feature Flags are priced based on Feature Flag API Requests, and number of 'active' feature flags at any time
+Feature Flags is included with [Experiments](/docs/experiments) on every Mixpanel plan. Usage is limited by the number of active flags and the maximum cohort size for targeting — see [Plan Availability](#plan-availability). When Feature Flags is included with Experiments, API requests are unlimited. Standalone Feature Flags, purchased without Experiments on an Enterprise plan, is priced on Feature Flag API requests.
 
-**What is a Feature Flag API Request?**
+#### What counts as an active flag?
 
-A feature flag API request is a call made by your application to a Feature Flag system’s API to determine **which all features** should be enabled or disabled, or which variant should be served to a user. All the active flags in the system are evaluated as part of this API request.
+Active flags are flags which are marked **Enabled**. Only these flags are counted under your plan's active flag limit. There is no limit on the total number of flags you create.
 
-**How can I estimate Feature Flag API requests?**
+#### What happens when I reach my active flag limit?
 
-In general, you can expect every user session to have 1 API request. When the session starts, all the flags for the user are fetched in the single API request. So monthly API requests is at minimum equivalent to the total user sessions that month. Few notes:
+No more flags are fetched as part of the API request until you disable some others or upgrade your plan. Mixpanel fetches the flags with the earliest start dates, up to your limit; flags started after that are not returned. A flag's start date is the date it was first enabled.
 
-- If you have multiple sdk inits each session, that would increase the count of API requests in a session
-- Considering above, general rule of thumb: would consider API requests to be 1.5 x User Sessions considering implementation challenges, or multiple sdk inits in a session
+#### Does the same flag count twice if I create it across projects?
 
-**How do I estimate API requests if implementing via server side sdk?**
+No. Limits are based on active feature flag keys. If the same flag key is used across projects, it is counted only once.
 
-- If you are using server side sdk, with only local evaluation: your API requests depend on a) how many server instances you have and b) how frequently you poll your servers
-- If you are using server side sdk, but with remote evaluation or leveraging cohorts: your API request estimation is similar to client-side sdk requests laid our above
+#### How can I monitor my account’s Feature Flags usage?
 
-**What happens if I go over my purchased Feature Flag API Request bucket?**
+You can see your feature flag usage by going to Organization Settings \> Plan Details & Billing.
 
-You can continue using Mixpanel Feature Flags, but you will be charged a higher rate for the overages.
+#### What is a Feature Flag API Request?
 
-**Is there any limit on number of feature flags per API request?**
+A feature flag API request is a call made by your application to a feature flag system's API to determine which features should be enabled or disabled, or which variant should be served to a user. All the active flags in the system are evaluated as part of this API request.
 
-Yes, there is a limit depending on the plan you purchase. You can choose from 3 plans: to have upto 50, 200 or 1000 'active flags' per API request.
+#### How can I estimate Feature Flag API requests?
 
-- Once you reach this limit, no more flags will will be fetched as part of the API request until you disable some others or upgrade your plan
-- Active flags are flags which are marked 'Enabled'. Only these flags are counted under the 'active flag' limit
-- If you are on the 50 active flag limit, the first 50 flags based on the 'start' date are fetched
+API requests are unlimited when Feature Flags is included with Experiments, but the estimate is useful for capacity planning, and it determines the price of a standalone Enterprise arrangement.
 
-**Do I get double charged if I create the same feature flag across projects?**
+In general, you can expect every user session to have 1 API request. When the session starts, all the flags for the user are fetched in the single API request, so monthly API requests are at minimum equivalent to the total user sessions that month. Two notes:
 
-No. We charge based on active 'feature flag keys'. If the same flag-key is used across projects, it will be charged only once.
+- If you have multiple SDK inits each session, that increases the count of API requests in a session.
+- As a general rule of thumb, consider API requests to be 1.5 x user sessions, to account for implementation differences and multiple SDK inits in a session.
 
-**How can I monitor my account’s Feature Flag API requests consumption?**
+For a server-side SDK:
 
-You can see your feature flag usage by going to Organization settings \> Plan Details & Billing.
+- With local evaluation only, your API requests depend on how many server instances you have and how frequently you poll.
+- With remote evaluation, or when using cohorts, your estimate is similar to the client-side SDK estimate above.
 
-**If I purchase the feature flag add-on, do I still need to purchase the experimentation add-on as well?**
+#### Can I purchase Feature Flags without Experiments?
 
-Yes. Both these are separate add-ons to ensure we're compatible with your tech stack. So, if you are also looking to analyze experiments, please check our \[experimentation offering.\] ([https://docs.mixpanel.com/docs/experiments](https://docs.mixpanel.com/docs/experiments))
+Standalone Feature Flags is available to Enterprise plan customers. [Contact us](https://mixpanel.com/contact-us/sales/) for more details.
