@@ -1,0 +1,266 @@
+{
+  "description": "An audit log entry describing an action performed in your organization or project.",
+  "properties": {
+    "project_id": {
+      "description": "ID of the project the audited action occurred in.",
+      "type": "string"
+    },
+    "organization_id": {
+      "description": "ID of the organization the audited action occurred in.",
+      "type": "string"
+    },
+    "service": {
+      "description": "The originating Mixpanel service for this audit log entry.",
+      "type": "string"
+    },
+    "event_category": {
+      "description": "High-level category describing the type of audited event.",
+      "type": "string"
+    },
+    "organization_name": {
+      "description": "Name of the organization at the time the audited action occurred.",
+      "type": "string"
+    },
+    "ttl_timestamp": {
+      "description": "UTC timestamp at which the audit log entry expires and may be deleted.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "client_ip": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "IP address of the client that initiated the audited action."
+    },
+    "http_method": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "HTTP method of the request that triggered the audited action (e.g. GET, POST)."
+    },
+    "http_request_headers": {
+      "anyOf": [
+        {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "HTTP request headers from the request that triggered the audited action."
+    },
+    "http_request_size": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Size of the HTTP request body in bytes."
+    },
+    "http_response_headers": {
+      "anyOf": [
+        {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "HTTP response headers returned for the request that triggered the audited action."
+    },
+    "http_response_size": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Size of the HTTP response body in bytes."
+    },
+    "http_status": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "HTTP status code returned for the request that triggered the audited action."
+    },
+    "http_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "URL of the request that triggered the audited action."
+    },
+    "http_user_agent": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "User-Agent header from the request that triggered the audited action."
+    },
+    "project_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Name of the project at the time the audited action occurred."
+    },
+    "user_email": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Email of the user who performed the audited action."
+    },
+    "user_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "ID of the user who performed the audited action."
+    },
+    "user_roles": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Comma-separated list of roles held by the user at the time of the audited action."
+    },
+    "created": {
+      "description": "UTC timestamp when the audit log entry was created.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the audit log entry.",
+      "type": "string"
+    },
+    "was_impersonated_by_staff": {
+      "description": "Whether the action was performed by a Mixpanel staff member acting on behalf of your organization.",
+      "type": "boolean"
+    },
+    "entity": {
+      "description": "The entity that was acted upon, including its type, action, and action-specific payload.",
+      "properties": {
+        "entity_id": {
+          "description": "Unique identifier for the entity targeted by the audit log entry.",
+          "type": "string"
+        },
+        "entity_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Name of the entity targeted by the audit log entry."
+        },
+        "payload": {
+          "additionalProperties": true,
+          "properties": {},
+          "type": "object",
+          "description": "The payload of the audit log entry, which contains the details of the action performed."
+        },
+        "action": {
+          "description": "Action performed on the entity targeted by the audit log entry.",
+          "type": "string"
+        },
+        "entity_type": {
+          "description": "Type of the entity targeted by the audit log entry.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the audit log entry, which is a combination of the entity type and action.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "entity_id",
+        "entity_name",
+        "payload",
+        "action",
+        "entity_type",
+        "type"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "project_id",
+    "organization_id",
+    "service",
+    "event_category",
+    "organization_name",
+    "ttl_timestamp",
+    "created",
+    "id",
+    "was_impersonated_by_staff",
+    "entity"
+  ],
+  "type": "object"
+}
