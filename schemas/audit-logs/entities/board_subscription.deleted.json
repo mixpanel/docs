@@ -1,0 +1,78 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "A board subscription was removed.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "board_subscription",
+      "default": "board_subscription",
+      "type": "string"
+    },
+    "payload": {
+      "description": "Payload for board subscription (email digest) events.",
+      "properties": {
+        "board_id": {
+          "type": "string"
+        },
+        "board_title": {
+          "type": "string"
+        },
+        "recur": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "recipients": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "board_id",
+        "board_title"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "deleted",
+      "default": "deleted",
+      "type": "string"
+    },
+    "type": {
+      "const": "board_subscription.deleted",
+      "default": "board_subscription.deleted",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

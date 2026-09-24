@@ -831,12 +831,14 @@ Billing varies by operation type and connector mode. The tables below explain ho
 |  | Append | ❌ | ❌ |
 |  | Mirror | ✅ | ✅ |
 
+If you’re planning on backfilling a significant amount of historical events and need help understanding how it will impact your costs, please reach out to your Mixpanel account manager or [contact support](https://mixpanel.com/get-support).
+
+<Note>
 The above table applies if your account uses ingestion time billing. If your account is on legacy event timestamp billing:
 
 - **Event inserts** are billed only if the event timestamp is in the current billing month. Events with timestamps in previous months are not billed.
 - **Updates and deletes** are always billed at ingestion time, regardless of the event timestamp on the original event. More details on ingestion time vs. event timestamp billing can be found in [this section](/docs/pricing#are-monthly-events-calculated-based-on-ingestion-time-or-event-timestamp).
-
-If you’re planning on backfilling a significant amount of historical events and need help understanding how it will impact your costs, please reach out to your Mixpanel account manager or [contact support](https://mixpanel.com/get-support).
+</Note>
 
 **Note on Updates**: If you already have an event in Mixpanel, for example, Event A with properties a,b,c,d, but want to:
 
