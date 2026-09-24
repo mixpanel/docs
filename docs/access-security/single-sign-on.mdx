@@ -92,11 +92,11 @@ OneLogin only requires that you get the Postback URL. The "Mixpanel" application
 
 ### G-Suite
 
-Google has an official integration with Mixpanel with instructions [here](https://support.google.com/a/answer/7553416). Unfortunately, we do not have an auto-provisioning integration with G-Suite. You will need to rely on [Just In Time Provisioning](/docs/access-security/single-sign-on#just-in-time-provisioning).
+[Google has an official integration with Mixpanel with instructions](https://support.google.com/a/answer/7553416). Unfortunately, we do not have an auto-provisioning integration with G-Suite. You will need to rely on [Just In Time Provisioning](/docs/access-security/single-sign-on#just-in-time-provisioning).
 
 ### Azure
 
-There are instructions here to set up SSO with Azure [here](/docs/access-security/single-sign-on/azure). Azure also has an auto-provisioning integration with Mixpanel, which you can find more info [here](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial).
+Here are [instructions to set up SSO with Azure](/docs/access-security/single-sign-on/azure). Azure also has an [auto-provisioning integration with Mixpanel](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial).
 
 ### Other IDPs
 
@@ -162,7 +162,7 @@ The SCIM menu in the Access Security tab of the Organization Settings lets you g
 
 Note that only accounts with an **Enterprise plan** have access to SCIM at the moment.
 
-You can find the official SCIM spec subset that Mixpanel implements [here](https://datatracker.ietf.org/doc/html/rfc7644). The base endpoint is `https://mixpanel.com/api/app/scim/v2`, which you can hit using the SCIM token as an Authentication Bearer token. For instance, a GET call on `https://mixpanel.com/api/app/scim/v2/Users` using the SCIM token will get you a list of all users in your organization.
+Review Mixpanel's [official SCIM spec subset](https://datatracker.ietf.org/doc/html/rfc7644). The base endpoint is `https://mixpanel.com/api/app/scim/v2`, which you can hit using the SCIM token as an Authentication Bearer token. For instance, a GET call on `https://mixpanel.com/api/app/scim/v2/Users` using the SCIM token will get you a list of all users in your organization.
 
 <Note>
   The SCIM endpoint affects only users whose email has a domain in the list of your verified claimed domains.
