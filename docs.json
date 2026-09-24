@@ -335,7 +335,13 @@
                   "docs/featureflags/runtime-events"
                 ]
               },
-              "docs/experiments",
+              {
+                "group": "Experiments",
+                "root": "docs/experiments",
+                "pages": [
+                  "docs/experiments/sequential-testing"
+                ]
+              },
               "docs/metric_tree",
               {
                 "group": "Users",
