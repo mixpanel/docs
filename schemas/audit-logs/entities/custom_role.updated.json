@@ -1,0 +1,180 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "A custom role's permissions or settings were modified.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "properties": {
+            "role_id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "permissions": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "groups": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "is_default": {
+              "type": "boolean"
+            },
+            "project_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "created": {
+              "type": "string"
+            },
+            "modified": {
+              "type": "string"
+            },
+            "created_by_user_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "role_id",
+            "name",
+            "description",
+            "permissions",
+            "is_default",
+            "project_id",
+            "created",
+            "modified",
+            "created_by_user_id"
+          ],
+          "type": "object"
+        },
+        "current": {
+          "properties": {
+            "role_id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "permissions": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "groups": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "is_default": {
+              "type": "boolean"
+            },
+            "project_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "created": {
+              "type": "string"
+            },
+            "modified": {
+              "type": "string"
+            },
+            "created_by_user_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "role_id",
+            "name",
+            "description",
+            "permissions",
+            "is_default",
+            "project_id",
+            "created",
+            "modified",
+            "created_by_user_id"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "entity_type": {
+      "const": "custom_role",
+      "default": "custom_role",
+      "type": "string"
+    },
+    "action": {
+      "const": "updated",
+      "default": "updated",
+      "type": "string"
+    },
+    "type": {
+      "const": "custom_role.updated",
+      "default": "custom_role.updated",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "payload",
+    "entity_type",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

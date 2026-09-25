@@ -190,6 +190,7 @@
                     ]
                   },
                   "docs/tracking-methods/autocapture",
+                  "docs/tracking-methods/first-party-domains",
                   "docs/tracking-methods/warehouse-connectors",
                   {
                     "group": "Integrations",
@@ -367,7 +368,8 @@
                   "docs/features/revenue-analytics",
                   "docs/features/saved-metrics-and-behaviors",
                   "docs/features/sessions",
-                  "docs/features/slack-integration"
+                  "docs/features/slack-integration",
+                  "docs/features/warehouse-metrics"
                 ]
               }
             ]
@@ -377,7 +379,6 @@
             "icon": "/icons/ai.svg",
             "pages": [
               "docs/mixpanel-agent",
-              "docs/slack-bot",
               "docs/agentic-automations",
               "docs/root-cause-analysis",
               "docs/mcp",
@@ -408,7 +409,6 @@
                   "docs/data-governance/data-standards",
                   "docs/data-governance/event-approval",
                   "docs/data-governance/data-volume-monitoring",
-                  "docs/data-governance/warehouse-sync-monitoring",
                   "docs/data-governance/data-clean-up",
         "docs/data-governance/ai-powered-data-governance"
                 ]
@@ -448,7 +448,8 @@
                   "docs/privacy/gdpr-compliance",
                   "docs/privacy/eu-residency",
                   "docs/privacy/in-residency",
-                  "docs/privacy/end-user-data-management"
+                  "docs/privacy/end-user-data-management",
+                  "docs/privacy/compliance-status-callbacks"
                 ]
               },
               {
@@ -466,6 +467,17 @@
             "icon": "/icons/data-out.svg",
             "pages": [
               "docs/export-methods",
+              {
+                "group": "Real-Time Event Streams",
+                "tag": "BETA",
+                "root": "docs/real-time-event-streams",
+                "pages": [
+                  "docs/real-time-event-streams/overview",
+                  "docs/real-time-event-streams/setup",
+                  "docs/real-time-event-streams/delivery-and-reliability",
+                  "docs/real-time-event-streams/states-and-monitoring"
+                ]
+              },
               {
                 "group": "Data Pipelines",
                 "root": "docs/data-pipelines",
@@ -604,33 +616,6 @@
                   {
                     "group": "Empower Your Team",
                     "pages": [
-                      {
-                        "group": "Use Mixpanel Agent",
-                        "pages": [
-                          "guides/guides-by-use-case/empower-your-team/mixpanel-agent",
-                          "guides/guides-by-use-case/empower-your-team/mixpanel-agent/use-cases"
-                        ]
-                      },
-                      {
-                        "group": "Use Mixpanel MCP",
-                        "root": "guides/guides-by-use-case/empower-your-team/mcp",
-                        "pages": [
-                          {
-                            "group": "MCP by Industry",
-                            "root": "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry",
-                            "pages": [
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/ai",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/b2bsaas",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/ecommerce",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/finance",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/healthcare",
-                              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry/media"
-                            ]
-                          },
-                          "guides/guides-by-use-case/empower-your-team/mcp/integrations"
-                        ]
-                      },
-                      "guides/guides-by-use-case/empower-your-team/headless",
                       "guides/guides-by-use-case/empower-your-team/close-strategy-execution-gap",
                       "guides/guides-by-use-case/empower-your-team/see-replays"
                     ]
@@ -644,7 +629,6 @@
                   "guides/guides-by-workflow/embed-data",
                   "guides/guides-by-workflow/ensure-data-quality",
                   "guides/guides-by-workflow/data-privacy",
-                  "guides/guides-by-workflow/write-business-context",
                   "guides/guides-by-workflow/sync-with-mirror"
                 ]
               },
@@ -652,7 +636,6 @@
                 "group": "Guides by Topic",
                 "pages": [
                   "guides/guides-by-topic/continuous-innovation",
-                  "guides/guides-by-topic/trust-ai-answers",
                   "guides/guides-by-topic/govern-data",
                   "guides/guides-by-topic/features",
                   "guides/guides-by-topic/core-reports"
@@ -664,12 +647,40 @@
             "group": "MIXPANEL AI",
             "icon": "/icons/flower.svg",
             "pages": [
-              "guides/guides-by-use-case/empower-your-team/mixpanel-agent",
-              "guides/guides-by-use-case/empower-your-team/mcp",
-              "guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry",
-              "guides/guides-by-use-case/empower-your-team/mcp/integrations",
-              "guides/guides-by-use-case/empower-your-team/headless",
-              "guides/guides-by-workflow/write-business-context"
+              {
+                        "group": "Use Mixpanel Agent",
+                        "root": "guides/mixpanel-agent",
+                        "pages": [
+                          "guides/mixpanel-agent/use-cases"
+                        ]
+                      },
+              {
+                        "group": "Use Mixpanel MCP",
+                        "root": "guides/mcp",
+                        "pages": [
+                          {
+                            "group": "MCP by Industry",
+                            "root": "guides/mcp/mcp-by-industry",
+                            "pages": [
+                              "guides/mcp/mcp-by-industry/ai",
+                              "guides/mcp/mcp-by-industry/b2bsaas",
+                              "guides/mcp/mcp-by-industry/ecommerce",
+                              "guides/mcp/mcp-by-industry/finance",
+                              "guides/mcp/mcp-by-industry/healthcare",
+                              "guides/mcp/mcp-by-industry/media"
+                            ]
+                          },
+                          "guides/mcp/integrations"
+                        ]
+                      },
+                      "guides/headless",
+                      {
+                        "group": "Use Mixpanel AI",
+                        "pages": [
+                          "guides/use-mixpanel-ai/write-business-context",
+                          "guides/use-mixpanel-ai/trust-ai-answers"
+                        ]
+                      }
             ]
           },
           {
@@ -1212,6 +1223,19 @@
                 "root": "reference/archive-experiment"
               }
             ]
+          },
+          {
+            "group": "PLATFORM API",
+            "pages": [
+              {
+                "group": "Overview",
+                "pages": [
+                  "reference/permissions"
+                ],
+                "root": "reference/platform-api"
+              }
+            ],
+            "openapi": "openapi/platform.openapi.json"
           }
         ]
       }
@@ -1269,6 +1293,14 @@
     {
       "source": "/",
       "destination": "/docs/what-is-mixpanel"
+    },
+    {
+      "source": "/docs/data-governance/warehouse-sync-monitoring",
+      "destination": "/docs/data-governance/data-volume-monitoring"
+    },
+    {
+      "source": "/docs/slack-bot",
+      "destination": "/docs/mixpanel-agent"
     },
     {
       "source": "/changelogs/*",
@@ -4757,6 +4789,34 @@
     {
       "source": "/guides/strategic-playbooks/onboarding-playbook/beyond-onboarding",
       "destination":"/guides/strategic-playbooks/onboarding-playbook"
+    },
+    {
+      "source": "/guides/guides-by-use-case/empower-your-team/mixpanel-agent",
+      "destination":"/guides/mixpanel-agent"
+    },
+    {
+      "source": "/guides/guides-by-use-case/empower-your-team/mixpanel-agent/use-cases",
+      "destination":"/guides/mixpanel-agent/use-cases"
+    },
+    {
+      "source": "/guides/guides-by-use-case/empower-your-team/mcp",
+      "destination":"/guides/mcp"
+    },
+    {
+      "source": "/guides/guides-by-use-case/empower-your-team/mcp/*",
+      "destination":"/guides/mcp/*"
+    },
+    {
+      "source": "/guides/guides-by-use-case/empower-your-team/headless",
+      "destination":"/guides/headless"
+    },
+    {
+      "source": "/guides/guides-by-workflow/write-business-context",
+      "destination":"/guides/use-mixpanel-ai/write-business-context"
+    },
+    {
+      "source": "/guides/guides-by-topic/trust-ai-answers",
+      "destination":"/guides/use-mixpanel-ai/trust-ai-answers"
     }
   ]
 }

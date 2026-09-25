@@ -1,0 +1,76 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "A user successfully logged into the organization.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "session",
+      "default": "session",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "login_method": {
+          "anyOf": [
+            {
+              "enum": [
+                "password",
+                "sso",
+                "magic_link",
+                "social",
+                "passkey",
+                "passkey_recovery"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "twofactor_method": {
+          "anyOf": [
+            {
+              "enum": [
+                "totp",
+                "sms"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "type": "object"
+    },
+    "action": {
+      "const": "logged_in",
+      "default": "logged_in",
+      "type": "string"
+    },
+    "type": {
+      "const": "session.logged_in",
+      "default": "session.logged_in",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
