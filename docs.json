@@ -379,6 +379,15 @@
             "icon": "/icons/ai.svg",
             "pages": [
               "docs/mixpanel-agent",
+              {
+                "group": "MCP Connections",
+                "tag": "BETA",
+                "root": "docs/mcp-connections",
+                "pages": [
+                  "docs/mcp-connections/github",
+                  "docs/mcp-connections/jira"
+                ]
+              },
               "docs/agentic-automations",
               "docs/root-cause-analysis",
               "docs/mcp",
