@@ -1,0 +1,91 @@
+---
+title: "MCP Connections"
+description: "Connect Mixpanel Agent to tools like GitHub, Jira, Linear, and Notion so it can read context from them."
+---
+
+<Note>
+  **Beta.** MCP Connections are currently available to a limited set of customers during Beta. If you'd like to participate, reach out to your Mixpanel account team.
+</Note>
+
+## Overview
+
+MCP Connections let [Mixpanel Agent](/docs/mixpanel-agent) read context from the tools your team already uses. Each connection links your own account on an external [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server to Mixpanel, so the Agent can pull in issues, pull requests, docs, and tickets alongside your Mixpanel data.
+
+MCP Connections are the reverse of the [Mixpanel MCP Server](/docs/mcp): the MCP Server lets outside AI tools read Mixpanel, while MCP Connections let Mixpanel Agent read outside tools.
+
+Key properties:
+
+- **Read-only.** Mixpanel Agent can only use read tools on connected servers. It cannot create, edit, or delete anything in them.
+- **Private to you.** Connections belong to your user in a single organization. Teammates cannot see or use your connections, and the Agent sees only what your account on that tool can see.
+- **Removed when you leave.** If you are removed from the organization, your connections and their credentials are deleted.
+
+## Supported Tools
+
+| Tool | Sign-in method | Setup guide |
+| --- | --- | --- |
+| Notion | OAuth | Sign in with your Notion account |
+| Linear | OAuth | Sign in with your Linear account |
+| Jira | OAuth | [Connect Jira](/docs/mcp-connections/jira) |
+| GitHub | Personal access token | [Connect GitHub](/docs/mcp-connections/github) |
+
+Each tool can be connected once per user.
+
+## Enable MCP Connections for Your Organization
+
+MCP Connections are off by default. An organization admin or owner must turn them on before anyone can connect a tool.
+
+1. Go to **Settings → Org → AI Settings**.
+2. Make sure **Enable Mixpanel AI** is on. MCP Connections require Mixpanel AI.
+3. Turn on **Connect Your Tools via MCP**.
+
+When this setting is off, members cannot add connections, and Mixpanel Agent does not use any existing connections. Members can still view and delete connections they already have.
+
+## Add a Connection
+
+1. Go to **Settings → Personal Settings → [MCP Connections](https://mixpanel.com/settings/account#mcp-connections)**. You can also add a connection from the **MCP Connections** menu in the Mixpanel Agent chat box.
+2. Click **Add Connection** and choose a tool.
+3. Mixpanel checks how the server handles authentication, then asks you to sign in in one of two ways:
+   - **OAuth:** Servers that support OAuth open a popup to their own sign-in page. Sign in, approve access, and the popup confirms "Successfully connected". Notion, Linear, and Jira work this way.
+   - **Token:** Servers that don't support OAuth sign-in with Mixpanel ask you to paste a token in the **Authentication Token** field. Mixpanel checks the token before saving it. GitHub works this way.
+
+Once connected, the tool appears in the list with a **Connected** status.
+
+## Use Connections in Mixpanel Agent
+
+Your connections are available in every Mixpanel Agent conversation. To choose which ones the Agent can use in a conversation, open the **MCP Connections** menu in the chat box and check or uncheck each connection.
+
+Example prompts:
+
+- _Signups dropped on Tuesday. Were any pull requests merged to the signup service that day?_
+- _Summarize the open Jira tickets about the checkout flow and show me the checkout funnel for the same period._
+- _Find the Notion spec for the new onboarding flow and check whether we track every step it describes._
+
+If a connected server is unreachable, the Agent continues without it.
+
+## Manage Connections
+
+The **Connection Status** column on the MCP Connections page checks each connection when you open the page:
+
+- **Connected:** The connection is working.
+- **Disconnected:** The credentials are no longer valid, for example because a token expired or was revoked, or you revoked access in the tool.
+- **Unavailable:** An admin has turned off **Connect Your Tools via MCP** for your organization.
+
+To remove a connection, click the trash icon next to it. To reconnect a **Disconnected** tool, delete the connection and add it again.
+
+## FAQ
+
+### Who can turn MCP Connections on?
+
+Organization admins and owners, from **Settings → Org → AI Settings**. Once the setting is on, any member of the organization can connect their own tools from their Personal Settings. No additional role or permission is needed.
+
+### Can my teammates use my connections?
+
+No. Each member connects their own account, and Mixpanel Agent uses only the connections of the person chatting.
+
+### Can Mixpanel Agent make changes in my tools?
+
+No. Mixpanel only exposes read tools from connected servers to the Agent.
+
+### Why can't I see MCP Connections in my settings?
+
+MCP Connections are in Beta and only available to some organizations. Reach out to your Mixpanel account team to participate.
