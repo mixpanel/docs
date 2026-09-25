@@ -744,8 +744,20 @@
       },
       {
         "tab": "FAQs",
-        "pages": [
-          "troubleshooting/faqs"
+        "groups": [
+          {
+            "group": "FAQs",
+            "pages": [
+              "troubleshooting/faqs",
+              "troubleshooting/general",
+              "troubleshooting/sending-data",
+              "troubleshooting/identity-management",
+              "troubleshooting/building-reports",
+              "troubleshooting/exporting-data",
+              "troubleshooting/managing-projects",
+              "troubleshooting/protecting-user-data"
+            ]
+          }
         ]
       },
       {
