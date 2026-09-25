@@ -408,7 +408,6 @@
                   "docs/data-governance/data-standards",
                   "docs/data-governance/event-approval",
                   "docs/data-governance/data-volume-monitoring",
-                  "docs/data-governance/warehouse-sync-monitoring",
                   "docs/data-governance/data-clean-up",
         "docs/data-governance/ai-powered-data-governance"
                 ]
@@ -449,7 +448,8 @@
                   "docs/privacy/gdpr-compliance",
                   "docs/privacy/eu-residency",
                   "docs/privacy/in-residency",
-                  "docs/privacy/end-user-data-management"
+                  "docs/privacy/end-user-data-management",
+                  "docs/privacy/compliance-status-callbacks"
                 ]
               },
               {
@@ -1293,6 +1293,10 @@
     {
       "source": "/",
       "destination": "/docs/what-is-mixpanel"
+    },
+    {
+      "source": "/docs/data-governance/warehouse-sync-monitoring",
+      "destination": "/docs/data-governance/data-volume-monitoring"
     },
     {
       "source": "/docs/slack-bot",
