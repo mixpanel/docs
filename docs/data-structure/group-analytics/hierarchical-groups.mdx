@@ -8,7 +8,7 @@ description: "A two-level Company → User data model using Mixpanel's reserved 
   **Looking for Enterprise Group Analytics?** If you need flexible, independent group keys without an enforced hierarchy, see [Enterprise Group Analytics](/docs/data-structure/group-analytics/enterprise-group-analytics) instead.
 </Note>
 
-Group Analytics is a purpose-built data model for B2B products where **users belong to companies**. Mixpanel enforces a two-level hierarchy — Company (top level) and User (bottom level) — using the reserved properties `$company_id` and `$user_id`. This structure gives you native account-level analytics: count unique companies, measure per-account activation, and understand which accounts are healthy based on the behavior of their users.
+Group Analytics is a purpose-built data model for products where **users belong to a parent entity**. Mixpanel enforces a two-level hierarchy — Company (top level) and User (bottom level) — using the reserved properties `$company_id` and `$user_id`. This structure gives you native account-level analytics: count unique companies, measure per-account activation, and understand which accounts are healthy based on the behavior of their users.
 
 ## Overview
 
