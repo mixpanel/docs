@@ -469,6 +469,8 @@ To create an import of regular user profiles, pick the “Standard” Type when 
 
 When creating a User Profile (or Group Profile) sync, set the Table Type to “History Table”. We expect tables to be modeled as an SCD (Slowly Changing Dimensions) Type 2 table. You will need to supply a Start Time column in the sync configuration. Mixpanel will infer a row's end time if a new row with a more recent start time for the same user is detected.
 
+When a profile history property is used in an event-based report (for example, as a breakdown or filter), Mixpanel resolves its value as of each event's timestamp. It uses the value from the row whose start time is the most recent one at or before the event, rather than the user's current profile value. For example, if a user has a `plan` row with a start time of January 1 (`plan1`) and another starting June 1 (`plan2`), events between January 1 and June 1 resolve to `plan1`, and events on or after June 1 resolve to `plan2`. For more on how historical profile data is modeled and queried, see [User Profiles](/docs/data-structure/user-profiles).
+
 <Frame>
   <img
     src="/images/dw_historic_user_table.png"
