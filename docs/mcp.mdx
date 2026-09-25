@@ -142,11 +142,15 @@ Then authenticate by running `/mcp` inside Claude Code and completing the Mixpan
   The [Mixpanel plugin for Claude Code](#claude-code-plugin) adds skills on top of this connection — guided workflows for tracking implementation, metric investigation, dashboards, and experiments — and can set up the MCP connection for you.
 </Tip>
 
+<Note>
+  This page covers the Mixpanel MCP server, which gives assistants live access to your project data. Mixpanel also hosts a separate MCP server for the documentation itself at `https://docs.mixpanel.com/mcp`. See [Docs for AI Agents](/docs/docs-for-ai-agents).
+</Note>
+
 ### ChatGPT
 
 [Add Mixpanel to ChatGPT](https://chatgpt.com/apps/mixpanel/asdk_app_69b2e9aed45c8191b254b207dfcc2bb4) and complete the Mixpanel OAuth flow.
 
-**Note:** If your workspace is in the **EU or IN region** **or** you want to publish a custom plugin to your workspace for teammates to use, you must first enable **Developer Mode**.
+**Note:** If your workspace is in the **EU or IN region**, or you want to publish a custom plugin to your workspace for teammates to use, you must first enable **Developer Mode**.
 
 Go to **Settings → Security and login**, then enable **Developer Mode**.
 
@@ -156,7 +160,7 @@ Once **Developer Mode** is enabled, add a new plugin.
   ![Image](/images/image-8.png "Image")
 </Frame>
 
-1. Go to Plugins **→** add a New Plugin — set the [MCP Server URL](#mcp-server-urls) to your regional endpoint and Authentication to **OAuth**
+1. Go to **Plugins** and add a new plugin — set the [MCP Server URL](#mcp-server-urls) to your regional endpoint and Authentication to **OAuth**
 2. Complete the Mixpanel OAuth flow
 3. Optionally publish the connector to your workspace so teammates can use it
 
