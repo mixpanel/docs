@@ -9,9 +9,10 @@ Checks performed:
      another redirect (exact or wildcard). Each hop costs crawlers and answer
      engines a round trip, and chains decay into loops. Point the redirect at
      the final page instead.
-  4. Every destination resolves to an existing page.
-     Wildcard destinations (containing '*') are only checked for chains,
-     because their validity is structural rather than path-based.
+  4. Every destination resolves to an existing page. A wildcard destination
+     (e.g. '/guides/mcp/*') can't be checked child by child, since the
+     incoming URLs are unknown, so it must at least match one existing page:
+     removing or renaming the whole target section fails the check.
 
 Known violations on main are listed in docs-ci-baseline.json (see
 ci_baseline.py); only new violations fail the check.
@@ -123,6 +124,11 @@ def main() -> int:
             # A wildcard destination chains only if it is itself a source.
             if dest_path in sources:
                 all_errors.append(f"docs.json: redirect chain '{src}' -> '{dest}' (destination is redirected again)")
+            elif not any(fnmatch.fnmatch(page, dest_path) for page in file_paths):
+                all_errors.append(
+                    f"docs.json: wildcard redirect destination '{dest}' matches no existing page "
+                    f"(source: '{src}')"
+                )
             continue
 
         if is_redirected(dest_path):
