@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """
-CI gate: every MDX page must have a 'title' field in its YAML front-matter.
+CI gate: every MDX page needs a non-empty title and description in its YAML
+front-matter, and no two pages may share a title.
+
+Known violations on main are listed in docs-ci-baseline.json (see
+ci_baseline.py); only new violations fail the check.
 
 Directories that are intentionally excluded from the check:
   - snippets/   (reusable MDX components, not standalone pages)
@@ -12,6 +16,8 @@ import re
 import sys
 import glob
 import os
+
+from ci_baseline import report
 
 EXCLUDED_DIRS = {"snippets", "links", "openapi"}
 
@@ -74,20 +80,14 @@ def main() -> int:
         checked += 1
 
     # Two pages sharing a rendered title are indistinguishable in search
-    # results and to answer engines.
+    # results and to answer engines. One entry per page (not per group) keeps
+    # baseline entries stable when a group shrinks during cleanup.
     for title, pages in sorted(titles.items()):
         if len(pages) > 1:
-            joined = ", ".join(sorted(pages))
-            all_errors.append(f'duplicate title "{title}" on {len(pages)} pages: {joined}')
+            for page in sorted(pages):
+                all_errors.append(f'{page}: title "{title}" is also used by another page')
 
-    if all_errors:
-        print("Frontmatter check FAILED:")
-        for err in all_errors:
-            print(f"  {err}")
-        return 1
-
-    print(f"Frontmatter check PASSED ({checked} files checked).")
-    return 0
+    return report("frontmatter", "Frontmatter check", all_errors, f"{checked} files checked")
 
 
 if __name__ == "__main__":

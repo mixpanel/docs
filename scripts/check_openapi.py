@@ -8,7 +8,9 @@ Checks performed:
      with title and version, and paths).
   3. Every local $ref ("#/...") resolves to a node that exists in the document.
   4. If openapi-spec-validator is installed, the full spec is validated against
-     the OpenAPI schema. Without it, checks 1-3 still run.
+     the OpenAPI schema, and every example is validated against the schema it
+     illustrates (media-type and parameter `example`/`examples`, plus
+     schema-level `example`). Without it, checks 1-3 still run.
 """
 
 import glob
@@ -57,6 +59,88 @@ def resolves(doc, ref: str) -> bool:
         else:
             return False
     return True
+
+# Keywords that mark a mapping as a Schema Object, so a schema-level `example`
+# can be told apart from an arbitrary mapping that happens to have that key.
+SCHEMA_KEYWORDS = {"type", "properties", "items", "allOf", "oneOf", "anyOf", "enum", "format", "$ref"}
+
+
+def escape_pointer(key) -> str:
+    return str(key).replace("~", "~0").replace("/", "~1")
+
+
+def deref(doc, node):
+    """Follow local $refs (e.g. to components/examples) to the target node."""
+    for _ in range(20):
+        if not (isinstance(node, dict) and str(node.get("$ref", "")).startswith("#")):
+            return node
+        if not resolves(doc, node["$ref"]):
+            return None
+        target = doc
+        for part in node["$ref"][2:].split("/"):
+            part = part.replace("~1", "/").replace("~0", "~")
+            target = target[int(part)] if isinstance(target, list) else target[part]
+        node = target
+    return node
+
+
+def iter_examples(doc, node, pointer=""):
+    """Yield (schema pointer, example location, example value) triples.
+
+    Example Objects from an `examples` map are unwrapped to their `value`
+    (following $refs); ones using externalValue are skipped.
+    """
+    if isinstance(node, list):
+        for index, value in enumerate(node):
+            yield from iter_examples(doc, value, f"{pointer}/{index}")
+        return
+    if not isinstance(node, dict):
+        return
+
+    if isinstance(node.get("schema"), dict):
+        # Media Type or Parameter Object: examples illustrate node["schema"].
+        if "example" in node:
+            yield f"{pointer}/schema", f"{pointer}/example", node["example"]
+        for name, example in (node.get("examples") or {}).items():
+            example = deref(doc, example)
+            if isinstance(example, dict) and "value" in example:
+                yield f"{pointer}/schema", f"{pointer}/examples/{escape_pointer(name)}", example["value"]
+    elif "example" in node and SCHEMA_KEYWORDS & node.keys():
+        yield pointer, f"{pointer}/example", node["example"]
+
+    for key, value in node.items():
+        # Example payloads are data, not schema; don't mistake their keys for
+        # keywords.
+        if key in ("example", "examples"):
+            continue
+        child = f"{pointer}/{escape_pointer(key)}"
+        if key == "properties" and isinstance(value, dict):
+            # Keys here are property names, so a property literally called
+            # "example" or "type" must not make the map look like a schema.
+            for name, prop in value.items():
+                yield from iter_examples(doc, prop, f"{child}/{escape_pointer(name)}")
+            continue
+        yield from iter_examples(doc, value, child)
+
+
+def check_examples(doc, display: str) -> list[str]:
+    """Validate every example against its schema, resolving $refs in the doc."""
+    from openapi_schema_validator import OAS30Validator, OAS31Validator
+    from referencing import Registry, Resource
+    from referencing.jsonschema import DRAFT4, DRAFT202012
+
+    is_31 = str(doc.get("openapi", "")).startswith("3.1")
+    validator_cls = OAS31Validator if is_31 else OAS30Validator
+    resource = Resource.from_contents(doc, default_specification=DRAFT202012 if is_31 else DRAFT4)
+    registry = Registry().with_resource("urn:spec", resource)
+
+    errors = []
+    for schema_pointer, where, example in iter_examples(doc, doc):
+        validator = validator_cls({"$ref": f"urn:spec#{schema_pointer}"}, registry=registry)
+        first = next(iter(validator.iter_errors(example)), None)
+        if first is not None:
+            errors.append(f"{display}: example at {where} does not match its schema: {first.message}")
+    return errors
 
 
 def check_file(path: str, display: str) -> list[str]:
@@ -126,6 +210,8 @@ def main() -> int:
             except Exception as exc:  # noqa: BLE001 - surface the validator's message
                 first = str(exc).split("\n")[0]
                 errors.append(f"{rel}: failed OpenAPI schema validation: {first}")
+            else:
+                errors.extend(check_examples(load(path), rel))
         all_errors.extend(errors)
 
     if all_errors:
@@ -134,7 +220,7 @@ def main() -> int:
             print(f"  {err}")
         return 1
 
-    depth = "structure + schema" if deep else "structure only (validator not installed)"
+    depth = "structure + schema + examples" if deep else "structure only (validator not installed)"
     print(f"OpenAPI check PASSED ({len(specs)} specs validated, {depth}).")
     return 0
 
