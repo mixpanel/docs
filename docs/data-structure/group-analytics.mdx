@@ -12,35 +12,61 @@ description: "Group users together as an aggregated unit of measurement"
 
 Mixpanel Group Analytics allows behavioral data analysis at a customized group level (such as account, device—or any other way you want to assess your business).
 
-Historically, Mixpanel grouped events by a single identifier called the distinct\_id. This ultimately grouped events by the individual user. Group Analytics allows you to establish an event property other than the distinct\_id, such as company ID, account ID, project ID, or billing ID, as an identifier by which to analyze your data.
+Historically, Mixpanel grouped events by a single identifier called the distinct\_id. This ultimately grouped events by the individual user. Group Analytics allows you to establish an event property other than the distinct\_id, such as company ID, account ID, project ID, or billing ID, as an identifier by which to analyze your data. Mixpanel supports two group models, hierarchical and independent, for grouping data. Which one you use depends on whether the relationship between your groups and your users is something you need Mixpanel to enforce.
 
-<Frame>
-  <iframe src="https://www.youtube-nocookie.com/embed/jrIiwhdHCdg" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen />
-</Frame>
+## Group Analytics (hierarchical)
 
-### Data Modeling
+A purpose-built model for where users belong to a single parent entity. Mixpanel enforces a two-level hierarchy — **Company** (top level) and **User** (bottom level) — using the reserved properties `$company_id` and `$user_id`. Identity is the composite key (`$company_id`, `$user_id`), which means the same `$user_id` in two different companies is treated as two distinct users.
 
-Mixpanel Group Analysis allows you to select alternative unique identifiers in reports.
+Use Group Analytics when:
 
-By default, Mixpanel counts unique users by distinct\_id. Group Analytics allows you to uniquely count events by an alternative identifier, such as company ID, invite ID, or another value shared by a group of individuals with different distinct\_ids. Below you will see an example of an event coming into a project that has `company_id` and `team_id` set up as separate group keys. You will see how, starting with a single event being ingested (on the left), by switching the identifier you're analyzing on, the event can be read with said identifier as the user key to do the analysis on:
+- You are a product where every user belongs to exactly one parent entity (company or account, workspace, organization, etc.)
+- The company/user relationship is known from the onset of your tracking
 
-<Frame>
-  ![](/images/group_analytics_data_model.png)
-</Frame>
+[Group Analytics (hierarchical) →](/docs/data-structure/group-analytics/hierarchical-groups)
 
-This allows behavioral analysis from a business or group level, as opposed to an individual level. You can answer questions such as:
+## Enterprise Group Analytics (independent)
 
-- Which companies are engaging the most with a product?
-- In instances where there are more than one user per account, such as a video streaming service, how are events triggered at an account level?
-- What groups convert through a funnel to a goal event (as opposed to what individual users convert)?
+Define one or more **group keys** — event properties like `company_id`, `team_id`, or `project_id` — and analyze uniques, funnels, and retention by those keys instead of (or in addition to) `distinct_id`. Each group key is independent: Mixpanel does not assume any relationship between them or between groups and users.
+
+Use Enterprise Group Analytics when:
+
+- You need flexible, independent grouping dimensions (restaurants, drivers, devices, etc.)
+- Your groups don't have a strict parent-child relationship with users
+
+[Enterprise Group Analytics (independent) →](/docs/data-structure/group-analytics/enterprise-group-analytics)
+
+## Which version is my project using?
+
+Which group model your project uses depends on your plan and when you purchased Group Analytics:
+
+- **Purchased Group Analytics on or after [DATE]:** your project uses the **hierarchical group model**.
+- **Purchased Group Analytics before [DATE]:** your project uses the **independent group model**, and your groups package is listed as **Group Analytics 1.0**.
+- **On the Enterprise Group Analytics package:** your project uses the **independent group model**.
+
+## Choosing Between the Two
+
+|                         | Group Analytics                                      | Enterprise Group Analytics                                      |
+| ----------------------- | ---------------------------------------------------- | --------------------------------------------------------------- |
+| **Relationship model**  | Two-level hierarchy: Company → User                  | Flat — group keys are independent                                |
+| **Identity**            | Composite: `$company:<company_id>\|$user:<user_id>`  | Determined by single user or group id                                       |
+| **User uniqueness**     | `$user_id` scoped to `$company_id`                   | Global `distinct_id`                                             |
+| **Reserved properties** | `$company_id` and `$user_id`                         | None — you define your own group keys                            |
+| **ID Management**       | Simplified ID Merge only                             | Original or Simplified ID Merge                                  |
+| **Project setup**       | Must be enabled at project creation                  | Can be added to existing projects (not retroactive)              |
+| **Best for**            | Defined one-to-many parent to user relationships             | Less structured, multi-entity relationships                   |
+
+<Warning>
+  You cannot migrate a project between the independent and hierarchical group models after the project has been created. Choose the model that matches your data before you start sending events.
+</Warning>
 
 ### Group Profiles
 
-Much like a [user profile](/docs/data-structure/user-profiles), Group Profiles are a collection of properties and event history specific to a group.
+Much like a [user profile](/docs/data-structure/user-profiles), Group Profiles are a collection of properties and event history specific to a group.
 
 Group Profiles have an activity feed that shows the events performed by users in a group. Only the events attributed to the group with a defined group key will appear in the group's activity feed.
 
-The Group Profile also displays the properties unique to that group - here's an [example](https://mixpanel.com/project/3187769/view/3699049/app/profile#distinct_id=company_id_8889&data_group_id=-1405123841946871899) of it:
+The Group Profile also displays the properties unique to that group - here's an [example](https://mixpanel.com/project/3187769/view/3699049/app/profile#distinct_id=company_id_8889&data_group_id=-1405123841946871899) of it:
 
 <Frame>
   ![image](/images/group-profile-example.png "Group Profile Example")
@@ -89,7 +115,7 @@ Company Analytics is a feature within Group Analytics tailored to B2B SaaS Compa
 
 Company Analytics enables you to understand such account health and activation metrics, which are derived from the underlying user activity.
 
-To use these features, you must [designate the group key as a company key when setting up the group](/docs/data-structure/group-analytics#setup-b2b-company-key).
+To use these features, you must [designate the group key as a company key when setting up the group](/docs/data-structure/group-analytics/enterprise-group-analytics#setup-b2b-company-key).
 
 #### Company Profiles
 
@@ -101,7 +127,7 @@ You can view the definition of each metric by clicking on the metric card, which
 
 To access this page, click on Users/ Companies → Company Profile.
 
-Note: This is only available if you have [set up a B2B Company Key](/docs/data-structure/group-analytics#setup-b2b-company-key), an option available in the Group Analytics package.
+Note: This is only available if you have [set up a B2B Company Key](/docs/data-structure/group-analytics/enterprise-group-analytics#setup-b2b-company-key), an option available in the Group Analytics package.
 
 <Frame>
   ![image](/images/B2B_Company_Profiles.webp)
