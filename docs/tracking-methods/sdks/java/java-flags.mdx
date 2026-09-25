@@ -12,7 +12,8 @@ This developer guide will assist you in configuring your server-side Java platfo
 
 Before implementing [Feature Flags](/docs/featureflags), ensure:
 
-- You are on an Enterprise subscription plan and have the appropriate version of the SDK installed (minimum supported version is `1.6.0-SNAPSHOT`). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+- A Mixpanel project with Feature Flags — see [plan availability](/docs/featureflags#plan-availability)
+- You have the appropriate version of the SDK installed (minimum supported version is `1.6.0-SNAPSHOT`). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Flag Evaluation Modes
@@ -84,6 +85,14 @@ boolean isEnabled = mixpanel.getLocalFlags().isEnabled(flagKey, userContext);
 // Clean up resources when done
 mixpanel.close();
 ```
+
+### Local Evaluation Runtime Property Evaluation
+
+Runtime property evaluation evaluates properties passed in the `custom_properties` node within the user context against target values defined in your feature flag. During Local Evaluation the SDK performs this comparison itself.
+
+If any of these conditions use a **Date** or **Semantic Version** type, as described in [Data types for runtime values](/docs/featureflags#data-types-for-runtime-values), ensure your SDK version meets the minimum supported: [`1.11.0`](https://github.com/mixpanel/mixpanel-java/releases/tag/v1.11.0).
+
+There is no minimum SDK version when using Remote Evaluation, since Mixpanel servers perform the comparison.
 
 ## Remote Evaluation
 

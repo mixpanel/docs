@@ -14,9 +14,10 @@ For complete Flutter SDK documentation, see the [Flutter SDK guide](/docs/tracki
 
 ## Prerequisites
 
-Before implementing Feature Flags, ensure:
+Before implementing [Feature Flags](/docs/featureflags), ensure:
 
-- You are on an Enterprise subscription plan and have the latest version of the SDK installed (minimum supported version is `v2.5.0`). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+- A Mixpanel project with Feature Flags — see [plan availability](/docs/featureflags#plan-availability)
+- You have the latest version of the SDK installed (minimum supported version is `v2.5.0`). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
 ## Flag Initialization
@@ -72,6 +73,18 @@ Mixpanel mixpanel = await Mixpanel.init(
   ),
 );
 ```
+
+### Runtime Event and Property Evaluation
+
+Developers can pass properties to the SDK for runtime property evaluation or runtime event evaluation.
+
+Runtime event evaluation evaluates tracked runtime events and their properties against the configuration in the feature flag, as detailed in the [Runtime Events guide](/docs/featureflags/runtime-events).
+
+If any of these property filters use a **Date** or **Semantic Version** condition, as described in [Data types for runtime values](/docs/featureflags#data-types-for-runtime-values), ensure your SDK version meets the minimum supported: [`v2.14.0`](https://github.com/mixpanel/mixpanel-flutter/releases/tag/v2.14.0).
+
+Runtime property evaluation evaluates properties passed in the `custom_properties` node within the context against target values defined in your feature flag.
+
+There is no minimum SDK version for using Date or Semantic Version types in runtime property evaluation, i.e. for any properties passed in the `custom_properties` node above.
 
 ## Flag Persistence
 

@@ -1,0 +1,68 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "A user logged out of the organization.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "session",
+      "default": "session",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "universal_logout": {
+          "anyOf": [
+            {
+              "description": "Correlation details when a logout was initiated via Okta Universal Logout.",
+              "properties": {
+                "issuer": {
+                  "description": "The customer Okta IdP issuer URL from the JWT `iss` claim.",
+                  "type": "string"
+                },
+                "jti": {
+                  "description": "The JWT `jti` of the universal-logout request that caused this logout.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "issuer",
+                "jti"
+              ],
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "type": "object"
+    },
+    "action": {
+      "const": "logged_out",
+      "default": "logged_out",
+      "type": "string"
+    },
+    "type": {
+      "const": "session.logged_out",
+      "default": "session.logged_out",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
