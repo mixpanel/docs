@@ -191,7 +191,17 @@
                   },
                   "docs/tracking-methods/autocapture",
                   "docs/tracking-methods/first-party-domains",
-                  "docs/tracking-methods/warehouse-connectors",
+                  {
+                    "group": "Warehouse Connectors",
+                    "root": "docs/tracking-methods/warehouse-connectors",
+                    "pages": [
+                      "docs/tracking-methods/warehouse-connectors/bigquery",
+                      "docs/tracking-methods/warehouse-connectors/snowflake",
+                      "docs/tracking-methods/warehouse-connectors/databricks",
+                      "docs/tracking-methods/warehouse-connectors/redshift",
+                      "docs/tracking-methods/warehouse-connectors/postgres"
+                    ]
+                  },
                   {
                     "group": "Integrations",
                     "root": "docs/tracking-methods/integrations",
