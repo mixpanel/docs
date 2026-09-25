@@ -1934,7 +1934,7 @@
     },
     {
       "source": "/docs/formulas",
-      "destination": "/changelogs/2023-09-19-formulas"
+      "destination": "/changelogs"
     },
     {
       "source": "/docs/funnels",
@@ -2438,7 +2438,7 @@
     },
     {
       "source": "/docs/tracking/data-warehouse/groups",
-      "destination": "/docs/tracking-methods/data-warehouse/sending-group-profiles"
+      "destination": "/docs/tracking-methods/warehouse-connectors"
     },
     {
       "source": "/docs/tracking/data-warehouse/redshift",
@@ -2802,27 +2802,27 @@
     },
     {
       "source": "/guides/plan/setup",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/setup"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/plan/framework",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/framework"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/plan/tracking-strategy",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/plan/tracking-strategy"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/implement/send-your-data",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/send-your-data"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/implement/qa-data-audit",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/qa-data-audit"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/implement/establish-governance",
-      "destination": "/guides/strategic-playbooks/onboarding-playbook/implement/establish-governance"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/launch/create-boards",
@@ -2910,7 +2910,7 @@
     },
     {
       "source": "/hc",
-      "destination": "docs/getting-started/what-is-mixpanel"
+      "destination": "/docs/what-is-mixpanel"
     },
     {
       "source": "/hc/admin/general_settings",
@@ -3282,23 +3282,23 @@
     },
     {
       "source": "/hc/en-us/articles/13174988269844*",
-      "destination": "/changelogs/2022-12-01-improvements"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13175102961428*",
-      "destination": "/changelogs/2022-12-13-boards"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13175146659732*",
-      "destination": "/changelogs/2023-01-18-table-boards"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13175184938260*",
-      "destination": "/changelogs/2023-01-23-users-flows"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13175224500628*",
-      "destination": "/changelogs/2023-01-31-embed"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13271005313556*",
@@ -3306,39 +3306,39 @@
     },
     {
       "source": "/hc/en-us/articles/13395179786644*",
-      "destination": "/changelogs/2022-07-08-reorient"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395198918804*",
-      "destination": "/changelogs/2022-11-03-session-improvements"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395199893652*",
-      "destination": "/changelogs/2022-11-07-millisecond"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395205961236*",
-      "destination": "/changelogs/2022-07-01-view-users"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395233184916*",
-      "destination": "/changelogs/2022-06-16-faster-workflow"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395235568660*",
-      "destination": "/changelogs/2022-05-31-improve-conversion-flow"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395324158868*",
-      "destination": "/changelogs/2022-05-24-lexicon-context"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395325754772*",
-      "destination": "/changelogs/2022-04-18-relative-comparison"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13395328448404*",
-      "destination": "/changelogs/2022-03-29-text-boards"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/13530857626132*",
@@ -3346,7 +3346,7 @@
     },
     {
       "source": "/hc/en-us/articles/13756463065492*",
-      "destination": "/changelogs/2023-02-28-retention-calendar-interval"
+      "destination": "/changelogs"
     },
     {
       "source": "/hc/en-us/articles/14202292561172*",
@@ -3690,7 +3690,7 @@
     },
     {
       "source": "/hc/en-us/articles/360041995352*",
-      "destination": "/docs/tracking/how-tos/events-properties"
+      "destination": "/docs/data-structure/events-and-properties"
     },
     {
       "source": "/hc/en-us/articles/360042412051*",
