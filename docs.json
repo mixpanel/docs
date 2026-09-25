@@ -191,7 +191,17 @@
                   },
                   "docs/tracking-methods/autocapture",
                   "docs/tracking-methods/first-party-domains",
-                  "docs/tracking-methods/warehouse-connectors",
+                  {
+                    "group": "Warehouse Connectors",
+                    "root": "docs/tracking-methods/warehouse-connectors",
+                    "pages": [
+                      "docs/tracking-methods/warehouse-connectors/bigquery",
+                      "docs/tracking-methods/warehouse-connectors/snowflake",
+                      "docs/tracking-methods/warehouse-connectors/databricks",
+                      "docs/tracking-methods/warehouse-connectors/redshift",
+                      "docs/tracking-methods/warehouse-connectors/postgres"
+                    ]
+                  },
                   {
                     "group": "Integrations",
                     "root": "docs/tracking-methods/integrations",
@@ -383,7 +393,8 @@
               "docs/root-cause-analysis",
               "docs/mcp",
               "docs/mixpanel-headless",
-              "docs/business-context"
+              "docs/business-context",
+              "docs/docs-for-ai-agents"
             ]
           },
           {
@@ -734,8 +745,20 @@
       },
       {
         "tab": "FAQs",
-        "pages": [
-          "troubleshooting/faqs"
+        "groups": [
+          {
+            "group": "FAQs",
+            "pages": [
+              "troubleshooting/faqs",
+              "troubleshooting/general",
+              "troubleshooting/sending-data",
+              "troubleshooting/identity-management",
+              "troubleshooting/building-reports",
+              "troubleshooting/exporting-data",
+              "troubleshooting/managing-projects",
+              "troubleshooting/protecting-user-data"
+            ]
+          }
         ]
       },
       {
