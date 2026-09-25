@@ -27,6 +27,8 @@ jobs:
       - name: Install OpenAPI validator
         run: pip install --quiet pyyaml openapi-spec-validator
       # continue-on-error is deliberately absent: each check is a hard gate.
+      # Violations that already existed on main are listed in
+      # scripts/docs-ci-baseline.json and don't fail; only new ones do.
       # Steps run in order and the job reports the first failure.
       - name: Check frontmatter
         run: python scripts/check_frontmatter.py
