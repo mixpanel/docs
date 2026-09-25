@@ -15,6 +15,10 @@ A 413 means the request body exceeded Mixpanel's size limit. Split the batch and
 }
 ```
 
+<Note>
+  The byte count in this example comes from the API reference's sample response and doesn't match the documented 10MB request limit below. Check the limit stated in the error message you actually received.
+</Note>
+
 ## Size Limits
 
 | Limit | Value |
@@ -35,7 +39,7 @@ The 2,000-event cap and the 10MB cap apply independently. A batch of 2,000 unusu
 
 ### One Oversized Event
 
-A single event over 1MB fails validation. This usually comes from embedding a large payload in a property — a JSON blob stored as a string, a base64 attachment, or full page HTML.
+Each event must be smaller than 1MB of uncompressed JSON. This is a per-event validation requirement, so an oversized event may be reported in `failed_records` on a [400](/troubleshooting/errors/400-bad-request) rather than as a 413. Oversized events usually come from embedding a large payload in a property — a JSON blob stored as a string, a base64 attachment, or full page HTML.
 
 Strings over 255 characters are truncated rather than rejected, so ordinary long text does not cause a 413 on its own.
 

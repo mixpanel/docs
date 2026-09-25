@@ -38,7 +38,7 @@ Mixpanel rejects a list of placeholder values that usually indicate an implement
 
 ### Missing or Malformed `$insert_id`
 
-`$insert_id` is required on every event. It is what makes retrying an `/import` request safe, because Mixpanel uses it to deduplicate. If your events have no natural unique ID, hash a set of properties that make the event semantically unique — such as `distinct_id` plus timestamp — and use the first 36 characters.
+`$insert_id` is required on every event. It is what makes retrying an `/import` request safe, because Mixpanel uses it to deduplicate. If your events have no natural unique ID, hash a set of properties that make the event semantically unique (such as `distinct_id` plus timestamp plus one more property) and use the first 36 characters of the hash.
 
 ### Invalid `time`
 
@@ -56,7 +56,7 @@ Each event must be under 1MB of uncompressed JSON. Strings longer than 255 chara
 
 **Do not blindly retry a 400.** Validation errors fail consistently and still count against your rate limit. Fix the payload first.
 
-**Resend the corrected events.** Because `$insert_id` deduplicates, resending events that already landed is safe.
+**Resend the corrected events.** Resending events that already landed is safe only when `event`, `time`, `distinct_id`, and `$insert_id` stay identical, because all four fields form the deduplication key. Don't regenerate `$insert_id` or recompute `time` on a retry. See [Event Deduplication](/reference/event-deduplication).
 
 ## Related
 

@@ -20,6 +20,8 @@ A 403 means Mixpanel recognized the request but refused it. Among the ingestion 
 
 This shape differs from the other ingestion errors: there is no `code` field.
 
+The API reference lists 403 as a possible response for these endpoints but doesn't document the specific conditions that trigger it. The checks below are the usual starting points.
+
 ## 403 Compared to 401
 
 | Status | Meaning |

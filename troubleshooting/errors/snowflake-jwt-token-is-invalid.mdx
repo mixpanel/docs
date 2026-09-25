@@ -16,7 +16,7 @@ Depending on which driver reports it, the SQLSTATE may appear as `08004` or `080
 
 `390144` is Snowflake's generic key-pair authentication failure (`JWT_TOKEN_INVALID`). Snowflake's own reference describes it only as "There is a general issue with the JWT token."
 
-The specific causes have their own codes, and Snowflake returns those instead when it can identify the problem. So a bare `390144` usually means the JWT was malformed or addressed to the wrong account, rather than a key mismatch.
+The specific causes have their own codes, but the client usually sees only the generic `390144`. Snowflake records the specific reason against the failure, which you can look up as shown below.
 
 <Note>
   Mixpanel generates the key pair for you during connector setup and stores the private key encrypted. You never create, convert, or upload a private key, so causes involving key generation — PKCS#1 versus PKCS#8, passphrase-encrypted keys, wrong `openssl` flags — do not apply to Mixpanel connections.
@@ -54,7 +54,7 @@ This requires the `MONITOR` privilege. Match the result against the table below.
 
 Snowflake requires that periods in an account identifier be replaced with hyphens, because "periods in an account identifier cause the JWT to be invalid."
 
-This bites Mixpanel users specifically. The connector setup tells you to take the identifier from your Snowflake URL, and legacy `account.region.cloud` forms and `.privatelink` suffixes both contain periods.
+The connector setup tells you to take the identifier from your Snowflake URL, and some URL forms (for example, legacy `account.region.cloud` locators) contain periods. If your identifier has periods, try the hyphenated form.
 
 ### The Account Identifier Is Wrong
 
@@ -62,7 +62,7 @@ The account in the connection must match the account named inside the token. If 
 
 ### The Public Key Was Never Applied
 
-Mixpanel shows you a public key during setup, and it only takes effect once you run `ALTER USER` in Snowflake. If that step was skipped or run against a different user, authentication fails.
+Mixpanel shows you a public key during setup, and it only takes effect once you set it on the Snowflake user (with `CREATE USER ... RSA_PUBLIC_KEY=` or `ALTER USER`). If that step was skipped or run against a different user, authentication fails.
 
 Check what Snowflake actually has:
 
@@ -74,7 +74,7 @@ Look at `RSA_PUBLIC_KEY`, `RSA_PUBLIC_KEY_FP`, and `LOGIN_NAME`.
 
 ### The Key Is On the Wrong User
 
-Snowflake matches on `LOGIN_NAME`, not on the user's `NAME`. These are often different, and the connector must connect as the `LOGIN_NAME`.
+Snowflake requires the client's user name to match the user's `LOGIN_NAME`, not its `NAME`. These can differ, so enter the `LOGIN_NAME` as the user in the connector.
 
 ## How to Fix It
 

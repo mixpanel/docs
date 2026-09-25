@@ -56,7 +56,7 @@ Use these to distinguish "never arrived" from "arrived late."
 
 **Import recent data first.** Mixpanel recommends loading the last 7 or 30 days before older history, because autocomplete menus populate from the last 30 days and let you confirm the shape of the data early.
 
-**Let a day stabilize before backfilling it**, so you do not have to run the same backfill twice.
+**Let a day stabilize before backfilling it.** Client-side SDKs send through `/track`, which accepts events up to 5 days old, so late events can still arrive for recent days. If you can't wait, use `mp_processing_time_ms` to find late-arriving events and backfill selectively.
 
 **Partition large files** into roughly 200MB of JSON, or about 200K records, when loading from cloud storage.
 

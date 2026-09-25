@@ -7,6 +7,8 @@ A 401 means Mixpanel could not authenticate the request. The credentials were mi
 
 ## What the Response Looks Like
 
+From `/import`:
+
 ```json
 {
   "code": 401,
@@ -19,18 +21,18 @@ A 401 means Mixpanel could not authenticate the request. The credentials were mi
 
 | Endpoint | Accepted credentials |
 | --- | --- |
-| `/import` | An Owner or Admin [Service Account](/reference/service-accounts) with `project_id`, a [Project Token](/reference/project-token) as the basic-auth username with an empty password, or an OAuth token |
+| `/import` | An Owner or Admin [Service Account](/reference/service-accounts) with `project_id`, a [Project Token](/reference/project-token) as the basic-auth username with an empty password, an OAuth token, or the deprecated [Project Secret](/reference/project-secret) |
 | `/track`, `/engage`, `/groups` | A project token sent in the payload |
 
 <Note>
-  A bad project token on `/track` does not produce a 401. The endpoint returns `200` with a body of `1`, which confirms the payload was well-formed but says nothing about whether the token is valid. Add `?verbose=1` to get a JSON response instead, and check your project's live view to confirm events are arriving.
+  Don't rely on a 401 to catch a bad project token on `/track`. The endpoint can return `200` with a body of `1`, which confirms at least one object was well-formed but "does not signify a valid project token or secret." Add `?verbose=1` to get a JSON response instead, and check your project's live view to confirm events are arriving.
 </Note>
 
 ## Common Causes
 
 ### Service Account Lacks the Required Role
 
-`/import` requires an Owner or Admin Service Account. A Service Account with a lower role authenticates but is not permitted to import.
+`/import` requires an Owner or Admin Service Account. A Service Account with a lower role on the project can't import, even if its username and secret are correct.
 
 ### Missing `project_id`
 
@@ -38,7 +40,7 @@ When authenticating with a Service Account, `project_id` is required. Without it
 
 ### Wrong Regional Endpoint
 
-Projects with EU or India data residency use different hosts. Sending correct credentials to the wrong host fails, because the project does not exist there.
+Projects with EU or India data residency use different hosts. Send requests to the host that matches your project's residency.
 
 | Residency | Host |
 | --- | --- |

@@ -21,7 +21,7 @@ On Simplified, "it is not possible to merge 2 `$user_id`s together using the Sim
 On Original, `$merge` can join two clusters, but note that it is irreversible — "you **cannot** unmerge `distinct_id`" — and it accepts exactly two IDs per call.
 
 <Warning>
-  `$merge`, `$identify`, and `$create_alias` are silently ignored on Simplified ID Merge projects. They return no error and trigger no merge, so a script written for Original appears to succeed while doing nothing.
+  `$merge`, `$identify`, and `$create_alias` are ignored on Simplified ID Merge projects and don't trigger identity merges. A script written for Original can appear to run normally while merging nothing.
 </Warning>
 
 ## Common Causes
@@ -54,7 +54,7 @@ Deleting the duplicate profile therefore tidies the Users report but does not re
 
 **Send `$device_id` and `$user_id` and let Mixpanel derive `distinct_id`.**
 
-**Set the identity system before sending any data.** It cannot be changed once a project contains data, and a newly created project inherits the organization default rather than Simplified, so override it explicitly on every new project.
+**Set the identity system before sending any data.** It cannot be changed once a project contains data. New projects use the default set in Organization Settings, so check the project's setting before you send the first event.
 
 ## Related
 

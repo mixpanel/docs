@@ -16,7 +16,7 @@ A 429 means your project exceeded Mixpanel's ingestion rate limit. Retry with ex
 ```
 
 <Note>
-  Mixpanel does not return a `Retry-After` header. Compute your own backoff interval using the strategy below.
+  The API reference doesn't document a `Retry-After` header. Compute your own backoff interval using the strategy below.
 </Note>
 
 ## The Rate Limit
@@ -70,7 +70,7 @@ A fixed delay between requests almost always underuses the available throughput 
 
 ### Ask for a Higher Limit
 
-If you are an Enterprise customer and a one-time backfill needs more headroom, contact your CSM with your `project_id` and the use case.
+If you are an Enterprise customer and a one-time backfill needs more headroom, contact your account team (CSM or sales representative) with your `project_id` and the use case.
 
 ## Related
 
