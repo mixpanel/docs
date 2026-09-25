@@ -1,0 +1,926 @@
+{
+  "x-release-date": "2026-01-31T00:00:00Z",
+  "description": "An existing alert's settings were changed.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "condition": {
+              "oneOf": [
+                {
+                  "properties": {
+                    "keys": {
+                      "items": {
+                        "properties": {
+                          "header": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              }
+                            ]
+                          },
+                          "value": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "integer"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "header",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 300,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "type": {
+                      "enum": [
+                        "absolute",
+                        "relative-percent",
+                        "relative-value"
+                      ],
+                      "type": "string"
+                    },
+                    "op": {
+                      "enum": [
+                        ">",
+                        "<"
+                      ],
+                      "type": "string"
+                    },
+                    "value": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "keys",
+                    "type",
+                    "op",
+                    "value"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "properties": {
+                    "keys": {
+                      "items": {
+                        "properties": {
+                          "header": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              }
+                            ]
+                          },
+                          "value": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "integer"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "header",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 300,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "type": {
+                      "const": "anomaly",
+                      "type": "string"
+                    },
+                    "op": {
+                      "enum": [
+                        "!<=x<=",
+                        ">",
+                        "<"
+                      ],
+                      "type": "string"
+                    },
+                    "confidence": {
+                      "type": "number"
+                    },
+                    "trainingMode": {
+                      "enum": [
+                        "agile",
+                        "robust",
+                        "rigorous"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "keys",
+                    "type",
+                    "op",
+                    "confidence",
+                    "trainingMode"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
+            "frequency": {
+              "type": "integer"
+            },
+            "subscriptions": {
+              "items": {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "data": {
+                        "properties": {
+                          "recipient": {
+                            "maxLength": 255,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "recipient"
+                        ],
+                        "type": "object"
+                      },
+                      "type": {
+                        "const": "email",
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "data",
+                      "type",
+                      "id"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "properties": {
+                      "data": {
+                        "properties": {
+                          "slack_webhook_url": {
+                            "maxLength": 2048,
+                            "minLength": 1,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "slack_webhook_url"
+                        ],
+                        "type": "object"
+                      },
+                      "type": {
+                        "const": "slack_webhook",
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "data",
+                      "type",
+                      "id"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "properties": {
+                      "data": {
+                        "properties": {
+                          "slack_channel_id": {
+                            "maxLength": 200,
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "slack_channel_name": {
+                            "maxLength": 200,
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "slack_team_id": {
+                            "maxLength": 200,
+                            "minLength": 1,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "slack_channel_id",
+                          "slack_channel_name",
+                          "slack_team_id"
+                        ],
+                        "type": "object"
+                      },
+                      "type": {
+                        "const": "slack_channel",
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "data",
+                      "type",
+                      "id"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "properties": {
+                      "data": {
+                        "properties": {
+                          "webhook_id": {
+                            "maxLength": 36,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "webhook_id"
+                        ],
+                        "type": "object"
+                      },
+                      "type": {
+                        "const": "project_webhook",
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "data",
+                      "type",
+                      "id"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "workspace_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "bookmark": {},
+            "user_id": {
+              "type": "string"
+            },
+            "paused": {
+              "type": "boolean"
+            },
+            "created": {
+              "type": "string"
+            },
+            "modified": {
+              "type": "string"
+            },
+            "last_checked": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "last_fired": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "valid": {
+              "type": "boolean"
+            },
+            "validity_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "notification_windows": {
+              "anyOf": [
+                {
+                  "description": "Notification windows configuration for an alert.",
+                  "properties": {
+                    "enabled": {
+                      "description": "Whether notification windows are active",
+                      "type": "boolean"
+                    },
+                    "windows": {
+                      "anyOf": [
+                        {
+                          "items": {
+                            "description": "A notification window spanning from start day/time to end day/time.\n\nDays use 0-6 for current week (0=Monday, 6=Sunday) and 7-13 for next week.\nFor example: start_day=4 (Friday), end_day=8 (next Tuesday) for a weekend window.",
+                            "properties": {
+                              "start_day": {
+                                "description": "Start day: 0-6 (Mon-Sun)",
+                                "maximum": 6,
+                                "minimum": 0,
+                                "type": "integer"
+                              },
+                              "start_time": {
+                                "description": "Start time in HH:MM format",
+                                "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+                                "type": "string"
+                              },
+                              "end_day": {
+                                "description": "End day: 0-6 (same week), 7-13 (next week)",
+                                "maximum": 13,
+                                "minimum": 0,
+                                "type": "integer"
+                              },
+                              "end_time": {
+                                "description": "End time in HH:MM format",
+                                "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "start_day",
+                              "start_time",
+                              "end_day",
+                              "end_time"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null,
+                      "description": "List of notification windows"
+                    }
+                  },
+                  "required": [
+                    "enabled"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "condition",
+            "frequency",
+            "subscriptions",
+            "bookmark",
+            "user_id",
+            "paused",
+            "created",
+            "modified",
+            "last_checked",
+            "last_fired",
+            "valid"
+          ],
+          "type": "object"
+        },
+        "current": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "condition": {
+              "oneOf": [
+                {
+                  "properties": {
+                    "keys": {
+                      "items": {
+                        "properties": {
+                          "header": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              }
+                            ]
+                          },
+                          "value": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "integer"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "header",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 300,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "type": {
+                      "enum": [
+                        "absolute",
+                        "relative-percent",
+                        "relative-value"
+                      ],
+                      "type": "string"
+                    },
+                    "op": {
+                      "enum": [
+                        ">",
+                        "<"
+                      ],
+                      "type": "string"
+                    },
+                    "value": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "keys",
+                    "type",
+                    "op",
+                    "value"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "properties": {
+                    "keys": {
+                      "items": {
+                        "properties": {
+                          "header": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              }
+                            ]
+                          },
+                          "value": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "integer"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "header",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 300,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "type": {
+                      "const": "anomaly",
+                      "type": "string"
+                    },
+                    "op": {
+                      "enum": [
+                        "!<=x<=",
+                        ">",
+                        "<"
+                      ],
+                      "type": "string"
+                    },
+                    "confidence": {
+                      "type": "number"
+                    },
+                    "trainingMode": {
+                      "enum": [
+                        "agile",
+                        "robust",
+                        "rigorous"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "keys",
+                    "type",
+                    "op",
+                    "confidence",
+                    "trainingMode"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
+            "frequency": {
+              "type": "integer"
+            },
+            "subscriptions": {
+              "items": {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "data": {
+                        "properties": {
+                          "recipient": {
+                            "maxLength": 255,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "recipient"
+                        ],
+                        "type": "object"
+                      },
+                      "type": {
+                        "const": "email",
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "data",
+                      "type",
+                      "id"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "properties": {
+                      "data": {
+                        "properties": {
+                          "slack_webhook_url": {
+                            "maxLength": 2048,
+                            "minLength": 1,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "slack_webhook_url"
+                        ],
+                        "type": "object"
+                      },
+                      "type": {
+                        "const": "slack_webhook",
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "data",
+                      "type",
+                      "id"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "properties": {
+                      "data": {
+                        "properties": {
+                          "slack_channel_id": {
+                            "maxLength": 200,
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "slack_channel_name": {
+                            "maxLength": 200,
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "slack_team_id": {
+                            "maxLength": 200,
+                            "minLength": 1,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "slack_channel_id",
+                          "slack_channel_name",
+                          "slack_team_id"
+                        ],
+                        "type": "object"
+                      },
+                      "type": {
+                        "const": "slack_channel",
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "data",
+                      "type",
+                      "id"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "properties": {
+                      "data": {
+                        "properties": {
+                          "webhook_id": {
+                            "maxLength": 36,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "webhook_id"
+                        ],
+                        "type": "object"
+                      },
+                      "type": {
+                        "const": "project_webhook",
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "data",
+                      "type",
+                      "id"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "workspace_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "bookmark": {},
+            "user_id": {
+              "type": "string"
+            },
+            "paused": {
+              "type": "boolean"
+            },
+            "created": {
+              "type": "string"
+            },
+            "modified": {
+              "type": "string"
+            },
+            "last_checked": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "last_fired": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "valid": {
+              "type": "boolean"
+            },
+            "validity_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "notification_windows": {
+              "anyOf": [
+                {
+                  "description": "Notification windows configuration for an alert.",
+                  "properties": {
+                    "enabled": {
+                      "description": "Whether notification windows are active",
+                      "type": "boolean"
+                    },
+                    "windows": {
+                      "anyOf": [
+                        {
+                          "items": {
+                            "description": "A notification window spanning from start day/time to end day/time.\n\nDays use 0-6 for current week (0=Monday, 6=Sunday) and 7-13 for next week.\nFor example: start_day=4 (Friday), end_day=8 (next Tuesday) for a weekend window.",
+                            "properties": {
+                              "start_day": {
+                                "description": "Start day: 0-6 (Mon-Sun)",
+                                "maximum": 6,
+                                "minimum": 0,
+                                "type": "integer"
+                              },
+                              "start_time": {
+                                "description": "Start time in HH:MM format",
+                                "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+                                "type": "string"
+                              },
+                              "end_day": {
+                                "description": "End day: 0-6 (same week), 7-13 (next week)",
+                                "maximum": 13,
+                                "minimum": 0,
+                                "type": "integer"
+                              },
+                              "end_time": {
+                                "description": "End time in HH:MM format",
+                                "pattern": "^([01]?[0-9]|2[0-3]):[0-5][0-9]$",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "start_day",
+                              "start_time",
+                              "end_day",
+                              "end_time"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null,
+                      "description": "List of notification windows"
+                    }
+                  },
+                  "required": [
+                    "enabled"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "condition",
+            "frequency",
+            "subscriptions",
+            "bookmark",
+            "user_id",
+            "paused",
+            "created",
+            "modified",
+            "last_checked",
+            "last_fired",
+            "valid"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "entity_type": {
+      "const": "alert",
+      "default": "alert",
+      "type": "string"
+    },
+    "action": {
+      "const": "updated",
+      "default": "updated",
+      "type": "string"
+    },
+    "type": {
+      "const": "alert.updated",
+      "default": "alert.updated",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "payload",
+    "entity_type",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

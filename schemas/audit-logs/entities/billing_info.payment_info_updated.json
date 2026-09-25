@@ -1,0 +1,85 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "Billing payment information was modified.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "billing_info",
+      "default": "billing_info",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "anyOf": [
+            {
+              "properties": {
+                "payment_method_country": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null
+                }
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "current": {
+          "properties": {
+            "payment_method_country": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "payment_info_updated",
+      "default": "payment_info_updated",
+      "type": "string"
+    },
+    "type": {
+      "const": "billing_info.payment_info_updated",
+      "default": "billing_info.payment_info_updated",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
