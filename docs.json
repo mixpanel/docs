@@ -758,6 +758,22 @@
               "troubleshooting/managing-projects",
               "troubleshooting/protecting-user-data"
             ]
+          },
+          {
+            "group": "Error Troubleshooting",
+            "pages": [
+              "troubleshooting/errors",
+              "troubleshooting/errors/400-bad-request",
+              "troubleshooting/errors/401-unauthorized",
+              "troubleshooting/errors/403-forbidden",
+              "troubleshooting/errors/413-payload-too-large",
+              "troubleshooting/errors/429-rate-limit-exceeded",
+              "troubleshooting/errors/snowflake-jwt-token-is-invalid",
+              "troubleshooting/errors/duplicate-events",
+              "troubleshooting/errors/historical-events-not-appearing",
+              "troubleshooting/errors/server-side-events-without-a-user",
+              "troubleshooting/errors/duplicate-user-profiles"
+            ]
           }
         ]
       },

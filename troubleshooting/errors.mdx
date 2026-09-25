@@ -1,0 +1,56 @@
+---
+title: "Error Troubleshooting"
+description: "Index of Mixpanel error pages: API status codes, ingestion failures, warehouse connector authentication, and identity problems"
+---
+
+Find the error you hit, by the message the API returned or by the symptom you're seeing.
+
+## API Status Codes
+
+<CardGroup cols={2}>
+  <Card title="400 Bad Request" href="/troubleshooting/errors/400-bad-request">
+    Events failed validation on /import.
+  </Card>
+  <Card title="401 Unauthorized" href="/troubleshooting/errors/401-unauthorized">
+    Mixpanel could not authenticate the request.
+  </Card>
+  <Card title="403 Forbidden" href="/troubleshooting/errors/403-forbidden">
+    The request was understood but not permitted.
+  </Card>
+  <Card title="413 Payload Too Large" href="/troubleshooting/errors/413-payload-too-large">
+    The request body exceeded the size limit.
+  </Card>
+  <Card title="429 Too Many Requests" href="/troubleshooting/errors/429-rate-limit-exceeded">
+    The project exceeded the ingestion rate limit.
+  </Card>
+</CardGroup>
+
+## Data Problems
+
+<CardGroup cols={2}>
+  <Card title="Duplicate events" href="/troubleshooting/errors/duplicate-events">
+    The same event appears more than once in reports.
+  </Card>
+  <Card title="Historical events missing" href="/troubleshooting/errors/historical-events-not-appearing">
+    A backfill returned success but the events never arrived.
+  </Card>
+</CardGroup>
+
+## Identity
+
+<CardGroup cols={2}>
+  <Card title="Events with no user" href="/troubleshooting/errors/server-side-events-without-a-user">
+    What to send as distinct_id when nobody is logged in.
+  </Card>
+  <Card title="Duplicate user profiles" href="/troubleshooting/errors/duplicate-user-profiles">
+    One person appears as several Mixpanel users.
+  </Card>
+</CardGroup>
+
+## Warehouse Connectors
+
+<CardGroup cols={2}>
+  <Card title="Snowflake: JWT token is invalid" href="/troubleshooting/errors/snowflake-jwt-token-is-invalid">
+    Snowflake error 390144 during connector authentication.
+  </Card>
+</CardGroup>
