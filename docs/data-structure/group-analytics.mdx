@@ -16,7 +16,7 @@ Historically, Mixpanel grouped events by a single identifier called the distinct
 
 ## Group Analytics (hierarchical)
 
-A purpose-built model for **B2B SaaS** where users belong to companies. Mixpanel enforces a two-level hierarchy — **Company** (top level) and **User** (bottom level) — using the reserved properties `$company_id` and `$user_id`. Identity is the composite key (`$company_id`, `$user_id`), which means the same `$user_id` in two different companies is treated as two distinct users.
+A purpose-built model for where users belong to a single parent entity. Mixpanel enforces a two-level hierarchy — **Company** (top level) and **User** (bottom level) — using the reserved properties `$company_id` and `$user_id`. Identity is the composite key (`$company_id`, `$user_id`), which means the same `$user_id` in two different companies is treated as two distinct users.
 
 Use Group Analytics when:
 
