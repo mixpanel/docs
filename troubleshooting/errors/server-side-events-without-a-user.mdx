@@ -17,11 +17,11 @@ You are sending events from a server where no user is logged in — a webhook, a
 }
 ```
 
-"Events with an empty distinct_id will be excluded from all behavioral analysis." They are still ingested and still queryable as event volume; they just cannot participate in per-user analysis, which is the correct outcome for an event that belongs to no user.
+Events with an empty distinct_id will be excluded from all behavioral analysis. They are still ingested and still queryable as event volume; they just cannot participate in per-user analysis, which is the correct outcome for an event that belongs to no user.
 
 ## Do Not Omit `distinct_id`
 
-If you leave it out entirely, "Mixpanel will use the ip address of the incoming request and compute a distinct_id using a hash function."
+If you leave it out entirely, Mixpanel will use the ip address of the incoming request and compute a distinct_id using a hash function.
 
 Every event from the same server then shares one synthetic user. That is worse than the empty string: it silently invents a user, inflates per-user metrics, and can concentrate enough volume on a single ID to trigger [hot shard limits](/docs/tracking-best-practices/hot-shard-limits).
 
@@ -40,9 +40,9 @@ An event carrying one of these fails validation with a [400](/troubleshooting/er
 
 ## When There Is a User
 
-If the event does belong to a known user, send the identifiers rather than setting `distinct_id` yourself. Mixpanel recommends "not setting the `distinct_id` directly; instead you should set the `$device_id` and `$user_id` and have our API determine the `distinct_id` for you."
+If the event does belong to a known user, Mixpanel recommends not setting the `distinct_id` directly; instead you should set the `$device_id` and `$user_id` and have our API determine the `distinct_id` for you.
 
-On Simplified ID Merge, `distinct_id` is derived automatically: it takes the value of `$user_id` when present, otherwise `$device_id` prefixed with `$device:`. If you do set it manually, "it should be the same value as the `$user_id`."
+On Simplified ID Merge, `distinct_id` is derived automatically: it takes the value of `$user_id` when present, otherwise `$device_id` prefixed with `$device:`. If you do set it manually, it should be the same value as the `$user_id`.
 
 <Note>
   This page describes Simplified ID Merge, the default for organizations created from April 2024. Check which system your project uses in [project settings](https://mixpanel.com/settings/project/id-management). On Original ID Merge, server-side anonymous events set `distinct_id` to the anonymous ID directly and identification happens through a `$identify` event.
