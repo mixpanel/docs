@@ -28,18 +28,18 @@ Deduplication happens twice, and they behave differently. This is the most commo
 | Visible in reports | Yes | Yes |
 
 <Warning>
-  Compaction "does not run at a guaranteed or deterministic time. The process can take several hours to days to complete, and in some cases may not run at all." Never rely on it to correct data you already sent.
+  Compaction does not run at a guaranteed or deterministic time. The process can take several hours to days to complete, and in some cases may not run at all. Never rely on it to correct data you already sent.
 </Warning>
 
 ## Why You Are Seeing Duplicates
 
 ### The Events Have No `$insert_id`
 
-`$insert_id` is required on every `/import` event. If an event arrives without one, Mixpanel generates a value for it, but "it will not qualify for the deduplication process." Those events can never be deduplicated.
+`$insert_id` is required on every `/import` event. If an event arrives without one, Mixpanel generates a value for it, but it will not qualify for the deduplication process. Those events can never be deduplicated.
 
 ### The Same `$insert_id` Was Reused
 
-Setting `$insert_id` to something that is not unique per event — a user's `distinct_id`, for example — causes the opposite problem. Mixpanel warns that reusing it "can cause unintended deduplication and data loss." Events you meant to keep disappear instead.
+Setting `$insert_id` to something that is not unique per event — a user's `distinct_id`, for example — causes the opposite problem. Mixpanel warns that reusing it can cause unintended deduplication and data loss. Events you meant to keep disappear instead.
 
 ### The Timestamps Differ
 
@@ -47,7 +47,7 @@ Query-time deduplication needs an exact `time` match. If a retry recomputes the 
 
 ### You Are Looking at a Raw Export
 
-Query-time deduplication "is visible in the Mixpanel UI and reports, but not in raw data exports. Raw event export will contain all data as they were ingested, without any deduplication." Duplicates in an export are expected. Apply the same four-part key (`event`, `distinct_id`, `time`, `$insert_id`) to exported data yourself.
+Query-time deduplication is visible in the Mixpanel UI and reports, but not in raw data exports. Raw event export will contain all data as they were ingested, without any deduplication. Duplicates in an export are expected. Apply the same four-part key (`event`, `distinct_id`, `time`, `$insert_id`) to exported data yourself.
 
 ### You Expected a Resend to Overwrite the Original
 
@@ -61,7 +61,7 @@ Mixpanel does not guarantee upsert behavior. Re-sending a corrected event with t
 
 **Retry with the original payload.** Because the key includes `time`, a retry must resend the identical event for deduplication to work. This is what makes `/import` retries safe.
 
-**Check the delete-and-reimport trap.** If you re-import data while the original is soft deleted and reuse the same `$insert_id`, "our deduplication systems may keep the old (deleted) event and toss the new event." Regenerate the `$insert_id` when reimporting.
+**Check the delete-and-reimport trap.** If you re-import data while the original is soft deleted and reuse the same `$insert_id`, our deduplication systems may keep the old (deleted) event and toss the new event. Regenerate the `$insert_id` when reimporting.
 
 ## Related
 
