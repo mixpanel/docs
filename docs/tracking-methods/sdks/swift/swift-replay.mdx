@@ -407,6 +407,163 @@ Alternatively:
 MPSessionReplay.getInstance()?.loggingEnabled = true
 ```
 
+## Wireframes (Beta)
+
+<Note>
+  **Beta.** Wireframes are in beta. Before shipping to production, inspect the wireframes your app produces with `debugOptions.wireframeEmitter` and confirm that no sensitive information is captured.
+</Note>
+
+Wireframes add AI intelligence to our Mobile Session Replay product by gathering and sending text-based representations of the user’s screen, which we feed into the agent context.
+
+### Enable wireframe capture
+
+Set `wireframesOptions` on `MPSessionReplayConfig`.
+
+```swift Swift
+let config = MPSessionReplayConfig(
+    wireframesOptions: MPWireframesOptions()
+)
+MPSessionReplay.initialize(
+    token: Mixpanel.mainInstance().apiToken,
+    distinctId: Mixpanel.mainInstance().distinctId,
+    config: config
+)
+```
+
+`MPWireframesOptions` takes two options:
+
+| Option | Description | Default |
+| --- | --- | --- |
+| `sensitiveRules` | Content-level strip and redact rules applied to element text, in the order you declare them. Elements are always kept; only their text is affected. | `[]` |
+| `useAccessibilityLabelFallback` | Whether an element with no text of its own may fall back to its `accessibilityLabel`. Off by default — see [Risks to mitigate](#risks-to-mitigate). | `false` |
+
+### How masking applies to wireframe text
+
+Wireframe text passes through four layers, in order. Each layer only sees what survived the one before it. An element is **never removed** by masking — its role and bounds always ship, so the shape of the screen is preserved. Only its text is affected.
+
+| Evaluation Order | Layer | What it does | Direction |
+| --- | --- | --- | --- |
+| 1 | **View-level masking** | The existing Session Replay masking decision, made during the same traversal that builds the screenshot. If something is masked in the video, its text is dropped from the wireframe. Covers `autoMaskedViews`, views you marked sensitive with `mpReplaySensitive`, and `UITextField` and other text-entry views. | Removes |
+| 2 | **Geometric leak prevention** | Any element whose bounds intersect a mask region the screenshot painted loses its text, even if that element was never marked sensitive itself. | Removes |
+| 3 | **Declared text** | Text you supply with `mpWireframeText` replaces whatever the first two layers produced. Because you authored it rather than the SDK scraping it off the screen, it is sent even for an element you masked in the video. | Adds |
+| 4 | **Content rules** | `sensitiveRules` — your own strip and redact patterns — applied in declared order to whatever text remains, including text you declared in Layer 3. | Removes / rewrites |
+
+The short version: **the SDK does its best to keep the wireframe consistent with what the replay video shows**, plus two escape hatches you control — one to add a safe description back (Layer 3), one to catch sensitive content by pattern (Layer 4).
+
+#### Declare text for an element
+
+`mpWireframeText` lets you supply the text for an element yourself — useful for custom views, canvas-drawn content, and masked screens you still want named. Use it to say what a screen is *for* — `"Checkout summary"`, `"Card number"` — without revealing what is on it.
+
+```swift Swift
+// SwiftUI — masked in the video, named in the wireframe
+Text(user.firstName)
+    .mpReplaySensitive(true)
+    .mpWireframeText("First name")
+
+// UIKit
+cardNumberField.mpWireframeText = "Card number"
+```
+
+Declared text is sent verbatim, even on a masked element, so never interpolate sensitive user data into it.
+
+<Warning>
+  **SwiftUI screens carry no scraped text.** A SwiftUI leaf view does not expose its string to the SDK, so `.mpWireframeText(_:)` is the only way to give a pure-SwiftUI screen readable text. UIKit views are read normally, so a mixed app gets text for its UIKit half.
+</Warning>
+
+#### Redact by pattern
+
+Some text is sensitive because of what it *contains* rather than which view it came from — an account number inside a custom view the SDK has no way to recognize, for example. `sensitiveRules` match on the text itself and run last, after every other masking layer.
+
+There are two behaviors — **redact** and **strip** — each available as a literal or a regex match. Redact allows you to replace sensitive text; strip omits all text from the element.
+
+| Rule | What it does |
+| --- | --- |
+| `.redact(text:replacement:)` | Replaces case-insensitive matches of `text` with `replacement` (`[REDACTED]` by default). |
+| `.redactRegex(_:replacement:)` | Replaces every match of the regular expression with `replacement`. |
+| `.strip(text:)` | Omits all text from the element if it contains `text`, case-insensitively. No later rule runs. |
+| `.stripRegex(_:)` | Omits all text from the element if the regular expression matches anywhere in it. No later rule runs. |
+
+```swift Swift
+let config = MPSessionReplayConfig(
+    wireframesOptions: MPWireframesOptions(
+        sensitiveRules: [
+            .redactRegex(
+                try! NSRegularExpression(pattern: #"\d{3}-\d{2}-\d{4}"#),
+                replacement: "[SSN]"
+            ),
+            .strip(text: "Bearer "),
+        ]
+    )
+)
+```
+
+Treat content rules as a **backstop, not a boundary**. A regex only catches what it matches, on the text the SDK already read. View-level masking is the stronger control; reach for rules when there is no view to mask.
+
+### Verify what you are sending
+
+`debugOptions.wireframeEmitter` hands you each wireframe as it is captured, with a `maskDecision` per element explaining why its text was kept, rewritten, or dropped.
+
+```swift Swift
+let config = MPSessionReplayConfig(
+    debugOptions: DebugOptions(
+        overlayColors: nil,
+        wireframeEmitter: { snapshot in print(snapshot.toJson()) }
+    ),
+    wireframesOptions: MPWireframesOptions()
+)
+```
+
+| Decision | Meaning |
+| --- | --- |
+| `NONE` | Text sent as-is. |
+| `DECLARED` | Your `mpWireframeText`. Sent verbatim, even on a masked element. |
+| `EXPLICIT` | You marked this view, or its class, sensitive. Text dropped. |
+| `AUTO` | Auto-masked by `autoMaskedViews`. Text dropped. |
+| `TEXT_ENTRY` | A text-entry view such as `UITextField`. The value the user typed is always dropped and cannot be unmasked — declare `mpWireframeText` if you want to provide text. |
+| `GEOMETRIC` | Bounds intersected a mask region the screenshot painted. Text dropped. |
+| `RULE_STRIP` | Matched one of your strip rules. Text dropped. |
+| `RULE_REDACT` | Matched one of your redact rules. Text sent, rewritten. |
+
+A few things worth knowing:
+
+- **The emitter observes; it does not enable.** Setting it without `wireframesOptions` captures nothing.
+- **Use it in debug builds only.** The emitter runs wherever you configure it, so leave it out of the release builds you ship.
+- **The snapshot shape is not a stable contract.** It is for interactive debugging.
+
+### Risks to mitigate
+
+Layers 1 and 2 remove anything the video masked. They do not cover every way content can be invisible to the person looking at the screen. These are the specific gaps to check for in your own app before you enable wireframes in production.
+
+<AccordionGroup>
+  <Accordion title="Text behind an opaque view is still read">
+    Layer 2 strips text under regions the screenshot **masked**, not under an ordinary opaque view you placed on top. So when a splash view, a bottom sheet, or a loading scrim covers content, the wireframe may describe text the screenshot does not show.
+
+    Usually that is fine — content you never marked sensitive is content you were happy to capture either way. It only matters if something sensitive is sitting behind the cover, in which case mask it or give it a `mpWireframeText`.
+  </Accordion>
+  <Accordion title="Accessibility labels can describe more than the screen shows">
+    An element with no text of its own can fall back to its `accessibilityLabel`. That is what lets an icon-only button ship as `button:Search` instead of an anonymous shell.
+
+    The risk is that a label is not drawn on screen, so — unlike visible text — you cannot confirm what it holds by watching the replay. An avatar whose label is the user's full name ships that name with no visual cue that there was anything there to mask.
+
+    Because of that, `useAccessibilityLabelFallback` is **off by default**. Turn it on only after auditing what your labels contain, and verify with the debug emitter — label-derived text is reported like any other text, with its own `maskDecision`.
+  </Accordion>
+  <Accordion title="Text the user cannot fully see">
+    The SDK reads the string a view was handed, which is not always the string a user can see on-screen. Ellipsized labels, lines clipped by their container, and values scrolled out of frame all report their full value. Element text is capped at 50 characters, which bounds but does not eliminate this.
+
+    **Mitigate:** mask or declare text for anything whose full value is more sensitive than its rendered form.
+  </Accordion>
+  <Accordion title="Declared text bypasses view masking by design">
+    `mpWireframeText` is exempt from Layers 1 and 2 — that is the whole point of it. Content rules still run over it, but nothing else does.
+
+    **Mitigate:** treat it as a static string you wrote at build time. Never interpolate sensitive user data into it.
+  </Accordion>
+  <Accordion title="Content the SDK cannot classify is not auto-masked">
+    Automatic masking works by view type. Custom views that draw their own content are not text views, so `autoMaskedViews` does not cover them — the same as for screenshots today, but now they can also carry text.
+
+    **Mitigate:** mark custom views sensitive explicitly, and confirm coverage with the debug emitter rather than assuming.
+  </Accordion>
+</AccordionGroup>
+
 ## Privacy
 
 Mixpanel offers a privacy-first approach to Session Replay, including features such as data masking. Mixpanel's Session Replay privacy controls were designed to assist customers in protecting end user privacy. Read more [here](/docs/session-replay/session-replay-privacy-controls).

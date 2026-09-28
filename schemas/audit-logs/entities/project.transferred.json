@@ -1,0 +1,74 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A project was transferred to a different organization or owner.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "project",
+      "default": "project",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "from_organization_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "from_organization_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "to_organization_id": {
+          "type": "string"
+        },
+        "to_organization_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "to_organization_id",
+        "to_organization_name"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "transferred",
+      "default": "transferred",
+      "type": "string"
+    },
+    "type": {
+      "const": "project.transferred",
+      "default": "project.transferred",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

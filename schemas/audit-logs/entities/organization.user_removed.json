@@ -1,0 +1,90 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A user was removed from the organization.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "organization",
+      "default": "organization",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "user_email": {
+          "type": "string"
+        },
+        "organization_role": {
+          "anyOf": [
+            {
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "is_custom_role": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "is_custom_role"
+              ],
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source": {
+          "enum": [
+            "admin",
+            "scim",
+            "scim_linked_org",
+            "self_account_deleted",
+            "self_leave"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "user_id",
+        "user_email",
+        "source"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "user_removed",
+      "default": "user_removed",
+      "type": "string"
+    },
+    "type": {
+      "const": "organization.user_removed",
+      "default": "organization.user_removed",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
