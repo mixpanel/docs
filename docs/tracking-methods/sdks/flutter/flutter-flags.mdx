@@ -297,6 +297,8 @@ Map<String, MixpanelFlagVariant> allFlags = await flags.getAllVariants();
 
 Calling `isEnabled` or `getVariantValue` triggers tracking an exposure event, `$experiment_started` to your Mixpanel project _if_ the user context is in a rollout group for the feature flag. Note that `getAllVariants()` does not trigger exposure events.
 
+`$experiment_started` is tracked only on the **first** evaluation of a given flag after each flag fetch. Repeat evaluations of the same flag reuse the already-fetched variant and do not send another exposure event, so exposures aren't inflated by re-renders or repeated lookups. The deduplication window resets on every fetch — for example when `identify()`, `loadFlags()`, `updateContext()`, or `reset()` triggers a reload.
+
 ## Frequently Asked Questions
 
 ### What if I'm not receiving any flags on SDK initialization?
