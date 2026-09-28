@@ -339,7 +339,7 @@ The Android SDK provides a few method for adding individual users to a group and
 
 ### Adding Users to a Group
 
-[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
+[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics/group-analytics-implementation#tracking-events-for-a-group). Without the group key, an event cannot be attributed to a group.
 
 Call the [`.setGroup()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/setGroup.html) method to register the current user to a group, which would add the `group_key` as an event property set to the `group_id` value to all events moving forward.
 
