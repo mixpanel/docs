@@ -199,33 +199,175 @@ Running an experiment has always required statistical knowledge most PMs don't h
 
 The Experiments Agent works alongside you inside the [experiments](/docs/experiments) and [feature flags](/docs/featureflags) pages. Ask it to help configure an experiment, explain results in plain language, or roll out a winner. It's a conversation, not a form.
 
+Its defining behavior is that it **recommends rather than enforces**. Every setting it proposes comes with a one-line reason and can be overridden. You stay the decision-maker; the Agent's job is to make sure no consequential decision is made silently.
+
 ### When to use it
 
 - You're setting up a new experiment and want to make sure it's configured correctly before launch
+- Your team can run experiments but isn't confident choosing sample sizes, MDE, or a statistical model
+- A health check fired and you need to know whether it's a real problem
 - Your experiment has results and you need to know what they mean and what to do next
 - You want to ship a winning variant without navigating the decision modal yourself
 
 ### How to use it
 
-Open Mixpanel Agent on any experiment or feature flag page.
+Open Mixpanel Agent on any experiment or feature flag page, or ask it to create an experiment from anywhere.
 
-**Setting up an experiment:** The Agent walks you through three questions — your hypothesis, your primary success metric, and how long it should run. Everything else (experiment name, variant split, confidence threshold, statistical defaults) the Agent handles. It presents the full configuration for your approval before creating anything.
+#### Setting up an experiment
 
-**Interpreting results:** Ask the Agent to summarize your results and it reads the full experiment — your hypothesis, every metric, the statistical output — and returns a plain-language verdict: what happened, whether it's significant, and a clear recommendation to ship, iterate, or kill.
+The Agent works backward from your hypothesis: the hypothesis dictates the metrics that test it, the metrics dictate the sample size, and sample size plus traffic dictate duration and statistical model.
 
-**Rolling out a winner:** After the Agent gives you a results summary, tell it to ship the winner. It concludes the experiment and updates the feature flag. You don't have to touch the decision modal.
+<Steps>
+  <Step title="Write the hypothesis">
+    The Agent coaches you into a falsifiable directional claim with a stated mechanism: *If \<change\>, then \<measurable outcome\> will \<direction\>, because \<mechanism\>.* If you give it "test the new onboarding," it asks for the change, the outcome metric, the expected direction, the minimum effect worth shipping, and why you expect it to work.
 
-{/* TODO: Add screenshot of Experiments Agent */}
+    The mechanism isn't a formality — it forces the question of whether your metric is actually downstream of your change. An onboarding-screen test shouldn't be measured on Day-30 retention if nobody has reached Day 30 yet.
+  </Step>
+
+  <Step title="Pick metrics that test the hypothesis">
+    The Agent assigns each metric one of three roles and sanity-checks your choices:
+
+    - **Primary** (1–3 max) — decides ship/no-ship. Each additional primary raises the false-positive rate.
+    - **Guardrail** — must not regress, even if primaries win. The Agent flags an experiment with none, because guardrails are the regression backstop on a ship decision.
+    - **Secondary** — diagnostic only, never decisional. If you mention a metric in your hypothesis and then classify it as secondary, the Agent asks whether it should be promoted.
+
+    It checks each metric for the common setup traps: a metric the change can't move, a metric whose denominator the treatment creates from scratch, a lagging indicator that can't respond inside your window, and a missing `direction` on cancel/error/latency-style metrics, where the default of "up" would later read a regression as a win.
+  </Step>
+
+  <Step title="Size the experiment from your own data">
+    Rather than guessing, the Agent queries your project: baseline rate and variance for each primary metric over the prior two to four weeks, and daily volume on the exposure event over the same window. From those it computes the sample size each variant needs to detect your MDE, and the duration that implies at your actual traffic.
+
+    When the numbers don't work, it says so and gives you the real options: accept a larger MDE, allocate more traffic, enable CUPED to cut variance, pick a higher-volume primary metric, or don't run the experiment. It also flags the reverse case — an audience narrow enough to be clean but too small to reach power.
+  </Step>
+
+  <Step title="Choose a model, end condition, and statistical settings">
+    The Agent presents all three testing models with a recommendation, and it settles the model *before* asking about MDE and duration, because the model changes what those numbers mean.
+
+    It then proposes the statistical configuration as a single grouped question you can veto in one pass, rather than one prompt per setting.
+  </Step>
+</Steps>
 
 <Note>
-  **Pro tip:** The more specific your hypothesis, the better the Agent's defaults and interpretation. "If we simplify checkout to one page, purchase conversion will increase because fewer steps reduce drop-off" gives the Agent more to work with than "test the checkout flow."
+  **Pro tip:** The Agent searches your prior experiments before proposing anything new. If the same feature has been tested, it surfaces those results first — and reuses the realized baseline rates and exposure rates to set a realistic MDE and duration instead of a generic default.
 </Note>
 
+#### Five things the Agent never decides silently
+
+On any create, the Agent states or confirms each of these, in this order, with a one-line reason attached:
+
+| Decision | What the Agent does |
+| :-- | :-- |
+| **Primary metric + direction** | Echoes it back for a yes/no, even when it inferred it from your request |
+| **Testing model** | Presents frequentist, sequential, and Bayesian with a recommendation — before MDE and duration |
+| **MDE** | Confirms the number rather than carrying one over, with a one-line explanation of the higher-vs-lower trade-off |
+| **Duration / end condition** | Asks, or states it as an explicit assumption you can change |
+| **Statistical configuration** | Recommends SRM, CUPED, Winsorization, multiple-testing correction, and any non-95% confidence level |
+
+The only setting it applies without asking is excluding QA and internal traffic. It turns that on for any experiment whose results matter, because the cost of enabling it is zero and the cost of contaminated results is rerunning the experiment.
+
+#### Recommended defaults and when it changes them
+
+| Setting | Default it recommends | When it recommends otherwise |
+| :-- | :-- | :-- |
+| **Testing model** | Sequential | Frequentist when you're hunting a very small lift on high volume; Bayesian when you want the probability a variant beats control |
+| **Confidence level** | 95% | 99% for high-stakes irreversible ships; 90% for low-stakes exploration, with the inflated false-positive rate called out |
+| **Traffic split** | 50/50, sticky assignment | Even split across 3+ arms; deliberately uneven for a risky rollout |
+| **[Multiple-testing correction](/docs/experiments#benjamini-hochberg-correction)** | Benjamini-Hochberg, on with 2+ primaries or 2+ treatment variants | [Bonferroni](/docs/experiments#bonferroni-correction) when you need strict family-wise control; off with a single primary and single treatment |
+| **[CUPED](/docs/experiments#cuped-controlled-experiment-using-pre-experiment-data)** | On when the metric correlates with pre-exposure behavior | Off for new-user-only experiments and brand-new metrics, where there's no pre-exposure data to use |
+| **[Winsorization](/docs/experiments#winsorization)** | On at the 5th/95th percentile for revenue, spend, and duration metrics | Off for conversion metrics, and when the tail behavior *is* the hypothesis |
+| **[SRM](/docs/experiments#health-checks)** | On | Recommended on always — it's free to run and catches broken bucketing within hours |
+
+Sequential is the default because peeking at results early is the most common mistake the Agent sees, and sequential testing makes it statistically safe. The Agent explains each recommendation in terms of what it buys you: CUPED, for instance, cuts variance 30–70%, which means the same statistical power off meaningfully less traffic.
+
+<Note>
+  **Pro tip:** Ask "why?" on any recommendation. The Agent keeps rationale to one sentence per decision by design — over-explaining was the single most common complaint in beta — but it will give you the full reasoning, including the underlying math, when you ask for it.
+</Note>
+
+#### Pre-launch checks
+
+Before launch, the Agent cross-references your draft configuration against known pitfalls and returns only the ones that actually apply. Each finding names the specific value that triggered it and comes with a fix that pre-fills the relevant field, so you can accept a remediation without retyping parameters.
+
+Two findings are blockers, because the experiment cannot answer the question you're asking it regardless of how clean the rest of the setup is:
+
+| Check | Severity | Fires when |
+| :-- | :-- | :-- |
+| **Underpowered duration** | Blocker | Expected exposures are under half the per-variant sample your MDE requires |
+| **Cohort too small** | Blocker | The cohort holds fewer eligible users than your per-variant target multiplied by the number of variants |
+| **Marginally underpowered** | Warning | Expected exposures land between half and one full required sample |
+| **Pre-experiment bias likely** | Warning | Retro A/A is on and a continuous, retention, or funnel metric is configured, but CUPED is off |
+| **High variance, no Winsorization** | Warning | A continuous-style metric is configured with outlier capping off |
+| **Multiple primaries, no correction** | Warning | 2+ primary metrics with multiple-testing correction off |
+| **Missing guardrails** | Warning | No guardrail metric is configured |
+| **Hypothesis / metric mismatch** | Warning | Your configured primary metrics don't appear to match what the hypothesis predicts |
+| **No leading indicator** | Warning | Every primary metric is lagging by construction, so none can move inside the planned window |
+
+For the two blockers, the fix is quantified rather than vague: it tells you roughly how many days to extend, or the cohort size and per-variant target that would make the experiment viable.
+
+<Note>
+  **Pro tip:** You can ask for these checks at any point while filling out an experiment, not just at the end. The Agent skips any check whose inputs you haven't supplied yet, so a half-finished draft returns real findings instead of a wall of "missing input" noise.
+</Note>
+
+#### Explaining health checks
+
+When [SRM or Pre-Experiment Bias](/docs/experiments#health-checks) fires, ask the Agent what it means. It reads the same computed verdict the in-app banner reads, so its explanation never contradicts what you're looking at in the experiment UI.
+
+For either check it tells you which metrics and variants are affected — useful when the banner collapses several into "+2 others" — how far the observed split or pre-period difference is from what you'd expect by chance, the likely causes ranked by plausibility, and the recommended action.
+
+That action isn't always "restart." A failing Retro A/A on a new-visitor experiment, where users have no pre-exposure behavior to differ on, means something different from a failure on an established cohort. The Agent distinguishes the cases and will tell you when a firing check is safe to proceed past.
+
+#### Interpreting results
+
+Ask the Agent to summarize your results and it reads the full experiment — your hypothesis, every metric and its role, the statistical output, exposure counts, and health check status — then returns a plain-language verdict: what happened, whether it's significant, and a recommendation to ship, iterate, or kill.
+
+It translates the statistics rather than restating them. Instead of "p=0.03, lift=+4.2%, CI [1.1%, 7.3%]," you get the confidence interval expressed as a range of plausible real effects. For Bayesian experiments it reports posterior probabilities and credible intervals, never p-values.
+
+It also checks guardrails against a hard gate: a 5% relative regression on any guardrail is treated as blocking a ship, even when the primary metric wins.
+
+#### Rolling out a winner
+
+After the Agent gives you a results summary, tell it to ship the winner. It concludes the experiment, updates the feature flag to send all traffic to the winning variant, and writes the decision documentation from its own summary. You don't have to touch the decision modal.
+
+### What to ask it
+
+Setup:
+
+- "Create an experiment to test a one-page checkout against the current three-step flow."
+- "Is my sample size big enough to detect a 5% lift on checkout conversion?"
+- "What metrics should I use as guardrails for a pricing page test?"
+- "Should I enable CUPED for this experiment?"
+- "Has anyone on my team already tested this feature?"
+- "Run the pre-launch checks on this draft."
+
+Monitoring and results:
+
+- "Why is my Retro A/A check failing?"
+- "Which metrics are flagged by the SRM warning?"
+- "Is this significant yet, or should I let it run longer?"
+- "Summarize these results for my VP."
+- "Ship the winning variant."
+
+### Limits worth knowing
+
 <Warning>
-  The Agent reads the data in your experiment. If your experiment was misconfigured before launch — wrong metric, insufficient sample size — the Agent will flag what it sees, but it can't fix what already happened. Use it during setup, not just at results time.
+  The Agent reads the data in your experiment. If your experiment was misconfigured before launch — wrong metric, insufficient sample size, missing `direction` on a guardrail — the Agent will flag what it sees, but it can't fix what already happened. Use it during setup, not just at results time.
 </Warning>
 
-### In practice
+- **It recommends; you decide.** The Agent won't block a launch on its own. Pre-launch blockers are surfaced for you to act on, not enforced.
+- **Bayesian experiments work differently.** Multiple-testing corrections don't apply to posterior probabilities, so the Agent turns correction off and omits that recommendation. Fixed-horizon power calculations don't determine when a Bayesian experiment becomes decisive. SRM and Retro A/A still apply. See [which methods apply to Bayesian experiments](/docs/experiments#which-methods-apply-to-bayesian-experiments).
+- **Segment-level breakdowns of experiment results aren't available yet.** The Agent interprets overall and per-metric results; slicing results by property is planned.
+- **Secondary metrics are never decisional.** If a metric matters to your ship decision, the Agent will push you to make it primary or a guardrail.
+
+### In practice: getting the setup right
+
+Jordan is a PM at a health platform. Her team can set up experiments in the UI, but nobody is confident about the statistics — and a bad configuration means a wrong decision that nobody catches for weeks.
+
+She asks the Agent to set up a test on a redesigned supplement recommendation flow. It finds a related test from two quarters ago and reuses its realized baseline conversion rate instead of guessing. It proposes uniques of `recommendation_accepted` as the primary metric, recommends sequential so her team can check in early without invalidating the result, and asks what lift would be worth shipping. She says 5%.
+
+The Agent comes back with a problem: at her current traffic, 5% on that baseline needs about four weeks, not the two she had in mind. It offers the trade-offs — accept a 10% MDE and finish in two weeks, or enable CUPED, which on a metric this correlated with pre-exposure behavior gets her most of the way there. She takes CUPED and a three-week run. It also flags that she has no guardrail and suggests time-to-recommendation.
+
+The experiment launches correctly configured. Three weeks later she asks for a summary and forwards it, rather than a table of p-values, to her director.
+
+### In practice: making the call
 
 Dev is an engineer at a fintech company. His team's experiment on the savings goal flow has results — p-values, confidence intervals, a table of metrics — but nobody knows whether to ship the treatment or not.
 
@@ -248,6 +390,8 @@ Mixpanel Agent doesn't replace how you think about your data. It replaces the me
 | Build boards from scratch or browse templates to find a starting point | Ask Mixpanel Agent | Describe your question. The board is your first draft. |
 | Copy a teammate's board and customize it for your team | Ask Mixpanel Agent | Describe your team's specific question and get a board built for it directly. |
 | Manually interpret experiment results and write up a recommendation | Experiments Agent | Ask the Agent to summarize. It returns a verdict, key numbers, and a ship/kill recommendation in plain language. |
+| Ask an analyst or data scientist to review each experiment config before launch | Experiments Agent | The Agent sizes the experiment from your own baseline data and flags misconfigurations before launch, so review is a check rather than a bottleneck. |
+| Look up what SRM or pre-experiment bias means when a health check fires | Experiments Agent | Ask it. It names the affected metrics, ranks the likely causes, and tells you whether the failure is actually a problem. |
 
 Those are direct replacements — workflows you're already running that an agent handles better. But there's a second category worth considering: things that weren't practical before because the effort was too high relative to the value, so teams either skipped them or did them infrequently. Agents change that calculus.
 
@@ -267,6 +411,7 @@ Those are direct replacements — workflows you're already running that an agent
 - Pair every meaningful alert with RCA. The alert tells you something moved; RCA tells you why, before you've had to open a single breakdown.
 - Set up the KPI Agent once on the metric you're accountable for and it delivers a digest on your schedule — daily, weekly, or monthly, via Slack or email.
 - Use the Experiments Agent during setup, not just at results time — it can't fix a misconfigured experiment after the fact.
+- The Experiments Agent recommends rather than enforces. It won't decide silently: your primary metric, testing model, MDE, duration, and statistical settings all come back to you with a one-line reason and a veto.
 - The biggest shift these capabilities make isn't speed — it's what becomes worth doing. Questions that weren't practical before now take minutes.
 
 **Next steps:** For access points, security, privacy details, and FAQs, see the [Mixpanel Agent documentation](/docs/mixpanel-agent).
@@ -278,8 +423,8 @@ Those are direct replacements — workflows you're already running that an agent
 |  | Ask Mixpanel Agent | RCA Agent | KPI Agent | Experiments Agent |
 | :-- | :-- | :-- | :-- | :-- |
 | **Trigger** | On-demand | On-demand | Scheduled | On-demand |
-| **Scope** | Any question or build request | Single metric shift | Single metric | Experiment setup, results, rollout |
+| **Scope** | Any question or build request | Single metric shift | Single metric | Experiment setup, pre-launch checks, health checks, results, rollout |
 | **Output** | Answer or multi-chart board | Generated RCA board | Personalized digest | Guided conversation \+ actions |
 | **Delivery** | In-product | In-product | Slack or email | In-product |
-| **Best for** | Getting answers fast | Explaining what changed | Staying close to a KPI | Running experiments without statistical expertise |
+| **Best for** | Getting answers fast | Explaining what changed | Staying close to a KPI | Designing and reading experiments without statistical expertise |
 | **Uses Business Context** | Yes | Yes | Coming soon | Yes |
