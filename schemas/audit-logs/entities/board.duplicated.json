@@ -1,0 +1,53 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "A copy of an existing board was created.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "board",
+      "default": "board",
+      "type": "string"
+    },
+    "payload": {
+      "description": "Payload for board duplication events.",
+      "properties": {
+        "duplicated_board_id": {
+          "type": "string"
+        },
+        "target_project_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "duplicated_board_id",
+        "target_project_id"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "duplicated",
+      "default": "duplicated",
+      "type": "string"
+    },
+    "type": {
+      "const": "board.duplicated",
+      "default": "board.duplicated",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

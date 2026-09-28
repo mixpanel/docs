@@ -1,0 +1,115 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A user's role or permissions were modified.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "user",
+      "default": "user",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "properties": {
+            "role": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "is_custom_role": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "is_custom_role"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "role"
+          ],
+          "type": "object"
+        },
+        "current": {
+          "properties": {
+            "role": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "is_custom_role": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "is_custom_role"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "role"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object",
+      "description": "The previous and current state of the user's role after the change. Scope (project vs organization) is conveyed by the parent audit log envelope: a project-scoped change has `project` set; an org-scoped change has only `organization` set."
+    },
+    "action": {
+      "const": "role_changed",
+      "default": "role_changed",
+      "type": "string"
+    },
+    "type": {
+      "const": "user.role_changed",
+      "default": "user.role_changed",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

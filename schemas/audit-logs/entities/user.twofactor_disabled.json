@@ -1,0 +1,59 @@
+{
+  "x-release-date": "2026-08-15T00:00:00Z",
+  "description": "A user deactivated two-factor authentication.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "user",
+      "default": "user",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "phone_number": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "method"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "twofactor_disabled",
+      "default": "twofactor_disabled",
+      "type": "string"
+    },
+    "type": {
+      "const": "user.twofactor_disabled",
+      "default": "user.twofactor_disabled",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

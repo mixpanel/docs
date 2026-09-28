@@ -1,0 +1,68 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "Board data was exported.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "board",
+      "default": "board",
+      "type": "string"
+    },
+    "payload": {
+      "description": "Payload for board export (one-time email/slack) events.",
+      "properties": {
+        "export_id": {
+          "type": "string"
+        },
+        "export_name": {
+          "type": "string"
+        },
+        "recipients": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "slack_subscriptions": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "export_id",
+        "export_name",
+        "recipients",
+        "slack_subscriptions"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "exported",
+      "default": "exported",
+      "type": "string"
+    },
+    "type": {
+      "const": "board.exported",
+      "default": "board.exported",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
