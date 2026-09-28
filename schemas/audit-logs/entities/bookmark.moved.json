@@ -1,0 +1,87 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A saved report was moved to a different location.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "bookmark",
+      "default": "bookmark",
+      "type": "string"
+    },
+    "payload": {
+      "description": "Payload for bookmark move events.",
+      "properties": {
+        "source_dashboard_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source_dashboard_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "target_dashboard_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "target_dashboard_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "type": "object"
+    },
+    "action": {
+      "const": "moved",
+      "default": "moved",
+      "type": "string"
+    },
+    "type": {
+      "const": "bookmark.moved",
+      "default": "bookmark.moved",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

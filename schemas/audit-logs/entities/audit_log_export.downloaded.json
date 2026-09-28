@@ -1,0 +1,41 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "An audit log export file was downloaded.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "audit_log_export",
+      "default": "audit_log_export",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {},
+      "type": "object"
+    },
+    "action": {
+      "const": "downloaded",
+      "default": "downloaded",
+      "type": "string"
+    },
+    "type": {
+      "const": "audit_log_export.downloaded",
+      "default": "audit_log_export.downloaded",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

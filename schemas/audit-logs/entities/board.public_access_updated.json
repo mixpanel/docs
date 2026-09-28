@@ -1,0 +1,69 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "Public sharing settings for a board were changed.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "board",
+      "default": "board",
+      "type": "string"
+    },
+    "payload": {
+      "description": "Payload for board public access update events.",
+      "properties": {
+        "workspace_id": {
+          "type": "string"
+        },
+        "workspace_name": {
+          "type": "string"
+        },
+        "enabled": {
+          "description": "Whether the public link is enabled for the board.",
+          "type": "boolean"
+        },
+        "link_uuid": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "workspace_id",
+        "workspace_name",
+        "enabled"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "public_access_updated",
+      "default": "public_access_updated",
+      "type": "string"
+    },
+    "type": {
+      "const": "board.public_access_updated",
+      "default": "board.public_access_updated",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
