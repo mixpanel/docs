@@ -1,0 +1,181 @@
+---
+title: Identity Management FAQ
+description: "Common questions about how Mixpanel identifies users, merges IDs, and persists distinct_id across devices and domains"
+---
+
+Common questions about how Mixpanel identifies users, merges IDs, and persists `distinct_id`.
+
+## What is a distinct_id?
+
+A **distinct\_id** in Mixpanel is the unique identifier used to track a user across events and profile updates. This ID allows Mixpanel to attribute actions and properties to the correct user, ensuring accurate analytics and reporting.
+
+When two events have the same distinct\_id, they are considered to be performed by the same unique user. If two events have different distinct\_ids, they are treated as coming from different users.
+
+Learn more about [identity management](/docs/tracking-methods/id-management).
+
+## How is distinct_id generated?
+
+On the client side, the Mixpanel SDK automatically generates a random, unique `distinct_id` for anonymous users. When a user registers or logs in, you can assign a known user ID (such as a database ID) by calling the `identify` method in the SDK. The ID is then stored in the cookie or local storage for persistence.
+
+On the server side, you are responsible for generating both anonymous and known user IDs, as well as ensuring their consistency and persistence across events.
+
+Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
+
+## Where is distinct_id stored?
+
+On the client side, the `distinct_id` is stored in the end user's device using cookies or local storage. If the user clears this data (or you call `reset()`), the SDK generates a new `distinct_id`.
+
+On the server side, your server is responsible for generating, maintaining, and persisting the `distinct_id` across events to ensure consistent user tracking.
+
+Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
+
+## What is the best practice for handling user identity in a client-side implementation?
+
+As a best practice for client-side identity management:
+
+1. **Call `identify()`** during both registration and login, using a consistent user ID in each case to ensure proper user identification.
+2. **Call `reset()`** on logout to clear cookies or local storage and generate a new ID. This prevents unintended merging of data from multiple users sharing the same device.
+3. **Include your user ID** as both a super property and a user property. Doing so makes it easier to query and export data.
+
+Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
+
+## What is the best practice for handling user identity in a server-side implementation?
+
+In a server-side implementation, you must generate and manage user IDs yourself. When a user is anonymous, generate a unique Anonymous ID (such as a UUID) and store it.
+
+If your project is using the [Simplified API](/docs/tracking-methods/id-management/identifying-users-simplified): For anonymous events, set the `$device_id` event property to this Anonymous ID. When the user is authenticated and you know their User ID, include both `$user_id` (your internal user ID) and `$device_id` (the original Anonymous ID) in all events sent from the server. Mixpanel will merge a pair of `$user_id` and `$device_id` the first time they are received together on an event.
+
+If your project is using the [Original API](/docs/tracking-methods/id-management/identifying-users-original): For anonymous events, set the `distinct_id` event property to this Anonymous ID. When the user is authenticated and you know their User ID, send a `$identify` event containing both the anonymous ID and the user ID to merge them together.
+
+Learn more about [the difference between the two identity management APIs](/docs/tracking-methods/id-management#identity-merge-apis).
+
+## How do I setup cross-domain tracking with Mixpanel?(Original API)
+
+To set up cross-domain tracking with Mixpanel for projects using the Original ID Merge API, you need to ensure that the same user is recognized across different domains. The recommended approach is to pass the Mixpanel `distinct_id` from one domain to the next domain, typically via URL parameters. Then call `identify()` on the next domain using the `distinct_id` from the previous domain. For example:
+
+**On the First Domain:**
+
+- Retrieve the current user's `distinct_id` using the Mixpanel SDK.
+- When redirecting or linking to the second domain, append the `distinct_id` as a URL parameter.
+
+```jsx
+// On the first domain*
+var distinctId = mixpanel.get_distinct_id();
+var destinationUrl = "https://second-domain.com";
+var urlWithDistinctId = destinationUrl + (destinationUrl.indexOf('?') !== -1 ? '&' : '?') + "distinct_id=" + encodeURIComponent(distinctId);
+window.location.href = urlWithDistinctId;
+```
+
+**On the Second Domain:**
+
+- Extract the `distinct_id` from the URL parameters.
+- Use `mixpanel.identify(distinctId)` before sending any events.
+
+```jsx
+// On the second domain
+var urlParams = new URLSearchParams(window.location.search);
+var distinctId = urlParams.get('distinct_id');
+if (distinctId) {
+  mixpanel.identify(distinctId);
+}
+```
+
+## How do I setup cross-subdomain tracking with Mixpanel?
+
+To set up cross-subdomain tracking with Mixpanel, you should configure the Mixpanel JavaScript SDK to use cookies for persistence and enable the cross-subdomain cookie option. This ensures that the same Mixpanel distinct\_id and super properties are shared as users move between subdomains.
+
+```jsx
+// enable cross-subdomain cookie tracking
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  cross_subdomain_cookie: true,
+  persistence: 'cookie'
+});
+```
+
+## How do I setup consistent user tracking across multiple platforms, such as a website and an app?
+
+To ensure consistent user tracking across multiple platforms, apply identity management best practices:
+
+1. Call `identify(<user_id>)` during user registration and sign-in to associate activity with the correct user.
+2. Call `reset()` upon user logout to clear the current session and prevent data from carrying over.
+3. Use the same `user_id` for each individual user across all platforms to maintain a unified profile.
+
+Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
+
+## Why is the distinct_id shown in Mixpanel different from the ID I used to identify the user?
+
+If you are using the [Original ID Merge API](/docs/tracking-methods/id-management/identity-management#identity-merge-apis) (check your project API [here](https://mixpanel.com/settings/project/id-management)), our API chooses one of the IDs inside the identity cluster to serve as the canonical distinct\_id for the user, meaning that it can be set to your chosen user ID or one of the Mixpanel-generated anonymous ID. This is programmatically selected by Mixpanel and not user-configurable.
+
+You can use any of the distinct\_ids inside of the identity cluster for ingestion, but only the canonical distinct\_id is used in queries and exports. As a best practice, we recommend setting your chosen user ID as a super property and profile property to make querying easier.
+
+## Why do I see data from 2 different users under a single Mixpanel profile?
+
+Seeing data from two different users under a single Mixpanel profile is most commonly caused by improper identity management - specifically, not calling `reset()` when users log out on shared devices.
+
+If multiple users use the same device and you do not call `reset()` when a user logs out, the next user who logs in will inherit the previous user's distinct\_id. When you then call `identify()` with the new user's ID, Mixpanel merges the previous and new IDs into a single identity cluster. This causes events from both users to appear under the same profile.
+
+Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
+
+If your backend or frontend sends events for different users but uses the same distinct\_id, Mixpanel will attribute all those events to a single user profile.
+
+## Why do I see 2 duplicated Mixpanel user profiles sharing the same email value?
+
+Mixpanel identifies users based on the `distinct_id` value. If the same user receives two different IDs, Mixpanel treats them as separate users, even if they share other properties.
+
+For instance, when you send data from multiple sources—such as web, mobile, or third-party tools like Segment or Shopify—and each source assigns a different identifier (e.g., email, user ID, or device ID), Mixpanel generates distinct user profiles for each ID, regardless of matching properties like email.
+
+To resolve this issue, review all data sources and ensure that each user is consistently assigned a single unifying user ID during identification across every platform.
+
+## What dev lift is involved when migrating from Legacy ID merge to Original or Simplified?
+
+The development effort required to migrate from Legacy ID Management to Original or Simplified ID Merge in Mixpanel depends on which version you are moving to:
+
+Migrating to **Original ID Merge** typically involves minimal effort if your implementation already follows best practices (calling `alias` at user registration and `identify` at login using supported SDKs). In this case, Mixpanel can enable the migration for you, and no additional development work is required on your end. To proceed, contact the Support team for assistance with transitioning from the legacy API to the Original ID Merge API.
+
+Migrating to **Simplified ID Merge** requires significantly more effort. This path involves setting up a new project, updating your codebase, migrating data, and releasing app updates. The process is manual, and your engineering team will need to manage each step directly.
+
+Both ID Merge APIs offer substantial improvements over the legacy implementation, and we recommend that most projects migrate to one of these updated options.
+
+You can view [a comparison of the two ID Merge APIs](/docs/tracking-methods/id-management#identity-merge-apis). For further guidance, please [reach out to the support team](https://mixpanel.com/get-support).
+
+## Are there limitations with using Simplified ID vs Original ID merge?
+
+Please see a summary of the pros and cons when choosing between the 2 ID Merge API versions [here](/docs/tracking-methods/id-management#identity-merge-apis).
+
+## What happens if a user clears cookies or reinstalls the app?
+
+When you use Mixpanel’s client-side SDKs (e.g., JavaScript, iOS Swift, Android), clearing cookies, localStorage, or uninstalling the app removes the `distinct_id`, `$device_id`, and super properties from the user’s device. If the user returns to your website or reinstalls the app, the SDK will generate a new random `distinct_id` and `$device_id`.
+
+Once you call `identify` with the user’s known identifier, Mixpanel will reconcile the data and attribute it to the correct user profile in the Mixpanel UI.
+
+## Is there a limit to the number of identities that can be merged?
+
+Projects using the **Original ID Merge API** can merge up to 500 IDs within a single identity cluster.
+
+Projects using the **Simplified ID Merge API** can merge an unlimited number of `$device_id` under one identity cluster; however, each cluster can contain only one `$user_id`.
+
+You can view [a comparison of the two ID Merge APIs](/docs/tracking-methods/id-management#identity-merge-apis).
+
+## How does Mixpanel handle merging IDs and what are the best practices?
+
+Mixpanel handles merging IDs through a process called **ID Merge**, which groups different identifiers (such as anonymous device IDs and authenticated user IDs) into a single "identity cluster." This ensures all events from the same user (across devices, platforms, and sessions) are linked to one user profile.
+
+As a best practice for client-side implementation, call `identify()` at registration and sign in using a consistent `$user_id`, and call `reset()` at logout.
+
+For server-side implementation, your server is responsible for generating IDs for your users and maintaining ID persistence across events.
+
+Learn more about [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
+
+## How does Mixpanel ensure data privacy and compliance?
+
+Mixpanel neither require nor collects any personally identifying information about users, such as email addresses or phone numbers (unless you specifically provide the information to us). It only needs to associate a sequence of events with a specific user ID. You determine the user ID and decide how to transmit it to Mixpanel.
+
+If you prefer to analyze aggregate user behavior without the ability to identify individual users, we recommend creating a hash of a unique user identifier and using that hash as the user ID when invoking the `.identify()` method in our SDKs.
+
+Learn more about [protecting user data](/docs/privacy/protecting-user-data).
+
+## How does Mixpanel attribute campaign data when identities are set or changed?
+
+When a user's identity is set or changes (for example, when a user moves from being anonymous to authenticated), Mixpanel automatically merges the anonymous activity with the identified user profile. This process ensures that all events and campaign attribution data collected in those events (such as UTM tags) while the user was anonymous are unified with their known profile once their identity is established. This allows for a complete view of the user's journey, including campaign touchpoints before and after identification.
+
+
