@@ -675,7 +675,7 @@ Full precedence rules are in [Element ID Resolution](#element-id-resolution).
 
 Two things are required, and autocapture stays off unless you do both.
 
-First, pass `AutocaptureOptions` to `Mixpanel.init`. Omitting it leaves autocapture entirely uninitialized.
+First, pass `AutocaptureOptions` to `Mixpanel.init` to enable click autocapture. Omitting it leaves the click detectors uninitialized; `trackScreenView` and `trackScreenLeave` remain available.
 
 ```dart
 final mixpanel = await Mixpanel.init(
