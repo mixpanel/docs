@@ -25,7 +25,7 @@ From `/import`:
 | `/track`, `/engage`, `/groups` | A project token sent in the payload |
 
 <Note>
-  Don't rely on a 401 to catch a bad project token on `/track`. The endpoint can return `200` with a body of `1`, which confirms at least one object was well-formed but "does not signify a valid project token or secret." Add `?verbose=1` to get a JSON response instead, and check your project's live view to confirm events are arriving.
+  Don't rely on a 401 to catch a bad project token on `/track`. The endpoint can return `200` with a body of `1`, which confirms at least one object was well-formed but does not signify a valid project token or secret. Add `?verbose=1` to get a JSON response instead, and check your project's live view to confirm events are arriving.
 </Note>
 
 ## Common Causes
