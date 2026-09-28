@@ -1,0 +1,41 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "A pending user data deletion request was canceled.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "user_data_deletion",
+      "default": "user_data_deletion",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {},
+      "type": "object"
+    },
+    "action": {
+      "const": "canceled",
+      "default": "canceled",
+      "type": "string"
+    },
+    "type": {
+      "const": "user_data_deletion.canceled",
+      "default": "user_data_deletion.canceled",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
