@@ -29,6 +29,68 @@ Some events appear only at the organization level. Most appear in both organizat
 
 See [Audit Log Reference](/docs/access-security/audit-log-reference) for a complete list of all tracked events, including descriptions and availability dates.
 
+## MCP Activity
+
+<Note>
+  **Closed beta.** Audit logging for [MCP](/docs/mcp) activity is currently available to a limited set of organizations. To join the beta, reach out to your Mixpanel account team.
+
+  While the beta is running, MCP entries are not yet listed in the [Audit Log Reference](/docs/access-security/audit-log-reference). This page is the reference for them until then.
+</Note>
+
+When someone connects an AI assistant to Mixpanel through the [MCP server](/docs/mcp), the changes that assistant makes are recorded in the same audit log as changes made in the Mixpanel UI — attributed to the person whose credentials the assistant is using, and marked as having come from MCP.
+
+### What Gets Logged
+
+Every MCP tool that changes something records an entry. That covers all of Mixpanel's write tools — boards, cohorts, experiments, feature flags, metrics, lookup tables, custom properties, Lexicon metadata, tags, and business context.
+
+Two things are deliberately **not** logged:
+
+- **Read-only tool calls.** Running a query, reading a report, or listing cohorts through MCP produces no audit entry, consistent with how the Mixpanel UI treats the same actions.
+- **Failed tool calls.** Only changes that actually took effect are recorded.
+
+### Identifying MCP Activity
+
+Every audit log entry records which Mixpanel service the action came from. In the audit log UI this is the **Origin** column, and the **Origin** filter narrows the table to a single source — choose **MCP** to see only agent activity.
+
+In [exports](#exporting-the-audit-log) and the audit log API, the same information is the `service` field, and MCP entries carry the value `mcp`.
+
+<Note>
+  The UI label and the exported field name differ: what the audit log page calls **Origin** is the `service` field in CSV, NDJSON, and API responses.
+</Note>
+
+To identify *which* AI client made a change, read the `http_user_agent` field on the MCP tool call entry — for example, `claude-code/2.1.281 (claude-desktop, agent-sdk/0.3.281)`. This field is available in exports and the API, and is populated only on the tool call entry.
+
+### How Many Entries an Action Produces
+
+A single MCP action usually produces more than one audit entry:
+
+- **One MCP tool call entry** — event type `mcp_tool_call.performed` — recording which tool was run and the arguments it was given. This is what the assistant was asked to do.
+- **One detailed entry per object that changed**, including its before and after state. This is what actually changed as a result.
+
+A single tool call can change several objects, so the number of detailed entries varies. Creating a board with ten reports through MCP, for example, produces one tool call entry, one `board.created` entry, and ten `bookmark.created` entries.
+
+Detailed entries are written for objects that Mixpanel audits in their own right, such as boards, reports, cohorts, experiments, and feature flags. For objects without their own audit entry type — tags, metrics, custom properties, lookup tables, and business context — only the MCP tool call entry is recorded, so no before/after state is available for those changes.
+
+All of these entries are written moments apart and can look like duplicates in the table. They answer different questions: the tool call entry records intent, the detailed entries record effect.
+
+### Retention
+
+MCP tool call entries are retained for **90 days on all plans, including Enterprise**. This differs from the standard retention described above, where Enterprise plans retain entries for 2 years. The 90-day period applies to MCP tool call entries created on or after the feature's release date.
+
+The detailed entries are unaffected — a board, cohort, experiment, or feature flag change follows your plan's standard retention regardless of whether it came from MCP. On an Enterprise plan this means the record of *what changed* outlives the record of *which tool call requested it* by well over a year.
+
+### Things to Know
+
+- **The IP address is not the user's.** On an MCP tool call entry, the recorded IP address belongs to the server making the tool call — your AI provider's infrastructure, such as Anthropic's or OpenAI's — not the device of the person using the assistant. Use the user field, not the IP address, to identify who performed an MCP action. For entries from other origins, the IP address is the user's.
+- **Detailed entries from MCP have no IP address at all.** The `client_ip` field is empty on the `board.created`, `cohort.updated`, and similar entries that MCP produces, because no browser request is involved. Only the tool call entry carries an address.
+- **MCP entries can take several minutes to appear.** There is a short delay between an MCP action running and its entry becoming visible in the audit log UI. If a recent action is missing, wait and refresh before treating it as unlogged.
+- **Very large arguments are truncated.** The MCP tool call entry caps the size of the arguments it records and sets an `arguments_truncated` flag when it has done so. The detailed entries still carry the full before/after state.
+- **Connecting and disconnecting an MCP client is not yet recorded.** Only the actions taken through a connection are logged.
+
+### Querying the Audit Log Through MCP
+
+Organization admins and owners can ask an AI assistant about their audit history directly using the `Get-Audit-Log` tool. See [Querying the Audit Log](/docs/mcp#querying-the-audit-log) on the MCP server page.
+
 ## Exporting the Audit Log
 
 You can export the audit log to CSV or NDJSON (newline-delimited JSON) for further analysis or archival. The export contains the raw data for each event. CSV is convenient for spreadsheets and quick analysis. NDJSON preserves the full nested structure of each event, which suits programmatic processing or ingestion into log pipelines.
@@ -43,7 +105,9 @@ You can export the audit log to CSV or NDJSON (newline-delimited JSON) for furth
 
   - Free & Growth plans: 90 days
   - Enterprise plans: 2 years
+  - [MCP tool call entries](#retention): 90 days on all plans
 - **Organization-only events** (service account management, login/logout, two-factor auth) are only visible in Organization Settings, not Project Settings.
+- **Read-only actions are not logged**, whether taken in the Mixpanel UI or [through MCP](#what-gets-logged). The audit log records changes, not views or queries.
 
 ## FAQ
 
@@ -53,7 +117,15 @@ Only users with Admin or Owner roles in an organization or project can view the 
 
 #### Can I filter the audit log by event type or user?
 
-Yes, the audit log interface provides filtering options to help you find specific events or actions by particular users.
+Yes, the audit log interface provides filtering options to help you find specific events or actions by particular users. The **Origin** filter also narrows the table to a single source, such as [MCP](#identifying-mcp-activity).
+
+#### Can I tell whether a change was made by a person or by an AI assistant?
+
+Yes. Changes made through the [MCP server](/docs/mcp) have an **Origin** of MCP, and are always attributed to the Mixpanel user whose credentials the assistant is connected with. See [MCP Activity](#mcp-activity).
+
+#### Why does my audit log show MCP changes to something but not UI changes to the same thing?
+
+Mixpanel audits most, but not all, object types. Tags, metrics, custom properties, lookup tables, and business context are not yet audited when changed in the Mixpanel UI. Changes to them through MCP are recorded, because MCP records every tool call that changes something. This is a gap in UI coverage rather than something specific to MCP, and it is being closed over time.
 
 #### What's the difference between the organization and project audit logs?
 

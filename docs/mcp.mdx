@@ -81,10 +81,15 @@ A typical workflow looks like:
 |  | `Update-Feature-Flag` | Modify a feature flag's configuration or targeting |
 |  | `Get-Feature-Flag-Setup-Guidance` | Get best-practice guidance for creating and configuring a feature flag |
 |  | `Get-Feature-Flag-Lifecycle-Guidance` | Get best-practice guidance for rollout, kill-switch, and cleanup of a feature flag |
+| **Audit Log** _(Closed Beta)_ | `Get-Audit-Log` | Query your organization's audit history — who changed what, and when |
 
 <Warning>
   **Experiments and Feature Flags tools are in open beta** and available to all users. Audience targeting and cohort editing are not yet supported via MCP — use the Mixpanel UI instead.
 </Warning>
+
+<Note>
+  **`Get-Audit-Log` is in closed beta.** It is available to a limited set of organizations, and only to organization admins and owners. To join the beta, reach out to your Mixpanel account team. See [Querying the Audit Log](#querying-the-audit-log).
+</Note>
 
 ## MCP Server URLs
 
@@ -482,6 +487,12 @@ Once connected, try asking your AI assistant:
 - "This user reported a bug — what happened in their last 3 sessions?"
 - "Walk me through what \[user ID\] did before they churned"
 
+**Review what changed** _(requires the [`Get-Audit-Log`](#querying-the-audit-log) tool)_
+
+- "What changed in this project last week?"
+- "Who deleted a board yesterday?"
+- "What has \[user email\] changed in the last 24 hours?"
+
 ## Security Considerations
 
 <Warning>
@@ -498,8 +509,40 @@ When connected, the AI assistant can both **read and write** to Mixpanel on your
 
 **Other considerations**
 
+- Every change an assistant makes is recorded in your [audit log](#audit-log), attributed to the user it is connected as
 - Check applicable compliance requirements (GDPR, CCPA, etc.) before connecting to projects with personal data
 - If using a shared AI environment (e.g., a team workspace), be aware that conversation history may be visible to others
+
+## Audit Log
+
+<Note>
+  **Closed beta.** Both capabilities below — audit logging of MCP activity, and the `Get-Audit-Log` tool — are currently available to a limited set of organizations. To join the beta, reach out to your Mixpanel account team.
+</Note>
+
+### MCP Activity Is Logged
+
+Changes an assistant makes through MCP are recorded in the same [audit log](/docs/access-security/audit-log) as changes made in the Mixpanel UI. Each entry is attributed to the Mixpanel user the assistant is connected as, and carries an **Origin** of MCP — the `service` field in exports and the API — so you can tell agent activity apart from everything else.
+
+Every tool that changes something is logged. Read-only tool calls — queries, report reads, listing cohorts — are not, consistent with how the Mixpanel UI treats the same actions. Neither are failed tool calls.
+
+A single tool call records the tool name and the arguments it was given, plus a detailed before/after entry for each object it changed. MCP tool call entries are retained for 90 days on all plans, including Enterprise. See [MCP Activity](/docs/access-security/audit-log#mcp-activity) for the full details.
+
+### Querying the Audit Log
+
+The `Get-Audit-Log` tool lets you ask about your audit history conversationally, instead of filtering the audit log page by hand:
+
+- "What changed in this project last week?"
+- "What has \[user email\] done in the last 24 hours?"
+- "Who deleted a board yesterday?"
+- "Show me everything our AI assistants changed this month"
+
+You can narrow results by project, event type, user, time range, and origin — asking for "changes made through MCP" filters to `service` of `mcp`. Results are paginated newest-first. There is no search by object name — ask for an event type and a time range, and read the name off the results.
+
+<Note>
+  **Permissions.** `Get-Audit-Log` requires **organization admin or owner** access — the same access the audit log page in Mixpanel requires. Every other role, including project owners who are not organization admins, gets a permission error. Each request covers one organization; querying several organizations at once is not supported.
+</Note>
+
+If your assistant reports that `Get-Audit-Log` does not exist, your connection predates the tool. Reconnect to pick it up — in Claude Code run `/mcp`, and in other clients disconnect and reconnect the Mixpanel connector.
 
 ## Troubleshooting
 
@@ -507,6 +550,8 @@ When connected, the AI assistant can both **read and write** to Mixpanel on your
 - **"Missing scope" error**: Your cached auth token was created with an outdated scope list. Delete the `.mcp-auth` folder in the directory where you ran the authorization command, then re-authorize.
 - **Authorization fails**: Ensure your Mixpanel account has access to at least one project and that MCP is enabled at the org level.
 - **Desktop app doesn't pick up config changes**: Restart the application after editing the config file.
+- **`Get-Audit-Log` is missing or returns a permission error**: The tool is in [closed beta](#audit-log) and requires organization admin or owner access. If your organization is in the beta and you have the right role, reconnect the Mixpanel connector to pick up the tool.
+- **A recent MCP action isn't in the audit log**: Entries can take several minutes to appear. Note that read-only and failed tool calls are never logged.
 
 ## Rate Limits
 
