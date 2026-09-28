@@ -1,0 +1,59 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "A user activated two-factor authentication.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "user",
+      "default": "user",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "phone_number": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "method"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "twofactor_enabled",
+      "default": "twofactor_enabled",
+      "type": "string"
+    },
+    "type": {
+      "const": "user.twofactor_enabled",
+      "default": "user.twofactor_enabled",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
