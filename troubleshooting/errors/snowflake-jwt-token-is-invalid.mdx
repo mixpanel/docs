@@ -14,7 +14,7 @@ Depending on which driver reports it, the SQLSTATE may appear as `08004` or `080
 
 ## What It Means
 
-`390144` is Snowflake's generic key-pair authentication failure (`JWT_TOKEN_INVALID`). Snowflake's own reference describes it only as "There is a general issue with the JWT token."
+`390144` is Snowflake's generic key-pair authentication failure (`JWT_TOKEN_INVALID`). Snowflake's own reference describes it only as `There is a general issue with the JWT token`.
 
 The specific causes have their own codes, but the client usually sees only the generic `390144`. Snowflake records the specific reason against the failure, which you can look up as shown below.
 
@@ -52,7 +52,7 @@ This requires the `MONITOR` privilege. Match the result against the table below.
 
 ### The Account Identifier Contains Periods
 
-Snowflake requires that periods in an account identifier be replaced with hyphens, because "periods in an account identifier cause the JWT to be invalid."
+Snowflake requires that periods in an account identifier be replaced with hyphens, because periods in an account identifier cause the JWT to be invalid.
 
 The connector setup tells you to take the identifier from your Snowflake URL, and some URL forms (for example, legacy `account.region.cloud` locators) contain periods. If your identifier has periods, try the hyphenated form.
 
@@ -99,7 +99,7 @@ GRANT MODIFY PROGRAMMATIC AUTHENTICATION METHODS ON USER MIXPANEL
 
 **Check the account identifier** for periods, and replace them with hyphens.
 
-If the connector still fails after the underlying code checks out, [contact support](https://mixpanel.com/get-support) with the failure UUID.
+If the connector still fails after the underlying code checks out, [contact support](https://mixpanel.com/contact-us/support/) with the failure UUID.
 
 ## Related
 
