@@ -171,8 +171,10 @@ Launching and analysis work the same as any other experiment. Results appear in 
 
 Assignment and exposure are separate, and only exposure puts a visitor in your results.
 
-A visitor is assigned a variant when the SDK fetches flags, which happens on any page that loads the snippet. Exposure is tracked later, when the SDK reads that variant in order to apply the variant's changes. That only happens on a page whose URL matches the one saved for the experiment, and the SDK sends an `$experiment_started` event at that point, once per experiment per page load.
+The SDK fetches flags on any page that loads the snippet. That fetch returns a variant only for experiments whose targeting rules and traffic allocation the visitor qualifies for, and qualifying is what assigns them to a variant. A visitor outside the targeting or the rollout receives no variant at all.
 
-So a visitor who loads the snippet somewhere on your site but never reaches a matching page is assigned a variant and never exposed. They don't appear in your experiment results, and they don't count toward your [Monthly Experiment Users](/docs/experiments#plan-availability).
+Exposure is tracked later, when the SDK reads an assigned variant in order to apply its changes. That only happens on a page whose URL matches the one saved for the experiment, and the SDK sends an `$experiment_started` event at that point, once per experiment per page load.
+
+So a visitor can browse your site without ever entering your results, either because they didn't qualify for the experiment or because they qualified but never reached a matching page. Neither case appears in your experiment results or counts toward your [Monthly Experiment Users](/docs/experiments#plan-availability).
 
 Exposure events from a visual experiment have the same shape as those from a code experiment, so the Experiments report reads them identically.
