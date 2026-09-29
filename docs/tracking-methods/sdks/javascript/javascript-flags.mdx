@@ -263,7 +263,8 @@ Retrieve every flag assignment the SDK currently holds in a single call. Both me
   Neither method tracks an exposure event. Unlike the single-flag getters above, `get_all_variants` and `get_all_variants_sync` do **not** send `$experiment_started`, so reading every assignment will not enroll the user in an experiment. This is the main reason to reach for these methods — inspecting assignments for debugging, logging, or hydrating your own state. Record the exposure with `get_variant_value` (or another single-flag getter) at the point where the user actually sees the feature.
 </Note>
 
-Both methods return a [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) keyed by flag name — **not** a plain object. `Object.keys(variants)` silently returns an empty array, so iterate the `Map` instead.
+just drop 
+— **not** a plain object. `Object.keys(variants)` silently returns an empty array, so iterate the `Map` instead.```
 
 **Synchronous**
 
