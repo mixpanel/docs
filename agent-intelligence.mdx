@@ -251,12 +251,10 @@ Mixpanel automatically computes key conversation level data from spans up by `tr
 
 # FAQ
 
-/
-
-- How much does Agent Intelligence cost?
+- **How much does Agent Intelligence cost?**
 
   There is no extra charge to use Agent Intelligence. Note, events sent for the purposes of Agent Intelligence count towards your event volume.
-- Troubleshooting implementation
+- **Troubleshooting implementation**
 
   **Nothing is arriving.**
   1. Check the auth header first: base64 of `<PROJECT_TOKEN>:` with the trailing colon, scheme `Basic`.
@@ -267,7 +265,7 @@ Mixpanel automatically computes key conversation level data from spans up by `tr
   **Prompts and responses are missing.** Either your tracer isn't emitting `gen_ai.input.messages` and `gen_ai.output.messages`, or a Collector processor is stripping them.
 
   **Spans arrive but properties are empty or spans arrive but my dashboard is empty.** Your tracer is probably emitting a namespace we don't read. Check the raw attribute names it produces against [supported conventions](https://opentelemetry.io/docs/specs/semconv/registry/attributes/gen-ai/).
-- How is LLM cost data determined
+- **How is LLM cost data determined**
 
   `$mp_ai_cost_usd` is the estimated USD cost of a model call, available on `$mp_ai_span` events. It's calculated using the following span attributes:
   | Property | Role |
@@ -288,10 +286,10 @@ Mixpanel automatically computes key conversation level data from spans up by `tr
   **Models without a published rate:** Cost will show as \$0. Model names must match exactly. Break a report down by `gen_ai.request.model` to spot unpriced calls.
 
   Note: These are list-price estimates and won't match a provider invoice exactly. Negotiated rates, discounts, and non-token charges aren't reflected.
-- How can I control the volume of spans sent to Mixpanel?
+- **How can I control the volume of spans sent to Mixpanel?**
   - Send spans for work you'd investigate: model calls, tool calls, retrieval steps. Skip trivial internal functions.
   - Sample high-volume, low-variance agents. Sample whole traces. Avoid sampling at the span level
   - Use the Collector's `filter` processor to drop span types you don't analyze
-- Can I backfill past conversations
+- **Can I backfill past conversations**
 
   Backfilling span events is not currently supported.
