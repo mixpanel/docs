@@ -165,4 +165,14 @@ Confirm the snippet loads the pinned beta build and passes both `flags: true` an
 
 ## Launching and Reading Results
 
-Launching and analysis work the same as any other experiment. Exposures are recorded when a user is assigned a variant, and results appear in the Experiments report. See [Monitor Your Experiment](/docs/experiments#monitor-your-experiment) and [Interpret Your Results](/docs/experiments#interpret-your-results).
+Launching and analysis work the same as any other experiment. Results appear in the Experiments report. See [Monitor Your Experiment](/docs/experiments#monitor-your-experiment) and [Interpret Your Results](/docs/experiments#interpret-your-results).
+
+### When a Visitor Counts as Exposed
+
+Assignment and exposure are separate, and only exposure puts a visitor in your results.
+
+A visitor is assigned a variant when the SDK fetches flags, which happens on any page that loads the snippet. Exposure is tracked later, when the SDK reads that variant in order to apply the variant's changes. That only happens on a page whose URL matches the one saved for the experiment, and the SDK sends an `$experiment_started` event at that point, once per experiment per page load.
+
+So a visitor who loads the snippet somewhere on your site but never reaches a matching page is assigned a variant and never exposed. They don't appear in your experiment results, and they don't count toward your [Monthly Experiment Users](/docs/experiments#plan-availability).
+
+Exposure events from a visual experiment have the same shape as those from a code experiment, so the Experiments report reads them identically.
