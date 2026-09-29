@@ -195,7 +195,15 @@ Mixpanel’s security and access controls apply to your agent traces.
 
 Additionally, Mixpanel scans AI span attributes for common PII patterns at ingest, before the data is stored. Matches are replaced with a `[REDACTED:<type>]` placeholder. The original value is never written, and redaction can't be reversed.
 
-Mixpanel attempts to detect: email addresses, US Social Security numbers, credit card numbers, phone numbers, API keys (OpenAI, Slack, GitHub, AWS), bearer tokens, and IPv4 addresses.
+Mixpanel attempts to detect and redact the following properties: 
+
+- Email addresses
+- US Social Security numbers
+- Credit card numbers
+- Phone numbers
+- API keys (OpenAI, Slack, GitHub, AWS)
+- Bearer tokens
+- IPv4 addresses.
 
 If anything was redacted, the event carries `$mp_ai_pii_redacted = true`. Mixpanel sets this value. Events with nothing redacted don't carry the property at all.
 
@@ -207,7 +215,7 @@ If you want readable transcripts, but prefer to scrub them first, redact in your
 
 ---
 
-# Intelligence on your Agents
+## Intelligence on your Agents
 
 Once spans are arriving, you have different ways to look at them.
 
@@ -241,14 +249,14 @@ Spans are events, so agent data works in every Mixpanel report. You can answer q
 
 ### Leverage Experimentation and Session Replay
 
-- **Experiments:** Use feature flags and experiments to test models, prompts, tools, and UX. Because agent metrics are events, cost and error rate can be experiment metrics like any other.
-- **Session Replay:** Watch what a slow turn felt like, or find users who opened the agent and left without sending a prompt.
+- **Experiments:** Use [feature flags](https://docs.mixpanel.com/docs/featureflags) and [experiments](https://docs.mixpanel.com/docs/experiments) to test models, prompts, tools, and UX. Because agent metrics are events, cost and error rate can be experiment metrics like any other.
+- **[Session Replay](https://docs.mixpanel.com/docs/session-replay):** Watch what a slow turn felt like, or find users who opened the agent and left without sending a prompt.
 
 ## Conversation Level Data
 
 Spans are important because they include key data you need about how your agent is performing. However, we tend to do analysis at a conversation or turn level.
 
-Mixpanel automatically computes key conversation level data from spans up by `trace_id` and `conversation_id` inside Agent Intelligence so you can analyze a turn or conversation as one thing.
+Mixpanel automatically computes key conversation-level data from spans up by `trace_id` and `conversation_id` inside Agent Intelligence so you can analyze a turn or conversation as one thing.
 
 | Computed values | How it's calculated |
 | :-- | :-- |
@@ -260,7 +268,7 @@ Mixpanel automatically computes key conversation level data from spans up by `tr
 
 ---
 
-# FAQ
+## FAQ
 
 <AccordionGroup>
   <Accordion title="How much does Agent Intelligence cost?">
