@@ -1,0 +1,55 @@
+---
+title: "Connect Jira"
+sidebarTitle: "Jira"
+description: "Connect Jira to Mixpanel Agent through the Atlassian Rovo MCP server."
+---
+
+<Note>
+  **Beta.** MCP Connections are currently available to a limited set of customers during Beta. If you'd like to participate, reach out to your Mixpanel account team.
+</Note>
+
+Mixpanel connects to Jira through the [Atlassian Rovo MCP server](https://support.atlassian.com/atlassian-rovo-mcp-server/docs/getting-started-with-the-atlassian-remote-mcp-server/) using OAuth. You sign in with your Atlassian account, and Mixpanel Agent can read what your account can see. The Agent only uses read tools.
+
+Jira takes one extra step compared to other OAuth tools: an Atlassian admin must allow Mixpanel's domain in Atlassian's Rovo MCP server settings before anyone in your organization can connect.
+
+Before you start, make sure a Mixpanel admin has [enabled MCP Connections](/docs/mcp-connections#enable-mcp-connections-for-your-organization) for your organization.
+
+## Step 1: Allow Mixpanel in Atlassian (Atlassian admin)
+
+Atlassian only lets AI tools connect through OAuth from domains an admin has allowed. Mixpanel is not on Atlassian's default list of supported domains, so an Atlassian organization admin needs to add it once for your organization.
+
+1. Go to [Atlassian Administration](https://admin.atlassian.com) and select your organization.
+2. Select **Rovo**, then **Rovo MCP server**.
+3. Under domain settings, click **Add domain** and enter the pattern for the Mixpanel region your organization uses:
+
+   | Mixpanel region | Domain pattern |
+   | --- | --- |
+   | US | `https://mixpanel.com/**` |
+   | EU | `https://eu.mixpanel.com/**` |
+   | India | `https://in.mixpanel.com/**` |
+
+4. Save your changes.
+
+See Atlassian's guide to [controlling Rovo MCP server settings](https://support.atlassian.com/security-and-access-policies/docs/control-atlassian-rovo-mcp-server-settings/) for more on domain settings and other admin controls.
+
+## Step 2: Add the Connection in Mixpanel
+
+1. Go to **Settings → Personal Settings → [MCP Connections](https://mixpanel.com/settings/account#mcp-connections)**.
+2. Click **Add Connection** and choose **Jira**.
+3. Click **Connect**. A popup opens to Atlassian's sign-in page.
+4. Sign in with your Atlassian account and approve access.
+5. When the popup shows "Successfully connected", close it and return to Mixpanel.
+
+## Troubleshooting
+
+### "Your organization admin must authorize access from this redirect URL"
+
+Mixpanel's domain isn't allowed in your Atlassian organization yet. Ask an Atlassian admin to complete [Step 1](#step-1-allow-mixpanel-in-atlassian-atlassian-admin), then try again. If the domain was just added, Atlassian recommends removing and re-adding the same domain entry, then retrying in a private browser window.
+
+### The popup says "Invalid redirect" or the connection doesn't finish
+
+Start the connection again from the MCP Connections page, and complete sign-in in the same browser you use for Mixpanel. Sign-in links expire after 15 minutes.
+
+### Jira shows as Disconnected
+
+Your Atlassian authorization has expired or been revoked. Delete the Jira connection in Mixpanel and add it again.
