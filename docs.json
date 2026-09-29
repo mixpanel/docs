@@ -191,7 +191,17 @@
                   },
                   "docs/tracking-methods/autocapture",
                   "docs/tracking-methods/first-party-domains",
-                  "docs/tracking-methods/warehouse-connectors",
+                  {
+                    "group": "Warehouse Connectors",
+                    "root": "docs/tracking-methods/warehouse-connectors",
+                    "pages": [
+                      "docs/tracking-methods/warehouse-connectors/bigquery",
+                      "docs/tracking-methods/warehouse-connectors/snowflake",
+                      "docs/tracking-methods/warehouse-connectors/databricks",
+                      "docs/tracking-methods/warehouse-connectors/redshift",
+                      "docs/tracking-methods/warehouse-connectors/postgres"
+                    ]
+                  },
                   {
                     "group": "Integrations",
                     "root": "docs/tracking-methods/integrations",
@@ -389,7 +399,8 @@
               "docs/root-cause-analysis",
               "docs/mcp",
               "docs/mixpanel-headless",
-              "docs/business-context"
+              "docs/business-context",
+              "docs/docs-for-ai-agents"
             ]
           },
           {
@@ -415,7 +426,7 @@
                   "docs/data-governance/event-approval",
                   "docs/data-governance/data-volume-monitoring",
                   "docs/data-governance/data-clean-up",
-        "docs/data-governance/ai-powered-data-governance"
+                  "docs/data-governance/ai-powered-data-governance"
                 ]
               },
               {
@@ -439,7 +450,8 @@
                     "group": "Audit Log",
                     "root": "docs/access-security/audit-log",
                     "pages": [
-                      "docs/access-security/audit-log-reference"
+                      "docs/access-security/audit-log-reference",
+                      "docs/access-security/audit-log-streaming"
                     ]
                   }
                 ]
@@ -453,7 +465,8 @@
                   "docs/privacy/gdpr-compliance",
                   "docs/privacy/eu-residency",
                   "docs/privacy/in-residency",
-                  "docs/privacy/end-user-data-management"
+                  "docs/privacy/end-user-data-management",
+                  "docs/privacy/compliance-status-callbacks"
                 ]
               },
               {
@@ -721,7 +734,7 @@
                       "guides/strategic-playbooks/product-analytics-strategy/finale"
                     ]
                   },
-                  "guides/strategic-playbooks/onboarding-playbook",                  
+                  "guides/strategic-playbooks/onboarding-playbook",
                   "guides/strategic-playbooks/project-migration",
                   "guides/strategic-playbooks/feature-flag-migration-playbook"
                 ]
@@ -739,8 +752,20 @@
       },
       {
         "tab": "FAQs",
-        "pages": [
-          "troubleshooting/faqs"
+        "groups": [
+          {
+            "group": "FAQs",
+            "pages": [
+              "troubleshooting/faqs",
+              "troubleshooting/general",
+              "troubleshooting/sending-data",
+              "troubleshooting/identity-management",
+              "troubleshooting/building-reports",
+              "troubleshooting/exporting-data",
+              "troubleshooting/managing-projects",
+              "troubleshooting/protecting-user-data"
+            ]
+          }
         ]
       },
       {
@@ -4756,39 +4781,39 @@
     },
     {
       "source": "/guides/guides-by-topic/core-reports/create-boards",
-      "destination":"/guides/guides-by-topic/core-reports"
+      "destination": "/guides/guides-by-topic/core-reports"
     },
     {
       "source": "/guides/guides-by-topic/core-reports/discover-insights",
-      "destination":"/guides/guides-by-topic/core-reports"
+      "destination": "/guides/guides-by-topic/core-reports"
     },
     {
       "source": "/guides/guides-by-topic/core-reports/analyze-conversions",
-      "destination":"/guides/guides-by-topic/core-reports"
+      "destination": "/guides/guides-by-topic/core-reports"
     },
     {
       "source": "/guides/guides-by-topic/core-reports/build-user-flows",
-      "destination":"/guides/guides-by-topic/core-reports"
+      "destination": "/guides/guides-by-topic/core-reports"
     },
     {
       "source": "/guides/guides-by-topic/core-reports/track-user-retention",
-      "destination":"/guides/guides-by-topic/core-reports"
+      "destination": "/guides/guides-by-topic/core-reports"
     },
     {
       "source": "/guides/guides-by-topic/core-reports/define-cohorts",
-      "destination":"/guides/guides-by-topic/core-reports"
+      "destination": "/guides/guides-by-topic/core-reports"
     },
     {
       "source": "/guides/strategic-playbooks/onboarding-playbook/plan/*",
-      "destination":"/guides/strategic-playbooks/onboarding-playbook"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/strategic-playbooks/onboarding-playbook/implement/*",
-      "destination":"/guides/strategic-playbooks/onboarding-playbook"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/strategic-playbooks/onboarding-playbook/launch/*",
-      "destination":"/guides/strategic-playbooks/onboarding-playbook"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/strategic-playbooks/onboarding-playbook/beyond-onboarding",
