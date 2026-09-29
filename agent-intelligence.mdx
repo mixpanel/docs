@@ -149,7 +149,7 @@ Send one test span and confirm it arrives.
 ```bash
 AUTH=$(echo -n "$MIXPANEL_PROJECT_TOKEN:" | base64)
 
-curl -X POST <https://ingestion-us.mixpanel.com/v1/ai/otel/traces> \
+curl -X POST https://ingestion-us.mixpanel.com/v1/ai/otel/traces \
   -H "Content-Type: application/json" \
   -H "Authorization: Basic $AUTH" \
   -d '{
