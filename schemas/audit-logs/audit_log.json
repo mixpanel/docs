@@ -10,7 +10,7 @@
       "type": "string"
     },
     "service": {
-      "description": "The originating Mixpanel service for this audit log entry.",
+      "description": "The Mixpanel service the audited action came from, shown as Origin in the audit log UI. Values, with their UI labels: `webapp` (API), `mcp` (MCP), `cron` (Scheduled Job), `webapp_worker` (Background Worker), `export_server` (Export API).",
       "type": "string"
     },
     "event_category": {
@@ -36,7 +36,7 @@
         }
       ],
       "default": null,
-      "description": "IP address of the client that initiated the audited action."
+      "description": "IP address of the client that initiated the audited action. On MCP tool call entries, this is the calling server's address (typically your AI provider's), not the user's."
     },
     "http_method": {
       "anyOf": [
