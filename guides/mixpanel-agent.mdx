@@ -272,7 +272,7 @@ The only setting it applies without asking is excluding QA and internal traffic.
 | **Testing model** | Sequential | Frequentist when you're hunting a very small lift on high volume; Bayesian when you want the probability a variant beats control |
 | **Confidence level** | 95% | 99% for high-stakes irreversible ships; 90% for low-stakes exploration, with the inflated false-positive rate called out |
 | **Traffic split** | 50/50, sticky assignment | Even split across 3+ arms; deliberately uneven for a risky rollout |
-| **[Multiple-testing correction](/docs/experiments#benjamini-hochberg-correction)** | Benjamini-Hochberg, on with 2+ primaries or 2+ treatment variants | [Bonferroni](/docs/experiments#bonferroni-correction) when you need strict family-wise control; off with a single primary and single treatment |
+| **[Multiple-testing correction](/docs/experiments#which-methods-apply-to-bayesian-experiments)** | Benjamini-Hochberg, on with 2+ primaries or 2+ treatment variants | [Bonferroni](/docs/experiments#bonferroni-correction) when you need strict family-wise control; off with a single primary and single treatment |
 | **[CUPED](/docs/experiments#cuped-controlled-experiment-using-pre-experiment-data)** | On when the metric correlates with pre-exposure behavior | Off for new-user-only experiments and brand-new metrics, where there's no pre-exposure data to use |
 | **[Winsorization](/docs/experiments#winsorization)** | On at the 5th/95th percentile for revenue, spend, and duration metrics | Off for conversion metrics, and when the tail behavior *is* the hypothesis |
 | **[SRM](/docs/experiments#health-checks)** | On | Recommended on always — it's free to run and catches broken bucketing within hours |
