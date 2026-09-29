@@ -17,15 +17,19 @@ Mixpanel meters the event configured as your project's **exposure event**, which
 
 That means if your project was already sending `$experiment_started` events — for example because you follow the [documented format](/docs/experiments#implementation-for-experimentation) for analyzing third-party experiments in Mixpanel — those events count toward your MEU allowance even though you are not using Mixpanel to run the experiments.
 
-If you don't want those events metered, you have two options. **Option 1 is preferred**: it's a settings change and requires no code deploy.
+If you don't want those events metered, you have two options below. **Option 1 is preferred**: it's a settings change and requires no code deploy.
+
+<Warning>
+  **Either option ends Experiment report analysis for these experiments.**
+
+  The [Experiment report](/docs/experiments) and MEU metering both read whichever event your project has configured as its exposure event. There is no configuration that lets the report analyze your exposures while excluding them from MEU — if the report can see them, they are metered.
+
+  If you want to keep analyzing your third-party experiments in Mixpanel, leave your settings as they are. See [Plan Availability](/docs/experiments#plan-availability) for your included MEU and how to purchase more.
+</Warning>
 
 ## Option 1 — Change your exposure event in project settings
 
 Point your project's exposure event setting at an event your project never sends. Your `$experiment_started` events keep arriving and stay fully queryable as ordinary events; they simply stop being counted as MEU.
-
-<Note>
-  This option is available on **Growth** and **Enterprise** plans. On a **Free** plan the exposure event is fixed to `$experiment_started` and cannot be changed — use [Option 2](#option-2--change-your-tracking-implementation) instead.
-</Note>
 
 <Steps>
   <Step title="Open your Experimentation settings">
@@ -43,20 +47,13 @@ Point your project's exposure event setting at an event your project never sends
   </Step>
 </Steps>
 
-<Warning>
-  Once you change this setting, your `$experiment_started` events no longer populate the [Experiment report](/docs/experiments). If you currently analyze third-party experiments in Mixpanel using these events, use [Option 2](#option-2--change-your-tracking-implementation) instead so that analysis keeps working.
-</Warning>
-
 ## Option 2 — Change your tracking implementation
 
-Change your third-party platform or in-house system to emit a different event name instead of the reserved `$experiment_started`.
+Change your third-party platform or in-house system to emit a different event name instead of the reserved `$experiment_started`, leaving your project settings untouched.
 
 This requires a code or configuration change on your side, and your new events won't be continuous with the `$experiment_started` events you've already sent — any saved report or dashboard built on the old event keeps referencing it. For most projects Option 1 is the simpler path.
 
-Choose this option when either:
-
-- You're on a **Free** plan, where the exposure event setting can't be changed.
-- You want to keep your project's exposure event setting pointed at `$experiment_started` for some other reason.
+Choose this option if you'd rather stop emitting the reserved `$experiment_started` name altogether — for example to keep your tracking plan clean — instead of leaving a placeholder event in your project settings.
 
 ## How to check your MEU usage
 
@@ -70,12 +67,12 @@ No. Neither option modifies data already in your project. Your historical `$expe
 
 #### Will my existing reports and dashboards keep working?
 
-Reports that query `$experiment_started` as a regular event keep working under both options. Under Option 1, the [Experiment report](/docs/experiments) specifically will no longer pick up these events, because it reads whichever event your project has configured as the exposure event.
+Reports that query `$experiment_started` as a regular event keep working under both options. The [Experiment report](/docs/experiments) is the exception — see the warning above.
 
 #### Can I switch back later?
 
-Yes. Changing the exposure event setting back to `$experiment_started` resumes metering on those events from that point forward. Do this when you're ready to adopt Mixpanel Experiments.
+Yes. Under Option 1, changing the exposure event setting back to `$experiment_started` resumes both metering and Experiment report analysis on those events from that point forward. Do this when you're ready to adopt Mixpanel Experiments.
 
 #### What if I do want to use Mixpanel Experiments?
 
-Leave the setting as-is and see [Experiments](/docs/experiments) to get started. If you run experiments through [Mixpanel Feature Flags](/docs/featureflags), exposure events are tracked automatically and you don't need to send them yourself.
+Leave your settings as they are and see [Experiments](/docs/experiments) to get started. If you run experiments through [Mixpanel Feature Flags](/docs/featureflags), exposure events are tracked automatically and you don't need to send them yourself.
