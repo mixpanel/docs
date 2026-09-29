@@ -12,7 +12,7 @@ description: "Why exposure events you already send count toward your Experiments
 
 ## Why your exposure events count toward MEU
 
-Experiments usage is measured in **Monthly Exposed Users (MEU)**: the distinct users who tracked an exposure event during a calendar month. See [Pricing Unit](/docs/experiments#pricing-unit) for how MEU is calculated and [Plan Availability](/docs/experiments#plan-availability) for the amount included with your plan.
+Experiments usage is measured in **Monthly Exposed Users (MEU)**: broadly, the distinct users who tracked an exposure event during a calendar month. Projects averaging more than 30 exposures per user in a month are calculated differently — see [Pricing Unit](/docs/experiments#pricing-unit) for the full calculation, and [Plan Availability](/docs/experiments#plan-availability) for the amount included with your plan.
 
 Mixpanel meters the event configured as your project's **exposure event**, whichever system emits it — Mixpanel Feature Flags, a third-party platform, or your own code. Every project starts with that setting pointed at the reserved event name `$experiment_started`.
 
@@ -27,6 +27,14 @@ If you don't want those events metered, you have two options below. **Option 1 i
 
   If you want to keep analyzing your third-party experiments in Mixpanel, leave your settings as they are. See [Plan Availability](/docs/experiments#plan-availability) for your included MEU and how to purchase more.
 </Warning>
+
+<Note>
+  **These events still count toward your regular event usage.**
+
+  While exposure events are metered as MEU, they are deducted from your plan's ordinary event usage so you aren't billed twice — see [Am I getting double-charged?](/docs/experiments#but-i-am-already-paying-for-exposure-events-in-my-regular-plan-am-i-getting-double-charged) Once you stop metering them under either option, that deduction no longer applies and the events count toward your event usage like any other event, as they did before you had Experiments.
+
+  Neither option stops the events being ingested. If your goal is to stop ingesting them entirely, stop sending them.
+</Note>
 
 ## Option 1 — Change your exposure event in project settings
 
@@ -68,7 +76,9 @@ No. Neither option modifies data already in your project. Your historical `$expe
 
 #### Will my existing reports and dashboards keep working?
 
-Reports that query `$experiment_started` as a regular event keep working under both options. The [Experiment report](/docs/experiments) is the exception — see the warning above.
+It depends on the option. Under **Option 1** you keep sending `$experiment_started`, so reports querying it as a regular event continue to receive new data. Under **Option 2** you stop sending it, so those reports keep rendering your historical data but receive nothing new — point them at your new event name.
+
+Under either option, the [Experiment report](/docs/experiments) stops analyzing these experiments — see the warning above.
 
 #### Can I switch back later?
 
