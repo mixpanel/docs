@@ -345,7 +345,13 @@
                   "docs/featureflags/runtime-events"
                 ]
               },
-              "docs/experiments",
+              {
+                "group": "Experiments",
+                "root": "docs/experiments",
+                "pages": [
+                  "docs/experiments/exposure-event-metering"
+                ]
+              },
               "docs/metric_tree",
               {
                 "group": "Users",
