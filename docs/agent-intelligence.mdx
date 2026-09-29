@@ -180,6 +180,15 @@ curl -X POST https://ingestion-us.mixpanel.com/v1/ai/otel/traces \
 
 Then open Agent Intelligence in your project. Your conversation should appear shortly.
 
+Agent Intelligence is built on top of existing Mixpanel Events architecture so the same rules apply to Agent Intelligence events. Most noticeably:<br />
+
+1. Event Property limits: Mixpanel truncates down all string properties down to 255 characters at most
+   1. [https://docs.mixpanel.com/reference/import-events#high-level-requirements](https://docs.mixpanel.com/reference/import-events#high-level-requirements)
+   2. [https://docs.mixpanel.com/docs/data-structure/property-reference/data-type#:~:text=String%20properties%20have%20a%20limit%20of%20255%20bytes](https://docs.mixpanel.com/docs/data-structure/property-reference/data-type#:~:text=String%20properties%20have%20a%20limit%20of%20255%20bytes)
+   3. [https://docs.mixpanel.com/docs/data-structure/events-and-properties#what-are-the-limits-of-events-and-properties](https://docs.mixpanel.com/docs/data-structure/events-and-properties#what-are-the-limits-of-events-and-properties)
+2. Event size limits: each OTEL span must be below 1MB uncompressed JSON otherwise the span cannot be ingested into Mixpanel **(i.e. it will be dropped)**
+   1. [https://docs.mixpanel.com/reference/import-events#high-level-requirements](https://docs.mixpanel.com/reference/import-events#high-level-requirements)
+
 ## Data privacy
 
 Mixpanel’s security and access controls apply to your agent traces.
