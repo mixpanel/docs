@@ -251,26 +251,22 @@ Mixpanel automatically computes key conversation level data from spans up by `tr
 
 # FAQ
 
-- **How much does Agent Intelligence cost?**
-
-  There is no extra charge to use Agent Intelligence. Note, events sent for the purposes of Agent Intelligence count towards your event volume.
-- **Troubleshooting implementation**
-
-  **Nothing is arriving.**
-  1. Check the auth header first: base64 of `<PROJECT_TOKEN>:` with the trailing colon, scheme `Basic`.
-  2. `user.id` is missing on spans. It has to be set per span; baggage is the usual fix and without `user.id` events are dropped.
-
-  **Every turn is a separate conversation.** `gen_ai.conversation.id` isn't being set, or isn't propagating to child spans.
-
-  **Prompts and responses are missing.** Either your tracer isn't emitting `gen_ai.input.messages` and `gen_ai.output.messages`, or a Collector processor is stripping them.
-
-  **Spans arrive but properties are empty or spans arrive but my dashboard is empty.** Your tracer is probably emitting a namespace we don't read. Check the raw attribute names it produces against [supported conventions](https://opentelemetry.io/docs/specs/semconv/registry/attributes/gen-ai/).
-
 <AccordionGroup>
-  <Accordion>
+  <Accordion title="How much does Agent Intelligence cost?">
+    There is no extra charge to use Agent Intelligence. Note, events sent for the purposes of Agent Intelligence count towards your event volume.
   </Accordion>
 
-  <Accordion>
+  <Accordion title="Troubleshooting implementation">
+    **Nothing is arriving.**
+
+    1. Check the auth header first: base64 of `<PROJECT_TOKEN>:` with the trailing colon, scheme `Basic`.
+    2. `user.id` is missing on spans. It has to be set per span; baggage is the usual fix and without `user.id` events are dropped.
+
+    **Every turn is a separate conversation.** `gen_ai.conversation.id` isn't being set, or isn't propagating to child spans.
+
+    **Prompts and responses are missing.** Either your tracer isn't emitting `gen_ai.input.messages` and `gen_ai.output.messages`, or a Collector processor is stripping them.
+
+    **Spans arrive but properties are empty or spans arrive but my dashboard is empty.** Your tracer is probably emitting a namespace we don't read. Check the raw attribute names it produces against [supported conventions](https://opentelemetry.io/docs/specs/semconv/registry/attributes/gen-ai/).
   </Accordion>
 
   <Accordion title="How is LLM cost data determined">
