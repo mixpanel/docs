@@ -16,7 +16,7 @@ It requires no new installations. Traces land in your existing Mixpanel project,
 
 | Concept | What it is | Example |
 | :-- | :-- | :-- |
-| **Conversation** (session) | A user's whole conversation, made of one or more traces. | A chat session where the user sends five sequentials prompts to the agent. |
+| **Conversation** (session) | A user's whole conversation, made of one or more traces. | A chat session where the user sends five sequential prompts to the agent. |
 | **Turn** | One prompt and response pair inside a conversation. | The user asks "help me book a trip to London” and the agent responds to this prompt. |
 | **Span** | One piece of work the agent did in order to respond. Spans can run in sequence or in parallel. | A call to an LLM. |
 
@@ -38,12 +38,28 @@ Mixpanel reads the OpenTelemetry GenAI semantic conventions (`gen_ai.*`). Every 
 
 ### Step 1 — Point your exporter at Mixpanel
 
-| Endpoint | Protocall |  |
-| --- | --- | --- |
-|  |  |  |
-|  |  |  |
-
-| **Endpoint**<br />(Use the endpoint for your project’s data residency region) | US: [https://ingestion-us.mixpanel.com/v1/ai/otel/traces](https://ingestion-us.mixpanel.com/v1/ai/otel/traces)<br />EU: [https://ingestion-eu.mixpanel.com/v1/ai/otel/traces](https://ingestion-eu.mixpanel.com/v1/ai/otel/traces)<br />India: [https://ingestion-in.mixpanel.com/v1/ai/otel/traces](https://ingestion-in.mixpanel.com/v1/ai/otel/traces) |<br />| --- | --- |<br />| **Protocol** | OTLP over HTTP, protobuf or JSON |<br />| **Auth header** | Authorization: Basic \<base64("\<PROJECT_TOKEN>:")> |
+<table>
+  <colgroup>
+    <col width="186" />
+    <col width="519" />
+  </colgroup>
+  <thead>
+    <tr>
+      <td>**Endpoint** <br />(Use the endpoint for your project’s data residency region)</td>
+      <td>US: [https://ingestion-us.mixpanel.com/v1/ai/otel/traces](https://ingestion-us.mixpanel.com/v1/ai/otel/traces)<br />EU: [https://ingestion-eu.mixpanel.com/v1/ai/otel/traces](https://ingestion-eu.mixpanel.com/v1/ai/otel/traces)<br />India: [https://ingestion-in.mixpanel.com/v1/ai/otel/traces](https://ingestion-in.mixpanel.com/v1/ai/otel/traces)</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>**Protocol**</td>
+      <td>OTLP over HTTP, protobuf or JSON</td>
+    </tr>
+    <tr>
+      <td>**Auth header**</td>
+      <td>Authorization: Basic \<base64("\<PROJECT_TOKEN>:")></td>
+    </tr>
+  </tbody>
+</table>
 
 The auth value is your project token followed by a colon, base64-encoded. The trailing colon stands in for an empty password.
 
@@ -55,7 +71,7 @@ echo -n "YOUR_PROJECT_TOKEN:" | base64
 
 Your tracer sets most of these. You set `user.id`
 
-These attributes and properties need to be on every span. Spans missing [user.id](http://user.id) are dropped.
+These attributes and properties need to be on every span. Spans missing user.id are dropped.
 
 #### From the span's attributes
 
