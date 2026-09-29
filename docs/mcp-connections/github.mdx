@@ -1,0 +1,67 @@
+---
+title: "Connect GitHub"
+sidebarTitle: "GitHub"
+description: "Connect GitHub to Mixpanel Agent with a personal access token."
+---
+
+<Note>
+  **Beta.** MCP Connections are currently available to a limited set of customers during Beta. If you'd like to participate, reach out to your Mixpanel account team.
+</Note>
+
+GitHub's MCP server doesn't support OAuth sign-in from Mixpanel, so you connect it with a GitHub personal access token (PAT). Mixpanel Agent can see whatever the token can see, and it only uses read tools.
+
+Before you start, make sure an admin has [enabled MCP Connections](/docs/mcp-connections#enable-mcp-connections-for-your-organization) for your organization.
+
+## Create a Personal Access Token
+
+GitHub offers two kinds of personal access tokens. Fine-grained tokens are recommended because you can limit them to specific repositories and read-only permissions. Use a classic token if your GitHub organization blocks fine-grained tokens.
+
+<Tabs>
+  <Tab title="Fine-grained token (recommended)">
+    1. In GitHub, go to **Settings → Developer settings → Personal access tokens → Fine-grained tokens** and click **Generate new token**.
+    2. Name the token (for example, "Mixpanel Agent") and set an expiration.
+    3. Under **Resource owner**, choose the account or organization that owns the repositories you want the Agent to read.
+    4. Under **Repository access**, choose **Only select repositories** and pick the repositories, or choose **All repositories**.
+    5. Under **Repository permissions**, set these to **Read-only**:
+       - **Contents**
+       - **Issues**
+       - **Pull requests**
+       - **Metadata** (set automatically)
+    6. Click **Generate token** and copy it.
+
+    If the resource owner is an organization, an organization owner may need to approve the token before it can access the organization's repositories.
+
+    See GitHub's guide to [creating a fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token).
+  </Tab>
+  <Tab title="Classic token">
+    1. In GitHub, go to **Settings → Developer settings → Personal access tokens → Tokens (classic)** and click **Generate new token (classic)**.
+    2. Name the token (for example, "Mixpanel Agent") and set an expiration.
+    3. Select these scopes:
+       - **repo**, for access to private repositories
+       - **read:org**, for organization and team information
+    4. Click **Generate token** and copy it.
+    5. If your organization uses SAML single sign-on, click **Configure SSO** next to the token and authorize it for that organization.
+
+    Classic tokens with the **repo** scope can write to repositories in GitHub. Mixpanel only exposes read tools to the Agent, but a fine-grained read-only token limits access at the source.
+
+    See GitHub's guide to [creating a personal access token (classic)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic).
+  </Tab>
+</Tabs>
+
+## Add the Connection in Mixpanel
+
+1. Go to **Settings → Personal Settings → [MCP Connections](https://mixpanel.com/settings/account#mcp-connections)**.
+2. Click **Add Connection** and choose **GitHub**.
+3. Paste your token into the **Authentication Token** field and click **Connect**.
+
+Mixpanel checks the token with GitHub before saving it. If you see "Invalid token provided", confirm that you copied the whole token, that it hasn't expired, and that any required organization approval or SSO authorization is complete.
+
+## Troubleshooting
+
+### GitHub shows as Disconnected
+
+The token has expired or been revoked. Create a new token, delete the GitHub connection in Mixpanel, and add it again with the new token.
+
+### The Agent can't find a repository
+
+The token doesn't have access to that repository. For a fine-grained token, add the repository under **Repository access**. For a classic token, check that it has the **repo** scope and is authorized for SSO in the repository's organization.
