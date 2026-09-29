@@ -147,7 +147,7 @@ Use a stable, lowercase, dotted naming pattern. These become properties your who
 Agent Intelligence is built on top of existing Mixpanel Events architecture so the same rules apply to Agent Intelligence events(spans). Most noticeably:
 
 1. Event Property limits: Mixpanel truncates string properties to at most 255 bytes
-   1. [https://docs.mixpanel.com/reference/import-events#high-level-requirements](https://docs.mixpanel.com/reference/import-events#high-level-requirements)
+   1. [High Level Requirements](https://docs.mixpanel.com/reference/import-events#high-level-requirements)
    2. [https://docs.mixpanel.com/docs/data-structure/property-reference/data-type#:~:text=String%20properties%20have%20a%20limit%20of%20255%20bytes](https://docs.mixpanel.com/docs/data-structure/property-reference/data-type#:~:text=String%20properties%20have%20a%20limit%20of%20255%20bytes)
    3. [https://docs.mixpanel.com/docs/data-structure/events-and-properties#what-are-the-limits-of-events-and-properties](https://docs.mixpanel.com/docs/data-structure/events-and-properties#what-are-the-limits-of-events-and-properties)
 2. Event size limits: each OTEL span must be below 1MB uncompressed JSON otherwise the span cannot be ingested into Mixpanel **(i.e. it will be dropped)**
