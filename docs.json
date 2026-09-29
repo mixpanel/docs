@@ -381,7 +381,8 @@
                   "docs/features/slack-integration",
                   "docs/features/warehouse-metrics"
                 ]
-              }
+              },
+              "agent-intelligence"
             ]
           },
           {
