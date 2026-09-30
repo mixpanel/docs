@@ -177,6 +177,10 @@ Sample use cases for blocking events and properties are:
 
 By blocking an event, you can intercept and block incoming events. Mixpanel will not store any new data for the event you select to block.
 
+<Note>
+  Mixpanel-defined events (those prefixed with `$`, such as `$experiment_started`) can't be blocked, with the sole exception of `$opt_in`. User profile properties also can't be blocked.
+</Note>
+
 To block an event in Lexicon:
 
 1. Select an event to block. The Block icon appears.
