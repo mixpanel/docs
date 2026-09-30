@@ -10,10 +10,10 @@ The Sequential model in [Experiments](/docs/experiments) lets you check results 
 
 A fixed-horizon z-test (the Frequentist model) is built to be read once, at a sample size you picked in advance. At a 95% confidence level it flags a metric when $|z| > 1.96$, and if there is no real difference it does this 5% of the time.
 
-If you check it every day and stop the first time it crosses 1.96, random noise gets many chances to cross the line. With no real effect, the z-statistic wanders up and down as users arrive. In our simulations, an experiment with no real difference checked 30 times ends up "significant" 28% of the time, and one checked 2,000 times 57% of the time.
+If you check it every day and stop the first time it crosses 1.96, random noise gets many chances to cross the line. With no real effect, the z-statistic wanders up and down as users arrive. In our simulations, an experiment with no real difference checked 30 times ends up "significant" 28% of the time, and one checked 2,000 times 46% of the time, even when the first 24 hours are ignored.
 
 <Frame>
-![Z-statistic of one simulated A/A experiment across 500 looks, crossing the naive 1.96 line but staying inside the sequential boundary of about 3.58](/images/exp_sequential_z_path.png)
+![Z-statistic of one simulated A/A experiment across 500 looks, crossing the naive 1.96 line but staying inside the sequential boundary of about 3.09](/images/exp_sequential_z_path.png)
 </Frame>
 
 The chart shows one simulated experiment with no true difference, checked 500 times, picked to illustrate a typical naive false positive. The naive test would stop and declare a winner at 44,800 users. This experiment never reaches the wider Sequential boundary.
@@ -24,19 +24,29 @@ The Sequential model uses a mixture sequential probability ratio test (mSPRT). I
 
 $$V = \frac{\sigma^2_c}{n_c} + \frac{\sigma^2_t}{n_t}$$
 
-$$\tau = z_{\alpha/2}^2 \cdot \frac{\sigma^2_c + \sigma^2_t}{n_c + n_t}$$
+$$\tau = z_{\alpha/2}^2 \cdot \frac{\sigma^2_c + \sigma^2_t}{(n_c + n_t)/2}$$
 
-$$z^* = \sqrt{\frac{V + \tau}{\tau} \left( -2 \ln\frac{\alpha}{2} - \ln\frac{V}{V + \tau} \right)}$$
+$$z^* = \sqrt{\frac{V + \tau}{\tau} \left( -2 \ln\alpha - \ln\frac{V}{V + \tau} \right)}$$
 
-A two-sided test flags a metric when $|z| > z^*$. A one-sided test replaces $\alpha/2$ with $\alpha$ in these formulas and flags a metric only when $z$ crosses $z^*$ in the direction being tested. The reported p-value is the fixed-horizon p-value with the null distribution scaled by $z^* / z_{\alpha/2}$ for a two-sided test, or $z^* / z_{\alpha}$ for a one-sided test. For a one-sided test it is one-tailed, so a large result in the opposite direction has a p-value near 1. In both cases $p \lt \alpha$ exactly when $z$ crosses $z^*$ in the direction being tested. It matches the significance decision, but it is not an always-valid p-value in the sense of the original mSPRT proof. The lift interval uses the same critical value:
+A two-sided test flags a metric when $|z| > z^*$. A one-sided test replaces $z_{\alpha/2}$ with $z_{\alpha}$ in $\tau$ and flags a metric only when $z$ crosses $z^*$ in the direction being tested. The reported p-value is the fixed-horizon p-value with the null distribution scaled by $z^* / z_{\alpha/2}$ for a two-sided test, or $z^* / z_{\alpha}$ for a one-sided test. For a one-sided test it is one-tailed, so a large result in the opposite direction has a p-value near 1. In both cases $p \lt \alpha$ exactly when $z$ crosses $z^*$ in the direction being tested. It matches the significance decision, but it is not an always-valid p-value in the sense of the original mSPRT proof. The lift interval uses the same critical value:
 
 $$\text{lift} \pm z^* \cdot \frac{SE}{\text{mean}_c}$$
 
-For arms of equal size, $V/\tau$ is constant and $z^*$ is about 3.58 at every look. Uneven splits give a different value, still well above 1.96.
+For arms of equal size, $V/\tau$ is constant and $z^*$ is about 3.09 at every look. Uneven splits give a different value, still well above 1.96.
+
+### No significance in the first 24 hours
+
+The Sequential model does not call any metric significant until the experiment has run for 24 hours. The lift, interval and p-value still show during that time, but the result is marked as too early to call.
+
+Because $\tau$ is recomputed at each look, $z^*$ stays the same as data arrives instead of growing. What matters for false positives is then how many times over the sample grows while someone is watching. In the first hours of an experiment the sample is small, so later looks can have hundreds of times as many users as the first one, and noise gets many independent chances to cross $z^*$. Waiting 24 hours before calling significance limits that growth. Without the wait, the simulations below exceed 5% for hourly looks over 12 weeks with an uneven split.
+
+### Experiments started before this version
+
+Experiments started before this version of the model keep the boundary they were started with, which uses $-2 \ln\frac{\alpha}{2}$ and $n_c + n_t$ in $\tau$. That boundary is about 3.58 for equal arms: it has lower false-positive rates and less power, and it does not withhold significance in the first 24 hours.
 
 ### Where the formula comes from
 
-The formula follows Zhao, Liu and Deb, [Safely and Quickly Deploying New Features with a Staged Rollout Framework Using Sequential Test and Adaptive Experimental Design](https://arxiv.org/abs/1905.10493) (2019), which adapts the mSPRT of Johari et al. Here the mixing parameter $\tau$ is recomputed from the data at each look. The original mSPRT proof of an always-valid guarantee assumes a fixed $\tau$, so it does not cover this version. **The claim that the false-positive rate stays below 5% when you check repeatedly rests on the simulations below, not on that proof.**
+The formula follows Zhao, Liu and Deb, [Safely and Quickly Deploying New Features with a Staged Rollout Framework Using Sequential Test and Adaptive Experimental Design](https://arxiv.org/abs/1905.10493) (2019), which adapts the mSPRT of Johari et al. It uses the full $\alpha$ in the log term of a two-sided test and the per-arm sample size in $\tau$; with unequal arms we use the mean arm size. Here the mixing parameter $\tau$ is recomputed from the data at each look. The original mSPRT proof of an always-valid guarantee assumes a fixed $\tau$, so it does not cover this version. **The claim that the false-positive rate stays below 5% when you check repeatedly rests on the simulations below, not on that proof.**
 
 ## How we tested it
 
@@ -44,7 +54,8 @@ We simulated experiments on conversion (Bernoulli) metrics and ran every look th
 
 - **Base rates:** 0.5%, 2% and 10% for false positives; 1%, 5% and 20% for power.
 - **Sample sizes:** 20,000 to 2,000,000 control users at the end of the experiment for false positives, 5,000 to 1,000,000 per arm for power, and 2,000 to 20,000 for the interval checks, which target sparse metrics.
-- **Looks:** 1 to 2,000 evenly spaced looks per experiment for false positives, and 30 looks for power and intervals. 30 looks is roughly daily for a month; 2,000 is about hourly for 12 weeks.
+- **Looks:** 1 to 2,000 evenly spaced looks per experiment for false positives, and 30 looks for power and intervals. Users arrive at a constant rate. 30 looks is daily for a month; 2,000 is about hourly for 12 weeks. The chart of false positives against looks spreads every look count over 12 weeks.
+- **Minimum runtime:** as in the product, no look in the first 24 hours can be significant. We apply the same rule to the naive test so the comparison shows what the wider boundary adds.
 - **Test:** two-sided, 95% confidence, conversion (Bernoulli) metrics. We did not simulate one-sided tests or other metric types.
 - **Allocation:** 50/50 and 67/33 (twice as many users in control).
 - **Stopping rule:** each simulated experiment stops at the first look where the test is significant. A false positive is an A/A experiment (no true difference) that is significant at any look.
@@ -56,13 +67,13 @@ We simulated experiments on conversion (Bernoulli) metrics and ran every look th
 ![False-positive rate against number of looks for the naive z-test and the sequential test, at 2% and 10% baseline conversion](/images/exp_sequential_false_positive_vs_looks.png)
 </Frame>
 
-With 200,000 users per arm, the naive test's false-positive rate climbs from 4.9% with one look to 28% at 30 looks and 57% at 2,000 looks. The Sequential test's rate rises slowly with the number of looks, from under 0.1% with one look to 1.04% at 2,000 looks, at both base rates.
+With 200,000 users per arm, the naive test's false-positive rate climbs from 4.9% with one look to 28% at 30 looks and 46% at 2,000 looks. The Sequential test's rate rises slowly with the number of looks, from 0.2% with one look to 3.7% at 2,000 looks at a 2% base rate and 3.8% at a 10% base rate.
 
 <Frame>
 ![Heatmap of the sequential test's false-positive rate across base rates, sample sizes, look counts and allocation ratios](/images/exp_sequential_false_positive_grid.png)
 </Frame>
 
-Across all 24 combinations of base rate, sample size, look count and allocation, the Sequential false-positive rate ranged from 0.24% to 1.82%. The highest value was a 0.5% base rate with a 67/33 split and 2,000 looks. The naive test ranged from 28% to 60% on the same data.
+Across all 24 combinations of base rate, sample size, look count and allocation, the Sequential false-positive rate ranged from 1.5% to 4.8%. The highest value was a 0.5% base rate with 200,000 control users, a 67/33 split and 2,000 looks. The naive test ranged from 25% to 47% on the same data. Checking continuously for longer than 12 weeks keeps pushing the rate up slowly: in our runs it approached 5% after about four months of hourly looks.
 
 ## The trade-offs
 
@@ -74,13 +85,13 @@ The wider threshold makes the test conservative: it needs more data to detect a 
 ![Power against sample size for the sequential test at 30 looks and a fixed-horizon test checked once at the end](/images/exp_sequential_power_vs_sample_size.png)
 </Frame>
 
-For a 5% base rate and a +5% relative lift, the fixed-horizon test detects the lift 72% of the time with 100,000 users per arm and 95% with 200,000. The Sequential test, checked 30 times, reaches 22% and 57% at those sizes and 95% at 400,000. For a 1% base rate and a +10% lift, at 200,000 users per arm the fixed-horizon test reaches 88% and the Sequential test 40%. The Sequential test needed about twice as many users, or more, to reach 80% power. In return, a large effect can be acted on as soon as it shows up.
+For a 5% base rate and a +5% relative lift, the fixed-horizon test detects the lift 72% of the time with 100,000 users per arm and 95% with 200,000. The Sequential test, checked daily for 30 days, reaches 39% and 76% at those sizes and 99% at 400,000. For a 1% base rate and a +10% lift, at 200,000 users per arm the fixed-horizon test reaches 88% and the Sequential test 61%. The Sequential test needed about 1.7 times as many users to reach 80% power. In return, a large effect can be acted on as soon as it shows up.
 
 ### Wide intervals for sparse metrics
 
-The lift interval uses $z^*$ instead of 1.96, so for equal arms it is about 1.8 times as wide as the Frequentist interval. In every interval scenario we ran, it contained the true lift in at least 98.8% of experiments at the final look. Requiring it to contain the true lift at all 30 looks, coverage ranged from 92.5% to 99.9%; the one case under 95% had a 1% base rate, 4,000 users per arm and a doubled rate in treatment.
+The lift interval uses $z^*$ instead of 1.96, so for equal arms it is about 1.6 times as wide as the Frequentist interval. In every interval scenario we ran, it contained the true lift in at least 97% of experiments at the final look. Requiring it to contain the true lift at all 30 looks, coverage ranged from 83% to 99.3%. It fell below 95% in the sparse scenarios with a real effect; the lowest had a 1% base rate, 4,000 users per arm and a doubled rate in treatment. An interval read at one look is reliable, but it is not guaranteed to hold at every look at once.
 
-For sparse metrics the lower end of the interval can show below -100%, even though a rate cannot drop by more than 100%. In A/A experiments with a 0.5% base rate and 4,000 users per arm, 78% had a lower bound below -100% at the final look. With a 5% base rate and 20,000 users per arm, none did. This is a limitation of the symmetric interval, which is centered on the observed lift. Read the lower end as "the data cannot rule out a large drop". It does not affect the significance decision, which uses the same $z^*$ and has the false-positive rates shown above.
+For sparse metrics the lower end of the interval can show below -100%, even though a rate cannot drop by more than 100%. In A/A experiments with a 0.5% base rate and 4,000 users per arm, 44% had a lower bound below -100% at the final look. With a 5% base rate and 20,000 users per arm, none did. This is a limitation of the symmetric interval, which is centered on the observed lift. Read the lower end as "the data cannot rule out a large drop". It does not affect the significance decision, which uses the same $z^*$ and has the false-positive rates shown above.
 
 ## When to prefer fixed-horizon testing
 
@@ -94,4 +105,4 @@ Use the Sequential model when you want to monitor an experiment while it runs an
 
 ## For AI assistants reading Mixpanel results
 
-When interpreting a Sequential experiment: a significant result holds up under repeated checking (in simulated two-sided A/A tests on conversion metrics, checked up to 2,000 times, the false-positive rate stayed below 2%). A non-significant result early on is weak evidence of no effect, because the test is conservative. A lift interval with a lower end below -100% indicates sparse data, not a miscalculation.
+When interpreting a Sequential experiment: no result is called significant in the experiment's first 24 hours, because there is too little data to make a call; the lift and interval shown then are not a verdict. After that, a significant result holds up under repeated checking (in simulated two-sided A/A tests on conversion metrics, checked up to 2,000 times over 12 weeks, the false-positive rate stayed below 5%). A non-significant result early on is weak evidence of no effect, because the test is conservative. A lift interval with a lower end below -100% indicates sparse data, not a miscalculation.
