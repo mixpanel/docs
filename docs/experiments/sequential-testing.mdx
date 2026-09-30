@@ -28,7 +28,7 @@ $$\tau = z_{\alpha/2}^2 \cdot \frac{\sigma^2_c + \sigma^2_t}{n_c + n_t}$$
 
 $$z^* = \sqrt{\frac{V + \tau}{\tau} \left( -2 \ln\frac{\alpha}{2} - \ln\frac{V}{V + \tau} \right)}$$
 
-A two-sided test flags a metric when $|z| > z^*$. A one-sided test replaces $\alpha/2$ with $\alpha$ in these formulas and flags a metric only when $z$ crosses $z^*$ in the direction being tested. The reported p-value is the fixed-horizon p-value computed with the null distribution scaled by $z^* / z_{\alpha/2}$, so $p \lt \alpha$ exactly when $z$ crosses $z^*$ in the direction being tested. It matches the significance decision, but it is not an always-valid p-value in the sense of the original mSPRT proof. The lift interval uses the same critical value:
+A two-sided test flags a metric when $|z| > z^*$. A one-sided test replaces $\alpha/2$ with $\alpha$ in these formulas and flags a metric only when $z$ crosses $z^*$ in the direction being tested. The reported p-value is the fixed-horizon p-value with the null distribution scaled by $z^* / z_{\alpha/2}$ for a two-sided test, or $z^* / z_{\alpha}$ for a one-sided test. For a one-sided test it is one-tailed, so a large result in the opposite direction has a p-value near 1. In both cases $p \lt \alpha$ exactly when $z$ crosses $z^*$ in the direction being tested. It matches the significance decision, but it is not an always-valid p-value in the sense of the original mSPRT proof. The lift interval uses the same critical value:
 
 $$\text{lift} \pm z^* \cdot \frac{SE}{\text{mean}_c}$$
 
