@@ -831,7 +831,7 @@ Only interactive elements are candidates, so tapping a plain label or a decorati
 
 #### Rage Click
 
-A `$mp_rage_click` event is emitted when **4 or more taps** land within **1000 ms** of each other and within **44 pt** on screen — the signature of a user hammering a control that isn't responding. These three thresholds are the defaults — `clickThreshold`, `timeWindowMs` and `radius` on `RageClickOptions` — and are [configurable](#enabling-click-autocapture). The event is emitted *in addition to* the individual `$mp_click` events, so four rapid taps produce four clicks and one rage click. Taps spread out in time or across the screen do not qualify.
+A `$mp_rage_click` event is emitted on the **4th tap** that lands within **1000 ms** and **44 pt** of the earlier taps — the signature of a user hammering a control that isn't responding. These three thresholds are the defaults — `clickThreshold`, `timeWindowMs` and `radius` on `RageClickOptions` — and are [configurable](#enabling-click-autocapture). The event is emitted *in addition to* the individual `$mp_click` events, so four rapid taps produce four clicks and one rage click. The tap history resets after each rage click, so eight rapid taps produce two rage clicks. Taps spread out in time or across the screen do not qualify.
 
 Rage clicks are a **frustration signal**: alongside dead clicks, they surface the places where your app is failing users without throwing an error. Break them down by `$el_id` to find the specific controls people are fighting with, or use them to segment sessions worth watching in Session Replay.
 
