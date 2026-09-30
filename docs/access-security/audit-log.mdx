@@ -32,12 +32,10 @@ See [Audit Log Reference](/docs/access-security/audit-log-reference) for a compl
 ## MCP Activity
 
 <Note>
-  **Closed beta.** Audit logging for [MCP](/docs/mcp) activity is currently available to a limited set of organizations. To join the beta, reach out to your Mixpanel account team.
-
-  While the beta is running, MCP entries are not yet listed in the [Audit Log Reference](/docs/access-security/audit-log-reference). This page is the reference for them until then.
+  The MCP Audit Log is currently available to a limited set of customers during Beta. If you'd like to participate, [request access here](https://mxpnl.notion.site/52931ceda0e94fa2bda6cb18420b5113?pvs=105).
 </Note>
 
-When someone connects an AI assistant to Mixpanel through the [MCP server](/docs/mcp), the changes that assistant makes are recorded in the same audit log as changes made in the Mixpanel UI — attributed to the person whose credentials the assistant is using, and marked as having come from MCP.
+When someone connects an AI assistant to Mixpanel through the [MCP server](/docs/mcp), the changes that assistant makes are recorded in the same audit log as changes made in the Mixpanel UI — attributed to the Mixpanel account whose credentials the assistant is using, and marked as having come from MCP.
 
 ### What Gets Logged
 
@@ -50,46 +48,35 @@ Two things are deliberately **not** logged:
 
 ### Identifying MCP Activity
 
-Every audit log entry records which Mixpanel service the action came from. In the audit log UI this is the **Origin** column, and the **Origin** filter narrows the table to a single source — choose **MCP** to see only agent activity.
+In the audit log UI, MCP entries carry an **Origin** of MCP, and the **Origin** filter narrows the table to a single source. In [exports](#exporting-the-audit-log) and the audit log API, the same information is the `service` field, and MCP entries carry the value `mcp`.
 
-In [exports](#exporting-the-audit-log) and the audit log API, the same information is the `service` field, and MCP entries carry the value `mcp`.
+Entries are attributed to the account the assistant is connected as. If that is a [service account](/docs/mcp#connecting-with-service-accounts) shared by a team, the entry identifies the service account rather than the person who initiated the action.
 
-<Note>
-  The UI label and the exported field name differ: what the audit log page calls **Origin** is the `service` field in CSV, NDJSON, and API responses.
-</Note>
-
-To identify *which* AI client made a change, read the `http_user_agent` field on the MCP tool call entry — for example, `claude-code/2.1.281 (claude-desktop, agent-sdk/0.3.281)`. This field is available in exports and the API, and is populated only on the tool call entry.
+For a clue about *which* AI client made a change, read the `http_user_agent` field on the MCP tool call entry — for example, `claude-code/2.1.281 (claude-desktop, agent-sdk/0.3.281)`. The value is client-supplied, so treat it as a hint rather than proof of identity.
 
 ### How Many Entries an Action Produces
 
 A single MCP action usually produces more than one audit entry:
 
-- **One MCP tool call entry** — event type `mcp_tool_call.performed` — recording which tool was run and the arguments it was given. This is what the assistant was asked to do.
-- **One detailed entry per object that changed**, including its before and after state. This is what actually changed as a result.
+- **One MCP tool call entry** — event type `mcp_tool_call.performed` — recording which tool was run and the arguments it was given.
+- **One detailed entry per object that changed**, including its before and after state.
 
-A single tool call can change several objects, so the number of detailed entries varies. Creating a board with ten reports through MCP, for example, produces one tool call entry, one `board.created` entry, and ten `bookmark.created` entries.
+Creating a board with ten reports through MCP, for example, produces one tool call entry, one `board.created` entry, and ten `bookmark.created` entries.
 
-Detailed entries are written for objects that Mixpanel audits in their own right, such as boards, reports, cohorts, experiments, and feature flags. For objects without their own audit entry type — tags, metrics, custom properties, lookup tables, and business context — only the MCP tool call entry is recorded, so no before/after state is available for those changes.
-
-All of these entries are written moments apart and can look like duplicates in the table. They answer different questions: the tool call entry records intent, the detailed entries record effect.
+Objects that Mixpanel does not audit in their own right — tags, metrics, custom properties, lookup tables, and business context — produce only the tool call entry, with no before/after state.
 
 ### Retention
 
-MCP tool call entries are retained for **90 days on all plans, including Enterprise**. This differs from the standard retention described above, where Enterprise plans retain entries for 2 years. The 90-day period applies to MCP tool call entries created on or after the feature's release date.
-
-The detailed entries are unaffected — a board, cohort, experiment, or feature flag change follows your plan's standard retention regardless of whether it came from MCP. On an Enterprise plan this means the record of *what changed* outlives the record of *which tool call requested it* by well over a year.
+MCP tool call entries are retained for **90 days on all plans, including Enterprise**, rather than the standard retention described above. The detailed entries are unaffected: a board, cohort, experiment, or feature flag change follows your plan's standard retention regardless of whether it came from MCP.
 
 ### Things to Know
 
-- **The IP address is not the user's.** On an MCP tool call entry, the recorded IP address belongs to the server making the tool call — your AI provider's infrastructure, such as Anthropic's or OpenAI's — not the device of the person using the assistant. Use the user field, not the IP address, to identify who performed an MCP action. For entries from other origins, the IP address is the user's.
-- **Detailed entries from MCP have no IP address at all.** The `client_ip` field is empty on the `board.created`, `cohort.updated`, and similar entries that MCP produces, because no browser request is involved. Only the tool call entry carries an address.
-- **MCP entries can take several minutes to appear.** There is a short delay between an MCP action running and its entry becoming visible in the audit log UI. If a recent action is missing, wait and refresh before treating it as unlogged.
-- **Very large arguments are truncated.** The MCP tool call entry caps the size of the arguments it records and sets an `arguments_truncated` flag when it has done so. The detailed entries still carry the full before/after state.
+- **The IP address is not the user's.** On an MCP tool call entry, the recorded IP address belongs to the server making the tool call (typically your AI provider's, such as Anthropic's or OpenAI's), not the device of the person using the assistant. Use the user field, not the IP address, to identify who performed an MCP action. The detailed entries have no IP address at all.
+- **MCP entries can take several minutes to appear.** If a recent action is missing, wait and refresh before treating it as unlogged.
+- **Very large arguments are dropped.** If a tool call's arguments exceed 64 KB, the MCP tool call entry records none of them and sets `arguments_truncated` to true. The detailed entries still carry the full before/after state.
 - **Connecting and disconnecting an MCP client is not yet recorded.** Only the actions taken through a connection are logged.
 
-### Querying the Audit Log Through MCP
-
-Organization admins and owners can ask an AI assistant about their audit history directly using the `Get-Audit-Log` tool. See [Querying the Audit Log](/docs/mcp#querying-the-audit-log) on the MCP server page.
+Organization admins and owners can also query this history conversationally with the `Get-Audit-Log` tool — see [Querying the Audit Log](/docs/mcp#querying-the-audit-log) on the MCP server page.
 
 ## Exporting the Audit Log
 
@@ -121,11 +108,7 @@ Yes, the audit log interface provides filtering options to help you find specifi
 
 #### Can I tell whether a change was made by a person or by an AI assistant?
 
-Yes. Changes made through the [MCP server](/docs/mcp) have an **Origin** of MCP, and are always attributed to the Mixpanel user whose credentials the assistant is connected with. See [MCP Activity](#mcp-activity).
-
-#### Why does my audit log show MCP changes to something but not UI changes to the same thing?
-
-Mixpanel audits most, but not all, object types. Tags, metrics, custom properties, lookup tables, and business context are not yet audited when changed in the Mixpanel UI. Changes to them through MCP are recorded, because MCP records every tool call that changes something. This is a gap in UI coverage rather than something specific to MCP, and it is being closed over time.
+Yes. Changes made through the [MCP server](/docs/mcp) have an **Origin** of MCP, and are attributed to the Mixpanel account whose credentials the assistant is connected with. See [MCP Activity](#mcp-activity).
 
 #### What's the difference between the organization and project audit logs?
 
