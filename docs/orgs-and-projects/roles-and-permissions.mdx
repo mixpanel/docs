@@ -472,6 +472,15 @@ No. Default roles (Owner, Admin, Analyst, Consumer) cannot be edited. Create a c
 
 By design, no role can view classified data by default — including Owner and Admin. Owners and Admins can control who gets access, but cannot view classified data themselves unless explicitly granted via a custom role. This ensures classified data access is always intentional.
 
+#### I'm an Owner and can still see classified data. Why?
+
+The Owner role does not grant viewing access, but you may have been granted it another way. Check the following:
+
+- **Custom role:** Your role in the project may be a custom role with the **Classified Data Access** permission enabled under **Data Access, Exports, and Alerts**.
+- **Team access:** You may belong to a team whose project assignment has the **Classified Data** checkbox ticked. See [Adding Projects to Teams](#adding-projects-to-teams).
+
+Marking a property as classified with the **Mark Classified Data** permission does not remove viewing access that you were already granted through one of these paths.
+
 #### Can Custom Roles change how Mixpanel looks for a user?
 
 No. Custom Roles control what actions a user can perform, not the UI. Navigation and layout do not change based on role.

@@ -410,7 +410,7 @@ claude plugin install mixpanel
 
 Then, inside Claude Code:
 
-```
+```text
 /mixpanel:install
 ```
 
@@ -511,6 +511,13 @@ When connected, the AI assistant can both **read and write** to Mixpanel on your
 ## Rate Limits
 
 - A maximum of 600 MCP requests/hour per user
+
+## Limitations
+
+The following capabilities are not currently supported through the MCP server. Use the Mixpanel UI for these analyses instead.
+
+- **Cohort filters and breakdowns in** `Run-Query`**:** Queries run with `Run-Query` cannot filter or break down results by cohort.
+- **SCD fields:** MCP tools do not currently support SCD (Slowly Changing Dimension / Profile Property History) fields. Queries run through MCP cannot break down or filter by profile-history properties.
 
 ## Building Custom Integrations (OAuth)
 
