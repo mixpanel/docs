@@ -86,7 +86,7 @@ To add a Runtime Event targeting rule to your feature flag:
     </Note>
 
     <Note>
-      Once a user is serving a variant, they are never re-bucketed into a *different* variant in a later session — their assignment stays consistent per the flag's [variant assignment key and Sticky Variants](/docs/featureflags#concepts--terminology).
+      Sticky variants stay consistent: once a user is serving a sticky variant, they keep it across sessions and are not re-bucketed into a *different* one. Non-sticky variants — including **control**, which is always non-sticky — can change if you alter variant splits or lower the rollout %. See [variant assignment key and Sticky Variants](/docs/featureflags#concepts--terminology).
     </Note>
   </Step>
   <Step title="(Optional) Add Property Filters">
