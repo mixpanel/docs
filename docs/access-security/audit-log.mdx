@@ -95,6 +95,7 @@ You can export the audit log to CSV or NDJSON (newline-delimited JSON) for furth
   - [MCP tool call entries](#retention): 90 days on all plans
 - **Organization-only events** (service account management, login/logout, two-factor auth) are only visible in Organization Settings, not Project Settings.
 - **Read-only actions are not logged**, whether taken in the Mixpanel UI or [through MCP](#what-gets-logged). The audit log records changes, not views or queries.
+- **Some object types are not yet audited in the Mixpanel UI.** Changes to tags, metrics, custom properties, lookup tables, and business context are recorded when made [through MCP](#how-many-entries-an-action-produces), but not when made in the UI.
 
 ## FAQ
 
