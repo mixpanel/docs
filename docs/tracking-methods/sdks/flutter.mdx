@@ -642,12 +642,7 @@ Scrolls, drags, long presses, multi-touch, secondary buttons, stylus input (not 
 
 `$mp_dead_click` fires when a tap on an **interactive** widget produces no visible change. The SDK snapshots the widget tree at pointer down, before your handler runs, and compares it after `DeadClickOptions.timeWindow` (default **500 ms**, [configurable](#enabling-click-autocapture)). If nothing changed, the event fires. Every dead click also has a `$mp_click` for the same tap.
 
-**These cancel a pending check** (the UI responded, or the context changed):
-
-- a scroll, focus change or window-metrics change
-- navigating away or backgrounding the app
-- a new accepted tap, even on something non-interactive
-- `identify()` or `reset()`, so a check started under one identity never fires under another
+A scroll, focus change, navigation, or another tap before the time window ends counts as a response, so no dead click is sent.
 
 **Never dead-click candidates:**
 
@@ -670,7 +665,7 @@ Scrolls, drags, long presses, multi-touch, secondary buttons, stylus input (not 
 
 #### Rage Click
 
-`$mp_rage_click` fires when several taps land close together in time and space. By default that is **4+ taps** within **1000 ms** and **44 logical pixels** of each other (`clickThreshold`, `timeWindow` and `radius` on `RageClickOptions`, [configurable](#enabling-click-autocapture)).
+`$mp_rage_click` fires on the **4th tap** that lands within **1000 ms** and **44 logical pixels** of the earlier taps (defaults for `clickThreshold`, `timeWindow` and `radius` on `RageClickOptions`, [configurable](#enabling-click-autocapture)).
 
 - The individual `$mp_click` events still fire, so 4 rapid taps send 4 clicks and 1 rage click.
 - Tap history resets after each rage click, so 8 rapid taps send 2 rage clicks, not 5.
@@ -826,7 +821,7 @@ The SDK resolves `$el_id` with fixed rules that you cannot configure:
 ```dart
 // send "$mp_click" for a tap your app detected itself
 await mixpanel.autocapture.trackClick(const ClickEvent(
-  // tap position in logical pixels, sent as $x and $y
+  // required, tap position in logical pixels, sent as $x and $y
   x: 120,
   y: 340,
   // required, sent as $el_id
@@ -838,17 +833,9 @@ await mixpanel.autocapture.trackClick(const ClickEvent(
 ));
 ```
 
-| Field | Maps to | Required |
-| --- | --- | --- |
-| `elementId` | `$el_id` | Yes |
-| `x`, `y` (logical pixels) | `$x`, `$y` | Yes |
-| `tagName` | `$el_tag_name` | No |
-| `role` | `$attr-role` | No |
-| `elements` | `$elements` | No |
-
 - Each method accepts an optional `properties` map. The typed fields and `$mp_autocapture: true` take precedence over keys with the same name.
 - A blank `elementId` or a non-finite coordinate is ignored and nothing is sent.
-- Each call sends exactly one event and never starts the automatic detectors. For example, `trackClick` does not start a dead click check. Your app decides whether the signal happened.
+- Each call sends exactly one event and never starts the automatic detectors. For example, `trackClick` does not trigger dead click detection. Your app decides whether the signal happened.
 
 #### Best Practices
 
