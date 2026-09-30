@@ -285,7 +285,7 @@ Mixpanel automatically computes key conversation-level data from spans up by `tr
 
     **Prompts and responses are missing.** Either your tracer isn't emitting `gen_ai.input.messages` and `gen_ai.output.messages`, or a Collector processor is stripping them.
 
-    **Spans arrive but properties are empty or spans arrive but my dashboard is empty.** Your tracer is probably emitting a namespace we don't read. Check the raw attribute names it produces against [supported conventions](https://opentelemetry.io/docs/specs/semconv/registry/attributes/gen-ai/).
+    **Spans arrive but properties are empty or spans arrive but my dashboard is empty.** Your tracer is probably emitting a namespace we don't read. Check the raw attribute names it produces against [supported conventions](https://github.com/open-telemetry/semantic-conventions-genai).
   </Accordion>
 
   <Accordion title="How is LLM cost data determined">
