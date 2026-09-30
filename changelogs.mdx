@@ -10,6 +10,23 @@ Get all the latest updates in your inbox.
 <SubscribeButtonWithModal />
 
 <Update label="2026-09-28">
+  ## Experiments: See exactly how every metric result was calculated with the Computation tab
+
+  Experiment results used to show a lift and a confidence interval with no way to check the math behind them. Every experiment metric now has a **Computation** tab that shows the inputs, the statistical model, and why a result is or isn't significant yet.
+
+  With this update, you can:
+
+  - **Check the inputs:** See the data the stats ran on, including the exposure count actually used to calculate lift.
+  - **Understand significance:** See which statistical model is in play (frequentist, sequential, or Bayesian) and when each one is allowed to call a result significant. For example, a running frequentist test with a positive interval is intentionally not yet significant, and the tab now tells you so.
+  - **Explain advanced settings:** When CUPED, outlier capping, or multiple-testing correction are on, the tab shows them so a narrower interval is explainable.
+  - **Trust what you see:** When a value can't be computed, you get a clear state instead of a number that looks real but isn't.
+
+  Open the **Computation** tab on any experiment metric to verify results before you act on them.
+
+  [Learn more →](/docs/experiments#how-mixpanel-calculates-results)
+</Update>
+
+<Update label="2026-09-28">
   ## Audit Log Streaming: send your audit log to your own cloud storage automatically
 
   Getting Mixpanel's [Audit Log](/docs/access-security/audit-log) into your security tooling used to mean exporting it by hand or building your own integration. Audit Log Streaming now delivers every audit log entry for your organization to a bucket you own, usually within minutes of the action.
