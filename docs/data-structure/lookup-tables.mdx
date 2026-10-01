@@ -39,7 +39,7 @@ Then, whenever you use an event with the `song_id` property, you'll have access 
 
 The benefit is that you don't need to change your tracking code at all. You can upload this Lookup Table after the fact and it automatically joins onto all prior events or user profiles with the mapped property.
 
-We also provide an [API](/reference/replace-lookup-table) and [Warehouse Connectors](/docs/tracking-methods/data-warehouse#lookup-tables) to keep Lookup Tables synced on a recurring basis.
+We also provide an [API](/reference/replace-lookup-table) and [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors#lookup-tables) to keep Lookup Tables synced on a recurring basis.
 
 ## Use Cases
 
@@ -157,7 +157,7 @@ This feature can be useful if you need to have the Lookup Table mapping only for
   </Step>
 </Steps>
 
-Lookup Tables can be replaced with a fresh copy, either via our UI, [API](/reference/replace-lookup-table), or [Warehouse Connectors](/docs/tracking-methods/data-warehouse#lookup-tables).
+Lookup Tables can be replaced with a fresh copy, either via our UI, [API](/reference/replace-lookup-table), or [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors#lookup-tables).
 
 ## Use a Lookup Table
 
@@ -183,7 +183,7 @@ These Lookup Table properties can be used like any normal property in reports as
 
 ### When should I use Lookup Tables?
 
-A good use case for Lookup Tables are for mapping metadata that changes over time, since lookup tables can be replaced via the Mixpanel UI or programatically via [API](/reference/replace-lookup-table) or [Warehouse Connectors](/docs/tracking-methods/data-warehouse#lookup-tables), and changes are retroactive. A currency exchange rate table mapped to `Order Currency` property which can be used to convert `Order Amount`; or a region territory grouping table mapped to `Country` are good examples.
+A good use case for Lookup Tables are for mapping metadata that changes over time, since lookup tables can be replaced via the Mixpanel UI or programatically via [API](/reference/replace-lookup-table) or [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors#lookup-tables), and changes are retroactive. A currency exchange rate table mapped to `Order Currency` property which can be used to convert `Order Amount`; or a region territory grouping table mapped to `Country` are good examples.
 
 ### When shouldn't I use Lookup Tables?
 
