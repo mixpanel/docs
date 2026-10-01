@@ -1,5 +1,6 @@
 ---
 title: "Agent Intelligence"
+description: "Send your AI agent traces to Mixpanel over OpenTelemetry and analyze usage, cost, errors, and conversations alongside your product data"
 ---
 
 Agent Intelligence brings your AI agent's traces into Mixpanel, next to the product data you already track.
@@ -8,9 +9,9 @@ With Agent Intelligence you can answer: **how is my agent being used? Is it work
 
 It requires no new installations. Traces land in your existing Mixpanel project, so agent data and product data work together in the same charts, funnels, and cohorts.
 
-<Tip>
-  Agent Intelligence is in beta. Fill out [this form](https://mxpnl.notion.site/93631162c3994cd1b274f0a6b439add4?pvs=105) to request access
-</Tip>
+<Note>
+  **Beta**. Agent Intelligence is currently available to a limited set of customers during Beta. If you'd like to participate, request access [here](https://mxpnl.notion.site/93631162c3994cd1b274f0a6b439add4?pvs=105).
+</Note>
 
 ---
 
@@ -195,7 +196,7 @@ Mixpanel’s [security and access controls](https://docs.mixpanel.com/docs/acces
 
 Additionally, Mixpanel scans AI span attributes for common PII patterns at ingest, before the data is stored. Matches are replaced with a `[REDACTED:<type>]` placeholder. The original value is never written, and redaction can't be reversed.
 
-Mixpanel attempts to detect and redact the following properties: 
+Mixpanel attempts to detect and redact the following properties:
 
 - Email addresses
 - US Social Security numbers
