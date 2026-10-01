@@ -1,0 +1,324 @@
+---
+title: "Agent Intelligence"
+description: "Send your AI agent traces to Mixpanel over OpenTelemetry and analyze usage, cost, errors, and conversations alongside your product data"
+---
+
+Agent Intelligence brings your AI agent's traces into Mixpanel, next to the product data you already track.
+
+With Agent Intelligence you can answer: **how is my agent being used? Is it working?**
+
+It requires no new installations. Traces land in your existing Mixpanel project, so agent data and product data work together in the same charts, funnels, and cohorts.
+
+<Note>
+  **Beta**. Agent Intelligence is currently available to a limited set of customers during Beta. If you'd like to participate, request access [here](https://mxpnl.notion.site/93631162c3994cd1b274f0a6b439add4?pvs=105).
+</Note>
+
+---
+
+## Concepts
+
+| Concept | What it is | Example |
+| :-- | :-- | :-- |
+| **Conversation** (session) | A user's whole conversation, made of one or more traces. | A chat session where the user sends five sequential prompts to the agent. |
+| **Turn** | One prompt and response pair inside a conversation. | The user asks "help me book a trip to London” and the agent responds to this prompt. |
+| **Span** | One piece of work the agent did in order to respond. Spans can run in sequence or in parallel. | A call to an LLM. |
+
+---
+
+## Before you start
+
+You need:
+
+- A Mixpanel project and its project token
+- An agent instrumented with OpenTelemetry using the `gen_ai.*` [semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai) (v1.41 or later)
+- A `user.id` attribute on your spans, set to the same value you use as `distinct_id` in Mixpanel
+
+---
+
+## Implementation
+
+Mixpanel reads the OpenTelemetry GenAI semantic conventions (`gen_ai.*`). Every span becomes one Mixpanel event.
+
+### Step 1 — Point your exporter at Mixpanel
+
+<table>
+  <colgroup>
+    <col width="186" />
+    <col width="519" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>**Endpoint** <br />(Use the endpoint for your project’s data residency region)</th>
+      <th>US: `https://ingestion-us.mixpanel.com/v1/ai/otel/traces`<br />EU: `https://ingestion-eu.mixpanel.com/v1/ai/otel/traces`<br />India: `https://ingestion-in.mixpanel.com/v1/ai/otel/traces`</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>**Protocol**</td>
+      <td>OTLP over HTTP, protobuf or JSON</td>
+    </tr>
+    <tr>
+      <td>**Auth header**</td>
+      <td>Authorization: Basic \<base64("\<PROJECT_TOKEN>:")></td>
+    </tr>
+  </tbody>
+</table>
+
+The auth value is your project token followed by a colon, base64-encoded. The trailing colon stands in for an empty password.
+
+```shellscript
+echo -n "YOUR_PROJECT_TOKEN:" | base64
+```
+
+### Step 2 — Set required properties and attributes on every span
+
+Your tracer sets most of these. You set `user.id`
+
+These attributes and properties need to be on every span. Spans missing user.id are dropped.
+
+#### From the span's attributes
+
+These come from entries in the span's `attributes` object.
+
+| Where it comes from | Who sets it | **What Mixpanel property gets set** |
+| :-- | :-- | :-- |
+| `user.id` attribute | You | `distinct_id` |
+
+The simplest way to capture `user.id` is OTel baggage, so the value propagates to child spans automatically.
+
+```tsx
+import { context, propagation } from "@opentelemetry/api";
+
+const ctx = propagation.setBaggage(
+  context.active(),
+  propagation.createBaggage({ "user.id": { value: currentUser.id } })
+);
+
+context.with(ctx, () => runAgentTurn(prompt));
+```
+
+If your tracer doesn't propagate baggage into span attributes, set `user.id` in a span processor instead.
+
+#### From OTLP span fields
+
+These come from standard OTLP span fields (the span root, not the attributes object). Your tracer sets them automatically; Mixpanel maps them to these event properties.
+
+| Where it comes from | Who sets it | **What Mixpanel property gets set** |
+| :-- | :-- | :-- |
+| `traceId` on OTLP span field | Your tracer | `$mp_ai_trace_id` |
+| `spanId` on OTLP span field | Your tracer | `$mp_ai_span_id` |
+| `name` OTLP span field | Your tracer | `$mp_ai_span_name` |
+| `startTimeUnixNano` OTLP span field | Your tracer | `$time` |
+| Computed from `endTimeUnixNano` − `startTimeUnixNano` (both from OTLP span fields) | Your tracer + Mixpanel computation | `$mp_ai_duration_ms` |
+
+### Step 3 — Add the attributes that make the data useful
+
+Optional, but recommended. Adding more data unlocks the questions you'll want to ask. OTel GenAI tracers produce most of them. Send them **per span**.
+
+Any attribute Mixpanel does not set itself arrives as a property with the same name your tracer used.
+
+| **Property** | **What it gives you** | **Type** |
+| :-- | :-- | :-- |
+| `gen_ai.conversation.id` | Groups turns into a multi-turn conversation | String |
+| `gen_ai.agent.name` | Breakdowns by agent | String |
+| `gen_ai.request.model` / `gen_ai.response.model` | Cost and latency by model; catches a silent model change | String |
+| `gen_ai.usage.input_tokens` / `gen_ai.usage.output_tokens` | Token volume and cost per model | Number |
+| `gen_ai.usage.cache_read.input_tokens` | Prompt-cache hit rate | Number |
+| `gen_ai.usage.cache_write.input_tokens` | Cache writes | Number |
+| `gen_ai.input.messages` / `gen_ai.output.messages` | Readable prompts and responses in the conversation view | String (JSON) |
+| `gen_ai.tool.name` | Which tools run, and how often | String |
+| `gen_ai.tool.call.arguments` / `gen_ai.tool.call.result` | Tool input and output in the conversation view | String |
+
+### Step 4 — Send your own attributes
+
+Standard attributes cover cost, latency, errors, models, and tools. They don't cover what makes your product unique.
+
+Any attribute Mixpanel doesn't recognize is kept as a custom property. Send any dimensions you'd want to break down by. For example:
+
+```tsx
+span.setAttributes({
+  "command.type": "slash_command",   // how this turn was initiated
+  "surface": "sidebar",
+  "prompt.version": "2026-09-02",
+});
+```
+
+Use a stable, lowercase, dotted naming pattern. These become properties your whole team will filter on.
+
+Agent Intelligence is built on top of existing Mixpanel Events architecture so the same rules apply to Agent Intelligence events(spans). Most noticeably:
+
+1. Event Property limits: Mixpanel truncates string properties to at most 255 bytes
+   1. [High Level Requirements](https://docs.mixpanel.com/reference/import-events#high-level-requirements)
+   2. [Event Property Type Requirements](https://docs.mixpanel.com/docs/data-structure/property-reference/data-type#:~:text=String%20properties%20have%20a%20limit%20of%20255%20bytes)
+   3. [Event and Property Limits](https://docs.mixpanel.com/docs/data-structure/events-and-properties#what-are-the-limits-of-events-and-properties)
+2. Event size limits: each OTEL span must be below 1MB uncompressed JSON otherwise the span cannot be ingested into Mixpanel **(i.e. it will be dropped)**
+   1. [Ingestion Requirements](https://docs.mixpanel.com/reference/import-events#high-level-requirements)
+
+### Step 5 — Verify
+
+Send one test span and confirm it arrives.
+
+```bash
+AUTH=$(echo -n "$MIXPANEL_PROJECT_TOKEN:" | base64)
+
+curl -X POST https://ingestion-us.mixpanel.com/v1/ai/otel/traces \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Basic $AUTH" \
+  -d '{
+    "resourceSpans": [{
+      "scopeSpans": [{
+        "spans": [{
+          "traceId": "5b8efff798038103d269b633813fc60c",
+          "spanId": "eee19b7ec3c1b174",
+          "name": "chat",
+          "kind": 1,
+          "startTimeUnixNano": "1789421333000000000",
+          "endTimeUnixNano": "1789421334500000000",
+          "attributes": [
+            {"key": "user.id", "value": {"stringValue": "user_123"}},
+            {"key": "gen_ai.agent.name", "value": {"stringValue": "support-agent"}},
+            {"key": "gen_ai.operation.name", "value": {"stringValue": "chat"}},
+            {"key": "gen_ai.request.model", "value": {"stringValue": "claude-sonnet-4-6"}},
+            {"key": "gen_ai.usage.input_tokens", "value": {"intValue": "1200"}},
+            {"key": "gen_ai.usage.output_tokens", "value": {"intValue": "340"}}
+          ]
+        }]
+      }]
+    }]
+  }'
+```
+
+Then open Agent Intelligence in your project. Your conversation should appear shortly.
+
+## Data privacy
+
+Mixpanel’s [security and access controls](https://docs.mixpanel.com/docs/access-security) apply to your agent traces.
+
+Additionally, Mixpanel scans AI span attributes for common PII patterns at ingest, before the data is stored. Matches are replaced with a `[REDACTED:<type>]` placeholder. The original value is never written, and redaction can't be reversed.
+
+Mixpanel attempts to detect and redact the following properties:
+
+- Email addresses
+- US Social Security numbers
+- Credit card numbers
+- Phone numbers
+- API keys (OpenAI, Slack, GitHub, AWS)
+- Bearer tokens
+- IPv4 addresses.
+
+If anything was redacted, the event carries `$mp_ai_pii_redacted = true`. Mixpanel sets this value. Events with nothing redacted don't carry the property at all.
+
+Note that message content, agent responses, and tool calls are optional attributes. Regulated industries typically omit these fields. If you omit them, you still get cost, tokens, latency, errors, models, tool usage, conversation shape, and every custom property you send. Most OpenTelemetry GenAI instrumentations don't capture prompt and response text by default, so if you leave it off, no message content reaches Mixpanel.
+
+**Redacting sensitive data yourself**
+
+If you want readable transcripts, but prefer to scrub them first, redact in your own OpenTelemetry Collector using the [redaction processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/redactionprocessor). You can mask values matching your patterns and drops any attribute not on your allow list. Be sure not to remove `user.id` , which is required on every span.
+
+---
+
+## Intelligence on your Agents
+
+Once spans are arriving, you have different ways to look at them.
+
+### Key metrics
+
+Open **Agent Intelligence → Usage** for usage and health metrics.
+
+Span level data is rolled up to Conversation and Turns levels for analysis. See more on computed values below.
+
+Use the filters and date range at the top to narrow to one agent, model, or cohort. Every attribute you sent in Steps 3 and 4 is available here.
+
+### Dig into conversations
+
+**Conversations** lists every conversation in your project, sorted by conversations with the newest activity. Each row shows key details of the conversation such a number of turns and total cost.
+
+Click a conversation to open it. You'll see every turn, and every span inside each turn, in the order they ran.
+
+This is where you go to troubleshoot. A turn with an unusual duration or cost stands out in the list, opening it shows which span caused it. If a turn errored, the failing span is marked, so you can read the error and the tool call that produced it.
+
+### Link Agent data to your product outcomes
+
+Spans are events, so agent data works in every Mixpanel report. You can answer questions like:
+
+**Does the agent drive conversion?** Build a funnel with an agent turn as step one and your conversion event as step two. Break down by `gen_ai.agent.name` to compare agents, or by `gen_ai.request.model` to see whether a model change moved the conversion rate.
+
+**Do agent users stick around?** Run a retention report on users who complete an agent turn. Compare it to retention for users who never touch the agent.
+
+**Which users are having a bad time?** Create a cohort of users with a high share of errored conversations. Use the cohort to compare they retain against everyone else. Or dig into the underlying conversations to understand their experience.
+
+**What value does the agent provide the business?** Compare revenue or active users against agent cost over the same period. Segment by model to see whether a more expensive model paid for itself.
+
+### Leverage Experimentation and Session Replay
+
+- **Experiments:** Use [feature flags](https://docs.mixpanel.com/docs/featureflags) and [experiments](https://docs.mixpanel.com/docs/experiments) to test models, prompts, tools, and UX. Because agent metrics are events, cost and error rate can be experiment metrics like any other.
+- **[Session Replay](https://docs.mixpanel.com/docs/session-replay):** Watch what a slow turn felt like, or find users who opened the agent and left without sending a prompt.
+
+## Conversation Level Data
+
+Spans are important because they include key data you need about how your agent is performing. However, we tend to do analysis at a conversation or turn level.
+
+Mixpanel automatically computes key conversation-level data from spans up by `trace_id` and `conversation_id` inside Agent Intelligence so you can analyze a turn or conversation as one thing.
+
+| Computed values | How it's calculated |
+| :-- | :-- |
+| `duration` | Sum of duration of all spans. Note, this may exceed the time a user actually waited in the case that spans ran in parallel. |
+| `cost` | Sum of all span costs. |
+| `is_error` | True if any span in the trace or conversation errored |
+| `error` | Details of the errors in the trace |
+| `input` / `output` | The input and output of the trace |
+
+---
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="How much does Agent Intelligence cost?">
+    There is no extra charge to use Agent Intelligence. Note, events sent for the purposes of Agent Intelligence count towards your event volume.
+  </Accordion>
+
+  <Accordion title="Troubleshooting implementation">
+    **Nothing is arriving.**
+
+    1. Check the auth header first: base64 of `<PROJECT_TOKEN>:` with the trailing colon, scheme `Basic`.
+    2. `user.id` is missing on spans. It has to be set per span; baggage is the usual fix and without `user.id` events are dropped.
+
+    **Every turn is a separate conversation.** `gen_ai.conversation.id` isn't being set, or isn't propagating to child spans.
+
+    **Prompts and responses are missing.** Either your tracer isn't emitting `gen_ai.input.messages` and `gen_ai.output.messages`, or a Collector processor is stripping them.
+
+    **Spans arrive but properties are empty or spans arrive but my dashboard is empty.** Your tracer is probably emitting a namespace we don't read. Check the raw attribute names it produces against [supported conventions](https://github.com/open-telemetry/semantic-conventions-genai).
+  </Accordion>
+
+  <Accordion title="How is LLM cost data determined">
+    `$mp_ai_cost_usd` is the estimated USD cost of a model call, available on `$mp_ai_span` events. It's calculated using the following span attributes:
+
+    | Property | Role |
+    | :-- | :-- |
+    | `gen_ai.request.model` | Selects the rate |
+    | `gen_ai.usage.input_tokens` | Input tokens (inclusive of cache-read and cache-write tokens) |
+    | `gen_ai.usage.output_tokens` | Output tokens |
+    | `gen_ai.usage.cache_read.input_tokens` | Cached input tokens |
+    | `gen_ai.usage.cache_write.input_tokens` | Cache-write tokens, priced at the cache-write rate |
+    | `$time` | Selects which rate was in effect |
+
+    Rates come from a Mixpanel-maintained rate card, priced per 1M tokens by model.
+
+    Cache tokens are priced separately, not at the full input rate. `gen_ai.usage.input_tokens` includes both cache-read and cache-write tokens. Both counts are subtracted from the input total; the remainder is charged the full input rate, cache-read tokens are charged the cache-read rate, and cache-write tokens the cache-write rate.
+
+    **Historical prices are preserved.** Each span is priced using the rate in effect on its own timestamp. This ensures reports spanning a price change stay accurate. Rate card updates apply to all history on your next query. There’s no need to re-send data.
+
+    **Models without a published rate:** Cost will show as \$0. Model names must match exactly. Break a report down by `gen_ai.request.model` to spot unpriced calls.
+
+    Note: These are list-price estimates and won't match a provider invoice exactly. Negotiated rates, discounts, and non-token charges aren't reflected.
+  </Accordion>
+
+  <Accordion title="How can I control the volume of spans sent to Mixpanel?">
+    - Send spans for work you'd investigate: model calls, tool calls, retrieval steps. Skip trivial internal functions.
+    - Sample high-volume, low-variance agents. Sample whole traces. Avoid sampling at the span level
+    - Use the Collector's `filter` processor to drop span types you don't analyze
+  </Accordion>
+
+  <Accordion title="Can I backfill past conversations">
+    Backfilling span events is not currently supported.
+  </Accordion>
+</AccordionGroup>
