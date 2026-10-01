@@ -14,6 +14,9 @@ Rules:
       2. <root>/<target>/index.mdx  exists  (index pages)
       3. <target> is the source of a redirect declared in docs.json
          (redirect sources are valid inbound paths even without a backing file)
+  - A trailing '.md' is dropped before lookup: Mintlify serves every page as
+    Markdown at <path>.md, so '/docs/quickstart.md' is valid whenever
+    '/docs/quickstart' is.
 
 Source locations checked:
   - href="…"  attributes (JSX / HTML in MDX)
@@ -86,10 +89,10 @@ def is_internal(link: str) -> bool:
 
 
 def normalise(link: str) -> str:
-    """Strip fragment and query-string, then decode percent-encoding."""
+    """Strip fragment, query-string and a trailing '.md', then decode percent-encoding."""
     parsed = urlparse(link)
-    path = parsed.path
-    return unquote(path).rstrip("/")
+    path = unquote(parsed.path).rstrip("/")
+    return path[:-3] if path.endswith(".md") else path
 
 
 def build_valid_paths(root: str) -> tuple[set[str], list[str]]:
