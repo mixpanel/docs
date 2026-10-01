@@ -222,6 +222,10 @@ To stop dropping events, locate the filter in **Lexicon \> Data Governance \> Da
 
 To drop an entire event, locate the event in Lexicon under the **Events** tab. Select the event and under **_Status_** toggle on **_Blocked_**. Fully dropped events have a status of **_Blocked_** on lexicon while events dropped with drop filters have a status of **_Filtered_**
 
+<Note>
+  Mixpanel-defined events (those prefixed with `$`, such as `$experiment_started`) can't be dropped, with the sole exception of `$opt_in`. This applies to both drop filters and fully dropping an event in Lexicon (the Block status).
+</Note>
+
 ### Frequently asked questions
 
 **_How do Drop Filters impact billing?_**
