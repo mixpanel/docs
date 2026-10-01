@@ -43,7 +43,7 @@ Think of Runtime Events as a "tripwire" that activates once. Here's the flow:
 ### After the Event
 
 1. On subsequent flag evaluations, the user now receives the active variant
-2. The variant persists based on your duration setting: indefinitely (also the behavior when no First Time filter is set), or only for the client SDK session in which the event first fires (First Time + End of Session)
+2. The variant persists based on your duration setting (session or indefinitely)
 3. If the variant is sticky, the user continues receiving the same variant even if rollout changes, and is never re-bucketed into a different variant
 
 ## Configuring Runtime Events
@@ -86,7 +86,7 @@ To add a Runtime Event targeting rule to your feature flag:
     </Note>
 
     <Note>
-      Stickiness controls *which* variant a user gets, not *whether* it keeps being served: a user is never re-bucketed into a *different* variant, but whether they still receive it in a later session depends on the Duration above (Indefinitely keeps serving it; End of Session does not). The **control** variant is always non-sticky, and non-sticky assignments can change if you alter variant splits or lower the rollout %. See [variant assignment key and Sticky Variants](/docs/featureflags#concepts--terminology).
+      Stickiness controls *which* variant a user gets, not *whether* it keeps being served: a user is never re-bucketed into a *different* variant, but whether they still receive it in a later session depends on the Duration above (Indefinitely keeps serving it; End of Session does not). The **control** variant is always non-sticky, and non-sticky assignments can change if you alter variant splits or lower the rollout %. See [variant assignment key and Sticky Variants](/docs/featureflags#concepts-&-terminology).
     </Note>
   </Step>
   <Step title="(Optional) Add Property Filters">
