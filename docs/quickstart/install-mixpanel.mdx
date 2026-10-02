@@ -63,19 +63,29 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
     });
     ```
 
-    For an EU or India project, set `api_host`:
+    US projects use the SDK's default host and need no change. For an EU or India project, set `api_host`:
 
     <CodeGroup>
 
     ```js EU
     mixpanel.init("YOUR_TOKEN", {
       api_host: "https://api-eu.mixpanel.com",
+      debug: true,
+      track_pageview: true,
+      persistence: "localStorage",
+      record_sessions_percent: 100, //records 100% of all sessions
+      record_heatmap_data: true,
     });
     ```
 
     ```js India
     mixpanel.init("YOUR_TOKEN", {
       api_host: "https://api-in.mixpanel.com",
+      debug: true,
+      track_pageview: true,
+      persistence: "localStorage",
+      record_sessions_percent: 100, //records 100% of all sessions
+      record_heatmap_data: true,
     });
     ```
 
@@ -98,7 +108,7 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
     mp = Mixpanel("YOUR_TOKEN")
     ```
 
-    For an EU or India project, pass a `Consumer` with `api_host` set:
+    US projects use the SDK's default host and need no change. For an EU or India project, pass a `Consumer` with `api_host` set:
 
     <CodeGroup>
 
@@ -151,7 +161,7 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
     ?>
     ```
 
-    For an EU or India project, set the `host` option:
+    US projects use the SDK's default host and need no change. For an EU or India project, set the `host` option:
 
     <CodeGroup>
 
@@ -192,7 +202,7 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
     var mixpanel = Mixpanel.init("YOUR_TOKEN");
     ```
 
-    For an EU or India project, set `host`:
+    US projects use the SDK's default host and need no change. For an EU or India project, set `host`:
 
     <CodeGroup>
 
@@ -235,7 +245,7 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
     }
     ```
 
-    For an EU or India project, pass the matching residency option:
+    US projects use the SDK's default host and need no change. For an EU or India project, pass the matching residency option:
 
     <CodeGroup>
 
@@ -266,7 +276,7 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
     mp = Mixpanel::Tracker.new(YOUR_TOKEN)
     ```
 
-    For an EU or India project, send messages through a consumer that uses the regional host:
+    US projects use the SDK's default host and need no change. For an EU or India project, send messages through a consumer that uses the regional host:
 
     <CodeGroup>
 
@@ -323,7 +333,7 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
     MessageBuilder messageBuilder = new MessageBuilder('YOUR_TOKEN');
     ```
 
-    For an EU or India project, pass the regional endpoints to `MixpanelAPI`:
+    US projects use the SDK's default host and need no change. For an EU or India project, pass the regional endpoints to `MixpanelAPI`:
 
     <CodeGroup>
 
@@ -372,7 +382,7 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
     mixpanel.init();
     ```
 
-    For an EU or India project, pass the regional host as the third argument to `init()`:
+    US projects use the SDK's default host and need no change. For an EU or India project, pass the regional host as the third argument to `init()`:
 
     <CodeGroup>
 
@@ -417,7 +427,7 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
     }
     ```
 
-    For an EU or India project, pass `serverURL`:
+    US projects use the SDK's default host and need no change. For an EU or India project, pass `serverURL`:
 
     <CodeGroup>
 
@@ -471,7 +481,7 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
       }
     ```
 
-    For an EU or India project, set `serverURL` after initialization:
+    US projects use the SDK's default host and need no change. For an EU or India project, set `serverURL` after initialization:
 
     <CodeGroup>
 
@@ -523,7 +533,7 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
     }
     ```
 
-    For an EU or India project, set `serverURL` in `MixpanelOptions`:
+    US projects use the SDK's default host and need no change. For an EU or India project, set `serverURL` in `MixpanelOptions`:
 
     <CodeGroup>
 
@@ -593,7 +603,7 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
     }
     ```
 
-    For an EU or India project, set `serverURL` with `MixpanelOptions`:
+    US projects use the SDK's default host and need no change. For an EU or India project, set `serverURL` with `MixpanelOptions`:
 
     <CodeGroup>
 
@@ -630,7 +640,7 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
       ![unity\_screenshots](https://user-images.githubusercontent.com/36679208/152408022-62440f50-04c7-4ff3-b331-02d3d3122c9e.jpg)
     </Frame>
 
-    For an EU or India project, set **API Host Address** in the same settings menu to `https://api-eu.mixpanel.com/` or `https://api-in.mixpanel.com/`.
+    US projects use the SDK's default host and need no change. For an EU or India project, set **API Host Address** in the same settings menu to `https://api-eu.mixpanel.com/` or `https://api-in.mixpanel.com/`.
 
     Note: If you prefer to initialize Mixpanel manually, you can select the `Manual Initialization` in the settings and call `Mixpanel.Init()` to initialize.
 
