@@ -712,7 +712,7 @@ Route data to Mixpanel's EU servers by setting the `serverURL` flag after initia
 ```objc Objective-C
 // set request URL to Mixpanel's EU domain
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
-self.mixpanel.serverURL = @"https://api-eu.mixpanel.com";
+mixpanel.serverURL = @"https://api-eu.mixpanel.com";
 ```
 
 ### India Data Residency
@@ -722,7 +722,7 @@ Route data to Mixpanel's India servers by setting the `serverURL` flag after ini
 ```objc Objective-C
 // set request URL to Mixpanel's India domain
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
-self.mixpanel.serverURL = @"https://api-in.mixpanel.com";
+mixpanel.serverURL = @"https://api-in.mixpanel.com";
 ```
 
 ### Disable Geolocation
