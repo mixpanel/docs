@@ -341,24 +341,21 @@
               {
                 "group": "Feature Flags",
                 "root": "docs/featureflags",
-                "pages": [
-                  "docs/featureflags/runtime-events"
-                ]
+                "pages": ["docs/featureflags/runtime-events"]
               },
               {
                 "group": "Experiments",
                 "root": "docs/experiments",
                 "pages": [
-                  "docs/experiments/no-code-experiments"
+                  "docs/experiments/no-code-experiments",
+                  "docs/experiments/sequential-testing"
                 ]
               },
               "docs/metric_tree",
               {
                 "group": "Users",
                 "root": "docs/users",
-                "pages": [
-                  "docs/users/cohorts"
-                ]
+                "pages": ["docs/users/cohorts"]
               },
               {
                 "group": "Session Replay",
@@ -596,10 +593,7 @@
               {
                 "group": "Community",
                 "root": "docs/community",
-                "pages": [
-                  "links/slack",
-                  "docs/community/guidelines"
-                ]
+                "pages": ["links/slack", "docs/community/guidelines"]
               },
               "links/get-help",
               "docs/response-times",
@@ -676,39 +670,37 @@
             "icon": "/icons/flower.svg",
             "pages": [
               {
-                        "group": "Use Mixpanel Agent",
-                        "root": "guides/mixpanel-agent",
-                        "pages": [
-                          "guides/mixpanel-agent/use-cases"
-                        ]
-                      },
+                "group": "Use Mixpanel Agent",
+                "root": "guides/mixpanel-agent",
+                "pages": ["guides/mixpanel-agent/use-cases"]
+              },
               {
-                        "group": "Use Mixpanel MCP",
-                        "root": "guides/mcp",
-                        "pages": [
-                          {
-                            "group": "MCP by Industry",
-                            "root": "guides/mcp/mcp-by-industry",
-                            "pages": [
-                              "guides/mcp/mcp-by-industry/ai",
-                              "guides/mcp/mcp-by-industry/b2bsaas",
-                              "guides/mcp/mcp-by-industry/ecommerce",
-                              "guides/mcp/mcp-by-industry/finance",
-                              "guides/mcp/mcp-by-industry/healthcare",
-                              "guides/mcp/mcp-by-industry/media"
-                            ]
-                          },
-                          "guides/mcp/integrations"
-                        ]
-                      },
-                      "guides/headless",
-                      {
-                        "group": "Use Mixpanel AI",
-                        "pages": [
-                          "guides/use-mixpanel-ai/write-business-context",
-                          "guides/use-mixpanel-ai/trust-ai-answers"
-                        ]
-                      }
+                "group": "Use Mixpanel MCP",
+                "root": "guides/mcp",
+                "pages": [
+                  {
+                    "group": "MCP by Industry",
+                    "root": "guides/mcp/mcp-by-industry",
+                    "pages": [
+                      "guides/mcp/mcp-by-industry/ai",
+                      "guides/mcp/mcp-by-industry/b2bsaas",
+                      "guides/mcp/mcp-by-industry/ecommerce",
+                      "guides/mcp/mcp-by-industry/finance",
+                      "guides/mcp/mcp-by-industry/healthcare",
+                      "guides/mcp/mcp-by-industry/media"
+                    ]
+                  },
+                  "guides/mcp/integrations"
+                ]
+              },
+              "guides/headless",
+              {
+                "group": "Use Mixpanel AI",
+                "pages": [
+                  "guides/use-mixpanel-ai/write-business-context",
+                  "guides/use-mixpanel-ai/trust-ai-answers"
+                ]
+              }
             ]
           },
           {
@@ -757,9 +749,7 @@
       },
       {
         "tab": "Changelogs",
-        "pages": [
-          "changelogs"
-        ]
+        "pages": ["changelogs"]
       },
       {
         "tab": "FAQs",
@@ -874,16 +864,12 @@
               "reference/query-api",
               {
                 "group": "Cohorts",
-                "pages": [
-                  "reference/cohorts-list"
-                ],
+                "pages": ["reference/cohorts-list"],
                 "root": "reference/cohorts-list"
               },
               {
                 "group": "Engage",
-                "pages": [
-                  "reference/engage-query"
-                ],
+                "pages": ["reference/engage-query"],
                 "root": "reference/engage-query"
               },
               "reference/query-api-authentication",
@@ -897,17 +883,12 @@
               },
               {
                 "group": "Insights",
-                "pages": [
-                  "reference/insights-query"
-                ],
+                "pages": ["reference/insights-query"],
                 "root": "reference/insights-query"
               },
               {
                 "group": "JQL",
-                "pages": [
-                  "reference/query-jql",
-                  "links/jql"
-                ],
+                "pages": ["reference/query-jql", "links/jql"],
                 "root": "reference/query-jql"
               },
               {
@@ -930,9 +911,7 @@
               },
               {
                 "group": "Activity Feed",
-                "pages": [
-                  "reference/activity-stream-query"
-                ],
+                "pages": ["reference/activity-stream-query"],
                 "root": "reference/activity-stream-query"
               },
               {
@@ -954,9 +933,7 @@
             "pages": [
               {
                 "group": "Export",
-                "pages": [
-                  "reference/raw-event-export"
-                ],
+                "pages": ["reference/raw-event-export"],
                 "root": "reference/raw-event-export"
               },
               "reference/raw-data-export-api",
@@ -1004,37 +981,27 @@
               "reference/authentication-2",
               {
                 "group": "Create Pipelines",
-                "pages": [
-                  "reference/create-warehouse-pipeline"
-                ],
+                "pages": ["reference/create-warehouse-pipeline"],
                 "root": "reference/create-warehouse-pipeline"
               },
               {
                 "group": "Delete Pipelines",
-                "pages": [
-                  "reference/cancel-warehouse-pipeline"
-                ],
+                "pages": ["reference/cancel-warehouse-pipeline"],
                 "root": "reference/cancel-warehouse-pipeline"
               },
               {
                 "group": "Edit Pipelines",
-                "pages": [
-                  "reference/edit-warehouse-pipeline"
-                ],
+                "pages": ["reference/edit-warehouse-pipeline"],
                 "root": "reference/edit-warehouse-pipeline"
               },
               {
                 "group": "Pause Pipelines",
-                "pages": [
-                  "reference/pause-warehouse-pipeline"
-                ],
+                "pages": ["reference/pause-warehouse-pipeline"],
                 "root": "reference/pause-warehouse-pipeline"
               },
               {
                 "group": "Resume Pipelines",
-                "pages": [
-                  "reference/resume-warehouse-pipeline"
-                ],
+                "pages": ["reference/resume-warehouse-pipeline"],
                 "root": "reference/resume-warehouse-pipeline"
               },
               {
@@ -1055,16 +1022,12 @@
               "reference/service-accounts-api-authentication",
               {
                 "group": "Create Service Accounts",
-                "pages": [
-                  "reference/create-service-account"
-                ],
+                "pages": ["reference/create-service-account"],
                 "root": "reference/create-service-account"
               },
               {
                 "group": "Delete Service Accounts",
-                "pages": [
-                  "reference/delete-service-account"
-                ],
+                "pages": ["reference/delete-service-account"],
                 "root": "reference/delete-service-account"
               },
               {
@@ -1092,9 +1055,7 @@
               "reference/overview-1",
               {
                 "group": "Delete Annotation",
-                "pages": [
-                  "reference/delete-annotation-1"
-                ],
+                "pages": ["reference/delete-annotation-1"],
                 "root": "reference/delete-annotation-1"
               },
               {
@@ -1107,30 +1068,22 @@
               },
               {
                 "group": "Create Annotations",
-                "pages": [
-                  "reference/create-annotation"
-                ],
+                "pages": ["reference/create-annotation"],
                 "root": "reference/create-annotation"
               },
               {
                 "group": "Patch Annotation",
-                "pages": [
-                  "reference/patch-annotation-1"
-                ],
+                "pages": ["reference/patch-annotation-1"],
                 "root": "reference/patch-annotation-1"
               },
               {
                 "group": "Get Annotation tags",
-                "pages": [
-                  "reference/get-annotation-tags-1"
-                ],
+                "pages": ["reference/get-annotation-tags-1"],
                 "root": "reference/get-annotation-tags-1"
               },
               {
                 "group": "Create Annotation tag",
-                "pages": [
-                  "reference/create-annotation-tag-1"
-                ],
+                "pages": ["reference/create-annotation-tag-1"],
                 "root": "reference/create-annotation-tag-1"
               }
             ]
@@ -1141,37 +1094,27 @@
               "reference/gdpr-api",
               {
                 "group": "Create a Retrieval",
-                "pages": [
-                  "reference/create-retrieval-1"
-                ],
+                "pages": ["reference/create-retrieval-1"],
                 "root": "reference/create-retrieval-1"
               },
               {
                 "group": "Check Status of Retrieval",
-                "pages": [
-                  "reference/get-retrieval"
-                ],
+                "pages": ["reference/get-retrieval"],
                 "root": "reference/get-retrieval"
               },
               {
                 "group": "Create a Deletion",
-                "pages": [
-                  "reference/create-deletion"
-                ],
+                "pages": ["reference/create-deletion"],
                 "root": "reference/create-deletion"
               },
               {
                 "group": "Check Status of Deletion",
-                "pages": [
-                  "reference/get-deletion"
-                ],
+                "pages": ["reference/get-deletion"],
                 "root": "reference/get-deletion"
               },
               {
                 "group": "Cancel a Deletion",
-                "pages": [
-                  "reference/delete-deletion"
-                ],
+                "pages": ["reference/delete-deletion"],
                 "root": "reference/delete-deletion"
               }
             ]
@@ -1206,16 +1149,12 @@
               "reference/feature-flags-api",
               {
                 "group": "Get Flag Definitions",
-                "pages": [
-                  "reference/get-flag-definitions"
-                ],
+                "pages": ["reference/get-flag-definitions"],
                 "root": "reference/get-flag-definitions"
               },
               {
                 "group": "Get Variant Assignments",
-                "pages": [
-                  "reference/get-variant-assignments"
-                ],
+                "pages": ["reference/get-variant-assignments"],
                 "root": "reference/get-variant-assignments"
               }
             ]
@@ -1269,9 +1208,7 @@
             "pages": [
               {
                 "group": "Overview",
-                "pages": [
-                  "reference/permissions"
-                ],
+                "pages": ["reference/permissions"],
                 "root": "reference/platform-api"
               }
             ],
@@ -4828,35 +4765,35 @@
     },
     {
       "source": "/guides/strategic-playbooks/onboarding-playbook/beyond-onboarding",
-      "destination":"/guides/strategic-playbooks/onboarding-playbook"
+      "destination": "/guides/strategic-playbooks/onboarding-playbook"
     },
     {
       "source": "/guides/guides-by-use-case/empower-your-team/mixpanel-agent",
-      "destination":"/guides/mixpanel-agent"
+      "destination": "/guides/mixpanel-agent"
     },
     {
       "source": "/guides/guides-by-use-case/empower-your-team/mixpanel-agent/use-cases",
-      "destination":"/guides/mixpanel-agent/use-cases"
+      "destination": "/guides/mixpanel-agent/use-cases"
     },
     {
       "source": "/guides/guides-by-use-case/empower-your-team/mcp",
-      "destination":"/guides/mcp"
+      "destination": "/guides/mcp"
     },
     {
       "source": "/guides/guides-by-use-case/empower-your-team/mcp/*",
-      "destination":"/guides/mcp/*"
+      "destination": "/guides/mcp/*"
     },
     {
       "source": "/guides/guides-by-use-case/empower-your-team/headless",
-      "destination":"/guides/headless"
+      "destination": "/guides/headless"
     },
     {
       "source": "/guides/guides-by-workflow/write-business-context",
-      "destination":"/guides/use-mixpanel-ai/write-business-context"
+      "destination": "/guides/use-mixpanel-ai/write-business-context"
     },
     {
       "source": "/guides/guides-by-topic/trust-ai-answers",
-      "destination":"/guides/use-mixpanel-ai/trust-ai-answers"
+      "destination": "/guides/use-mixpanel-ai/trust-ai-answers"
     }
   ]
 }
