@@ -62,7 +62,7 @@ Add the following snippet to your `web/index.html` inside the `<head></head>` ta
 ### Library Configuration
 
 <Warning>
-  For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/flutter#privacy-friendly-tracking).
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, pass `serverURL` set to `https://api-eu.mixpanel.com` or `https://api-in.mixpanel.com` to `Mixpanel.init()`. Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency) for examples.
 </Warning>
 
 The Mixpanel instance can be customized with different configurations. The [`Mixpanel.init()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/init.html) method accepts arguments that sets some configurations on your instance upon initialization.

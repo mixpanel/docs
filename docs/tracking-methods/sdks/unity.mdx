@@ -16,7 +16,7 @@ The [Full API Reference](http://mixpanel.github.io/mixpanel-unity/api-reference/
 ## Installing the Library
 
 <Warning>
-  For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/unity#privacy-friendly-tracking).
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, set **API Host Address** to `https://api-eu.mixpanel.com/` or `https://api-in.mixpanel.com/` in the Mixpanel project settings (Edit -\> Project Settings -\> Mixpanel). Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency) for examples.
 </Warning>
 
 This library can be installed using the unity package manager system with git. We support Unity 2018.3 and above. For older versions of Unity, you need to have .NET 4.x Equivalent selected as the scripting runtime version in your editor settings.

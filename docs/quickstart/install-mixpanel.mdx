@@ -14,6 +14,8 @@ Already collect product data? Connect your [**Data Warehouse**](/docs/tracking-m
 
 Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tracking-methods/choosing-the-right-method).
 
+Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, point the SDK at that region's host. Each tab below shows how. Events sent to the wrong region aren't ingested.
+
 {/* TABS */}
 
 <Tabs>
@@ -60,6 +62,24 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
       record_heatmap_data: true,
     });
     ```
+
+    For an EU or India project, set `api_host`:
+
+    <CodeGroup>
+
+    ```js EU
+    mixpanel.init("YOUR_TOKEN", {
+      api_host: "https://api-eu.mixpanel.com",
+    });
+    ```
+
+    ```js India
+    mixpanel.init("YOUR_TOKEN", {
+      api_host: "https://api-in.mixpanel.com",
+    });
+    ```
+
+    </CodeGroup>
   </Tab>
   <Tab title="Python">
     ##### Install the SDK
@@ -77,6 +97,24 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
     
     mp = Mixpanel("YOUR_TOKEN")
     ```
+
+    For an EU or India project, pass a `Consumer` with `api_host` set:
+
+    <CodeGroup>
+
+    ```python EU
+    from mixpanel import Mixpanel, Consumer
+
+    mp = Mixpanel("YOUR_TOKEN", consumer=Consumer(api_host="api-eu.mixpanel.com"))
+    ```
+
+    ```python India
+    from mixpanel import Mixpanel, Consumer
+
+    mp = Mixpanel("YOUR_TOKEN", consumer=Consumer(api_host="api-in.mixpanel.com"))
+    ```
+
+    </CodeGroup>
   </Tab>
   <Tab title="PHP">
     ##### Install the SDK
@@ -112,6 +150,28 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
     
     ?>
     ```
+
+    For an EU or India project, set the `host` option:
+
+    <CodeGroup>
+
+    ```php EU
+    <?php
+    $mp = Mixpanel::getInstance("YOUR_TOKEN", array(
+        "host" => "api-eu.mixpanel.com"
+    ));
+    ?>
+    ```
+
+    ```php India
+    <?php
+    $mp = Mixpanel::getInstance("YOUR_TOKEN", array(
+        "host" => "api-in.mixpanel.com"
+    ));
+    ?>
+    ```
+
+    </CodeGroup>
   </Tab>
   <Tab title="Node">
     ##### Install the SDK
@@ -131,6 +191,24 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
     // Create an instance of the mixpanel client
     var mixpanel = Mixpanel.init("YOUR_TOKEN");
     ```
+
+    For an EU or India project, set `host`:
+
+    <CodeGroup>
+
+    ```js EU
+    var mixpanel = Mixpanel.init("YOUR_TOKEN", {
+      host: "api-eu.mixpanel.com",
+    });
+    ```
+
+    ```js India
+    var mixpanel = Mixpanel.init("YOUR_TOKEN", {
+      host: "api-in.mixpanel.com",
+    });
+    ```
+
+    </CodeGroup>
   </Tab>
   <Tab title="Go">
     ##### Install the SDK
@@ -156,6 +234,20 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
     mp := mixpanel.NewApiClient("YOUR_TOKEN")
     }
     ```
+
+    For an EU or India project, pass the matching residency option:
+
+    <CodeGroup>
+
+    ```go EU
+    mp := mixpanel.NewApiClient("YOUR_TOKEN", mixpanel.EuResidency())
+    ```
+
+    ```go India
+    mp := mixpanel.NewApiClient("YOUR_TOKEN", mixpanel.InResidency())
+    ```
+
+    </CodeGroup>
   </Tab>
   <Tab title="Ruby">
     ##### Install the SDK
@@ -173,6 +265,36 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
     
     mp = Mixpanel::Tracker.new(YOUR_TOKEN)
     ```
+
+    For an EU or India project, send messages through a consumer that uses the regional host:
+
+    <CodeGroup>
+
+    ```ruby EU
+    consumer = Mixpanel::Consumer.new(
+      'https://api-eu.mixpanel.com/track',
+      'https://api-eu.mixpanel.com/engage',
+      'https://api-eu.mixpanel.com/groups',
+    )
+
+    mp = Mixpanel::Tracker.new(YOUR_TOKEN) do |type, message|
+      consumer.send!(type, message)
+    end
+    ```
+
+    ```ruby India
+    consumer = Mixpanel::Consumer.new(
+      'https://api-in.mixpanel.com/track',
+      'https://api-in.mixpanel.com/engage',
+      'https://api-in.mixpanel.com/groups',
+    )
+
+    mp = Mixpanel::Tracker.new(YOUR_TOKEN) do |type, message|
+      consumer.send!(type, message)
+    end
+    ```
+
+    </CodeGroup>
   </Tab>
   <Tab title="Java">
     ##### Install the SDK
@@ -200,6 +322,24 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
     
     MessageBuilder messageBuilder = new MessageBuilder('YOUR_TOKEN');
     ```
+
+    For an EU or India project, pass the regional endpoints to `MixpanelAPI`:
+
+    <CodeGroup>
+
+    ```java EU
+    MixpanelAPI mixpanel = new MixpanelAPI("https://api-eu.mixpanel.com/track",
+                                          "https://api-eu.mixpanel.com/engage",
+                                          "https://api-eu.mixpanel.com/groups");
+    ```
+
+    ```java India
+    MixpanelAPI mixpanel = new MixpanelAPI("https://api-in.mixpanel.com/track",
+                                          "https://api-in.mixpanel.com/engage",
+                                          "https://api-in.mixpanel.com/groups");
+    ```
+
+    </CodeGroup>
   </Tab>
   <Tab title="React Native">
     ##### Install the SDK
@@ -231,6 +371,20 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
     const mixpanel = new Mixpanel("YOUR_TOKEN", trackAutomaticEvents);
     mixpanel.init();
     ```
+
+    For an EU or India project, pass the regional host as the third argument to `init()`:
+
+    <CodeGroup>
+
+    ```javascript EU
+    mixpanel.init(false, {}, "https://api-eu.mixpanel.com");
+    ```
+
+    ```javascript India
+    mixpanel.init(false, {}, "https://api-in.mixpanel.com");
+    ```
+
+    </CodeGroup>
   </Tab>
   <Tab title="Flutter">
     ##### Install the SDK
@@ -262,6 +416,28 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
       }
     }
     ```
+
+    For an EU or India project, pass `serverURL`:
+
+    <CodeGroup>
+
+    ```dart EU
+    mixpanel = await Mixpanel.init(
+      "YOUR_TOKEN",
+      trackAutomaticEvents: false,
+      serverURL: "https://api-eu.mixpanel.com",
+    );
+    ```
+
+    ```dart India
+    mixpanel = await Mixpanel.init(
+      "YOUR_TOKEN",
+      trackAutomaticEvents: false,
+      serverURL: "https://api-in.mixpanel.com",
+    );
+    ```
+
+    </CodeGroup>
   </Tab>
   <Tab title="iOS (Objective-C)">
     ##### Install the SDK
@@ -294,6 +470,20 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
       ...
       }
     ```
+
+    For an EU or India project, set `serverURL` after initialization:
+
+    <CodeGroup>
+
+    ```objc EU
+    mixpanel.serverURL = @"https://api-eu.mixpanel.com";
+    ```
+
+    ```objc India
+    mixpanel.serverURL = @"https://api-in.mixpanel.com";
+    ```
+
+    </CodeGroup>
   </Tab>
   <Tab title="iOS (Swift)">
     ##### Install the SDK
@@ -332,6 +522,28 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
         ...
     }
     ```
+
+    For an EU or India project, set `serverURL` in `MixpanelOptions`:
+
+    <CodeGroup>
+
+    ```swift EU
+    let options = MixpanelOptions(
+        token: "YOUR_TOKEN",
+        serverURL: "https://api-eu.mixpanel.com"
+    )
+    Mixpanel.initialize(options: options)
+    ```
+
+    ```swift India
+    let options = MixpanelOptions(
+        token: "YOUR_TOKEN",
+        serverURL: "https://api-in.mixpanel.com"
+    )
+    Mixpanel.initialize(options: options)
+    ```
+
+    </CodeGroup>
   </Tab>
   <Tab title="Android">
     ##### Install the SDK
@@ -380,6 +592,28 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
       }
     }
     ```
+
+    For an EU or India project, set `serverURL` with `MixpanelOptions`:
+
+    <CodeGroup>
+
+    ```java EU
+    MixpanelOptions options = new MixpanelOptions.Builder()
+        .serverURL("https://api-eu.mixpanel.com")
+        .build();
+
+    mp = MixpanelAPI.getInstance(this, "YOUR_TOKEN", trackAutomaticEvents, options);
+    ```
+
+    ```java India
+    MixpanelOptions options = new MixpanelOptions.Builder()
+        .serverURL("https://api-in.mixpanel.com")
+        .build();
+
+    mp = MixpanelAPI.getInstance(this, "YOUR_TOKEN", trackAutomaticEvents, options);
+    ```
+
+    </CodeGroup>
   </Tab>
   <Tab title="Unity">
     ##### Install the SDK
@@ -395,6 +629,8 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
     <Frame>
       ![unity\_screenshots](https://user-images.githubusercontent.com/36679208/152408022-62440f50-04c7-4ff3-b331-02d3d3122c9e.jpg)
     </Frame>
+
+    For an EU or India project, set **API Host Address** in the same settings menu to `https://api-eu.mixpanel.com/` or `https://api-in.mixpanel.com/`.
 
     Note: If you prefer to initialize Mixpanel manually, you can select the `Manual Initialization` in the settings and call `Mixpanel.Init()` to initialize.
 
@@ -414,6 +650,8 @@ Choose from the methods below. Not sure how to choose? [Read our guide](/docs/tr
     </Note>
 
     Using the HTTP API does not require an installation. **You're ready to move to the next step.**
+
+    For an EU or India project, send [Ingestion API](/reference/ingestion-api) requests to `api-eu.mixpanel.com` or `api-in.mixpanel.com` instead of `api.mixpanel.com`.
   </Tab>
 </Tabs>
 
