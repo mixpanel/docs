@@ -80,6 +80,12 @@ The first column is reserved for the join key used to map to the property you ch
 
 The first row column header is unimportant since it is reserved for the join key and can be any text as long as it is unique to all other column headers in the CSV.
 
+<Note>
+  If your join key is a large numeric ID (more than ~16 digits), track the mapped
+  Mixpanel property as a string. Numeric values beyond 2^53 lose precision and
+  won't join reliably. See [Numeric data type](/docs/data-structure/property-reference/data-type#numeric).
+</Note>
+
 Using the existing example from above, "song\_id" is the Mixpanel property being used to map additional properties, so we set the first column of the Lookup Table CSV using the column header "song\_id" (could be any other string) then add the song\_id values "c994bb", "d8d949", and "a43fb8" in each row.
 
 ### Lookup Table Property Column
