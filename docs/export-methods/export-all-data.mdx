@@ -74,6 +74,8 @@ This recipe takes a one-time copy of a whole project: events, user profiles, and
     # Export one date range per request and save each to its own file.
     # Waiting 60 seconds between requests keeps you under 60 queries per hour.
     # --fail stops on an HTTP error (such as 429) instead of saving the error as data.
+    # Each range downloads to a temporary file, so a failed retry never replaces a good export.
+    failed=""
     while read -r from_date to_date; do
       out="events_${from_date}_${to_date}.jsonl"
       if ! curl -sS --fail --get "https://${EXPORT_HOST}/api/2.0/export" \
@@ -81,16 +83,20 @@ This recipe takes a one-time copy of a whole project: events, user profiles, and
         --data-urlencode "project_id=$PROJECT_ID" \
         --data-urlencode "from_date=$from_date" \
         --data-urlencode "to_date=$to_date" \
-        -o "$out"; then
-        rm -f "$out"
+        -o "$out.tmp"; then
+        rm -f "$out.tmp"
         echo "Export failed for $from_date to $to_date. Retry this range." >&2
+        failed="yes"
         break
       fi
+      mv "$out.tmp" "$out"
       sleep 60
     done <<'EOF'
     2025-01-01 2025-01-31
     2025-02-01 2025-02-28
     EOF
+    # Exit non-zero if any range failed, so a scheduled job doesn't treat a partial export as complete.
+    [ -z "$failed" ]
     ```
 
     Raw exports aren't deduplicated. Deduplicate on event name, `distinct_id`, timestamp, and `$insert_id` before you load the data anywhere else. For projects created before January 1, 2023, timestamps are in your project timezone. For newer projects, they're in UTC.
