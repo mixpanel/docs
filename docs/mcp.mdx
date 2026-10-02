@@ -81,10 +81,14 @@ A typical workflow looks like:
 |  | `Update-Feature-Flag` | Modify a feature flag's configuration or targeting |
 |  | `Get-Feature-Flag-Setup-Guidance` | Get best-practice guidance for creating and configuring a feature flag |
 |  | `Get-Feature-Flag-Lifecycle-Guidance` | Get best-practice guidance for rollout, kill-switch, and cleanup of a feature flag |
+| **Audit Log** _(Beta)_ | `Get-Audit-Log` | Query your organization's audit history — who changed what, and when |
 
-<Warning>
-  **Experiments and Feature Flags tools are in open beta** and available to all users. Audience targeting and cohort editing are not yet supported via MCP — use the Mixpanel UI instead.
-</Warning>
+<Callout icon="flask" iconType="regular" color="#5F41CF">
+  **Beta.** Some tools above are still in Beta:
+
+  - **Experiments and Feature Flags.** These tools are in open Beta and are available to all users. Audience targeting and cohort editing are not yet supported — use the Mixpanel UI instead.
+  - **Audit Log.** The `Get-Audit-Log` tool is currently available to a limited set of customers during Beta. If you'd like to participate, [request access here](https://mxpnl.notion.site/52931ceda0e94fa2bda6cb18420b5113?pvs=105).
+</Callout>
 
 ## MCP Server URLs
 
@@ -97,7 +101,7 @@ A typical workflow looks like:
 ## Permissions & Access
 
 <Note>
-  **New free and growth accounts (created after August 1, 2026):** MCP is enabled by default — no admin action required. Organization admins can disable it in **Settings → Org → Overview** if needed.
+  **New free and growth accounts (created after August 1, 2026):** MCP is enabled by default — no admin action required. Organization admins can disable it in **Settings → Org → Overview** if needed. Free plans can be subject to Query API access limits, please refer to our [pricing page](https://mixpanel.com/pricing/) for more information.
 
   **All other accounts:** An organization admin must enable MCP in **Settings → Org → Overview** before anyone can connect.
 
@@ -410,7 +414,7 @@ claude plugin install mixpanel
 
 Then, inside Claude Code:
 
-```
+```text
 /mixpanel:install
 ```
 
@@ -482,6 +486,12 @@ Once connected, try asking your AI assistant:
 - "This user reported a bug — what happened in their last 3 sessions?"
 - "Walk me through what \[user ID\] did before they churned"
 
+**Review what changed** _(requires the [`Get-Audit-Log`](#querying-the-audit-log) tool)_
+
+- "What changed in this project last week?"
+- "Who deleted a board yesterday?"
+- "What has \[user email\] changed in the last 24 hours?"
+
 ## Security Considerations
 
 <Warning>
@@ -498,8 +508,27 @@ When connected, the AI assistant can both **read and write** to Mixpanel on your
 
 **Other considerations**
 
+- Every change an assistant makes is recorded in your [audit log](#audit-log), attributed to the account it is connected as
 - Check applicable compliance requirements (GDPR, CCPA, etc.) before connecting to projects with personal data
 - If using a shared AI environment (e.g., a team workspace), be aware that conversation history may be visible to others
+
+## Audit Log
+
+<Callout icon="flask" iconType="regular" color="#5F41CF">
+  **Beta.** The MCP Audit Log is currently available to a limited set of customers during Beta. If you'd like to participate, [request access here](https://mxpnl.notion.site/52931ceda0e94fa2bda6cb18420b5113?pvs=105).
+</Callout>
+
+### MCP Activity Is Logged
+
+Changes an assistant makes through MCP are recorded in the same [audit log](/docs/access-security/audit-log) as changes made in the Mixpanel UI, attributed to the account the assistant is connected as and carrying an **Origin** of MCP — the `service` field in exports and the API. Read-only and failed tool calls are not logged.
+
+See [MCP Activity](/docs/access-security/audit-log#mcp-activity) for what each tool call records, how many entries an action produces, and retention.
+
+### Querying the Audit Log
+
+The `Get-Audit-Log` tool lets you ask about your audit history conversationally, instead of filtering the audit log page by hand — "what changed in this project last week?", "who deleted a board yesterday?"
+
+`Get-Audit-Log` requires **organization admin or owner** access, the same access as the organization audit log page. Every other role, including project owners who are not organization admins, gets a permission error.
 
 ## Troubleshooting
 
@@ -507,10 +536,19 @@ When connected, the AI assistant can both **read and write** to Mixpanel on your
 - **"Missing scope" error**: Your cached auth token was created with an outdated scope list. Delete the `.mcp-auth` folder in the directory where you ran the authorization command, then re-authorize.
 - **Authorization fails**: Ensure your Mixpanel account has access to at least one project and that MCP is enabled at the org level.
 - **Desktop app doesn't pick up config changes**: Restart the application after editing the config file.
+- **`Get-Audit-Log` is missing or returns a permission error**: The tool is in [Beta](#audit-log) and requires organization admin or owner access. If your organization is in the Beta and you have the right role, reconnect the Mixpanel connector to pick up the tool — in Claude Code run `/mcp`, and in other clients disconnect and reconnect.
+- **A recent MCP action isn't in the audit log**: Entries can take several minutes to appear. Note that read-only and failed tool calls are never logged.
 
 ## Rate Limits
 
 - A maximum of 600 MCP requests/hour per user
+
+## Limitations
+
+The following capabilities are not currently supported through the MCP server. Use the Mixpanel UI for these analyses instead.
+
+- **Cohort filters and breakdowns in** `Run-Query`**:** Queries run with `Run-Query` cannot filter or break down results by cohort.
+- **SCD fields:** MCP tools do not currently support SCD (Slowly Changing Dimension / Profile Property History) fields. Queries run through MCP cannot break down or filter by profile-history properties.
 
 ## Building Custom Integrations (OAuth)
 
