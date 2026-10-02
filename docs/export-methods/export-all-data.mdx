@@ -61,6 +61,11 @@ This recipe takes a one-time copy of a whole project: events, user profiles, and
   </Step>
   <Step title="Pick your server">
     For the Raw Event Export API, use `data.mixpanel.com` for most projects. Use `data-eu.mixpanel.com` if your project is in EU Data Residency, or `data-in.mixpanel.com` for India Data Residency.
+
+    ```bash
+    # Set this to the server for your project's region.
+    EXPORT_HOST="data.mixpanel.com"
+    ```
   </Step>
   <Step title="Export events in date ranges">
     Split your history into date ranges and send one [Raw Event Export](/reference/raw-event-export) request per range. Smaller ranges are easier to retry if a request fails. Each response is JSONL, with one event per line.
@@ -68,13 +73,19 @@ This recipe takes a one-time copy of a whole project: events, user profiles, and
     ```bash
     # Export one date range per request and save each to its own file.
     # Waiting 60 seconds between requests keeps you under 60 queries per hour.
+    # --fail stops on an HTTP error (such as 429) instead of saving the error as data.
     while read -r from_date to_date; do
-      curl -sS --get "https://data.mixpanel.com/api/2.0/export" \
+      out="events_${from_date}_${to_date}.jsonl"
+      if ! curl -sS --fail --get "https://${EXPORT_HOST}/api/2.0/export" \
         -u "$SERVICE_ACCOUNT_USERNAME:$SERVICE_ACCOUNT_SECRET" \
         --data-urlencode "project_id=$PROJECT_ID" \
         --data-urlencode "from_date=$from_date" \
         --data-urlencode "to_date=$to_date" \
-        > "events_${from_date}_${to_date}.jsonl"
+        -o "$out"; then
+        rm -f "$out"
+        echo "Export failed for $from_date to $to_date. Retry this range." >&2
+        break
+      fi
       sleep 60
     done <<'EOF'
     2025-01-01 2025-01-31
