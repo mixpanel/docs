@@ -1,0 +1,117 @@
+---
+title: "Export All Your Data"
+description: "Take a full copy of your Mixpanel events and profiles at any time. Covers the Raw Event Export API, the Engage API, Data Pipelines, plan availability, rate limits, and retention."
+---
+
+Your event and profile data belongs to you, and you can take a full copy of it out of Mixpanel at any time. Use this page when you want a backup, a copy in your own warehouse, or everything you need to move to another tool.
+
+For request parameters and response formats, follow the links to the API reference.
+
+## What You Can Export
+
+| Data | One-time export | Continuous sync |
+|---|---|---|
+| Raw events, with all properties and original timestamps | [Raw Event Export API](/reference/raw-event-export) | [Data Pipelines](/docs/data-pipelines) |
+| User profiles | [Engage API](/reference/engage-query) | [Data Pipelines](/docs/data-pipelines) |
+| Group profiles | [Engage API](/reference/engage-query) with `data_group_id` | |
+| Identity mappings (the IDs Mixpanel merged into one user) | | [Data Pipelines](/docs/data-pipelines/json-pipelines#identity-mappings) |
+
+You can also download smaller sets of events, profiles, and report results as CSV from the UI. See [Export Methods](/docs/export-methods) for every option, including report exports.
+
+## Plan Availability
+
+| Method | Free | Growth | Enterprise |
+|---|---|---|---|
+| Raw Event Export API | Yes | Yes | Yes |
+| Engage API (user and group profiles) | Yes | Yes | Yes |
+| CSV export from the Events and Users pages | Yes | Yes | Yes |
+| Query API (formatted report data) | No | Yes | Yes |
+| Data Pipelines | No | Paid add-on | Paid add-on |
+
+Data Pipelines comes with a 30-day trial. See [how the trial works](/docs/data-pipelines#how-does-the-free-trial-work) for its limits.
+
+<Note>
+  A few projects on older Free plans don't include the Raw Event Export API. If the API returns "Your plan does not support raw data export", [contact support](https://mixpanel.com/get-support).
+</Note>
+
+## Rate Limits
+
+Export limits apply per project. The Raw Event Export API limits are the same on every plan.
+
+| API | Limits |
+|---|---|
+| Raw Event Export API | 60 queries per hour, 3 queries per second, 100 concurrent queries |
+| Engage API | 60 queries per hour, 5 concurrent queries |
+
+If you go over a limit, the API returns a `429` error. See [Rate Limits](/reference/rate-limits) for details.
+
+## Data Retention
+
+Mixpanel deletes events 2 years after the event date. Projects created before September 1, 2025 keep events for 5 years, until the project changes plan or moves to the Free plan. After that, the 2-year period applies.
+
+If you want to keep history older than your retention period, export it before it ages out. User data is kept for the duration of an active subscription plan. Read the full [data retention policy](/docs/privacy/gdpr-compliance#data-retention-policy).
+
+## Export Everything at Once
+
+This recipe takes a one-time copy of a whole project: events, user profiles, and group profiles.
+
+<Steps>
+  <Step title="Set up authentication">
+    Create a [service account](/reference/service-accounts) with access to the project, or use your [project secret](/reference/project-secret). With a service account, include `project_id` in every request. If your project has [classified data](/docs/data-governance/data-views-and-classification#data-classification), the service account needs permission to access it. See [Raw Event Export authentication](/reference/raw-data-export-api-authentication).
+  </Step>
+  <Step title="Pick your server">
+    For the Raw Event Export API, use `data.mixpanel.com` for most projects. Use `data-eu.mixpanel.com` if your project is in EU Data Residency, or `data-in.mixpanel.com` for India Data Residency.
+
+    ```bash
+    # Set this to the server for your project's region.
+    EXPORT_HOST="data.mixpanel.com"
+    ```
+  </Step>
+  <Step title="Export events in date ranges">
+    Split your history into date ranges and send one [Raw Event Export](/reference/raw-event-export) request per range. Smaller ranges are easier to retry if a request fails. Each response is JSONL, with one event per line.
+
+    ```bash
+    # Export one date range per request and save each to its own file.
+    # Waiting 60 seconds between requests keeps you under 60 queries per hour.
+    # --fail stops on an HTTP error (such as 429) instead of saving the error as data.
+    # Each range downloads to a temporary file, so a failed retry never replaces a good export.
+    failed=""
+    while read -r from_date to_date; do
+      out="events_${from_date}_${to_date}.jsonl"
+      if ! curl -sS --fail --get "https://${EXPORT_HOST}/api/2.0/export" \
+        -u "$SERVICE_ACCOUNT_USERNAME:$SERVICE_ACCOUNT_SECRET" \
+        --data-urlencode "project_id=$PROJECT_ID" \
+        --data-urlencode "from_date=$from_date" \
+        --data-urlencode "to_date=$to_date" \
+        -o "$out.tmp" || ! mv "$out.tmp" "$out"; then
+        rm -f "$out.tmp"
+        echo "Export failed for $from_date to $to_date. Retry this range." >&2
+        failed="yes"
+        break
+      fi
+      sleep 60
+    done <<'EOF'
+    2025-01-01 2025-01-31
+    2025-02-01 2025-02-28
+    EOF
+    # Exit non-zero if any range failed, so a scheduled job doesn't treat a partial export as complete.
+    [ -z "$failed" ]
+    ```
+
+    Raw exports aren't deduplicated. Deduplicate on event name, `distinct_id`, timestamp, and `$insert_id` before you load the data anywhere else. For projects created before January 1, 2023, timestamps are in your project timezone. For newer projects, they're in UTC.
+  </Step>
+  <Step title="Export user profiles">
+    Call the [Engage API](/reference/engage-query) with no filter to return every user profile. Results come back one page at a time. Pass the `session_id` from the first response and increase `page` until a response returns fewer records than `page_size`.
+  </Step>
+  <Step title="Export group profiles">
+    Repeat the Engage API export once for each group key, passing its `data_group_id`. You can find each `data_group_id` in your project settings. See [Group Profile Export via API](/docs/export-methods#group-profile-export-via-api).
+  </Step>
+</Steps>
+
+The Raw Event Export API and the Engage API return the canonical distinct ID shown in the UI. Data Pipelines exports events as Mixpanel ingested them, so use the [identity mappings table](/docs/data-pipelines/json-pipelines#user-identity-resolution) to match Mixpanel's unique user counts.
+
+## Keep a Continuous Copy
+
+[Data Pipelines](/docs/data-pipelines) exports events, user profiles, and identity mappings on a schedule. It writes to Amazon S3, Google Cloud Storage, Azure Blob Storage, BigQuery, Databricks, Redshift Spectrum, or Snowflake.
+
+When you create a pipeline, you can backfill up to 6 months of history. For older events, use the Raw Event Export API for those dates.
