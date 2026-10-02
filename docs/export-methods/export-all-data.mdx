@@ -83,13 +83,12 @@ This recipe takes a one-time copy of a whole project: events, user profiles, and
         --data-urlencode "project_id=$PROJECT_ID" \
         --data-urlencode "from_date=$from_date" \
         --data-urlencode "to_date=$to_date" \
-        -o "$out.tmp"; then
+        -o "$out.tmp" || ! mv "$out.tmp" "$out"; then
         rm -f "$out.tmp"
         echo "Export failed for $from_date to $to_date. Retry this range." >&2
         failed="yes"
         break
       fi
-      mv "$out.tmp" "$out"
       sleep 60
     done <<'EOF'
     2025-01-01 2025-01-31
