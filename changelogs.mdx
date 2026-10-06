@@ -9,6 +9,42 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-10-01">
+  ## MCP Audit Log: see what AI assistants changed, and ask about it
+
+  As more of your team connects AI assistants to Mixpanel, more changes arrive through the [MCP server](/docs/mcp) instead of the UI. Those changes are now recorded in the same audit log as everything else, and organization admins can ask about them in plain language.
+
+  With this update, you can:
+
+  - **Review AI changes alongside the rest:** Every MCP tool that changes something records an entry — boards, cohorts, experiments, feature flags, metrics, lookup tables, custom properties, Lexicon metadata, tags, and business context — attributed to the account the assistant is connected as.
+  - **Tell AI changes apart from the rest:** MCP entries carry an **Origin** of MCP in the audit log UI, and a `service` value of `mcp` in exports and the API. Filter by Origin to see a single source. Read-only and failed tool calls are not recorded.
+  - **Ask the audit log a question:** The [`Get-Audit-Log`](/docs/mcp#querying-the-audit-log) tool answers questions like "what changed in this project last week?" or "who deleted a board yesterday?" without filtering the audit log page by hand.
+
+  A single MCP action usually produces more than one entry: one tool call entry recording the tool and its arguments, plus one detailed entry per object that changed. MCP tool call entries are retained for 90 days on all plans, while the detailed entries follow your plan's standard retention.
+
+  The MCP Audit Log is in Beta for a limited set of customers, and `Get-Audit-Log` requires organization admin or owner access. [Request access here](https://mxpnl.notion.site/52931ceda0e94fa2bda6cb18420b5113?pvs=105).
+
+  [Learn more →](/docs/access-security/audit-log#mcp-activity)
+</Update>
+
+<Update label="2026-10-01">
+  ## MCP Connections: let Mixpanel Agent read your GitHub, Jira, Linear, and Notion
+
+  Your data lives in Mixpanel, but the context around it lives somewhere else — the strategy doc in Notion, the Jira ticket describing what a feature was supposed to do, the pull request that shipped it. MCP Connections let Mixpanel Agent read those tools directly, so it can answer with your team's context instead of only what the events say.
+
+  With this update, you can:
+
+  - **Connect the tools you already use:** Notion, Linear, and Jira connect through OAuth. GitHub connects with a personal access token. Each tool connects once, to your own account.
+  - **Bring your own context into an answer:** Mixpanel Agent can read the spec behind a feature, the ticket that defines what counts as success, or the pull requests that changed a flow, and use them while it analyzes your data.
+  - **Read-only and private to you:** Mixpanel Agent only exposes read tools, so it cannot create, edit, or delete anything in a connected tool. Teammates cannot see or use your connections, and the Agent sees only what your account on that tool can see.
+
+  MCP Connections are off by default. An organization admin or owner turns on **Connect Your Tools via MCP** under **Settings → Org → AI Settings**, and each member then adds their own connections from **Settings → Personal Settings**.
+
+  MCP Connections are in Beta for a limited set of customers and require Mixpanel AI. [Request access here](https://mxpnl.notion.site/5dc6d468f8aa48eebac5146fc9bd3759).
+
+  [Learn more →](/docs/mcp-connections)
+</Update>
+
 <Update label="2026-10-01" description="">
   ## Agent Intelligence is now in Beta
 
