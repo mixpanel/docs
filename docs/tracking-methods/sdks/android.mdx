@@ -73,7 +73,7 @@ public class MainActivity extends ActionBarActivity {
 ### Library Configuration
 
 <Warning>
-  For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/android#privacy-friendly-tracking).
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, set `serverURL` to `https://api-eu.mixpanel.com` or `https://api-in.mixpanel.com` on `MixpanelOptions.Builder` and pass the options to `getInstance()`. Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency) for examples.
 </Warning>
 
 The library can be initialized with different configurations. See a complete list of the configuration options and methods under [`MPConfig`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MPConfig.html).

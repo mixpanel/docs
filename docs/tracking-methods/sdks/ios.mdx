@@ -94,7 +94,7 @@ Mixpanel *mixpanel = [Mixpanel sharedInstance];
 ### Library Configuration
 
 <Warning>
-  For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/ios#privacy-friendly-tracking).
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, set the `serverURL` property to `https://api-eu.mixpanel.com` or `https://api-in.mixpanel.com` after you initialize the Mixpanel instance. Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency) for examples.
 </Warning>
 
 The library can be initialized with different configurations. See a complete list of the configuration options [here](https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/sharedInstanceWithToken:).
@@ -712,7 +712,7 @@ Route data to Mixpanel's EU servers by setting the `serverURL` flag after initia
 ```objc Objective-C
 // set request URL to Mixpanel's EU domain
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
-self.mixpanel.serverURL = @"https://api-eu.mixpanel.com";
+mixpanel.serverURL = @"https://api-eu.mixpanel.com";
 ```
 
 ### India Data Residency
@@ -722,7 +722,7 @@ Route data to Mixpanel's India servers by setting the `serverURL` flag after ini
 ```objc Objective-C
 // set request URL to Mixpanel's India domain
 Mixpanel *mixpanel = [Mixpanel sharedInstance];
-self.mixpanel.serverURL = @"https://api-in.mixpanel.com";
+mixpanel.serverURL = @"https://api-in.mixpanel.com";
 ```
 
 ### Disable Geolocation
