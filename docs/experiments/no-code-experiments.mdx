@@ -1,14 +1,14 @@
 ---
-title: "No-Code Experiments"
-sidebarTitle: "No-Code Experiments"
+title: "Web Experiments"
+sidebarTitle: "Web Experiments"
 description: "Run A/B tests without shipping code"
 ---
 
-Visual experiments let you build and launch A/B test variants on your website through a visual editor, with no code deploy per test. You open the page you want to test, click the element you want to change, edit it directly or describe the change to Mixpanel Agent, then launch.
+Web experiments let you build and launch A/B test variants on your website through a visual editor, with no code deploy per test. You open the page you want to test, click the element you want to change, edit it directly or describe the change to Mixpanel Agent, then launch.
 
-<Warning>
-  No-code experiments are in closed beta. Access is enabled per project. Contact your account team to request to join.
-</Warning>
+<Callout icon="flask" iconType="regular" color="#5F41CF">
+  **Beta.** Web experiments is currently available to a limited set of customers during Beta. If you'd like to participate, request access [here](https://mxpnl.notion.site/e2e0eaa760de4546a73fc3c6418acbd3?pvs=105). 
+</Callout>
 
 ## Beta Scope
 
@@ -22,18 +22,18 @@ Complex single-page apps are better served by a code experiment. Mutations are a
 
 Authoring is Chrome-only. The experiment itself runs for all of your end users in any browser, because the variant is delivered by the Mixpanel JavaScript SDK rather than by the extension.
 
-## Visual vs Code Experiments
+## Web vs Feature Experiments
 
 Mixpanel has two experiment types. You choose one at creation time.
 
-| | Visual Experiment | Code Experiment |
+|  | Web Experiment | Feature Experiment |
 | --- | --- | --- |
 | Variants built in | The visual editor, on your live site | Your codebase |
 | Code change per test | None | Yes |
 | Who can run it | Anyone with the right permissions | Requires an engineer |
 | Best for | Copy, styling, and layout changes | Backend logic, new components, anything data-driven |
 
-Visual experiments run on [Mixpanel Feature Flags](/docs/featureflags), and the visual editor creates and configures the flag for you. You do not write any flag evaluation code, and you do not need an engineer to implement the flag. The one-time snippet install is the only code change the feature requires.
+Web experiments run on [Mixpanel Feature Flags](/docs/featureflags), and the visual editor creates and configures the flag for you. You do not write any flag evaluation code, and you do not need an engineer to implement the flag. The one-time snippet install is the only code change the feature requires.
 
 <Note>
   The experiment type can't be changed after the experiment is created. If you need to convert a test, create a new experiment.
@@ -55,6 +55,10 @@ Setup is a one-time job. After it's done, anyone with permission can create and 
     mixpanel.init("YOUR_PROJECT_TOKEN", { flags: true, visual_experiments: true });
     </script>
     ```
+
+    <Note>
+      If migrating from another experimentation platform, make sure to remove the corresponding snippet before adding the Mixpanel snippet. 
+    </Note>
 
     Both `flags` and `visual_experiments` are required. Feature Flags is the mechanism that delivers variants to your users, so visual experiments will not run without it.
 
