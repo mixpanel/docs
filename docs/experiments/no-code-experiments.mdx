@@ -56,6 +56,10 @@ Setup is a one-time job. After it's done, anyone with permission can create and 
     </script>
     ```
 
+    <Note>
+      During beta, the snippet is the only supported install path, and it must point at the pinned build above rather than `mixpanel-2-latest`. Installing through npm with the `visual_experiments` init option is coming at general availability.
+    </Note>
+
     Both `flags` and `visual_experiments` are required. Feature Flags is the mechanism that delivers variants to your users, so visual experiments will not run without it.
 
     <Note>
