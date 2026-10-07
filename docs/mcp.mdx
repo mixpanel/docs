@@ -545,6 +545,7 @@ The following capabilities are not currently supported through the MCP server. U
 
 - **Cohort filters and breakdowns in** `Run-Query`**:** Queries run with `Run-Query` cannot filter or break down results by cohort.
 - **SCD fields:** MCP tools do not currently support SCD (Slowly Changing Dimension / Profile Property History) fields. Queries run through MCP cannot break down or filter by profile-history properties.
+- **Saved Metrics in** `Run-Query`**:** `Run-Query` does not currently work with Saved Metrics. As a workaround, add the Saved Metric's raw event and property filters to your Business Context so your AI client can rebuild the underlying raw event definition.
 
 ## Building Custom Integrations (OAuth)
 
