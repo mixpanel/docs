@@ -29,7 +29,7 @@ Cards stream into the Board as each step completes, with a live progress banner 
 
 <Steps>
   <Step title="From an Insights report">
-    Open an Insights report as a line, column, or stacked column chart, hover over a data point that looks unexpected, and choose **Root Cause Analysis** from the popover. RCA launches scoped to that event and time window, and picks up any breakdown or segment already applied to the report so it analyzes the same slice you're looking at. Other chart types, like bar, pie, metric, and table, don't offer the action; switch the report to a line or column chart first.
+    Open an Insights report as a line, column, or stacked column chart, hover over a data point that looks unexpected, and choose **Root Cause Analysis** from the popover. RCA launches scoped to that event and time window, and picks up any breakdown or segment already applied to the report so it analyzes the same slice you're looking at. Other chart types, like bar, pie, metric, and table, don't offer the action; switch the report to a line or column chart first. If the report has an [Expected Range](/docs/reports/insights#expected-range-comparisons) comparison on, points outside the band show Root Cause Analysis at the top of the popover.
   </Step>
   <Step title="From a fired alert">
     When an alert fires, the notification (Slack, email, or webhook) includes a link that runs Root Cause Analysis and generates a Board for that alert. See [Alerts](/docs/features/alerts#root-cause-analysis) for how RCA fits into alerting.
