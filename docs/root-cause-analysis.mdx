@@ -8,7 +8,7 @@ sidebarTitle: Root Cause Analysis
 
 Investigating anomalies or trends in your data is extremely manual. Teams spend hours each week running the same repetitive process (picking properties, running breakdowns, eyeballing segments) to figure out what drove a change in a metric.
 
-Mixpanel's **AI-Powered Root Cause Analysis (RCA)** feature does that work for you. Launch RCA from any Insights report, a fired alert, a Data Volume Monitoring issue, or the Mixpanel Agent and an AI agent automatically diagnoses what changed: it validates the anomaly, runs the relevant breakdowns, ranks the dimensions that contributed most, and writes up an interpretation with a confidence level and suggested next steps — all delivered as a Board you and your team can keep working from.
+Mixpanel's **AI-Powered Root Cause Analysis (RCA)** feature does that work for you. Launch RCA from an Insights line or column chart, a fired alert, a Data Volume Monitoring issue, or the Mixpanel Agent and an AI agent automatically diagnoses what changed: it validates the anomaly, runs the relevant breakdowns, ranks the dimensions that contributed most, and writes up an interpretation with a confidence level and suggested next steps — all delivered as a Board you and your team can keep working from.
 
 ## How it works
 
@@ -29,7 +29,7 @@ Cards stream into the Board as each step completes, with a live progress banner 
 
 <Steps>
   <Step title="From an Insights report">
-    Open any Insights chart, hover over a data point that looks unexpected, and choose **Root Cause Analysis** from the popover. RCA launches scoped to that event and time window, and picks up any breakdown or segment already applied to the report so it analyzes the same slice you're looking at.
+    Open an Insights report as a line, column, or stacked column chart, hover over a data point that looks unexpected, and choose **Root Cause Analysis** from the popover. RCA launches scoped to that event and time window, and picks up any breakdown or segment already applied to the report so it analyzes the same slice you're looking at. Other chart types, like bar, pie, metric, and table, don't offer the action; switch the report to a line or column chart first.
   </Step>
   <Step title="From a fired alert">
     When an alert fires, the notification (Slack, email, or webhook) includes a link that runs Root Cause Analysis and generates a Board for that alert. See [Alerts](/docs/features/alerts#root-cause-analysis) for how RCA fits into alerting.

@@ -49,7 +49,7 @@ You can also create and manage Automations by asking Mixpanel Agent — see [bel
 
     Instructions shape the digest's commentary, not the underlying query. The agent runs a single, fixed query based on the metric you selected. It cannot run additional queries, pull in other metrics, or take actions. Instructions guide how the agent frames its summary: which comparisons to emphasize, what thresholds matter to you, and what language to use when describing shifts.
 
-    **Analysis window.** Set how much history each digest analyzes. The options available depend on the cadence you picked, and each cadence has a sensible default.
+    **Analysis window.** Set how much history each digest analyzes. The options depend on the cadence you picked, or on the firing limit for a threshold trigger, and each has a sensible default.
   </Step>
   <Step title="Set up delivery">
     Digests can land in Slack, email, or both — you can add multiple email recipients and multiple Slack channels at the same time. Slack delivery requires the [Slack integration](/docs/features/slack-integration) to be configured for your project.
@@ -79,7 +79,7 @@ Breakdowns work on any cadence, and the digest is delivered wherever your other 
 
 Not every metric needs a digest on a fixed cadence. Some you only want to hear about when something happens — Orders Completed drops below 1,000 in a day, or Signups falls more than 20% week over week. Pick **When a threshold is crossed** as the trigger and define the condition: the metric is above or below a value, crosses a value in either direction, or increases or decreases by more than a number or percentage compared with the previous hour, day, week, or month.
 
-The Automation checks the condition every hour and runs the normal analysis when it's met. The digest is the same one a scheduled run produces, except the summary leads with the rule that fired and the value that triggered it. To keep a noisy metric from messaging you every hour, set a firing limit so the Automation runs at most once per day, week, or month; the condition keeps being checked in between. If the metric has a breakdown, you can choose whether any segment meeting the condition should trigger a run, or only a specific one.
+The Automation checks the condition every hour, looking at the most recent period against the one before it. When it's met, the normal analysis runs over your full analysis window, so the digest explains the crossing in the context of the last few weeks or months rather than just the period that tripped it. The digest is the same one a scheduled run produces, except the summary leads with the rule that fired and the value that triggered it. To keep a noisy metric from messaging you every hour, set a firing limit so the Automation runs at most once per day, week, or month; the condition keeps being checked in between. If the metric has a breakdown, you can choose whether any segment meeting the condition should trigger a run, or only a specific one.
 
 ### What's in a digest
 
