@@ -372,6 +372,12 @@ When you have multiple metrics, or have broken down a metric by a property, you 
   ![Value Setting](/images/advanced-value-comparison.png)
 </Frame>
 
+### Expected Range Comparisons
+
+Not every dip or spike is worth a look. Expected Range shades the band your metric would normally land in, forecast from its own history, so the points that fall outside it stand out on the chart. Click on **Compare** -\> **Expected Range** to turn it on. Hovering a point outside the band puts **Root Cause Analysis** at the top of the popover, so you can go straight from spotting the outlier to [explaining it](/docs/root-cause-analysis).
+
+Expected Range works on line charts of absolute values over time, for date ranges of up to about three months of data points, and shows the band for up to 12 segments. It can't be combined with a time period or value comparison; pick one or the other.
+
 ### Profile Analysis
 
 Profile metrics allow you to access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Measurement](/docs/reports/insights#measurements) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
