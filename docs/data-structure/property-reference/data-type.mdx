@@ -1,5 +1,6 @@
 ---
 title: Supported Properties Data Type
+description: "The property data types Mixpanel supports (string, numeric, boolean, date, list, object, list of objects) and how each behaves in reports"
 ---
 
 ## Overview
@@ -17,6 +18,8 @@ Mixpanel supports five data types for properties: String, Numeric, Boolean, Date
 
 - Numeric (integer or decimal) value e.g. Cost = 15.00, Quantity = 5.
 - You can apply operators such as sum, median and percentile on numeric properties.
+- Numeric values are stored as 64-bit floating point, so integers are exact only up to 2^53 (9,007,199,254,740,992). Larger integers (e.g. 18-19 digit IDs) are rounded and lose precision.
+- Send large numeric identifiers as strings. An ID is something you match on, not sum or average, so string is the correct type and it preserves every digit. This must happen at tracking time; values already ingested as numbers cannot be recovered.
 
 ### Boolean
 

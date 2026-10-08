@@ -5,7 +5,7 @@ title: "Mixpanel SDKs: Javascript"
 
 ## Getting Started
 
-Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=javascript).
+Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#javascript).
 
 The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanel), [Library Source Code](https://github.com/mixpanel/mixpanel-js), and an [Example Application](https://github.com/mixpanel/mixpanel-js/tree/master/examples) is documented in our GitHub repo.
 
@@ -479,7 +479,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 
 ## Managing User Identity
 
-You can handle the identity of a user using the `.identify()` and `.reset()` methods. Learn more about [identity management](/docs/tracking-methods/id-management/identity-management) and [identifying users](/docs/tracking-methods/id-management/identifying-users).
+You can handle the identity of a user using the `.identify()` and `.reset()` methods. Learn more about [identity management](/docs/tracking-methods/id-management) and [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
 
 ### Identify
 
@@ -664,7 +664,7 @@ The Javascript SDK provides a few method for adding individual users to a group 
 
 ### Adding Users to a Group
 
-[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
+[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics/group-analytics-implementation#tracking-events-for-a-group). Without the group key, an event cannot be attributed to a group.
 
 Call the [`.set_group()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_group) method to register the current user to a group, which would add the `group_key` as an event property set to the `group_id` value to all events moving forward.
 
@@ -867,7 +867,7 @@ Learn more about [debugging](/docs/tracking-best-practices/debugging#debugging-w
 
 You have control over the data you send to Mixpanel. The Javascript SDK provide methods to help you protect user data.
 
-Learn more about [Privacy](/docs/privacy/overview).
+Learn more about [Privacy](/docs/privacy).
 
 ### Opt Out of Tracking
 
@@ -1005,6 +1005,10 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 ## Tracking Via Proxy
 
 You can route events from Mixpanel's SDKs via a proxy in your own domain, which can reduce the likelihood of ad-blockers impacting your tracking.
+
+<Note>
+  Enterprise customers can get the same benefit without running a proxy server. [First-Party Domains](/docs/tracking-methods/first-party-domains) let you point a subdomain you own at Mixpanel, which manages the endpoint and TLS certificate for you. Continue with the steps below if you also need to serve Mixpanel's SDK assets from your own domain, which first-party domains do not cover.
+</Note>
 
 <Frame>
   ![image](/images/3ec6f3c2-aed0-4a18-9395-36838c3b53f1.png)

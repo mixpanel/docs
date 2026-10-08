@@ -1,0 +1,75 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A user profile was removed.\n\nOnly tracked when initiated through the Mixpanel web application. API calls\nand direct updates using the Mixpanel SDK are not currently logged.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "profile",
+      "default": "profile",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "distinct_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "group_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "group_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "type": "object"
+    },
+    "action": {
+      "const": "deleted",
+      "default": "deleted",
+      "type": "string"
+    },
+    "type": {
+      "const": "profile.deleted",
+      "default": "profile.deleted",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
