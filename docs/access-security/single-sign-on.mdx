@@ -88,19 +88,19 @@ Set up SSO with Okta using the "Mixpanel" app within the OIN or by configuring a
 
 ### OneLogin
 
-OneLogin only requires that you get the Postback URL. The "Mixpanel" application is in the OneLogin application store and supports auto-provisioning. You will just need to copy a SCIM token from Mixpanel into the provisioning token box in the OneLogin app. You can learn how to generate a token [here](/docs/access-security/single-sign-on/overview#scim).
+OneLogin only requires that you get the Postback URL. The "Mixpanel" application is in the OneLogin application store and supports auto-provisioning. You will just need to copy a SCIM token from Mixpanel into the provisioning token box in the OneLogin app. [Learn how to generate a token](/docs/access-security/single-sign-on#scim).
 
 ### G-Suite
 
-Google has an official integration with Mixpanel with instructions [here](https://support.google.com/a/answer/7553416). Unfortunately, we do not have an auto-provisioning integration with G-Suite. You will need to rely on [Just In Time Provisioning](/docs/access-security/single-sign-on/overview#just-in-time-provisioning).
+[Google has an official integration with Mixpanel with instructions](https://support.google.com/a/answer/7553416). Unfortunately, we do not have an auto-provisioning integration with G-Suite. You will need to rely on [Just In Time Provisioning](/docs/access-security/single-sign-on#just-in-time-provisioning).
 
 ### Azure
 
-There are instructions here to set up SSO with Azure [here](/docs/access-security/single-sign-on/azure). Azure also has an auto-provisioning integration with Mixpanel, which you can find more info [here](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial).
+Here are [instructions to set up SSO with Azure](/docs/access-security/single-sign-on/azure). Azure also has an [auto-provisioning integration with Mixpanel](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial).
 
 ### Other IDPs
 
-It is possible to set up Mixpanel SSO with IDPs not listed above. [Contact support](https://mixpanel.com/get-support) for further assistance in such cases.
+It is possible to set up Mixpanel SSO with IDPs not listed above. [Contact support](https://mixpanel.com/contact-us/support/) for further assistance in such cases.
 
 ## Postback URL
 
@@ -134,7 +134,7 @@ This feature determines whether you are using your IDP to manage which users sho
 If you enable this feature:
 
 - All users of your verified claimed domain(s) who log into Mixpanel will be prompted to use SSO, whether they are in your organization or not.
-- If they successfully log in through your SSO setup, they will be automatically added to the organization with no permissions except those granted to all users ([JIT provisioning](/docs/access-security/single-sign-on/overview#just-in-time-provisioning)).
+- If they successfully log in through your SSO setup, they will be automatically added to the organization with no permissions except those granted to all users ([JIT provisioning](/docs/access-security/single-sign-on#just-in-time-provisioning)).
 - It will also redirect anyone signing up for a Mixpanel account with your claimed domain or anyone requesting access to a project in your organization to log in via SSO first. This helps ensure all users in your organization who try to use Mixpanel get routed to your IDP, where you can then assign them access to the Mixpanel app. This also prevents needing to manually invite users to Mixpanel from within Mixpanel's Organization Settings.
 
 We recommend enabling IDP Managed Access for most customers.
@@ -165,7 +165,7 @@ The SCIM menu in the Access Security tab of the Organization Settings lets you g
 
 Note that only accounts with an **Enterprise plan** have access to SCIM at the moment.
 
-You can find the official SCIM spec subset that Mixpanel implements [here](https://datatracker.ietf.org/doc/html/rfc7644). The base endpoint is `https://mixpanel.com/api/app/scim/v2`, which you can hit using the SCIM token as an Authentication Bearer token. For instance, a GET call on `https://mixpanel.com/api/app/scim/v2/Users` using the SCIM token will get you a list of all users in your organization.
+Mixpanel uses a [SCIM spec subset](https://datatracker.ietf.org/doc/html/rfc7644). The base endpoint is `https://mixpanel.com/api/app/scim/v2`, which you can hit using the SCIM token as an Authentication Bearer token. For instance, a GET call on `https://mixpanel.com/api/app/scim/v2/Users` using the SCIM token will get you a list of all users in your organization.
 
 <Note>
   The SCIM endpoint affects only users whose email has a domain in the list of your verified claimed domains.
