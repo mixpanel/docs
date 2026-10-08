@@ -375,6 +375,8 @@ Each metric type is detailed below.
 
 **Value Metrics (Averages, Sums):**
 
+A user has an _observed value_ for a Value Metric if they triggered the metric's underlying event; exposed users who never triggered it are excluded from the group rate and variance rather than counted as zero.
+
 - **Numerator:** Sum of property values across users with an observed value for the metric
 - **Denominator:** Number of users with an observed value for the metric, not all exposed users
 - **Group Rate:** Sum of property values ÷ Number of users exposed with an observed value
