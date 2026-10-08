@@ -339,7 +339,16 @@ Some metric configurations are not yet supported by the Bayesian model, includin
 
 Lift is the percentage difference between the control and variant(s) metrics. $$Lift= { (variant \,group\,rate - control \,group\,rate) \over (control \,group\,rate)}$$
 
-The "group rate" in this formula is calculated differently for each metric type. For Total Events, Total Sessions, and Rate Metrics, the denominator is the **number of users exposed** to that variant. Value Metrics are the exception; they use a different denominator, detailed below.
+The "group rate" in this formula is calculated differently for each metric type, so lift behaves differently depending on which type of metric you're measuring:
+
+| Metric type | Group rate numerator | Group rate denominator |
+| --- | --- | --- |
+| Total Events | Total event count in the variant | Number of users exposed to the variant |
+| Total Sessions | Total session count in the variant | Number of users exposed to the variant |
+| Rate Metrics (Conversion, Retention) | Number of users who converted (or were retained) in the variant | Number of users exposed to the variant |
+| Value Metrics (Averages, Sums) | Sum of property values across users with an observed value for the metric | Number of users with an observed value for the metric, not all exposed users |
+
+Each metric type is detailed below.
 
 **Total Events Metrics:**
 
