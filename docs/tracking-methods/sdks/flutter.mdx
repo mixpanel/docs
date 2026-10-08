@@ -600,6 +600,251 @@ final utmProps = {
 await mixpanel.autocapture.trackScreenView("PromoScreen", properties: utmProps);
 ```
 
+### Click Events
+
+<Note>
+  **Beta.** Click autocapture is in beta. Its events and properties may change before general availability. It needs Flutter SDK v2.15.0+ (Flutter 3.19+ / Dart 3.3+) and is **disabled by default**. See [Enabling Click Autocapture](#enabling-click-autocapture) to turn it on.
+</Note>
+
+The SDK can capture taps without any per-widget code. One root widget observes everything below it (routes, dialogs, bottom sheets and overlays) and works with Material and Cupertino widgets. It produces three events:
+
+| Event | Fires when |
+| --- | --- |
+| `$mp_click` | The user taps any element |
+| `$mp_dead_click` | A tap on an interactive element produces no UI change |
+| `$mp_rage_click` | The user taps rapidly and repeatedly in the same spot |
+
+Each event includes `$mp_autocapture: true` and the [Tracked Properties](#tracked-properties).
+
+Capture runs in Dart, in your widget tree, not in the native iOS and Android SDKs. That is why it needs the root `MixpanelAutocaptureWidget` as well as the init option.
+
+#### Click
+
+`$mp_click` fires for every tap that resolves to a widget, whether or not that widget handles the tap. The observer listens passively and never joins Flutter's gesture arena, so it does not compete with your gesture handlers.
+
+A tap counts only if it is:
+
+- a **primary** touch or mouse press
+- the only pointer down at the time
+- released within **500 ms** (inclusive)
+- inside the platform hit slop
+
+Scrolls, drags, long presses, multi-touch, secondary buttons, stylus input (not supported in beta), keyboard activation and assistive-technology activation do not count.
+
+**Which widget is reported:**
+
+- A tap on a non-interactive child resolves to the nearest interactive ancestor. A tap on the `Text` inside an `ElevatedButton` reports the button, not the label.
+- A nested `InkWell` inside another `InkWell` keeps its own identity.
+- A button's internal `InkWell` is reported as the public button (`ElevatedButton`, not `InkWell`).
+- If there is no interactive ancestor, the tapped `Text`, `RichText`, `Image` or `Icon` is reported.
+
+#### Dead Click
+
+`$mp_dead_click` fires when a tap on an **interactive** widget produces no visible change. The SDK snapshots the widget tree at pointer down, before your handler runs, and compares it after `DeadClickOptions.timeWindow` (default **500 ms**, [configurable](#enabling-click-autocapture)). If nothing changed, the event fires. Every dead click also has a `$mp_click` for the same tap.
+
+A scroll, focus change, navigation, or another tap before the time window ends counts as a response, so no dead click is sent.
+
+**Never dead-click candidates:**
+
+- non-interactive widgets, such as a plain `Text` or a decorative `Icon`
+- disabled buttons (`onPressed: null`)
+- controls whose feedback the detector cannot observe: `TextField`, `EditableText`, `CupertinoTextField`, `Switch`, `CupertinoSwitch`, `Checkbox`, `Radio`, `Slider`, `RangeSlider`, `CupertinoSlider`, `CupertinoPicker`, `CupertinoDatePicker`, `DropdownButton`, `SwitchListTile`, `CheckboxListTile`, `RadioListTile`
+
+<Note>
+  Detection looks only at UI changes, not network activity. A handler that sends a request but leaves the screen unchanged for the whole window is reported as dead, which usually matches what the user saw. Only the state at the deadline is compared, so a change that appears and reverts before then is missed. Material's own ripple and border feedback does not count as a response.
+</Note>
+
+<Note>
+  **Surfaces the SDK cannot inspect turn dead clicks off. They never cause one.** Automatic dead click detection is disabled for the whole view when:
+
+  - a visible `AndroidView`, `UiKitView`, `HtmlElementView`, `PlatformViewLink`, `Texture` or app-owned `CustomPaint` is present, or
+  - a snapshot cannot be taken: the tree is detached, the geometry is invalid, or the tree has more than 2,000 elements or is deeper than 512.
+
+  In these cases the SDK sends nothing rather than guess. Use [`trackDeadClick`](#manual-click-tracking) for dead clicks your app detects on those surfaces.
+</Note>
+
+#### Rage Click
+
+`$mp_rage_click` fires on the **4th tap** that lands within **1000 ms** and **44 logical pixels** of the earlier taps (defaults for `clickThreshold`, `timeWindow` and `radius` on `RageClickOptions`, [configurable](#enabling-click-autocapture)).
+
+- The individual `$mp_click` events still fire, so 4 rapid taps send 4 clicks and 1 rage click.
+- Tap history resets after each rage click, so 8 rapid taps send 2 rage clicks, not 5.
+- Taps spread out in time or across the screen do not count.
+
+Rage clicks and dead clicks show where your app frustrates users without throwing an error. Break them down by `$el_id` to find the problem controls, or use them to pick sessions to watch in Session Replay.
+
+#### One-Time Setup: Element IDs
+
+Do this once, before you enable click autocapture. It is optional (every tap is captured either way), but without it widgets report an unreadable [hash fallback](#element-id-resolution) such as `ElevatedButton_a3f21c` as their `$el_id`.
+
+Wrap each widget you want to measure in `Semantics(identifier: ...)`. Put the wrapper on or above the widget that handles the tap, not on the `Text` or `Icon` inside it.
+
+**Example Usage**
+
+```dart
+// wrap the button, not its label
+// taps on this button report $el_id = "checkout_button"
+Semantics(
+  identifier: 'checkout_button',
+  child: ElevatedButton(
+    onPressed: _checkout,
+    child: const Text('Checkout'),
+  ),
+)
+```
+
+Use a short, static value, and do not build it from list indexes, timestamps or user data. [Element ID Resolution](#element-id-resolution) has the full rules, including what the SDK ignores.
+
+#### Enabling Click Autocapture
+
+You need both steps. If either is missing, nothing is captured.
+
+**1. Pass `AutocaptureOptions` to `Mixpanel.init`.**
+
+**Example Usage**
+
+```dart
+// enable click autocapture with the default options
+final mixpanel = await Mixpanel.init(
+  'YOUR_PROJECT_TOKEN',
+  trackAutomaticEvents: false,
+  autocaptureOptions: const AutocaptureOptions(),
+);
+```
+
+**2. Wrap your app in `MixpanelAutocaptureWidget`**, above `MaterialApp` or `CupertinoApp` and their navigators. Anything outside its subtree is not captured. Use exactly one. A second, nested wrapper does nothing and asserts in debug builds.
+
+**Example Usage**
+
+```dart
+// wrap the app above MaterialApp so every route is observed
+runApp(MixpanelAutocaptureWidget(
+  instance: mixpanel,
+  child: const MaterialApp(home: HomePage()),
+));
+```
+
+`instance` can be `null` while async init finishes. Mount the wrapper right away and set the instance once `init` resolves. Your `child` is never remounted when capture starts.
+
+Each signal can be configured or turned off on its own:
+
+| Option | Setting | Default |
+| --- | --- | --- |
+| `ClickOptions` | `enabled` | `true` |
+| `RageClickOptions` | `enabled` | `true` |
+| `RageClickOptions` | `clickThreshold`: taps required (2–100) | `4` |
+| `RageClickOptions` | `timeWindow`: window the taps must fall in | `Duration(seconds: 1)` |
+| `RageClickOptions` | `radius`: max distance in logical pixels (0–100000) | `44` |
+| `DeadClickOptions` | `enabled` | `true` |
+| `DeadClickOptions` | `timeWindow`: wait before a click counts as dead | `Duration(milliseconds: 500)` |
+
+**Example Usage**
+
+```dart
+const options = AutocaptureOptions(
+  // require 5 taps within 800 ms for a rage click
+  rageClickOptions: RageClickOptions(
+    clickThreshold: 5,
+    timeWindow: Duration(milliseconds: 800),
+  ),
+  // turn off dead click detection
+  deadClickOptions: DeadClickOptions(enabled: false),
+);
+```
+
+Both `timeWindow` values take a `Duration` from 1 ms to 1 minute (microsecond precision). Out-of-range values assert in debug builds and are clamped in release builds. A non-finite `radius` falls back to 44.
+
+**Platforms:** Android, iOS, macOS and web. On Windows and Linux the wrapper does nothing and no events are sent.
+
+#### Disabling Click Autocapture
+
+Autocapture is set at init and cannot be toggled at runtime. If you omit `autocaptureOptions`, the click detectors are not set up, and a wrapper left in place just passes pointer events through. `trackScreenView` and `trackScreenLeave` still work. To turn it off in an app that already has it on, stop passing the options or disable each signal.
+
+**Example Usage**
+
+```dart
+// turn off all three click signals
+const options = AutocaptureOptions(
+  clickOptions: ClickOptions(enabled: false),
+  rageClickOptions: RageClickOptions(enabled: false),
+  deadClickOptions: DeadClickOptions(enabled: false),
+);
+```
+
+Autocapture respects opt-out. Events are dropped while the user is opted out and resume after `optInTracking()`.
+
+#### Tracked Properties
+
+Autocaptured click, dead click and rage click events include:
+
+| Property | Description |
+| --- | --- |
+| `$el_id` | Element identifier. See [Element ID Resolution](#element-id-resolution) |
+| `$el_tag_name` | Canonical widget type, e.g. `ElevatedButton`, `InkWell` |
+| `$attr-role` | Element role, e.g. `Button`, `Switch`, `Text` |
+| `$elements` | Up to 5 levels of ancestor widget types, e.g. `ElevatedButton > Padding > Column` |
+| `$x`, `$y` | Touch coordinates in the owning view's logical pixels |
+| `$mp_autocapture` | Always `true` |
+
+<Note>
+  **`$el_tag_name` comes from a fixed list, not `runtimeType`.** The SDK knows the Material and Cupertino buttons, `InkWell`, `GestureDetector`, `Text`, `Icon`, `Image`, common layout widgets and form controls. Anything else, including your own custom widgets, is reported as `Widget`. This keeps the value stable under release-mode obfuscation. Group reports by `$el_id` and treat `$el_tag_name` as a rough hint.
+</Note>
+
+<Note>
+  Element text is not captured, so there is no `$el_text` and no `$attr-aria-label`. `Semantics.label` is never reported (see [Element ID Resolution](#element-id-resolution)), and editable and secure field values are never read.
+</Note>
+
+#### Element ID Resolution
+
+The SDK resolves `$el_id` with fixed rules that you cannot configure:
+
+1. **`Semantics(identifier: '...')`**, read from the reported widget (see [Click](#click)) or a `Semantics` wrapper above it. The lookup never reads a child and stops at the next interactive ancestor, so an identifier on the `Text` inside a button is ignored. Blank identifiers and identifiers over 256 characters are skipped.
+2. **`<WidgetType>_<hash>`**, the fallback.
+
+**Never used as identity:**
+
+- **`Semantics.label`.** Unlike `identifier`, which TalkBack and VoiceOver never read out, `label` is read aloud, localized, and can contain user data. The SDK never reads or reports it, so a widget with only a label falls back to the hash.
+- **`Key`, `ValueKey` and `runtimeType`.**
+
+**About the hash:** it comes from the widget's *position* in the tree (type and sibling index at each level up to the root), so it stays the same across launches and groups reliably. But it tracks a position, not a specific widget. Reordering siblings or adding a wrapper changes it, and list rows differ by index, not content.
+
+<Warning>
+  **Check your identifiers for personal data.** You set every identifier that becomes `$el_id`, and Mixpanel receives them as-is. An identifier built from user data (`user_4172@example.com_row`, an account number, an order ID) sends that data to Mixpanel. Before relying on click autocapture in production, turn on SDK logging, tap through your key flows, and confirm no `$el_id` contains PII.
+</Warning>
+
+#### Manual Click Tracking
+
+`trackClick`, `trackRageClick` and `trackDeadClick` on the `autocapture` object send the same three events with element metadata you provide. Use them where automatic capture cannot reach: Windows and Linux, WebViews and platform views, or custom gesture handlers the hit test resolves to the wrong widget.
+
+**Example Usage**
+
+```dart
+// send "$mp_click" for a tap your app detected itself
+await mixpanel.autocapture.trackClick(const ClickEvent(
+  // required, tap position in logical pixels, sent as $x and $y
+  x: 120,
+  y: 340,
+  // required, sent as $el_id
+  elementId: 'checkout_button',
+  // optional, sent as $el_tag_name, $attr-role and $elements
+  tagName: 'ElevatedButton',
+  role: 'Button',
+  elements: 'ElevatedButton > Column',
+));
+```
+
+- Each method accepts an optional `properties` map. The typed fields and `$mp_autocapture: true` take precedence over keys with the same name.
+- A blank `elementId` or a non-finite coordinate is ignored and nothing is sent.
+- Each call sends exactly one event and never starts the automatic detectors. For example, `trackClick` does not trigger dead click detection. Your app decides whether the signal happened.
+
+#### Best Practices
+
+- **Mount exactly one `MixpanelAutocaptureWidget`, above your navigators.** See [Enabling Click Autocapture](#enabling-click-autocapture).
+- **Give every widget you want to measure a stable `Semantics(identifier: ...)`** on or above the widget that handles the tap. See [One-Time Setup: Element IDs](#one-time-setup-element-ids).
+- **Keep identifiers static across rebuilds.** One built from a list index, timestamp or product name gets a new `$el_id` on each build and spreads one control across many rows.
+- **Use `trackDeadClick` around WebViews, platform views and custom painting**, where [automatic detection is off](#dead-click).
+- **Verify and check for PII before relying on the data.** Call `setLoggingEnabled(true)`, tap through your key flows, and confirm each `$el_id` is what you expect and [contains no personal data](#element-id-resolution).
+
 ## Debug Mode
 
 To enable debug mode, call [`.setLoggingEnabled()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/setLoggingEnabled.html) with `true`.
