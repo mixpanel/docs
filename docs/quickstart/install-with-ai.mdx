@@ -31,7 +31,7 @@ The skill runs inside your coding agent. To start it:
 
 ```text
 Set up Mixpanel tracking in this project.
-Use the Mixpanel setup skill: https://storage.googleapis.com/cdn-mxpnl-com/libs/mixpanel-skill/skill.md
+Use the Mixpanel setup skill: https://raw.githubusercontent.com/mixpanel/ai-plugins/main/plugins/mixpanel/skills/tracking-implementation/SKILL.md
 ```
 
 3. **Answer the skill's questions.** The skill scans your codebase, confirms a few one-way-door details (platform, CDP usage, EU/CA users, your most important user action), and then writes the integration code.
@@ -82,6 +82,10 @@ The skill names events based on your product, but a typical implementation inclu
 
 If you chose Full Implementation, you'll also have a full tracking plan, governance setup in Lexicon, and a documented identity flow.
 
+## Give Your Agent the Docs
+
+The skill covers installation. For anything beyond it, point your agent at Mixpanel's machine-readable documentation — `llms.txt`, per-page Markdown, the OpenAPI specs, and a documentation MCP server. See [Docs for AI Agents](/docs/docs-for-ai-agents).
+
 ## Troubleshooting
 
 #### No events showing up?
@@ -105,7 +109,7 @@ Pause and gather it, or tell the skill you don't have codebase access — it wil
 
 #### Need more help?
 
-- Browse the [Mixpanel documentation](/).
+- Browse the [Mixpanel documentation](/docs/what-is-mixpanel).
 - Ask your coding agent to explain what it installed.
 - Contact [Mixpanel support](https://mixpanel.com/contact-us/support/).
 

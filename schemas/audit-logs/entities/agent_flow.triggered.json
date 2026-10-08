@@ -1,0 +1,173 @@
+{
+  "x-release-date": "2026-06-08T10:00:00Z",
+  "description": "An agentic automation run was triggered, either manually or based on the configured schedule.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "task_id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "agent_flow_id": {
+          "type": "string"
+        },
+        "agent_flow_name": {
+          "type": "string"
+        },
+        "succeeded_nodes": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "description": "Details of a node that completed successfully during the run.\n\n`output` is the node's result, JSON-encoded as a string: its shape depends on\nthe node's type, and it is opaque to the audit log. `node_type` is the type\nof the node that ran.",
+                "properties": {
+                  "output": {
+                    "type": "string"
+                  },
+                  "node_type": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "output",
+                  "node_type"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "object"
+        },
+        "failed_nodes": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "description": "Details of a node that failed during the run.\n\n`node_type` is the failed node's type. `stage` is the point in its execution\nwhere it failed, absent when none was recorded. `channel` and `recipient`\ngive where a failed notification was aimed, and are absent for nodes that do\nnot send one.",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "node_type": {
+                    "type": "string"
+                  },
+                  "stage": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null
+                  },
+                  "channel": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null
+                  },
+                  "recipient": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null
+                  }
+                },
+                "required": [
+                  "message",
+                  "node_type"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "object"
+        },
+        "skipped_nodes": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "description": "Details of a node that was skipped during the run.\n\n`reason` is a human-readable explanation of why the node did not run.\n`node_type` is the type of the node that was skipped.",
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  },
+                  "node_type": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "reason",
+                  "node_type"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "task_id",
+        "source",
+        "agent_flow_id",
+        "agent_flow_name",
+        "succeeded_nodes",
+        "failed_nodes"
+      ],
+      "type": "object"
+    },
+    "entity_type": {
+      "const": "agent_flow",
+      "default": "agent_flow",
+      "type": "string"
+    },
+    "action": {
+      "const": "triggered",
+      "default": "triggered",
+      "type": "string"
+    },
+    "type": {
+      "const": "agent_flow.triggered",
+      "default": "agent_flow.triggered",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "payload",
+    "entity_type",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

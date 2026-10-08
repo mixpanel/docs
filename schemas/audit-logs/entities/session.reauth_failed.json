@@ -1,0 +1,55 @@
+{
+  "x-release-date": "2026-10-01T00:00:00Z",
+  "description": "A logged-in user failed to re-authenticate before changing a sensitive setting.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "session",
+      "default": "session",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "failed_auth_factor": {
+          "description": "The specific authentication factor that the user failed.",
+          "enum": [
+            "password",
+            "passkey",
+            "sso",
+            "email_code"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "failed_auth_factor"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "reauth_failed",
+      "default": "reauth_failed",
+      "type": "string"
+    },
+    "type": {
+      "const": "session.reauth_failed",
+      "default": "session.reauth_failed",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

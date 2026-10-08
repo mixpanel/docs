@@ -14,7 +14,7 @@ Experiments is available for customers on Free, Growth, and Enterprise plans. Us
 | --- | --- | --- |
 | Free | 1k MEU per month; unlimited experiments | Switch plans from the [pricing page](https://mixpanel.com/pricing/). |
 | Growth | 5k MEU per month; unlimited experiments | Purchase 10k to 100k MEU per month under Organization Settings \> Plan Details & Billing. |
-| Enterprise | Unlimited MEU; 3 experiments per project until you purchase Experiments | Purchase Experiments for unlimited experiments, or request a trial — [contact us](https://mixpanel.com/contact-us/sales/) or reach out to your account team. |
+| Enterprise | Unlimited MEU; 3 experiments created per project until you purchase Experiments | Purchase Experiments for unlimited experiments, or request a trial — [contact us](https://mixpanel.com/contact-us/sales/) or reach out to your account team. |
 
 Every plan includes [Feature Flags](/docs/featureflags) alongside Experiments, with limits on active flags and cohort targeting that vary by plan. See [Feature Flags plan availability](/docs/featureflags#plan-availability) for details.
 
@@ -74,10 +74,12 @@ Before creating an experiment report, ensure you have:
 
 ### Step 1: Select an Experiment
 
-Click 'New Experiment' from the Experiment report menu and select your experiment. Both experiments run through Mixpanel Feature Flags and experiments tracked via exposure events are detected and populated in the dropdown. To keep the dropdown focused on experiments you're likely to care about, we hide Mixpanel Feature Flag experiments once their flag is archived, and we hide exposure-event experiments that haven't received an exposure event in the last 30 days. To analyze an exposure-event experiment beyond that window, you can hard-code the experiment name by typing `$experiment:Experiment name` as a filter or breakdown property, where `Experiment name` is the value of whichever property you configured as the experiment name on your exposure events.
+Click 'New Experiment' from the Experiment report menu and select your experiment. Both experiments powered by Mixpanel Feature Flags and experiments tracked via exposure events such as from third-party feature flags are detected and populated in the dropdown. To keep the dropdown focused on experiments you're likely to care about, we hide Mixpanel Feature Flag experiments once their flag is archived, and we hide exposure-event experiments that haven't received an exposure event in the last 30 days. To analyze an exposure-event experiment beyond that window, you can hard-code the experiment name by typing `$experiment:Experiment name` as a filter or breakdown property, where `Experiment name` is the value of whichever property you configured as the experiment name on your exposure events.
 
 <Note>
-Two kinds of experiments can be analyzed in the experiment report: experiments run through Mixpanel Feature Flags with the Experiment type, and experiments tracked via exposure events (i.e., `$experiment_started`). Read more on how to track experiments [here](#implementation-for-experimentation).
+Two kinds of experiments can be analyzed in the experiment report: 1) experiments run through Mixpanel Feature Flags with the Experiment flag type, and 2) experiments tracked via exposure events such as from third-party feature flags (i.e., `$experiment_started`). [Read more on how to track experiments](#implementation-for-experimentation).
+
+[No-code experiments](/docs/experiments/no-code-experiments) are run on a Mixpanel Feature Flag, so they are analyzed the same way, but you build their variants in a visual editor with no code changes required per experiment.
 </Note>
 ### Step 2: Choose the ‘Control’ Variant
 
@@ -89,13 +91,13 @@ Choose the primary metrics of success for the experiment. You can choose from ei
 
 ### Step 4: Select the Test Duration
 
-Enter either the sample size (the number of users to be exposed to the experiment) or the minimum number of days you want the experiment to run. This will determine the test duration. Once the sample size or days are complete, you can conclusively read the experiment results and make a decision.
+Enter either a target sample size or the minimum number of days you want the experiment to run. This determines both the experiment’s analysis duration and when the results are ready to review. Reaching the target does not stop the feature flag from serving; exposure continues according to the flag’s targeting and rollout settings until you change or disable the flag.
 
 ### Step 5: Confirm other Default Configurations
 
 Mixpanel has set default automatic configurations, seen below. If required, please modify them as needed for the experiment
 
-1. **Experiment Model type**: Sequential. You can also choose Frequentist or Bayesian; see [Experiment Model Types](#experiment-model-types) for how they differ.
+1. **Experiment Model type**: Sequential. You can also choose Frequentist, or Bayesian if your project is in the [closed beta](#bayesian); see [Experiment Model Types](#experiment-model-types) for how they differ.
 2. **Confidence Threshold**: 95%. On a Bayesian experiment this setting is labeled **Decision Threshold** and sets the minimum Chance to Beat Control required to highlight a variant as a winner.
 3. **Experiment Start Date**: Date of the first user exposed to the experiment
 
@@ -275,7 +277,11 @@ To illustrate how these calculations work in practice, let's walk through a conc
 
 This example shows why larger sample sizes are crucial—with only 10 users per group, even a 10-point difference in conversion rate isn't statistically significant.
 
-##### Bayesian
+#### Bayesian
+
+<Note>
+  **Closed beta.** The Bayesian model is in closed beta and is not enabled for all projects. If you don't see it in the Experiment Model type picker, reach out to your account team to request access. Behavior described below may change before general availability.
+</Note>
 
 The Bayesian model answers a different question than the Frequentist and Sequential models. Instead of asking "how surprising would this data be if the treatment had no effect?" (a p-value), it estimates a distribution of plausible values for each variant's metric and reports **how likely it is that the variant is actually better than control**. That probability is surfaced as the **Chance to Beat Control** column.
 
@@ -373,7 +379,7 @@ The "group rate" in this formula is calculated differently for each metric type.
 Normalizing by exposed users (not just converters or funnel entrants) helps you understand the impact on your entire user base. A feature that increases average order value among buyers but reduces conversion rate may decrease overall revenue per user.
 
 <Note>
-**Metrics with a Group Identifier:** When you [change a metric's group identifier](/docs/data-structure/advanced/group-analytics#change-the-group-identifier-in-a-report) from Users to a group key (e.g., Company), exposures for that metric are counted at the group level. The number of exposed groups is then used for all of that metric's calculations — normalizing group rates, computing variance, and determining statistical significance. For example, if a metric is set to aggregate by Company and 200 companies have been exposed to the treatment, the group rate is calculated as the total metric value divided by those 200 exposed companies, not by the number of individual users.
+**Metrics with a Group Identifier:** When you [change a metric's group identifier](/docs/data-structure/group-analytics#change-the-group-identifier-in-a-report) from Users to a group key (e.g., Company), exposures for that metric are counted at the group level. The number of exposed groups is then used for all of that metric's calculations — normalizing group rates, computing variance, and determining statistical significance. For example, if a metric is set to aggregate by Company and 200 companies have been exposed to the treatment, the group rate is calculated as the total metric value divided by those 200 exposed companies, not by the number of individual users.
 </Note>
 
 **Custom Formula Metrics:**
@@ -766,7 +772,7 @@ You can see your experiment MEU usage by going to Organization Settings \> Plan 
     
 - Frequentist: Capable of detecting smaller lifts, but requires you to keep experiments for the full duration. You’re discouraged from preemptively making decisions before the test duration is complete. **When to use?** For very small changes (~1% lift) when precision matters.
 
-- Bayesian: Reports the probability that each variant beats control instead of a p-value, and can be read at any point during the experiment. **When to use?** When you're reporting results to an audience that doesn't work in p-values. Note that a few metric configurations aren't supported, listed under [Bayesian](#bayesian).
+- Bayesian (closed beta): Reports the probability that each variant beats control instead of a p-value, and can be read at any point during the experiment. **When to use?** When you're reporting results to an audience that doesn't work in p-values. Note that this model is in [closed beta](#bayesian) and a few metric configurations aren't supported.
 
 ### Experiment metric types
 - **Primary Metrics:**  Main goals you're trying to improve. These are metrics used to determine if the experiment succeeded. Examples: revenue, conversion rates, ARPU.
