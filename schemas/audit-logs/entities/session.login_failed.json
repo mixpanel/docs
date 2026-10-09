@@ -1,0 +1,64 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A user login attempt failed.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "session",
+      "default": "session",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "failed_auth_factor": {
+          "anyOf": [
+            {
+              "enum": [
+                "password",
+                "sso",
+                "magic_link",
+                "social",
+                "totp",
+                "sms",
+                "passkey",
+                "passkey_recovery"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The specific authentication factor that the user failed."
+        }
+      },
+      "type": "object"
+    },
+    "action": {
+      "const": "login_failed",
+      "default": "login_failed",
+      "type": "string"
+    },
+    "type": {
+      "const": "session.login_failed",
+      "default": "session.login_failed",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

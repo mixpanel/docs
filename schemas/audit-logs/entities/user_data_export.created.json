@@ -1,0 +1,87 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "A user data export request was submitted.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "user_data_export",
+      "default": "user_data_export",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "compliance_type": {
+          "anyOf": [
+            {
+              "enum": [
+                "ccpa",
+                "gdpr"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "disclosure_type": {
+          "anyOf": [
+            {
+              "enum": [
+                "CATEGORIES",
+                "DATA",
+                "SOURCES"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "distinct_ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "type": "object"
+    },
+    "action": {
+      "const": "created",
+      "default": "created",
+      "type": "string"
+    },
+    "type": {
+      "const": "user_data_export.created",
+      "default": "user_data_export.created",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

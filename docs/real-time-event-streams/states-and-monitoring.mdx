@@ -1,0 +1,55 @@
+---
+title: "States and Monitoring"
+sidebarTitle: "States & Monitoring"
+description: "Reference for Destination and Sync states, audit logging, and the observability panel for Real-Time Event Streams."
+---
+
+<Note>
+  Real-Time Event Streams are in Beta. Contact your Mixpanel account team to enable the feature for your project.
+</Note>
+
+Every Stream and Destination has an explicit state that is visible without opening the detail view. This page is the reference for what each state means, how state transitions are logged, and which metrics you can use to monitor health.
+
+## Stream states
+
+Stream state is shown as a status badge on the Syncs list view.
+
+| State | Meaning |
+| --- | --- |
+| `enabled` | The Stream is actively streaming matching events. |
+| `disabled` | The Stream is manually paused by a Project Admin. Events are discarded; no backlog accumulates. |
+| `error` | The Stream was paused after a terminal failure (auth error, or non-auth 4xx after retries). An Alert is sent when a stream enters this state and streaming stops until a Project Admin re-enables the Stream. |
+
+<Warning>
+  When a Stream is `disabled`, events matching the filter are **discarded**. Mixpanel does not accumulate a backlog to replay when the Stream is re-enabled.
+</Warning>
+
+## Destination states
+
+| State | Meaning |
+| --- | --- |
+| `authenticated` | Credentials are valid and have been tested against the endpoint. |
+| `auth_error` | Credentials are invalid or expired. Deliveries are failing on auth. |
+| `disabled` | The Destination has been manually disabled by a Project Admin. |
+
+Authentication failures on delivery immediately flip the Destination to `auth_error`. Re-authenticating updates the existing Destination in place; you do not need to delete and recreate it. See [Webhook authentication](/docs/real-time-event-streams/setup#webhook-authentication).
+
+## Audit logging
+
+All state changes are audit-logged with a timestamp and the acting user. Use the audit log to trace who paused a Stream, when credentials were rotated, or when a Destination first tripped into `auth_error`.
+
+{/* PLACEHOLDER: Link to the general audit-log page and describe which specific events are captured (enable, disable, template change, auth update, filter change). */}
+
+{/* PLACEHOLDER: Screenshot of the observability panel and describe filters/time-range controls. */}
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Delivery and reliability" icon="shield-check" href="/docs/real-time-event-streams/delivery-and-reliability">
+    Retry policy, failed events log, and at-least-once delivery.
+  </Card>
+
+  <Card title="Set up a Sync" icon="gear" href="/docs/real-time-event-streams/setup">
+    Create a Destination and configure a webhook Sync.
+  </Card>
+</CardGroup>
