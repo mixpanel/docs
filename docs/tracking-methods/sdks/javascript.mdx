@@ -5,7 +5,7 @@ title: "Mixpanel SDKs: Javascript"
 
 ## Getting Started
 
-Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=javascript).
+Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#javascript).
 
 The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanel), [Library Source Code](https://github.com/mixpanel/mixpanel-js), and an [Example Application](https://github.com/mixpanel/mixpanel-js/tree/master/examples) is documented in our GitHub repo.
 
@@ -119,6 +119,44 @@ mixpanel.set_config({
 });
 
 // debug is disabled
+```
+
+### Hooks
+
+Use the `hooks` config option to modify or drop data before the SDK sends it to Mixpanel. Each hook is a function that you pass in the `hooks` object when you initialize the library.
+
+The `before_send_events` hook (mixpanel-js v2.40.0+) receives each event payload as an object with `event` and `properties` keys. The `properties` object already includes super properties and default properties. Return the payload, modified or unchanged, to send it. Return `null` to drop the event.
+
+**Example Usage**
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    hooks: {
+        before_send_events: function(payload) {
+            // drop events tracked on internal pages
+            if (payload.properties.$current_url && payload.properties.$current_url.indexOf('/internal/') !== -1) {
+                return null;
+            }
+
+            // remove a property from every event
+            delete payload.properties.email;
+
+            return payload;
+        }
+    }
+});
+```
+
+Starting in mixpanel-js v2.73.0, the SDK also supports the `before_track` hook. It runs when you call `mixpanel.track()` and receives the event name and the properties you passed. Return an array of `[event_name, properties]` to continue tracking. Return `null` to skip the event.
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    hooks: {
+        before_track: function(event_name, properties) {
+            return [event_name, Object.assign({}, properties, {app_section: 'checkout'})];
+        }
+    }
+});
 ```
 
 ## Autocapture
@@ -479,7 +517,7 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
 
 ## Managing User Identity
 
-You can handle the identity of a user using the `.identify()` and `.reset()` methods. Learn more about [identity management](/docs/tracking-methods/id-management/identity-management) and [identifying users](/docs/tracking-methods/id-management/identifying-users).
+You can handle the identity of a user using the `.identify()` and `.reset()` methods. Learn more about [identity management](/docs/tracking-methods/id-management) and [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
 
 ### Identify
 
@@ -664,7 +702,7 @@ The Javascript SDK provides a few method for adding individual users to a group 
 
 ### Adding Users to a Group
 
-[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
+[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics/group-analytics-implementation#tracking-events-for-a-group). Without the group key, an event cannot be attributed to a group.
 
 Call the [`.set_group()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_group) method to register the current user to a group, which would add the `group_key` as an event property set to the `group_id` value to all events moving forward.
 
@@ -867,7 +905,7 @@ Learn more about [debugging](/docs/tracking-best-practices/debugging#debugging-w
 
 You have control over the data you send to Mixpanel. The Javascript SDK provide methods to help you protect user data.
 
-Learn more about [Privacy](/docs/privacy/overview).
+Learn more about [Privacy](/docs/privacy).
 
 ### Opt Out of Tracking
 

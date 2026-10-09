@@ -1,0 +1,64 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A screenshot of a report was downloaded.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "bookmark",
+      "default": "bookmark",
+      "type": "string"
+    },
+    "payload": {
+      "description": "Payload for bookmark screenshot download events.",
+      "properties": {
+        "format": {
+          "type": "string"
+        },
+        "report_type": {
+          "type": "string"
+        },
+        "report_hash": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "format",
+        "report_type"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "screenshot_downloaded",
+      "default": "screenshot_downloaded",
+      "type": "string"
+    },
+    "type": {
+      "const": "bookmark.screenshot_downloaded",
+      "default": "bookmark.screenshot_downloaded",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

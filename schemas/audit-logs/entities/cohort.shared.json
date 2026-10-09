@@ -1,0 +1,65 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "A cohort was shared with users or teams.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "cohort",
+      "default": "cohort",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "user_shares": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "team_shares": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "project_shares": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "user_shares",
+        "team_shares",
+        "project_shares"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "shared",
+      "default": "shared",
+      "type": "string"
+    },
+    "type": {
+      "const": "cohort.shared",
+      "default": "cohort.shared",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

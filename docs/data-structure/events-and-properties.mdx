@@ -6,7 +6,7 @@ description: "How events and their properties work in Mixpanel, with naming conv
 
 ## Overview
 
-Events are the core of [Mixpanel's Data Model](/guides/strategic-playbooks/onboarding-playbook/plan/tracking-strategy#the-mixpanel-data-model). All events should have an **Event Name**, a **Timestamp** of when that event has occurred, and a [**Distinct ID**](/docs/tracking-methods/id-management#distinct-id) (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describes the event in more detail.
+Events are the core of [Mixpanel's Data Model](/guides/mixpanel-introduction#mixpanel-data-model). All events should have an **Event Name**, a **Timestamp** of when that event has occurred, and a [**Distinct ID**](/docs/tracking-methods/id-management#distinct-id) (Mixpanel's identifier for a user) to tie all events belonging to the same user. Events can optionally have a set of properties, which describes the event in more detail.
 
 - If you're familiar with databases, events are like tables and properties are like columns.
 - If you're familiar with Google Analytics, events are like hits and properties are like dimensions.
@@ -15,7 +15,7 @@ Events are the core of [Mixpanel's Data Model](/guides/strategic-playbooks/onboa
   **Note:** There are a few use cases, such as tracking [Ad Spend](/docs/tracking-methods/integrations/ad-spend), in which the event should not be tied to specific users; as such, these events should be sent without a Distinct ID, but this is the exception.
 </Note>
 
-For more information about events refer to the documentation on [The Mixpanel Data Model](/guides/strategic-playbooks/onboarding-playbook/plan/tracking-strategy#the-mixpanel-data-model).
+For more information about events refer to the documentation on [The Mixpanel Data Model](/guides/mixpanel-introduction#mixpanel-data-model).
 
 ## Examples
 
@@ -62,7 +62,7 @@ We recommend having a consistent naming convention for your events and propertie
 
 For example, don't create an event name like `Purchase (11-01-2019)`. Instead, create an event called `Purchase` and have some property (eg: `Return Date`) set to the dynamic value **"11-01-2019"**.
 
-> **Tip:** Learn more best practices around defining your events and properties under our tutorials for [Creating a Tracking Plan](/guides/strategic-playbooks/onboarding-playbook/plan/tracking-strategy#tracking-plan-methodology).
+> **Tip:** Learn more best practices around defining your events and properties under our tutorials for [Creating a Tracking Plan](/docs/tracking-best-practices/tracking-plan#tracking-plan-methodology).
 
 ### Super Properties
 
@@ -86,7 +86,7 @@ We have a soft limit of 5000 distinct event names. If you send more event names,
 
 Each event can have up to 255 properties. Event property names/values can be at most 255 characters in length (longer names are truncated). Event property values are limited based on data type, refer to these limits under [Supported Data Types](/docs/data-structure/property-reference/data-type).
 
-We also have a soft limit of 2000 distinct event properties per project. If you send more distinct properties, we'll still ingest them, but those properties will not be indexed and will not appear in our autocomplete menus.
+We also have a soft limit of 5000 distinct event properties per project. If you send more distinct properties, we'll still ingest them, but those properties will not be indexed and will not appear in our autocomplete menus.
 
 <Callout icon="lightbulb" iconType="regular" color="#9a5f12">
   **Note**: while events can have up to 255 properties and batches of events can have up to 2000 events per ingestion batch, some libraries might default to sending the data through the GET protocol which would have a much lower size limit since the information is appended to the URL. If you are hitting the limits on the size of the request, first verify if the method being used is GET and can be switched to POST.
