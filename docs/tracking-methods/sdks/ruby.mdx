@@ -9,7 +9,7 @@ The Mixpanel Ruby library is designed to be used for scripting, or in circumstan
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-ruby), [Library Source Code](https://github.com/mixpanel/mixpanel-ruby), and an [Example Script](https://github.com/mixpanel/mixpanel-ruby/tree/master/demo) is documented in our GitHub repo.
 
-See our [server](/docs/quickstart/connect-your-data?sdk=ruby) quickstart for how to get started with the Ruby SDK.
+See our [server](/docs/quickstart/install-mixpanel#ruby) quickstart for how to get started with the Ruby SDK.
 
 ## Installing the Library
 
@@ -263,7 +263,7 @@ A group is identified by the `group_key` and `group_id`.
 
 ### Sending Group Identifiers With Events
 
-[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
+[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics/group-analytics-implementation#tracking-events-for-a-group). Without the group key, an event cannot be attributed to a group.
 
 To send group identifiers with your events, set the `group_key` as an event property with the `group_id` as the value.
 

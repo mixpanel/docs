@@ -14,9 +14,7 @@ B.  If you have a more custom setup, follow Okta's documentation on setting up a
 
 ### Configure SSO in Mixpanel
 
-Follow the [general SSO set-up instructions](/docs/access-security/single-sign-on).
-
-Make sure to collect your postback URL and successfully claim your domain.
+Before configuring Okta, [claim your domain](/docs/access-security/single-sign-on#claim-a-domain) in Mixpanel and get your [Postback URL](/docs/access-security/single-sign-on#postback-url) for use when configuring SAML in Okta.
 
 ### Configure the Mixpanel App in Okta
 
@@ -106,11 +104,16 @@ You will find your Issuer URL in the third entry labeled **Identity Provider Iss
   ![Okta Info 4 Image](/images/okta_info4.png)
 </Frame>
 
-### Enable SSO
+### Enable SSO in Mixpanel
 
-From Mixpanel, navigate to your **Organization Settings** and then the **Access Security** tab. From the **2FA & SSO** menu, insert your **Public Certificate**, **Authentication URL**, and **Issuer URL**.
+After configuring Okta:
 
-Optionally toggle **Require Single Sign-On** to prevent your users from logging in with a username and password. Organization Owners and Admins will still be able to log in using username and password in case SSO is not set up correctly.
+1. Collect the **Public Certificate**, **Authentication URL**, and **Issuer URL** as described above.
+2. In Mixpanel, go to **Organization Settings** > **Access Security** > **Single Sign-On**.
+3. Enter the **Public Certificate** in the **SAML Certificate** field, the **Authentication URL** in the **Identity Provider Sign-in URL** field, and the **Issuer URL** in the **Issuer URL** field.
+4. Click **Update**.
+
+Optionally, enable **Require Single Sign-On** to prevent users from logging in with a username and password. Organization Owners and Admins can still log in with a username and password if SSO is not set up correctly.
 
 ### Configuring SCIM Provisioning
 
@@ -185,3 +188,36 @@ Select the supported features (Create / Update / Deactivate) you wish to enable:
 
 1. If a Mixpanel account has already been created with the Okta user's email (their Okta Username) and that account is **not a member** of your Mixpanel organization, provisioning setup for that Okta user will fail. To resolve this, manually invite the existing user to your organization.
 2. Provisioning will also fail if the domain of the user's email has not been claimed by your organization. To resolve this, manually invite the existing user to your organization.
+
+### Configuring Universal Logout
+
+Mixpanel supports Okta's [Universal Logout](https://help.okta.com/oie/en-us/content/topics/itp/universal-logout.htm), which lets an Okta Admin trigger a logout from Okta that propagates to Mixpanel.
+
+This functionality is available after enabling SSO.
+
+#### OIN App
+
+If you use the [Mixpanel app within the OIN (Okta's app store)](https://www.okta.com/integrations/mixpanel/), enable it by updating the Mixpanel application in the Okta Admin Console:
+
+1. Log in to your organization's [Okta Admin Console](https://developer.okta.com/login/).
+2. Select **Applications** from the **Applications** drop-down list in the left navigation drawer.
+3. Select the **Mixpanel** app.
+4. Activate the **Authentication** or **Sign On** tab.
+5. Click **Edit** in the **Logout** section.
+6. Select the **Okta system or admin initiates logout** checkbox.
+7. Click **Save**.
+
+#### Custom Apps
+
+If you created a custom app, configure Universal Logout using the Global Token Revocation endpoint:
+
+1. Log in to your organization's [Okta Admin Console](https://developer.okta.com/login/).
+2. Select **Applications** from the **Applications** drop-down list in the left navigation drawer.
+3. Select your custom Mixpanel app.
+4. Activate the **General** tab.
+5. In the **Logout** section, click **Edit**.
+6. Under **Global Token Revocation**, select **Okta system or admin initiates logout**.
+7. In the **Logout endpoint URL** field, enter `https://platform-us.mixpanel.com/v1/global-token-revocation`.
+8. Set **Endpoint authentication type** to **Signed JWT**.
+9. For **Subject format type**, select **Email Identifier**.
+10. Click **Save**.
