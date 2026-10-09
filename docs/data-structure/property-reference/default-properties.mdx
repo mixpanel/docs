@@ -12,6 +12,8 @@ Mixpanel’s ingestion APIs can collect user geolocation data (City, Region, Cou
 
 To disable capturing of geolocation properties (i.e. City, Region, Country) refer to the respective SDKs or API documentation. For a quick reference, refer to examples on [disabling geolocation on client-side SDKs](/docs/privacy/protecting-user-data#disabling-geolocation) and [server-side best practice on tracking geolocation](/docs/tracking-best-practices/server-side-best-practices#tracking-geolocation-server-side). Note that there is currently no means to selectively disable one or two of the three geolocation properties.
 
+Mixpanel's ingestion APIs also classify AI agent and bot traffic into the `$mp_actor_type` and `$mp_actor_name` properties based on the request's user agent. If you don't send the end user's user agent as `$mp_user_agent` or `$mp_raw_user_agent`, classification uses the user agent of the request that reached Mixpanel. This can be inaccurate when the request doesn't come from the end user's browser — for example, with server-side tracking, where the user agent is your server's HTTP library. If you have the end user's raw user agent, send it as either `$mp_user_agent` or `$mp_raw_user_agent`; see [server-side best practice on tracking browser, device, and OS](/docs/tracking-best-practices/server-side-best-practices#tracking-browser-device-and-os).
+
 ### Event Properties
 
 | **Raw Name** | **Display Name** | **Description** |
@@ -24,6 +26,9 @@ To disable capturing of geolocation properties (i.e. City, Region, Country) refe
 | \$mp\_api\_timestamp\_ms | API Timestamp | UTC timestamp in milliseconds when the event was received by our API. |
 | mp\_processing\_time\_ms | Time Processed (UTC) | UTC timestamp in milliseconds when the event was processed by Mixpanel servers. |
 | \$mp\_event\_size | Event Size | The size, in bytes, of the event ingested before transformation. |
+| \$mp\_raw\_user\_agent | Raw User Agent | The raw user agent associated with the request. If the sender specified a user agent via `$mp_user_agent` or `$mp_raw_user_agent`, this is that value; otherwise, it is the user agent extracted from the HTTP request sent to Mixpanel. |
+| \$mp\_actor\_type | Actor Type | Classification of the user agent behind the event: <br /> **agent** - a request from an LLM acting on behalf of a human user (e.g. the user agents of ChatGPT or Claude Code) <br /> **bot** - generic automated traffic, such as crawlers, search indexers, and other automated collectors <br /> **none** - the default when the request is classified as neither an agent nor a bot |
+| \$mp\_actor\_name | Actor Name | The classified identity behind an `agent` or `bot` actor type (e.g. `GPTBot`, `ClaudeBot`, `MistralAI-User`). Only present when \$mp\_actor\_type is `agent` or `bot`. |
 
 ### User Properties
 
