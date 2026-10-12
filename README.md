@@ -45,41 +45,9 @@ mintlify dev
 - Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
 - Page loads as a 404 - Make sure you are running in a folder with `docs.json`
 
-# Adding Images/GIFs
+# Style guide
 
-Upload images/GIFs to the `images/` directory.
-
-To reference an image, use a relative link to the image. For example, if you have an image `images/example.png`, you can reference it as follows:
-
-```
-<Frame>
-    ![insert alt text here](/images/example.png)
-</Frame>
-```
-
-Ensure that the image filename has no spaces and are separated by either a hyphen or an underscore.
-
-Images are hard to keep up-to-date, so please use them judiciously.
-
-# Adding Youtube Videos
-
-Youtube videos are added through an iframe that embeds the video to the page. You can get the source of the video by going to the youtube video, selecting share then the embed option.
-
-Ensure you add `-nocookie` to the url (eg: `https://www.youtube-nocookie.com/embed/sRQCfmvh3vg`) otherwise the video will not work when user blocks cookies. (youtube tracks user data by default)
-
-Example:
-
-```
-<Frame>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/sRQCfmvh3vg"
-      frameBorder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowFullScreen
-    ></iframe>
-</Frame>
-```
+Before you write or edit a page, read the [docs style guide](https://docs.mixpanel.com/docs/style-guide). It covers voice and tone, terminology, formatting, code samples, images, and video.
 
 # Previewing Changes
 

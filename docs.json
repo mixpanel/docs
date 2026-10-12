@@ -605,6 +605,23 @@
               "docs/response-times",
               "links/hire-an-expert"
             ]
+          },
+          {
+            "group": "Style Guide",
+            "hidden": true,
+            "searchable": true,
+            "pages": [
+              "docs/style-guide",
+              "docs/style-guide/voice-and-tone",
+              "docs/style-guide/terminology",
+              "docs/style-guide/grammar-and-formatting",
+              "docs/style-guide/overrides-and-exceptions",
+              "docs/style-guide/code-and-examples",
+              "docs/style-guide/api-reference",
+              "docs/style-guide/images-and-video",
+              "docs/style-guide/accessibility-and-inclusive-language",
+              "docs/style-guide/writing-for-agents"
+            ]
           }
         ]
       },
