@@ -612,6 +612,12 @@
         "tab": "Guides",
         "groups": [
           {
+            "group": "GETTING STARTED",
+            "pages": [
+              "untitled-page"
+            ]
+          },
+          {
             "group": "DISCOVER",
             "icon": "/icons/flower.svg",
             "pages": [
