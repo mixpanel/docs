@@ -234,16 +234,16 @@ The Agent works backward from your hypothesis: the hypothesis dictates the metri
     It checks each metric for the common setup traps: a metric the change can't move, a metric whose denominator the treatment creates from scratch, a lagging indicator that can't respond inside your window, and a missing `direction` on cancel/error/latency-style metrics, where the default of "up" would later read a regression as a win.
   </Step>
 
-  <Step title="Size the experiment from your own data">
-    Rather than guessing, the Agent queries your project: baseline rate and variance for each primary metric over the prior two to four weeks, and daily volume on the exposure event over the same window. From those it computes the sample size each variant needs to detect your MDE, and the duration that implies at your actual traffic.
-
-    When the numbers don't work, it says so and gives you the real options: accept a larger MDE, allocate more traffic, enable CUPED to cut variance, pick a higher-volume primary metric, or don't run the experiment. It also flags the reverse case — an audience narrow enough to be clean but too small to reach power.
-  </Step>
-
   <Step title="Choose a model, end condition, and statistical settings">
     The Agent presents all three testing models with a recommendation, and it settles the model *before* asking about MDE and duration, because the model changes what those numbers mean.
 
     It then proposes the statistical configuration as a single grouped question you can veto in one pass, rather than one prompt per setting.
+  </Step>
+
+  <Step title="Size the experiment from your own data">
+    Rather than guessing, the Agent queries your project: baseline rate and variance for each primary metric over the prior two to four weeks, and daily volume on the exposure event over the same window. From those it computes the sample size each variant needs to detect your MDE, and the duration that implies at your actual traffic.
+
+    When the numbers don't work, it says so and gives you the real options: accept a larger MDE, allocate more traffic, enable CUPED to cut variance, pick a higher-volume primary metric, or don't run the experiment. It also flags the reverse case — an audience narrow enough to be clean but too small to reach power.
   </Step>
 </Steps>
 
@@ -325,7 +325,7 @@ It also checks guardrails against a hard gate: a 5% relative regression on any g
 
 #### Rolling out a winner
 
-After the Agent gives you a results summary, tell it to ship the winner. It concludes the experiment, updates the feature flag to send all traffic to the winning variant, and writes the decision documentation from its own summary. You don't have to touch the decision modal.
+After the Agent gives you a results summary, tell it to ship the winner. It concludes the experiment and writes the decision documentation from its own summary, so you don't have to touch the decision modal. If the experiment runs on a Mixpanel feature flag, it also updates the flag to send all traffic to the winning variant. If you track the experiment through your own exposure events, shipping records the decision only; roll out the winner in the system that assigns variants.
 
 ### What to ask it
 
@@ -352,7 +352,7 @@ Monitoring and results:
   The Agent reads the data in your experiment. If your experiment was misconfigured before launch — wrong metric, insufficient sample size, missing `direction` on a guardrail — the Agent will flag what it sees, but it can't fix what already happened. Use it during setup, not just at results time.
 </Warning>
 
-- **It recommends; you decide.** The Agent won't block a launch on its own. Pre-launch blockers are surfaced for you to act on, not enforced.
+- **It recommends; you decide.** The Agent doesn't change your configuration or launch an experiment without you. Pre-launch blockers must be acknowledged before you can create the experiment; warnings are advisory.
 - **Bayesian experiments work differently.** Multiple-testing corrections don't apply to posterior probabilities, so the Agent turns correction off and omits that recommendation. Fixed-horizon power calculations don't determine when a Bayesian experiment becomes decisive. SRM and Retro A/A still apply. See [which methods apply to Bayesian experiments](/docs/experiments#which-methods-apply-to-bayesian-experiments).
 - **Segment-level breakdowns of experiment results aren't available yet.** The Agent interprets overall and per-metric results; slicing results by property is planned.
 - **Secondary metrics are never decisional.** If a metric matters to your ship decision, the Agent will push you to make it primary or a guardrail.
