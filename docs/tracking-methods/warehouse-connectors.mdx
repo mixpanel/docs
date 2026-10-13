@@ -142,6 +142,7 @@ Source table requirements:
 
   - Lists (eg, Snowflake's ARRAY)
   - Objects (e,g Snowflake's OBJECT)
+- Each user profile supports a maximum of 100 changes in value over its lifetime. Queries for users with more than 100 value changes will experience truncation, resulting in lossy results. See [supported update frequency](/docs/data-structure/user-profiles#what-is-the-frequency-of-updates-that-are-supported).
 
 ### Group Profiles
 

@@ -313,6 +313,8 @@ All the historical props will be deleted from the profile but the profile itself
 
 The feature supports updates at the rate of about one change per day for each user. It is meant to cover use-cases like plan type changes, MRR etc which are slowly changing dimensions. It is not intended for more frequent changes like game score updates.
 
+Profile history (slowly changing dimension) properties support a maximum of 100 changes in value over a user profile's lifetime. Queries for users with more than 100 value changes will experience truncation, resulting in lossy results.
+
 ### How are historic profile properties calculated within custom properties?
 
 You can use historic user and group properties within custom properties; when used in a custom property, the value used will always be based on the time of the event.
