@@ -121,6 +121,44 @@ mixpanel.set_config({
 // debug is disabled
 ```
 
+### Hooks
+
+Use the `hooks` config option to modify or drop data before the SDK sends it to Mixpanel. Each hook is a function that you pass in the `hooks` object when you initialize the library.
+
+The `before_send_events` hook (mixpanel-js v2.40.0+) receives each event payload as an object with `event` and `properties` keys. The `properties` object already includes super properties and default properties. Return the payload, modified or unchanged, to send it. Return `null` to drop the event.
+
+**Example Usage**
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    hooks: {
+        before_send_events: function(payload) {
+            // drop events tracked on internal pages
+            if (payload.properties.$current_url && payload.properties.$current_url.indexOf('/internal/') !== -1) {
+                return null;
+            }
+
+            // remove a property from every event
+            delete payload.properties.email;
+
+            return payload;
+        }
+    }
+});
+```
+
+Starting in mixpanel-js v2.73.0, the SDK also supports the `before_track` hook. It runs when you call `mixpanel.track()` and receives the event name and the properties you passed. Return an array of `[event_name, properties]` to continue tracking. Return `null` to skip the event.
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    hooks: {
+        before_track: function(event_name, properties) {
+            return [event_name, Object.assign({}, properties, {app_section: 'checkout'})];
+        }
+    }
+});
+```
+
 ## Autocapture
 
 Starting with SDK version 2.60.0, the Javascript SDK can autocapture events when you enable it. To do so, enable the autocapture configuration:
