@@ -172,7 +172,9 @@ Mixpanel.mainInstance().track(event: "Image Upload")
 
 ### Flushing Events
 
-To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background.
+To preserve battery life and mobile data usage, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background.
+
+As of SDK version 6.8.0, the library also flushes once during initialization, so any pending events from a previous session are sent without waiting for the next interval-based flush. Each flush sends the entire queue in batches of up to `flushBatchSize` events (default and max: 50), and the `performFullFlush` parameter has no effect.
 
 Call [`.flush()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC5flush16performFullFlush10completionySb_yycSgtF) manually if you want to force a flush at a particular moment.
 
@@ -196,13 +198,6 @@ let options = MixpanelOptions(
     flushInterval: 120  // Flush every 2 minutes
 )
 Mixpanel.initialize(options: options)
-```
-
-**Alternative: Update After Initialization** You can also update the flush interval dynamically using [`flushInterval`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC13flushIntervalSdvp).
-
-```swift Swift
-/// Change flush interval at runtime
-Mixpanel.mainInstance().flushInterval = 120
 ```
 
 #### Importing Historical Events
