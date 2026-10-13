@@ -612,7 +612,7 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "GETTING STARTED",
+            "group": "GET STARTED",
             "pages": [
               "set-up-mixpanel"
             ]
