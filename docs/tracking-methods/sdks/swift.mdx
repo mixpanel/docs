@@ -174,7 +174,7 @@ Mixpanel.mainInstance().track(event: "Image Upload")
 
 To preserve battery life and mobile data usage, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background.
 
-As of SDK version 6.8.0, the library also flushes once during initialization, so any pending events from a previous session are sent without waiting for the next interval-based flush. Each flush sends the entire queue in batches of up to `flushBatchSize` events (default and max: 50), and the `performFullFlush` parameter has no effect.
+As of SDK version 6.8.0, the library also flushes once during initialization (unless `flushInterval` is `0`), so any pending events from a previous session are sent without waiting for the next interval-based flush. Each flush sends the entire queue in batches of up to `flushBatchSize` events (default and max: 50), and the `performFullFlush` parameter has no effect.
 
 Call [`.flush()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC5flush16performFullFlush10completionySb_yycSgtF) manually if you want to force a flush at a particular moment.
 
@@ -187,7 +187,7 @@ Mixpanel.mainInstance().flush()
 
 #### Configuring Flush Interval
 
-The default flush interval is 60 seconds. You can customize this using the [`flushInterval`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelOptions.html) option in `MixpanelOptions` (see [Configuration Reference](#configuration-reference)). Set to `0` to disable automatic flushing entirely (requires manual `.flush()` calls).
+The default flush interval is 60 seconds. You can customize this using the [`flushInterval`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelOptions.html) option in `MixpanelOptions` (see [Configuration Reference](#configuration-reference)). Set to `0` to disable interval-based and initialization flushing (requires manual `.flush()` calls).
 
 **Example Usage**
 
