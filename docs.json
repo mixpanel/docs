@@ -610,7 +610,7 @@
       },
       {
         "tab": "Guides",
-        "pages": [
+        "groups": [
           {
             "group": "DISCOVER",
             "icon": "/icons/flower.svg",
@@ -752,8 +752,7 @@
               },
               "guides/glossary"
             ]
-          },
-          "untitled-page"
+          }
         ]
       },
       {
