@@ -39,6 +39,17 @@
                 }
               ],
               "default": null
+            },
+            "mcp_connections_enabled": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
             }
           },
           "type": "object"
@@ -57,6 +68,17 @@
               "default": null
             },
             "mcp_enabled": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "mcp_connections_enabled": {
               "anyOf": [
                 {
                   "type": "boolean"
