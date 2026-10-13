@@ -192,10 +192,10 @@ The default flush interval is 60 seconds. You can customize this using the [`flu
 **Recommended: Configure During Initialization**
 
 ```swift Swift
-/// Set flush interval to 120 seconds during initialization
+/// Set flush interval to 30 seconds during initialization
 let options = MixpanelOptions(
     token: "YOUR_PROJECT_TOKEN",
-    flushInterval: 120  // Flush every 2 minutes
+    flushInterval: 30  // Flush every 30 seconds
 )
 Mixpanel.initialize(options: options)
 ```
