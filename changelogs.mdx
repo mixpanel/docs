@@ -67,6 +67,22 @@ Get all the latest updates in your inbox.
 </Update>
 
 <Update label="2026-09-28">
+  ## Audit Log Streaming: send your audit log to your own cloud storage automatically
+
+  Getting Mixpanel's [Audit Log](/docs/access-security/audit-log) into your security tooling used to mean exporting it by hand or building your own integration. Audit Log Streaming now delivers every audit log entry for your organization to a bucket you own, usually within minutes of the action.
+
+  With this update, you can:
+
+  - **Stream to AWS S3 or Google Cloud Storage:** Set up a stream once and new audit log entries flow to your bucket continuously, with no manual exports.
+  - **See everything in one place:** A single stream covers your whole organization, from logins and role changes to report, board, and data governance changes across every project.
+  - **Feed your existing tools:** Send audit activity into your SIEM, log pipeline, or compliance archive and monitor Mixpanel alongside the rest of your stack.
+
+  Audit Log Streaming is available to organizations on an **Enterprise** plan. Organization Owners and Admins can set it up from **Organization Settings → Audit Log**.
+
+  [Learn more →](/docs/access-security/audit-log-streaming)
+</Update>
+
+<Update label="2026-09-28">
   ## Experiments: One-Sided Tests
 
   Mixpanel analyzed every metric with a two-sided test, which checks for an effect in either direction. When you only care about one direction, a two-sided test needs more exposures and takes longer to reach significance. A non-inferiority test is one example: you only need to confirm a change doesn't make a metric worse.
@@ -96,26 +112,10 @@ Get all the latest updates in your inbox.
   [Learn more →](/docs/experiments)
 </Update>
 
-<Update label="2026-09-28">
-  ## Audit Log Streaming: send your audit log to your own cloud storage automatically
-
-  Getting Mixpanel's [Audit Log](/docs/access-security/audit-log) into your security tooling used to mean exporting it by hand or building your own integration. Audit Log Streaming now delivers every audit log entry for your organization to a bucket you own, usually within minutes of the action.
-
-  With this update, you can:
-
-  - **Stream to AWS S3 or Google Cloud Storage:** Set up a stream once and new audit log entries flow to your bucket continuously, with no manual exports.
-  - **See everything in one place:** A single stream covers your whole organization, from logins and role changes to report, board, and data governance changes across every project.
-  - **Feed your existing tools:** Send audit activity into your SIEM, log pipeline, or compliance archive and monitor Mixpanel alongside the rest of your stack.
-
-  Audit Log Streaming is available to organizations on an **Enterprise** plan. Organization Owners and Admins can set it up from **Organization Settings → Audit Log**.
-
-  [Learn more →](/docs/access-security/audit-log-streaming)
-</Update>
-
 <Update label="2026-09-21">
   ## Feature Flags: Semantic Version Targeting for Runtime Properties
 
-  Targeting a rollout by app version was hard to get right, especially for non-engineers. Runtime properties were compared as strings, so version-based targeting didn't always apply the way you expected.
+  Targeting a rollout by app version was hard to get right, especially for non-engineers. Version strings were compared as text, so `2.10.0` sorted below `2.9.0`.
 
   Runtime properties now support semantic versions, so you can target rollouts based on app version and have versions compared correctly. This builds on [typed runtime property values](#2026-08-20) released in August.
 
@@ -127,7 +127,7 @@ Get all the latest updates in your inbox.
 
   Web replays record page structure, so Mixpanel Agent can read them, summarize them, and answer questions about them. Mobile replays are a series of image snapshots with no structure underneath, so Agent couldn't do any of that for mobile. To learn what happened in a mobile session, you had to watch it.
 
-  Turn on wireframes in your mobile Session Replay SDK and, alongside the snapshots, the SDK sends a text-based layout of each screen: every element's role and position, plus its text. With this update, you can:
+  Turn on wireframes in your mobile Session Replay SDK and, alongside the snapshots, the SDK sends a text-based layout of each screen: every element's role and position, plus its text. (On iOS, pure-SwiftUI views need `.mpWireframeText(_:)` to supply text.) With this update, you can:
 
   - **Summarize mobile replays:** [Mixpanel Agent](/docs/mixpanel-agent) can describe what happened in a mobile session in plain language.
   - **Ask questions across sessions:** Query one replay or many, like "Did users run into friction on the checkout screen?"
