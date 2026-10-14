@@ -3,18 +3,22 @@ sidebarTitle: React Native
 title: "Mixpanel SDKs: React Native"
 ---
 
-Minimum iOS depends on the SDK version. If you use [Session Replay](/docs/tracking-methods/sdks/react-native/react-native-replay), upgrade it to 2.0.0\+ along with SDK 4.0.0\+. On 4.x, set `platform :ios` in your `ios/Podfile` to 15.0 or higher.
-
-| SDK version | Minimum iOS | Xcode | Status |
-| ----------- | ----------- | ----- | ------ |
-| 4.x | 15 | 26 and 27 | Current |
-| 3.x | 12 | 26 | Maintenance: critical fixes until April 2027 |
-
 ## Getting Started
 
 Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#react-native).
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html), [Library Source Code](https://github.com/mixpanel/mixpanel-react-native), and an [Example Application](https://github.com/mixpanel/mixpanel-react-native/tree/master/Samples) is documented in our GitHub repo.
+
+### Version Support
+
+Each major version of the SDK has its own minimum supported iOS version. Version 4.x raises the minimum to match the minimum deployment target of Xcode 27. Use this table to choose the version that fits your app.
+
+| SDK version | Minimum supported iOS | Supported Xcode versions | Support status |
+| ----------- | --------------------- | ------------------------ | -------------- |
+| 4.x | iOS 15 | Xcode 26 and 27 | **Current:** receives new features and fixes |
+| 3.x | iOS 12 | Xcode 26 | **Maintenance:** receives critical fixes only, until April 2027 |
+
+On 4.x, set `platform :ios` in your `ios/Podfile` to 15.0 or higher. If your app needs to support an older iOS version, stay on 3.x.
 
 ## Installing the Library
 

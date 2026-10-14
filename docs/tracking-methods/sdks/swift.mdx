@@ -3,18 +3,22 @@ sidebarTitle: iOS (Swift)
 title: "Mixpanel SDKs: iOS (Swift)"
 ---
 
-Minimum OS versions depend on the SDK version. If you use [Session Replay](/docs/tracking-methods/sdks/swift/swift-replay), upgrade it to 2.0.0\+ along with SDK 7.0.0\+.
-
-| SDK version | Minimum OS | Xcode | Status |
-| ----------- | ---------- | ----- | ------ |
-| 7.x | iOS 15, tvOS 15, macOS 12, watchOS 9 | 26 and 27 | Current |
-| 6.x | iOS 12, tvOS 12, macOS 10.13, watchOS 4 | 26 | Maintenance: critical fixes until April 2027 |
-
 ## Getting Started
 
 Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#ios-swift).
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-swift/), [Library Source Code](https://github.com/mixpanel/mixpanel-swift), and an [Example Application](https://github.com/mixpanel/mixpanel-swift/tree/master/MixpanelDemo/MixpanelDemo) are documented in our GitHub repo.
+
+### Version Support
+
+Each major version of the SDK has its own minimum supported OS. Version 7.x raises the minimum to match the minimum deployment targets of Xcode 27. Use this table to choose the version that fits your app.
+
+| SDK version | Minimum supported OS | Supported Xcode versions | Support status |
+| ----------- | -------------------- | ------------------------ | -------------- |
+| 7.x | iOS 15, tvOS 15, macOS 12, watchOS 9 | Xcode 26 and 27 | **Current:** receives new features and fixes |
+| 6.x | iOS 12, tvOS 12, macOS 10.13, watchOS 4 | Xcode 26 | **Maintenance:** receives critical fixes only, until April 2027 |
+
+If your app needs to support an older OS, stay on 6.x.
 
 ## Installing the Library
 

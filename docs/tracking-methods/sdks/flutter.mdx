@@ -3,18 +3,23 @@ sidebarTitle: Flutter
 title: "Mixpanel SDKs: Flutter"
 ---
 
-Minimum iOS and macOS versions depend on the SDK version. If your app uses CocoaPods, on 3.x set `platform :ios, '15.0'` in `ios/Podfile` and `platform :osx, '12.0'` in `macos/Podfile`. Building with Xcode 27 requires Flutter 3.47\+.
-
-| SDK version | Minimum iOS | Minimum macOS | Xcode | Status |
-| ----------- | ----------- | ------------- | ----- | ------ |
-| 3.x | 15 | 12 | 26 and 27 | Current |
-| 2.x | 13 | 10.15 | 26 | Maintenance: critical fixes until April 2027 |
-
 ## Getting Started
 
 Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#flutter).
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-flutter), [Library Source Code](https://github.com/mixpanel/mixpanel-flutter), and an [Example Application](https://github.com/mixpanel/mixpanel-flutter/tree/main/example) is documented in our GitHub repo.
+
+### Version Support
+
+Each major version of the SDK has its own minimum supported iOS and macOS versions. Version 3.x raises the minimums to match the minimum deployment targets of Xcode 27. Use this table to choose the version that fits your app.
+
+| SDK version | Minimum supported iOS | Minimum supported macOS | Supported Xcode versions | Support status |
+| ----------- | --------------------- | ----------------------- | ------------------------ | -------------- |
+| 3.x | iOS 15 | macOS 12 | Xcode 26 and 27 | **Current:** receives new features and fixes |
+| 2.x | iOS 13 | macOS 10.15 | Xcode 26 | **Maintenance:** receives critical fixes only, until April 2027 |
+
+If your app uses CocoaPods, on 3.x set `platform :ios, '15.0'` in `ios/Podfile` and `platform :osx, '12.0'` in `macos/Podfile`. Building with Xcode 27 requires Flutter 3.47\+. 
+If your app needs to support an older iOS or macOS version, stay on 2.x.
 
 ## Installing the Library
 
