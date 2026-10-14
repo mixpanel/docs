@@ -199,7 +199,7 @@ The calculator uses a fixed-horizon, two-sample normal approximation:
 `n per variant = 2 × (z(1−α′) + z(power))² × σ² / (MDE × baseline)²`
 
 - **α′** is α/2 for a two-sided test and α for a one-sided test. If the experiment uses [Bonferroni correction](#bonferroni-correction), α is first divided by (primary metrics × (variants − 1)).
-- **σ²** is p(1−p) for conversion rates, λ for events per user, and the measured or entered standard deviation squared for averages and sums.
+- **σ²** is p(1−p) for conversion rates, λ for events per user, and the measured or entered standard deviation squared for averages and sums. For events per user, this assumes variance equals the mean. Experiment results use measured per-user variance instead, so this estimate can give too small a sample size when event-count variance exceeds the mean.
 - **Total sample size** is the per-variant number × the number of variants, control included.
 
 The estimate doesn't account for [CUPED](#cuped-controlled-experiment-using-pre-experiment-data) or [Winsorization](#winsorization). Both usually reduce variance, so the estimate tends to be conservative. Sequential and Bayesian models aren't modeled separately.
