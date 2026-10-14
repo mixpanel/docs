@@ -3,6 +3,13 @@ sidebarTitle: Session Replay (React Native)
 title: Implement Session Replay (React Native)
 ---
 
+Minimum iOS and React Native versions depend on the SDK version. Upgrade [`mixpanel-react-native`](/docs/tracking-methods/sdks/react-native) to 4.0.0\+ along with SDK 2.0.0\+.
+
+| SDK version | Minimum iOS | Minimum React Native | Xcode | Status |
+| ----------- | ----------- | -------------------- | ----- | ------ |
+| 2.x | 15 | 0.76 | 26 and 27 | Current |
+| 1.x | 13 | 0.70 | 26 | Maintenance: critical fixes until April 2027 |
+
 Mixpanel's React Native Session Replay SDK enables you to capture and analyze user interactions in your mobile applications. Built as a Turbo Module for React Native's New Architecture, it provides native implementations for both iOS and Android with a unified JavaScript API.
 
 ## Features
@@ -17,8 +24,8 @@ Mixpanel's React Native Session Replay SDK enables you to capture and analyze us
 
 ## Requirements
 
-- React Native \>= 0.70
-- iOS \>= 13.0
+- React Native \>= 0.76
+- iOS \>= 15.0
 - Android API Level \>= 21
 - New Architecture support (backward compatible with old architecture)
 
@@ -38,7 +45,7 @@ yarn add @mixpanel/react-native-session-replay
 
 #### iOS
 
-The SDK dependencies are automatically added via CocoaPods. Your project must target iOS 13 or later.
+The SDK dependencies are automatically added via CocoaPods.
 
 ```sh
 cd ios && pod install
