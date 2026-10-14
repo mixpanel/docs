@@ -9,6 +9,62 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-10-14">
+  ## Mobile Autocapture for Flutter: capture taps, rage taps, and dead taps automatically
+
+  Flutter apps already autocaptured screen views, but nothing about what users tapped. Native Android and iOS autocapture can't see Flutter elements because Flutter draws its own UI, so Flutter teams still had to add a track call to every element by hand, and rage taps and dead taps went unnoticed.
+
+  Tap autocapture is now built into the Flutter SDK (v2.15.0).
+
+  With this update, you can:
+
+  - **Capture taps with no per-element code:** Tap events fire automatically once autocapture is on.
+  - **Surface frustration signals:** Rage taps and dead taps are captured alongside tap events, so broken interactions show up without anyone hunting for them.
+  - **Cover every platform with one integration:** Because it lives in the Flutter SDK, one integration covers Flutter apps on Android, iOS, web, and macOS.
+  - **Jump to the sessions that matter:** Filter Session Replay playlists by any autocaptured event to go straight to the sessions where users got stuck.
+
+  Android, iOS, React Native, and Flutter now all support tap and frustration-signal autocapture. Tap autocapture for Flutter is in open beta and available on all plans.
+
+  [Learn more →](/docs/tracking-methods/sdks/flutter#autocapture)
+</Update>
+
+<Update label="2026-10-13">
+  ## Experiments: Built-in sample size calculator powered by your own data
+
+  Working out how many exposures or how much time an experiment needed used to mean leaving Mixpanel. You had to look up your metric's historical baseline and traffic, then type them by hand into the calculator on our website.
+
+  The sample size calculator is now built into experiment setup. Choose your primary metric and Mixpanel fills in its baseline conversion rate and daily traffic from your own data, measured over the window you pick.
+
+  With this update, you can:
+
+  - **Tune your inputs:** Set your minimum detectable lift, confidence level, power, rollout %, and a one- or two-sided hypothesis.
+  - **Get a complete estimate:** See the total exposures needed, the count per variant, and an estimated duration. The estimate accounts for your number of variants and primary metrics.
+  - **Know if it's realistic:** A summary tells you whether the duration is reachable and suggests an experiment type.
+  - **Apply it in one click:** Click **Apply to Experiment** to set the experiment's duration.
+
+  [Learn more →](/docs/experiments#plan-your-experiment)
+</Update>
+
+<Update label="2026-09-28">
+  ## Experiments: One-sided tests reach significance with fewer exposures
+
+  Mixpanel used to analyze every metric with a two-sided test, which checks for an effect in either direction. When you only care about one direction, a two-sided test needs more exposures and takes longer to reach significance. One example is a non-inferiority test, where you only need to confirm a change doesn't make a metric worse.
+
+  You can now set each metric to a one-sided or two-sided test, and its results are calculated to match. One-sided metrics reach significance with fewer exposures when you only need to detect movement in one direction.
+
+  [Learn more →](/docs/experiments)
+</Update>
+
+<Update label="2026-09-28">
+  ## Experiments: Discard novelty effects from your results
+
+  When you test something like a UX layout change, users can initially behave differently just because it's new. Their behavior only stabilizes after some time, which can skew early results.
+
+  You can now exclude data from the first days after each user's initial exposure, so your results ignore novelty effects and reflect stabilized behavior.
+
+  [Learn more →](/docs/experiments)
+</Update>
+
 <Update label="2026-09-28">
   ## Experiments: See exactly how every metric result was calculated with the Computation tab
 
@@ -41,6 +97,48 @@ Get all the latest updates in your inbox.
   Audit Log Streaming is available to organizations on an **Enterprise** plan. Organization Owners and Admins can set it up from **Organization Settings → Audit Log**.
 
   [Learn more →](/docs/access-security/audit-log-streaming)
+</Update>
+
+<Update label="2026-09-21">
+  ## Feature Flags: Target rollouts by semantic version
+
+  Targeting a rollout by app version used to be unreliable, especially for non-engineers. Runtime properties were compared as strings, so a version like `2.10.0` could sort below `2.9.0` and targeting didn't always apply as expected.
+
+  Building on [typed runtime property values](#2026-08-20), you can now set a runtime property's data type to **Semantic Version**. Versions are ordered by the SemVer 2.0.0 specification (major, then minor, then patch), so conditions like "Greater than or equal to `2.1.0`" match the versions you intend.
+
+  [Learn more →](/docs/featureflags#data-types-for-runtime-values)
+</Update>
+
+<Update label="2026-09-18">
+  ## Session Replay: Mixpanel Agent can now analyze mobile replays with wireframes
+
+  Web replays record page structure, so Mixpanel Agent can read them, summarize them, and answer questions about them. Mobile replays are a series of image snapshots with no structure underneath, so Agent couldn't do any of that for mobile. To learn what happened in a mobile session, you had to watch it.
+
+  Turn on wireframes in your mobile Session Replay SDK and, alongside the snapshots, the SDK sends a text-based layout of each screen: every element's role and position, plus its text.
+
+  With this update, you can:
+
+  - **Summarize mobile replays:** Mixpanel Agent can describe what happened in a mobile session in plain language.
+  - **Ask questions across replays:** Ask about one replay or many, like "Did users run into friction on the checkout screen?"
+  - **Keep sensitive data private:** Wireframes follow your existing replay masking, and typed input is never sent. Extra controls let you redact specific text.
+
+  Wireframes are off by default and in open beta for [Android](/docs/tracking-methods/sdks/android/android-replay#wireframes-beta), [iOS](/docs/tracking-methods/sdks/swift/swift-replay#wireframes-beta), [Flutter](/docs/tracking-methods/sdks/flutter/flutter-replay#wireframes-beta), and [React Native](/docs/tracking-methods/sdks/react-native/react-native-replay#wireframes-beta).
+</Update>
+
+<Update label="2026-09-10">
+  ## Mobile Autocapture: capture taps, rage taps, and dead taps on Android, iOS, and React Native
+
+  Mobile autocapture used to cover only [screen views](#2026-08-07-2), so teams could see which screens people visited but not what they tapped. Answering "did anyone tap this button" meant adding a track call to every element by hand, then waiting for an app store release. Taps that did nothing, or repeated taps out of frustration, went unnoticed unless someone happened to watch the right session replay.
+
+  Upgrade your SDK and turn on tap autocapture to start capturing interactions automatically.
+
+  With this update, you can:
+
+  - **Capture taps with no per-element code:** Tap events fire automatically once autocapture is on.
+  - **Surface frustration signals:** Rage taps and dead taps are captured alongside tap events, so broken interactions show up without anyone hunting for them.
+  - **Jump to the sessions that matter:** Filter Session Replay playlists by any autocaptured event to go straight to the sessions where users got stuck.
+
+  Tap autocapture is in open beta and available on all plans with [Android](/docs/tracking-methods/sdks/android#autocapture) v8.10.0, [iOS](/docs/tracking-methods/sdks/swift#autocapture) v6.6.0, and [React Native](/docs/tracking-methods/sdks/react-native#autocapture) v3.7.0.
 </Update>
 
 <Update label="2026-09-09">
