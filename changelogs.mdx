@@ -9,6 +9,37 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-10-14">
+  ## Session Replay: Flutter Autocapture (Taps and Frustration Signals)
+
+  Flutter apps had autocaptured screen views, but nothing about what users tapped. Native Android and iOS autocapture can't see Flutter elements because Flutter draws its own UI, so Flutter teams still had to add a track call to every element by hand. Rage taps and dead taps went unnoticed.
+
+  Tap autocapture is now built into the Flutter SDK (v2.15.0), with rage taps and dead taps captured alongside tap events. With this update, you can:
+
+  - **Cover every platform with one integration:** Because autocapture lives in the Flutter SDK, it works for Flutter apps on Android, iOS, web, and macOS.
+  - **Surface broken interactions automatically:** Rage taps and dead taps are captured without any per-element code.
+  - **Jump to the right sessions:** Every autocaptured event can be used to filter Session Replay playlists.
+
+  With this release, Android, iOS, React Native, and Flutter all support tap and frustration-signal autocapture. Available in open beta on all plans.
+
+  [Learn more →](/docs/tracking-methods/sdks/flutter#autocapture)
+</Update>
+
+<Update label="2026-10-13">
+  ## Experiments: Built-in Sample Size Calculator
+
+  Working out how many exposures or how much time an experiment needed used to mean leaving Mixpanel. You'd look up your metric's historical baseline and traffic, then type them by hand into the calculator on our website.
+
+  The sample size calculator is now built into experiment setup. Choose your primary metric and Mixpanel fills in its baseline conversion rate and daily traffic from your own data, measured over the window you pick. With this update, you can:
+
+  - **Tune your inputs:** Set your minimum detectable lift, confidence level, power, rollout %, and a one- or two-sided hypothesis.
+  - **Get a complete estimate:** See the total exposures needed, the count per variant, and an estimated duration. The estimate accounts for your number of variants and primary metrics.
+  - **Know if it's realistic:** A summary tells you whether the duration is reachable and suggests an experiment type.
+  - **Apply it in one click:** Click **Apply to Experiment** to set the experiment's duration.
+
+  [Learn more →](/docs/experiments#step-4-select-the-test-duration)
+</Update>
+
 <Update label="2026-10-01" description="">
   ## Agent Intelligence is now in Beta
 
@@ -51,24 +82,81 @@ Get all the latest updates in your inbox.
   [Learn more →](/docs/access-security/audit-log-streaming)
 </Update>
 
-<Update label="2026-09-16" description="">
-  ## Web Experiments is now in Private Beta
+<Update label="2026-09-28">
+  ## Experiments: One-Sided Tests
 
-  You can now build and launch A/B tests on your website without writing code. Point the visual editor at your live site and configure each variant by clicking directly on the page, or describe the change you want to Mixpanel Agent and let it make the edits for you.
+  Mixpanel analyzed every metric with a two-sided test, which checks for an effect in either direction. When you only care about one direction, a two-sided test needs more exposures and takes longer to reach significance. A non-inferiority test is one example: you only need to confirm a change doesn't make a metric worse.
 
-  With this update, you can:
+  You can now set each metric to a one-sided or two-sided test, and its results are calculated to match. One-sided metrics reach significance with fewer exposures when you only need to detect movement in one direction.
 
-  - **Edit your live site visually:** Change text copy, adjust styling, and hide or show existing elements, all from an editor that overlays your real page.
-  - **Describe changes to Mixpanel Agent:** Say what you want in plain language instead of working through the control panel.
-  - **Review every change before launch:** A Changes panel lists each modification per variant in the editor, with variant screenshots on the experiment page.
-  - **Control who can ship:** A new permission lets admins create a custom project role that restricts who can launch a visual experiment.
-  - **Measure it like any other experiment:** Results, metrics, and statistical models work exactly as they do for code-based experiments.
+  [Learn more →](/docs/experiments#how-mixpanel-calculates-results)
+</Update>
 
-  Visual experiments require the Mixpanel JS snippet on your site plus the Mixpanel Chrome extension, and work on both standard multi-page sites and single-page apps. An anti-flicker delay renders your variant before the page paints.
+<Update label="2026-09-28">
+  ## Experiments: Computation Tab
 
-  **Learn more**
+  It wasn't always clear how Mixpanel arrived at an experiment's results. The new **Computation** tab in the metric hover card shows you, step by step, how each result is calculated.
 
-  - [Docs](https://docs.mixpanel.com/docs/experiments/no-code-experiments)
+  Copy the output as Markdown and paste it into an LLM to independently verify the calculation.
+
+  [Learn more →](/docs/experiments#how-mixpanel-calculates-results)
+</Update>
+
+<Update label="2026-09-28">
+  ## Experiments: Discard Novelty Effects
+
+  When you test something like a UX layout change, users often behave differently at first just because it's new. Their behavior only stabilizes after some time, which can skew early results.
+
+  You can now exclude data from the first days after a user's initial exposure, so novelty effects don't distort your experiment results. Choose how many days to discard and Mixpanel analyzes only the behavior that follows.
+
+  [Learn more →](/docs/experiments)
+</Update>
+
+<Update label="2026-09-21">
+  ## Feature Flags: Semantic Version Targeting for Runtime Properties
+
+  Targeting a rollout by app version was hard to get right, especially for non-engineers. Version strings were compared as text, so `2.10.0` sorted below `2.9.0`.
+
+  Runtime properties now support semantic versions, so you can target rollouts based on app version and have versions compared correctly. This builds on [typed runtime property values](#2026-08-20) released in August.
+
+  [Learn more →](/docs/featureflags#data-types-for-runtime-values)
+</Update>
+
+<Update label="2026-09-18">
+  ## Session Replay: Mobile Wireframes for Mixpanel Agent
+
+  Web replays record page structure, so Mixpanel Agent can read them, summarize them, and answer questions about them. Mobile replays are a series of image snapshots with no structure underneath, so Agent couldn't do any of that for mobile. To learn what happened in a mobile session, you had to watch it.
+
+  Turn on wireframes in your mobile Session Replay SDK and, alongside the snapshots, the SDK sends a text-based layout of each screen: every element's role and position, plus its text. (On iOS, pure-SwiftUI views need `.mpWireframeText(_:)` to supply text.) With this update, you can:
+
+  - **Summarize mobile replays:** [Mixpanel Agent](/docs/mixpanel-agent) can describe what happened in a mobile session in plain language.
+  - **Ask questions across sessions:** Query one replay or many, like "Did users run into friction on the checkout screen?"
+  - **Keep sensitive data protected:** Wireframes follow your existing replay masking, and typed input is never sent. Extra controls let you redact specific text.
+
+  Wireframes are off by default and available in open beta. Set them up for your SDK:
+
+  - [Android](/docs/tracking-methods/sdks/android/android-replay#wireframes-beta)
+  - [iOS](/docs/tracking-methods/sdks/swift/swift-replay#wireframes-beta)
+  - [Flutter](/docs/tracking-methods/sdks/flutter/flutter-replay#wireframes-beta)
+  - [React Native](/docs/tracking-methods/sdks/react-native/react-native-replay#wireframes-beta)
+</Update>
+
+<Update label="2026-09-10">
+  ## Session Replay: Mobile Autocapture (Taps and Frustration Signals)
+
+  [Mobile autocapture](#2026-08-07-2) only covered screen views, so teams could see which screens people visited but not what they tapped. Answering "did anyone tap this button?" meant adding a track call to every element by hand, then waiting for an app store release. Taps that did nothing, or repeated taps out of frustration, went unnoticed unless someone happened to watch the right session replay.
+
+  Upgrade your SDK and turn on tap autocapture. With this update, you can:
+
+  - **Capture taps with no code per element:** Tap events fire automatically.
+  - **Surface broken interactions:** Rage taps and dead taps are captured alongside tap events, so problems show up without anyone hunting for them.
+  - **Jump to the right sessions:** Every autocaptured event can be used to filter Session Replay playlists, taking you straight to the sessions where users got stuck.
+
+  Available in open beta on all plans:
+
+  - [Android](/docs/tracking-methods/sdks/android#autocapture) v8.10.0
+  - [iOS](/docs/tracking-methods/sdks/swift#autocapture) v6.6.0
+  - [React Native](/docs/tracking-methods/sdks/react-native#autocapture) v3.7.0
 </Update>
 
 <Update label="2026-09-09">
