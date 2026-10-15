@@ -69,52 +69,57 @@ Your agent reads your codebase, suggests events, and adds the SDK. You review ev
 
 Follow the steps to install the SDK, send your first events, and check them. Best if you'd rather write the code yourself, or your company’s policies keep AI tools away from your code.
 
-<Card title="1. Plan what to track" icon="list-check">
-  <Badge color="purple">Usually a product manager</Badge>
+<Columns cols={2}>
+  <Column>
+    <Card title="1. Plan what to track" icon="list-check">
+      <Badge color="purple">Usually a product manager</Badge>
 
-  **Done when**
+      **Done when**
 
-  - You've picked your first events
-  - Each one answers a top question
-  - They're written down
+      - You've picked your first events
+      - Each one answers a top question
+      - They're written down
 
-  [What to Track](/docs/what-to-track) · [Create A Tracking Plan](/docs/tracking-best-practices/tracking-plan)
-</Card>
+      [What to Track](/docs/what-to-track) · [Create A Tracking Plan](/docs/tracking-best-practices/tracking-plan)
+    </Card>
 
-<Card title="2. Implement and test in development" icon="code">
-  <Badge color="blue">Usually an engineer</Badge>
+    <Card title="3. Launch to production" icon="cloud-upload-alt">
+      <Badge color="blue">Usually an engineer</Badge>
 
-  **Done when**
+      **Done when**
 
-  - Events and users are set up correctly
-  - Use cases are confirmed
-  - Data arrives in your development project
+      - Events reach your production project
+      - They match what you tested
 
-  [Quickstart](/docs/quickstart) · [Choosing the Right Method](/docs/tracking-methods/choosing-the-right-method)
-</Card>
+      [Developer Environments](/docs/tracking-best-practices/developer-environments) · [Ensuring Data Quality](/guides/guides-by-workflow/ensure-data-quality)
+    </Card>
+  </Column>
+  <Column>
+    <Card title="2. Implement and test in development" icon="code">
+      <Badge color="blue">Usually an engineer</Badge>
 
-<Card title="3. Launch to production" icon="cloud-upload-alt">
-  <Badge color="blue">Usually an engineer</Badge>
+      **Done when**
 
-  **Done when**
+      - Events and users are set up correctly
+      - Use cases are confirmed
+      - Data arrives in your development project
 
-  - Events reach your production project
-  - They match what you tested
+      [Quickstart](/docs/quickstart) · [Choosing the Right Method](/docs/tracking-methods/choosing-the-right-method)
+    </Card>
 
-  [Developer Environments](/docs/tracking-best-practices/developer-environments) · [Ensuring Data Quality](/guides/guides-by-workflow/ensure-data-quality)
-</Card>
+    <Card title="4. Roll out to your team" icon="people-line">
+      <Badge color="purple">Usually a product manager</Badge>
 
-<Card title="4. Roll out to your team" icon="people-line">
-  <Badge color="purple">Usually a product manager</Badge>
+      **Done when**
 
-  **Done when**
+      - The right teammates have access
+      - They know how to use Mixpanel
+      - They can answer their own questions
 
-  - The right teammates have access
-  - They know how to use Mixpanel
-  - They can answer their own questions
-
-  [Core Reports](/guides/guides-by-topic/core-reports) · [Roles & Permissions](/docs/orgs-and-projects/roles-and-permissions)
-</Card>
+      [Core Reports](/guides/guides-by-topic/core-reports) · [Roles & Permissions](/docs/orgs-and-projects/roles-and-permissions)
+    </Card>
+  </Column>
+</Columns>
 
 ## What speeds you up
 
