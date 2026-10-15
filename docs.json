@@ -493,7 +493,13 @@
             "group": "DATA OUT",
             "icon": "/icons/data-out.svg",
             "pages": [
-              "docs/export-methods",
+              {
+                "group": "Export Methods",
+                "root": "docs/export-methods",
+                "pages": [
+                  "docs/export-methods/export-all-data"
+                ]
+              },
               {
                 "group": "Real-Time Event Streams",
                 "tag": "BETA",
