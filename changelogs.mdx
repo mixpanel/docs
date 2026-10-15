@@ -1282,6 +1282,23 @@ Get all the latest updates in your inbox.
 <Update label="2026-02-20">
   ## Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for EU Projects
 
+  <Warning>
+    **⏳ Extended timeline through January 4, 2027 (notified projects only)**
+
+    **Only projects we notified directly have an extended timeline.** If you did not receive an email from Mixpanel about an extension, your project is not extended. US-to-EU forwarding ended on July 1, 2026, and events your EU projects send to US endpoints are no longer accepted as of August 1, 2026. See the July 1 update below.
+
+    If we notified you that your project has an extended timeline:
+
+    * **Now:** Review and update your implementations. Some updates take longer than others, so we recommend that you start before December.
+    * **December 1, 2026:** A temporary reporting preview begins. Events ingested through US Ingestion API Endpoints on or after this date for your extended projects will be hidden from the Mixpanel UI and Query API results to help you identify affected reporting. These events will not be deleted and will remain available through the Event Export API.
+    * **January 4, 2027:** Your extension ends. Complete your implementation updates by this date to prevent data loss. After this date, events sent to US endpoints will not be accepted. Previously hidden events will become visible again, which may change your report counts.
+
+    To update your implementation, point it to Mixpanel's EU servers (`api-eu.mixpanel.com`). See **Required Action** below for SDK-specific steps.
+
+    Not sure whether your project is extended? [Contact support](https://mixpanel.com/get-support) before planning around the January 4 date.
+  </Warning>
+
+
   > **🚨 UPDATE: July 1, 2026 – US-to-EU Data Forwarding has officially ended.** <br /><br />
   >
   > As scheduled, we have sunset US-to-EU data forwarding. <br /> **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI and Query API endpoints until August 1, 2026.**<br /><br />
