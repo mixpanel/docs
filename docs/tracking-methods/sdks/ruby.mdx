@@ -14,7 +14,7 @@ See our [server](/docs/quickstart/install-mixpanel#ruby) quickstart for how to g
 ## Installing the Library
 
 <Warning>
-  For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/ruby#privacy-friendly-tracking).
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, send messages through a `Mixpanel::Consumer` built with the `/track`, `/engage`, and `/groups` URLs on `https://api-eu.mixpanel.com` or `https://api-in.mixpanel.com`. Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency) for examples.
 </Warning>
 
 To install the library, call the following in your command line to install the `mixpanel-ruby` gem:
