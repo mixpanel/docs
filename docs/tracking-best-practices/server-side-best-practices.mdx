@@ -15,7 +15,7 @@ Mixpanel's Web and Mobile SDKs parse `User-Agent` into a set of properties about
 - [Go](https://pkg.go.dev/net/http#Request) exposes this in `Headers["User-Agent"]` on the http.Request struct.
 - [Nginx](http://nginx.org/en/docs/http/ngx_http_log_module.html) exposes this as `$http_user_agent`.
 
-Parse the user agent using a library for your language and send the browser, device, and OS properties to Mixpanel. Here's an example using Python and [uaparser](https://github.com/ua-parser/uap-python):
+Parse the user agent using a library for your language and send the browser, device, and OS properties to Mixpanel. We also recommend forwarding the raw `User-Agent` header as `$mp_raw_user_agent` (or `$mp_user_agent`). Mixpanel uses it to classify [AI agent and bot traffic](/docs/tracking-best-practices/bot-traffic#identify-ai-agent-and-bot-traffic) into the `$mp_actor_type` and `$mp_actor_name` properties; without it, classification uses the user agent of your server's HTTP library instead of your end user's. Here's an example using Python and [uaparser](https://github.com/ua-parser/uap-python):
 
 ```python
 from mixpanel import Mixpanel
@@ -33,6 +33,9 @@ def track_to_mp(request, event_name, properties):
     "$device": parsed["device"]["family"],
     "$os": parsed["os"]["family"],
   })
+
+  # Forward the raw user agent so Mixpanel can classify AI agent and bot traffic.
+  properties["$mp_raw_user_agent"] = request.headers["User-Agent"]
 
   properties["ip"] = request.remote_addr
   mp.track(request.user_id, event_name, properties)

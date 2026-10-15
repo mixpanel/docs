@@ -7,6 +7,18 @@ In this guide, we describe how to avoid bot traffic from affecting your tracking
 
 At its core, blocking unwanted traffic relies on the reserved event property `$ignore` to drop unwanted traffic. Anytime our ingestion API detects the `$ignore` property on an event, it drops that event from ingestion.
 
+## Identify AI Agent and Bot Traffic
+
+Mixpanel's ingestion APIs classify the user agent of each event and set the following [default event properties](/docs/data-structure/property-reference/default-properties#event-properties):
+
+- `$mp_actor_type` (Actor Type): `agent` for requests from an LLM acting on behalf of a human user (e.g. ChatGPT or Claude Code), `bot` for generic automated traffic such as crawlers and search indexers, and `none` when neither applies.
+- `$mp_actor_name` (Actor Name): the classified identity behind an `agent` or `bot` actor type, such as `GPTBot`, `ClaudeBot`, or `MistralAI-User`. Only present when the actor type is `agent` or `bot`.
+- `$mp_raw_user_agent` (Raw User Agent): the raw user agent associated with the request.
+
+Break down a report by Actor Type to see how much of your traffic comes from AI agents and bots, or by Actor Name to see which ones. To exclude this traffic from analysis, filter reports on Actor Type equals `none`.
+
+If you track server-side, forward your end user's user agent as `$mp_raw_user_agent` or `$mp_user_agent`. Otherwise, classification uses the user agent of your server's HTTP library. See [Tracking Browser, Device, and OS](/docs/tracking-best-practices/server-side-best-practices#tracking-browser-device-and-os).
+
 ## Exclude Bot Traffic From Javascript SDK
 
 By default, the following bots are filtered out by the Mixpanel JavaScript library:
