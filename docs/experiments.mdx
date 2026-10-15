@@ -141,7 +141,7 @@ The calculator reads the number of variants from the experiment and assumes an e
 How the calculator measures history depends on the metric type:
 
 - **Conversion-rate metrics** (unique users who did an event, funnel conversion, retention): the baseline is the share of the eligible population that converted during the **Measure Inputs Over** window. The window ends no later than yesterday.
-- **Events per user** (total event count): a per-user rate grows with the length of the window, so a single lookback doesn't size it correctly. Instead, the calculator measures the metric as if an experiment had run for 7, 14, 28, 56 and 84 days. For each length it counts each user's events from their first eligible event to the end of that window.
+- **Events per user** (total event count): a per-user rate grows with the length of the window, so a single lookback doesn't size it correctly. Instead, the calculator measures the metric as if an experiment had run for 1, 2, 4, 8 or 12 weeks. For each length it counts each user's events from their first eligible event to the end of that window.
 - **Averages and sums** (a property's average or sum per user, or sessions): the calculator measures the per-user mean and standard deviation for each of the same five lengths, in the same way. Non-participants are counted as 0 when the metric's analysis does the same. The text under the baseline field says which applies.
 
 For conversion-rate metrics, daily traffic is the number of distinct eligible users over the last 28 days divided by 28. For the other two types, it is based on the eligible users counted in the selected length. In both cases traffic is scaled by **Rollout %**.
