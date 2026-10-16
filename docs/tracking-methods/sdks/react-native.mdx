@@ -780,6 +780,10 @@ await mixpanel.init(
 );
 ```
 
+<Warning>
+  **EU and India data residency:** If your project uses EU or India data residency, you must explicitly set the API host in your init code: pass `'https://api-eu.mixpanel.com'` (EU) or `'https://api-in.mixpanel.com'` (India) as the `serverURL` (third) argument to `init()` instead of `undefined`. Otherwise, your data, including autocaptured events, will be dropped. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency).
+</Warning>
+
 Each signal is configurable, and can be turned off independently. Every key accepts either a boolean shorthand — `click: false` is the same as `click: { enabled: false }` — or an options object; any key you omit keeps its default.
 
 | Option | Setting | Default |
