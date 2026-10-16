@@ -151,7 +151,7 @@ export const SelfGuidedTours = ({ cards }) => {
         </div>
         <button data-sgt-close aria-label="Close" style="width:36px;height:36px;border-radius:12px;border:1px solid #D1D5DB;background:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;font-weight:500;color:#111827">&#215;</button>
       </div>
-      <iframe src="${safeUrl}" title="${safeTitle}" allow="clipboard-write; fullscreen" style="width:100%;flex:1;border:0"></iframe>
+      <iframe src="${safeUrl}" title="${safeTitle}" data-ta-type="ignore" allow="clipboard-write; fullscreen" style="width:100%;flex:1;border:0"></iframe>
     `;
 
     overlay.appendChild(box);
