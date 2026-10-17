@@ -1,0 +1,3 @@
+# Only docs.json is Prettier-formatted; CI checks it in .github/workflows/docs-ci.yml.
+*
+!docs.json
