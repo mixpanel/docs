@@ -1,0 +1,250 @@
+---
+title: "Set up Mixpanel"
+description: "Your path from first login to a team that uses Mixpanel every week."
+sidebarTitle: "Set Up Mixpanel"
+tag: "New"
+---
+
+How fast you get started with Mixpanel is mostly up to you. Smaller teams can usually move quickly, while larger teams may take longer because more people have to weigh in. Either way, the biggest thing you control is how long each stage waits on a decision or a handoff.
+
+## What progress looks like
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '12px', margin: '12px 0 20px' }}>
+  <div style={{ borderTop: '2px solid #7856FF', paddingTop: '8px', fontWeight: 500 }}>Tracking plan agreed</div>
+  <div style={{ borderTop: '2px solid #7856FF', paddingTop: '8px', fontWeight: 500 }}>Data flowing into Mixpanel</div>
+  <div style={{ borderTop: '2px solid #7856FF', paddingTop: '8px', fontWeight: 500 }}>First report saved</div>
+  <div style={{ borderTop: '2px solid #7856FF', paddingTop: '8px', fontWeight: 500 }}>Second teammate active</div>
+  <div style={{ borderTop: '2px solid #7856FF', paddingTop: '8px', fontWeight: 500 }}>Regular team use</div>
+</div>
+
+Don't wait for one stage to be perfect before you start the next. You're moving well when each stage has a named owner and a next step on the calendar. If a stage stalls, or you're waiting on a decision, ask for help early.
+
+## **What you'll need to set up**
+
+Someone to decide what to track, someone who can add code, and access to your Mixpanel organization. A team of one? You'll do both.
+
+## **Choose how you want to set up**
+
+You can set Mixpanel up with an AI coding agent or by following the steps yourself. Both get you to the same place with clean data flowing into Mixpanel, so pick the one that fits how your team works.
+
+### **Set up with AI**
+
+Your agent reads your codebase, suggests events, and adds the SDK. You review every change. Best if your team already uses a coding agent like Claude Code or Cursor. No codebase access? The tool can write a spec for a developer to follow instead.
+
+<Columns cols={2}>
+  <Column>
+    <Card title="1. Install with AI" icon="sparkles">
+      <Badge color="orange">Usually a joint effort</Badge>
+
+      **Done when**
+
+      - You've picked your first events
+      - Each one answers a top question
+      - Events are written down
+      - Events and users are set up correctly
+      - Use cases are confirmed
+      - Data arrives in your development project
+      - Events reach your production project
+      - Events match what you tested
+
+      [Install with AI](/docs/quickstart/install-with-ai)
+    </Card>
+  </Column>
+  <Column>
+    <Card title="2. Roll out to your team" icon="people-line">
+      <Badge color="purple">Usually a product manager</Badge>
+
+      **Done when**
+
+      - The right teammates have access
+      - They know how to use Mixpanel
+      - They can answer their own questions
+
+      [Core Reports](/guides/guides-by-topic/core-reports) · [Roles & Permissions](/docs/orgs-and-projects/roles-and-permissions)
+    </Card>
+  </Column>
+</Columns>
+
+### **Set up yourself**
+
+Follow the steps to install the SDK, send your first events, and check them. Best if you'd rather write the code yourself, or your company’s policies keep AI tools away from your code.
+
+<Columns cols={2}>
+  <Column>
+    <Card title="1. Plan what to track" icon="list-check">
+      <Badge color="purple">Usually a product manager</Badge>
+
+      **Done when**
+
+      - You've picked your first events
+      - Each one answers a top question
+      - They're written down
+
+      [What to Track](/docs/what-to-track) · [Create A Tracking Plan](/docs/tracking-best-practices/tracking-plan)
+    </Card>
+
+    <Card title="3. Launch to production" icon="cloud-upload-alt">
+      <Badge color="blue">Usually an engineer</Badge>
+
+      **Done when**
+
+      - Events reach your production project
+      - They match what you tested
+
+      [Developer Environments](/docs/tracking-best-practices/developer-environments) · [Ensuring Data Quality](/guides/guides-by-workflow/ensure-data-quality)
+    </Card>
+  </Column>
+  <Column>
+    <Card title="2. Implement and test in development" icon="code">
+      <Badge color="blue">Usually an engineer</Badge>
+
+      **Done when**
+
+      - Events and users are set up correctly
+      - Use cases are confirmed
+      - Data arrives in your development project
+
+      [Quickstart](/docs/quickstart) · [Choosing the Right Method](/docs/tracking-methods/choosing-the-right-method)
+    </Card>
+
+    <Card title="4. Roll out to your team" icon="people-line">
+      <Badge color="purple">Usually a product manager</Badge>
+
+      **Done when**
+
+      - The right teammates have access
+      - They know how to use Mixpanel
+      - They can answer their own questions
+
+      [Core Reports](/guides/guides-by-topic/core-reports) · [Roles & Permissions](/docs/orgs-and-projects/roles-and-permissions)
+    </Card>
+  </Column>
+</Columns>
+
+## What speeds you up
+
+- Start with a few [events](/docs/quickstart/capture-events). You can add more once data is flowing.
+- Send test events to a [development project](/docs/tracking-best-practices/developer-environments) first.
+- Set up [identify](/docs/quickstart/identify-users) when you first send data. It's hard to fix later.
+- Ask the [Mixpanel Agent](/docs/mixpanel-agent) to help you get set up.
+
+## **Learn more**
+
+<Columns cols={3}>
+  <Column>
+    <Card title="Mixpanel University" icon="graduation-cap" href="https://university.mixpanel.com/">
+      Courses and certifications
+    </Card>
+  </Column>
+  <Column>
+    <Card title="Self-guided tours" icon="play" href="https://docs.mixpanel.com/guides/self-guided-tours">
+      In-product walkthroughs
+    </Card>
+  </Column>
+  <Column>
+    <Card title="Mixpanel Agent" icon="sparkles" href="https://docs.mixpanel.com/guides/mixpanel-agent">
+      Ask about your data
+    </Card>
+  </Column>
+</Columns>
+
+## Starting from somewhere else?
+
+<Columns cols={2}>
+  <Column>
+    <Card title="New to product intelligence? " icon="lightbulb-on" horizontal href="https://docs.mixpanel.com/guides/strategic-playbooks/product-analytics-strategy/get-started">
+      Read the strategy guide
+    </Card>
+  </Column>
+  <Column>
+    <Card title="Switching from another tool?" icon="arrow-left-arrow-right" horizontal href="https://docs.mixpanel.com/docs/migration">
+      Read the migration guide
+    </Card>
+  </Column>
+</Columns>
+
+Stuck? Get [help](https://mixpanel.com/contact-us/support/) or join the [community](https://community.mixpanel.com/).
+
+## ALT OPTION (TO BE DELETED OR USED)
+
+<AccordionGroup>
+  <Accordion title="**Set up with AI**" description="Your agent reads your codebase, suggests events, and adds the SDK. You review every change. Best if your team already uses a coding agent like Claude Code or Cursor.">
+    <Card title="1. Install with AI" icon="sparkles">
+      <Badge color="orange">Usually a joint effort</Badge>
+
+      **Done when**
+
+      - You've picked your first events
+      - Each one answers a top question
+      - Events are written down
+      - Events and users are set up correctly
+      - Use cases are confirmed
+      - Data arrives in your development project
+      - Events reach your production project
+      - Events match what you tested
+
+      [Install with AI](/docs/quickstart/install-with-ai)
+    </Card>
+
+    <Card title="2. Roll out to your team" icon="people-line">
+      <Badge color="purple">Usually a product manager</Badge>
+
+      **Done when**
+
+      - The right teammates have access
+      - They know how to use Mixpanel
+      - They can answer their own questions
+
+      [Core Reports](/guides/guides-by-topic/core-reports) · [Roles & Permissions](/docs/orgs-and-projects/roles-and-permissions)
+    </Card>
+  </Accordion>
+
+  <Accordion title="**Set up yourself**" description="Follow the steps to install the SDK, send your first events, and check them. Best if your team prefers to write the tracking code itself, or can't use AI tools on your codebase.">
+    <Card title="1. Plan what to track" icon="list-check">
+      <Badge color="purple">Usually a product manager</Badge>
+
+      **Done when**
+
+      - You've picked your first events
+      - Each one answers a top question
+      - They're written down
+
+      [What to Track](/docs/what-to-track) · [Create A Tracking Plan](/docs/tracking-best-practices/tracking-plan)
+    </Card>
+
+    <Card title="2. Implement and test in development" icon="code">
+      <Badge color="blue">Usually an engineer</Badge>
+
+      **Done when**
+
+      - Events and users are set up correctly
+      - Use cases are confirmed
+      - Data arrives in your development project
+
+      [Quickstart](/docs/quickstart) · [Choosing the Right Method](/docs/tracking-methods/choosing-the-right-method)
+    </Card>
+
+    <Card title="3. Launch to production" icon="cloud-upload-alt">
+      <Badge color="blue">Usually an engineer</Badge>
+
+      **Done when**
+
+      - Events reach your production project
+      - They match what you tested
+
+      [Developer Environments](/docs/tracking-best-practices/developer-environments) · [Ensuring Data Quality](/guides/guides-by-workflow/ensure-data-quality)
+    </Card>
+
+    <Card title="4. Roll out to your team" icon="people-line">
+      <Badge color="purple">Usually a product manager</Badge>
+
+      **Done when**
+
+      - The right teammates have access
+      - They know how to use Mixpanel
+      - They can answer their own questions
+
+      [Core Reports](/guides/guides-by-topic/core-reports) · [Roles & Permissions](/docs/orgs-and-projects/roles-and-permissions)
+    </Card>
+  </Accordion>
+</AccordionGroup>
