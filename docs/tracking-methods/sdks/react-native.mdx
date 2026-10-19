@@ -9,6 +9,17 @@ Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#react-n
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html), [Library Source Code](https://github.com/mixpanel/mixpanel-react-native), and an [Example Application](https://github.com/mixpanel/mixpanel-react-native/tree/master/Samples) is documented in our GitHub repo.
 
+### Apple Platform Support
+
+Each major version of the SDK has its own minimum supported iOS version. Version 4.x raises the minimum to match the minimum deployment target of Xcode 27. Use this table to choose the version that fits your app.
+
+| SDK version | Minimum supported iOS | Supported Xcode versions | Support status |
+| ----------- | --------------------- | ------------------------ | -------------- |
+| 4.x | iOS 15 | Xcode 26 and 27 | **Current:** receives new features and fixes |
+| 3.x | iOS 12 | Xcode 26 | **Maintenance:** receives critical fixes only, until April 2027 |
+
+On 4.x, set `platform :ios` in your `ios/Podfile` to 15.0 or higher. If your app needs to support an older iOS version, stay on 3.x.
+
 ## Installing the Library
 
 After [setting up your development environment for React Native](https://reactnative.dev/docs/environment-setup), navigate to your app's root directory and install the Mixpanel React Native SDK. The library requires React Native v0.6\+.
@@ -779,6 +790,10 @@ await mixpanel.init(
   }
 );
 ```
+
+<Warning>
+  **EU and India data residency:** If your project uses EU or India data residency, you must explicitly set the API host in your init code: pass `'https://api-eu.mixpanel.com'` (EU) or `'https://api-in.mixpanel.com'` (India) as the `serverURL` (third) argument to `init()` instead of `undefined`. Otherwise, your data, including autocaptured events, will be dropped. If you send data through a proxy or custom domain, point it at your region's host instead and keep the proxy URL in your init code. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency).
+</Warning>
 
 Each signal is configurable, and can be turned off independently. Every key accepts either a boolean shorthand — `click: false` is the same as `click: { enabled: false }` — or an options object; any key you omit keeps its default.
 
