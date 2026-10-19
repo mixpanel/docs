@@ -27,7 +27,7 @@ Someone to decide what to track, someone who can add code, and access to your Mi
 
 You can set Mixpanel up with an AI coding agent or by following the steps yourself. Both get you to the same place with clean data flowing into Mixpanel, so pick the one that fits how your team works.
 
--             <Badge color="blue">Set up yourself</Badge> : Follow the steps to install the SDK, send your first events, and check them. Best if you'd rather write the code yourself, or your company’s policies keep AI tools away from your code.
+-              <Badge color="blue">Set up yourself</Badge> : Follow the steps to install the SDK, send your first events, and check them. Best if you'd rather write the code yourself, or your company’s policies keep AI tools away from your code.
 - **Set up with AI**: Your agent reads your codebase, suggests events, and adds the SDK. You review every change. Best if your team already uses a coding agent like Claude Code or Cursor. No codebase access? The tool can write a spec for a developer to follow instead.
 
 ### **something else**
@@ -95,16 +95,27 @@ context setting on the boxes
 
   <Step title="Launch to production">
     <Badge color="blue">Usually an engineer</Badge>
+
+    Done when:
+
+    - Events reach your production project
+    - They match what you tested
+
+    <Columns cols={2}>
+      <Column>
+        <Card title="Set up yourself" icon="mouse-pointer">
+        </Card>
+      </Column>
+      <Column>
+        <Card title="Set up with AI" icon="sparkles">
+        </Card>
+      </Column>
+    </Columns>
   </Step>
 </Steps>
 
 <Card title="3. Launch to production" icon="cloud-upload-alt">
   <Badge color="blue">Usually an engineer</Badge>
-
-  **Done when**
-
-  - Events reach your production project
-  - They match what you tested
 
   [Developer Environments](/docs/tracking-best-practices/developer-environments) · [Ensuring Data Quality](/guides/guides-by-workflow/ensure-data-quality)
 </Card>
