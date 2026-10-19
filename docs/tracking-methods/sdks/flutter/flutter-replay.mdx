@@ -7,6 +7,10 @@ sidebarTitle: Session Replay (Flutter)
 
 This developer guide will assist you in configuring your Flutter app for [Session Replay](/docs/session-replay) using the [Session Replay SDK (Flutter)](https://github.com/mixpanel/mixpanel-flutter-session-replay). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
 
+<Note>
+  **Beta.** Flutter web support is in beta, available from v2.1.0. It may contain issues, and its behavior and captured output may change before general availability. See [Flutter Web (Beta)](/docs/tracking-methods/sdks/flutter/flutter-replay#flutter-web-beta).
+</Note>
+
 ## Best Practices
 
 Session Replay provides powerful insights into user behavior, but it also introduces risks, especially on mobile. These risks are not unique to Mixpanel; they are common across the entire session replay product category. Because SDKs run on end-user devices and screen content may include sensitive data, we recommend implementing / testing Session Replay carefully. Be especially cautious with masking, edge-case testing, and rollout strategies. For more information on risk categories and best practices, read more [here](/docs/session-replay#best-practices).
@@ -20,9 +24,50 @@ Session Replay provides powerful insights into user behavior, but it also introd
 | --- | --- |
 | Flutter | 3.38\+ |
 | Dart | 3.8\+ |
-| iOS | 13.0\+ |
+| iOS | 15.0\+ |
 | Android | API 24 (7.0\+) |
-| macOS | 10.15\+ |
+| macOS | 12.0\+ |
+| Web (beta) | Chrome 80\+, Firefox 113\+, Safari 16.4\+ |
+
+### Apple Platform Support
+
+Each major version of the Session Replay SDK has its own minimum supported iOS and macOS versions. Version 2.x raises the minimums to match the minimum deployment targets of Xcode 27. Use this table to choose the version that fits your app.
+
+| SDK version | Minimum supported iOS | Minimum supported macOS | Supported Xcode versions | Support status |
+| ----------- | --------------------- | ----------------------- | ------------------------ | -------------- |
+| 2.x | iOS 15 | macOS 12 | Xcode 26 and 27 | **Current:** receives new features and fixes |
+| 1.x | iOS 13 | macOS 10.15 | Xcode 26 | **Maintenance:** receives critical fixes only, until April 2027 |
+
+If your app uses CocoaPods, on 2.x set `platform :ios, '15.0'` in `ios/Podfile` and `platform :osx, '12.0'` in `macos/Podfile`. Building with Xcode 27 requires Flutter 3.47\+. 
+If your app needs to support an older iOS or macOS version, stay on 1.x.
+
+### Flutter Web (Beta)
+
+<Note>
+  **Beta.** Session Replay on Flutter web is in beta, available from v2.1.0. It may contain issues, and its behavior and captured output may change before general availability. Verify that replays render as you expect.
+</Note>
+
+Web support requires one of the browsers listed above. To link events to replays on web, use [`mixpanel_flutter`](/docs/tracking-methods/sdks/flutter) v3.1.0\+.
+
+#### Content Security Policy
+
+If your site uses a Content Security Policy, allow the Mixpanel endpoint and the SDK's workers:
+
+```text
+worker-src 'self' blob:;
+child-src 'self' blob:;
+connect-src 'self' https://api.mixpanel.com;
+```
+
+Use `https://api-eu.mixpanel.com` or `https://api-in.mixpanel.com` for EU or India residency, or your proxy's origin if you set [`serverUrl`](/docs/tracking-methods/sdks/flutter/flutter-replay#data-residency).
+
+#### Platform Views
+
+HTML platform views (`HtmlElementView`) — maps, videos, embedded iframes — are not captured on web. They appear as empty space in the replay, and anything Flutter drew behind them is captured even though the user never saw it. Some widgets create one internally, including `SelectionArea`.
+
+<Warning>
+  If a platform view displays sensitive information, wrap it in `MixpanelMask` so the region is masked in the replay.
+</Warning>
 
 ## Installation
 
@@ -184,7 +229,9 @@ sessionReplay.startRecording(sessionsPercent: 10.0);
 
 **Stop capturing replay data**
 
-Call `.stopRecording()` to stop any active replay data collection. The SDK automatically stops recording when the app loses focus.
+Call `.stopRecording()` to stop any active replay data collection.
+
+On iOS, Android, and macOS the SDK also ends the replay automatically when the app leaves the foreground. Use [`mobile.onBackground`](/docs/tracking-methods/sdks/flutter/flutter-replay#background-behavior-mobile) to pause and resume the same replay instead. On web the replay is unaffected by the page being hidden — see [Session Lifetime on Web](/docs/tracking-methods/sdks/flutter/flutter-replay#session-lifetime-on-web).
 
 ```dart
 // manually end a replay capture
@@ -212,7 +259,7 @@ Upon initialization you can provide a `SessionReplayOptions` object to customize
 | `storageQuotaMB` | Maximum MB for the local event queue | `50` |
 | `remoteSettingsMode` | Setting for handling remote configuration during SDK initialization. Can be `RemoteSettingsMode.disabled`, `RemoteSettingsMode.fallback`, or `RemoteSettingsMode.strict`. See [Remote Configuration](/docs/tracking-methods/sdks/flutter/flutter-replay#remote-configuration) | `RemoteSettingsMode.disabled` |
 | `debugOptions` | Debug configuration for mask overlay visualization. See [Debug Options](/docs/tracking-methods/sdks/flutter/flutter-replay#debug-options) | `null` (disabled) |
-| `platformOptions` | Platform-specific options. See [Platform Options](/docs/tracking-methods/sdks/flutter/flutter-replay#platform-options-mobile-only) | `PlatformOptions()` |
+| `platformOptions` | Platform-specific options. See [Platform Options](/docs/tracking-methods/sdks/flutter/flutter-replay#platform-options) | `PlatformOptions()` |
 
 **Example usage:**
 
@@ -226,18 +273,70 @@ final result = await MixpanelSessionReplay.initialize(
     logLevel: LogLevel.debug,
     flushInterval: Duration(seconds: 10),
     platformOptions: PlatformOptions(
-      mobile: MobileOptions(wifiOnly: true),
+      mobile: MobileOptions(
+        wifiOnly: true,
+        onBackground: ReplayBackgroundBehavior.stop,
+      ),
+      web: WebOptions(
+        idleTimeout: Duration(minutes: 30),
+      ),
     ),
   ),
 );
 ```
 
-#### Platform Options (mobile only)
+#### Platform Options
 
 | Option | Description | Default |
 | --- | --- | --- |
-| `mobile` | Mobile-specific options (iOS/Android). See properties below | `MobileOptions()` |
-| `mobile.wifiOnly` | When `true`, replay events will only be flushed when the device has WiFi. When `false`, replay events will be flushed with any network connection including cellular | `true` |
+| `mobile` | Mobile-specific options (iOS/Android/macOS). See properties below | `MobileOptions()` |
+| `mobile.wifiOnly` | When `true`, replay events will only be flushed when the device has WiFi. When `false`, replay events will be flushed with any network connection including cellular. Does not apply on web | `true` |
+| `mobile.onBackground` | Whether leaving the foreground pauses or stops the replay. See [Background Behavior](/docs/tracking-methods/sdks/flutter/flutter-replay#background-behavior-mobile) | `ReplayBackgroundBehavior.stop` |
+| `web` | Flutter web-specific options (beta). See properties below | `WebOptions()` |
+| `web.idleTimeout` | Inactivity duration after which a web replay ends. `Duration.zero` disables it. See [Session Lifetime on Web](/docs/tracking-methods/sdks/flutter/flutter-replay#session-lifetime-on-web) | `30 minutes` |
+| `web.maxSessionDuration` | Maximum duration of a single web replay, regardless of activity | `24 hours` |
+
+#### Background Behavior (Mobile)
+
+`mobile.onBackground` controls what happens to an active replay when the app leaves the foreground on iOS, Android, and macOS. Nothing is captured while the app is in the background under either setting.
+
+| Value | Behavior |
+| --- | --- |
+| `ReplayBackgroundBehavior.stop` (default) | Ends the replay. Returning to the foreground starts a new replay. |
+| `ReplayBackgroundBehavior.pause(idleTimeout: ...)` | Keeps the replay. Returning to the foreground within `idleTimeout` resumes it with the same Replay ID. Returning after that starts a new replay. |
+
+```dart
+options: SessionReplayOptions(
+  platformOptions: PlatformOptions(
+    mobile: MobileOptions(
+      onBackground: ReplayBackgroundBehavior.pause(
+        idleTimeout: Duration(minutes: 30),
+      ),
+    ),
+  ),
+)
+```
+
+While paused, `recordingState` reports `RecordingState.paused`. `idleTimeout` must be a positive duration.
+
+#### Session Lifetime on Web
+
+A web replay continues across tab switches and ends only through `idleTimeout` or `maxSessionDuration`. Nothing is captured while the page is hidden.
+
+```dart
+options: SessionReplayOptions(
+  platformOptions: PlatformOptions(
+    web: WebOptions(
+      idleTimeout: Duration(minutes: 30),
+      maxSessionDuration: Duration(hours: 24),
+    ),
+  ),
+)
+```
+
+Once a replay ends, the user's next interaction starts a new one.
+
+[Remote Configuration](/docs/tracking-methods/sdks/flutter/flutter-replay#remote-configuration) can override both durations from your project settings.
 
 #### Debug Options
 
@@ -339,6 +438,8 @@ final result = await MixpanelSessionReplay.initialize(
 List of currently supported remote settings:
 
 - `autoRecordSessionsPercent`
+- `web.idleTimeout` (web only)
+- `web.maxSessionDuration` (web only)
 
 Settings that are not yet supported will not appear in the remote configuration. These non-included options will use the value from the SDK initialization config.
 
@@ -397,7 +498,7 @@ If you are still struggling with either of the following common issues:
 
 Please [submit a request to our Support team](https://mixpanel.com/get-support) and include the following information:
 
-- Whether your issue is with iOS, Android, macOS, or all platforms
+- Whether your issue is with iOS, Android, macOS, web, or all platforms
 - Your Session Replay code snippet
 - Where you initialize the Session Replay SDK
 - Any relevant logs (enable with `logLevel: LogLevel.debug`)
@@ -777,7 +878,7 @@ When you enable Session Replay, use the above proxy metric to determine a starti
 
 #### How does Session Replay affect my app's bandwidth consumption?
 
-The bandwidth impact of Session Replay depends on the setting of the [`wifiOnly` parameter](/docs/tracking-methods/sdks/flutter/flutter-replay#platform-options-mobile-only).
+The bandwidth impact of Session Replay depends on the setting of the [`wifiOnly` parameter](/docs/tracking-methods/sdks/flutter/flutter-replay#platform-options). `wifiOnly` is a mobile option and does not apply on web.
 
 By default, `wifiOnly` is set to `true`, which means replay events are only flushed to the server when the device has a wifi connection. If there is no wifi, flushes are skipped, and the events remain in the local disk queue until WiFi is restored. This ensures no additional cellular data is used, preventing users from incurring additional data charges.
 
