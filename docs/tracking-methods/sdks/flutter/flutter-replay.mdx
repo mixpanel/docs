@@ -29,6 +29,18 @@ Session Replay provides powerful insights into user behavior, but it also introd
 | macOS | 12.0\+ |
 | Web (beta) | Chrome 80\+, Firefox 113\+, Safari 16.4\+ |
 
+### Apple Platform Support
+
+Each major version of the Session Replay SDK has its own minimum supported iOS and macOS versions. Version 2.x raises the minimums to match the minimum deployment targets of Xcode 27. Use this table to choose the version that fits your app.
+
+| SDK version | Minimum supported iOS | Minimum supported macOS | Supported Xcode versions | Support status |
+| ----------- | --------------------- | ----------------------- | ------------------------ | -------------- |
+| 2.x | iOS 15 | macOS 12 | Xcode 26 and 27 | **Current:** receives new features and fixes |
+| 1.x | iOS 13 | macOS 10.15 | Xcode 26 | **Maintenance:** receives critical fixes only, until April 2027 |
+
+If your app uses CocoaPods, on 2.x set `platform :ios, '15.0'` in `ios/Podfile` and `platform :osx, '12.0'` in `macos/Podfile`. Building with Xcode 27 requires Flutter 3.47\+. 
+If your app needs to support an older iOS or macOS version, stay on 1.x.
+
 ### Flutter Web (Beta)
 
 <Note>
