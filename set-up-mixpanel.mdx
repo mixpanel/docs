@@ -27,7 +27,7 @@ Someone to decide what to track, someone who can add code, and access to your Mi
 
 You can set Mixpanel up with an AI coding agent or by following the steps yourself. Both get you to the same place with clean data flowing into Mixpanel, so pick the one that fits how your team works.
 
--                <Badge color="blue">Set up yourself</Badge> : Follow the steps to install the SDK, send your first events, and check them. Best if you'd rather write the code yourself, or your company’s policies keep AI tools away from your code.
+-                 <Badge color="blue">Set up yourself</Badge> : Follow the steps to install the SDK, send your first events, and check them. Best if you'd rather write the code yourself, or your company’s policies keep AI tools away from your code.
 - **Set up with AI**: Your agent reads your codebase, suggests events, and adds the SDK. You review every change. Best if your team already uses a coding agent like Claude Code or Cursor. No codebase access? The tool can write a spec for a developer to follow instead.
 
 ### **something else**
@@ -47,7 +47,7 @@ context setting on the boxes
     <Columns cols={2}>
       <Column>
         <Card title="Set up yourself" icon="mouse-pointer">
-          <Badge color="purple">DIY</Badge>
+          <Badge color="red">DIY</Badge>
 
           Choose events from your top questions, then write the plan.
 
@@ -101,16 +101,11 @@ context setting on the boxes
     - Events reach your production project
     - They match what you tested
 
-    <Columns cols={2}>
-      <Column>
-        <Card title="Set up yourself" icon="mouse-pointer">
-        </Card>
-      </Column>
-      <Column>
-        <Card title="Set up with AI" icon="sparkles">
-        </Card>
-      </Column>
-    </Columns>
+    <Card title="Either way" icon="network-wired">
+      <Badge>U</Badge>Review the code, then deploy through your usual release process. Compare what arrives with what you tested.
+
+      [Developer Environments](/docs/tracking-best-practices/developer-environments) · [Ensuring Data Quality](/guides/guides-by-workflow/ensure-data-quality)
+    </Card>
   </Step>
 
   <Step title="Roll out to your team">
@@ -134,18 +129,6 @@ context setting on the boxes
     </Columns>
   </Step>
 </Steps>
-
-<Card title="3. Launch to production" icon="cloud-upload-alt">
-  <Badge color="blue">Usually an engineer</Badge>
-
-  [Developer Environments](/docs/tracking-best-practices/developer-environments) · [Ensuring Data Quality](/guides/guides-by-workflow/ensure-data-quality)
-</Card>
-
-<Card title="4. Roll out to your team" icon="people-line">
-  <Badge color="purple">Usually a product manager</Badge>
-
-  [Core Reports](/guides/guides-by-topic/core-reports) · [Roles & Permissions](/docs/orgs-and-projects/roles-and-permissions)
-</Card>
 
 ### **Set up with AI**
 
