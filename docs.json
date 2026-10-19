@@ -605,6 +605,11 @@
               "docs/response-times",
               "links/hire-an-expert"
             ]
+          },
+          {
+            "group": "Style guide",
+            "hidden": true,
+            "pages": []
           }
         ]
       },
