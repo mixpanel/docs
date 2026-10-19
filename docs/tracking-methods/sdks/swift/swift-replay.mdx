@@ -256,6 +256,15 @@ MPSessionReplay.getInstance()?.autoMaskedViews = [.image]
 MPSessionReplay.getInstance()?.autoMaskedViews = []
 ```
 
+**enableSessionReplayOniOS26AndLater Example Usage (1.x only)**
+
+On 1.x versions, Session Replay is disabled by default for apps built with Xcode 26\+ running on iOS 26\+. To enable it, set the flag during initialization. Version 2.0.0 and later removed this flag, so delete it when you upgrade.
+
+```swift Swift
+let config = MPSessionReplayConfig()
+config.enableSessionReplayOniOS26AndLater = true
+```
+
 #### Identity Management
 
 The Mixpanel distinct ID for the current user can be passed into the initializer and changed at runtime by calling the `.identify(distinctId:)` method:
