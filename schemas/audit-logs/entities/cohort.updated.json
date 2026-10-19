@@ -1,0 +1,154 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "Cohort criteria or settings were modified.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "cohort",
+      "default": "cohort",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "definition": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "data_group_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "is_visible": {
+              "type": "boolean"
+            },
+            "is_locked": {
+              "type": "boolean"
+            },
+            "created_by_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "description",
+            "definition",
+            "is_visible",
+            "is_locked"
+          ],
+          "type": "object"
+        },
+        "current": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "definition": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "data_group_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "is_visible": {
+              "type": "boolean"
+            },
+            "is_locked": {
+              "type": "boolean"
+            },
+            "created_by_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "description",
+            "definition",
+            "is_visible",
+            "is_locked"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "updated",
+      "default": "updated",
+      "type": "string"
+    },
+    "type": {
+      "const": "cohort.updated",
+      "default": "cohort.updated",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

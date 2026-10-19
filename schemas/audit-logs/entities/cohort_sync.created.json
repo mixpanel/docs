@@ -1,0 +1,103 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A new cohort sync integration was configured.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "cohort_sync",
+      "default": "cohort_sync",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "type": "null"
+        },
+        "current": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "cohort_id": {
+              "type": "string"
+            },
+            "cohort_name": {
+              "type": "string"
+            },
+            "integration_name": {
+              "type": "string"
+            },
+            "connector_name": {
+              "type": "string"
+            },
+            "recurring": {
+              "type": "boolean"
+            },
+            "is_active": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "external_info": {
+              "anyOf": [
+                {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "cohort_id",
+            "cohort_name",
+            "integration_name",
+            "connector_name",
+            "recurring"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "created",
+      "default": "created",
+      "type": "string"
+    },
+    "type": {
+      "const": "cohort_sync.created",
+      "default": "cohort_sync.created",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

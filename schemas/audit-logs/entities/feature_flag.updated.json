@@ -1,0 +1,270 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "Feature flag settings were modified.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "feature_flag",
+      "default": "feature_flag",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "key": {
+              "type": "string"
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "tags": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "status": {
+              "type": "string"
+            },
+            "serving_method": {
+              "type": "string"
+            },
+            "context": {
+              "type": "string"
+            },
+            "data_group_id": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "workspace_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "project_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "experiment_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "is_experiment_active": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "ruleset": {
+              "additionalProperties": true,
+              "type": "object"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "key",
+            "status",
+            "serving_method",
+            "context",
+            "ruleset"
+          ],
+          "type": "object"
+        },
+        "current": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "key": {
+              "type": "string"
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "tags": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "status": {
+              "type": "string"
+            },
+            "serving_method": {
+              "type": "string"
+            },
+            "context": {
+              "type": "string"
+            },
+            "data_group_id": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "workspace_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "project_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "experiment_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "is_experiment_active": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "ruleset": {
+              "additionalProperties": true,
+              "type": "object"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "key",
+            "status",
+            "serving_method",
+            "context",
+            "ruleset"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "updated",
+      "default": "updated",
+      "type": "string"
+    },
+    "type": {
+      "const": "feature_flag.updated",
+      "default": "feature_flag.updated",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,140 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "An invitation was sent to a new user.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "invitation",
+      "default": "invitation",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "organization_role": {
+          "anyOf": [
+            {
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "is_custom_role": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "is_custom_role"
+              ],
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "teams": {
+          "default": [],
+          "items": {
+            "properties": {
+              "team_id": {
+                "type": "string"
+              },
+              "team_name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "team_id",
+              "team_name"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "projects": {
+          "default": [],
+          "items": {
+            "properties": {
+              "project_id": {
+                "type": "string"
+              },
+              "role": {
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "is_custom_role": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "is_custom_role"
+                ],
+                "type": "object"
+              }
+            },
+            "required": [
+              "project_id",
+              "role"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "email"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "sent",
+      "default": "sent",
+      "type": "string"
+    },
+    "type": {
+      "const": "invitation.sent",
+      "default": "invitation.sent",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

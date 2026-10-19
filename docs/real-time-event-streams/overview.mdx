@@ -1,0 +1,79 @@
+---
+title: "Real-Time Event Streams Overview"
+sidebarTitle: "Overview"
+description: "Stream Mixpanel events to a custom webhook within seconds of ingestion to power activation, personalization, and downstream data workflows."
+---
+
+<Note>
+  **Beta.** Real-Time Event Streams are currently available to a limited set of customers during Beta. If you'd like to participate, reach out to your Mixpanel account team.
+</Note>
+
+Real-Time Event Streams deliver Mixpanel events to your infrastructure within seconds of ingestion, so you can react to user behavior without waiting for a batch export.
+
+## What you get in the beta
+
+<CardGroup cols={2}>
+  <Card title="Low-latency delivery" icon="bolt">
+    p95 delivery within 120 seconds of event ingestion.
+  </Card>
+
+  <Card title="Custom webhook destination" icon="webhook">
+    Send events to any HTTPS endpoint you control, with your own auth and payload shape.
+  </Card>
+
+  <Card title="Event and property filters" icon="filter">
+    Stream only the event types and property values that matter to your use case.
+  </Card>
+
+  <Card title="Liquid-templated payloads" icon="code">
+    Fully control the outbound request body, including field names and identity.
+  </Card>
+</CardGroup>
+
+## When to use streams
+
+Use Real-Time Event Streams when latency matters and your workflow needs individual events as they happen:
+
+- **Live activation** — trigger emails, pushes, or in-app messages seconds after a qualifying event.
+- **Operational alerting** — feed on-call systems when key events are triggered.
+- **Personalization** — update recommendations and experiences based on the user's current behavior.
+- **Downstream pipelines** — fan events into your own queues or services for custom processing.
+
+## How Real Time Streams compare to Data Pipelines
+
+[Data Pipelines](/docs/data-pipelines) deliver batches of events to warehouses and object stores on a schedule. Real-Time Event Streams deliver individual events with low latency to an HTTP endpoint you control. Use pipelines for analytics and reporting workloads; use streams when you need to act on events within seconds.
+
+## Key Concepts
+
+- **Destination** — the webhook endpoint and its authentication configuration.
+- **Stream** — a rule that binds a set of filtered events and a Liquid payload template to a Destination.
+
+## Delivery guarantees at a glance
+
+- **At-least-once delivery.** You can include the Mixpanel Insert ID property in the payload so you can deduplicate on your side.
+- **Automatic retries.** Transient failures (5xx, timeouts, network errors) are retried up to 4 times with exponential backoff. Permanent failures (4xx) are surfaced as configuration errors.
+- **Latency.** p95 ≤ 120 seconds from ingestion to a confirmed 2xx response at your endpoint under normal load, often times even faster.
+
+See [Delivery and reliability](/docs/real-time-event-streams/delivery-and-reliability) for the full behavior.
+
+{/* PLACEHOLDER: List any additional beta limitations specific to your rollout — e.g., project types, regions, event volume caps. */}
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Set up a webhook Sync" icon="gear" href="/docs/real-time-event-streams/setup">
+    Configure a destination, choose events and property filters, and write your Liquid payload template.
+  </Card>
+
+  <Card title="Delivery and reliability" icon="shield-check" href="/docs/real-time-event-streams/delivery-and-reliability">
+    Understand retries, the failed events log, and at-least-once delivery.
+  </Card>
+
+  <Card title="States and monitoring" icon="chart-line" href="/docs/real-time-event-streams/states-and-monitoring">
+    Read Destination and Sync states and monitor Sync health.
+  </Card>
+
+  <Card title="Request beta access" icon="envelope" href="mailto:support@mixpanel.com">
+    Reach out to your Mixpanel account team to join the private beta.
+  </Card>
+</CardGroup>

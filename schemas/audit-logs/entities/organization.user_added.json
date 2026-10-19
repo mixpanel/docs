@@ -1,0 +1,91 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A user was added to the organization.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "organization",
+      "default": "organization",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "user_email": {
+          "type": "string"
+        },
+        "organization_role": {
+          "anyOf": [
+            {
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "is_custom_role": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "is_custom_role"
+              ],
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source": {
+          "enum": [
+            "admin",
+            "invitation",
+            "join_organization",
+            "scim",
+            "scim_linked_org",
+            "sso_jit"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "user_id",
+        "user_email",
+        "source"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "user_added",
+      "default": "user_added",
+      "type": "string"
+    },
+    "type": {
+      "const": "organization.user_added",
+      "default": "organization.user_added",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

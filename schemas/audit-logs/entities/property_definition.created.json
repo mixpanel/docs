@@ -1,0 +1,164 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A new property definition was created.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "property_definition",
+      "default": "property_definition",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "type": "null"
+        },
+        "current": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "display_name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "example_value": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "type": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "hidden": {
+              "default": false,
+              "type": "boolean"
+            },
+            "dropped": {
+              "default": false,
+              "type": "boolean"
+            },
+            "sensitive": {
+              "default": false,
+              "type": "boolean"
+            },
+            "merged": {
+              "default": false,
+              "type": "boolean"
+            },
+            "merged_into_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "resource_type": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "data_group_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "created",
+      "default": "created",
+      "type": "string"
+    },
+    "type": {
+      "const": "property_definition.created",
+      "default": "property_definition.created",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

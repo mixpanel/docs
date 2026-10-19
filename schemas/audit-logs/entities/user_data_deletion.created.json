@@ -1,0 +1,94 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "A request to delete user profile data was submitted.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "user_data_deletion",
+      "default": "user_data_deletion",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "type": "null"
+        },
+        "current": {
+          "properties": {
+            "compliance_type": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "ccpa",
+                    "gdpr"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "distinct_ids": {
+              "anyOf": [
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "delete_replays": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "created",
+      "default": "created",
+      "type": "string"
+    },
+    "type": {
+      "const": "user_data_deletion.created",
+      "default": "user_data_deletion.created",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

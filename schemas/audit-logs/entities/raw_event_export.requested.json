@@ -1,0 +1,204 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A raw event export was requested.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "raw_event_export",
+      "default": "raw_event_export",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "auth_type": {
+          "description": "The method of authentication used to request the raw event export.",
+          "enum": [
+            "serviceaccount",
+            "token",
+            "sig"
+          ],
+          "type": "string"
+        },
+        "from_date": {
+          "description": "The start date of the data export. This date is inclusive and interpreted as UTC timezone for projects created after 1 January 2023 and current project timezone for projects created before 11 January 2023.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "to_date": {
+          "description": "The end date of the data export. This date is inclusive and interpreted as UTC timezone for projects created after 1 January 2023 and current project timezone for projects created before 11 January 2023.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "include_web_events": {
+          "description": "Whether web events were included in the export.",
+          "type": "boolean"
+        },
+        "where": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The expression to filter events by."
+        },
+        "time_in_ms": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Whether export event timestamps have millisecond-precision."
+        },
+        "export_type_details": {
+          "oneOf": [
+            {
+              "properties": {
+                "export_type": {
+                  "const": "export-upload",
+                  "default": "export-upload",
+                  "type": "string"
+                },
+                "s3_bucket": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "The AWS S3 bucket where the exported events were uploaded. This field is present if the export was uploaded to S3."
+                },
+                "s3_prefix": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "The AWS S3 prefix where the exported events were uploaded. This field is present if the export was uploaded to S3."
+                },
+                "s3_region": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "The AWS S3 region where the exported events were uploaded. This field is present if the export was uploaded to S3."
+                },
+                "gcs_bucket": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "The Google Cloud Storage bucket where the exported events were uploaded. This field is present if the export was uploaded to GCS."
+                },
+                "gcs_prefix": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "The Google Cloud Storage prefix where the exported events were uploaded. This field is present if the export was uploaded to GCS."
+                }
+              },
+              "type": "object"
+            },
+            {
+              "properties": {
+                "export_type": {
+                  "const": "export",
+                  "default": "export",
+                  "type": "string"
+                },
+                "limit": {
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "The maximum number of events that were returned."
+                },
+                "event": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "description": "The event or events for which data was requested, encoded as a JSON array."
+                }
+              },
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "required": [
+        "auth_type",
+        "from_date",
+        "to_date",
+        "include_web_events",
+        "export_type_details"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "requested",
+      "default": "requested",
+      "type": "string"
+    },
+    "type": {
+      "const": "raw_event_export.requested",
+      "default": "raw_event_export.requested",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

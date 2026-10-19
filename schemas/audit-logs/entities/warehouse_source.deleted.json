@@ -1,0 +1,269 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "A warehouse source connection was removed.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "warehouse_source",
+      "default": "warehouse_source",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "properties": {
+            "source_name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "details": {
+              "anyOf": [
+                {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "warehouse_type": {
+                          "const": "bigquery",
+                          "default": "bigquery",
+                          "type": "string"
+                        },
+                        "gcp_project": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "default": null
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "warehouse_type": {
+                          "const": "snowflake",
+                          "default": "snowflake",
+                          "type": "string"
+                        },
+                        "account_name": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "default": null
+                        },
+                        "user_name": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "default": null
+                        },
+                        "role": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "default": null
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "warehouse_type": {
+                          "const": "redshift",
+                          "default": "redshift",
+                          "type": "string"
+                        },
+                        "cluster_identifier": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "default": null
+                        },
+                        "workgroup_arn": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "default": null
+                        },
+                        "role": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "default": null
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "warehouse_type": {
+                          "const": "databricks",
+                          "default": "databricks",
+                          "type": "string"
+                        },
+                        "server_hostname": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "default": null
+                        },
+                        "http_path": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "default": null
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "warehouse_type": {
+                          "const": "postgres",
+                          "default": "postgres",
+                          "type": "string"
+                        },
+                        "ip_address": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "default": null
+                        },
+                        "port": {
+                          "anyOf": [
+                            {
+                              "type": "integer"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "default": null
+                        },
+                        "database_name": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "default": null
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                {
+                  "properties": {
+                    "warehouse_type": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "warehouse_type"
+                  ],
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "details"
+          ],
+          "type": "object"
+        },
+        "current": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "deleted",
+      "default": "deleted",
+      "type": "string"
+    },
+    "type": {
+      "const": "warehouse_source.deleted",
+      "default": "warehouse_source.deleted",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

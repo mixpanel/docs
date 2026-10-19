@@ -1,0 +1,72 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A user's project access was revoked.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "project",
+      "default": "project",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "user_email": {
+          "type": "string"
+        },
+        "role": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "is_custom_role": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "is_custom_role"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "user_id",
+        "user_email",
+        "role"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "user_removed",
+      "default": "user_removed",
+      "type": "string"
+    },
+    "type": {
+      "const": "project.user_removed",
+      "default": "project.user_removed",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

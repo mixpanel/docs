@@ -1,0 +1,105 @@
+---
+title: "Delivery and Reliability"
+sidebarTitle: "Delivery & Reliability"
+description: "How Real-Time Event Streams retry failed deliveries, handle at-least-once semantics, and expose failed events for debugging."
+---
+
+<Note>
+  Real-Time Event Streams are in Beta. Contact your Mixpanel account team to enable the feature for your project.
+</Note>
+
+Real-Time Event Streams are designed for at-least-once delivery with automatic retry of transient failures. This page describes the delivery, retry policy, failed events log, and headers you can use to deduplicate on your side.
+
+## Latency
+
+Events will be delivered to webhook endpoints within **p95 ≤ 120 seconds** of ingestion under normal load. This is the baseline definition of "real-time" for the feature.
+
+## Batching
+
+Events are batched per Sync before delivery. Mixpanel flushes a batch when it<br />reaches **500 events** or **5 seconds** since the first event in the batch,<br />whichever comes first.<br /><br />Each flush is a single \`POST\` whose body is a \*\*JSON array\*\* of rendered events,<br />even when the array contains only one event:
+
+​json<br />[<br />  \{ "event": "Signup", "user_id": "abc" \},<br />  \{ "event": "Signup", "user_id": "def" \}<br />]<br /><br />Your endpoint must accept a JSON array and return a single 2xx for the whole<br />batch. A non-2xx fails the entire batch (all events are retried together).
+
+{/* PLACEHOLDER: Add customer-facing status page or support process for reporting sustained latency issues during the beta. */}
+
+## Retry policy
+
+Transient delivery failures are retried automatically. Permanent failures are not retried and surface as configuration errors.
+
+### What gets retried
+
+| Failure type | Retried? | Notes |
+| --- | --- | --- |
+| `5xx` response | Yes | Server-side error at the destination. |
+| Connection timeout / network error | Yes | Includes DNS failures and TLS handshake errors. |
+| `429 Too Many Requests` | Yes | Handled via backpressure. See [Rate limits](#rate-limits-and-backpressure). |
+| `401`/`403` (auth) | No | Terminal auth failure. Sync is paused. |
+| Other `4xx` response | Yes | Retried as "destination unreachable". If retries exhaust, Sync is paused. |
+
+### Backoff schedule
+
+Up to **4 retries** (1 initial + 4 retries) with exponential backoff starting at 200ms, totaling roughly **3 seconds**:
+
+| Attempt | Delay before attempt |
+| --- | --- |
+| 1 (Initial) | Immediate |
+| 2 | 200ms |
+| 3 | 1 second |
+| 4 | 5 seconds |
+| 5 | 30 seconds |
+
+For `429` responses, the `Retry-After` header is honored when present, capped at 10 seconds.
+
+### 4xx errors
+
+`401` and `403` responses indicate an authentication failure. These are terminal:
+
+- The Sync is paused immediately.
+- The Destination surfaces an authentication error.
+- A project admin must fix credentials or the webhook URL before restarting.
+
+Other `4xx` responses (e.g., `400`, `404`, `422`) indicate the destination is unreachable or misconfigured and are retried like transient failures. If retries exhaust:
+
+- The Sync is paused.
+- The error state is visible in the UI so a project admin can fix the endpoint or payload template.
+
+## Failed Events Log
+
+When events cannot be delivered after retries, they move to a **failed events log** retained in-product for debugging. Each entry is an aggregated roll-up per failed stream. One row per Sync + status code + error type + count of failed events in that window
+
+{/* PLACEHOLDER: Document how to replay failed events (manual retry, bulk replay, or export) once the flow is confirmed. */}
+
+## Alerting on failure
+
+Failure alerting happens when a terminal failure is encountered (auth error, or non-auth 4xx after retries): the Sync moves into the `error` state and pauses streaming until a Project Admin re-enables it. See [States and monitoring](/docs/real-time-event-streams/states-and-monitoring) for state transitions.
+
+{/* PLACEHOLDER: Describe how alerts are delivered — in-app notification, email, both — and where alert history is viewable. */}
+
+## Rate limits and backpressure
+
+When a destination returns `429 Too Many Requests`:
+
+- The request is retried after respecting the `Retry-After` header (if present, capped at 10 seconds).
+- If retries exhaust, the Sync enters the `error` state and pauses.
+
+See [States and monitoring](/docs/real-time-event-streams/states-and-monitoring) for the full list of Sync states.
+
+## What to build on your side
+
+To get the most out of the delivery model:
+
+- **Return 2xx quickly.** Acknowledge the request before doing heavy downstream work; process asynchronously on your side.
+- **Return 4xx for permanent errors, 5xx for transient ones.** This lets Mixpanel retry the right failures and surface the right errors.
+- **Honor `Retry-After`** on `429` responses so Mixpanel can back off cleanly.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="States and monitoring" icon="chart-line" href="/docs/real-time-event-streams/states-and-monitoring">
+    Destination and Sync states, and how to monitor Sync health.
+  </Card>
+
+  <Card title="Set up a Sync" icon="gear" href="/docs/real-time-event-streams/setup">
+    Configure a webhook Destination and Liquid payload template.
+  </Card>
+</CardGroup>

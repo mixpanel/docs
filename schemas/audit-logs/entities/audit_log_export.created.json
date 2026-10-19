@@ -1,0 +1,46 @@
+{
+  "x-release-date": "2026-04-03T19:00:00Z",
+  "description": "An audit log export was initiated.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "audit_log_export",
+      "default": "audit_log_export",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "filters": {}
+      },
+      "required": [
+        "filters"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "created",
+      "default": "created",
+      "type": "string"
+    },
+    "type": {
+      "const": "audit_log_export.created",
+      "default": "audit_log_export.created",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

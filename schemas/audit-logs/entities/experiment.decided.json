@@ -1,0 +1,68 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A decision was made on an experiment.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "experiment",
+      "default": "experiment",
+      "type": "string"
+    },
+    "payload": {
+      "description": "Payload for experiment decision events (success/fail).",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "variant": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "message": {
+          "type": "string"
+        },
+        "decided_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "decided_by"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "decided",
+      "default": "decided",
+      "type": "string"
+    },
+    "type": {
+      "const": "experiment.decided",
+      "default": "experiment.decided",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

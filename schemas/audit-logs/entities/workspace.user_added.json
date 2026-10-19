@@ -1,0 +1,52 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A user was granted access to a data view.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "workspace",
+      "default": "workspace",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "user_email": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "user_id",
+        "user_email"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "user_added",
+      "default": "user_added",
+      "type": "string"
+    },
+    "type": {
+      "const": "workspace.user_added",
+      "default": "workspace.user_added",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

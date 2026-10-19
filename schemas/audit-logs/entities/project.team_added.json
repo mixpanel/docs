@@ -1,0 +1,72 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "A team was granted access to a project.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "project",
+      "default": "project",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "team_id": {
+          "type": "string"
+        },
+        "team_name": {
+          "type": "string"
+        },
+        "role": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "is_custom_role": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "is_custom_role"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "team_id",
+        "team_name",
+        "role"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "team_added",
+      "default": "team_added",
+      "type": "string"
+    },
+    "type": {
+      "const": "project.team_added",
+      "default": "project.team_added",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

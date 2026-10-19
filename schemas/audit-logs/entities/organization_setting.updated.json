@@ -1,0 +1,126 @@
+{
+  "x-release-date": "2026-05-19T10:00:00Z",
+  "description": "Organization settings were modified.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "organization_setting",
+      "default": "organization_setting",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "properties": {
+            "name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "default_id_merge_mode": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "The Identity Merge mode for the organization, which determines how multiple identities for each user are handled."
+            },
+            "users_export_csv_row_limit": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Max rows allowed per Users page CSV export; null means unlimited."
+            }
+          },
+          "type": "object"
+        },
+        "current": {
+          "properties": {
+            "name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "default_id_merge_mode": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "The Identity Merge mode for the organization, which determines how multiple identities for each user are handled."
+            },
+            "users_export_csv_row_limit": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Max rows allowed per Users page CSV export; null means unlimited."
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "updated",
+      "default": "updated",
+      "type": "string"
+    },
+    "type": {
+      "const": "organization_setting.updated",
+      "default": "organization_setting.updated",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
