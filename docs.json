@@ -609,7 +609,9 @@
           {
             "group": "Style guide",
             "hidden": true,
-            "pages": []
+            "pages": [
+              "untitled-page"
+            ]
           }
         ]
       },
