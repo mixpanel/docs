@@ -5,7 +5,7 @@ title: "Mixpanel SDKs: Unity"
 
 ## Getting Started
 
-Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=unity).
+Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#unity).
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-unity/api-reference/annotated.html), [Library Source Code](https://github.com/mixpanel/mixpanel-unity), and an [Example Application](https://github.com/mixpanel/mixpanel-unity#examples) is documented in our GitHub repo.
 
@@ -147,7 +147,7 @@ See more methods related to super properties in the complete library reference [
 
 ## Managing User Identity
 
-You can handle the identity of a user using the [`Mixpanel.Identify()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#a4636a50f2f4e36895f56a6101e527720) and [`Mixpanel.Reset()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#af80b55f985b94780ec983dc6c1210d6b) methods. Learn more about [identity management](/docs/tracking-methods/id-management/identity-management) and [identifying users](/docs/tracking-methods/id-management/identifying-users).
+You can handle the identity of a user using the [`Mixpanel.Identify()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#a4636a50f2f4e36895f56a6101e527720) and [`Mixpanel.Reset()`](https://mixpanel.github.io/mixpanel-unity/api-reference/classmixpanel_1_1_mixpanel.html#af80b55f985b94780ec983dc6c1210d6b) methods. Learn more about [identity management](/docs/tracking-methods/id-management) and [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
 
 ### Identify
 
@@ -378,7 +378,7 @@ Mixpanel.People.Set("company", "mixpanel");
 
 You have control over the data you send to Mixpanel. The Unity SDK provide methods to help you protect user data.
 
-Learn more about [Privacy](/docs/privacy/overview).
+Learn more about [Privacy](/docs/privacy).
 
 ### Opt Out of Tracking
 
@@ -419,6 +419,63 @@ Route data to Mixpanel's EU servers by setting the `API Host Address` to `https:
 ### India Data Residency
 
 Route data to Mixpanel's EU servers by setting the `API Host Address` to `https://api-in.mixpanel.com/` when configuring the library under the unity project settings menu for Mixpanel (Edit -\> Project Settings -\> Mixpanel).
+
+## Custom Data Storage
+
+By default, the Unity SDK stores its state (such as the distinct ID and super properties) and queued events in Unity's `PlayerPrefs`. PlayerPrefs writes run on the main thread, and on some platforms they are slow. On iOS, each write is a synchronous `NSUserDefaults` call, so tracking many events in a short time or building up a large offline queue can cause frame drops or app hangs.
+
+You can replace this storage with your own by implementing the [`IPreferences`](https://github.com/mixpanel/mixpanel-unity/blob/master/Mixpanel/IPreferences.cs) interface and passing it to `Mixpanel.SetPreferencesSource()`:
+
+```csharp
+public interface IPreferences
+{
+    void DeleteKey(string key);
+    int GetInt(string key);
+    int GetInt(string key, int defaultValue);
+    string GetString(string key);
+    string GetString(string key, string defaultValue);
+    bool HasKey(string key);
+    void SetInt(string key, int value);
+    void SetString(string key, string value);
+}
+```
+
+<Warning>
+  The SDK calls your implementation on the main thread, including on every `Mixpanel.Track()` call. Keep values in memory and save them to disk on a background thread. Writing to disk inside `SetString()`, `SetInt()` or `DeleteKey()` will block the main thread just like PlayerPrefs.
+</Warning>
+
+We also recommend that your implementation:
+
+- Saves pending changes immediately when the app is backgrounded (`OnApplicationPause(true)`), since iOS can suspend or terminate a backgrounded app without warning.
+- Stores its data in [`Application.persistentDataPath`](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html), reading the path on the main thread.
+- Writes to a temporary file and then replaces the original, so a crash during a save does not corrupt the stored data.
+
+### Setting a Custom Storage
+
+The custom storage must be set before the SDK reads or writes any data:
+
+1. Enable **Manual Initialization** in Edit -\> Project Settings -\> Mixpanel.
+2. Call `Mixpanel.SetPreferencesSource()`, then [`Mixpanel.Init()`](https://github.com/mixpanel/mixpanel-unity/blob/master/Mixpanel/MixpanelAPI.cs), before any other Mixpanel call.
+
+**Example Usage**
+
+```csharp
+using mixpanel;
+using UnityEngine;
+
+public static class MixpanelBootstrap
+{
+    // Runs automatically at startup, before the first scene loads
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void InitMixpanel()
+    {
+        // MyPreferences is your IPreferences implementation
+        var preferences = new MyPreferences();
+        Mixpanel.SetPreferencesSource(preferences);
+        Mixpanel.Init();
+    }
+}
+```
 
 ## Release History
 
