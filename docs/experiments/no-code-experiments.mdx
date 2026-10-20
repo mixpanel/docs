@@ -18,15 +18,15 @@ Web Experiments let you build and launch A/B test variants on your website throu
 | Install method | Web snippet in your page's `<head>` |
 | Site type | Best suited to static and marketing sites |
 
-Complex single-page apps are better served by a code experiment. Mutations are applied to the rendered DOM, so the more dynamic the page, the less predictable the result. The visual editor re-applies mutations when elements re-render, but a heavily client-routed app will still behave less reliably than a static page.
+Complex single-page apps are better served by a feature experiment. Mutations are applied to the rendered DOM, so the more dynamic the page, the less predictable the result. The visual editor re-applies mutations when elements re-render, but a heavily client-routed app will still behave less reliably than a static page.
 
 Authoring is Chrome-only. The experiment itself runs for all of your end users in any browser, because the variant is delivered by the Mixpanel JavaScript SDK rather than by the extension.
 
-## Web vs Code Experiments
+## Web vs Feature Experiments
 
 Mixpanel has two experiment types. You choose one at creation time.
 
-| | Web Experiment | Code Experiment |
+| | Web Experiment | Feature Experiment |
 | --- | --- | --- |
 | Variants built in | The visual editor, on your live site | Your codebase |
 | Code change per test | None | Yes |
@@ -177,4 +177,4 @@ Exposure is tracked later, when the SDK reads an assigned variant in order to ap
 
 So a visitor can browse your site without ever entering your results, either because they didn't qualify for the experiment or because they qualified but never reached a matching page. Neither case appears in your experiment results or counts toward your [Monthly Experiment Users](/docs/experiments#plan-availability).
 
-Exposure events from a web experiment have the same shape as those from a code experiment, so the Experiments report reads them identically.
+Exposure events from a web experiment have the same shape as those from a feature experiment, so the Experiments report reads them identically.
