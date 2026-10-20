@@ -614,7 +614,13 @@
           {
             "group": "GET STARTED",
             "pages": [
-              "set-up-mixpanel"
+              {
+                "group": "Set Up Mixpanel",
+                "root": "set-up-mixpanel",
+                "pages": [
+                  "set-up-mixpanel/plan-what-to-track"
+                ]
+              }
             ]
           },
           {
