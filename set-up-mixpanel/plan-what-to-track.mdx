@@ -1,38 +1,56 @@
 ---
 title: "Plan what to track"
-description: "Pick your first events, tie each one to a top question, and write them down."
+description: "Step 1 of 4 in Set up Mixpanel. Decide which events to track before anyone writes code."
 sidebarTitle: "Plan What to Track"
 ---
 
 <Badge color="purple">Usually a product manager</Badge>
 
-The first step in [setting up Mixpanel](/set-up-mixpanel) is deciding what to track. Start with a few events. You can add more once data is flowing.
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px', margin: '14px 0 6px' }}>
+  <div style={{ borderTop: '2px solid #7856FF', paddingTop: '8px', fontWeight: 500 }}>1. Plan what to track</div>
+  <div style={{ borderTop: '2px solid #D1D5DB', paddingTop: '8px', color: '#6B7280' }}>2. Implement and test in development</div>
+  <div style={{ borderTop: '2px solid #D1D5DB', paddingTop: '8px', color: '#6B7280' }}>3. Launch to production</div>
+  <div style={{ borderTop: '2px solid #D1D5DB', paddingTop: '8px', color: '#6B7280' }}>4. Roll out to your team</div>
+</div>
 
-## Done when
+Step 1 of 4 in [Set up Mixpanel](/guides/get-started/set-up-mixpanel)
+
+Your plan decides what data you'll have to work with. Your engineer builds from it, and your reports can only answer questions your events cover. Start with a short list tied to your top questions, not everything you could track.
+
+**Done when:**
 
 - You've picked your first events
 - Each one answers a top question
 - They're written down
 
-## Choose how you want to plan
+<Tip>
+  Using an AI coding agent? Follow [Install with AI](/docs/quickstart/install-with-ai) instead. It plans and installs in one session.
+</Tip>
 
-<Columns cols={2}>
-  <Column>
-    <Card title="Set up with AI" icon="sparkles">
-      Install with AI proposes events from your codebase. You decide which to keep.
+## Set up yourself
 
-      [Install with AI](/docs/quickstart/install-with-ai)
-    </Card>
-  </Column>
-  <Column>
-    <Card title="Set up yourself" icon="mouse-pointer">
-      Choose events from your top questions, then write the plan.
+### Decide what to measure
 
-      [What to Track](/docs/what-to-track) · [Create A Tracking Plan](/docs/tracking-best-practices/tracking-plan)
-    </Card>
-  </Column>
-</Columns>
+Start from the questions you want answered, then pick the fewest events that answer them. [What to Track](/docs/what-to-track) · [Measure Value](/guides/strategic-playbooks/guide-to-product-analytics/measure-value)
+
+Selling to companies? Decide whether to analyze them as groups, not just as users. [Group Analytics](/docs/data-structure/group-analytics)
+
+### Learn the building blocks
+
+New to events, users, and properties? [Data Model](/docs/data-structure/concepts) · [Events](/docs/data-structure/events-and-properties)
+
+### Choose what to leave out
+
+Decide which events earn their place. Skip personal data you don't need, and properties Mixpanel already collects. [How To Build a Tracking Strategy](/guides/guides-by-workflow/build-tracking-strategy) · [Data Privacy & PII Best Practices](/guides/guides-by-workflow/data-privacy) · [Default Properties](/docs/data-structure/property-reference/default-properties)
+
+### Write your tracking plan
+
+Start from a template for SaaS, retail, media, or financial services, or begin blank. [Create A Tracking Plan](/docs/tracking-best-practices/tracking-plan)
+
+### Get a second opinion
+
+Share your draft with your Mixpanel onboarding contact, if you have one, or with a teammate who knows your product.
 
 ## Next step
 
-Once your plan is written down, move on to implementing and testing in development. See [Set up Mixpanel](/set-up-mixpanel) for the full path.
+When your plan is written down, go to [2. Implement and test in development](/guides/get-started/implement-and-test).
