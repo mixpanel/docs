@@ -44,7 +44,7 @@ Think of Runtime Events as a "tripwire" that activates once. Here's the flow:
 
 1. On subsequent flag evaluations, the user now receives the active variant
 2. The variant persists based on your duration setting (session or indefinitely)
-3. If the variant is sticky, the user continues receiving it even if rollout changes
+3. If the variant is sticky, the user continues receiving the same variant even if rollout changes, and is never re-bucketed into a different variant
 
 ## Configuring Runtime Events
 
@@ -70,7 +70,7 @@ To add a Runtime Event targeting rule to your feature flag:
     </Note>
   </Step>
   <Step title="(Optional) Add First Time Filter">
-    Click the overflow menu (**...**) and select **"First Time"** to make this a first-time event trigger.
+    Click the overflow menu (**...**) and select **"First Time"** to make this a first-time event trigger. With First Time enabled, only the user's **first** occurrence of the event after the flag is enabled activates the variant; later occurrences of the same event are ignored.
 
     When enabled, a second row appears showing:
 
@@ -78,8 +78,16 @@ To add a Runtime Event targeting rule to your feature flag:
 
     The **Duration** dropdown offers:
 
-    - **End of Session**: Variant expires when the user's session ends
-    - **Indefinitely**: Variant persists in subsequent sessions
+    - **End of Session**: The variant is served only during the client SDK session in which the event first fires. Once that session ends, the user does not receive the variant again, even if they trigger the same event in a later session.
+    - **Indefinitely**: Once the user triggers the event, the variant persists across all subsequent sessions.
+
+    <Note>
+      A Runtime Event **without** a First Time filter behaves the same as **First Time + Indefinitely** — the variant is served indefinitely once the user triggers the event. Enabling First Time only changes behavior when paired with **End of Session**, which limits the variant to the single client SDK session in which the event first fires.
+    </Note>
+
+    <Note>
+      Stickiness controls *which* variant a user gets, not *whether* it keeps being served: a user is never re-bucketed into a *different* variant, but whether they still receive it in a later session depends on the Duration above (Indefinitely keeps serving it; End of Session does not). The **control** variant is always non-sticky, and non-sticky assignments can change if you alter variant splits or lower the rollout %. See [variant assignment key and Sticky Variants](/docs/featureflags#concepts-&-terminology).
+    </Note>
   </Step>
   <Step title="(Optional) Add Property Filters">
     Click **"\+ Filter"** to add conditions on event properties. This lets you target more specific behaviors.
