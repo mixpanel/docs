@@ -64,19 +64,6 @@ JSON columns mapped in BigQuery containing multiple properties are subject to a 
 
 IP allowlists are [not supported](https://docs.cloud.google.com/vpc-service-controls/docs/use-access-levels#limitations_of_using_access_levels_with) for BigQuery because Mixpanel's infrastructure runs on GCP, and inter-project communication in Google Cloud routes through internal Google IPs rather than public IPs. Instead, configure an ingress rule to allow access based on other attributes such as the project or service account. The service account is `project-<your-project-id>@mixpanel-warehouse-1.iam.gserviceaccount.com`. The Mixpanel project is `745258754925` for US, `848893383328` for EU, and `1054291822741` for IN. In addition, you may need to configure an egress rule to write data to `mixpanel-warehouse-1` project `435324298685`.
 
-## Event Time Column
-
-Mixpanel reads the [Time column](/docs/tracking-methods/warehouse-connectors#events)'s typed value, not a formatted string, so string formatting doesn't apply to a native `TIMESTAMP` column. Event times keep millisecond precision; anything finer than a millisecond is truncated.
-
-| BigQuery type | Can be used as Time? | Notes |
-| --- | --- | --- |
-| `TIMESTAMP` | Yes | Recommended. Keeps millisecond precision. |
-| `DATETIME` | Yes | Has no timezone and is read as UTC. If the values are in local time, convert them to `TIMESTAMP` first. |
-| `DATE` | Yes | Every event is set to midnight; there is no time of day. |
-| `INT64`, `STRING`, other types | No | Expose the column as a `TIMESTAMP` in a view (see below). |
-
-To use an epoch or string column as Time, create a view that converts it, for example `TIMESTAMP_MILLIS(epoch_ms_col)` or `TIMESTAMP(event_time_str)`. BigQuery parses a trailing `Z` (e.g. `2026-09-11T01:11:10.341Z`) correctly. [Mirror is not supported on views in BigQuery](#mirror-mode), so to use Mirror, write the converted column into a table and sync that table instead.
-
 ## Mirror Mode
 
 Mirror syncs work by having BigQuery compute which rows have been inserted, modified, or deleted and sending this list of changes to Mixpanel.
