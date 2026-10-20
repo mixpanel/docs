@@ -94,7 +94,7 @@ Here are more details about the schema we expect for events:
   | `DATE` | Yes | Every event is set to midnight; there is no time of day. |
   | `INT64`, `STRING`, other types | No | Expose the column as a `TIMESTAMP` in a view (see below). |
 
-  To use an epoch or string column as Time, create a view that converts it, for example `TIMESTAMP_MILLIS(epoch_ms_col)` or `TIMESTAMP(event_time_str)`. BigQuery parses a trailing `Z` (e.g. `2026-09-11T01:11:10.341Z`) correctly.
+  To use an epoch or string column as Time, create a view that converts it, for example `TIMESTAMP_MILLIS(epoch_ms_col)` or `TIMESTAMP(event_time_str)`. BigQuery parses a trailing `Z` (e.g. `2026-09-11T01:11:10.341Z`) correctly. [Mirror is not supported on views in BigQuery](/docs/tracking-methods/warehouse-connectors/bigquery#mirror-mode), so to use Mirror, write the converted column into a table and sync that table instead.
 </Note>
 
 ### User Profiles

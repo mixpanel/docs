@@ -107,7 +107,6 @@ paths:
                         anyOf:
                         - type: number
                         - type: string
-                          format: date-time
                         title: time
                         description: 'The time at which the event occurred. Accepts a Unix epoch in seconds or milliseconds
                           (integer or float, auto-detected; e.g. `1788422480.137` or `1788422480137`), or an RFC 3339 / ISO 8601
