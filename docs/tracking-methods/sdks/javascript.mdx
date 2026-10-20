@@ -86,7 +86,7 @@ The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc
 ### Library Configuration
 
 <Warning>
-  For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/javascript#privacy-friendly-tracking).
+  For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint by setting `api_host` to `https://api-eu.mixpanel.com` (EU) or `https://api-in.mixpanel.com` (India) in `mixpanel.init()`. Events sent to the wrong region will not be ingested. If you send data through a [proxy](#tracking-via-proxy) or custom domain, point it at your region's host instead and keep the proxy URL in your init code. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency).
 </Warning>
 
 The Mixpanel object can be initialized with different configurations. See a complete list of the configuration options and default values [here](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config).
@@ -169,6 +169,10 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
     autocapture: true,    // enable autocapture
 });
 ```
+
+<Warning>
+  **EU and India data residency:** If your project uses EU or India data residency, you must explicitly set the API host in your init code: add `api_host: 'https://api-eu.mixpanel.com'` (EU) or `api_host: 'https://api-in.mixpanel.com'` (India) to `mixpanel.init()`. Otherwise, your data, including autocaptured events, will be dropped. If you send data through a [proxy](#tracking-via-proxy) or custom domain, point it at your region's host instead and keep the proxy URL in your init code. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency).
+</Warning>
 
 If you'd like to change the default Autocapture settings, you can use custom configs. This is the default configuration:
 
