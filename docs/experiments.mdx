@@ -527,7 +527,29 @@ Click 'Analyze' on a metric to dive deeper into the results. This will open a no
 
 You can also add the experiment breakdowns and filters directly in a report via the Experiments tab in the query builder. This lets you do on-the-fly analysis with the experiment groups. Under the hood, the experiment breakdown and filter work the same as the Experiment report.
 
+## Experiments on Boards
 
+Add an experiment to a [Board](/docs/boards) to track its results alongside your other reports. An experiment can be added to multiple boards.
+
+There are two ways to add an experiment to a board:
+
+- **From the experiment**: Open the menu in the header breadcrumbs and select **Add to board**. Choose an existing board or select **Add to New Board**.
+- **From the board**: Add content to the board, select **Experiment**, then choose the experiment.
+
+Experiment cards are view-only. To edit an experiment, click **View experiment** on the card to open the experiment page.
+
+### Card Views
+
+Each experiment card can show one of four views:
+
+- **Primary Metrics**: The primary metrics table with the lift for each variant.
+- **Exposures**: A chart of exposed users over time, by variant.
+- **Variants**: Each variant with its description and screenshot.
+- **Hypothesis**: The experiment's hypothesis.
+
+### Card Data
+
+Experiment cards show exactly what is on the experiment page. They ignore the board's date range and filters, and use the experiment's own date range, metrics, and settings instead.
 
 ## Multiple Environments
 
