@@ -9,6 +9,73 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-10-14">
+  ## Session Replay: Flutter Autocapture (Taps and Frustration Signals)
+
+  Flutter apps had autocaptured screen views, but nothing about what users tapped. Native Android and iOS autocapture can't see Flutter elements because Flutter draws its own UI, so Flutter teams still had to add a track call to every element by hand. Rage taps and dead taps went unnoticed.
+
+  Tap autocapture is now built into the Flutter SDK (v2.15.0), with rage taps and dead taps captured alongside tap events. With this update, you can:
+
+  - **Cover every platform with one integration:** Because autocapture lives in the Flutter SDK, it works for Flutter apps on Android, iOS, web, and macOS.
+  - **Surface broken interactions automatically:** Rage taps and dead taps are captured without any per-element code.
+  - **Jump to the right sessions:** Every autocaptured event can be used to filter Session Replay playlists.
+
+  With this release, Android, iOS, React Native, and Flutter all support tap and frustration-signal autocapture. Available in open beta on all plans.
+
+  [Learn more →](/docs/tracking-methods/sdks/flutter#autocapture)
+</Update>
+
+<Update label="2026-10-13">
+  ## Experiments: Built-in Sample Size Calculator
+
+  Working out how many exposures or how much time an experiment needed used to mean leaving Mixpanel. You'd look up your metric's historical baseline and traffic, then type them by hand into the calculator on our website.
+
+  The sample size calculator is now built into experiment setup. Choose your primary metric and Mixpanel fills in its baseline conversion rate and daily traffic from your own data, measured over the window you pick. With this update, you can:
+
+  - **Tune your inputs:** Set your minimum detectable lift, confidence level, power, rollout %, and a one- or two-sided hypothesis.
+  - **Get a complete estimate:** See the total exposures needed, the count per variant, and an estimated duration. The estimate accounts for your number of variants and primary metrics.
+  - **Know if it's realistic:** A summary tells you whether the duration is reachable and suggests an experiment type.
+  - **Apply it in one click:** Click **Apply to Experiment** to set the experiment's duration.
+
+  [Learn more →](/docs/experiments#step-4-select-the-test-duration)
+</Update>
+
+<Update label="2026-10-01">
+  ## MCP Audit Log: see what AI assistants changed, and ask about it
+
+  As more of your team connects AI assistants to Mixpanel, more changes arrive through the [MCP server](/docs/mcp) instead of the UI. Those changes are now recorded in the same audit log as everything else, and organization admins can ask about them in plain language.
+
+  With this update, you can:
+
+  - **Review AI changes alongside the rest:** Every MCP tool that changes something records an entry — boards, cohorts, experiments, feature flags, metrics, lookup tables, custom properties, Lexicon metadata, tags, and business context — attributed to the account the assistant is connected as.
+  - **Tell AI changes apart from the rest:** MCP entries carry an **Origin** of MCP in the audit log UI, and a `service` value of `mcp` in exports and the API. Filter by Origin to see a single source. Read-only and failed tool calls are not recorded.
+  - **Ask the audit log a question:** The [`Get-Audit-Log`](/docs/mcp#querying-the-audit-log) tool answers questions like "what changed in this project last week?" or "who deleted a board yesterday?" without filtering the audit log page by hand.
+
+  A single MCP action usually produces more than one entry: one tool call entry recording the tool and its arguments, plus one detailed entry per object that changed. MCP tool call entries are retained for 90 days on all plans, while the detailed entries follow your plan's standard retention.
+
+  The MCP Audit Log is in Beta for a limited set of customers, and `Get-Audit-Log` requires organization admin or owner access. [Request access here](https://mxpnl.notion.site/52931ceda0e94fa2bda6cb18420b5113?pvs=105).
+
+  [Learn more →](/docs/access-security/audit-log#mcp-activity)
+</Update>
+
+<Update label="2026-10-01">
+  ## MCP Connections: let Mixpanel Agent read your GitHub, Jira, Linear, and Notion
+
+  Your data lives in Mixpanel, but the context around it lives somewhere else — the strategy doc in Notion, the Jira ticket describing what a feature was supposed to do, the pull request that shipped it. MCP Connections let Mixpanel Agent read those tools directly, so it can answer with your team's context instead of only what the events say.
+
+  With this update, you can:
+
+  - **Connect the tools you already use:** Notion, Linear, and Jira connect through OAuth. GitHub connects with a personal access token. Each tool connects once, to your own account.
+  - **Bring your own context into an answer:** Mixpanel Agent can read the spec behind a feature, the ticket that defines what counts as success, or the pull requests that changed a flow, and use them while it analyzes your data.
+  - **Read-only and private to you:** Mixpanel Agent only exposes read tools, so it cannot create, edit, or delete anything in a connected tool. Teammates cannot see or use your connections, and the Agent sees only what your account on that tool can see.
+
+  MCP Connections are off by default. An organization admin or owner turns on **Connect Your Tools via MCP** under **Settings → Org → AI Settings**, and each member then adds their own connections from **Settings → Personal Settings**.
+
+  MCP Connections are in Beta for a limited set of customers and require Mixpanel AI. [Request access here](https://mxpnl.notion.site/5dc6d468f8aa48eebac5146fc9bd3759).
+
+  [Learn more →](/docs/mcp-connections)
+ </Update>
+
 <Update label="2026-10-01" description="">
   ## Agent Intelligence is now in Beta
 
@@ -49,6 +116,83 @@ Get all the latest updates in your inbox.
   Audit Log Streaming is available to organizations on an **Enterprise** plan. Organization Owners and Admins can set it up from **Organization Settings → Audit Log**.
 
   [Learn more →](/docs/access-security/audit-log-streaming)
+</Update>
+
+<Update label="2026-09-28">
+  ## Experiments: One-Sided Tests
+
+  Mixpanel analyzed every metric with a two-sided test, which checks for an effect in either direction. When you only care about one direction, a two-sided test needs more exposures and takes longer to reach significance. A non-inferiority test is one example: you only need to confirm a change doesn't make a metric worse.
+
+  You can now set each metric to a one-sided or two-sided test, and its results are calculated to match. One-sided metrics reach significance with fewer exposures when you only need to detect movement in one direction.
+
+  [Learn more →](/docs/experiments#how-mixpanel-calculates-results)
+</Update>
+
+<Update label="2026-09-28">
+  ## Experiments: Computation Tab
+
+  It wasn't always clear how Mixpanel arrived at an experiment's results. The new **Computation** tab in the metric hover card shows you, step by step, how each result is calculated.
+
+  Copy the output as Markdown and paste it into an LLM to independently verify the calculation.
+
+  [Learn more →](/docs/experiments#how-mixpanel-calculates-results)
+</Update>
+
+<Update label="2026-09-28">
+  ## Experiments: Discard Novelty Effects
+
+  When you test something like a UX layout change, users often behave differently at first just because it's new. Their behavior only stabilizes after some time, which can skew early results.
+
+  You can now exclude data from the first days after a user's initial exposure, so novelty effects don't distort your experiment results. Choose how many days to discard and Mixpanel analyzes only the behavior that follows.
+
+  [Learn more →](/docs/experiments)
+</Update>
+
+<Update label="2026-09-21">
+  ## Feature Flags: Semantic Version Targeting for Runtime Properties
+
+  Targeting a rollout by app version was hard to get right, especially for non-engineers. Version strings were compared as text, so `2.10.0` sorted below `2.9.0`.
+
+  Runtime properties now support semantic versions, so you can target rollouts based on app version and have versions compared correctly. This builds on [typed runtime property values](#2026-08-20) released in August.
+
+  [Learn more →](/docs/featureflags#data-types-for-runtime-values)
+</Update>
+
+<Update label="2026-09-18">
+  ## Session Replay: Mobile Wireframes for Mixpanel Agent
+
+  Web replays record page structure, so Mixpanel Agent can read them, summarize them, and answer questions about them. Mobile replays are a series of image snapshots with no structure underneath, so Agent couldn't do any of that for mobile. To learn what happened in a mobile session, you had to watch it.
+
+  Turn on wireframes in your mobile Session Replay SDK and, alongside the snapshots, the SDK sends a text-based layout of each screen: every element's role and position, plus its text. (On iOS, pure-SwiftUI views need `.mpWireframeText(_:)` to supply text.) With this update, you can:
+
+  - **Summarize mobile replays:** [Mixpanel Agent](/docs/mixpanel-agent) can describe what happened in a mobile session in plain language.
+  - **Ask questions across sessions:** Query one replay or many, like "Did users run into friction on the checkout screen?"
+  - **Keep sensitive data protected:** Wireframes follow your existing replay masking, and typed input is never sent. Extra controls let you redact specific text.
+
+  Wireframes are off by default and available in open beta. Set them up for your SDK:
+
+  - [Android](/docs/tracking-methods/sdks/android/android-replay#wireframes-beta)
+  - [iOS](/docs/tracking-methods/sdks/swift/swift-replay#wireframes-beta)
+  - [Flutter](/docs/tracking-methods/sdks/flutter/flutter-replay#wireframes-beta)
+  - [React Native](/docs/tracking-methods/sdks/react-native/react-native-replay#wireframes-beta)
+</Update>
+
+<Update label="2026-09-10">
+  ## Session Replay: Mobile Autocapture (Taps and Frustration Signals)
+
+  [Mobile autocapture](#2026-08-07-2) only covered screen views, so teams could see which screens people visited but not what they tapped. Answering "did anyone tap this button?" meant adding a track call to every element by hand, then waiting for an app store release. Taps that did nothing, or repeated taps out of frustration, went unnoticed unless someone happened to watch the right session replay.
+
+  Upgrade your SDK and turn on tap autocapture. With this update, you can:
+
+  - **Capture taps with no code per element:** Tap events fire automatically.
+  - **Surface broken interactions:** Rage taps and dead taps are captured alongside tap events, so problems show up without anyone hunting for them.
+  - **Jump to the right sessions:** Every autocaptured event can be used to filter Session Replay playlists, taking you straight to the sessions where users got stuck.
+
+  Available in open beta on all plans:
+
+  - [Android](/docs/tracking-methods/sdks/android#autocapture) v8.10.0
+  - [iOS](/docs/tracking-methods/sdks/swift#autocapture) v6.6.0
+  - [React Native](/docs/tracking-methods/sdks/react-native#autocapture) v3.7.0
 </Update>
 
 <Update label="2026-09-09">
@@ -1174,22 +1318,40 @@ Get all the latest updates in your inbox.
 <Update label="2026-02-20">
   ## Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for EU Projects
 
-  > **🚨 UPDATE: July 1, 2026 – US-to-EU Data Forwarding has officially ended.** <br /><br />
-  >
-  > As scheduled, we have sunset US-to-EU data forwarding. <br /> **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI and Query API endpoints until August 1, 2026.**<br /><br />
-  >
-  > **How events are being filtered**<br />
-  >
-  > \[July 1, 2026 - August 1, 2026\]: New US-\>EU Forwarded events have not been deleted. However, they are temporarily hidden from the UI and Query API endpoints if they match all of the following criteria:
-  >
-  > - The event was processed after July 1st (UTC) (`mp_processing_time_ms` \> `<July 1st UTC>`).
-  > - The event was forwarded from the US (`$mp_is_forwarded` is defined).
-  >
-  > These events are not deleted — they remain accessible via the Raw Export API during this period, and will be un-hidden on August 1, 2026, so your reporting counts may change at that time. <br /><br />**Events that are still being sent to the US after August 1, 2026 for EU Projects will not be accepted.** <br /><br /> **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss after August 1, 2026.**<br /><br />
-  >
-  > _Need help or want to opt out? If you wish to opt out of this UI preview and un-hide your forwarded events early, please [contact support](https://mixpanel.com/get-support)._
-  >
-  > > ⏳ **Note:** Some projects have an extended timeline through **December 31, 2026**. These projects are not affected by the temporary event-hiding described above. If this applies to your project, we've already reached out with a notification. If you did not receive a notification, your deadline is **August 1, 2026**.
+  <Warning>
+    **⏳ Extended timeline through January 4, 2027 (notified projects only)**
+
+    **Only projects we notified directly have an extended timeline.** If you did not receive an email from Mixpanel about an extension, your project is not extended. US-to-EU forwarding ended on July 1, 2026, and events your EU projects send to US endpoints are no longer accepted as of August 1, 2026. See the July 1 update below.
+
+    If we notified you that your project has an extended timeline:
+
+    * **Now:** Review and update your implementations. Some updates take longer than others, so we recommend that you start before December.
+    * **December 1, 2026:** A temporary reporting preview begins. Events ingested through US Ingestion API Endpoints on or after this date for your extended projects will be hidden from the Mixpanel UI and Query API results to help you identify affected reporting. These events will not be deleted and will remain available through the Event Export API.
+    * **January 4, 2027:** Your extension ends. Complete your implementation updates by this date to prevent data loss. After this date, events sent to US endpoints will not be accepted. Previously hidden events will become visible again, which may change your report counts.
+
+    To update your implementation, point it to Mixpanel's EU servers (`api-eu.mixpanel.com`). See **Required Action** below for SDK-specific steps.
+
+    Not sure whether your project is extended? [Contact support](https://mixpanel.com/get-support) before planning around the January 4 date.
+  </Warning>
+
+
+  <Accordion title="🚨 July 1, 2026 update: US-to-EU Data Forwarding has officially ended (standard timeline)">
+  
+  As scheduled, we have sunset US-to-EU data forwarding. <br /> **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI and Query API endpoints until August 1, 2026.**<br /><br />
+  
+  **How events are being filtered**<br />
+  
+  \[July 1, 2026 - August 1, 2026\]: New US-\>EU Forwarded events have not been deleted. However, they are temporarily hidden from the UI and Query API endpoints if they match all of the following criteria:
+  
+  - The event was processed after July 1st (UTC) (`mp_processing_time_ms` \> `<July 1st UTC>`).
+  - The event was forwarded from the US (`$mp_is_forwarded` is defined).
+  
+  These events are not deleted — they remain accessible via the Raw Export API during this period, and will be un-hidden on August 1, 2026, so your reporting counts may change at that time. <br /><br />**Events that are still being sent to the US after August 1, 2026 for EU Projects will not be accepted.** <br /><br /> **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss after August 1, 2026.**<br /><br />
+  
+  _Need help or want to opt out? If you wish to opt out of this UI preview and un-hide your forwarded events early, please [contact support](https://mixpanel.com/get-support)._
+  
+  ⏳ **Note:** Some projects have an extended timeline through **January 4, 2027**. These projects are not affected by the temporary event-hiding described above. If this applies to your project, we've already reached out with a notification. If you did not receive a notification, your deadline is **August 1, 2026**.
+  </Accordion>
 
   Starting July 2026, we will be sunsetting the legacy automated US-to-EU Data Forwarding process for [EU Data Residency projects](/docs/privacy/eu-residency) to align with data residency best practices and improve ingestion performance. After this date, data sent to our US Ingestion Servers for EU Data Residency projects will no longer be forwarded, which can result in data loss.
 
@@ -1205,7 +1367,7 @@ Get all the latest updates in your inbox.
   **Guidance**
 
   1. **Verify which projects have EU Data Residency:** Navigate to [Organization Settings](/docs/orgs-and-projects/managing-projects#viewing-project-information) \> Projects and click into each Project to confirm whether Data Residency is set to EU.
-  2. **Identify Traffic:** In your EU Project(s), create an Insights Report and break down “All Events” by the API Endpoint (`$mp_api_endpoint` ) event property to determine which Ingestion Servers your events came from. `$mp_api_endpoint=api-eu.mixpanel.com` is EU and `$mp_api_endpoint=api.mixpanel.com` or `api-js.mixpanel.com` is US.
+  2. **Identify Traffic:** In your EU Project(s), create an Insights Report and break down “All Events” by the API Endpoint (`$mp_api_endpoint` ) event property to determine which Ingestion Servers your events came from. `$mp_api_endpoint=api-eu.mixpanel.com` is EU and `$mp_api_endpoint=api.mixpanel.com` or `api-js.mixpanel.com` is US. Add breakdowns for Mixpanel Library (mp_lib) and Event Name ($event_name) to pinpoint the affected SDKs and events.
   3. **Update and Review Implementation:** If your project has EU Data Residency, please follow the guides below that apply to your setup to ensure your data routes to our EU Servers.
 
   If you are using Mixpanel’s SDKs, the documentation linked below has instructions on updating your implementation code to EU:
