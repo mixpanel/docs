@@ -63,7 +63,7 @@ Before creating an experiment report, ensure you have:
 
 - A clear hypothesis about what change will improve which metric
 - Defined primary success metrics (and secondary/guardrail metrics)
-- Estimated sample size and test duration requirements
+- Estimated sample size and test duration requirements (use the [Sample Size Calculator](#sample-size-calculator))
 - Proper exposure event tracking implemented
 
 ## Setup & Launch Your Experiment
@@ -79,7 +79,7 @@ Click 'New Experiment' from the Experiment report menu and select your experimen
 <Note>
 Two kinds of experiments can be analyzed in the experiment report: 1) experiments run through Mixpanel Feature Flags with the Experiment flag type, and 2) experiments tracked via exposure events such as from third-party feature flags (i.e., `$experiment_started`). [Read more on how to track experiments](#implementation-for-experimentation).
 
-[No-code experiments](/docs/experiments/no-code-experiments) are run on a Mixpanel Feature Flag, so they are analyzed the same way, but you build their variants in a visual editor with no code changes required per experiment.
+[Web experiments](/docs/experiments/no-code-experiments) are run on a Mixpanel Feature Flag, so they are analyzed the same way, but you build their variants in a visual editor with no code changes required per experiment.
 </Note>
 ### Step 2: Choose the ‘Control’ Variant
 
@@ -93,17 +93,116 @@ Choose the primary metrics of success for the experiment. You can choose from ei
 
 Enter either a target sample size or the minimum number of days you want the experiment to run. This determines both the experiment’s analysis duration and when the results are ready to review. Reaching the target does not stop the feature flag from serving; exposure continues according to the flag’s targeting and rollout settings until you change or disable the flag.
 
+To estimate how many users and days you need, click **Calculate sample size** next to the duration setting. See [Sample Size Calculator](#sample-size-calculator).
+
 ### Step 5: Confirm other Default Configurations
 
 Mixpanel has set default automatic configurations, seen below. If required, please modify them as needed for the experiment
 
-1. **Experiment Model type**: Sequential. You can also choose Frequentist, or Bayesian if your project is in the [closed beta](#bayesian); see [Experiment Model Types](#experiment-model-types) for how they differ.
+1. **Experiment Model type**: Sequential. You can also choose Frequentist, or Bayesian, which is in [open beta](#bayesian); see [Experiment Model Types](#experiment-model-types) for how they differ.
 2. **Confidence Threshold**: 95%. On a Bayesian experiment this setting is labeled **Decision Threshold** and sets the minimum Chance to Beat Control required to highlight a variant as a winner.
 3. **Experiment Start Date**: Date of the first user exposed to the experiment
 
 <Note>
 The Confidence Threshold and the Bayesian Decision Threshold are the same underlying setting: if you switch an experiment's model type, your chosen number carries over and is reinterpreted for the new model.
 </Note>
+
+### Sample Size Calculator
+
+The Sample Size Calculator estimates how many exposed users your experiment needs to detect a given lift on your primary metric. It also estimates how long the experiment has to run to reach that many users. Where it can, the calculator measures the baseline and daily traffic from your project's own historical data, and it can apply the result to your experiment's settings.
+
+To open it, click **Calculate sample size** next to the experiment's duration setting. The calculator is available in the setup guide and on the Configuration tab. The button is disabled until you select a primary metric.
+
+<Note>
+This calculator is different from the standalone [sample size calculator](https://mixpanel.com/platform/experiments/sample-size-calculator) on mixpanel.com. That one takes only manual inputs, and it doesn't read your project data.
+</Note>
+
+#### Inputs
+
+| Input | Default | Notes |
+| --- | --- | --- |
+| **Primary Metric** | Your first primary metric that can be measured | Choose any of the experiment's primary metrics. |
+| **Measure Against** | None. You choose it each time. | The population the baseline and traffic are measured over: all active users, users who performed an event, users exposed to a past experiment, or users in a cohort. Funnels can also use their entry event, and retention metrics their initial event. |
+| **Only users in** | The flag's rollout groups | Limits measurement to users in the selected rollout groups or cohorts. |
+| **Rollout %** | The lowest rollout % among the selected rollout groups | Scales the measured traffic down to the share of users who will be exposed. |
+| **Measure Inputs Over** | 2 Weeks | 1, 2 or 4 weeks. This applies only to conversion-rate metrics. See [How the baseline is measured](#how-the-baseline-is-measured). |
+| **Baseline** | Measured | Conversion rate (%), events per user, or mean, depending on the metric. |
+| **Baseline standard deviation** | Measured | Shown only for metrics sized on per-user variance, such as averages and sums of a property. |
+| **Provisional Daily Traffic** | Measured | The expected number of newly exposed users per day. |
+| **Minimal Detectable Lift %** | The metric's MDE, then the experiment's, then 10% | The smallest *relative* change from baseline the experiment can detect. For example, with a 5% baseline, a 20% lift detects a conversion rate of 6% or higher. |
+| **Confidence Level %** | The experiment's confidence threshold (95%) | 90, 95, 97.5 or 99%. |
+| **Power %** | 80% | 70, 80, 90 or 95%. |
+| **Hypothesis** | The metric's setting | Two-sided or one-sided. Hidden for Bayesian experiments. |
+
+The calculator reads the number of variants from the experiment and assumes an even split between them. If the split is uneven, the summary says so.
+
+#### How the baseline is measured
+
+How the calculator measures history depends on the metric type:
+
+- **Conversion-rate metrics** (unique users who did an event, funnel conversion, retention): the baseline is the share of the eligible population that converted during the **Measure Inputs Over** window. The window ends no later than yesterday.
+- **Events per user** (total event count): a per-user rate grows with the length of the window, so a single lookback doesn't size it correctly. Instead, the calculator measures the metric as if an experiment had run for 1, 2, 4, 8 or 12 weeks. For each length it counts each user's events from their first eligible event to the end of that window.
+- **Averages and sums** (a property's average or sum per user, or sessions): the calculator measures the per-user mean and standard deviation for each of the same five lengths, in the same way. Non-participants are counted as 0 when the metric's analysis does the same. The text under the baseline field says which applies.
+
+For conversion-rate metrics, daily traffic is the number of distinct eligible users over the last 28 days divided by 28. For the other two types, it is based on the eligible users counted in the selected length. In both cases traffic is scaled by **Rollout %**.
+
+When the population is a past experiment, the calculator measures from that experiment's first days instead of from recent history.
+
+A sentence under each measured field shows the date range and the counts it was measured from.
+
+The calculator can't measure every metric. In these cases, enter the baseline, standard deviation (if shown) and traffic yourself:
+
+- formula metrics
+- metrics grouped by a data group
+- metrics that count a different unit than the flag assigns variants by
+- funnels and retention metrics whose first step is a custom event or cohort
+- averages and sums on funnel or retention metrics
+
+Percentile and median metrics have no closed-form variance, so the calculator can't size them even with manual inputs.
+
+#### How the duration is chosen
+
+For **events per user** and **averages and sums**, the calculator picks the shortest of 1, 2, 4, 8 or 12 weeks whose measured eligible users reach the required sample size. If no length qualifies, it shows the 12-week result, or the longest length your data supports, with a notice that the experiment may end before it reaches the sample size. It doesn't extrapolate past the longest measured length.
+
+For **conversion-rate metrics**, the duration is the total sample size divided by daily traffic. A warning appears when this is over 6 weeks. If it is over the 12-week maximum, the experiment can't reach significance as configured.
+
+The calculator never shows a duration shorter than 7 days, so that every experiment covers a full week, weekend included.
+
+#### Editing measured values
+
+You can overwrite any measured value. A value you type always takes priority: later measurements don't replace it. For events per user and averages and sums, typing a baseline, standard deviation or traffic switches the calculator to a single estimate from the values shown, instead of choosing among the measured lengths.
+
+Changing the metric, population, window or cohort filter clears the values you typed and measures again.
+
+#### Results
+
+The calculator shows:
+
+- **Total exposures needed**, and the number needed per variant
+- **Duration**, in weeks and days. To get a duration, enter a daily traffic value.
+- **View Summary and Suggestions**, which explains the assumptions and suggests an experiment model type. The suggestion doesn't change your experiment.
+
+Warnings appear when a variant would have fewer than 350 exposures, or when the experiment uses Benjamini-Hochberg correction, which the estimate doesn't reflect.
+
+Click **Apply to Experiment** to copy the confidence level, power, minimum detectable lift, sample size and duration into the experiment settings. If you changed **Hypothesis** or **Rollout %**, those are copied too. Applied durations are capped at 12 weeks. The changes are staged, so save the experiment to keep them.
+
+#### If measurement fails
+
+- If measuring takes too long or fails for a temporary reason, click **Retry**, or enter the values manually.
+- If the population can't be measured for this metric, the calculator explains why. Choose another population or enter the values manually. For example, a funnel or retention metric can't be measured against an eligibility event.
+- For events per user and averages and sums, the calculator skips any length it can't measure, such as a past experiment that hasn't run that long. It fails only when none of the lengths can be measured.
+
+#### How the calculation works
+
+The calculator uses a fixed-horizon, two-sample normal approximation:
+
+`n per variant = 2 × (z(1−α′) + z(power))² × σ² / (MDE × baseline)²`
+
+- **α′** is α/2 for a two-sided test and α for a one-sided test. If the experiment uses [Bonferroni correction](#bonferroni-correction), α is first divided by (primary metrics × (variants − 1)).
+- **σ²** is p(1−p) for conversion rates, λ for events per user, and the measured or entered standard deviation squared for averages and sums. For events per user, this assumes variance equals the mean. Experiment results use measured per-user variance instead, so this estimate can give too small a sample size when event-count variance exceeds the mean.
+- **Total sample size** is the per-variant number × the number of variants, control included.
+
+The estimate doesn't account for [CUPED](#cuped-controlled-experiment-using-pre-experiment-data) or [Winsorization](#winsorization). Both usually reduce variance, so the estimate tends to be conservative. Sequential and Bayesian models aren't modeled separately.
 
 ### Experiment JSON Parameters
 
@@ -280,7 +379,7 @@ This example shows why larger sample sizes are crucial—with only 10 users per 
 #### Bayesian
 
 <Note>
-  **Closed beta.** The Bayesian model is in closed beta and is not enabled for all projects. If you don't see it in the Experiment Model type picker, reach out to your account team to request access. Behavior described below may change before general availability.
+  **Open beta.** The Bayesian model is in open beta. Behavior described below may change before general availability.
 </Note>
 
 The Bayesian model answers a different question than the Frequentist and Sequential models. Instead of asking "how surprising would this data be if the treatment had no effect?" (a p-value), it estimates a distribution of plausible values for each variant's metric and reports **how likely it is that the variant is actually better than control**. That probability is surfaced as the **Chance to Beat Control** column.
@@ -428,7 +527,29 @@ Click 'Analyze' on a metric to dive deeper into the results. This will open a no
 
 You can also add the experiment breakdowns and filters directly in a report via the Experiments tab in the query builder. This lets you do on-the-fly analysis with the experiment groups. Under the hood, the experiment breakdown and filter work the same as the Experiment report.
 
+## Experiments on Boards
 
+Add an experiment to a [Board](/docs/boards) to track its results alongside your other reports. An experiment can be added to multiple boards.
+
+There are two ways to add an experiment to a board:
+
+- **From the experiment**: Open the menu in the header breadcrumbs and select **Add to board**. Choose an existing board or select **Add to New Board**.
+- **From the board**: Add content to the board, select **Experiment**, then choose the experiment.
+
+Experiment cards are view-only. To edit an experiment, click **View experiment** on the card to open the experiment page.
+
+### Card Views
+
+Each experiment card can show one of four views:
+
+- **Primary Metrics**: The primary metrics table with the lift for each variant.
+- **Exposures**: A chart of exposed users over time, by variant.
+- **Variants**: Each variant with its description and screenshot.
+- **Hypothesis**: The experiment's hypothesis.
+
+### Card Data
+
+Experiment cards show exactly what is on the experiment page. They ignore the board's date range and filters, and use the experiment's own date range, metrics, and settings instead.
 
 ## Multiple Environments
 
@@ -772,7 +893,7 @@ You can see your experiment MEU usage by going to Organization Settings \> Plan 
     
 - Frequentist: Capable of detecting smaller lifts, but requires you to keep experiments for the full duration. You’re discouraged from preemptively making decisions before the test duration is complete. **When to use?** For very small changes (~1% lift) when precision matters.
 
-- Bayesian (closed beta): Reports the probability that each variant beats control instead of a p-value, and can be read at any point during the experiment. **When to use?** When you're reporting results to an audience that doesn't work in p-values. Note that this model is in [closed beta](#bayesian) and a few metric configurations aren't supported.
+- Bayesian (open beta): Reports the probability that each variant beats control instead of a p-value, and can be read at any point during the experiment. **When to use?** When you're reporting results to an audience that doesn't work in p-values. Note that this model is in [open beta](#bayesian) and a few metric configurations aren't supported.
 
 ### Experiment metric types
 - **Primary Metrics:**  Main goals you're trying to improve. These are metrics used to determine if the experiment succeeded. Examples: revenue, conversion rates, ARPU.
