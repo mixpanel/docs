@@ -800,6 +800,10 @@ MixpanelAPI mixpanel =
     MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", false, options);
 ```
 
+<Warning>
+  **EU and India data residency:** If your project uses EU or India data residency, you must explicitly set the API host in your init code: add `.serverURL("https://api-eu.mixpanel.com")` (EU) or `.serverURL("https://api-in.mixpanel.com")` (India) to the `MixpanelOptions.Builder`. Otherwise, your data, including autocaptured events, will be dropped. If you send data through a proxy or custom domain, point it at your region's host instead and keep the proxy URL in your init code. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency).
+</Warning>
+
 Each signal is configurable, and can be turned off independently:
 
 | Option | Setting | Default |
