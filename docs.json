@@ -186,7 +186,8 @@
                           "docs/tracking-methods/sdks/java/java-openfeature"
                         ]
                       },
-                      "links/mixpanel-utils"
+                      "links/mixpanel-utils",
+                      "docs/tracking-methods/sdks/open-source"
                     ]
                   },
                   "docs/tracking-methods/autocapture",
