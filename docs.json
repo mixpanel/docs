@@ -612,6 +612,15 @@
         "tab": "Guides",
         "groups": [
           {
+            "group": "DISCOVER",
+            "icon": "/icons/flower.svg",
+            "pages": [
+              "guides/mixpanel-introduction",
+              "guides/self-guided-tours",
+              "links/whats-new"
+            ]
+          },
+          {
             "group": "GET STARTED",
             "pages": [
               {
@@ -622,15 +631,6 @@
                   "set-up-mixpanel/implement-and-test"
                 ]
               }
-            ]
-          },
-          {
-            "group": "DISCOVER",
-            "icon": "/icons/flower.svg",
-            "pages": [
-              "guides/mixpanel-introduction",
-              "guides/self-guided-tours",
-              "links/whats-new"
             ]
           },
           {
