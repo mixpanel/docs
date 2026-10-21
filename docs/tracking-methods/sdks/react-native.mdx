@@ -9,6 +9,18 @@ Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#react-n
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html), [Library Source Code](https://github.com/mixpanel/mixpanel-react-native), and an [Example Application](https://github.com/mixpanel/mixpanel-react-native/tree/master/Samples) is documented in our GitHub repo.
 
+The React Native SDK is open source under the [Apache 2.0 license](https://github.com/mixpanel/mixpanel-react-native/blob/master/LICENSE.md). Its source code is on GitHub at [mixpanel/mixpanel-react-native](https://github.com/mixpanel/mixpanel-react-native).
+### Apple Platform Support
+
+Each major version of the SDK has its own minimum supported iOS version. Version 4.x raises the minimum to match the minimum deployment target of Xcode 27. Use this table to choose the version that fits your app.
+
+| SDK version | Minimum supported iOS | Supported Xcode versions | Support status |
+| ----------- | --------------------- | ------------------------ | -------------- |
+| 4.x | iOS 15 | Xcode 26 and 27 | **Current:** receives new features and fixes |
+| 3.x | iOS 12 | Xcode 26 | **Maintenance:** receives critical fixes only, until April 2027 |
+
+On 4.x, set `platform :ios` in your `ios/Podfile` to 15.0 or higher. If your app needs to support an older iOS version, stay on 3.x.
+
 ## Installing the Library
 
 After [setting up your development environment for React Native](https://reactnative.dev/docs/environment-setup), navigate to your app's root directory and install the Mixpanel React Native SDK. The library requires React Native v0.6\+.
@@ -734,7 +746,7 @@ Only interactive elements are candidates, so tapping a plain `<Text>` or a decor
 
 #### Rage Click
 
-A `$mp_rage_click` event is emitted when **4 or more taps** land within **1000 ms** of each other and within **44 units** on screen — dp on Android, points on iOS — the signature of a user hammering a control that isn't responding. These three thresholds are the defaults — `clickThreshold`, `timeWindowMs` and `radius` on `rageClick` — and are [configurable](#enabling-click-autocapture). The event is emitted *in addition to* the individual `$mp_click` events, so four rapid taps produce four clicks and one rage click. Taps spread out in time or across the screen do not qualify.
+A `$mp_rage_click` event is emitted on the **4th tap** that lands within **1000 ms** and **44 units** (dp on Android, points on iOS) of the earlier taps — the signature of a user hammering a control that isn't responding. These three thresholds are the defaults — `clickThreshold`, `timeWindowMs` and `radius` on `rageClick` — and are [configurable](#enabling-click-autocapture). The event is emitted *in addition to* the individual `$mp_click` events, so four rapid taps produce four clicks and one rage click. The tap history resets after each rage click, so eight rapid taps produce two rage clicks. Taps spread out in time or across the screen do not qualify.
 
 Rage clicks are a **frustration signal**: alongside dead clicks, they surface the places where your app is failing users without throwing an error. Break them down by `$el_id` to find the specific controls people are fighting with, or use them to segment sessions worth watching in Session Replay.
 
@@ -779,6 +791,10 @@ await mixpanel.init(
   }
 );
 ```
+
+<Warning>
+  **EU and India data residency:** If your project uses EU or India data residency, you must explicitly set the API host in your init code: pass `'https://api-eu.mixpanel.com'` (EU) or `'https://api-in.mixpanel.com'` (India) as the `serverURL` (third) argument to `init()` instead of `undefined`. Otherwise, your data, including autocaptured events, will be dropped. If you send data through a proxy or custom domain, point it at your region's host instead and keep the proxy URL in your init code. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency).
+</Warning>
 
 Each signal is configurable, and can be turned off independently. Every key accepts either a boolean shorthand — `click: false` is the same as `click: { enabled: false }` — or an options object; any key you omit keeps its default.
 
