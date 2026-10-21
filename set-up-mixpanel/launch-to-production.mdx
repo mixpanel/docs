@@ -1,0 +1,69 @@
+---
+title: "Launch to production"
+sidebarTitle: "Launch to Production"
+description: "Step 3 of 4. Move your tracking to production and confirm it holds up."
+---
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '10px', margin: '0 0 6px' }}>
+  <div style={{ gridColumn: '3', gridRow: '1', marginBottom: '8px' }}>
+    <span style={{ display: 'inline-block', background: '#DCE6FB', color: '#1D4ED8', borderRadius: '10px', padding: '4px 10px', fontSize: '13px', lineHeight: 1.3, textAlign: 'left' }}>
+      Usually an<br />engineer
+    </span>
+  </div>
+
+  <div style={{ gridColumn: '1', gridRow: '2', borderTop: '2px solid #D1D5DB', paddingTop: '8px', color: '#6B7280' }}>1. Plan what to track</div>
+  <div style={{ gridColumn: '2', gridRow: '2', borderTop: '2px solid #D1D5DB', paddingTop: '8px', color: '#6B7280' }}>2. Implement and test in development</div>
+  <div style={{ gridColumn: '3', gridRow: '2', borderTop: '2px solid #7856FF', paddingTop: '8px', fontWeight: 500 }}>3. Launch to production</div>
+  <div style={{ gridColumn: '4', gridRow: '2', borderTop: '2px solid #D1D5DB', paddingTop: '8px', color: '#6B7280' }}>4. Roll out to your team</div>
+</div>
+
+This is when real users' data starts arriving. Comparing it with what you tested confirms the setup held up outside development.
+
+**Done when:**
+
+- Events reach your production project
+- They match what you tested
+
+<Note>
+  Used Install with AI? Review the code your agent wrote before you deploy it.
+</Note>
+
+## Either way
+
+These steps are the same whether you set up with AI or yourself.
+
+### Check you're ready to launch
+
+Run through your tracking one more time before you switch. [Ensuring Data Quality](/guides/guides-by-workflow/ensure-data-quality)
+
+### Switch to your production project
+
+Point your product at your production project, and stop sending test data to your development project. [Managing Projects](/docs/orgs-and-projects/managing-projects) · [Developer Environments](/docs/tracking-best-practices/developer-environments)
+
+### Deploy your tracking
+
+Review the code, then deploy it through your usual release process.
+
+### Compare what arrives to what you tested
+
+Check that your production events match what you saw in development. [Debugging](/docs/tracking-best-practices/debugging) · [Lexicon](/docs/data-governance/lexicon)
+
+No events showing? Start with the [Sending Data FAQ](/troubleshooting/sending-data).
+
+On an Enterprise plan with Event Approval? Approve your new events so your team can see them. [Event Approval](/docs/data-governance/event-approval)
+
+{/* Optional: remove the comment markers to show this line.
+  Seeing fewer web events than you expect? [First-Party Domains](/docs/tracking-methods/first-party-domains)
+  */}
+
+### Watch for problems
+
+Set up alerts so you hear about drops or spikes before your team does. [Alerts](/docs/features/alerts)
+
+On an Enterprise plan? [Data Volume Monitoring](/docs/data-governance/data-volume-monitoring) watches event volume for you.
+
+## Next step
+
+When your events reach production and match what you tested, go to [4. Roll out to your team](/guides/get-started/roll-out-to-your-team).
+
+[Back to Set up Mixpanel](/guides/get-started/set-up-mixpanel)
