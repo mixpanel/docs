@@ -381,6 +381,12 @@ Similarly, you can use the same property as above. In this case, you would need 
 
 For additional information, I've also included Formula B to show how "Sum per User by Average" works.
 
+### Can I export Session Start and Session End events via API?
+
+No. Session Start and Session End are virtual events. Mixpanel computes them dynamically at query time, so they are not stored in your raw event data and cannot be exported through the [Raw Data Export API](/reference/raw-data-export-api).
+
+To get session data out of Mixpanel, build a report that uses the Session Start or Session End events (for example, an Insights report broken down by session properties) and export the report results as CSV. See [Export Methods](/docs/export-methods) for report export options.
+
 ### What Mixpanel API events are by default excluded from session calculations?
 
 - `$identify`
