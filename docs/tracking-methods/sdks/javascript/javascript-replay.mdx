@@ -51,7 +51,7 @@ We recommend using the sampling method unless you need to customize when you cap
 
 When the SDK initializes, it makes a sampling decision based on your configured sampling rate. A percentage of initializations will trigger session recording accordingly.
 
-To enable Session Replay and set your sampling rate, set the `recording_sessions_percent` when initializing the SDK. This is the only change needed in your existing JavaScript SDK implementation to enable Session Replay.
+To enable Session Replay and set your sampling rate, set the `record_sessions_percent` init option when initializing the SDK. This is the only change needed in your existing JavaScript SDK implementation to enable Session Replay. Init options are set in your website's source code where you call `mixpanel.init()`, not in the Mixpanel UI.
 
 <Note>
   To start, we recommend using an 100% sampling rate to ensure replay capture is behaving as expected, then adjust according to your specific analytics needs.

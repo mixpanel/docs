@@ -15,7 +15,12 @@
       // disables session replay by default
       replaysSessionSampleRate: 0,
       // Generic network noise (failed/cancelled fetches, offline) that adds no signal.
-      ignoreErrors: ["Failed to fetch", "Load failed"],
+      ignoreErrors: [
+        "Failed to fetch",
+        "Load failed",
+        // Cross-origin scripts loaded without CORS (TrustArc, GTM tags): no message/stack to act on.
+        "Script error.",
+      ],
       allowUrls: [
         /^https:\/\/docs\.mixpanel\.com\//,
         /^https:\/\/[\w.-]+\.mintlify\.app\//,

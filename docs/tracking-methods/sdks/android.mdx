@@ -9,6 +9,8 @@ Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#android
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-android/index.html), [Library Source Code](https://github.com/mixpanel/mixpanel-android), and an [Example Application](https://github.com/mixpanel/sample-android-mixpanel-integration) is documented in our GitHub repo.
 
+The Android SDK is open source under the [Apache 2.0 license](https://github.com/mixpanel/mixpanel-android/blob/master/LICENSE). Its source code is on GitHub at [mixpanel/mixpanel-android](https://github.com/mixpanel/mixpanel-android).
+
 ## Installing the Library
 
 We publish builds of our library to the Maven central repository as an .aar file. This file contains all of the classes, resources, and configurations that you'll need to use the library.
@@ -797,6 +799,10 @@ MixpanelOptions options = new MixpanelOptions.Builder()
 MixpanelAPI mixpanel =
     MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", false, options);
 ```
+
+<Warning>
+  **EU and India data residency:** If your project uses EU or India data residency, you must explicitly set the API host in your init code: add `.serverURL("https://api-eu.mixpanel.com")` (EU) or `.serverURL("https://api-in.mixpanel.com")` (India) to the `MixpanelOptions.Builder`. Otherwise, your data, including autocaptured events, will be dropped. If you send data through a proxy or custom domain, point it at your region's host instead and keep the proxy URL in your init code. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency).
+</Warning>
 
 Each signal is configurable, and can be turned off independently:
 
