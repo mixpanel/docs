@@ -61,7 +61,7 @@ Set up identify when you first send data, so a person stays one person before an
 
 Watch your events arrive, then confirm each person shows up once, with the right properties. [Debugging](/docs/tracking-best-practices/debugging) · [Ensuring Data Quality](/guides/guides-by-workflow/ensure-data-quality)
 
-No events showing? Start with [Sending Data FAQ](/troubleshooting/sending-data)
+No events showing? Start with the [Sending Data FAQ](/troubleshooting/sending-data).
 
 ### Clean up your event list
 
@@ -83,65 +83,6 @@ When your events and identity check out in development, go to [3. Launch to prod
 
 [Back to Set up Mixpanel](/guides/get-started/set-up-mixpanel)
 
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '10px', margin: '0 0 6px' }}>
-  <div style={{ gridColumn: '2', gridRow: '1', marginBottom: '8px' }}>
-    <span style={{ display: 'inline-block', background: '#DCE6FB', color: '#1D4ED8', borderRadius: '10px', padding: '4px 10px', fontSize: '13px', lineHeight: 1.3, textAlign: 'left' }}>
-      Usually an<br />engineer
-    </span>
-  </div>
-
-  <div style={{ gridColumn: '1', gridRow: '2', borderTop: '2px solid #D1D5DB', paddingTop: '8px', color: '#6B7280' }}>1. Plan what to track</div>
-  <div style={{ gridColumn: '2', gridRow: '2', borderTop: '2px solid #7856FF', paddingTop: '8px', fontWeight: 500 }}>2. Implement and test in development</div>
-  <div style={{ gridColumn: '3', gridRow: '2', borderTop: '2px solid #D1D5DB', paddingTop: '8px', color: '#6B7280' }}>3. Launch to production</div>
-  <div style={{ gridColumn: '4', gridRow: '2', borderTop: '2px solid #D1D5DB', paddingTop: '8px', color: '#6B7280' }}>4. Roll out to your team</div>
-</div>
-
-Testing in development first means mistakes don't touch your real data. Your events and identity need to be right before real users generate data.
-
-**Done when:**
-
-- Events and users are set up correctly
-- Your use cases are confirmed
-- Data arrives in your development project
-
-<Tip>
-  Using an AI coding agent? Follow [Install with AI](/docs/quickstart/install-with-ai) instead.
-</Tip>
-
-## Set up yourself
-
-### Create development and production projects
-
-Make one project for testing and one for your real data. [Developer Environments](/docs/tracking-best-practices/developer-environments) · [Managing Projects](/docs/orgs-and-projects/managing-projects)
-
-### Give your team access
-
-Add your engineer and teammates with the right roles. Using single sign-on? Set it up first. [Roles & Permissions](/docs/orgs-and-projects/roles-and-permissions) · [Single Sign-On](/docs/access-security/single-sign-on)
-
-### Choose how data gets in
-
-Pick the method that fits how your product is built. [Tracking Methods](/docs/tracking-methods) · [Choosing the Right Method](/docs/tracking-methods/choosing-the-right-method)
-
-### Send your first events
-
-Install the SDK and send the events from your plan to your development project. [Quickstart](/docs/quickstart) · [SDKs](/docs/tracking-methods/sdks) · [Tracking Best Practices](/docs/tracking-best-practices)
-
-Tracking companies as groups? [Group Analytics Implementation Guide](/docs/data-structure/group-analytics/group-analytics-implementation)
-
-{/* Optional: remove the comment markers to show this line.
-  Building a web app? You can also turn on [Autocapture](/docs/tracking-methods/autocapture). It works alongside the events in your plan, and it needs a privacy check first.
-  */}
-
-### Identify your users
-
-Set up identity when you first send data. [Identity Management Overview](/docs/tracking-methods/id-management) · [Identifying Users (Simplified)](/docs/tracking-methods/id-management/identifying-users-simplified)
-
-### Check your events and identity
-
-Watch your events arrive, then confirm each person shows up once, with the right properties. [Debugging](/docs/tracking-best-practices/debugging) · [Ensuring Data Quality](/guides/guides-by-workflow/ensure-data-quality)
-
-No events showing? Start with the [Sending Data FAQ](/troubleshooting/sending-data).
-
 ### Clean up your event list
 
 Tidy your events and add descriptions so your team can find them. [Events](/docs/data-structure/events-and-properties) · [Lexicon](/docs/data-governance/lexicon) · [Data Clean-Up](/docs/data-governance/data-clean-up)
@@ -149,8 +90,6 @@ Tidy your events and add descriptions so your team can find them. [Events](/docs
 ### Keep personal data out
 
 Decide what personal data, if any, belongs in Mixpanel. [Data Privacy & PII Best Practices](/guides/guides-by-workflow/data-privacy)
-
-Set rules for how new events get named and approved. [Data Standards](/docs/data-governance/data-standards) · [Event Approval](/docs/data-governance/event-approval)
 
 ### Confirm your use cases
 
