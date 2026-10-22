@@ -307,7 +307,7 @@ variants.forEach((variant, flagName) => {
 Each value is a full variant object, so [`variant_source`](#variant-source) and the rest of the variant metadata are available on every entry.
 
 <Warning>
-  Both methods hand back the SDK's internal `Map` by reference, not a copy. Mutating the result corrupts the SDK's flag state — copy it first with `new Map(variants)` if you need to modify it.
+  Both methods hand back the SDK's internal `Map` by reference, not a copy. Mutating the result corrupts the SDK's flag state. Use `new Map(variants)` before adding, deleting, or replacing map entries. This copy still shares the variant objects with the SDK, so copy those objects and any nested values you intend to change too.
 </Warning>
 
 ## Frequently Asked Questions
