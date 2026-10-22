@@ -9,6 +9,7 @@ Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#react-n
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html), [Library Source Code](https://github.com/mixpanel/mixpanel-react-native), and an [Example Application](https://github.com/mixpanel/mixpanel-react-native/tree/master/Samples) is documented in our GitHub repo.
 
+The React Native SDK is open source under the [Apache 2.0 license](https://github.com/mixpanel/mixpanel-react-native/blob/master/LICENSE.md). Its source code is on GitHub at [mixpanel/mixpanel-react-native](https://github.com/mixpanel/mixpanel-react-native).
 ### Apple Platform Support
 
 Each major version of the SDK has its own minimum supported iOS version. Version 4.x raises the minimum to match the minimum deployment target of Xcode 27. Use this table to choose the version that fits your app.
@@ -56,7 +57,7 @@ await mixpanel.init();
 ### Library Configuration
 
 <Warning>
-  For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/react-native#privacy-friendly-tracking).
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, pass `https://api-eu.mixpanel.com` or `https://api-in.mixpanel.com` as the `serverURL` argument (the third argument) to `init()`. Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency) for examples.
 </Warning>
 
 The `Mixpanel` constructor accepts up to four arguments: your project token, `trackAutomaticEvents`, an optional `useNative` flag (defaults to `true`), and an optional storage adapter for JavaScript mode. Additional runtime configuration is passed to `init()`.
