@@ -398,7 +398,13 @@ paths:
         \ syncs new rows based on an insert time column\n- **mirror_mode**: Detects changes in the source table and mirrors\
         \ them to Mixpanel\n- **full_sync**: Re-syncs all data on each run\n- **one_time**: Syncs data once and does not repeat\n\
         \n### Required Column Mappings\n\nYou must specify either:\n- `event_name`: A static event name for all rows\n- `event_column_name`:\
-        \ The column containing the event name\n\nFor B2B projects, `company_column_name` is also required.\n\n### Scheduling\n\
+        \ The column containing the event name\n\nFor B2B projects, `company_column_name` is also required.\n\n### Insert ID and Deduplication\n\nThere is no column mapping for `$insert_id`.\
+        \ Mixpanel generates the `$insert_id` for each row from a hash of the row's contents. Re-syncing an identical\
+        \ row produces the same `$insert_id`, so it is deduplicated; rows that differ in any column are imported as\
+        \ distinct events. A column named `insert_id` or `$insert_id` in your table is not used as the event's `$insert_id`.\n\
+        \nMixpanel deduplicates events on event name, `distinct_id`, `time`, and `$insert_id` (see [Event Deduplication](/reference/event-deduplication)).\
+        \ If your table can contain separate events that are identical in every column, include a unique row ID column\
+        \ so they are not deduplicated.\n\n### Scheduling\n\
         \n- **run_every** (integer): Sync frequency in nanoseconds. Allowed values:\n  - Trigger via API: `0`\n  - Hourly:\
         \ `3600000000000` (60 * 60 * 10^9)\n  - Daily: `86400000000000` (24 * 60 * 60 * 10^9)\n  - Weekly: `604800000000000`\
         \ (7 * 24 * 60 * 60 * 10^9)\n- **databricks_params** (object): Databricks-specific cluster configuration (only for\

@@ -82,6 +82,10 @@ Here are more details about the schema we expect for events:
 | JSON Properties | No | JSON or Object | A field that contains key-value properties in JSON format. If provided, Mixpanel will flatten this field out into properties. |
 | All other columns | No | Any | These can be anything. Mixpanel will auto-detect these columns and attach them to the event as properties. |
 
+<Note>
+  There is no column mapping for Insert ID (`$insert_id`). Mixpanel generates the `$insert_id` for each row from a hash of the row's contents, so re-syncing an identical row is deduplicated, while rows that differ in any column are imported as distinct events. A column named `insert_id` or `$insert_id` in your table is not used as the event's `$insert_id`. Because Mixpanel [deduplicates events](/reference/event-deduplication) on event name, `distinct_id`, `time`, and `$insert_id`, include a unique row ID column if your table can contain separate events that are identical in every column.
+</Note>
+
 ### User Profiles
 
 A User Profile is a table that describes your users. It's akin to a "dimension" in dimensional modeling or a relational table in a database. [Learn more about User Profiles](/docs/data-structure/user-profiles).
