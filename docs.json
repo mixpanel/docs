@@ -613,6 +613,22 @@
               "docs/response-times",
               "links/hire-an-expert"
             ]
+          },
+          {
+            "group": "Style guide",
+            "hidden": true,
+            "pages": [
+              "docs/docs-style-guide",
+              "docs/voice-tone",
+              "docs/terminology",
+              "docs/grammar-punctuation",
+              "docs/style-guide-exceptions",
+              "docs/code-examples",
+              "docs/API-reference",
+              "docs/images-video",
+              "docs/accessibility",
+              "docs/writing-for-agents"
+            ]
           }
         ]
       },
