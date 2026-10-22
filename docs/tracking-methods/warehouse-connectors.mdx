@@ -79,7 +79,7 @@ Here are more details about the schema we expect for events:
 | Time | Yes | Timestamp | The time at which the event occurred. |
 | User ID | No | String or Integer | The unique identifier of the user who performed the event. E.g.: 12345 or [grace@example.com](mailto:grace@example.com). |
 | Device ID | No | String or Integer | An identifier for anonymous users, useful for tracking pre-login data. [Learn more about Device ID](/docs/tracking-methods/id-management/identifying-users-simplified#%24device_id) |
-| Insert ID | No | String | A unique ID for each event, used as the event's `$insert_id` for [deduplication](/reference/event-deduplication). If not mapped, or if a row's value is empty, Mixpanel uses an MD5 hash of the entire row. In Mirror mode, the row identifier Mirror tracks is used by default instead: Snowflake's stream row ID, or a hash of the row on BigQuery, Redshift, and Databricks. |
+| Insert ID | No | String | A unique ID for each event, used as the event's `$insert_id` for [deduplication](/reference/event-deduplication). If not mapped, or if a row's value is empty or not a string, Mixpanel uses an MD5 hash of the entire row. In Mirror mode, the row identifier Mirror tracks is used by default instead: Snowflake's stream row ID, or a hash of the row on BigQuery, Redshift, and Databricks. |
 | JSON Properties | No | JSON or Object | A field that contains key-value properties in JSON format. If provided, Mixpanel will flatten this field out into properties. |
 | All other columns | No | Any | These can be anything. Mixpanel will auto-detect these columns and attach them to the event as properties. |
 

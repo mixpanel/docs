@@ -1161,7 +1161,7 @@ components:
         insert_id_column_name:
           type: string
           description: Name of a STRING column containing a unique ID for each event, used as the event's `$insert_id`
-            for deduplication. If omitted, or if a row's value is empty, Mixpanel uses an MD5 hash of the entire row.
+            for deduplication. If omitted, or if a row's value is empty or not a string, Mixpanel uses an MD5 hash of the entire row.
             By default not used in `mirror_mode`, where `$insert_id` is the row identifier Mirror tracks (Snowflake's
             stream row ID, or a hash of the row on BigQuery, Redshift, and Databricks).
         sync_mode:
