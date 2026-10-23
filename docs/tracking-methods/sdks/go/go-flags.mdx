@@ -20,6 +20,10 @@ go get github.com/mixpanel/mixpanel-go@v2.0.0
 
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
+<Note>
+  Cohort-based targeting resolves each user according to your project's ID management version, and on Original ID Merge it depends on recent `$identify` events. Pass the same `distinct_id` your client SDKs use. See [ID management and flag targeting](/docs/featureflags#id-management-and-flag-targeting).
+</Note>
+
 ## Flag Evaluation Scenarios
 
 There are two scenarios available for using the Go SDK for feature flagging: Local Evaluation and Remote Evaluation.
