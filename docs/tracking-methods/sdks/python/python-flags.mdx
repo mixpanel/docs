@@ -15,6 +15,10 @@ Before implementing [Feature Flags](/docs/featureflags), ensure:
 - You have the appropriate version of the SDK installed (minimum supported version is [`v5.1.0`](https://github.com/mixpanel/mixpanel-python)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
 - You have your Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
 
+<Note>
+  Cohort-based targeting resolves each user according to your project's ID management version, and on Original ID Merge it depends on recent `$identify` events. Pass the same `distinct_id` your client SDKs use. See [ID management and flag targeting](/docs/featureflags#id-management-and-flag-targeting).
+</Note>
+
 ## Flag Evaluation Scenarios
 
 There are two scenarios available for using the python SDK for feature flagging, Local Evaluation and Remote Evaluation.
