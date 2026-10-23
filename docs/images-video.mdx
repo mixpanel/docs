@@ -1,0 +1,92 @@
+---
+title: "Images, alt text, and video"
+description: "Add screenshots, alt text, and video to Mixpanel docs"
+---
+
+Images help when a reader needs to find something on screen or understand a layout or flow. But the product changes often, and every screenshot needs upkeep. Add an image only when it explains something that text alone can't.
+
+## When to use an image
+
+- **Use an image** to show where something is in a busy UI, what a finished result looks like, or how parts of a system connect.
+- **Don't use an image** to repeat what the text already says clearly, or in place of text. Readers who use screen readers, search, and AI agents can't read text inside an image.
+- **Don't capture a whole step-by-step flow** in screenshots. Write the steps, and add an image only for the step that's hardest to follow.
+
+## Screenshots
+
+| Do | Don't |
+| --- | --- |
+| Use light mode. | Use dark mode. |
+| Use a demo project with sample data. | Show customer data or Mixpanel's internal data. |
+| Crop to the part of the UI that matters. | Include the browser bar, the full navigation, or your desktop. |
+| Check that the text on the page matches the image. | Update an image without updating the text that refers to it. |
+| Highlight one area with a simple box or arrow if needed. | Add many arrows, callouts, or annotations to one image. |
+
+<Warning>
+  Before you add a screenshot, check it for tokens, secrets, email addresses, names, and other personal or account data.
+</Warning>
+
+When an existing image is out of date:
+
+- If only part of the image is wrong and that part isn't needed, crop it out.
+- If the image is still needed, replace it with a new one.
+- If the page is clear without the image, remove it.
+
+## Adding an image to a page
+
+Save images and GIFs in the `images/` directory. Reference them with a path that starts with `/images/`, and wrap them in a `<Frame>` component:
+
+```mdx
+<Frame>
+  ![Alt text that describes the image](/images/event-tag-filter.png)
+</Frame>
+```
+
+## File names
+
+- Use lowercase letters and hyphens between words: `event-tag-filter.png`.
+- Keep the name short, two or three words that summarize the alt text.
+- Don't use spaces or capital letters in file names.
+- Don't use generic names such as `screenshot-1.png` or `image.png`.
+
+## Alt text
+
+Alt text describes an image for people who use screen readers and for search engines and AI tools. Every image needs alt text.
+
+- **Explain why the image is there.** Describe what the reader should notice, in the context of the surrounding text.
+- **Keep it short.** Aim for under 125 characters.
+- **Don't start with "Image of" or "Screenshot of."** Screen readers already announce that it's an image.
+- **Don't list every detail.** Describe what matters for the task, not every label or number.
+- **Don't stuff keywords.** Write a clear sentence for a person.
+
+| Weak | Better |
+| --- | --- |
+| Red arrow pointing to filter in menu | The event menu's tag filter, which lists events that share a tag |
+| Serverless ingest pipeline aws s3 bucket lambda Mixpanel diagram | Diagram of a pipeline that sends files from Amazon S3 through Lambda to Mixpanel |
+| A Board titled Core Company KPIs with a purple bar chart showing 100% for Detail Page, 89.63% for Account Created… | A sample Board with five reports tracking a SaaS company's core metrics |
+
+If an image is purely decorative, which is rare in docs, consider removing it.
+
+## Video
+
+- Place a video in the section it supports, not on a page by itself.
+- Don't rely on video alone. Include the key steps and information as text.
+- Use videos that show the current UI and branding.
+
+### Embed a YouTube video
+
+1. On YouTube, open the video and click **Share** → **Embed**.
+2. Copy the video URL from the `src` value in the embed code.
+3. Change the domain from `youtube.com` to `youtube-nocookie.com`. Without this change, the video doesn't play for readers who block cookies, and YouTube tracks viewers by default.
+4. Add the video inside a `<Frame>`:
+
+```mdx
+<Frame>
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+    frameBorder="0"
+    webkitallowfullscreen="true"
+    mozallowfullscreen="true"
+    allowFullScreen
+  ></iframe>
+</Frame>
+```

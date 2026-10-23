@@ -9,6 +9,8 @@ The Mixpanel Go library is designed to be used for scripting, or in circumstance
 
 The [Full API Reference](https://pkg.go.dev/github.com/mixpanel/mixpanel-go), [Library Source Code](https://github.com/mixpanel/mixpanel-go), and [Examples](https://github.com/mixpanel/mixpanel-go/tree/main/examples) are documented in our GitHub repo.
 
+The Go SDK is open source under the [Apache 2.0 license](https://github.com/mixpanel/mixpanel-go/blob/main/LICENSE). Its source code is on GitHub at [mixpanel/mixpanel-go](https://github.com/mixpanel/mixpanel-go).
+
 ## Installing the Library
 
 Install the library with [Go get](https://pkg.go.dev/cmd/go/internal/get). Run the following command in your CLI to install:
@@ -28,7 +30,7 @@ mp := mixpanel.NewApiClient("YOUR_PROJECT_TOKEN")
 ### Library Configuration
 
 <Warning>
-  For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/go#privacy-friendly-tracking).
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, pass `mixpanel.EuResidency()` or `mixpanel.InResidency()` to `NewApiClient()`. These options send requests to `api-eu.mixpanel.com` or `api-in.mixpanel.com`. Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#in-data-residency) for examples.
 </Warning>
 
 The library can be initialized with different configurations. See a complete list of the configuration options[here](https://pkg.go.dev/github.com/mixpanel/mixpanel-go#Options).
