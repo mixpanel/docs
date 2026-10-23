@@ -15,7 +15,7 @@ Mixpanel's ingestion APIs classify the user agent of each event and set the foll
 - `$mp_actor_name` (Actor Name): the classified identity behind an `agent` or `bot` actor type, such as `GPTBot`, `ClaudeBot`, or `MistralAI-User`. Only present when the actor type is `agent` or `bot`.
 - `$mp_raw_user_agent` (Raw User Agent): the raw user agent associated with the request.
 
-Break down a report by Actor Type to see how much of your traffic comes from AI agents and bots, or by Actor Name to see which ones. To exclude this traffic from analysis, filter reports on Actor Type equals `none`.
+Break down a report by Actor Type to see how much of your traffic comes from AI agents and bots, or by Actor Name to see which ones. To exclude this traffic from analysis, filter reports on Actor Type is not `agent` or `bot`. Events tracked before classification was available have no Actor Type and appear as `(not set)`, so excluding `agent` and `bot` (rather than filtering on `none`) keeps them in your reports.
 
 If you don't send the end user's user agent as `$mp_raw_user_agent` or `$mp_user_agent`, classification uses the user agent of the request that reached Mixpanel. With server-side tracking, that is your server's HTTP library, so classification can be inaccurate. If you track server-side, forward your end user's raw user agent as `$mp_raw_user_agent` or `$mp_user_agent`. See [Tracking Browser, Device, and OS](/docs/tracking-best-practices/server-side-best-practices#tracking-browser-device-and-os).
 
