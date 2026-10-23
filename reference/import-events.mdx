@@ -7,7 +7,7 @@ Use this API to send batches of events from your servers to Mixpanel.
 
 ## Request Format
 
-Each request ingests a batch of events into Mixpanel. We accept up to 2000 events and 10MB (10,485,760 bytes) uncompressed per request. Events are part of the request body.
+Each request ingests a batch of events into Mixpanel. We accept up to 2000 events and 10MB uncompressed per request. Events are part of the request body.
 
 We support Content-Type `application/json` or `application/x-ndjson`:
 
@@ -43,7 +43,7 @@ If you provide the `strict=1` parameter (recommended), `/import` will validate t
 
 - Each event must be properly formatted JSON.
 - Each event must contain an event name, time, distinct\_id, and \$insert\_id. These are used to deduplicate events so that this endpoint can be safely retried.
-- Each event must be smaller than 1MB (1,048,576 bytes) of uncompressed JSON. Larger events are rejected with a 400 error.
+- Each event must be smaller than 1MB of uncompressed JSON. Larger events are rejected with a 400 error.
 - Each event must have fewer than 255 properties.
 - All nested object properties must have fewer than 255 keys and a max nesting depth is 3.
 - All array properties must have fewer than 255 elements.
