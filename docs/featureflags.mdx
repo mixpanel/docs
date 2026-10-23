@@ -217,7 +217,6 @@ On Original ID Merge, this affects cohort targeting. A user can open your app ev
 To avoid this on Original ID Merge:
 
 - Call `identify()` with a stable, consistent ID for each logged-in user.
-- Call `reset()` when a user logs out, so the next `identify()` on login is a change of ID and sends a new `$identify` event.
 - When evaluating flags from a server SDK, pass the same `distinct_id` your client SDKs use.
 
 Projects on Simplified ID Merge don't have this limitation. To learn about moving to it, see [Migrating to Simplified ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system).
