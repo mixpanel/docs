@@ -169,6 +169,20 @@ Insights feature multiple visualizations to help you view the query results in t
 
 Click on the "three dots" icon beside an event and click Rename to rename it. This will only affect the current report, and will not change the event's name in other reports.
 
+### Hide a Metric within a Report
+
+You can hide or unhide individual metrics in a report to focus the visualization on the metrics that matter. Hidden metrics stay in the query but aren't drawn on the chart, so the chart scales to the metrics that remain visible.
+
+To change the visibility of a metric, click the "three dots" icon beside it and select **Show / Hide Metric**.
+
+This is especially useful with [Formulas](/docs/reports/insights#formulas). For example, if a report has two events and a formula based on them, the formula can be hard to read because its values are much smaller than the events. Hide the two events so the chart scales to show the formula clearly.
+
+Hiding a metric only affects the current report. To hide events across your whole project, see [Hiding Data in Lexicon](/docs/data-governance/lexicon#hiding-data).
+
+<Frame>
+  ![Hide and unhide metrics in an Insights report](/images/changelog/hideunhide.gif)
+</Frame>
+
 ### Sorting
 
 #### Bar chart
@@ -320,6 +334,8 @@ Click the **Metrics** button, then select Formula.. Each event in the query show
 
 To note, you cannot nest a formula metric when constructing another formula.
 
+Adding a formula doesn't remove the metrics it references from the chart. To focus on just the formula, [hide the original metrics](/docs/reports/insights#hide-a-metric-within-a-report).
+
 #### Save formulas for re-use
 
 <Note>
@@ -371,6 +387,12 @@ When you have multiple metrics, or have broken down a metric by a property, you 
 <Frame>
   ![Value Setting](/images/advanced-value-comparison.png)
 </Frame>
+
+### Expected Range Comparisons
+
+Not every dip or spike is worth a look. Expected Range shades the band your metric would normally land in, forecast from its own history, so the points that fall outside it stand out on the chart. Click on **Compare** -\> **Expected Range** to turn it on. Hovering a point outside the band puts **Root Cause Analysis** at the top of the popover, so you can go straight from spotting the outlier to [explaining it](/docs/root-cause-analysis).
+
+Expected Range works on line charts of absolute values over time, for date ranges of up to about three months of data points, and shows the band for up to 12 segments. It can't be combined with a time period or value comparison; pick one or the other.
 
 ### Profile Analysis
 

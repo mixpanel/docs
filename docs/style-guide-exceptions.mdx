@@ -1,0 +1,49 @@
+---
+title: "Style guide exceptions"
+description: "Where Mixpanel docs deliberately differ from the company style guide, and why"
+---
+
+Docs follow Mixpanel's company style guide except where this page says otherwise. Each exception exists because docs have different needs: readers follow steps in a UI, copy code, and rely on exact values.
+
+## Summary
+
+| Topic | Company style guide | Docs | Why |
+| --- | --- | --- | --- |
+| UI labels | Italics | **Bold** | Bold is easier to scan while following steps, and matches common technical writing practice. |
+| Capitalization of UI labels | Title case for buttons and short labels | Match the product exactly | Readers need to find the exact label on screen. |
+| Emoji | Allowed on social media | No decorative emoji. ✅ and ❌ allowed in tables. | Emoji distract from technical content and render inconsistently. Callouts carry severity better. |
+| Italics for emphasis | Allowed | Not used | Italics are hard to read on screen and are easy to miss. Use bold sparingly instead. |
+| Technical values | Spell out one through nine | Write limits, quotas, versions, and parameter values exactly as the product or API defines them | Accuracy matters more than style for values readers rely on. |
+| Abbreviated large numbers | Use 5K, 24M when space is tight | Use exact values for limits and quotas | Readers need the precise number. |
+| Time zone default | Pacific time (PT) for events | State the time zone that applies to the data | Mixpanel behavior depends on UTC or project time zone, not where Mixpanel is based. |
+
+## UI labels
+
+Bold UI labels, and match the capitalization the product shows. If the button says **Create Role**, write **Create Role**, even though docs headings use sentence case.
+
+Don't use quotation marks, italics, or code font for UI labels. Use code font only for text the reader types or text that appears in code.
+
+## Emoji
+
+Don't use emoji for decoration or to signal importance. For warnings and notes, use a callout component at the right level:
+
+| Instead of | Use |
+| --- | --- |
+| ⚠️ or ❗ before a warning | `<Warning>` |
+| 💡 or 👉 before a tip | `<Tip>` or `<Note>` |
+| 🎉 after a completed step | A sentence that says what the reader can do next |
+
+Check marks (✅) and crosses (❌) in tables are fine because they carry data, such as whether a plan includes a feature.
+
+## Technical values
+
+Write limits, quotas, versions, default values, and parameter values exactly as the product, SDK, or API defines them. The one-through-nine rule for numbers doesn't apply to these values, and this guide doesn't set a style for them. Accuracy is what matters.
+
+## Dates and times in technical content
+
+The general date and time rules in [Grammar, punctuation, and formatting](/docs/grammar-punctuation#dates-and-times) apply to prose. When you describe dates and timestamps in data, APIs, or exports, accuracy comes first:
+
+- **Name the format.** Say whether a value is a Unix timestamp in seconds, a Unix timestamp in milliseconds, or an ISO 8601 date.
+- **Name the time zone.** Say whether the value is in UTC or in the project's time zone. Don't leave the reader to guess, and don't assume a default.
+- **Use the exact format the API accepts.** Write format tokens in code font, with the same casing the API reference uses for that endpoint, such as `yyyy-mm-dd` or `YYYY-MM-DD`. Include an example value: `2026-01-31`.
+- **Show the full example.** A sample value is clearer than a description: `"time": 1767225600`.
