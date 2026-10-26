@@ -30,6 +30,27 @@ Authenticate with a [service account](/reference/service-accounts), sending its 
 - `project_id`: the ID of the project to query. Required.
 - `workspace_id`: the ID of the data view to query. Include it if your project uses [data views](/docs/data-governance/data-views-and-classification).
 
+## Version
+
+Set the `Mixpanel-Version` header to the API version your request is written for. A version is a release date, `YYYY-MM-DD`. A version that isn't released yet adds a preview channel: `YYYY-MM-DD.alpha` or `YYYY-MM-DD.beta`.
+
+During the beta, the only version is `2026-10-23.beta`.
+
+If you omit the header, the request uses the latest released version. While no version is released, it uses the oldest beta version.
+
+An unknown, malformed, or retired version returns `400 Bad Request`. The error message names the latest version.
+
+## Response format
+
+The `Accept` header selects the response format:
+
+| `Accept` | Response |
+| --- | --- |
+| Omitted, `application/json`, `application/*`, or `*/*` | JSON |
+| `text/csv` | CSV (`Content-Type: text/csv`) |
+
+If the header lists several media types, the first supported one decides the format, and `q` weights are ignored. Any other value returns `400 Bad Request`.
+
 ## Request body
 
 A request body has two required fields and four optional ones:
@@ -54,6 +75,7 @@ curl --request POST \
   --url 'https://mixpanel.com/api/query/insights/query?project_id=YOUR_PROJECT_ID' \
   --user 'YOUR_SERVICE_ACCOUNT_USERNAME:YOUR_SERVICE_ACCOUNT_SECRET' \
   --header 'Content-Type: application/json' \
+  --header 'Mixpanel-Version: 2026-10-23.beta' \
   --data '{
     "metrics": [
       {
