@@ -629,7 +629,8 @@
                 "pages": [
                   "set-up-mixpanel/plan-what-to-track",
                   "set-up-mixpanel/implement-and-test",
-                  "set-up-mixpanel/launch-to-production"
+                  "set-up-mixpanel/launch-to-production",
+                  "set-up-mixpanel/roll-out"
                 ]
               }
             ]
