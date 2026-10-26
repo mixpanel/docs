@@ -1128,6 +1128,7 @@ mixpanel.init("YOUR_PROJECT_TOKEN", {
 | Session Replay recordings missing or corrupted | Proxy is not forwarding `Authorization` / `Content-Encoding` headers correctly |
 | 4xx/5xx on tracking calls | Proxy path prefix not stripped properly — verify `proxy_pass` rewrites match your location blocks |
 | Ad-blocker still blocks requests | CDN assets are still loaded directly from `cdn.mxpnl.com` — set `MIXPANEL_CUSTOM_LIB_URL` and `lib_base_path` |
+| Requests to `/decide` fail, or a separate `decide` upstream host no longer resolves | Mixpanel decommissioned the legacy `/decide` endpoint in August 2026. Remove any dedicated `/decide` route or upstream from your proxy, and send all API paths to your region's API host as shown in Step 1. Upgrade to JavaScript SDK v2.45.0 or later, which doesn't call `/decide`. See the [changelog](/changelogs) for details. |
 | Feature flag requests `/flags` failing with 401 | The `/flags` endpoint requires an `Authorization` header, unlike `/track` which only needs the project token. Ensure your proxy explicitly forwards the `Authorization` header to Mixpanel and does not strip it. |
 
 ## Session Replay
