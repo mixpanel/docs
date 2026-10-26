@@ -49,20 +49,18 @@ The `Accept` header selects the response format:
 | Omitted, `application/json`, `application/*`, or `*/*` | JSON |
 | `text/csv` | CSV (`Content-Type: text/csv`) |
 
-If the header lists several media types, the first supported one decides the format, and `q` weights are ignored. Any other value returns `400 Bad Request`.
-
 ## Request body
 
 A request body has two required fields and four optional ones:
 
-| Field | Required | What it holds |
-| --- | --- | --- |
-| `metrics` | ✅ | Up to 40 metrics to calculate: event, funnel, retention, cohort, or formula metrics. |
-| `time` | ✅ | The time range, and optionally the unit that splits it into a time series. |
-| `filters` | ❌ | Up to 10 filters that apply to every metric. |
-| `breakdowns` | ❌ | Up to three breakdowns by property value or cohort membership. |
-| `time_comparison` | ❌ | An earlier period to run the same query over. |
-| `lift_comparison` | ❌ | Reports each result as a change against a baseline. |
+| Field | What it holds |
+| --- | --- |
+| `metrics` <Badge color="red" size="xs">required</Badge> | Up to 40 metrics to calculate: event, funnel, retention, cohort, or formula metrics. |
+| `time` <Badge color="red" size="xs">required</Badge> | The time range, and optionally the unit that splits it into a time series. |
+| `filters` <Badge size="xs">optional</Badge> | Up to 10 filters that apply to every metric. |
+| `breakdowns` <Badge size="xs">optional</Badge> | Up to three breakdowns by property value or cohort membership. |
+| `time_comparison` <Badge size="xs">optional</Badge> | An earlier period to run the same query over. |
+| `lift_comparison` <Badge size="xs">optional</Badge> | Reports each result as a change against a baseline. |
 
 The reference below describes every field.
 
