@@ -1,0 +1,2474 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Insights API",
+    "version": "2026-09-09"
+  },
+  "servers": [
+    {
+      "url": "/api/query/insights/query"
+    }
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsightsQueryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CalculationType": {
+        "type": "string",
+        "enum": [
+          "total_events",
+          "total_sessions",
+          "unique_users",
+          "daily_active_users",
+          "monthly_active_users",
+          "weekly_active_users"
+        ],
+        "title": "CalculationType",
+        "description": "The calculation a metric runs over its events or profiles.\n\nSeparate from the interval aggregation, which rolls those calculated values\nup across time buckets."
+      },
+      "CohortBreakdown": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "cohort",
+            "title": "Type",
+            "default": "cohort"
+          },
+          "cohort_ids": {
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 10,
+            "minItems": 1,
+            "title": "Cohort Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "cohort_ids"
+        ],
+        "title": "CohortBreakdown",
+        "description": "Groups results by membership in each of the given saved cohorts."
+      },
+      "CohortCountMeasurement": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "count",
+            "title": "Type",
+            "default": "count"
+          },
+          "interval_aggregation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "standard"
+              },
+              {
+                "type": "string",
+                "const": "cumulative"
+              },
+              {
+                "$ref": "#/components/schemas/RollingAverage"
+              }
+            ],
+            "title": "Interval Aggregation",
+            "default": "standard"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "CohortCountMeasurement"
+      },
+      "CohortFilter": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "cohort",
+            "title": "Type",
+            "default": "cohort"
+          },
+          "cohort_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Cohort Id"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/CohortOperator",
+            "default": "in"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "cohort_id"
+        ],
+        "title": "CohortFilter",
+        "description": "Keeps users who are, or are not, members of a saved cohort."
+      },
+      "CohortMetric": {
+        "properties": {
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "group_key": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Group Key",
+            "description": "The key property name of a data group, as shown in Lexicon -- for example `$company_id`. `User` is the user profile and the default.",
+            "default": "User"
+          },
+          "measurement": {
+            "$ref": "#/components/schemas/CohortCountMeasurement",
+            "default": {
+              "type": "count",
+              "interval_aggregation": "standard"
+            }
+          },
+          "type": {
+            "type": "string",
+            "const": "cohort",
+            "title": "Type",
+            "default": "cohort"
+          },
+          "cohort_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Cohort Id",
+            "description": "Id of the saved cohort."
+          },
+          "filters": {
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/PropertyFilter"
+                },
+                {
+                  "$ref": "#/components/schemas/CohortFilter"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "cohort": "#/components/schemas/CohortFilter",
+                  "property": "#/components/schemas/PropertyFilter"
+                }
+              }
+            },
+            "type": "array",
+            "maxItems": 5,
+            "title": "Filters",
+            "description": "Profile property or cohort filters narrowing the members counted.",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "cohort_id"
+        ],
+        "title": "CohortMetric"
+      },
+      "CohortOperator": {
+        "type": "string",
+        "enum": [
+          "in",
+          "not in"
+        ],
+        "title": "CohortOperator"
+      },
+      "ComparisonOffset": {
+        "properties": {
+          "unit": {
+            "type": "string",
+            "enum": [
+              "day",
+              "week",
+              "month",
+              "quarter"
+            ],
+            "title": "Unit"
+          },
+          "value": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Value",
+            "description": "Number of periods back to compare against, up to 2 years: 730 days, 104 weeks, 24 months, 8 quarters."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "unit",
+          "value"
+        ],
+        "title": "ComparisonOffset",
+        "description": "How far back the comparison period sits from the queried window."
+      },
+      "ConversionWindow": {
+        "properties": {
+          "value": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Value",
+            "description": "Whole number of `unit`s, at most 31708800 seconds, 528480 minutes, 8808 hours, 367 days, 52 weeks, 12 months, 12 sessions."
+          },
+          "unit": {
+            "$ref": "#/components/schemas/ConversionWindowUnit",
+            "description": "`session` counts sessions instead of time: with value N, the funnel must complete within the session of the first step or the N - 1 sessions after it."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "value",
+          "unit"
+        ],
+        "title": "ConversionWindow",
+        "description": "How long after the first step an entity has to complete the funnel."
+      },
+      "ConversionWindowUnit": {
+        "type": "string",
+        "enum": [
+          "second",
+          "minute",
+          "hour",
+          "day",
+          "week",
+          "month",
+          "session"
+        ],
+        "title": "ConversionWindowUnit"
+      },
+      "CustomEvent": {
+        "properties": {
+          "filters": {
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/PropertyFilter"
+                },
+                {
+                  "$ref": "#/components/schemas/CohortFilter"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "cohort": "#/components/schemas/CohortFilter",
+                  "property": "#/components/schemas/PropertyFilter"
+                }
+              }
+            },
+            "type": "array",
+            "maxItems": 5,
+            "title": "Filters",
+            "default": []
+          },
+          "filters_logical_operator": {
+            "$ref": "#/components/schemas/LogicalOperators",
+            "default": "AND"
+          },
+          "event_type": {
+            "type": "string",
+            "const": "custom_event",
+            "title": "Event Type"
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Id",
+            "description": "Id of the custom event."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "event_type",
+          "id"
+        ],
+        "title": "CustomEvent",
+        "description": "A saved custom event, referenced by its id."
+      },
+      "DatetimeUnit": {
+        "type": "string",
+        "enum": [
+          "hour",
+          "day",
+          "week",
+          "month",
+          "quarter",
+          "year",
+          "hour_of_day",
+          "day_of_week"
+        ],
+        "title": "DatetimeUnit",
+        "description": "Bucket for a datetime property. The first six are calendar units; the\nlast two are cyclic."
+      },
+      "Event": {
+        "properties": {
+          "filters": {
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/PropertyFilter"
+                },
+                {
+                  "$ref": "#/components/schemas/CohortFilter"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "cohort": "#/components/schemas/CohortFilter",
+                  "property": "#/components/schemas/PropertyFilter"
+                }
+              }
+            },
+            "type": "array",
+            "maxItems": 5,
+            "title": "Filters",
+            "default": []
+          },
+          "filters_logical_operator": {
+            "$ref": "#/components/schemas/LogicalOperators",
+            "default": "AND"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "Name of the event as tracked, not its Lexicon display name."
+          },
+          "event_type": {
+            "type": "string",
+            "const": "event",
+            "title": "Event Type"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "event_type"
+        ],
+        "title": "Event",
+        "description": "An event tracked into the project."
+      },
+      "EventCountMeasurement": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "count",
+            "title": "Type",
+            "default": "count"
+          },
+          "interval_aggregation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "standard"
+              },
+              {
+                "type": "string",
+                "const": "cumulative"
+              },
+              {
+                "$ref": "#/components/schemas/RollingAverage"
+              }
+            ],
+            "title": "Interval Aggregation",
+            "default": "standard"
+          },
+          "calculation": {
+            "$ref": "#/components/schemas/CalculationType"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "calculation"
+        ],
+        "title": "EventCountMeasurement",
+        "description": "Counts matching events, sessions, or users."
+      },
+      "EventCustomJoinKey": {
+        "properties": {
+          "source": {
+            "type": "string",
+            "const": "event_custom",
+            "title": "Source",
+            "default": "event_custom"
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "title": "EventCustomJoinKey",
+        "description": "A saved event custom property a lookup table is attached to.\n\nThe server resolves the custom property's formula and\n``mapped_data_group_id`` to produce the join key selector."
+      },
+      "EventCustomProperty": {
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/PropertyType"
+          },
+          "path": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "type": "array",
+                "minItems": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Path",
+            "description": "Key path into an object-valued property."
+          },
+          "list_item": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ListItem"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Required for, and only for, `list[object]`."
+          },
+          "source": {
+            "type": "string",
+            "const": "event_custom",
+            "title": "Source",
+            "default": "event_custom"
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "title": "EventCustomProperty",
+        "description": "A saved custom property computed on the event, by id."
+      },
+      "EventFrequencyPerUserMeasurement": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "frequency_per_user",
+            "title": "Type",
+            "default": "frequency_per_user"
+          },
+          "interval_aggregation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "standard"
+              },
+              {
+                "type": "string",
+                "const": "cumulative"
+              },
+              {
+                "$ref": "#/components/schemas/RollingAverage"
+              }
+            ],
+            "title": "Interval Aggregation",
+            "default": "standard"
+          },
+          "calculation": {
+            "type": "string",
+            "enum": [
+              "distribution",
+              "average",
+              "percentile",
+              "min",
+              "max"
+            ],
+            "title": "Calculation"
+          },
+          "percentile": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMaximum": 100.0,
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Percentile",
+            "description": "The percentile to compute, strictly between 0 and 100; 50 is the median. Required for, and only for, calculation `percentile`."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "calculation"
+        ],
+        "title": "EventFrequencyPerUserMeasurement",
+        "description": "A statistic over how many matching events each user performed."
+      },
+      "EventJoinKey": {
+        "properties": {
+          "source": {
+            "type": "string",
+            "const": "event",
+            "title": "Source",
+            "default": "event"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Name"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "EventJoinKey",
+        "description": "An event property a lookup table is attached to."
+      },
+      "EventMetric": {
+        "properties": {
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "group_key": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Group Key",
+            "description": "The key property name of a data group, as shown in Lexicon -- for example `$company_id`. `User` is the user profile and the default.",
+            "default": "User"
+          },
+          "measurement": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EventCountMeasurement"
+              },
+              {
+                "$ref": "#/components/schemas/EventPropertyMeasurement"
+              },
+              {
+                "$ref": "#/components/schemas/EventFrequencyPerUserMeasurement"
+              },
+              {
+                "$ref": "#/components/schemas/EventPropertyPerUserMeasurement"
+              }
+            ],
+            "title": "Measurement",
+            "discriminator": {
+              "propertyName": "type",
+              "mapping": {
+                "count": "#/components/schemas/EventCountMeasurement",
+                "frequency_per_user": "#/components/schemas/EventFrequencyPerUserMeasurement",
+                "property": "#/components/schemas/EventPropertyMeasurement",
+                "property_per_user": "#/components/schemas/EventPropertyPerUserMeasurement"
+              }
+            }
+          },
+          "type": {
+            "type": "string",
+            "const": "event",
+            "title": "Type",
+            "default": "event"
+          },
+          "events": {
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/Event"
+                },
+                {
+                  "$ref": "#/components/schemas/CustomEvent"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "event_type",
+                "mapping": {
+                  "custom_event": "#/components/schemas/CustomEvent",
+                  "event": "#/components/schemas/Event"
+                }
+              }
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Events"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "measurement",
+          "events"
+        ],
+        "title": "EventMetric"
+      },
+      "EventProperty": {
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/PropertyType"
+          },
+          "path": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "type": "array",
+                "minItems": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Path",
+            "description": "Key path into an object-valued property."
+          },
+          "list_item": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ListItem"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Required for, and only for, `list[object]`."
+          },
+          "source": {
+            "type": "string",
+            "const": "event",
+            "title": "Source",
+            "default": "event"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Name"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "type",
+          "name"
+        ],
+        "title": "EventProperty",
+        "description": "A property recorded on the event."
+      },
+      "EventPropertyMeasurement": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "property",
+            "title": "Type",
+            "default": "property"
+          },
+          "interval_aggregation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "standard"
+              },
+              {
+                "type": "string",
+                "const": "cumulative"
+              },
+              {
+                "$ref": "#/components/schemas/RollingAverage"
+              }
+            ],
+            "title": "Interval Aggregation",
+            "default": "standard"
+          },
+          "calculation": {
+            "type": "string",
+            "enum": [
+              "sum",
+              "average",
+              "percentile",
+              "min",
+              "max",
+              "distinct_count"
+            ],
+            "title": "Calculation"
+          },
+          "percentile": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMaximum": 100.0,
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Percentile",
+            "description": "The percentile to compute, strictly between 0 and 100; 50 is the median. Required for, and only for, calculation `percentile`."
+          },
+          "property": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EventProperty"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileProperty"
+              },
+              {
+                "$ref": "#/components/schemas/LookupProperty"
+              },
+              {
+                "$ref": "#/components/schemas/EventCustomProperty"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileCustomProperty"
+              }
+            ],
+            "title": "Property",
+            "discriminator": {
+              "propertyName": "source",
+              "mapping": {
+                "event": "#/components/schemas/EventProperty",
+                "event_custom": "#/components/schemas/EventCustomProperty",
+                "lookup": "#/components/schemas/LookupProperty",
+                "profile": "#/components/schemas/ProfileProperty",
+                "profile_custom": "#/components/schemas/ProfileCustomProperty"
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "calculation",
+          "property"
+        ],
+        "title": "EventPropertyMeasurement",
+        "description": "A statistic over a property's values across all matching events.\n\nEvery calculation except `distinct_count` needs a number property."
+      },
+      "EventPropertyPerUserMeasurement": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "property_per_user",
+            "title": "Type",
+            "default": "property_per_user"
+          },
+          "interval_aggregation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "standard"
+              },
+              {
+                "type": "string",
+                "const": "cumulative"
+              },
+              {
+                "$ref": "#/components/schemas/RollingAverage"
+              }
+            ],
+            "title": "Interval Aggregation",
+            "default": "standard"
+          },
+          "calculation": {
+            "type": "string",
+            "enum": [
+              "distribution",
+              "sum",
+              "average",
+              "percentile",
+              "min",
+              "max"
+            ],
+            "title": "Calculation"
+          },
+          "percentile": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMaximum": 100.0,
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Percentile",
+            "description": "The percentile to compute, strictly between 0 and 100; 50 is the median. Required for, and only for, calculation `percentile`."
+          },
+          "property": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EventProperty"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileProperty"
+              },
+              {
+                "$ref": "#/components/schemas/LookupProperty"
+              },
+              {
+                "$ref": "#/components/schemas/EventCustomProperty"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileCustomProperty"
+              }
+            ],
+            "title": "Property",
+            "discriminator": {
+              "propertyName": "source",
+              "mapping": {
+                "event": "#/components/schemas/EventProperty",
+                "event_custom": "#/components/schemas/EventCustomProperty",
+                "lookup": "#/components/schemas/LookupProperty",
+                "profile": "#/components/schemas/ProfileProperty",
+                "profile_custom": "#/components/schemas/ProfileCustomProperty"
+              }
+            }
+          },
+          "per_user": {
+            "type": "string",
+            "enum": [
+              "sum",
+              "average",
+              "distinct_count",
+              "min",
+              "max"
+            ],
+            "title": "Per User",
+            "description": "What is computed for each user (each `group_key` entity) before `calculation` runs across users."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "calculation",
+          "property",
+          "per_user"
+        ],
+        "title": "EventPropertyPerUserMeasurement",
+        "description": "Aggregates a property for each user, then a statistic across users.\n\n`per_user` other than `distinct_count` needs a number property."
+      },
+      "FormulaMetric": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "formula",
+            "title": "Type",
+            "default": "formula"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "formula": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Formula",
+            "description": "Arithmetic over other metrics in this request, each named by its `display_name` in curly braces: `{Purchases} / {Signups} * 100`. Supports `+ - * / ^`, parentheses, and numbers. Formulas cannot reference other formulas."
+          },
+          "interval_aggregation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "standard"
+              },
+              {
+                "type": "string",
+                "const": "cumulative"
+              },
+              {
+                "$ref": "#/components/schemas/RollingAverage"
+              }
+            ],
+            "title": "Interval Aggregation",
+            "default": "standard"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "formula"
+        ],
+        "title": "FormulaMetric"
+      },
+      "FunnelConversionRateMeasurement": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "conversion_rate",
+            "title": "Type",
+            "default": "conversion_rate"
+          },
+          "interval_aggregation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "standard"
+              },
+              {
+                "type": "string",
+                "const": "cumulative"
+              },
+              {
+                "$ref": "#/components/schemas/RollingAverage"
+              }
+            ],
+            "title": "Interval Aggregation",
+            "default": "standard"
+          },
+          "calculation": {
+            "type": "string",
+            "enum": [
+              "unique_users",
+              "total_events",
+              "total_sessions"
+            ],
+            "title": "Calculation",
+            "description": "Determines how conversions are counted: total users, events, or sessions. With `total_sessions`, the metric's `conversion_window` defaults to one session and accepts no other value.",
+            "default": "unique_users"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "FunnelConversionRateMeasurement",
+        "description": "The share of entities that complete the funnel, counted per `calculation`."
+      },
+      "FunnelCountMeasurement": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "count",
+            "title": "Type",
+            "default": "count"
+          },
+          "interval_aggregation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "standard"
+              },
+              {
+                "type": "string",
+                "const": "cumulative"
+              },
+              {
+                "$ref": "#/components/schemas/RollingAverage"
+              }
+            ],
+            "title": "Interval Aggregation",
+            "default": "standard"
+          },
+          "calculation": {
+            "type": "string",
+            "enum": [
+              "unique_users",
+              "total_events",
+              "total_sessions"
+            ],
+            "title": "Calculation",
+            "description": "Determines how conversions are counted: total users, events, or sessions. With `total_sessions`, the metric's `conversion_window` defaults to one session and accepts no other value."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "calculation"
+        ],
+        "title": "FunnelCountMeasurement",
+        "description": "Counts the entities, events, or sessions that complete the funnel."
+      },
+      "FunnelMetric": {
+        "properties": {
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "group_key": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Group Key",
+            "description": "The key property name of a data group, as shown in Lexicon -- for example `$company_id`. `User` is the user profile and the default.",
+            "default": "User"
+          },
+          "measurement": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FunnelConversionRateMeasurement"
+              },
+              {
+                "$ref": "#/components/schemas/FunnelCountMeasurement"
+              },
+              {
+                "$ref": "#/components/schemas/FunnelTimeToConvertMeasurement"
+              },
+              {
+                "$ref": "#/components/schemas/FunnelPropertyMeasurement"
+              }
+            ],
+            "title": "Measurement",
+            "discriminator": {
+              "propertyName": "type",
+              "mapping": {
+                "conversion_rate": "#/components/schemas/FunnelConversionRateMeasurement",
+                "count": "#/components/schemas/FunnelCountMeasurement",
+                "property": "#/components/schemas/FunnelPropertyMeasurement",
+                "time_to_convert": "#/components/schemas/FunnelTimeToConvertMeasurement"
+              }
+            }
+          },
+          "type": {
+            "type": "string",
+            "const": "funnel",
+            "title": "Type",
+            "default": "funnel"
+          },
+          "steps": {
+            "items": {
+              "$ref": "#/components/schemas/FunnelStep"
+            },
+            "type": "array",
+            "maxItems": 25,
+            "minItems": 2,
+            "title": "Steps",
+            "description": "The funnel steps, first to last."
+          },
+          "conversion_window": {
+            "$ref": "#/components/schemas/ConversionWindow",
+            "description": "How long after the first step the funnel must complete: a span of time or up to 12 sessions. Defaults to 7 days. Measurements with the `total_sessions` calculation accept only one session.",
+            "default": {
+              "value": 7,
+              "unit": "day"
+            }
+          },
+          "order": {
+            "$ref": "#/components/schemas/FunnelOrder",
+            "description": "ordered: steps in sequence, other events may occur between them. any: the steps after the first may happen in any order.",
+            "default": "ordered"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "measurement",
+          "steps"
+        ],
+        "title": "FunnelMetric"
+      },
+      "FunnelOrder": {
+        "type": "string",
+        "enum": [
+          "ordered",
+          "any"
+        ],
+        "title": "FunnelOrder",
+        "description": "`ordered`: steps in sequence, other events may occur between them.\n`any`: the steps after the first may happen in any order."
+      },
+      "FunnelPropertyMeasurement": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "property",
+            "title": "Type",
+            "default": "property"
+          },
+          "interval_aggregation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "standard"
+              },
+              {
+                "type": "string",
+                "const": "cumulative"
+              },
+              {
+                "$ref": "#/components/schemas/RollingAverage"
+              }
+            ],
+            "title": "Interval Aggregation",
+            "default": "standard"
+          },
+          "calculation": {
+            "type": "string",
+            "const": "sum",
+            "title": "Calculation",
+            "default": "sum"
+          },
+          "property": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EventProperty"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileProperty"
+              },
+              {
+                "$ref": "#/components/schemas/LookupProperty"
+              },
+              {
+                "$ref": "#/components/schemas/EventCustomProperty"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileCustomProperty"
+              }
+            ],
+            "title": "Property",
+            "discriminator": {
+              "propertyName": "source",
+              "mapping": {
+                "event": "#/components/schemas/EventProperty",
+                "event_custom": "#/components/schemas/EventCustomProperty",
+                "lookup": "#/components/schemas/LookupProperty",
+                "profile": "#/components/schemas/ProfileProperty",
+                "profile_custom": "#/components/schemas/ProfileCustomProperty"
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "property"
+        ],
+        "title": "FunnelPropertyMeasurement",
+        "description": "The sum of a number property over the last-step event of each conversion."
+      },
+      "FunnelStep": {
+        "properties": {
+          "event": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Event"
+              },
+              {
+                "$ref": "#/components/schemas/CustomEvent"
+              }
+            ],
+            "title": "Event",
+            "discriminator": {
+              "propertyName": "event_type",
+              "mapping": {
+                "custom_event": "#/components/schemas/CustomEvent",
+                "event": "#/components/schemas/Event"
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "event"
+        ],
+        "title": "FunnelStep",
+        "description": "One funnel step: the event an entity performs at that position."
+      },
+      "FunnelTimeToConvertMeasurement": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "time_to_convert",
+            "title": "Type",
+            "default": "time_to_convert"
+          },
+          "interval_aggregation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "standard"
+              },
+              {
+                "type": "string",
+                "const": "cumulative"
+              },
+              {
+                "$ref": "#/components/schemas/RollingAverage"
+              }
+            ],
+            "title": "Interval Aggregation",
+            "default": "standard"
+          },
+          "calculation": {
+            "type": "string",
+            "enum": [
+              "average",
+              "percentile",
+              "min",
+              "max"
+            ],
+            "title": "Calculation"
+          },
+          "percentile": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMaximum": 100.0,
+                "exclusiveMinimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Percentile",
+            "description": "The percentile to compute, strictly between 0 and 100; 50 is the median. Required for, and only for, calculation `percentile`."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "calculation"
+        ],
+        "title": "FunnelTimeToConvertMeasurement",
+        "description": "A statistic over how long converting entities took, in seconds."
+      },
+      "InsightsQueryRequest": {
+        "properties": {
+          "metrics": {
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/EventMetric"
+                },
+                {
+                  "$ref": "#/components/schemas/FunnelMetric"
+                },
+                {
+                  "$ref": "#/components/schemas/RetentionMetric"
+                },
+                {
+                  "$ref": "#/components/schemas/CohortMetric"
+                },
+                {
+                  "$ref": "#/components/schemas/FormulaMetric"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "cohort": "#/components/schemas/CohortMetric",
+                  "event": "#/components/schemas/EventMetric",
+                  "formula": "#/components/schemas/FormulaMetric",
+                  "funnel": "#/components/schemas/FunnelMetric",
+                  "retention": "#/components/schemas/RetentionMetric"
+                }
+              }
+            },
+            "type": "array",
+            "maxItems": 40,
+            "minItems": 1,
+            "title": "Metrics"
+          },
+          "time": {
+            "$ref": "#/components/schemas/Time"
+          },
+          "filters": {
+            "anyOf": [
+              {
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/PropertyFilter"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CohortFilter"
+                    }
+                  ],
+                  "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                      "cohort": "#/components/schemas/CohortFilter",
+                      "property": "#/components/schemas/PropertyFilter"
+                    }
+                  }
+                },
+                "type": "array",
+                "maxItems": 10
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filters"
+          },
+          "breakdowns": {
+            "anyOf": [
+              {
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/PropertyBreakdown"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CohortBreakdown"
+                    }
+                  ],
+                  "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                      "cohort": "#/components/schemas/CohortBreakdown",
+                      "property": "#/components/schemas/PropertyBreakdown"
+                    }
+                  }
+                },
+                "type": "array",
+                "maxItems": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Breakdowns"
+          },
+          "time_comparison": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeComparison"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lift_comparison": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LiftComparison"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "metrics",
+          "time"
+        ],
+        "title": "InsightsQueryRequest",
+        "description": "Root request body for the public Insights API."
+      },
+      "LiftComparison": {
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/LiftType"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "title": "LiftComparison",
+        "description": "Reports each result as a change against a baseline rather than an\nabsolute value."
+      },
+      "LiftType": {
+        "type": "string",
+        "enum": [
+          "overall",
+          "time"
+        ],
+        "title": "LiftType",
+        "description": "What each result is expressed relative to: `overall` the total across\nbreakdown values, `time` the request's earlier window."
+      },
+      "ListItem": {
+        "properties": {
+          "key_path": {
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Key Path"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "string",
+              "number",
+              "boolean",
+              "datetime",
+              "list[string]",
+              "list[number]",
+              "list[boolean]",
+              "list[datetime]",
+              "list[list]"
+            ],
+            "title": "Type"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "key_path",
+          "type"
+        ],
+        "title": "ListItem",
+        "description": "Reads one primitive key out of each object in a `list[object]` property,\nso the list can be filtered or broken down like a `list[<type>]`.\n\n`key_path` is the path from the object root to the leaf value, matching\nthe internal ``propertyObjectKey`` format: ``[\"sku\"]`` for a top-level\nkey, ``[\"details\", \"sku\"]`` for a nested one."
+      },
+      "ListMatch": {
+        "type": "string",
+        "enum": [
+          "any",
+          "all"
+        ],
+        "title": "ListMatch",
+        "description": "How a filter treats a list-valued property: match when any element\npasses, or only when all do."
+      },
+      "LogicalOperators": {
+        "type": "string",
+        "enum": [
+          "AND",
+          "OR"
+        ],
+        "title": "LogicalOperators",
+        "description": "Logical operators that define how lists of `Filter` objects are combined."
+      },
+      "LookupProperty": {
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/PropertyType"
+          },
+          "path": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "type": "array",
+                "minItems": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Path",
+            "description": "Key path into an object-valued property."
+          },
+          "list_item": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ListItem"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Required for, and only for, `list[object]`."
+          },
+          "source": {
+            "type": "string",
+            "const": "lookup",
+            "title": "Source",
+            "default": "lookup"
+          },
+          "join_key": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EventJoinKey"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileJoinKey"
+              },
+              {
+                "$ref": "#/components/schemas/EventCustomJoinKey"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileCustomJoinKey"
+              }
+            ],
+            "title": "Join Key",
+            "discriminator": {
+              "propertyName": "source",
+              "mapping": {
+                "event": "#/components/schemas/EventJoinKey",
+                "event_custom": "#/components/schemas/EventCustomJoinKey",
+                "profile": "#/components/schemas/ProfileJoinKey",
+                "profile_custom": "#/components/schemas/ProfileCustomJoinKey"
+              }
+            }
+          },
+          "column": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Column"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "type",
+          "join_key",
+          "column"
+        ],
+        "title": "LookupProperty",
+        "description": "A column of a lookup table, reached through the property it is joined on.\n\nThe table is not named: each join key maps to at most one lookup table, and\na column name alone is ambiguous across tables. Group profiles are not\nlookup tables; their properties are `profile` properties with a `group_key`."
+      },
+      "NumericBuckets": {
+        "properties": {
+          "min": {
+            "type": "number",
+            "title": "Min"
+          },
+          "max": {
+            "type": "number",
+            "title": "Max"
+          },
+          "bucket_size": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Bucket Size"
+          },
+          "intervals": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array",
+                "minItems": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Intervals",
+            "description": "Ascending breakpoints for uneven buckets; overrides `bucket_size`."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "min",
+          "max",
+          "bucket_size"
+        ],
+        "title": "NumericBuckets",
+        "description": "Fixed-width buckets over a number property, or explicit `intervals`."
+      },
+      "Operator": {
+        "type": "string",
+        "enum": [
+          "is set",
+          "is not set",
+          "equals",
+          "does not equal",
+          "contains",
+          "does not contain",
+          "is equal to",
+          "is not equal to",
+          "is greater than",
+          "is at least",
+          "is less than",
+          "is at most",
+          "is between",
+          "is not between",
+          "is true",
+          "is false"
+        ],
+        "title": "Operator",
+        "description": "Comparison applied by a `PropertyFilter`.\n\nWhich operators are valid follows from the property's type; the filter\ndoes not restate the type."
+      },
+      "ProfileCustomJoinKey": {
+        "properties": {
+          "source": {
+            "type": "string",
+            "const": "profile_custom",
+            "title": "Source",
+            "default": "profile_custom"
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "title": "ProfileCustomJoinKey",
+        "description": "A saved user profile custom property a lookup table is attached to.\n\nA `profile_custom` join key always means the `$user_id` profile."
+      },
+      "ProfileCustomProperty": {
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/PropertyType"
+          },
+          "path": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "type": "array",
+                "minItems": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Path",
+            "description": "Key path into an object-valued property."
+          },
+          "list_item": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ListItem"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Required for, and only for, `list[object]`."
+          },
+          "source": {
+            "type": "string",
+            "const": "profile_custom",
+            "title": "Source",
+            "default": "profile_custom"
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Id"
+          },
+          "group_key": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Group Key",
+            "description": "The key property name of a data group, as shown in Lexicon -- for example `$company_id`. `User` is the user profile and the default.",
+            "default": "User"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "title": "ProfileCustomProperty",
+        "description": "A saved custom property computed on a user or group profile, by id.\n\n`group_key` names which profile, as for `profile` properties."
+      },
+      "ProfileJoinKey": {
+        "properties": {
+          "source": {
+            "type": "string",
+            "const": "profile",
+            "title": "Source",
+            "default": "profile"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Name"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "ProfileJoinKey",
+        "description": "A user profile property a lookup table is attached to.\n\nA `profile` join key always means the `$user_id` profile."
+      },
+      "ProfileProperty": {
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/PropertyType"
+          },
+          "path": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "type": "array",
+                "minItems": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Path",
+            "description": "Key path into an object-valued property."
+          },
+          "list_item": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ListItem"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Required for, and only for, `list[object]`."
+          },
+          "source": {
+            "type": "string",
+            "const": "profile",
+            "title": "Source",
+            "default": "profile"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Name"
+          },
+          "group_key": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Group Key",
+            "description": "The key property name of a data group, as shown in Lexicon -- for example `$company_id`. `User` is the user profile and the default.",
+            "default": "User"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "type",
+          "name"
+        ],
+        "title": "ProfileProperty",
+        "description": "A property on a user profile or a group profile (company, organization,\n...), read as of query time.\n\n`group_key` names which profile. Whether the value is a direct read or a\njoin depends on the metric's `group_key`: a company property under a\nuser-based metric is joined; under a company-based metric it is not."
+      },
+      "PropertyBreakdown": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "property",
+            "title": "Type",
+            "default": "property"
+          },
+          "property": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EventProperty"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileProperty"
+              },
+              {
+                "$ref": "#/components/schemas/LookupProperty"
+              },
+              {
+                "$ref": "#/components/schemas/EventCustomProperty"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileCustomProperty"
+              }
+            ],
+            "title": "Property",
+            "discriminator": {
+              "propertyName": "source",
+              "mapping": {
+                "event": "#/components/schemas/EventProperty",
+                "event_custom": "#/components/schemas/EventCustomProperty",
+                "lookup": "#/components/schemas/LookupProperty",
+                "profile": "#/components/schemas/ProfileProperty",
+                "profile_custom": "#/components/schemas/ProfileCustomProperty"
+              }
+            }
+          },
+          "datetime_unit": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DatetimeUnit"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Bucket for datetime properties. Omit for ISO-formatted breakdowns."
+          },
+          "numeric_buckets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NumericBuckets"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "string_groups": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/StringGroup"
+                },
+                "type": "array",
+                "minItems": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "String Groups"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "property"
+        ],
+        "title": "PropertyBreakdown",
+        "description": "Groups results by a property's values.\n\nThe optional bucketing follows the property's type: `datetime_unit` for\ndatetime, `numeric_buckets` for number, `string_groups` for string."
+      },
+      "PropertyFilter": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "property",
+            "title": "Type",
+            "default": "property"
+          },
+          "property": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EventProperty"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileProperty"
+              },
+              {
+                "$ref": "#/components/schemas/LookupProperty"
+              },
+              {
+                "$ref": "#/components/schemas/EventCustomProperty"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileCustomProperty"
+              }
+            ],
+            "title": "Property",
+            "discriminator": {
+              "propertyName": "source",
+              "mapping": {
+                "event": "#/components/schemas/EventProperty",
+                "event_custom": "#/components/schemas/EventCustomProperty",
+                "lookup": "#/components/schemas/LookupProperty",
+                "profile": "#/components/schemas/ProfileProperty",
+                "profile_custom": "#/components/schemas/ProfileCustomProperty"
+              }
+            }
+          },
+          "operator": {
+            "$ref": "#/components/schemas/Operator"
+          },
+          "values": {
+            "anyOf": [
+              {
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    }
+                  ]
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Values",
+            "description": "Operands. Omitted for `is set`, `is not set`, `is true`, `is false`; exactly two for `is between` / `is not between`; one for `contains`, `does not contain` and the other number operators; one or more for `equals` / `does not equal`, any of which may match."
+          },
+          "list_match": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ListMatch"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "For list-valued properties, and for lookup columns whose join key is list-valued. Defaults to `any`."
+          },
+          "list_item_match": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ListMatch"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "For `list[object]` properties whose `list_item` is list-valued: whether any or all elements of each object's list must pass. Defaults to `any`. `list_match` quantifies over the objects."
+          },
+          "keep_only_matching": {
+            "type": "boolean",
+            "title": "Keep Only Matching",
+            "description": "For list-valued properties with `list_match: any`: drop the list elements that did not match instead of keeping the whole list.",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "property",
+          "operator"
+        ],
+        "title": "PropertyFilter",
+        "description": "Keeps events or profiles whose property passes the comparison."
+      },
+      "PropertyType": {
+        "type": "string",
+        "enum": [
+          "string",
+          "number",
+          "boolean",
+          "datetime",
+          "list[string]",
+          "list[number]",
+          "list[boolean]",
+          "list[datetime]",
+          "list[list]",
+          "list[object]"
+        ],
+        "title": "PropertyType",
+        "description": "The type a property's value is interpreted as.\n\nRequired: the server does not look a property's type up, and without one\nit emits an uncast selector whose behavior depends on the stored value.\n`list[object]` is only usable together with `list_item`, which picks one\nkey out of each object."
+      },
+      "RelativeDate": {
+        "properties": {
+          "unit": {
+            "$ref": "#/components/schemas/TimeUnit",
+            "description": "Time unit."
+          },
+          "value": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Value",
+            "description": "Whole non-negative number of units."
+          },
+          "align_to_whole_unit": {
+            "type": "boolean",
+            "title": "Align To Whole Unit",
+            "description": "false: `value` units before now. true: rounded to a whole `unit`. For example: start 2 weeks ago -> false: 14 days before today; true: the beginning of that calendar week. end 1 month ago -> false: 30 days before today; true: the last day of the previous calendar month. "
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "unit",
+          "value",
+          "align_to_whole_unit"
+        ],
+        "title": "RelativeDate"
+      },
+      "RetentionCountMeasurement": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "count",
+            "title": "Type",
+            "default": "count"
+          },
+          "interval_aggregation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "standard"
+              },
+              {
+                "type": "string",
+                "const": "cumulative"
+              },
+              {
+                "$ref": "#/components/schemas/RollingAverage"
+              }
+            ],
+            "title": "Interval Aggregation",
+            "default": "standard"
+          },
+          "calculation": {
+            "type": "string",
+            "const": "unique_users",
+            "title": "Calculation",
+            "default": "unique_users"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "RetentionCountMeasurement",
+        "description": "Counts the entities retained in the bucket."
+      },
+      "RetentionCriteria": {
+        "type": "string",
+        "enum": [
+          "on",
+          "on_or_after",
+          "on_or_before",
+          "streak"
+        ],
+        "title": "RetentionCriteria",
+        "description": "When a return event counts toward a bucket: `on` that bucket only,\n`on_or_after` that bucket or any later one, `on_or_before` that bucket or\nany earlier one, `streak` every bucket up to and including it."
+      },
+      "RetentionMetric": {
+        "properties": {
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "group_key": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Group Key",
+            "description": "The key property name of a data group, as shown in Lexicon -- for example `$company_id`. `User` is the user profile and the default.",
+            "default": "User"
+          },
+          "measurement": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/RetentionRateMeasurement"
+              },
+              {
+                "$ref": "#/components/schemas/RetentionCountMeasurement"
+              },
+              {
+                "$ref": "#/components/schemas/RetentionPropertyMeasurement"
+              }
+            ],
+            "title": "Measurement",
+            "discriminator": {
+              "propertyName": "type",
+              "mapping": {
+                "count": "#/components/schemas/RetentionCountMeasurement",
+                "property": "#/components/schemas/RetentionPropertyMeasurement",
+                "retention_rate": "#/components/schemas/RetentionRateMeasurement"
+              }
+            }
+          },
+          "type": {
+            "type": "string",
+            "const": "retention",
+            "title": "Type",
+            "default": "retention"
+          },
+          "start_event": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Event"
+              },
+              {
+                "$ref": "#/components/schemas/CustomEvent"
+              }
+            ],
+            "title": "Start Event",
+            "description": "The event that starts an entity's retention clock.",
+            "discriminator": {
+              "propertyName": "event_type",
+              "mapping": {
+                "custom_event": "#/components/schemas/CustomEvent",
+                "event": "#/components/schemas/Event"
+              }
+            }
+          },
+          "return_event": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Event"
+              },
+              {
+                "$ref": "#/components/schemas/CustomEvent"
+              }
+            ],
+            "title": "Return Event",
+            "description": "The event that counts as returning.",
+            "discriminator": {
+              "propertyName": "event_type",
+              "mapping": {
+                "custom_event": "#/components/schemas/CustomEvent",
+                "event": "#/components/schemas/Event"
+              }
+            }
+          },
+          "unit": {
+            "$ref": "#/components/schemas/RetentionUnit",
+            "description": "The size of each retention bucket after the start event.",
+            "default": "day"
+          },
+          "bucket": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Bucket",
+            "description": "Which retention bucket to report, in `unit`s after the start event: 0 is the start bucket; with unit `day`, 7 is Day 7. Must be within the project's retention interval limit, 60 by default.",
+            "default": 0
+          },
+          "criteria": {
+            "$ref": "#/components/schemas/RetentionCriteria",
+            "description": "When a return event counts toward the bucket: on that bucket only, on it or any later one, on it or any earlier one, or on every bucket up to it (streak).",
+            "default": "on"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "measurement",
+          "start_event",
+          "return_event"
+        ],
+        "title": "RetentionMetric"
+      },
+      "RetentionPropertyMeasurement": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "property",
+            "title": "Type",
+            "default": "property"
+          },
+          "interval_aggregation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "standard"
+              },
+              {
+                "type": "string",
+                "const": "cumulative"
+              },
+              {
+                "$ref": "#/components/schemas/RollingAverage"
+              }
+            ],
+            "title": "Interval Aggregation",
+            "default": "standard"
+          },
+          "calculation": {
+            "type": "string",
+            "enum": [
+              "sum",
+              "average"
+            ],
+            "title": "Calculation"
+          },
+          "property": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EventProperty"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileProperty"
+              },
+              {
+                "$ref": "#/components/schemas/LookupProperty"
+              },
+              {
+                "$ref": "#/components/schemas/EventCustomProperty"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileCustomProperty"
+              }
+            ],
+            "title": "Property",
+            "discriminator": {
+              "propertyName": "source",
+              "mapping": {
+                "event": "#/components/schemas/EventProperty",
+                "event_custom": "#/components/schemas/EventCustomProperty",
+                "lookup": "#/components/schemas/LookupProperty",
+                "profile": "#/components/schemas/ProfileProperty",
+                "profile_custom": "#/components/schemas/ProfileCustomProperty"
+              }
+            }
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "calculation",
+          "property"
+        ],
+        "title": "RetentionPropertyMeasurement",
+        "description": "A number property over the cohort's return events in the bucket: `sum` adds it\nup, `average` is the mean of each cohort member's sum, counting members who did not\nreturn as 0."
+      },
+      "RetentionRateMeasurement": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "retention_rate",
+            "title": "Type",
+            "default": "retention_rate"
+          },
+          "interval_aggregation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "standard"
+              },
+              {
+                "type": "string",
+                "const": "cumulative"
+              },
+              {
+                "$ref": "#/components/schemas/RollingAverage"
+              }
+            ],
+            "title": "Interval Aggregation",
+            "default": "standard"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "RetentionRateMeasurement",
+        "description": "The share of entities that did the start event and returned in the bucket."
+      },
+      "RetentionUnit": {
+        "type": "string",
+        "enum": [
+          "day",
+          "week",
+          "month"
+        ],
+        "title": "RetentionUnit"
+      },
+      "RollingAverage": {
+        "properties": {
+          "size": {
+            "type": "integer",
+            "title": "Size"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "size"
+        ],
+        "title": "RollingAverage",
+        "description": "A rolling average over the course of a few intervals, determined by Time's unit.\nThe request must set `time.unit`.\n\nparams:\n    size: number of intervals over which to derive the average"
+      },
+      "StringGroup": {
+        "properties": {
+          "values": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Values",
+            "description": "One or more values for `equals`, any of which may match; one for `contains`."
+          },
+          "match": {
+            "$ref": "#/components/schemas/StringGroupMatch",
+            "default": "equals"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "values"
+        ],
+        "title": "StringGroup",
+        "description": "A named bucket of string values. `\"\"` is a valid value: it groups the\nrecords whose property is the empty string."
+      },
+      "StringGroupMatch": {
+        "type": "string",
+        "enum": [
+          "contains",
+          "equals"
+        ],
+        "title": "StringGroupMatch"
+      },
+      "Time": {
+        "properties": {
+          "start": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RelativeDate"
+              },
+              {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Calendar date, YYYY-MM-DD, in the project's timezone. Covers the whole day."
+              },
+              {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$",
+                "description": "Timestamp, YYYY-MM-DDTHH:mm, in the project's timezone. Covers the whole minute."
+              }
+            ],
+            "title": "Start",
+            "description": "Inclusive. Relative hour and minute starts are limited to 336 hours."
+          },
+          "end": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RelativeDate"
+              },
+              {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "description": "Calendar date, YYYY-MM-DD, in the project's timezone. Covers the whole day."
+              },
+              {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$",
+                "description": "Timestamp, YYYY-MM-DDTHH:mm, in the project's timezone. Covers the whole minute."
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End",
+            "description": "Inclusive. Omitted means now."
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeUnit"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The bucket size of the time series. When omitted, the query returns a single value for the whole range, and for a retention metric everyone who did the start event in the range forms one cohort. Rolling averages require a unit."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "start"
+        ],
+        "title": "Time"
+      },
+      "TimeComparison": {
+        "properties": {
+          "offset": {
+            "$ref": "#/components/schemas/ComparisonOffset"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "offset"
+        ],
+        "title": "TimeComparison",
+        "description": "An earlier window to run the same query over."
+      },
+      "TimeUnit": {
+        "type": "string",
+        "enum": [
+          "minute",
+          "hour",
+          "day",
+          "week",
+          "month",
+          "quarter"
+        ],
+        "title": "TimeUnit"
+      }
+    }
+  }
+}

@@ -927,6 +927,15 @@
                 "root": "reference/insights-query"
               },
               {
+                "group": "Insights API",
+                "tag": "BETA",
+                "pages": [
+                  "reference/insights-api",
+                  "reference/insights-run-query"
+                ],
+                "root": "reference/insights-api"
+              },
+              {
                 "group": "JQL",
                 "pages": [
                   "reference/query-jql",
