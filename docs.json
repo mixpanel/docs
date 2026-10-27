@@ -409,7 +409,13 @@
               },
               "docs/agentic-automations",
               "docs/root-cause-analysis",
-              "docs/mcp",
+              {
+                "group": "MCP Server",
+                "root": "docs/mcp",
+                "pages": [
+                  "docs/mcp/enterprise-managed-connections"
+                ]
+              },
               "docs/mixpanel-headless",
               "docs/business-context",
               "docs/docs-for-ai-agents"
