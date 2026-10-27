@@ -113,7 +113,7 @@ A few minutes of checking keeps two things from happening: a test that runs for 
     ![Web Experiment Url Warning](/images/web-experiment-url-warning.png "Web Experiment Url Warning")
   </Step>
   <Step title="Confirm the page address">
-    Your test only shows on the exact page address you saved.
+    Your test shows on pages with the same origin and path as the saved address. Query strings, hash fragments, and trailing slashes are ignored. Check the [URL-targeting rules](/docs/experiments/no-code-experiments#targeting-a-url) before launching.
   </Step>
   <Step title="Tell your web team it's going live">
     If something looks off, pause the test in Mixpanel and your site goes back to normal.
