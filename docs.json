@@ -662,8 +662,8 @@
                   {
                     "group": "Grow Your Usership",
                     "pages": [
-                      "guides/guides-by-use-case/grow-your-usership/grow-revenue",
-                      "run-web-experiments"
+                      "run-web-experiments",
+                      "guides/guides-by-use-case/grow-your-usership/grow-revenue"
                     ]
                   },
                   {
