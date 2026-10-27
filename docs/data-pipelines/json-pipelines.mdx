@@ -18,9 +18,14 @@ Follow the instructions here in the [Overview](/docs/data-pipelines).
 
 To prevent data duplication and conflicts, the system enforces the following rule: **you cannot create multiple event pipelines that export to the same destination with overlapping date ranges**.
 
-For example, if you already have a pipeline exporting to BigQuery dataset "my\_dataset" for dates January 1-31, you cannot create another pipeline exporting to the same dataset with dates January 15 - February 15, as the January 15-31 period would overlap.
+This check runs only when you create a recurring events pipeline, and only compares it against your existing recurring pipelines:
 
-This constraint ensures data integrity and prevents duplicate exports to the same destination tables or storage locations.
+- Date-ranged (one-time) backfill pipelines are not counted, so they don't block a new recurring pipeline.
+- Schematized pipelines are not checked for overlapping date ranges.
+
+For example, if you already have a recurring pipeline exporting to BigQuery dataset "my\_dataset" from January 1, you cannot create another recurring pipeline exporting to the same dataset from January 15, as the date ranges would overlap.
+
+This constraint helps prevent duplicate exports to the same destination tables or storage locations. Because pipelines that aren't checked can still write to the same destination, keep in mind that a backfill replaces existing data for its dates, including data from other pipelines. See [How Backfills Write to Your Destination](#how-backfills-write-to-your-destination).
 
 ## Data Sources Output
 

@@ -144,7 +144,7 @@ You can’t delete a trial pipeline in Mixpanel — this is intentional. Each pr
 
 ### What is Active Pipeline Limit
 
-Each project can have two recurring pipelines and one date-ranged backfill pipeline active. Multiple pipelines cannot write to the same destination or for the same date range in a destination. Recurring pipelines must have different frequencies.
+Each project can have two recurring pipelines and one date-ranged backfill pipeline active. Recurring event pipelines cannot export to the same destination with overlapping date ranges (see [Destination and Date Range Restrictions](/docs/data-pipelines/json-pipelines#destination-and-date-range-restrictions)). Recurring pipelines must have different frequencies.
 
 Pipelines in the same project can run at the same time. For example, a date-ranged backfill pipeline can run alongside a recurring pipeline. Export steps are scheduled separately for each pipeline.
 
