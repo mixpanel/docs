@@ -413,7 +413,7 @@
                 "group": "MCP Server",
                 "root": "docs/mcp",
                 "pages": [
-                  "docs/mcp/enterprise-managed-connections"
+                  "docs/mcp/claude-enterprise-managed-auth"
                 ]
               },
               "docs/mixpanel-headless",
@@ -2803,6 +2803,10 @@
     {
       "source": "/docs/features/advanced",
       "destination": "/docs/reports"
+    },
+    {
+      "source": "/mcp/claude-enterprise-managed-auth",
+      "destination": "/docs/mcp/claude-enterprise-managed-auth"
     },
     {
       "source": "/docs/features/mcp",

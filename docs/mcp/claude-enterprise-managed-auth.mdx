@@ -111,7 +111,7 @@ The connection works the same way a normal Mixpanel sign-in does: the member can
 
 #### Can I see when a member was connected?
 
-Yes. Each connection is recorded in your organization's [audit log](/docs/access-security/audit-log) as an MCP client authorization. Because connections last up to an hour, you'll see a new entry roughly every hour while a member is actively using Mixpanel in Claude.
+Yes. Each connection is recorded as an `mcp_client.authorized` entry in the [audit log](/docs/access-security/audit-log) of every Mixpanel organization the member belongs to. Because connections last up to an hour, you'll see a new entry roughly every hour while a member is actively using Mixpanel in Claude.
 
 #### How do I pause or turn it off?
 
