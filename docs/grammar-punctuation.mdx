@@ -1,0 +1,131 @@
+---
+title: "Grammar, punctuation, and formatting"
+description: "Rules for headings, dashes, numbers, dates, times, lists, links, emphasis, and emoji in Mixpanel docs"
+---
+
+This page covers the grammar and formatting rules docs writers need most often.
+
+## Headings and titles
+
+- **Use sentence case** for page titles, headings, tab labels, and card titles. Capitalize only the first word and proper nouns, such as product and feature names.
+  - Do: "Set up EU Data Residency"
+  - Don't: "Set Up EU Data Residency"
+- **Start task headings with a verb:** "Create a cohort," "Export events."
+- **Don't skip heading levels.** The page title is the H1, so start sections at H2 (`##`), then H3 (`###`). Don't add another H1 in the page body.
+- **Don't end headings with a period.** A question mark is fine in an FAQ heading.
+- **Keep code out of headings** when you can. If a heading must name a method or parameter, use code font for it.
+
+<Note>
+  Navigation group labels in `docs.json` follow the existing navigation style, which uses title case. This is allowed because the company style guide permits title case for navigation elements.
+</Note>
+
+## Punctuation
+
+### Commas
+
+Use the serial comma (also called the Oxford comma) in a list of three or more: "events, properties, and profiles."
+
+### Dashes and hyphens
+
+Don't put spaces around any dash.
+
+| Mark | Use for | Example |
+| --- | --- | --- |
+| Hyphen (-) | Compound modifiers before a noun | server-side tracking, real-time data |
+| En dash (–) | Ranges of numbers, dates, and times | 2024–2026, 9 am–5 pm |
+| Em dash (—) | A break in a sentence, used sparingly | Send events from any source—client or server. |
+
+Use a true em dash (—), not two hyphens (--). If you use more than one em dash in a paragraph, rewrite one of the sentences.
+
+For a term followed by its definition, use a colon, not a dash: "**Event:** an action a user takes."
+
+### Ampersands
+
+Write "and" in headings and body text. Use "&" only in a company or product name, such as AT&T, or in a navigation label where space is tight.
+
+### Quotation marks and parentheses
+
+- Put periods and commas inside quotation marks: Type "data."
+- Put punctuation outside parentheses unless the whole sentence is inside them.
+- Don't use quotation marks for UI labels. Bold them instead. See [UI labels](#ui-labels).
+
+### Exclamation points
+
+Don't use them.
+
+## Numbers
+
+- Spell out one through nine. Use numerals for 10 and higher: "two of the 15 events." This rule doesn't apply to [technical values](/docs/style-guide-exceptions#technical-values) such as limits, versions, and parameter values.
+- Use commas in numbers with four or more digits: 1,000 and 150,000.
+- Use numerals with units and symbols: 5 GB, 3 ms, 7%.
+- Use the % symbol, not the word "percent."
+- Don't abbreviate large numbers in prose (5K, 2M) unless space is tight, such as in a table header or chart label.
+- If a sentence starts with a number, spell it out or rewrite the sentence.
+
+## Dates and times
+
+- Write dates as month, day, year: January 1, 2026.
+- Don't use ordinal endings: January 1, not January 1st.
+- Spell out months in prose. Abbreviate them only in tables where space is tight: Jan 1, 2026.
+- Write times with numerals, a space, and lowercase "am" or "pm": 7 am, 7:30 pm.
+- Leave out ":00" for times on the hour.
+- Use an en dash for time ranges: 9 am–5 pm.
+- Always state the time zone.
+
+For dates and timestamps in code, APIs, and data, see [Style guide exceptions](/docs/style-guide-exceptions#dates-and-times-in-technical-content).
+
+## Lists
+
+- Use a **numbered list** for steps that must happen in order. Use a **bulleted list** for everything else.
+- Introduce a list with a complete sentence or a phrase ending in a colon.
+- Keep list items parallel. If one item starts with a verb, start them all with a verb.
+- Don't end list items with a period unless an item contains more than one sentence. Within one list, either punctuate every item or none.
+- Put one action in each numbered step. Put the result of a step, if it's useful, in a separate sentence after the action.
+
+## UI labels
+
+Bold the names of buttons, menus, tabs, fields, and other UI elements. Match the capitalization the product uses, even when it's title case.
+
+| Do | Don't |
+| --- | --- |
+| Click **Create Role**. | Click _Create Role_. |
+| Go to **Project Settings** → **Service Accounts**. | Go to "Project Settings" > "Service Accounts". |
+| In Lexicon, click **Tidy Up**. | In Lexicon, click `Tidy Up`. |
+
+Use an arrow (→) with a space on each side to show a path through menus, and bold each label separately.
+
+Use "click" for buttons and links, "select" for options in menus and lists, and "enter" for typing into a field. Don't use "hit" or "press" for on-screen buttons.
+
+## Emphasis
+
+- Use bold for UI labels and for the term being defined in a definition list.
+- Use bold sparingly for emphasis. If everything is bold, nothing stands out.
+- Don't use italics for emphasis or for UI labels.
+- Don't underline text, and don't combine bold, italics, and all caps.
+
+## Links
+
+- Use descriptive link text that tells readers where the link goes: "see [Identity Management](/docs/tracking-methods/id-management)."
+- Don't use "click here," "here," "this page," or a bare URL as link text.
+- Link the first mention of a concept on a page, not every mention.
+- Use relative links for pages on this site, starting with `/docs/` or `/guides/`.
+- Don't put links in headings.
+
+## Emoji
+
+Don't use emoji in headings, prose, or callouts. To call attention to a note or warning, use a [callout](#callouts) such as `<Note>` or `<Warning>` instead.
+
+Use ✅ and ❌ in tables to show whether something is supported or available. Don't add them to the start of a "do" or "don't" line in prose, where the word already makes the meaning clear.
+
+## Callouts
+
+Use callouts for information the reader shouldn't miss. Don't use them for content that belongs in the main text.
+
+| Component | Use for |
+| --- | --- |
+| `<Note>` | Helpful context, prerequisites, or limitations |
+| `<Tip>` | An optional shortcut or best practice |
+| `<Warning>` | Something that could cause data loss, a security problem, or unexpected charges |
+| `<Info>` | Plan availability or other neutral status information |
+
+Keep callouts short, and don't put more than two on a screen.

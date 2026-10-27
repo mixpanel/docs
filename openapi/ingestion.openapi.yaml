@@ -1770,7 +1770,7 @@ components:
                 type: string
             example:
               code: 413
-              error: request exceeds max limit of 2097152 bytes
+              error: request exceeds max limit of 10485760 bytes
               status: Request Entity Too Large
     RateLimitExceeded:
       description: A 429 response indicates rate limits have been exceeded.
