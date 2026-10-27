@@ -29,6 +29,8 @@ This phase has three parts:
 - **Test:** Send your events to a development project and check them there.
 - **Launch:** Move the same tracking to production and confirm it holds up.
 
+You don't need to track everything at once. Start with a handful of events for one use case, get them live, then repeat Plan, Test, and Launch for the next one.
+
 Most rework in this phase traces back to two early choices: tracking too much, and putting off identity until data is already flowing. Both are easy to get right at the start and slow to fix later.
 
 **Done when:**
@@ -47,7 +49,7 @@ Pick a handful of events to start with, and write them down so your team can bui
 
 ### Decide what to measure
 
-Start from the questions you want answered, then pick a handful of events that answer them. What counts depends on your business, so here are starting points for a few common ones. [Measure Value](/guides/strategic-playbooks/guide-to-product-analytics/measure-value) · [What to Track](/docs/what-to-track)
+Start with the problem that brought you to Mixpanel, like where people drop off when they sign up. Write down the five to ten questions you want answered first, then pick a handful of events that answer them. What counts depends on your business, so here are starting points for a few common ones. [Measure Value](/guides/strategic-playbooks/guide-to-product-analytics/measure-value) · [What to Track](/docs/what-to-track)
 
 <Tabs>
   <Tab title="Online store">
@@ -55,51 +57,51 @@ Start from the questions you want answered, then pick a handful of events that a
 
     **Start with these events:**
 
-    - **Sign Up Completed:** Someone finishes creating an account.
-    - **Item Detail Page Viewed:** Someone looks at an item. Include which item, its type, and its price.
-    - **Item Added to Cart:** Someone adds an item to their cart. Include which item, how many, and the price.
-    - **View Checkout:** Someone reaches checkout. Include how many items and the order total.
-    - **Purchase Completed:** Someone completes a purchase. Include the order total, payment method, and coupon code.
+    - **`sign_up_completed`:** Someone finishes creating an account.
+    - **`item_viewed`:** Someone looks at an item. Include which item, its type, and its price.
+    - **`item_added_to_cart`:** Someone adds an item to their cart. Include which item, how many, and the price.
+    - **`checkout_viewed`:** Someone reaches checkout. Include how many items and the order total.
+    - **`purchase_completed`:** Someone completes a purchase. Include the order total, payment method, and coupon code.
   </Tab>
   <Tab title="Streaming and media">
     **What matters most:** People who watch each week.
 
     **Start with these events:**
 
-    - **Sign Up Completed:** Someone finishes creating an account.
-    - **Search:** Someone searches for content. Include what they searched for and how many results came back.
-    - **View Content Page:** Someone opens a title's page. Include the title, type, and genre.
-    - **Start Content:** Someone starts watching. Include the same details, plus where they found it.
-    - **End Content:** Someone stops watching. Include how long they watched.
+    - **`sign_up_completed`:** Someone finishes creating an account.
+    - **`content_searched`:** Someone searches for content. Include what they searched for and how many results came back.
+    - **`content_viewed`:** Someone opens a title's page. Include the title, type, and genre.
+    - **`content_started`:** Someone starts watching. Include the same details, plus where they found it.
+    - **`content_ended`:** Someone stops watching. Include how long they watched.
   </Tab>
   <Tab title="Software (SaaS)">
     **What matters most:** People who use your product each week.
 
     **Start with these events:**
 
-    - **Sign Up Completed:** Someone finishes creating an account.
+    - **`sign_up_completed`:** Someone finishes creating an account.
     - **Your key action:** Someone does the thing that shows they got value, like viewing a report or finishing a task. Include what they did and where in the product they did it.
     - **Your sharing action:** Someone shares or exports their work. Include what they shared and how.
-    - **Change Plan:** Someone changes their plan. Include the old plan, the new plan, and whether it was an upgrade or a downgrade.
-    - **Cancel Plan:** Someone cancels their plan. Include which plan they were on.
+    - **`plan_changed`:** Someone changes their plan. Include the old plan, the new plan, and whether it was an upgrade or a downgrade.
+    - **`plan_cancelled`:** Someone cancels their plan. Include which plan they were on.
   </Tab>
   <Tab title="Banking and finance">
     **What matters most:** People who use the app each week.
 
     **Start with these events:**
 
-    - **Sign Up Completed:** Someone finishes creating an account.
-    - **Balance Viewed:** Someone checks a balance. Include the account type and where in the app they opened it.
-    - **Deposit Completed:** Someone makes a deposit. Include the amount, type, and currency.
-    - **Transfer Completed:** Someone transfers money. Include the type, the accounts, and the amount.
-    - **Pay Balance Completed:** Someone pays a credit card balance. Include the amount and whether autopay was on.
+    - **`sign_up_completed`:** Someone finishes creating an account.
+    - **`balance_viewed`:** Someone checks a balance. Include the account type and where in the app they opened it.
+    - **`deposit_completed`:** Someone makes a deposit. Include the amount, type, and currency.
+    - **`transfer_completed`:** Someone transfers money. Include the type, the accounts, and the amount.
+    - **`card_balance_paid`:** Someone pays a credit card balance. Include the amount and whether autopay was on.
   </Tab>
   <Tab title="Something else">
     **What matters most:** People who get value from your product on a regular basis.
 
     **Start with these events:**
 
-    - **Sign Up Completed:** Someone finishes creating an account.
+    - **`sign_up_completed`:** Someone finishes creating an account.
     - **Your key action:** Someone does the thing that shows they got value. For a fitness app, that's a finished workout. For an e-signature tool, it's a signed contract.
     - **The steps that lead there:** Someone takes one of the actions right before it, like starting a workout or sending a document to sign. Add two or three, so you can see where people drop off.
   </Tab>
@@ -112,6 +114,8 @@ Start from the questions you want answered, then pick a handful of events that a
 ### Choose your events
 
 One event with properties beats one event per item. Skip personal data, and anything Mixpanel already collects. [How To Build a Tracking Strategy](/guides/guides-by-workflow/build-tracking-strategy) · [Default Properties](/docs/data-structure/property-reference/default-properties) · [Data Privacy & PII Best Practices](/guides/guides-by-workflow/data-privacy)
+
+Name events in snake_case, with the object first and the action second, like `item_added_to_cart`. Names are case-sensitive, so stick to one style. If you want friendlier names in Mixpanel, set a display name in Lexicon, such as showing `item_added_to_cart` as Item Added to Cart. [Events](/docs/data-structure/events-and-properties) · [Lexicon](/docs/data-governance/lexicon)
 
 ### Write down your first events
 
