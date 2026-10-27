@@ -48,11 +48,11 @@ Use Real-Time Event Streams when latency matters and your workflow needs individ
 - **Destination** — the webhook endpoint and its authentication configuration.
 - **Stream** — a rule that binds a set of filtered events and a Liquid payload template to a Destination.
 
-## Delivery guarantees at a glance
+## Real Time Delivery at a glance
 
 - **At-least-once delivery.** You can include the Mixpanel Insert ID property in the payload so you can deduplicate on your side.
 - **Automatic retries.** Transient failures (5xx, timeouts, network errors) are retried up to 4 times with exponential backoff. Permanent failures (4xx) are surfaced as configuration errors.
-- **Latency.** Target of p50 ≤ 60 seconds from ingestion to a confirmed 2xx response at your endpoint under normal load. This is a target, not an SLA.
+- **Latency.** Target of p50 ≤ 60 seconds from ingestion to a confirmed 2xx response at your endpoint under normal load.
 
 See [Delivery and reliability](/docs/real-time-event-streams/delivery-and-reliability) for the full behavior.
 
