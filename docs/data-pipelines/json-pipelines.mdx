@@ -81,6 +81,18 @@ Use the `from_date` parameter to specify the date from which you want to export 
 
 The completion time for a backfill depends on the number of days and the volume of data in the project. Larger backfills can take several weeks.
 
+### One-Time Backfills
+
+To export a fixed date range once, without ongoing exports:
+
+1. When creating the pipeline, expand **Advanced**.
+2. Set **Backfill Mode** to **One Time**.
+3. Pick the date range to export.
+
+Each project can have only one date-ranged backfill pipeline active at a time. See [What is Active Pipeline Limit](/docs/data-pipelines#what-is-active-pipeline-limit).
+
+A one-time backfill pipeline stays in your pipeline list after it completes and isn't deleted automatically. Delete it when you no longer need it (see [Managing Existing Pipelines](/docs/data-pipelines#managing-existing-pipelines)).
+
 ### How Backfills Write to Your Destination
 
 A recurring events pipeline starts with a backfill from its `from_date`. After the backfill, each run appends new events to your destination. A date-ranged pipeline runs once, as a single backfill.
