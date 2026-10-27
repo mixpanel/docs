@@ -132,7 +132,7 @@ This calculator is different from the standalone [sample size calculator](https:
 | **Minimal Detectable Lift %** | The metric's MDE, then the experiment's, then 10% | The smallest *relative* change from baseline the experiment can detect. For example, with a 5% baseline, a 20% lift detects a conversion rate of 6% or higher. |
 | **Confidence Level %** | The experiment's confidence threshold (95%) | 90, 95, 97.5 or 99%. |
 | **Power %** | 80% | 70, 80, 90 or 95%. |
-| **Hypothesis** | The metric's setting | Two-sided or one-sided. Hidden for Bayesian experiments. |
+| **Hypothesis** | The metric's setting | Two-sided or [one-sided](#one-sided-tests). Hidden for Bayesian experiments. |
 
 The calculator reads the number of variants from the experiment and assumes an even split between them. If the split is uneven, the summary says so.
 
@@ -313,6 +313,8 @@ Metric rows in the table are highlighted when a difference is calculated with hi
 - Positive differences, where the variant value is in the target direction compared to the control, are highlighted in green
 - Negative differences, where the variant value is opposite the target direction compared to the control, are highlighted in red
 - Statistically insignificant results remain gray
+
+Each metric's target direction is Up by default. To change it, see [One-Sided Tests](#one-sided-tests).
 
 <Note>
 Hover over a value in a metric row to see more detail behind the numbers and to view the metric in Insights.
@@ -646,13 +648,16 @@ Mixpanel offers several advanced statistical options to help you get more reliab
 | **SRM** | Checks whether your variant split matches the configured allocation | Always on as a health check | Pause the experiment. Identify and fix the root cause of the mismatch, then [restart the experiment](#restarting-or-resetting-an-experiment). |
 | **Pre-Experiment Bias** | Checks whether variant groups were already different *before* the experiment started | Always on as a health check | Your groups had pre-existing bias. Consider enabling CUPED to correct for it. Investigate your assignment logic to prevent it in future experiments. |
 | **CUPED** | Uses pre-experiment behavior to adjust for natural variance and pre-existing bias, helping you reach significance faster | Your users have pre-experiment history and your metrics have high natural variance | If confidence intervals don't noticeably tighten, pre-experiment behavior isn't predictive for your metrics. Results are still valid, you just won't get faster detection. |
+| **Discard Novelty Effects** | Leaves out each user's metric events for a set period after their first exposure | You expect users to react to the change just because it's new, and want to measure behavior once they've settled in | Expect absolute metric values to read lower and significance to take longer. Compare variants against each other rather than against values from other reports. |
+| **One-Sided Tests** | Tests a metric for a change in its target direction only, so smaller effects in that direction can reach significance | Only a move in one direction would change your decision, and you chose that direction before launch. Frequentist and Sequential only | Don't use it on guardrail metrics: a one-sided test can't flag a significant move in the other direction. |
 
 ### Which methods apply to Bayesian experiments
 
 Most of the methods below are independent of your experiment model type and work the same way on a Bayesian experiment:
 
-- **Winsorization**, **CUPED**, **segmentation**, **SRM**, and **Pre-Experiment Bias** all apply. They operate on the metric data before the statistical model runs, so the Bayesian model consumes the adjusted values. With CUPED, the effect shows up as narrower credible intervals while the reported lift stays roughly the same.
+- **Winsorization**, **CUPED**, **Discard Novelty Effects**, **segmentation**, **SRM**, and **Pre-Experiment Bias** all apply. They operate on the metric data before the statistical model runs, so the Bayesian model consumes the adjusted values. With CUPED, the effect shows up as narrower credible intervals while the reported lift stays roughly the same.
 - **Multiple testing corrections (Bonferroni and Benjamini-Hochberg)** don't apply. Both work by adjusting p-value thresholds, and Bayesian results don't produce a p-value; the decision comes directly from the Chance to Beat Control. The setting is hidden on Bayesian experiments, including when you add a breakdown.
+- **One-sided tests** don't apply. Chance to Beat Control already measures the probability of a move in one direction. The **Test** setting is hidden on Bayesian experiments.
 
 <Note>
 The caution about [post-hoc segmentation](#the-risk-of-post-hoc-segmentation) still applies to Bayesian experiments. Inspecting many segments looking for one that "worked" raises your odds of finding a variant that looks like a winner by chance, whether you're reading p-values or probabilities. Treat a winning segment as a lead to test in a fresh experiment.
@@ -767,6 +772,69 @@ The core insight is that users who had high engagement or revenue *before* the e
 - You're measuring metrics where past behavior predicts future behavior (engagement, revenue, retention)
 
 CUPED works best when pre-experiment and post-experiment metrics are strongly correlated. If users' behavior is highly unpredictable or your experiment targets new users with no history, you may not see any benefit.
+
+### Discard Novelty Effects
+
+Some changes get a strong reaction at first because they're new, not because they're better. A redesigned page might get extra clicks while users explore it, then settle back to normal. A change that takes getting used to might do the opposite: it dips at first, then recovers. If you measure from the moment users are exposed, these short-lived reactions can make a variant look better or worse than it will be in the long run.
+
+Discard Novelty Effects leaves out each user's metric events for a set period after their first exposure. Only behavior after that period counts, so you measure how users act once they've settled in.
+
+**Setting it up:** In the experiment's **Configuration** tab, under **Experiment**, set **Discard Novelty Effects** to **Enabled**. Then pick a **Discard Period**: **2 hours**, **12 hours**, **24 hours** (default), **2 days**, **4 days**, or **1 week**. The setting applies to every metric in the experiment. It is off by default.
+
+**How it works:** The period is measured from each user's own first exposure, not from the experiment's start date. For example, with a 2-day period, a user exposed on Monday contributes metric events from Wednesday onward, and a user exposed on Thursday contributes events from Saturday onward. Being exposed again later doesn't restart the period.
+
+- **Exposures aren't affected.** Every exposed user still counts toward the exposure count, the sample size, and the [Sample Ratio Mismatch](#sample-ratio-mismatch-srm) check.
+- **Metric values only count events after the discard period.** Because every exposed user still counts in the denominator, absolute metric values read lower than they would without the setting. For example, a conversion rate counts users who converted after their discard period, divided by all exposed users. The comparison between variants is what stays valid.
+- **Funnels and retention:** For funnel metrics, a user counts toward their variant if at least one funnel step they reached happened after their discard period. For retention metrics, the user's first (birth) event must happen after the discard period.
+- **Users exposed near the end of the experiment:** If a user's discard period hasn't ended by the experiment's end date (or by today, for a running experiment), they count as exposed but contribute no metric events. If the experiment has run for less than the discard period, metric values will be close to zero.
+
+**When to use Discard Novelty Effects:**
+
+- You're testing a change users are likely to react to just because it's new, such as a full redesign, a new navigation, or a new feature that's prominently placed
+- You want to measure lasting behavior rather than the first reaction
+
+Discarding data means results take longer to reach significance. Pick the shortest period that covers the initial reaction you expect, and run the experiment long enough that most users get past their discard period.
+
+You can change the setting at any time, and results are recalculated from all of the experiment's data. As with other [mid-experiment changes](#changing-settings-mid-experiment), decide on the setting before you look at results, not because of them. Changing it on a decided experiment reopens the experiment and clears the recorded decision.
+
+Discard Novelty Effects works with all experiment model types, CUPED, Winsorization, and multiple testing corrections. The [Pre-Experiment Bias](#pre-experiment-bias-analysis) check looks at data from before exposure, so it isn't affected.
+
+### One-Sided Tests
+
+By default, every metric uses a two-sided test: a variant can be called significant whether the metric goes up or down. If you only care whether a change moves a metric in one direction, you can switch that metric to a one-sided test. A one-sided test spends its whole significance budget on the metric's target direction. With the same number of users, it can detect a smaller effect in that direction. The trade-off is that it can't flag a significant move in the other direction.
+
+**Setting it up:** One-sided tests are set per metric. Open a metric in the experiment, then open its display settings (the menu with **Unit**, **Abbreviation**, and **Decimals**). Set **Target Direction** to **Up** or **Down**, then set **Test** to **One-sided**. **Test** defaults to **Two-sided**. You can also reach these settings from the results: hover over a metric and click its Target Direction value.
+
+<Frame>
+![Target Direction setting in a metric's display settings](/images/exp_target_direction.png)
+</Frame>
+
+Target Direction applies to every metric, not just one-sided ones. It sets which way the metric should move, and that decides the result color: green when the variant moves in the target direction, red when it moves against it. It defaults to **Up**. On a one-sided metric, it also sets the direction being tested.
+
+**How results change:**
+
+- **p-value:** The p-value measures the evidence for an effect in the target direction only. At a 95% confidence threshold, the critical z-score drops from about 1.96 to about 1.645, so a smaller lift in the target direction can reach significance.
+- **Confidence interval:** The interval is bounded only on one side. For a metric with Target Direction Up, it runs from a lower bound to +∞, for example `[1.2%, ∞)`. For Down, it runs from −∞ to an upper bound. On the results chart, the bar extends to the edge of the chart on the untested side.
+- **Moves in the opposite direction:** These are never significant, however large. They show as **Not Statistically Significant** and stay gray instead of red.
+
+<Warning>
+A one-sided test can't detect harm in the direction it doesn't test. Keep guardrail metrics, and any metric where a drop would change your decision, on a two-sided test.
+</Warning>
+
+**When to use a one-sided test:**
+
+- Only a move in one direction would lead you to act. For example, you will ship only if conversion goes up, and you'd treat "no change" and "worse" the same way.
+- You choose the direction before the experiment starts, based on your hypothesis.
+
+Don't switch a metric to one-sided after seeing the results to push it past the significance threshold. This inflates your false positive rate in the same way as other [mid-experiment changes](#changing-settings-mid-experiment). Results are recalculated from all the experiment's data, so a change to the Test setting also changes past results.
+
+**Compatibility with other settings:**
+
+- **Experiment model types:** One-sided tests work with Frequentist and Sequential experiments. On Bayesian experiments, the **Test** setting is hidden and ignored, because Chance to Beat Control already measures one direction. With Sequential, a one-sided test is somewhat conservative: its actual false positive rate is below the rate your confidence threshold allows.
+- **Multiple testing corrections:** With [Bonferroni](#bonferroni-correction), the threshold is corrected first, and the one-sided test then applies the whole corrected threshold to the target direction. [Benjamini-Hochberg](#benjamini-hochberg-correction) ranks the one-sided p-values.
+- **CUPED:** Works as usual. The one-sided test runs on the CUPED-adjusted variance.
+- **Pre-Experiment Bias:** This health check always uses a two-sided test.
+- **Sample Size Calculator:** The calculator's **Hypothesis** input starts from the primary metric's setting. Choosing **One-sided** there sizes the experiment for a one-sided test. When you click **Apply to Experiment**, it also switches that primary metric to one-sided. See [Sample Size Calculator](#sample-size-calculator).
 
 ## Looking under the hood - How does the analysis engine work?
 
@@ -956,7 +1024,7 @@ Once the experiment is ready to review, you can choose to 'End Analysis'. Use th
 ### What to Watch Post-Rollout
 - **Monitor guardrail metrics** for 2-4 weeks after full rollout
 - **Track long-term effects** beyond your experiment window
-- **Watch for novelty effects** that may wear off
+- **Watch for novelty effects** that may wear off. To account for them during the experiment, see [Discard Novelty Effects](#discard-novelty-effects).
 - **Document learnings** for future experiments
 
 ### Decision Options in Mixpanel
