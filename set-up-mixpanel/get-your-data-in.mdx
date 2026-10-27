@@ -1,1 +1,111 @@
-sss
+---
+title: "Get your data in"
+description: "Phase 1 of 3. Plan what to track, test it in a development project, then launch to production."
+sidebarTitle: "Get Your Data In"
+---
+
+<Badge color="orange" size="xs">Phase 1</Badge>
+
+Most rework in this phase traces back to two early choices: tracking too much, and putting off identity until data is already flowing. Both are easy to get right at the start and slow to fix later.
+
+**Done when:**
+
+- You've picked a short list of events
+- They check out in development
+- They reach production
+
+<Info>
+  Using an AI coding agent? Follow [Install with AI](/docs/quickstart/install-with-ai) instead of the tasks below. It plans and installs in one session.
+</Info>
+
+## Plan
+
+### Decide what to measure
+
+Start from the questions you want answered, then pick the fewest events that answer them. What counts depends on your product: a fitness app might count a finished workout, and an e-signature tool a signed contract. [Measure Value](/guides/strategic-playbooks/guide-to-product-analytics/measure-value) · [What to Track](/docs/what-to-track)
+
+New to events, users, and properties? [Data Model](/docs/data-structure/concepts)
+
+Selling to companies? Decide whether to analyze them as groups, not just as users. [Group Analytics](/docs/data-structure/group-analytics)
+
+<Tip>
+  **Small doesn't mean thin.** Cover one journey from start to finish, not a scattering of events across the product.
+</Tip>
+
+### Choose your events
+
+One event with properties beats one event per item. Skip personal data, and anything Mixpanel already collects. [How To Build a Tracking Strategy](/guides/guides-by-workflow/build-tracking-strategy) · [Default Properties](/docs/data-structure/property-reference/default-properties) · [Data Privacy & PII Best Practices](/guides/guides-by-workflow/data-privacy)
+
+### Write your tracking plan
+
+Write your plan down, and have a teammate, or your Mixpanel contact if you have one, review it before anyone builds from it. [Create A Tracking Plan](/docs/tracking-best-practices/tracking-plan)
+
+## Test
+
+### Create development and production projects
+
+Make one project for testing and one for your real data. [Managing Projects](/docs/orgs-and-projects/managing-projects) · [Developer Environments](/docs/tracking-best-practices/developer-environments)
+
+### Choose how data gets in
+
+Pick the method that fits how your product is built. [Tracking Methods](/docs/tracking-methods) · [Choosing the Right Method](/docs/tracking-methods/choosing-the-right-method)
+
+Building a web app? [Autocapture](/docs/tracking-methods/autocapture) can speed up your first data.
+
+<Tip>
+  **Autocapture works best alongside your plan.** Events you hide from reports still count toward your billing.
+</Tip>
+
+### Send your first events
+
+Install the SDK and send the events from your plan to your development project. [Quickstart](/docs/quickstart) · [SDKs](/docs/tracking-methods/sdks) · [Tracking Best Practices](/docs/tracking-best-practices)
+
+Tracking companies as groups? [Group Analytics Implementation Guide](/docs/data-structure/group-analytics/group-analytics-implementation)
+
+### Identify your users
+
+Set up identity when you first send data. [Identity Management Overview](/docs/tracking-methods/id-management) · [Identifying Users (Simplified)](/docs/tracking-methods/id-management/identifying-users-simplified)
+
+<Tip>
+  **Pick a user ID that never changes before you write any identity code.** Once a user ID is set, it can't be changed.
+</Tip>
+
+### Check your events and identity
+
+Developers check the code, and product teammates walk through the main user flows. Then build one report from your development data that answers a top question. [Ensuring Data Quality](/guides/guides-by-workflow/ensure-data-quality) · [Debugging](/docs/tracking-best-practices/debugging) · [Insights](/docs/reports/insights)
+
+No events showing? Start with the [Sending Data FAQ](/troubleshooting/sending-data).
+
+## Launch
+
+<Note>
+  Used Install with AI? Review the code your agent wrote before you deploy it.
+</Note>
+
+### Switch to your production project
+
+Point your product at your production project, and stop sending test data to your development project. [Find your project token](/docs/orgs-and-projects/managing-projects#locate-current-project-token)
+
+### Deploy and compare
+
+Review the code, deploy it through your usual release process, then compare what arrives with what you tested. [Missing or incomplete events](/docs/tracking-best-practices/debugging#missing-or-incomplete-events)
+
+{/* Optional: remove the comment markers to show this line.
+  Seeing fewer web events than you expect? [First-Party Domains](/docs/tracking-methods/first-party-domains)
+  */}
+
+### Watch for problems
+
+Set up alerts so you hear about drops or spikes before your team does. [Alerts](/docs/features/alerts)
+
+On an Enterprise plan? [Data Volume Monitoring](/docs/data-governance/data-volume-monitoring) watches event volume for you.
+
+## Learn more
+
+<Card title="Mixpanel Onboarding path" icon="graduation-cap" horizontal href="https://university.mixpanel.com/student/path/3411734-mixpanel-onboarding">
+  A course in Mixpanel University that covers the full setup, one module at a time.
+</Card>
+
+## Next phase
+
+Next, [Configure your account](/set-up-mixpanel/configure-your-account). You can start it alongside this phase.
