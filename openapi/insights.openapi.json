@@ -77,7 +77,7 @@
           "type",
           "cohort_ids"
         ],
-        "title": "Cohort breakdown",
+        "title": "CohortBreakdown",
         "description": "Groups results by membership in each of the given saved cohorts."
       },
       "CohortCountMeasurement": {
@@ -132,7 +132,7 @@
           "type",
           "cohort_id"
         ],
-        "title": "Cohort filter",
+        "title": "CohortFilter",
         "description": "Keeps users who are, or are not, members of a saved cohort."
       },
       "CohortMetric": {
@@ -184,6 +184,7 @@
                   "$ref": "#/components/schemas/CohortFilter"
                 }
               ],
+              "description": "Set `type` to `property` to filter on a property value, or `cohort` to filter on cohort membership.",
               "discriminator": {
                 "propertyName": "type",
                 "mapping": {
@@ -195,7 +196,7 @@
             "type": "array",
             "maxItems": 5,
             "title": "Filters",
-            "description": "Profile property or cohort filters narrowing the members counted. Set each filter's `type` to `property` or `cohort`.",
+            "description": "Profile property or cohort filters narrowing the members counted.",
             "default": []
           }
         },
@@ -205,7 +206,7 @@
           "type",
           "cohort_id"
         ],
-        "title": "Cohort metric"
+        "title": "CohortMetric"
       },
       "CohortOperator": {
         "type": "string",
@@ -290,6 +291,7 @@
                   "$ref": "#/components/schemas/CohortFilter"
                 }
               ],
+              "description": "Set `type` to `property` to filter on a property value, or `cohort` to filter on cohort membership.",
               "discriminator": {
                 "propertyName": "type",
                 "mapping": {
@@ -301,7 +303,6 @@
             "type": "array",
             "maxItems": 5,
             "title": "Filters",
-            "description": "Filters on this event. Set each filter's `type` to `property` or `cohort`.",
             "default": []
           },
           "filters_logical_operator": {
@@ -326,7 +327,7 @@
           "event_type",
           "id"
         ],
-        "title": "Custom event",
+        "title": "CustomEvent",
         "description": "A saved custom event, referenced by its id."
       },
       "DatetimeUnit": {
@@ -356,6 +357,7 @@
                   "$ref": "#/components/schemas/CohortFilter"
                 }
               ],
+              "description": "Set `type` to `property` to filter on a property value, or `cohort` to filter on cohort membership.",
               "discriminator": {
                 "propertyName": "type",
                 "mapping": {
@@ -367,7 +369,6 @@
             "type": "array",
             "maxItems": 5,
             "title": "Filters",
-            "description": "Filters on this event. Set each filter's `type` to `property` or `cohort`.",
             "default": []
           },
           "filters_logical_operator": {
@@ -427,7 +428,7 @@
           "type",
           "calculation"
         ],
-        "title": "Count",
+        "title": "EventCountMeasurement",
         "description": "Counts matching events, sessions, or users."
       },
       "EventCustomJoinKey": {
@@ -449,7 +450,7 @@
           "source",
           "id"
         ],
-        "title": "Event custom property",
+        "title": "EventCustomJoinKey",
         "description": "A saved event custom property a lookup table is attached to."
       },
       "EventCustomProperty": {
@@ -503,7 +504,7 @@
           "source",
           "id"
         ],
-        "title": "Event custom property",
+        "title": "EventCustomProperty",
         "description": "A saved custom property computed on the event, by id."
       },
       "EventFrequencyPerUserMeasurement": {
@@ -561,7 +562,7 @@
           "type",
           "calculation"
         ],
-        "title": "Frequency per user",
+        "title": "EventFrequencyPerUserMeasurement",
         "description": "A statistic over how many matching events each user performed."
       },
       "EventJoinKey": {
@@ -583,7 +584,7 @@
           "source",
           "name"
         ],
-        "title": "Event property",
+        "title": "EventJoinKey",
         "description": "An event property a lookup table is attached to."
       },
       "EventMetric": {
@@ -623,7 +624,7 @@
               }
             ],
             "title": "Measurement",
-            "description": "What to calculate over the matching events. Set `type` to `count`, `property`, `frequency_per_user`, or `property_per_user`.",
+            "description": "What the metric calculates. Set `type` to `count`, `property`, `frequency_per_user`, or `property_per_user`.",
             "discriminator": {
               "propertyName": "type",
               "mapping": {
@@ -649,6 +650,7 @@
                   "$ref": "#/components/schemas/CustomEvent"
                 }
               ],
+              "description": "Set `event_type` to `event` for an event tracked into the project, or `custom_event` for a saved custom event.",
               "discriminator": {
                 "propertyName": "event_type",
                 "mapping": {
@@ -659,8 +661,7 @@
             },
             "type": "array",
             "minItems": 1,
-            "title": "Events",
-            "description": "The events this metric matches; an event matching any of them counts. Set `event_type` to `event` or `custom_event`."
+            "title": "Events"
           }
         },
         "additionalProperties": false,
@@ -670,7 +671,7 @@
           "type",
           "events"
         ],
-        "title": "Event metric"
+        "title": "EventMetric"
       },
       "EventProperty": {
         "properties": {
@@ -723,7 +724,7 @@
           "source",
           "name"
         ],
-        "title": "Event property",
+        "title": "EventProperty",
         "description": "A property recorded on the event."
       },
       "EventPropertyMeasurement": {
@@ -814,7 +815,7 @@
           "calculation",
           "property"
         ],
-        "title": "Property",
+        "title": "EventPropertyMeasurement",
         "description": "A statistic over a property's values across all matching events.\n\nEvery calculation except `distinct_count` needs a number property."
       },
       "EventPropertyPerUserMeasurement": {
@@ -918,7 +919,7 @@
           "property",
           "per_user"
         ],
-        "title": "Property per user",
+        "title": "EventPropertyPerUserMeasurement",
         "description": "Aggregates a property for each user, then a statistic across users.\n\n`per_user` other than `distinct_count` needs a number property."
       },
       "FormulaMetric": {
@@ -969,7 +970,7 @@
           "type",
           "formula"
         ],
-        "title": "Formula metric"
+        "title": "FormulaMetric"
       },
       "FunnelConversionRateMeasurement": {
         "properties": {
@@ -1011,7 +1012,7 @@
         "required": [
           "type"
         ],
-        "title": "Conversion rate",
+        "title": "FunnelConversionRateMeasurement",
         "description": "The share of entities that complete the funnel, counted per `calculation`."
       },
       "FunnelCountMeasurement": {
@@ -1054,7 +1055,7 @@
           "type",
           "calculation"
         ],
-        "title": "Count",
+        "title": "FunnelCountMeasurement",
         "description": "Counts the entities, events, or sessions that complete the funnel."
       },
       "FunnelMetric": {
@@ -1094,7 +1095,7 @@
               }
             ],
             "title": "Measurement",
-            "description": "What to calculate over the funnel's conversions. Set `type` to `conversion_rate`, `count`, `time_to_convert`, or `property`.",
+            "description": "What the metric calculates. Set `type` to `conversion_rate`, `count`, `time_to_convert`, or `property`.",
             "discriminator": {
               "propertyName": "type",
               "mapping": {
@@ -1141,7 +1142,7 @@
           "type",
           "steps"
         ],
-        "title": "Funnel metric"
+        "title": "FunnelMetric"
       },
       "FunnelOrder": {
         "type": "string",
@@ -1219,7 +1220,7 @@
           "type",
           "property"
         ],
-        "title": "Property",
+        "title": "FunnelPropertyMeasurement",
         "description": "The sum of a number property over the last-step event of each conversion."
       },
       "FunnelStep": {
@@ -1234,7 +1235,7 @@
               }
             ],
             "title": "Event",
-            "description": "The event an entity performs at this step. Set `event_type` to `event` or `custom_event`.",
+            "description": "Set `event_type` to `event` for an event tracked into the project, or `custom_event` for a saved custom event.",
             "discriminator": {
               "propertyName": "event_type",
               "mapping": {
@@ -1306,7 +1307,7 @@
           "type",
           "calculation"
         ],
-        "title": "Time to convert",
+        "title": "FunnelTimeToConvertMeasurement",
         "description": "A statistic over how long converting entities took, in seconds."
       },
       "InsightsQueryRequest": {
@@ -1344,8 +1345,7 @@
             "type": "array",
             "maxItems": 40,
             "minItems": 1,
-            "title": "Metrics",
-            "description": "The metrics to calculate. Set each metric's `type` to `event`, `funnel`, `retention`, `cohort`, or `formula`."
+            "title": "Metrics"
           },
           "time": {
             "$ref": "#/components/schemas/Time"
@@ -1362,6 +1362,7 @@
                       "$ref": "#/components/schemas/CohortFilter"
                     }
                   ],
+                  "description": "Set `type` to `property` to filter on a property value, or `cohort` to filter on cohort membership.",
                   "discriminator": {
                     "propertyName": "type",
                     "mapping": {
@@ -1377,8 +1378,7 @@
                 "type": "null"
               }
             ],
-            "title": "Filters",
-            "description": "Filters applied to every metric. Set each filter's `type` to `property` or `cohort`."
+            "title": "Filters"
           },
           "breakdowns": {
             "anyOf": [
@@ -1407,8 +1407,7 @@
                 "type": "null"
               }
             ],
-            "title": "Breakdowns",
-            "description": "Groups results by property value or cohort membership. Set each breakdown's `type` to `property` or `cohort`."
+            "title": "Breakdowns"
           },
           "time_comparison": {
             "anyOf": [
@@ -1596,7 +1595,7 @@
           "join_key",
           "column"
         ],
-        "title": "Lookup property",
+        "title": "LookupProperty",
         "description": "A column of a lookup table, reached through the property it is joined on.\n\nThe table is not named: each join key maps to at most one lookup table, and\na column name alone is ambiguous across tables. Group profiles are not\nlookup tables; their properties are `profile` properties with a `group_key`."
       },
       "NumericBuckets": {
@@ -1683,7 +1682,7 @@
           "source",
           "id"
         ],
-        "title": "Profile custom property",
+        "title": "ProfileCustomJoinKey",
         "description": "A saved user profile custom property a lookup table is attached to.\n\nA `profile_custom` join key always means the `$user_id` profile."
       },
       "ProfileCustomProperty": {
@@ -1744,7 +1743,7 @@
           "source",
           "id"
         ],
-        "title": "Profile custom property",
+        "title": "ProfileCustomProperty",
         "description": "A saved custom property computed on a user or group profile, by id.\n\n`group_key` names which profile, as for `profile` properties."
       },
       "ProfileJoinKey": {
@@ -1766,7 +1765,7 @@
           "source",
           "name"
         ],
-        "title": "Profile property",
+        "title": "ProfileJoinKey",
         "description": "A user profile property a lookup table is attached to.\n\nA `profile` join key always means the `$user_id` profile."
       },
       "ProfileProperty": {
@@ -1827,7 +1826,7 @@
           "source",
           "name"
         ],
-        "title": "Profile property",
+        "title": "ProfileProperty",
         "description": "A property on a user profile or a group profile (company, organization,\n...), read as of query time.\n\n`group_key` names which profile."
       },
       "PropertyBreakdown": {
@@ -1911,7 +1910,7 @@
           "type",
           "property"
         ],
-        "title": "Property breakdown",
+        "title": "PropertyBreakdown",
         "description": "Groups results by a property's values.\n\nThe optional bucketing follows the property's type: `datetime_unit` for\ndatetime, `numeric_buckets` for number, `string_groups` for string."
       },
       "PropertyFilter": {
@@ -2019,7 +2018,7 @@
           "property",
           "operator"
         ],
-        "title": "Property filter",
+        "title": "PropertyFilter",
         "description": "Keeps events or profiles whose property passes the comparison."
       },
       "PropertyType": {
@@ -2064,7 +2063,7 @@
           "value",
           "align_to_whole_unit"
         ],
-        "title": "Relative date"
+        "title": "RelativeDate"
       },
       "RetentionCountMeasurement": {
         "properties": {
@@ -2101,7 +2100,7 @@
         "required": [
           "type"
         ],
-        "title": "Count",
+        "title": "RetentionCountMeasurement",
         "description": "Counts the entities retained in the bucket."
       },
       "RetentionCriteria": {
@@ -2149,7 +2148,7 @@
               }
             ],
             "title": "Measurement",
-            "description": "What to report for the chosen bucket. Set `type` to `retention_rate`, `count`, or `property`.",
+            "description": "What the metric reports. Set `type` to `retention_rate`, `count`, or `property`.",
             "discriminator": {
               "propertyName": "type",
               "mapping": {
@@ -2174,7 +2173,7 @@
               }
             ],
             "title": "Start Event",
-            "description": "The event that starts an entity's retention clock. Set `event_type` to `event` or `custom_event`.",
+            "description": "The event that starts an entity's retention clock.",
             "discriminator": {
               "propertyName": "event_type",
               "mapping": {
@@ -2193,7 +2192,7 @@
               }
             ],
             "title": "Return Event",
-            "description": "The event that counts as returning. Set `event_type` to `event` or `custom_event`.",
+            "description": "The event that counts as returning.",
             "discriminator": {
               "propertyName": "event_type",
               "mapping": {
@@ -2228,7 +2227,7 @@
           "start_event",
           "return_event"
         ],
-        "title": "Retention metric"
+        "title": "RetentionMetric"
       },
       "RetentionPropertyMeasurement": {
         "properties": {
@@ -2300,7 +2299,7 @@
           "calculation",
           "property"
         ],
-        "title": "Property",
+        "title": "RetentionPropertyMeasurement",
         "description": "A number property over the cohort's return events in the bucket: `sum` adds it\nup, `average` is the mean of each cohort member's sum, counting members who did not\nreturn as 0."
       },
       "RetentionRateMeasurement": {
@@ -2332,7 +2331,7 @@
         "required": [
           "type"
         ],
-        "title": "Retention rate",
+        "title": "RetentionRateMeasurement",
         "description": "The share of entities that did the start event and returned in the bucket."
       },
       "RetentionUnit": {
@@ -2357,7 +2356,7 @@
         "required": [
           "size"
         ],
-        "title": "Rolling average",
+        "title": "RollingAverage",
         "description": "A rolling average over a number of time buckets. The request must set\n`time.unit`, which sizes each bucket."
       },
       "StringGroup": {
@@ -2411,13 +2410,11 @@
               {
                 "type": "string",
                 "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                "title": "Calendar date",
                 "description": "Calendar date, YYYY-MM-DD, in the project's timezone. Covers the whole day."
               },
               {
                 "type": "string",
                 "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$",
-                "title": "Timestamp",
                 "description": "Timestamp, YYYY-MM-DDTHH:mm, in the project's timezone. Covers the whole minute."
               },
               {
@@ -2432,13 +2429,11 @@
               {
                 "type": "string",
                 "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                "title": "Calendar date",
                 "description": "Calendar date, YYYY-MM-DD, in the project's timezone. Covers the whole day."
               },
               {
                 "type": "string",
                 "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$",
-                "title": "Timestamp",
                 "description": "Timestamp, YYYY-MM-DDTHH:mm, in the project's timezone. Covers the whole minute."
               },
               {
