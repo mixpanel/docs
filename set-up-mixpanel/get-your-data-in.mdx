@@ -4,7 +4,22 @@ description: "Phase 1 of 3. Plan what to track, test it in a development project
 sidebarTitle: "Get Your Data In"
 ---
 
-<Badge color="orange" size="xs">Phase 1</Badge>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '10px', margin: '10px 0 14px' }}>
+  <div style={{ borderTop: '3px solid #F97316', paddingTop: '8px', fontWeight: 500 }}>
+    <div style={{ fontSize: '12px', color: '#F97316' }}>Phase 1</div>
+    Get your data in
+  </div>
+
+  <a href="/set-up-mixpanel/configure-your-account" style={{ display: 'block', borderTop: '3px solid #D1D5DB', paddingTop: '8px', color: '#6B7280', textDecoration: 'none', borderBottom: 'none' }}>
+    <div style={{ fontSize: '12px' }}>Phase 2</div>
+    Configure your account
+  </a>
+
+  <a href="/set-up-mixpanel/train-your-team" style={{ display: 'block', borderTop: '3px solid #D1D5DB', paddingTop: '8px', color: '#6B7280', textDecoration: 'none', borderBottom: 'none' }}>
+    <div style={{ fontSize: '12px' }}>Phase 3</div>
+    Train your team
+  </a>
+</div>
 
 Most rework in this phase traces back to two early choices: tracking too much, and putting off identity until data is already flowing. Both are easy to get right at the start and slow to fix later.
 
@@ -18,22 +33,7 @@ Most rework in this phase traces back to two early choices: tracking too much, a
   Using an AI coding agent? Follow [Install with AI](/docs/quickstart/install-with-ai). It plans and installs in one session. You'll still launch to production through your usual release process.
 </Info>
 
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '10px', margin: '14px 0 6px' }}>
-  <a href="#plan" style={{ display: 'block', borderTop: '3px solid #F97316', paddingTop: '8px', textDecoration: 'none', color: 'inherit', borderBottom: 'none' }}>
-    <div style={{ fontWeight: 500 }}>Plan</div>
-    <div style={{ fontSize: '13px', color: '#6B7280' }}>Decide what to track and write it down</div>
-  </a>
-
-  <a href="#test" style={{ display: 'block', borderTop: '3px solid #F97316', paddingTop: '8px', textDecoration: 'none', color: 'inherit', borderBottom: 'none' }}>
-    <div style={{ fontWeight: 500 }}>Test</div>
-    <div style={{ fontSize: '13px', color: '#6B7280' }}>Check it in a development project</div>
-  </a>
-
-  <a href="#launch" style={{ display: 'block', borderTop: '3px solid #F97316', paddingTop: '8px', textDecoration: 'none', color: 'inherit', borderBottom: 'none' }}>
-    <div style={{ fontWeight: 500 }}>Launch</div>
-    <div style={{ fontSize: '13px', color: '#6B7280' }}>Go live in production</div>
-  </a>
-</div>
+**Jump to:** [Plan](#plan) · [Test](#test) · [Launch](#launch)
 
 ## Plan
 
@@ -57,7 +57,7 @@ Write your plan down, and have a teammate, or your Mixpanel contact if you have 
 
 <AccordionGroup>
   <Accordion title="New to events, users, and properties?">
-    [Data Model](/docs/data-structure/concepts)
+    Start with how Mixpanel organizes data into events, users, and properties, so your plan uses the same terms. [Data Model](/docs/data-structure/concepts)
   </Accordion>
 
   <Accordion title="Selling to companies?">
@@ -98,3 +98,47 @@ Set up identity when you first send data. [Identity Management Overview](/docs/t
 Developers check the code, and product teammates walk through the main user flows. Then build one report from your development data that answers a top question. [Ensuring Data Quality](/guides/guides-by-workflow/ensure-data-quality) · [Debugging](/docs/tracking-best-practices/debugging) · [Insights](/docs/reports/insights)
 
 No events showing? Start with the [Sending Data FAQ](/troubleshooting/sending-data).
+
+<AccordionGroup>
+  <Accordion title="Building a web app?">
+    Autocapture can record page views and clicks for you, which speeds up your first data. [Autocapture](/docs/tracking-methods/autocapture)
+  </Accordion>
+
+  <Accordion title="Tracking companies as groups?">
+    If you chose to analyze companies as groups, set up your group keys as you send events. [Group Analytics Implementation Guide](/docs/data-structure/group-analytics/group-analytics-implementation)
+  </Accordion>
+</AccordionGroup>
+
+## Launch
+
+Move the same tracking to production and confirm it holds up with real users. Launch here means going live in production. Rolling Mixpanel out to your team comes in Phase 3.
+
+### Switch to your production project
+
+Point your product at your production project, and stop sending test data to your development project. [Find your project token](/docs/orgs-and-projects/managing-projects#locate-current-project-token)
+
+### Deploy and compare
+
+Review the code, deploy it through your usual release process, then compare what arrives with what you tested. Used [Install with AI](/docs/quickstart/install-with-ai)? Review the code your agent wrote before you deploy it. [Missing or incomplete events](/docs/tracking-best-practices/debugging#missing-or-incomplete-events)
+
+{/* Optional: remove the comment markers to show this accordion.
+  <AccordionGroup>
+  <Accordion title="Seeing fewer web events than you expect?">
+    Sending events through a domain you own can help with events lost to ad blockers. [First-Party Domains](/docs/tracking-methods/first-party-domains)
+  </Accordion>
+  </AccordionGroup>
+  */}
+
+### Watch for problems
+
+Set up alerts so you hear about drops or spikes before your team does. [Alerts](/docs/features/alerts) · [Data Volume Monitoring](/docs/data-governance/data-volume-monitoring)
+
+## Learn more
+
+<Card title="Mixpanel Onboarding path" icon="graduation-cap" horizontal href="https://university.mixpanel.com/student/path/3411734-mixpanel-onboarding">
+  A course in Mixpanel University that covers the full setup, one module at a time.
+</Card>
+
+## Next phase
+
+Next, [Configure your account](/set-up-mixpanel/configure-your-account). You can start it alongside this phase.
