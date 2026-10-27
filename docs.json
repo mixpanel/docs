@@ -641,7 +641,14 @@
             "pages": [
               "guides/mixpanel-introduction",
               "guides/self-guided-tours",
-              "links/whats-new"
+              "links/whats-new",
+              {
+                "group": "Set up Mixpanel",
+                "root": "set-up-mixpanel",
+                "pages": [
+                  "set-up-mixpanel/get-your-data-in"
+                ]
+              }
             ]
           },
           {
