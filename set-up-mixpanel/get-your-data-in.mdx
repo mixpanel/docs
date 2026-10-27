@@ -57,9 +57,9 @@ Start from the questions you want answered, then pick a handful of events that a
 
 One event with properties beats one event per item. Skip personal data, and anything Mixpanel already collects. [How To Build a Tracking Strategy](/guides/guides-by-workflow/build-tracking-strategy) · [Default Properties](/docs/data-structure/property-reference/default-properties) · [Data Privacy & PII Best Practices](/guides/guides-by-workflow/data-privacy)
 
-### Write your tracking plan
+### Write down your first events
 
-Write your plan down, and have a teammate, or your Mixpanel contact if you have one, review it before anyone builds from it. [Create A Tracking Plan](/docs/tracking-best-practices/tracking-plan)
+List the events you picked and the properties you want on each, in one place your engineer can build from. You don't need a complete tracking plan yet, so fill in only your first events and add to it as you grow. Have a teammate, or your Mixpanel contact if you have one, take a look before anyone builds. [Create A Tracking Plan](/docs/tracking-best-practices/tracking-plan)
 
 <AccordionGroup>
   <Accordion title="New to events, users, and properties?">
@@ -89,7 +89,7 @@ Pick the method that fits how your product is built. [Tracking Methods](/docs/tr
 
 ### Send your first events
 
-Install the SDK and send the events from your plan to your development project. [Quickstart](/docs/quickstart) · [SDKs](/docs/tracking-methods/sdks) · [Tracking Best Practices](/docs/tracking-best-practices)
+Install the SDK and send the events you picked to your development project. [Quickstart](/docs/quickstart) · [SDKs](/docs/tracking-methods/sdks) · [Tracking Best Practices](/docs/tracking-best-practices)
 
 ### Identify your users
 
@@ -107,7 +107,9 @@ No events showing? [Sending Data FAQ](/troubleshooting/sending-data)
 
 <AccordionGroup>
   <Accordion title="Thinking about autocapture?">
-    Autocapture records page views and clicks on web without extra code. It can't tell which actions matter to your business, so use it alongside the events in your plan, not instead of them. Events it records still count toward your billing, even if you hide them from reports, so check what it records for anything sensitive first. [Autocapture](/docs/tracking-methods/autocapture)
+    Autocapture records page views and clicks on web without extra code. It can't tell which actions matter to your business, so use it alongside the events you picked, not instead of them.
+
+    Events it records still count toward your billing, even if you hide them from reports, so check what it records for anything sensitive first. [Autocapture](/docs/tracking-methods/autocapture)
   </Accordion>
 
   <Accordion title="Tracking companies as groups?">
