@@ -26,6 +26,26 @@
       "post": {
         "parameters": [
           {
+            "description": "The ID of the project to query.",
+            "required": true,
+            "deprecated": false,
+            "schema": {
+              "type": "integer"
+            },
+            "name": "project_id",
+            "in": "query"
+          },
+          {
+            "description": "The ID of the workspace, if applicable.",
+            "required": false,
+            "deprecated": false,
+            "schema": {
+              "type": "integer"
+            },
+            "name": "workspace_id",
+            "in": "query"
+          },
+          {
             "description": "The API version, as a release date (YYYY-MM-DD), optionally followed by a preview channel (.alpha or .beta). Omitted, the latest released version is used.",
             "required": false,
             "deprecated": false,
@@ -2507,6 +2527,26 @@
         ],
         "title": "TimeUnit"
       }
+    },
+    "securitySchemes": {
+      "ServiceAccount": {
+        "type": "http",
+        "description": "Service Account",
+        "scheme": "basic"
+      },
+      "ProjectSecret": {
+        "type": "http",
+        "description": "Project Secret",
+        "scheme": "basic"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "ServiceAccount": []
+    },
+    {
+      "ProjectSecret": []
+    }
+  ]
 }
