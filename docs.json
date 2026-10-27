@@ -186,7 +186,8 @@
                           "docs/tracking-methods/sdks/java/java-openfeature"
                         ]
                       },
-                      "links/mixpanel-utils"
+                      "links/mixpanel-utils",
+                      "docs/tracking-methods/sdks/open-source"
                     ]
                   },
                   "docs/tracking-methods/autocapture",
@@ -349,6 +350,7 @@
                 "group": "Experiments",
                 "root": "docs/experiments",
                 "pages": [
+                  "docs/experiments/exposure-event-metering",
                   "docs/experiments/no-code-experiments"
                 ]
               },
@@ -493,7 +495,13 @@
             "group": "DATA OUT",
             "icon": "/icons/data-out.svg",
             "pages": [
-              "docs/export-methods",
+              {
+                "group": "Export Methods",
+                "root": "docs/export-methods",
+                "pages": [
+                  "docs/export-methods/export-all-data"
+                ]
+              },
               {
                 "group": "Real-Time Event Streams",
                 "tag": "BETA",
@@ -604,6 +612,22 @@
               "links/get-help",
               "docs/response-times",
               "links/hire-an-expert"
+            ]
+          },
+          {
+            "group": "Style guide",
+            "hidden": true,
+            "pages": [
+              "docs/docs-style-guide",
+              "docs/voice-tone",
+              "docs/terminology",
+              "docs/grammar-punctuation",
+              "docs/style-guide-exceptions",
+              "docs/code-examples",
+              "docs/API-reference",
+              "docs/images-video",
+              "docs/accessibility",
+              "docs/writing-for-agents"
             ]
           }
         ]

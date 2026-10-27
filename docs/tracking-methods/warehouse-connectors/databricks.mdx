@@ -129,6 +129,16 @@ If you are using [IP Access List](https://docs.databricks.com/en/security/networ
 35.244.19.238
 ```
 
+### Git URL Allowlist
+
+If your Databricks workspace uses a Git URL allowlist to restrict which Git repositories can be accessed, you might need to add the following URL to the allowed list:
+
+```text
+https://github.com/mixpanel/pyspark-unload-to-gcs
+```
+
+Mixpanel's sync job uses a script from this repository to unload your data for import.
+
 ## Mirror Mode
 
 Mirror syncs work by having Databricks compute which rows have been inserted, modified, or deleted and sending this list of changes to Mixpanel.

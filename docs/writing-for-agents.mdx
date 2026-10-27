@@ -1,0 +1,90 @@
+---
+title: "Writing for agents"
+description: "Write Mixpanel docs that AI agents, coding assistants, and retrieval tools can find, read, and act on correctly"
+---
+
+AI agents read the docs through the site's `llms.txt` index, per-page Markdown, and the docs MCP server. They often see only part of a page. Follow these guidelines so they get the right answer from whatever part they read. See [Docs for AI Agents](/docs/docs-for-ai-agents) for the formats agents use.
+
+## Write a description for every page
+
+The `llms.txt` index lists each page by its title and `description`. Agents use it to decide which pages to read.
+
+- Add a `description` to the frontmatter of every page.
+- Write one sentence that says what the reader can do or learn.
+- Start with a verb when the page is a task.
+- Don't repeat the title.
+
+| Do | Don't |
+| --- | --- |
+| Connect BigQuery to Mixpanel and sync your data warehouse tables | BigQuery Warehouse Connector |
+| Send events from your server with the Python SDK | This page covers Python |
+
+---
+
+## Keep the answer in the main content
+
+Content inside tabs and accordions can be lost or flattened when a page is converted to text.
+
+- Put the core answer or required steps in the main flow of the page.
+- Explain the general concept before the tabs, then use tabs for variations, such as the same step in different SDKs.
+- Use accordions only for optional or supplementary detail.
+
+---
+
+## Make each section stand on its own
+
+Search and retrieval tools often return one section, not the whole page.
+
+- Name the subject in each section. Write "Session Replay," not "it" or "this feature."
+- Repeat key conditions where they apply, such as the plan or Data Residency region.
+- Don't write "as mentioned above" or "see the previous section." Link to the section instead.
+- Write headings that describe the section's content.
+
+| Do | Don't |
+| --- | --- |
+| Session Replay is available on the Growth and Enterprise plans. | As noted earlier, this is only on paid plans. |
+
+---
+
+## Be explicit and consistent
+
+- Use exact names for features, settings, parameters, and values.
+- Use one term for one thing. See [Terminology and product names](/docs/terminology).
+- State defaults, limits, and units.
+- List every allowed value. Don't end a list of values with "etc."
+- Put information in text, not only in images. See [Accessibility and inclusive language](/docs/accessibility).
+
+---
+
+## Write code that runs as written
+
+Agents copy code samples directly.
+
+- Show complete samples with imports and initialization.
+- Use the placeholders in [Code and examples](/docs/code-examples#placeholders), and explain each one after the block.
+- Use the correct API host for the API. See [API hosts and data residency](/docs/code-examples#api-hosts-and-data-residency).
+
+---
+
+## Handle deprecated and outdated content
+
+Agents can't tell an old page from a current one unless the page says so.
+
+- State that a feature is deprecated at the top of the page, with the replacement and dates.
+- Add `noindex: true` to the frontmatter of a page that is fully replaced by another page. This removes it from search and AI indexes. The page still works for anyone with the link.
+- Remove or redirect pages for features that no longer exist.
+
+---
+
+## Write prompts readers can give their agent
+
+When an agent can complete a task for the reader, such as installing an SDK, give the reader a prompt to copy.
+
+- Put the prompt in a `txt` code block.
+- Keep it short and specific to one task.
+- Include the placeholders the reader needs to replace, such as `YOUR_PROJECT_TOKEN`.
+- Tell the reader what to check after the agent finishes.
+
+```txt
+Install the Mixpanel JavaScript SDK in this project and track a Sign Up event when a user creates an account. Use YOUR_PROJECT_TOKEN as the project token.
+```
