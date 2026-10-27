@@ -123,6 +123,8 @@ Discrepancies between the event counts in Mixpanel and those exported to your de
 
 The data is exported in UTC timezone. You’ll need to convert it to your project’s timezone when running queries in your warehouse. Please refer to [this page](/docs/data-pipelines/common-sql-queries) for some common SQL queries.
 
+Separately from event timestamps, each pipeline uses its timezone setting to decide which day an event belongs to. This determines the day folders, partitions, and dates that a [backfill replaces](/docs/data-pipelines/json-pipelines#how-backfills-write-to-your-destination) in every destination. If several pipelines write to the same destination, use the same timezone for all of them, since day boundaries and backfill replacement depend on it.
+
 ### How can I count events exported by Mixpanel in the warehouse?
 
 Counting events can be slightly different for each warehouse, since we use different partitioning methods. Here are examples for [BigQuery](/docs/data-pipelines/integrations/bigquery#get-the-number-of-events-each-day) and [Snowflake](/docs/data-pipelines/integrations/snowflake#get-the-number-of-events-each-day).
