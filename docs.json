@@ -643,7 +643,7 @@
               "guides/self-guided-tours",
               "links/whats-new",
               {
-                "group": "Set up Mixpanel",
+                "group": "Set Up Mixpanel",
                 "root": "set-up-mixpanel",
                 "pages": [
                   "set-up-mixpanel/get-your-data-in"
