@@ -96,7 +96,7 @@ How each destination replaces a date during a backfill:
 
 | Destination | How a backfill replaces a date |
 | :-- | :-- |
-| Snowflake | Deletes the rows for that date (by event time in the pipeline's timezone), then loads the new rows. |
+| Snowflake | Deletes every row for that date (by event time in the pipeline's timezone), no matter which pipeline or process loaded it, then loads the new rows. |
 | BigQuery | Overwrites that date's partition. |
 | Databricks | Deletes the rows for that date (by event date in the pipeline's timezone), then loads the new rows. |
 | AWS S3, Google Cloud Storage, Azure Blob Storage, Redshift Spectrum | Writes the new files first. Then, for each day folder (for example, `mp_master_event/<YEAR>/<MONTH>/<DAY>/`) that received new files, deletes every file in that folder that this run did not write, including files from other pipelines. |
