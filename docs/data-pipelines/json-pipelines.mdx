@@ -140,6 +140,8 @@ As of 10 September 2025, all JSON pipelines in all regions (US/EU/IN) have been 
 
 <Note>
   A recurring pipeline only exports events dated on or after its `from_date`. Late-arriving events dated on or after the `from_date` are appended to your destination. Late-arriving events dated before the `from_date` are not exported by that pipeline.
+
+  A date-ranged (one-time) backfill pipeline runs once and exports the events Mixpanel has received for its dates at that time. Events for those dates that arrive after it finishes are not exported by the backfill or by a recurring pipeline whose `from_date` is later than those dates.
 </Note>
 
 **Changes you may notice**
