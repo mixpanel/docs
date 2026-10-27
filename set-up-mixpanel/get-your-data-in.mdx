@@ -42,12 +42,64 @@ This phase has three parts:
 Pick a handful of events to start with, and write them down so your team can build from them.
 
 <Info>
-  Using an AI coding agent? [Install with AI](/docs/quickstart/install-with-ai) can suggest events from your code and, if you want a full setup, draft your tracking plan too. You can use it instead of the tasks in this section.
+  Using an AI coding agent? [Install with AI](/docs/quickstart/install-with-ai) can suggest your first events from your code, starting with a sign-up and your most important action. If you want a complete plan, it can draft one too. You can use it in place of picking your events yourself.
 </Info>
 
 ### Decide what to measure
 
-Start from the questions you want answered, then pick a handful of events that answer them. What counts depends on your product: a fitness app might count a finished workout, and an e-signature tool a signed contract. [Measure Value](/guides/strategic-playbooks/guide-to-product-analytics/measure-value) · [What to Track](/docs/what-to-track)
+Start from the questions you want answered, then pick a handful of events that answer them. What counts depends on your business, so here are starting points for a few common ones. [Measure Value](/guides/strategic-playbooks/guide-to-product-analytics/measure-value) · [What to Track](/docs/what-to-track)
+
+<Tabs>
+  <Tab title="Online store">
+    **What matters most:** shoppers who buy each week.
+
+    **Start with these events:**
+
+    - **Sign Up Completed**
+    - **Item Detail Page Viewed:** which item, its type, and its price
+    - **Item Added to Cart:** which item, how many, and the price
+    - **View Checkout:** how many items and the order total
+    - **Purchase Completed:** order total, payment method, and coupon code
+  </Tab>
+  <Tab title="Streaming and media">
+    **What matters most:** people who watch each week.
+
+    **Start with these events:**
+
+    - **Sign Up Completed**
+    - **Search:** what they searched for and how many results came back
+    - **View Content Page:** the title, type, and genre
+    - **Start Content:** the same details, plus where they found it
+    - **End Content:** how long they watched
+  </Tab>
+  <Tab title="Software (SaaS)">
+    **What matters most:** people who use your product each week.
+
+    **Start with these events:**
+
+    - **Sign Up Completed:** how they signed up
+    - **Your key action:** the action that shows someone got value. The SaaS template uses View Report, with where they came from and whether it was saved
+    - **Download Report:** the template's example of someone sharing their work
+    - **Change Plan:** the old and new plan, and whether it was an upgrade or downgrade
+    - **Cancel Plan:** the reason
+  </Tab>
+  <Tab title="Banking and finance">
+    **What matters most:** people who use the app each week.
+
+    **Start with these events:**
+
+    - **Sign Up Completed**
+    - **Balance Viewed:** the account type and where they came from
+    - **Deposit Completed:** the amount, type, and currency
+    - **Transfer Completed:** the type, the accounts, and the amount
+    - **Pay Balance Completed:** the amount and whether autopay was on
+  </Tab>
+  <Tab title="Something else">
+    Start with a sign-up and the one action that shows someone got value. For a fitness app, that's a finished workout. For an e-signature tool, it's a signed contract.
+  </Tab>
+</Tabs>
+
+The templates also track a login, because that's where you connect a person's activity from before and after they sign in. [Identify your users](#identify-your-users)
 
 <Tip>
   **Small doesn't mean thin.** Cover one journey from start to finish, not a scattering of events across the product.
