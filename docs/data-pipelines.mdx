@@ -92,6 +92,10 @@ To delete, pause, or unpause a JSON pipeline:
 
 Note: JSON pipelines can only be managed through the UI, not via the data pipelines API.
 
+<Warning>
+  If a pipeline hasn't run successfully for more than 25 days (for example, because it was paused), it stops with the error "Pipeline hasn't been run for too long" and can't continue. Create a new pipeline to resume exports.
+</Warning>
+
 ### Backfilling Historical Data
 
 You can schedule an initial backfill when creating a pipeline. This ensures that historical data is also exported to the data warehouse. Note that the `from_date` value must be within 6 months in the past.
