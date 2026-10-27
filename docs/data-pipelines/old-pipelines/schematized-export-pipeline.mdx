@@ -34,7 +34,7 @@ The event data that is exported using the schematized export pipeline is the sam
 
 The user data that is exported using the schematized export pipeline is the same data exported from the [Query API Engage Endpoint](/reference/engage-query#engage-query).
 
-In order to ensure a performant service for all customers, certain steps of the pipelines are limited to 1 pipeline per project running at a time. For example, a project with multiple jobs would have one wait for the other to complete certain steps before proceeding. In this way, something like a large backfill for one customer does not take priority over other customers, and keeps scheduling more fair.
+Pipelines in the same project can run at the same time. For example, a date-ranged backfill pipeline can run alongside a recurring pipeline. Export steps are scheduled separately for each pipeline.
 
 In addition, customers are limited to 1 date-range based pipeline creation per 24 hours. A date-range based pipeline is one that has a `from_date` and `to_date` that are both in the past, and uses `events` as the data type.
 
