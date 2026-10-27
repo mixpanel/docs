@@ -649,7 +649,7 @@ Mixpanel offers several advanced statistical options to help you get more reliab
 | **Pre-Experiment Bias** | Checks whether variant groups were already different *before* the experiment started | Always on as a health check | Your groups had pre-existing bias. Consider enabling CUPED to correct for it. Investigate your assignment logic to prevent it in future experiments. |
 | **CUPED** | Uses pre-experiment behavior to adjust for natural variance and pre-existing bias, helping you reach significance faster | Your users have pre-experiment history and your metrics have high natural variance | If confidence intervals don't noticeably tighten, pre-experiment behavior isn't predictive for your metrics. Results are still valid, you just won't get faster detection. |
 | **Discard Novelty Effects** | Leaves out each user's metric events for a set period after their first exposure | You expect users to react to the change just because it's new, and want to measure behavior once they've settled in | Expect absolute metric values to read lower and significance to take longer. Compare variants against each other rather than against values from other reports. |
-| **One-Sided Tests** | Tests a metric for a change in its target direction only, so smaller effects in that direction can reach significance | Only a move in one direction would change your decision, and you chose that direction before launch. Frequentist and Sequential only | Don't use it on guardrail metrics: a one-sided test can't flag a significant move in the other direction. |
+| **One-Sided Tests** | Tests a metric for a change in its target direction only, which halves the significance threshold in that direction | You'll ship only if the metric moves in one direction, and won't ship if there's no change. Frequentist and Sequential only | Remember that a result that isn't significant can't tell you the metric didn't get worse. Don't use it on guardrail metrics. |
 
 ### Which methods apply to Bayesian experiments
 
@@ -801,7 +801,9 @@ Discard Novelty Effects works with all experiment model types, CUPED, Winsorizat
 
 ### One-Sided Tests
 
-By default, every metric uses a two-sided test: a variant can be called significant whether the metric goes up or down. If you only care whether a change moves a metric in one direction, you can switch that metric to a one-sided test. A one-sided test spends its whole significance budget on the metric's target direction. With the same number of users, it can detect a smaller effect in that direction. The trade-off is that it can't flag a significant move in the other direction.
+By default, every metric uses a two-sided test, which tells you whether the variant moved the metric up, moved it down, or made no detectable difference. A one-sided test only checks for a move in the metric's target direction. That halves the significance threshold for a move in that direction, so the metric reaches significance sooner.
+
+The trade-off is that a one-sided test can't tell "no change" apart from "worse". Say you run an experiment and the metric doesn't go up. You might think "it isn't hurting anything, so we can still ship it." With a one-sided test, you no longer know that: the metric could have dropped significantly, and the results would look the same as if nothing had changed.
 
 **Setting it up:** One-sided tests are set per metric. Open a metric in the experiment, then open its display settings (the menu with **Unit**, **Abbreviation**, and **Decimals**). Set **Target Direction** to **Up** or **Down**, then set **Test** to **One-sided**. **Test** defaults to **Two-sided**. You can also reach these settings from the results: hover over a metric and click its Target Direction value.
 
@@ -813,28 +815,22 @@ Target Direction applies to every metric, not just one-sided ones. It sets which
 
 **How results change:**
 
-- **p-value:** The p-value measures the evidence for an effect in the target direction only. At a 95% confidence threshold, the critical z-score drops from about 1.96 to about 1.645, so a smaller lift in the target direction can reach significance.
-- **Confidence interval:** The interval is bounded only on one side. For a metric with Target Direction Up, it runs from a lower bound to +∞, for example `[1.2%, ∞)`. For Down, it runs from −∞ to an upper bound. On the results chart, the bar extends to the edge of the chart on the untested side.
+- **Significance:** A move in the target direction reaches significance sooner.
+- **Confidence interval:** The interval is bounded on one side only. You can't see how far the metric might have moved in the direction you're not testing.
 - **Moves in the opposite direction:** These are never significant, however large. They show as **Not Statistically Significant** and stay gray instead of red.
 
 <Warning>
-A one-sided test can't detect harm in the direction it doesn't test. Keep guardrail metrics, and any metric where a drop would change your decision, on a two-sided test.
+A one-sided test can't detect harm in the direction it doesn't test. Keep guardrail metrics, and any metric where you'd want to know that a change didn't make things worse, on a two-sided test.
 </Warning>
 
 **When to use a one-sided test:**
 
-- Only a move in one direction would lead you to act. For example, you will ship only if conversion goes up, and you'd treat "no change" and "worse" the same way.
+- Only a move in one direction would lead you to act. For example, you will ship only if conversion goes up, and you won't ship if there is no change.
 - You choose the direction before the experiment starts, based on your hypothesis.
 
-Don't switch a metric to one-sided after seeing the results to push it past the significance threshold. This inflates your false positive rate in the same way as other [mid-experiment changes](#changing-settings-mid-experiment). Results are recalculated from all the experiment's data, so a change to the Test setting also changes past results.
+Don't switch a metric to one-sided, or back to two-sided, after seeing the results. This inflates your false positive rate in the same way as other [mid-experiment changes](#changing-settings-mid-experiment). Results are recalculated from all the experiment's data, so a change to the Test setting also changes past results.
 
-**Compatibility with other settings:**
-
-- **Experiment model types:** One-sided tests work with Frequentist and Sequential experiments. On Bayesian experiments, the **Test** setting is hidden and ignored, because Chance to Beat Control already measures one direction. With Sequential, a one-sided test is somewhat conservative: its actual false positive rate is below the rate your confidence threshold allows.
-- **Multiple testing corrections:** With [Bonferroni](#bonferroni-correction), the threshold is corrected first, and the one-sided test then applies the whole corrected threshold to the target direction. [Benjamini-Hochberg](#benjamini-hochberg-correction) ranks the one-sided p-values.
-- **CUPED:** Works as usual. The one-sided test runs on the CUPED-adjusted variance.
-- **Pre-Experiment Bias:** This health check always uses a two-sided test.
-- **Sample Size Calculator:** The calculator's **Hypothesis** input starts from the primary metric's setting. Choosing **One-sided** there sizes the experiment for a one-sided test. When you click **Apply to Experiment**, it also switches that primary metric to one-sided. See [Sample Size Calculator](#sample-size-calculator).
+The [Sample Size Calculator](#sample-size-calculator)'s **Hypothesis** input starts from the primary metric's Test setting. If you choose **One-sided** there and click **Apply to Experiment**, the primary metric is switched to one-sided too.
 
 ## Looking under the hood - How does the analysis engine work?
 
