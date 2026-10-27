@@ -14,7 +14,7 @@ Real-Time Event Streams deliver Mixpanel events to your infrastructure within se
 
 <CardGroup cols={2}>
   <Card title="Low-latency delivery" icon="bolt">
-    p95 delivery within 120 seconds of event ingestion.
+    Targeting p50 delivery within 60 seconds of event ingestion.
   </Card>
 
   <Card title="Custom webhook destination" icon="webhook">
@@ -52,7 +52,7 @@ Use Real-Time Event Streams when latency matters and your workflow needs individ
 
 - **At-least-once delivery.** You can include the Mixpanel Insert ID property in the payload so you can deduplicate on your side.
 - **Automatic retries.** Transient failures (5xx, timeouts, network errors) are retried up to 4 times with exponential backoff. Permanent failures (4xx) are surfaced as configuration errors.
-- **Latency.** p95 ≤ 120 seconds from ingestion to a confirmed 2xx response at your endpoint under normal load, often times even faster.
+- **Latency.** Target of p50 ≤ 60 seconds from ingestion to a confirmed 2xx response at your endpoint under normal load. This is a target, not an SLA.
 
 See [Delivery and reliability](/docs/real-time-event-streams/delivery-and-reliability) for the full behavior.
 
