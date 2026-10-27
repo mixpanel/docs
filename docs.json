@@ -644,9 +644,9 @@
               "links/whats-new",
               {
                 "group": "Set Up Mixpanel",
-                "root": "set-up-mixpanel",
+                "root": "guides/set-up-mixpanel",
                 "pages": [
-                  "set-up-mixpanel/get-your-data-in"
+                  "guides/set-up-mixpanel/get-your-data-in"
                 ]
               }
             ]
