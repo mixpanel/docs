@@ -133,6 +133,10 @@ As of 10 September 2025, all JSON pipelines in all regions (US/EU/IN) have been 
 - **Elimination of data sync delays**: No more waiting for daily sync processes to detect and fix data discrepancies.
 - **Complete data export**: All events are exported without the risk of missing late-arriving data. Late-arriving events are automatically exported regardless of how late they arrive, eliminating the previous 10-day sync window restriction.
 
+<Note>
+  A recurring pipeline only exports events dated on or after its `from_date`. Late-arriving events dated on or after the `from_date` are appended to your destination. Late-arriving events dated before the `from_date` are not exported by that pipeline.
+</Note>
+
 **Changes you may notice**
 
 - **Event count display**: The event count shown per task in the UI now represents the total events processed per batch rather than events exported per day or per hour. Since each batch can span multiple days, this number may appear different from before.
