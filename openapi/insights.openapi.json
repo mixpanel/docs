@@ -345,7 +345,8 @@
           "event_type": {
             "type": "string",
             "const": "custom_event",
-            "title": "Event Type"
+            "title": "Event Type",
+            "description": "Set `event_type` to `event` for an event tracked into the project, or `custom_event` for a saved custom event."
           },
           "id": {
             "type": "string",
@@ -416,7 +417,8 @@
           "event_type": {
             "type": "string",
             "const": "event",
-            "title": "Event Type"
+            "title": "Event Type",
+            "description": "Set `event_type` to `event` for an event tracked into the project, or `custom_event` for a saved custom event."
           }
         },
         "additionalProperties": false,
@@ -433,7 +435,8 @@
           "type": {
             "type": "string",
             "const": "count",
-            "title": "Type"
+            "title": "Type",
+            "description": "What the metric calculates. Set `type` to `count`, `property`, `frequency_per_user`, or `property_per_user`."
           },
           "interval_aggregation": {
             "anyOf": [
@@ -469,7 +472,8 @@
           "source": {
             "type": "string",
             "const": "event_custom",
-            "title": "Source"
+            "title": "Source",
+            "description": "The property the lookup table is joined on. Set `source` to `event`, `profile`, `event_custom`, or `profile_custom`."
           },
           "id": {
             "type": "string",
@@ -522,7 +526,8 @@
           "source": {
             "type": "string",
             "const": "event_custom",
-            "title": "Source"
+            "title": "Source",
+            "description": "Set `source` to `event` for a property recorded on the event, `profile` for a property on a user profile or a data group profile named by `group_key`, `event_custom` or `profile_custom` for a saved custom property computed on events or profiles, or `lookup` for a column of a lookup table."
           },
           "id": {
             "type": "string",
@@ -545,7 +550,8 @@
           "type": {
             "type": "string",
             "const": "frequency_per_user",
-            "title": "Type"
+            "title": "Type",
+            "description": "What the metric calculates. Set `type` to `count`, `property`, `frequency_per_user`, or `property_per_user`."
           },
           "interval_aggregation": {
             "anyOf": [
@@ -603,7 +609,8 @@
           "source": {
             "type": "string",
             "const": "event",
-            "title": "Source"
+            "title": "Source",
+            "description": "The property the lookup table is joined on. Set `source` to `event`, `profile`, `event_custom`, or `profile_custom`."
           },
           "name": {
             "type": "string",
@@ -743,7 +750,8 @@
           "source": {
             "type": "string",
             "const": "event",
-            "title": "Source"
+            "title": "Source",
+            "description": "Set `source` to `event` for a property recorded on the event, `profile` for a property on a user profile or a data group profile named by `group_key`, `event_custom` or `profile_custom` for a saved custom property computed on events or profiles, or `lookup` for a column of a lookup table."
           },
           "name": {
             "type": "string",
@@ -766,7 +774,8 @@
           "type": {
             "type": "string",
             "const": "property",
-            "title": "Type"
+            "title": "Type",
+            "description": "What the metric calculates. Set `type` to `count`, `property`, `frequency_per_user`, or `property_per_user`."
           },
           "interval_aggregation": {
             "anyOf": [
@@ -857,7 +866,8 @@
           "type": {
             "type": "string",
             "const": "property_per_user",
-            "title": "Type"
+            "title": "Type",
+            "description": "What the metric calculates. Set `type` to `count`, `property`, `frequency_per_user`, or `property_per_user`."
           },
           "interval_aggregation": {
             "anyOf": [
@@ -1011,7 +1021,8 @@
           "type": {
             "type": "string",
             "const": "conversion_rate",
-            "title": "Type"
+            "title": "Type",
+            "description": "What the metric calculates. Set `type` to `conversion_rate`, `count`, `time_to_convert`, or `property`."
           },
           "interval_aggregation": {
             "anyOf": [
@@ -1054,7 +1065,8 @@
           "type": {
             "type": "string",
             "const": "count",
-            "title": "Type"
+            "title": "Type",
+            "description": "What the metric calculates. Set `type` to `conversion_rate`, `count`, `time_to_convert`, or `property`."
           },
           "interval_aggregation": {
             "anyOf": [
@@ -1192,7 +1204,8 @@
           "type": {
             "type": "string",
             "const": "property",
-            "title": "Type"
+            "title": "Type",
+            "description": "What the metric calculates. Set `type` to `conversion_rate`, `count`, `time_to_convert`, or `property`."
           },
           "interval_aggregation": {
             "anyOf": [
@@ -1292,7 +1305,8 @@
           "type": {
             "type": "string",
             "const": "time_to_convert",
-            "title": "Type"
+            "title": "Type",
+            "description": "What the metric calculates. Set `type` to `conversion_rate`, `count`, `time_to_convert`, or `property`."
           },
           "interval_aggregation": {
             "anyOf": [
@@ -1586,7 +1600,8 @@
           "source": {
             "type": "string",
             "const": "lookup",
-            "title": "Source"
+            "title": "Source",
+            "description": "Set `source` to `event` for a property recorded on the event, `profile` for a property on a user profile or a data group profile named by `group_key`, `event_custom` or `profile_custom` for a saved custom property computed on events or profiles, or `lookup` for a column of a lookup table."
           },
           "join_key": {
             "oneOf": [
@@ -1703,7 +1718,8 @@
           "source": {
             "type": "string",
             "const": "profile_custom",
-            "title": "Source"
+            "title": "Source",
+            "description": "The property the lookup table is joined on. Set `source` to `event`, `profile`, `event_custom`, or `profile_custom`."
           },
           "id": {
             "type": "string",
@@ -1756,7 +1772,8 @@
           "source": {
             "type": "string",
             "const": "profile_custom",
-            "title": "Source"
+            "title": "Source",
+            "description": "Set `source` to `event` for a property recorded on the event, `profile` for a property on a user profile or a data group profile named by `group_key`, `event_custom` or `profile_custom` for a saved custom property computed on events or profiles, or `lookup` for a column of a lookup table."
           },
           "id": {
             "type": "string",
@@ -1786,7 +1803,8 @@
           "source": {
             "type": "string",
             "const": "profile",
-            "title": "Source"
+            "title": "Source",
+            "description": "The property the lookup table is joined on. Set `source` to `event`, `profile`, `event_custom`, or `profile_custom`."
           },
           "name": {
             "type": "string",
@@ -1840,7 +1858,8 @@
           "source": {
             "type": "string",
             "const": "profile",
-            "title": "Source"
+            "title": "Source",
+            "description": "Set `source` to `event` for a property recorded on the event, `profile` for a property on a user profile or a data group profile named by `group_key`, `event_custom` or `profile_custom` for a saved custom property computed on events or profiles, or `lookup` for a column of a lookup table."
           },
           "name": {
             "type": "string",
@@ -2106,7 +2125,8 @@
           "type": {
             "type": "string",
             "const": "count",
-            "title": "Type"
+            "title": "Type",
+            "description": "What the metric reports. Set `type` to `retention_rate`, `count`, or `property`."
           },
           "interval_aggregation": {
             "anyOf": [
@@ -2270,7 +2290,8 @@
           "type": {
             "type": "string",
             "const": "property",
-            "title": "Type"
+            "title": "Type",
+            "description": "What the metric reports. Set `type` to `retention_rate`, `count`, or `property`."
           },
           "interval_aggregation": {
             "anyOf": [
@@ -2343,7 +2364,8 @@
           "type": {
             "type": "string",
             "const": "retention_rate",
-            "title": "Type"
+            "title": "Type",
+            "description": "What the metric reports. Set `type` to `retention_rate`, `count`, or `property`."
           },
           "interval_aggregation": {
             "anyOf": [
