@@ -98,6 +98,8 @@ You can schedule an initial backfill when creating a pipeline. This ensures that
 
 The completion time for a backfill depends on the number of days and the amount of data in the project. Larger backfills can take up to multiple weeks.
 
+A backfill replaces existing data in your destination for the dates it exports, including data written by other pipelines to the same table or path. See [How Backfills Write to Your Destination](/docs/data-pipelines/json-pipelines#how-backfills-write-to-your-destination) for details on each destination.
+
 ### Viewing Pipeline Configuration
 
 To check a pipeline's configuration:

@@ -180,6 +180,10 @@ Refer to [Step 2: Creating the Pipeline](/docs/data-pipelines/#step-2-creating-t
 - **Service Principal ID** (Application ID from Step 1)
 - **Service Principal Secret** (from Step 2)
 
+<Note>
+  Databricks pipelines don't support a table prefix, so pipelines that use the same catalog and schema write to the same tables. A backfill from one pipeline replaces the data for its dates in those tables, including data written by other pipelines. See [How Backfills Write to Your Destination](/docs/data-pipelines/json-pipelines#how-backfills-write-to-your-destination).
+</Note>
+
 ## Clustering
 
 Raw tables are clustered by the `event_date` column, which is computed in your project's timezone during data load. This clustering significantly improves query performance when filtering by date.
