@@ -40,6 +40,42 @@ Get all the latest updates in your inbox.
   [Learn more →](/docs/tracking-methods/sdks/flutter#autocapture)
 </Update>
 
+<Update label="2026-10-01">
+  ## MCP Audit Log: see what AI assistants changed, and ask about it
+
+  As more of your team connects AI assistants to Mixpanel, more changes arrive through the [MCP server](/docs/mcp) instead of the UI. Those changes are now recorded in the same audit log as everything else, and organization admins can ask about them in plain language.
+
+  With this update, you can:
+
+  - **Review AI changes alongside the rest:** Every MCP tool that changes something records an entry — boards, cohorts, experiments, feature flags, metrics, lookup tables, custom properties, Lexicon metadata, tags, and business context — attributed to the account the assistant is connected as.
+  - **Tell AI changes apart from the rest:** MCP entries carry an **Origin** of MCP in the audit log UI, and a `service` value of `mcp` in exports and the API. Filter by Origin to see a single source. Read-only and failed tool calls are not recorded.
+  - **Ask the audit log a question:** The [`Get-Audit-Log`](/docs/mcp#querying-the-audit-log) tool answers questions like "what changed in this project last week?" or "who deleted a board yesterday?" without filtering the audit log page by hand.
+
+  A single MCP action usually produces more than one entry: one tool call entry recording the tool and its arguments, plus one detailed entry per object that changed. MCP tool call entries are retained for 90 days on all plans, while the detailed entries follow your plan's standard retention.
+
+  The MCP Audit Log is in Beta for a limited set of customers, and `Get-Audit-Log` requires organization admin or owner access. [Request access here](https://mxpnl.notion.site/52931ceda0e94fa2bda6cb18420b5113?pvs=105).
+
+  [Learn more →](/docs/access-security/audit-log#mcp-activity)
+</Update>
+
+<Update label="2026-10-01">
+  ## MCP Connections: let Mixpanel Agent read your GitHub, Jira, Linear, and Notion
+
+  Your data lives in Mixpanel, but the context around it lives somewhere else — the strategy doc in Notion, the Jira ticket describing what a feature was supposed to do, the pull request that shipped it. MCP Connections let Mixpanel Agent read those tools directly, so it can answer with your team's context instead of only what the events say.
+
+  With this update, you can:
+
+  - **Connect the tools you already use:** Notion, Linear, and Jira connect through OAuth. GitHub connects with a personal access token. Each tool connects once, to your own account.
+  - **Bring your own context into an answer:** Mixpanel Agent can read the spec behind a feature, the ticket that defines what counts as success, or the pull requests that changed a flow, and use them while it analyzes your data.
+  - **Read-only and private to you:** Mixpanel Agent only exposes read tools, so it cannot create, edit, or delete anything in a connected tool. Teammates cannot see or use your connections, and the Agent sees only what your account on that tool can see.
+
+  MCP Connections are off by default. An organization admin or owner turns on **Connect Your Tools via MCP** under **Settings → Org → AI Settings**, and each member then adds their own connections from **Settings → Personal Settings**.
+
+  MCP Connections are in Beta for a limited set of customers and require Mixpanel AI. [Request access here](https://mxpnl.notion.site/5dc6d468f8aa48eebac5146fc9bd3759).
+
+  [Learn more →](/docs/mcp-connections)
+ </Update>
+
 <Update label="2026-10-01" description="">
   ## Agent Intelligence is now in Beta
 
@@ -1301,22 +1337,40 @@ Get all the latest updates in your inbox.
 <Update label="2026-02-20">
   ## Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for EU Projects
 
-  > **🚨 UPDATE: July 1, 2026 – US-to-EU Data Forwarding has officially ended.** <br /><br />
-  >
-  > As scheduled, we have sunset US-to-EU data forwarding. <br /> **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI and Query API endpoints until August 1, 2026.**<br /><br />
-  >
-  > **How events are being filtered**<br />
-  >
-  > \[July 1, 2026 - August 1, 2026\]: New US-\>EU Forwarded events have not been deleted. However, they are temporarily hidden from the UI and Query API endpoints if they match all of the following criteria:
-  >
-  > - The event was processed after July 1st (UTC) (`mp_processing_time_ms` \> `<July 1st UTC>`).
-  > - The event was forwarded from the US (`$mp_is_forwarded` is defined).
-  >
-  > These events are not deleted — they remain accessible via the Raw Export API during this period, and will be un-hidden on August 1, 2026, so your reporting counts may change at that time. <br /><br />**Events that are still being sent to the US after August 1, 2026 for EU Projects will not be accepted.** <br /><br /> **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss after August 1, 2026.**<br /><br />
-  >
-  > _Need help or want to opt out? If you wish to opt out of this UI preview and un-hide your forwarded events early, please [contact support](https://mixpanel.com/get-support)._
-  >
-  > > ⏳ **Note:** Some projects have an extended timeline through **December 31, 2026**. These projects are not affected by the temporary event-hiding described above. If this applies to your project, we've already reached out with a notification. If you did not receive a notification, your deadline is **August 1, 2026**.
+  <Warning>
+    **⏳ Extended timeline through January 4, 2027 (notified projects only)**
+
+    **Only projects we notified directly have an extended timeline.** If you did not receive an email from Mixpanel about an extension, your project is not extended. US-to-EU forwarding ended on July 1, 2026, and events your EU projects send to US endpoints are no longer accepted as of August 1, 2026. See the July 1 update below.
+
+    If we notified you that your project has an extended timeline:
+
+    * **Now:** Review and update your implementations. Some updates take longer than others, so we recommend that you start before December.
+    * **December 1, 2026:** A temporary reporting preview begins. Events ingested through US Ingestion API Endpoints on or after this date for your extended projects will be hidden from the Mixpanel UI and Query API results to help you identify affected reporting. These events will not be deleted and will remain available through the Event Export API.
+    * **January 4, 2027:** Your extension ends. Complete your implementation updates by this date to prevent data loss. After this date, events sent to US endpoints will not be accepted. Previously hidden events will become visible again, which may change your report counts.
+
+    To update your implementation, point it to Mixpanel's EU servers (`api-eu.mixpanel.com`). See **Required Action** below for SDK-specific steps.
+
+    Not sure whether your project is extended? [Contact support](https://mixpanel.com/get-support) before planning around the January 4 date.
+  </Warning>
+
+
+  <Accordion title="🚨 July 1, 2026 update: US-to-EU Data Forwarding has officially ended (standard timeline)">
+  
+  As scheduled, we have sunset US-to-EU data forwarding. <br /> **For EU Projects that still send data to the US, to help you assess the impact, events sent to US endpoints will be temporarily hidden from your UI and Query API endpoints until August 1, 2026.**<br /><br />
+  
+  **How events are being filtered**<br />
+  
+  \[July 1, 2026 - August 1, 2026\]: New US-\>EU Forwarded events have not been deleted. However, they are temporarily hidden from the UI and Query API endpoints if they match all of the following criteria:
+  
+  - The event was processed after July 1st (UTC) (`mp_processing_time_ms` \> `<July 1st UTC>`).
+  - The event was forwarded from the US (`$mp_is_forwarded` is defined).
+  
+  These events are not deleted — they remain accessible via the Raw Export API during this period, and will be un-hidden on August 1, 2026, so your reporting counts may change at that time. <br /><br />**Events that are still being sent to the US after August 1, 2026 for EU Projects will not be accepted.** <br /><br /> **If you are affected, please ensure your implementation is updated to point to Mixpanel's EU Servers `api-eu.mixpanel.com` immediately to prevent permanent data loss after August 1, 2026.**<br /><br />
+  
+  _Need help or want to opt out? If you wish to opt out of this UI preview and un-hide your forwarded events early, please [contact support](https://mixpanel.com/get-support)._
+  
+  ⏳ **Note:** Some projects have an extended timeline through **January 4, 2027**. These projects are not affected by the temporary event-hiding described above. If this applies to your project, we've already reached out with a notification. If you did not receive a notification, your deadline is **August 1, 2026**.
+  </Accordion>
 
   Starting July 2026, we will be sunsetting the legacy automated US-to-EU Data Forwarding process for [EU Data Residency projects](/docs/privacy/eu-residency) to align with data residency best practices and improve ingestion performance. After this date, data sent to our US Ingestion Servers for EU Data Residency projects will no longer be forwarded, which can result in data loss.
 
@@ -1332,7 +1386,7 @@ Get all the latest updates in your inbox.
   **Guidance**
 
   1. **Verify which projects have EU Data Residency:** Navigate to [Organization Settings](/docs/orgs-and-projects/managing-projects#viewing-project-information) \> Projects and click into each Project to confirm whether Data Residency is set to EU.
-  2. **Identify Traffic:** In your EU Project(s), create an Insights Report and break down “All Events” by the API Endpoint (`$mp_api_endpoint` ) event property to determine which Ingestion Servers your events came from. `$mp_api_endpoint=api-eu.mixpanel.com` is EU and `$mp_api_endpoint=api.mixpanel.com` or `api-js.mixpanel.com` is US.
+  2. **Identify Traffic:** In your EU Project(s), create an Insights Report and break down “All Events” by the API Endpoint (`$mp_api_endpoint` ) event property to determine which Ingestion Servers your events came from. `$mp_api_endpoint=api-eu.mixpanel.com` is EU and `$mp_api_endpoint=api.mixpanel.com` or `api-js.mixpanel.com` is US. Add breakdowns for Mixpanel Library (mp_lib) and Event Name ($event_name) to pinpoint the affected SDKs and events.
   3. **Update and Review Implementation:** If your project has EU Data Residency, please follow the guides below that apply to your setup to ensure your data routes to our EU Servers.
 
   If you are using Mixpanel’s SDKs, the documentation linked below has instructions on updating your implementation code to EU:

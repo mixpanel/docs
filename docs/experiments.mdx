@@ -235,7 +235,38 @@ Mixpanel analyzes your experiment on the fly, so you can adjust settings at any 
 
 The one thing to avoid is changing settings because the current results aren't what you hoped for. If you adjust the confidence level, metrics, or duration in search of a significant result, you're more likely to find something that looks meaningful but is actually noise. When you roll out that change, it may not deliver the improvement you expected.
 
-If you want to test a different configuration, restart the experiment instead. This resets the data and ensures your analysis starts fresh.
+If you want to test a different configuration, [restart the experiment](#restarting-or-resetting-an-experiment) instead. Restarting moves the start date to the current date and time and clears cached results, so your analysis starts fresh with only the data collected after the restart. Earlier data isn't deleted.
+
+### Restarting or Resetting an Experiment
+
+Use these options when the data an experiment has collected can't be trusted. For example: a bug in one variant, broken exposure tracking, a [sample ratio mismatch](#sample-ratio-mismatch-srm), or a setup mistake. Don't restart an experiment because the results aren't what you hoped for. Repeated restarts inflate your false-positive rate.
+
+#### Where to find them
+
+Open the experiment and click **Make Decision** on the status banner. The menu appears while the experiment is **In Progress** or **Ready for Review**. You need edit access to the experiment, and you must save any unsaved changes first.
+
+#### Experiments tracked with exposure events (third-party flags)
+
+**Restart Analysis** sets the experiment start date to the current date and time and clears the end date and cached results. Only exposures and metric events after the new start date are analyzed. Mixpanel doesn't control assignment for these experiments, so nothing changes for your users. If you need to re-randomize, do it in your flagging tool.
+
+#### Experiments on Mixpanel Feature Flags
+
+**Restart Experiment** moves the start date to the current date and time and clears cached results. Mixpanel then asks how to handle variant assignments:
+
+- **Keep current assignments**: Users stay in their current variant. Use this when the fix doesn't affect who is in which group, for example a tracking bug.
+- **Reset assignments**: Re-randomizes all users, except those you added to a variant as sticky users. Use this when users may have been affected by the earlier period, for example a bug that made some users churn from one variant. Otherwise those users stay in their group but don't show up in the new data, which can cause an SRM.
+
+The feature flag keeps serving throughout.
+
+**Reset Experiment** ends the experiment without shipping a variant. Mixpanel disables the linked feature flag, so all users get your code's fallback (default) experience. The experiment is marked **Abandoned**. To reopen it, use **Change Decision → Undo Decision**. The flag stays disabled until you re-enable it from the [Feature Flags](/docs/featureflags) page.
+
+#### Which should I use?
+
+| Goal | Action |
+| --- | --- |
+| Fix a tracking or analysis mistake, and keep users where they are | **Restart Analysis** or **Restart Experiment → Keep current assignments** |
+| Start over with fresh random assignments | **Restart Experiment → Reset assignments**. Users you added to a variant as sticky users keep their variant. For a fully clean slate, you can also create a new experiment. |
+| Stop the experiment and send everyone back to the default experience | **Reset Experiment** |
 
 ### Reopening a Decided Experiment
 
@@ -527,7 +558,29 @@ Click 'Analyze' on a metric to dive deeper into the results. This will open a no
 
 You can also add the experiment breakdowns and filters directly in a report via the Experiments tab in the query builder. This lets you do on-the-fly analysis with the experiment groups. Under the hood, the experiment breakdown and filter work the same as the Experiment report.
 
+## Experiments on Boards
 
+Add an experiment to a [Board](/docs/boards) to track its results alongside your other reports. An experiment can be added to multiple boards.
+
+There are two ways to add an experiment to a board:
+
+- **From the experiment**: Open the menu in the header breadcrumbs and select **Add to board**. Choose an existing board or select **Add to New Board**.
+- **From the board**: Add content to the board, select **Experiment**, then choose the experiment.
+
+Experiment cards are view-only. To edit an experiment, click **View experiment** on the card to open the experiment page.
+
+### Card Views
+
+Each experiment card can show one of four views:
+
+- **Primary Metrics**: The primary metrics table with the lift for each variant.
+- **Exposures**: A chart of exposed users over time, by variant.
+- **Variants**: Each variant with its description and screenshot.
+- **Hypothesis**: The experiment's hypothesis.
+
+### Card Data
+
+Experiment cards show exactly what is on the experiment page. They ignore the board's date range and filters, and use the experiment's own date range, metrics, and settings instead.
 
 ## Multiple Environments
 
@@ -590,7 +643,7 @@ Mixpanel offers several advanced statistical options to help you get more reliab
 | **Bonferroni Correction** | Makes significance thresholds stricter to account for testing multiple metrics/variants at once | You're tracking multiple metrics or testing multiple variants and want maximum protection against any false positive. Frequentist and Sequential only | If a metric loses significance after correction, don't treat it as a confirmed winner. Run a follow-up experiment focused on that metric alone. |
 | **Benjamini-Hochberg Correction** | Controls the proportion of significant results that are false positives (false discovery rate) | You're tracking many metrics and want to correct for multiple comparisons without being overly conservative. Frequentist and Sequential only | Treat the surviving significant results as your set of likely winners, knowing a small share may still be false positives. Validate the most important ones in a follow-up. |
 | **Winsorization** | Caps extreme outlier values at a percentile you choose | Revenue or value-based metrics where outliers are common | If results change substantially after Winsorization, this indicates your original results were driven by outliers. Decide whether your business decision is about typical users or extreme ones. Applies to all experiment model types. |
-| **SRM** | Checks whether your variant split matches the configured allocation | Always on as a health check | Pause the experiment. Identify and fix the root cause of the mismatch, then restart the experiment. |
+| **SRM** | Checks whether your variant split matches the configured allocation | Always on as a health check | Pause the experiment. Identify and fix the root cause of the mismatch, then [restart the experiment](#restarting-or-resetting-an-experiment). |
 | **Pre-Experiment Bias** | Checks whether variant groups were already different *before* the experiment started | Always on as a health check | Your groups had pre-existing bias. Consider enabling CUPED to correct for it. Investigate your assignment logic to prevent it in future experiments. |
 | **CUPED** | Uses pre-experiment behavior to adjust for natural variance and pre-existing bias, helping you reach significance faster | Your users have pre-experiment history and your metrics have high natural variance | If confidence intervals don't noticeably tighten, pre-experiment behavior isn't predictive for your metrics. Results are still valid, you just won't get faster detection. |
 
@@ -675,7 +728,7 @@ When randomly assigning users to control or treatment groups, you expect the spl
 
 Small imbalances can happen by random chance, but larger mismatches often indicate a bug in your assignment logic, tracking implementation, or user bucketing. SRM uses a Chi-squared test to determine whether the observed split is likely due to chance or signals an actual problem.
 
-If Mixpanel detects a statistically significant sample ratio mismatch, you'll see a warning. We recommend investigating the root cause of the mismatch and restarting the experiment after fixing it.
+If Mixpanel detects a statistically significant sample ratio mismatch, you'll see a warning. We recommend investigating the root cause of the mismatch and [restarting the experiment](#restarting-or-resetting-an-experiment) after fixing it.
 
 #### Pre-Experiment Bias Analysis
 
