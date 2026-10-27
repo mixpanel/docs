@@ -20,6 +20,8 @@ Most rework in this phase traces back to two early choices: tracking too much, a
 
 ## Plan
 
+Decide what to measure and which events will measure it, then write it down so your team can build from it.
+
 ### Decide what to measure
 
 Start from the questions you want answered, then pick the fewest events that answer them. What counts depends on your product: a fitness app might count a finished workout, and an e-signature tool a signed contract. [Measure Value](/guides/strategic-playbooks/guide-to-product-analytics/measure-value) · [What to Track](/docs/what-to-track)
@@ -41,6 +43,8 @@ One event with properties beats one event per item. Skip personal data, and anyt
 Write your plan down, and have a teammate, or your Mixpanel contact if you have one, review it before anyone builds from it. [Create A Tracking Plan](/docs/tracking-best-practices/tracking-plan)
 
 ## Test
+
+Send your events to a development project and check them there, so mistakes never touch your real data.
 
 ### Create development and production projects
 
@@ -77,6 +81,8 @@ Developers check the code, and product teammates walk through the main user flow
 No events showing? Start with the [Sending Data FAQ](/troubleshooting/sending-data).
 
 ## Launch
+
+Move the same tracking to production and confirm it holds up with real users. Launch here means going live in production. Rolling Mixpanel out to your team comes in Phase 3.
 
 <Note>
   Used Install with AI? Review the code your agent wrote before you deploy it.
