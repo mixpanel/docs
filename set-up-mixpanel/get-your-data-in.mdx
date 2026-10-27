@@ -103,7 +103,7 @@ Set up identity when you first send data. [Identity Management Overview](/docs/t
 
 Developers check the code, and product teammates walk through the main user flows. Then build one report from your development data that answers a top question. [Ensuring Data Quality](/guides/guides-by-workflow/ensure-data-quality) · [Debugging](/docs/tracking-best-practices/debugging) · [Insights](/docs/reports/insights)
 
-No events showing? Start with the [Sending Data FAQ](/troubleshooting/sending-data).
+No events showing? [Sending Data FAQ](/troubleshooting/sending-data)
 
 <AccordionGroup>
   <Accordion title="Thinking about autocapture?">
@@ -117,15 +117,19 @@ No events showing? Start with the [Sending Data FAQ](/troubleshooting/sending-da
 
 ## Launch
 
-Move the same tracking to production and confirm it holds up with real users. Launch here means going live in production, and it works the same whether or not you used [Install with AI](/docs/quickstart/install-with-ai). Rolling Mixpanel out to your team comes in Phase 3.
+Move the same tracking to production and confirm it holds up with real users. Launch here means going live in production. Rolling Mixpanel out to your team comes in Phase 3.
+
+<Info>
+  Used [Install with AI](/docs/quickstart/install-with-ai)? You'll still launch to production through your usual release process. Review the code your agent wrote before you deploy it.
+</Info>
 
 ### Switch to your production project
 
-Point your product at your production project, and stop sending test data to your development project. [Find your project token](/docs/orgs-and-projects/managing-projects#locate-current-project-token)
+Point your product at your production project, and stop sending test data to your development project. [Locate Current Project Token](/docs/orgs-and-projects/managing-projects#locate-current-project-token)
 
 ### Deploy and compare
 
-Review the code, deploy it through your usual release process, then compare what arrives with what you tested. Used [Install with AI](/docs/quickstart/install-with-ai)? Review the code your agent wrote before you deploy it. [Missing or incomplete events](/docs/tracking-best-practices/debugging#missing-or-incomplete-events)
+Review the code, deploy it through your usual release process, then compare what arrives with what you tested. [Missing or Incomplete Events](/docs/tracking-best-practices/debugging#missing-or-incomplete-events)
 
 {/* Optional: remove the comment markers to show this accordion.
   <AccordionGroup>
