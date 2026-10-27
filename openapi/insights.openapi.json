@@ -24,6 +24,19 @@
   "paths": {
     "/insights/query": {
       "post": {
+        "parameters": [
+          {
+            "description": "The API version, as a release date (YYYY-MM-DD), optionally followed by a preview channel (.alpha or .beta). Omitted, the latest released version is used.",
+            "required": false,
+            "deprecated": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}(?:\\.(?:alpha|beta))?$"
+            },
+            "name": "Mixpanel-Version",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -153,7 +166,7 @@
             "type": "string",
             "minLength": 1,
             "title": "Group Key",
-            "description": "The key property name of a data group, as shown in Lexicon—for example `$company_id`. `User` is the user profile and the default.",
+            "description": "The raw group key name, as shown in Project Settings—for example `$company_id`. `User` is the user profile and the default.",
             "default": "User"
           },
           "measurement": {
@@ -575,7 +588,8 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Name"
+            "title": "Name",
+            "description": "Name of the event property."
           }
         },
         "additionalProperties": false,
@@ -605,7 +619,7 @@
             "type": "string",
             "minLength": 1,
             "title": "Group Key",
-            "description": "The key property name of a data group, as shown in Lexicon—for example `$company_id`. `User` is the user profile and the default.",
+            "description": "The raw group key name, as shown in Project Settings—for example `$company_id`. `User` is the user profile and the default.",
             "default": "User"
           },
           "measurement": {
@@ -1076,7 +1090,7 @@
             "type": "string",
             "minLength": 1,
             "title": "Group Key",
-            "description": "The key property name of a data group, as shown in Lexicon—for example `$company_id`. `User` is the user profile and the default.",
+            "description": "The raw group key name, as shown in Project Settings—for example `$company_id`. `User` is the user profile and the default.",
             "default": "User"
           },
           "measurement": {
@@ -1584,7 +1598,8 @@
           "column": {
             "type": "string",
             "minLength": 1,
-            "title": "Column"
+            "title": "Column",
+            "description": "Name of the column to read from the lookup table joined on `join_key`."
           }
         },
         "additionalProperties": false,
@@ -1732,7 +1747,7 @@
             "type": "string",
             "minLength": 1,
             "title": "Group Key",
-            "description": "The key property name of a data group, as shown in Lexicon—for example `$company_id`. `User` is the user profile and the default.",
+            "description": "The raw group key name, as shown in Project Settings—for example `$company_id`. `User` is the user profile and the default.",
             "default": "User"
           }
         },
@@ -1756,7 +1771,8 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Name"
+            "title": "Name",
+            "description": "Name of the user profile property."
           }
         },
         "additionalProperties": false,
@@ -1815,7 +1831,7 @@
             "type": "string",
             "minLength": 1,
             "title": "Group Key",
-            "description": "The key property name of a data group, as shown in Lexicon—for example `$company_id`. `User` is the user profile and the default.",
+            "description": "The raw group key name, as shown in Project Settings—for example `$company_id`. `User` is the user profile and the default.",
             "default": "User"
           }
         },
@@ -2019,7 +2035,7 @@
           "operator"
         ],
         "title": "PropertyFilter",
-        "description": "Keeps events or profiles whose property passes the comparison."
+        "description": "Filters events or profiles by a property value."
       },
       "PropertyType": {
         "type": "string",
@@ -2132,7 +2148,7 @@
             "type": "string",
             "minLength": 1,
             "title": "Group Key",
-            "description": "The key property name of a data group, as shown in Lexicon—for example `$company_id`. `User` is the user profile and the default.",
+            "description": "The raw group key name, as shown in Project Settings—for example `$company_id`. `User` is the user profile and the default.",
             "default": "User"
           },
           "measurement": {
