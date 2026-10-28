@@ -69,7 +69,7 @@ Choose your current implementation method for Adobe Analytics and follow the bel
 
 ### Client-side SDKs & Server-side SDKs
 
-You’ll have to setup Mixpanel fresh given Mixpanel leverages an event-based model that does not exist in Adobe Analytics. Depending on your current setup and how you’ve enabled data capture in Adobe, these steps will likely be as if you are starting an [entirely new implementation](/docs/getting-started/plan-your-implementation).
+You’ll have to setup Mixpanel fresh given Mixpanel leverages an event-based model that does not exist in Adobe Analytics. Depending on your current setup and how you’ve enabled data capture in Adobe, these steps will likely be as if you are starting an [entirely new implementation](/docs/what-to-track).
 
 The rest of this guide will cover the Mixpanel JavaScript SDK for brevity, but the steps apply for any of our libraries.
 
@@ -80,7 +80,7 @@ We recommend the following steps to get started quickly:
   ```js
   mixpanel.init('YOUR_TOKEN', {track_pageview: true});
   ```
-- Track a few key [“value moment” events](/docs/getting-started/plan-your-implementation#value-moment-event) of interest
+- Track a few key [“value moment” events](/docs/what-to-track#choose-a-value-moment) of interest
 
   ```js
   // Send a "Played song" event to Mixpanel
@@ -120,7 +120,7 @@ We provide Mixpanel as a destination and setup guides for all of the most popula
 
 ### Data Warehouse
 
-If you have your Adobe Analytics instance sitting on top of data that you collect and store in your data warehouse, getting started is simple. Instead of transforming and modeling that data to send to Adobe, you would model the data as [Events](/docs/how-it-works/concepts) and send it to Mixpanel via a Reverse ETL (RETL) tool or via directly hitting our [Import API](/reference/import-events).
+If you have your Adobe Analytics instance sitting on top of data that you collect and store in your data warehouse, getting started is simple. Instead of transforming and modeling that data to send to Adobe, you would model the data as [Events](/docs/data-structure/concepts) and send it to Mixpanel via a Reverse ETL (RETL) tool or via directly hitting our [Import API](/reference/import-events).
 
 ## Loading historical data
 
@@ -176,6 +176,6 @@ For any 3rd party integrations, the recommendation is to populate the identifier
 
 If you're unsure how you currently track data, or might want to consider tracking data differently as you migrate to Mixpanel, we recommend starting [here](https://mixpanel.com/blog/guide-to-choosing-your-data-architecture/).
 
-Mixpanel Customer Success and Support have been helping thousands of customers migrate from other tools to Mixpanel over the past decade. You can see an overview of the process we run with our Enterprise plan customers migrating from Adobe Analytics [here](https://mxpnl.notion.site/Adobe-Migration-Package-4035f7e2f62f43adb65e34b23ad14d23?pvs=4).
+Mixpanel Customer Success and Support have been helping thousands of customers migrate from other tools to Mixpanel over the past decade. For an overview of how a migration typically runs, from auditing your data and migrating live tracking to loading historical data and onboarding your teams, see our [Migration Guides Overview](/docs/migration). To move historical Adobe Analytics data, see [Loading historical data](#loading-historical-data) above, which covers the discovery questions to answer first, backfill options, and [setting up a separate project](#setting-up-the-projects) before any data is sent.
 
 If you need help, just [reach out here](https://mixpanel.com/get-support) and we'll be ready to assist with advice specific to your situation.

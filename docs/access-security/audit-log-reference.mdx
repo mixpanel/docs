@@ -13,9 +13,39 @@ For an overview of the Audit Log — how to access it in the UI, retention by pl
 
 JSON Schemas for the shared audit log entry format and each event type's payload are available on [GitHub](https://github.com/mixpanel/docs/tree/main/schemas/audit-logs).
 
-The events Mixpanel records are listed below. The **Available Since** date on each event is the first calendar day on which the event is available.
+## Entry Fields
+
+Every audit log entry in the API and NDJSON exports has these fields. `entity` holds the event-specific details, which vary by event type. CSV exports split `entity` into separate columns and omit `ttl_timestamp`.
+
+| Field | Description |
+| --- | --- |
+| `project_id` | ID of the project the audited action occurred in. |
+| `organization_id` | ID of the organization the audited action occurred in. |
+| `service` | The Mixpanel service the audited action came from, shown as Origin in the audit log UI. Values, with their UI labels: `webapp` (API), `mcp` (MCP), `cron` (Scheduled Job), `webapp_worker` (Background Worker), `export_server` (Export API). |
+| `event_category` | High-level category describing the type of audited event. |
+| `organization_name` | Name of the organization at the time the audited action occurred. |
+| `ttl_timestamp` | UTC timestamp at which the audit log entry expires and may be deleted. |
+| `client_ip` | IP address of the client that initiated the audited action. On MCP tool call entries, this is the calling server's address (typically your AI provider's), not the user's. |
+| `http_method` | HTTP method of the request that triggered the audited action (e.g. GET, POST). |
+| `http_request_headers` | HTTP request headers from the request that triggered the audited action. |
+| `http_request_size` | Size of the HTTP request body in bytes. |
+| `http_response_headers` | HTTP response headers returned for the request that triggered the audited action. |
+| `http_response_size` | Size of the HTTP response body in bytes. |
+| `http_status` | HTTP status code returned for the request that triggered the audited action. |
+| `http_url` | URL of the request that triggered the audited action. |
+| `http_user_agent` | User-Agent header from the request that triggered the audited action. |
+| `project_name` | Name of the project at the time the audited action occurred. |
+| `user_email` | Email of the user who performed the audited action. |
+| `user_id` | ID of the user who performed the audited action. |
+| `user_roles` | Comma-separated list of roles held by the user at the time of the audited action. |
+| `created` | UTC timestamp when the audit log entry was created. |
+| `id` | Unique identifier for the audit log entry. |
+| `was_impersonated_by_staff` | Whether the action was performed by a Mixpanel staff member acting on behalf of your organization. |
+| `entity` | The entity that was acted upon, including its type, action, and action-specific payload. |
 
 ## Events
+
+The events Mixpanel records are listed below. The **Available Since** date on each event is the first calendar day on which the event is available.
 
 ### Agentic Workflows
 
@@ -209,6 +239,7 @@ The events Mixpanel records are listed below. The **Available Since** date on ea
 | `session.logged_in` | User Logged In | A user successfully logged into the organization. | Organization only | April 5, 2026 |
 | `session.logged_out` | User Logged Out | A user logged out of the organization. | Organization only | April 5, 2026 |
 | `session.login_failed` | User Login Failed | A user login attempt failed. | Organization only | May 20, 2026 |
+| `session.reauth_failed` | User Re-authentication Failed | A logged-in user failed to re-authenticate before changing a sensitive setting. | Organization only | October 2, 2026 |
 
 ### User Management
 

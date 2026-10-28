@@ -37,7 +37,7 @@ Before reading further, watch this walkthrough. It shows MCP end to end — from
 
 You’ll need:
 
-- MCP set up in your AI interface of choice. Review [Mixpanel MCP Integration](/docs/features/mcp) for setup instructions.
+- MCP set up in your AI interface of choice. Review [Mixpanel MCP Integration](/docs/mcp) for setup instructions.
 - Access to a Mixpanel project with reasonably stable event definitions.
 - Any external context you want to analyze (CSVs, calendars, internal docs, benchmarks).
 - The [MCP Prompt Library](https://mixpanel.com/wp-content/uploads/2026/04/Mixpanel_MCP_Prompt_Library.pdf) on hand as a reference — ready-to-use prompts for analysis, investigation, dashboards, and governance. If you use Claude Projects, Cursor, or another persistent AI environment, load the [agent version](https://storage.googleapis.com/cdn-mxpnl-com/libs/mcp-prompt/Mixpanel_MCP_Prompt_Library_agent.md) instead: It detects your connected tools automatically and composes multi-step workflows without you having to prompt each step separately.
@@ -60,7 +60,7 @@ Most teams start with single questions about one metric. With practice, MCP beco
 | 4 | Automated Delivery | Set up recurring MCP-powered reports delivered to Slack or other channels. | Weekly metrics digest posted to your team's Slack every Monday. |
 | 5 | Embedded in Decisions | MCP analysis is part of standing rituals (sprint planning, QBRs, board reporting). | Every product review starts with an MCP-generated impact summary. |
 
-This guide covers the core workflow. [MCP Integration Pairings](/guides/guides-by-use-case/empower-your-team/mcp/integrations) goes deeper on tool-specific combinations — including automated delivery via Slack — and [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) gives you use cases and prompts tailored to your context.
+This guide covers the core workflow. [MCP Integration Pairings](/guides/mcp/integrations) goes deeper on tool-specific combinations — including automated delivery via Slack — and [MCP by Industry](/guides/mcp/mcp-by-industry) gives you use cases and prompts tailored to your context.
 
 ## Step 1: Use MCP to Eliminate the Context Gap
 
@@ -212,7 +212,7 @@ These issues come up most often when teams treat MCP as a shortcut instead of a 
 - **Treating MCP as only a report builder**: Its biggest value is as an exploration and synthesis layer. But it can also create boards, manage Lexicon metadata, and triage data quality at scale — so don't limit it to analysis alone.
 - **Asking under-specified questions**: MCP is powerful, but clarity of intent still matters. Specify the behavior, the population, the timeframe, and the shape of the answer you need.
 - **Using MCP to paper over unclear instrumentation**: MCP helps interpret data — it doesn’t fix structural issues. When this comes up, pause and invest in [data governance](/guides/guides-by-topic/govern-data) first (clear event definitions, ownership, and approval workflows) before relying on MCP for analysis.
-- **Using MCP without clear data-use guardrails**: Only connect MCP to Mixpanel projects and external sources that comply with your organization’s security, privacy, and data-sharing policies, and be intentional about which data is exposed to AI tools. For detailed guidance, see [Mixpanel’s MCP security and compliance considerations](/docs/features/mcp#security--compliance-considerations).
+- **Using MCP without clear data-use guardrails**: Only connect MCP to Mixpanel projects and external sources that comply with your organization’s security, privacy, and data-sharing policies, and be intentional about which data is exposed to AI tools. For detailed guidance, see [Mixpanel’s MCP security and compliance considerations](/docs/mcp#security-considerations).
 
 ## Key Takeaways
 
@@ -221,4 +221,4 @@ These issues come up most often when teams treat MCP as a shortcut instead of a 
 - Use MCP to explore and validate. Use Mixpanel to formalize and share.
 - The best teams use MCP to move faster from "What happened?" to "What should we do about it?"
 
-👉 **Next step**: Ready to go deeper? See [MCP by Industry](/guides/guides-by-use-case/empower-your-team/mcp/mcp-by-industry) for use cases and sample prompts tailored to your context, or [MCP Integration Pairings](/guides/guides-by-use-case/empower-your-team/mcp/integrations) to explore what each external data source unlocks.
+👉 **Next step**: Ready to go deeper? See [MCP by Industry](/guides/mcp/mcp-by-industry) for use cases and sample prompts tailored to your context, or [MCP Integration Pairings](/guides/mcp/integrations) to explore what each external data source unlocks.

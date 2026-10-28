@@ -13,7 +13,7 @@ Identity management is the process of assigning IDs and maintaining ID mappings 
 
 ## Distinct ID
 
-Distinct ID is Mixpanel's identifier used to uniquely track a user in the system. Every event data and profile update sent to Mixpanel should have a distinct\_id property associated with it (except in the case of preventing [hot shards](/docs/debugging/distinct-id-limits)). The Distinct ID value tells Mixpanel which user to attach your events and profile property updates.
+Distinct ID is Mixpanel's identifier used to uniquely track a user in the system. Every event data and profile update sent to Mixpanel should have a distinct\_id property associated with it (except in the case of preventing [hot shards](/docs/tracking-best-practices/hot-shard-limits)). The Distinct ID value tells Mixpanel which user to attach your events and profile property updates.
 
 The purpose of Distinct ID is to provide a single, unified identifier for a user across devices and sessions. When two events have the same value of `distinct_id`, they are considered as being performed by one unique user. If the Distinct ID on two events are two different values, they will be considered as coming from two separate users.
 
