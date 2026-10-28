@@ -1,0 +1,94 @@
+---
+title: "Terminology and product names"
+description: "How to write Mixpanel, plan names, feature names, credentials, and data residency regions in docs"
+---
+
+Use the same name for the same thing on every page. Readers and AI agents both treat a new term as a new concept.
+
+## Mixpanel
+
+Write **Mixpanel** with a capital M and a lowercase p. Don't write MixPanel, mixpanel, or MP in prose. Lowercase `mixpanel` is fine in code, package names, and URLs.
+
+## Plan names
+
+Capitalize plan names when you mean the plan: **Free**, **Growth**, and **Enterprise**.
+
+| Do | Don't |
+| --- | --- |
+| This feature is available on the Growth and Enterprise plans. | This feature is available on growth and enterprise plans. |
+| Enterprise customers can request a custom retention period. | enterprise customers can request a custom retention period. |
+
+Keep the words lowercase when they're ordinary adjectives: "a free trial," "enterprise-scale data volumes."
+
+## Feature and report names
+
+Capitalize product feature names to set them apart from the ordinary words. Examples include Insights, Funnels, Flows, Retention, Boards, Lexicon, Session Replay, Experiments, Feature Flags, and Data Pipelines.
+
+When a feature name is followed by a generic word, keep the generic word lowercase: "Funnels report," "Lexicon entry," "Session Replay settings."
+
+| Do | Don't |
+| --- | --- |
+| Open a Funnels report. | Open a Funnels Report. |
+| Add the report to a Board. | Add the report to a board. |
+| Check the event in Lexicon. | Check the event in the lexicon. |
+
+Match the name that appears in the product. If you're not sure how a feature is capitalized, check the UI or the feature's main docs page.
+
+## Boards
+
+Boards is a Mixpanel feature. A Board is a collection of reports, text, and media that shows your key metrics in one place. Write "Board" or "Boards," capitalized. Don't use "dashboard."
+
+| Do | Don't |
+| --- | --- |
+| Add the report to a Board. | Add the report to a dashboard. |
+| Share the Board with your team. | Share the dashboard with your team. |
+
+## Generic terms
+
+Keep common technical nouns lowercase: internet, email, website, ecommerce, app, web, mobile, server-side, client-side.
+
+Capitalize names of teams and departments, but not the words "team" or "department": "contact the Support team," "ask your Sales team."
+
+## Credentials and identifiers
+
+Use the exact name of the credential the reader needs. Different credentials have different security requirements, so mixing them up can lead readers to expose a secret.
+
+| Term | Use for | Notes |
+| --- | --- | --- |
+| project token | The identifier that SDKs use to send data to a project | Don't call it a key or a secret. |
+| API secret | The deprecated project secret used by older API workflows | Mention it only where older workflows still need it, and point readers to service accounts for new integrations. |
+| service account | The credentials used to authenticate API requests | Say "service account username" and "service account secret." Remind readers to store the secret securely. |
+| project ID | The numeric ID of a project | Don't confuse it with the project token. |
+| organization ID | The numeric ID of an organization | Write "organization ID," not "org ID," in prose. |
+| `distinct_id` | The identifier Mixpanel uses for a user | Use code font when you refer to the property. |
+
+When a page tells readers to handle a secret, say where to find it and remind them not to commit it to source control or expose it in client-side code.
+
+## Data Residency
+
+Data Residency is a Mixpanel program that lets customers choose the region where their data is stored and processed. Each region is a named offering within the program, so capitalize the region names. When you refer to the program as a whole, write "the Data Residency program," with "program" lowercase.
+
+Mixpanel stores data in one of three regions. Use these names:
+
+| Region | Name in prose |
+| --- | --- |
+| United States | US Data Residency |
+| European Union | EU Data Residency |
+| India | India Data Residency |
+
+Each API has a different host in each region. See [API hosts and data residency](/docs/code-examples#api-hosts-and-data-residency).
+
+On first mention in a page, use the full name, such as "EU Data Residency." After that, "the EU region" is fine.
+
+| Do | Don't |
+| --- | --- |
+| If your project uses EU Data Residency, send data to `api-eu.mixpanel.com`. | If your project uses EU data residency, send data to `api-eu.mixpanel.com`. |
+| India Data Residency is part of Mixpanel's Data Residency program. | India Data Residency is part of Mixpanel's Data Residency Program. |
+
+## Abbreviations
+
+Spell out an abbreviation the first time you use it on a page, followed by the short form in parentheses: "customer data platform (CDP)." After that, use the short form.
+
+You don't need to spell out abbreviations that most readers know, such as API, SDK, URL, HTML, JSON, CSV, and SQL.
+
+Don't use Latin abbreviations in prose. Write "for example" instead of "e.g.," and "that is" instead of "i.e."
