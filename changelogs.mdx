@@ -9,6 +9,36 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-10-21">
+  ## Experiments: Add Experiments to Boards
+
+  Experiment results lived only on the experiment page, so sharing progress meant sending a separate link or pasting screenshots next to the reports on your boards.
+
+  You can now add experiments to [Boards](/docs/boards) and track their results alongside your other reports. With this update, you can:
+
+  - **Add from either place:** Select **Add to board** from the experiment's header menu, or add an **Experiment** card from the board itself. An experiment can be added to multiple boards.
+  - **Choose what each card shows:** Display the primary metrics with lift per variant, exposures over time by variant, the variants with their descriptions and screenshots, or the experiment's hypothesis.
+
+  Experiment cards are view-only. Click **View experiment** on a card to open the experiment and make changes.
+
+  [Learn more →](/docs/experiments#experiments-on-boards)
+</Update>
+
+<Update label="2026-10-15">
+  ## Experiments: Built-in Sample Size Calculator
+
+  Working out how many exposures or how much time an experiment needed used to mean leaving Mixpanel. You'd look up your metric's historical baseline and traffic, then type them by hand into the calculator on our website.
+
+  The sample size calculator is now built into experiment setup. Choose your primary metric and Mixpanel fills in its baseline conversion rate and daily traffic from your own data, measured over the window you pick. With this update, you can:
+
+  - **Tune your inputs:** Set your minimum detectable lift, confidence level, power, rollout %, and a one- or two-sided hypothesis.
+  - **Get a complete estimate:** See the total exposures needed, the count per variant, and an estimated duration. The estimate accounts for your number of variants and primary metrics.
+  - **Know if it's realistic:** A summary tells you whether the duration is reachable and suggests an experiment type.
+  - **Apply it in one click:** Click **Apply to Experiment** to set the experiment's duration.
+
+  [Learn more →](/docs/experiments#step-4-select-the-test-duration)
+</Update>
+
 <Update label="2026-10-14">
   ## Session Replay: Flutter Autocapture (Taps and Frustration Signals)
 
@@ -25,20 +55,41 @@ Get all the latest updates in your inbox.
   [Learn more →](/docs/tracking-methods/sdks/flutter#autocapture)
 </Update>
 
-<Update label="2026-10-13">
-  ## Experiments: Built-in Sample Size Calculator
+<Update label="2026-10-01">
+  ## MCP Audit Log: see what AI assistants changed, and ask about it
 
-  Working out how many exposures or how much time an experiment needed used to mean leaving Mixpanel. You'd look up your metric's historical baseline and traffic, then type them by hand into the calculator on our website.
+  As more of your team connects AI assistants to Mixpanel, more changes arrive through the [MCP server](/docs/mcp) instead of the UI. Those changes are now recorded in the same audit log as everything else, and organization admins can ask about them in plain language.
 
-  The sample size calculator is now built into experiment setup. Choose your primary metric and Mixpanel fills in its baseline conversion rate and daily traffic from your own data, measured over the window you pick. With this update, you can:
+  With this update, you can:
 
-  - **Tune your inputs:** Set your minimum detectable lift, confidence level, power, rollout %, and a one- or two-sided hypothesis.
-  - **Get a complete estimate:** See the total exposures needed, the count per variant, and an estimated duration. The estimate accounts for your number of variants and primary metrics.
-  - **Know if it's realistic:** A summary tells you whether the duration is reachable and suggests an experiment type.
-  - **Apply it in one click:** Click **Apply to Experiment** to set the experiment's duration.
+  - **Review AI changes alongside the rest:** Every MCP tool that changes something records an entry — boards, cohorts, experiments, feature flags, metrics, lookup tables, custom properties, Lexicon metadata, tags, and business context — attributed to the account the assistant is connected as.
+  - **Tell AI changes apart from the rest:** MCP entries carry an **Origin** of MCP in the audit log UI, and a `service` value of `mcp` in exports and the API. Filter by Origin to see a single source. Read-only and failed tool calls are not recorded.
+  - **Ask the audit log a question:** The [`Get-Audit-Log`](/docs/mcp#querying-the-audit-log) tool answers questions like "what changed in this project last week?" or "who deleted a board yesterday?" without filtering the audit log page by hand.
 
-  [Learn more →](/docs/experiments#step-4-select-the-test-duration)
+  A single MCP action usually produces more than one entry: one tool call entry recording the tool and its arguments, plus one detailed entry per object that changed. MCP tool call entries are retained for 90 days on all plans, while the detailed entries follow your plan's standard retention.
+
+  The MCP Audit Log is in Beta for a limited set of customers, and `Get-Audit-Log` requires organization admin or owner access. [Request access here](https://mxpnl.notion.site/52931ceda0e94fa2bda6cb18420b5113?pvs=105).
+
+  [Learn more →](/docs/access-security/audit-log#mcp-activity)
 </Update>
+
+<Update label="2026-10-01">
+  ## MCP Connections: let Mixpanel Agent read your GitHub, Jira, Linear, and Notion
+
+  Your data lives in Mixpanel, but the context around it lives somewhere else — the strategy doc in Notion, the Jira ticket describing what a feature was supposed to do, the pull request that shipped it. MCP Connections let Mixpanel Agent read those tools directly, so it can answer with your team's context instead of only what the events say.
+
+  With this update, you can:
+
+  - **Connect the tools you already use:** Notion, Linear, and Jira connect through OAuth. GitHub connects with a personal access token. Each tool connects once, to your own account.
+  - **Bring your own context into an answer:** Mixpanel Agent can read the spec behind a feature, the ticket that defines what counts as success, or the pull requests that changed a flow, and use them while it analyzes your data.
+  - **Read-only and private to you:** Mixpanel Agent only exposes read tools, so it cannot create, edit, or delete anything in a connected tool. Teammates cannot see or use your connections, and the Agent sees only what your account on that tool can see.
+
+  MCP Connections are off by default. An organization admin or owner turns on **Connect Your Tools via MCP** under **Settings → Org → AI Settings**, and each member then adds their own connections from **Settings → Personal Settings**.
+
+  MCP Connections are in Beta for a limited set of customers and require Mixpanel AI. [Request access here](https://mxpnl.notion.site/5dc6d468f8aa48eebac5146fc9bd3759).
+
+  [Learn more →](/docs/mcp-connections)
+ </Update>
 
 <Update label="2026-10-01" description="">
   ## Agent Intelligence is now in Beta
@@ -139,6 +190,25 @@ Get all the latest updates in your inbox.
   - [iOS](/docs/tracking-methods/sdks/swift/swift-replay#wireframes-beta)
   - [Flutter](/docs/tracking-methods/sdks/flutter/flutter-replay#wireframes-beta)
   - [React Native](/docs/tracking-methods/sdks/react-native/react-native-replay#wireframes-beta)
+</Update>
+
+<Update label="2026-09-16">
+  ## Web Experiments (Private Beta)
+
+  Running a simple website A/B test used to mean filing an engineering ticket and waiting for a release. Testing a headline or a button color was blocked on a sprint.
+
+  Web Experiments let you build and launch website A/B tests without writing code. Open your live site in the visual editor, click the element you want to change, and configure each variant on the page. With this update, you can:
+
+  - **Edit your page directly:** Change text, adjust styling, and hide or show existing elements.
+  - **Describe changes in plain language:** Tell Mixpanel Agent what to change instead of using the control panel.
+  - **Review every change:** See each variant's edits in the Changes panel, with variant screenshots on the experiment page.
+  - **Control who can launch:** A new permission lets admins restrict who can launch web experiments through a custom project role.
+
+  Results, metrics, and statistical models work the same as they do for code-based experiments. Setup is a one-time JavaScript snippet on your site plus the Mixpanel Chrome extension.
+
+  Web Experiments are in private beta. Request access [here](https://mxpnl.notion.site/e2e0eaa760de4546a73fc3c6418acbd3).
+
+  [Learn more →](/docs/experiments/no-code-experiments)
 </Update>
 
 <Update label="2026-09-10">

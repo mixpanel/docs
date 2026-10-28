@@ -101,9 +101,9 @@ A typical workflow looks like:
 ## Permissions & Access
 
 <Note>
-  **New free and growth accounts (created after August 1, 2026):** MCP is enabled by default — no admin action required. Organization admins can disable it in **Settings → Org → Overview** if needed. Free plans can be subject to Query API access limits, please refer to our [pricing page](https://mixpanel.com/pricing/) for more information.
+  **New free and growth accounts (created after August 1, 2026):** MCP is enabled by default — no admin action required. Organization admins can disable it in **Settings → Org → AI Settings** if needed. Free plans can be subject to Query API access limits, please refer to our [pricing page](https://mixpanel.com/pricing/) for more information.
 
-  **All other accounts:** An organization admin must enable MCP in **Settings → Org → Overview** before anyone can connect.
+  **All other accounts:** An organization admin must enable MCP in **Settings → Org → AI Settings** before anyone can connect.
 
   Changes can take up to 15 minutes to take effect.
 </Note>
@@ -545,6 +545,7 @@ The following capabilities are not currently supported through the MCP server. U
 
 - **Cohort filters and breakdowns in** `Run-Query`**:** Queries run with `Run-Query` cannot filter or break down results by cohort.
 - **SCD fields:** MCP tools do not currently support SCD (Slowly Changing Dimension / Profile Property History) fields. Queries run through MCP cannot break down or filter by profile-history properties.
+- **Saved Metrics in** `Run-Query`**:** `Run-Query` does not currently work with Saved Metrics. For event-based metrics, add the metric's event and property filters to your Business Context so your AI client can rebuild the underlying event definition. For metrics with funnel steps, event ordering, time windows, or other rules, include the full Saved Metric definition in your Business Context and use the Mixpanel UI for the analysis.
 
 ## Building Custom Integrations (OAuth)
 

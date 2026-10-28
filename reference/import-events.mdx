@@ -43,7 +43,7 @@ If you provide the `strict=1` parameter (recommended), `/import` will validate t
 
 - Each event must be properly formatted JSON.
 - Each event must contain an event name, time, distinct\_id, and \$insert\_id. These are used to deduplicate events so that this endpoint can be safely retried.
-- Each event must be smaller than 1MB of uncompressed JSON.
+- Each event must be smaller than 1MB of uncompressed JSON. Larger events are rejected with a 400 error.
 - Each event must have fewer than 255 properties.
 - All nested object properties must have fewer than 255 keys and a max nesting depth is 3.
 - All array properties must have fewer than 255 elements.
@@ -76,7 +76,16 @@ This is a JSON object representing all the properties about the event. If you're
 
 ##### properties.time
 
-The time at which the event occurred, in seconds or milliseconds since epoch. We require a value for time. We will reject events with time values that are before 1971-01-01 or more than 1 hour in the future as measured on our servers.
+The time at which the event occurred. We require a value for time. Mixpanel accepts either format below and stores event times with millisecond precision; anything finer than a millisecond is cut off.
+
+| Format | Examples | Notes |
+| --- | --- | --- |
+| Unix epoch, in seconds or milliseconds (integer or float) | `1788422480`, `1788422480.137`, `1788422480137` | Seconds vs. milliseconds is detected automatically. |
+| RFC 3339 / ISO 8601 string | `"2026-09-11T01:11:10.341Z"`, `"2026-09-11T11:11:10.341+10:00"`, `"2026-09-11T01:11:10"` | Fractional seconds (e.g. `.341`) are kept to the millisecond. A trailing `Z` or an explicit offset is honored and converted to UTC; a string with no offset is treated as UTC. |
+
+You don't need epoch time to send milliseconds, and you don't need to remove a trailing `Z`.
+
+We will reject events with time values that are before 1971-01-01 or more than 1 hour in the future as measured on our servers.
 
 If the time value is set in the future, it will be overwritten with the current present time at ingestion.
 

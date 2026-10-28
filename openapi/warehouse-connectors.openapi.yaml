@@ -398,7 +398,17 @@ paths:
         \ syncs new rows based on an insert time column\n- **mirror_mode**: Detects changes in the source table and mirrors\
         \ them to Mixpanel\n- **full_sync**: Re-syncs all data on each run\n- **one_time**: Syncs data once and does not repeat\n\
         \n### Required Column Mappings\n\nYou must specify either:\n- `event_name`: A static event name for all rows\n- `event_column_name`:\
-        \ The column containing the event name\n\nFor B2B projects, `company_column_name` is also required.\n\n### Scheduling\n\
+        \ The column containing the event name\n\nFor B2B projects, `company_column_name` is also required.\n\n### Insert ID and Deduplication\n\nSet the optional `insert_id_column_name` to a STRING column\
+        \ containing a unique ID for each event; Mixpanel uses its value as the event's `$insert_id`. If no column is\
+        \ set, or a row's value is empty or not a string, Mixpanel uses an MD5 hash of the entire row, so identical rows get the same\
+        \ `$insert_id` on every re-sync and are deduplicated. Separate events that are identical in every column would\
+        \ collapse into one, so map a unique ID column.\n\nIn `mirror_mode`, `$insert_id` is by default the row identifier\
+        \ that Mirror uses to track updates and deletes, not the mapped column. On Snowflake this is the stream row ID;\
+        \ on BigQuery, Redshift, and Databricks it is a hash of the row, so rows that are identical in every column\
+        \ also share an `$insert_id`.\n\nA column named `insert_id` that is\
+        \ not set as `insert_id_column_name` is imported as a regular event property. A `$insert_id` entry in `property_mappings`\
+        \ is overwritten; use `insert_id_column_name` instead.\n\nMixpanel deduplicates events on event name, `distinct_id`,\
+        \ `time`, and `$insert_id` (see [Event Deduplication](/reference/event-deduplication)).\n\n### Scheduling\n\
         \n- **run_every** (integer): Sync frequency in nanoseconds. Allowed values:\n  - Trigger via API: `0`\n  - Hourly:\
         \ `3600000000000` (60 * 60 * 10^9)\n  - Daily: `86400000000000` (24 * 60 * 60 * 10^9)\n  - Weekly: `604800000000000`\
         \ (7 * 24 * 60 * 60 * 10^9)\n- **databricks_params** (object): Databricks-specific cluster configuration (only for\
@@ -1148,6 +1158,12 @@ components:
         json_properties_column_name:
           type: string
           nullable: true
+        insert_id_column_name:
+          type: string
+          description: Name of a STRING column containing a unique ID for each event, used as the event's `$insert_id`
+            for deduplication. If omitted, or if a row's value is empty or not a string, Mixpanel uses an MD5 hash of the entire row.
+            By default not used in `mirror_mode`, where `$insert_id` is the row identifier Mirror tracks (Snowflake's
+            stream row ID, or a hash of the row on BigQuery, Redshift, and Databricks).
         sync_mode:
           $ref: '#/components/schemas/SyncMode'
         run_every:
