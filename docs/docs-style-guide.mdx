@@ -1,0 +1,78 @@
+---
+title: "Docs style guide"
+description: "How to write Mixpanel docs: the core rules at a glance and links to every page in the guide"
+---
+
+This guide describes how to write and format Mixpanel documentation. It's for anyone who writes or reviews docs, whether you work at Mixpanel, contribute through GitHub, or are an AI agent drafting a page.
+
+## Rules at a glance
+
+| Do | Don't |
+| --- | --- |
+| Use sentence case for page titles and headings: "Create a cohort" | Use title case: "Create A Cohort" |
+| Write to the reader as "you," in the active voice and present tense | Write "the user should" or "it will be shown" |
+| Lead with what the reader can do or needs to know | Open with background or marketing claims |
+| Bold UI labels, and match the product's capitalization: click **Save Report** | Italicize UI labels or put them in quotes or code font |
+| Use code font for code, file names, parameters, and values: `distinct_id` | Use code font for UI labels or for emphasis |
+| Use em dashes with no spaces: "events—and their properties" | Add spaces around em dashes: "events — and" |
+| Use the serial comma: "Insights, Funnels, and Flows" | Drop the last comma: "Insights, Funnels and Flows" |
+| Spell out one through nine in prose; use numerals for 10 and up | Mix styles in one sentence: "2 of the fifteen events" |
+| Write dates as January 1, 2026 | Write ordinal dates: January 1st |
+| Capitalize plan names: Free, Growth, Enterprise | Write "the growth plan" or "enterprise customers" when you mean the plan |
+| Capitalize product features: Insights, Funnels, Session Replay | Write "the funnels report" when you mean the feature |
+| Call the Mixpanel feature a Board | Use "dashboard" |
+| Use "and" in headings and body text | Use "&" outside navigation labels and company names |
+| Use descriptive link text: "see [EU Data Residency](/docs/privacy/eu-residency)" | Use "click here" or bare URLs as link text |
+| Use contractions: "you'll," "don't" | Use exclamation points |
+| Use placeholders such as `YOUR_PROJECT_TOKEN` in examples | Paste real tokens, secrets, or customer data |
+| Use callout components for notes and warnings | Use emoji such as 👉 or ⚠️ to mark a note or warning |
+| Use ✅ and ❌ in tables to show support or availability | Add decorative emoji to headings or prose |
+| Take screenshots in light mode with demo data | Show customer data, credentials, or dark mode |
+| Write alt text that explains why the image matters | Write "Image of" or list every detail in the image |
+| Use precise, inclusive terms: allowlist, primary, placeholder | Use terms like whitelist, master, or dummy value |
+| Name the format and time zone for any date or timestamp | Write "the date" without saying which format or time zone |
+| Give every page a one-sentence `description` | Leave the description empty or repeat the title |
+
+## Applying the guide
+
+Follow this guide for new pages and for any lines you change on an existing page.
+
+## Pages in this guide
+
+<Columns cols={2}>
+  <Card title="Voice, tone, and audience" icon="message" href="/docs/voice-tone">
+    How Mixpanel docs sound, who reads them, and how to write clear, direct content.
+  </Card>
+
+  <Card title="Terminology and product names" icon="book" href="/docs/terminology">
+    How to write Mixpanel, plan names, feature names, credentials, and data residency regions.
+  </Card>
+
+  <Card title="Grammar, punctuation, and formatting" icon="paragraph" href="/docs/grammar-punctuation">
+    Rules for headings, dashes, numbers, dates, times, lists, links, emphasis, and emoji.
+  </Card>
+
+  <Card title="Style guide exceptions" icon="code-branch" href="/docs/style-guide-exceptions">
+    Where Mixpanel docs deliberately differ from the company style guide, and why.
+  </Card>
+
+  <Card title="Code and examples" icon="code" href="/docs/code-examples">
+    Format code, placeholders, API hosts, SDK content, and example data.
+  </Card>
+
+  <Card title="API reference" icon="brackets-curly" href="/docs/API-reference">
+    Write OpenAPI specs, endpoint descriptions, parameters, and deprecation notices.
+  </Card>
+
+  <Card title="Images, alt text, and video" icon="image" href="/docs/images-video">
+    Add screenshots, alt text, and video to Mixpanel docs.
+  </Card>
+
+  <Card title="Accessibility and inclusive language" icon="universal-access" href="/docs/accessibility">
+    Write docs that everyone can read, navigate, and feel included by.
+  </Card>
+
+  <Card title="Writing for agents" icon="robot" href="/docs/writing-for-agents">
+    Write docs that AI agents, coding assistants, and retrieval tools can find, read, and act on.
+  </Card>
+</Columns>

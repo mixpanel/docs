@@ -400,7 +400,7 @@ components:
         status: SUCCESS
         requesting_user: user@mail.com
         compliance_type: GDPR
-        project_id: your project ID
+        project_id: 12345
         date_requested: YYYY-MM-DDTHH:MM:SS
         distinct_ids:
         - distinct_id_1

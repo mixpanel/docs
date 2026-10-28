@@ -18,10 +18,21 @@ Mixpanel's React Native Session Replay SDK enables you to capture and analyze us
 
 ## Requirements
 
-- React Native \>= 0.70
-- iOS \>= 13.0
+- React Native \>= 0.76
+- iOS \>= 15.0
 - Android API Level \>= 21
 - New Architecture support (backward compatible with old architecture)
+
+### Apple Platform Support
+
+Each major version of the Session Replay SDK has its own minimum supported iOS and React Native versions. Version 2.x raises the iOS minimum to match the minimum deployment target of Xcode 27. Use this table to choose the version that fits your app.
+
+| SDK version | Minimum supported iOS | Minimum supported React Native | Supported Xcode versions | Support status |
+| ----------- | --------------------- | ------------------------------ | ------------------------ | -------------- |
+| 2.x | iOS 15 | 0.76 | Xcode 26 and 27 | **Current:** receives new features and fixes |
+| 1.x | iOS 13 | 0.70 | Xcode 26 | **Maintenance:** receives critical fixes only, until April 2027 |
+
+If your app needs to support an older iOS or React Native version, stay on 1.x.
 
 ## Installation
 
@@ -39,7 +50,7 @@ yarn add @mixpanel/react-native-session-replay
 
 #### iOS
 
-The SDK dependencies are automatically added via CocoaPods. Your project must target iOS 13 or later.
+The SDK dependencies are automatically added via CocoaPods.
 
 ```sh
 cd ios && pod install

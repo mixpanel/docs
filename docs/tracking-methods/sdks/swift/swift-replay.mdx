@@ -6,25 +6,11 @@ description: "Install and configure the Mixpanel Session Replay SDK for Swift, i
 
 ## Overview
 
-This developer guide will assist you in configuring your Swift app for [Session Replay](/docs/session-replay) using the [Session Replay SDK (Swift)](/docs/tracking-methods/sdks/swift/swift-replay). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
+This developer guide will assist you in configuring your Swift app for [Session Replay](/docs/session-replay) using the Session Replay SDK (Swift). Learn more about [viewing captured Replays in your project here](/docs/session-replay).
 
-<Note>
-  **iOS 26\+ with Xcode 26: SwiftUI Automasking Issue — Fixed in [v1.2.1](https://github.com/mixpanel/mixpanel-ios-session-replay-package/releases/tag/v1.2.1)**
+Starting with Session Replay SDK 2.0.0, Session Replay runs on iOS 26 and later by default. The `enableSessionReplayOniOS26AndLater` flag has been removed, so delete it from your configuration when you upgrade.
 
-  The iOS 26 "Liquid Glass" rendering changes that affected automasking in Session Replay for SwiftUI apps have been addressed in v1.2.1. Upgrade to v1.2.1 to get the fix.
-
-  **Who was affected:** SwiftUI apps using automasking for text or images, built with Xcode 26, and running on iOS 26\+.
-
-  **If you are on v1.2.0:** Session Replay is disabled by default for apps built with Xcode 26\+ running on iOS 26\+. Upgrade to v1.2.1 and enable session replay by setting `config.enableSessionReplayOniOS26AndLater = true` during SDK initialization.
-
-  **If you re-enabled Session Replay on v1.2.0:** Upgrade to v1.2.1 to get the fix.
-
-  **If you disabled automasking as a workaround:** Upgrade to v1.2.1 and enable the automasking config.
-
-  While the iOS 26 "Liquid Glass" fix is now available, we still recommend thoroughly testing session replays in your app before pushing to production. We also encourage explicitly masking sensitive views rather than relying solely on the SDK's automasking.
-
-  **Note:** The `enableSessionReplayOniOS26AndLater` flag is still used by SDK in v1.2.1 but will be removed in a future minor version.
-</Note>
+Before releasing to production, we recommend testing automasking on your SwiftUI screens in a test build, and explicitly marking sensitive views with `mpReplaySensitive(true)`.
 
 ## Best Practices
 
@@ -32,7 +18,20 @@ Session Replay provides powerful insights into user behavior, but it also introd
 
 ## Prerequisite
 
-You are already a Mixpanel customer and have the latest version of the [Mixpanel Swift SDK](/docs/tracking-methods/sdks/swift) installed (minimum supported version is [`v4.3.1`](https://github.com/mixpanel/mixpanel-swift/releases/tag/v4.3.1)). If not, please follow [this doc](/docs/quickstart/install-mixpanel) to install the SDK.
+You are already a Mixpanel customer.
+
+The [Mixpanel Swift SDK](/docs/tracking-methods/sdks/swift) is optional. If you use it, install version 7.0.0 or later (required by Session Replay SDK 2.0.0 and later) by following [this doc](/docs/quickstart/install-mixpanel).
+
+### Apple Platform Support
+
+Each major version of the Session Replay SDK has its own minimum supported iOS version. Version 2.x raises the minimum to match the minimum deployment target of Xcode 27. Use this table to choose the version that fits your app.
+
+| SDK version | Minimum supported iOS | Supported Xcode versions | Support status |
+| ----------- | --------------------- | ------------------------ | -------------- |
+| 2.x | iOS 15 | Xcode 26 and 27 | **Current:** receives new features and fixes |
+| 1.x | iOS 13 | Xcode 26 | **Maintenance:** receives critical fixes only, until April 2027 |
+
+If your app needs to support an older iOS version, stay on 1.x.
 
 ## Installation
 
@@ -44,7 +43,7 @@ To capture Session Replays in your app, add the [Session Replay SDK](/docs/track
 
 ### Initialize
 
-You should have the main Mixpanel Swift SDK installed (minimum version `v4.3.1`), if not, please refer to [Prerequisite](/docs/tracking-methods/sdks/swift/swift-replay#prerequisite).
+The examples below use the Mixpanel Swift SDK to supply the project token and distinct ID. The Mixpanel Swift SDK is optional; if you don't use it, provide your project token and distinct ID directly. See [Prerequisite](/docs/tracking-methods/sdks/swift/swift-replay#prerequisite) for version requirements.
 
 Add the following code to your **SwiftUI** or **UIKit** app.
 
@@ -237,7 +236,6 @@ Currently, there are seven config options:
 | `flushInterval` | Specifies the flush interval (in seconds) at which session replay events are sent to the Mixpanel server. | `10` |
 | `enableLogging` | This is a boolean value that determines whether or not debugging logs are printed to the console. | `false` |
 | `remoteSettingsMode` | Setting for handling remote configuration during SDK initialization. Can be `.disabled`, `.fallback`, `.strict`. | `.disabled` |
-| `enableSessionReplayOniOS26AndLater` | Forces Session Replay to be enabled on iOS 26\+, bypassing compatibility checks. Session Replay is disabled by default for apps built with Xcode 26\+ running on iOS 26\+ due to SwiftUI automasking issues. See the warning callout above for details. | `false` |
 
 **autoMaskedViews Example Usage**
 
@@ -259,20 +257,13 @@ MPSessionReplay.getInstance()?.autoMaskedViews = [.image]
 MPSessionReplay.getInstance()?.autoMaskedViews = []
 ```
 
-**enableSessionReplayOniOS26AndLater Example Usage**
+**enableSessionReplayOniOS26AndLater Example Usage (1.x only)**
+
+On 1.x versions, Session Replay is disabled by default for apps built with Xcode 26\+ running on iOS 26\+. To enable it, set the flag during initialization. Version 2.0.0 and later removed this flag, so delete it when you upgrade.
 
 ```swift Swift
-let config = MPSessionReplayConfig(
-    autoMaskedViews: [],  // Disable automasking if using SwiftUI
-    wifiOnly: false
-)
+let config = MPSessionReplayConfig()
 config.enableSessionReplayOniOS26AndLater = true
-
-MPSessionReplay.initialize(
-    token: Mixpanel.mainInstance().apiToken,
-    distinctId: Mixpanel.mainInstance().distinctId,
-    config: config
-)
 ```
 
 #### Identity Management

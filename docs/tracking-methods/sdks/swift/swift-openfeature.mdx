@@ -12,9 +12,19 @@ For the native Mixpanel SDK approach, see the [Feature Flags (Swift)](/docs/trac
 ## Prerequisites
 
 - A Mixpanel project with Feature Flags — see [plan availability](/docs/featureflags#plan-availability)
-- iOS 14.0\+ / tvOS 14.0\+ / macOS 11.0\+ / watchOS 7.0\+
-- Swift 5.5\+
+- Swift 5.7\+
 - Project Token from your [Mixpanel Project Settings](/docs/orgs-and-projects/managing-projects#find-your-project-tokens)
+
+### Apple Platform Support
+
+Each major version of the provider has its own minimum supported OS. Version 1.x raises the minimum to match the minimum deployment targets of Xcode 27. Use this table to choose the version that fits your app.
+
+| Provider version | Minimum supported OS | Supported Xcode versions | Support status |
+| ---------------- | -------------------- | ------------------------ | -------------- |
+| 1.x | iOS 15, tvOS 15, macOS 12, watchOS 9 | Xcode 26 and 27 | **Current:** receives new features and fixes |
+| 0.x | iOS 14, tvOS 14, macOS 11, watchOS 7 | Xcode 26 | **Maintenance:** receives critical fixes only, until April 2027 |
+
+If your app needs to support an older OS, stay on 0.x.
 
 ## Installation
 
@@ -22,7 +32,7 @@ Add the following to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/mixpanel/mixpanel-swift-openfeature", from: "0.1.0"),
+    .package(url: "https://github.com/mixpanel/mixpanel-swift-openfeature", from: "1.0.0"),
 ]
 ```
 

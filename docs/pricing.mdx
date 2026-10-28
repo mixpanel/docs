@@ -14,7 +14,7 @@ An event is a data point that represents an interaction between a user and your 
 - Media: Video Watched, Article Read
 - SaaS: Document Created, Call Started
 
-To decide which Mixpanel plan is right for you, first think about [what events you want to track](/docs/quickstart/what-to-track) and the number of active users you have.
+To decide which Mixpanel plan is right for you, first think about [what events you want to track](/docs/what-to-track) and the number of active users you have.
 
 ### Computed Monthly Across Projects
 
@@ -35,7 +35,7 @@ The high-level differences between the three are:
 
 - **Free:** Mixpanel is usage-based, and you can use it for free for as long as you want, no trial needed. If you are new to Mixpanel and want to test it out, we encourage you to use our free plan and upgrade once you have an estimate of your project’s volume. Limited to a maximum of 5 saved reports per user account and 1M total events. You can create cohorts but not save them, and features like lookup tables, custom properties, or permissions are not included.
 - **Growth:** The typical Growth plan customer is a small team using Mixpanel (fewer than 50 employees). Growth plans purchased after February 2025 include the first 1M events free.
-- **Enterprise:** Designed for large teams that require access controls and permissions, data governance features, dedicated onboarding support, and account management. Some exclusive reports for Enterprise are Signal and Impact, with features like Data Views and sensitive data classification.
+- **Enterprise:** Designed for large teams that require access controls and permissions, data governance features, dedicated onboarding support, and account management. Enterprise also unlocks exclusive analysis tools, including the Signal report and anomaly detection alerts.
 
 All plans include some [Experiments](/docs/experiments) and [Feature Flags](/docs/featureflags) usage, with the option to purchase additional volume on Growth and Enterprise plans. See [Experiments plan availability](/docs/experiments#plan-availability) and [Feature Flags plan availability](/docs/featureflags#plan-availability) for the included amounts.
 
@@ -63,7 +63,7 @@ From here, you can quickly view this billing period’s usage on the right side 
 
 The Group Analytics add-on enables behavioral analysis at the business or group level, as opposed to the individual level.
 
-Check [here](/docs/data-structure/advanced/group-analytics) for the technical documentation for Group Analytics, keeping in mind that implementing this feature is not trivial and includes sending your events with the key of the [group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties) they belong to. Group Analytics **can’t be implemented retroactively** for already ingested events.
+Please view the [technical documentation for Group Analytics first](/docs/data-structure/group-analytics), keeping in mind that implementing this feature is not trivial and includes sending your events with the key of the [group](/docs/data-structure/group-analytics/group-analytics-implementation) they belong to. Group Analytics **can’t be implemented retroactively** for already ingested events.
 
 This is a recommended feature for all B2B products that want answers to questions such as:
 
@@ -172,7 +172,7 @@ Our latest pricing plans include the first 1M events free each month. We require
 
 The first 1 million events ingested are free! If you go over 1 million events, each event ingested will be charged at the additional data rate seen in the “Plan Details & Billing” section in your Organization Settings. If you're only on a 1M monthly events plan, the additional data rate is \$.00028 per event. Purchasing higher volumes upfront will lower that additional data rate, as we include volume discounts in our pricing.
 
-If you have the Data Pipeline or Group Analytics add-ons, you will also be charged 20% for Data Pipelines and/or 40% for Group Analytics based on the additional data ingested.
+If you have the Data Pipelines or Group Analytics add-ons, they are also charged on the additional data ingested: the Data Pipelines add-on has a 20% charge over the base plan; the Group Analytics add-on has a 40% charge over the base plan for 6 group keys on Growth, and 20% for group keys on Enterprise.
 
 As an example:
 

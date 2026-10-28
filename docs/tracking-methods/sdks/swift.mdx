@@ -6,9 +6,21 @@ description: "Install and configure the Mixpanel Swift SDK for iOS via CocoaPods
 
 ## Getting Started
 
-Please refer to our [Quickstart Guide](/docs/quickstart/connect-your-data?sdk=swift).
+Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#ios-swift).
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-swift/), [Library Source Code](https://github.com/mixpanel/mixpanel-swift), and an [Example Application](https://github.com/mixpanel/mixpanel-swift/tree/master/MixpanelDemo/MixpanelDemo) are documented in our GitHub repo.
+
+The iOS (Swift) SDK is open source under the [Apache 2.0 license](https://github.com/mixpanel/mixpanel-swift/blob/master/LICENSE). Its source code is on GitHub at [mixpanel/mixpanel-swift](https://github.com/mixpanel/mixpanel-swift).
+### Apple Platform Support
+
+Each major version of the SDK has its own minimum supported OS. Version 7.x raises the minimum to match the minimum deployment targets of Xcode 27. Use this table to choose the version that fits your app.
+
+| SDK version | Minimum supported OS | Supported Xcode versions | Support status |
+| ----------- | -------------------- | ------------------------ | -------------- |
+| 7.x | iOS 15, tvOS 15, macOS 12, watchOS 9 | Xcode 26 and 27 | **Current:** receives new features and fixes |
+| 6.x | iOS 12, tvOS 12, macOS 10.13, watchOS 4 | Xcode 26 | **Maintenance:** receives critical fixes only, until April 2027 |
+
+If your app needs to support an older OS, stay on 6.x.
 
 ## Installing the Library
 
@@ -87,7 +99,7 @@ func application(_ application: UIApplication,
 ### SDK Configuration Using MixpanelOptions
 
 <Warning>
-  **Data Residency:** For projects with EU or India data residency, you must configure the SDK to use the correct [regional endpoint](#data-residency). Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/swift#privacy-friendly-tracking)
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, set `serverURL` in `MixpanelOptions` to `https://api-eu.mixpanel.com` or `https://api-in.mixpanel.com`. Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency) for examples.
 </Warning>
 
 Configure the Mixpanel SDK using [`MixpanelOptions`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelOptions.html) to customize tracking behavior, data residency, privacy settings, and more.
@@ -173,7 +185,9 @@ Mixpanel.mainInstance().track(event: "Image Upload")
 
 ### Flushing Events
 
-To preserve battery life and customer bandwidth, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background.
+To preserve battery life and mobile data usage, the Mixpanel library doesn't send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background.
+
+As of SDK version 6.8.0, the library also flushes once during initialization (unless `flushInterval` is `0`), so any pending events from a previous session are sent without waiting for the next interval-based flush. Each flush sends the entire queue in batches of up to `flushBatchSize` events (default and max: 50), and the `performFullFlush` parameter has no effect.
 
 Call [`.flush()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC5flush16performFullFlush10completionySb_yycSgtF) manually if you want to force a flush at a particular moment.
 
@@ -186,24 +200,17 @@ Mixpanel.mainInstance().flush()
 
 #### Configuring Flush Interval
 
-The default flush interval is 60 seconds. You can customize this using the [`flushInterval`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelOptions.html) option in `MixpanelOptions` (see [Configuration Reference](#configuration-reference)). Set to `0` to disable automatic flushing entirely (requires manual `.flush()` calls).
+The default flush interval is 60 seconds. You can customize this using the [`flushInterval`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelOptions.html) option in `MixpanelOptions` (see [Configuration Reference](#configuration-reference)). Set to `0` to disable interval-based and initialization flushing (requires manual `.flush()` calls).
 
-**Recommended: Configure During Initialization**
+**Example Usage**
 
 ```swift Swift
-/// Set flush interval to 120 seconds during initialization
+/// Set flush interval to 30 seconds during initialization
 let options = MixpanelOptions(
     token: "YOUR_PROJECT_TOKEN",
-    flushInterval: 120  // Flush every 2 minutes
+    flushInterval: 30  // Flush every 30 seconds
 )
 Mixpanel.initialize(options: options)
-```
-
-**Alternative: Update After Initialization** You can also update the flush interval dynamically using [`flushInterval`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC13flushIntervalSdvp).
-
-```swift Swift
-/// Change flush interval at runtime
-Mixpanel.mainInstance().flushInterval = 120
 ```
 
 #### Importing Historical Events
@@ -277,7 +284,7 @@ See more methods related to super properties in the complete library reference [
 
 ## Managing User Identity
 
-You can handle the identity of a user using the [`.identify()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC8identify10distinctId9usePeople10completionySS_SbyycSgtF) and [`.reset()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC5reset10completionyyycSg_tF) methods. Learn more about [identity management](/docs/tracking-methods/id-management/identity-management) and [identifying users](/docs/tracking-methods/id-management/identifying-users).
+You can handle the identity of a user using the [`.identify()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC8identify10distinctId9usePeople10completionySS_SbyycSgtF) and [`.reset()`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC5reset10completionyyycSg_tF) methods. Learn more about [identity management](/docs/tracking-methods/id-management) and [identifying users](/docs/tracking-methods/id-management/identifying-users-simplified).
 
 ### Identify
 
@@ -538,7 +545,7 @@ The Swift SDK provides a few methods for adding individual users to a group and 
 
 ### Adding Users to a Group
 
-[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics#group-keys-tracked-as-event-properties). Without the group key, an event cannot be attributed to a group.
+[All events must have the group key as an event property in order to be attributed to a group](/docs/data-structure/group-analytics/group-analytics-implementation#tracking-events-for-a-group). Without the group key, an event cannot be attributed to a group.
 
 Call the [`setGroup(groupKey:groupIDs:)`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelInstance.html#/s:8Mixpanel0A8InstanceC8setGroup8groupKey0E2IDySS_AA0A4Type_ptF) to register the current user to a group, which would add the `group_key` as an event property set to the `group_id` value to all events moving forward.
 
@@ -832,7 +839,7 @@ Only interactive elements are candidates, so tapping a plain label or a decorati
 
 #### Rage Click
 
-A `$mp_rage_click` event is emitted when **4 or more taps** land within **1000 ms** of each other and within **44 pt** on screen — the signature of a user hammering a control that isn't responding. These three thresholds are the defaults — `clickThreshold`, `timeWindowMs` and `radius` on `RageClickOptions` — and are [configurable](#enabling-click-autocapture). The event is emitted *in addition to* the individual `$mp_click` events, so four rapid taps produce four clicks and one rage click. Taps spread out in time or across the screen do not qualify.
+A `$mp_rage_click` event is emitted on the **4th tap** that lands within **1000 ms** and **44 pt** of the earlier taps — the signature of a user hammering a control that isn't responding. These three thresholds are the defaults — `clickThreshold`, `timeWindowMs` and `radius` on `RageClickOptions` — and are [configurable](#enabling-click-autocapture). The event is emitted *in addition to* the individual `$mp_click` events, so four rapid taps produce four clicks and one rage click. The tap history resets after each rage click, so eight rapid taps produce two rage clicks. Taps spread out in time or across the screen do not qualify.
 
 Rage clicks are a **frustration signal**: alongside dead clicks, they surface the places where your app is failing users without throwing an error. Break them down by `$el_id` to find the specific controls people are fighting with, or use them to segment sessions worth watching in Session Replay.
 
@@ -860,7 +867,7 @@ Button("Checkout") {
 </CodeGroup>
 
 - **UIKit:** For storyboard and XIB views, set the identifier in the **Identity inspector → Accessibility → Identifier** field instead of in code.
-- **SwiftUI:** Reading the identifier back requires iOS 18 or later — see the warning under [Element ID Resolution](#element-id-resolution). On iOS 15–17 these elements fall back to the hash whatever you set, so plan your reports accordingly.
+- **SwiftUI:** Reading the identifier back requires iOS 18 or later — see the warning under [Element ID Resolution](#element-id-resolution). On iOS 17 and earlier these elements fall back to the hash whatever you set, so plan your reports accordingly.
 - **`accessibilityIdentifier` is not `accessibilityLabel`:** The identifier is developer-facing and never announced by VoiceOver, which is what makes it safe to use as an ID; the label is accessibility metadata and is never used as an identifier. Setting only a label leaves the element on the hash fallback.
 
 Full precedence rules are in [Element ID Resolution](#element-id-resolution).
@@ -877,6 +884,10 @@ let options = MixpanelOptions(
 
 let mixpanel = Mixpanel.initialize(options: options)
 ```
+
+<Warning>
+  **EU and India data residency:** If your project uses EU or India data residency, you must explicitly set the API host in your init code: add `serverURL: "https://api-eu.mixpanel.com"` (EU) or `serverURL: "https://api-in.mixpanel.com"` (India) to `MixpanelOptions`. Otherwise, your data, including autocaptured events, will be dropped. If you send data through a proxy or custom domain, point it at your region's host instead and keep the proxy URL in your init code. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency).
+</Warning>
 
 Each signal is configurable, and can be turned off independently:
 
@@ -950,7 +961,7 @@ Every click, dead click and rage click event carries:
 2. **`<ClassName>_<hash>`** — the anonymous fallback
 
 <Warning>
-  **SwiftUI identifiers need iOS 18+.** SwiftUI never sets `accessibilityIdentifier` on the backing UIKit view — it lives in the accessibility element tree, which the SDK reads with `accessibilityHitTest`. That query is available on iOS 18 and later, and returns nothing when the tree has not been materialized. On iOS 15–17, SwiftUI elements fall back to `<ClassName>_<hash>` regardless of the identifier you set. UIKit views are unaffected.
+  **SwiftUI identifiers need iOS 18+.** SwiftUI never sets `accessibilityIdentifier` on the backing UIKit view — it lives in the accessibility element tree, which the SDK reads with `accessibilityHitTest`. That query is available on iOS 18 and later, and returns nothing when the tree has not been materialized. On iOS 17 and earlier, SwiftUI elements fall back to `<ClassName>_<hash>` regardless of the identifier you set. UIKit views are unaffected.
 </Warning>
 
 **About the hash fallback:** the hash is derived from the element's *position* in the hierarchy, not its instance, so it is identical across app launches. That makes it groupable, but it describes a position rather than a thing: reordering siblings changes it, and two rows of the same list differ by index rather than by content.
@@ -1026,7 +1037,7 @@ Your backup host must:
 
 You have control over the data you send to Mixpanel. The Swift SDK provides methods to help you protect user data.
 
-Learn more about [Privacy](/docs/privacy/overview).
+Learn more about [Privacy](/docs/privacy).
 
 ### Opt Out of Tracking
 
