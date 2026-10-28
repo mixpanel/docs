@@ -1,17 +1,17 @@
 ---
 title: "Configure your account"
-description: "Phase 2 of 3. Configure your Mixpanel account."
+description: "Phase 2 of 3. Set up your organization so it can grow with you."
 sidebarTitle: "Configure Your Account"
 ---
 
 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '10px', margin: '10px 0 14px' }}>
-  <a href="/guides/set-up-mixpanel/get-your-data-in" style={{ display: 'block', borderTop: '3px solid #D1D5DB', paddingTop: '8px', color: '#6B7280', textDecoration: 'none', borderBottom: 'none' }}>
+  <a href="/set-up-mixpanel/get-your-data-in" style={{ display: 'block', borderTop: '3px solid #D1D5DB', paddingTop: '8px', color: '#6B7280', textDecoration: 'none', borderBottom: 'none' }}>
     <div style={{ fontSize: '12px' }}>Phase 1</div>
     Get your data in
   </a>
 
-  <div style={{ borderTop: '3px solid #F97316', paddingTop: '8px', fontWeight: 500 }}>
-    <div style={{ fontSize: '12px', color: '#F97316' }}>Phase 2</div>
+  <div style={{ borderTop: '3px solid #2563EB', paddingTop: '8px', fontWeight: 500 }}>
+    <div style={{ fontSize: '12px', color: '#2563EB' }}>Phase 2</div>
     Configure your account
   </div>
 
@@ -20,3 +20,81 @@ sidebarTitle: "Configure Your Account"
     Train your team
   </a>
 </div>
+
+## Overview
+
+This phase has three parts:
+
+- **Owners:** Name more than one owner, and choose who looks after your data.
+- **Access:** Decide how people join and sign in, what they can do, and what they can see.
+- **AI context:** Tell Mixpanel's AI about your business, if you use it.
+
+You'll do these once for your whole account, not again for each use case.
+
+<Info>
+  Most delays in this phase come from waiting on someone else, like the team that manages your company's sign-in. Start those conversations early, and keep working on the rest in the meantime.
+</Info>
+
+**Done when:**
+
+- More than one person owns your organization.
+- People have the access they need.
+- Mixpanel's AI knows your business, if you use it.
+
+## Owners
+
+Decide who is responsible for your Mixpanel account and the data in it.
+
+### Name more than one organization owner
+
+Owners have full control of your organization. If your only owner leaves, you'll need to contact Support to get a new one, so name a second owner now. [Organizations](/docs/orgs-and-projects/organizations)
+
+### Choose who looks after your data
+
+Pick a person, or a small group, to decide how events get named, described, and approved as your team grows. Event Approval hides new events until someone approves them. [Data Standards](/docs/data-governance/data-standards) · [Event Approval](/docs/data-governance/event-approval) · [Data Clean-Up](/docs/data-governance/data-clean-up)
+
+## Access
+
+Decide how people join and sign in, what they can do, and what they can see.
+
+### Choose how people get access
+
+Use teams if you have a larger organization with clear groups, and add people to projects directly if you're smaller. Roles stack, so a person's permissions add up. [Orgs & Projects](/docs/orgs-and-projects) · [Roles & Permissions](/docs/orgs-and-projects/roles-and-permissions)
+
+### Set up single sign-on
+
+If your company uses single sign-on, set it up early. It usually involves the team that manages your company's sign-in, so it can take longer than the rest of this phase. [Single Sign-On](/docs/access-security/single-sign-on)
+
+<Tip>
+  **Test single sign-on before you require it for administrators.** If it's set up wrong and required, no administrator can sign in to fix it.
+</Tip>
+
+### Decide who can find your organization
+
+Not using single sign-on? Choose whether people with your company email can join on their own, need an admin's approval, or can only join by invitation. [Organization Discoverability](/docs/orgs-and-projects/organizations#organization-discoverability)
+
+### Decide who can see sensitive data
+
+If different teams should see different data in the same project, set up Data Views. If a property is sensitive, mark it as classified so only the people you choose can see it. [Data Views & Classification](/docs/data-governance/data-views-and-classification)
+
+## AI context
+
+Give Mixpanel's AI the background it can't get from your events. Skip this part if you don't use Mixpanel's AI tools.
+
+### Write your business context
+
+Add a few facts about your company and about how each project tracks data, so answers are accurate. Organization admins write the company-level context, and project owners and admins write the project-level context. [Business Context](/docs/business-context) · [Write business context that grounds AI answers](/guides/guides-by-workflow/write-business-context)
+
+<Tip>
+  **Keep it short, and leave out anything sensitive.** Business context goes to your AI provider, and longer context makes responses slower and costlier.
+</Tip>
+
+## Learn more
+
+<Card title="Mixpanel Onboarding path" icon="graduation-cap" horizontal href="https://university.mixpanel.com/student/path/3411734-mixpanel-onboarding">
+  A course in Mixpanel University that covers the full setup, one module at a time.
+</Card>
+
+## Next phase
+
+Next, [Train your team](/set-up-mixpanel/train-your-team). It's best to start once your data is flowing.
