@@ -1,0 +1,150 @@
+---
+title: "Voice, tone, and audience"
+description: "How Mixpanel docs sound, who reads them, and how to write clear, direct content for developers and analysts"
+---
+
+Mixpanel's voice is clear, approachable, and informed. In docs, that voice acts as a translator: we know the product well, and we make complex ideas simple without talking down to anyone. Readers come to docs to get something done, so give them the answer and let them decide what to do next.
+
+## Use plain language
+
+- Put the most important information first.
+- Use common words instead of formal or unusual ones.
+- Keep to one idea per sentence.
+- Spell out abbreviations the first time you use them, unless they're widely known, such as API or SDK.
+- Use the same words for the same things throughout a page.
+
+## Lead with the reader's goal
+
+Write from the reader's point of view. Start with what they want to do or learn, then explain how. When a step has a purpose, state the purpose before the action.
+
+| Do | Don't |
+| --- | --- |
+| To see where users drop off, create a Funnels report. | Create a Funnels report. This lets you see where users drop off. |
+| To send data to the EU region, set `api_host` to `api-eu.mixpanel.com`. | Set `api_host` to `api-eu.mixpanel.com` if you want to send data to the EU region. |
+
+## Give only the information the reader needs
+
+Include details that help the reader finish the current task. Move background, history, and edge cases to their own section or page, and link to them.
+
+Describe what a feature does and how to use it. Don't make claims about it.
+
+| Do | Don't | Why |
+| --- | --- | --- |
+| Use Insights to see how an event's count changes over time. | Insights is the most powerful way to analyze your data. | Claims don't help the reader act, and they date quickly. |
+| Use Session Replay to watch how users move through a flow. | Session Replay is a game-changing way to understand users. | Describe the task the feature supports. |
+
+## Write with confidence
+
+State facts and instructions directly. Avoid hedging words such as "might," "should be able to," and "try to" unless the outcome really is uncertain. Be confident without being condescending.
+
+| Do | Don't |
+| --- | --- |
+| The Import API rejects events with a timestamp more than one hour in the future. | The Import API may reject some events if their timestamps seem to be too far in the future. |
+| Click **Save**. | You should now be able to click **Save**. |
+
+## Always show the main answer
+
+Keep the core instructions in the main flow of the page, not only inside tabs or accordions. See [Writing for agents](/docs/writing-for-agents#keep-the-answer-in-the-main-content).
+
+## Introduce complexity gradually
+
+Start with the simplest path that works, then add options and advanced configuration. Explain why something matters before explaining how to do it.
+
+For example, a page about identity management should explain what `distinct_id` is and why it matters before it covers ID merge settings.
+
+## Avoid jargon
+
+Use technical terms when your readers know them and the task needs them. Otherwise, use plain words. Define analytics and Mixpanel terms the first time you use them.
+
+| Jargon | Plain language |
+| --- | --- |
+| Once tracked, events are immutable. | You can't change an event after it's tracked. |
+| Leverage cohorts to operationalize insights. | Use cohorts to act on what you learn. |
+| Events are deduplicated idempotently via `$insert_id`. | Mixpanel uses `$insert_id` to drop duplicate events, so you can safely resend them. |
+| Determine the coefficient of determination of your predictors. | See how closely two metrics are related. |
+
+## Use the active voice and present tense
+
+Say who does what. The active voice makes it clear whether the reader or Mixpanel takes an action.
+
+| Do | Don't | Why |
+| --- | --- | --- |
+| Mixpanel drops events with invalid timestamps. | Events with invalid timestamps are dropped. | The reader knows Mixpanel is the one dropping them. |
+| You can export a cohort to a CSV file. | A cohort can be exported to a CSV file. | Addressing the reader is shorter and clearer. |
+
+Use the present tense to describe how the product works.
+
+| Do | Don't | Why |
+| --- | --- | --- |
+| The report shows daily active users. | The report will show daily active users. | The future tense adds words and suggests a delay. |
+
+## Address the reader as "you"
+
+Write to the reader as "you." Use "we" only when Mixpanel the company is doing something, such as "We store your data in the EU." Don't write "the user" when you mean the reader. In Mixpanel docs, "user" usually means the reader's own customers.
+
+## Be solutions-oriented
+
+Anticipate where readers get stuck. Name common errors and their fixes on the page where they happen, and link to troubleshooting content. In troubleshooting content, name the cause, then the fix, and don't blame the reader.
+
+## Write clear, concise sentences
+
+- Aim for sentences of about 20 words or fewer.
+- Cut filler words such as "simply," "just," "easily," "basically," and "actually."
+- Avoid hype words such as "powerful," "seamless," "robust," and "leverage."
+- Put one action in each step.
+- Use contractions, such as "don't" and "you'll," to sound natural.
+- Don't use exclamation points.
+
+## Write for the long term
+
+Docs stay live for years. Avoid words that date a page, such as "now," "new," "currently," "recently," and "soon." Describe how the product works, not how it changed, and announce changes in the changelog instead.
+
+| Do | Don't |
+| --- | --- |
+| You can export cohorts to a CSV file. | You can now export cohorts to a CSV file. |
+| Session Replay supports iOS and Android. | Session Replay recently added support for iOS and Android. |
+
+## Write accessible and inclusive documentation
+
+Write so that everyone can read, navigate, and feel included by the docs, including people who use screen readers and other assistive technology. See [Accessibility and inclusive language](/docs/accessibility) for the full rules.
+
+## Write for a global audience
+
+Many readers speak English as a second language or use translation tools.
+
+- Use simple sentence structures.
+- Avoid idioms, slang, and cultural references, such as "out of the box" or "home run."
+- Write dates and times in the unambiguous formats in [Grammar, punctuation, and formatting](/docs/grammar-punctuation#dates-and-times).
+- Define terms instead of assuming readers know them.
+
+## Use consistent terminology
+
+After you choose a term, keep using it. Don't switch between "project token" and "project key" on the same page. See [Terminology and product names](/docs/terminology) for standard terms.
+
+## Know your audience
+
+Docs readers range from people new to analytics to experienced data engineers. People who know product analytics well may still be new to Mixpanel. Before you write, decide who the page is mainly for.
+
+|  | Developers | Analysts |
+| --- | --- | --- |
+| **Who they are** | Engineers who send data to Mixpanel and maintain the implementation | Product managers, analysts, marketers, and designers who build and read reports |
+| **What they need** | Accurate code, exact parameters, limits, and error behavior | Clear steps, defined terms, and why a setting matters |
+| **How to write for them** | Use standard technical terms without defining them. Skip basic programming steps, such as how to install a package manager. | Define analytics and Mixpanel terms on first use. Spell out every step, even ones that seem obvious. |
+
+When a page serves both groups, put the steps everyone needs first, then add technical detail in its own section, a tab, or an accordion.
+
+## Match the tone to the situation
+
+The voice stays the same, but the tone shifts with what the reader is doing.
+
+| Situation | Reader is | Tone |
+| --- | --- | --- |
+| Getting started | Curious, possibly unsure | Encouraging and concrete. Show the quickest path to a first result. |
+| How-to steps | Focused on a task | Direct and brief. One action per step. |
+| Concepts | Trying to understand | Patient and precise. Use examples. |
+| Troubleshooting | Frustrated or blocked | Calm and specific. Name the cause, then the fix. |
+| API reference | Scanning for a detail | Terse and exact. Facts only. |
+
+## Include examples with a purpose
+
+Every example should show something the reader needs. Use realistic product scenarios, such as tracking a sign-up or building a retention report, instead of abstract placeholders. See [Code and examples](/docs/code-examples#example-data) for example data.

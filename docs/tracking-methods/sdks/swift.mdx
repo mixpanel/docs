@@ -9,6 +9,18 @@ Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#ios-swi
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-swift/), [Library Source Code](https://github.com/mixpanel/mixpanel-swift), and an [Example Application](https://github.com/mixpanel/mixpanel-swift/tree/master/MixpanelDemo/MixpanelDemo) are documented in our GitHub repo.
 
+The iOS (Swift) SDK is open source under the [Apache 2.0 license](https://github.com/mixpanel/mixpanel-swift/blob/master/LICENSE). Its source code is on GitHub at [mixpanel/mixpanel-swift](https://github.com/mixpanel/mixpanel-swift).
+### Apple Platform Support
+
+Each major version of the SDK has its own minimum supported OS. Version 7.x raises the minimum to match the minimum deployment targets of Xcode 27. Use this table to choose the version that fits your app.
+
+| SDK version | Minimum supported OS | Supported Xcode versions | Support status |
+| ----------- | -------------------- | ------------------------ | -------------- |
+| 7.x | iOS 15, tvOS 15, macOS 12, watchOS 9 | Xcode 26 and 27 | **Current:** receives new features and fixes |
+| 6.x | iOS 12, tvOS 12, macOS 10.13, watchOS 4 | Xcode 26 | **Maintenance:** receives critical fixes only, until April 2027 |
+
+If your app needs to support an older OS, stay on 6.x.
+
 ## Installing the Library
 
 You can install the Swift library by using CocoaPods, Carthage, or Swift Package Manager.
@@ -86,7 +98,7 @@ func application(_ application: UIApplication,
 ### SDK Configuration Using MixpanelOptions
 
 <Warning>
-  **Data Residency:** For projects with EU or India data residency, you must configure the SDK to use the correct [regional endpoint](#data-residency). Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/swift#privacy-friendly-tracking)
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, set `serverURL` in `MixpanelOptions` to `https://api-eu.mixpanel.com` or `https://api-in.mixpanel.com`. Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency) for examples.
 </Warning>
 
 Configure the Mixpanel SDK using [`MixpanelOptions`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelOptions.html) to customize tracking behavior, data residency, privacy settings, and more.
@@ -854,7 +866,7 @@ Button("Checkout") {
 </CodeGroup>
 
 - **UIKit:** For storyboard and XIB views, set the identifier in the **Identity inspector → Accessibility → Identifier** field instead of in code.
-- **SwiftUI:** Reading the identifier back requires iOS 18 or later — see the warning under [Element ID Resolution](#element-id-resolution). On iOS 15–17 these elements fall back to the hash whatever you set, so plan your reports accordingly.
+- **SwiftUI:** Reading the identifier back requires iOS 18 or later — see the warning under [Element ID Resolution](#element-id-resolution). On iOS 17 and earlier these elements fall back to the hash whatever you set, so plan your reports accordingly.
 - **`accessibilityIdentifier` is not `accessibilityLabel`:** The identifier is developer-facing and never announced by VoiceOver, which is what makes it safe to use as an ID; the label is accessibility metadata and is never used as an identifier. Setting only a label leaves the element on the hash fallback.
 
 Full precedence rules are in [Element ID Resolution](#element-id-resolution).
@@ -871,6 +883,10 @@ let options = MixpanelOptions(
 
 let mixpanel = Mixpanel.initialize(options: options)
 ```
+
+<Warning>
+  **EU and India data residency:** If your project uses EU or India data residency, you must explicitly set the API host in your init code: add `serverURL: "https://api-eu.mixpanel.com"` (EU) or `serverURL: "https://api-in.mixpanel.com"` (India) to `MixpanelOptions`. Otherwise, your data, including autocaptured events, will be dropped. If you send data through a proxy or custom domain, point it at your region's host instead and keep the proxy URL in your init code. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency).
+</Warning>
 
 Each signal is configurable, and can be turned off independently:
 
@@ -944,7 +960,7 @@ Every click, dead click and rage click event carries:
 2. **`<ClassName>_<hash>`** — the anonymous fallback
 
 <Warning>
-  **SwiftUI identifiers need iOS 18+.** SwiftUI never sets `accessibilityIdentifier` on the backing UIKit view — it lives in the accessibility element tree, which the SDK reads with `accessibilityHitTest`. That query is available on iOS 18 and later, and returns nothing when the tree has not been materialized. On iOS 15–17, SwiftUI elements fall back to `<ClassName>_<hash>` regardless of the identifier you set. UIKit views are unaffected.
+  **SwiftUI identifiers need iOS 18+.** SwiftUI never sets `accessibilityIdentifier` on the backing UIKit view — it lives in the accessibility element tree, which the SDK reads with `accessibilityHitTest`. That query is available on iOS 18 and later, and returns nothing when the tree has not been materialized. On iOS 17 and earlier, SwiftUI elements fall back to `<ClassName>_<hash>` regardless of the identifier you set. UIKit views are unaffected.
 </Warning>
 
 **About the hash fallback:** the hash is derived from the element's *position* in the hierarchy, not its instance, so it is identical across app launches. That makes it groupable, but it describes a position rather than a thing: reordering siblings changes it, and two rows of the same list differ by index rather than by content.
