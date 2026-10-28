@@ -1,6 +1,10 @@
 ---
 title: Hot Shard Limits
 description: "Per-identifier event limits that keep queries fast, what causes a hot shard, and how to resolve one"
+related:
+  - /docs/tracking-methods/id-management
+  - /docs/data-structure/group-analytics
+  - /docs/tracking-best-practices/server-side-best-practices
 ---
 
 In order to maintain fast queries and catch implementation mistakes, we set a limit on the number of events sent to a particular identifier in a given time window. This threshold has been established for a project as:
