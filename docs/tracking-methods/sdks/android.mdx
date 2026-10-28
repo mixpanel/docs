@@ -9,6 +9,8 @@ Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#android
 
 The [Full API Reference](http://mixpanel.github.io/mixpanel-android/index.html), [Library Source Code](https://github.com/mixpanel/mixpanel-android), and an [Example Application](https://github.com/mixpanel/sample-android-mixpanel-integration) is documented in our GitHub repo.
 
+The Android SDK is open source under the [Apache 2.0 license](https://github.com/mixpanel/mixpanel-android/blob/master/LICENSE). Its source code is on GitHub at [mixpanel/mixpanel-android](https://github.com/mixpanel/mixpanel-android).
+
 ## Installing the Library
 
 We publish builds of our library to the Maven central repository as an .aar file. This file contains all of the classes, resources, and configurations that you'll need to use the library.
@@ -73,7 +75,7 @@ public class MainActivity extends ActionBarActivity {
 ### Library Configuration
 
 <Warning>
-  For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/android#privacy-friendly-tracking).
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, set `serverURL` to `https://api-eu.mixpanel.com` or `https://api-in.mixpanel.com` on `MixpanelOptions.Builder` and pass the options to `getInstance()`. Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency) for examples.
 </Warning>
 
 The library can be initialized with different configurations. See a complete list of the configuration options and methods under [`MPConfig`](https://mixpanel.github.io/mixpanel-android/com/mixpanel/android/mpmetrics/MPConfig.html).
@@ -798,6 +800,10 @@ MixpanelAPI mixpanel =
     MixpanelAPI.getInstance(context, "YOUR_PROJECT_TOKEN", false, options);
 ```
 
+<Warning>
+  **EU and India data residency:** If your project uses EU or India data residency, you must explicitly set the API host in your init code: add `.serverURL("https://api-eu.mixpanel.com")` (EU) or `.serverURL("https://api-in.mixpanel.com")` (India) to the `MixpanelOptions.Builder`. Otherwise, your data, including autocaptured events, will be dropped. If you send data through a proxy or custom domain, point it at your region's host instead and keep the proxy URL in your init code. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency).
+</Warning>
+
 Each signal is configurable, and can be turned off independently:
 
 | Option | Setting | Default |
@@ -1152,6 +1158,32 @@ You can also set your backup host in your `AndroidManifest.xml`:
 <meta-data android:name="com.mixpanel.android.MPConfig.BackupHost" 
            android:value="my.backuphost.com" />
 ```
+
+<Visibility for="agents">
+## Legacy Automatically Tracked Events
+
+Mixpanel's mobile SDKs have a legacy feature to automatically collect common mobile events. We don't recommend enabling this, as these events rely on client-side state and can be unreliable.
+
+You control this feature with the `trackAutomaticEvents` argument of `MixpanelAPI.getInstance()`. Pass `false` to keep automatically tracked events disabled.
+
+**Example Usage**
+
+```java
+// initialize Mixpanel with automatic events disabled
+boolean trackAutomaticEvents = false;
+MixpanelAPI mixpanel =
+    MixpanelAPI.getInstance(this, "YOUR_PROJECT_TOKEN", trackAutomaticEvents);
+```
+
+If you set `trackAutomaticEvents` to `true`, the Android SDK tracks the following events:
+
+| Raw Name | Display Name | Description |
+| --- | --- | --- |
+| \$ae\_first\_open | First App Open | Tracks the first time the user has opened the app. This event is retriggered if the user reinstalls the app or clears local storage. |
+| \$ae\_updated | App Updated | Executes when a user updates the app from the previous version. A Version Updated (`$ae_updated_version`) property is tracked to store the new app version. |
+| \$ae\_crashed | App Crashed | Executes when Mixpanel receives either an exception or a signal that indicated the app has crashed. A Crash Reason (`$ae_crashed_reason`) property is tracked to help identify the type of crash. |
+| \$ae\_session | App Session | Executes when a user spends more than 10 seconds in the app. A Session Length (`$ae_session_length`) property is tracked to reflect the number of seconds user spent in the session. In addition, there are two user properties tracked: Total App Sessions (`$ae_total_app_sessions`) and Total App Session Length (`$ae_total_app_session_length`). |
+</Visibility>
 
 ## Release History
 

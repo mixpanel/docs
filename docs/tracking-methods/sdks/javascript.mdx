@@ -9,6 +9,8 @@ Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#javascr
 
 The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanel), [Library Source Code](https://github.com/mixpanel/mixpanel-js), and an [Example Application](https://github.com/mixpanel/mixpanel-js/tree/master/examples) is documented in our GitHub repo.
 
+The Javascript SDK is open source under the [Apache 2.0 license](https://github.com/mixpanel/mixpanel-js/blob/master/LICENSE). Its source code is on GitHub at [mixpanel/mixpanel-js](https://github.com/mixpanel/mixpanel-js).
+
 ## Installing the Library
 
 <Tabs>
@@ -86,7 +88,7 @@ The [Full API Reference](https://github.com/mixpanel/mixpanel-js/blob/master/doc
 ### Library Configuration
 
 <Warning>
-  For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/javascript#privacy-friendly-tracking).
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, set `api_host` to `https://api-eu.mixpanel.com` or `https://api-in.mixpanel.com` in the `init()` config. Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency) for examples.
 </Warning>
 
 The Mixpanel object can be initialized with different configurations. See a complete list of the configuration options and default values [here](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelset_config).
@@ -121,6 +123,62 @@ mixpanel.set_config({
 // debug is disabled
 ```
 
+### Hooks
+
+Use the `hooks` config option to modify or drop data before the SDK sends it to Mixpanel. Each hook is a function that you pass in the `hooks` object when you initialize the library.
+
+The `before_send_events` hook (mixpanel-js v2.40.0+) receives each event payload as an object with `event` and `properties` keys. The `properties` object already includes super properties and default properties. Return the payload, modified or unchanged, to send it. Return `null` to drop the event.
+
+**Example Usage**
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    hooks: {
+        before_send_events: function(payload) {
+            // drop events tracked on internal pages
+            if (payload.properties.$current_url && payload.properties.$current_url.indexOf('/internal/') !== -1) {
+                return null;
+            }
+
+            // remove a property from every event
+            delete payload.properties.email;
+
+            return payload;
+        }
+    }
+});
+```
+
+Starting in mixpanel-js v2.73.0, the SDK also supports the `before_track` hook. It runs when you call `mixpanel.track()` and receives the event name and the properties you passed. Return an array of `[event_name, properties]` to continue tracking. Return `null` to skip the event.
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    hooks: {
+        before_track: function(event_name, properties) {
+            return [event_name, Object.assign({}, properties, {app_section: 'checkout'})];
+        }
+    }
+});
+```
+
+The `before_track` hook also runs for [Autocapture](#autocapture) events, because Autocapture tracks them through `mixpanel.track()`. Autocapture events include the `$mp_autocapture` property set to `true`, and their event names start with `$mp_` (for example, `$mp_click`). To add properties only to Autocapture events, check for `$mp_autocapture` in the hook:
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    autocapture: true,
+    hooks: {
+        before_track: function(event_name, properties) {
+            if (properties && properties.$mp_autocapture) {
+                // add a property to Autocapture events only
+                return [event_name, Object.assign({}, properties, {app_section: 'checkout'})];
+            }
+            // leave manually tracked events unchanged
+            return [event_name, properties];
+        }
+    }
+});
+```
+
 ## Autocapture
 
 Starting with SDK version 2.60.0, the Javascript SDK can autocapture events when you enable it. To do so, enable the autocapture configuration:
@@ -131,6 +189,10 @@ mixpanel.init('YOUR_PROJECT_TOKEN', {
     autocapture: true,    // enable autocapture
 });
 ```
+
+<Warning>
+  **EU and India data residency:** If your project uses EU or India data residency, you must explicitly set the API host in your init code: add `api_host: 'https://api-eu.mixpanel.com'` (EU) or `api_host: 'https://api-in.mixpanel.com'` (India) to `mixpanel.init()`. Otherwise, your data, including autocaptured events, will be dropped. If you send data through a [proxy](#tracking-via-proxy) or custom domain, point it at your region's host instead and keep the proxy URL in your init code. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency).
+</Warning>
 
 If you'd like to change the default Autocapture settings, you can use custom configs. This is the default configuration:
 
@@ -910,6 +972,41 @@ mixpanel.opt_in_tracking();
 mixpanel.track('some_other_event');
 ```
 
+By default, `opt_in_tracking()` also tracks an `$opt_in` event. Use the `track_event_name` and `track_properties` options to customize that event.
+
+**Persisting Opt-Out Status**
+
+The SDK stores the user's opt-in or opt-out status per project, so it persists across page loads and sessions until the user changes it or clears browser storage. By default, the status is saved in local storage under the key `__mp_opt_in_out_<YOUR_PROJECT_TOKEN>`. The value is `1` when the user has opted in and `0` when the user has opted out. If local storage is unavailable, the SDK falls back to a cookie with the same name.
+
+You can change where and how the status is stored with these init options:
+
+| Option | Description | Default |
+| --- | --- | --- |
+| `opt_out_tracking_persistence_type` | Storage used for the opt-in/opt-out status: `localStorage` or `cookie`. | `localStorage` |
+| `opt_out_tracking_cookie_prefix` | Custom prefix for the storage key, used in place of `__mp_opt_in_out_`. | `null` |
+
+**Checking and Clearing Opt-Out Status**
+
+Use these methods to read or reset the stored status, for example to sync Mixpanel with your consent management tool:
+
+| Method | Description |
+| --- | --- |
+| [`has_opted_out_tracking()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#has_opted_out_tracking) | Returns `true` if the user has opted out of tracking. Also returns `true` if the browser's Do Not Track setting is on, unless you initialize the SDK with `ignore_dnt: true`. |
+| [`has_opted_in_tracking()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#has_opted_in_tracking) | Returns `true` if the user has explicitly opted in with `opt_in_tracking()`. |
+| [`clear_opt_in_out_tracking()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#clear_opt_in_out_tracking) | Removes the stored status, so the SDK falls back to the `opt_out_tracking_by_default` setting from `init`. |
+
+**Example Usage**
+
+```javascript
+// check the stored status before showing a consent banner
+if (!mixpanel.has_opted_in_tracking() && !mixpanel.has_opted_out_tracking()) {
+    showConsentBanner();
+}
+
+// reset the user's choice, for example when your consent policy changes
+mixpanel.clear_opt_in_out_tracking();
+```
+
 ### EU Data Residency
 
 Route data to Mixpanel's EU servers by setting a `api_host` configuration when creating the Mixpanel object.
@@ -1084,6 +1181,7 @@ mixpanel.init("YOUR_PROJECT_TOKEN", {
 | Session Replay recordings missing or corrupted | Proxy is not forwarding `Authorization` / `Content-Encoding` headers correctly |
 | 4xx/5xx on tracking calls | Proxy path prefix not stripped properly — verify `proxy_pass` rewrites match your location blocks |
 | Ad-blocker still blocks requests | CDN assets are still loaded directly from `cdn.mxpnl.com` — set `MIXPANEL_CUSTOM_LIB_URL` and `lib_base_path` |
+| Requests to `/decide` fail, or a separate `decide` upstream host no longer resolves | Mixpanel decommissioned the legacy `/decide` endpoint in August 2026. Remove any dedicated `/decide` route or upstream from your proxy, and send all API paths to your region's API host as shown in Step 1. Upgrade to JavaScript SDK v2.45.0 or later, which doesn't call `/decide`. See the [changelog](/changelogs) for details. |
 | Feature flag requests `/flags` failing with 401 | The `/flags` endpoint requires an `Authorization` header, unlike `/track` which only needs the project token. Ensure your proxy explicitly forwards the `Authorization` header to Mixpanel and does not strip it. |
 
 ## Session Replay
