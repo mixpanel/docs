@@ -9,6 +9,36 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-10-21">
+  ## Experiments: Add Experiments to Boards
+
+  Experiment results lived only on the experiment page, so sharing progress meant sending a separate link or pasting screenshots next to the reports on your boards.
+
+  You can now add experiments to [Boards](/docs/boards) and track their results alongside your other reports. With this update, you can:
+
+  - **Add from either place:** Select **Add to board** from the experiment's header menu, or add an **Experiment** card from the board itself. An experiment can be added to multiple boards.
+  - **Choose what each card shows:** Display the primary metrics with lift per variant, exposures over time by variant, the variants with their descriptions and screenshots, or the experiment's hypothesis.
+
+  Experiment cards are view-only. Click **View experiment** on a card to open the experiment and make changes.
+
+  [Learn more →](/docs/experiments#experiments-on-boards)
+</Update>
+
+<Update label="2026-10-15">
+  ## Experiments: Built-in Sample Size Calculator
+
+  Working out how many exposures or how much time an experiment needed used to mean leaving Mixpanel. You'd look up your metric's historical baseline and traffic, then type them by hand into the calculator on our website.
+
+  The sample size calculator is now built into experiment setup. Choose your primary metric and Mixpanel fills in its baseline conversion rate and daily traffic from your own data, measured over the window you pick. With this update, you can:
+
+  - **Tune your inputs:** Set your minimum detectable lift, confidence level, power, rollout %, and a one- or two-sided hypothesis.
+  - **Get a complete estimate:** See the total exposures needed, the count per variant, and an estimated duration. The estimate accounts for your number of variants and primary metrics.
+  - **Know if it's realistic:** A summary tells you whether the duration is reachable and suggests an experiment type.
+  - **Apply it in one click:** Click **Apply to Experiment** to set the experiment's duration.
+
+  [Learn more →](/docs/experiments#step-4-select-the-test-duration)
+</Update>
+
 <Update label="2026-10-14">
   ## Session Replay: Flutter Autocapture (Taps and Frustration Signals)
 
@@ -23,21 +53,6 @@ Get all the latest updates in your inbox.
   With this release, Android, iOS, React Native, and Flutter all support tap and frustration-signal autocapture. Available in open beta on all plans.
 
   [Learn more →](/docs/tracking-methods/sdks/flutter#autocapture)
-</Update>
-
-<Update label="2026-10-13">
-  ## Experiments: Built-in Sample Size Calculator
-
-  Working out how many exposures or how much time an experiment needed used to mean leaving Mixpanel. You'd look up your metric's historical baseline and traffic, then type them by hand into the calculator on our website.
-
-  The sample size calculator is now built into experiment setup. Choose your primary metric and Mixpanel fills in its baseline conversion rate and daily traffic from your own data, measured over the window you pick. With this update, you can:
-
-  - **Tune your inputs:** Set your minimum detectable lift, confidence level, power, rollout %, and a one- or two-sided hypothesis.
-  - **Get a complete estimate:** See the total exposures needed, the count per variant, and an estimated duration. The estimate accounts for your number of variants and primary metrics.
-  - **Know if it's realistic:** A summary tells you whether the duration is reachable and suggests an experiment type.
-  - **Apply it in one click:** Click **Apply to Experiment** to set the experiment's duration.
-
-  [Learn more →](/docs/experiments#step-4-select-the-test-duration)
 </Update>
 
 <Update label="2026-10-01">
@@ -175,6 +190,25 @@ Get all the latest updates in your inbox.
   - [iOS](/docs/tracking-methods/sdks/swift/swift-replay#wireframes-beta)
   - [Flutter](/docs/tracking-methods/sdks/flutter/flutter-replay#wireframes-beta)
   - [React Native](/docs/tracking-methods/sdks/react-native/react-native-replay#wireframes-beta)
+</Update>
+
+<Update label="2026-09-16">
+  ## Web Experiments (Private Beta)
+
+  Running a simple website A/B test used to mean filing an engineering ticket and waiting for a release. Testing a headline or a button color was blocked on a sprint.
+
+  Web Experiments let you build and launch website A/B tests without writing code. Open your live site in the visual editor, click the element you want to change, and configure each variant on the page. With this update, you can:
+
+  - **Edit your page directly:** Change text, adjust styling, and hide or show existing elements.
+  - **Describe changes in plain language:** Tell Mixpanel Agent what to change instead of using the control panel.
+  - **Review every change:** See each variant's edits in the Changes panel, with variant screenshots on the experiment page.
+  - **Control who can launch:** A new permission lets admins restrict who can launch web experiments through a custom project role.
+
+  Results, metrics, and statistical models work the same as they do for code-based experiments. Setup is a one-time JavaScript snippet on your site plus the Mixpanel Chrome extension.
+
+  Web Experiments are in private beta. Request access [here](https://mxpnl.notion.site/e2e0eaa760de4546a73fc3c6418acbd3).
+
+  [Learn more →](/docs/experiments/no-code-experiments)
 </Update>
 
 <Update label="2026-09-10">
