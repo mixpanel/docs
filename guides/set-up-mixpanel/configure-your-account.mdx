@@ -23,13 +23,7 @@ sidebarTitle: "Configure Your Account"
 
 ## Overview
 
-This phase has three parts:
-
-- **Owners:** Name more than one owner, and choose who looks after your data.
-- **Access:** Decide how people join and sign in, what they can do, and what they can see.
-- **AI context:** Tell Mixpanel's AI about your business, if you use it.
-
-You'll do these once for your whole account, not again for each use case.
+This phase sets up your organization so it can grow with you. You'll decide who owns it, what Mixpanel's AI knows about your business, and who can get in and see what. You'll do this once for your whole account, not again for each use case.
 
 <Info>
   Most delays in this phase come from waiting on someone else, like the team that manages your company's sign-in. Start those conversations early, and keep working on the rest in the meantime.
@@ -37,9 +31,9 @@ You'll do these once for your whole account, not again for each use case.
 
 **Done when:**
 
-- More than one person owns your organization.
-- People have the access they need.
-- Mixpanel's AI knows your business, if you use it.
+- Organization ownership is set.
+- Mixpanel's AI knows your business.
+- Teammates have access.
 
 ## Owners
 
@@ -52,6 +46,18 @@ Owners have full control of your organization. If your only owner leaves, you'll
 ### Choose who looks after your data
 
 Pick a person, or a small group, to decide how events get named, described, and approved as your team grows. Event Approval hides new events until someone approves them. [Data Standards](/docs/data-governance/data-standards) · [Event Approval](/docs/data-governance/event-approval) · [Data Clean-Up](/docs/data-governance/data-clean-up)
+
+## AI context
+
+Give Mixpanel's AI the background it can't get from your events. Skip this part if you don't use Mixpanel's AI tools.
+
+### Write your business context
+
+Add a few facts about your company and about how each project tracks data, so answers are accurate. Organization admins write the company-level context, and project owners and admins write the project-level context. [Business Context](/docs/business-context) · [Write business context that grounds AI answers](/guides/guides-by-workflow/write-business-context)
+
+<Tip>
+  **Keep it short, and leave out anything sensitive.** Business context goes to your AI provider, and longer context makes responses slower and costlier.
+</Tip>
 
 ## Access
 
@@ -76,18 +82,6 @@ Not using single sign-on? Choose whether people with your company email can join
 ### Decide who can see sensitive data
 
 If different teams should see different data in the same project, set up Data Views. If a property is sensitive, mark it as classified so only the people you choose can see it. [Data Views & Classification](/docs/data-governance/data-views-and-classification)
-
-## AI context
-
-Give Mixpanel's AI the background it can't get from your events. Skip this part if you don't use Mixpanel's AI tools.
-
-### Write your business context
-
-Add a few facts about your company and about how each project tracks data, so answers are accurate. Organization admins write the company-level context, and project owners and admins write the project-level context. [Business Context](/docs/business-context) · [Write business context that grounds AI answers](/guides/guides-by-workflow/write-business-context)
-
-<Tip>
-  **Keep it short, and leave out anything sensitive.** Business context goes to your AI provider, and longer context makes responses slower and costlier.
-</Tip>
 
 ## Learn more
 
