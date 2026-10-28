@@ -395,6 +395,12 @@ When you have multiple metrics, or have broken down a metric by a property, you 
   ![Value Setting](/images/advanced-value-comparison.png)
 </Frame>
 
+### Expected Range Comparisons
+
+Not every dip or spike is worth a look. Expected Range shades the band your metric would normally land in, forecast from its own history, so the points that fall outside it stand out on the chart. Click on **Compare** -\> **Expected Range** to turn it on. Hovering a point outside the band puts **Root Cause Analysis** at the top of the popover, so you can go straight from spotting the outlier to [explaining it](/docs/root-cause-analysis).
+
+Expected Range works on line charts of absolute values over time, for date ranges of up to about three months of data points, and shows the band for up to 12 segments. It can't be combined with a time period or value comparison; pick one or the other.
+
 ### Profile Analysis
 
 Profile metrics allow you to access profile data and visualize your users with filters and breakdowns based on their profile properties. When exploring Profiles, you are always analyzing all user profiles. Select the [Measurement](/docs/reports/insights#measurements) you want to use to calculate results by clicking on **Total** and selecting an option from the drop-down. You can calculate based on users or profile property value.
@@ -458,6 +464,8 @@ If the measurement you select calculates based on property (“Event Property Va
 
 This can refer to measuring the total number of user profiles, as well as the number of unique users that performed an event. DAU, WAU, and MAU are accessed through the advanced settings of unique users. Select the \> arrow to choose any XAU options.
 
+For how breakdowns affect unique user counts, see [How do breakdowns work with Uniques?](/docs/reports/insights#how-do-breakdowns-work-with-uniques).
+
 If you select the DAU, WAU, or MAU function for a date range that includes the current day, the query will take the end of the current day as the end of the query’s time segment (even though it’s in the future). For example, today is April 25th, and it’s 4:22 PM. If you make a query to show WAU and you select “current day” as your date range, the query will return the count of unique users between April 19 at 12:00:00 AM and April 25 at 11:59:59.
 
 <Frame>
@@ -491,6 +499,8 @@ Assuming we would like to find the MAU of the last 6 months (e.g. Jul 5, 2023 to
   - For each week, we will look at the last date in the time frame, and count 30 days back from that.
   - So for the week of Nov 27 to Dec 3, we will count the total number of active users from Nov 4 to Dec 3
   - As long as the user watches video once, anytime between Nov 4 to Dec 3, they will be counted as part of the MAU for Nov 27 to Dec 3.
+
+<span id="how-do-breakdowns-work-with-uniques" />
 
 **How do breakdowns work with Uniques?**
 

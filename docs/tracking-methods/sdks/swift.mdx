@@ -9,6 +9,7 @@ Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#ios-swi
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-swift/), [Library Source Code](https://github.com/mixpanel/mixpanel-swift), and an [Example Application](https://github.com/mixpanel/mixpanel-swift/tree/master/MixpanelDemo/MixpanelDemo) are documented in our GitHub repo.
 
+The iOS (Swift) SDK is open source under the [Apache 2.0 license](https://github.com/mixpanel/mixpanel-swift/blob/master/LICENSE). Its source code is on GitHub at [mixpanel/mixpanel-swift](https://github.com/mixpanel/mixpanel-swift).
 ### Apple Platform Support
 
 Each major version of the SDK has its own minimum supported OS. Version 7.x raises the minimum to match the minimum deployment targets of Xcode 27. Use this table to choose the version that fits your app.
@@ -97,7 +98,7 @@ func application(_ application: UIApplication,
 ### SDK Configuration Using MixpanelOptions
 
 <Warning>
-  **Data Residency:** For projects with EU or India data residency, you must configure the SDK to use the correct [regional endpoint](#data-residency). Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/swift#privacy-friendly-tracking)
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, set `serverURL` in `MixpanelOptions` to `https://api-eu.mixpanel.com` or `https://api-in.mixpanel.com`. Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency) for examples.
 </Warning>
 
 Configure the Mixpanel SDK using [`MixpanelOptions`](https://mixpanel.github.io/mixpanel-swift/Classes/MixpanelOptions.html) to customize tracking behavior, data residency, privacy settings, and more.

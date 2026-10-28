@@ -1,0 +1,123 @@
+---
+title: "Code and examples"
+description: "Format code, placeholders, API hosts, SDK content, and example data in Mixpanel docs"
+---
+
+Readers copy code from docs directly into their projects, so code samples need to be correct, complete, and safe to paste.
+
+## Code font
+
+Use code font (single backticks) for:
+
+- Code, such as method names and functions: `mixpanel.track()`
+- Event and property names as they appear in code or data: `distinct_id`, `$browser`
+- Parameter names and values: `api_host`, `true`
+- File names, directories, and file extensions: `docs.json`, `.env`
+- Commands and command-line flags: `npm install`, `--verbose`
+- API hosts, endpoints, and HTTP methods: `api.mixpanel.com`, `POST /import`
+- Values the reader types, such as a cohort name entered in a field
+
+Don't use code font for UI labels, product or feature names, or emphasis.
+
+## Code blocks
+
+- **Add a language** to every code block so it's highlighted correctly: `javascript`, `python`, \`\`\`\`bash`, \`\`\`\`json\`.
+- **Show complete, working code** for the task. Include imports and initialization unless the page has already shown them.
+- **Keep samples short.** Show only what the task needs. Link to a full example in a repository if the code is long.
+- **Introduce each block** with a sentence that says what it does, ending in a colon.
+- **Explain placeholders** after the block, so readers know what to replace.
+- **Don't include a shell prompt** (`$` or `>`) in commands, so readers can copy them directly.
+- **Separate commands from output.** Put output in its own block, or describe it in a sentence.
+- **Keep comments brief.** Use them to explain why, not to repeat what the code says.
+
+### Multiple languages
+
+When a sample exists in several languages or SDKs, use `<CodeGroup>` so readers can switch between them:
+
+````mdx
+<CodeGroup>
+```javascript JavaScript
+mixpanel.track('Sign Up', { source: 'homepage' });
+```
+
+```python Python
+mp.track('user_123', 'Sign Up', {'source': 'homepage'})
+```
+</CodeGroup>
+````
+
+Use `<Tabs>` instead when each option has its own steps or text, not just code.
+
+Keep the main answer in the page text, not only inside tabs. See [Writing for agents](/docs/writing-for-agents#keep-the-answer-in-the-main-content).
+
+## Placeholders
+
+Use the same placeholders the API reference uses, so readers see the same value written the same way everywhere:
+
+| Value | Placeholder |
+| --- | --- |
+| Project token | `YOUR_PROJECT_TOKEN` |
+| Project ID | `<YOUR_PROJECT_ID>` |
+| Service account username | `<serviceaccount_username>` |
+| Service account secret | `<serviceaccount_secret>` |
+
+For path parameters in an endpoint, such as `{projectId}` or `{workspace_id}`, keep the name exactly as the OpenAPI spec writes it.
+
+For a value the reference doesn't cover, use uppercase letters with underscores, starting with `YOUR_`, such as `YOUR_PROXY_DOMAIN`.
+
+Use the same placeholder for the same value on every page. Don't use `YOUR_TOKEN` or `YOUR_MIXPANEL_TOKEN` when you mean a project token.
+
+Always put placeholders that use angle brackets in code font or a code block. In MDX, bare text in angle brackets is read as a component and breaks the page.
+
+After a code block with placeholders, list what each one stands for and where to find it:
+
+```markdown
+Replace `YOUR_PROJECT_TOKEN` with your project token. You can find it in **Project Settings**.
+```
+
+Never put a real token, secret, password, or customer data in docs, including in screenshots and hidden examples.
+
+## API hosts and data residency
+
+Each Mixpanel API has its own host, and each host has a version for every Data Residency region. For example, the Ingestion API uses `api.mixpanel.com`, but the Query API uses `mixpanel.com/api`. Don't assume one host works for every API.
+
+When a sample calls an API:
+
+- Use the US host for that API, as listed in the [API reference overview](/reference/overview).
+- Add a note after the sample that gives the EU and India hosts for the same API, or links to the overview.
+
+If a feature isn't available in every region, say so near the top of the page.
+
+## SDKs
+
+The docs explain how to use each Mixpanel SDK for common tasks. Each SDK's GitHub repository owns its source code, README, and changelog. Its generated reference, hosted on `mixpanel.github.io`, documents every class and method. This guide covers how the docs write about SDKs, not the SDK repositories themselves.
+
+### Terms and names
+
+- Write "SDK," not "library," for a Mixpanel SDK: "Install the Python SDK." Use "library" only for code that isn't a Mixpanel SDK, such as a third-party package.
+- Use the platform's official name and spelling: JavaScript, Node.js, React Native, iOS (Swift), iOS (Objective-C), Android, Flutter, Unity, Python, Ruby, PHP, Go, and Java.
+
+### Versions
+
+- When a feature needs a minimum SDK version, say so near the start of the section in this form: "Requires version 2.3.0 or later of the Python SDK."
+- Don't name the latest version in prose, because it goes out of date. Link to the SDK's release history or GitHub releases instead.
+
+### Code and links
+
+- Write samples that match the SDK's current public methods and the naming conventions of its language, such as camel case in JavaScript and snake case in Python.
+- Show only the methods the task needs. Link to the SDK's generated reference for the full list of methods and options, rather than repeating it in the docs.
+- Link to the SDK's GitHub repository for source code, issues, and releases.
+
+## API reference
+
+For authentication in samples, OpenAPI specs, endpoint and parameter descriptions, and deprecations, see [API reference](/docs/API-reference).
+
+## Example data
+
+Use realistic, fictional data that clearly isn't from a real customer:
+
+- **Domains and emails:** use `example.com`, such as `user@example.com`. It's reserved for documentation and never belongs to a real person.
+- **User IDs:** use readable values such as `user_123`.
+- **Names:** use clearly fictional names. Don't use names of real customers, employees, or public figures.
+- **Event and property names:** use names that describe a real product action, such as `Sign Up` or `Song Played`, rather than `some_event` or `test`. Pick one naming style, such as `Song Played` or `song_played`, and use it throughout the page.
+- **Timestamps:** use a Unix timestamp in seconds or milliseconds, and say which. Show the time zone the value represents.

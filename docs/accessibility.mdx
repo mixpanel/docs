@@ -1,0 +1,180 @@
+---
+title: "Accessibility and inclusive language"
+description: "Write Mixpanel docs that everyone can read, navigate, and feel included by"
+---
+
+Follow these guidelines so that every reader can use the docs, including people who use screen readers, keyboard navigation, magnification, and translation tools.
+
+## Page structure and navigation
+
+### Write unique, descriptive page titles
+
+Screen readers announce the page title first.
+
+- Describe the page's topic in the title.
+- Don't give two pages the same title.
+
+| Do | Don't |
+| --- | --- |
+| Set up EU Data Residency | Setup |
+| Identity management overview | Overview |
+
+### Use headings to show structure
+
+Screen reader users navigate by headings.
+
+- Use headings in order: H2 (`##`), then H3 (`###`). Don't skip levels.
+- Don't choose a heading level for its size.
+- Don't use bold text as a heading.
+- Write headings that describe the section.
+
+### Keep a logical reading order
+
+- Put prerequisites before the steps that need them.
+- Put information before the step it applies to, not after.
+
+---
+
+## Links
+
+### Write descriptive link text
+
+Screen reader users often move from link to link.
+
+- Write link text that makes sense on its own.
+- Don't use "click here," "here," "this page," or "learn more."
+- Don't use a bare URL as link text unless the reader needs the URL itself.
+- Give links to different destinations different text.
+
+| Do | Don't |
+| --- | --- |
+| See [Identity Management](/docs/tracking-methods/id-management). | To learn about identity management, click [here](/docs/tracking-methods/id-management). |
+
+### Avoid directional language
+
+Layouts change across screen sizes, and some readers can't see them.
+
+| Do | Don't |
+| --- | --- |
+| Go to **Project Settings** → **Service Accounts**. | Use the menu on the right. |
+| Click **Save**. | Click the button below. |
+
+---
+
+## Images and multimedia
+
+### Write meaningful alt text
+
+- Add alt text to every image. See [Alt text](/docs/images-video#alt-text).
+- Name important settings in the text, not only in a screenshot.
+- Describe the main point of a diagram in the text or the alt text.
+
+### Provide captions and text alternatives
+
+- Use videos with captions.
+- Write the key steps as text, so readers don't need the video to complete a task.
+- Don't use GIFs or animations that flash more than three times per second.
+
+---
+
+## Content clarity
+
+- Use plain language. See [Voice, tone, and audience](/docs/voice-tone).
+- Spell out abbreviations on first use. See [Abbreviations](/docs/terminology#abbreviations).
+- Define technical terms on first use.
+- Use lists for three or more items, and numbered lists for steps.
+
+---
+
+## Instructions
+
+### Don't rely on color, shape, or position alone
+
+| Do | Don't |
+| --- | --- |
+| Click **Save**. | Click the green button. |
+| Rows where the status is **Failed** need attention. | Rows highlighted in red need attention. |
+
+### Don't use emoji or symbols in place of words
+
+Screen readers read emoji and symbols aloud by name.
+
+- Don't use decorative emoji. See [Emoji](/docs/grammar-punctuation#emoji).
+- Write "with," not "w/." Write "then," not "→," in prose.
+- Arrows between bolded menu labels are fine.
+
+---
+
+## Tables
+
+### Use tables for tabular data only
+
+- Give every table a header row.
+- Don't use tables for layout.
+- Keep cells short.
+- When a column uses ✅ and ❌, write a header that explains them, such as "Available on Growth."
+
+---
+
+## Code
+
+### Make code examples accessible
+
+- Put code in code blocks, not screenshots.
+- Add a language to every code block.
+- Introduce each code block with a sentence that says what it does.
+
+---
+
+## Inclusive language
+
+### Use gender-neutral language
+
+- Use "they" for a person whose gender you don't know.
+- Use "everyone" or "your team," not "guys."
+- Use "staff hours," not "man-hours."
+
+| Do | Don't |
+| --- | --- |
+| When a user signs up, they get a confirmation email. | When a user signs up, he gets a confirmation email. |
+
+### Use precise terms
+
+| Use | Instead of |
+| --- | --- |
+| allowlist, blocklist | whitelist, blacklist |
+| primary, replica | master, slave |
+| main (for a branch) | master |
+| placeholder, sample value | dummy value |
+| check, confirm | sanity check |
+| doesn't detect | is blind to |
+| legacy, exempt | grandfathered |
+| stop, end, cancel | kill (in prose) |
+
+### Quote required terms exactly
+
+When a term is part of code, a URL, a third-party UI, or an error message:
+
+- Write it exactly as it appears, in code font if it's code: `mp_master_event`.
+- Use the inclusive term in your own prose.
+- Keep established product terms, such as "kill switch," and define them on first use.
+
+### Don't make assumptions about the reader
+
+- Don't call a step "easy," "simple," or "obvious."
+- Don't use "just" or "simply."
+- Mention a disability only when it's relevant, and use people-first language: "people who use screen readers."
+
+### Use diverse examples
+
+- Use names from a range of cultures.
+- Don't rely on stereotypes for roles or behavior.
+- Avoid sensitive topics, such as health, religion, or politics, unless the docs are about them.
+- Avoid idioms and cultural references. See [Write for a global audience](/docs/voice-tone#write-for-a-global-audience).
+
+---
+
+## Resources
+
+- [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/)
+- [Google developer documentation style guide: accessibility](https://developers.google.com/style/accessibility)
