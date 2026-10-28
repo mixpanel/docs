@@ -646,7 +646,8 @@
                 "group": "Set Up Mixpanel",
                 "root": "guides/set-up-mixpanel",
                 "pages": [
-                  "guides/set-up-mixpanel/get-your-data-in"
+                  "guides/set-up-mixpanel/get-your-data-in",
+                  "guides/set-up-mixpanel/configure-your-account"
                 ]
               }
             ]
