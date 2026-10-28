@@ -1,0 +1,102 @@
+---
+openapi: /openapi/insights.openapi.json POST /insights/query
+title: "Custom Insights Query"
+description: "Beta: run an Insights query that you describe in the request body, without a saved report."
+tag: "BETA"
+---
+
+<Warning>
+  **Beta.** This endpoint is in beta. Its request schema can change before general availability, including in ways that require you to update your requests.
+</Warning>
+
+Runs an Insights query that you describe in the request body and returns the results. You choose the metrics, the time range, and optional filters, breakdowns, and comparisons—the same building blocks as an Insights report. To get the results of a report you've already saved, use [Query Saved Report](/reference/insights-query) instead.
+
+## API server URL
+
+Send requests to the server URL for your project's data residency:
+
+| Server | URL |
+| --- | --- |
+| Standard server | `https://mixpanel.com/api/query/insights/query` |
+| EU Residency server | `https://eu.mixpanel.com/api/query/insights/query` |
+| India Residency server | `https://in.mixpanel.com/api/query/insights/query` |
+
+For more about residency, see [EU Data Residency](/docs/privacy/eu-residency) and [India Data Residency](/docs/privacy/in-residency).
+
+## Authentication
+
+Authenticate with a [service account](/reference/service-accounts), sending its username and secret with HTTP basic authentication. Pass these query parameters:
+
+- `project_id`: the ID of the project to query. Required.
+- `workspace_id`: the ID of the data view to query. Include it if your project uses [data views](/docs/data-governance/data-views-and-classification).
+
+## Version
+
+Set the `Mixpanel-Version` header to the API version your request is written for. A version is a release date, `YYYY-MM-DD`. A version that isn't released yet adds a preview channel: `YYYY-MM-DD.alpha` or `YYYY-MM-DD.beta`.
+
+During the beta, the only version is `2026-10-23.beta`.
+
+If you omit the header, the request uses the latest released version. While no version is released, it uses the oldest beta version.
+
+An unknown, malformed, or retired version returns `400 Bad Request`. The error message names the latest version.
+
+## Response format
+
+The `Accept` header selects the response format:
+
+| `Accept` | Response |
+| --- | --- |
+| Omitted, `application/json`, `application/*`, or `*/*` | JSON |
+| `text/csv` | CSV (`Content-Type: text/csv`) |
+
+## Request body
+
+A request body has two required fields and four optional ones:
+
+| Field | What it holds |
+| --- | --- |
+| `metrics` <Badge color="red" size="xs">required</Badge> | Up to 40 metrics to calculate: event, funnel, retention, cohort, or formula metrics. |
+| `time` <Badge color="red" size="xs">required</Badge> | The time range, and optionally the unit that splits it into a time series. |
+| `filters` <Badge size="xs">optional</Badge> | Up to 10 filters that apply to every metric. |
+| `breakdowns` <Badge size="xs">optional</Badge> | Up to three breakdowns by property value or cohort membership. |
+| `time_comparison` <Badge size="xs">optional</Badge> | An earlier period to run the same query over. |
+| `lift_comparison` <Badge size="xs">optional</Badge> | Reports each result as a change against a baseline. |
+
+The reference below describes every field.
+
+## Example request
+
+This request counts `Sign Up` events per day over the last 30 days:
+
+```bash
+curl --request POST \
+  --url 'https://mixpanel.com/api/query/insights/query?project_id=YOUR_PROJECT_ID' \
+  --user 'YOUR_SERVICE_ACCOUNT_USERNAME:YOUR_SERVICE_ACCOUNT_SECRET' \
+  --header 'Content-Type: application/json' \
+  --header 'Mixpanel-Version: 2026-10-23.beta' \
+  --data '{
+    "metrics": [
+      {
+        "type": "event",
+        "events": [{"event_type": "event", "name": "Sign Up"}],
+        "measurement": {"type": "count", "calculation": "total_events"}
+      }
+    ],
+    "time": {
+      "start": {"unit": "day", "value": 30, "align_to_whole_unit": true},
+      "unit": "day"
+    }
+  }'
+```
+
+## Limits
+
+A request can have up to 40 metrics, three breakdowns, and 10 filters.
+
+{/* PLACEHOLDER: Rate limits for this endpoint, once confirmed. */}
+
+{/* PLACEHOLDER: Beta status. PM to supply what can change during the beta and where to send feedback. */}
+
+## OpenAPI spec
+
+The reference below is generated from an OpenAPI 3.1 spec, which you can download to generate a client or to give to an AI tool: [insights.openapi.json](https://docs.mixpanel.com/openapi/insights.openapi.json).
