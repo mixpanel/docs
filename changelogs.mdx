@@ -10,6 +10,23 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-10-28">
+  ## Query API: Custom Insights Query (Beta)
+
+  Getting Insights results through the Query API meant building and saving a report in Mixpanel first, then querying it by ID. Any change to the metrics, filters, or time range meant editing the saved report.
+
+  The new Custom Insights Query endpoint lets you describe an Insights query in the request body and get the results back, with no saved report needed. With this update, you can:
+
+  - **Build queries in code:** Choose multiple event, funnel, retention, cohort, or formula metrics, plus a time range and an optional time series unit.
+  - **Slice your results:** Add up to 10 filters and up to three breakdowns by property value or cohort membership.
+  - **Compare results:** Run the same query over an earlier period, or report each result as a change against a baseline.
+  - **Pick a format:** Get results as JSON or CSV.
+
+  The endpoint authenticates with a [service account](/reference/service-accounts) and is versioned with the `Mixpanel-Version` header.
+
+  [Learn more →](/reference/insights-run-query)
+</Update>
+
 <Update label="2026-10-21">
   ## Experiments: Add Experiments to Boards
 
