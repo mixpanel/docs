@@ -99,11 +99,12 @@ Mixpanel reads the OpenTelemetry GenAI semantic conventions (`gen_ai.*`). Every 
     ### 2.2 Mixpanel-only filtering and shaping
     Wrap the Mixpanel exporter (or use a Collector `filter`/`transform` processor in the Mixpanel pipeline) so ONLY that destination is affected:
     - Keep a span if it has `gen_ai.operation.name`, or one of our explicit agent-span markers. Drop generic HTTP/DB/framework spans. Missing parents are fine; Mixpanel groups spans by trace ID.
+    - The root span of each turn must have `gen_ai.operation.name=invoke_agent`. Some frameworks (e.g. pydantic-ai) leave it out; set it here. Without it, Mixpanel classifies the turn as `other`.
     - Do attribute renaming HERE, at export time. Spans are read-only after they end, so a span processor can't add token or response attributes in `onEnd`. Rename non-standard keys (e.g. `llm.*`, `ai.*`, old `gen_ai.prompt.*`/`gen_ai.completion.*`) to the current `gen_ai.*` names.
     - Truncate oversized attributes (tool results, message histories) so no span goes over ~1MB.
     
     ### 2.3 Identity attributes
-    - At the start of each turn, put `user.id` and `gen_ai.conversation.id` into context. Copy them onto every span in a span processor's `onStart`, using an allowlist (only these keys). Don't copy all baggage.
+    - At the start of each turn, put `user.id`, `gen_ai.conversation.id`, and `gen_ai.agent.name` into context. Copy them onto every span in a span processor's `onStart`, using an allowlist (only these keys). Don't copy all baggage.
     - Watch out for baggage leaks: the W3C baggage propagator puts baggage in outbound HTTP headers, which would send user IDs to the LLM provider and other third parties. If the turn runs in one process, use a non-propagating context value instead. If it crosses our own services, use baggage but make sure it isn't injected into requests to external hosts.
     - Check that the values survive async tasks, threads, streaming callbacks, and queue hops.
     - If trace ≠ turn (Phase 1, item 4), implement whatever we agreed on in the plan.
@@ -116,11 +117,15 @@ Mixpanel reads the OpenTelemetry GenAI semantic conventions (`gen_ai.*`). Every 
     Token gotchas:
     - Anthropic's `input_tokens` EXCLUDES cache tokens. Add `cache_creation_input_tokens` + `cache_read_input_tokens` to it.
     - OpenAI streaming returns no usage unless `stream_options: {"include_usage": true}` is set.
-    - Model strings must be the exact provider model ID, or the cost shows as $0.
+    - Cache writes go in `gen_ai.usage.cache_write.input_tokens`. Rename `gen_ai.usage.cache_creation.input_tokens` and the Vercel AI SDK's `cacheWriteTokens` to it, or cache-write cost is left out.
+    - Model strings must be the exact provider model ID, or the cost shows as $0. Cost is keyed on `gen_ai.request.model`, so behind LiteLLM or another gateway, set it to the underlying provider model ID, not the gateway's alias.
     Message content (`gen_ai.input.messages` / `gen_ai.output.messages`, JSON strings): put it behind a flag that's OFF by default. Make sure it lands as span attributes, not log events.
+    - Prefer the semconv shape: `[{"role": "user", "parts": [{"type": "text", "content": "..."}]}]`.
+    - The `invoke_agent` root span must carry the user's prompt in `gen_ai.input.messages` and the final reply in `gen_ai.output.messages`, or the transcript can be missing them.
+    - Mixpanel redacts common PII (emails, phone numbers, SSNs, card numbers, API keys, IPv4 addresses) at ingestion and sets `$mp_ai_pii_redacted` on affected events. This is a backstop, not a substitute for our own redaction.
     
     ### 2.6 Custom attributes
-    Propose 3–6 product dimensions for the turn's root span (e.g. `surface`, `command.type`, `prompt.version`, `plan.tier`, a flag variant). Use stable, lowercase, dotted names with short values. Add more only after I approve.
+    Propose 3–6 product dimensions for the turn's root span (e.g. `surface`, `command.type`, `prompt.version`, `plan.tier`, a flag variant, or tenant IDs like `account.id` / `org.id` for B2B agents). Use stable, lowercase, dotted names with short values. Add more only after I approve.
     
     ## Phase 3: Verify (all must pass)
     1. Unit test: the auth header for token "abc" equals `Basic YWJjOg==`.
@@ -202,7 +207,7 @@ Mixpanel reads the OpenTelemetry GenAI semantic conventions (`gen_ai.*`). Every 
     - If an auto-instrumentation package already creates the chat spans, add only the root/tool spans around it. Don't make duplicate LLM spans.
     
     ### 2.3 Identity attributes
-    - At the start of each turn, put `user.id` and `gen_ai.conversation.id` into context. Copy them onto every span in a span processor's `onStart`, using an allowlist (only these keys).
+    - At the start of each turn, put `user.id`, `gen_ai.conversation.id`, and `gen_ai.agent.name` into context. Copy them onto every span in a span processor's `onStart`, using an allowlist (only these keys).
     - Watch out for baggage leaks: the W3C baggage propagator puts baggage in outbound HTTP headers, which would send user IDs to the LLM provider and other third parties. If the turn runs in one process, use a non-propagating context value (e.g. a context key / contextvar). If it crosses our own services, use baggage but make sure it isn't injected into requests to external hosts.
     - Check that the values survive async tasks, threads, streaming callbacks, and queue hops.
     
@@ -212,11 +217,15 @@ Mixpanel reads the OpenTelemetry GenAI semantic conventions (`gen_ai.*`). Every 
     Token gotchas:
     - Anthropic's `input_tokens` EXCLUDES cache tokens. Add `cache_creation_input_tokens` + `cache_read_input_tokens` to it.
     - OpenAI streaming returns no usage unless `stream_options: {"include_usage": true}` is set. Set the usage attributes after the stream finishes, before the span ends (spans are read-only after they end).
-    - Model strings must be the exact provider model ID, or the cost shows as $0.
+    - Cache writes go in `gen_ai.usage.cache_write.input_tokens`. If the SDK reports them as `cache_creation.input_tokens` or (Vercel AI SDK) `cacheWriteTokens`, map them to that name, or cache-write cost is left out.
+    - Model strings must be the exact provider model ID, or the cost shows as $0. Cost is keyed on `gen_ai.request.model`, so behind LiteLLM or another gateway, set it to the underlying provider model ID, not the gateway's alias.
     Message content (`gen_ai.input.messages` / `gen_ai.output.messages`, JSON strings in the semconv message format): put it behind a flag that's OFF by default. Make sure it lands as span attributes, not log events (we only export traces). Truncate it so spans stay well under 1MB.
+    - Semconv message shape: `[{"role": "user", "parts": [{"type": "text", "content": "..."}]}]`.
+    - The `invoke_agent` root span must carry the user's prompt in `gen_ai.input.messages` and the final reply in `gen_ai.output.messages`, or the transcript can be missing them.
+    - Mixpanel redacts common PII (emails, phone numbers, SSNs, card numbers, API keys, IPv4 addresses) at ingestion and sets `$mp_ai_pii_redacted` on affected events. This is a backstop, not a substitute for our own redaction.
     
     ### 2.5 Custom attributes
-    Propose 3–6 product dimensions for the turn's root span (e.g. `surface`, `command.type`, `prompt.version`, `plan.tier`, a flag variant). Use stable, lowercase, dotted names with short values. Add more only after I approve.
+    Propose 3–6 product dimensions for the turn's root span (e.g. `surface`, `command.type`, `prompt.version`, `plan.tier`, a flag variant, or tenant IDs like `account.id` / `org.id` for B2B agents). Use stable, lowercase, dotted names with short values. Add more only after I approve.
     
     ### 2.6 Volume
     If volume is high, add a parent-based trace sampler behind config, defaulting to 100%. Sample whole traces only, never individual spans.
