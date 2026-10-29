@@ -2805,10 +2805,6 @@
       "destination": "/docs/reports"
     },
     {
-      "source": "/mcp/claude-enterprise-managed-auth",
-      "destination": "/docs/mcp/claude-enterprise-managed-auth"
-    },
-    {
       "source": "/docs/features/mcp",
       "destination": "/docs/mcp"
     },
