@@ -116,6 +116,11 @@ The events Mixpanel records are listed below. The **Available Since** date on ea
 | --- | --- | --- | --- | --- |
 | `audit_log_export.created` | Audit Log Export Created | An audit log export was initiated. | Project and organization | April 5, 2026 |
 | `audit_log_export.downloaded` | Audit Log Export Downloaded | An audit log export file was downloaded. | Project and organization | April 5, 2026 |
+| `audit_log_stream.created` | Audit Log Stream Created | An audit log stream was created. | Organization only | October 31, 2026 |
+| `audit_log_stream.deleted` | Audit Log Stream Deleted | An audit log stream was deleted. | Organization only | October 31, 2026 |
+| `audit_log_stream.paused` | Audit Log Stream Paused | An audit log stream was paused. `pause_reason` identifies the cause. | Organization only | October 31, 2026 |
+| `audit_log_stream.resumed` | Audit Log Stream Resumed | Delivery for a paused audit log stream was restarted. A resume changes no configuration and has nothing to report beyond the actor and the stream, so its payload is empty. | Organization only | October 31, 2026 |
+| `audit_log_stream.updated` | Audit Log Stream Updated | An audit log stream's delivery configuration was changed. | Organization only | October 31, 2026 |
 | `event_export.downloaded` | Events Exported | Event data was exported from the project. | Project and organization | April 5, 2026 |
 | `profile_export.downloaded` | Profile Data Exported | User profile data was exported. | Project and organization | April 5, 2026 |
 | `raw_event_export.requested` | Raw Event Export Requested | A raw event export was requested. | Project and organization | May 20, 2026 |
@@ -234,7 +239,11 @@ The events Mixpanel records are listed below. The **Available Since** date on ea
 
 | Event Type | Display Name | Description | Scope | Available Since |
 | --- | --- | --- | --- | --- |
+| `passkey.created` | Passkey Registered | A user registered a new passkey. | Organization only | October 31, 2026 |
+| `passkey.deleted` | Passkey Removed | A user removed a registered passkey. | Organization only | October 31, 2026 |
+| `user.passkey_login_disabled` | User Disabled Passkey Login | A user disabled passkey login in their profile settings. | Organization only | October 31, 2026 |
 | `user.twofactor_disabled` | User Disabled Two-Factor Auth | A user deactivated two-factor authentication. | Organization only | August 16, 2026 |
+| `user.passkey_login_enabled` | User Enabled Passkey Login | A user enabled passkey login in their profile settings. | Organization only | October 31, 2026 |
 | `user.twofactor_enabled` | User Enabled Two-Factor Auth | A user activated two-factor authentication. | Organization only | April 5, 2026 |
 | `session.logged_in` | User Logged In | A user successfully logged into the organization. | Organization only | April 5, 2026 |
 | `session.logged_out` | User Logged Out | A user logged out of the organization. | Organization only | April 5, 2026 |
