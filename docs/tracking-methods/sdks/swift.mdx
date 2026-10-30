@@ -812,10 +812,10 @@ Mixpanel.mainInstance().autocapture.trackScreenView(
 ### Click Events
 
 <Note>
-  **Beta.** Autocaptured click events are in beta: the events and the properties they capture may change before general availability. They require Swift SDK v6.6.0 or later, and are **disabled by default** — you opt in with `AutocaptureOptions` at initialization.
+  Autocaptured click events require Swift SDK v7.1.0 or later and are **disabled by default** — you opt in with `AutocaptureOptions` at initialization. See [Enabling Click Autocapture](#enabling-click-autocapture).
 </Note>
 
-Starting in v6.6.0, the SDK can capture taps for you, with no per-view instrumentation. Once enabled, it intercepts touches across every window in your app — including presented sheets and alerts — and works with both UIKit and SwiftUI. Three events are produced:
+The SDK can capture taps for you, with no per-view instrumentation. Once enabled, it intercepts touches across every window in your app — including presented sheets and alerts — and works with both UIKit and SwiftUI. Three events are produced:
 
 | Event | Fires when |
 | --- | --- |

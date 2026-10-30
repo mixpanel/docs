@@ -19,7 +19,16 @@ Autocapture is available on all plans.
 
 On web, Autocapture is available via Mixpanel’s [JavaScript SDK](/docs/tracking-methods/sdks/javascript). To turn it on, ensure you have the config `{autocapture: true}` set in the SDK.
 
-Autocapture is also available on mobile via the [Android](/docs/tracking-methods/sdks/android#autocapture) (v8.10.0 or later), [iOS](/docs/tracking-methods/sdks/swift#autocapture) (v6.6.0 or later), [React Native](/docs/tracking-methods/sdks/react-native#autocapture) (v3.7.0 or later), and [Flutter](/docs/tracking-methods/sdks/flutter#autocapture) (v2.15.0 or later) SDKs. These SDKs capture screen views, clicks, dead clicks, and rage clicks. Screen views require a one-time hook into your app’s navigation, and click events are in beta and turned off by default — see each SDK’s Autocapture section to set them up.
+Autocapture is also available on mobile. Each SDK captures screen views, clicks, dead clicks, and rage clicks.
+
+| Platform | Minimum SDK version | Setup |
+| --- | --- | --- |
+| Android | v8.12.0 | [Android Autocapture](/docs/tracking-methods/sdks/android#autocapture) |
+| iOS (Swift) | v7.1.0 | [iOS Autocapture](/docs/tracking-methods/sdks/swift#autocapture) |
+| React Native | v4.1.0 | [React Native Autocapture](/docs/tracking-methods/sdks/react-native#autocapture) |
+| Flutter | v3.2.0 | [Flutter Autocapture](/docs/tracking-methods/sdks/flutter#autocapture) |
+
+Screen views require a one-time hook into your app’s navigation. Click events are turned off by default and are enabled with an autocapture options object at initialization. See each SDK’s Autocapture section for setup steps.
 
 ## Autocapture events
 
