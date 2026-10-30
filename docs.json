@@ -84,7 +84,7 @@
             "icon": "/icons/data-in.svg",
             "pages": [
               {
-                "group": "Quickstart",
+                "group": "Overview",
                 "root": "docs/quickstart",
                 "pages": [
                   "docs/quickstart/install-mixpanel",
