@@ -1,0 +1,72 @@
+{
+  "x-release-date": "2026-10-30T00:00:00Z",
+  "description": "A trusted identity provider was removed, so members can no longer sign in through it.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "trusted_identity_issuer",
+      "default": "trusted_identity_issuer",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "description": "An identity provider the organization trusts for Enterprise Managed Auth.",
+          "properties": {
+            "issuer": {
+              "description": "The identity provider's issuer URL.",
+              "type": "string"
+            },
+            "jwks_uri": {
+              "description": "Where the identity provider publishes its signing keys.",
+              "type": "string"
+            },
+            "enabled": {
+              "description": "Whether sign-in through this identity provider is allowed.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "issuer",
+            "jwks_uri",
+            "enabled"
+          ],
+          "type": "object"
+        },
+        "current": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "deleted",
+      "default": "deleted",
+      "type": "string"
+    },
+    "type": {
+      "const": "trusted_identity_issuer.deleted",
+      "default": "trusted_identity_issuer.deleted",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
