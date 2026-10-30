@@ -1,0 +1,167 @@
+---
+title: "Run web experiments that give you clear answers"
+description: "Pick the right tests, launch them safely, and trust what the results tell you."
+sidebarTitle: "Run Web Experiments"
+---
+
+Web experiments let you test changes to your website, like a new headline or button, without waiting on a developer for each one. Run your web experiments well and you get more than a winning version. You learn what your visitors respond to, and each test gives you a better starting point for the next.
+
+This guide covers how to pick the right tests, launch them safely, and trust what the results tell you.
+
+![Web Experiments Editor 1](/images/web-experiments-editor-1.gif "Web Experiments Editor 1")
+
+## Why run web experiments in Mixpanel
+
+Testing changes to your website usually means waiting on a developer, adding a separate testing tool, or both. When results live in that separate tool, you end up with two sets of numbers that don't quite match.
+
+Web experiments keep everything in Mixpanel: building the change, choosing who sees it, and reading the result.
+
+<CardGroup cols={3}>
+  <Card title="Build it yourself" icon="tools">
+    Change copy, colors, and styling by clicking, or tell Mixpanel Agent what you want. No developer ticket for every test.
+  </Card>
+
+  <Card title="Use what you already track" icon="list-check">
+    The events and cohorts already in Mixpanel decide who sees a test and what counts as a win.
+  </Card>
+
+  <Card title="Learn in one place" icon="book-open-lines">
+    Results sit next to the rest of your data, so there's no second set of numbers to reconcile.
+  </Card>
+</CardGroup>
+
+<Info>
+  Setup has two parts. Someone on your web team makes a one-time change to add Mixpanel's code to your site, or to swap it in for your current testing tool's code. Then anyone who builds web experiments installs the Mixpanel Chrome extension. See the [Web Experiments docs](/docs/experiments/no-code-experiments#setup) for details.
+</Info>
+
+## Five habits of reliable web experiments
+
+Once setup is done, these five practices take you from your first idea to a decision you can stand behind.
+
+### Pick changes the editor handles well
+
+When you create an experiment in Mixpanel, you choose one of two types.
+
+- A [**web experiment**](/docs/experiments/no-code-experiments) is built in the editor, right on your live site. No code changes needed, so anyone on your team with access can build one.
+- A [**feature experiment**](/docs/experiments) is built in your site's code, so each test needs a code change.
+
+Results work the same way for both. The difference is who builds the change and what kinds of changes are possible.
+
+<CardGroup cols={2}>
+  <Card title="Web experiment: Built in the editor" icon="/images/web-experiment-card-icon.png">
+    - Headlines and button copy
+    - Colors and styling
+    - Hiding a section
+  </Card>
+
+  <Card title="Feature experiment: Built in code" icon="/images/feature-experiment-card-icon.png">
+    - Adding something new to the page
+    - Changing how something works
+    - Anything that depends on data
+    - Pages that update as people click around
+  </Card>
+</CardGroup>
+
+You choose between the two when you create a test, and you can't switch later. Make sure to choose correctly so you don't have to rebuild. Review our docs to see full details on  [what the web editor can change](/docs/experiments/no-code-experiments#what-you-can-change).
+
+### Start with one small change on a busy page
+
+Your first test does two jobs: It answers a question, and it shows you how web experiments behave on your site. Keeping it small helps with both.
+
+**Change one thing.** If you rewrite the headline, change copy, and recolor the button all in a single experiment, and then your results move, you won't know which change made the difference. One may have helped while another hurt. Making one change at a time gives you an answer you can explain and build on.
+
+**Pick a page lots of people visit.** The more visitors a page gets, the sooner you reach a clear answer. A quiet page can leave a test running for weeks without telling you much.
+
+**Choose a page you know well.** You'll spot anything that looks off right away, and a simple copy change on a familiar page is low risk if something goes wrong.
+
+<Tip>
+  If your team has a test version of your site, try your first experiment there. You'll catch surprises before real visitors see them.
+</Tip>
+
+### Know what you're measuring before you build
+
+Decide what success looks like before you open the editor. If you wait until results come in, it's easy to pick whichever number looks best, and then the test hasn't really told you anything.
+
+Write down what you expect to happen and which number will show it. Choose from what you already track in Mixpanel, so that you measure the test against the same numbers your team already reports. Add anything you don't want the change to hurt, so a win in one place doesn't hide a loss somewhere else. See [how to choose metrics](/docs/experiments#step-3-choose-success-metrics).
+
+If your change is meant for certain visitors, show it only to them. You can use groups you've already saved in Mixpanel, called [cohorts](/docs/users/cohorts), without importing a list from somewhere else.
+
+<Tip>
+  Your test can only measure actions Mixpanel already tracks, like a demo request or a sign-up. If the one you care about isn't tracked yet, ask whoever manages your Mixpanel setup to add it before you launch. Otherwise, your test runs without the number that tells you whether it worked.
+</Tip>
+
+### Check it the way visitors will see it
+
+A few minutes of checking keeps two things from happening: a test that runs for weeks without anyone seeing your change, or a broken page in front of real visitors.
+
+<Steps>
+  <Step title="Read through your list of changes">
+    Every edit, including anything Mixpanel Agent made, shows up in one list. Make sure each one is something you meant to do.
+
+    ![Web Experiment Ai Summary](/images/web-experiment-ai-summary.png "Web Experiment Ai Summary")
+  </Step>
+  <Step title="Turn on traffic">
+    New versions start with no traffic, so nobody sees them until you set how many visitors get each one in Mixpanel.
+
+    ![Web Experiment Variant Split](/images/web-experiment-variant-split.png "Web Experiment Variant Split")
+  </Step>
+  <Step title="Check for other tests on the same page">
+    If another web experiment targets the same page, Mixpanel shows you a warning but still lets you launch. Whether that's OK is your call. Tests on the same page can get in each other's way and make it harder to tell which change made the difference.
+
+    ![Web Experiment Url Warning](/images/web-experiment-url-warning.png "Web Experiment Url Warning")
+  </Step>
+  <Step title="Confirm the page address">
+    Your test shows on pages with the same origin and path as the saved address. Query strings, hash fragments, and trailing slashes are ignored. Check the [URL-targeting rules](/docs/experiments/no-code-experiments#targeting-a-url) before launching.
+  </Step>
+  <Step title="Tell your web team it's going live">
+    If something looks off, pause the test in Mixpanel and your site goes back to normal.
+  </Step>
+</Steps>
+
+<Tip>
+  Want to see a specific version on your live site before visitors do? Add yourself and teammates as [QA testers](/docs/featureflags#qa-testers).
+</Tip>
+
+If several people on your team build tests, consider [limiting who can launch them](/docs/experiments/no-code-experiments#permissions). More people can contribute ideas, and someone still reviews each test before it goes live.
+
+### Let it run, then decide
+
+Once your test is live, leave it alone. If you edit a version halfway through, early visitors and later visitors saw different things, and your results no longer describe either one. To try something new, start a new test.
+
+When the test is done, roll out the winner only if the result is clear, big enough to matter to your business, and nothing you care about went down. A small or unclear difference may just be chance. See [how to read your results](/docs/experiments/no-code-experiments#launching-and-reading-results).
+
+## Try it: Test a new button label on your pricing page
+
+Here's how the habits come together on a typical first test: one change, on a page lots of people visit, measured against something your team already records.
+
+<Steps>
+  <Step title="Write down what you expect">
+    Say the button on your most popular plan reads "Start free trial." Your idea is that "Try it free for 14 days" will get more clicks, because it tells people exactly what they're signing up for. 
+
+    Write it as a prediction: If the button says "Try it free for 14 days," more visitors will start a trial, because they know what they're getting. Your success number is trial sign-ups, which Mixpanel already tracks for you. 
+
+    For more on this step, see [plan your experiment](/docs/experiments#plan-your-experiment).
+
+    ![Web Experiment Pro Button Test](/images/web-experiment-pro-button-test.png "Web Experiment Pro Button Test")
+  </Step>
+  <Step title="Create the experiment">
+    [Create a new web experiment](/docs/experiments/no-code-experiments#setup) and enter your pricing page's address. Add trial sign-ups as your [success metric](/docs/experiments#step-3-choose-success-metrics), then set [how long the test runs](/docs/experiments#step-4-select-the-test-duration).
+  </Step>
+  <Step title="Change the button">
+    [Open the editor](/docs/experiments/no-code-experiments#designing-variants), click the button, and type the new label. Or [ask Mixpanel Agent](/docs/experiments/no-code-experiments#editing-with-mixpanel-agent): "Change the button on the Pro plan to say Try it free for 14 days." Then check your [list of changes](/docs/experiments/no-code-experiments#reviewing-and-removing-changes). You should see one edit and nothing else.
+  </Step>
+  <Step title="Check it and launch">
+    Split traffic so half your visitors see each version. Run through the checks in [Check it the way visitors will see it](#check-it-the-way-visitors-will-see-it), then launch.
+  </Step>
+  <Step title="Read the result and decide">
+    When the test is [ready to review](/docs/experiments#when-do-we-say-the-experiment-is-ready-to-review), open the results. If trial sign-ups are clearly up and nothing else you care about went down, roll out the new label. If there's no clear difference, you've still learned something: The button wording may not be what's holding people back, so your next test could try the headline instead. See [how to read your results](/docs/experiments#interpret-your-results).
+  </Step>
+</Steps>
+
+That's one full cycle. Each test you run this way shows you what actually gets your visitors to act, so your next change starts from evidence instead of a guess.
+
+## Next step
+
+<Card title="Set up your first web experiment" icon="sparkles" href="/docs/experiments/no-code-experiments" cta="Learn more">
+  Pick a headline or button on your busiest page and follow the setup steps in the Web Experiments docs.
+</Card>
