@@ -66,13 +66,39 @@
             "group": "INTRO",
             "icon": "/icons/wave.svg",
             "pages": [
-              "docs/what-is-mixpanel"
+              "docs/what-is-mixpanel",
+              {
+                "group": "Set Up Mixpanel",
+                "root": "guides/set-up-mixpanel",
+                "pages": [
+                  "guides/set-up-mixpanel/get-your-data-in",
+                  "guides/set-up-mixpanel/configure-your-account",
+                  "guides/set-up-mixpanel/train-your-team"
+                ]
+              },
+              "docs/quickstart/install-with-ai"
             ]
           },
           {
             "group": "DATA IN",
             "icon": "/icons/data-in.svg",
             "pages": [
+              {
+                "group": "Quickstart",
+                "root": "docs/quickstart",
+                "pages": [
+                  "docs/quickstart/install-mixpanel",
+                  "docs/quickstart/identify-users",
+                  {
+                    "group": "Capture Events",
+                    "root": "docs/quickstart/capture-events",
+                    "pages": [
+                      "docs/quickstart/capture-events/autocapture",
+                      "docs/quickstart/capture-events/track-events"
+                    ]
+                  }
+                ]
+              },
               {
                 "group": "Tracking Methods",
                 "root": "docs/tracking-methods",
@@ -277,23 +303,6 @@
                   "docs/what-to-track"
                 ]
               }
-            ]
-          },
-          {
-            "group": "Quickstart",
-            "root": "docs/quickstart",
-            "pages": [
-              "docs/quickstart/install-mixpanel",
-              "docs/quickstart/identify-users",
-              {
-                "group": "Capture Events",
-                "root": "docs/quickstart/capture-events",
-                "pages": [
-                  "docs/quickstart/capture-events/autocapture",
-                  "docs/quickstart/capture-events/track-events"
-                ]
-              },
-              "docs/quickstart/install-with-ai"
             ]
           },
           {
@@ -641,16 +650,7 @@
             "pages": [
               "guides/mixpanel-introduction",
               "guides/self-guided-tours",
-              "links/whats-new",
-              {
-                "group": "Set Up Mixpanel",
-                "root": "guides/set-up-mixpanel",
-                "pages": [
-                  "guides/set-up-mixpanel/get-your-data-in",
-                  "guides/set-up-mixpanel/configure-your-account",
-                  "guides/set-up-mixpanel/train-your-team"
-                ]
-              }
+              "links/whats-new"
             ]
           },
           {
