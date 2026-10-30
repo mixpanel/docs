@@ -1,71 +1,182 @@
 ---
-title: "Set Up Enterprise-Managed Connections for Mixpanel MCP"
-sidebarTitle: "Enterprise-Managed Connections"
-description: "Connect Claude to Mixpanel for everyone in your organization at once, using Claude or your identity provider as the issuer."
+title: "Set up enterprise-managed connections for Mixpanel MCP"
+sidebarTitle: "Claude Enterprise Managed Authentication"
+description: "Connect Claude to the Mixpanel MCP Server for everyone in your organization at once, using Claude or Okta as the issuer."
 ---
 
-## Overview
+<!-- Maintainer: this guide depends on plan- and role-dependent features (Claude plan, Mixpanel organization role). Re-check the links under "Before you begin" against the pricing page and the permissions docs when plans change. -->
 
-[Enterprise-managed connections](https://support.claude.com/en/articles/15537633-authorize-mcp-connectors-for-your-entire-organization) let your admins connect Claude to the [Mixpanel MCP Server](/docs/mcp) for everyone at once, so members don't have to sign in and approve the connection themselves. A Claude admin and a Mixpanel organization admin set it up once, and each member's Mixpanel connection in Claude is ready to use. Mixpanel still checks which projects and data each person can access on every request.
+[Enterprise-managed connections](https://support.claude.com/en/articles/15537633-authorize-mcp-connectors-for-your-entire-organization) let admins connect Claude to the [Mixpanel MCP Server](/docs/mcp) for every member at once. Members don't sign in or approve anything. A Claude admin and a Mixpanel organization admin set it up once, and an Okta admin joins if you use Okta as the issuer. Mixpanel still checks each person's project and data access on every request.
 
-You can use Claude as the identity issuer, which needs no identity provider (IdP) setup, or your own IdP (Okta). Choose whichever your organization prefers.
+Without managed authorization, the Mixpanel MCP Server asks each member to authorize the connection between Claude and Mixpanel. With managed authorization, there is no approval step. When a member uses Mixpanel in Claude, the issuer (Claude or Okta) vouches for the member's identity and sends Mixpanel their email address. Mixpanel matches that email to a user in your organization and authorizes Claude to act as that user.
 
-## Before You Start
+Each connection lasts up to one hour. After that, Claude gets a new authorization from the issuer. If the member has lost access by then, the new connection fails.
 
-One-time setup takes about ten minutes. You need:
+If a member belongs to more than one Mixpanel organization, the connection works the same way a normal Mixpanel sign-in does: the member can reach any project they already have access to, including projects in other organizations.
 
-- A Claude admin and a Mixpanel organization admin or owner. One person can be both. To use Okta as the issuer, you also need an Okta admin.
-- A Claude Team or Enterprise plan, and any Mixpanel plan.
-- MCP enabled for your Mixpanel organization. See [Permissions & Access](/docs/mcp#permissions--access).
-- A [claimed email domain](/docs/access-security/single-sign-on#claim-a-domain) on your Mixpanel organization for the domain your members use in Claude. Mixpanel only accepts members whose email domain is verified on the organization.
-- Each member's Claude email must match their verified Mixpanel email. Mixpanel compares the full address and ignores only letter case, so aliases and plus-addresses don't match.
+## Before you begin
+
+* Admin access for each role in your chosen path. One person can hold more than one role. See [Choose your setup](#choose-your-setup).
+* A Claude plan that supports managed authorization for connectors. See [Claude's guide](https://support.claude.com/en/articles/15537633-authorize-mcp-connectors-for-your-entire-organization) and the [Mixpanel pricing page](https://mixpanel.com/pricing/).
+* MCP enabled for your Mixpanel organization. See [Permissions and access](/docs/mcp#permissions--access).
+* A [claimed email domain](/docs/access-security/single-sign-on#claim-a-domain) on your Mixpanel organization, for the domain your members use in Claude. Mixpanel only accepts members whose email domain is verified on the organization.
+* Matching emails. Each member's Claude email must match their verified Mixpanel email. Mixpanel compares the full address and ignores only letter case, so aliases and plus-addresses don't match.
 
 Claude doesn't require SSO for this setup, although Anthropic recommends enforcing it.
 
-## How It Works
+## Choose your setup
 
-Without managed authorization, the Mixpanel MCP Server asks each member to authorize the connection between Claude and Mixpanel. With managed authorization, there is no approval step. When a member uses Mixpanel in Claude, the issuer (Claude or your IdP) vouches for the member's identity and sends Mixpanel their email address. Mixpanel matches that email to a user in your organization and authorizes Claude to act as that user.
+Both paths end the same way: you test and enable the connection in Claude. They differ in who vouches for each member.
 
-Each connection lasts up to one hour. To cut off someone's access immediately, remove them from your Mixpanel organization. If you only remove them from the issuer (Claude or Okta), they can't start a new connection, but an existing one keeps working until it expires.
+| If you... | Use | Done by |
+| - | - | - |
+| Want the quickest setup, with no identity provider (IdP) configuration | [Claude as the issuer](#set-up-with-claude-as-the-issuer) | Claude admin and Mixpanel organization admin |
+| Want Okta to vouch for each member using its own sign-in and MFA rules, and to choose which users get access | [Okta as the issuer](#set-up-with-okta-as-the-issuer) | Okta admin, Claude admin, and Mixpanel organization admin |
 
-## Set Up with Claude as the Issuer
+With Claude as the issuer, Claude confirms only that the person is a current member of your Claude organization with that email address. It doesn't confirm a sign-in at your IdP, and it doesn't check your MFA or Mixpanel's own sign-in rules, including [Mixpanel SSO](/docs/access-security/single-sign-on). Mixpanel receives the member's email address and an opaque identifier. If you need those rules applied, use Okta.
+
+With Okta as the issuer, Mixpanel receives the member's email address.
+
+## Set up with Claude as the issuer
 
 With this setup, members are connected to Mixpanel in Claude automatically, with no sign-in screen and no Okta configuration. Members act as themselves in Mixpanel, with the permissions they already have there.
 
-1. In Claude, open organization settings, select the Mixpanel connector, and select **Managed authorization** on the **Configuration** tab. In the **Connect** step, select **Claude-issued**. Copy the **issuer URL** shown and send it to your Mixpanel admin if you aren't one. See [Claude's guide](https://support.claude.com/en/articles/15537633-authorize-mcp-connectors-for-your-entire-organization) for details.
-2. In Mixpanel, go to **Organization Settings → Access Security → Claude Access** and click **Add Identity Provider**. Paste the issuer URL from step 1 into **Issuer URL**, leave **JWKS URL** blank, and click **Add**. The issuer appears in the list with the status **Active**.
-3. Back in the Claude connector setup, click **Run Test** and confirm that every check passes.
-4. Click **Enable and continue**, then complete the **Roles** and **Scopes** steps. Every role gets managed authorization by default. To narrow scopes and permissions, see [Claude's guide](https://support.claude.com/en/articles/15537633-authorize-mcp-connectors-for-your-entire-organization).
+### Settings
 
-Members now see Mixpanel already connected in Claude, with no sign-in or consent screen. A member with no matching Mixpanel account sees the normal **Connect** prompt. Ask two or three members to run a real request before you announce the change.
+| Where | Setting | Value |
+| - | - | - |
+| Claude, **Configuration** tab | **Managed authorization**, **Connect** step | **Claude-issued** |
+| Mixpanel, **Claude Access** tab | **Issuer URL** | The issuer URL shown in Claude |
+| Mixpanel, **Claude Access** tab | **JWKS URL** | Leave blank |
 
-## Set Up with Okta as the Issuer
+### Connect Claude and Mixpanel
 
-1. In Okta, create an app for Mixpanel MCP. Mixpanel isn't in Okta's app catalog with Cross App Access (XAA) yet, so create a custom app integration using either OIDC or SAML 2.0. See [Okta's guide to creating an app integration](https://developer.okta.com/docs/guides/create-an-app-integration/openidconnect/main/).
-   - **OIDC:** Enable **Token Exchange** and leave the rest as default. On the **Assignments** tab, assign the users who should have access.
-   - **SAML 2.0:** Set **Single sign-on URL** to `https://mixpanel.com/` and **Audience URI (SP Entity ID)** to `https://auth.mixpanel.com`. Set **Name ID format** to **EmailAddress** and **Application username** to **Email**. On the **General** tab, turn on **Do not display application icon to users**, since this app isn't used to sign in. On the **Assignments** tab, assign the users who should have access.
-2. In Claude, open organization settings, select the Mixpanel connector, and select **Managed authorization** on the **Configuration** tab. In the **Connect** step, select **IdP-managed**. Scroll down to the setup guide and click **Open WorkOS setup**, or **Send to an admin** if you aren't an admin of your IdP. Follow the instructions to connect the Mixpanel MCP app from step 1 to Claude.
-3. In Mixpanel, go to **Organization Settings → Access Security → Claude Access** and click **Add Identity Provider**. For **Issuer URL**, enter your Okta org URL with no path, such as `https://acme.okta.com`, or your custom Okta domain if you use one. Don't use the admin console address (`acme-admin.okta.com`) or an authorization server URL (`.../oauth2/default`). Leave **JWKS URL** blank and click **Add**. The issuer appears in the list with the status **Active**.
-4. Back in the Claude connector setup, click **Run Test** and confirm that every check passes.
-5. Click **Enable and continue**, then complete the **Roles** and **Scopes** steps. Every role gets managed authorization by default. To narrow scopes and permissions, see [Claude's guide](https://support.claude.com/en/articles/15537633-authorize-mcp-connectors-for-your-entire-organization).
+1. **Copy the issuer URL (Claude admin)**
 
-Members now see Mixpanel already connected in Claude, with no sign-in or consent screen. A member with no matching Mixpanel account sees the normal **Connect** prompt. Ask two or three members to run a real request before you announce the change.
+   In Claude, open organization settings, select the Mixpanel connector, and select **Managed authorization** on the **Configuration** tab. In the **Connect** step, select **Claude-issued**. Copy the **issuer URL** shown.
+
+   If you aren't a Mixpanel organization admin, send the issuer URL to one.
+
+2. **Add the issuer in Mixpanel (Mixpanel organization admin)**
+
+   Go to **Organization Settings** → **Access Security** → **Claude Access** and click **Add Identity Provider**. Paste the issuer URL into **Issuer URL**, leave **JWKS URL** blank, and click **Add**.
+
+   The issuer appears in the list with the status **Active**.
+
+   If **Add Identity Provider** is disabled, your organization hasn't verified an email domain. Verify one on the **Domain Claiming** tab, then try again. See [Claim a domain](/docs/access-security/single-sign-on#claim-a-domain).
+
+Continue to [Test and enable in Claude](#test-and-enable-in-claude).
+
+## Set up with Okta as the issuer
+
+### Settings
+
+Okta app integration, OIDC:
+
+| Setting | Value |
+| - | - |
+| **Token Exchange** | Enabled |
+| All other settings | Default |
+
+Okta app integration, SAML 2.0:
+
+| Setting | Value |
+| - | - |
+| **Single sign-on URL** | `https://mixpanel.com/` |
+| **Audience URI (SP Entity ID)** | `https://auth.mixpanel.com` |
+| **Name ID format** | **EmailAddress** |
+| **Application username** | **Email** |
+| **Do not display application icon to users** (**General** tab) | On |
+
+Mixpanel, **Claude Access** tab:
+
+| Setting | Value |
+| - | - |
+| **Issuer URL** | Your Okta org URL with no path, such as `https://acme.okta.com`, or your custom Okta domain if you use one |
+| **JWKS URL** | Leave blank |
+
+> **Warning:** For **Issuer URL**, don't use the admin console address (`acme-admin.okta.com`) or an authorization server URL (`.../oauth2/default`).
+
+### Connect Okta, Claude, and Mixpanel
+
+1. **Create the Mixpanel MCP app (Okta admin)**
+
+   Mixpanel isn't in Okta's app catalog with Cross App Access (XAA), Okta's feature that lets one app reach another app on a user's behalf without a separate sign-in or consent screen. Instead, create a custom app integration using either OIDC or SAML 2.0. See [Okta's guide to creating an app integration](https://developer.okta.com/docs/guides/create-an-app-integration/openidconnect/main/). Use the values in the Okta tables above.
+
+   On the **Assignments** tab, assign the users who should have access. For SAML 2.0, the app isn't used to sign in, which is why the settings hide its icon.
+
+2. **Connect the app to Claude (Claude admin)**
+
+   In Claude, open organization settings, select the Mixpanel connector, and select **Managed authorization** on the **Configuration** tab. In the **Connect** step, select **IdP-managed**. Scroll down to the setup guide and click **Open WorkOS setup**, or **Send to an admin** if you aren't an admin of your IdP.
+
+   Follow the instructions to connect the Mixpanel MCP app from the previous step to Claude.
+
+3. **Add the issuer in Mixpanel (Mixpanel organization admin)**
+
+   Go to **Organization Settings** → **Access Security** → **Claude Access** and click **Add Identity Provider**. Enter your Okta org URL in **Issuer URL**, leave **JWKS URL** blank, and click **Add**.
+
+   The issuer appears in the list with the status **Active**.
+
+   If **Add Identity Provider** is disabled, your organization hasn't verified an email domain. Verify one on the **Domain Claiming** tab, then try again. See [Claim a domain](/docs/access-security/single-sign-on#claim-a-domain).
+
+Continue to [Test and enable in Claude](#test-and-enable-in-claude).
+
+## Test and enable in Claude
+
+Both paths finish here. A Claude admin does these steps.
+
+1. **Run the test**
+
+   In the Claude connector setup, click **Run Test** and confirm that every check passes. The test stops at the first check that fails. See [Troubleshooting](#troubleshooting).
+
+2. **Enable the connection**
+
+   Click **Enable and continue**, then complete the **Roles** and **Scopes** steps. Every role gets managed authorization by default. To narrow scopes and permissions, see [Claude's guide](https://support.claude.com/en/articles/15537633-authorize-mcp-connectors-for-your-entire-organization).
+
+## Verify the connection
+
+Before you announce the change, ask two or three members to open Claude and run a request that uses Mixpanel.
+
+You should see Mixpanel already connected in Claude, with no sign-in or consent screen.
+
+To confirm on the Mixpanel side, check the [audit log](/docs/access-security/audit-log) for an `mcp_client.authorized` entry. Each connection is recorded in the audit log of every Mixpanel organization the member belongs to. Because connections last up to an hour, you'll see a new entry roughly every hour while a member is actively using Mixpanel in Claude.
+
+If a member sees the normal **Connect** prompt instead, Mixpanel found no matching account for them. Check that their Claude email matches their Mixpanel email, that the domain is verified on your Mixpanel organization, and that they are a member of the organization.
 
 ## Troubleshooting
 
-**Run Test** stops at the first check that fails.
+**Run Test** stops at the first check that fails. The checks refer to an ID-JAG (Identity Assertion JWT Authorization Grant): a short-lived, signed statement from the issuer that says who the member is. Mixpanel exchanges it for an access token that lets Claude act as that member.
 
 | Check | Usual cause | What to do |
-| --- | --- | --- |
-| Check eligibility | This organization or connector can't use Claude as the issuer. | Contact Claude support, or set up with your IdP. |
-| Discover authorization server | Mixpanel didn't publish its sign-in details. | Contact Mixpanel support. |
-| Mint ID-JAG | Your Claude account has no email address, or you aren't a current member of the organization. | Fix the account and run the test again. |
-| Exchange for access token | The issuer URL isn't saved in Mixpanel or is disabled, your email domain isn't verified on the Mixpanel organization, no Mixpanel user has your email, or that user isn't a member of the organization. | Check each value in Mixpanel and run the test again. |
-| Probe connector | Mixpanel issued a token but its own server refused it. | Contact Mixpanel support with the connector name and the time. |
+| - | - | - |
+| **Check eligibility** | This organization or connector can't use Claude as the issuer. | Contact Claude support, or set up with Okta. |
+| **Discover authorization server** | Mixpanel didn't publish its sign-in details. | Contact Mixpanel support. |
+| **Mint ID-JAG** | Your Claude account has no email address, or you aren't a current member of the organization. | Fix the account and run the test again. |
+| **Exchange for access token** | The issuer URL isn't saved in Mixpanel or is disabled, your email domain isn't verified on the Mixpanel organization, no Mixpanel user has your email, or that user isn't a member of the organization. | Check each value in Mixpanel and run the test again. |
+| **Probe connector** | Mixpanel issued a token but its own server refused it. | Contact Mixpanel support with the connector name and the time. |
 
 If Claude says Mixpanel's authorization server address changed, run the test again, check the new address, and confirm it.
 
-**The Add Identity Provider button is disabled.** Your organization hasn't verified an email domain yet. Verify one on the **Domain Claiming** tab first. See [Claim a Domain](/docs/access-security/single-sign-on#claim-a-domain).
+## Remove access or turn off the connection
+
+### Remove a member's access
+
+To stop access right away, remove the member from your Mixpanel organization. A connection that's already active can keep working for up to an hour, so removing them only from the issuer isn't enough.
+
+To stop new connections, also remove them from the issuer:
+
+* **Claude as the issuer:** remove them from your Claude organization.
+* **Okta as the issuer:** remove them from Okta, or unassign them from the Mixpanel MCP app.
+
+If you use directory sync (SCIM), Claude removes a member when your directory deletes them, but not when it only suspends them or marks them inactive.
+
+> **Warning:** If you give a former member's email address to someone new, remove the former member's Mixpanel account first. Otherwise the new person connects to the old account.
+
+### Pause or turn off the connection
+
+In Claude, open the connector's **Managed authorization** settings and choose **Disable**. Members then connect to Mixpanel themselves.
+
+To stop trusting the issuer entirely, also turn it off on Mixpanel's **Claude Access** tab. New connections stop, and active ones expire within an hour. Turn it back on to resume.
 
 ## FAQ
 
@@ -77,46 +188,20 @@ No. After an admin finishes setup, Mixpanel shows up as already connected in Cla
 
 Only what that member can already access. Claude acts as the member, and Mixpanel checks their project and data permissions on every request. Managed authorization doesn't grant any extra access.
 
-#### Which Mixpanel account does a member get connected to?
+#### Which Claude and Mixpanel plans support this?
 
-The Mixpanel user whose email matches the email the issuer sends. The match ignores letter case but is otherwise exact, so aliases and plus-addresses don't match. The email domain must be verified on your Mixpanel organization.
-
-#### Should we use Claude or Okta as the issuer?
-
-With Okta as the issuer, Okta vouches for each member using its own sign-in and MFA rules, and you choose which users are assigned to the Mixpanel MCP app. Mixpanel receives the member's email address.
-
-With Claude as the issuer, Claude confirms only that the person is a current member of your Claude organization with that email address. It doesn't confirm a sign-in at your IdP, and it doesn't check your MFA or Mixpanel's own sign-in rules. Mixpanel receives the member's email address and an opaque identifier. This is the quickest setup, since there's no IdP configuration.
-
-#### Does this replace Mixpanel SSO?
-
-No. [Mixpanel SSO](/docs/access-security/single-sign-on) still controls sign-in to Mixpanel itself. With Claude as the issuer, Mixpanel's sign-in rules, including SSO, aren't applied to the Claude connection. If you need those rules, use your IdP as the issuer.
-
-#### How long does a connection last?
-
-Up to one hour. After that, Claude gets a new authorization from the issuer. If the member has lost access by then, the new connection fails.
-
-#### How do I remove someone's access?
-
-To stop access right away, remove them from your Mixpanel organization. To stop new connections, remove them from your Claude organization (Claude as the issuer), or remove them from your IdP or unassign them from the Mixpanel MCP app (Okta as the issuer). A connection that's already active can keep working for up to an hour, so remove them from Mixpanel as well.
-
-If you use directory sync (SCIM), Claude removes a member when your directory deletes them, but not when it only suspends them or marks them inactive.
-
-#### What if we give a former member's email address to someone new?
-
-Remove the former member's Mixpanel account first. Otherwise the new person is connected to the old account.
+Claude Team or Enterprise, and any Mixpanel plan.
 
 #### What happens if a member belongs to more than one Mixpanel organization?
 
 The connection works the same way a normal Mixpanel sign-in does: the member can reach any project they already have access to, including projects in other organizations.
 
-#### Can I see when a member was connected?
+#### Does this replace Mixpanel SSO?
 
-Yes. Each connection is recorded as an `mcp_client.authorized` entry in the [audit log](/docs/access-security/audit-log) of every Mixpanel organization the member belongs to. Because connections last up to an hour, you'll see a new entry roughly every hour while a member is actively using Mixpanel in Claude.
+No. [Mixpanel SSO](/docs/access-security/single-sign-on) still controls sign-in to Mixpanel itself. With Claude as the issuer, Mixpanel's sign-in rules, including SSO, aren't applied to the Claude connection. If you need those rules, use Okta as the issuer. See [Choose your setup](#choose-your-setup).
 
-#### How do I pause or turn it off?
+## Next steps
 
-In Claude, open the connector's **Managed authorization** settings and choose **Disable**. Members then connect to Mixpanel themselves. To stop trusting the issuer entirely, also turn it off on Mixpanel's **Claude Access** tab. New connections stop, and active ones expire within an hour. Turn it back on to resume.
-
-#### Which Claude and Mixpanel plans support this?
-
-Claude Team or Enterprise, and any Mixpanel plan.
+* Review [Claude's guide to authorizing connectors for your organization](https://support.claude.com/en/articles/15537633-authorize-mcp-connectors-for-your-entire-organization).
+* Learn what Claude can reach in Mixpanel on [Mixpanel MCP](/docs/mcp).
+* Use the [audit log](/docs/access-security/audit-log) to review connections over time.
