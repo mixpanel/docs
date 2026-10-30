@@ -1,0 +1,67 @@
+{
+  "x-release-date": "2026-10-30T00:00:00Z",
+  "description": "A user granted an application access to Mixpanel through the MCP server. The\nentry records which application was authorized, where it was sent the authorization\ncode, and what it was allowed to do. It is written once per organization the user\nbelonged to at the time of consent, because the resulting access is not limited to a\nsingle organization.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "mcp_client",
+      "default": "mcp_client",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "client_id": {
+          "description": "OAuth client identifier the application authenticates with.",
+          "type": "string"
+        },
+        "client_name": {
+          "description": "Name the application registered itself under.",
+          "type": "string"
+        },
+        "redirect_uri": {
+          "description": "URL the authorization code was sent to after consent.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Scopes the authorization granted. Applications connecting through the MCP server receive the full set the server permits, not a subset chosen by the user.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "client_id",
+        "client_name",
+        "redirect_uri",
+        "scopes"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "authorized",
+      "default": "authorized",
+      "type": "string"
+    },
+    "type": {
+      "const": "mcp_client.authorized",
+      "default": "mcp_client.authorized",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
