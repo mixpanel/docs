@@ -4,8 +4,6 @@ sidebarTitle: "Claude Enterprise Managed Authentication"
 description: "Connect Claude to the Mixpanel MCP Server for everyone in your organization at once, using Claude or Okta as the issuer."
 ---
 
-<!-- Maintainer: this guide depends on plan- and role-dependent features (Claude plan, Mixpanel organization role). Re-check the links under "Before you begin" against the pricing page and the permissions docs when plans change. -->
-
 [Enterprise-managed connections](https://support.claude.com/en/articles/15537633-authorize-mcp-connectors-for-your-entire-organization) let admins connect Claude to the [Mixpanel MCP Server](/docs/mcp) for every member at once. Members don't sign in or approve anything. A Claude admin and a Mixpanel organization admin set it up once, and an Okta admin joins if you use Okta as the issuer. Mixpanel still checks each person's project and data access on every request.
 
 Without managed authorization, the Mixpanel MCP Server asks each member to authorize the connection between Claude and Mixpanel. With managed authorization, there is no approval step. When a member uses Mixpanel in Claude, the issuer (Claude or Okta) vouches for the member's identity and sends Mixpanel their email address. Mixpanel matches that email to a user in your organization and authorizes Claude to act as that user.
