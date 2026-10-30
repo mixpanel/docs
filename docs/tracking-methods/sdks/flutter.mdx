@@ -621,10 +621,10 @@ await mixpanel.autocapture.trackScreenView("PromoScreen", properties: utmProps);
 ### Click Events
 
 <Note>
-  Click autocapture needs Flutter SDK v3.2.0+ (Flutter 3.19+ / Dart 3.3+) and is **disabled by default**. See [Enabling Click Autocapture](#enabling-click-autocapture) to turn it on.
+  Autocaptured click events require Flutter SDK v3.2.0 or later (Flutter 3.19+ / Dart 3.3+) and are **disabled by default** — you opt in with `AutocaptureOptions` at initialization. See [Enabling Click Autocapture](#enabling-click-autocapture).
 </Note>
 
-The SDK can capture taps without any per-widget code. One root widget observes everything below it (routes, dialogs, bottom sheets and overlays) and works with Material and Cupertino widgets. It produces three events:
+The SDK can capture taps for you, with no per-widget instrumentation. One root widget observes everything below it (routes, dialogs, bottom sheets and overlays) and works with Material and Cupertino widgets. It produces three events:
 
 | Event | Fires when |
 | --- | --- |

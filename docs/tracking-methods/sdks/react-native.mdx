@@ -710,7 +710,7 @@ mixpanel.autocapture.trackScreenView("PromoScreen", utmProps);
 ### Click Events
 
 <Note>
-  Autocaptured click events require React Native SDK v4.1.0 or later, run in **native mode only**, and are **disabled by default** — you opt in with `autocaptureOptions` at initialization.
+  Autocaptured click events require React Native SDK v4.1.0 or later, run in **native mode only**, and are **disabled by default** — you opt in with `autocaptureOptions` at initialization. See [Enabling Click Autocapture](#enabling-click-autocapture).
 </Note>
 
 The SDK can capture taps for you, with no per-component instrumentation. Capture happens in the underlying iOS and Android SDKs, which intercept touches across every window in your app — screens, modals, bottom sheets — below the React Native bridge, so no touch handler of yours is involved. Three events are produced:
