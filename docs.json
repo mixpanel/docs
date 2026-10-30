@@ -645,6 +645,61 @@
             ]
           },
           {
+            "group": "GET STARTED",
+            "pages": [
+              {
+                "group": "Set Up Mixpanel",
+                "root": "set-up-mixpanel",
+                "pages": [
+                  "set-up-mixpanel/plan-what-to-track",
+                  "set-up-mixpanel/implement-and-test",
+                  "set-up-mixpanel/launch-to-production",
+                  "set-up-mixpanel/roll-out"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "MIXPANEL AI",
+            "icon": "/icons/flower.svg",
+            "pages": [
+              {
+                "group": "Use Mixpanel Agent",
+                "root": "guides/mixpanel-agent",
+                "pages": [
+                  "guides/mixpanel-agent/use-cases"
+                ]
+              },
+              {
+                "group": "Use Mixpanel MCP",
+                "root": "guides/mcp",
+                "pages": [
+                  {
+                    "group": "MCP by Industry",
+                    "root": "guides/mcp/mcp-by-industry",
+                    "pages": [
+                      "guides/mcp/mcp-by-industry/ai",
+                      "guides/mcp/mcp-by-industry/b2bsaas",
+                      "guides/mcp/mcp-by-industry/ecommerce",
+                      "guides/mcp/mcp-by-industry/finance",
+                      "guides/mcp/mcp-by-industry/healthcare",
+                      "guides/mcp/mcp-by-industry/media"
+                    ]
+                  },
+                  "guides/mcp/integrations"
+                ]
+              },
+              "guides/headless",
+              {
+                "group": "Use Mixpanel AI",
+                "pages": [
+                  "guides/use-mixpanel-ai/write-business-context",
+                  "guides/use-mixpanel-ai/trust-ai-answers"
+                ]
+              }
+            ]
+          },
+          {
             "group": "WORKFLOWS",
             "icon": "/icons/rocket.svg",
             "pages": [
@@ -694,46 +749,6 @@
                   "guides/guides-by-topic/core-reports"
                 ]
               }
-            ]
-          },
-          {
-            "group": "MIXPANEL AI",
-            "icon": "/icons/flower.svg",
-            "pages": [
-              {
-                        "group": "Use Mixpanel Agent",
-                        "root": "guides/mixpanel-agent",
-                        "pages": [
-                          "guides/mixpanel-agent/use-cases"
-                        ]
-                      },
-              {
-                        "group": "Use Mixpanel MCP",
-                        "root": "guides/mcp",
-                        "pages": [
-                          {
-                            "group": "MCP by Industry",
-                            "root": "guides/mcp/mcp-by-industry",
-                            "pages": [
-                              "guides/mcp/mcp-by-industry/ai",
-                              "guides/mcp/mcp-by-industry/b2bsaas",
-                              "guides/mcp/mcp-by-industry/ecommerce",
-                              "guides/mcp/mcp-by-industry/finance",
-                              "guides/mcp/mcp-by-industry/healthcare",
-                              "guides/mcp/mcp-by-industry/media"
-                            ]
-                          },
-                          "guides/mcp/integrations"
-                        ]
-                      },
-                      "guides/headless",
-                      {
-                        "group": "Use Mixpanel AI",
-                        "pages": [
-                          "guides/use-mixpanel-ai/write-business-context",
-                          "guides/use-mixpanel-ai/trust-ai-answers"
-                        ]
-                      }
             ]
           },
           {

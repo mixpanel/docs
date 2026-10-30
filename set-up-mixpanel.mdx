@@ -1,0 +1,159 @@
+---
+title: "Set up Mixpanel"
+description: "Your path from first login to a team that uses Mixpanel every week."
+sidebarTitle: "Set Up Mixpanel"
+tag: "New"
+---
+
+How fast you get started with Mixpanel is mostly up to you. Smaller teams can usually move quickly, while larger teams may take longer because more people have to weigh in. What you control most is how long work sits waiting for a decision or for someone to pick it up.
+
+## What progress looks like
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '12px', margin: '12px 0 20px' }}>
+  <div style={{ borderTop: '2px solid #7856FF', paddingTop: '8px', fontWeight: 500 }}>Tracking plan agreed</div>
+  <div style={{ borderTop: '2px solid #7856FF', paddingTop: '8px', fontWeight: 500 }}>Data flowing into Mixpanel</div>
+  <div style={{ borderTop: '2px solid #7856FF', paddingTop: '8px', fontWeight: 500 }}>First report saved</div>
+  <div style={{ borderTop: '2px solid #7856FF', paddingTop: '8px', fontWeight: 500 }}>Second teammate active</div>
+  <div style={{ borderTop: '2px solid #7856FF', paddingTop: '8px', fontWeight: 500 }}>Regular team use</div>
+</div>
+
+Don't wait for one stage to be perfect before you start the next. You're moving well when each stage has a named owner and a next step on the calendar. If a stage stalls, or you're waiting on a decision, ask for help early.
+
+## **What you'll need to set up**
+
+Someone to decide what to track, someone who can add code, and access to your [Mixpanel organization](/docs/orgs-and-projects/organizations). A team of one? You'll do both.
+
+## **Choose how you want to set up**
+
+You can set Mixpanel up with an AI coding agent or by following the steps yourself. Both get you to the same place with clean data flowing into Mixpanel, so pick the one that fits how your team works.
+
+### **Set up with AI** 
+
+Your agent reads your codebase, suggests events, and adds the SDK. You review every change. Best if your team already uses a coding agent like Claude Code or Cursor. No codebase access? The tool can write a spec for a developer to follow instead.
+
+### **Set up yourself**
+
+Follow the steps to install the SDK, send your first events, and check them. Best if you'd rather write the code yourself, or your company’s policies keep AI tools away from your code.
+
+## Set up in four steps
+
+Each step shows who usually does it and what done looks like. Where a step can be done two ways, you'll see both: **Set up with AI** or **Set up yourself**.
+
+<Steps>
+  <Step title="Plan what to track ">
+    <Badge color="purple">Usually a product manager</Badge>
+
+    Done when:
+
+    - You've  picked your first events
+    - Each one answers a top question
+    - They're written down
+
+    <Columns cols={2}>
+      <Column>
+        <Card title="Set up with AI" icon="sparkles" href="https://docs.mixpanel.com/docs/quickstart/install-with-ai" cta="Learn more">
+          Install with AI proposes events from your codebase. You decide which to keep.
+        </Card>
+      </Column>
+      <Column>
+        <Card title="Set up yourself" icon="mouse-pointer" href="https://docs.mixpanel.com/guides/set-up-mixpanel/plan-what-to-track" cta="Learn more">
+          Choose events from your top questions, and then write the plan.
+        </Card>
+      </Column>
+    </Columns>
+  </Step>
+
+  <Step title="Implement and test in development">
+    <Badge color="blue">Usually an engineer</Badge>
+
+    Done when:
+
+    - Events and users are set up correctly
+    - Your use cases are confirmed
+    - Data arrives in your development project
+
+    <Columns cols={2}>
+      <Column>
+        <Card title="Set up with AI" icon="sparkles" href="https://docs.mixpanel.com/docs/quickstart/install-with-ai" cta="Learn more">
+          Your agent installs the SDK, sets up identity, and checks events in Live View. 
+        </Card>
+      </Column>
+      <Column>
+        <Card title="Set up yourself" icon="mouse-pointer" href="https://docs.mixpanel.com/guides/set-up-mixpanel/implement-and-test" cta="Learn more">
+          Install the SDK, send events, and check them yourself.
+        </Card>
+      </Column>
+    </Columns>
+  </Step>
+
+  <Step title="Launch to production">
+    <Badge color="blue">Usually an engineer</Badge>
+
+    Done when:
+
+    - Events reach your production project
+    - They match what you tested
+
+    <Card title="Same step, with or without AI" icon="network-wired" href="https://docs.mixpanel.com/guides/set-up-mixpanel/launch-to-production" cta="Learn more">
+      Review the code, then deploy through your usual release process. Compare what arrives with what you tested.
+    </Card>
+  </Step>
+
+  <Step title="Roll out to your team">
+    <Badge color="purple">Usually a product manager</Badge>
+
+    Done when:
+
+    - The right teammates have access
+    - They know how to use Mixpanel
+    - They can answer their own questions
+
+    <Card title="Same step, with or without AI" color="" icon="network-wired" href="https://docs.mixpanel.com/guides/set-up-mixpanel/roll-out" cta="Learn more">
+      Give each teammate the right access, then point them to training and your first report so they can start on their own.
+    </Card>
+  </Step>
+</Steps>
+
+## What speeds you up
+
+- Start with a few [events](/docs/quickstart/capture-events). You can add more once data is flowing.
+- Send test events to a [development project](/docs/tracking-best-practices/developer-environments) first.
+- Set up [identify](/docs/quickstart/identify-users) when you first send data. It's hard to fix later.
+- Ask the [Mixpanel Agent](/docs/mixpanel-agent) to help you get set up.
+
+## **Learn more**
+
+<Columns cols={3}>
+  <Column>
+    <Card title="Mixpanel University" icon="graduation-cap" href="https://university.mixpanel.com/">
+      Courses and certifications
+    </Card>
+  </Column>
+  <Column>
+    <Card title="Self-guided tours" icon="play" href="https://docs.mixpanel.com/guides/self-guided-tours">
+      In-product walkthroughs
+    </Card>
+  </Column>
+  <Column>
+    <Card title="Mixpanel Agent" icon="sparkles" href="https://docs.mixpanel.com/guides/mixpanel-agent">
+      Ask about your data
+    </Card>
+  </Column>
+</Columns>
+
+## Starting from somewhere else?
+
+<Columns cols={2}>
+  <Column>
+    <Card title="New to product intelligence? " icon="lightbulb-on" horizontal href="https://docs.mixpanel.com/guides/strategic-playbooks/product-analytics-strategy/get-started">
+      Read the strategy guide
+    </Card>
+  </Column>
+  <Column>
+    <Card title="Switching from another tool?" icon="arrow-left-arrow-right" horizontal href="https://docs.mixpanel.com/docs/migration">
+      Read the migration guide
+    </Card>
+  </Column>
+</Columns>
+
+Stuck? Get [help](https://mixpanel.com/contact-us/support/) or join the [community](https://community.mixpanel.com/).
