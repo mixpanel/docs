@@ -69,6 +69,8 @@ Continue to [Test and enable in Claude](#test-and-enable-in-claude).
 
 ### Settings
 
+You will have to create a separate Mixpanel app in Okta for this integration. We have two different set up options: OIDC and SAML 2.0. If you've already set up an app in Okta for Mixpanel MCP, you can skip the app creation steps and use the existing app.
+
 Okta app integration, OIDC:
 
 | Setting | Value |
@@ -99,7 +101,7 @@ Mixpanel, **Claude Access** tab:
 
 1. **Create the Mixpanel MCP app (Okta admin)**
 
-   Mixpanel isn't in Okta's app catalog with Cross App Access (XAA), Okta's feature that lets one app reach another app on a user's behalf without a separate sign-in or consent screen. Instead, create a custom app integration using either OIDC or SAML 2.0. See [Okta's guide to creating an app integration](https://developer.okta.com/docs/guides/create-an-app-integration/openidconnect/main/). Use the values in the Okta tables above.
+   Mixpanel isn't in Okta's app catalog with Cross App Access (XAA), Okta's feature that lets one app reach another app on a user's behalf without a separate sign-in or consent screen. Instead, create a custom app integration using either OIDC or SAML 2.0. See [Okta's guide to creating an app integration](https://developer.okta.com/docs/guides/create-an-app-integration/openidconnect/main/). Use the values in the Okta tables above. Or view the instructions for SAML 2.0 to set up the [Mixpanel app in Okta](https://docs.mixpanel.com/docs/access-security/single-sign-on/okta#configure-saml).
 
    On the **Assignments** tab, assign the users who should have access. For SAML 2.0, the app isn't used to sign in, which is why the settings hide its icon.
 
@@ -148,7 +150,7 @@ If a member sees the normal **Connect** prompt instead, Mixpanel found no matchi
 | Check | Usual cause | What to do |
 | - | - | - |
 | **Check eligibility** | This organization or connector can't use Claude as the issuer. | Contact Claude support, or set up with Okta. |
-| **Discover authorization server** | Mixpanel didn't publish its sign-in details. | Contact Mixpanel support. |
+| **Discover authorization server** | Mixpanel's sign-in details are unavailable. | Contact Mixpanel support. |
 | **Mint ID-JAG** | Your Claude account has no email address, or you aren't a current member of the organization. | Fix the account and run the test again. |
 | **Exchange for access token** | The issuer URL isn't saved in Mixpanel or is disabled, your email domain isn't verified on the Mixpanel organization, no Mixpanel user has your email, or that user isn't a member of the organization. | Check each value in Mixpanel and run the test again. |
 | **Probe connector** | Mixpanel issued a token but its own server refused it. | Contact Mixpanel support with the connector name and the time. |
@@ -166,7 +168,7 @@ To stop new connections, also remove them from the issuer:
 * **Claude as the issuer:** remove them from your Claude organization.
 * **Okta as the issuer:** remove them from Okta, or unassign them from the Mixpanel MCP app.
 
-If you use directory sync (SCIM), Claude removes a member when your directory deletes them, but not when it only suspends them or marks them inactive.
+To fully revoke access, confirm the member is removed from the issuer. If you sync users from a directory, check your issuer's documentation for how suspended or inactive users are handled.
 
 > **Warning:** If you give a former member's email address to someone new, remove the former member's Mixpanel account first. Otherwise the new person connects to the old account.
 
@@ -197,6 +199,11 @@ The connection works the same way a normal Mixpanel sign-in does: the member can
 #### Does this replace Mixpanel SSO?
 
 No. [Mixpanel SSO](/docs/access-security/single-sign-on) still controls sign-in to Mixpanel itself. With Claude as the issuer, Mixpanel's sign-in rules, including SSO, aren't applied to the Claude connection. If you need those rules, use Okta as the issuer. See [Choose your setup](#choose-your-setup).
+
+#### Does Mixpanel plan to support XAA?
+
+Yes, we will modify instructions when Mixpanel adds support for XAA.
+
 
 ## Next steps
 
