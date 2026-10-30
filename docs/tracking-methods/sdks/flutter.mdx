@@ -621,7 +621,7 @@ await mixpanel.autocapture.trackScreenView("PromoScreen", properties: utmProps);
 ### Click Events
 
 <Note>
-  **Beta.** Click autocapture is in beta. Its events and properties may change before general availability. It needs Flutter SDK v2.15.0+ (Flutter 3.19+ / Dart 3.3+) and is **disabled by default**. See [Enabling Click Autocapture](#enabling-click-autocapture) to turn it on.
+  Click autocapture needs Flutter SDK v3.1.1+ (Flutter 3.19+ / Dart 3.3+) and is **disabled by default**. See [Enabling Click Autocapture](#enabling-click-autocapture) to turn it on.
 </Note>
 
 The SDK can capture taps without any per-widget code. One root widget observes everything below it (routes, dialogs, bottom sheets and overlays) and works with Material and Cupertino widgets. It produces three events:
@@ -647,7 +647,7 @@ A tap counts only if it is:
 - released within **500 ms** (inclusive)
 - inside the platform hit slop
 
-Scrolls, drags, long presses, multi-touch, secondary buttons, stylus input (not supported in beta), keyboard activation and assistive-technology activation do not count.
+Scrolls, drags, long presses, multi-touch, secondary buttons, stylus input (not supported), keyboard activation and assistive-technology activation do not count.
 
 **Which widget is reported:**
 
