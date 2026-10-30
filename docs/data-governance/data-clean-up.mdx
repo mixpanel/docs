@@ -189,6 +189,10 @@ You can combine multiple criteria within a single filter to target precisely the
 
 Only events matching the event name _and_ the specified property values will be dropped. Filtering by event name alone is not supported with drop filters. To drop a full event by event name with no property filters, go to Lexicon and add a Dropped tag to the event.
 
+<Note>
+  Drop filters are evaluated before Mixpanel enriches incoming events with properties it computes server-side, such as [geolocation properties](/docs/tracking-best-practices/geolocation) derived from the IP address (`mp_country_code`, `$city`, `$region`). A drop filter can't match these IP-derived values, so those events are still ingested. Filter on properties your implementation sends with the event instead, including geolocation properties you [set manually](/docs/tracking-best-practices/geolocation#define-geolocation-properties).
+</Note>
+
 ### How to use
 
 <Warning>
@@ -240,6 +244,10 @@ Dropped events are not ingested, so they do not count toward your event volume u
 **_Can I recover events that were dropped?_**
 
 No. Dropped events are discarded at ingestion and cannot be recovered. If you need historical analysis on these events, disable the filter first and re-send the data.
+
+**_Why aren't events being dropped when I filter by country, city, or region?_**
+
+When Mixpanel derives geolocation properties such as `mp_country_code`, `$city`, and `$region` from the IP address, it adds them after drop filters are evaluated, so a filter can't match those values. Filter on a property your implementation sends with the event instead, including geolocation properties you [set manually](/docs/tracking-best-practices/geolocation#define-geolocation-properties). See [Supported filter criteria](#supported-filter-criteria).
 
 ### Other resources
 
