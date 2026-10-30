@@ -97,11 +97,17 @@ To delete, pause, or unpause a JSON pipeline:
 
 Note: JSON pipelines can only be managed through the UI, not via the data pipelines API.
 
+<Warning>
+  If a pipeline hasn't run successfully for more than 25 days (for example, because it was paused), it stops with the error "Pipeline hasn't been run for too long" and can't continue. Create a new pipeline to resume exports.
+</Warning>
+
 ### Backfilling Historical Data
 
 You can schedule an initial backfill when creating a pipeline. This ensures that historical data is also exported to the data warehouse. Note that the `from_date` value must be within 6 months in the past.
 
 The completion time for a backfill depends on the number of days and the amount of data in the project. Larger backfills can take up to multiple weeks.
+
+A backfill replaces existing data in your destination for the dates it exports, including data written by other pipelines to the same table or path. See [How Backfills Write to Your Destination](/docs/data-pipelines/json-pipelines#how-backfills-write-to-your-destination) for details on each destination.
 
 ### Viewing Pipeline Configuration
 
@@ -121,10 +127,14 @@ Discrepancies between the event counts in Mixpanel and those exported to your de
 - **Data Delay**: Late-arriving data may take up to one day to sync from Mixpanel to your destination, leading to temporary discrepancies.
 - **Hidden Events**: Mixpanel exports all events, including those hidden in the Mixpanel UI via Lexicon. To reconcile differences in counts, check if the events in your destination include those hidden in the Mixpanel UI.
 - **Timezone Differences**: Data is exported to your warehouse in UTC, whereas data displayed in Mixpanel is in your project's timezone.
+- **Identity Resolution**: Exported events are not identity-resolved. They keep the `distinct_id` they had when Mixpanel ingested them, so unique user counts in your destination can differ from Mixpanel. To match Mixpanel's user counts, join the identity mappings table and use its `resolved_distinct_id`. See [User Identity Resolution](/docs/data-pipelines/json-pipelines#user-identity-resolution).
+- **Duplicate Events**: Exported events are not deduplicated. Incremental runs append new events without deduplicating on `insert_id`, so the same event can appear more than once in your destination. See [Common SQL Queries](/docs/data-pipelines/common-sql-queries#total-daily-count-with-deduplication-logic-and-timezone-adjustment) for an example of deduplicating events in a query.
 
 ### What timezone is the data exported in?
 
 The data is exported in UTC timezone. You’ll need to convert it to your project’s timezone when running queries in your warehouse. Please refer to [this page](/docs/data-pipelines/common-sql-queries) for some common SQL queries.
+
+Separately from event timestamps, each pipeline uses its timezone setting to decide which day an event belongs to. This determines the day folders, partitions, and dates that a [backfill replaces](/docs/data-pipelines/json-pipelines#how-backfills-write-to-your-destination) in every destination. If several pipelines write to the same destination, use the same timezone for all of them, since day boundaries and backfill replacement depend on it.
 
 ### How can I count events exported by Mixpanel in the warehouse?
 
@@ -147,9 +157,9 @@ You can’t delete a trial pipeline in Mixpanel — this is intentional. Each pr
 
 ### What is Active Pipeline Limit
 
-Each project can have two recurring pipelines and one date-ranged backfill pipeline active. Multiple pipelines cannot write to the same destination or for the same date range in a destination. Recurring pipelines must have different frequencies.
+Each project can have two recurring pipelines and one date-ranged backfill pipeline active. Recurring event pipelines cannot export to the same destination with overlapping date ranges (see [Destination and Date Range Restrictions](/docs/data-pipelines/json-pipelines#destination-and-date-range-restrictions)). Recurring pipelines must have different frequencies.
 
-To maintain optimal performance across our services, we limit the number of concurrently running pipeline steps to one per project. This approach ensures that each job, including those involving substantial backfills, waits its turn, preventing any single project from monopolizing resources and thus promoting fair scheduling among all customers.
+Pipelines in the same project can run at the same time. For example, a date-ranged backfill pipeline can run alongside a recurring pipeline. Export steps are scheduled separately for each pipeline.
 
 ### Is it possible to specify when pipeline exports run?
 
@@ -173,7 +183,7 @@ The Account Name should be set to your unique account identifier, e.g., "example
 
 ### What happens to late-arriving data?
 
-For [incremental JSON pipelines](/docs/data-pipelines/json-pipelines#incremental-pipelines), late-arriving data will be exported as it's ingested. However, that is not the case for Raw and Schematized pipelines without [sync](/docs/data-pipelines/json-pipelines#events-data-sync) enabled — manual intervention will be needed to export late-arriving data into your data warehouse.
+For [incremental JSON pipelines](/docs/data-pipelines/json-pipelines#incremental-pipelines), late-arriving data will be exported as it's ingested, as long as the events are dated on or after the pipeline's `from_date`. However, that is not the case for Raw and Schematized pipelines without [sync](/docs/data-pipelines/json-pipelines#events-data-sync) enabled — manual intervention will be needed to export late-arriving data into your data warehouse.
 
 ### Can I change the destination of an existing pipeline?
 

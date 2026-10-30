@@ -39,7 +39,7 @@ The event data that is exported using the schematized export pipeline is the sam
 
 The user data that is exported using the schematized export pipeline is the same data exported from the [Query API Engage Endpoint](/reference/engage-query#engage-query).
 
-In order to ensure a performant service for all customers, certain steps of the pipelines are limited to 1 pipeline per project running at a time. For example, a project with multiple jobs would have one wait for the other to complete certain steps before proceeding. In this way, something like a large backfill for one customer does not take priority over other customers, and keeps scheduling more fair.
+Pipelines in the same project can run at the same time. For example, a date-ranged backfill pipeline can run alongside a recurring pipeline. Export steps are scheduled separately for each pipeline.
 
 In addition, customers are limited to 1 date-range based pipeline creation per 24 hours. A date-range based pipeline is one that has a `from_date` and `to_date` that are both in the past, and uses `events` as the data type.
 
@@ -48,6 +48,8 @@ In addition, customers are limited to 1 date-range based pipeline creation per 2
 You can schedule an initial backfill when creating a pipeline. This ensures that historical data is also exported to the data warehouse.
 
 Use the `from_date` parameter to specify the date you want to use to export historical data. Note that the `from_date` must be no more than 6 months in the past.
+
+A backfill replaces existing data in the destination for the dates it exports, including data written by other pipelines to the same tables. When you use one table for each event, a backfill only replaces the tables of events that have data for a given date. Tables for events with no data in the backfill keep their existing rows for that date.
 
 The completion time for a backfill depends on the number of days and the amount of data in the project. Larger backfills can take up to multiple weeks.
 
