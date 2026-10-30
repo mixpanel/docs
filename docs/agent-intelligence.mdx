@@ -44,6 +44,216 @@ You need:
 
 Mixpanel reads the OpenTelemetry GenAI semantic conventions (`gen_ai.*`). Every span becomes one Mixpanel event.
 
+### A. Implement Agent Intelligence with your coding agent
+
+<Tabs>
+  <Tab title="Agent already has OpenTelemetry tracing">
+    ```text expandable
+    # Task: Export our agent's existing OpenTelemetry traces to Mixpanel Agent Intelligence
+    
+    ## Goal
+    Add Mixpanel as an extra trace destination for our already-instrumented AI agent. Make sure every exported span has the attributes Mixpanel needs. Our existing tracing destinations must behave exactly as they do today.
+    
+    ## Source of truth
+    Read https://docs.mixpanel.com/docs/agent-intelligence.md (if you have web access) and the GenAI semantic conventions at https://github.com/open-telemetry/semantic-conventions-genai. If they disagree with this prompt, follow the docs and tell me about the conflict.
+    
+    ## Config
+    - MIXPANEL_PROJECT_TOKEN: env var (don't hardcode; don't commit it)
+    - Region: [US | EU | India]
+    - Test project token for verification (optional): [token or "none"]
+    If the region is still a placeholder, ask me before writing code.
+    
+    ## Non-goals
+    - Don't change existing exporters, span names, attributes, or samplers that other destinations depend on.
+    - Don't refactor the agent loop or upgrade unrelated dependencies.
+    - Don't turn on prompt/response capture in production without my approval.
+    
+    ## Mixpanel facts you need
+    - Each span becomes one Mixpanel event and counts toward our billed event volume.
+    - Model: Conversation (`gen_ai.conversation.id`) → Turn (one prompt/response = one trace) → Span.
+    - Endpoint (OTLP/HTTP, protobuf or JSON; use the HTTP exporter, not gRPC):
+      US https://ingestion-us.mixpanel.com/v1/ai/otel/traces
+      EU https://ingestion-eu.mixpanel.com/v1/ai/otel/traces
+      IN https://ingestion-in.mixpanel.com/v1/ai/otel/traces
+    - Header: `Authorization: Basic base64("<PROJECT_TOKEN>:")`. Note the trailing colon. Build it in code with the standard library.
+    - Spans without a `user.id` attribute are dropped. Its value must equal the Mixpanel `distinct_id` for that user.
+    - Spans over 1MB (uncompressed JSON) are dropped. Custom string properties are truncated to 255 bytes.
+    - Cost is calculated from `gen_ai.request.model` (exact string match) and the token attributes. `gen_ai.usage.input_tokens` must INCLUDE cache-read and cache-write tokens.
+    
+    ## Phase 1: Investigate, then STOP
+    Don't change any code yet. Find out:
+    1. Is our tracing really OpenTelemetry? Which SDK and versions? Some vendor SDKs aren't OTel (e.g. Datadog ddtrace without OTel mode, or LangSmith's native tracer). If it isn't OTel, stop and tell me; that needs the "no OTel" approach.
+    2. Where the TracerProvider is registered, and who owns it (our code, Sentry, Langfuse, Logfire, a Collector, etc.). List all span processors, exporters, and the sampler with its rate.
+    3. Which library produces the GenAI spans. Run one real agent turn with a console/in-memory exporter and paste the actual span names and attribute keys you see. Compare them to the semconv names listed below, and note any semconv stability opt-in setting the instrumentation needs (e.g. `OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai_latest_experimental` in the Python contrib instrumentations).
+    4. Does one trace equal one user turn? Check websocket/long-lived sessions, background or queue workers, and multi-service hops. Describe any mismatch.
+    5. Where the user ID and conversation ID are available at the start of a turn. Does the user ID match our Mixpanel distinct_id, including for anonymous/logged-out users (how does our Mixpanel identity setup handle them)?
+    6. Whether prompt/response content is captured, and whether it's stored as span attributes or as log events (only span attributes reach Mixpanel).
+    7. Which non-agent spans are exported per turn, with approximate counts.
+    
+    Then present a short plan covering: where the exporter attaches, the filtering rule, how user.id/conversation.id get onto spans, any attribute mapping, the sampling impact, and open questions. **Wait for my approval before you implement.**
+    
+    ## Phase 2: Implement
+    
+    ### 2.1 Exporter
+    - Attach to the EXISTING provider. Don't register a second global TracerProvider; it can silently replace the current one. If we run a Collector, add an `otlphttp` exporter + a dedicated pipeline there instead.
+    - Configure the Mixpanel exporter in code. Don't use the generic `OTEL_EXPORTER_OTLP_*` env vars, because they'd change the existing exporter.
+    - Use a BatchSpanProcessor with sensible queue/timeout settings. Export failures must never affect requests.
+    - Add a kill switch, `MIXPANEL_AI_TRACING_ENABLED` (default off until verified), plus a region setting.
+    
+    ### 2.2 Mixpanel-only filtering and shaping
+    Wrap the Mixpanel exporter (or use a Collector `filter`/`transform` processor in the Mixpanel pipeline) so ONLY that destination is affected:
+    - Keep a span if it has `gen_ai.operation.name`, or one of our explicit agent-span markers. Drop generic HTTP/DB/framework spans. Missing parents are fine; Mixpanel groups spans by trace ID.
+    - The root span of each turn must have `gen_ai.operation.name=invoke_agent`. Some frameworks (e.g. pydantic-ai) leave it out; set it here. Without it, Mixpanel classifies the turn as `other`.
+    - Do attribute renaming HERE, at export time. Spans are read-only after they end, so a span processor can't add token or response attributes in `onEnd`. Rename non-standard keys (e.g. `llm.*`, `ai.*`, old `gen_ai.prompt.*`/`gen_ai.completion.*`) to the current `gen_ai.*` names.
+    - Truncate oversized attributes (tool results, message histories) so no span goes over ~1MB.
+    
+    ### 2.3 Identity attributes
+    - At the start of each turn, put `user.id`, `gen_ai.conversation.id`, and `gen_ai.agent.name` into context. Copy them onto every span in a span processor's `onStart`, using an allowlist (only these keys). Don't copy all baggage.
+    - Watch out for baggage leaks: the W3C baggage propagator puts baggage in outbound HTTP headers, which would send user IDs to the LLM provider and other third parties. If the turn runs in one process, use a non-propagating context value instead. If it crosses our own services, use baggage but make sure it isn't injected into requests to external hosts.
+    - Check that the values survive async tasks, threads, streaming callbacks, and queue hops.
+    - If trace ≠ turn (Phase 1, item 4), implement whatever we agreed on in the plan.
+    
+    ### 2.4 Sampling
+    Mixpanel analytics (user counts, funnels, retention) needs unsampled or consistently sampled data. If the existing sampler drops traces, tell me how that affects things. Never sample individual spans.
+    
+    ### 2.5 Recommended attributes (fill in any that are missing)
+    `gen_ai.agent.name`, `gen_ai.operation.name`, `gen_ai.provider.name`, `gen_ai.request.model`, `gen_ai.response.model`, `gen_ai.usage.input_tokens`, `gen_ai.usage.output_tokens`, `gen_ai.usage.cache_read.input_tokens`, `gen_ai.usage.cache_write.input_tokens`, `gen_ai.tool.name`, `gen_ai.tool.call.arguments`, `gen_ai.tool.call.result`, plus `error.type` and ERROR status on failures.
+    Token gotchas:
+    - Anthropic's `input_tokens` EXCLUDES cache tokens. Add `cache_creation_input_tokens` + `cache_read_input_tokens` to it.
+    - OpenAI streaming returns no usage unless `stream_options: {"include_usage": true}` is set.
+    - Cache writes go in `gen_ai.usage.cache_write.input_tokens`. Rename `gen_ai.usage.cache_creation.input_tokens` and the Vercel AI SDK's `cacheWriteTokens` to it, or cache-write cost is left out.
+    - Model strings must be the exact provider model ID, or the cost shows as $0. Cost is keyed on `gen_ai.request.model`, so behind LiteLLM or another gateway, set it to the underlying provider model ID, not the gateway's alias.
+    Message content (`gen_ai.input.messages` / `gen_ai.output.messages`, JSON strings): put it behind a flag that's OFF by default. Make sure it lands as span attributes, not log events.
+    - Prefer the semconv shape: `[{"role": "user", "parts": [{"type": "text", "content": "..."}]}]`.
+    - The `invoke_agent` root span must carry the user's prompt in `gen_ai.input.messages` and the final reply in `gen_ai.output.messages`, or the transcript can be missing them.
+    - Mixpanel redacts common PII (emails, phone numbers, SSNs, card numbers, API keys, IPv4 addresses) at ingestion and sets `$mp_ai_pii_redacted` on affected events. This is a backstop, not a substitute for our own redaction.
+    
+    ### 2.6 Custom attributes
+    Propose 3–6 product dimensions for the turn's root span (e.g. `surface`, `command.type`, `prompt.version`, `plan.tier`, a flag variant, or tenant IDs like `account.id` / `org.id` for B2B agents). Use stable, lowercase, dotted names with short values. Add more only after I approve.
+    
+    ## Phase 3: Verify (all must pass)
+    1. Unit test: the auth header for token "abc" equals `Basic YWJjOg==`.
+    2. Test with an in-memory exporter wrapped by our Mixpanel filter/shaper: every exported span has `user.id` and `gen_ai.conversation.id`; non-agent spans are dropped; renamed attributes are present; the existing exporter still receives every span unchanged.
+    3. curl a single test span to the regional endpoint and get a 2xx. Use the test project if one was provided; otherwise use `user.id = "mp-ai-test"` so it's easy to find and exclude.
+    4. Run a real 2+ turn conversation that includes a tool call and one forced error. Check the debug output: each turn is its own trace, all turns share a conversation ID, tokens and model are filled in, and the error is marked.
+    5. All existing tests pass.
+    6. Tell me to check Agent Intelligence → Conversations in Mixpanel.
+    
+    ## Final report
+    - Changes, by file (and any new dependencies, with pinned versions you checked exist)
+    - Table of attributes sent → where each value comes from
+    - Filtering rule, sampling impact, and env vars/flags added
+    - Known gaps: unfillable attributes, models that might not have pricing, content capture status, trace≠turn caveats
+    ```
+  </Tab>
+  <Tab title="Starting from scratch">
+    ```text expandable
+    # Task: Add OpenTelemetry GenAI tracing to our agent and export it to Mixpanel Agent Intelligence
+    
+    ## Goal
+    Instrument our AI agent with OpenTelemetry following the GenAI semantic conventions, and export the traces to Mixpanel. Keep the change small and production-safe. Agent behavior must not change.
+    
+    ## Source of truth
+    Read https://docs.mixpanel.com/docs/agent-intelligence.md (if you have web access) and the GenAI semantic conventions at https://github.com/open-telemetry/semantic-conventions-genai. If they disagree with this prompt, follow the docs and tell me about the conflict.
+    
+    ## Config
+    - MIXPANEL_PROJECT_TOKEN: env var (don't hardcode; don't commit it)
+    - Region: [US | EU | India]
+    - Test project token for verification (optional): [token or "none"]
+    If the region is still a placeholder, ask me before writing code.
+    
+    ## Non-goals
+    - Don't refactor the agent loop, change prompts/models, or upgrade unrelated dependencies.
+    - Don't add tracing to non-agent code paths.
+    - Don't turn on prompt/response capture in production without my approval.
+    
+    ## Mixpanel facts you need
+    - Each span becomes one Mixpanel event and counts toward our billed event volume. Only make spans for work worth looking into.
+    - Model: Conversation (`gen_ai.conversation.id`) → Turn (one prompt/response = ONE trace) → Span.
+    - Endpoint (OTLP/HTTP, protobuf or JSON; use the HTTP exporter, not gRPC):
+      US https://ingestion-us.mixpanel.com/v1/ai/otel/traces
+      EU https://ingestion-eu.mixpanel.com/v1/ai/otel/traces
+      IN https://ingestion-in.mixpanel.com/v1/ai/otel/traces
+    - Header: `Authorization: Basic base64("<PROJECT_TOKEN>:")`. Note the trailing colon. Build it in code with the standard library.
+    - Spans without a `user.id` attribute are dropped. Its value must equal the Mixpanel `distinct_id` for that user.
+    - Spans over 1MB (uncompressed JSON) are dropped. Custom string properties are truncated to 255 bytes.
+    - Cost is calculated from `gen_ai.request.model` (exact string match) and the token attributes. `gen_ai.usage.input_tokens` must INCLUDE cache-read and cache-write tokens.
+    
+    ## Phase 1: Investigate, then STOP
+    Don't change any code yet. Find out:
+    1. Language/runtime, how we deploy (long-running server, serverless, worker), the agent framework (if any), and the LLM SDKs/providers.
+    2. Whether anything already registers a global OTel TracerProvider or uses OTel internally (Sentry, Langfuse, Logfire, Datadog OTel mode, Honeycomb, etc.). If something does, we must attach to it, not register a second provider. Tell me if this changes the plan.
+    3. The agent loop: where a user turn starts and ends, where LLM calls happen (including streaming and retries), where tools run, and anything that runs in parallel or crosses processes/queues.
+    4. Where the user ID and a conversation/thread ID are available at the start of a turn. Does the user ID match our Mixpanel distinct_id, including for anonymous/logged-out users (how does our Mixpanel identity setup handle them)? If there's no conversation ID, suggest a source.
+    5. Instrumentation options, in this order of preference:
+       a) Our framework/SDK has built-in OTel tracing that emits current `gen_ai.*` semconv.
+       b) A maintained OTel GenAI instrumentation package exists for our SDK (e.g. the official OpenTelemetry contrib GenAI instrumentations, or OpenLLMetry).
+       c) Manual instrumentation with the OTel API around our LLM and tool calls.
+       For each option, check that the package actually exists in the registry, and find out which attribute names it emits and whether it needs a semconv opt-in (e.g. `OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai_latest_experimental` in the Python contrib instrumentations). Don't guess package names.
+    
+    Then present a short plan covering: the chosen approach and why, packages with pinned versions, the span structure, how user.id/conversation.id get onto spans, and open questions. **Wait for my approval before you implement.**
+    
+    ## Phase 2: Implement
+    
+    ### 2.1 SDK setup
+    - Initialize tracing once, at startup, before the LLM clients are imported or created. Set the `service.name` resource attribute.
+    - BatchSpanProcessor + OTLP HTTP exporter → the Mixpanel regional endpoint with the auth header. In dev, add a console exporter behind a flag.
+    - Add a kill switch, `MIXPANEL_AI_TRACING_ENABLED` (default off until verified), plus a region setting.
+    - Tracing must never block, slow down, or crash a request. If config is missing, it does nothing.
+    - Shut down/flush when the process exits. On serverless, `forceFlush` at the end of each invocation.
+    
+    ### 2.2 Span structure (GenAI semconv)
+    - One root span per user turn: `invoke_agent {agent_name}`, `gen_ai.operation.name=invoke_agent`. Each turn is a NEW trace. Never put a whole conversation in one trace.
+    - One child span per LLM call: `chat {model}`, `gen_ai.operation.name=chat`. Retries are separate spans.
+    - One child span per tool call: `execute_tool {tool_name}`, `gen_ai.operation.name=execute_tool`.
+    - Retrieval/embedding steps only if we have them. Don't wrap trivial internal functions.
+    - Errors: record the exception, set ERROR status, and set `error.type`.
+    - If an auto-instrumentation package already creates the chat spans, add only the root/tool spans around it. Don't make duplicate LLM spans.
+    
+    ### 2.3 Identity attributes
+    - At the start of each turn, put `user.id`, `gen_ai.conversation.id`, and `gen_ai.agent.name` into context. Copy them onto every span in a span processor's `onStart`, using an allowlist (only these keys).
+    - Watch out for baggage leaks: the W3C baggage propagator puts baggage in outbound HTTP headers, which would send user IDs to the LLM provider and other third parties. If the turn runs in one process, use a non-propagating context value (e.g. a context key / contextvar). If it crosses our own services, use baggage but make sure it isn't injected into requests to external hosts.
+    - Check that the values survive async tasks, threads, streaming callbacks, and queue hops.
+    
+    ### 2.4 GenAI attributes
+    Set these per span where they apply:
+    `gen_ai.agent.name`, `gen_ai.provider.name`, `gen_ai.request.model`, `gen_ai.response.model`, `gen_ai.usage.input_tokens`, `gen_ai.usage.output_tokens`, `gen_ai.usage.cache_read.input_tokens`, `gen_ai.usage.cache_write.input_tokens`, `gen_ai.tool.name`, `gen_ai.tool.call.arguments`, `gen_ai.tool.call.result`.
+    Token gotchas:
+    - Anthropic's `input_tokens` EXCLUDES cache tokens. Add `cache_creation_input_tokens` + `cache_read_input_tokens` to it.
+    - OpenAI streaming returns no usage unless `stream_options: {"include_usage": true}` is set. Set the usage attributes after the stream finishes, before the span ends (spans are read-only after they end).
+    - Cache writes go in `gen_ai.usage.cache_write.input_tokens`. If the SDK reports them as `cache_creation.input_tokens` or (Vercel AI SDK) `cacheWriteTokens`, map them to that name, or cache-write cost is left out.
+    - Model strings must be the exact provider model ID, or the cost shows as $0. Cost is keyed on `gen_ai.request.model`, so behind LiteLLM or another gateway, set it to the underlying provider model ID, not the gateway's alias.
+    Message content (`gen_ai.input.messages` / `gen_ai.output.messages`, JSON strings in the semconv message format): put it behind a flag that's OFF by default. Make sure it lands as span attributes, not log events (we only export traces). Truncate it so spans stay well under 1MB.
+    - Semconv message shape: `[{"role": "user", "parts": [{"type": "text", "content": "..."}]}]`.
+    - The `invoke_agent` root span must carry the user's prompt in `gen_ai.input.messages` and the final reply in `gen_ai.output.messages`, or the transcript can be missing them.
+    - Mixpanel redacts common PII (emails, phone numbers, SSNs, card numbers, API keys, IPv4 addresses) at ingestion and sets `$mp_ai_pii_redacted` on affected events. This is a backstop, not a substitute for our own redaction.
+    
+    ### 2.5 Custom attributes
+    Propose 3–6 product dimensions for the turn's root span (e.g. `surface`, `command.type`, `prompt.version`, `plan.tier`, a flag variant, or tenant IDs like `account.id` / `org.id` for B2B agents). Use stable, lowercase, dotted names with short values. Add more only after I approve.
+    
+    ### 2.6 Volume
+    If volume is high, add a parent-based trace sampler behind config, defaulting to 100%. Sample whole traces only, never individual spans.
+    
+    ## Phase 3: Verify (all must pass)
+    1. Unit test: the auth header for token "abc" equals `Basic YWJjOg==`.
+    2. Test with an in-memory exporter: a simulated 2-turn conversation with a tool call produces 2 traces; every span has `user.id` and the same `gen_ai.conversation.id`; LLM spans have the model and token counts (including the cache-token rule for our provider); a forced tool error marks its span as ERROR.
+    3. Test that agent behavior and output are unchanged when tracing is disabled AND when the exporter endpoint is unreachable.
+    4. curl a single test span to the regional endpoint and get a 2xx. Use the test project if one was provided; otherwise use `user.id = "mp-ai-test"` so it's easy to find and exclude.
+    5. Run a real 2+ turn conversation locally and check the console exporter output.
+    6. All existing tests pass.
+    7. Tell me to check Agent Intelligence → Conversations in Mixpanel.
+    
+    ## Final report
+    - Changes, by file, and new dependencies with pinned versions
+    - Table of attributes sent → where each value comes from
+    - Env vars/flags added and their defaults
+    - Known gaps: unfillable attributes, models that might not have pricing, content capture status, anything that crosses processes
+    ```
+  </Tab>
+</Tabs>
+
+### B. Implement Agent Intelligence manually
+
 ### Step 1 — Point your exporter at Mixpanel
 
 <table>
