@@ -63,13 +63,28 @@
         "tab": "Docs",
         "groups": [
           {
-            "group": "INTRO",
+            "group": "WELCOME",
             "icon": "/icons/wave.svg",
             "pages": [
               "docs/what-is-mixpanel",
-              "docs/what-to-track",
               {
-                "group": "Quickstart",
+                "group": "Set Up Mixpanel",
+                "root": "guides/set-up-mixpanel",
+                "pages": [
+                  "guides/set-up-mixpanel/get-your-data-in",
+                  "guides/set-up-mixpanel/configure-your-account",
+                  "guides/set-up-mixpanel/train-your-team"
+                ]
+              },
+              "docs/quickstart/install-with-ai"
+            ]
+          },
+          {
+            "group": "DATA IN",
+            "icon": "/icons/data-in.svg",
+            "pages": [
+              {
+                "group": "Overview",
                 "root": "docs/quickstart",
                 "pages": [
                   "docs/quickstart/install-mixpanel",
@@ -81,16 +96,9 @@
                       "docs/quickstart/capture-events/autocapture",
                       "docs/quickstart/capture-events/track-events"
                     ]
-                  },
-                  "docs/quickstart/install-with-ai"
+                  }
                 ]
-              }
-            ]
-          },
-          {
-            "group": "DATA IN",
-            "icon": "/icons/data-in.svg",
-            "pages": [
+              },
               {
                 "group": "Tracking Methods",
                 "root": "docs/tracking-methods",
@@ -291,7 +299,8 @@
                   "docs/tracking-best-practices/server-side-best-practices",
                   "docs/tracking-best-practices/tracking-plan",
                   "docs/tracking-best-practices/traffic-attribution",
-                  "docs/tracking-best-practices/warehouse-best-practices"
+                  "docs/tracking-best-practices/warehouse-best-practices",
+                  "docs/what-to-track"
                 ]
               }
             ]

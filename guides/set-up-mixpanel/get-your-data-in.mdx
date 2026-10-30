@@ -1,0 +1,245 @@
+---
+title: "Get your data in"
+description: "Phase 1 of 3. Plan what to track, test it in a development project, then launch to production."
+sidebarTitle: "Get Your Data In"
+---
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '10px', margin: '10px 0 14px' }}>
+  <div style={{ borderTop: '3px solid #F97316', paddingTop: '8px', fontWeight: 500 }}>
+    <div style={{ fontSize: '12px', color: '#F97316' }}>Phase 1</div>
+    Get your data in
+  </div>
+
+  <a href="/guides/set-up-mixpanel/configure-your-account" style={{ display: 'block', borderTop: '3px solid #D1D5DB', paddingTop: '8px', color: '#6B7280', textDecoration: 'none', borderBottom: 'none' }}>
+    <div style={{ fontSize: '12px' }}>Phase 2</div>
+    Configure your account
+  </a>
+
+  <a href="/guides/set-up-mixpanel/train-your-team" style={{ display: 'block', borderTop: '3px solid #D1D5DB', paddingTop: '8px', color: '#6B7280', textDecoration: 'none', borderBottom: 'none' }}>
+    <div style={{ fontSize: '12px' }}>Phase 3</div>
+    Train your team
+  </a>
+</div>
+
+## Overview
+
+This phase has three parts:
+
+- **Plan:** Decide which events to track and write them down.
+- **Test:** Send your events to a development project and check them there.
+- **Launch:** Move the same tracking to production and confirm it holds up.
+
+You don't need to track everything at once. Start with a handful of events for one use case, get them live, then repeat Plan, Test, and Launch for the next one.
+
+<Info>
+  Most rework in this phase traces back to two early choices: tracking too much, and waiting to decide how you'll identify each person until data is already flowing. Both are easy to get right at the start and slow to fix later.
+</Info>
+
+**Done when:**
+
+- You've picked a short list of events
+- They check out in development
+- They reach production
+
+## **Choose how to set up**
+
+You can set Mixpanel up with an AI coding agent or by following the steps yourself. Both get you to the same place with clean data flowing into Mixpanel, so pick the one that fits how your team works.
+
+<Columns cols={2}>
+  <Column>
+    <Card title="Set up with AI" icon="sparkles">
+      Your agent reads your codebase, suggests events, and adds the SDK. You review every change. 
+    </Card>
+  </Column>
+  <Column>
+    <Card title="Set up yourself" icon="mouse-pointer">
+      Follow the steps to install the SDK, send your first events, and check them. 
+    </Card>
+  </Column>
+</Columns>
+
+Either way, read the sections below. They explain what's happening and what you'll need to decide or review, even if an agent does the work.
+
+## Plan
+
+Pick a handful of events to start with, and write them down so your team can build from them.
+
+<Info>
+  Using an AI coding agent? [Install with AI](/docs/quickstart/install-with-ai) can suggest your first events from your code, starting with a sign-up and your most important action. If you want a complete plan, it can draft one too. You can use it in place of picking your events yourself.
+</Info>
+
+### Decide what to measure
+
+Start with the problem that brought you to Mixpanel, like where people drop off when they sign up. Write down the five to 10 questions you want answered first, then pick a handful of events that answer them. [Measure Value](/guides/strategic-playbooks/guide-to-product-analytics/measure-value) · [What to Track](/docs/what-to-track)
+
+What counts depends on your business, so here are starting points for a few common ones.
+
+<Tabs>
+  <Tab title="Online store">
+    **What matters most:** Shoppers who buy each week.
+
+    **Start with these events:**
+
+    - **`sign_up_completed`:** Someone finishes creating an account.
+    - **`item_viewed`:** Someone looks at an item. Include which item, its type, and its price.
+    - **`item_added_to_cart`:** Someone adds an item to their cart. Include which item, how many, and the price.
+    - **`checkout_viewed`:** Someone reaches checkout. Include how many items and the order total.
+    - **`purchase_completed`:** Someone completes a purchase. Include the order total, payment method, and coupon code.
+  </Tab>
+  <Tab title="Streaming and media">
+    **What matters most:** People who watch each week.
+
+    **Start with these events:**
+
+    - **`sign_up_completed`:** Someone finishes creating an account.
+    - **`content_searched`:** Someone searches for content. Include what they searched for and how many results came back.
+    - **`content_viewed`:** Someone opens a title's page. Include the title, type, and genre.
+    - **`content_started`:** Someone starts watching. Include the same details, plus where they found it.
+    - **`content_ended`:** Someone stops watching. Include how long they watched.
+  </Tab>
+  <Tab title="Software (SaaS)">
+    **What matters most:** People who use your product each week.
+
+    **Start with these events:**
+
+    - **`sign_up_completed`:** Someone finishes creating an account.
+    - **Your key action:** Someone does the thing that shows they got value, like viewing a report or finishing a task. Include what they did and where in the product they did it.
+    - **Your sharing action:** Someone shares or exports their work. Include what they shared and how.
+    - **`plan_changed`:** Someone changes their plan. Include the old plan, the new plan, and whether it was an upgrade or a downgrade.
+    - **`plan_canceled`:** Someone cancels their plan. Include which plan they were on.
+  </Tab>
+  <Tab title="Banking and finance">
+    **What matters most:** People who use the app each week.
+
+    **Start with these events:**
+
+    - **`sign_up_completed`:** Someone finishes creating an account.
+    - **`balance_viewed`:** Someone checks a balance. Include the account type and where in the app they opened it.
+    - **`deposit_completed`:** Someone makes a deposit. Include the amount, type, and currency.
+    - **`transfer_completed`:** Someone transfers money. Include the type, the accounts, and the amount.
+    - **`card_balance_paid`:** Someone pays a credit card balance. Include the amount and whether autopay was on.
+  </Tab>
+  <Tab title="Something else">
+    **What matters most:** People who get value from your product on a regular basis.
+
+    **Start with these events:**
+
+    - **`sign_up_completed`:** Someone finishes creating an account.
+    - **Your key action:** Someone does the thing that shows they got value. For a fitness app, that's a finished workout. For an e-signature tool, it's a signed contract.
+    - **The steps that lead there:** Someone takes one of the actions right before it, like starting a workout or sending a document to sign. Add two or three, so you can see where people drop off.
+  </Tab>
+</Tabs>
+
+<Tip>
+  **Small doesn't mean thin.** Cover one journey from start to finish, not a scattering of events across the product.
+</Tip>
+
+### Choose your events
+
+One event with properties beats one event per item. Skip personal data, and anything Mixpanel already collects. [How To Build a Tracking Strategy](/guides/guides-by-workflow/build-tracking-strategy) · [Default Properties](/docs/data-structure/property-reference/default-properties) · [Data Privacy & PII Best Practices](/guides/guides-by-workflow/data-privacy)
+
+Name events in snake_case, with the object first and the action second, like `item_added_to_cart`. Names are case-sensitive, so stick to one style. If you want friendlier names in Mixpanel, set a display name in Lexicon, such as showing `item_added_to_cart` as Item Added to Cart. [Events](/docs/data-structure/events-and-properties) · [Lexicon](/docs/data-governance/lexicon)
+
+### Write down your first events
+
+List the events you picked and the properties you want on each, in one place your engineer can build from. You don't need a complete tracking plan yet, so fill in only your first events and add to it as you grow. Have a teammate, or your Mixpanel contact if you have one, take a look before anyone builds. [Create A Tracking Plan](/docs/tracking-best-practices/tracking-plan)
+
+<AccordionGroup>
+  <Accordion title="New to events, users, and properties?">
+    Start with how Mixpanel organizes data into events, users, and properties, so your plan uses the same terms. [Data Model](/docs/data-structure/concepts)
+  </Accordion>
+
+  <Accordion title="Selling to companies?">
+    Decide whether to analyze them as groups, not just as users. [Group Analytics](/docs/data-structure/group-analytics)
+  </Accordion>
+</AccordionGroup>
+
+## Test
+
+Send your events to a development project and check them there, so mistakes never touch your real data.
+
+<Info>
+  Using an AI coding agent? Create your development project first, since you'll need its project token. Then [Install with AI](/docs/quickstart/install-with-ai) can do much of the rest of this section. It picks the right SDK, adds tracking and identity to your code, and checks that events arrive. You'll still deploy the changes to your testing environment.
+</Info>
+
+### Create development and production projects
+
+Make one project for testing and one for your real data. [Managing Projects](/docs/orgs-and-projects/managing-projects) · [Developer Environments](/docs/tracking-best-practices/developer-environments)
+
+### Give your engineers access
+
+Implementation often involves more than one person. Make sure everyone who will implement or test has access to your development project. Start with just enough access for that, and set up broader access in Phase 2. [Choose how people get access](/guides/set-up-mixpanel/configure-your-account#choose-how-people-get-access)
+
+### Choose how data gets in
+
+Pick the method that fits how your product is built. [Tracking Methods](/docs/tracking-methods) · [Choosing the Right Method](/docs/tracking-methods/choosing-the-right-method)
+
+<AccordionGroup>
+  <Accordion title="Thinking about autocapture?">
+    Autocapture records page views and clicks on web without extra code. It can't tell which actions matter to your business, so use it alongside the events you picked, not instead of them.
+
+    Events it records still count toward your billing, even if you hide them from reports, so check what it records for anything sensitive first. [Autocapture](/docs/tracking-methods/autocapture)
+  </Accordion>
+</AccordionGroup>
+
+### Send your first events
+
+Send the events you picked to your development project, using the method you chose. [Quickstart](/docs/quickstart) · [SDKs](/docs/tracking-methods/sdks) · [Tracking Best Practices](/docs/tracking-best-practices)
+
+<AccordionGroup>
+  <Accordion title="Tracking companies as groups?">
+    If you chose to analyze companies as groups, set up your group keys as you send events. [Group Analytics Implementation Guide](/docs/data-structure/group-analytics/group-analytics-implementation)
+  </Accordion>
+</AccordionGroup>
+
+### Identify your users
+
+Set up identity when you first send data. [Identity Management Overview](/docs/tracking-methods/id-management) · [Identifying Users (Simplified)](/docs/tracking-methods/id-management/identifying-users-simplified)
+
+<Tip>
+  **Pick a user ID that never changes before you write any identity code.** Once a user ID is set, it can't be changed.
+</Tip>
+
+### Check your events and identity
+
+Developers check the code, and product teammates walk through the main user flows. Then build one report from your development data that answers a top question. [Ensuring Data Quality](/guides/guides-by-workflow/ensure-data-quality) · [Debugging](/docs/tracking-best-practices/debugging) · [Insights](/docs/reports/insights)
+
+No events showing? [Sending Data FAQ](/troubleshooting/sending-data)
+
+## Launch
+
+Move the same tracking to production and confirm it holds up with real users. Launch here means going live in production. Rolling Mixpanel out to your team comes later.
+
+<Info>
+  Used [Install with AI](/docs/quickstart/install-with-ai)? You'll still launch to production through your usual release process. Review the code your agent wrote before you deploy it.
+</Info>
+
+### Switch to your production project
+
+Point your product at your production project, and stop sending test data to your development project. [Locate Current Project Token](/docs/orgs-and-projects/managing-projects#locate-current-project-token)
+
+### Deploy and compare
+
+Review the code, deploy it through your usual release process, then compare what arrives with what you tested. [Missing or Incomplete Events](/docs/tracking-best-practices/debugging#missing-or-incomplete-events)
+
+{/* Optional: Remove the comment markers to show this accordion.
+  <AccordionGroup>
+  <Accordion title="Seeing fewer web events than you expect?">
+    Sending events through a domain you own can help with events lost to ad blockers. [First-Party Domains](/docs/tracking-methods/first-party-domains)
+  </Accordion>
+  </AccordionGroup>
+  */}
+
+### Watch for problems
+
+Set up alerts so you hear about drops or spikes before your team does. [Alerts](/docs/features/alerts) · [Data Volume Monitoring](/docs/data-governance/data-volume-monitoring)
+
+## Learn more
+
+<Card title="Mixpanel Onboarding path" icon="graduation-cap" horizontal href="https://university.mixpanel.com/student/path/3411734-mixpanel-onboarding">
+  A course in Mixpanel University that covers the full setup, one module at a time.
+</Card>
+
+## What's next
+
+<Badge color="blue" size="xs">Phase 2</Badge><br /> Next, move on to [Configure your account](/guides/set-up-mixpanel/configure-your-account). You can start it alongside this phase.
