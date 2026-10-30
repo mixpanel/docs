@@ -63,7 +63,7 @@
         "tab": "Docs",
         "groups": [
           {
-            "group": "INTRO",
+            "group": "WELCOME",
             "icon": "/icons/wave.svg",
             "pages": [
               "docs/what-is-mixpanel",
