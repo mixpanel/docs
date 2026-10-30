@@ -187,6 +187,12 @@ The events Mixpanel records are listed below. The **Available Since** date on ea
 | `feature_flag.restored` | Feature Flag Restored | An archived feature flag was restored. | Project and organization | May 20, 2026 |
 | `feature_flag.updated` | Feature Flag Updated | Feature flag settings were modified. | Project and organization | May 20, 2026 |
 
+### MCP
+
+| Event Type | Display Name | Description | Scope | Available Since |
+| --- | --- | --- | --- | --- |
+| `mcp_client.authorized` | MCP Client Authorized | A user granted an application access to Mixpanel through the MCP server. The entry records which application was authorized, where it was sent the authorization code, and what it was allowed to do. It is written once per organization the user belonged to at the time of consent, because the resulting access is not limited to a single organization. | Organization only | October 31, 2026 |
+
 ### Organization Settings
 
 | Event Type | Display Name | Description | Scope | Available Since |
@@ -196,6 +202,9 @@ The events Mixpanel records are listed below. The **Available Since** date on ea
 | `organization.sso_settings_updated` | Organization SSO Settings Changed | The organization's single sign-on settings were updated. | Organization only | September 10, 2026 |
 | `organization_access_security.twofactor_disabled` | Organization Two-Factor Auth Disabled | Organization-wide two-factor authentication was disabled. | Organization only | May 20, 2026 |
 | `organization_access_security.twofactor_enabled` | Organization Two-Factor Auth Enabled | Organization-wide two-factor authentication was enabled. | Organization only | May 20, 2026 |
+| `trusted_identity_issuer.created` | Trusted Identity Provider Added | An identity provider was trusted for Enterprise Managed Auth. | Organization only | October 31, 2026 |
+| `trusted_identity_issuer.deleted` | Trusted Identity Provider Removed | A trusted identity provider was removed, so members can no longer sign in through it. | Organization only | October 31, 2026 |
+| `trusted_identity_issuer.updated` | Trusted Identity Provider Updated | A trusted identity provider was changed, such as pausing or resuming sign-in through it. | Organization only | October 31, 2026 |
 
 ### Project Settings
 
