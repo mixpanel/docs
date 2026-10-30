@@ -1,0 +1,41 @@
+{
+  "x-release-date": "2026-10-30T00:00:00Z",
+  "description": "A user enabled passkey login in their profile settings.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "user",
+      "default": "user",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {},
+      "type": "object"
+    },
+    "action": {
+      "const": "passkey_login_enabled",
+      "default": "passkey_login_enabled",
+      "type": "string"
+    },
+    "type": {
+      "const": "user.passkey_login_enabled",
+      "default": "user.passkey_login_enabled",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

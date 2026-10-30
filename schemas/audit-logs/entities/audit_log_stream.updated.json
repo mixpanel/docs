@@ -1,0 +1,170 @@
+{
+  "x-release-date": "2026-10-30T00:00:00Z",
+  "description": "An audit log stream's delivery configuration was changed.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "audit_log_stream",
+      "default": "audit_log_stream",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "description": "The configuration of an audit log stream.",
+          "properties": {
+            "is_active": {
+              "type": "boolean"
+            },
+            "destination": {
+              "anyOf": [
+                {
+                  "description": "A Google Cloud Storage destination.",
+                  "properties": {
+                    "type": {
+                      "const": "gcs",
+                      "default": "gcs",
+                      "type": "string"
+                    },
+                    "bucket": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "path_prefix": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object"
+                },
+                {
+                  "description": "A destination of a type this schema version does not describe in detail.",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "is_active",
+            "destination"
+          ],
+          "type": "object"
+        },
+        "current": {
+          "description": "The configuration of an audit log stream.",
+          "properties": {
+            "is_active": {
+              "type": "boolean"
+            },
+            "destination": {
+              "anyOf": [
+                {
+                  "description": "A Google Cloud Storage destination.",
+                  "properties": {
+                    "type": {
+                      "const": "gcs",
+                      "default": "gcs",
+                      "type": "string"
+                    },
+                    "bucket": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "path_prefix": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object"
+                },
+                {
+                  "description": "A destination of a type this schema version does not describe in detail.",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "required": [
+            "is_active",
+            "destination"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "updated",
+      "default": "updated",
+      "type": "string"
+    },
+    "type": {
+      "const": "audit_log_stream.updated",
+      "default": "audit_log_stream.updated",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
