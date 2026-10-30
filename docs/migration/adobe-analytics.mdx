@@ -1,5 +1,10 @@
 ---
 title: Migrating from Adobe Analytics
+description: "Migrate from Adobe Analytics to Mixpanel, covering data model differences, key metric mappings, and implementation steps"
+related:
+  - /docs/migration
+  - /docs/data-structure/concepts
+  - /docs/tracking-methods/warehouse-connectors
 ---
 
 If you haven't already, we recommend starting with our [Migration Guides Overview](/docs/migration) as it details the key components of migrating to Mixpanel from other analytics tools. Below we outline specific steps and considerations when migrating from Adobe Analytics.
@@ -176,6 +181,6 @@ For any 3rd party integrations, the recommendation is to populate the identifier
 
 If you're unsure how you currently track data, or might want to consider tracking data differently as you migrate to Mixpanel, we recommend starting [here](https://mixpanel.com/blog/guide-to-choosing-your-data-architecture/).
 
-Mixpanel Customer Success and Support have been helping thousands of customers migrate from other tools to Mixpanel over the past decade. You can see an overview of the process we run with our Enterprise plan customers migrating from Adobe Analytics [here](https://mxpnl.notion.site/Adobe-Migration-Package-4035f7e2f62f43adb65e34b23ad14d23?pvs=4).
+Mixpanel Customer Success and Support have been helping thousands of customers migrate from other tools to Mixpanel over the past decade. For an overview of how a migration typically runs, from auditing your data and migrating live tracking to loading historical data and onboarding your teams, see our [Migration Guides Overview](/docs/migration). To move historical Adobe Analytics data, see [Loading historical data](#loading-historical-data) above, which covers the discovery questions to answer first, backfill options, and [setting up a separate project](#setting-up-the-projects) before any data is sent.
 
 If you need help, just [reach out here](https://mixpanel.com/get-support) and we'll be ready to assist with advice specific to your situation.
