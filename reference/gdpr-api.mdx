@@ -1,10 +1,21 @@
 ---
 title: Overview
+description: "GDPR and CCPA API (v3) for creating and checking data retrieval and deletion jobs for end-user personal data"
 ---
 
 ## GDPR and CCPA API (v3)
 
 The following retrieval and deletion API calls are updated for version 3 and are made for GDPR and CCPA compliance.
+
+<Note>
+  Send requests to the host for your project's data residency region. The examples below use the US host; projects with [EU](/docs/privacy/eu-residency) or [India](/docs/privacy/in-residency) data residency must replace `mixpanel.com` with the regional host. On the endpoint reference pages, select the server matching your region.
+
+  | Residency | Host |
+  | --- | --- |
+  | US (default) | `https://mixpanel.com/api/app` |
+  | EU | `https://eu.mixpanel.com/api/app` |
+  | India | `https://in.mixpanel.com/api/app` |
+</Note>
 
 #### Create Retrieval
 
