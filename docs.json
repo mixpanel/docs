@@ -66,25 +66,7 @@
             "group": "INTRO",
             "icon": "/icons/wave.svg",
             "pages": [
-              "docs/what-is-mixpanel",
-              "docs/what-to-track",
-              {
-                "group": "Quickstart",
-                "root": "docs/quickstart",
-                "pages": [
-                  "docs/quickstart/install-mixpanel",
-                  "docs/quickstart/identify-users",
-                  {
-                    "group": "Capture Events",
-                    "root": "docs/quickstart/capture-events",
-                    "pages": [
-                      "docs/quickstart/capture-events/autocapture",
-                      "docs/quickstart/capture-events/track-events"
-                    ]
-                  },
-                  "docs/quickstart/install-with-ai"
-                ]
-              }
+              "docs/what-is-mixpanel"
             ]
           },
           {
@@ -291,9 +273,27 @@
                   "docs/tracking-best-practices/server-side-best-practices",
                   "docs/tracking-best-practices/tracking-plan",
                   "docs/tracking-best-practices/traffic-attribution",
-                  "docs/tracking-best-practices/warehouse-best-practices"
+                  "docs/tracking-best-practices/warehouse-best-practices",
+                  "docs/what-to-track"
                 ]
               }
+            ]
+          },
+          {
+            "group": "Quickstart",
+            "root": "docs/quickstart",
+            "pages": [
+              "docs/quickstart/install-mixpanel",
+              "docs/quickstart/identify-users",
+              {
+                "group": "Capture Events",
+                "root": "docs/quickstart/capture-events",
+                "pages": [
+                  "docs/quickstart/capture-events/autocapture",
+                  "docs/quickstart/capture-events/track-events"
+                ]
+              },
+              "docs/quickstart/install-with-ai"
             ]
           },
           {
