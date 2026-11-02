@@ -29,15 +29,46 @@ After [setting up your development environment for React Native](https://reactna
 npm install mixpanel-react-native
 ```
 
-Then navigate to your application's iOS folder, and install the dependencies. (Note you do not need to update your Podfile to add Mixpanel.)
+Then link the iOS native module with CocoaPods or Swift Package Manager.
+
+**CocoaPods** (default). Navigate to your application's iOS folder and install the dependencies. You don't need to update your Podfile to add Mixpanel.
 
 ```bash
 pod install
 ```
 
+**Swift Package Manager** (React Native 0.88\+, experimental). The SDK ships a `Package.swift` that React Native's SwiftPM autolinking picks up, so no extra configuration is needed. Opt your app into SwiftPM from its iOS folder:
+
+```bash
+npx react-native spm --deintegrate
+```
+
+`--deintegrate` removes CocoaPods from the project, and `npx react-native spm deinit` reverses the change. After a fresh clone, and in CI, run `npx react-native spm` once before building, as you would `pod install`. React Native's SwiftPM support is still experimental; see the [React Native 0.88 release notes](https://reactnative.dev/blog/2026/10/19/react-native-0.88#experimental-swift-package-manager-support) for its current limitations.
+
 <Note>
-  Since Xcode 12.5, there is a known swift compile issue, please refer to [this workaround](https://github.com/mixpanel/mixpanel-react-native/issues/43#issuecomment-829599732). However the compile issue has been resolved in Xcode 13.2.1\+, there is no extra step required as long as you upgrade to Xcode 13.2.1\+.
+  The Swift package pins [mixpanel-swift](https://github.com/mixpanel/mixpanel-swift) to the exact version each SDK release is tested with. If your app also depends on mixpanel-swift directly, use the version in the SDK's [`ios/Package.swift`](https://github.com/mixpanel/mixpanel-react-native/blob/master/ios/Package.swift), or Swift Package Manager won't be able to resolve your packages.
 </Note>
+
+**Expo** (SDK 58\+, experimental). Expo apps opt into Swift Package Manager in the app config instead of with `npx react-native spm`. Add this to your `app.json`:
+
+```json
+{
+  "expo": {
+    "experiments": {
+      "swiftPackageManager": true
+    }
+  }
+}
+```
+
+Then regenerate the iOS project and build:
+
+```bash
+npx expo prebuild --platform ios --clean
+npx expo run:ios
+```
+
+To go back to CocoaPods, remove the setting and run the same `prebuild` command. If the build fails with "`expo-constants` could not be resolved", add the package to your app with `npx expo install expo-constants` and run `prebuild` again. This is an Expo issue that also affects apps without Mixpanel.
 
 After installation, import the `Mixpanel` class from the SDK, create an instance of Mixpanel using your [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens), then initialize by calling [`.init()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#:~:text=init\(token%2C%20trackAutomaticEvents%2C%20Optional\)).
 
