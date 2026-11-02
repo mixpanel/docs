@@ -15,7 +15,7 @@ Mixpanel treats two events as duplicates only when **all four** of these match:
 - `distinct_id`
 - `$insert_id`
 
-Only these four are considered. Other properties are ignored for deduplication, and when a duplicate is found, only the latest ingested copy is surfaced in queries.
+Only these four are considered. Other properties are ignored for deduplication, and when a duplicate is found, only one copy is surfaced in queries. Mixpanel does not guarantee which copy that is.
 
 ## Two Different Passes
 
