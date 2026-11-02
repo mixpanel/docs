@@ -54,46 +54,19 @@ yarn add @mixpanel/react-native-session-replay
 
 #### iOS
 
-Link the iOS native module with CocoaPods or Swift Package Manager.
-
-**CocoaPods** (default). The SDK dependencies are automatically added via CocoaPods.
+From your app's iOS folder, link the native module with CocoaPods (default):
 
 ```sh
-cd ios && pod install
+pod install
 ```
 
-**Swift Package Manager** (React Native 0.88\+, experimental). The SDK ships a `Package.swift` that React Native's SwiftPM autolinking picks up, so no extra configuration is needed. Opt your app into SwiftPM from its iOS folder:
+Or with Swift Package Manager (SPM) on React Native 0.88\+ (experimental):
 
 ```sh
 npx react-native spm --deintegrate
 ```
 
-`--deintegrate` removes CocoaPods from the project, and `npx react-native spm deinit` reverses the change. After a fresh clone, and in CI, run `npx react-native spm` once before building, as you would `pod install`. React Native's SwiftPM support is still experimental; see the [React Native 0.88 release notes](https://reactnative.dev/blog/2026/10/19/react-native-0.88#experimental-swift-package-manager-support) for its current limitations.
-
-<Note>
-  The Swift package pins the [Session Replay iOS SDK](https://github.com/mixpanel/mixpanel-ios-session-replay-package) to the exact version each SDK release is tested with. If your app also depends on `mixpanel-ios-session-replay-package` directly, use the version in the SDK's [`ios/Package.swift`](https://github.com/mixpanel/mixpanel-react-native-session-replay/blob/main/ios/Package.swift), or Swift Package Manager won't be able to resolve your packages.
-</Note>
-
-**Expo** (SDK 58\+, experimental). Expo apps opt into Swift Package Manager in the app config instead of with `npx react-native spm`. Add this to your `app.json`:
-
-```json
-{
-  "expo": {
-    "experiments": {
-      "swiftPackageManager": true
-    }
-  }
-}
-```
-
-Then regenerate the iOS project and build:
-
-```sh
-npx expo prebuild --platform ios --clean
-npx expo run:ios
-```
-
-To go back to CocoaPods, remove the setting and run the same `prebuild` command. If the build fails with "`expo-constants` could not be resolved", add the package to your app with `npx expo install expo-constants` and run `prebuild` again. This is an Expo issue that also affects apps without Mixpanel.
+With SPM, run `npx react-native spm` after a fresh clone or in CI, before building. On Expo SDK 58\+ (experimental), set `expo.experiments.swiftPackageManager` to `true` in `app.json` and run `npx expo prebuild --platform ios --clean` instead.
 
 #### Android
 
