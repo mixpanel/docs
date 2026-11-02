@@ -2,6 +2,10 @@
 title: "Feature Flags"
 description: "Rollout with precision control"
 sidebarTitle: "Feature Flags"
+related:
+  - /docs/experiments
+  - /docs/featureflags/runtime-events
+  - /docs/tracking-methods/sdks/javascript/javascript-flags
 ---
 
 Ship a feature to a subset of users, roll it back without a deploy, and measure what it changed — all from the same project your analytics already live in.
@@ -234,8 +238,8 @@ We recommend establishing light-weight controls without slowing teams.
 ### Permissions
 
 - **Project Role** — you need to have at least an “analyst” role to create and edit feature flags. “Consumer” roles can only view feature flags.
-  - **Overall Feature Flag permissions** - this setting allows you to give users or teams access to all feature flags. It overrides the permissions set at a per-flag level. For example, you might want your ops-lead team to have edit access to all flags for emergencies.
-- **Feature Flag Permissions** — You can manage share settings per flag.. Only editors for a flag will have access to modify a flag generally.
+- **Overall Feature Flag permissions** - this setting allows you to give users or teams access to all feature flags. It overrides the permissions set at a per-flag level. For example, you might want your ops-lead team to have edit access to all flags for emergencies.
+- **Feature Flag Permissions** — You can manage sharing settings for each flag. Only a flag’s editors can modify it.
 
 ### Audit Trail
 
