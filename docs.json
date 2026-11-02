@@ -400,7 +400,6 @@
               "docs/mixpanel-agent",
               {
                 "group": "MCP Connections",
-                "tag": "BETA",
                 "root": "docs/mcp-connections",
                 "pages": [
                   "docs/mcp-connections/github",
@@ -409,7 +408,13 @@
               },
               "docs/agentic-automations",
               "docs/root-cause-analysis",
-              "docs/mcp",
+              {
+                "group": "MCP Server",
+                "root": "docs/mcp",
+                "pages": [
+                  "docs/mcp/claude-enterprise-managed-auth"
+                ]
+              },
               "docs/mixpanel-headless",
               "docs/business-context",
               "docs/docs-for-ai-agents"
@@ -662,6 +667,7 @@
                   {
                     "group": "Grow Your Usership",
                     "pages": [
+                      "guides/guides-by-use-case/grow-your-usership/run-web-experiments",
                       "guides/guides-by-use-case/grow-your-usership/grow-revenue"
                     ]
                   },

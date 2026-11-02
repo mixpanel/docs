@@ -79,7 +79,7 @@ MCP tool call entries are retained for **90 days on all plans, including Enterpr
 - **The IP address is not the user's.** On an MCP tool call entry, the recorded IP address belongs to the server making the tool call (typically your AI provider's, such as Anthropic's or OpenAI's), not the device of the person using the assistant. Use the user field, not the IP address, to identify who performed an MCP action. The detailed entries have no IP address at all.
 - **MCP entries can take several minutes to appear.** If a recent action is missing, wait and refresh before treating it as unlogged.
 - **Very large arguments are dropped.** If a tool call's arguments exceed 64 KB, the MCP tool call entry records none of them and sets `arguments_truncated` to true. The detailed entries still carry the full before/after state.
-- **Connecting and disconnecting an MCP client is not yet recorded.** Only the actions taken through a connection are logged.
+- **Disconnecting an MCP client is not yet recorded.** Each connection, including an [enterprise-managed connection](/docs/mcp/claude-enterprise-managed-auth), is recorded as an `mcp_client.authorized` entry.
 
 Organization admins and owners can also query this history conversationally with the `Get-Audit-Log` tool — see [Querying the Audit Log](/docs/mcp#querying-the-audit-log) on the MCP server page.
 

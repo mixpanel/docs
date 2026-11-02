@@ -722,10 +722,10 @@ mixpanel.autocapture.trackScreenView("PromoScreen", utmProps)
 ### Click Events
 
 <Note>
-  **Beta.** Autocaptured click events are in beta: the events and the properties they capture may change before general availability. They require Android SDK v8.10.0 or later, and are **disabled by default** — you opt in with `AutocaptureOptions` at initialization.
+  Autocaptured click events require Android SDK v8.12.0 or later and are **disabled by default** — you opt in with `AutocaptureOptions` at initialization. See [Enabling Click Autocapture](#enabling-click-autocapture).
 </Note>
 
-Starting in v8.10.0, the SDK can capture taps for you, with no per-view instrumentation. Once enabled, it intercepts touches across every window in your app — activities, dialogs, bottom sheets — and works with both XML layouts and Jetpack Compose. Three events are produced:
+The SDK can capture taps for you, with no per-view instrumentation. Once enabled, it intercepts touches across every window in your app — activities, dialogs, bottom sheets — and works with both XML layouts and Jetpack Compose. Three events are produced:
 
 | Event | Fires when |
 | --- | --- |
