@@ -1,9 +1,9 @@
 ---
 title: Rate Limits
-description: "Per-project rate limits for the Ingestion, Query, Raw Data Export, and Lexicon Schemas APIs, and how to avoid 429 errors"
+description: "Rate limits for the Ingestion, Query, Raw Data Export, Lexicon Schemas, and Feature Flags APIs, and how to avoid 429 errors"
 ---
 
-We enforce a rate limit on our API to ensure the integrity of our system as well as prevent a single project from monopolizing the available resources for other projects. These rate limits are scope per project.
+We enforce a rate limit on our API to ensure the integrity of our system as well as prevent a single project from monopolizing the available resources for other projects. These rate limits are scoped per project unless noted otherwise.
 
 Getting a 429 response code from our API means that you have reached our rate-limit.
 
@@ -24,6 +24,10 @@ A maximum of 100 concurrent queries, 60 queries per hour, and 3 queries per seco
 ### [**Lexicon Schemas API**](/reference/lexicon-schemas-api)
 
 A maximum of 5 requests per minute, under 4000 events and properties updated in each minute, and less than 3000 total truncations/deletions per request.
+
+### [**Feature Flags API**](/reference/feature-flags-api)
+
+The `/flags` endpoint is rate limited to 500 requests per minute per IP address.
 
 ### You can reduce rate-limiting errors using one of the two approaches:
 
