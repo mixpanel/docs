@@ -54,11 +54,19 @@ yarn add @mixpanel/react-native-session-replay
 
 #### iOS
 
-The SDK dependencies are automatically added via CocoaPods.
+From your app's iOS folder, link the native module with CocoaPods (default):
 
 ```sh
-cd ios && pod install
+pod install
 ```
+
+Or with Swift Package Manager (SPM) from v2.1.0, on React Native 0.88\+:
+
+```sh
+npx react-native spm --deintegrate
+```
+
+With SPM, run `npx react-native spm` after a fresh clone or in CI, before building. On Expo SDK 58\+, set `expo.experiments.swiftPackageManager` to `true` in `app.json` and run `npx expo prebuild --platform ios --clean` instead.
 
 #### Android
 
