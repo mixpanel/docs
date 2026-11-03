@@ -25,6 +25,10 @@ A maximum of 100 concurrent queries, 60 queries per hour, and 3 queries per seco
 
 A maximum of 5 requests per minute, under 4000 events and properties updated in each minute, and less than 3000 total truncations/deletions per request.
 
+### [**Feature Flags API**](/reference/feature-flags-api)
+
+The `/flags` endpoint is rate limited to 500 requests per minute per IP address.
+
 ### You can reduce rate-limiting errors using one of the two approaches:
 
 - Spread your queries out over a longer period of time.
