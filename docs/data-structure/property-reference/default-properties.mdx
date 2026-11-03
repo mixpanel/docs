@@ -2,6 +2,10 @@
 sidebarTitle: Default Properties
 title: "Default Properties"
 description: "Automatically collected properties"
+related:
+  - /docs/data-structure/property-reference/reserved-properties
+  - /docs/tracking-best-practices/geolocation
+  - /docs/data-structure/property-reference/properties
 ---
 
 Mixpanel's [Data Ingestion APIs](/reference/ingestion-api) and [Client-Side SDKs](/docs/tracking-methods/choosing-the-right-method#client-side-tracking) automatically collect certain properties on every event or user profile. Do also note that some Customer Data Platforms (CDPs) that integrate with Mixpanel may also map their own properties to Mixpanel default properties. This document describes what those properties mean.
@@ -24,6 +28,13 @@ To disable capturing of geolocation properties (i.e. City, Region, Country) refe
 | \$mp\_api\_timestamp\_ms | API Timestamp | UTC timestamp in milliseconds when the event was received by our API. |
 | mp\_processing\_time\_ms | Time Processed (UTC) | UTC timestamp in milliseconds when the event was processed by Mixpanel servers. |
 | \$mp\_event\_size | Event Size | The size, in bytes, of the event ingested before transformation. |
+| \$mp\_raw\_user\_agent | Raw User Agent | The raw user agent associated with the request. If the sender specified a user agent via `$mp_user_agent` or `$mp_raw_user_agent`, this is that value; otherwise, it is the user agent extracted from the HTTP request sent to Mixpanel. |
+| \$mp\_actor\_type | Actor Type | Classification of the user agent behind the event: <br /> **agent** - a request from an LLM acting on behalf of a human user (e.g. the user agents of ChatGPT or Claude Code) <br /> **bot** - generic automated traffic, such as crawlers, search indexers, and other automated collectors <br /> **none** - the default when the request is classified as neither an agent nor a bot |
+| \$mp\_actor\_name | Actor Name | The classified identity behind an `agent` or `bot` actor type (e.g. `GPTBot`, `ClaudeBot`, `MistralAI-User`). Only present when \$mp\_actor\_type is `agent` or `bot`. |
+
+<Note>
+`$mp_actor_type` and `$mp_actor_name` are derived from the request's user agent. For how classification works, including how to forward your end user's user agent when tracking server-side, see [Identify AI Agent and Bot Traffic](/docs/tracking-best-practices/bot-traffic#identify-ai-agent-and-bot-traffic).
+</Note>
 
 ### User Properties
 

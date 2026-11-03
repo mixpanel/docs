@@ -1,0 +1,50 @@
+{
+  "x-release-date": "2026-10-30T00:00:00Z",
+  "description": "An audit log stream was paused. `pause_reason` identifies the cause.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "audit_log_stream",
+      "default": "audit_log_stream",
+      "type": "string"
+    },
+    "payload": {
+      "description": "Details about an audit log stream pause.",
+      "properties": {
+        "pause_reason": {
+          "description": "The reason an audit log stream was paused.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "pause_reason"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "paused",
+      "default": "paused",
+      "type": "string"
+    },
+    "type": {
+      "const": "audit_log_stream.paused",
+      "default": "audit_log_stream.paused",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

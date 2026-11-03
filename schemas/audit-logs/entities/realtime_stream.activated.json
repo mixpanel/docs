@@ -1,0 +1,136 @@
+{
+  "x-release-date": "2026-11-02T00:00:00Z",
+  "description": "A real-time stream was enabled.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "realtime_stream",
+      "default": "realtime_stream",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "destination_id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "enabled": {
+              "type": "boolean"
+            },
+            "payload_template_type": {
+              "type": "string"
+            },
+            "event_filter_names": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "destination_id",
+            "name",
+            "enabled",
+            "payload_template_type"
+          ],
+          "type": "object"
+        },
+        "current": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "destination_id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "enabled": {
+              "type": "boolean"
+            },
+            "payload_template_type": {
+              "type": "string"
+            },
+            "event_filter_names": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "destination_id",
+            "name",
+            "enabled",
+            "payload_template_type"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "activated",
+      "default": "activated",
+      "type": "string"
+    },
+    "type": {
+      "const": "realtime_stream.activated",
+      "default": "realtime_stream.activated",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

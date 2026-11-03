@@ -2,6 +2,11 @@
 # ======================
 *                       @mixpanel/docs-reviewers
 
+# API docs → product platform devs or docs reviewers (either can approve)
+# ======================
+/reference/             @mixpanel/product-platform-devs @mixpanel/docs-reviewers
+/openapi/               @mixpanel/product-platform-devs @mixpanel/docs-reviewers
+
 # tofu or docs reviewers (either can approve)
 # ======================
 /docs.json              @mixpanel/tofu @mixpanel/docs-reviewers
