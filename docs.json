@@ -69,14 +69,14 @@
               "docs/what-is-mixpanel",
               {
                 "group": "Set Up Mixpanel",
-                "root": "guides/set-up-mixpanel",
+                "root": "docs/set-up-mixpanel",
                 "pages": [
-                  "guides/set-up-mixpanel/get-your-data-in",
-                  "guides/set-up-mixpanel/configure-your-account",
-                  "guides/set-up-mixpanel/train-your-team"
+                  "docs/set-up-mixpanel/get-your-data-in",
+                  "docs/set-up-mixpanel/configure-your-account",
+                  "docs/set-up-mixpanel/train-your-team"
                 ]
               },
-              "docs/quickstart/install-with-ai"
+              "docs/install-with-ai"
             ]
           },
           {
@@ -84,7 +84,7 @@
             "icon": "/icons/data-in.svg",
             "pages": [
               {
-                "group": "Overview",
+                "group": "Quickstart",
                 "root": "docs/quickstart",
                 "pages": [
                   "docs/quickstart/install-mixpanel",
@@ -4890,6 +4890,10 @@
     {
       "source": "/guides/guides-by-topic/trust-ai-answers",
       "destination":"/guides/use-mixpanel-ai/trust-ai-answers"
+    },
+    {
+      "source": "/docs/quickstart/install-with-ai",
+      "destination":"/docs/install-with-ai"
     }
   ]
 }
