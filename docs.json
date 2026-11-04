@@ -84,17 +84,17 @@
             "icon": "/icons/data-in.svg",
             "pages": [
               {
-                "group": "Quickstart",
-                "root": "docs/quickstart",
+                "group": "Overview",
+                "root": "docs/overview",
                 "pages": [
-                  "docs/quickstart/install-mixpanel",
-                  "docs/quickstart/identify-users",
+                  "docs/overview/install-mixpanel",
+                  "docs/overview/identify-users",
                   {
                     "group": "Capture Events",
-                    "root": "docs/quickstart/capture-events",
+                    "root": "docs/overview/capture-events",
                     "pages": [
-                      "docs/quickstart/capture-events/autocapture",
-                      "docs/quickstart/capture-events/track-events"
+                      "docs/overview/capture-events/autocapture",
+                      "docs/overview/capture-events/track-events"
                     ]
                   }
                 ]
@@ -4894,6 +4894,10 @@
     {
       "source": "/docs/quickstart/install-with-ai",
       "destination":"/docs/install-with-ai"
+    },
+    {
+      "source": "/docs/quickstart/*",
+      "destination":"/docs/overview/*"
     }
   ]
 }
