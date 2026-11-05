@@ -104,10 +104,16 @@ paths:
                     - distinct_id
                     properties:
                       time:
-                        type: integer
+                        anyOf:
+                        - type: number
+                        - type: string
                         title: time
-                        description: The time at which the event occurred, in seconds or milliseconds since UTC epoch. If
-                          the time value is set in the future, it will be overwritten with the current present time at ingestion.
+                        description: 'The time at which the event occurred. Accepts a Unix epoch in seconds or milliseconds
+                          (integer or float, auto-detected; e.g. `1788422480.137` or `1788422480137`), or an RFC 3339 / ISO 8601
+                          string (e.g. `"2026-09-11T01:11:10.341Z"`). Fractional seconds are kept to the millisecond; a
+                          trailing `Z` or explicit offset (e.g. `+10:00`) is converted to UTC, and a string with no offset
+                          is treated as UTC. Events are stored with millisecond precision. If the time value is set in the
+                          future, it will be overwritten with the current present time at ingestion.'
                       distinct_id:
                         type: string
                         title: distinct_id

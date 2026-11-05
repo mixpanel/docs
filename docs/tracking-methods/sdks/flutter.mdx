@@ -1,6 +1,11 @@
 ---
 sidebarTitle: Flutter
 title: "Mixpanel SDKs: Flutter"
+description: "Install and configure the Mixpanel Flutter SDK to track events from your Flutter app on iOS and Android"
+related:
+  - /docs/tracking-methods/sdks/flutter/flutter-replay
+  - /docs/tracking-methods/sdks/flutter/flutter-flags
+  - /docs/tracking-methods/id-management/identifying-users-simplified
 ---
 
 ## Getting Started
@@ -21,6 +26,16 @@ Each major version of the SDK has its own minimum supported iOS and macOS versio
 
 If your app uses CocoaPods, on 3.x set `platform :ios, '15.0'` in `ios/Podfile` and `platform :osx, '12.0'` in `macos/Podfile`. Building with Xcode 27 requires Flutter 3.47\+. 
 If your app needs to support an older iOS or macOS version, stay on 2.x.
+
+### Swift Package Manager
+
+The SDK supports Swift Package Manager (SPM) from v2.10.0. SPM is on by default from Flutter 3.44. If you turned it off, run:
+
+```bash
+flutter config --enable-swift-package-manager
+```
+
+If your app uses a Flutter version earlier than 3.44, or keeps SPM turned off, the SDK continues to install through CocoaPods. See [Flutter's SPM guide](https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers).
 
 ## Installing the Library
 
@@ -616,10 +631,10 @@ await mixpanel.autocapture.trackScreenView("PromoScreen", properties: utmProps);
 ### Click Events
 
 <Note>
-  **Beta.** Click autocapture is in beta. Its events and properties may change before general availability. It needs Flutter SDK v2.15.0+ (Flutter 3.19+ / Dart 3.3+) and is **disabled by default**. See [Enabling Click Autocapture](#enabling-click-autocapture) to turn it on.
+  Autocaptured click events require Flutter SDK v3.2.0 or later (Flutter 3.19+ / Dart 3.3+) and are **disabled by default** — you opt in with `AutocaptureOptions` at initialization. See [Enabling Click Autocapture](#enabling-click-autocapture).
 </Note>
 
-The SDK can capture taps without any per-widget code. One root widget observes everything below it (routes, dialogs, bottom sheets and overlays) and works with Material and Cupertino widgets. It produces three events:
+The SDK can capture taps for you, with no per-widget instrumentation. One root widget observes everything below it (routes, dialogs, bottom sheets and overlays) and works with Material and Cupertino widgets. It produces three events:
 
 | Event | Fires when |
 | --- | --- |
@@ -642,7 +657,7 @@ A tap counts only if it is:
 - released within **500 ms** (inclusive)
 - inside the platform hit slop
 
-Scrolls, drags, long presses, multi-touch, secondary buttons, stylus input (not supported in beta), keyboard activation and assistive-technology activation do not count.
+Scrolls, drags, long presses, multi-touch, secondary buttons, stylus input (not supported), keyboard activation and assistive-technology activation do not count.
 
 **Which widget is reported:**
 

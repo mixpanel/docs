@@ -1,6 +1,11 @@
 ---
 sidebarTitle: React Native
 title: "Mixpanel SDKs: React Native"
+description: "Install and configure the Mixpanel React Native SDK to track events in your iOS and Android apps"
+related:
+  - /docs/tracking-methods/sdks/react-native/react-native-replay
+  - /docs/tracking-methods/sdks/react-native/react-native-flags
+  - /docs/tracking-methods/id-management/identifying-users-simplified
 ---
 
 ## Getting Started
@@ -29,15 +34,19 @@ After [setting up your development environment for React Native](https://reactna
 npm install mixpanel-react-native
 ```
 
-Then navigate to your application's iOS folder, and install the dependencies. (Note you do not need to update your Podfile to add Mixpanel.)
+Then, from your app's iOS folder, link the native module with CocoaPods (default):
 
 ```bash
 pod install
 ```
 
-<Note>
-  Since Xcode 12.5, there is a known swift compile issue, please refer to [this workaround](https://github.com/mixpanel/mixpanel-react-native/issues/43#issuecomment-829599732). However the compile issue has been resolved in Xcode 13.2.1\+, there is no extra step required as long as you upgrade to Xcode 13.2.1\+.
-</Note>
+Or with Swift Package Manager (SPM) from v4.1.0, on React Native 0.88\+:
+
+```bash
+npx react-native spm --deintegrate
+```
+
+With SPM, run `npx react-native spm` after a fresh clone or in CI, before building. On Expo SDK 58\+, set `expo.experiments.swiftPackageManager` to `true` in `app.json` and run `npx expo prebuild --platform ios --clean` instead.
 
 After installation, import the `Mixpanel` class from the SDK, create an instance of Mixpanel using your [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens), then initialize by calling [`.init()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#:~:text=init\(token%2C%20trackAutomaticEvents%2C%20Optional\)).
 
@@ -705,10 +714,10 @@ mixpanel.autocapture.trackScreenView("PromoScreen", utmProps);
 ### Click Events
 
 <Note>
-  **Beta.** Autocaptured click events are in beta: the events and the properties they capture may change before general availability. They require React Native SDK v3.7.0 or later, run in **native mode only**, and are **disabled by default** — you opt in with `autocaptureOptions` at initialization.
+  Autocaptured click events require React Native SDK v4.1.0 or later, run in **native mode only**, and are **disabled by default** — you opt in with `autocaptureOptions` at initialization. See [Enabling Click Autocapture](#enabling-click-autocapture).
 </Note>
 
-Starting in v3.7.0, the SDK can capture taps for you, with no per-component instrumentation. Capture happens in the underlying iOS and Android SDKs, which intercept touches across every window in your app — screens, modals, bottom sheets — below the React Native bridge, so no touch handler of yours is involved. Three events are produced:
+The SDK can capture taps for you, with no per-component instrumentation. Capture happens in the underlying iOS and Android SDKs, which intercept touches across every window in your app — screens, modals, bottom sheets — below the React Native bridge, so no touch handler of yours is involved. Three events are produced:
 
 | Event | Fires when |
 | --- | --- |

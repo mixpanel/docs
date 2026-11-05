@@ -409,7 +409,6 @@
               "docs/mixpanel-agent",
               {
                 "group": "MCP Connections",
-                "tag": "BETA",
                 "root": "docs/mcp-connections",
                 "pages": [
                   "docs/mcp-connections/github",
@@ -418,7 +417,13 @@
               },
               "docs/agentic-automations",
               "docs/root-cause-analysis",
-              "docs/mcp",
+              {
+                "group": "MCP Server",
+                "root": "docs/mcp",
+                "pages": [
+                  "docs/mcp/claude-enterprise-managed-auth"
+                ]
+              },
               "docs/mixpanel-headless",
               "docs/business-context",
               "docs/docs-for-ai-agents"
@@ -671,6 +676,7 @@
                   {
                     "group": "Grow Your Usership",
                     "pages": [
+                      "guides/guides-by-use-case/grow-your-usership/run-web-experiments",
                       "guides/guides-by-use-case/grow-your-usership/grow-revenue"
                     ]
                   },
@@ -809,6 +815,22 @@
               "troubleshooting/managing-projects",
               "troubleshooting/protecting-user-data"
             ]
+          },
+          {
+            "group": "Error Troubleshooting",
+            "pages": [
+              "troubleshooting/errors",
+              "troubleshooting/errors/400-bad-request",
+              "troubleshooting/errors/401-unauthorized",
+              "troubleshooting/errors/403-forbidden",
+              "troubleshooting/errors/413-payload-too-large",
+              "troubleshooting/errors/429-rate-limit-exceeded",
+              "troubleshooting/errors/snowflake-jwt-token-is-invalid",
+              "troubleshooting/errors/duplicate-events",
+              "troubleshooting/errors/historical-events-not-appearing",
+              "troubleshooting/errors/server-side-events-without-a-user",
+              "troubleshooting/errors/duplicate-user-profiles"
+            ]
           }
         ]
       },
@@ -931,7 +953,8 @@
               {
                 "group": "Insights",
                 "pages": [
-                  "reference/insights-query"
+                  "reference/insights-query",
+                  "reference/insights-run-query"
                 ],
                 "root": "reference/insights-query"
               },
