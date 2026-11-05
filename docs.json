@@ -1412,7 +1412,7 @@
     },
     {
       "source": "/developer-docs-redirect/android-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=android"
+      "destination": "/docs/overview/install-mixpanel?sdk=android"
     },
     {
       "source": "/developer-docs-redirect/aws-raw-pipeline",
@@ -1436,7 +1436,7 @@
     },
     {
       "source": "/developer-docs-redirect/cloud-ingestion",
-      "destination": "/docs/quickstart/capture-events/track-events"
+      "destination": "/docs/overview/capture-events/track-events"
     },
     {
       "source": "/developer-docs-redirect/codeless-freshpaint",
@@ -1488,7 +1488,7 @@
     },
     {
       "source": "/developer-docs-redirect/flutter-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=flutter"
+      "destination": "/docs/overview/install-mixpanel?sdk=flutter"
     },
     {
       "source": "/developer-docs-redirect/freshpaint",
@@ -1528,7 +1528,7 @@
     },
     {
       "source": "/developer-docs-redirect/ios-objective-c-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=ios"
+      "destination": "/docs/overview/install-mixpanel?sdk=ios"
     },
     {
       "source": "/developer-docs-redirect/ios-swift",
@@ -1536,7 +1536,7 @@
     },
     {
       "source": "/developer-docs-redirect/ios-swift-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=swift"
+      "destination": "/docs/overview/install-mixpanel?sdk=swift"
     },
     {
       "source": "/developer-docs-redirect/java",
@@ -1552,7 +1552,7 @@
     },
     {
       "source": "/developer-docs-redirect/javascript-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=javascript"
+      "destination": "/docs/overview/install-mixpanel?sdk=javascript"
     },
     {
       "source": "/developer-docs-redirect/jql",
@@ -1636,7 +1636,7 @@
     },
     {
       "source": "/developer-docs-redirect/quick-start-guide",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/developer-docs-redirect/raw-export-pipeline",
@@ -1648,7 +1648,7 @@
     },
     {
       "source": "/developer-docs-redirect/react-native-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=reactnative"
+      "destination": "/docs/overview/install-mixpanel?sdk=reactnative"
     },
     {
       "source": "/developer-docs-redirect/ruby",
@@ -1672,11 +1672,11 @@
     },
     {
       "source": "/developer-docs-redirect/sending-events",
-      "destination": "/docs/quickstart/capture-events/track-events"
+      "destination": "/docs/overview/capture-events/track-events"
     },
     {
       "source": "/developer-docs-redirect/server",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=python"
+      "destination": "/docs/overview/install-mixpanel?sdk=python"
     },
     {
       "source": "/developer-docs-redirect/snowplow",
@@ -1700,7 +1700,7 @@
     },
     {
       "source": "/developer-docs-redirect/unity-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=unity"
+      "destination": "/docs/overview/install-mixpanel?sdk=unity"
     },
     {
       "source": "/developer-docs-redirect/what-is-mixpanel",
@@ -2276,7 +2276,7 @@
     },
     {
       "source": "/docs/other-bits/tutorials/developers/mixpanel-for-developers-implementation",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/docs/other-bits/tutorials/how-to-clean-your-data",
@@ -2380,11 +2380,11 @@
     },
     {
       "source": "/docs/quickstart/connect-your-data",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/docs/quickstart/track-events",
-      "destination": "/docs/quickstart/capture-events/track-events"
+      "destination": "/docs/overview/capture-events/track-events"
     },
     {
       "source": "/docs/quickstart/what-to-track",
@@ -2532,7 +2532,7 @@
     },
     {
       "source": "/docs/tracking/how-tos/api-credentials",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/docs/tracking/how-tos/debugging",
@@ -2588,7 +2588,7 @@
     },
     {
       "source": "/docs/tracking/http-api",
-      "destination": "/docs/quickstart/capture-events/track-events"
+      "destination": "/docs/overview/capture-events/track-events"
     },
     {
       "source": "/docs/tracking/integrations/bigquery",
@@ -2636,7 +2636,7 @@
     },
     {
       "source": "/docs/tracking/javascript-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=javascript"
+      "destination": "/docs/overview/install-mixpanel?sdk=javascript"
     },
     {
       "source": "/docs/tracking/mobile",
@@ -2720,7 +2720,7 @@
     },
     {
       "source": "/docs/tracking/server",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=python"
+      "destination": "/docs/overview/install-mixpanel?sdk=python"
     },
     {
       "source": "/docs/tutorials/analytics-strategy",
@@ -3092,7 +3092,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004502806*",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004505106*",
@@ -3148,7 +3148,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004546863*",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004546883*",
@@ -3316,7 +3316,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004734463*",
-      "destination": "/docs/quickstart/capture-events/track-events"
+      "destination": "/docs/overview/capture-events/track-events"
     },
     {
       "source": "/hc/en-us/articles/115004958823*",
@@ -4012,7 +4012,7 @@
     },
     {
       "source": "/hc/en-us/categories/115001197206*",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/hc/en-us/categories/115001197226*",
@@ -4044,7 +4044,7 @@
     },
     {
       "source": "/hc/en-us/sections/115001308546*",
-      "destination": "/docs/quickstart/capture-events/track-events"
+      "destination": "/docs/overview/capture-events/track-events"
     },
     {
       "source": "/hc/en-us/sections/115001308566*",
@@ -4176,7 +4176,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004519306*",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004519426*",
@@ -4264,7 +4264,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004561806*",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004561826*",
