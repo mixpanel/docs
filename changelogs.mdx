@@ -10,6 +10,22 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-11-06">
+  ## MCP Connections: Write Access is now Generally Available
+
+  [MCP Connections](/docs/mcp-connections) let Mixpanel Agent read context from GitHub, Jira, Linear, and Notion, but it couldn't act on what it found. Turning an insight into a ticket, a pull request comment, or an updated spec still meant switching tools and doing it by hand.
+
+  Write access for MCP Connections is now **Generally Available**. Mixpanel Agent can use every tool a connected server offers, not only read tools. With this update, you can:
+
+  - **Act on what you find:** Ask the Agent to create a Jira ticket for a drop it found in a funnel, comment on a GitHub pull request, or update a Notion page with the results of an analysis.
+  - **Approve every change:** Calls that only read run without asking. Calls that make changes, such as creating, editing, deleting, or sending something, pause and show you what the Agent is about to do. They run only if you confirm, and nothing changes if you cancel. Calls Mixpanel can't assess are treated as changes and need your confirmation.
+  - **Keep your existing permissions:** The Agent acts as you. It can only do what your account, or your token for GitHub, is allowed to do in the connected tool, and any changes it makes appear under your name there.
+
+  MCP Connections require Mixpanel AI, and an organization admin or owner must turn on **Connect Your Tools via MCP** under **Settings → Org → AI Settings**. For GitHub, the Agent can only make changes your personal access token allows, so to let it comment on pull requests or open issues, set **Issues** and **Pull requests** to **Read and write** on a fine-grained token.
+
+  [Learn more →](/docs/mcp-connections)
+</Update>
+
 <Update label="2026-11-03">
   ## MCP Server: Auto-connect Claude.ai users with managed authorization (Beta)
 
