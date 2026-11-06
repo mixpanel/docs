@@ -886,7 +886,8 @@
                 "pages": [
                   "reference/list-lookup-tables",
                   "reference/replace-lookup-table"
-                ]
+                ],
+                "root": "reference/lookup-tables"
               },
               {
                 "group": "User Profiles",
