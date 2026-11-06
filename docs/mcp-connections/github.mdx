@@ -8,7 +8,7 @@ related:
   - /docs/mixpanel-agent
 ---
 
-GitHub's MCP server doesn't support OAuth sign-in from Mixpanel, so you connect it with a GitHub personal access token (PAT). Mixpanel Agent can see whatever the token can see, and it only uses read tools unless your organization is in the [Write Access Beta](/docs/mcp-connections#write-access-beta).
+GitHub's MCP server doesn't support OAuth sign-in from Mixpanel, so you connect it with a GitHub personal access token (PAT). Mixpanel Agent can see whatever the token can see, and it only uses read tools unless your organization has [write access](/docs/mcp-connections#write-access) enabled.
 
 Before you start, make sure an admin has [enabled MCP Connections](/docs/mcp-connections#enable-mcp-connections-for-your-organization) for your organization.
 
@@ -29,7 +29,7 @@ GitHub offers two kinds of personal access tokens. Fine-grained tokens are recom
        - **Metadata** (set automatically)
     6. Click **Generate token** and copy it.
 
-    If your organization is in the [Write Access Beta](/docs/mcp-connections#write-access-beta) and you want the Agent to make changes, such as commenting on pull requests or opening issues, set **Issues** and **Pull requests** to **Read and write** instead.
+    If your organization has [write access](/docs/mcp-connections#write-access) enabled and you want the Agent to make changes, such as commenting on pull requests or opening issues, set **Issues** and **Pull requests** to **Read and write** instead.
 
     If the resource owner is an organization, an organization owner may need to approve the token before it can access the organization's repositories.
 
@@ -44,7 +44,7 @@ GitHub offers two kinds of personal access tokens. Fine-grained tokens are recom
     4. Click **Generate token** and copy it.
     5. If your organization uses SAML single sign-on, click **Configure SSO** next to the token and authorize it for that organization.
 
-    Classic tokens with the **repo** scope can write to repositories in GitHub. Outside the Write Access Beta, Mixpanel only exposes read tools to the Agent, but a fine-grained read-only token limits access at the source.
+    Classic tokens with the **repo** scope can write to repositories in GitHub. Unless your organization has write access enabled, Mixpanel only exposes read tools to the Agent, but a fine-grained read-only token limits access at the source.
 
     See GitHub's guide to [creating a personal access token (classic)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic).
   </Tab>

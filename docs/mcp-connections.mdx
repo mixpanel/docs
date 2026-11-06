@@ -15,7 +15,7 @@ MCP Connections are the reverse of the [Mixpanel MCP Server](/docs/mcp): the MCP
 
 Key properties:
 
-- **Read-only by default.** Mixpanel Agent can only use read tools on connected servers. It cannot create, edit, or delete anything in them. Organizations in the [Write Access Beta](#write-access-beta) can let the Agent use write tools too, with your approval.
+- **Read-only by default.** Mixpanel Agent can only use read tools on connected servers. It cannot create, edit, or delete anything in them. Organizations with [write access](#write-access) enabled can let the Agent use write tools too, with your approval.
 - **Private to you.** Connections belong to your user in a single organization. Teammates cannot see or use your connections, and the Agent sees only what your account on that tool can see.
 - **Removed when you leave.** If you are removed from the organization, your connections and their credentials are deleted.
 
@@ -72,11 +72,7 @@ The **Connection Status** column on the MCP Connections page checks each connect
 
 To remove a connection, click the trash icon next to it. To reconnect a **Disconnected** tool, delete the connection and add it again.
 
-## Write Access (Beta)
-
-<Callout icon="flask" iconType="regular" color="#5F41CF">
-  **Beta.** Write access for MCP Connections is currently available to a limited set of customers during Beta. If you'd like to participate, [request access here](https://mxpnl.notion.site/5dc6d468f8aa48eebac5146fc9bd3759).
-</Callout>
+## Write Access
 
 With write access, Mixpanel Agent can use every tool a connected server offers, not only read tools. For example, it can create a Jira ticket for a drop it found in a funnel, comment on a GitHub pull request, or update a Notion page with the results of an analysis.
 
@@ -88,7 +84,7 @@ Before the Agent runs a tool, Mixpanel checks whether the call would change anyt
 
 The Agent acts as you. It can only do what your account, or your token for GitHub, is allowed to do in the connected tool, and any changes it makes appear under your name there.
 
-Write access applies to every connection in your organization once it is enabled for the Beta. Organizations not in the Beta stay read-only.
+Write access applies to every connection in your organization once it is enabled. Organizations without write access enabled stay read-only.
 
 ## FAQ
 
@@ -102,7 +98,7 @@ No. Each member connects their own account, and Mixpanel Agent uses only the con
 
 ### Can Mixpanel Agent make changes in my tools?
 
-By default, no. Mixpanel only exposes read tools from connected servers to the Agent. Organizations in the [Write Access Beta](#write-access-beta) can let the Agent make changes, and it asks you to confirm each change before it runs.
+By default, no. Mixpanel only exposes read tools from connected servers to the Agent. Organizations with [write access](#write-access) enabled can let the Agent make changes, and it asks you to confirm each change before it runs.
 
 ### Why are MCP Connections unavailable in my settings?
 
