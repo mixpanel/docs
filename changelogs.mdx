@@ -11,17 +11,17 @@ Get all the latest updates in your inbox.
 <SubscribeButtonWithModal />
 
 <Update label="2026-11-06">
-  ## MCP Connections: Write Access is now Generally Available
+  ## MCP Connections: Read Access is now Generally Available
 
-  [MCP Connections](/docs/mcp-connections) let Mixpanel Agent read context from GitHub, Jira, Linear, and Notion, but it couldn't act on what it found. Turning an insight into a ticket, a pull request comment, or an updated spec still meant switching tools and doing it by hand.
+  [MCP Connections](/docs/mcp-connections) are now **Generally Available** for reading context. Mixpanel Agent can read GitHub, Jira, Linear, and Notion, so it can answer with your team's specs, tickets, and pull requests alongside your Mixpanel data. With this update, you can:
 
-  Write access for MCP Connections is now **Generally Available**. Mixpanel Agent can use every tool a connected server offers, not only read tools. With this update, you can:
+  - **Connect the tools you already use:** Notion, Linear, and Jira connect through OAuth. GitHub connects with a personal access token. Each tool connects once, to your own account.
+  - **Bring your own context into an answer:** Ask the Agent whether any pull requests were merged to the signup service the day signups dropped, or have it check whether you track every step a Notion spec describes.
+  - **Read-only and private to you:** The Agent only uses read tools, so it can't create, edit, or delete anything in a connected tool. Teammates can't see or use your connections, and the Agent sees only what your account on that tool can see.
 
-  - **Act on what you find:** Ask the Agent to create a Jira ticket for a drop it found in a funnel, comment on a GitHub pull request, or update a Notion page with the results of an analysis.
-  - **Approve every change:** Calls that only read run without asking. Calls that make changes, such as creating, editing, deleting, or sending something, pause and show you what the Agent is about to do. They run only if you confirm, and nothing changes if you cancel. Calls Mixpanel can't assess are treated as changes and need your confirmation.
-  - **Keep your existing permissions:** The Agent acts as you. It can only do what your account, or your token for GitHub, is allowed to do in the connected tool, and any changes it makes appear under your name there.
+  MCP Connections require Mixpanel AI. An organization admin or owner turns on **Connect Your Tools via MCP** under **Settings → Org → AI Settings**, and each member then adds their own connections from **Settings → Personal Settings**.
 
-  MCP Connections require Mixpanel AI, and an organization admin or owner must turn on **Connect Your Tools via MCP** under **Settings → Org → AI Settings**. For GitHub, the Agent can only make changes your personal access token allows, so to let it comment on pull requests or open issues, set **Issues** and **Pull requests** to **Read and write** on a fine-grained token.
+  Write access, which lets the Agent make changes in connected tools after you confirm each one, is still in Beta for a limited set of customers.
 
   [Learn more →](/docs/mcp-connections)
 </Update>
