@@ -686,6 +686,12 @@
                       "guides/guides-by-use-case/empower-your-team/close-strategy-execution-gap",
                       "guides/guides-by-use-case/empower-your-team/see-replays"
                     ]
+                  },
+                  {
+                    "group": "Improve Your AI Agents",
+                    "pages": [
+                      "guides/guides-by-use-case/improve-your-ai-agents/find-and-fix-agent-failures"
+                    ]
                   }
                 ]
               },
