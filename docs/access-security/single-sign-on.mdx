@@ -116,10 +116,11 @@ You likely will need to provide your IDP with a postback URL. The postback URL i
 
 ## SAML Certificate
 
-This needs to be a **.cert** or **.pem** file for a valid X509 certificate.
+Upload your identity provider's (IdP) X.509 signing certificate as a **.cert** or **.pem** file.
 
-- Note that .xml files are not valid. If you have downloaded an .xml file from your IDP, it will not work.
-- It's important to note that this certificate will expire after a certain number of years. At the moment, we do not send any notifications when it is about to expire. Please make sure you have a system set up to cycle your certificate every so often if you wish to avoid disruption.
+- .xml files (such as IdP metadata files) are not valid. Download the certificate file itself from your IdP.
+- Mixpanel doesn't issue this certificate or set its expiration. Your IdP does, and the expiry window depends on your IdP and how your SAML app is configured. You can find the expiration date in your IdP's SAML app settings.
+- When your IdP rotates to a new certificate, upload the new one in Mixpanel. SSO logins fail until you do. Mixpanel doesn't send a notice before your certificate expires, so track the date in your IdP or set a reminder before it expires.
 
 ## Require Users to Log In Using SSO
 
