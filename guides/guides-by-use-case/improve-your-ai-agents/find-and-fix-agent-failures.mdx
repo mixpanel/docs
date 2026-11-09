@@ -6,12 +6,12 @@ sidebarTitle: "Find and Fix Agent Failures"
 
 Your AI agent answers real users, and some of those conversations go wrong. To fix the right problems, you need to know which conversations failed, why, whether the failures cost you outcomes, and whether a change helped. This guide takes you from no data to a review you can repeat, using [Agent Intelligence](/docs/agent-intelligence) and the Mixpanel reports you already know.
 
-You can spot failures from the traces alone, from user ratings, or from both. The examples follow a support agent that answers questions in a help widget. The agent is named `support-agent`, and the outcome you care about is an `Issue Resolved` event.
+The examples follow a support agent that answers questions in a help widget. The agent is named `support-agent`, and the outcome you care about is an `Issue Resolved` event.
 
 By the end of this guide, you can:
 
 - Send agent traces to your Mixpanel project so conversations are readable
-- Find the conversations that errored, ran slow, cost too much, or earned a bad rating, and work out what went wrong
+- Find the conversations that errored, ran slow, or cost too much, and work out what went wrong
 - Connect agent activity to a product outcome in a funnel or retention report
 - Check a fix with an experiment or a before-and-after comparison
 
@@ -36,7 +36,7 @@ You need:
 A few terms appear throughout. A **span** is one piece of work the agent did, such as a call to a language model. A **turn** is one prompt and the agent's response. A **conversation** is a user's whole exchange, made of one or more turns. Mixpanel stores every span as an `$mp_ai_span` event, so agent data works in the same reports as the rest of your product data.
 
 <Note>
-  Agent Intelligence doesn't support adding past conversations. Only conversations sent after setup appear, so failures and ratings from before setup can't be reviewed.
+  Agent Intelligence doesn't support adding past conversations. Only conversations sent after setup appear, so failures from before setup can't be reviewed.
 </Note>
 
 ## Stage 1: Send readable traces to Mixpanel
@@ -59,6 +59,7 @@ To review conversations later, send the right details with your spans.
 
     - `gen_ai.operation.name`: `invoke_agent` on the root span of each turn, `chat` on model calls, and `execute_tool` on tool calls
     - `gen_ai.request.model` and `gen_ai.response.model` on model calls: see cost and speed by model, and catch an unplanned model change
+    - `gen_ai.usage.input_tokens`, `gen_ai.usage.output_tokens`, and the cache-token counts on model calls: Mixpanel calculates cost from the model and these token counts. For how to count cache tokens, see [Add the attributes that make the data useful](/docs/agent-intelligence#step-3-—-add-the-attributes-that-make-the-data-useful).
     - `gen_ai.tool.name` on tool calls: see which tools the agent runs
     - `gen_ai.input.messages` and `gen_ai.output.messages`: read prompts and replies in the conversation view. Put the user's prompt and the final reply on the turn's root span.
     - An error status and `error.type` on any span that fails
@@ -69,18 +70,10 @@ To review conversations later, send the right details with your spans.
   <Step title="Decide whether to send message content">
     If you work in a regulated industry, you can leave out `gen_ai.input.messages` and `gen_ai.output.messages`. You still get cost, tokens, latency, errors, models, and tool use. For redaction options, see [Data privacy](/docs/agent-intelligence#data-privacy).
   </Step>
-  <Step title="Optional: Track user ratings">
-    If your interface lets users rate a reply, track each rating as a regular Mixpanel event, such as `Agent Response Rated`. Send it with the same `distinct_id` as the user's spans, and include:
-
-    - `rating`: for example, `thumbs_up` or `thumbs_down`
-    - `gen_ai.conversation.id`: the same value that's on the conversation's spans, so you can open the rated conversation
-    - `gen_ai.agent.name` and your custom attribute, such as `prompt.version`, so you can break ratings down the same way as spans
-    - `comment`: the user's comment, if they wrote one
-  </Step>
 </Steps>
 
 <Note>
-  Mixpanel cuts string properties at 255 bytes, which can shorten long messages and rating comments. See the limits in [Send your own attributes](/docs/agent-intelligence#step-4-—-send-your-own-attributes) before you plan to filter on long text.
+  Mixpanel cuts string properties at 255 bytes, which can shorten long messages. See the limits in [Send your own attributes](/docs/agent-intelligence#step-4-—-send-your-own-attributes) before you plan to filter on long text.
 </Note>
 
 You're ready for Stage 2 when a real conversation with at least two turns appears under **Agent Intelligence** → **Conversations**, both turns are grouped into one conversation, and its messages are readable. Let traffic build up so there are enough conversations to review.
@@ -88,10 +81,6 @@ You're ready for Stage 2 when a real conversation with at least two turns appear
 ## Stage 2: Find conversations that went wrong
 
 **Role:** Product manager or analyst
-
-Two routes lead to the same place. Start with the first. Add the second if you track ratings.
-
-### Route 1: Start from the numbers
 
 To see where the agent struggles, start with the numbers, then read the conversations behind them.
 
@@ -119,19 +108,6 @@ To see where the agent struggles, start with the numbers, then read the conversa
   </Step>
   <Step title="Save the users who had a bad time">
     Create a [cohort](/docs/users/cohorts) of users who did `$mp_ai_span` where **AI Status Code** equals `STATUS_CODE_ERROR` at least a few times in the last 30 days. Pick the count that fits your traffic. You use this cohort in Stage 4.
-  </Step>
-</Steps>
-
-### Route 2: Start from ratings
-
-If you track ratings, your users have already told you which conversations went wrong.
-
-<Steps>
-  <Step title="Find negative ratings">
-    Create an [Insights](/docs/reports/insights) report of `Agent Response Rated`, filtered to `rating` equals `thumbs_down`. Break it down by `gen_ai.conversation.id` to list the rated conversations, or by `comment` to read what users said.
-  </Step>
-  <Step title="Open the rated conversation">
-    In **Conversations**, filter `gen_ai.conversation.id` equals the ID from the rating, and open the conversation.
   </Step>
 </Steps>
 
@@ -172,15 +148,13 @@ To see whether agent turns lead to your outcome, create a [Funnels](/docs/report
     Select `Issue Resolved`.
   </Step>
   <Step title="Break the funnel down">
-    Break it down by `gen_ai.agent.name` to compare agents, or by your custom attribute, such as `prompt.version`, to compare versions. To compare models, break down by `gen_ai.request.model` only if your root spans carry it. Many tracers set the model only on model-call spans.
+    To compare versions of one agent, keep the `gen_ai.agent.name` filter and break down by your custom attribute, such as `prompt.version`. To compare agents, remove the `gen_ai.agent.name` filter from step one and break down by `gen_ai.agent.name`. To compare models, break down by `gen_ai.request.model` only if your root spans carry it. Many tracers set the model only on model-call spans.
   </Step>
 </Steps>
 
-To see whether users who try the agent come back, check **Weekly Retention** on the **Usage** page. To compare against users who never use the agent, run a [Retention](/docs/reports/retention) report on users who complete an agent turn and compare it to retention for everyone else.
+To see whether users who try the agent come back, check **Weekly Retention** on the **Usage** page. To compare agent users with users who never use the agent, create a [cohort](/docs/users/cohorts) of users who did `$mp_ai_span`. Then run a [Retention](/docs/reports/retention) report that starts from an event every user does, such as sign-up, and break it down by that cohort. Both groups then share the same starting event, return event, and time window.
 
 To see whether bad experiences cost you users, use the cohort from Stage 2. Filter or break down your funnel or retention report by that cohort, and compare it to everyone else.
-
-If you track ratings, chart `Agent Response Rated` with `rating` equals `thumbs_down` per day in Insights, to see whether the problem is growing or shrinking. Break it down by `gen_ai.agent.name` or `prompt.version` to see where it comes from.
 
 ## Stage 5: Fix the problem and check the result
 
@@ -193,8 +167,8 @@ To know a fix worked, change one thing at a time and record which change is live
     Change one thing, such as the prompt or the model. Set your custom attribute to a new value, such as a new `prompt.version`, so spans from the change are easy to separate.
   </Step>
   <Step title="Pick how to check the change">
-    - **Run an experiment.** Use [feature flags](/docs/featureflags) and [Experiments](/docs/experiments) to test models, prompts, tools, and interface changes. Because agent data is event data, cost and error rate can be experiment metrics like any other. If you track ratings, you can build a metric from the `Agent Response Rated` event, the same way as from any other event.
-    - **Compare before and after.** On the **Usage** page, break down **Agent Turns with Errors (%)**, **Agent Run Duration Over Time**, or **LLM Spend Over Time** by your custom attribute, such as `prompt.version`. Use the same breakdown on your funnel and ratings reports. A before-and-after comparison is quicker to set up than an experiment, but it can't rule out other things that changed over the same period.
+    - **Run an experiment.** Use [feature flags](/docs/featureflags) and [Experiments](/docs/experiments) to test models, prompts, tools, and interface changes. Because agent data is event data, cost and error rate can be experiment metrics like any other.
+    - **Compare before and after.** On the **Usage** page, break down **Agent Turns with Errors (%)**, **Agent Run Duration Over Time**, or **LLM Spend Over Time** by your custom attribute, such as `prompt.version`. Use the same breakdown on your funnel report. A before-and-after comparison is quicker to set up than an experiment, but it can't rule out other things that changed over the same period.
   </Step>
   <Step title="Watch the experience">
     Use [Session Replay](/docs/session-replay) to watch what a slow turn felt like, or to find users who opened the agent and left without sending a prompt.
@@ -211,7 +185,6 @@ Turning a failure into a repeatable test belongs in your own evaluation tooling 
 | Stage | Action | What you should see | If not |
 | :-- | :-- | :-- | :-- |
 | 1 | Run a two-turn conversation through your agent, then open it in **Conversations** | One conversation with two turns and readable messages | See [Troubleshoot](#troubleshoot) |
-| 1 (ratings) | Send a test rating, then chart it in Insights | One `Agent Response Rated` event whose `gen_ai.conversation.id` matches a conversation | Check that the ID on the rating matches the ID on your spans |
 | 2 | Filter **Usage** to your agent, then filter **Conversations** to errors and open one | Turns and spans in order, with the failed span marked | Check that failed spans have an error status |
 | 3 | Sort three conversations with the table | Each has a decision and an owner | Add the cases the table doesn't cover to your notes |
 | 4 | Build the funnel and compare it by cohort | A conversion rate for each group | Check the step one filters, the cohort, and the date range |
@@ -229,8 +202,7 @@ If your data doesn't look right, check [Troubleshooting implementation](/docs/ag
 These limits also affect this guide:
 
 - **A span is missing.** Spans over 1 MB of uncompressed JSON are dropped.
-- **A message or rating comment is cut short.** String properties are limited to 255 bytes. For rating comments, shorten the value, or store the full comment elsewhere and send an ID.
-- **A rating matches no conversation.** The `gen_ai.conversation.id` on the rating event differs from the one on your spans. Send the same value in both places.
+- **A message is cut short.** String properties are limited to 255 bytes.
 
 ## Next steps
 
