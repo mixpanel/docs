@@ -133,6 +133,38 @@
   },
   "components": {
     "schemas": {
+      "CursorPaginationResponse": {
+        "additionalProperties": false,
+        "description": "Response model for cursor-based pagination, containing the cursors for the next and previous pages.",
+        "properties": {
+          "previous_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Cursor for the previous page.",
+            "title": ""
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Cursor for the next page.",
+            "title": ""
+          }
+        },
+        "title": "CursorPaginationResponse",
+        "type": "object"
+      },
       "AuditLog": {
         "properties": {
           "project_id": {
@@ -420,38 +452,6 @@
         "additionalProperties": true,
         "properties": {},
         "title": "AuditLogPayload",
-        "type": "object"
-      },
-      "CursorPaginationResponse": {
-        "additionalProperties": false,
-        "description": "Response model for cursor-based pagination, containing the cursors for the next and previous pages.",
-        "properties": {
-          "previous_cursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Cursor for the previous page.",
-            "title": ""
-          },
-          "next_cursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Cursor for the next page.",
-            "title": ""
-          }
-        },
-        "title": "CursorPaginationResponse",
         "type": "object"
       },
       "QueryAuditLogResponse": {
