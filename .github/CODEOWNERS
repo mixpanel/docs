@@ -2,6 +2,11 @@
 # ======================
 *                       @mixpanel/docs-reviewers
 
+
+# Guides (either can approve)
+# ======================
+/guides/                @mixpanel/customer-education
+
 # API docs → product platform devs or docs reviewers (either can approve)
 # ======================
 /reference/             @mixpanel/product-platform-devs @mixpanel/docs-reviewers
