@@ -399,7 +399,14 @@
                   "docs/features/warehouse-metrics"
                 ]
               },
-              "docs/agent-intelligence"
+              {
+                "group": "Agent Intelligence",
+                "tag": "BETA",
+                "root": "docs/agent-intelligence",
+                "pages": [
+                  "docs/agent-intelligence/find-and-fix-agent-failures"
+                ]
+              }
             ]
           },
           {
@@ -677,8 +684,7 @@
                     "group": "Grow Your Usership",
                     "pages": [
                       "guides/guides-by-use-case/grow-your-usership/run-web-experiments",
-                      "guides/guides-by-use-case/grow-your-usership/grow-revenue",
-                      "guides/guides-by-use-case/grow-your-usership/find-and-fix-agent-failures"
+                      "guides/guides-by-use-case/grow-your-usership/grow-revenue"
                     ]
                   },
                   {
