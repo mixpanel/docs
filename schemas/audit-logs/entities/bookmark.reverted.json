@@ -1,0 +1,137 @@
+{
+  "x-release-date": "2026-11-10T10:00:00Z",
+  "description": "A saved report was reverted to a prior version.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "bookmark",
+      "default": "bookmark",
+      "type": "string"
+    },
+    "payload": {
+      "description": "Payload for report version reverts.",
+      "properties": {
+        "previous": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "params": {
+              "anyOf": [
+                {},
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "params_version_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "type"
+          ],
+          "type": "object"
+        },
+        "current": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "params": {
+              "anyOf": [
+                {},
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "params_version_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "type"
+          ],
+          "type": "object"
+        },
+        "reverted_to_params_version_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The historical snapshot the user restored \u2014 the field that makes a revert distinguishable from an ordinary edit that happens to produce the same body. Optional because a client that couldn't identify the source version may still emit a revert entry; the previous/current diff still tells the reader what changed."
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "reverted",
+      "default": "reverted",
+      "type": "string"
+    },
+    "type": {
+      "const": "bookmark.reverted",
+      "default": "bookmark.reverted",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
