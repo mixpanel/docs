@@ -5,7 +5,7 @@
 
 # Guides (either can approve)
 # ======================
-/guides/                @mixpanel/customer-education
+/guides/                @mixpanel/customer-education @mixpanel/docs-reviewers
 
 # API docs → product platform devs or docs reviewers (either can approve)
 # ======================
