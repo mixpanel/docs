@@ -399,7 +399,14 @@
                   "docs/features/warehouse-metrics"
                 ]
               },
-              "docs/agent-intelligence"
+              {
+                "group": "Agent Intelligence",
+                "tag": "BETA",
+                "root": "docs/agent-intelligence",
+                "pages": [
+                  "docs/agent-intelligence/find-and-fix-agent-failures"
+                ]
+              }
             ]
           },
           {
