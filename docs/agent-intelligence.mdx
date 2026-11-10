@@ -3,6 +3,7 @@ title: "Agent Intelligence"
 description: "Send your AI agent traces to Mixpanel over OpenTelemetry and analyze usage, cost, errors, and conversations alongside your product data"
 tag: "BETA"
 related:
+  - /docs/agent-intelligence/find-and-fix-agent-failures
   - /docs/tracking-methods/integrations/langfuse
   - /docs/reports/insights
   - /docs/data-structure/events-and-properties
@@ -336,13 +337,15 @@ Any attribute Mixpanel does not set itself arrives as a property with the same n
 | :-- | :-- | :-- |
 | `gen_ai.conversation.id` | Groups turns into a multi-turn conversation | String |
 | `gen_ai.agent.name` | Breakdowns by agent | String |
+| `gen_ai.operation.name` | Tells turns apart from model and tool calls. Set `invoke_agent` on the root span of each turn, `chat` on model calls, and `execute_tool` on tool calls | String |
 | `gen_ai.request.model` / `gen_ai.response.model` | Cost and latency by model; catches a silent model change | String |
 | `gen_ai.usage.input_tokens` / `gen_ai.usage.output_tokens` | Token volume and cost per model | Number |
 | `gen_ai.usage.cache_read.input_tokens` | Prompt-cache hit rate | Number |
 | `gen_ai.usage.cache_write.input_tokens` | Cache writes | Number |
-| `gen_ai.input.messages` / `gen_ai.output.messages` | Readable prompts and responses in the conversation view | String (JSON) |
+| `gen_ai.input.messages` / `gen_ai.output.messages` | Readable prompts and responses in the conversation view. Put the user's prompt and the final reply on the turn's root span | String (JSON) |
 | `gen_ai.tool.name` | Which tools run, and how often | String |
 | `gen_ai.tool.call.arguments` / `gen_ai.tool.call.result` | Tool input and output in the conversation view | String |
+| `error.type`, with the span status set to `ERROR` | Marks failed spans, so error rates and errored conversations show up | String |
 
 ### Step 4 — Send your own attributes
 
