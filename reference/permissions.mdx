@@ -21,4 +21,28 @@ organization role across the whole organization.
 
 | Permission | Description | Scope | Owner | Admin | Analyst | Consumer | Billing Admin |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| `merge_events_properties` | Can merge events and properties | Project or organization | ✅ | ❌ | ❌ | ❌ | ❌ |
 | `view_audit_logs` | Can view audit logs | Project or organization | ✅ | ✅ | ❌ | ❌ | ❌ |
+| `write_data_definitions` | Can save/edit/delete data definitions | Project or organization | ✅ | ✅ | ❌ | ❌ | ❌ |
+
+## Custom role permission groups
+
+A custom role grants permissions in groups. Below is a list of these groups and the permissions they contain.
+
+### Data Management
+
+#### Edit Metadata
+
+Allows members to edit event and property details such as description, images, and tags, and owners.
+
+| Permission | Description |
+| --- | --- |
+| `write_data_definitions` | Can save/edit/delete data definitions |
+
+#### Data Deletion, Dropping, and Merging
+
+Allows members to control advanced data deletion, merge and drop events. (Recommended for Project Owners/Admins only)
+
+| Permission | Description |
+| --- | --- |
+| `merge_events_properties` | Can merge events and properties |
