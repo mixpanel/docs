@@ -58,18 +58,6 @@ Enter the domain you wish to claim in the pop-up modal. Click **Submit Claim**.
   ![SSO Submit Claim Image](/images/sso_submit_claim.png)
 </Frame>
 
-### Check Verification Status
-
-It may take up to 24 hours for Mixpanel to verify ownership after you claim a domain.
-
-The claimed domain is listed in the Domain Claiming menu. It will appear as pending until it is successfully verified.
-
-<Frame>
-  ![SSO Check Verification Status Image](/images/sso_check_verification_status.png)
-</Frame>
-
-It will indicate as verified after Mixpanel verifies the domain.
-
 ### Add Verification Token to your DNS
 
 For Mixpanel to verify that you own the domain claimed, Mixpanel must detect the verification token in a TXT record in your domain's DNS.
@@ -79,6 +67,18 @@ The verification token is available in the Domain Claiming menu after you claim 
 Add `mixpanel-domain-verify=<your-token>` as the TXT record.
 
 **Note that you will need to leave the verification token in your DNS records permanently**, or the domain will unverify after a week. Only remove the verification token TXT record from domains with which you no longer wish to use SSO.
+
+### Check Verification Status
+
+Mixpanel checks your DNS for the verification TXT record about once an hour and keeps checking until it finds it. Once your DNS change has propagated, the domain usually verifies within an hour. To check right away, click the refresh icon (**Verify Now**) next to the domain in the Domain Claiming menu.
+
+The claimed domain is listed in the Domain Claiming menu. It will appear as pending until it is successfully verified.
+
+<Frame>
+  ![SSO Check Verification Status Image](/images/sso_check_verification_status.png)
+</Frame>
+
+It will indicate as verified after Mixpanel verifies the domain.
 
 ## Set Up Your IDP
 
