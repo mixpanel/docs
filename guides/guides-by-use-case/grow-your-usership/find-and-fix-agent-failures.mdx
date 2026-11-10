@@ -29,14 +29,14 @@ By the end of this guide, you can:
 
 You need:
 
-- A Mixpanel project with access to Agent Intelligence. Agent Intelligence is in beta for a limited set of customers. To request access, see [Agent Intelligence](/docs/agent-intelligence).
+- A Mixpanel project with access to Agent Intelligence. To request access, see [Agent Intelligence](/docs/agent-intelligence).
 - An agent that sends traces with OpenTelemetry. See the requirements in [Agent Intelligence](/docs/agent-intelligence#before-you-start).
 - An outcome event already tracked in your project, such as `Issue Resolved`. You use it in Stage 4.
 
 A few terms appear throughout. A **span** is one piece of work the agent did, such as a call to a language model. A **turn** is one prompt and the agent's response. A **conversation** is a user's whole exchange, made of one or more turns. Mixpanel stores every span as an `$mp_ai_span` event, so agent data works in the same reports as the rest of your product data.
 
 <Note>
-  Agent Intelligence doesn't support adding past conversations. Only conversations sent after setup appear, so failures from before setup can't be reviewed.
+  Conversations appear from the time you finish setup. To check whether you can add past conversations, see the [Agent Intelligence FAQ](/docs/agent-intelligence#faq).
 </Note>
 
 ## Stage 1: Send readable traces to Mixpanel
@@ -50,19 +50,7 @@ To review conversations later, send the right details with your spans.
     Follow [Implementation](/docs/agent-intelligence#implementation) to point your exporter at Mixpanel and set `user.id` on every span. Set `user.id` to the same value you use as `distinct_id`, so agent activity joins the rest of the user's events.
   </Step>
   <Step title="Add the attributes this guide relies on">
-    Put these on every span:
-
-    - `gen_ai.conversation.id`: review a whole conversation instead of separate turns
-    - `gen_ai.agent.name`: compare agents, or filter to one agent
-
-    Put these on the spans they describe:
-
-    - `gen_ai.operation.name`: `invoke_agent` on the root span of each turn, `chat` on model calls, and `execute_tool` on tool calls
-    - `gen_ai.request.model` and `gen_ai.response.model` on model calls: see cost and speed by model, and catch an unplanned model change
-    - `gen_ai.usage.input_tokens`, `gen_ai.usage.output_tokens`, and the cache-token counts on model calls: Mixpanel calculates cost from the model and these token counts. For how to count cache tokens, see [Add the attributes that make the data useful](/docs/agent-intelligence#step-3-—-add-the-attributes-that-make-the-data-useful).
-    - `gen_ai.tool.name` on tool calls: see which tools the agent runs
-    - `gen_ai.input.messages` and `gen_ai.output.messages`: read prompts and replies in the conversation view. Put the user's prompt and the final reply on the turn's root span.
-    - An error status and `error.type` on any span that fails
+    Follow [Add the attributes that make the data useful](/docs/agent-intelligence#step-3-—-add-the-attributes-that-make-the-data-useful). This guide uses the conversation ID, agent name, operation name, model and token counts, tool name, message content, and an error status on failed spans.
   </Step>
   <Step title="Add an attribute for each change you plan to make">
     Add a custom attribute for each change you make on purpose, such as `prompt.version`. In Stage 5, you use it to compare results before and after a change. For naming rules and an example, see [Send your own attributes](/docs/agent-intelligence#step-4-—-send-your-own-attributes).
@@ -71,10 +59,6 @@ To review conversations later, send the right details with your spans.
     If you work in a regulated industry, you can leave out `gen_ai.input.messages` and `gen_ai.output.messages`. You still get cost, tokens, latency, errors, models, and tool use. For redaction options, see [Data privacy](/docs/agent-intelligence#data-privacy).
   </Step>
 </Steps>
-
-<Note>
-  Mixpanel cuts string properties at 255 bytes, which can shorten long messages. See the limits in [Send your own attributes](/docs/agent-intelligence#step-4-—-send-your-own-attributes) before you plan to filter on long text.
-</Note>
 
 You're ready for Stage 2 when a real conversation with at least two turns appears under **Agent Intelligence** → **Conversations**, both turns are grouped into one conversation, and its messages are readable. Let traffic build up so there are enough conversations to review.
 
@@ -199,10 +183,7 @@ If your data doesn't look right, check [Troubleshooting implementation](/docs/ag
 - Prompts and responses are missing
 - Spans arrive but properties are empty
 
-These limits also affect this guide:
-
-- **A span is missing.** Spans over 1 MB of uncompressed JSON are dropped.
-- **A message is cut short.** String properties are limited to 255 bytes.
+If a span is missing or a message is cut short, check the size limits in [Send your own attributes](/docs/agent-intelligence#step-4-—-send-your-own-attributes).
 
 ## Next steps
 

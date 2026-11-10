@@ -677,7 +677,8 @@
                     "group": "Grow Your Usership",
                     "pages": [
                       "guides/guides-by-use-case/grow-your-usership/run-web-experiments",
-                      "guides/guides-by-use-case/grow-your-usership/grow-revenue"
+                      "guides/guides-by-use-case/grow-your-usership/grow-revenue",
+                      "guides/guides-by-use-case/grow-your-usership/find-and-fix-agent-failures"
                     ]
                   },
                   {
@@ -685,12 +686,6 @@
                     "pages": [
                       "guides/guides-by-use-case/empower-your-team/close-strategy-execution-gap",
                       "guides/guides-by-use-case/empower-your-team/see-replays"
-                    ]
-                  },
-                  {
-                    "group": "Improve Your AI Agents",
-                    "pages": [
-                      "guides/guides-by-use-case/improve-your-ai-agents/find-and-fix-agent-failures"
                     ]
                   }
                 ]
