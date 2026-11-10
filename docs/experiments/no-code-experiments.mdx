@@ -70,11 +70,7 @@ Setup is a one-time job. After it's done, anyone with permission can create and 
   </Step>
 
   <Step title="Install the Chrome extension">
-    Install the latest [Mixpanel extension](https://chromewebstore.google.com/detail/mixpanel-beta/ofcgdmpepahnlckcjhnapiakdpkklbkj) from the Chrome Web Store.
-
-    <Warning>
-      Uninstall or disable any older Mixpanel browser extension first in order for the visual editor to work properly.
-    </Warning>
+    Install the latest [Mixpanel extension](https://chromewebstore.google.com/detail/mixpanel/camknfenboildigjgpmhojlcnejppooh) from the Chrome Web Store.
 
     After installing, refresh your Mixpanel tab. Mixpanel checks for the extension when the page loads, so without a refresh it will keep reporting the extension as missing.
   </Step>
@@ -157,11 +153,15 @@ Grant it to a custom role under Organization Settings, in the **Feature Flags an
 - Editor sessions expire after an hour
 - Concurrent edits to the same variant overwrite each other, so coordinate before multiple people edit one experiment
 
+<Warning>
+  Like any client-side testing tool, Web Experiments can add page load latency and can cause flicker, where visitors briefly see the original page before the variant appears. Test your experiment on a staging site first and confirm that the impact is acceptable for your pages.
+</Warning>
+
 ## Troubleshooting
 
 ### The Editor Reports the Extension Is Missing
 
-Refresh the Mixpanel tab. Detection runs on page load. If it still fails, confirm you're on the latest extension and that older Mixpanel extensions are disabled.
+Refresh the Mixpanel tab. Detection runs on page load. If it still fails, confirm you're on the latest extension.
 
 ### Changes Don't Appear on Your Site
 
