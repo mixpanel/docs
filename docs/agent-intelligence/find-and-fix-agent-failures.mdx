@@ -1,0 +1,206 @@
+---
+title: "Find and fix where your AI agent fails"
+description: "Use Agent Intelligence to find failing agent conversations, work out why they failed, connect them to product outcomes, and check that a fix worked."
+sidebarTitle: "Find and Fix Agent Failures"
+---
+
+Your AI agent answers real users, and some of those conversations go wrong. To fix the right problems, you need to know which conversations failed, why, whether the failures cost you outcomes, and whether a change helped. This guide takes you from no data to a review you can repeat, using [Agent Intelligence](/docs/agent-intelligence) and the Mixpanel reports you already know.
+
+The examples follow a support agent that answers questions in a help widget. The agent is named `support-agent`, and the outcome you care about is an `Issue Resolved` event.
+
+By the end of this guide, you can:
+
+- Send agent traces to your Mixpanel project so conversations are readable
+- Find the conversations that errored, ran slow, or cost too much, and work out what went wrong
+- Connect agent activity to a product outcome in a funnel or retention report
+- Check a fix with an experiment or a before-and-after comparison
+
+## Who does what
+
+| Stage | Role |
+| :-- | :-- |
+| [1. Send readable traces to Mixpanel](#stage-1-send-readable-traces-to-mixpanel) | Engineer |
+| [2. Find conversations that went wrong](#stage-2-find-conversations-that-went-wrong) | Product manager or analyst |
+| [3. Decide what went wrong](#stage-3-decide-what-went-wrong) | Product manager and engineer |
+| [4. Check whether failures cost you outcomes](#stage-4-check-whether-failures-cost-you-outcomes) | Product manager or analyst |
+| [5. Fix the problem and check the result](#stage-5-fix-the-problem-and-check-the-result) | Engineer and product manager |
+
+## Before you start
+
+You need:
+
+- A Mixpanel project with access to Agent Intelligence. To request access, see [Agent Intelligence](/docs/agent-intelligence).
+- An agent that sends traces with OpenTelemetry. See the requirements in [Agent Intelligence](/docs/agent-intelligence#before-you-start).
+- An outcome event already tracked in your project, such as `Issue Resolved`. You use it in Stage 4.
+
+A few terms appear throughout. A **span** is one piece of work the agent did, such as a call to a language model. A **turn** is one prompt and the agent's response. A **conversation** is a user's whole exchange, made of one or more turns. Mixpanel stores every span as an `$mp_ai_span` event, so agent data works in the same reports as the rest of your product data.
+
+<Note>
+  Conversations appear from the time you finish setup. To check whether you can add past conversations, see the [Agent Intelligence FAQ](/docs/agent-intelligence#faq).
+</Note>
+
+## Stage 1: Send readable traces to Mixpanel
+
+**Role:** Engineer
+
+To review conversations later, send the right details with your spans.
+
+<Steps>
+  <Step title="Connect your exporter">
+    Follow [Implementation](/docs/agent-intelligence#implementation) to point your exporter at Mixpanel and set `user.id` on every span. Set `user.id` to the same value you use as `distinct_id`, so agent activity joins the rest of the user's events.
+  </Step>
+  <Step title="Add the attributes this guide relies on">
+    Follow [Add the attributes that make the data useful](/docs/agent-intelligence#step-3-—-add-the-attributes-that-make-the-data-useful). This guide uses the conversation ID, agent name, operation name, model and token counts, tool name, message content, and an error status on failed spans.
+  </Step>
+  <Step title="Add an attribute for each change you plan to make">
+    Add a custom attribute for each change you make on purpose, such as `prompt.version`. In Stage 5, you use it to compare results before and after a change. For naming rules and an example, see [Send your own attributes](/docs/agent-intelligence#step-4-—-send-your-own-attributes).
+  </Step>
+  <Step title="Decide whether to send message content">
+    If you work in a regulated industry, you can leave out `gen_ai.input.messages` and `gen_ai.output.messages`. You still get cost, tokens, latency, errors, models, and tool use. For redaction options, see [Data privacy](/docs/agent-intelligence#data-privacy).
+  </Step>
+</Steps>
+
+You're ready for Stage 2 when a real conversation with at least two turns appears under **Agent Intelligence** → **Conversations**, both turns are grouped into one conversation, and its messages are readable. Let traffic build up so there are enough conversations to review.
+
+## Stage 2: Find conversations that went wrong
+
+**Role:** Product manager or analyst
+
+To see where the agent struggles, start with the numbers, then read the conversations behind them.
+
+<Steps>
+  <Step title="Open Usage">
+    Open **Agent Intelligence** → **Usage**. Use the filters and date range at the top to narrow the view to your agent, for example `gen_ai.agent.name` equals `support-agent`. Every attribute you sent is available as a filter or breakdown.
+  </Step>
+  <Step title="Look for errors, slow turns, and costly turns">
+    These reports show where to look:
+
+    - **Agent Turns with Errors (%)**: the share of turns with at least one failed span
+    - **Errors by Tool**: failed tool calls, split by `gen_ai.tool.name`
+    - **Agent Run Duration Over Time**: median and 90th percentile turn duration
+    - **LLM Spend Over Time** and **LLM Spend per Model**: where the cost goes
+
+    For how Mixpanel adds up spans into turns and conversations, see [Conversation level data](/docs/agent-intelligence#conversation-level-data).
+  </Step>
+  <Step title="Open the conversations behind the numbers">
+    Open **Conversations**. The list doesn't have an error column, so filter to the spans you're looking for:
+
+    - To find errors, filter **AI Status Code** (`$mp_ai_status_code`) equals `STATUS_CODE_ERROR`. To find one tool's errors, also filter `gen_ai.tool.name`.
+    - To find slow or costly conversations, sort by **Duration**, **Cost**, **Tokens**, or **Turns**.
+
+    A conversation is listed when one of its spans matches every filter. You can also start from an Insights chart of `$mp_ai_span`: click a data point and select **View Conversations**.
+  </Step>
+  <Step title="Save the users who had a bad time">
+    Create a [cohort](/docs/users/cohorts) of users who did `$mp_ai_span` where **AI Status Code** equals `STATUS_CODE_ERROR` at least a few times in the last 30 days. Pick the count that fits your traffic. You use this cohort in Stage 4.
+  </Step>
+</Steps>
+
+## Stage 3: Decide what went wrong
+
+**Role:** Product manager and engineer
+
+Open a conversation. Mixpanel shows every turn, and every span inside each turn, in the order they ran. If a span failed, it's marked as an error, so you can read the error and the tool call behind it. If your project uses [Session Replay](/docs/session-replay) and `user.id` matches the user's `distinct_id`, the conversation also has a **Replay** tab that plays the user's session from when the conversation started.
+
+A failure can be an errored turn, a turn much slower or costlier than the rest, or a reply that missed the request. You can judge the last one only if you sent message content.
+
+Use this table to sort what you see.
+
+| What you see | What it usually means | What to do next |
+| :-- | :-- | :-- |
+| A span marked as an error, or a tool call that returned an error | A problem in your agent or one of its tools | Give the conversation ID to the engineer who owns that tool. |
+| A turn much slower or costlier than the rest, with no error | The agent is doing more work than it needs, such as extra tool calls or a slower model | Open the turn, check which spans took the time or cost, then test a change in Stage 5. |
+| No errors, but the answer doesn't match what the user asked | A problem in the agent's instructions or in which tool it chose | Compare similar conversations, then test a change in Stage 5. |
+| The user asked for something the agent has no tool for | A missing capability | Add it to your product backlog as a request. |
+| The agent answered correctly, and the user expected something else | A misunderstanding, or an unclear interface | Review the wording or design. Open the **Replay** tab to see what the user saw. |
+| You can't read what the user asked | Your setup doesn't send message text | See step 4 of [Stage 1](#stage-1-send-readable-traces-to-mixpanel). |
+
+Write down each failure pattern with one example conversation. For each conversation, record the conversation ID, what happened, your decision, and who owns the next step. A shared spreadsheet is enough.
+
+## Stage 4: Check whether failures cost you outcomes
+
+**Role:** Product manager or analyst
+
+A failing conversation matters most when it changes what users do next. These reports show that link.
+
+To see whether agent turns lead to your outcome, create a [Funnels](/docs/reports/funnels) report:
+
+<Steps>
+  <Step title="Add an agent turn as step one">
+    Select `$mp_ai_span`, and filter `gen_ai.operation.name` equals `invoke_agent` so each turn counts once. Add a filter for `gen_ai.agent.name` equals `support-agent`.
+  </Step>
+  <Step title="Add your outcome as step two">
+    Select `Issue Resolved`.
+  </Step>
+  <Step title="Break the funnel down">
+    To compare versions of one agent, keep the `gen_ai.agent.name` filter and break down by your custom attribute, such as `prompt.version`. To compare agents, remove the `gen_ai.agent.name` filter from step one and break down by `gen_ai.agent.name`. To compare models, break down by `gen_ai.request.model` only if your root spans carry it. Many tracers set the model only on model-call spans.
+  </Step>
+</Steps>
+
+To see whether users who try the agent come back, check **Weekly Retention** on the **Usage** page. To compare agent users with users who never use the agent, create a [cohort](/docs/users/cohorts) of users who did `$mp_ai_span`. Then run a [Retention](/docs/reports/retention) report that starts from an event every user does, such as sign-up, and break it down by that cohort. Both groups then share the same starting event, return event, and time window.
+
+To see whether bad experiences cost you users, use the cohort from Stage 2. Filter or break down your funnel or retention report by that cohort, and compare it to everyone else.
+
+## Stage 5: Fix the problem and check the result
+
+**Role:** Engineer and product manager
+
+To know a fix worked, change one thing at a time and record which change is live.
+
+<Steps>
+  <Step title="Make one change">
+    Change one thing, such as the prompt or the model. Set your custom attribute to a new value, such as a new `prompt.version`, so spans from the change are easy to separate.
+  </Step>
+  <Step title="Pick how to check the change">
+    - **Run an experiment.** Use [feature flags](/docs/featureflags) and [Experiments](/docs/experiments) to test models, prompts, tools, and interface changes. Because agent data is event data, cost and error rate can be experiment metrics like any other.
+    - **Compare before and after.** On the **Usage** page, break down **Agent Turns with Errors (%)**, **Agent Run Duration Over Time**, or **LLM Spend Over Time** by your custom attribute, such as `prompt.version`. Use the same breakdown on your funnel report. A before-and-after comparison is quicker to set up than an experiment, but it can't rule out other things that changed over the same period.
+  </Step>
+  <Step title="Watch the experience">
+    Use [Session Replay](/docs/session-replay) to watch what a slow turn felt like, or to find users who opened the agent and left without sending a prompt.
+  </Step>
+  <Step title="Recheck your failure patterns">
+    Return to **Conversations** and check that the failure patterns you wrote down are gone or smaller.
+  </Step>
+</Steps>
+
+Turning a failure into a repeatable test belongs in your own evaluation tooling and is outside this guide. Keep the conversation ID of each failure so you can find it again.
+
+## Check that it worked
+
+| Stage | Action | What you should see | If not |
+| :-- | :-- | :-- | :-- |
+| 1 | Run a two-turn conversation through your agent, then open it in **Conversations** | One conversation with two turns and readable messages | See [Troubleshoot](#troubleshoot) |
+| 2 | Filter **Usage** to your agent, then filter **Conversations** to errors and open one | Turns and spans in order, with the failed span marked | Check that failed spans have an error status |
+| 3 | Sort three conversations with the table | Each has a decision and an owner | Add the cases the table doesn't cover to your notes |
+| 4 | Build the funnel and compare it by cohort | A conversion rate for each group | Check the step one filters, the cohort, and the date range |
+| 5 | Open your experiment or your before-and-after report | Your metrics, broken out by your custom attribute | Check that the flag is on and that the attribute is on every span |
+
+## Troubleshoot
+
+If your data doesn't look right, check [Troubleshooting implementation](/docs/agent-intelligence#troubleshooting-implementation) in the Agent Intelligence FAQ. It covers four common problems:
+
+- Nothing is arriving
+- Every turn shows as a separate conversation
+- Prompts and responses are missing
+- Spans arrive but properties are empty
+
+If a span is missing or a message is cut short, check the size limits in [Send your own attributes](/docs/agent-intelligence#step-4-—-send-your-own-attributes).
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Agent Intelligence" icon="robot" href="/docs/agent-intelligence">
+    Setup, concepts, and reference details.
+  </Card>
+  <Card title="Cohorts" icon="users" href="/docs/users/cohorts">
+    Group users by behavior and compare them.
+  </Card>
+  <Card title="Experiments" icon="flask" href="/docs/experiments">
+    Test a change and measure its effect.
+  </Card>
+  <Card title="Session Replay" icon="video" href="/docs/session-replay">
+    Watch how users move through a flow.
+  </Card>
+  <Card title="Mixpanel MCP server" icon="plug" href="/docs/mcp">
+    Connect an AI client to your project.
+  </Card>
+</CardGroup>
