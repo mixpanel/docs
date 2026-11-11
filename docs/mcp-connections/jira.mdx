@@ -8,11 +8,7 @@ related:
   - /docs/mixpanel-agent
 ---
 
-<Callout icon="flask" iconType="regular" color="#5F41CF">
-  **Beta.** MCP Connections are currently available to a limited set of customers during Beta. If you'd like to participate, [request access here](https://mxpnl.notion.site/5dc6d468f8aa48eebac5146fc9bd3759).
-</Callout>
-
-Mixpanel connects to Jira through the [Atlassian Rovo MCP server](https://support.atlassian.com/atlassian-rovo-mcp-server/docs/getting-started-with-the-atlassian-remote-mcp-server/) using OAuth. You sign in with your Atlassian account, and Mixpanel Agent can read what your account can see. The Agent only uses read tools.
+Mixpanel connects to Jira through the [Atlassian Rovo MCP server](https://support.atlassian.com/atlassian-rovo-mcp-server/docs/getting-started-with-the-atlassian-remote-mcp-server/) using OAuth. You sign in with your Atlassian account, and Mixpanel Agent can read what your account can see. The Agent only uses read tools unless your organization is in the [Write Access Beta](/docs/mcp-connections#write-access-beta).
 
 Jira takes one extra step compared to other OAuth tools: an Atlassian admin must allow Mixpanel's domain in Atlassian's Rovo MCP server settings before anyone in your organization can connect.
 
@@ -56,4 +52,4 @@ Start the connection again from the MCP Connections page, and complete sign-in i
 
 ### Jira shows as Disconnected
 
-Your Atlassian authorization has expired or been revoked. Delete the Jira connection in Mixpanel and add it again.
+Your Atlassian authorization has expired or been revoked. Click the **Reconnect** button on the Jira connection in Mixpanel.

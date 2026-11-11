@@ -7,10 +7,6 @@ related:
   - /docs/mixpanel-agent
 ---
 
-<Callout icon="flask" iconType="regular" color="#5F41CF">
-  **Beta.** MCP Connections are currently available to a limited set of customers during Beta. If you'd like to participate, [request access here](https://mxpnl.notion.site/5dc6d468f8aa48eebac5146fc9bd3759).
-</Callout>
-
 ## Overview
 
 MCP Connections let [Mixpanel Agent](/docs/mixpanel-agent) read context from the tools your team already uses. Each connection links your own account on an external [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server to Mixpanel, so the Agent can pull in issues, pull requests, docs, and tickets alongside your Mixpanel data.
@@ -19,7 +15,7 @@ MCP Connections are the reverse of the [Mixpanel MCP Server](/docs/mcp): the MCP
 
 Key properties:
 
-- **Read-only.** Mixpanel Agent can only use read tools on connected servers. It cannot create, edit, or delete anything in them.
+- **Read-only by default.** Mixpanel Agent can only use read tools on connected servers. It cannot create, edit, or delete anything in them. Organizations in the [Write Access Beta](#write-access-beta) can let the Agent use write tools too, with your approval.
 - **Private to you.** Connections belong to your user in a single organization. Teammates cannot see or use your connections, and the Agent sees only what your account on that tool can see.
 - **Removed when you leave.** If you are removed from the organization, your connections and their credentials are deleted.
 
@@ -74,7 +70,25 @@ The **Connection Status** column on the MCP Connections page checks each connect
 - **Disconnected:** The credentials are no longer valid, for example because a token expired or was revoked, or you revoked access in the tool.
 - **Unavailable:** An admin has turned off **Connect Your Tools via MCP** for your organization.
 
-To remove a connection, click the trash icon next to it. To reconnect a **Disconnected** tool, delete the connection and add it again.
+To remove a connection, click the trash icon next to it. To reconnect a **Disconnected** tool, click the **Reconnect** button on it.
+
+## Write Access (Beta)
+
+<Callout icon="flask" iconType="regular" color="#5F41CF">
+  **Beta.** Write access for MCP Connections is currently available to a limited set of customers during Beta. If you'd like to participate, [request access here](https://mxpnl.notion.site/5dc6d468f8aa48eebac5146fc9bd3759).
+</Callout>
+
+With write access, Mixpanel Agent can use every tool a connected server offers, not only read tools. For example, it can create a Jira ticket for a drop it found in a funnel, comment on a GitHub pull request, or update a Notion page with the results of an analysis.
+
+Before the Agent runs a tool, Mixpanel checks whether the call would change anything in the connected tool, such as creating, editing, deleting, or sending something:
+
+- **Calls that only read** run without asking.
+- **Calls that make changes** pause, and the Agent shows you what it is about to do. The call runs only if you confirm it. If you cancel, nothing is changed.
+- **Calls Mixpanel can't assess**, for example because the check timed out, are treated as calls that make changes and need your confirmation.
+
+The Agent acts as you. It can only do what your account, or your token for GitHub, is allowed to do in the connected tool, and any changes it makes appear under your name there.
+
+Write access applies to every connection in your organization once it is enabled for the Beta. Organizations not in the Beta stay read-only.
 
 ## FAQ
 
@@ -88,11 +102,11 @@ No. Each member connects their own account, and Mixpanel Agent uses only the con
 
 ### Can Mixpanel Agent make changes in my tools?
 
-No. Mixpanel only exposes read tools from connected servers to the Agent.
+By default, no. Mixpanel only exposes read tools from connected servers to the Agent. Organizations in the [Write Access Beta](#write-access-beta) can let the Agent make changes, and it asks you to confirm each change before it runs.
 
-### Why can't I see MCP Connections in my settings?
+### Why are MCP Connections unavailable in my settings?
 
-MCP Connections are in Beta and only available to some organizations. If you'd like to participate, [request access here](https://mxpnl.notion.site/5dc6d468f8aa48eebac5146fc9bd3759).
+An organization admin or owner needs to turn on **Connect Your Tools via MCP**, and **Enable Mixpanel AI** must be on. See [Enable MCP Connections for Your Organization](#enable-mcp-connections-for-your-organization).
 
 ## Notes
 

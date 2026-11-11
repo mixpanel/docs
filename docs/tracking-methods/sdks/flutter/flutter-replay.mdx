@@ -46,6 +46,16 @@ Each major version of the Session Replay SDK has its own minimum supported iOS a
 If your app uses CocoaPods, on 2.x set `platform :ios, '15.0'` in `ios/Podfile` and `platform :osx, '12.0'` in `macos/Podfile`. Building with Xcode 27 requires Flutter 3.47\+. 
 If your app needs to support an older iOS or macOS version, stay on 1.x.
 
+### Swift Package Manager
+
+The Session Replay SDK supports Swift Package Manager (SPM) from v1.1.0. SPM is on by default from Flutter 3.44. If you turned it off, run:
+
+```bash
+flutter config --enable-swift-package-manager
+```
+
+If your app uses a Flutter version earlier than 3.44, or keeps SPM turned off, the SDK continues to install through CocoaPods. See [Flutter's SPM guide](https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers).
+
 ### Flutter Web (Beta)
 
 <Note>
