@@ -7,6 +7,11 @@
   const SENTRY_LOADER_SRC =
     "https://js.sentry-cdn.com/6200201fbaac39435129c90af2fc30cb.min.js"; // docs project
 
+  const OWN_URLS = [
+    /^https:\/\/docs\.mixpanel\.com\//,
+    /^https:\/\/[\w.-]+\.mintlify\.app\//,
+  ];
+
   // Configure sentryOnLoad before adding the Loader Script.
   window.sentryOnLoad = function () {
     // The loader calls this once; remove it so it doesn't linger on the global scope.
@@ -21,10 +26,18 @@
         // Cross-origin scripts loaded without CORS (TrustArc, GTM tags): no message/stack to act on.
         "Script error.",
       ],
-      allowUrls: [
-        /^https:\/\/docs\.mixpanel\.com\//,
-        /^https:\/\/[\w.-]+\.mintlify\.app\//,
-      ],
+      allowUrls: OWN_URLS,
+      // allowUrls passes events with no stack frames (link scanners, extensions), so require a frame from our origins.
+      beforeSend(event) {
+        const values = event.exception?.values;
+        if (!values) return event;
+        const fromOwnCode = values.some((value) =>
+          (value.stacktrace?.frames ?? []).some((frame) =>
+            OWN_URLS.some((pattern) => pattern.test(frame.filename ?? "")),
+          ),
+        );
+        return fromOwnCode ? event : null;
+      },
     });
   };
 

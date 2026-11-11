@@ -1,6 +1,10 @@
 ---
 title: "Pricing"
 description: "How Mixpanel pricing works"
+related:
+  - /docs/pricing/startup-program
+  - /docs/pricing/legacy-mtu-billing
+  - /docs/orgs-and-projects/organizations
 ---
 
 ## How Mixpanel Pricing Works
@@ -33,7 +37,7 @@ There are three event-based billing plans to choose from: Free, Growth, and Ente
 
 The high-level differences between the three are:
 
-- **Free:** Mixpanel is usage-based, and you can use it for free for as long as you want, no trial needed. If you are new to Mixpanel and want to test it out, we encourage you to use our free plan and upgrade once you have an estimate of your project’s volume. Limited to a maximum of 5 saved reports per user account and 1M total events. You can create cohorts but not save them, and features like lookup tables, custom properties, or permissions are not included.
+- **Free:** Mixpanel is usage-based, and you can use it for free as long as you stay within the plan's limits; no trial needed. If you are new to Mixpanel and want to test it out, we encourage you to use our free plan and upgrade once you have an estimate of your project’s volume. Includes unlimited saved reports and up to 1M total events. You can create cohorts but can't save them, and it doesn't include features like lookup tables, custom properties, or permissions.
 - **Growth:** The typical Growth plan customer is a small team using Mixpanel (fewer than 50 employees). Growth plans purchased after February 2025 include the first 1M events free.
 - **Enterprise:** Designed for large teams that require access controls and permissions, data governance features, dedicated onboarding support, and account management. Enterprise also unlocks exclusive analysis tools, including the Signal report and anomaly detection alerts.
 
@@ -149,12 +153,12 @@ You can also check the top events contributing towards your event count by creat
 
 If you go over your plan's events, Mixpanel won't stop collecting your data:
 
-- If you're using a Free plan, Mixpanel limits your platform access once you reach 1M monthly events, but doesn't charge overages. Once you hit the limit, you will be blocked from viewing your reports until you either upgrade to a Growth plan that supports your current usage or wait until the following month, when your allowance automatically resets.
+- If you’re using a Free plan, Mixpanel won’t stop collecting your data, but querying is paused once you go over 1M monthly events. The pause stays in place until you upgrade to a Growth plan. Growth starts at $0, depending on the allowance and add-ons you choose, and requires a credit card. Your Growth plan starts from the first of the current month, so all of this month’s events count toward its allowance, and any events above it are billed at your à la carte rate on your next invoice.
 - If you're using a Growth plan, the additional cost will be charged at the beginning of the next month based on your À La Carte rate, which you can find in the "Plan Details & Billing" section in your Organization Settings. On the contrary, if you want to avoid paying for overages, you can either [downgrade your paid plan to the Free one](/docs/pricing#downgrade-your-plan-to-free) or upgrade to one that covers your additional usage before the end of the billing cycle - the more events your plan includes, the less you pay per event.
 
 #### Alerts for Additional Data Charges
 
-Organization owners and billing admins are sent an alert email if their paid account reaches the following percentages of their plan volume: 85%, 100%, 110%, 120%, 200%, 300%, and 400%. If an account reaches two or more of these thresholds, it is possible to receive multiple alerts in one month. Additionally, email addresses that are CC'd on invoice receipts will also be CC'd on alert emails.
+Organization owners and billing admins are sent an alert email if their account reaches the following percentages of their plan volume: 85%, 100%, 110%, 120%, 200%, 300%, and 400%. If an account reaches two or more of these thresholds, it is possible to receive multiple alerts in one month. Additionally, email addresses that are CC'd on invoice receipts will also be CC'd on alert emails.
 
 #### Can I set a billing limit?
 
@@ -172,7 +176,7 @@ Our latest pricing plans include the first 1M events free each month. We require
 
 The first 1 million events ingested are free! If you go over 1 million events, each event ingested will be charged at the additional data rate seen in the “Plan Details & Billing” section in your Organization Settings. If you're only on a 1M monthly events plan, the additional data rate is \$.00028 per event. Purchasing higher volumes upfront will lower that additional data rate, as we include volume discounts in our pricing.
 
-If you have the Data Pipeline or Group Analytics add-ons, you will also be charged 20% for Data Pipelines and/or 40% for Group Analytics based on the additional data ingested.
+If you have the Data Pipelines or Group Analytics add-ons, they are also charged on the additional data ingested: the Data Pipelines add-on has a 20% charge over the base plan; the Group Analytics add-on has a 40% charge over the base plan for 6 group keys on Growth, and 20% for group keys on Enterprise.
 
 As an example:
 

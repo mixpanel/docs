@@ -2,12 +2,16 @@
 title: "Web Experiments"
 sidebarTitle: "Web Experiments"
 description: "Run A/B tests without shipping code"
+related:
+  - /docs/experiments
+  - /docs/featureflags
+  - /docs/tracking-methods/sdks/javascript
 ---
 
 Web Experiments let you build and launch A/B test variants on your website through a visual editor, with no code deploy per test. You open the page you want to test, click the element you want to change, edit it directly or describe the change to Mixpanel Agent, then launch.
 
 <Callout icon="flask" iconType="regular" color="#5F41CF">
-  **Beta.** Web Experiments is currently available to a limited set of customers during Beta. If you'd like to participate, request access [here](https://mxpnl.notion.site/e2e0eaa760de4546a73fc3c6418acbd3).
+  **Beta.** Web Experiments is currently available to all customers during Beta.
 </Callout>
 
 ## Beta Scope
@@ -66,11 +70,7 @@ Setup is a one-time job. After it's done, anyone with permission can create and 
   </Step>
 
   <Step title="Install the Chrome extension">
-    Install the latest [Mixpanel extension](https://chromewebstore.google.com/detail/mixpanel-beta/ofcgdmpepahnlckcjhnapiakdpkklbkj) from the Chrome Web Store.
-
-    <Warning>
-      Uninstall or disable any older Mixpanel browser extension first in order for the visual editor to work properly.
-    </Warning>
+    Install the latest [Mixpanel extension](https://chromewebstore.google.com/detail/mixpanel/camknfenboildigjgpmhojlcnejppooh) from the Chrome Web Store.
 
     After installing, refresh your Mixpanel tab. Mixpanel checks for the extension when the page loads, so without a refresh it will keep reporting the extension as missing.
   </Step>
@@ -152,6 +152,10 @@ Grant it to a custom role under Organization Settings, in the **Feature Flags an
 - One editor session per user at a time. Opening the editor again ends the previous session
 - Editor sessions expire after an hour
 - Concurrent edits to the same variant overwrite each other, so coordinate before multiple people edit one experiment
+
+<Warning>
+  Like any client-side testing tool, Web Experiments can add page load latency and can cause flicker, where visitors briefly see the original page before the variant appears. Test your experiment on a staging site first and confirm that the impact is acceptable for your pages.
+</Warning>
 
 ## Troubleshooting
 

@@ -63,34 +63,42 @@
         "tab": "Docs",
         "groups": [
           {
-            "group": "INTRO",
+            "group": "WELCOME",
             "icon": "/icons/wave.svg",
             "pages": [
               "docs/what-is-mixpanel",
-              "docs/what-to-track",
               {
-                "group": "Quickstart",
-                "root": "docs/quickstart",
+                "group": "Set Up Mixpanel",
+                "root": "docs/set-up-mixpanel",
                 "pages": [
-                  "docs/quickstart/install-mixpanel",
-                  "docs/quickstart/identify-users",
-                  {
-                    "group": "Capture Events",
-                    "root": "docs/quickstart/capture-events",
-                    "pages": [
-                      "docs/quickstart/capture-events/autocapture",
-                      "docs/quickstart/capture-events/track-events"
-                    ]
-                  },
-                  "docs/quickstart/install-with-ai"
+                  "docs/set-up-mixpanel/get-your-data-in",
+                  "docs/set-up-mixpanel/configure-your-account",
+                  "docs/set-up-mixpanel/train-your-team"
                 ]
-              }
+              },
+              "docs/install-with-ai"
             ]
           },
           {
             "group": "DATA IN",
             "icon": "/icons/data-in.svg",
             "pages": [
+              {
+                "group": "Overview",
+                "root": "docs/overview",
+                "pages": [
+                  "docs/overview/install-mixpanel",
+                  "docs/overview/identify-users",
+                  {
+                    "group": "Capture Events",
+                    "root": "docs/overview/capture-events",
+                    "pages": [
+                      "docs/overview/capture-events/autocapture",
+                      "docs/overview/capture-events/track-events"
+                    ]
+                  }
+                ]
+              },
               {
                 "group": "Tracking Methods",
                 "root": "docs/tracking-methods",
@@ -291,7 +299,8 @@
                   "docs/tracking-best-practices/server-side-best-practices",
                   "docs/tracking-best-practices/tracking-plan",
                   "docs/tracking-best-practices/traffic-attribution",
-                  "docs/tracking-best-practices/warehouse-best-practices"
+                  "docs/tracking-best-practices/warehouse-best-practices",
+                  "docs/what-to-track"
                 ]
               }
             ]
@@ -390,7 +399,14 @@
                   "docs/features/warehouse-metrics"
                 ]
               },
-              "docs/agent-intelligence"
+              {
+                "group": "Agent Intelligence",
+                "tag": "BETA",
+                "root": "docs/agent-intelligence",
+                "pages": [
+                  "docs/agent-intelligence/find-and-fix-agent-failures"
+                ]
+              }
             ]
           },
           {
@@ -400,7 +416,6 @@
               "docs/mixpanel-agent",
               {
                 "group": "MCP Connections",
-                "tag": "BETA",
                 "root": "docs/mcp-connections",
                 "pages": [
                   "docs/mcp-connections/github",
@@ -409,7 +424,13 @@
               },
               "docs/agentic-automations",
               "docs/root-cause-analysis",
-              "docs/mcp",
+              {
+                "group": "MCP Server",
+                "root": "docs/mcp",
+                "pages": [
+                  "docs/mcp/claude-enterprise-managed-auth"
+                ]
+              },
               "docs/mixpanel-headless",
               "docs/business-context",
               "docs/docs-for-ai-agents"
@@ -662,6 +683,7 @@
                   {
                     "group": "Grow Your Usership",
                     "pages": [
+                      "guides/guides-by-use-case/grow-your-usership/run-web-experiments",
                       "guides/guides-by-use-case/grow-your-usership/grow-revenue"
                     ]
                   },
@@ -799,6 +821,22 @@
               "troubleshooting/exporting-data",
               "troubleshooting/managing-projects",
               "troubleshooting/protecting-user-data"
+            ]
+          },
+          {
+            "group": "Error Troubleshooting",
+            "pages": [
+              "troubleshooting/errors",
+              "troubleshooting/errors/400-bad-request",
+              "troubleshooting/errors/401-unauthorized",
+              "troubleshooting/errors/403-forbidden",
+              "troubleshooting/errors/413-payload-too-large",
+              "troubleshooting/errors/429-rate-limit-exceeded",
+              "troubleshooting/errors/snowflake-jwt-token-is-invalid",
+              "troubleshooting/errors/duplicate-events",
+              "troubleshooting/errors/historical-events-not-appearing",
+              "troubleshooting/errors/server-side-events-without-a-user",
+              "troubleshooting/errors/duplicate-user-profiles"
             ]
           }
         ]
@@ -1381,7 +1419,7 @@
     },
     {
       "source": "/developer-docs-redirect/android-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=android"
+      "destination": "/docs/overview/install-mixpanel?sdk=android"
     },
     {
       "source": "/developer-docs-redirect/aws-raw-pipeline",
@@ -1405,7 +1443,7 @@
     },
     {
       "source": "/developer-docs-redirect/cloud-ingestion",
-      "destination": "/docs/quickstart/capture-events/track-events"
+      "destination": "/docs/overview/capture-events/track-events"
     },
     {
       "source": "/developer-docs-redirect/codeless-freshpaint",
@@ -1457,7 +1495,7 @@
     },
     {
       "source": "/developer-docs-redirect/flutter-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=flutter"
+      "destination": "/docs/overview/install-mixpanel?sdk=flutter"
     },
     {
       "source": "/developer-docs-redirect/freshpaint",
@@ -1497,7 +1535,7 @@
     },
     {
       "source": "/developer-docs-redirect/ios-objective-c-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=ios"
+      "destination": "/docs/overview/install-mixpanel?sdk=ios"
     },
     {
       "source": "/developer-docs-redirect/ios-swift",
@@ -1505,7 +1543,7 @@
     },
     {
       "source": "/developer-docs-redirect/ios-swift-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=swift"
+      "destination": "/docs/overview/install-mixpanel?sdk=swift"
     },
     {
       "source": "/developer-docs-redirect/java",
@@ -1521,7 +1559,7 @@
     },
     {
       "source": "/developer-docs-redirect/javascript-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=javascript"
+      "destination": "/docs/overview/install-mixpanel?sdk=javascript"
     },
     {
       "source": "/developer-docs-redirect/jql",
@@ -1605,7 +1643,7 @@
     },
     {
       "source": "/developer-docs-redirect/quick-start-guide",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/developer-docs-redirect/raw-export-pipeline",
@@ -1617,7 +1655,7 @@
     },
     {
       "source": "/developer-docs-redirect/react-native-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=reactnative"
+      "destination": "/docs/overview/install-mixpanel?sdk=reactnative"
     },
     {
       "source": "/developer-docs-redirect/ruby",
@@ -1641,11 +1679,11 @@
     },
     {
       "source": "/developer-docs-redirect/sending-events",
-      "destination": "/docs/quickstart/capture-events/track-events"
+      "destination": "/docs/overview/capture-events/track-events"
     },
     {
       "source": "/developer-docs-redirect/server",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=python"
+      "destination": "/docs/overview/install-mixpanel?sdk=python"
     },
     {
       "source": "/developer-docs-redirect/snowplow",
@@ -1669,7 +1707,7 @@
     },
     {
       "source": "/developer-docs-redirect/unity-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=unity"
+      "destination": "/docs/overview/install-mixpanel?sdk=unity"
     },
     {
       "source": "/developer-docs-redirect/what-is-mixpanel",
@@ -2245,7 +2283,7 @@
     },
     {
       "source": "/docs/other-bits/tutorials/developers/mixpanel-for-developers-implementation",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/docs/other-bits/tutorials/how-to-clean-your-data",
@@ -2349,11 +2387,11 @@
     },
     {
       "source": "/docs/quickstart/connect-your-data",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/docs/quickstart/track-events",
-      "destination": "/docs/quickstart/capture-events/track-events"
+      "destination": "/docs/overview/capture-events/track-events"
     },
     {
       "source": "/docs/quickstart/what-to-track",
@@ -2501,7 +2539,7 @@
     },
     {
       "source": "/docs/tracking/how-tos/api-credentials",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/docs/tracking/how-tos/debugging",
@@ -2557,7 +2595,7 @@
     },
     {
       "source": "/docs/tracking/http-api",
-      "destination": "/docs/quickstart/capture-events/track-events"
+      "destination": "/docs/overview/capture-events/track-events"
     },
     {
       "source": "/docs/tracking/integrations/bigquery",
@@ -2605,7 +2643,7 @@
     },
     {
       "source": "/docs/tracking/javascript-quickstart",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=javascript"
+      "destination": "/docs/overview/install-mixpanel?sdk=javascript"
     },
     {
       "source": "/docs/tracking/mobile",
@@ -2689,7 +2727,7 @@
     },
     {
       "source": "/docs/tracking/server",
-      "destination": "/docs/quickstart/install-mixpanel?sdk=python"
+      "destination": "/docs/overview/install-mixpanel?sdk=python"
     },
     {
       "source": "/docs/tutorials/analytics-strategy",
@@ -3061,7 +3099,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004502806*",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004505106*",
@@ -3117,7 +3155,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004546863*",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004546883*",
@@ -3285,7 +3323,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004734463*",
-      "destination": "/docs/quickstart/capture-events/track-events"
+      "destination": "/docs/overview/capture-events/track-events"
     },
     {
       "source": "/hc/en-us/articles/115004958823*",
@@ -3981,7 +4019,7 @@
     },
     {
       "source": "/hc/en-us/categories/115001197206*",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/hc/en-us/categories/115001197226*",
@@ -4013,7 +4051,7 @@
     },
     {
       "source": "/hc/en-us/sections/115001308546*",
-      "destination": "/docs/quickstart/capture-events/track-events"
+      "destination": "/docs/overview/capture-events/track-events"
     },
     {
       "source": "/hc/en-us/sections/115001308566*",
@@ -4145,7 +4183,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004519306*",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004519426*",
@@ -4233,7 +4271,7 @@
     },
     {
       "source": "/hc/en-us/articles/115004561806*",
-      "destination": "/docs/quickstart/install-mixpanel"
+      "destination": "/docs/overview/install-mixpanel"
     },
     {
       "source": "/hc/en-us/articles/115004561826*",
@@ -4882,6 +4920,14 @@
     {
       "source": "/guides/guides-by-topic/trust-ai-answers",
       "destination":"/guides/use-mixpanel-ai/trust-ai-answers"
+    },
+    {
+      "source": "/docs/quickstart/install-with-ai",
+      "destination":"/docs/install-with-ai"
+    },
+    {
+      "source": "/docs/quickstart/*",
+      "destination":"/docs/overview/*"
     }
   ]
 }
