@@ -227,6 +227,14 @@ Note: [BigQuery's ingestion time partitions](https://cloud.google.com/bigquery/d
 
 Full syncs periodically make a snapshot of the source table and sync it entirely to Mixpanel. If a row has new properties in your warehouse, the corresponding profile in Mixpanel will be overridden with those new properties. This mode is available for all tables except events.
 
+The sync frequencies available for Full syncs depend on the table type:
+
+- **User Profiles**: Weekly only.
+- **Group Profiles**: Weekly only.
+- **Lookup Tables**: Hourly, daily, or weekly.
+
+Only Full syncs for Lookup Tables can use hourly or daily sync frequencies.
+
 ## Sync Frequency
 
 Mixpanel offers a variety of sync frequency options to cater to different data integration needs. These options allow you to choose how often your data is synchronized from your data warehouse to Mixpanel, ensuring your data is up-to-date and accurate.
@@ -235,6 +243,8 @@ Mixpanel offers a variety of sync frequency options to cater to different data i
 
 <Note>
   GA4 tables support only a daily sync frequency.
+
+  [Full](#full) syncs for User Profiles and Group Profiles support only a weekly sync frequency. Full syncs for Lookup Tables support all standard sync frequencies.
 </Note>
 
 - Hourly: Data is synchronized every hour, providing near real-time updates to your Mixpanel project.

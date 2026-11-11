@@ -10,6 +10,47 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-11-09">
+  ## Unlimited saved reports on every plan
+
+  Free plan users were previously limited to 5 saved reports, so keeping a new analysis often meant deleting an old one first.
+
+  That limit is gone. You can now save as many reports as you need to your Boards, on any plan, including Free.
+
+  [Learn more →](https://mixpanel.com/pricing/)
+</Update>
+
+<Update label="2026-11-06">
+  ## MCP Connections: Read Access is now Generally Available
+
+  [MCP Connections](/docs/mcp-connections) are now **Generally Available** for reading context. Mixpanel Agent can read GitHub, Jira, Linear, and Notion, so it can answer with your team's specs, tickets, and pull requests alongside your Mixpanel data. With this update, you can:
+
+  - **Connect the tools you already use:** Notion, Linear, and Jira connect through OAuth. GitHub connects with a personal access token. Each tool connects once, to your own account.
+  - **Bring your own context into an answer:** Ask the Agent whether any pull requests were merged to the signup service the day signups dropped, or have it check whether you track every step a Notion spec describes.
+  - **Read-only and private to you:** The Agent only uses read tools, so it can't create, edit, or delete anything in a connected tool. Teammates can't see or use your connections, and the Agent sees only what your account on that tool can see.
+
+  MCP Connections require Mixpanel AI. An organization admin or owner turns on **Connect Your Tools via MCP** under **Settings → Org → AI Settings**, and each member then adds their own connections from **Settings → Personal Settings**.
+
+  Write access, which lets the Agent make changes in connected tools after you confirm each one, is still in Beta for a limited set of customers.
+
+  [Learn more →](/docs/mcp-connections)
+</Update>
+
+<Update label="2026-11-03">
+  ## MCP Server: Auto-connect Claude.ai users with managed authorization (Beta)
+
+  Admins can now connect Claude to the [Mixpanel MCP Server](/docs/mcp) for every member at once. When members open Claude, Mixpanel is already connected, with no sign-in or consent screen. With this update:
+
+  - **One-time setup:** A Claude admin and a Mixpanel organization admin connect the two. In Claude, use the connector's **Managed authorization** settings. In Mixpanel, go to **Organization Settings** → **Access Security** → **Claude Access**.
+  - **Choose the identity provider:** Use Claude as the issuer for the fastest setup, or use Okta so its sign-in and MFA policies apply and you control who gets access.
+  - **Your permissions stay the same:** Claude acts as each member, and Mixpanel checks their project and data access on every request. Managed authorization grants no extra access.
+  - **Every connection is audited:** Each connection appears in the [audit log](/docs/access-security/audit-log-reference#mcp) as an `mcp_client.authorized` entry, and changes to the issuer setup are logged as `trusted_identity_issuer.*` entries.
+
+  Managed authorization (also called Enterprise Managed Auth) is in Beta on all Mixpanel plans, including Free. It requires a Claude Team or Enterprise plan. Your Mixpanel organization also needs MCP enabled and a claimed email domain that matches the emails members use in Claude.
+
+  [Learn more →](/docs/mcp/claude-enterprise-managed-auth)
+</Update>
+
 <Update label="2026-10-28">
   ## Query API: Custom Insights Query (Beta)
 
@@ -1371,19 +1412,21 @@ Get all the latest updates in your inbox.
   ## Deprecation Notice: Legacy US-to-EU Data Forwarding ends July 2026 for EU Projects
 
   <Warning>
-    **⏳ Extended timeline through January 4, 2027 (notified projects only)**
+    **⏳ Extended timeline to February 2027 (notified projects only)**
 
     **Only projects we notified directly have an extended timeline.** If you did not receive an email from Mixpanel about an extension, your project is not extended. US-to-EU forwarding ended on July 1, 2026, and events your EU projects send to US endpoints are no longer accepted as of August 1, 2026. See the July 1 update below.
 
     If we notified you that your project has an extended timeline:
 
-    * **Now:** Review and update your implementations. Some updates take longer than others, so we recommend that you start before December.
-    * **December 1, 2026:** A temporary reporting preview begins. Events ingested through US Ingestion API Endpoints on or after this date for your extended projects will be hidden from the Mixpanel UI and Query API results to help you identify affected reporting. These events will not be deleted and will remain available through the Event Export API.
-    * **January 4, 2027:** Your extension ends. Complete your implementation updates by this date to prevent data loss. After this date, events sent to US endpoints will not be accepted. Previously hidden events will become visible again, which may change your report counts.
+    * **Now:** Review and update your implementations. Some updates take longer than others, so we recommend that you start before January.
+    * **January 2027:** A temporary reporting preview begins. Once the preview begins, events ingested through US Ingestion API Endpoints for your extended projects will be hidden from the Mixpanel UI and Query API results to help you identify affected reporting. These events will not be deleted and will remain available through the Event Export API.
+    * **February 2027:** Your extension ends. Complete your implementation updates by then to prevent data loss. After your extension ends, events sent to US endpoints will not be accepted. Previously hidden events will become visible again, which may change your report counts.
 
     To update your implementation, point it to Mixpanel's EU servers (`api-eu.mixpanel.com`). See **Required Action** below for SDK-specific steps.
 
-    Not sure whether your project is extended? [Contact support](https://mixpanel.com/get-support) before planning around the January 4 date.
+    Not sure whether your project is extended? [Contact support](https://mixpanel.com/get-support) before planning around the February 2027 date.
+
+    **Update:** We have pushed out the extended timeline from January 2027 to February 2027 to give customers additional time.
   </Warning>
 
 
@@ -1402,7 +1445,7 @@ Get all the latest updates in your inbox.
   
   _Need help or want to opt out? If you wish to opt out of this UI preview and un-hide your forwarded events early, please [contact support](https://mixpanel.com/get-support)._
   
-  ⏳ **Note:** Some projects have an extended timeline through **January 4, 2027**. These projects are not affected by the temporary event-hiding described above. If this applies to your project, we've already reached out with a notification. If you did not receive a notification, your deadline is **August 1, 2026**.
+  ⏳ **Note:** Some projects have an extended timeline to **February 2027**. These projects are not affected by the temporary event-hiding described above. If this applies to your project, we've already reached out with a notification. If you did not receive a notification, your deadline is **August 1, 2026**.
   </Accordion>
 
   Starting July 2026, we will be sunsetting the legacy automated US-to-EU Data Forwarding process for [EU Data Residency projects](/docs/privacy/eu-residency) to align with data residency best practices and improve ingestion performance. After this date, data sent to our US Ingestion Servers for EU Data Residency projects will no longer be forwarded, which can result in data loss.

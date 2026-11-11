@@ -41,7 +41,6 @@ paths:
       operationId: import-events
       security:
       - ServiceAccount: []
-      - ProjectSecret: []
       - OAuthToken: []
       summary: Import Events
       description: ''
@@ -1521,7 +1520,7 @@ paths:
           type: string
           format: uuid
         description: The ID of the lookup table to replace which can be retreived from Lexicon under the lookup table's details,
-          click [here](https://docs.mixpanel.com/docs/data-structure/lookup-tables#where-can-i-find-the-id-of-the-lookup-table-for-apis-path-params)
+          click [here](https://docs.mixpanel.com/docs/data-structure/lookup-tables#where-can-i-find-the-%E2%80%9Cid%E2%80%9D-of-the-lookup-table-for-api%E2%80%99s-path-params)
           for more info.
       - in: query
         name: project_id
