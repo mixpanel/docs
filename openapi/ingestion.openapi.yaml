@@ -41,7 +41,6 @@ paths:
       operationId: import-events
       security:
       - ServiceAccount: []
-      - ProjectSecret: []
       - OAuthToken: []
       summary: Import Events
       description: ''
