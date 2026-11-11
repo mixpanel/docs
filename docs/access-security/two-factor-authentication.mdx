@@ -149,3 +149,16 @@ As an organization admin, you can reset two-factor authentication (2FA) for user
 4. Click Reset Two-Factor Authorization
 
 This will reset their two-factor authentication, allowing them to set up 2FA again the next time they log in.
+
+### Troubleshooting
+
+#### "Code does not match" error
+
+Authentication apps generate time-based codes, so this error usually means the code was expired or came from the wrong entry in your app. Try the following:
+
+1. **Check your device's time.** Set your phone's date and time to update automatically. If the clock on your phone is off, even by a minute or two, the codes it generates will not match.
+2. **Enter the current code.** Codes refresh about every 30 seconds. Wait for a new code to appear and enter it right away, rather than reusing one you've already entered.
+3. **Use the right entry.** If your authentication app has more than one Mixpanel entry (for example, from an earlier setup or a different account), make sure you're using the one for the account you're logging in to. If you changed or reset your two-factor method, delete the old entry from your app, since its codes will no longer work.
+4. **Enter only the digits.** Type the code without spaces or other characters.
+
+If the code still does not match, log in with one of your [recovery codes](#login-via-recovery-codes-authentication-app), or ask an organization admin to [reset your two-factor authentication](#resetting-two-factor-authentication-for-users) so you can set it up again. If neither option works for you, contact support.
