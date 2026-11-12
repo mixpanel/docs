@@ -54,7 +54,7 @@ To send different Claude workspaces to different Mixpanel projects, add a destin
 
 Mixpanel ties every span to a user and drops spans that have no `user.id`. Claude sets `user.id` from the W3C `baggage` header of each request: send `baggage: user.id=<your user's ID>`, and Claude adds `user.id` to that request's spans and every span under it.
 
-Use an opaque ID, such as your database key for the user. Claude drops any `user.id` that contains an email address.
+Set `user.id` to the user's `distinct_id` in Mixpanel, so Claude activity joins the rest of that user's events.
 
 Each section below shows where to send the header.
 
@@ -120,7 +120,13 @@ Each session thread is a conversation in **Agent Intelligence → Conversations*
 
 ## Anthropic SDK
 
-The Anthropic SDK sends the baggage in your OpenTelemetry context with each request. Set `user.id` in the baggage around the calls you make for a user:
+The Anthropic SDK sends the baggage in your OpenTelemetry context with each request. Install the SDK with the OpenTelemetry SDK:
+
+```bash
+pip install anthropic opentelemetry-sdk
+```
+
+Then set `user.id` in the baggage around the calls you make for a user:
 
 ```python
 from anthropic import Anthropic
@@ -178,7 +184,7 @@ The Console's **Test** button sends a span without a `user.id`. It checks that t
 | Problem | What to check |
 | :-- | :-- |
 | **Delivery** shows **Failing** | The **OTLP traces endpoint URL** under **Advanced settings** is `https://<region host>/v1/ai/otel/traces`. The `Authorization` value is `Basic ` followed by `base64("<project token>:")`, with the trailing colon and no newline. |
-| **Delivery** is **Healthy**, but nothing appears in Mixpanel | Your requests send `baggage: user.id=…`, and the ID contains no email address. |
+| **Delivery** is **Healthy**, but nothing appears in Mixpanel | Your requests send `baggage: user.id=…`. |
 | A Managed Agents conversation shows fewer turns than messages | Send each message from a new trace. See [Managed Agents with the SDK](#managed-agents-with-the-sdk). |
 | No prompts or replies in conversations | The destination's **Content mode** is **Full content**. |
 
