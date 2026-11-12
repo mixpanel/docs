@@ -120,7 +120,13 @@ Each session thread is a conversation in **Agent Intelligence → Conversations*
 
 ## Anthropic SDK
 
-The Anthropic SDK sends the baggage in your OpenTelemetry context with each request. Set `user.id` in the baggage around the calls you make for a user:
+The Anthropic SDK sends the baggage in your OpenTelemetry context with each request. Install the SDK with the OpenTelemetry SDK:
+
+```bash
+pip install anthropic opentelemetry-sdk
+```
+
+Then set `user.id` in the baggage around the calls you make for a user:
 
 ```python
 from anthropic import Anthropic
