@@ -404,7 +404,13 @@
                 "tag": "BETA",
                 "root": "docs/agent-intelligence",
                 "pages": [
-                  "docs/agent-intelligence/find-and-fix-agent-failures"
+                  "docs/agent-intelligence/find-and-fix-agent-failures",
+                  {
+                    "group": "Integrations",
+                    "pages": [
+                      "docs/agent-intelligence/integrations/claude"
+                    ]
+                  }
                 ]
               }
             ]
