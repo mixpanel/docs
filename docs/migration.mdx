@@ -1,5 +1,10 @@
 ---
 title: Migrating to Mixpanel
+description: "How a migration from another analytics provider works, what each phase involves, and how to reduce the risk and switching costs"
+related:
+  - /docs/migration/amplitude
+  - /docs/migration/google-analytics
+  - /docs/migration/adobe-analytics
 ---
 
 If you’re reading this, congrats on considering making the switch from another analytics provider to Mixpanel 🎊  Our migration guides are intended to outline how a migration works, what to expect, and how to mitigate the risks and switching costs of a migration whilst accelerate time to value.
@@ -93,6 +98,12 @@ After the migration, we recommend you focus on longer term goals like:
 - Building a Product Analytics Practice → Cultural change to be a self-serve, data democratized organization
 
 You can read more about how we do this [here](https://mixpanel.com/blog/establish-a-product-analytics-practice/).
+
+## Moving Data Out of Mixpanel
+
+Migration works in both directions. You can export your raw events, user profiles, and group profiles at any time, on any current plan, including Free. Use the Raw Event Export API and the Engage API for a one-time copy. To keep a continuous copy in your own warehouse or cloud storage, use Data Pipelines, a paid add-on on Growth and Enterprise plans.
+
+See [Export All Your Data](/docs/export-methods/export-all-data) for what each plan includes, rate limits, and a step-by-step recipe.
 
 ## Not sure where to start or need help?
 

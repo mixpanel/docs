@@ -1,5 +1,10 @@
 ---
 title: Managing Projects
+description: "Create, configure, and manage Mixpanel projects, including data residency and timezone settings, project tokens, and development projects"
+related:
+  - /docs/orgs-and-projects/organizations
+  - /docs/orgs-and-projects/roles-and-permissions
+  - /docs/tracking-best-practices/developer-environments
 ---
 
 ## Creating Projects
@@ -62,7 +67,7 @@ This table provides the values for the **project token** and the **API secret**.
 <Warning>
   <strong>API Secret Deprecation</strong>
 
-  The project API secret is deprecated and will be retired on **March 3rd, 2027**. For new projects or integrations, use [Service Accounts](/reference/service-accounts) instead. Existing API‑secret workflows will continue to work until retirement, but should be migrated when convenient.
+  The project API secret is deprecated and will be retired on **March 3, 2027**. Newly created projects no longer have access to this authentication method. For new projects or integrations, use [Service Accounts](/reference/service-accounts) instead. Existing API‑secret workflows will continue to work until retirement, but should be migrated when convenient.
 </Warning>
 
 <Frame>
@@ -82,6 +87,10 @@ You can reset the current project in Project Settings. When you reset the projec
 </Frame>
 
 A warning indicates this reset deactivates the project and all its data and project settings, and then generates a new project.  Mixpanel stores a backup of the deactivated project and will delete it based on the data retention policy.
+
+<Note>
+  Resetting a project does not remove the billing tallies it accumulated during the current billing month. Usage already counted toward your billing month is retained.
+</Note>
 
 <Frame>
   ![manageprojects 12 Image](/images/manageprojects12.png)
