@@ -56,6 +56,10 @@ Mixpanel ties every span to a user and drops spans that have no `user.id`. Claud
 
 Set `user.id` to the user's `distinct_id` in Mixpanel, so Claude activity joins the rest of that user's events.
 
+<Warning>
+  Claude drops a `user.id` that contains an email address, so those spans never reach Mixpanel. If your `distinct_id` is an email address, send an opaque ID instead, such as your database key for the user.
+</Warning>
+
 Each section below shows where to send the header.
 
 ## Messages API
@@ -184,7 +188,7 @@ The Console's **Test** button sends a span without a `user.id`. It checks that t
 | Problem | What to check |
 | :-- | :-- |
 | **Delivery** shows **Failing** | The **OTLP traces endpoint URL** under **Advanced settings** is `https://<region host>/v1/ai/otel/traces`. The `Authorization` value is `Basic ` followed by `base64("<project token>:")`, with the trailing colon and no newline. |
-| **Delivery** is **Healthy**, but nothing appears in Mixpanel | Your requests send `baggage: user.id=…`. |
+| **Delivery** is **Healthy**, but nothing appears in Mixpanel | Your requests send `baggage: user.id=…`, and the ID isn't an email address. |
 | A Managed Agents conversation shows fewer turns than messages | Send each message from a new trace. See [Managed Agents with the SDK](#managed-agents-with-the-sdk). |
 | No prompts or replies in conversations | The destination's **Content mode** is **Full content**. |
 
