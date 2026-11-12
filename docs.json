@@ -408,7 +408,8 @@
                   {
                     "group": "Integrations",
                     "pages": [
-                      "docs/agent-intelligence/integrations/claude"
+                      "docs/agent-intelligence/integrations/claude",
+                      "docs/agent-intelligence/integrations/litellm"
                     ]
                   }
                 ]

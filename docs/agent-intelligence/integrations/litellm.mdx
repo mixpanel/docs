@@ -1,0 +1,144 @@
+---
+title: "LiteLLM"
+description: "Send OpenTelemetry traces from your LiteLLM proxy to Mixpanel Agent Intelligence with the mixpanel callback, and tie each request to your end users."
+sidebarTitle: "LiteLLM"
+---
+
+The [LiteLLM](https://docs.litellm.ai) proxy has a `mixpanel` callback that sends an OpenTelemetry trace of every request to Mixpanel. The spans arrive in Agent Intelligence as `$mp_ai_span` events with the model, token usage, latency, errors, and optionally the prompts and replies, tied to the user who made the request. It works for every provider the proxy routes to.
+
+<Note>
+  The `mixpanel` callback requires LiteLLM v1.110.0 or later. For every option, see LiteLLM's [Mixpanel guide](https://docs.litellm.ai/docs/observability/mixpanel).
+</Note>
+
+## Before you start
+
+You need:
+
+- A LiteLLM proxy you can configure
+- Your Mixpanel project token
+- An ID for each of your end users, the same value you use as `distinct_id` in Mixpanel
+
+## Connect LiteLLM to Mixpanel
+
+1. Add `mixpanel` to the callbacks in your proxy's `config.yaml`:
+
+   ```yaml
+   litellm_settings:
+     callbacks: ["mixpanel"]
+   ```
+
+2. Set these environment variables on the proxy:
+
+   ```bash
+   LITELLM_OTEL_V2=true
+   MIXPANEL_PROJECT_TOKEN="YOUR_PROJECT_TOKEN"
+   MIXPANEL_REGION="us"  # "eu" or "in" for EU or India data residency
+   ```
+
+3. Restart the proxy.
+
+The LiteLLM Docker image includes the OpenTelemetry packages the callback uses. If you install LiteLLM with pip, install them too:
+
+```bash
+pip install 'litellm[proxy]' opentelemetry-sdk opentelemetry-exporter-otlp
+```
+
+You can also add Mixpanel from the LiteLLM Admin UI under **Settings → Logging & Alerts**.
+
+## Identify your users
+
+Mixpanel ties every span to a user and drops spans that have no `user.id`. Send your user's ID on each request in one of these ways:
+
+| Where | Example | Also counts as the LiteLLM end user? |
+| :-- | :-- | :-- |
+| `user` field in the request body | `"user": "4f2a"` | Yes |
+| `x-litellm-customer-id` header | `x-litellm-customer-id: 4f2a` | Yes |
+| `metadata["user.id"]` in the request body | `"metadata": {"user.id": "4f2a"}` | No |
+| W3C `baggage` header | `baggage: user.id=4f2a` | No |
+
+The first two also set the request's end user in LiteLLM, which applies that customer's budgets and rate limits. Use `metadata["user.id"]` or `baggage` to label spans without changing how LiteLLM treats the request. See LiteLLM's guide for [the order LiteLLM reads these in](https://docs.litellm.ai/docs/observability/mixpanel#setting-userid).
+
+```bash
+curl http://localhost:4000/v1/chat/completions \
+  -H "Authorization: Bearer $LITELLM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-haiku-5-5",
+    "user": "4f2a",
+    "messages": [{"role": "user", "content": "Hello"}]
+  }'
+```
+
+This works on every proxy route, including `/v1/chat/completions`, `/v1/messages`, and `/v1/responses`, streaming or not.
+
+## Group requests into conversations
+
+Each request through the proxy is one turn. To show a user's requests as one conversation in **Agent Intelligence → Conversations**, send the same session ID on each of them, either in the `x-litellm-session-id` header or as `litellm_session_id` in the request body:
+
+```bash
+curl http://localhost:4000/v1/chat/completions \
+  -H "Authorization: Bearer $LITELLM_API_KEY" \
+  -H "Content-Type: application/json" \
+  -H "x-litellm-session-id: support-chat-8812" \
+  -d '{
+    "model": "claude-haiku-5-5",
+    "user": "4f2a",
+    "messages": [{"role": "user", "content": "Where is my order?"}]
+  }'
+```
+
+Requests without a session ID still count toward users, tokens, and errors on **Agent Intelligence → Usage** and in your reports, but don't appear on the **Conversations** page.
+
+## Name models after the provider's model ID
+
+Mixpanel calculates cost from the model name on each span, and LiteLLM sends the `model_name` from your proxy config. Name each model after the provider's model ID, such as `claude-haiku-5-5` or `gpt-4o`, so Mixpanel can price it. A custom alias like `fast-model` shows tokens but no cost.
+
+```yaml
+model_list:
+  - model_name: claude-haiku-5-5
+    litellm_params:
+      model: anthropic/claude-haiku-5-5
+      api_key: os.environ/ANTHROPIC_API_KEY
+```
+
+## Send prompts and replies
+
+By default, LiteLLM doesn't send message content, so conversations show models, tokens, timing, and errors, but no text. To read each turn's prompt and reply in Mixpanel, set this on the proxy:
+
+```bash
+OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=span_only
+```
+
+To record content only for some traffic, see LiteLLM's guide to [prompt and completion content](https://docs.litellm.ai/docs/observability/mixpanel#prompt-and-completion-content).
+
+## Send teams or keys to their own projects
+
+A LiteLLM team or virtual key can send its traces to its own Mixpanel project and region, with `mixpanel_project_token` and `mixpanel_region` set on the team's or key's Mixpanel callback. See LiteLLM's guide to [per-team and per-key routing](https://docs.litellm.ai/docs/observability/mixpanel#per-team-and-per-key-routing).
+
+## What you see in Mixpanel
+
+Each request sends a trace of spans:
+
+| Span | What it is | Useful properties |
+| :-- | :-- | :-- |
+| `POST /v1/chat/completions` (or the route called) | The request | `http.route`, `http.response.status_code` |
+| `auth /v1/chat/completions` | LiteLLM checking the API key | |
+| `route <model>` | LiteLLM choosing a deployment | |
+| `chat <model>` | The call to the model provider | `gen_ai.request.model`, `gen_ai.provider.name`, token usage, `gen_ai.input.messages` and `gen_ai.output.messages` (with content capture on) |
+
+A failed provider call sets `$mp_ai_status_code` to `STATUS_CODE_ERROR` on the `chat` span, so it appears in Agent Intelligence's error counts. LiteLLM's own cost calculation arrives as `litellm.cost.total` and the other `litellm.cost.*` properties.
+
+## Verify
+
+1. Send a request through the proxy with a user ID and a session ID.
+2. In Mixpanel, open **Agent Intelligence → Conversations** and find the session, or build an Insights report on `$mp_ai_span` filtered to your user ID.
+
+## Troubleshooting
+
+| Problem | What to check |
+| :-- | :-- |
+| The proxy doesn't start, with `No module named 'opentelemetry.sdk'` | Install `opentelemetry-sdk` and `opentelemetry-exporter-otlp` alongside `litellm[proxy]`. |
+| Nothing appears in Mixpanel | `LITELLM_OTEL_V2=true` and `MIXPANEL_PROJECT_TOKEN` are set on the proxy, and your requests send a user ID. |
+| Requests don't appear on the **Conversations** page | Send a session ID with each request. |
+| Cost is missing | Name the model after the provider's model ID in `model_list`. |
+| No prompts or replies in conversations | Set `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=span_only`. |
