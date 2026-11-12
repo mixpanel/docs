@@ -30,9 +30,9 @@ You need:
 2. Set these environment variables on the proxy:
 
    ```bash
-   LITELLM_OTEL_V2=true
-   MIXPANEL_PROJECT_TOKEN="YOUR_PROJECT_TOKEN"
-   MIXPANEL_REGION="us"  # "eu" or "in" for EU or India data residency
+   export LITELLM_OTEL_V2=true
+   export MIXPANEL_PROJECT_TOKEN="YOUR_PROJECT_TOKEN"
+   export MIXPANEL_REGION="us"  # "eu" or "in" for EU or India data residency
    ```
 
 3. Restart the proxy.
@@ -106,7 +106,7 @@ model_list:
 By default, LiteLLM doesn't send message content, so conversations show models, tokens, timing, and errors, but no text. To read each turn's prompt and reply in Mixpanel, set this on the proxy:
 
 ```bash
-OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=span_only
+export OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=span_only
 ```
 
 To record content only for some traffic, see LiteLLM's guide to [prompt and completion content](https://docs.litellm.ai/docs/observability/mixpanel#prompt-and-completion-content).
