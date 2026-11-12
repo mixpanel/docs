@@ -1,0 +1,42 @@
+---
+title: Use Autocapture
+description: "Enable autocapture in the JavaScript SDK to automatically collect events, with custom configs to tune what gets captured"
+related:
+  - /docs/tracking-methods/autocapture
+  - /docs/overview/capture-events/track-events
+  - /docs/tracking-methods/sdks/javascript
+---
+
+import { dataItems } from "/snippets/utils/constants.mdx";
+
+Starting with SDK version 2.60.0, the Javascript SDK can autocapture events when you enable it. To do so, enable the autocapture configuration:
+
+```javascript
+// create an instance of the Mixpanel object
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    autocapture: true,    // enable autocapture
+});
+```
+
+<Warning>
+  **EU and India data residency:** If your project uses EU or India data residency, you must explicitly set the API host in your init code: add `api_host: 'https://api-eu.mixpanel.com'` (EU) or `api_host: 'https://api-in.mixpanel.com'` (India) to `mixpanel.init()`. Otherwise, your data, including autocaptured events, will be dropped. If you send data through a proxy or custom domain, point it at your region's host instead and keep the proxy URL in your init code. See [EU Data Residency](/docs/tracking-methods/sdks/javascript#eu-data-residency) and [India Data Residency](/docs/tracking-methods/sdks/javascript#india-data-residency).
+</Warning>
+
+If you'd like to change the default Autocapture settings, you can use custom configs. These are the default configs:
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+  autocapture: {
+    pageview: "full-url",
+    click: true,    
+    input: true,
+    rage_click: true,
+    dead_click: true,
+    scroll: true,
+    submit: true,
+    capture_text_content: false,
+  },
+});
+```
+
+[You can read more about custom configuration of Autocapture here](/docs/tracking-methods/sdks/javascript).

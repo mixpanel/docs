@@ -2,17 +2,16 @@
 title: "Warehouse Metrics"
 sidebarTitle: Warehouse Metrics
 description: "Query your data warehouse and chart the results in Insights"
+related:
+  - /docs/tracking-methods/warehouse-connectors
+  - /docs/reports/insights
+  - /docs/features/revenue-analytics
 ---
 
 Warehouse Metrics lets you query, visualize, and analyze data that lives in your data warehouse using Mixpanel's analysis tools. You write SQL against a connected warehouse, and Mixpanel turns the results into a saved metric you can chart in Insights and add to boards alongside your Mixpanel reports.
 
 Your raw data stays in your warehouse. Mixpanel runs the query against your warehouse and brings back only the results: no data is copied into Mixpanel.
 
-<Note>
-  **Early access**
-
-  Warehouse Metrics is currently in early access. Some functionality may change. Request access through your warehouse settings or contact your Mixpanel account manager.
-</Note>
 
 ## Before you begin
 
@@ -134,7 +133,7 @@ Because each refresh runs the query in your warehouse, the refresh frequency you
 
 ## Warehouse costs
 
-Running a query uses compute in your own warehouse, which may affect your warehouse bill. You control how often that compute is used through each metric's refresh frequency. Mixpanel does not add a separate charge for running warehouse queries during early access.
+Running a query uses compute in your own warehouse, which may affect your warehouse bill. You control how often that compute is used through each metric's refresh frequency. Mixpanel does not add a separate charge for running warehouse queries.
 
 ## How Warehouse Metrics is different from Warehouse Connectors
 
@@ -147,7 +146,7 @@ You use the same warehouse connection for both.
 
 ## Current limitations
 
-During early access, the following are not yet supported:
+The following are not yet supported:
 
 - **Joining warehouse data with Mixpanel data:** A warehouse metric is computed entirely from your SQL query and isn't combined with Mixpanel behavioral data in the same query.
 - **Filters and breakdowns:** Query builder filters, breakdowns, and board-level global filters don't apply to warehouse metrics. To change what's returned, edit the query.

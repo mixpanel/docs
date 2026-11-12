@@ -1,6 +1,11 @@
 ---
 sidebarTitle: PHP
 title: "Mixpanel SDKs: PHP"
+description: "Install and configure the Mixpanel PHP SDK to track events from scripts and server-side code, installed with Composer"
+related:
+  - /docs/tracking-best-practices/server-side-best-practices
+  - /docs/tracking-methods/id-management/identifying-users-simplified
+  - /docs/data-structure/user-profiles
 ---
 
 ## Getting Started
@@ -8,6 +13,8 @@ title: "Mixpanel SDKs: PHP"
 The Mixpanel PHP library is designed to be used for scripting, or in circumstances when a client can't or won't run client side scripts
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-php/), [Library Source Code](https://github.com/mixpanel/mixpanel-php), and [example scripts](https://github.com/mixpanel/mixpanel-php/tree/master/examples) are documented in our Github repo.
+
+The PHP SDK is open source under the [Apache 2.0 license](https://github.com/mixpanel/mixpanel-php/blob/master/LICENSE). Its source code is on GitHub at [mixpanel/mixpanel-php](https://github.com/mixpanel/mixpanel-php).
 
 ## Installing the Library
 
@@ -59,7 +66,7 @@ The [Full API Reference](https://mixpanel.github.io/mixpanel-php/), [Library Sou
 ### Library Configuration
 
 <Warning>
-  For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/php#privacy-friendly-tracking).
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, set `host` to `api-eu.mixpanel.com` or `api-in.mixpanel.com` in the `getInstance()` options. Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency) for examples.
 </Warning>
 
 The Mixpanel class can be initialized with different configurations. See a complete list of the configuration options and default values [here](https://mixpanel.github.io/mixpanel-php/classes/Mixpanel.html).

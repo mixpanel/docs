@@ -1,6 +1,11 @@
 ---
 sidebarTitle: Flutter
 title: "Mixpanel SDKs: Flutter"
+description: "Install and configure the Mixpanel Flutter SDK to track events from your Flutter app on iOS and Android"
+related:
+  - /docs/tracking-methods/sdks/flutter/flutter-replay
+  - /docs/tracking-methods/sdks/flutter/flutter-flags
+  - /docs/tracking-methods/id-management/identifying-users-simplified
 ---
 
 ## Getting Started
@@ -8,6 +13,29 @@ title: "Mixpanel SDKs: Flutter"
 Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#flutter).
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-flutter), [Library Source Code](https://github.com/mixpanel/mixpanel-flutter), and an [Example Application](https://github.com/mixpanel/mixpanel-flutter/tree/main/example) is documented in our GitHub repo.
+
+The Flutter SDK is open source under the [Apache 2.0 license](https://github.com/mixpanel/mixpanel-flutter/blob/main/LICENSE). Its source code is on GitHub at [mixpanel/mixpanel-flutter](https://github.com/mixpanel/mixpanel-flutter).
+### Apple Platform Support
+
+Each major version of the SDK has its own minimum supported iOS and macOS versions. Version 3.x raises the minimums to match the minimum deployment targets of Xcode 27. Use this table to choose the version that fits your app.
+
+| SDK version | Minimum supported iOS | Minimum supported macOS | Supported Xcode versions | Support status |
+| ----------- | --------------------- | ----------------------- | ------------------------ | -------------- |
+| 3.x | iOS 15 | macOS 12 | Xcode 26 and 27 | **Current:** receives new features and fixes |
+| 2.x | iOS 13 | macOS 10.15 | Xcode 26 | **Maintenance:** receives critical fixes only, until April 2027 |
+
+If your app uses CocoaPods, on 3.x set `platform :ios, '15.0'` in `ios/Podfile` and `platform :osx, '12.0'` in `macos/Podfile`. Building with Xcode 27 requires Flutter 3.47\+. 
+If your app needs to support an older iOS or macOS version, stay on 2.x.
+
+### Swift Package Manager
+
+The SDK supports Swift Package Manager (SPM) from v2.10.0. SPM is on by default from Flutter 3.44. If you turned it off, run:
+
+```bash
+flutter config --enable-swift-package-manager
+```
+
+If your app uses a Flutter version earlier than 3.44, or keeps SPM turned off, the SDK continues to install through CocoaPods. See [Flutter's SPM guide](https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers).
 
 ## Installing the Library
 
@@ -62,7 +90,7 @@ Add the following snippet to your `web/index.html` inside the `<head></head>` ta
 ### Library Configuration
 
 <Warning>
-  For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/flutter#privacy-friendly-tracking).
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, pass `serverURL` set to `https://api-eu.mixpanel.com` or `https://api-in.mixpanel.com` to `Mixpanel.init()`. Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency) for examples.
 </Warning>
 
 The Mixpanel instance can be customized with different configurations. The [`Mixpanel.init()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/init.html) method accepts arguments that sets some configurations on your instance upon initialization.
@@ -603,10 +631,10 @@ await mixpanel.autocapture.trackScreenView("PromoScreen", properties: utmProps);
 ### Click Events
 
 <Note>
-  **Beta.** Click autocapture is in beta. Its events and properties may change before general availability. It needs Flutter SDK v2.15.0+ (Flutter 3.19+ / Dart 3.3+) and is **disabled by default**. See [Enabling Click Autocapture](#enabling-click-autocapture) to turn it on.
+  Autocaptured click events require Flutter SDK v3.2.0 or later (Flutter 3.19+ / Dart 3.3+) and are **disabled by default** — you opt in with `AutocaptureOptions` at initialization. See [Enabling Click Autocapture](#enabling-click-autocapture).
 </Note>
 
-The SDK can capture taps without any per-widget code. One root widget observes everything below it (routes, dialogs, bottom sheets and overlays) and works with Material and Cupertino widgets. It produces three events:
+The SDK can capture taps for you, with no per-widget instrumentation. One root widget observes everything below it (routes, dialogs, bottom sheets and overlays) and works with Material and Cupertino widgets. It produces three events:
 
 | Event | Fires when |
 | --- | --- |
@@ -629,7 +657,7 @@ A tap counts only if it is:
 - released within **500 ms** (inclusive)
 - inside the platform hit slop
 
-Scrolls, drags, long presses, multi-touch, secondary buttons, stylus input (not supported in beta), keyboard activation and assistive-technology activation do not count.
+Scrolls, drags, long presses, multi-touch, secondary buttons, stylus input (not supported), keyboard activation and assistive-technology activation do not count.
 
 **Which widget is reported:**
 
@@ -711,6 +739,10 @@ final mixpanel = await Mixpanel.init(
   autocaptureOptions: const AutocaptureOptions(),
 );
 ```
+
+<Warning>
+  **EU and India data residency:** If your project uses EU or India data residency, you must explicitly set the API host in your init code: add `serverURL: "https://api-eu.mixpanel.com"` (EU) or `serverURL: "https://api-in.mixpanel.com"` (India) to `Mixpanel.init`. Otherwise, your data, including autocaptured events, will be dropped. If you send data through a proxy or custom domain, point it at your region's host instead and keep the proxy URL in your init code. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency).
+</Warning>
 
 **2. Wrap your app in `MixpanelAutocaptureWidget`**, above `MaterialApp` or `CupertinoApp` and their navigators. Anything outside its subtree is not captured. Use exactly one. A second, nested wrapper does nothing and asserts in debug builds.
 

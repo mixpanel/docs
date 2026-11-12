@@ -1,6 +1,11 @@
 ---
 sidebarTitle: React Native
 title: "Mixpanel SDKs: React Native"
+description: "Install and configure the Mixpanel React Native SDK to track events in your iOS and Android apps"
+related:
+  - /docs/tracking-methods/sdks/react-native/react-native-replay
+  - /docs/tracking-methods/sdks/react-native/react-native-flags
+  - /docs/tracking-methods/id-management/identifying-users-simplified
 ---
 
 ## Getting Started
@@ -8,6 +13,18 @@ title: "Mixpanel SDKs: React Native"
 Please refer to our [Quickstart Guide](/docs/quickstart/install-mixpanel#react-native).
 
 The [Full API Reference](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html), [Library Source Code](https://github.com/mixpanel/mixpanel-react-native), and an [Example Application](https://github.com/mixpanel/mixpanel-react-native/tree/master/Samples) is documented in our GitHub repo.
+
+The React Native SDK is open source under the [Apache 2.0 license](https://github.com/mixpanel/mixpanel-react-native/blob/master/LICENSE.md). Its source code is on GitHub at [mixpanel/mixpanel-react-native](https://github.com/mixpanel/mixpanel-react-native).
+### Apple Platform Support
+
+Each major version of the SDK has its own minimum supported iOS version. Version 4.x raises the minimum to match the minimum deployment target of Xcode 27. Use this table to choose the version that fits your app.
+
+| SDK version | Minimum supported iOS | Supported Xcode versions | Support status |
+| ----------- | --------------------- | ------------------------ | -------------- |
+| 4.x | iOS 15 | Xcode 26 and 27 | **Current:** receives new features and fixes |
+| 3.x | iOS 12 | Xcode 26 | **Maintenance:** receives critical fixes only, until April 2027 |
+
+On 4.x, set `platform :ios` in your `ios/Podfile` to 15.0 or higher. If your app needs to support an older iOS version, stay on 3.x.
 
 ## Installing the Library
 
@@ -17,15 +34,19 @@ After [setting up your development environment for React Native](https://reactna
 npm install mixpanel-react-native
 ```
 
-Then navigate to your application's iOS folder, and install the dependencies. (Note you do not need to update your Podfile to add Mixpanel.)
+Then, from your app's iOS folder, link the native module with CocoaPods (default):
 
 ```bash
 pod install
 ```
 
-<Note>
-  Since Xcode 12.5, there is a known swift compile issue, please refer to [this workaround](https://github.com/mixpanel/mixpanel-react-native/issues/43#issuecomment-829599732). However the compile issue has been resolved in Xcode 13.2.1\+, there is no extra step required as long as you upgrade to Xcode 13.2.1\+.
-</Note>
+Or with Swift Package Manager (SPM) from v4.1.0, on React Native 0.88\+:
+
+```bash
+npx react-native spm --deintegrate
+```
+
+With SPM, run `npx react-native spm` after a fresh clone or in CI, before building. On Expo SDK 58\+, set `expo.experiments.swiftPackageManager` to `true` in `app.json` and run `npx expo prebuild --platform ios --clean` instead.
 
 After installation, import the `Mixpanel` class from the SDK, create an instance of Mixpanel using your [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens), then initialize by calling [`.init()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#:~:text=init\(token%2C%20trackAutomaticEvents%2C%20Optional\)).
 
@@ -45,7 +66,7 @@ await mixpanel.init();
 ### Library Configuration
 
 <Warning>
-  For projects with EU or India data residency, you must configure the SDK to use the correct regional endpoint. Events sent to the wrong region will not be ingested. Learn more about [Privacy-Friendly Tracking](/docs/tracking-methods/sdks/react-native#privacy-friendly-tracking).
+  Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-residency) data residency, which you choose per project. If your project uses either, pass `https://api-eu.mixpanel.com` or `https://api-in.mixpanel.com` as the `serverURL` argument (the third argument) to `init()`. Events sent to the wrong region aren't ingested. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency) for examples.
 </Warning>
 
 The `Mixpanel` constructor accepts up to four arguments: your project token, `trackAutomaticEvents`, an optional `useNative` flag (defaults to `true`), and an optional storage adapter for JavaScript mode. Additional runtime configuration is passed to `init()`.
@@ -693,10 +714,10 @@ mixpanel.autocapture.trackScreenView("PromoScreen", utmProps);
 ### Click Events
 
 <Note>
-  **Beta.** Autocaptured click events are in beta: the events and the properties they capture may change before general availability. They require React Native SDK v3.7.0 or later, run in **native mode only**, and are **disabled by default** — you opt in with `autocaptureOptions` at initialization.
+  Autocaptured click events require React Native SDK v4.1.0 or later, run in **native mode only**, and are **disabled by default** — you opt in with `autocaptureOptions` at initialization. See [Enabling Click Autocapture](#enabling-click-autocapture).
 </Note>
 
-Starting in v3.7.0, the SDK can capture taps for you, with no per-component instrumentation. Capture happens in the underlying iOS and Android SDKs, which intercept touches across every window in your app — screens, modals, bottom sheets — below the React Native bridge, so no touch handler of yours is involved. Three events are produced:
+The SDK can capture taps for you, with no per-component instrumentation. Capture happens in the underlying iOS and Android SDKs, which intercept touches across every window in your app — screens, modals, bottom sheets — below the React Native bridge, so no touch handler of yours is involved. Three events are produced:
 
 | Event | Fires when |
 | --- | --- |
@@ -779,6 +800,10 @@ await mixpanel.init(
   }
 );
 ```
+
+<Warning>
+  **EU and India data residency:** If your project uses EU or India data residency, you must explicitly set the API host in your init code: pass `'https://api-eu.mixpanel.com'` (EU) or `'https://api-in.mixpanel.com'` (India) as the `serverURL` (third) argument to `init()` instead of `undefined`. Otherwise, your data, including autocaptured events, will be dropped. If you send data through a proxy or custom domain, point it at your region's host instead and keep the proxy URL in your init code. See [EU Data Residency](#eu-data-residency) and [India Data Residency](#india-data-residency).
+</Warning>
 
 Each signal is configurable, and can be turned off independently. Every key accepts either a boolean shorthand — `click: false` is the same as `click: { enabled: false }` — or an options object; any key you omit keeps its default.
 
