@@ -57,7 +57,7 @@ Mixpanel ties every span to a user and drops spans that have no `user.id`. Claud
 Set `user.id` to the user's `distinct_id` in Mixpanel, so Claude activity joins the rest of that user's events.
 
 <Warning>
-  Claude drops a `user.id` that contains an email address, so those spans never reach Mixpanel. If your `distinct_id` is an email address, send an opaque ID instead, such as your database key for the user.
+  Claude drops a `user.id` that contains an email address, so those spans never reach Mixpanel.
 </Warning>
 
 Each section below shows where to send the header.
