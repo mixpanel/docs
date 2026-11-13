@@ -67,6 +67,7 @@
             "icon": "/icons/wave.svg",
             "pages": [
               "docs/what-is-mixpanel",
+              "docs/glossary",
               {
                 "group": "Set Up Mixpanel",
                 "root": "docs/set-up-mixpanel",
@@ -399,7 +400,14 @@
                   "docs/features/warehouse-metrics"
                 ]
               },
-              "docs/agent-intelligence"
+              {
+                "group": "Agent Intelligence",
+                "tag": "BETA",
+                "root": "docs/agent-intelligence",
+                "pages": [
+                  "docs/agent-intelligence/find-and-fix-agent-failures"
+                ]
+              }
             ]
           },
           {
@@ -788,8 +796,7 @@
                   "guides/strategic-playbooks/project-migration",
                   "guides/strategic-playbooks/feature-flag-migration-playbook"
                 ]
-              },
-              "guides/glossary"
+              }
             ]
           }
         ]
@@ -858,17 +865,16 @@
           {
             "group": "INGESTION API",
             "pages": [
+              "reference/ingestion-api",
+              "reference/ingestion-api-authentication",
               {
                 "group": "Events",
                 "pages": [
                   "reference/import-events",
                   "reference/track-event",
                   "reference/event-deduplication"
-                ],
-                "root": "reference/import-events"
+                ]
               },
-              "reference/ingestion-api",
-              "reference/ingestion-api-authentication",
               {
                 "group": "Group Profiles",
                 "pages": [
@@ -880,8 +886,7 @@
                   "reference/group-batch-update",
                   "reference/delete-group",
                   "reference/limits-1"
-                ],
-                "root": "reference/group-set-property"
+                ]
               },
               {
                 "group": "Lookup Tables",
@@ -904,8 +909,7 @@
                   "reference/profile-batch-update",
                   "reference/delete-profile",
                   "reference/user-profile-limits"
-                ],
-                "root": "reference/profile-set"
+                ]
               }
             ]
           },
@@ -918,8 +922,7 @@
                   "reference/create-identity",
                   "reference/identity-create-alias",
                   "reference/identity-merge"
-                ],
-                "root": "reference/create-identity"
+                ]
               }
             ]
           },
@@ -927,52 +930,46 @@
             "group": "QUERY API",
             "pages": [
               "reference/query-api",
+              "reference/query-api-authentication",
               {
                 "group": "Cohorts",
                 "pages": [
                   "reference/cohorts-list"
-                ],
-                "root": "reference/cohorts-list"
+                ]
               },
               {
                 "group": "Engage",
                 "pages": [
                   "reference/engage-query"
-                ],
-                "root": "reference/engage-query"
+                ]
               },
-              "reference/query-api-authentication",
               {
                 "group": "Funnels",
                 "pages": [
                   "reference/funnels-query",
                   "reference/funnels-list-saved"
-                ],
-                "root": "reference/funnels-query"
+                ]
               },
               {
                 "group": "Insights",
                 "pages": [
                   "reference/insights-query",
                   "reference/insights-run-query"
-                ],
-                "root": "reference/insights-query"
+                ]
               },
               {
                 "group": "JQL",
                 "pages": [
                   "reference/query-jql",
                   "links/jql"
-                ],
-                "root": "reference/query-jql"
+                ]
               },
               {
                 "group": "Retention",
                 "pages": [
                   "reference/retention-query",
                   "reference/retention-frequency-query"
-                ],
-                "root": "reference/retention-query"
+                ]
               },
               {
                 "group": "Segmentation",
@@ -981,15 +978,13 @@
                   "reference/segmentation-numeric-query",
                   "reference/segmentation-sum-query",
                   "reference/segmentation-query-average"
-                ],
-                "root": "reference/segmentation-query"
+                ]
               },
               {
                 "group": "Activity Feed",
                 "pages": [
                   "reference/activity-stream-query"
-                ],
-                "root": "reference/activity-stream-query"
+                ]
               },
               {
                 "group": "Event Breakdown",
@@ -1000,23 +995,21 @@
                   "reference/query-event-properties",
                   "reference/query-events-top-properties",
                   "reference/query-events-top-property-values"
-                ],
-                "root": "reference/list-recent-events"
+                ]
               }
             ]
           },
           {
             "group": "EVENT EXPORT API",
             "pages": [
+              "reference/raw-data-export-api",
+              "reference/raw-data-export-api-authentication",
               {
                 "group": "Export",
                 "pages": [
                   "reference/raw-event-export"
-                ],
-                "root": "reference/raw-event-export"
-              },
-              "reference/raw-data-export-api",
-              "reference/raw-data-export-api-authentication"
+                ]
+              }
             ]
           },
           {
@@ -1029,8 +1022,7 @@
                 "pages": [
                   "reference/upload-schemas-for-project",
                   "reference/upload-schema-by-entity-and-name"
-                ],
-                "root": "reference/upload-schemas-for-project"
+                ]
               },
               {
                 "group": "Delete Schemas",
@@ -1038,8 +1030,7 @@
                   "reference/delete-all-schemas-in-project",
                   "reference/delete-schemas-for-entity",
                   "reference/delete-schema-by-entity-and-name"
-                ],
-                "root": "reference/delete-all-schemas-in-project"
+                ]
               },
               {
                 "group": "Retrieve Schemas",
@@ -1047,8 +1038,7 @@
                   "reference/list-all-schemas-for-project",
                   "reference/list-schemas-for-entity",
                   "reference/list-schemas-by-entity-and-name"
-                ],
-                "root": "reference/list-all-schemas-for-project"
+                ]
               },
               "reference/limits"
             ]
@@ -1062,36 +1052,31 @@
                 "group": "Create Pipelines",
                 "pages": [
                   "reference/create-warehouse-pipeline"
-                ],
-                "root": "reference/create-warehouse-pipeline"
+                ]
               },
               {
                 "group": "Delete Pipelines",
                 "pages": [
                   "reference/cancel-warehouse-pipeline"
-                ],
-                "root": "reference/cancel-warehouse-pipeline"
+                ]
               },
               {
                 "group": "Edit Pipelines",
                 "pages": [
                   "reference/edit-warehouse-pipeline"
-                ],
-                "root": "reference/edit-warehouse-pipeline"
+                ]
               },
               {
                 "group": "Pause Pipelines",
                 "pages": [
                   "reference/pause-warehouse-pipeline"
-                ],
-                "root": "reference/pause-warehouse-pipeline"
+                ]
               },
               {
                 "group": "Resume Pipelines",
                 "pages": [
                   "reference/resume-warehouse-pipeline"
-                ],
-                "root": "reference/resume-warehouse-pipeline"
+                ]
               },
               {
                 "group": "Retrieve Pipelines",
@@ -1099,8 +1084,7 @@
                   "reference/list-warehouse-pipeline-jobs",
                   "reference/get-warehouse-pipeline-status",
                   "reference/list-warehouse-pipeline-sync-dates"
-                ],
-                "root": "reference/list-warehouse-pipeline-jobs"
+                ]
               }
             ]
           },
@@ -1113,15 +1097,13 @@
                 "group": "Create Service Accounts",
                 "pages": [
                   "reference/create-service-account"
-                ],
-                "root": "reference/create-service-account"
+                ]
               },
               {
                 "group": "Delete Service Accounts",
                 "pages": [
                   "reference/delete-service-account"
-                ],
-                "root": "reference/delete-service-account"
+                ]
               },
               {
                 "group": "Project Membership",
@@ -1129,16 +1111,14 @@
                   "reference/list-project-service-accounts",
                   "reference/add-service-accounts-to-projects",
                   "reference/remove-service-accounts-from-projects"
-                ],
-                "root": "reference/list-project-service-accounts"
+                ]
               },
               {
                 "group": "Retrieve Service Accounts",
                 "pages": [
                   "reference/list-service-accounts",
                   "reference/get-service-account"
-                ],
-                "root": "reference/list-service-accounts"
+                ]
               }
             ]
           },
@@ -1150,44 +1130,38 @@
                 "group": "Delete Annotation",
                 "pages": [
                   "reference/delete-annotation-1"
-                ],
-                "root": "reference/delete-annotation-1"
+                ]
               },
               {
                 "group": "Retrieve Annotations",
                 "pages": [
                   "reference/list-all-annotations-for-project",
                   "reference/get-annotation-1"
-                ],
-                "root": "reference/list-all-annotations-for-project"
+                ]
               },
               {
                 "group": "Create Annotations",
                 "pages": [
                   "reference/create-annotation"
-                ],
-                "root": "reference/create-annotation"
+                ]
               },
               {
                 "group": "Patch Annotation",
                 "pages": [
                   "reference/patch-annotation-1"
-                ],
-                "root": "reference/patch-annotation-1"
+                ]
               },
               {
                 "group": "Get Annotation tags",
                 "pages": [
                   "reference/get-annotation-tags-1"
-                ],
-                "root": "reference/get-annotation-tags-1"
+                ]
               },
               {
                 "group": "Create Annotation tag",
                 "pages": [
                   "reference/create-annotation-tag-1"
-                ],
-                "root": "reference/create-annotation-tag-1"
+                ]
               }
             ]
           },
@@ -1199,36 +1173,31 @@
                 "group": "Create a Retrieval",
                 "pages": [
                   "reference/create-retrieval-1"
-                ],
-                "root": "reference/create-retrieval-1"
+                ]
               },
               {
                 "group": "Check Status of Retrieval",
                 "pages": [
                   "reference/get-retrieval"
-                ],
-                "root": "reference/get-retrieval"
+                ]
               },
               {
                 "group": "Create a Deletion",
                 "pages": [
                   "reference/create-deletion"
-                ],
-                "root": "reference/create-deletion"
+                ]
               },
               {
                 "group": "Check Status of Deletion",
                 "pages": [
                   "reference/get-deletion"
-                ],
-                "root": "reference/get-deletion"
+                ]
               },
               {
                 "group": "Cancel a Deletion",
                 "pages": [
                   "reference/delete-deletion"
-                ],
-                "root": "reference/delete-deletion"
+                ]
               }
             ]
           },
@@ -1250,8 +1219,7 @@
                   "reference/create-groups-import",
                   "reference/create-lookup-table-import",
                   "reference/get-import-history"
-                ],
-                "root": "reference/run-an-import-1"
+                ]
               },
               "reference/run-an-import"
             ]
@@ -1264,15 +1232,13 @@
                 "group": "Get Flag Definitions",
                 "pages": [
                   "reference/get-flag-definitions"
-                ],
-                "root": "reference/get-flag-definitions"
+                ]
               },
               {
                 "group": "Get Variant Assignments",
                 "pages": [
                   "reference/get-variant-assignments"
-                ],
-                "root": "reference/get-variant-assignments"
+                ]
               }
             ]
           },
@@ -1288,8 +1254,7 @@
                   "reference/get-feature-flag-1",
                   "reference/delete-feature-flag-1",
                   "reference/update-feature-flag-1"
-                ],
-                "root": "reference/list-feature-flags-1"
+                ]
               }
             ]
           },
@@ -1304,8 +1269,7 @@
                   "reference/get-experiment",
                   "reference/update-experiment",
                   "reference/delete-experiment"
-                ],
-                "root": "reference/list-experiments"
+                ]
               },
               {
                 "group": "Experiment Actions",
@@ -1315,8 +1279,7 @@
                   "reference/decide-experiment",
                   "reference/force-conclude-experiment",
                   "reference/launch-experiment"
-                ],
-                "root": "reference/archive-experiment"
+                ]
               }
             ]
           },
@@ -4921,6 +4884,10 @@
     {
       "source": "/docs/quickstart/*",
       "destination":"/docs/overview/*"
+    },
+    {
+      "source": "/guides/glossary",
+      "destination": "/docs/glossary"
     }
   ]
 }
