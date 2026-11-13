@@ -23,9 +23,14 @@ Follow the instructions here in the [Overview](/docs/data-pipelines).
 
 To prevent data duplication and conflicts, the system enforces the following rule: **you cannot create multiple event pipelines that export to the same destination with overlapping date ranges**.
 
-For example, if you already have a pipeline exporting to BigQuery dataset "my\_dataset" for dates January 1-31, you cannot create another pipeline exporting to the same dataset with dates January 15 - February 15, as the January 15-31 period would overlap.
+This check runs only when you create a recurring events pipeline, and only compares it against your existing recurring pipelines:
 
-This constraint ensures data integrity and prevents duplicate exports to the same destination tables or storage locations.
+- Date-ranged (one-time) backfill pipelines are not counted, so they don't block a new recurring pipeline.
+- Schematized pipelines are not checked for overlapping date ranges.
+
+For example, if you already have a recurring pipeline exporting to BigQuery dataset "my\_dataset" from January 1, you cannot create another recurring pipeline exporting to the same dataset from January 15, as the date ranges would overlap.
+
+This constraint helps prevent duplicate exports to the same destination tables or storage locations. Because pipelines that aren't checked can still write to the same destination, keep in mind that a backfill replaces existing data for its dates, including data from other pipelines. See [How Backfills Write to Your Destination](#how-backfills-write-to-your-destination).
 
 ## Data Sources Output
 
@@ -81,6 +86,44 @@ Use the `from_date` parameter to specify the date from which you want to export 
 
 The completion time for a backfill depends on the number of days and the volume of data in the project. Larger backfills can take several weeks.
 
+### One-Time Backfills
+
+To export a fixed date range once, without ongoing exports:
+
+1. When creating the pipeline, expand **Advanced**.
+2. Set **Backfill Mode** to **One Time**.
+3. Pick the date range to export.
+
+Each project can have only one date-ranged backfill pipeline active at a time. See [What is Active Pipeline Limit](/docs/data-pipelines#what-is-active-pipeline-limit).
+
+A one-time backfill pipeline stays in your pipeline list after it completes and isn't deleted automatically. Delete it when you no longer need it (see [Managing Existing Pipelines](/docs/data-pipelines#managing-existing-pipelines)).
+
+### How Backfills Write to Your Destination
+
+A recurring events pipeline starts with a backfill from its `from_date`. After the backfill, each run appends new events to your destination. A date-ranged pipeline runs once, as a single backfill.
+
+<Warning>
+  A backfill **replaces** the data in your destination for each date it exports. Destination tables and folders are not separated by pipeline, so this includes data that other pipelines wrote to the same table or path for those dates.
+</Warning>
+
+- **Only dates with output are replaced**: If the backfill has no events for a date, any data your destination already has for that date stays as it is.
+- **Incremental runs only append**: After the backfill, regular runs add new rows or files and do not replace existing data.
+
+How each destination replaces a date during a backfill:
+
+| Destination | How a backfill replaces a date |
+| :-- | :-- |
+| Snowflake | Deletes every row for that date (by event time in the pipeline's timezone), no matter which pipeline or process loaded it, then loads the new rows. |
+| BigQuery | Overwrites that date's partition. |
+| Databricks | Deletes the rows for that date (by event date in the pipeline's timezone), then loads the new rows. |
+| AWS S3, Google Cloud Storage, Azure Blob Storage, Redshift Spectrum | Writes the new files first. Then, for each day folder (for example, `mp_master_event/<YEAR>/<MONTH>/<DAY>/`) that received new files, deletes every file in that folder that this run did not write, including files from other pipelines. |
+
+If a backfill fails partway through:
+
+- **Snowflake**: Deleting and loading are separate steps. If a run fails after the delete, the affected dates can be empty or partly loaded until the pipeline retries. The retry skips work that already finished.
+- **BigQuery**: Each date is loaded separately, and each load either fully succeeds or has no effect. After a failure, some dates may have the new data while others still have the old data. The retry continues where it stopped, and overwriting a partition again is safe.
+- **AWS S3, Google Cloud Storage, Azure Blob Storage, Redshift Spectrum**: Between writing the new files and deleting the old ones, a folder holds both, so Redshift Spectrum queries can return duplicate events during that window. A retry ends with the correct files in place.
+
 ## Export Frequency
 
 Mixpanel supports hourly and daily exports, with daily being the default.
@@ -110,12 +153,18 @@ As of 10 September 2025, all JSON pipelines in all regions (US/EU/IN) have been 
 **Benefits**
 
 - **Elimination of data sync delays**: No more waiting for daily sync processes to detect and fix data discrepancies.
-- **Complete data export**: All events are exported without the risk of missing late-arriving data. Late-arriving events are automatically exported regardless of how late they arrive, eliminating the previous 10-day sync window restriction.
+- **Complete data export**: All events dated within the pipeline's range are exported, without the risk of missing late-arriving data. Late-arriving events dated on or after the pipeline's `from_date` are automatically exported regardless of how late they arrive, eliminating the previous 10-day sync window restriction.
+
+<Note>
+  A recurring pipeline only exports events dated on or after its `from_date`. Late-arriving events dated on or after the `from_date` are appended to your destination. Late-arriving events dated before the `from_date` are not exported by that pipeline.
+
+  A date-ranged (one-time) backfill pipeline runs once and exports the events Mixpanel has received for its dates at that time. Events for those dates that arrive after it finishes are not exported by the backfill or by a recurring pipeline whose `from_date` is later than those dates.
+</Note>
 
 **Changes you may notice**
 
 - **Event count display**: The event count shown per task in the UI now represents the total events processed per batch rather than events exported per day or per hour. Since each batch can span multiple days, this number may appear different from before.
-- **Backfill process**: When a new pipeline is created, it will complete the full historical backfill first before starting regular processing. For example, if you create a pipeline on January 15th at 11 AM with a backfill from January 1st, the system will first export all events that arrived in Mixpanel before around January 15th 11 AM as the initial backfill, then begin processing any new events that arrive after around January 15th 11 AM, regardless of which date those events are for. Existing pipelines will have the last 10 days backfilled as part of the migration and then the new incremental behavior will start.
+- **Backfill process**: When a new pipeline is created, it will complete the full historical backfill first before starting regular processing. For example, if you create a pipeline on January 15th at 11 AM with a backfill from January 1st, the system will first export all events that arrived in Mixpanel before around January 15th 11 AM as the initial backfill, then begin processing any new events that arrive after around January 15th 11 AM, regardless of which date those events are for, as long as that date is on or after the pipeline's `from_date`. Existing pipelines will have the last 10 days backfilled as part of the migration and then the new incremental behavior will start.
 - **Storage location file structure changes**: Previous behavior of sync would replace files for a day when the day was re-synced. No sync means Mixpanel will no longer coalesce files for days when sync runs so files are no longer updated/removed. Incremental pipelines will instead add a new file with events seen in each day for each run of the pipeline meaning more small files are expected.
 - **Pipelines logs reset**: Once your pipeline is migrated, the logging available in the UI will be reset so past jobs log lines will no longer be available. Only the new incremental jobs will be visible going forward.
 - **Predicable deletion behavior**:  In rare cases, the sync functionality meant that Mixpanel could re-sync days for which data was deleted, allowing the pipeline to also remove that data from your data warehouse. Sync keeping your warehouse in line with deletions was not guaranteed behavior however. The removal of sync means this unreliable behavior has been removed and as such, warehouse data owners are responsible for the deletion of all data on the warehouse side.
