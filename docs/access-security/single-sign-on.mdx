@@ -21,15 +21,21 @@ Single sign-on (SSO) allows users to log into multiple platforms, services, or s
 
 ## How SSO, IdP Managed Access, and SCIM Fit Together
 
+<Note>
+  SSO, domain claiming, IdP Managed Access, and SCIM are all set at the organization level, in **Organization Settings** > **Access Security**, and apply to every project in the organization. Access to individual projects is still granted per project or through Teams.
+</Note>
+
 - **SSO (SAML 2.0)** controls how users sign in. Your identity provider (IdP) authenticates them.
 - **[IdP Managed Access](#idp-managed-access)** (with [just-in-time provisioning](#just-in-time-provisioning)) controls who gets into the organization. Users on your claimed domains are sent to your IdP, and anyone who signs in successfully is added as an organization Member.
 - **[SCIM](#scim)** keeps users in step with your IdP (it creates, updates, and deactivates users) and maps IdP groups to Mixpanel Teams.
 - **[Teams](/docs/orgs-and-projects/roles-and-permissions#teams)** hold project access and project roles, and are managed in Mixpanel.
 
+If you use [Shared SSO](/docs/access-security/single-sign-on/shared-sso) to share SSO settings across several organizations, SCIM maps IdP groups to linked organizations instead of Teams.
+
 |  | SSO only | SSO + IdP Managed Access | SSO + IdP Managed Access + SCIM |
 | --- | --- | --- | --- |
 | **How users join** | An admin invites them in Mixpanel | Added as a Member on first SSO sign-in | Provisioned from your IdP when assigned the Mixpanel app |
-| **Starting access** | What you grant in Mixpanel | No roles beyond what **All Users in the Organization** have | Member, plus the projects and roles of any Team mapped from their IdP groups |
+| **Starting access** | What you grant in Mixpanel | No roles beyond what **[All Users in the Organization](/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project)** have | Member, plus the projects and roles of any Team mapped from their IdP groups |
 | **When someone leaves** | Remove them in Mixpanel | Remove them in Mixpanel | Deactivated automatically when unassigned in your IdP, if deactivation is enabled in your IdP's provisioning settings |
 | **Plan** | Growth and above | Growth and above | Enterprise |
 
@@ -205,7 +211,7 @@ Just-in-Time (JIT) provisioning using SAML will let users sign in automatically 
 
 Users added using the IdP will have first names and last names populated by the `firstName` and `lastName` profile attributes provided via SAML at login time. These users will also have no roles to start off except those given to **all users** in your organization.
 
-To give these provisioned users default access to projects, invite **All Users in the Organization** to the project.
+To give these provisioned users default access to projects, invite **[All Users in the Organization](/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project)** to the project.
 
 <Frame>
   ![image](/images/sso_jit_all_users_invite.png)
