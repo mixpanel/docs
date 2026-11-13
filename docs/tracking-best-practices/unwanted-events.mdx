@@ -1,0 +1,145 @@
+---
+title: "Limit and clean up unwanted events sent with your project token"
+sidebarTitle: "Unwanted Events"
+description: "Choose how to reduce unwanted events in your project, including events sent by someone else using your token, filter them as they arrive, and remove ones already stored."
+---
+
+Mixpanel's client-side SDKs send every event with your project token, and the token is visible to anyone who loads your page. Because of this, someone else can send events to your project with your token, whether by accident or on purpose. For example, a person might copy your tracking snippet onto their own site. Unwanted events can also come from bot traffic or from test and staging environments that share your token.
+
+This guide helps you choose an approach, points to the page that has the procedure for each one, and shows how to check that your change worked.
+
+By the end, you can:
+
+- Explain what a project token does and does not allow.
+- Choose a tracking approach that fits how much control you need.
+- Filter unwanted events as they arrive.
+- Remove unwanted events that are already in your project, and know when to ask Support to replace your project token.
+
+## Before you start
+
+- Some features in this guide depend on your plan and your role in the project. See the [pricing page](https://mixpanel.com/pricing/) and [Roles and permissions](https://docs.mixpanel.com/docs/orgs-and-projects/roles-and-permissions) to check what you can use.
+- Know where your events come from: browsers, mobile apps, your servers, or a mix. The right approach depends on it.
+- Test tracking changes in a development project before you apply them to production. See [Managing projects](https://docs.mixpanel.com/docs/orgs-and-projects/managing-projects#creating-projects).
+
+## What your project token allows
+
+A project token is a unique value that tells Mixpanel which project should receive your data. It is not a secret. In browser code, anyone who loads your page can see it. See [Project Token](https://docs.mixpanel.com/reference/project-token).
+
+Ingestion calls such as [Track Events](https://docs.mixpanel.com/reference/track-event) and [Set User Profile Properties](https://docs.mixpanel.com/reference/profile-set) only require the project token. See [Authentication Methods](https://docs.mixpanel.com/reference/authentication) and [Ingestion API Authentication](https://docs.mixpanel.com/reference/ingestion-api-authentication). A request that includes your project token can send events or user profile properties to your project.
+
+If you track from a browser or mobile app, the token has to be in code your users can read, so no setting makes it private. Client-side analytics tools generally work this way, because the tracking code runs in the browser or app. The options in this guide limit unwanted events and clean them up. Only tracking from your server keeps the token out of client code.
+
+## Choose your approach
+
+Each approach addresses a different part of the problem, and you can combine them.
+
+| If you want to | Use | What changes |
+| - | - | - |
+| Keep the project token out of page and app code | [Track from your server only](#track-from-your-server-only) | You can't send events directly from a browser or app to Mixpanel. Your app sends the data to your server, and your server sends the events. |
+| Add your own checks before events reach Mixpanel | [Route events through your own domain](#route-events-through-your-own-domain) | You run the proxy and any checks you add. |
+| Stop a specific kind of event from being stored | [Filter events as they arrive](#filter-events-as-they-arrive) | Dropped events can't be recovered. |
+| Remove unwanted events already in your project | [Remove unwanted events already stored](#remove-unwanted-events-already-stored) | The deletion becomes permanent after 7 days. |
+| Stop accepting events sent with your current token | [Ask Support to replace your project token](#ask-support-to-replace-your-project-token) | Data sent by code that still uses the old token is no longer ingested. |
+
+## Track from your server only
+
+Tracking only from your server keeps the project token in your backend configuration instead of in page or app code. Your server still initializes the SDK with the token. For example, the Python SDK takes it as an argument:
+
+```python
+from mixpanel import Mixpanel
+mp = Mixpanel("YOUR_PROJECT_TOKEN")
+```
+
+Replace `YOUR_PROJECT_TOKEN` with the token from your project's settings.
+
+Your app then needs to send the information to your server, and your server sends the event to Mixpanel. This means you give up tracking directly from the browser or the app. See the [Python SDK](https://docs.mixpanel.com/docs/tracking-methods/sdks/python) page. Mixpanel also has server-side SDKs for other languages, such as Node.js and Go. See [Choosing the right method](https://docs.mixpanel.com/docs/tracking-methods/choosing-the-right-method) for the full list.
+
+## Route events through your own domain
+
+A proxy is a server you run that receives events from your site or app and forwards them to Mixpanel. Mixpanel documents a proxy setup for the JavaScript SDK, with a complete nginx configuration and the `api_host` and `lib_base_path` settings. See [Tracking via proxy](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript#tracking-via-proxy).
+
+The documented setup forwards requests as they arrive, including the token your client sends. To hide the token, you need a custom proxy that adds the token itself, which the documented setup doesn't do. Because you run the proxy, you can add your own checks before it forwards a request, such as requiring a signed-in session. Those checks are your own implementation, and this guide doesn't cover how to build them.
+
+If your project uses EU or India data residency, point the proxy at your region's host, `api-eu.mixpanel.com` or `api-in.mixpanel.com`. Events sent to the wrong region aren't ingested.
+
+Mixpanel also offers First-Party Domains, which point a subdomain you own at Mixpanel without a proxy server of your own. They are designed to reduce the impact of ad blockers. They don't hide your project token or let you add your own checks, so for that you need a custom proxy. See [First-Party Domains](https://docs.mixpanel.com/docs/tracking-methods/first-party-domains) and the [pricing page](https://mixpanel.com/pricing/) for availability.
+
+## Filter events as they arrive
+
+Filtering stops events from being stored in your project. Two Lexicon tools do this: Drop Filters and blocking. See [Data Clean-Up](https://docs.mixpanel.com/docs/data-governance/data-clean-up) for the procedures.
+
+| Tool | What it drops | Lexicon status |
+| - | - | - |
+| Drop Filter | Events that match an event name and one or more property values you choose | Filtered |
+| Blocking an event | Every event with that event name | Blocked |
+
+Both tools act at ingestion. Mixpanel discards matching events as they arrive, so they are never stored or queried. Hiding an event in Lexicon is different: it only removes the event from view.
+
+Consider these points when you choose:
+
+- A Drop Filter needs an event name and at least one property with at least one value. It can't filter on the event name alone.
+- Blocking an event drops every event with that name, including events from your own app. Use it only when you never want that event.
+- Look at the unwanted events in your project to find a property value that appears on them and never on your own events. Filter on that value.
+- A project can have up to 15 Drop Filters.
+- A filter becomes active within 10 minutes of creation. It affects only events that arrive afterward. To remove events already stored, see the next section.
+- Both Drop Filters and blocking discard events permanently. Dropped events aren't stored and can't be recovered.
+- Dropped events don't count toward your event volume.
+- Blocking an event doesn't require a new release of your app.
+
+<Note>
+Mixpanel-defined events, which start with `$` such as `$experiment_started`, can't be dropped. The one exception is `$opt_in`.
+</Note>
+
+## Remove unwanted events already stored
+
+Data Deletion permanently removes events that are already in your project. Bot traffic that clutters an event is a listed use. You can narrow a deletion with event property filters, so you can remove a subset of an otherwise useful event. See [Data Clean-Up](https://docs.mixpanel.com/docs/data-governance/data-clean-up#2-deleting-problematic-data) for the procedure.
+
+Data Deletion has these limits:
+
+- The event time of the data must be within the past 180 days.
+- Event volume must be below 5 billion events per month in each of the trailing 3 months.
+- A project can't have more than 10 deletes in the past calendar month.
+
+<Warning>
+Data Deletion becomes permanent and irreversible 7 days after you submit it. Until then, Mixpanel hides the data from your project and you can undo the request. Removing the data from storage can take up to 30 days in total, and the data might appear in raw exports during that time.
+</Warning>
+
+Data Deletion doesn't delete individual event properties. Use the [GDPR API](https://docs.mixpanel.com/reference/create-deletion) to delete data for a single distinct ID. See [Data Clean-Up](https://docs.mixpanel.com/docs/data-governance/data-clean-up#is-data-deletion-right-for-my-problem). To delete user profiles, see [Bulk delete profiles](https://docs.mixpanel.com/docs/data-structure/user-profiles#how-do-i-bulk-delete-profiles).
+
+## Ask Support to replace your project token
+
+You can't reset a project token yourself. To replace one, [contact Support](https://mixpanel.com/get-support). Support asks the project owner to approve the replacement and agrees on timing with you. Be ready to update the token in your code as soon as the new one is issued. After Mixpanel rotates it, the original token becomes invalid. Any code that still uses the original token sends data that won't be ingested into your project, so replace it with the new token everywhere you send data. Users on older versions of your app that still use the original token can lose data, because Mixpanel no longer ingests what those versions send. See [Managing projects](https://docs.mixpanel.com/docs/orgs-and-projects/managing-projects#reset-project-token).
+
+## Check that your changes worked
+
+Check each approach you used.
+
+| Approach | Action | Expected result | If it fails |
+| - | - | - | - |
+| Server-only tracking | Search your page source and app code for your project token | The token no longer appears in client code | Remove it from the code that still contains it |
+| Proxy | Send a test event from your site | The event arrives in your project, and your browser's network requests go to your proxy domain | See [Troubleshooting](#troubleshooting) |
+| Drop Filter | Wait 10 minutes after saving the filter, then send one event that matches its event name and property values | The event doesn't appear in your project, and Lexicon shows the event with the status Filtered | Check the filter's event name and property values against the event you sent |
+| Blocked event | Send the blocked event | The event doesn't appear in your project, and Lexicon shows the status Blocked | Confirm the status in Lexicon |
+| Data Deletion | Review the preview before you submit | The preview shows only the data you want to delete | Change the time range or property filters, and review the preview again |
+| Replaced token | Send a test event with the new token | The event arrives in your project, and you can see it in the Events report | Confirm the new token is deployed in every place you send data |
+
+## Troubleshooting
+
+| Symptom | Cause | Fix |
+| - | - | - |
+| A Drop Filter doesn't seem to apply | The filter takes up to 10 minutes to become active, and it never affects events already stored | Wait, then test again. To remove stored events, use Data Deletion. |
+| You can't create another Drop Filter | A project can have up to 15 Drop Filters | Delete a filter you no longer need. |
+| You need events that a filter dropped | Dropped events aren't stored | Disable the filter first, then send the data again. |
+| Deleted events still appear in a raw export | Removing data from storage can take up to 30 days | Wait for the removal to finish. The data doesn't appear in reports or formatted API queries. |
+| The proxy returns 4xx or 5xx errors on tracking calls | The proxy doesn't strip the path prefix correctly | Check that your `proxy_pass` rewrites match your location blocks. |
+| Events stop after you route through a proxy in an EU or India project | The proxy points at the wrong region | Point the proxy at `api-eu.mixpanel.com` or `api-in.mixpanel.com`. |
+| Events stop after a token replacement | Code is still sending the original token | Replace the original token with the new one in every place you send data. |
+
+## Related pages
+
+- [Project Token](https://docs.mixpanel.com/reference/project-token)
+- [Authentication Methods](https://docs.mixpanel.com/reference/authentication)
+- [Managing projects](https://docs.mixpanel.com/docs/orgs-and-projects/managing-projects)
+- [Data Clean-Up](https://docs.mixpanel.com/docs/data-governance/data-clean-up)
+- [Lexicon](https://docs.mixpanel.com/docs/data-governance/lexicon)
+- [JavaScript SDK](https://docs.mixpanel.com/docs/tracking-methods/sdks/javascript)
