@@ -1,0 +1,85 @@
+{
+  "x-release-date": "2026-11-12T00:00:00Z",
+  "description": "A tracking plan was deleted. The events it held keep their definitions.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "tracking_plan",
+      "default": "tracking_plan",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "description": "A tracking plan and the events it holds.",
+          "properties": {
+            "id": {
+              "description": "Tracking plan ID.",
+              "type": "string"
+            },
+            "name": {
+              "description": "Plan name, unique within the project.",
+              "type": "string"
+            },
+            "description": {
+              "description": "Plan description.",
+              "type": "string"
+            },
+            "created_via": {
+              "description": "The surface the plan was created from, e.g. `ui`, `api`, `mcp`.",
+              "type": "string"
+            },
+            "event_names": {
+              "description": "Names of the events in the plan, in the order they were added.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "description",
+            "created_via",
+            "event_names"
+          ],
+          "type": "object"
+        },
+        "current": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "deleted",
+      "default": "deleted",
+      "type": "string"
+    },
+    "type": {
+      "const": "tracking_plan.deleted",
+      "default": "tracking_plan.deleted",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

@@ -67,6 +67,7 @@
             "icon": "/icons/wave.svg",
             "pages": [
               "docs/what-is-mixpanel",
+              "docs/glossary",
               {
                 "group": "Set Up Mixpanel",
                 "root": "docs/set-up-mixpanel",
@@ -795,8 +796,7 @@
                   "guides/strategic-playbooks/project-migration",
                   "guides/strategic-playbooks/feature-flag-migration-playbook"
                 ]
-              },
-              "guides/glossary"
+              }
             ]
           }
         ]
@@ -4884,6 +4884,10 @@
     {
       "source": "/docs/quickstart/*",
       "destination":"/docs/overview/*"
+    },
+    {
+      "source": "/guides/glossary",
+      "destination": "/docs/glossary"
     }
   ]
 }
