@@ -1533,9 +1533,16 @@
             "ServiceAccountAuth": []
           }
         ],
+        "x-permissions": [
+          "write_data_definitions"
+        ],
+        "x-roles": [
+          "Owner",
+          "Admin"
+        ],
         "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
+          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -1592,9 +1599,16 @@
             "ServiceAccountAuth": []
           }
         ],
+        "x-permissions": [
+          "merge_events_properties",
+          "write_data_definitions"
+        ],
+        "x-roles": [
+          "Owner"
+        ],
         "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
+          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">merge_events_properties</Badge> <Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -1651,9 +1665,16 @@
             "ServiceAccountAuth": []
           }
         ],
+        "x-permissions": [
+          "merge_events_properties",
+          "write_data_definitions"
+        ],
+        "x-roles": [
+          "Owner"
+        ],
         "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
+          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">merge_events_properties</Badge> <Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -2053,9 +2074,16 @@
             "ServiceAccountAuth": []
           }
         ],
+        "x-permissions": [
+          "write_data_definitions"
+        ],
+        "x-roles": [
+          "Owner",
+          "Admin"
+        ],
         "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
+          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -2171,9 +2199,16 @@
             "ServiceAccountAuth": []
           }
         ],
+        "x-permissions": [
+          "write_data_definitions"
+        ],
+        "x-roles": [
+          "Owner",
+          "Admin"
+        ],
         "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
+          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       },
       "delete": {
@@ -2224,9 +2259,16 @@
             "ServiceAccountAuth": []
           }
         ],
+        "x-permissions": [
+          "write_data_definitions"
+        ],
+        "x-roles": [
+          "Owner",
+          "Admin"
+        ],
         "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
+          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       }
     },
