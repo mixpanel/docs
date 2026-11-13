@@ -40,17 +40,23 @@ SSO settings and Claimed Domains are managed in the Admin Organization. Administ
 
 This configuration supports [SCIM](/docs/access-security/single-sign-on#scim).
 
+<Note>
+  IdP Managed Access (just-in-time provisioning) isn't available with Shared SSO. Users must exist in Mixpanel before they can sign in with SSO: provision them with [SCIM](/docs/access-security/single-sign-on#scim), or invite them from Mixpanel.
+</Note>
+
 ## Differences From Single-Organization SSO
 
 - In single-Organization SSO, SSO is configured in each Organization. In Shared SSO, SSO is configured in the "Admin" Organization, and shared by any Linked Organizations.
 - In single-Organization SSO, claimed domains belong to each Organization. In Shared SSO, claimed domains belong to the Admin Organization and are shared by any Linked Organizations.
 - In single-Organization SSO, SCIM groups in the IdP map to Teams in Mixpanel, with the IdP group name matching the Mixpanel Team **name** (or a new Team is created). In Shared SSO, SCIM groups in the IdP map to Linked Organizations, with the IdP group name matching the Linked Organization's **SCIM Name**.
+- In single-Organization SSO, you can turn on IdP Managed Access to add users on first sign-in. In Shared SSO, IdP Managed Access isn't available, so users must be provisioned with SCIM or invited.
 
 | --- | **Single-Organization SSO** | **Shared SSO** |
 | :-: | :-: | :-: |
 | SSO Configuration | In each Organization | In the Admin Organization |
 | Claimed Domains | In each Organization | In the Admin Organization |
 | SCIM | IdP Groups = Mixpanel Teams | IdP Groups = Mixpanel Linked Organizations\* |
+| IdP Managed Access (JIT) | Available | Not available |
 
 \* With Shared SSO, SCIM cannot manage Mixpanel Team membership. Team membership will need to be managed manually.
 

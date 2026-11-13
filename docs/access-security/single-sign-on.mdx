@@ -67,7 +67,7 @@ If you use [Shared SSO](/docs/access-security/single-sign-on/shared-sso) to shar
   </Step>
 
   <Step title="Optionally turn on IdP Managed Access">
-    Optionally turn on [IdP Managed Access](#idp-managed-access) (recommended for most organizations).
+    Optionally turn on [IdP Managed Access](#idp-managed-access) (recommended for most organizations). Not available with Shared SSO.
   </Step>
 
   <Step title="Optionally set up SCIM">
@@ -213,6 +213,8 @@ Optionally toggle on **Require Single Sign-On for administrators**; by default, 
 ## IdP Managed Access
 
 This feature determines whether you are using your IdP to manage which users should be allowed in the organization or whether you are using the IdP purely as an authentication method and want to leave user management within Mixpanel.
+
+IdP Managed Access isn't available with [Shared SSO](/docs/access-security/single-sign-on/shared-sso).
 
 If you enable this feature:
 
