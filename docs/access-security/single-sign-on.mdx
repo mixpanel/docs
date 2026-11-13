@@ -22,7 +22,7 @@ Single sign-on (SSO) allows users to log into multiple platforms, services, or s
 ## How SSO, IdP Managed Access, and SCIM Fit Together
 
 <Note>
-  SSO, domain claiming, IdP Managed Access, and SCIM are all set at the organization level, in **Organization Settings** > **Access Security**, and apply to every project in the organization. Access to individual projects is still granted per project or through Teams.
+  SSO, domain claiming, IdP Managed Access, and SCIM are all set at the organization level, in **Organization Settings** > **Access Security**, and apply to every project in the organization. Access to individual projects is still granted per project or through Teams. With [Shared SSO](/docs/access-security/single-sign-on/shared-sso), these settings are managed in the Admin Organization and shared by its linked organizations.
 </Note>
 
 - **SSO (SAML 2.0)** controls how users sign in. Your identity provider (IdP) authenticates them.
@@ -32,23 +32,48 @@ Single sign-on (SSO) allows users to log into multiple platforms, services, or s
 
 If you use [Shared SSO](/docs/access-security/single-sign-on/shared-sso) to share SSO settings across several organizations, SCIM maps IdP groups to linked organizations instead of Teams.
 
-|  | SSO only | SSO + IdP Managed Access | SSO + IdP Managed Access + SCIM |
+|  | SSO only | SSO + IdP Managed Access | SSO + IdP Managed Access + SCIM (Teams) |
 | --- | --- | --- | --- |
-| **How users join** | An admin invites them in Mixpanel | Added as a Member on first SSO sign-in | Provisioned from your IdP when assigned the Mixpanel app |
-| **Starting access** | What you grant in Mixpanel | No roles beyond what **[All Users in the Organization](/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project)** have | Member, plus the projects and roles of any Team mapped from their IdP groups |
-| **When someone leaves** | Remove them in Mixpanel | Remove them in Mixpanel | Deactivated automatically when unassigned in your IdP, if deactivation is enabled in your IdP's provisioning settings |
+| **How users join** | An admin invites them in Mixpanel | Added as an Org Member on first SSO sign-in | Provisioned from your IdP when assigned the Mixpanel app |
+| **Starting access** | What an admin grants in Mixpanel | No roles beyond what **[All Users in the Organization](/docs/orgs-and-projects/roles-and-permissions#invite-users-to-a-project)** have, plus what an admin grants in Mixpanel | Org Member, plus the projects and roles of any Team mapped from their IdP groups |
+| **When someone leaves** | An admin removes them in Mixpanel | An admin removes them in Mixpanel | Deactivated automatically when unassigned in your IdP, if deactivation is enabled in your IdP's provisioning settings |
 | **Plan** | Growth and above | Growth and above | Enterprise |
 
 ## Setup Steps
 
-1. [Claim and verify your domain](#claim-a-domain).
-2. [Copy your postback URL](#postback-url).
-3. [Configure the Mixpanel app in your IdP](#set-up-your-idp) (see the provider pages).
-4. [Enter your IdP's certificate, sign-in URL, and issuer URL in Mixpanel](#enter-your-idp-details-in-mixpanel).
-5. Test SSO by logging in with a non-admin account.
-6. Optionally [require SSO](#require-users-to-log-in-using-sso).
-7. Optionally turn on [IdP Managed Access](#idp-managed-access) (recommended for most organizations).
-8. Optionally [set up SCIM](#scim) (Enterprise plans).
+<Steps>
+  <Step title="Claim and verify your domain">
+    [Claim and verify your domain](#claim-a-domain).
+  </Step>
+
+  <Step title="Copy your postback URL">
+    [Copy your postback URL](#postback-url).
+  </Step>
+
+  <Step title="Configure the Mixpanel app in your IdP">
+    [Configure the Mixpanel app in your IdP](#set-up-your-idp) (see the provider pages).
+  </Step>
+
+  <Step title="Enter your IdP details in Mixpanel">
+    [Enter your IdP's certificate, sign-in URL, and issuer URL in Mixpanel](#enter-your-idp-details-in-mixpanel).
+  </Step>
+
+  <Step title="Test SSO">
+    Test SSO by logging in with a non-admin account.
+  </Step>
+
+  <Step title="Optionally require SSO">
+    Optionally [require SSO](#require-users-to-log-in-using-sso).
+  </Step>
+
+  <Step title="Optionally turn on IdP Managed Access">
+    Optionally turn on [IdP Managed Access](#idp-managed-access) (recommended for most organizations).
+  </Step>
+
+  <Step title="Optionally set up SCIM">
+    Optionally [set up SCIM](#scim) (Enterprise plans).
+  </Step>
+</Steps>
 
 ## Access SSO Settings
 
@@ -65,7 +90,7 @@ To claim a domain, add a TXT record to your domain's DNS records with a verifica
 Domains are matched exactly against the part of a user's email address after the @. Claiming `example.com` doesn't cover `sub.example.com`. If users have email addresses on a subdomain, claim and verify that subdomain separately, adding its TXT record on the subdomain itself. You don't need to claim subdomains nobody uses for email.
 
 <Note>
-  A single domain can be claimed by only one Mixpanel organization. If you have multiple Mixpanel organizations with separate billing accounts but need to share SSO settings and email domains for login, please see the [documentation for the Shared SSO beta](/docs/access-security/single-sign-on/shared-sso) to see how you can share those settings with an "Admin" Organization.
+  A single domain can be claimed by only one Mixpanel organization. If you have multiple Mixpanel organizations with separate billing accounts but need to share SSO settings and email domains for login, please see the [documentation for Shared SSO](/docs/access-security/single-sign-on/shared-sso) to see how you can share those settings with an "Admin" Organization.
 </Note>
 
 ### Generate Verification Key by Claiming Domain
@@ -130,29 +155,31 @@ You must configure your Identity Provider (IdP) to connect to Mixpanel to use SS
 
 See the supported IdPs below:
 
-### Okta
+<CardGroup cols={2}>
+  <Card title="Okta" href="/docs/access-security/single-sign-on/okta">
+    Set up SSO with Okta using the "Mixpanel" app within the OIN or by configuring a custom app in Okta.
+  </Card>
 
-Set up SSO with Okta using the "Mixpanel" app within the OIN or by configuring a custom app in Okta. [Follow these instructions](/docs/access-security/single-sign-on/okta) to configure the "Mixpanel" app or a custom app.
+  <Card title="OneLogin">
+    The "Mixpanel" application in the OneLogin application store supports SAML SSO and provisioning. Configure SAML in the app with your [Postback URL](#postback-url), then [enter the certificate and URLs in Mixpanel](#enter-your-idp-details-in-mixpanel). For provisioning, paste a SCIM token from Mixpanel into the provisioning token field in the OneLogin app. [Learn how to generate a token](/docs/access-security/single-sign-on#scim).
+  </Card>
 
-### OneLogin
+  <Card title="Google Workspace" href="/docs/access-security/single-sign-on/google">
+    Set up SSO with Google Workspace. There is no auto-provisioning (SCIM) integration with Google Workspace, so you will rely on Just In Time Provisioning, which doesn't map Google groups to Mixpanel Teams.
+  </Card>
 
-The "Mixpanel" application in the OneLogin application store supports SAML SSO and provisioning. Configure SAML in the app with your [Postback URL](#postback-url), then [enter the certificate and URLs in Mixpanel](#enter-your-idp-details-in-mixpanel). For provisioning, paste a SCIM token from Mixpanel into the provisioning token field in the OneLogin app. [Learn how to generate a token](/docs/access-security/single-sign-on#scim).
+  <Card title="Azure" href="/docs/access-security/single-sign-on/azure">
+    Set up SSO with Azure. Azure also has an auto-provisioning integration with Mixpanel.
+  </Card>
 
-### Google Workspace
+  <Card title="JumpCloud" href="/docs/access-security/single-sign-on/jumpcloud">
+    Set up SSO with JumpCloud.
+  </Card>
 
-[Follow these instructions](/docs/access-security/single-sign-on/google) to set up SSO with Google Workspace. Google also has [an official integration with Mixpanel with instructions](https://support.google.com/a/answer/7553416). Unfortunately, we do not have an auto-provisioning (SCIM) integration with Google Workspace. You will need to rely on [Just In Time Provisioning](/docs/access-security/single-sign-on#just-in-time-provisioning), which doesn't map Google groups to Mixpanel Teams.
-
-### Azure
-
-Here are [instructions to set up SSO with Azure](/docs/access-security/single-sign-on/azure). Azure also has an [auto-provisioning integration with Mixpanel](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial).
-
-### JumpCloud
-
-Here are [instructions to set up SSO with JumpCloud](/docs/access-security/single-sign-on/jumpcloud).
-
-### Other IdPs
-
-It is possible to set up Mixpanel SSO with IdPs not listed above. [Contact support](https://mixpanel.com/contact-us/support/) for further assistance in such cases.
+  <Card title="Other IdPs" href="https://mixpanel.com/contact-us/support/">
+    It is possible to set up Mixpanel SSO with IdPs not listed above. Contact support for further assistance in such cases.
+  </Card>
+</CardGroup>
 
 ## SAML Certificate
 
@@ -264,10 +291,23 @@ While you can hit the SCIM endpoints directly, the most common use case is auto-
 
 ## Troubleshooting
 
-- **SSO or provisioning fails for a user who already has a Mixpanel account outside your organization:** invite them to your organization.
-- **Users on a subdomain aren't sent to SSO:** [claim and verify that subdomain](#claim-a-domain).
-- **External users can't log in:** users with an email on an unclaimed domain can't log in once [Require SSO](#require-users-to-log-in-using-sso) is on.
-- **SSO logins fail after your IdP rotates its certificate:** upload the new certificate in [SAML Certificate](#saml-certificate).
+<AccordionGroup>
+  <Accordion title="SSO or provisioning fails for a user who already has a Mixpanel account outside your organization">
+    Invite them to your organization.
+  </Accordion>
+
+  <Accordion title="Users on a subdomain aren't sent to SSO">
+    [Claim and verify that subdomain](#claim-a-domain).
+  </Accordion>
+
+  <Accordion title="External users can't log in">
+    Users with an email on an unclaimed domain can't log in once [Require SSO](#require-users-to-log-in-using-sso) is on.
+  </Accordion>
+
+  <Accordion title="SSO logins fail after your IdP rotates its certificate">
+    Upload the new certificate in [SAML Certificate](#saml-certificate).
+  </Accordion>
+</AccordionGroup>
 
 ## Remove SSO Configuration
 
