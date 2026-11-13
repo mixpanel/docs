@@ -10,6 +10,19 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-11-13">
+  ## Event list and object properties now hold slightly less data
+
+  Event properties that hold a list or an object still have an [8KB size limit](/docs/data-structure/property-reference/data-type). Each text value in them now counts for one extra byte toward that limit.
+
+  For most data this makes little difference: a list of 50-character strings, for example, keeps 151 items instead of 154. Lists and objects of many very short strings are affected most. Anything past the limit is dropped, starting from the last item.
+
+  - **Who's affected:** Only event properties with large lists or objects. Most projects won't notice a difference. User profile properties don't change.
+  - **What to do:** If you send large arrays or nested objects on events, keep them comfortably under 8KB, or split them across several properties.
+
+  [Learn more →](/docs/data-structure/property-reference/data-type)
+</Update>
+
 <Update label="2026-11-09">
   ## Unlimited saved reports on every plan
 
