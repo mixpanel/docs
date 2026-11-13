@@ -41,39 +41,14 @@ If you use [Shared SSO](/docs/access-security/single-sign-on/shared-sso) to shar
 
 ## Setup Steps
 
-<Steps>
-  <Step title="Claim and verify your domain">
-    [Claim and verify your domain](#claim-a-domain).
-  </Step>
-
-  <Step title="Copy your postback URL">
-    [Copy your postback URL](#postback-url).
-  </Step>
-
-  <Step title="Configure the Mixpanel app in your IdP">
-    [Configure the Mixpanel app in your IdP](#set-up-your-idp) (see the provider pages).
-  </Step>
-
-  <Step title="Enter your IdP details in Mixpanel">
-    [Enter your IdP's certificate, sign-in URL, and issuer URL in Mixpanel](#enter-your-idp-details-in-mixpanel).
-  </Step>
-
-  <Step title="Test SSO">
-    Test SSO by logging in with a non-admin account.
-  </Step>
-
-  <Step title="Optionally require SSO">
-    Optionally [require SSO](#require-users-to-log-in-using-sso).
-  </Step>
-
-  <Step title="Optionally turn on IdP Managed Access">
-    Optionally turn on [IdP Managed Access](#idp-managed-access) (recommended for most organizations). Not available with Shared SSO.
-  </Step>
-
-  <Step title="Optionally set up SCIM">
-    Optionally [set up SCIM](#scim) (Enterprise plans).
-  </Step>
-</Steps>
+1. [Claim and verify your domain](#claim-a-domain).
+2. [Copy your postback URL](#postback-url).
+3. [Configure the Mixpanel app in your IdP](#set-up-your-idp) (see the provider pages).
+4. [Enter your IdP's certificate, sign-in URL, and issuer URL in Mixpanel](#enter-your-idp-details-in-mixpanel).
+5. Test SSO by logging in with a non-admin account.
+6. Optionally [require SSO](#require-users-to-log-in-using-sso).
+7. Optionally turn on [IdP Managed Access](#idp-managed-access) (recommended for most organizations; not available with Shared SSO).
+8. Optionally [set up SCIM](#scim) (Enterprise plans).
 
 ## Access SSO Settings
 
@@ -155,31 +130,20 @@ You must configure your Identity Provider (IdP) to connect to Mixpanel to use SS
 
 See the supported IdPs below:
 
-<CardGroup cols={2}>
-  <Card title="Okta" href="/docs/access-security/single-sign-on/okta">
-    Set up SSO with Okta using the "Mixpanel" app within the OIN or by configuring a custom app in Okta.
-  </Card>
+| IdP | SSO setup | SCIM provisioning |
+| --- | --- | --- |
+| [Okta](/docs/access-security/single-sign-on/okta) | Mixpanel app in the Okta Integration Network (OIN), or a custom Mixpanel app | Supported |
+| [OneLogin](#onelogin) | Mixpanel app in the OneLogin application store | Supported |
+| [Microsoft Entra ID (Azure)](/docs/access-security/single-sign-on/azure) | Mixpanel app, added as a new application under Enterprise Applications | Supported |
+| [Google Workspace](/docs/access-security/single-sign-on/google) | Mixpanel app in Google Workspace's app store, or a custom Mixpanel app | Not available. Use [IdP Managed Access](#idp-managed-access) (no group-to-Team mapping) |
+| [JumpCloud](/docs/access-security/single-sign-on/jumpcloud) | Custom application | Not recommended (see the JumpCloud page) |
+| Other SAML 2.0 IdPs | [Contact support](https://mixpanel.com/contact-us/support/) | — |
 
-  <Card title="OneLogin">
-    The "Mixpanel" application in the OneLogin application store supports SAML SSO and provisioning. Configure SAML in the app with your [Postback URL](#postback-url), then [enter the certificate and URLs in Mixpanel](#enter-your-idp-details-in-mixpanel). For provisioning, paste a SCIM token from Mixpanel into the provisioning token field in the OneLogin app. [Learn how to generate a token](/docs/access-security/single-sign-on#scim).
-  </Card>
+Microsoft also documents [Mixpanel provisioning for Entra ID](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/mixpanel-provisioning-tutorial).
 
-  <Card title="Google Workspace" href="/docs/access-security/single-sign-on/google">
-    Set up SSO with Google Workspace. There is no auto-provisioning (SCIM) integration with Google Workspace, so you will rely on Just In Time Provisioning, which doesn't map Google groups to Mixpanel Teams.
-  </Card>
+### OneLogin
 
-  <Card title="Azure" href="/docs/access-security/single-sign-on/azure">
-    Set up SSO with Azure. Azure also has an auto-provisioning integration with Mixpanel.
-  </Card>
-
-  <Card title="JumpCloud" href="/docs/access-security/single-sign-on/jumpcloud">
-    Set up SSO with JumpCloud.
-  </Card>
-
-  <Card title="Other IdPs" href="https://mixpanel.com/contact-us/support/">
-    It is possible to set up Mixpanel SSO with IdPs not listed above. Contact support for further assistance in such cases.
-  </Card>
-</CardGroup>
+The "Mixpanel" application in the OneLogin application store supports SAML SSO and provisioning. Configure SAML in the app with your [Postback URL](#postback-url), then [enter the certificate and URLs in Mixpanel](#enter-your-idp-details-in-mixpanel). For provisioning, paste a SCIM token from Mixpanel into the provisioning token field in the OneLogin app. [Learn how to generate a token](/docs/access-security/single-sign-on#scim).
 
 ## SAML Certificate
 
