@@ -192,6 +192,10 @@ String updatedDistinctId = "";
 mixpanel.identify(updatedDistinctId);
 ```
 
+<Note>
+  `identify()` only sends an `$identify` event and reloads flags when the ID changes. Calling it again with the ID the SDK already has does nothing. On projects using Original ID Merge, this affects cohort-based targeting. See [ID management and flag targeting](/docs/featureflags#id-management-and-flag-targeting).
+</Note>
+
 2. To refresh flag variants that may have changed during the lifetime of your app, you can manually reload flags:
 
 ```java
