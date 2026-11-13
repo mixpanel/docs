@@ -30,7 +30,7 @@ Single sign-on (SSO) allows users to log into multiple platforms, services, or s
 | --- | --- | --- | --- |
 | **How users join** | An admin invites them in Mixpanel | Added as a Member on first SSO sign-in | Provisioned from your IdP when assigned the Mixpanel app |
 | **Starting access** | What you grant in Mixpanel | No roles beyond what **All Users in the Organization** have | Member, plus the projects and roles of any Team mapped from their IdP groups |
-| **When someone leaves** | Remove them in Mixpanel | Remove them in Mixpanel | Deactivated automatically when unassigned in your IdP |
+| **When someone leaves** | Remove them in Mixpanel | Remove them in Mixpanel | Deactivated automatically when unassigned in your IdP, if deactivation is enabled in your IdP's provisioning settings |
 | **Plan** | Growth and above | Growth and above | Enterprise |
 
 ## Setup Steps
@@ -41,7 +41,7 @@ Single sign-on (SSO) allows users to log into multiple platforms, services, or s
 4. [Enter your IdP's certificate, sign-in URL, and issuer URL in Mixpanel](#enter-your-idp-details-in-mixpanel).
 5. Test SSO by logging in with a non-admin account.
 6. Optionally [require SSO](#require-users-to-log-in-using-sso).
-7. Turn on [IdP Managed Access](#idp-managed-access).
+7. Turn on [IdP Managed Access](#idp-managed-access) (recommended).
 8. Optionally [set up SCIM](#scim) (Enterprise plans).
 
 ## Access SSO Settings
