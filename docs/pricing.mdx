@@ -37,8 +37,8 @@ There are three event-based billing plans to choose from: Free, Growth, and Ente
 
 The high-level differences between the three are:
 
-- **Free:** Mixpanel is usage-based, and you can use it for free as long as you stay within the plan's limits; no trial needed. If you are new to Mixpanel and want to test it out, we encourage you to use our free plan and upgrade once you have an estimate of your project’s volume. Includes unlimited saved reports and up to 1M total events. You can create cohorts but can't save them, and it doesn't include features like lookup tables, custom properties, or permissions.
-- **Growth:** The typical Growth plan customer is a small team using Mixpanel (fewer than 50 employees). Growth plans purchased after February 2025 include the first 1M events free.
+- **Free:** Mixpanel is usage-based, and you can use it for free as long as you stay within the plan's limits; no trial needed. If you are new to Mixpanel and want to test it out, we encourage you to use our free plan and upgrade once you have an estimate of your project’s volume. Includes unlimited saved reports and a monthly event allowance; see [our pricing page](https://mixpanel.com/pricing/) for current limits. You can create cohorts but can't save them, and it doesn't include features like lookup tables, custom properties, or permissions.
+- **Growth:** The typical Growth plan customer is a small team using Mixpanel (fewer than 50 employees). Growth plans purchased after February 2025 include a monthly allowance of free events; see [our pricing page](https://mixpanel.com/pricing/) for the current amount.
 - **Enterprise:** Designed for large teams that require access controls and permissions, data governance features, dedicated onboarding support, and account management. Enterprise also unlocks exclusive analysis tools, including the Signal report and anomaly detection alerts.
 
 All plans include some [Experiments](/docs/experiments) and [Feature Flags](/docs/featureflags) usage, with the option to purchase additional volume on Growth and Enterprise plans. See [Experiments plan availability](/docs/experiments#plan-availability) and [Feature Flags plan availability](/docs/featureflags#plan-availability) for the included amounts.
@@ -170,26 +170,26 @@ Organization owners and billing admins are sent an alert email if their account 
 
 While it's not possible to set a billing limit at this moment, read [this article](https://github.com/orgs/mixpanel/discussions/526) to learn how to create a report and get warning alerts when you’re close to exceeding your plan limit.
 
-### I’m on a Growth plan and paying for less than 1M monthly events. How do I switch to the more recent one?
+### I’m on an older Growth plan. How do I switch to the more recent one?
 
 The easiest way to switch is to go to Mixpanel’s [pricing page](https://www.mixpanel.com/pricing) and select “Make the Switch” on the Growth plan card. From there, you can move to the latest plan. If you are unable to adjust your plan, reach out to our Support team.
 
-### Why can I only select a volume of 1M monthly events on monthly Growth plans, but not annual ones?
+### Why can I only select the lowest event volume on monthly Growth plans, but not annual ones?
 
-Our latest pricing plans include the first 1M events free each month. We require a larger pre-committed volume (more than 1M monthly events) in order to purchase an annual plan. Annual plans still include the first 1M events free each month.
+Our latest pricing plans include a monthly allowance of free events. Annual plans require a larger pre-committed monthly event volume than the lowest monthly option, and still include the free monthly allowance. See [our pricing page](https://mixpanel.com/pricing/) for current volumes.
 
-### I signed up for the 1 million event Growth plan. What happens if I go over that amount?
+### I signed up for the lowest-volume Growth plan. What happens if I go over that amount?
 
-The first 1 million events ingested are free! If you go over 1 million events, each event ingested will be charged at the additional data rate seen in the “Plan Details & Billing” section in your Organization Settings. For current rates, see [our pricing page](https://mixpanel.com/pricing/). Purchasing higher volumes upfront will lower that additional data rate, as we include volume discounts in our pricing.
+Events within your plan’s free monthly allowance are free! If you go over your plan’s event volume, each additional event ingested will be charged at the additional data rate seen in the “Plan Details & Billing” section in your Organization Settings. For current rates, see [our pricing page](https://mixpanel.com/pricing/). Purchasing higher volumes upfront will lower that additional data rate, as we include volume discounts in our pricing.
 
 If you have add-ons such as Group Analytics or Data Pipelines, they can also affect what you're charged for additional data. For current add-on pricing and plan availability, see [our pricing page](https://mixpanel.com/pricing/).
 
 As an example:
 
-- You signed up for the 1 million monthly event Growth plan
-- If you send 1.1 million events in a month, you’ll be charged for the 100,000 events over the plan at the additional data rate.
+- You signed up for the lowest-volume Growth plan
+- If you send 10% more events than your plan includes in a month, you’ll be charged for those extra events at the additional data rate.
 
-We bake volume discounts into our pricing, so if you are often tracking more than 1 million monthly events, it may be better to upgrade to the right-sized plan on the Pricing page — you’ll pay less per event.
+We bake volume discounts into our pricing, so if you are often tracking more events than your plan includes, it may be better to upgrade to the right-sized plan on the Pricing page — you’ll pay less per event.
 
 ### Is Mixpanel’s pricing based on MTUs?
 
