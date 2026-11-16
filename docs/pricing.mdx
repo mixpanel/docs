@@ -39,7 +39,7 @@ The high-level differences between the three are:
 
 - **Free:** Mixpanel is usage-based, and you can use it for free as long as you stay within the plan's limits; no trial needed. If you are new to Mixpanel and want to test it out, we encourage you to use our free plan and upgrade once you have an estimate of your project’s volume. Includes unlimited saved reports and a monthly event allowance. Some features are limited or unavailable on the Free plan; see [our pricing page](https://mixpanel.com/pricing/) for current limits and a full feature comparison.
 - **Growth:** The typical Growth plan customer is a small team using Mixpanel (fewer than 50 employees). Growth plans purchased after February 2025 include a monthly allowance of free events; see [our pricing page](https://mixpanel.com/pricing/) for the current amount.
-- **Enterprise:** Designed for large teams that require access controls and permissions, data governance features, dedicated onboarding support, and account management. Enterprise also unlocks additional advanced analysis features; see [our pricing page](https://mixpanel.com/pricing/) for the current list.
+- **Enterprise:** Designed for large teams that need advanced data governance, dedicated onboarding support, and account management. Enterprise also unlocks additional advanced analysis features; see [our pricing page](https://mixpanel.com/pricing/) for a full feature comparison.
 
 All plans include some [Experiments](/docs/experiments) and [Feature Flags](/docs/featureflags) usage, with the option to purchase additional volume on Growth and Enterprise plans. See [Experiments plan availability](/docs/experiments#plan-availability) and [Feature Flags plan availability](/docs/featureflags#plan-availability) for the included amounts.
 
@@ -159,8 +159,8 @@ You can also check the top events contributing towards your event count by creat
 
 If you go over your plan's events, Mixpanel won't stop collecting your data:
 
-- If you’re using a Free plan, Mixpanel won’t stop collecting your data, but querying is paused once you go over the Free plan’s monthly event limit. The pause stays in place until you upgrade to a Growth plan. Growth plan pricing depends on the event allowance and add-ons you choose (see [our pricing page](https://mixpanel.com/pricing/)), and requires a credit card. Your Growth plan starts from the first of the current month, so all of this month’s events count toward its allowance, and any events above it are billed at your à la carte rate on your next invoice.
-- If you're using a Growth plan, the additional cost will be charged at the beginning of the next month based on your À La Carte rate, which you can find in the "Plan Details & Billing" section in your Organization Settings. On the contrary, if you want to avoid paying for overages, you can either [downgrade your paid plan to the Free one](/docs/pricing#downgrade-your-plan-to-free) or upgrade to one that covers your additional usage before the end of the billing cycle - the more events your plan includes, the less you pay per event.
+- If you’re using a Free plan, Mixpanel won’t stop collecting your data, but querying is paused once you go over the Free plan’s monthly event limit. The pause stays in place until you upgrade to a Growth plan. Growth plan pricing depends on the event allowance and add-ons you choose (see [our pricing page](https://mixpanel.com/pricing/)), and requires a credit card. Your Growth plan starts from the first of the current month, so all of this month’s events count toward its allowance, and any events above it are billed at your plan’s cost per event on your next invoice.
+- If you’re using a Growth plan, events above your plan are billed at the beginning of the next month at the same cost per event as your plan; you can find your rate in the "Plan Details & Billing" section in your Organization Settings. If you want to avoid paying for additional events, you can either [downgrade your paid plan to the Free one](/docs/pricing#downgrade-your-plan-to-free) or upgrade to a plan that covers your usage before the end of the billing cycle. See [our pricing page](https://mixpanel.com/pricing/) for details.
 
 #### Alerts for Additional Data Charges
 
@@ -170,24 +170,16 @@ Organization owners and billing admins are sent an alert email if their account 
 
 While it's not possible to set a billing limit at this moment, read [this article](https://github.com/orgs/mixpanel/discussions/526) to learn how to create a report and get warning alerts when you’re close to exceeding your plan limit.
 
-### I’m on an older Growth plan. How do I switch to the more recent one?
-
-The easiest way to switch is to go to Mixpanel’s [pricing page](https://www.mixpanel.com/pricing) and select “Make the Switch” on the Growth plan card. From there, you can move to the latest plan. If you are unable to adjust your plan, reach out to our Support team.
-
-### Why can I only select the lowest event volume on monthly Growth plans, but not annual ones?
-
-Our latest pricing plans include a monthly allowance of free events. Annual plans require a larger pre-committed monthly event volume than the lowest monthly option, and still include the free monthly allowance. See [our pricing page](https://mixpanel.com/pricing/) for current volumes.
-
 ### I signed up for the lowest-volume Growth plan. What happens if I go over that amount?
 
-Events within your plan’s free monthly allowance are free! If you go over your plan’s event volume, each additional event ingested will be charged at the additional data rate seen in the “Plan Details & Billing” section in your Organization Settings. For current rates, see [our pricing page](https://mixpanel.com/pricing/). Purchasing higher volumes upfront will lower that additional data rate, as we include volume discounts in our pricing.
+Events within your plan’s free monthly allowance are free! If you go over your plan’s event volume, each additional event is charged at the same cost per event as your plan, which you can see in the “Plan Details & Billing” section in your Organization Settings. Larger plans include volume discounts, so purchasing a higher volume upfront lowers your cost per event. For current pricing, see [our pricing page](https://mixpanel.com/pricing/).
 
 If you have add-ons such as Group Analytics or Data Pipelines, they can also affect what you're charged for additional data. For current add-on pricing and plan availability, see [our pricing page](https://mixpanel.com/pricing/).
 
 As an example:
 
 - You signed up for the lowest-volume Growth plan
-- If you send 10% more events than your plan includes in a month, you’ll be charged for those extra events at the additional data rate.
+- If you send 10% more events than your plan includes in a month, you’ll be charged for those extra events at your plan’s cost per event.
 
 We bake volume discounts into our pricing, so if you are often tracking more events than your plan includes, it may be better to upgrade to the right-sized plan on the Pricing page — you’ll pay less per event.
 
@@ -213,7 +205,7 @@ For accounts on ingestion time billing, old events will be included in billing t
 
 For legacy accounts on event timestamp billing, events imported with timestamps outside the current billing cycle will not contribute to event tallies. For example: if April 1st - April 30th is the current billing cycle, importing data from March will **not** be included in the April event count.
 
-### I am using the Warehouse add-on for ingesting data. How does this impact billing?
+### I use warehouse connectors to ingest data. How does this impact billing?
 
 Events imported through a warehouse connection are treated as any other source (same as importing through our SDKs or API directly). Warehouse data, similar to other sources, is billed in accordance with general Mixpanel pricing policies.
 

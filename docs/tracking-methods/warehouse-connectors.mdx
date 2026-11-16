@@ -389,8 +389,8 @@ You can monitor these different operations in your billing page, where they'll a
 Historical tables can be imported only in mirror mode. Mirror-mode pricing updates apply to all rows imported for profile history tables. This means:
 
 - Historical profile updates DO count towards billing. Imports through standard profile tables do not.
-- Every row counts as a mirror event and is [billed as such](../pricing#i-am-using-the-warehouse-add-on-for-ingesting-data-how-does-this-impact-billing).
-- If you update/delete existing rows in your table, [mirror billing](../pricing#i-am-using-the-warehouse-add-on-for-ingesting-data-how-does-this-impact-billing) will be applied, including for backfills.
+- Every row counts as a mirror event and is [billed as such](../pricing#i-use-warehouse-connectors-to-ingest-data-how-does-this-impact-billing).
+- If you update/delete existing rows in your table, [mirror billing](../pricing#i-use-warehouse-connectors-to-ingest-data-how-does-this-impact-billing) will be applied, including for backfills.
 
 For MTU plans, the events and updates/deletes don't directly affect the MTU tally unless the volume of events and updates pushes the threshold for the guardrail (by default, 1000 events per user); once the threshold for the guardrail is crossed, events and updates from profile history tables will also count towards billing.
 
