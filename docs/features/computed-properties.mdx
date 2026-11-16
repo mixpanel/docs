@@ -49,6 +49,8 @@ In retention, the behavioral property is computed in the chosen time range after
 
 The duration property returns the duration between 2 instances of an event. This works best for events that occur continuously during a session, such as Page View or Screen View. Users who did not track the same event again will appear in the "Did not convert" segment.
 
+Mixpanel adds a Duration property to the Page View event automatically, with no additional setup. It measures time spent on a page as the time between Page View events. To find the average time spent on a page, select the Page View event in Insights, aggregate by the average of Duration, and break down or filter by the page property you want to compare.
+
 ## Attribution
 
 <Note>
