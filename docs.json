@@ -300,8 +300,8 @@
                   "docs/tracking-best-practices/server-side-best-practices",
                   "docs/tracking-best-practices/tracking-plan",
                   "docs/tracking-best-practices/traffic-attribution",
-                  "docs/tracking-best-practices/warehouse-best-practices",
                   "docs/tracking-best-practices/unwanted-events",
+                  "docs/tracking-best-practices/warehouse-best-practices",
                   "docs/what-to-track"
                 ]
               }
