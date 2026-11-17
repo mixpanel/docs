@@ -4650,7 +4650,7 @@
       },
       "EventCustomJoinKey": {
         "additionalProperties": false,
-        "description": "A saved event custom property a lookup table is attached to.",
+        "description": "A saved event custom property a lookup table is attached to.\n\nThe query reads whether it is list-valued from the saved custom property.",
         "properties": {
           "source": {
             "const": "event_custom",
@@ -4800,6 +4800,12 @@
             "minLength": 1,
             "title": "Name",
             "type": "string"
+          },
+          "is_list": {
+            "default": false,
+            "description": "Set to true when the property is list-valued. Each element of the list is looked up in the lookup table, and a filter matches the looked-up values by `list_match`.",
+            "title": "Is List",
+            "type": "boolean"
           }
         },
         "required": [
@@ -6232,7 +6238,7 @@
       },
       "ProfileCustomJoinKey": {
         "additionalProperties": false,
-        "description": "A saved user profile custom property a lookup table is attached to.\n\nA `profile_custom` join key always means the `$user_id` profile.",
+        "description": "A saved user profile custom property a lookup table is attached to.\n\nA `profile_custom` join key always means the `$user_id` profile. The query\nreads whether it is list-valued from the saved custom property.",
         "properties": {
           "source": {
             "const": "profile_custom",
@@ -6330,6 +6336,12 @@
             "minLength": 1,
             "title": "Name",
             "type": "string"
+          },
+          "is_list": {
+            "default": false,
+            "description": "Set to true when the property is list-valued. Each element of the list is looked up in the lookup table, and a filter matches the looked-up values by `list_match`.",
+            "title": "Is List",
+            "type": "boolean"
           }
         },
         "required": [
@@ -6481,7 +6493,7 @@
                 "type": "null"
               }
             ],
-            "description": "For list-valued properties, and for lookup columns whose join key is list-valued. Defaults to `any`."
+            "description": "For list-valued properties, and for lookup columns whose join key is list-valued (`join_key.is_list`). Defaults to `any`."
           },
           "list_item_match": {
             "anyOf": [
