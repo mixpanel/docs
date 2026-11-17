@@ -7025,19 +7025,6 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
-          },
           "tags": {
             "description": "The definition's tag names.",
             "items": {
@@ -7129,19 +7116,6 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
-          },
           "tags": {
             "description": "The definition's tag names.",
             "items": {
@@ -7214,19 +7188,6 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
-          },
           "tags": {
             "description": "The definition's tag names.",
             "items": {
@@ -7244,6 +7205,19 @@
             },
             "title": "Owners",
             "type": "array"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The name shown in the UI.",
+            "title": "Display Name"
           },
           "type": {
             "const": "custom_event",
@@ -7298,19 +7272,6 @@
             ],
             "description": "The definition's description.",
             "title": "Description"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "tags": {
             "description": "The definition's tag names.",
@@ -7385,19 +7346,6 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
-          },
           "tags": {
             "description": "The definition's tag names.",
             "items": {
@@ -7415,6 +7363,19 @@
             },
             "title": "Owners",
             "type": "array"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The name shown in the UI.",
+            "title": "Display Name"
           },
           "type": {
             "description": "The kind of definition.",
@@ -7467,19 +7428,6 @@
             ],
             "description": "The definition's description.",
             "title": "Description"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "tags": {
             "description": "The definition's tag names.",
