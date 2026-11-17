@@ -4525,16 +4525,30 @@
             "title": "First Tracked At"
           },
           "created_at": {
-            "description": "When the definition was created.",
-            "format": "date-time",
-            "title": "Created At",
-            "type": "string"
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was created. Null if the event or property has no stored definition.",
+            "title": "Created At"
           },
           "updated_at": {
-            "description": "When the definition was last updated.",
-            "format": "date-time",
-            "title": "Updated At",
-            "type": "string"
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was last updated. Null if the event or property has no stored definition.",
+            "title": "Updated At"
           },
           "type": {
             "description": "The kind of definition.",
