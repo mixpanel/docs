@@ -134,22 +134,39 @@
           },
           {
             "in": "query",
-            "name": "status",
+            "name": "hidden",
             "schema": {
-              "description": "Only definitions with one of these statuses.",
-              "items": {
-                "enum": [
-                  "visible",
-                  "hidden",
-                  "blocked"
-                ],
-                "type": "string"
-              },
-              "title": "Status",
-              "type": "array"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Whether the definition is hidden.",
+              "title": "Hidden"
             },
             "required": false,
-            "description": "Only definitions with one of these statuses."
+            "description": "Whether the definition is hidden."
+          },
+          {
+            "in": "query",
+            "name": "blocked",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked.",
+              "title": "Blocked"
+            },
+            "required": false,
+            "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked."
           },
           {
             "in": "query",
@@ -1260,22 +1277,39 @@
           },
           {
             "in": "query",
-            "name": "status",
+            "name": "hidden",
             "schema": {
-              "description": "Only definitions with one of these statuses.",
-              "items": {
-                "enum": [
-                  "visible",
-                  "hidden",
-                  "blocked"
-                ],
-                "type": "string"
-              },
-              "title": "Status",
-              "type": "array"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Whether the definition is hidden.",
+              "title": "Hidden"
             },
             "required": false,
-            "description": "Only definitions with one of these statuses."
+            "description": "Whether the definition is hidden."
+          },
+          {
+            "in": "query",
+            "name": "blocked",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked.",
+              "title": "Blocked"
+            },
+            "required": false,
+            "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked."
           },
           {
             "in": "query",
@@ -2921,9 +2955,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -3050,7 +3090,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -3289,9 +3330,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -3398,7 +3445,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -3768,9 +3816,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -3877,7 +3931,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -3974,9 +4029,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -4083,7 +4144,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -4383,9 +4445,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -4489,7 +4557,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -4504,15 +4573,6 @@
         ],
         "title": "DataDefinitionWithoutBodyResponse",
         "type": "object"
-      },
-      "EntityStatus": {
-        "enum": [
-          "visible",
-          "hidden",
-          "blocked"
-        ],
-        "title": "EntityStatus",
-        "type": "string"
       },
       "Event": {
         "additionalProperties": false,
@@ -6043,9 +6103,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -6189,7 +6255,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -7841,12 +7908,12 @@
             "description": "Change the definition's owners."
           },
           "hidden": {
-            "description": "Hide the definition.",
+            "description": "Hide or unhide the definition.",
             "title": "Hidden",
             "type": "boolean"
           },
           "blocked": {
-            "description": "Block the definition, which drops its incoming data at ingest.",
+            "description": "Block or unblock the definition. Blocking drops its incoming data at ingest.",
             "title": "Blocked",
             "type": "boolean"
           },
