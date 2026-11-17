@@ -71,7 +71,7 @@ Filtering stops events from being stored in your project. Two Lexicon tools do t
 | Tool | What it drops | Lexicon status |
 | - | - | - |
 | Drop Filter | Events that match an event name and one or more property values you choose | Filtered |
-| Blocking an event | Every event with that event name | Blocked |
+| Blocking an event | Every event with that event name, from every source, including your own app. Blocking applies to all events of that name and can't be narrowed by property. | Blocked |
 
 Both tools act at ingestion. Mixpanel discards matching events as they arrive, so they are never stored. Hiding an event in Lexicon is different: it only removes the event from view.
 
