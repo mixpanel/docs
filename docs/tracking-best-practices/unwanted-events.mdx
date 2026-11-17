@@ -79,7 +79,7 @@ Consider these points when you choose:
 
 - A Drop Filter needs an event name and at least one property with at least one value. It can't filter on the event name alone.
 - Blocking an event drops every event with that name, including events from your own app. Use it only when you never want that event.
-- Look at the unwanted events in your project to find a property value that appears on them and never on your own events. Filter on that value.
+- Look at the unwanted events in your project to find a property value that appears on them and never on your own events. Choose a property your app sends with the event. Drop Filters run before Mixpanel adds IP-derived geolocation properties such as `mp_country_code`, `$city`, and `$region`, so a filter on those values won't stop the unwanted events. See [Supported filter criteria](/docs/data-governance/data-clean-up#supported-filter-criteria).
 - A project can have up to 15 Drop Filters.
 - A filter becomes active within 10 minutes of creation. It affects only events that arrive afterward. To remove events already stored, see the next section.
 - Both Drop Filters and blocking discard events permanently. Dropped events aren't stored and can't be recovered.
