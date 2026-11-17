@@ -81,7 +81,7 @@ Consider these points when you choose:
 - Blocking an event drops every event with that name, including events from your own app. Use it only when you never want that event.
 - Look at the unwanted events in your project to find a property value that appears on them and never on your own events. Choose a property your app sends with the event. Drop Filters run before Mixpanel adds IP-derived geolocation properties such as `mp_country_code`, `$city`, and `$region`, so a filter on those values won't stop the unwanted events. See [Supported filter criteria](/docs/data-governance/data-clean-up#supported-filter-criteria).
 - A project can have up to 15 Drop Filters.
-- A filter becomes active within 10 minutes of creation. It affects only events that arrive afterward. To remove events already stored, see the next section.
+- A Drop Filter becomes active within 10 minutes of creation. A blocked event can take a few hours to take effect. Both affect only events that arrive afterward. To remove events already stored, see the next section.
 - Both Drop Filters and blocking discard events permanently. Dropped events aren't stored and can't be recovered.
 - Dropped events don't count toward your event volume.
 - Blocking an event doesn't require a new release of your app.
@@ -119,7 +119,7 @@ Check each approach you used.
 | Server-only tracking | Search your page source and app code for your project token | The token no longer appears in client code | Remove it from the code that still contains it |
 | Proxy | Send a test event from your site | The event arrives in your project, and your browser's network requests go to your proxy domain | See [Troubleshooting](#troubleshooting) |
 | Drop Filter | Wait 10 minutes after saving the filter, then send one event that matches its event name and property values | The event doesn't appear in your project, and Lexicon shows the event with the status Filtered | Check the filter's event name and property values against the event you sent |
-| Blocked event | Send the blocked event | The event doesn't appear in your project, and Lexicon shows the status Blocked | Confirm the status in Lexicon |
+| Blocked event | Wait a few hours after blocking the event, then send the blocked event | The event doesn't appear in your project, and Lexicon shows the status Blocked | Confirm the status in Lexicon |
 | Data Deletion | Review the preview before you submit | The preview shows only the data you want to delete | Change the time range or property filters, and review the preview again |
 | Replaced token | Send a test event with the new token | The event arrives in your project, and you can see it in the Events report | Confirm the new token is deployed in every place you send data |
 
