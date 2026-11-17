@@ -58,6 +58,8 @@ If an event contains a `$user_id`, the value of the `$user_id` will be set as th
 
 **When a `$user_id` and `$device_id` are present in the same event for the first time, a mapping is created to merge the `$user_id` and `$device_id` values together, forming an identity cluster.** Any data sent with a `distinct_id` set to any of the values in an ID cluster will be attributed back to the same user in Mixpanel.
 
+Each `$device_id` can be mapped to only one `$user_id`. If an event's `$device_id` is already mapped to a different `$user_id`, no new mapping is created (see the [FAQ](#faq)).
+
 ## Client-side Identity Management
 
 If using our Web/Mobile SDKs or a CDP like Segment or Rudderstack, there are only 2 steps to identity management:
@@ -248,6 +250,12 @@ It is possible to set user profile properties for unidentified users by sending 
 **Is it possible to merge two `$user_id`s?**
 
 It is not possible to merge 2 `$user_id`s together using the Simplified API. We don't recommend doing this in general, as it adds complexity to your identity resolution strategy. Instead, we recommend having a single, unchanging `$user_id` for each user and pointing all other IDs for that user to that single `$user_id`.
+
+**What happens if a `$device_id` is already mapped to a different `$user_id`?**
+
+If an event contains both a `$device_id` and a `$user_id`, but that `$device_id` is already mapped to a different `$user_id`, Mixpanel does not create a new mapping or merge the two users. The existing `$device_id` to `$user_id` mapping is left unchanged, and the event is attributed to the `$user_id` sent on the event.
+
+Mixpanel marks these events with the `$identity_failure_reason` property (Identity Failure Reason) set to `errAnonDistinctIdAssignedAlready`. This is the only value used in Simplified ID Merge. To find affected events, filter or break down your events by Identity Failure Reason. For guidance on shared devices, see [Multiple Users, One Device](#multiple-users-one-device).
 
 **How should I link identified IDs from 3rd-party systems?**
 
