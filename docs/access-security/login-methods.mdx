@@ -107,3 +107,58 @@ If you signed up via an invitation from a teammate, it is possible that the invi
 **3. I forgot my password. How can I login?**
 
 You can navigate to the [login page](https://mixpanel.com/login/) and click the button at the bottom to set up a new password.
+
+**4. Why do I have to re-authenticate when trying to make important changes?**
+
+We've introduced an additional security layer when making potentially-destructive changes, so you will have to log in again to confirm any of the actions below:
+
+_Your account:_
+
+- Changing your email address or password
+- Turning off or resetting two-factor authentication (2FA)
+- Adding, removing, or changing passkey settings (renaming a passkey doesn’t require confirmation)
+- Deleting your account
+- Refreshing your GDPR token
+
+_Organization security:_
+
+- Setting up, removing, or requiring SSO
+- Turning on JIT provisioning
+- Changing the organization’s 2FA requirement
+- Resetting another member’s 2FA
+- Changing session settings
+- Claiming or changing domains, and opening organization discoverability (closing it doesn’t require confirmation)
+- Creating, resetting, or changing the SCIM token or organization name
+- Managing admin organizations and trusted identity issuers
+- Managing audit-log streams
+- Changing the project strong-password requirement
+
+_People and access:_
+
+- Inviting people (by form, CSV upload, or invite link, including regenerating invite links)
+- Approving project access requests
+- Removing organization members or changing their roles
+- Adding people to projects or teams, or changing their project access
+- Adding projects to teams
+- Creating or changing custom roles
+- Transferring a project
+
+_Service accounts:_
+
+- Creating, deleting, or changing service accounts, including adding them to or removing them from projects and teams
+
+_Projects and data:_
+
+- Resetting or deleting a project
+- Resetting an API key (for projects that use a legacy API secret)
+- Changing the data retention period
+
+_Billing:_
+
+- Cancelling your plan or deleting your organization
+
+**How confirmation works**
+
+- A “Confirm your identity” dialog appears when you try a gated action. Once you confirm, the action goes through. If you close the dialog, nothing changes.
+- The confirmation method depends on how you sign in: SSO users confirm with a fresh SSO sign-in, passkey users confirm with their passkey, and everyone else confirms with their password or a 6-digit code sent by email.
+- Email codes expire after a few minutes and only work in the browser where you requested them.
