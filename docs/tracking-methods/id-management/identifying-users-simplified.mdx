@@ -255,7 +255,7 @@ It is not possible to merge 2 `$user_id`s together using the Simplified API. We 
 
 If an event contains both a `$device_id` and a `$user_id`, but that `$device_id` is already mapped to a different `$user_id`, Mixpanel does not create a new mapping or merge the two users. The existing `$device_id` to `$user_id` mapping is left unchanged, and the event is attributed to the `$user_id` sent on the event.
 
-Mixpanel marks these events with the `$identity_failure_reason` property (Identity Failure Reason) set to `errAnonDistinctIdAssignedAlready`. This is the only value used in Simplified ID Merge. To find affected events, filter or break down your events by Identity Failure Reason. For guidance on shared devices, see [Multiple Users, One Device](#multiple-users-one-device).
+Mixpanel sets the `$identity_failure_reason` property (Identity Failure Reason) on these events, and its value will be `errAnonDistinctIdAssignedAlready`. To find affected events, filter or break down your events by Identity Failure Reason. For guidance on shared devices, see [Multiple Users, One Device](#multiple-users-one-device).
 
 **How should I link identified IDs from 3rd-party systems?**
 
