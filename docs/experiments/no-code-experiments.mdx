@@ -19,7 +19,7 @@ Web Experiments let you build and launch A/B test variants on your website throu
 | | Supported in beta |
 | --- | --- |
 | Browser for authoring | Chrome only |
-| Install method | Web snippet in your page's `<head>` |
+| Install method | `mixpanel-browser` 2.86.0 or later, from npm |
 | Site type | Best suited to static and marketing sites |
 
 Complex single-page apps are better served by a feature experiment. Mutations are applied to the rendered DOM, so the more dynamic the page, the less predictable the result. The visual editor re-applies mutations when elements re-render, but a heavily client-routed app will still behave less reliably than a static page.
@@ -37,7 +37,7 @@ Mixpanel has two experiment types. You choose one at creation time.
 | Who can run it | Anyone with the right permissions | Requires an engineer |
 | Best for | Copy, styling, and layout changes | Backend logic, new components, anything data-driven |
 
-Web Experiments run on [Mixpanel Feature Flags](/docs/featureflags), and the visual editor creates and configures the flag for you. You do not write any flag evaluation code, and you do not need an engineer to implement the flag. The one-time snippet install is the only code change the feature requires.
+Web Experiments run on [Mixpanel Feature Flags](/docs/featureflags), and the visual editor creates and configures the flag for you. You do not write any flag evaluation code, and you do not need an engineer to implement the flag. The one-time SDK setup is the only code change the feature requires.
 
 <Note>
   The experiment type can't be changed after the experiment is created. If you need to convert a test, create a new experiment.
@@ -48,25 +48,26 @@ Web Experiments run on [Mixpanel Feature Flags](/docs/featureflags), and the vis
 Setup is a one-time job. After it's done, anyone with permission can create and launch experiments without touching code again.
 
 <Steps>
-  <Step title="Add the snippet to your site">
-    Place this in the `<head>` of every page you want to test. It loads the beta build of the Mixpanel JavaScript SDK and turns on flags and Web Experiments.
+  <Step title="Turn on Web Experiments in the SDK">
+    Install version 2.86.0 or later of the Mixpanel JavaScript SDK:
 
-    ```html
-    <script>
-    var MIXPANEL_CUSTOM_LIB_URL = 'https://cdn.mxpnl.com/libs/mixpanel-2.84.0-ve-alpha-2.min.js';
-    (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for (var d = {}, e = ["get_group"].concat(Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
+    ```bash
+    npm install --save mixpanel-browser@^2.86.0
+    ```
 
-    mixpanel.init("YOUR_PROJECT_TOKEN", { flags: true, visual_experiments: true });
-    </script>
+    Then add `flags: true` and `visual_experiments: true` to your existing `init` call:
+
+    ```javascript
+    import mixpanel from 'mixpanel-browser';
+
+    mixpanel.init('YOUR_PROJECT_TOKEN', {
+      // ...your existing options
+      flags: true,
+      visual_experiments: true,
+    });
     ```
 
     Both `flags` and `visual_experiments` are required. Feature Flags is the mechanism that delivers variants to your users, so Web Experiments will not run without it.
-
-    <Note>
-      During beta, the snippet is the only supported install path, and it must point at the pinned build above rather than `mixpanel-2-latest`. Installing through npm with the `visual_experiments` init option is coming at general availability.
-    </Note>
-
-    If you already load `mixpanel-js` on the page, replace that snippet rather than adding a second one, and keep your existing `init` options alongside the two new ones.
   </Step>
 
   <Step title="Install the Chrome extension">
@@ -165,7 +166,7 @@ Refresh the Mixpanel tab. Detection runs on page load. If it still fails, confir
 
 ### Changes Don't Appear on Your Site
 
-Confirm the snippet loads the pinned beta build and passes both `flags: true` and `visual_experiments: true`. The editor reports an error when it detects that Web Experiments are turned off in the SDK. Also check that the URL you're viewing matches the saved URL, keeping case sensitivity in mind.
+Confirm that your site uses `mixpanel-browser` 2.86.0 or later and passes both `flags: true` and `visual_experiments: true` to `init`. The editor reports an error when it detects that Web Experiments are turned off in the SDK. Also check that the URL you're viewing matches the saved URL, keeping case sensitivity in mind.
 
 ## Launching and Reading Results
 
@@ -175,7 +176,7 @@ Launching and analysis work the same as any other experiment. Results appear in 
 
 Assignment and exposure are separate, and only exposure puts a visitor in your results.
 
-The SDK fetches flags on any page that loads the snippet. That fetch returns a variant only for experiments whose targeting rules and traffic allocation the visitor qualifies for, and qualifying is what assigns them to a variant. A visitor outside the targeting or the rollout receives no variant at all.
+The SDK fetches flags on any page that loads it. That fetch returns a variant only for experiments whose targeting rules and traffic allocation the visitor qualifies for, and qualifying is what assigns them to a variant. A visitor outside the targeting or the rollout receives no variant at all.
 
 Exposure is tracked later, when the SDK reads an assigned variant in order to apply its changes. That only happens on a page whose URL matches the one saved for the experiment, and the SDK sends an `$experiment_started` event at that point, once per experiment per page load.
 
