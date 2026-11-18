@@ -3626,6 +3626,7 @@
           },
           "type": {
             "const": "cohort",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
@@ -4940,6 +4941,7 @@
           },
           "type": {
             "const": "event",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
@@ -5248,6 +5250,7 @@
         "properties": {
           "type": {
             "const": "formula",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
@@ -5578,6 +5581,7 @@
           },
           "type": {
             "const": "funnel",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
@@ -6809,6 +6813,7 @@
           },
           "type": {
             "const": "retention",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
