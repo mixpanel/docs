@@ -32,19 +32,22 @@ Screen views require a one-time hook into your app’s navigation. Click events 
 
 ## Autocapture events
 
-By default, Autocapture will automatically collect the following predefined events with minimal engineering:
+Autocapture collects the following predefined events with minimal engineering. Each event is listed with its preset label (display name) in Mixpanel, followed by its raw event name:
 
-- Pageviews
-- Page scrolls
-- Form interactions (e.g., form submitted)
-- Element interactions, including clicks and changes on page elements
-- Attribution
-- Dead clicks
-- Rage clicks
+- `[Auto] Page View`: `$mp_web_page_view` (Enabled by default)
+- `[Auto] Element Click`: `$mp_click` (Enabled by default)
+- `[Auto] Dead Click`: `$mp_dead_click` (Enabled by default)
+- `[Auto] Rage Click`: `$mp_rage_click` (Enabled by default)
+- `[Auto] Input Change`: `$mp_input_change` (Enabled by default)
+- `[Auto] Form Submit`: `$mp_submit` (Enabled by default)
+- `[Auto] Page Scroll`: `$mp_scroll` (Enabled by default)
+- `[Auto] Page Leave`: `$mp_page_leave` (Disabled by default, enable it by setting `page_leave: true`)
+
+Page view events also include attribution data, such as UTM parameters.
 
 When you enable Autocapture, you will start collecting these predefined events and property types, and they will appear for your use in analysis in your Mixpanel instance. Within your Mixpanel instance, these events will be displayed using preset labels such as “\[Auto\] Page View” and “\[Auto\] Element Click”.
 
-Autocapture events will all be tracked as events that start with `$mp_`  and will start with \[Auto\] as a prefix in Mixpanel, so if used in combination with other tracking and ingestion methods, you will be able to tell the difference.
+Autocapture events will be prefixed with `$mp_` (for the raw event name) / `[Auto]` (for the display name) and have the property `$mp_autocapture: true`, so if used in combination with other tracking and ingestion methods, such as Heatmaps which collects similar events, you will be able to tell the difference.
 
 ### Dead Clicks
 
