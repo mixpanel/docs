@@ -11,6 +11,26 @@ Get all the latest updates in your inbox.
 <SubscribeButtonWithModal />
 
 <Update label="2026-11-16">
+  ## Real-Time Event Streams (Open Beta)
+
+  Real-Time Event Streams are now in open beta. Every organization on the latest Growth plans or on any Enterprise plan has access to a free volume of event streaming via a custom webhook. Send your highest-intent behavioral signals to your own systems within seconds and use them to drive more personalized product experiences. With this update, you can:
+
+  - Stream events to any HTTPS endpoint you control, with your own authentication
+  - Choose which events to stream and narrow them with property filters
+  - Shape the outbound payload with a Liquid template
+  - Rely on at-least-once delivery with automatic retries, targeting p50 delivery within 60 seconds of ingestion
+
+  Included streaming volume by plan to get started:
+
+  - **Latest Growth plans:** 50K events streamed per month
+  - **Enterprise plans:** 1M events streamed per month
+
+  If your streamed volume exceeds your plan's limit, all Streams are disabled. You can re-enable your stream once the limit resets.
+
+  [Learn more →](/docs/real-time-event-streams/overview)
+</Update>
+
+<Update label="2026-11-16">
   ## Event list and object properties now hold slightly less data
 
   Event properties that hold a list or an object still have an [8KB size limit](/docs/data-structure/property-reference/data-type). Each text value in them now counts for one extra byte toward that limit.
