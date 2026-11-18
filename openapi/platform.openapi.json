@@ -6593,7 +6593,7 @@
           },
           "keep_only_matching": {
             "default": false,
-            "description": "For list-valued properties with `list_match: any`: drop the list elements that did not match instead of keeping the whole list.",
+            "description": "For list-valued properties with `list_match: any`: drop the list elements that did not match instead of keeping the whole list. Not supported for lookup properties.",
             "title": "Keep Only Matching",
             "type": "boolean"
           }
