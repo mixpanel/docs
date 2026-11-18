@@ -7893,6 +7893,13 @@
         "additionalProperties": false,
         "description": "The fields to write on the definition. A field left out is unchanged.",
         "properties": {
+          "name": {
+            "description": "The definition's new name. Only custom events, custom properties, behaviors, metrics, and cohorts can be renamed.",
+            "maxLength": 255,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
           "description": {
             "anyOf": [
               {
