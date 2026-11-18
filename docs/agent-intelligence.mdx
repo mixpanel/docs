@@ -454,6 +454,24 @@ Click a conversation to open it. You'll see every turn, and every span inside ea
 
 This is where you go to troubleshoot. A turn with an unusual duration or cost stands out in the list, opening it shows which span caused it. If a turn errored, the failing span is marked, so you can read the error and the tool call that produced it.
 
+### Ask an AI assistant about your agents
+
+You can ask about your agent data in plain language instead of opening each page. The [Mixpanel Agent](/docs/mixpanel-agent) and any AI client connected to the [Mixpanel MCP server](/docs/mcp) read the same Usage reports and conversations you see in Agent Intelligence, so their numbers match the pages.
+
+An assistant can:
+
+- **Run a Usage report**, such as cost, errors, or run duration, for a date range, filter, or breakdown you choose
+- **Find conversations**, sorted by latest activity, cost, turns, tool calls, or tokens, and filtered by any span attribute, such as agent, model, or tool
+- **Read a conversation's transcript**, including the user's messages, the agent's tool calls, its answers, and any failures
+
+For example, ask:
+
+- "How much did our agents cost last week, broken down by model?"
+- "Find the five most expensive conversations with `support-agent` in the last seven days"
+- "Read this conversation and tell me where the agent went wrong"
+
+When you ask the Mixpanel Agent from a conversation's page, it already knows which conversation you have open.
+
 ### Link Agent data to your product outcomes
 
 Spans are events, so agent data works in every Mixpanel report. You can answer questions like:
