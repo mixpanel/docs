@@ -936,6 +936,39 @@ You have control over the data you send to Mixpanel. The Javascript SDK provide 
 
 Learn more about [Privacy](/docs/privacy).
 
+### Consent mode
+
+Set `consent_mode` at init to choose what the SDK does before the visitor accepts or refuses tracking in your consent banner. It's fixed at init.
+
+| Value | Before the visitor decides |
+| --- | --- |
+| `'no_consent_required'` | Tracks as usual. This is the default when `consent_mode` is unset, and [Opt Out of Tracking](#opt-out-of-tracking) works as described below. |
+| `'require_consent'` | Stores nothing and sends nothing until `opt_in_tracking()`: no events, profile or group updates, feature flag fetches, remote settings, or Session Replay. |
+| `'exempt'` | Stores nothing and sends only anonymous page views, clicks, scrolls, and page exits, for the CNIL's audience-measurement exemption. See [CNIL audience measurement](/docs/privacy/cnil-audience-measurement). |
+
+An unrecognized value works as `'require_consent'`.
+
+**Example Usage**
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    consent_mode: 'require_consent'
+});
+
+// in your consent banner
+acceptButton.addEventListener('click', () => mixpanel.opt_in_tracking());
+refuseButton.addEventListener('click', () => mixpanel.opt_out_tracking());
+```
+
+With `'require_consent'` or `'exempt'`:
+
+- `opt_in_tracking()` starts full tracking on the page and tracks `$opt_in`.
+- `opt_out_tracking()` stops tracking on the page and deletes the identifiers, queued events, and feature flag variants the SDK stored on the device. It doesn't send a `$delete` request. Session Replay data that wasn't uploaded stays on the device and is uploaded only after the visitor consents again.
+- Under `'exempt'`, a visitor who refuses stays in exempt measurement. `object_to_tracking()` stops that too.
+- The browser's Do Not Track setting counts as an objection, unless you set `ignore_dnt: true`.
+- If you call `identify()` before the visitor decides, the SDK keeps the latest ID in memory, without storing or sending it, and applies it if they opt in on the same page. `reset()` and `object_to_tracking()` discard it.
+- The decision is stored with the SDK's `persistence` and cookie settings, so subdomains that share the Mixpanel cookie share the decision. `opt_out_tracking_by_default`, `opt_out_tracking_persistence_type`, and `opt_out_persistence_by_default` don't apply, and neither do the storage, `enable_persistence`, `clear_persistence`, and `delete_user` options of the opt-in and opt-out methods. `opt_out_tracking_cookie_prefix` still sets the storage key's prefix.
+
 ### Opt Out of Tracking
 
 The Javascript SDK is initialized with tracking enabled by default. Use the [`.opt_out_tracking()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#mixpanelopt_out_tracking) method to opt the user out of data tracking and cookies/local storage for the current Mixpanel instance.
@@ -979,6 +1012,8 @@ mixpanel.track('some_other_event');
 
 By default, `opt_in_tracking()` also tracks an `$opt_in` event. Use the `track_event_name` and `track_properties` options to customize that event.
 
+`opt_out_tracking_by_default` applies only when `consent_mode` is unset. To block tracking until consent with `consent_mode`, use `'require_consent'`.
+
 **Persisting Opt-Out Status**
 
 The SDK stores the user's opt-in or opt-out status per project, so it persists across page loads and sessions until the user changes it or clears browser storage. By default, the status is saved in local storage under the key `__mp_opt_in_out_<YOUR_PROJECT_TOKEN>`. The value is `1` when the user has opted in and `0` when the user has opted out. If local storage is unavailable, the SDK falls back to a cookie with the same name.
@@ -998,7 +1033,8 @@ Use these methods to read or reset the stored status, for example to sync Mixpan
 | --- | --- |
 | [`has_opted_out_tracking()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#has_opted_out_tracking) | Returns `true` if the user has opted out of tracking. Also returns `true` if the browser's Do Not Track setting is on, unless you initialize the SDK with `ignore_dnt: true`. |
 | [`has_opted_in_tracking()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#has_opted_in_tracking) | Returns `true` if the user has explicitly opted in with `opt_in_tracking()`. |
-| [`clear_opt_in_out_tracking()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#clear_opt_in_out_tracking) | Removes the stored status, so the SDK falls back to the `opt_out_tracking_by_default` setting from `init`. |
+| [`clear_opt_in_out_tracking()`](https://github.com/mixpanel/mixpanel-js/blob/master/doc/readme.io/javascript-full-api-reference.md#clear_opt_in_out_tracking) | Removes the stored status, so the SDK falls back to the `opt_out_tracking_by_default` setting from `init`. With `consent_mode`, it falls back to what the mode does before the visitor decides, and also deletes the identifiers the SDK stored on the device. |
+| `object_to_tracking()` | Stops all tracking, exempt measurement included. Call it from the objection link in your privacy policy. `opt_in_tracking()` and `clear_opt_in_out_tracking()` lift an objection; `opt_out_tracking()` doesn't. Outside `consent_mode: 'exempt'`, it works like `opt_out_tracking()`. With `consent_mode`, `has_opted_out_tracking()` returns `true` after an objection. |
 
 **Example Usage**
 
