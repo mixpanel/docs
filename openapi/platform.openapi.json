@@ -134,22 +134,39 @@
           },
           {
             "in": "query",
-            "name": "status",
+            "name": "hidden",
             "schema": {
-              "description": "Only definitions with one of these statuses.",
-              "items": {
-                "enum": [
-                  "visible",
-                  "hidden",
-                  "blocked"
-                ],
-                "type": "string"
-              },
-              "title": "Status",
-              "type": "array"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Whether the definition is hidden.",
+              "title": "Hidden"
             },
             "required": false,
-            "description": "Only definitions with one of these statuses."
+            "description": "Whether the definition is hidden."
+          },
+          {
+            "in": "query",
+            "name": "blocked",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked.",
+              "title": "Blocked"
+            },
+            "required": false,
+            "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked."
           },
           {
             "in": "query",
@@ -1260,22 +1277,39 @@
           },
           {
             "in": "query",
-            "name": "status",
+            "name": "hidden",
             "schema": {
-              "description": "Only definitions with one of these statuses.",
-              "items": {
-                "enum": [
-                  "visible",
-                  "hidden",
-                  "blocked"
-                ],
-                "type": "string"
-              },
-              "title": "Status",
-              "type": "array"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Whether the definition is hidden.",
+              "title": "Hidden"
             },
             "required": false,
-            "description": "Only definitions with one of these statuses."
+            "description": "Whether the definition is hidden."
+          },
+          {
+            "in": "query",
+            "name": "blocked",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked.",
+              "title": "Blocked"
+            },
+            "required": false,
+            "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked."
           },
           {
             "in": "query",
@@ -2921,9 +2955,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -3050,7 +3090,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -3289,9 +3330,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -3398,7 +3445,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -3578,6 +3626,7 @@
           },
           "type": {
             "const": "cohort",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
@@ -3768,9 +3817,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -3877,7 +3932,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -3974,9 +4030,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -4083,7 +4145,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -4383,9 +4446,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -4457,16 +4526,30 @@
             "title": "First Tracked At"
           },
           "created_at": {
-            "description": "When the definition was created.",
-            "format": "date-time",
-            "title": "Created At",
-            "type": "string"
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was created. Null if the event or property has no stored definition.",
+            "title": "Created At"
           },
           "updated_at": {
-            "description": "When the definition was last updated.",
-            "format": "date-time",
-            "title": "Updated At",
-            "type": "string"
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was last updated. Null if the event or property has no stored definition.",
+            "title": "Updated At"
           },
           "type": {
             "description": "The kind of definition.",
@@ -4489,7 +4572,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -4504,15 +4588,6 @@
         ],
         "title": "DataDefinitionWithoutBodyResponse",
         "type": "object"
-      },
-      "EntityStatus": {
-        "enum": [
-          "visible",
-          "hidden",
-          "blocked"
-        ],
-        "title": "EntityStatus",
-        "type": "string"
       },
       "Event": {
         "additionalProperties": false,
@@ -4650,7 +4725,7 @@
       },
       "EventCustomJoinKey": {
         "additionalProperties": false,
-        "description": "A saved event custom property a lookup table is attached to.",
+        "description": "A saved event custom property a lookup table is attached to.\n\nThe query reads whether it is list-valued from the saved custom property.",
         "properties": {
           "source": {
             "const": "event_custom",
@@ -4800,6 +4875,12 @@
             "minLength": 1,
             "title": "Name",
             "type": "string"
+          },
+          "is_list": {
+            "default": false,
+            "description": "Set to true when the property is list-valued. Each element of the list is looked up in the lookup table, and a filter matches the looked-up values by `list_match`.",
+            "title": "Is List",
+            "type": "boolean"
           }
         },
         "required": [
@@ -4860,6 +4941,7 @@
           },
           "type": {
             "const": "event",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
@@ -5168,6 +5250,7 @@
         "properties": {
           "type": {
             "const": "formula",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
@@ -5498,6 +5581,7 @@
           },
           "type": {
             "const": "funnel",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
@@ -6037,9 +6121,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -6183,7 +6273,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -6232,7 +6323,7 @@
       },
       "ProfileCustomJoinKey": {
         "additionalProperties": false,
-        "description": "A saved user profile custom property a lookup table is attached to.\n\nA `profile_custom` join key always means the `$user_id` profile.",
+        "description": "A saved user profile custom property a lookup table is attached to.\n\nA `profile_custom` join key always means the `$user_id` profile. The query\nreads whether it is list-valued from the saved custom property.",
         "properties": {
           "source": {
             "const": "profile_custom",
@@ -6330,6 +6421,12 @@
             "minLength": 1,
             "title": "Name",
             "type": "string"
+          },
+          "is_list": {
+            "default": false,
+            "description": "Set to true when the property is list-valued. Each element of the list is looked up in the lookup table, and a filter matches the looked-up values by `list_match`.",
+            "title": "Is List",
+            "type": "boolean"
           }
         },
         "required": [
@@ -6481,7 +6578,7 @@
                 "type": "null"
               }
             ],
-            "description": "For list-valued properties, and for lookup columns whose join key is list-valued. Defaults to `any`."
+            "description": "For list-valued properties, and for lookup columns whose join key is list-valued (`join_key.is_list`). Defaults to `any`."
           },
           "list_item_match": {
             "anyOf": [
@@ -6716,6 +6813,7 @@
           },
           "type": {
             "const": "retention",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
@@ -7025,19 +7123,6 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
-          },
           "tags": {
             "description": "The definition's tag names.",
             "items": {
@@ -7129,19 +7214,6 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
-          },
           "tags": {
             "description": "The definition's tag names.",
             "items": {
@@ -7214,19 +7286,6 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
-          },
           "tags": {
             "description": "The definition's tag names.",
             "items": {
@@ -7244,6 +7303,19 @@
             },
             "title": "Owners",
             "type": "array"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The name shown in the UI.",
+            "title": "Display Name"
           },
           "type": {
             "const": "custom_event",
@@ -7298,19 +7370,6 @@
             ],
             "description": "The definition's description.",
             "title": "Description"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "tags": {
             "description": "The definition's tag names.",
@@ -7385,19 +7444,6 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
-          },
           "tags": {
             "description": "The definition's tag names.",
             "items": {
@@ -7415,6 +7461,19 @@
             },
             "title": "Owners",
             "type": "array"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The name shown in the UI.",
+            "title": "Display Name"
           },
           "type": {
             "description": "The kind of definition.",
@@ -7467,19 +7526,6 @@
             ],
             "description": "The definition's description.",
             "title": "Description"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "tags": {
             "description": "The definition's tag names.",
@@ -7881,12 +7927,12 @@
             "description": "Change the definition's owners."
           },
           "hidden": {
-            "description": "Hide the definition.",
+            "description": "Hide or unhide the definition.",
             "title": "Hidden",
             "type": "boolean"
           },
           "blocked": {
-            "description": "Block the definition, which drops its incoming data at ingest.",
+            "description": "Block or unblock the definition. Blocking drops its incoming data at ingest.",
             "title": "Blocked",
             "type": "boolean"
           },
@@ -7967,6 +8013,7 @@
       },
       "UpdateDataDefinitionTagRequest": {
         "additionalProperties": false,
+        "description": "The fields to write on the tag. A field left out is unchanged.",
         "properties": {
           "name": {
             "description": "The tag's new name. Unique within the project.",
@@ -7976,9 +8023,6 @@
             "type": "string"
           }
         },
-        "required": [
-          "name"
-        ],
         "title": "UpdateDataDefinitionTagRequest",
         "type": "object"
       },
