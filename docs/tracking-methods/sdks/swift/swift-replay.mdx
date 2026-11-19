@@ -58,6 +58,12 @@ To capture Session Replays in your app, add the [Session Replay SDK](/docs/track
         pod 'MixpanelSessionReplay', :git => 'https://github.com/mixpanel/mixpanel-ios-session-replay-package.git', :tag => 'X.Y.Z'
         ```
 
+        If `pod install` can't find a version of a Mixpanel dependency, such as `MixpanelSwiftCommon`, add that dependency from GitHub the same way:
+
+        ```ruby Ruby
+        pod 'MixpanelSwiftCommon', :git => 'https://github.com/mixpanel/mixpanel-swift-common.git', :tag => 'X.Y.Z'
+        ```
+
       - **After November 2027:** CocoaPods support will be removed in a future major version of the SDK.
     </Warning>
 
