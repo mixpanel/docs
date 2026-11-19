@@ -455,10 +455,10 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
 
     <Tabs>
       <Tab title="Swift Package Manager (recommended)">
-        Note: Swift Package Manager requires Xcode 12\+
+        Version 7.x requires Xcode 26 or later and supports iOS 15\+, tvOS 15\+, macOS 12\+ and watchOS 9\+. If your app needs to support an older OS, use 6.x instead. See [Apple Platform Support](/docs/tracking-methods/sdks/swift#apple-platform-support).
 
-        1. In Xcode, select File \> Swift Packages \> Add Package Dependency.
-        2. Paste the URL `https://github.com/mixpanel/mixpanel-swift` and a minimum semantic version of v7.0.0.
+        1. In Xcode, select File \> Add Package Dependencies...
+        2. Paste the URL `https://github.com/mixpanel/mixpanel-swift` and a minimum semantic version of v7.0.0, or v6.0.0 for an older OS.
       </Tab>
       <Tab title="Carthage">
         Add `github "mixpanel/mixpanel-swift"` to your Cartfile.
