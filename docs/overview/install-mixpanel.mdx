@@ -365,13 +365,7 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
     npm install mixpanel-react-native
     ```
 
-    Under your application's iOS folder, run:
-
-    ```sh
-    pod install
-    ```
-
-    On React Native 0.88\+, you can link the SDK with Swift Package Manager instead of CocoaPods. See [Installing the Library](/docs/tracking-methods/sdks/react-native#installing-the-library).
+    Then link the native iOS module with Swift Package Manager (recommended, on React Native 0.88\+) or CocoaPods (deprecated). See [Installing the Library](/docs/tracking-methods/sdks/react-native#installing-the-library) for both options.
 
     ##### Configure the SDK
 
@@ -464,7 +458,7 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
         Note: Swift Package Manager requires Xcode 12\+
 
         1. In Xcode, select File \> Swift Packages \> Add Package Dependency.
-        2. Paste the URL `https://github.com/mixpanel/mixpanel-swift` and a minimum semantic version of v2.8.0.
+        2. Paste the URL `https://github.com/mixpanel/mixpanel-swift` and a minimum semantic version of v7.0.0.
       </Tab>
       <Tab title="Carthage">
         Add `github "mixpanel/mixpanel-swift"` to your Cartfile.
