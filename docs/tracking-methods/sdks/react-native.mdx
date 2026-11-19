@@ -49,7 +49,7 @@ npx react-native spm --deintegrate
 With SPM, run `npx react-native spm` after a fresh clone or in CI, before building. On Expo SDK 58\+, set `expo.experiments.swiftPackageManager` to `true` in `app.json` and run `npx expo prebuild --platform ios --clean` instead.
 
 <Note>
-  CocoaPods support is deprecated and will be removed in the next major version of the SDK, around December 2027. That release will also raise the minimum supported React Native version. We recommend switching to Swift Package Manager.
+  CocoaPods support is deprecated and will be removed in a future major version of the SDK, after November 2027. That release will also raise the minimum supported React Native version to 0.89. We recommend switching to Swift Package Manager.
 </Note>
 
 After installation, import the `Mixpanel` class from the SDK, create an instance of Mixpanel using your [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens), then initialize by calling [`.init()`](https://mixpanel.github.io/mixpanel-react-native/Mixpanel.html#:~:text=init\(token%2C%20trackAutomaticEvents%2C%20Optional\)).

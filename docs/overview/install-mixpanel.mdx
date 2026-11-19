@@ -456,66 +456,18 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
 
     </CodeGroup>
   </Tab>
-  <Tab title="iOS (Objective-C)">
-    ##### Install the SDK
-
-    <Tabs>
-      <Tab title="Swift Package Manager">
-        Note: Swift Package Manager requires Xcode 12\+ 1. In Xcode, select File \> Swift Packages \> Add Package Dependency. 2. Follow the prompts using the URL for this repository and must select a version greater than or equal to v4.0.0
-      </Tab>
-      <Tab title="CocoaPods (deprecated)">
-        CocoaPods support is deprecated. We recommend Swift Package Manager. See [CocoaPods Deprecation](/docs/tracking-methods/sdks/ios#cocoapods-deprecation).
-
-        1. Create a Podfile in your Xcode project directory by running `pod init` in your terminal, edit the Podfile generated, and add the following line: `pod
-             'Mixpanel'`. 2. Run `pod install` in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in your terminal.
-      </Tab>
-      <Tab title="Carthage">
-        Add `github "mixpanel/mixpanel-iphone"` to your Cartfile.
-      </Tab>
-    </Tabs>
-
-    ##### Configure the SDK
-
-    Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
-
-    ```objc
-    #import "Mixpanel/Mixpanel.h"
-    
-    - (BOOL)application:(UIApplication _)application
-      didFinishLaunchingWithOptions:(NSDictionary _)launchOptions {
-      ...
-      Mixpanel \*mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_TOKEN"
-      trackAutomaticEvents: NO];
-      ...
-      }
-    ```
-
-    US projects use the SDK's default host and need no change. For an EU or India project, set `serverURL` after initialization:
-
-    <CodeGroup>
-
-    ```objc EU
-    mixpanel.serverURL = @"https://api-eu.mixpanel.com";
-    ```
-
-    ```objc India
-    mixpanel.serverURL = @"https://api-in.mixpanel.com";
-    ```
-
-    </CodeGroup>
-  </Tab>
   <Tab title="iOS (Swift)">
     ##### Install the SDK
 
     <Tabs>
-      <Tab title="Swift Package Manager">
+      <Tab title="Swift Package Manager (recommended)">
         Note: Swift Package Manager requires Xcode 12\+
 
         1. In Xcode, select File \> Swift Packages \> Add Package Dependency.
         2. Paste the URL `https://github.com/mixpanel/mixpanel-swift` and a minimum semantic version of v2.8.0.
       </Tab>
       <Tab title="CocoaPods (deprecated)">
-        CocoaPods support is deprecated. We recommend Swift Package Manager. See [CocoaPods Deprecation](/docs/tracking-methods/sdks/swift#cocoapods-deprecation).
+        CocoaPods support is deprecated. We recommend Swift Package Manager. See the CocoaPods tab under [Installing the Library](/docs/tracking-methods/sdks/swift#installing-the-library) for the timeline.
 
         1. Create a Podfile in your Xcode project directory by running `pod init` in your terminal, edit the Podfile generated, and add the following line: `pod 'Mixpanel-swift'`.
         2. Run `pod install` in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in your terminal.
@@ -562,6 +514,54 @@ Mixpanel supports [EU](/docs/privacy/eu-residency) and [India](/docs/privacy/in-
         serverURL: "https://api-in.mixpanel.com"
     )
     Mixpanel.initialize(options: options)
+    ```
+
+    </CodeGroup>
+  </Tab>
+  <Tab title="iOS (Objective-C)">
+    ##### Install the SDK
+
+    <Tabs>
+      <Tab title="Swift Package Manager (recommended)">
+        Note: Swift Package Manager requires Xcode 12\+ 1. In Xcode, select File \> Swift Packages \> Add Package Dependency. 2. Follow the prompts using the URL for this repository and must select a version greater than or equal to v4.0.0
+      </Tab>
+      <Tab title="CocoaPods (deprecated)">
+        CocoaPods support is deprecated. We recommend Swift Package Manager. See the CocoaPods tab under [Installing the Library](/docs/tracking-methods/sdks/ios#installing-the-library) for the timeline.
+
+        1. Create a Podfile in your Xcode project directory by running `pod init` in your terminal, edit the Podfile generated, and add the following line: `pod
+             'Mixpanel'`. 2. Run `pod install` in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing `open *.xcworkspace` in your terminal.
+      </Tab>
+      <Tab title="Carthage">
+        Add `github "mixpanel/mixpanel-iphone"` to your Cartfile.
+      </Tab>
+    </Tabs>
+
+    ##### Configure the SDK
+
+    Replace `YOUR_TOKEN` with your project token. You can find your token [here](https://mixpanel.com/settings/project).
+
+    ```objc
+    #import "Mixpanel/Mixpanel.h"
+    
+    - (BOOL)application:(UIApplication _)application
+      didFinishLaunchingWithOptions:(NSDictionary _)launchOptions {
+      ...
+      Mixpanel \*mixpanel = [Mixpanel sharedInstanceWithToken:@"YOUR_TOKEN"
+      trackAutomaticEvents: NO];
+      ...
+      }
+    ```
+
+    US projects use the SDK's default host and need no change. For an EU or India project, set `serverURL` after initialization:
+
+    <CodeGroup>
+
+    ```objc EU
+    mixpanel.serverURL = @"https://api-eu.mixpanel.com";
+    ```
+
+    ```objc India
+    mixpanel.serverURL = @"https://api-in.mixpanel.com";
     ```
 
     </CodeGroup>

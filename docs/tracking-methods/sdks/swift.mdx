@@ -31,13 +31,22 @@ If your app needs to support an older OS, stay on 6.x.
 You can install the Swift library by using Swift Package Manager (recommended), Carthage, or CocoaPods (deprecated).
 
 <Tabs>
-  <Tab title="Swift Package Manager">
+  <Tab title="Swift Package Manager (recommended)">
     1. In Xcode, select File \> Add Packages...
     2. Enter the package URL for [this repository](https://github.com/mixpanel/mixpanel-swift) and select version v2.8.0 or above.
   </Tab>
-  <Tab title="CocoaPods">
+  <Tab title="CocoaPods (deprecated)">
     <Warning>
-      CocoaPods support is deprecated. Use Swift Package Manager for new projects, and see [CocoaPods Deprecation](#cocoapods-deprecation) for the timeline.
+      CocoaPods support is deprecated. We recommend migrating to Swift Package Manager.
+
+      - **December 2, 2026:** CocoaPods trunk becomes read-only. Versions already published there keep installing with `pod 'Mixpanel-swift'`, but new versions are not published to trunk.
+      - **Until removal:** install newer versions directly from GitHub. Replace `X.Y.Z` with the [release](https://github.com/mixpanel/mixpanel-swift/releases) you want:
+
+        ```ruby Ruby
+        pod 'Mixpanel-swift', :git => 'https://github.com/mixpanel/mixpanel-swift.git', :tag => 'X.Y.Z'
+        ```
+
+      - **After November 2027:** CocoaPods support will be removed in a future major version of the SDK.
     </Warning>
 
     1. Install CocoaPods by typing the following in your command line:
@@ -78,21 +87,6 @@ You can install the Swift library by using Swift Package Manager (recommended), 
     ```
   </Tab>
 </Tabs>
-
-### CocoaPods Deprecation
-
-CocoaPods support is deprecated. We recommend migrating to Swift Package Manager.
-
-- **December 2, 2026:** CocoaPods trunk becomes read-only. Versions already published there keep installing with `pod 'Mixpanel-swift'`, but new versions are not published to trunk.
-- **Until removal:** install newer versions directly from GitHub. Replace `X.Y.Z` with the [release](https://github.com/mixpanel/mixpanel-swift/releases) you want:
-
-  ```ruby Ruby
-  pod 'Mixpanel-swift', :git => 'https://github.com/mixpanel/mixpanel-swift.git', :tag => 'X.Y.Z'
-  ```
-
-- **Around December 2027:** CocoaPods support is removed in the next major version of the SDK.
-
-### Initializing the Library
 
 After installing the library, import `Mixpanel` into `AppDelegate.swift` and initialize Mixpanel within [`application:didFinishLaunchingWithOptions:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application) using your [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
 

@@ -39,15 +39,43 @@ If your app needs to support an older iOS version, stay on 1.x.
 
 ## Installation
 
-To capture Session Replays in your app, add the [Session Replay SDK](/docs/tracking-methods/sdks/swift/swift-replay) using Swift Package Manager directly in Xcode:
+To capture Session Replays in your app, add the [Session Replay SDK](/docs/tracking-methods/sdks/swift/swift-replay) using Swift Package Manager (recommended) or CocoaPods (deprecated).
 
-1. In Xcode, go to File → **Add Package Dependencies…**
-2. Paste the GitHub URL: `https://github.com/mixpanel/mixpanel-ios-session-replay-package`
-3. Follow the prompts to select the latest version and add the package to your project.
+<Tabs>
+  <Tab title="Swift Package Manager (recommended)">
+    1. In Xcode, go to File → **Add Package Dependencies…**
+    2. Paste the GitHub URL: `https://github.com/mixpanel/mixpanel-ios-session-replay-package`
+    3. Follow the prompts to select the latest version and add the package to your project.
+  </Tab>
+  <Tab title="CocoaPods (deprecated)">
+    <Warning>
+      CocoaPods support is deprecated. We recommend migrating to Swift Package Manager.
 
-<Warning>
-  CocoaPods support for the Session Replay SDK is deprecated. CocoaPods trunk becomes read-only on December 2, 2026, so new versions are not published there. Until CocoaPods support is removed in the next major version (around December 2027), you can install newer versions from GitHub with `pod 'MixpanelSessionReplay', :git => 'https://github.com/mixpanel/mixpanel-ios-session-replay-package.git', :tag => 'X.Y.Z'`. We recommend migrating to Swift Package Manager.
-</Warning>
+      - **December 2, 2026:** CocoaPods trunk becomes read-only. Versions already published there keep installing with `pod 'MixpanelSessionReplay'`, but new versions are not published to trunk.
+      - **Until removal:** install newer versions directly from GitHub. Replace `X.Y.Z` with the [release](https://github.com/mixpanel/mixpanel-ios-session-replay-package/releases) you want:
+
+        ```ruby Ruby
+        pod 'MixpanelSessionReplay', :git => 'https://github.com/mixpanel/mixpanel-ios-session-replay-package.git', :tag => 'X.Y.Z'
+        ```
+
+      - **After November 2027:** CocoaPods support will be removed in a future major version of the SDK.
+    </Warning>
+
+    1. Open the Podfile in your Xcode project directory and add the Session Replay library to your dependencies:
+
+    ```ruby Ruby
+    target 'MyApp' do
+      pod 'MixpanelSessionReplay'
+    end
+    ```
+
+    2. Install the library by running the following in the Xcode project directory:
+
+    ```bash
+    pod install
+    ```
+  </Tab>
+</Tabs>
 
 ### Initialize
 
