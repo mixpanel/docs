@@ -3539,24 +3539,19 @@
             "default": [],
             "description": "Profile property and cohort membership filters.",
             "items": {
-              "description": "Set `type` to `property` to filter on a property value, or `cohort` to filter on cohort membership. Set `type` to `first_time` to keep only the first time each user did the event.",
               "discriminator": {
                 "mapping": {
                   "cohort": "#/components/schemas/CohortFilter",
-                  "first_time": "#/components/schemas/FirstTimeFilter",
-                  "property": "#/components/schemas/PropertyFilter"
+                  "property": "#/components/schemas/CohortGroupPropertyFilter"
                 },
                 "propertyName": "type"
               },
               "oneOf": [
                 {
-                  "$ref": "#/components/schemas/PropertyFilter"
+                  "$ref": "#/components/schemas/CohortGroupPropertyFilter"
                 },
                 {
                   "$ref": "#/components/schemas/CohortFilter"
-                },
-                {
-                  "$ref": "#/components/schemas/FirstTimeFilter"
                 }
               ]
             },
@@ -3589,6 +3584,100 @@
           }
         },
         "title": "CohortGroup",
+        "type": "object"
+      },
+      "CohortGroupPropertyFilter": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "const": "property",
+            "title": "Type",
+            "type": "string"
+          },
+          "property": {
+            "discriminator": {
+              "mapping": {
+                "profile": "#/components/schemas/ProfileProperty",
+                "profile_custom": "#/components/schemas/ProfileCustomProperty"
+              },
+              "propertyName": "source"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ProfileProperty"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileCustomProperty"
+              }
+            ],
+            "title": "Property"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/Operator"
+          },
+          "values": {
+            "anyOf": [
+              {
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    }
+                  ]
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Operands. Omitted for `is set`, `is not set`, `is true`, `is false`; exactly two for `is between` / `is not between`; one for `contains`, `does not contain` and the other number operators; one or more for `equals` / `does not equal`, any of which may match.",
+            "title": "Values"
+          },
+          "list_match": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ListMatch"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "For list-valued properties, and for lookup columns whose join key is list-valued (`join_key.is_list`). Defaults to `any`."
+          },
+          "list_item_match": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ListMatch"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "For `list[object]` properties whose `list_item` is list-valued: whether any or all elements of each object's list must pass. Defaults to `any`. `list_match` quantifies over the objects."
+          },
+          "keep_only_matching": {
+            "default": false,
+            "description": "For list-valued properties with `list_match: any`: drop the list elements that did not match instead of keeping the whole list. Not supported for lookup properties.",
+            "title": "Keep Only Matching",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "type",
+          "property",
+          "operator"
+        ],
+        "title": "CohortGroupPropertyFilter",
         "type": "object"
       },
       "CohortMetric": {
