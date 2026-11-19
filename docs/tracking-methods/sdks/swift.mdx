@@ -31,9 +31,17 @@ If your app needs to support an older OS, stay on 6.x.
 You can install the Swift library by using Swift Package Manager (recommended), Carthage, or CocoaPods (deprecated).
 
 <Tabs>
-  <Tab title="Swift Package Manager (recommended)">
+  <Tab title="Swift Package Manager (recommended)" id="swift-package-manager">
     1. In Xcode, select File \> Add Packages...
     2. Enter the package URL for [this repository](https://github.com/mixpanel/mixpanel-swift) and select version v2.8.0 or above.
+  </Tab>
+  <Tab title="Carthage">
+    Mixpanel supports [Carthage](https://github.com/Carthage/Carthage#quick-start) to package your dependencies as a framework. Include the following dependency in your Cartfile:
+
+    ```bash
+    # add Mixpanel library to your dependencies
+    github "mixpanel/mixpanel-swift"
+    ```
   </Tab>
   <Tab title="CocoaPods (deprecated)" id="cocoapods-deprecated">
     <Warning>
@@ -49,42 +57,12 @@ You can install the Swift library by using Swift Package Manager (recommended), 
       - **After November 2027:** CocoaPods support will be removed in a future major version of the SDK.
     </Warning>
 
-    1. Install CocoaPods by typing the following in your command line:
+    If your project already uses CocoaPods:
 
-    ```bash
-    # install CocoaPods
-    gem install cocoapods
-    ```
+    1. Add `pod 'Mixpanel-swift'` to your Podfile (or the `:git` line above for versions after the trunk freeze).
+    2. Run `pod install` in your Xcode project directory.
 
-    2. Then navigate to your Xcode project directory and create a Podfile by running the following:
-
-    ```bash
-    # create Podfile in project directory
-    pod init
-    ```
-
-    3. Open the Podfile that was generated and add the Mixpanel library to your dependencies:
-
-    ```ruby Ruby
-    target 'MyApp' do
-      pod 'Mixpanel-swift'
-    end
-    ```
-
-    4. Install the Mixpanel library and create a new Xcode workspace by running the following in the Xcode project directory:
-
-    ```bash
-    # install library in your dependencies
-    pod install
-    ```
-  </Tab>
-  <Tab title="Carthage">
-    Mixpanel supports [Carthage](https://github.com/Carthage/Carthage#quick-start) to package your dependencies as a framework. Include the following dependency in your Cartfile:
-
-    ```bash
-    # add Mixpanel library to your dependencies
-    github "mixpanel/mixpanel-swift"
-    ```
+    New to CocoaPods? Use [Swift Package Manager](#swift-package-manager) instead.
   </Tab>
 </Tabs>
 
