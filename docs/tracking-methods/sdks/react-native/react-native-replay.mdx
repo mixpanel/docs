@@ -68,6 +68,10 @@ npx react-native spm --deintegrate
 
 With SPM, run `npx react-native spm` after a fresh clone or in CI, before building. On Expo SDK 58\+, set `expo.experiments.swiftPackageManager` to `true` in `app.json` and run `npx expo prebuild --platform ios --clean` instead.
 
+<Note>
+  CocoaPods support is deprecated and will be removed in the next major version of the SDK, around December 2027. That release will also raise the minimum supported React Native version. We recommend switching to Swift Package Manager.
+</Note>
+
 #### Android
 
 Dependencies are automatically added through Gradle. Requirements:
