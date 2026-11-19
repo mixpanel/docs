@@ -693,7 +693,7 @@
             "$ref": "#/components/responses/Error"
           }
         },
-        "description": "Delete one of the project's saved data definitions. Observed events and properties can't\nbe deleted.",
+        "description": "Delete one of the project's saved data definitions. Deleting an event or event property\nresets its definition: the name stays listed while it has tracked data. An event with\nevent-specific property definitions needs them deleted first. A\ndefinition flagged sensitive, dropped, or merged can't be deleted.",
         "tags": [
           "Projects",
           "Data Definitions"
@@ -1836,7 +1836,7 @@
             "$ref": "#/components/responses/Error"
           }
         },
-        "description": "Delete one of the workspace project's saved data definitions. Observed events and properties\ncan't be deleted.",
+        "description": "Delete one of the workspace project's saved data definitions. Deleting an event or event\nproperty resets its definition: the name stays listed while it has tracked data. An event\nwith event-specific property definitions needs them deleted first. A\ndefinition flagged sensitive, dropped, or merged can't be deleted.",
         "tags": [
           "Workspaces",
           "Data Definitions"
