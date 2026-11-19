@@ -3601,7 +3601,35 @@
             "title": "Property"
           },
           "operator": {
-            "$ref": "#/components/schemas/Operator"
+            "description": "The comparison to apply. Which operators are valid depends on the property's `type`. The datetime operators apply to datetime properties only.",
+            "enum": [
+              "is set",
+              "is not set",
+              "equals",
+              "does not equal",
+              "contains",
+              "does not contain",
+              "is equal to",
+              "is not equal to",
+              "is greater than",
+              "is at least",
+              "is less than",
+              "is at most",
+              "is between",
+              "is not between",
+              "is true",
+              "is false",
+              "is on",
+              "is not on",
+              "is before",
+              "is on or after",
+              "is in the last",
+              "is not in the last",
+              "is before the last",
+              "is in the next"
+            ],
+            "title": "Operator",
+            "type": "string"
           },
           "values": {
             "anyOf": [
@@ -3628,7 +3656,7 @@
                 "type": "null"
               }
             ],
-            "description": "Operands. Omitted for `is set`, `is not set`, `is true`, `is false`; exactly two for `is between` / `is not between`; one for `contains`, `does not contain` and the other number operators; one or more for `equals` / `does not equal`, any of which may match.",
+            "description": "Operands. Omitted for `is set`, `is not set`, `is true`, `is false`; exactly two for `is between` / `is not between`; one for `contains`, `does not contain` and the other number operators; one or more for `equals` / `does not equal`, any of which may match. For a datetime property: one calendar date for `is on`, `is not on`; one date or timestamp for `is before`, `is on or after`; two dates or two timestamps (not one of each), both inclusive, for `is between` / `is not between`; one whole number of at least 1 for the relative operators. A date is `YYYY-MM-DD` or `YYYY-MM-DDTHH:mm`, in the project's timezone.",
             "title": "Values"
           },
           "list_match": {
@@ -3658,6 +3686,25 @@
             "description": "For list-valued properties with `list_match: any`: drop the list elements that did not match instead of keeping the whole list. Not supported for lookup properties.",
             "title": "Keep Only Matching",
             "type": "boolean"
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "enum": [
+                  "minute",
+                  "hour",
+                  "day",
+                  "week",
+                  "month"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The unit of the window of a relative datetime operator (`is in the last`, `is not in the last`, `is before the last`, `is in the next`). Required for those, and not allowed for any other operator.",
+            "title": "Unit"
           }
         },
         "required": [
@@ -6543,7 +6590,7 @@
         "type": "object"
       },
       "PropertyFilter": {
-        "description": "Filters events or profiles by a property value.",
+        "description": "Filters events or profiles by a property value, including datetime properties.",
         "properties": {
           "type": {
             "const": "property",
@@ -6582,7 +6629,35 @@
             "title": "Property"
           },
           "operator": {
-            "$ref": "#/components/schemas/Operator"
+            "description": "The comparison to apply. Which operators are valid depends on the property's `type`. The datetime operators apply to datetime properties only.",
+            "enum": [
+              "is set",
+              "is not set",
+              "equals",
+              "does not equal",
+              "contains",
+              "does not contain",
+              "is equal to",
+              "is not equal to",
+              "is greater than",
+              "is at least",
+              "is less than",
+              "is at most",
+              "is between",
+              "is not between",
+              "is true",
+              "is false",
+              "is on",
+              "is not on",
+              "is before",
+              "is on or after",
+              "is in the last",
+              "is not in the last",
+              "is before the last",
+              "is in the next"
+            ],
+            "title": "Operator",
+            "type": "string"
           },
           "values": {
             "anyOf": [
@@ -6609,7 +6684,7 @@
                 "type": "null"
               }
             ],
-            "description": "Operands. Omitted for `is set`, `is not set`, `is true`, `is false`; exactly two for `is between` / `is not between`; one for `contains`, `does not contain` and the other number operators; one or more for `equals` / `does not equal`, any of which may match.",
+            "description": "Operands. Omitted for `is set`, `is not set`, `is true`, `is false`; exactly two for `is between` / `is not between`; one for `contains`, `does not contain` and the other number operators; one or more for `equals` / `does not equal`, any of which may match. For a datetime property: one calendar date for `is on`, `is not on`; one date or timestamp for `is before`, `is on or after`; two dates or two timestamps (not one of each), both inclusive, for `is between` / `is not between`; one whole number of at least 1 for the relative operators. A date is `YYYY-MM-DD` or `YYYY-MM-DDTHH:mm`, in the project's timezone.",
             "title": "Values"
           },
           "list_match": {
@@ -6639,6 +6714,25 @@
             "description": "For list-valued properties with `list_match: any`: drop the list elements that did not match instead of keeping the whole list. Not supported for lookup properties.",
             "title": "Keep Only Matching",
             "type": "boolean"
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "enum": [
+                  "minute",
+                  "hour",
+                  "day",
+                  "week",
+                  "month"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The unit of the window of a relative datetime operator (`is in the last`, `is not in the last`, `is before the last`, `is in the next`). Required for those, and not allowed for any other operator.",
+            "title": "Unit"
           }
         },
         "required": [
