@@ -27,16 +27,6 @@ Each major version of the SDK has its own minimum supported iOS and macOS versio
 If your app uses CocoaPods, on 3.x set `platform :ios, '15.0'` in `ios/Podfile` and `platform :osx, '12.0'` in `macos/Podfile`. Building with Xcode 27 requires Flutter 3.47\+. 
 If your app needs to support an older iOS or macOS version, stay on 2.x.
 
-### Swift Package Manager
-
-The SDK supports Swift Package Manager (SPM) from v2.10.0. SPM is on by default from Flutter 3.44. If you turned it off, run:
-
-```bash
-flutter config --enable-swift-package-manager
-```
-
-If your app uses a Flutter version earlier than 3.44, or keeps SPM turned off, the SDK continues to install through CocoaPods. See [Flutter's SPM guide](https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers).
-
 ## Installing the Library
 
 To install the library in your [Flutter development environment](https://docs.flutter.dev/get-started/install), declare it as a dependency in the `pubspec.yaml` file of your package:
@@ -53,6 +43,27 @@ Once you added the library to your dependencies, use the command line to install
 # install packages in your dependencies
 $ flutter pub get
 ```
+
+On iOS and macOS, the SDK's native code installs through Swift Package Manager or CocoaPods:
+
+<Tabs>
+  <Tab title="Swift Package Manager (recommended)">
+    Supported from v2.10.0. SPM is on by default from Flutter 3.44. On earlier Flutter versions, or if you turned it off, run:
+
+    ```bash
+    flutter config --enable-swift-package-manager
+    ```
+
+    See [Flutter's SPM guide](https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers).
+  </Tab>
+  <Tab title="CocoaPods (deprecated)" id="cocoapods-deprecated">
+    <Warning>
+      CocoaPods support is deprecated and will be removed in a future major version of the SDK, after November 2027. That release will also raise the minimum supported Flutter version to 3.44. We recommend using Swift Package Manager.
+    </Warning>
+
+    If Swift Package Manager is turned off, the SDK installs through CocoaPods when you build. No extra steps are needed.
+  </Tab>
+</Tabs>
 
 After the installation, import the package in your Dart code, then initialize the SDK with the [`Mixpanel.init()`](https://mixpanel.github.io/mixpanel-flutter/mixpanel_flutter/Mixpanel/init.html) using your [project token](/docs/orgs-and-projects/managing-projects#find-your-project-tokens).
 

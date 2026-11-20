@@ -54,19 +54,30 @@ yarn add @mixpanel/react-native-session-replay
 
 #### iOS
 
-From your app's iOS folder, link the native module with CocoaPods (default):
+Link the native iOS module:
 
-```sh
-pod install
-```
+<Tabs>
+  <Tab title="Swift Package Manager (recommended)">
+    Supported from v2.1.0, on React Native 0.88\+. From your app's `ios` folder, run:
 
-Or with Swift Package Manager (SPM) from v2.1.0, on React Native 0.88\+:
+    ```sh
+    npx react-native spm --deintegrate
+    ```
 
-```sh
-npx react-native spm --deintegrate
-```
+    Run `npx react-native spm` after a fresh clone or in CI, before building. On Expo SDK 58\+, set `expo.experiments.swiftPackageManager` to `true` in `app.json` and run `npx expo prebuild --platform ios --clean` instead.
+  </Tab>
+  <Tab title="CocoaPods (deprecated)" id="cocoapods-deprecated">
+    <Warning>
+      CocoaPods support is deprecated and will be removed in a future major version of the SDK, after November 2027. That release will also raise the minimum supported React Native version to 0.89. We recommend switching to Swift Package Manager.
+    </Warning>
 
-With SPM, run `npx react-native spm` after a fresh clone or in CI, before building. On Expo SDK 58\+, set `expo.experiments.swiftPackageManager` to `true` in `app.json` and run `npx expo prebuild --platform ios --clean` instead.
+    From your app's iOS folder, run:
+
+    ```sh
+    pod install
+    ```
+  </Tab>
+</Tabs>
 
 #### Android
 
