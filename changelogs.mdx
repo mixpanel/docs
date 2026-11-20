@@ -11,6 +11,22 @@ Get all the latest updates in your inbox.
 <SubscribeButtonWithModal />
 
 <Update label="2026-11-18">
+  ## Insights: Expected Range
+
+  It was hard to tell whether a change in an Insights chart was normal or worth a closer look. You could only see a metric’s normal range while setting up an anomaly alert, and you couldn’t save it or change the dates.
+
+  Now you can add Expected Range to Insights line charts. Mixpanel looks at the metric’s past data to estimate where it should be, shows that as a shaded band, and highlights any point that falls outside it. With this update, you can:
+
+  - **Turn it on from Compare:** Select **Expected Range** from the **Compare** menu on Insights line charts.
+  - **Monitor key metrics on a board:** Expected Range saves with the report and appears on its board card. Put your most important metrics on one board to see quickly if anything looks off.
+  - **Find out what changed:** When a point falls outside the range, open [Root Cause Analysis](/docs/root-cause-analysis) to see what’s driving it.
+
+  Expected Range only covers past dates. It doesn’t forecast future values yet.
+
+  [Learn more →](/docs/reports/insights#expected-range-comparisons)
+</Update>
+
+<Update label="2026-11-18">
   ## Agent Intelligence: Ask about your agents from Mixpanel Agent and MCP (Beta)
 
   You can now ask Mixpanel Agent, or any AI client connected to the Mixpanel MCP server, about the AI agents you track with Agent Intelligence. Both read the same Usage reports and conversations you see in Agent Intelligence, so the answers match the pages.
