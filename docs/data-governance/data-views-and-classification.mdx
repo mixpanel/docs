@@ -96,7 +96,7 @@ Filters determine what data is accessible within a data view.
   ![Data Views Filters](/images/manage-data-view-filters.png)
 </Frame>
 
-You can apply multiple event, event property, and user profile property filters to a data view.
+You can apply multiple event, event property, and user profile property filters to a data view. Some property types can't be used in data view filters; see [Data Views Limits](#data-views-limits).
 
 #### Add Users or Teams
 
@@ -135,6 +135,7 @@ The following are limitations to be aware of when using data views:
 - Any Mixpanel APIs that use Project Token or Secret (e.g., Export API) work at a project level and not at the data view level. That said, any APIs that use OAuth (e.g., Query API) do work at the data view level.
 - Lexicon shows events and properties filtered based on the data view you have selected. However, if you edit an event or property in Lexicon in one data view, the changes will persist across the project. All data views will be impacted.
 - Applying any user profile property filter will remove the ability to analyze by all group identifiers except user.
+- Data view filters can't use borrowed properties, behavioral properties, First Event Time, or saved custom properties. Custom properties created directly in the filter are supported. This applies only to the data view's own filter definition: borrowed and custom properties still work in reports inside a data view.
 
 ## Data Classification
 
