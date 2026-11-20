@@ -134,22 +134,39 @@
           },
           {
             "in": "query",
-            "name": "status",
+            "name": "hidden",
             "schema": {
-              "description": "Only definitions with one of these statuses.",
-              "items": {
-                "enum": [
-                  "visible",
-                  "hidden",
-                  "blocked"
-                ],
-                "type": "string"
-              },
-              "title": "Status",
-              "type": "array"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Whether the definition is hidden.",
+              "title": "Hidden"
             },
             "required": false,
-            "description": "Only definitions with one of these statuses."
+            "description": "Whether the definition is hidden."
+          },
+          {
+            "in": "query",
+            "name": "blocked",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked.",
+              "title": "Blocked"
+            },
+            "required": false,
+            "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked."
           },
           {
             "in": "query",
@@ -676,7 +693,7 @@
             "$ref": "#/components/responses/Error"
           }
         },
-        "description": "Delete one of the project's saved data definitions. Observed events and properties can't\nbe deleted.",
+        "description": "Delete one of the project's saved data definitions. Deleting an event or event property\nresets its definition: the name stays listed while it has tracked data. An event with\nevent-specific property definitions needs them deleted first. A\ndefinition flagged sensitive, dropped, or merged can't be deleted.",
         "tags": [
           "Projects",
           "Data Definitions"
@@ -1260,22 +1277,39 @@
           },
           {
             "in": "query",
-            "name": "status",
+            "name": "hidden",
             "schema": {
-              "description": "Only definitions with one of these statuses.",
-              "items": {
-                "enum": [
-                  "visible",
-                  "hidden",
-                  "blocked"
-                ],
-                "type": "string"
-              },
-              "title": "Status",
-              "type": "array"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Whether the definition is hidden.",
+              "title": "Hidden"
             },
             "required": false,
-            "description": "Only definitions with one of these statuses."
+            "description": "Whether the definition is hidden."
+          },
+          {
+            "in": "query",
+            "name": "blocked",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked.",
+              "title": "Blocked"
+            },
+            "required": false,
+            "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked."
           },
           {
             "in": "query",
@@ -1533,9 +1567,16 @@
             "ServiceAccountAuth": []
           }
         ],
+        "x-permissions": [
+          "write_data_definitions"
+        ],
+        "x-roles": [
+          "Owner",
+          "Admin"
+        ],
         "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
+          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -1592,9 +1633,16 @@
             "ServiceAccountAuth": []
           }
         ],
+        "x-permissions": [
+          "merge_events_properties",
+          "write_data_definitions"
+        ],
+        "x-roles": [
+          "Owner"
+        ],
         "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
+          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">merge_events_properties</Badge> <Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -1651,9 +1699,16 @@
             "ServiceAccountAuth": []
           }
         ],
+        "x-permissions": [
+          "merge_events_properties",
+          "write_data_definitions"
+        ],
+        "x-roles": [
+          "Owner"
+        ],
         "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
+          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">merge_events_properties</Badge> <Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -1781,7 +1836,7 @@
             "$ref": "#/components/responses/Error"
           }
         },
-        "description": "Delete one of the workspace project's saved data definitions. Observed events and properties\ncan't be deleted.",
+        "description": "Delete one of the workspace project's saved data definitions. Deleting an event or event\nproperty resets its definition: the name stays listed while it has tracked data. An event\nwith event-specific property definitions needs them deleted first. A\ndefinition flagged sensitive, dropped, or merged can't be deleted.",
         "tags": [
           "Workspaces",
           "Data Definitions"
@@ -2053,9 +2108,16 @@
             "ServiceAccountAuth": []
           }
         ],
+        "x-permissions": [
+          "write_data_definitions"
+        ],
+        "x-roles": [
+          "Owner",
+          "Admin"
+        ],
         "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
+          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -2171,9 +2233,16 @@
             "ServiceAccountAuth": []
           }
         ],
+        "x-permissions": [
+          "write_data_definitions"
+        ],
+        "x-roles": [
+          "Owner",
+          "Admin"
+        ],
         "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
+          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       },
       "delete": {
@@ -2224,9 +2293,16 @@
             "ServiceAccountAuth": []
           }
         ],
+        "x-permissions": [
+          "write_data_definitions"
+        ],
+        "x-roles": [
+          "Owner",
+          "Admin"
+        ],
         "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
+          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -2344,7 +2420,6 @@
   "components": {
     "schemas": {
       "CursorPaginationResponse": {
-        "additionalProperties": false,
         "description": "Response model for cursor-based pagination, containing the cursors for the next and previous pages.",
         "properties": {
           "previous_cursor": {
@@ -2688,7 +2763,6 @@
         "type": "object"
       },
       "BehaviorBetween": {
-        "additionalProperties": false,
         "properties": {
           "type": {
             "const": "between",
@@ -2737,7 +2811,6 @@
         "type": "object"
       },
       "BehaviorCriterion": {
-        "additionalProperties": false,
         "description": "A user matches when their measurement of the event over the date range compares as\n``operator`` to ``values``. A count that `is equal to` 0 matches users who did not do\nthe event.",
         "properties": {
           "event": {
@@ -2879,9 +2952,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -3008,7 +3087,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -3025,7 +3105,6 @@
         "type": "object"
       },
       "BehaviorEventCount": {
-        "additionalProperties": false,
         "properties": {
           "type": {
             "const": "count",
@@ -3040,7 +3119,6 @@
         "type": "object"
       },
       "BehaviorInTheLast": {
-        "additionalProperties": false,
         "properties": {
           "type": {
             "const": "in_the_last",
@@ -3066,7 +3144,6 @@
         "type": "object"
       },
       "BehaviorPropertyStatistic": {
-        "additionalProperties": false,
         "properties": {
           "type": {
             "const": "property",
@@ -3126,7 +3203,6 @@
         "type": "object"
       },
       "BehaviorSince": {
-        "additionalProperties": false,
         "properties": {
           "type": {
             "const": "since",
@@ -3171,7 +3247,6 @@
         "type": "string"
       },
       "CohortCountMeasurement": {
-        "additionalProperties": false,
         "properties": {
           "type": {
             "const": "count",
@@ -3247,9 +3322,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -3356,7 +3437,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -3373,7 +3455,6 @@
         "type": "object"
       },
       "CohortDefinition": {
-        "additionalProperties": false,
         "properties": {
           "groups": {
             "items": {
@@ -3399,7 +3480,6 @@
         "type": "object"
       },
       "CohortFilter": {
-        "additionalProperties": false,
         "description": "Keeps users who are, or are not, members of a saved cohort.",
         "properties": {
           "type": {
@@ -3429,7 +3509,6 @@
         "type": "object"
       },
       "CohortGroup": {
-        "additionalProperties": false,
         "description": "Users who match the group's filters and its behaviors.",
         "properties": {
           "cohort_id": {
@@ -3449,24 +3528,19 @@
             "default": [],
             "description": "Profile property and cohort membership filters.",
             "items": {
-              "description": "Set `type` to `property` to filter on a property value, or `cohort` to filter on cohort membership. Set `type` to `first_time` to keep only the first time each user did the event.",
               "discriminator": {
                 "mapping": {
                   "cohort": "#/components/schemas/CohortFilter",
-                  "first_time": "#/components/schemas/FirstTimeFilter",
-                  "property": "#/components/schemas/PropertyFilter"
+                  "property": "#/components/schemas/CohortGroupPropertyFilter"
                 },
                 "propertyName": "type"
               },
               "oneOf": [
                 {
-                  "$ref": "#/components/schemas/PropertyFilter"
+                  "$ref": "#/components/schemas/CohortGroupPropertyFilter"
                 },
                 {
                   "$ref": "#/components/schemas/CohortFilter"
-                },
-                {
-                  "$ref": "#/components/schemas/FirstTimeFilter"
                 }
               ]
             },
@@ -3501,8 +3575,147 @@
         "title": "CohortGroup",
         "type": "object"
       },
+      "CohortGroupPropertyFilter": {
+        "properties": {
+          "type": {
+            "const": "property",
+            "title": "Type",
+            "type": "string"
+          },
+          "property": {
+            "discriminator": {
+              "mapping": {
+                "profile": "#/components/schemas/ProfileProperty",
+                "profile_custom": "#/components/schemas/ProfileCustomProperty"
+              },
+              "propertyName": "source"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ProfileProperty"
+              },
+              {
+                "$ref": "#/components/schemas/ProfileCustomProperty"
+              }
+            ],
+            "title": "Property"
+          },
+          "operator": {
+            "description": "The comparison to apply. Which operators are valid depends on the property's `type`. The datetime operators apply to datetime properties only.",
+            "enum": [
+              "is set",
+              "is not set",
+              "equals",
+              "does not equal",
+              "contains",
+              "does not contain",
+              "is equal to",
+              "is not equal to",
+              "is greater than",
+              "is at least",
+              "is less than",
+              "is at most",
+              "is between",
+              "is not between",
+              "is true",
+              "is false",
+              "is on",
+              "is not on",
+              "is before",
+              "is on or after",
+              "is in the last",
+              "is not in the last",
+              "is before the last",
+              "is in the next"
+            ],
+            "title": "Operator",
+            "type": "string"
+          },
+          "values": {
+            "anyOf": [
+              {
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    }
+                  ]
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Operands. Omitted for `is set`, `is not set`, `is true`, `is false`; exactly two for `is between` / `is not between`; one for `contains`, `does not contain` and the other number operators; one or more for `equals` / `does not equal`, any of which may match. For a datetime property: one calendar date for `is on`, `is not on`; one date or timestamp for `is before`, `is on or after`; two dates or two timestamps (not one of each), both inclusive, for `is between` / `is not between`; one whole number of at least 1 for the relative operators. A date is `YYYY-MM-DD` or `YYYY-MM-DDTHH:mm`, in the project's timezone.",
+            "title": "Values"
+          },
+          "list_match": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ListMatch"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "For list-valued properties, and for lookup columns whose join key is list-valued (`join_key.is_list`). Defaults to `any`."
+          },
+          "list_item_match": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ListMatch"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "For `list[object]` properties whose `list_item` is list-valued: whether any or all elements of each object's list must pass. Defaults to `any`. `list_match` quantifies over the objects."
+          },
+          "keep_only_matching": {
+            "default": false,
+            "description": "For list-valued properties with `list_match: any`: drop the list elements that did not match instead of keeping the whole list. Not supported for lookup properties.",
+            "title": "Keep Only Matching",
+            "type": "boolean"
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "enum": [
+                  "minute",
+                  "hour",
+                  "day",
+                  "week",
+                  "month"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The unit of the window of a relative datetime operator (`is in the last`, `is not in the last`, `is before the last`, `is in the next`). Required for those, and not allowed for any other operator.",
+            "title": "Unit"
+          }
+        },
+        "required": [
+          "type",
+          "property",
+          "operator"
+        ],
+        "title": "CohortGroupPropertyFilter",
+        "type": "object"
+      },
       "CohortMetric": {
-        "additionalProperties": false,
         "properties": {
           "display_name": {
             "anyOf": [
@@ -3536,6 +3749,7 @@
           },
           "type": {
             "const": "cohort",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
@@ -3586,7 +3800,6 @@
         "type": "string"
       },
       "ConversionWindow": {
-        "additionalProperties": false,
         "description": "How long after the first step an entity has to complete the funnel.",
         "properties": {
           "value": {
@@ -3621,7 +3834,6 @@
         "type": "string"
       },
       "CustomEvent": {
-        "additionalProperties": false,
         "properties": {
           "filters": {
             "default": [],
@@ -3726,9 +3938,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -3835,7 +4053,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -3852,7 +4071,6 @@
         "type": "object"
       },
       "CustomEventDefinition": {
-        "additionalProperties": false,
         "properties": {
           "events": {
             "description": "An event matching any of these counts as the custom event.",
@@ -3932,9 +4150,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -4041,7 +4265,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -4058,7 +4283,6 @@
         "type": "object"
       },
       "CustomPropertyDefinition": {
-        "additionalProperties": false,
         "description": "``formula`` refers to ``properties`` by key. ``is_session_scoped`` computes the value per\nsession.",
         "properties": {
           "source": {
@@ -4122,7 +4346,6 @@
         "type": "object"
       },
       "CustomPropertyEventProperty": {
-        "additionalProperties": false,
         "properties": {
           "type": {
             "$ref": "#/components/schemas/PropertyType"
@@ -4341,9 +4564,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -4415,16 +4644,30 @@
             "title": "First Tracked At"
           },
           "created_at": {
-            "description": "When the definition was created.",
-            "format": "date-time",
-            "title": "Created At",
-            "type": "string"
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was created. Null if the event or property has no stored definition.",
+            "title": "Created At"
           },
           "updated_at": {
-            "description": "When the definition was last updated.",
-            "format": "date-time",
-            "title": "Updated At",
-            "type": "string"
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was last updated. Null if the event or property has no stored definition.",
+            "title": "Updated At"
           },
           "type": {
             "description": "The kind of definition.",
@@ -4447,7 +4690,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -4463,17 +4707,7 @@
         "title": "DataDefinitionWithoutBodyResponse",
         "type": "object"
       },
-      "EntityStatus": {
-        "enum": [
-          "visible",
-          "hidden",
-          "blocked"
-        ],
-        "title": "EntityStatus",
-        "type": "string"
-      },
       "Event": {
-        "additionalProperties": false,
         "properties": {
           "filters": {
             "default": [],
@@ -4530,7 +4764,6 @@
         "type": "object"
       },
       "EventBehavior": {
-        "additionalProperties": false,
         "properties": {
           "type": {
             "const": "event",
@@ -4570,7 +4803,6 @@
         "type": "object"
       },
       "EventCountMeasurement": {
-        "additionalProperties": false,
         "description": "Counts matching events, sessions, or users.",
         "properties": {
           "type": {
@@ -4607,8 +4839,7 @@
         "type": "object"
       },
       "EventCustomJoinKey": {
-        "additionalProperties": false,
-        "description": "A saved event custom property a lookup table is attached to.",
+        "description": "A saved event custom property a lookup table is attached to.\n\nThe query reads whether it is list-valued from the saved custom property.",
         "properties": {
           "source": {
             "const": "event_custom",
@@ -4630,7 +4861,6 @@
         "type": "object"
       },
       "EventCustomProperty": {
-        "additionalProperties": false,
         "description": "A saved custom property computed on the event, by id.",
         "properties": {
           "type": {
@@ -4685,7 +4915,6 @@
         "type": "object"
       },
       "EventFrequencyPerUserMeasurement": {
-        "additionalProperties": false,
         "description": "A statistic over how many matching events each user performed.",
         "properties": {
           "type": {
@@ -4744,7 +4973,6 @@
         "type": "object"
       },
       "EventJoinKey": {
-        "additionalProperties": false,
         "description": "An event property a lookup table is attached to.",
         "properties": {
           "source": {
@@ -4758,6 +4986,12 @@
             "minLength": 1,
             "title": "Name",
             "type": "string"
+          },
+          "is_list": {
+            "default": false,
+            "description": "Set to true when the property is list-valued. Each element of the list is looked up in the lookup table, and a filter matches the looked-up values by `list_match`.",
+            "title": "Is List",
+            "type": "boolean"
           }
         },
         "required": [
@@ -4768,7 +5002,6 @@
         "type": "object"
       },
       "EventMetric": {
-        "additionalProperties": false,
         "properties": {
           "display_name": {
             "anyOf": [
@@ -4818,6 +5051,7 @@
           },
           "type": {
             "const": "event",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
@@ -4854,7 +5088,6 @@
         "type": "object"
       },
       "EventProperty": {
-        "additionalProperties": false,
         "description": "A property recorded on the event.",
         "properties": {
           "type": {
@@ -4909,7 +5142,6 @@
         "type": "object"
       },
       "EventPropertyMeasurement": {
-        "additionalProperties": false,
         "description": "A statistic over a property's values across all matching events.\n\nEvery calculation except `distinct_count` needs a number property.",
         "properties": {
           "type": {
@@ -5001,7 +5233,6 @@
         "type": "object"
       },
       "EventPropertyPerUserMeasurement": {
-        "additionalProperties": false,
         "description": "Aggregates a property for each user, then a statistic across users.\n\n`per_user` other than `distinct_count` needs a number property.",
         "properties": {
           "type": {
@@ -5106,7 +5337,6 @@
         "type": "object"
       },
       "FirstTimeFilter": {
-        "additionalProperties": false,
         "description": "Keeps only the first time each user did the event.",
         "properties": {
           "type": {
@@ -5122,10 +5352,10 @@
         "type": "object"
       },
       "FormulaMetric": {
-        "additionalProperties": false,
         "properties": {
           "type": {
             "const": "formula",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
@@ -5172,7 +5402,6 @@
         "type": "object"
       },
       "FunnelBehavior": {
-        "additionalProperties": false,
         "properties": {
           "type": {
             "const": "funnel",
@@ -5274,7 +5503,6 @@
         "type": "object"
       },
       "FunnelConversionRateMeasurement": {
-        "additionalProperties": false,
         "description": "The share of entities that complete the funnel, counted per `calculation`.",
         "properties": {
           "type": {
@@ -5318,7 +5546,6 @@
         "type": "object"
       },
       "FunnelCountMeasurement": {
-        "additionalProperties": false,
         "description": "Counts the entities, events, or sessions that complete the funnel.",
         "properties": {
           "type": {
@@ -5362,7 +5589,6 @@
         "type": "object"
       },
       "FunnelExclusion": {
-        "additionalProperties": false,
         "description": "An event that drops a user from the funnel when it happens between two steps.",
         "properties": {
           "event": {
@@ -5406,7 +5632,6 @@
         "type": "object"
       },
       "FunnelMetric": {
-        "additionalProperties": false,
         "properties": {
           "display_name": {
             "anyOf": [
@@ -5456,6 +5681,7 @@
           },
           "type": {
             "const": "funnel",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
@@ -5563,7 +5789,6 @@
         "type": "string"
       },
       "FunnelPropertyMeasurement": {
-        "additionalProperties": false,
         "description": "The sum of a number property over the last-step event of each conversion.",
         "properties": {
           "type": {
@@ -5634,7 +5859,6 @@
         "type": "object"
       },
       "FunnelStep": {
-        "additionalProperties": false,
         "properties": {
           "event": {
             "description": "Set `event_type` to `event` for an event tracked into the project, or `custom_event` for a saved custom event.",
@@ -5698,7 +5922,6 @@
         "type": "object"
       },
       "FunnelTimeToConvertMeasurement": {
-        "additionalProperties": false,
         "description": "A statistic over how long converting entities took, in seconds.",
         "properties": {
           "type": {
@@ -5810,7 +6033,6 @@
         "type": "object"
       },
       "ListItem": {
-        "additionalProperties": false,
         "description": "Reads one primitive key out of each object in a `list[object]` property,\nso the list can be filtered or broken down like a `list[<type>]`.\n\n`key_path` is the path from the object root to the leaf value: `[\"sku\"]` for a\ntop-level key, `[\"details\", \"sku\"]` for a nested one.",
         "properties": {
           "key_path": {
@@ -5864,7 +6086,6 @@
         "type": "string"
       },
       "LookupProperty": {
-        "additionalProperties": false,
         "description": "A column of a lookup table, reached through the property it is joined on.\n\nThe table is not named: each join key maps to at most one lookup table, and\na column name alone is ambiguous across tables. Group profiles are not\nlookup tables; their properties are `profile` properties with a `group_key`.",
         "properties": {
           "type": {
@@ -5995,9 +6216,15 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "status": {
-            "$ref": "#/components/schemas/EntityStatus",
-            "description": "Whether the definition is visible, hidden, or blocked."
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
+            "title": "Blocked",
+            "type": "boolean"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -6141,7 +6368,8 @@
           "event_name",
           "display_name",
           "description",
-          "status",
+          "hidden",
+          "blocked",
           "verified",
           "last_verified_at",
           "last_verified_by",
@@ -6189,8 +6417,7 @@
         "type": "string"
       },
       "ProfileCustomJoinKey": {
-        "additionalProperties": false,
-        "description": "A saved user profile custom property a lookup table is attached to.\n\nA `profile_custom` join key always means the `$user_id` profile.",
+        "description": "A saved user profile custom property a lookup table is attached to.\n\nA `profile_custom` join key always means the `$user_id` profile. The query\nreads whether it is list-valued from the saved custom property.",
         "properties": {
           "source": {
             "const": "profile_custom",
@@ -6212,7 +6439,6 @@
         "type": "object"
       },
       "ProfileCustomProperty": {
-        "additionalProperties": false,
         "description": "A saved custom property computed on a user or group profile, by id.\n\n`group_key` names which profile, as for `profile` properties.",
         "properties": {
           "type": {
@@ -6274,7 +6500,6 @@
         "type": "object"
       },
       "ProfileJoinKey": {
-        "additionalProperties": false,
         "description": "A user profile property a lookup table is attached to.\n\nA `profile` join key always means the `$user_id` profile.",
         "properties": {
           "source": {
@@ -6288,6 +6513,12 @@
             "minLength": 1,
             "title": "Name",
             "type": "string"
+          },
+          "is_list": {
+            "default": false,
+            "description": "Set to true when the property is list-valued. Each element of the list is looked up in the lookup table, and a filter matches the looked-up values by `list_match`.",
+            "title": "Is List",
+            "type": "boolean"
           }
         },
         "required": [
@@ -6298,7 +6529,6 @@
         "type": "object"
       },
       "ProfileProperty": {
-        "additionalProperties": false,
         "description": "A property on a user profile or a group profile (company, organization,\n...), read as of query time.\n\n`group_key` names which profile.",
         "properties": {
           "type": {
@@ -6360,8 +6590,7 @@
         "type": "object"
       },
       "PropertyFilter": {
-        "additionalProperties": false,
-        "description": "Filters events or profiles by a property value.",
+        "description": "Filters events or profiles by a property value, including datetime properties.",
         "properties": {
           "type": {
             "const": "property",
@@ -6400,7 +6629,35 @@
             "title": "Property"
           },
           "operator": {
-            "$ref": "#/components/schemas/Operator"
+            "description": "The comparison to apply. Which operators are valid depends on the property's `type`. The datetime operators apply to datetime properties only.",
+            "enum": [
+              "is set",
+              "is not set",
+              "equals",
+              "does not equal",
+              "contains",
+              "does not contain",
+              "is equal to",
+              "is not equal to",
+              "is greater than",
+              "is at least",
+              "is less than",
+              "is at most",
+              "is between",
+              "is not between",
+              "is true",
+              "is false",
+              "is on",
+              "is not on",
+              "is before",
+              "is on or after",
+              "is in the last",
+              "is not in the last",
+              "is before the last",
+              "is in the next"
+            ],
+            "title": "Operator",
+            "type": "string"
           },
           "values": {
             "anyOf": [
@@ -6427,7 +6684,7 @@
                 "type": "null"
               }
             ],
-            "description": "Operands. Omitted for `is set`, `is not set`, `is true`, `is false`; exactly two for `is between` / `is not between`; one for `contains`, `does not contain` and the other number operators; one or more for `equals` / `does not equal`, any of which may match.",
+            "description": "Operands. Omitted for `is set`, `is not set`, `is true`, `is false`; exactly two for `is between` / `is not between`; one for `contains`, `does not contain` and the other number operators; one or more for `equals` / `does not equal`, any of which may match. For a datetime property: one calendar date for `is on`, `is not on`; one date or timestamp for `is before`, `is on or after`; two dates or two timestamps (not one of each), both inclusive, for `is between` / `is not between`; one whole number of at least 1 for the relative operators. A date is `YYYY-MM-DD` or `YYYY-MM-DDTHH:mm`, in the project's timezone.",
             "title": "Values"
           },
           "list_match": {
@@ -6439,7 +6696,7 @@
                 "type": "null"
               }
             ],
-            "description": "For list-valued properties, and for lookup columns whose join key is list-valued. Defaults to `any`."
+            "description": "For list-valued properties, and for lookup columns whose join key is list-valued (`join_key.is_list`). Defaults to `any`."
           },
           "list_item_match": {
             "anyOf": [
@@ -6454,9 +6711,28 @@
           },
           "keep_only_matching": {
             "default": false,
-            "description": "For list-valued properties with `list_match: any`: drop the list elements that did not match instead of keeping the whole list.",
+            "description": "For list-valued properties with `list_match: any`: drop the list elements that did not match instead of keeping the whole list. Not supported for lookup properties.",
             "title": "Keep Only Matching",
             "type": "boolean"
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "enum": [
+                  "minute",
+                  "hour",
+                  "day",
+                  "week",
+                  "month"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The unit of the window of a relative datetime operator (`is in the last`, `is not in the last`, `is before the last`, `is in the next`). Required for those, and not allowed for any other operator.",
+            "title": "Unit"
           }
         },
         "required": [
@@ -6485,7 +6761,6 @@
         "type": "string"
       },
       "RetentionBehavior": {
-        "additionalProperties": false,
         "properties": {
           "type": {
             "const": "retention",
@@ -6578,7 +6853,6 @@
         "type": "object"
       },
       "RetentionCountMeasurement": {
-        "additionalProperties": false,
         "description": "Counts the entities retained in the bucket.",
         "properties": {
           "type": {
@@ -6628,7 +6902,6 @@
         "type": "string"
       },
       "RetentionMetric": {
-        "additionalProperties": false,
         "properties": {
           "display_name": {
             "anyOf": [
@@ -6674,6 +6947,7 @@
           },
           "type": {
             "const": "retention",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
             "title": "Type",
             "type": "string"
           },
@@ -6770,7 +7044,6 @@
         "type": "object"
       },
       "RetentionPropertyMeasurement": {
-        "additionalProperties": false,
         "description": "A number property over the cohort's return events in the bucket: `sum` adds it\nup, `average` is the mean of each cohort member's sum, counting members who did not\nreturn as 0.",
         "properties": {
           "type": {
@@ -6844,7 +7117,6 @@
         "type": "object"
       },
       "RetentionRateMeasurement": {
-        "additionalProperties": false,
         "description": "The share of entities that did the start event and returned in the bucket.",
         "properties": {
           "type": {
@@ -6886,7 +7158,6 @@
         "type": "string"
       },
       "RollingAverage": {
-        "additionalProperties": false,
         "description": "A rolling average over a number of time buckets. The request must set\n`time.unit`, which sizes each bucket.",
         "properties": {
           "size": {
@@ -6902,7 +7173,6 @@
         "type": "object"
       },
       "SavedMetric": {
-        "additionalProperties": false,
         "description": "A saved metric, as an input to a formula.",
         "properties": {
           "type": {
@@ -6982,19 +7252,6 @@
             ],
             "description": "The definition's description.",
             "title": "Description"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "tags": {
             "description": "The definition's tag names.",
@@ -7087,19 +7344,6 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
-          },
           "tags": {
             "description": "The definition's tag names.",
             "items": {
@@ -7172,19 +7416,6 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
-          },
           "tags": {
             "description": "The definition's tag names.",
             "items": {
@@ -7202,6 +7433,19 @@
             },
             "title": "Owners",
             "type": "array"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The name shown in the UI.",
+            "title": "Display Name"
           },
           "type": {
             "const": "custom_event",
@@ -7256,19 +7500,6 @@
             ],
             "description": "The definition's description.",
             "title": "Description"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "tags": {
             "description": "The definition's tag names.",
@@ -7343,19 +7574,6 @@
             "description": "The definition's description.",
             "title": "Description"
           },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
-          },
           "tags": {
             "description": "The definition's tag names.",
             "items": {
@@ -7373,6 +7591,19 @@
             },
             "title": "Owners",
             "type": "array"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The name shown in the UI.",
+            "title": "Display Name"
           },
           "type": {
             "description": "The kind of definition.",
@@ -7425,19 +7656,6 @@
             ],
             "description": "The definition's description.",
             "title": "Description"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "tags": {
             "description": "The definition's tag names.",
@@ -7805,6 +8023,13 @@
         "additionalProperties": false,
         "description": "The fields to write on the definition. A field left out is unchanged.",
         "properties": {
+          "name": {
+            "description": "The definition's new name. Only custom events, custom properties, behaviors, metrics, and cohorts can be renamed.",
+            "maxLength": 255,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
           "description": {
             "anyOf": [
               {
@@ -7839,12 +8064,12 @@
             "description": "Change the definition's owners."
           },
           "hidden": {
-            "description": "Hide the definition.",
+            "description": "Hide or unhide the definition.",
             "title": "Hidden",
             "type": "boolean"
           },
           "blocked": {
-            "description": "Block the definition, which drops its incoming data at ingest.",
+            "description": "Block or unblock the definition. Blocking drops its incoming data at ingest.",
             "title": "Blocked",
             "type": "boolean"
           },
@@ -7925,6 +8150,7 @@
       },
       "UpdateDataDefinitionTagRequest": {
         "additionalProperties": false,
+        "description": "The fields to write on the tag. A field left out is unchanged.",
         "properties": {
           "name": {
             "description": "The tag's new name. Unique within the project.",
@@ -7934,9 +8160,6 @@
             "type": "string"
           }
         },
-        "required": [
-          "name"
-        ],
         "title": "UpdateDataDefinitionTagRequest",
         "type": "object"
       },
