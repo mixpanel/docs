@@ -45,13 +45,14 @@ Merging behaves exactly like a [manual Lexicon merge](/docs/data-governance/lexi
 
 ## Automated Metadata Enrichment
 
-Raw event names rarely explain themselves. `btn_clk_add_crt` means something to the engineer who instrumented it and little to anyone else, including Mixpanel Agent and MCP, which rely on Lexicon to understand your data. Writing a display name and description for every event takes time, so most projects have gaps. Mixpanel can now fill them for you. 
-With this update, you can:
+Raw event names rarely explain themselves. `btn_clk_add_crt` means something to the engineer who instrumented it and little to anyone else, including Mixpanel Agent and MCP, which rely on Lexicon to understand your data. Writing a display name and description for every event takes time, so most projects have gaps. Mixpanel can fill them for you:
 
-- **Fill every gap in one action**: From Lexicon → Tidy Up → Fill in the blanks, Mixpanel generates a display name and description for each event missing one and applies them across your project.
+- **Fill every gap**: From Lexicon → Tidy Up → Fill in the blanks, Mixpanel generates a display name and description for each event missing one.
+- **Preview before you apply**: A preview shows each suggested display name and description before anything is saved. Edit any suggestion, or clear it to skip it. Display names that break your naming rules get a warning. Nothing is saved until you apply the suggestions.
 - **Get names that fit your data**: Suggestions draw on the event name, sample property values, and your project's Business Context, and follow your naming convention when Data Standards is enabled.
 - **Keep what you wrote**: Enrichment only fills gaps. Events with an existing display name or description keep what you gave them.
-- **See what changed**: Every enriched field is recorded in the event's history, attributed to the user who ran the fill, marked as AI-applied, and written to your audit log like any other Lexicon edit.
+- **See what changed**: Every enriched field is recorded in the event's history, attributed to the user who ran the fill, marked as AI-applied, and written to your audit log like any other Lexicon edit. A sparkle icon marks AI-written values in the events table, the sidebar, and event details, so you can see what to review.
+- **Undo previous fills**: Remove every display name and description written by Mixpanel AI in one click. Fields you edited in the preview are kept.
 
 The same fill is available to agents over MCP via the Fill-Event-Metadata tool and inside Mixpanel Agent.
-This release covers events. Property enrichment is next.
+Enrichment covers events only.
