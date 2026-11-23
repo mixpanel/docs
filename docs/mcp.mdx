@@ -54,6 +54,11 @@ A typical workflow looks like:
 |  | `Find-Duplicate-Groups` | Find groups of duplicate or near-duplicate names in a Mixpanel project for events and event properties |
 |  | `Dismiss-Duplicate-Group` | Dismiss a duplicate-group suggestion |
 |  | `Merge-Group` | Merge a group of duplicate names into one entity |
+|  | `Create-Tracking-Plan` | Create a tracking plan of the events your team intends to send. Events not yet in Lexicon are added as planned |
+|  | `Get-Tracking-Plan` | Get a tracking plan's events and each event's Lexicon status, such as planned or live |
+|  | `List-Tracking-Plans` | List and search tracking plans in a project |
+|  | `Update-Tracking-Plan` | Update a tracking plan's name, description, or events |
+|  | `Delete-Tracking-Plan` | Delete a tracking plan. Its events stay in Lexicon |
 | **Custom Properties** | `Create-Custom-Property` | Create a custom property |
 |  | `Get-Custom-Property` | Get the definition and details of a custom property |
 |  | `Update-Custom-Property` | Update an existing custom property's definition |
@@ -86,10 +91,18 @@ A typical workflow looks like:
 |  | `Update-Feature-Flag` | Modify a feature flag's configuration or targeting |
 |  | `Get-Feature-Flag-Setup-Guidance` | Get best-practice guidance for creating and configuring a feature flag |
 |  | `Get-Feature-Flag-Lifecycle-Guidance` | Get best-practice guidance for rollout, kill-switch, and cleanup of a feature flag |
+| **Agent Intelligence** | `List-Agent-Intelligence-Usage-Reports` | List the reports on a project's Agent Intelligence Usage page |
+|  | `Run-Agent-Intelligence-Usage-Report` | Run a Usage report, with your own date range, filters, and breakdowns |
+|  | `List-Agent-Intelligence-Conversations` | List agent conversations, sorted by latest activity, cost, turns, tool calls, or tokens |
+|  | `Get-Agent-Intelligence-Conversation` | Read one conversation's summary and its transcript, turn by turn |
 | **Audit Log** | `Get-Audit-Log` | Query your organization's audit history — who changed what, and when |
 
 <Callout icon="flask" iconType="regular" color="#5F41CF">
   **Beta.** The Experiments and Feature Flags tools are in open Beta and are available to all users. Audience targeting, including cohort-based targeting, isn’t yet supported through Experiments and Feature Flag tools using MCP — use the Mixpanel UI instead.
+</Callout>
+
+<Callout icon="flask" iconType="regular" color="#5F41CF">
+  **Beta.** The Agent Intelligence tools are available to organizations with [Agent Intelligence](/docs/agent-intelligence) enabled.
 </Callout>
 
 ## MCP Server URLs
@@ -491,6 +504,12 @@ Once connected, try asking your AI assistant:
 
 - "This user reported a bug — what happened in their last 3 sessions?"
 - "Walk me through what [user ID] did before they churned"
+
+**Understand your AI agents** _(requires [Agent Intelligence](/docs/agent-intelligence))_
+
+- "How much did our agents cost last week, broken down by model?"
+- "Read this conversation and tell me where the agent went wrong"
+- "Which tool calls fail most often for our agent?"
 
 **Review what changed** _(requires the [`Get-Audit-Log`](#querying-the-audit-log) tool)_
 
