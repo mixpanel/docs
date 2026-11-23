@@ -224,7 +224,7 @@ Some key notes
   - Lookback is also fixed to a 7-day window. Say the “purchase” event occurred on 31st Jan, if the  most recent “search product” occurred on 20th Jan, the borrow functionality will return “search term” = (not set), since this event happened 11 days ago, which is outside the lookback window range.
   - Only “search product” events where “search term” is set are candidates. Events where the property is not set are skipped.
   - Source events logged at the same time are included. Say “Checkout Started” borrows “Store Name” from “Shop Initiated”, and both events are logged at the exact same millisecond. “Checkout Started” will borrow “Store Name” from that “Shop Initiated” event.
-  - If the source event itself appears in a report, it uses its own value of the property, since it is the most recent matching event at its own timestamp. If its own value is not set, it borrows from the user's previous source event within the window where the property is set, or (not set) if there is none.
+  - If the source event itself appears in a report, it uses its own value of the property, since it is the most recent matching event at its own timestamp, unless another of the user's source events has the exact same timestamp with a different value (see below). If its own value is not set, it borrows from the user's previous source event within the window where the property is set, or (not set) if there is none.
   - If several of the user's source events share the exact same timestamp with different values, which value is borrowed is not guaranteed.
 
 To use a borrowed property with other [functions](/docs/features/custom-properties#functions), you would need to:
