@@ -9,7 +9,7 @@ related:
 ---
 
 <Note>
-  Real-Time Event Streams are in Beta. Contact your Mixpanel account team to enable the feature for your project.
+  Real-Time Event Streams are in Open Beta for organizations on the latest Growth plans and on any Enterprise plan. Latest Growth plans include **50K events per month**; Enterprise plans include **1M events per month**.
 </Note>
 
 Every Stream and Destination has an explicit state that is visible without opening the detail view. This page is the reference for what each state means, how state transitions are logged, and which metrics you can use to monitor health.
@@ -27,6 +27,10 @@ Stream state is shown as a status badge on the Syncs list view.
 <Warning>
   When a Stream is `disabled`, events matching the filter are **discarded**. Mixpanel does not accumulate a backlog to replay when the Stream is re-enabled.
 </Warning>
+
+<Note>
+  If your streamed volume exceeds the monthly limit for your plan, all Streams are disabled. You can re-enable your stream once that limit resets. See [Streaming limits](/docs/real-time-event-streams/overview#streaming-limits).
+</Note>
 
 ## Destination states
 

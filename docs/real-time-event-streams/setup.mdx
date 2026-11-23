@@ -9,7 +9,7 @@ related:
 ---
 
 <Note>
-  Real-Time Event Streams are in private beta. Contact your Mixpanel account team to enable the feature for your project.
+  Real-Time Event Streams are in Open Beta for organizations on the latest Growth plans and on any Enterprise plan. Latest Growth plans include **50K events per month**; Enterprise plans include **1M events per month**.
 </Note>
 
 This page walks through creating a webhook Sync end to end: configuring the Destination, selecting which events stream, adding property-level filters, authenticating outbound requests, and shaping the payload with a Liquid template.
@@ -25,18 +25,14 @@ This page walks through creating a webhook Sync end to end: configuring the Dest
 ## Create a Sync
 
 <Steps>
-  <Step title="Open Real-Time Event Streams">
-    {/* PLACEHOLDER: Add the exact navigation path in the Mixpanel UI (e.g., Data Management → Real-Time Event Streams). */}
+  <Step title="Open the Destinations page">
+    Real-Time Event Streams are configured from the **Destinations** page in Mixpanel.
   </Step>
   <Step title="Add a Destination">
     Create a new webhook Destination with the endpoint URL and authentication method. See [Webhook authentication](#webhook-authentication).
   </Step>
   <Step title="Select events to stream">
     Choose one or more event types. See [Event-type filtering](#event-type-filtering).
-
-    <Warning>
-      There is no "All events" default. You must explicitly select event types to prevent accidentally streaming a firehose of data.
-    </Warning>
   </Step>
   <Step title="Add property conditions (optional)">
     Narrow the stream further using [property-level filters](#property-level-filters).
@@ -53,7 +49,7 @@ This page walks through creating a webhook Sync end to end: configuring the Dest
 
 Users select one or more event types to stream. Only matching events are forwarded; all others are discarded before entering the streaming pipeline. Filtering happens before delivery, so unmatched events do not consume retry budget or queue capacity.
 
-- You must explicitly select at least one event type. There is no "All events" option.
+- You must explicitly select at least one event type.
 - You can update the selected event types at any time without recreating the Sync.
 
 {/* PLACEHOLDER: Screenshot of the event-type selector. */}
