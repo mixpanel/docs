@@ -79,7 +79,9 @@ Your AI assistant designs the events, for example from a product spec or a descr
 
 For example, to plan the events for a checkout redesign, ask:
 
-- _"Design the events we need to track for our checkout redesign: a user starts checkout, adds a payment method, and completes a purchase. Include the properties for each event. Save the events as a tracking plan named Checkout Redesign."_
+```txt
+Design the events we need to track for our checkout redesign: a user starts checkout, adds a payment method, and completes a purchase. Include the properties for each event. Save the events as a tracking plan named Checkout Redesign.
+```
 
 The assistant shows the events it saved and the status of each event. Events that weren't in Lexicon yet start as Planned.
 
@@ -91,7 +93,9 @@ Your AI assistant can show a tracking plan's events and the status of each event
 
 For example, to check the implementation progress of the checkout redesign, ask:
 
-- _"Which events in the Checkout Redesign tracking plan haven't been received yet? Include their properties."_
+```txt
+Which events in the Checkout Redesign tracking plan haven't been received yet? Include their properties.
+```
 
 The property list shows only the properties that someone added to each event, for example through a tracking plan. It doesn't include every property that Mixpanel has received with the event.
 
@@ -99,7 +103,9 @@ The property list shows only the properties that someone added to each event, fo
 
 For example, to add an event to the checkout redesign plan, ask:
 
-- _"Add a Coupon Applied event with a `coupon_code` property to the Checkout Redesign tracking plan."_
+```txt
+Add a Coupon Applied event with a coupon_code property to the Checkout Redesign tracking plan.
+```
 
 When you add or update events in a tracking plan, the events you don't mention stay in the plan.
 
