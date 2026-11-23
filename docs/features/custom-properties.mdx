@@ -202,9 +202,9 @@ In this demonstration, we present an event called **"Purchase Completed"**, whic
 
 ### Borrowing Mechanics
 
-Borrowed Properties capture the value from the most recent borrowed event.
+Borrowed Properties capture the value from the same user's most recent source event (the event you borrow from) where the property is set. Only that user's own source events are considered, after identity resolution.
 
-We apply a seven-day lookback window, so the second event must occur within seven days of the first. If no first event exists within this window, the borrowed property is assigned the value (not set).
+We apply a seven-day lookback window, so the source event must occur within the seven days up to and including the time of the event borrowing the property. The window is inclusive at both ends: a source event with exactly the same timestamp (down to the millisecond) as the event borrowing the property is included, and so is a source event exactly seven days earlier. If no matching source event exists within this window, the borrowed property is assigned the value (not set).
 
 The video below demonstrates how to create a borrowed property.
 
@@ -222,6 +222,10 @@ Some key notes
 
   - Say on event “purchase”, you want to borrow property “search term” from an event “search product”. If there are multiple events “search product” before “purchase”, the property will be borrowed from the most recent “search product” event where the property is set.
   - Lookback is also fixed to a 7-day window. Say the “purchase” event occurred on 31st Jan, if the  most recent “search product” occurred on 20th Jan, the borrow functionality will return “search term” = (not set), since this event happened 11 days ago, which is outside the lookback window range.
+  - Only “search product” events where “search term” is set are candidates. Events where the property is not set are skipped.
+  - Source events logged at the same time are included. Say “Checkout Started” borrows “Store Name” from “Shop Initiated”, and both events are logged at the exact same millisecond. “Checkout Started” will borrow “Store Name” from that “Shop Initiated” event.
+  - If the source event itself appears in a report, it uses its own value of the property, since it is the most recent matching event at its own timestamp. If its own value is not set, it borrows from the user's previous source event within the window where the property is set, or (not set) if there is none.
+  - If several of the user's source events share the exact same timestamp with different values, which value is borrowed is not guaranteed.
 
 To use a borrowed property with other [functions](/docs/features/custom-properties#functions), you would need to:
 
