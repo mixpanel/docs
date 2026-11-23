@@ -2,10 +2,14 @@
 sidebarTitle: Warehouse Connectors
 title: "Warehouse Connectors"
 description: "Sync data from your data warehouse into Mixpanel"
+related:
+  - /docs/tracking-methods/warehouse-connectors/snowflake
+  - /docs/tracking-methods/warehouse-connectors/bigquery
+  - /docs/features/warehouse-metrics
 ---
 
 <Note>
-  Organizations on a paid _event-based_ plan receive Warehouse Connector as a free add-on when they update or renew their plan. Learn more on our [pricing page](https://mixpanel.com/pricing/).
+  Warehouse Connectors are available on paid plans. See our [pricing page](https://mixpanel.com/pricing/) for plan details.
 </Note>
 
 With Warehouse Connectors, you can sync data from data warehouses like Snowflake, BigQuery, Databricks, Redshift, and Postgres to Mixpanel. By unifying business data with product usage events, you can answer many more questions in Mixpanel:
@@ -76,11 +80,16 @@ Here are more details about the schema we expect for events:
 | Column | Required | Type | Description |
 | --- | --- | --- | --- |
 | Event Name | Yes | String | The name of the event. E.g.: Purchase Completed or Support Ticket Filed. Note: you can specify this value statically; it doesn't need to be a column in the table. |
-| Time | Yes | Timestamp | The time at which the event occurred. |
+| Time | Yes | Timestamp | The time at which the event occurred. Mixpanel keeps millisecond precision from this column. |
 | User ID | No | String or Integer | The unique identifier of the user who performed the event. E.g.: 12345 or [grace@example.com](mailto:grace@example.com). |
 | Device ID | No | String or Integer | An identifier for anonymous users, useful for tracking pre-login data. [Learn more about Device ID](/docs/tracking-methods/id-management/identifying-users-simplified#%24device_id) |
+| Insert ID | No | String | A unique ID for each event, used as the event's `$insert_id` for [deduplication](/reference/event-deduplication). If not mapped, or if a row's value is empty or not a string, Mixpanel uses an MD5 hash of the entire row. |
 | JSON Properties | No | JSON or Object | A field that contains key-value properties in JSON format. If provided, Mixpanel will flatten this field out into properties. |
 | All other columns | No | Any | These can be anything. Mixpanel will auto-detect these columns and attach them to the event as properties. |
+
+<Note>
+  If no Insert ID column is mapped, identical rows get the same `$insert_id` (in Mirror mode, this applies on BigQuery, Redshift, and Databricks), so separate events that are identical in every column are deduplicated into one. Map a unique ID column as Insert ID to keep them distinct. A column named `insert_id` that is not mapped as Insert ID is imported as a regular event property.
+</Note>
 
 ### User Profiles
 
@@ -218,6 +227,14 @@ Note: [BigQuery's ingestion time partitions](https://cloud.google.com/bigquery/d
 
 Full syncs periodically make a snapshot of the source table and sync it entirely to Mixpanel. If a row has new properties in your warehouse, the corresponding profile in Mixpanel will be overridden with those new properties. This mode is available for all tables except events.
 
+The sync frequencies available for Full syncs depend on the table type:
+
+- **User Profiles**: Weekly only.
+- **Group Profiles**: Weekly only.
+- **Lookup Tables**: Hourly, daily, or weekly.
+
+Only Full syncs for Lookup Tables can use hourly or daily sync frequencies.
+
 ## Sync Frequency
 
 Mixpanel offers a variety of sync frequency options to cater to different data integration needs. These options allow you to choose how often your data is synchronized from your data warehouse to Mixpanel, ensuring your data is up-to-date and accurate.
@@ -226,6 +243,8 @@ Mixpanel offers a variety of sync frequency options to cater to different data i
 
 <Note>
   GA4 tables support only a daily sync frequency.
+
+  [Full](#full) syncs for User Profiles and Group Profiles support only a weekly sync frequency. Full syncs for Lookup Tables support all standard sync frequencies.
 </Note>
 
 - Hourly: Data is synchronized every hour, providing near real-time updates to your Mixpanel project.
@@ -370,8 +389,8 @@ You can monitor these different operations in your billing page, where they'll a
 Historical tables can be imported only in mirror mode. Mirror-mode pricing updates apply to all rows imported for profile history tables. This means:
 
 - Historical profile updates DO count towards billing. Imports through standard profile tables do not.
-- Every row counts as a mirror event and is [billed as such](../pricing#i-am-using-the-warehouse-add-on-for-ingesting-data-how-does-this-impact-billing).
-- If you update/delete existing rows in your table, [mirror billing](../pricing#i-am-using-the-warehouse-add-on-for-ingesting-data-how-does-this-impact-billing) will be applied, including for backfills.
+- Every row counts as a mirror event and is [billed as such](../pricing#i-use-warehouse-connectors-to-ingest-data-how-does-this-impact-billing).
+- If you update/delete existing rows in your table, [mirror billing](../pricing#i-use-warehouse-connectors-to-ingest-data-how-does-this-impact-billing) will be applied, including for backfills.
 
 For MTU plans, the events and updates/deletes don't directly affect the MTU tally unless the volume of events and updates pushes the threshold for the guardrail (by default, 1000 events per user); once the threshold for the guardrail is crossed, events and updates from profile history tables will also count towards billing.
 

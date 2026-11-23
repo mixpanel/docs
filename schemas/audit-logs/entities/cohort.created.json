@@ -61,6 +61,10 @@
                 }
               ],
               "default": null
+            },
+            "verified": {
+              "default": false,
+              "type": "boolean"
             }
           },
           "required": [

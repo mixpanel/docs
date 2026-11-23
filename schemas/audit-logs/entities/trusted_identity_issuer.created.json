@@ -1,0 +1,72 @@
+{
+  "x-release-date": "2026-10-30T00:00:00Z",
+  "description": "An identity provider was trusted for Enterprise Managed Auth.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "trusted_identity_issuer",
+      "default": "trusted_identity_issuer",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "type": "null"
+        },
+        "current": {
+          "description": "An identity provider the organization trusts for Enterprise Managed Auth.",
+          "properties": {
+            "issuer": {
+              "description": "The identity provider's issuer URL.",
+              "type": "string"
+            },
+            "jwks_uri": {
+              "description": "Where the identity provider publishes its signing keys.",
+              "type": "string"
+            },
+            "enabled": {
+              "description": "Whether sign-in through this identity provider is allowed.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "issuer",
+            "jwks_uri",
+            "enabled"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "created",
+      "default": "created",
+      "type": "string"
+    },
+    "type": {
+      "const": "trusted_identity_issuer.created",
+      "default": "trusted_identity_issuer.created",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

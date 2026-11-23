@@ -1,5 +1,6 @@
 ---
 title: Project Migration Playbook
+description: "Consolidate siloed Mixpanel projects and migrate data during company growth"
 ---
 
 As companies grow and evolve, projects often become siloed, with data scattered across multiple systems or initiatives. Bringing siloed data into a unified project enhances decision-making and ensures consistency and clarity across teams. Migrating data across projects is a critical process that can significantly impact the efficiency and success of your organization’s operations.
@@ -109,7 +110,7 @@ The output of these steps should serve as the scope and implementation plan that
   💡 **Best practices for scoping data:**
 
   - Only migrate events and properties that are being actively utilized to avoid cluttering your project data.
-  - Mixpanel only retains data for up to five years. It is worth surveying your team to understand time intervals of the metrics most important to them as to not bring over years of data that may go unused.
+  - Mixpanel retains events for 2 years by default (see the [data retention policy](/docs/privacy/gdpr-compliance#data-retention-policy)). It is worth surveying your team to understand time intervals of the metrics most important to them as to not bring over years of data that may go unused.
 
 ## Step 3: Export Existing Data
 
@@ -343,7 +344,7 @@ It’s important to check that each project will be using the same values for di
 
 Once your user table/view is formatted as expected navigate to your new project, head over to your project settings and connect your warehouse source to Mixpanel. Find your table/view in the drop-down settings and map your fields accordingly.
 
-If you have not purchased warehouse connectors, you can leverage our [Engage API](/reference/profile-set) instead. Here's some sample code to get you started, utilizing the `$set` operator to update user profiles:
+If you don't use warehouse connectors, you can leverage our [Engage API](/reference/profile-set) instead. Here's some sample code to get you started, utilizing the `$set` operator to update user profiles:
 
 ```python
 # Fill this out. You can get it from https://mixpanel.com/settings/project

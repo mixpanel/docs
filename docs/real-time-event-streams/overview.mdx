@@ -2,19 +2,23 @@
 title: "Real-Time Event Streams Overview"
 sidebarTitle: "Overview"
 description: "Stream Mixpanel events to a custom webhook within seconds of ingestion to power activation, personalization, and downstream data workflows."
+related:
+  - /docs/real-time-event-streams/setup
+  - /docs/real-time-event-streams/delivery-and-reliability
+  - /docs/data-pipelines
 ---
 
 <Note>
-  **Beta.** Real-Time Event Streams are currently available to a limited set of customers during Beta. If you'd like to participate, reach out to your Mixpanel account team.
+  **Open Beta.** Real-Time Event Streams are available to every organization on the latest Growth plans and on any Enterprise plan. Each eligible account includes a set volume of streaming to a custom webhook.
 </Note>
 
 Real-Time Event Streams deliver Mixpanel events to your infrastructure within seconds of ingestion, so you can react to user behavior without waiting for a batch export.
 
-## What you get in the beta
+## What you get in the open beta
 
 <CardGroup cols={2}>
   <Card title="Low-latency delivery" icon="bolt">
-    p95 delivery within 120 seconds of event ingestion.
+    Targeting p50 delivery within 60 seconds of event ingestion.
   </Card>
 
   <Card title="Custom webhook destination" icon="webhook">
@@ -48,15 +52,21 @@ Use Real-Time Event Streams when latency matters and your workflow needs individ
 - **Destination** — the webhook endpoint and its authentication configuration.
 - **Stream** — a rule that binds a set of filtered events and a Liquid payload template to a Destination.
 
-## Delivery guarantees at a glance
+## Real Time Delivery at a glance
 
 - **At-least-once delivery.** You can include the Mixpanel Insert ID property in the payload so you can deduplicate on your side.
 - **Automatic retries.** Transient failures (5xx, timeouts, network errors) are retried up to 4 times with exponential backoff. Permanent failures (4xx) are surfaced as configuration errors.
-- **Latency.** p95 ≤ 120 seconds from ingestion to a confirmed 2xx response at your endpoint under normal load, often times even faster.
+- **Latency.** Target of p50 ≤ 60 seconds from ingestion to a confirmed 2xx response at your endpoint under normal load.
 
 See [Delivery and reliability](/docs/real-time-event-streams/delivery-and-reliability) for the full behavior.
 
-{/* PLACEHOLDER: List any additional beta limitations specific to your rollout — e.g., project types, regions, event volume caps. */}
+## Streaming limits
+
+Latest Growth plans include **50K events per month**, and Enterprise plans include **1M events per month**.
+
+<Warning>
+  When your streamed volume exceeds the free limit for your plan, **all Streams are disabled**. You can re-enable your stream once that limit resets. Events that match your Streams while they are disabled are not delivered.
+</Warning>
 
 ## Next steps
 
@@ -73,7 +83,7 @@ See [Delivery and reliability](/docs/real-time-event-streams/delivery-and-reliab
     Read Destination and Sync states and monitor Sync health.
   </Card>
 
-  <Card title="Request beta access" icon="envelope" href="mailto:support@mixpanel.com">
-    Reach out to your Mixpanel account team to join the private beta.
+  <Card title="Questions about access" icon="envelope" href="mailto:support@mixpanel.com">
+    Contact your Mixpanel account team about plan eligibility and streaming volume.
   </Card>
 </CardGroup>

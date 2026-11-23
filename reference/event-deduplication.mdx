@@ -1,5 +1,6 @@
 ---
 title: Event Deduplication
+description: "Mixpanel provides an event deduplication mechanism to ensure that duplicate events do not skew your analytics"
 ---
 
 Mixpanel provides an event deduplication mechanism to ensure that duplicate events do not skew your analytics. Deduplication is essential when events may be sent multiple times due to network retries, client-side batching, or integration with multiple data sources.
@@ -13,7 +14,7 @@ Mixpanel deduplicates events using a combination of four key event properties:
 - Timestamp (`time`)
 - Insert ID (`$insert_id`)
 
-If all four of these properties are identical across two or more events, Mixpanel considers them duplicates and will only show the most recent version of that event in your reports. This applies regardless of whether the events are sent via SDKs, APIs, or other integrations.
+If all four of these properties are identical across two or more events, Mixpanel considers them duplicates and shows only one of them in your reports. This applies regardless of whether the events are sent via SDKs, APIs, or other integrations.
 
 The `$insert_id` should be a randomly generated, unique value for each event to ensure proper deduplication. If `$insert_id` are reused, events may be unintentionally deduplicated.
 
@@ -122,7 +123,7 @@ Mixpanel uses two main deduplication processes:
 ### Query-Time Deduplication
 
 - When: Happens immediately when you query data in the Mixpanel UI.
-- How: If multiple events share the same event\_name, distinct\_id, timestamp, and \$insert\_id, only the most recent version of the event is shown in reports (based on the API ingestion time). In most cases, only the more recent version of the event is shown in reports (based on the API ingestion time). It is important to note that Mixpanel does not guarantee upsert behavior.
+- How: If multiple events share the same event\_name, distinct\_id, timestamp, and \$insert\_id, in most cases only the more recent version of the event is shown in reports (based on the API ingestion time). It is important to note that Mixpanel does not guarantee upsert behavior.
 - Scope: This deduplication is visible in the Mixpanel UI and reports, but not in raw data exports. Raw event export will contain all data as they were ingested, without any deduplication.
 
 ### Compaction-Time Deduplication

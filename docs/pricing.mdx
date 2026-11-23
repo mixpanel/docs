@@ -1,6 +1,10 @@
 ---
 title: "Pricing"
 description: "How Mixpanel pricing works"
+related:
+  - /docs/pricing/startup-program
+  - /docs/pricing/legacy-mtu-billing
+  - /docs/orgs-and-projects/organizations
 ---
 
 ## How Mixpanel Pricing Works
@@ -29,13 +33,13 @@ Event-based pricing calculates the amount you are charged based on the number of
 
 ### Plan Differences
 
-There are three event-based billing plans to choose from: Free, Growth, and Enterprise. Growth and Enterprise plans have optional add-ons for Group Analytics (recommended for B2B) and Data Pipelines (exports your events to a data warehouse or cloud storage bucket). Refer to our [pricing page](https://mixpanel.com/pricing/) for more information on the benefits and features of each plan.
+There are three event-based billing plans to choose from: Free, Growth, and Enterprise. Optional add-ons are also available, including Group Analytics (recommended for B2B), Data Pipelines (exports your events to a data warehouse or cloud storage bucket), and Metric Trees. Refer to our [pricing page](https://mixpanel.com/pricing/) for more information on the benefits and features of each plan, and for current add-on pricing and plan availability.
 
 The high-level differences between the three are:
 
-- **Free:** Mixpanel is usage-based, and you can use it for free for as long as you want, no trial needed. If you are new to Mixpanel and want to test it out, we encourage you to use our free plan and upgrade once you have an estimate of your project’s volume. Limited to a maximum of 5 saved reports per user account and 1M total events. You can create cohorts but not save them, and features like lookup tables, custom properties, or permissions are not included.
-- **Growth:** The typical Growth plan customer is a small team using Mixpanel (fewer than 50 employees). Growth plans purchased after February 2025 include the first 1M events free.
-- **Enterprise:** Designed for large teams that require access controls and permissions, data governance features, dedicated onboarding support, and account management. Enterprise also unlocks exclusive analysis tools, including the Signal report and anomaly detection alerts.
+- **Free:** Mixpanel is usage-based, and you can use it for free as long as you stay within the plan's limits; no trial needed. If you are new to Mixpanel and want to test it out, we encourage you to use our free plan and upgrade once you have an estimate of your project’s volume. Includes unlimited saved reports and a monthly event allowance. Some features are limited or unavailable on the Free plan; see [our pricing page](https://mixpanel.com/pricing/) for current limits and a full feature comparison.
+- **Growth:** The typical Growth plan customer is a small team using Mixpanel (fewer than 50 employees). Growth plans purchased after February 2025 include a monthly allowance of free events; see [our pricing page](https://mixpanel.com/pricing/) for the current amount.
+- **Enterprise:** Designed for large teams that need advanced data governance, dedicated onboarding support, and account management. Enterprise also unlocks additional advanced analysis features; see [our pricing page](https://mixpanel.com/pricing/) for a full feature comparison.
 
 All plans include some [Experiments](/docs/experiments) and [Feature Flags](/docs/featureflags) usage, with the option to purchase additional volume on Growth and Enterprise plans. See [Experiments plan availability](/docs/experiments#plan-availability) and [Feature Flags plan availability](/docs/featureflags#plan-availability) for the included amounts.
 
@@ -71,13 +75,19 @@ This is a recommended feature for all B2B products that want answers to question
 - In instances with more than one user per account, such as a video streaming service, how are events triggered at an account level?
 - What groups convert through a funnel to a goal event (as opposed to what individual users convert)?
 
+For current add-on plan availability, see [our pricing page](https://mixpanel.com/pricing/).
+
 ### Data Pipelines Add-On
 
 The Data Pipelines Add-On exports the events in your Mixpanel project to a cloud storage bucket or data warehouse of your choice. It's useful if you want to analyze Mixpanel events using SQL in your own environment. We offer a 30-day free trial of this feature; see the [FAQ](/docs/data-pipelines#how-does-the-free-trial-work) on how to enable it.
 
+For current add-on plan availability, see [our pricing page](https://mixpanel.com/pricing/).
+
 ### Metric Tree Add-on
 
 The Metric Tree Add-On enables you to map your growth strategy quantitatively and measurably, and understand the logical relationship between your input metrics and output business outcomes. It is a collaborative space for you and your team to identify opportunities, have prioritization and trade-off discussions across Exec to ICs, and eventually take data-backed decisions. You can read more about the functionality of Metric Trees [here](/docs/metric_tree).
+
+For current add-on plan availability, see [our pricing page](https://mixpanel.com/pricing/).
 
 ## Billing & Payment
 
@@ -149,41 +159,33 @@ You can also check the top events contributing towards your event count by creat
 
 If you go over your plan's events, Mixpanel won't stop collecting your data:
 
-- If you're using a Free plan, Mixpanel limits your platform access once you reach 1M monthly events, but doesn't charge overages. Once you hit the limit, you will be blocked from viewing your reports until you either upgrade to a Growth plan that supports your current usage or wait until the following month, when your allowance automatically resets.
-- If you're using a Growth plan, the additional cost will be charged at the beginning of the next month based on your À La Carte rate, which you can find in the "Plan Details & Billing" section in your Organization Settings. On the contrary, if you want to avoid paying for overages, you can either [downgrade your paid plan to the Free one](/docs/pricing#downgrade-your-plan-to-free) or upgrade to one that covers your additional usage before the end of the billing cycle - the more events your plan includes, the less you pay per event.
+- If you’re using a Free plan, Mixpanel won’t stop collecting your data, but querying is paused once you go over the Free plan’s monthly event limit. The pause stays in place until you upgrade to a Growth plan. Growth plan pricing depends on the event allowance and add-ons you choose (see [our pricing page](https://mixpanel.com/pricing/)), and requires a credit card. Your Growth plan starts from the first of the current month, so all of this month’s events count toward its allowance, and any events above it are billed at your plan’s cost per event on your next invoice.
+- If you’re using a Growth plan, events above your plan are billed at the beginning of the next month at the same cost per event as your plan; you can find your rate in the "Plan Details & Billing" section in your Organization Settings. If you want to avoid paying for additional events, you can either [downgrade your paid plan to the Free one](/docs/pricing#downgrade-your-plan-to-free) or upgrade to a plan that covers your usage before the end of the billing cycle. See [our pricing page](https://mixpanel.com/pricing/) for details.
 
 #### Alerts for Additional Data Charges
 
-Organization owners and billing admins are sent an alert email if their paid account reaches the following percentages of their plan volume: 85%, 100%, 110%, 120%, 200%, 300%, and 400%. If an account reaches two or more of these thresholds, it is possible to receive multiple alerts in one month. Additionally, email addresses that are CC'd on invoice receipts will also be CC'd on alert emails.
+Organization owners and billing admins are sent an alert email if their account reaches the following percentages of their plan volume: 85%, 100%, 110%, 120%, 200%, 300%, and 400%. If an account reaches two or more of these thresholds, it is possible to receive multiple alerts in one month. Additionally, email addresses that are CC'd on invoice receipts will also be CC'd on alert emails.
 
 #### Can I set a billing limit?
 
 While it's not possible to set a billing limit at this moment, read [this article](https://github.com/orgs/mixpanel/discussions/526) to learn how to create a report and get warning alerts when you’re close to exceeding your plan limit.
 
-### I’m on a Growth plan and paying for less than 1M monthly events. How do I switch to the more recent one?
+### I signed up for the lowest-volume Growth plan. What happens if I go over that amount?
 
-The easiest way to switch is to go to Mixpanel’s [pricing page](https://www.mixpanel.com/pricing) and select “Make the Switch” on the Growth plan card. From there, you can move to the latest plan. If you are unable to adjust your plan, reach out to our Support team.
+Events within your plan’s free monthly allowance are free! If you go over your plan’s event volume, each additional event is charged at the same cost per event as your plan, which you can see in the “Plan Details & Billing” section in your Organization Settings. Larger plans include volume discounts, so purchasing a higher volume upfront lowers your cost per event. For current pricing, see [our pricing page](https://mixpanel.com/pricing/).
 
-### Why can I only select a volume of 1M monthly events on monthly Growth plans, but not annual ones?
-
-Our latest pricing plans include the first 1M events free each month. We require a larger pre-committed volume (more than 1M monthly events) in order to purchase an annual plan. Annual plans still include the first 1M events free each month.
-
-### I signed up for the 1 million event Growth plan. What happens if I go over that amount?
-
-The first 1 million events ingested are free! If you go over 1 million events, each event ingested will be charged at the additional data rate seen in the “Plan Details & Billing” section in your Organization Settings. If you're only on a 1M monthly events plan, the additional data rate is \$.00028 per event. Purchasing higher volumes upfront will lower that additional data rate, as we include volume discounts in our pricing.
-
-If you have the Data Pipeline or Group Analytics add-ons, you will also be charged 20% for Data Pipelines and/or 40% for Group Analytics based on the additional data ingested.
+If you have add-ons such as Group Analytics or Data Pipelines, they can also affect what you're charged for additional data. For current add-on plan availability, see [our pricing page](https://mixpanel.com/pricing/).
 
 As an example:
 
-- You signed up for the 1 million monthly event Growth plan with Group Analytics
-- If you send 1.1 million events in a month, you’ll be charged for the 100,000 events over the plan at the additional data rate, along with 40% of the calculated overage for the Group Analytics add-on.
+- You signed up for the lowest-volume Growth plan
+- If you send 10% more events than your plan includes in a month, you’ll be charged for those extra events at your plan’s cost per event.
 
-We bake volume discounts into our pricing, so if you are often tracking more than 1 million monthly events, it may be better to upgrade to the right-sized plan on the Pricing page — you’ll pay less per event.
+We bake volume discounts into our pricing, so if you are often tracking more events than your plan includes, it may be better to upgrade to the right-sized plan on the Pricing page — you’ll pay less per event.
 
 ### Is Mixpanel’s pricing based on MTUs?
 
-Mixpanel’s default pricing option is based on events because it is a better option for the majority of customers. Mixpanel also offers an MTU-based Enterprise plan, which **starts at \$20,000 per year** and isn’t available online. If you are interested in learning more about it, [contact our sales team](https://mixpanel.com/contact-us/sales/).
+Mixpanel’s default pricing option is based on events because it is a better option for the majority of customers. Mixpanel also offers an MTU-based Enterprise plan. If you are interested in learning more about it, [contact our sales team](https://mixpanel.com/contact-us/sales/).
 
 If you are an existing customer on an MTU plan, [refer to our MTU Pricing Guide](/docs/pricing/legacy-mtu-billing).
 
@@ -203,7 +205,7 @@ For accounts on ingestion time billing, old events will be included in billing t
 
 For legacy accounts on event timestamp billing, events imported with timestamps outside the current billing cycle will not contribute to event tallies. For example: if April 1st - April 30th is the current billing cycle, importing data from March will **not** be included in the April event count.
 
-### I am using the Warehouse add-on for ingesting data. How does this impact billing?
+### I use warehouse connectors to ingest data. How does this impact billing?
 
 Events imported through a warehouse connection are treated as any other source (same as importing through our SDKs or API directly). Warehouse data, similar to other sources, is billed in accordance with general Mixpanel pricing policies.
 

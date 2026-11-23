@@ -1,0 +1,144 @@
+{
+  "x-release-date": "2026-11-02T00:00:00Z",
+  "description": "A real-time destination was disabled.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "realtime_destination",
+      "default": "realtime_destination",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "platform": {
+              "type": "string"
+            },
+            "destination_type": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "auth_type": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "webhook_url": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "platform",
+            "destination_type",
+            "status"
+          ],
+          "type": "object"
+        },
+        "current": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "platform": {
+              "type": "string"
+            },
+            "destination_type": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "auth_type": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "webhook_url": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "platform",
+            "destination_type",
+            "status"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "const": "paused",
+      "default": "paused",
+      "type": "string"
+    },
+    "type": {
+      "const": "realtime_destination.paused",
+      "default": "realtime_destination.paused",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
