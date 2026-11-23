@@ -684,7 +684,7 @@
                   {
                     "group": "Grow Your Usership",
                     "pages": [
-                      "assess-agent-outcomes",
+                      "guides/guides-by-use-case/grow-your-usership/assess-agent-outcomes",
                       "guides/guides-by-use-case/grow-your-usership/run-web-experiments",
                       "guides/guides-by-use-case/grow-your-usership/grow-revenue"
                     ]
