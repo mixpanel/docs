@@ -2,6 +2,10 @@
 sidebarTitle: Exposure Event Metering
 title: "Exposure Events and MEU Metering"
 description: "Why exposure events you already send count toward your Experiments usage, and how to change which event Mixpanel meters"
+related:
+  - /docs/experiments
+  - /docs/featureflags
+  - /docs/pricing
 ---
 
 <Note>
@@ -12,7 +16,7 @@ description: "Why exposure events you already send count toward your Experiments
 
 ## Why your exposure events count toward MEU
 
-Experiments usage is measured in **Monthly Exposed Users (MEU)**: broadly, the distinct users who tracked an exposure event during a calendar month. Projects averaging more than 30 exposures per user in a month are calculated differently — see [Pricing Unit](/docs/experiments#pricing-unit) for the full calculation, and [Plan Availability](/docs/experiments#plan-availability) for the amount included with your plan.
+Experiments usage is measured in **Monthly Experiment Users (MEU)**: broadly, the distinct users who tracked an exposure event during a calendar month. Projects averaging more than 30 exposures per user in a month are calculated differently — see [Pricing Unit](/docs/experiments#pricing-unit) for the full calculation, and [Plan Availability](/docs/experiments#plan-availability) for the amount included with your plan.
 
 Mixpanel meters the event configured as your project's **exposure event**, whichever system emits it — Mixpanel Feature Flags, a third-party platform, or your own code. Every project starts with that setting pointed at the reserved event name `$experiment_started`.
 

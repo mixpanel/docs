@@ -1,0 +1,41 @@
+{
+  "x-release-date": "2026-10-30T00:00:00Z",
+  "description": "Delivery for a paused audit log stream was restarted.\n\nA resume changes no configuration and has nothing to report beyond the actor and\nthe stream, so its payload is empty.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "entity_type": {
+      "const": "audit_log_stream",
+      "default": "audit_log_stream",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {},
+      "type": "object"
+    },
+    "action": {
+      "const": "resumed",
+      "default": "resumed",
+      "type": "string"
+    },
+    "type": {
+      "const": "audit_log_stream.resumed",
+      "default": "audit_log_stream.resumed",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "payload",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}

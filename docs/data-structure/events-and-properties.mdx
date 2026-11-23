@@ -2,6 +2,10 @@
 sidebarTitle: "Events & Properties"
 title: "Events"
 description: "How events and their properties work in Mixpanel, with naming conventions, super properties, and best practices for structuring them"
+related:
+  - /docs/data-structure/property-reference/properties
+  - /docs/tracking-best-practices/tracking-plan
+  - /docs/data-governance/lexicon
 ---
 
 ## Overview
@@ -83,6 +87,8 @@ Mixpanel accepts arbitrary JSON as properties, including strings, numbers, boole
 We don't have a limit on the total number of events you can send to Mixpanel, but it will factor into your [pricing](https://mixpanel.com/pricing).
 
 We have a soft limit of 5000 distinct event names. If you send more event names, we'll still ingest them, but those event names will not be indexed and will not appear in our autocomplete menus.
+
+Each event must be smaller than 1MB of uncompressed JSON; larger events are rejected. See [event size limits](/reference/track-event#limits) for details.
 
 Each event can have up to 255 properties. Event property names/values can be at most 255 characters in length (longer names are truncated). Event property values are limited based on data type, refer to these limits under [Supported Data Types](/docs/data-structure/property-reference/data-type).
 

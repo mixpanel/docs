@@ -1,6 +1,10 @@
 ---
 title: "Boards"
 description: "Collect your reports into a single view"
+related:
+  - /docs/boards/sharing-and-permission
+  - /docs/boards/templates
+  - /docs/reports
 ---
 
 <Frame>
@@ -46,6 +50,10 @@ Once you've decided that you want to create a board of your own, on the Boards p
 <Frame>
   ![/11442046149268](/images/11442046149268.png)
 </Frame>
+
+<Note>
+  To create and manage boards programmatically, use the [Mixpanel MCP server](/docs/mcp). Its `Create-Dashboard`, `List-Dashboards`, `Get-Dashboard`, `Update-Dashboard`, `Duplicate-Dashboard`, and `Delete-Dashboard` tools work with boards. To make a board public, create a public link from the board's Share modal. See [Public Boards](/docs/boards/public-boards).
+</Note>
 
 ### Step 3: Adding content to Boards
 
@@ -139,7 +147,7 @@ A row will start life at the minimum possible height.
 
 ### Step 5: Board-wide Date Ranges and Filters
 
-Boards allow you to alter some aspects of the queries within each of the reports on that board, making it simple to ensure every report is showing results from a consistent set of data.  Both date ranges and filters can be added by clicking "Add Filter" at the top right of the board.  
+Boards allow you to alter some aspects of the queries within each of the reports on that board, making it simple to ensure every report is showing results from a consistent set of data.  Both date ranges and filters can be added by clicking "Add Filter" at the top right of the board.  Board-wide filters and date ranges do not apply to Session Replay playlists, which always use the playlist's own saved filters and date range. 
 
 <Frame>
   ![/Screen\_Shot\_2022-01-07\_at\_2.35.49\_PM.png](/images/Screen_Shot_2022-01-07_at_2.35.49_PM.png)

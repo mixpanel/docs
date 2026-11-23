@@ -2,17 +2,21 @@
 title: "Delivery and Reliability"
 sidebarTitle: "Delivery & Reliability"
 description: "How Real-Time Event Streams retry failed deliveries, handle at-least-once semantics, and expose failed events for debugging."
+related:
+  - /docs/real-time-event-streams/setup
+  - /docs/real-time-event-streams/states-and-monitoring
+  - /docs/real-time-event-streams/overview
 ---
 
 <Note>
-  Real-Time Event Streams are in Beta. Contact your Mixpanel account team to enable the feature for your project.
+  Real-Time Event Streams are in Open Beta for organizations on the latest Growth plans and on any Enterprise plan. Latest Growth plans include **50K events per month**; Enterprise plans include **1M events per month**.
 </Note>
 
 Real-Time Event Streams are designed for at-least-once delivery with automatic retry of transient failures. This page describes the delivery, retry policy, failed events log, and headers you can use to deduplicate on your side.
 
 ## Latency
 
-Events will be delivered to webhook endpoints within **p95 ≤ 120 seconds** of ingestion under normal load. This is the baseline definition of "real-time" for the feature.
+Real-Time Event Streams target delivery to webhook endpoints within **p50 ≤ 60 seconds** of ingestion under normal load.
 
 ## Batching
 

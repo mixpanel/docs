@@ -2,10 +2,14 @@
 sidebarTitle: Group Analytics
 title: "Group Analytics"
 description: "Group users together as an aggregated unit of measurement"
+related:
+  - /docs/data-structure/group-analytics/group-analytics-implementation
+  - /docs/data-structure/group-analytics/group-analytics-faq
+  - /docs/data-structure/user-profiles
 ---
 
 <Note>
-  Customers on an Enterprise or Growth plan can access Group Analytics as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details.
+  Customers on an Enterprise or Growth plan can access Group Analytics as an add-on package. See our [pricing page](https://mixpanel.com/pricing/) for more details. If your project loses the Group Analytics package, your group data is permanently deleted after 45 days. See [Losing the Group Analytics Package](#losing-the-group-analytics-package).
 </Note>
 
 ## Overview
@@ -85,7 +89,7 @@ Similarly, you can build a report that displays Conversion Rates per User and pe
 
 ### B2B Company Analytics
 
-Company Analytics is a feature within Group Analytics tailored to B2B SaaS Companies.  Here we focus on the idea that users ‘belong’ to a company, and that company behavior is dependent on user behavioral activity. For instance, if you have 2 accounts, each worth \$50M but with 5 and 20 users respectively, the account with 20 users is considered more healthy and likely to renew compared to the other account.
+Company Analytics is a feature within Group Analytics tailored to B2B SaaS Companies.  Here we focus on the idea that users ‘belong’ to a company, and that company behavior is dependent on user behavioral activity. For instance, if you have 2 accounts, each worth \$50M but with 5 and 20 users respectively, the account with 20 users is considered healthier and more likely to renew compared to the other account.
 
 Company Analytics enables you to understand such account health and activation metrics, which are derived from the underlying user activity.
 
@@ -93,7 +97,7 @@ To use these features, you must [designate the group key as a company key when s
 
 #### Company Profiles
 
-The Company Profiles page gives you a holistic view into your company health, which includes key metrics and company profile properties (i.e, company attributes).
+The Company Profiles page gives you a holistic view of your company health, which includes key metrics and company profile properties (i.e., company attributes).
 
 Company Health Metrics on the page include KPIs on usage (DAU, WAU, MAU, new users), users’ engagement level (activity per user, life cycle of user), and their retention (Day 1, Week 1, and Month 1).
 
@@ -113,18 +117,24 @@ SaaS companies often have use cases that require them to segment companies based
 
 For example, a question you may have is 'What is the number of trial accounts that have more than two active users?'. The hypothesis is that these accounts will convert faster.
 
-We have a computed property in both breakdown and filter, called the **“Number of users who did…”**, available in the Group Analytics add-on, which enables you to answer these types of questions as it allows you to break down account activity by the number of active users.
+We have a computed property in both breakdown and filter, called the **“Number of users who did…”**, available in the Group Analytics add-on, which enables you to answer these types of questions, as it allows you to break down account activity by the number of active users.
 
 <Frame>
   ![image](/images/B2B_Activation_1.webp)
 </Frame>
 
-When using **“Number of users who did…”** as a breakdown, we show you how many downloads came from different types of account health. For example, 605 downloads came from accounts with zero active users. ~1.5 downloads in the last 30 days came from accounts with two active users. Where an “active user” is defined by both the activity (e.g., event as such document created) and frequency of the activity (e.g., performing the event ≥1 time).
+When using **“Number of users who did…”** as a breakdown, we show you how many downloads came from different types of account health. For example, 605 downloads came from accounts with zero active users. ~1.5 downloads in the last 30 days came from accounts with two active users. Where an “active user” is defined by both the activity (e.g., an event such as document created) and the frequency of the activity (e.g., performing the event ≥1 time).
 
 In a line chart, we look for activity per interval.
 
-For example, in the below daily chart, we’re looking for activity qualification per day (i.e., an active user is one who has created at least one document on that day). The chart below shows that on Aug 19th, 35 accounts downloaded a document. Of the 35 accounts, 32 had one active user, 2 had two active users, and 1 had twenty-eight active users. Since most downloads originated from accounts with only one active user, we can conclude there is no correlation between account document downloaded activity and account health.
+For example, in the daily chart below, we’re looking for activity qualification per day (i.e., an active user is one who has created at least one document on that day). The chart below shows that on Aug 19th, 35 accounts downloaded a document. Of the 35 accounts, 32 had one active user, 2 had two active users, and 1 had twenty-eight active users. Since most downloads originated from accounts with only one active user, we can conclude there is no correlation between account document download activity and account health.
 
 <Frame>
   ![image](/images/B2B_Activation_2.webp)
 </Frame>
+
+## Losing the Group Analytics Package
+
+If your project no longer has the Group Analytics package (for example, because the add-on is removed from your plan), group-based analysis stops working immediately. Reports that analyze data by a group, including saved reports, will return errors.
+
+When you remove the Group Analytics package from a project, Mixpanel retains your group data for 45 days. If you restore the package within that window, all of your group data is recovered, including any group data sent while the package was removed. After 45 days, your group data is permanently deleted and can’t be recovered.
