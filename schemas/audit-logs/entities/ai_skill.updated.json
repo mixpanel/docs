@@ -1,0 +1,124 @@
+{
+  "x-release-date": "2026-11-20T00:00:00Z",
+  "description": "An AI skill's settings were updated.",
+  "properties": {
+    "entity_id": {
+      "type": "string"
+    },
+    "entity_name": {
+      "default": "UNSET",
+      "type": "string"
+    },
+    "payload": {
+      "properties": {
+        "previous": {
+          "description": "An AI skill's settings in a project's AI Settings.",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "skill_type": {
+              "description": "The skill's type. `rca` is Root Cause Analysis.",
+              "type": "string"
+            },
+            "enabled": {
+              "description": "Whether the skill's instructions are applied.",
+              "type": "boolean"
+            },
+            "instructions": {
+              "description": "The instructions Mixpanel's AI follows for the skill.",
+              "type": "string"
+            },
+            "project_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The project the skill applies to, or null for an organization-wide skill."
+            }
+          },
+          "required": [
+            "id",
+            "skill_type",
+            "enabled",
+            "instructions",
+            "project_id"
+          ],
+          "type": "object"
+        },
+        "current": {
+          "description": "An AI skill's settings in a project's AI Settings.",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "skill_type": {
+              "description": "The skill's type. `rca` is Root Cause Analysis.",
+              "type": "string"
+            },
+            "enabled": {
+              "description": "Whether the skill's instructions are applied.",
+              "type": "boolean"
+            },
+            "instructions": {
+              "description": "The instructions Mixpanel's AI follows for the skill.",
+              "type": "string"
+            },
+            "project_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The project the skill applies to, or null for an organization-wide skill."
+            }
+          },
+          "required": [
+            "id",
+            "skill_type",
+            "enabled",
+            "instructions",
+            "project_id"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "previous",
+        "current"
+      ],
+      "type": "object"
+    },
+    "entity_type": {
+      "const": "ai_skill",
+      "default": "ai_skill",
+      "type": "string"
+    },
+    "action": {
+      "const": "updated",
+      "default": "updated",
+      "type": "string"
+    },
+    "type": {
+      "const": "ai_skill.updated",
+      "default": "ai_skill.updated",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_name",
+    "payload",
+    "entity_type",
+    "action",
+    "type"
+  ],
+  "type": "object"
+}
