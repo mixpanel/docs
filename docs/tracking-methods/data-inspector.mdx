@@ -1,61 +1,81 @@
 ---
-title: Mixpanel Data Inspector
-description: "Browser extension that shows events sent to Mixpanel from your web app in real time, with JSON payload inspection"
+title: Mixpanel Browser Extension
+sidebarTitle: Browser Extension
+description: "Browser extension for inspecting the events your web app sends to Mixpanel in real time and for designing Web Experiment variants on your live site"
 related:
   - /docs/tracking-best-practices/debugging
   - /docs/tracking-methods/sdks/javascript
   - /docs/tracking-best-practices/developer-environments
+  - /docs/experiments/no-code-experiments
 ---
 
 ## Overview
 
-The Mixpanel Data Inspector is a browser extension that provides real-time visibility into events being sent to Mixpanel from your web application. This tool helps developers and analysts validate tracking implementation, debug data issues, and ensure data quality during development and testing.
+The Mixpanel browser extension, formerly called the Mixpanel Data Inspector, does two jobs:
 
-## Key Features
+- The Data Inspector shows the events your web app sends to Mixpanel in real time, so you can validate tracking, debug data issues, and check data quality during development and testing.
+- The visual editor for [Web Experiments](/docs/experiments/no-code-experiments) lets you select elements on your live site, preview changes, and save them as experiment variants without a code deploy.
 
-**View SDK Events**
+The visual editor is available in the Chrome extension only. The Data Inspector is available in Chrome and Firefox.
 
-- Monitor events sent from the Mixpanel SDK in real-time
+## Data Inspector
+
+### View SDK Events
+
+- Monitor events sent from the Mixpanel SDK in real time
 - See events as they're transmitted to Mixpanel servers
 - Track both successful and failed event calls
 
-**JSON Payload Inspection**
+### Inspect JSON Payloads
 
-- View complete JSON payload for each event
-- Copy JSON payload to clipboard for analysis
+- View the complete JSON payload for each event
+- Copy the JSON payload to your clipboard for analysis
 - Examine event structure and data formatting
 
-**Event and Property Search**
+### Search Events and Properties
 
 - Search through event payloads to find specific properties
-- Filter away noisy events to find desired information efficiently
+- Filter out noisy events to find what you need
 - Inspect registered super properties and other event metadata
+
+## Web Experiments Visual Editor
+
+The extension connects your Mixpanel tab to your website so you can design experiment variants directly on the page. With the extension installed, you can:
+
+- Select an element on your page and change its text, colors, CSS, classes, or attributes, or hide it
+- Describe a change to Mixpanel Agent and approve the edits it proposes
+- Switch between variants to preview each one on your live page
+- Review every change in the changes list and delete any you don't want
+- Save your changes as variants of a Web Experiment
+
+To open the editor, create a Web Experiment in Mixpanel, enter the URL of the page you want to test, and click **Edit in Editor**. Your site opens in a new tab with the editor toolbar on top.
+
+Variants still reach your end users through the Mixpanel JavaScript SDK, so visitors don't need the extension and can use any browser. Your site needs the Web Experiments snippet installed before the editor can load. See [Web Experiments](/docs/experiments/no-code-experiments) for setup, targeting, permissions, and limits.
 
 ## Installation
 
-### Chrome Web Store
+### Chrome
 
-1. Visit the [Chrome Web Store](https://chromewebstore.google.com/detail/camknfenboildigjgpmhojlcnejppooh)
-2. Search for "Mixpanel Data Inspector"
-3. Click **Add to Chrome**
-4. Confirm installation in the pop-up dialog
+1. Open the [Mixpanel extension](https://chromewebstore.google.com/detail/mixpanel/camknfenboildigjgpmhojlcnejppooh) in the Chrome Web Store
+2. Click **Add to Chrome**
+3. Confirm installation in the pop-up dialog
+4. If you plan to use Web Experiments, refresh any open Mixpanel tabs. Mixpanel checks for the extension when the page loads.
 
-### Firefox Add-ons
+If you already have the Mixpanel Data Inspector installed in Chrome, update it to the latest version. It's the same extension under its new name, so there's nothing to uninstall or disable.
 
-1. Navigate to [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/mixpanel-data-inspector/)
-2. Search for "Mixpanel Data Inspector"
-3. Click **Add to Firefox**
-4. Follow the installation prompts
+### Firefox
 
-## Usage
+1. Open [Mixpanel Data Inspector](https://addons.mozilla.org/en-US/firefox/addon/mixpanel-data-inspector/) on Firefox Add-ons
+2. Click **Add to Firefox**
+3. Follow the installation prompts
 
-### Getting Started
+## Using the Data Inspector
 
-1. **Install the extension** from your browser's extension store
-2. **Navigate to your website** where Mixpanel tracking is implemented
-3. **Open the extension** by clicking the Mixpanel icon in your browser toolbar
-4. **Interact with your site** to trigger events and see them appear in real-time
-5. **Debug continuously** by opening the extension as a devtool window on Chrome through Inspect Element
+1. Install the extension from your browser's extension store
+2. Go to a page on your site where Mixpanel tracking is implemented
+3. Click the Mixpanel icon in your browser toolbar to open the extension
+4. Interact with your site to trigger events and watch them appear in real time
+5. To keep the inspector open while you work in Chrome, open it as a DevTools panel through Inspect Element
 
 ## Common Use Cases & Best Practices
 
@@ -125,6 +145,11 @@ The Mixpanel Data Inspector is a browser extension that provides real-time visib
 - **Check browser console:** Look for JavaScript errors that might prevent tracking
 - **Refresh the page:** Some events only fire during page initialization
 - **Disable ad blockers:** Ad blockers may prevent events from being sent to Mixpanel servers
+
+### The Visual Editor Reports the Extension Is Missing
+
+- Refresh the Mixpanel tab. Mixpanel detects the extension when the page loads.
+- Confirm the extension is updated to the latest version and enabled.
 
 ### Support
 

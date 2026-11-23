@@ -86,7 +86,7 @@ To see where the agent struggles, start with the numbers, then read the conversa
     Open **Conversations**. The list doesn't have an error column, so filter to the spans you're looking for:
 
     - To find errors, filter **AI Status Code** (`$mp_ai_status_code`) equals `STATUS_CODE_ERROR`. To find one tool's errors, also filter `gen_ai.tool.name`.
-    - To find slow or costly conversations, sort by **Duration**, **Cost**, **Tokens**, or **Turns**.
+    - To find long or costly conversations, sort by **Cost**, **Turns**, **Tools Called**, or **Tokens**.
 
     A conversation is listed when one of its spans matches every filter. You can also start from an Insights chart of `$mp_ai_span`: click a data point and select **View Conversations**.
   </Step>
