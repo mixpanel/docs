@@ -363,7 +363,7 @@ The above table applies if your account uses ingestion time billing. If your acc
 - **Update the value** of property d, or
 - **Add a new property** or column e with a non-NULL value
 
-This will count as an update event for each row in the sync.
+This will count as an update event for each row in the sync. An update event is a delete of the old event and an insert of the new event.
 
 If your warehouse workflow **drops and recreates tables**, Mirror will treat this as a full delete and re-insert, with each row counted as a billable event. Mirror looks at the data already ingested into Mixpanel and uses warehouse-specific logic to identify changes made within your warehouse platform. In the case of a full table delete, Mixpanel will register each deleted row as a billable event, and the same applies when the table is recreated.
 

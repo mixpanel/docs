@@ -1,0 +1,136 @@
+---
+sidebarTitle: Tracking Plans
+title: "Tracking Plans"
+description: "Save the events your team plans to track and follow their implementation in Lexicon"
+related:
+  - /docs/data-governance/lexicon
+  - /docs/tracking-best-practices/tracking-plan
+  - /docs/mcp
+---
+
+<Note>
+  All Mixpanel customers can access tracking plans through the [Mixpanel MCP Server](/docs/mcp). You create and manage tracking plans only through the MCP Server. You can view the events and properties a tracking plan adds in [Lexicon](#view-tracking-plan-events-in-lexicon).
+</Note>
+
+## Overview
+
+A tracking plan is a named list of the events your team intends to send to a Mixpanel project. Instead of keeping your [tracking plan](/docs/tracking-best-practices/tracking-plan) in a separate spreadsheet, you can save it in Mixpanel, next to your data dictionary in Lexicon.
+
+When you add an event to a tracking plan, you can also give it a description and list the event properties you expect it to have. Mixpanel adds any event or property that isn't already in Lexicon, so your team can document events before they're implemented. As your developers ship the tracking code, you can check which events in the plan Mixpanel is receiving.
+
+A project can have multiple tracking plans, for example one per feature launch, product area, or platform. The same event can belong to more than one tracking plan.
+
+Use tracking plans to:
+
+- **Plan new instrumentation:** Ask your AI assistant to design the events for a new feature, then save them as a tracking plan. The events are documented in Lexicon before anyone writes code.
+- **Track implementation progress:** Check which events in a plan Mixpanel is receiving, and which are still waiting to be implemented.
+- **Organize existing events:** Group the events that already exist in your project by feature, team, or platform, so everyone knows which events belong together.
+
+## Event and property status
+
+Events and event properties in a tracking plan each have a status that shows whether Mixpanel is receiving them.
+
+### Event status
+
+| Status | Description |
+| --- | --- |
+| Planned | The event is in Lexicon, but Mixpanel hasn't received it yet. |
+| Live | Mixpanel is receiving the event. |
+| Awaiting approval | Mixpanel received the event, but it stays hidden until an admin approves it. Lexicon shows this status as Pending. Applies only to projects that use [Event Approval](/docs/data-governance/event-approval). |
+
+When you add an event that isn't already in Lexicon, it starts as Planned. When Mixpanel starts to receive data for the event, its status changes to Live.
+
+When you add an event that's already in Lexicon, it keeps its current status. Mixpanel updates its description and properties with any values you include.
+
+### Property status
+
+Each event property that you add to an event has its own status, separate from the event's status.
+
+| Status | Description |
+| --- | --- |
+| Planned | The property is in Lexicon, but Mixpanel hasn't received it yet. |
+| Live | Mixpanel is receiving the property. |
+
+When you add a property that isn't already in Lexicon, it starts as Planned. When Mixpanel starts to receive the property, its status changes to Live. A property that's already in Lexicon keeps its current status. This means an event can be Live while some of its properties are still Planned, for example when your developers ship the event but haven't added every property yet.
+
+A property's status applies across your whole project. If your project already receives a property with other events, the property shows as Live, even on an event that doesn't send it yet.
+
+For each property, you can include its data type, a description, and an example value. Tracking plans support event properties only, so you can't add user profile properties.
+
+## Manage tracking plans
+
+<Note>
+  You must have an admin or owner project role, or a custom role with the Edit Metadata permission, to create, update, or delete tracking plans. Learn more about [Roles and Permissions](/docs/orgs-and-projects/roles-and-permissions).
+</Note>
+
+To manage tracking plans, ask an AI assistant that's connected to the [Mixpanel MCP Server](/docs/mcp), such as Claude, ChatGPT, or Cursor. The assistant uses these tools:
+
+| Operation | MCP tool | Description |
+| --- | --- | --- |
+| Create | `Create-Tracking-Plan` | Save a new tracking plan with a name, an optional description, and its events. Each event can include a description and event properties. |
+| View | `Get-Tracking-Plan` | Get a tracking plan's events and the status of each event. Can also include each event's properties and their status. |
+| List | `List-Tracking-Plans` | List the tracking plans in a project, or search for a plan by name. |
+| Update | `Update-Tracking-Plan` | Rename a tracking plan, change its description, add or remove events, or update an event's description and properties. |
+| Delete | `Delete-Tracking-Plan` | Delete a tracking plan. |
+
+### Create a tracking plan
+
+Your AI assistant designs the events, for example from a product spec or a description of a new feature, and then saves them as a tracking plan. Each tracking plan name must be unique within a project.
+
+For example, to plan the events for a checkout redesign, ask:
+
+```txt
+Design the events we need to track for our checkout redesign: a user starts checkout, adds a payment method, and completes a purchase. Include the properties for each event. Save the events as a tracking plan named Checkout Redesign.
+```
+
+The assistant shows the events it saved and the status of each event. Events that weren't in Lexicon yet start as Planned.
+
+Event names are case-sensitive, so "Sign Up" and "sign up" are two different events. You can't add [custom events](/docs/features/custom-events) to a tracking plan.
+
+### View a tracking plan
+
+Your AI assistant can show a tracking plan's events and the status of each event. Ask about properties to also see each event's properties and their status.
+
+For example, to check the implementation progress of the checkout redesign, ask:
+
+```txt
+Which events in the Checkout Redesign tracking plan haven't been received yet? Include their properties.
+```
+
+The property list shows only the properties that someone added to each event, for example through a tracking plan. It doesn't include every property that Mixpanel has received with the event.
+
+### Update a tracking plan
+
+For example, to add an event to the checkout redesign plan, ask:
+
+```txt
+Add a Coupon Applied event with a coupon_code property to the Checkout Redesign tracking plan.
+```
+
+When you add or update events in a tracking plan, the events you don't mention stay in the plan.
+
+When you add or update properties on an event, the event's other properties stay as they are. You can't remove a property from an event through a tracking plan.
+
+Removing an event from a tracking plan doesn't remove it from Lexicon, and Mixpanel continues to receive its data.
+
+### Delete a tracking plan
+
+You can't undo deleting a tracking plan. Deleting a plan removes only the plan itself. Its events and properties stay in Lexicon, and Mixpanel continues to receive their data. You can reuse the plan's name for a new tracking plan.
+
+## View tracking plan events in Lexicon
+
+The events and event properties that a tracking plan adds appear in Lexicon right away, before Mixpanel receives any data for them.
+
+To view a tracking plan's events in Lexicon:
+
+1. Select the **Data** tab on the left-hand navigation menu, and then select **Lexicon**.
+2. Select **Events**.
+3. Search for the event name, for example Checkout Started.
+4. If the event doesn't appear, click **All events**. The default **Active events** view shows only visible events that Mixpanel received and someone queried in the last 30 days, so it leaves out events that are still Planned.
+5. Click the event to open its details. The description and event properties you added through the tracking plan appear here.
+
+Tracking plans and Lexicon share the same event definitions. If you edit an event in Lexicon, for example to change its description, the tracking plan shows the change too.
+
+<Tip>
+  Ask your AI assistant for a link to an event in Lexicon. It uses the `Get-Lexicon-URL` tool to give you a direct link to the event's details.
+</Tip>
