@@ -39,11 +39,42 @@ If your app needs to support an older iOS version, stay on 1.x.
 
 ## Installation
 
-To capture Session Replays in your app, add the [Session Replay SDK](/docs/tracking-methods/sdks/swift/swift-replay) using Swift Package Manager directly in Xcode:
+To capture Session Replays in your app, add the [Session Replay SDK](/docs/tracking-methods/sdks/swift/swift-replay) using Swift Package Manager (recommended) or CocoaPods (deprecated).
 
-1. In Xcode, go to File → **Add Package Dependencies…**
-2. Paste the GitHub URL: `https://github.com/mixpanel/mixpanel-ios-session-replay-package`
-3. Follow the prompts to select the latest version and add the package to your project.
+<Tabs>
+  <Tab title="Swift Package Manager (recommended)" id="swift-package-manager">
+    1. In Xcode, go to File → **Add Package Dependencies…**
+    2. Paste the GitHub URL: `https://github.com/mixpanel/mixpanel-ios-session-replay-package`
+    3. Follow the prompts to select the latest version and add the package to your project.
+  </Tab>
+  <Tab title="CocoaPods (deprecated)" id="cocoapods-deprecated">
+    <Warning>
+      CocoaPods support is deprecated. We recommend migrating to Swift Package Manager.
+
+      - **December 2, 2026:** CocoaPods trunk becomes read-only. Versions already published there keep installing with `pod 'MixpanelSessionReplay'`, but new versions are not published to trunk.
+      - **Until removal:** install newer versions directly from GitHub. Replace `X.Y.Z` with the [release](https://github.com/mixpanel/mixpanel-ios-session-replay-package/releases) you want:
+
+        ```ruby Ruby
+        pod 'MixpanelSessionReplay', :git => 'https://github.com/mixpanel/mixpanel-ios-session-replay-package.git', :tag => 'X.Y.Z'
+        ```
+
+        If `pod install` can't find a version of a Mixpanel dependency, such as `MixpanelSwiftCommon`, add that dependency from GitHub the same way:
+
+        ```ruby Ruby
+        pod 'MixpanelSwiftCommon', :git => 'https://github.com/mixpanel/mixpanel-swift-common.git', :tag => 'X.Y.Z'
+        ```
+
+      - **After November 2027:** CocoaPods support will be removed in a future major version of the SDK.
+    </Warning>
+
+    If your project already uses CocoaPods:
+
+    1. Add `pod 'MixpanelSessionReplay'` to your Podfile (or the `:git` line above for versions after the trunk freeze).
+    2. Run `pod install` in your Xcode project directory.
+
+    New to CocoaPods? Use [Swift Package Manager](#swift-package-manager) instead.
+  </Tab>
+</Tabs>
 
 ### Initialize
 
