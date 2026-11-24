@@ -7797,6 +7797,82 @@
             "title": "Name",
             "type": "string"
           },
+          "definition": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CustomEventDefinition"
+              },
+              {
+                "$ref": "#/components/schemas/CustomPropertyDefinition"
+              },
+              {
+                "description": "Set `type` to `event` for events counted as they happen, `funnel` for ordered steps, or `retention` for a start event and a return event.",
+                "discriminator": {
+                  "mapping": {
+                    "event": "#/components/schemas/EventBehavior",
+                    "funnel": "#/components/schemas/FunnelBehavior",
+                    "retention": "#/components/schemas/RetentionBehavior"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/EventBehavior"
+                  },
+                  {
+                    "$ref": "#/components/schemas/FunnelBehavior"
+                  },
+                  {
+                    "$ref": "#/components/schemas/RetentionBehavior"
+                  }
+                ]
+              },
+              {
+                "description": "One metric, or a formula's inputs followed by the formula, which refers to each input by its `display_name`.",
+                "items": {
+                  "description": "Set `type` to `event`, `funnel`, `retention`, `cohort`, or `formula` for a metric defined inline, or `saved_metric` for a saved metric.",
+                  "discriminator": {
+                    "mapping": {
+                      "cohort": "#/components/schemas/CohortMetric",
+                      "event": "#/components/schemas/EventMetric",
+                      "formula": "#/components/schemas/FormulaMetric",
+                      "funnel": "#/components/schemas/FunnelMetric",
+                      "retention": "#/components/schemas/RetentionMetric",
+                      "saved_metric": "#/components/schemas/SavedMetric"
+                    },
+                    "propertyName": "type"
+                  },
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/EventMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FunnelMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/RetentionMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CohortMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FormulaMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SavedMetric"
+                    }
+                  ]
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              {
+                "$ref": "#/components/schemas/CohortDefinition"
+              }
+            ],
+            "description": "Replaces the definition's whole body. Only for these types: `custom_event`, `custom_property`, `metric`, `behavior`, `cohort`.",
+            "title": "Definition"
+          },
           "description": {
             "anyOf": [
               {
