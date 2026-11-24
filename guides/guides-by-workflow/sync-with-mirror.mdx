@@ -10,7 +10,7 @@ Getting there takes more than pointing a connector at a table. How you model you
 
 ## Before You Start
 
-Mirror is one of several sync modes in [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors). It uses Change Data Capture (CDC) to detect and replicate changes, which means every row update or deletion in your source counts as a billable event in Mixpanel. That makes data modeling decisions consequential — not just for accuracy, but for cost.
+Mirror is one of several sync modes in [Warehouse Connectors](/docs/tracking-methods/warehouse-connectors). It uses Change Data Capture (CDC) to detect and replicate changes, which means every row update or deletion in your source counts as a billable event in Mixpanel (row updates are both an insert of the new record and a deletion of the old record). That makes data modeling decisions consequential — not just for accuracy, but for cost.
 
 You'll need:
 
