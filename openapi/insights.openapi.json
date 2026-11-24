@@ -199,7 +199,8 @@
           "type": {
             "type": "string",
             "const": "cohort",
-            "title": "Type"
+            "title": "Type",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request."
           },
           "cohort_id": {
             "type": "string",
@@ -488,7 +489,7 @@
           "id"
         ],
         "title": "EventCustomJoinKey",
-        "description": "A saved event custom property a lookup table is attached to."
+        "description": "A saved event custom property a lookup table is attached to.\n\nThe query reads whether it is list-valued from the saved custom property."
       },
       "EventCustomProperty": {
         "properties": {
@@ -617,6 +618,12 @@
             "minLength": 1,
             "title": "Name",
             "description": "Name of the event property."
+          },
+          "is_list": {
+            "type": "boolean",
+            "title": "Is List",
+            "description": "Set to true when the property is list-valued. Each element of the list is looked up in the lookup table, and a filter matches the looked-up values by `list_match`.",
+            "default": false
           }
         },
         "additionalProperties": false,
@@ -679,7 +686,8 @@
           "type": {
             "type": "string",
             "const": "event",
-            "title": "Type"
+            "title": "Type",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request."
           },
           "events": {
             "items": {
@@ -971,7 +979,8 @@
           "type": {
             "type": "string",
             "const": "formula",
-            "title": "Type"
+            "title": "Type",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request."
           },
           "display_name": {
             "anyOf": [
@@ -1155,7 +1164,8 @@
           "type": {
             "type": "string",
             "const": "funnel",
-            "title": "Type"
+            "title": "Type",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request."
           },
           "steps": {
             "items": {
@@ -1379,6 +1389,7 @@
                   "$ref": "#/components/schemas/FormulaMetric"
                 }
               ],
+              "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request.",
               "discriminator": {
                 "propertyName": "type",
                 "mapping": {
@@ -1734,7 +1745,7 @@
           "id"
         ],
         "title": "ProfileCustomJoinKey",
-        "description": "A saved user profile custom property a lookup table is attached to.\n\nA `profile_custom` join key always means the `$user_id` profile."
+        "description": "A saved user profile custom property a lookup table is attached to.\n\nA `profile_custom` join key always means the `$user_id` profile. The query\nreads whether it is list-valued from the saved custom property."
       },
       "ProfileCustomProperty": {
         "properties": {
@@ -1811,6 +1822,12 @@
             "minLength": 1,
             "title": "Name",
             "description": "Name of the user profile property."
+          },
+          "is_list": {
+            "type": "boolean",
+            "title": "Is List",
+            "description": "Set to true when the property is list-valued. Each element of the list is looked up in the lookup table, and a filter matches the looked-up values by `list_match`.",
+            "default": false
           }
         },
         "additionalProperties": false,
@@ -2046,7 +2063,7 @@
                 "type": "null"
               }
             ],
-            "description": "For list-valued properties, and for lookup columns whose join key is list-valued. Defaults to `any`."
+            "description": "For list-valued properties, and for lookup columns whose join key is list-valued (`join_key.is_list`). Defaults to `any`."
           },
           "list_item_match": {
             "anyOf": [
@@ -2062,7 +2079,7 @@
           "keep_only_matching": {
             "type": "boolean",
             "title": "Keep Only Matching",
-            "description": "For list-valued properties with `list_match: any`: drop the list elements that did not match instead of keeping the whole list.",
+            "description": "For list-valued properties with `list_match: any`: drop the list elements that did not match instead of keeping the whole list. Not supported for lookup properties.",
             "default": false
           }
         },
@@ -2108,7 +2125,7 @@
           "align_to_whole_unit": {
             "type": "boolean",
             "title": "Align To Whole Unit",
-            "description": "false: `value` units before now. true: rounded to a whole `unit`. For example: start 2 weeks ago -> false: 14 days before today; true: the beginning of that calendar week. end 1 month ago -> false: 30 days before today; true: the last day of the previous calendar month. "
+            "description": "false: `value` units before now. true: rounded to a whole `unit`. For example: start 2 weeks ago -> false: 14 days before today; true: the beginning of that calendar week. end 1 month ago -> false: 30 days before today; true: the last day of the previous calendar month. With `time.unit` set, a relative range's start also moves back to the beginning of its `time.unit` bucket; see `time.unit`."
           }
         },
         "additionalProperties": false,
@@ -2217,7 +2234,8 @@
           "type": {
             "type": "string",
             "const": "retention",
-            "title": "Type"
+            "title": "Type",
+            "description": "Set `type` to `event` to measure events, `funnel` for conversion through ordered steps, `retention` for how often users return after a start event, `cohort` for the members of a saved cohort, or `formula` to combine other metrics in this request."
           },
           "start_event": {
             "oneOf": [
@@ -2513,7 +2531,7 @@
                 "type": "null"
               }
             ],
-            "description": "The bucket size of the time series. When omitted, the query returns a single value for the whole range, and for a retention metric everyone who did the start event in the range forms one cohort. Rolling averages require a unit."
+            "description": "The bucket size of the time series. When omitted, the query returns a single value for the whole range, and for a retention metric everyone who did the start event in the range forms one cohort. When `start` or `end` is relative, the series starts at the beginning of the `unit` bucket that contains `start`, even when `align_to_whole_unit` is false, so the first bucket is whole; `end` is not extended to the end of its bucket. Rolling averages require a unit."
           }
         },
         "additionalProperties": false,
