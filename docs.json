@@ -457,6 +457,7 @@
                   "docs/data-governance/lexicon",
                   "docs/data-governance/data-views-and-classification",
                   "docs/data-governance/data-standards",
+                  "docs/data-governance/tracking-plans",
                   "docs/data-governance/event-approval",
                   "docs/data-governance/data-volume-monitoring",
                   "docs/data-governance/data-clean-up",
@@ -684,6 +685,7 @@
                   {
                     "group": "Grow Your Usership",
                     "pages": [
+                      "guides/guides-by-use-case/grow-your-usership/assess-agent-outcomes",
                       "guides/guides-by-use-case/grow-your-usership/run-web-experiments",
                       "guides/guides-by-use-case/grow-your-usership/grow-revenue"
                     ]

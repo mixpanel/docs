@@ -126,11 +126,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Only properties of this event.",
+              "description": "Only event properties of this event. Other types are excluded.",
               "title": "Event Name"
             },
             "required": false,
-            "description": "Only properties of this event."
+            "description": "Only event properties of this event. Other types are excluded."
           },
           {
             "in": "query",
@@ -144,11 +144,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition is hidden.",
+              "description": "`true`: only hidden definitions. `false`: only those not hidden, including every definition of a type that cannot be hidden. Omit for both. Types that can be hidden: `event`, `custom_event`, `event_property`.",
               "title": "Hidden"
             },
             "required": false,
-            "description": "Whether the definition is hidden."
+            "description": "`true`: only hidden definitions. `false`: only those not hidden, including every definition of a type that cannot be hidden. Omit for both. Types that can be hidden: `event`, `custom_event`, `event_property`."
           },
           {
             "in": "query",
@@ -162,11 +162,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked.",
+              "description": "`true`: only blocked definitions. `false`: only those not blocked, including every definition of a type that cannot be blocked. Omit for both. Types that can be blocked: `event`, `event_property`.",
               "title": "Blocked"
             },
             "required": false,
-            "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked."
+            "description": "`true`: only blocked definitions. `false`: only those not blocked, including every definition of a type that cannot be blocked. Omit for both. Types that can be blocked: `event`, `event_property`."
           },
           {
             "in": "query",
@@ -174,6 +174,8 @@
             "schema": {
               "description": "Only definitions carrying one of these tags.",
               "items": {
+                "maxLength": 175,
+                "minLength": 1,
                 "type": "string"
               },
               "title": "Tag",
@@ -226,11 +228,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition has a description.",
+              "description": "`true`: only definitions with a description. `false`: only those without one. Omit for both.",
               "title": "Has Description"
             },
             "required": false,
-            "description": "Whether the definition has a description."
+            "description": "`true`: only definitions with a description. `false`: only those without one. Omit for both."
           },
           {
             "in": "query",
@@ -244,11 +246,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition has an owner.",
+              "description": "`true`: only definitions with at least one owner. `false`: only those without one. Omit for both.",
               "title": "Has Owner"
             },
             "required": false,
-            "description": "Whether the definition has an owner."
+            "description": "`true`: only definitions with at least one owner. `false`: only those without one. Omit for both."
           },
           {
             "in": "query",
@@ -262,11 +264,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition is verified.",
+              "description": "`true`: only verified definitions. `false`: only unverified ones. Omit for both.",
               "title": "Verified"
             },
             "required": false,
-            "description": "Whether the definition is verified."
+            "description": "`true`: only verified definitions. `false`: only unverified ones. Omit for both."
           },
           {
             "$ref": "#/components/parameters/ProjectIdPathParameter"
@@ -334,15 +336,18 @@
                       "cohort": "#/components/schemas/CohortDataDefinitionResponse",
                       "custom_event": "#/components/schemas/CustomEventDataDefinitionResponse",
                       "custom_property": "#/components/schemas/CustomPropertyDataDefinitionResponse",
-                      "event": "#/components/schemas/DataDefinitionWithoutBodyResponse",
-                      "event_property": "#/components/schemas/DataDefinitionWithoutBodyResponse",
+                      "event": "#/components/schemas/EventDataDefinitionResponse",
+                      "event_property": "#/components/schemas/EventPropertyDataDefinitionResponse",
                       "metric": "#/components/schemas/MetricDataDefinitionResponse"
                     },
                     "propertyName": "type"
                   },
                   "oneOf": [
                     {
-                      "$ref": "#/components/schemas/DataDefinitionWithoutBodyResponse"
+                      "$ref": "#/components/schemas/EventDataDefinitionResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/EventPropertyDataDefinitionResponse"
                     },
                     {
                       "$ref": "#/components/schemas/CustomEventDataDefinitionResponse"
@@ -387,15 +392,18 @@
                     "cohort": "#/components/schemas/CreateCohortDataDefinitionRequest",
                     "custom_event": "#/components/schemas/CreateCustomEventDataDefinitionRequest",
                     "custom_property": "#/components/schemas/CreateCustomPropertyDataDefinitionRequest",
-                    "event": "#/components/schemas/CreateDataDefinitionWithoutBodyRequest",
-                    "event_property": "#/components/schemas/CreateDataDefinitionWithoutBodyRequest",
+                    "event": "#/components/schemas/CreateEventDataDefinitionRequest",
+                    "event_property": "#/components/schemas/CreateEventPropertyDataDefinitionRequest",
                     "metric": "#/components/schemas/CreateMetricDataDefinitionRequest"
                   },
                   "propertyName": "type"
                 },
                 "oneOf": [
                   {
-                    "$ref": "#/components/schemas/CreateDataDefinitionWithoutBodyRequest"
+                    "$ref": "#/components/schemas/CreateEventDataDefinitionRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateEventPropertyDataDefinitionRequest"
                   },
                   {
                     "$ref": "#/components/schemas/CreateCustomEventDataDefinitionRequest"
@@ -602,15 +610,18 @@
                       "cohort": "#/components/schemas/CohortDataDefinitionResponse",
                       "custom_event": "#/components/schemas/CustomEventDataDefinitionResponse",
                       "custom_property": "#/components/schemas/CustomPropertyDataDefinitionResponse",
-                      "event": "#/components/schemas/DataDefinitionWithoutBodyResponse",
-                      "event_property": "#/components/schemas/DataDefinitionWithoutBodyResponse",
+                      "event": "#/components/schemas/EventDataDefinitionResponse",
+                      "event_property": "#/components/schemas/EventPropertyDataDefinitionResponse",
                       "metric": "#/components/schemas/MetricDataDefinitionResponse"
                     },
                     "propertyName": "type"
                   },
                   "oneOf": [
                     {
-                      "$ref": "#/components/schemas/DataDefinitionWithoutBodyResponse"
+                      "$ref": "#/components/schemas/EventDataDefinitionResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/EventPropertyDataDefinitionResponse"
                     },
                     {
                       "$ref": "#/components/schemas/CustomEventDataDefinitionResponse"
@@ -740,15 +751,18 @@
                       "cohort": "#/components/schemas/CohortDataDefinitionResponse",
                       "custom_event": "#/components/schemas/CustomEventDataDefinitionResponse",
                       "custom_property": "#/components/schemas/CustomPropertyDataDefinitionResponse",
-                      "event": "#/components/schemas/DataDefinitionWithoutBodyResponse",
-                      "event_property": "#/components/schemas/DataDefinitionWithoutBodyResponse",
+                      "event": "#/components/schemas/EventDataDefinitionResponse",
+                      "event_property": "#/components/schemas/EventPropertyDataDefinitionResponse",
                       "metric": "#/components/schemas/MetricDataDefinitionResponse"
                     },
                     "propertyName": "type"
                   },
                   "oneOf": [
                     {
-                      "$ref": "#/components/schemas/DataDefinitionWithoutBodyResponse"
+                      "$ref": "#/components/schemas/EventDataDefinitionResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/EventPropertyDataDefinitionResponse"
                     },
                     {
                       "$ref": "#/components/schemas/CustomEventDataDefinitionResponse"
@@ -1269,11 +1283,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Only properties of this event.",
+              "description": "Only event properties of this event. Other types are excluded.",
               "title": "Event Name"
             },
             "required": false,
-            "description": "Only properties of this event."
+            "description": "Only event properties of this event. Other types are excluded."
           },
           {
             "in": "query",
@@ -1287,11 +1301,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition is hidden.",
+              "description": "`true`: only hidden definitions. `false`: only those not hidden, including every definition of a type that cannot be hidden. Omit for both. Types that can be hidden: `event`, `custom_event`, `event_property`.",
               "title": "Hidden"
             },
             "required": false,
-            "description": "Whether the definition is hidden."
+            "description": "`true`: only hidden definitions. `false`: only those not hidden, including every definition of a type that cannot be hidden. Omit for both. Types that can be hidden: `event`, `custom_event`, `event_property`."
           },
           {
             "in": "query",
@@ -1305,11 +1319,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked.",
+              "description": "`true`: only blocked definitions. `false`: only those not blocked, including every definition of a type that cannot be blocked. Omit for both. Types that can be blocked: `event`, `event_property`.",
               "title": "Blocked"
             },
             "required": false,
-            "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked."
+            "description": "`true`: only blocked definitions. `false`: only those not blocked, including every definition of a type that cannot be blocked. Omit for both. Types that can be blocked: `event`, `event_property`."
           },
           {
             "in": "query",
@@ -1317,6 +1331,8 @@
             "schema": {
               "description": "Only definitions carrying one of these tags.",
               "items": {
+                "maxLength": 175,
+                "minLength": 1,
                 "type": "string"
               },
               "title": "Tag",
@@ -1369,11 +1385,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition has a description.",
+              "description": "`true`: only definitions with a description. `false`: only those without one. Omit for both.",
               "title": "Has Description"
             },
             "required": false,
-            "description": "Whether the definition has a description."
+            "description": "`true`: only definitions with a description. `false`: only those without one. Omit for both."
           },
           {
             "in": "query",
@@ -1387,11 +1403,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition has an owner.",
+              "description": "`true`: only definitions with at least one owner. `false`: only those without one. Omit for both.",
               "title": "Has Owner"
             },
             "required": false,
-            "description": "Whether the definition has an owner."
+            "description": "`true`: only definitions with at least one owner. `false`: only those without one. Omit for both."
           },
           {
             "in": "query",
@@ -1405,11 +1421,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition is verified.",
+              "description": "`true`: only verified definitions. `false`: only unverified ones. Omit for both.",
               "title": "Verified"
             },
             "required": false,
-            "description": "Whether the definition is verified."
+            "description": "`true`: only verified definitions. `false`: only unverified ones. Omit for both."
           },
           {
             "$ref": "#/components/parameters/WorkspaceIdPathParameter"
@@ -1477,15 +1493,18 @@
                       "cohort": "#/components/schemas/CohortDataDefinitionResponse",
                       "custom_event": "#/components/schemas/CustomEventDataDefinitionResponse",
                       "custom_property": "#/components/schemas/CustomPropertyDataDefinitionResponse",
-                      "event": "#/components/schemas/DataDefinitionWithoutBodyResponse",
-                      "event_property": "#/components/schemas/DataDefinitionWithoutBodyResponse",
+                      "event": "#/components/schemas/EventDataDefinitionResponse",
+                      "event_property": "#/components/schemas/EventPropertyDataDefinitionResponse",
                       "metric": "#/components/schemas/MetricDataDefinitionResponse"
                     },
                     "propertyName": "type"
                   },
                   "oneOf": [
                     {
-                      "$ref": "#/components/schemas/DataDefinitionWithoutBodyResponse"
+                      "$ref": "#/components/schemas/EventDataDefinitionResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/EventPropertyDataDefinitionResponse"
                     },
                     {
                       "$ref": "#/components/schemas/CustomEventDataDefinitionResponse"
@@ -1530,15 +1549,18 @@
                     "cohort": "#/components/schemas/CreateCohortDataDefinitionRequest",
                     "custom_event": "#/components/schemas/CreateCustomEventDataDefinitionRequest",
                     "custom_property": "#/components/schemas/CreateCustomPropertyDataDefinitionRequest",
-                    "event": "#/components/schemas/CreateDataDefinitionWithoutBodyRequest",
-                    "event_property": "#/components/schemas/CreateDataDefinitionWithoutBodyRequest",
+                    "event": "#/components/schemas/CreateEventDataDefinitionRequest",
+                    "event_property": "#/components/schemas/CreateEventPropertyDataDefinitionRequest",
                     "metric": "#/components/schemas/CreateMetricDataDefinitionRequest"
                   },
                   "propertyName": "type"
                 },
                 "oneOf": [
                   {
-                    "$ref": "#/components/schemas/CreateDataDefinitionWithoutBodyRequest"
+                    "$ref": "#/components/schemas/CreateEventDataDefinitionRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateEventPropertyDataDefinitionRequest"
                   },
                   {
                     "$ref": "#/components/schemas/CreateCustomEventDataDefinitionRequest"
@@ -1745,15 +1767,18 @@
                       "cohort": "#/components/schemas/CohortDataDefinitionResponse",
                       "custom_event": "#/components/schemas/CustomEventDataDefinitionResponse",
                       "custom_property": "#/components/schemas/CustomPropertyDataDefinitionResponse",
-                      "event": "#/components/schemas/DataDefinitionWithoutBodyResponse",
-                      "event_property": "#/components/schemas/DataDefinitionWithoutBodyResponse",
+                      "event": "#/components/schemas/EventDataDefinitionResponse",
+                      "event_property": "#/components/schemas/EventPropertyDataDefinitionResponse",
                       "metric": "#/components/schemas/MetricDataDefinitionResponse"
                     },
                     "propertyName": "type"
                   },
                   "oneOf": [
                     {
-                      "$ref": "#/components/schemas/DataDefinitionWithoutBodyResponse"
+                      "$ref": "#/components/schemas/EventDataDefinitionResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/EventPropertyDataDefinitionResponse"
                     },
                     {
                       "$ref": "#/components/schemas/CustomEventDataDefinitionResponse"
@@ -1883,15 +1908,18 @@
                       "cohort": "#/components/schemas/CohortDataDefinitionResponse",
                       "custom_event": "#/components/schemas/CustomEventDataDefinitionResponse",
                       "custom_property": "#/components/schemas/CustomPropertyDataDefinitionResponse",
-                      "event": "#/components/schemas/DataDefinitionWithoutBodyResponse",
-                      "event_property": "#/components/schemas/DataDefinitionWithoutBodyResponse",
+                      "event": "#/components/schemas/EventDataDefinitionResponse",
+                      "event_property": "#/components/schemas/EventPropertyDataDefinitionResponse",
                       "metric": "#/components/schemas/MetricDataDefinitionResponse"
                     },
                     "propertyName": "type"
                   },
                   "oneOf": [
                     {
-                      "$ref": "#/components/schemas/DataDefinitionWithoutBodyResponse"
+                      "$ref": "#/components/schemas/EventDataDefinitionResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/EventPropertyDataDefinitionResponse"
                     },
                     {
                       "$ref": "#/components/schemas/CustomEventDataDefinitionResponse"
@@ -2912,33 +2940,8 @@
             "type": "string"
           },
           "name": {
-            "description": "The definition's name.",
             "title": "Name",
             "type": "string"
-          },
-          "event_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "description": {
             "anyOf": [
@@ -2949,18 +2952,34 @@
                 "type": "null"
               }
             ],
-            "description": "The definition's description.",
             "title": "Description"
           },
-          "hidden": {
-            "description": "Whether the definition is hidden in the UI.",
-            "title": "Hidden",
-            "type": "boolean"
+          "tags": {
+            "description": "The definition's tag names.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
           },
-          "blocked": {
-            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
-            "title": "Blocked",
-            "type": "boolean"
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/DataDefinitionOwner"
+            },
+            "title": "Owners",
+            "type": "array"
+          },
+          "created_at": {
+            "description": "When the definition was created.",
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "When the definition was last updated.",
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -2991,61 +3010,8 @@
             ],
             "description": "Who last verified the definition."
           },
-          "tags": {
-            "description": "The definition's tag names.",
-            "items": {
-              "type": "string"
-            },
-            "title": "Tags",
-            "type": "array"
-          },
-          "owners": {
-            "description": "The definition's owners.",
-            "items": {
-              "$ref": "#/components/schemas/DataDefinitionOwner"
-            },
-            "title": "Owners",
-            "type": "array"
-          },
-          "merged_into": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DataDefinitionSummary"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition this one is merged into."
-          },
-          "first_tracked_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When data for the definition was first seen.",
-            "title": "First Tracked At"
-          },
-          "created_at": {
-            "description": "When the definition was created.",
-            "format": "date-time",
-            "title": "Created At",
-            "type": "string"
-          },
-          "updated_at": {
-            "description": "When the definition was last updated.",
-            "format": "date-time",
-            "title": "Updated At",
-            "type": "string"
-          },
           "type": {
             "const": "behavior",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -3084,20 +3050,14 @@
         "required": [
           "id",
           "name",
-          "event_name",
-          "display_name",
           "description",
-          "hidden",
-          "blocked",
+          "tags",
+          "owners",
+          "created_at",
+          "updated_at",
           "verified",
           "last_verified_at",
           "last_verified_by",
-          "tags",
-          "owners",
-          "merged_into",
-          "first_tracked_at",
-          "created_at",
-          "updated_at",
           "type",
           "definition"
         ],
@@ -3282,33 +3242,8 @@
             "type": "string"
           },
           "name": {
-            "description": "The definition's name.",
             "title": "Name",
             "type": "string"
-          },
-          "event_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "description": {
             "anyOf": [
@@ -3319,18 +3254,34 @@
                 "type": "null"
               }
             ],
-            "description": "The definition's description.",
             "title": "Description"
           },
-          "hidden": {
-            "description": "Whether the definition is hidden in the UI.",
-            "title": "Hidden",
-            "type": "boolean"
+          "tags": {
+            "description": "The definition's tag names.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
           },
-          "blocked": {
-            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
-            "title": "Blocked",
-            "type": "boolean"
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/DataDefinitionOwner"
+            },
+            "title": "Owners",
+            "type": "array"
+          },
+          "created_at": {
+            "description": "When the definition was created.",
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "When the definition was last updated.",
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -3361,61 +3312,8 @@
             ],
             "description": "Who last verified the definition."
           },
-          "tags": {
-            "description": "The definition's tag names.",
-            "items": {
-              "type": "string"
-            },
-            "title": "Tags",
-            "type": "array"
-          },
-          "owners": {
-            "description": "The definition's owners.",
-            "items": {
-              "$ref": "#/components/schemas/DataDefinitionOwner"
-            },
-            "title": "Owners",
-            "type": "array"
-          },
-          "merged_into": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DataDefinitionSummary"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition this one is merged into."
-          },
-          "first_tracked_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When data for the definition was first seen.",
-            "title": "First Tracked At"
-          },
-          "created_at": {
-            "description": "When the definition was created.",
-            "format": "date-time",
-            "title": "Created At",
-            "type": "string"
-          },
-          "updated_at": {
-            "description": "When the definition was last updated.",
-            "format": "date-time",
-            "title": "Updated At",
-            "type": "string"
-          },
           "type": {
             "const": "cohort",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -3434,20 +3332,14 @@
         "required": [
           "id",
           "name",
-          "event_name",
-          "display_name",
           "description",
-          "hidden",
-          "blocked",
+          "tags",
+          "owners",
+          "created_at",
+          "updated_at",
           "verified",
           "last_verified_at",
           "last_verified_by",
-          "tags",
-          "owners",
-          "merged_into",
-          "first_tracked_at",
-          "created_at",
-          "updated_at",
           "type",
           "definition"
         ],
@@ -3898,33 +3790,8 @@
             "type": "string"
           },
           "name": {
-            "description": "The definition's name.",
             "title": "Name",
             "type": "string"
-          },
-          "event_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "description": {
             "anyOf": [
@@ -3935,18 +3802,34 @@
                 "type": "null"
               }
             ],
-            "description": "The definition's description.",
             "title": "Description"
           },
-          "hidden": {
-            "description": "Whether the definition is hidden in the UI.",
-            "title": "Hidden",
-            "type": "boolean"
+          "tags": {
+            "description": "The definition's tag names.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
           },
-          "blocked": {
-            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
-            "title": "Blocked",
-            "type": "boolean"
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/DataDefinitionOwner"
+            },
+            "title": "Owners",
+            "type": "array"
+          },
+          "created_at": {
+            "description": "When the definition was created.",
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "When the definition was last updated.",
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -3977,61 +3860,25 @@
             ],
             "description": "Who last verified the definition."
           },
-          "tags": {
-            "description": "The definition's tag names.",
-            "items": {
-              "type": "string"
-            },
-            "title": "Tags",
-            "type": "array"
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
           },
-          "owners": {
-            "description": "The definition's owners.",
-            "items": {
-              "$ref": "#/components/schemas/DataDefinitionOwner"
-            },
-            "title": "Owners",
-            "type": "array"
-          },
-          "merged_into": {
+          "display_name": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/DataDefinitionSummary"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition this one is merged into."
-          },
-          "first_tracked_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
                 "type": "string"
               },
               {
                 "type": "null"
               }
             ],
-            "description": "When data for the definition was first seen.",
-            "title": "First Tracked At"
-          },
-          "created_at": {
-            "description": "When the definition was created.",
-            "format": "date-time",
-            "title": "Created At",
-            "type": "string"
-          },
-          "updated_at": {
-            "description": "When the definition was last updated.",
-            "format": "date-time",
-            "title": "Updated At",
-            "type": "string"
+            "description": "The name shown in the UI.",
+            "title": "Display Name"
           },
           "type": {
             "const": "custom_event",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -4050,20 +3897,16 @@
         "required": [
           "id",
           "name",
-          "event_name",
-          "display_name",
           "description",
-          "hidden",
-          "blocked",
+          "tags",
+          "owners",
+          "created_at",
+          "updated_at",
           "verified",
           "last_verified_at",
           "last_verified_by",
-          "tags",
-          "owners",
-          "merged_into",
-          "first_tracked_at",
-          "created_at",
-          "updated_at",
+          "hidden",
+          "display_name",
           "type",
           "definition"
         ],
@@ -4110,33 +3953,8 @@
             "type": "string"
           },
           "name": {
-            "description": "The definition's name.",
             "title": "Name",
             "type": "string"
-          },
-          "event_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "description": {
             "anyOf": [
@@ -4147,47 +3965,7 @@
                 "type": "null"
               }
             ],
-            "description": "The definition's description.",
             "title": "Description"
-          },
-          "hidden": {
-            "description": "Whether the definition is hidden in the UI.",
-            "title": "Hidden",
-            "type": "boolean"
-          },
-          "blocked": {
-            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
-            "title": "Blocked",
-            "type": "boolean"
-          },
-          "verified": {
-            "description": "Whether the definition is verified.",
-            "title": "Verified",
-            "type": "boolean"
-          },
-          "last_verified_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When the definition was last verified.",
-            "title": "Last Verified At"
-          },
-          "last_verified_by": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DataDefinitionVerifier"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Who last verified the definition."
           },
           "tags": {
             "description": "The definition's tag names.",
@@ -4198,36 +3976,11 @@
             "type": "array"
           },
           "owners": {
-            "description": "The definition's owners.",
             "items": {
               "$ref": "#/components/schemas/DataDefinitionOwner"
             },
             "title": "Owners",
             "type": "array"
-          },
-          "merged_into": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DataDefinitionSummary"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition this one is merged into."
-          },
-          "first_tracked_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When data for the definition was first seen.",
-            "title": "First Tracked At"
           },
           "created_at": {
             "description": "When the definition was created.",
@@ -4243,7 +3996,6 @@
           },
           "type": {
             "const": "custom_property",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -4262,18 +4014,9 @@
         "required": [
           "id",
           "name",
-          "event_name",
-          "display_name",
           "description",
-          "hidden",
-          "blocked",
-          "verified",
-          "last_verified_at",
-          "last_verified_by",
           "tags",
           "owners",
-          "merged_into",
-          "first_tracked_at",
           "created_at",
           "updated_at",
           "type",
@@ -4466,12 +4209,10 @@
       "DataDefinitionSummary": {
         "properties": {
           "id": {
-            "description": "The definition's ID.",
             "title": "Id",
             "type": "string"
           },
           "name": {
-            "description": "The definition's name.",
             "title": "Name",
             "type": "string"
           }
@@ -4513,198 +4254,6 @@
           "display_name"
         ],
         "title": "DataDefinitionVerifier",
-        "type": "object"
-      },
-      "DataDefinitionWithoutBodyResponse": {
-        "description": "An event or event property, which has no definition body.",
-        "properties": {
-          "id": {
-            "description": "Opaque definition ID, stable across renames.",
-            "title": "Id",
-            "type": "string"
-          },
-          "name": {
-            "description": "The definition's name.",
-            "title": "Name",
-            "type": "string"
-          },
-          "event_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition's description.",
-            "title": "Description"
-          },
-          "hidden": {
-            "description": "Whether the definition is hidden in the UI.",
-            "title": "Hidden",
-            "type": "boolean"
-          },
-          "blocked": {
-            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
-            "title": "Blocked",
-            "type": "boolean"
-          },
-          "verified": {
-            "description": "Whether the definition is verified.",
-            "title": "Verified",
-            "type": "boolean"
-          },
-          "last_verified_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When the definition was last verified.",
-            "title": "Last Verified At"
-          },
-          "last_verified_by": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DataDefinitionVerifier"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Who last verified the definition."
-          },
-          "tags": {
-            "description": "The definition's tag names.",
-            "items": {
-              "type": "string"
-            },
-            "title": "Tags",
-            "type": "array"
-          },
-          "owners": {
-            "description": "The definition's owners.",
-            "items": {
-              "$ref": "#/components/schemas/DataDefinitionOwner"
-            },
-            "title": "Owners",
-            "type": "array"
-          },
-          "merged_into": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DataDefinitionSummary"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition this one is merged into."
-          },
-          "first_tracked_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When data for the definition was first seen.",
-            "title": "First Tracked At"
-          },
-          "created_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When the definition was created. Null if the event or property has no stored definition.",
-            "title": "Created At"
-          },
-          "updated_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When the definition was last updated. Null if the event or property has no stored definition.",
-            "title": "Updated At"
-          },
-          "type": {
-            "description": "The kind of definition.",
-            "enum": [
-              "event",
-              "event_property"
-            ],
-            "title": "Type",
-            "type": "string"
-          },
-          "definition": {
-            "description": "Always null for this kind of definition.",
-            "title": "Definition",
-            "type": "null"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "event_name",
-          "display_name",
-          "description",
-          "hidden",
-          "blocked",
-          "verified",
-          "last_verified_at",
-          "last_verified_by",
-          "tags",
-          "owners",
-          "merged_into",
-          "first_tracked_at",
-          "created_at",
-          "updated_at",
-          "type",
-          "definition"
-        ],
-        "title": "DataDefinitionWithoutBodyResponse",
         "type": "object"
       },
       "Event": {
@@ -4912,6 +4461,171 @@
           "id"
         ],
         "title": "EventCustomProperty",
+        "type": "object"
+      },
+      "EventDataDefinitionResponse": {
+        "properties": {
+          "id": {
+            "description": "Opaque definition ID, stable across renames.",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "tags": {
+            "description": "The definition's tag names.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/DataDefinitionOwner"
+            },
+            "title": "Owners",
+            "type": "array"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was created. Null if the event or property has no stored definition.",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was last updated. Null if the event or property has no stored definition.",
+            "title": "Updated At"
+          },
+          "verified": {
+            "description": "Whether the definition is verified.",
+            "title": "Verified",
+            "type": "boolean"
+          },
+          "last_verified_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was last verified.",
+            "title": "Last Verified At"
+          },
+          "last_verified_by": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DataDefinitionVerifier"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Who last verified the definition."
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest.",
+            "title": "Blocked",
+            "type": "boolean"
+          },
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "merged_into": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DataDefinitionSummary"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The definition this one is merged into."
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The name shown in the UI.",
+            "title": "Display Name"
+          },
+          "type": {
+            "const": "event",
+            "title": "Type",
+            "type": "string"
+          },
+          "first_tracked_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When data for the event was first seen.",
+            "title": "First Tracked At"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "tags",
+          "owners",
+          "created_at",
+          "updated_at",
+          "verified",
+          "last_verified_at",
+          "last_verified_by",
+          "blocked",
+          "hidden",
+          "merged_into",
+          "display_name",
+          "type",
+          "first_tracked_at"
+        ],
+        "title": "EventDataDefinitionResponse",
         "type": "object"
       },
       "EventFrequencyPerUserMeasurement": {
@@ -5139,6 +4853,170 @@
           "name"
         ],
         "title": "EventProperty",
+        "type": "object"
+      },
+      "EventPropertyDataDefinitionResponse": {
+        "properties": {
+          "id": {
+            "description": "Opaque definition ID, stable across renames.",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "tags": {
+            "description": "The definition's tag names.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/DataDefinitionOwner"
+            },
+            "title": "Owners",
+            "type": "array"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was created. Null if the event or property has no stored definition.",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was last updated. Null if the event or property has no stored definition.",
+            "title": "Updated At"
+          },
+          "verified": {
+            "description": "Whether the definition is verified.",
+            "title": "Verified",
+            "type": "boolean"
+          },
+          "last_verified_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was last verified.",
+            "title": "Last Verified At"
+          },
+          "last_verified_by": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DataDefinitionVerifier"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Who last verified the definition."
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest.",
+            "title": "Blocked",
+            "type": "boolean"
+          },
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "merged_into": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DataDefinitionSummary"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The definition this one is merged into."
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The name shown in the UI.",
+            "title": "Display Name"
+          },
+          "type": {
+            "const": "event_property",
+            "title": "Type",
+            "type": "string"
+          },
+          "event_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The event the property belongs to. Null for a property of every event.",
+            "title": "Event Name"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "tags",
+          "owners",
+          "created_at",
+          "updated_at",
+          "verified",
+          "last_verified_at",
+          "last_verified_by",
+          "blocked",
+          "hidden",
+          "merged_into",
+          "display_name",
+          "type",
+          "event_name"
+        ],
+        "title": "EventPropertyDataDefinitionResponse",
         "type": "object"
       },
       "EventPropertyMeasurement": {
@@ -5990,15 +5868,18 @@
                   "cohort": "#/components/schemas/CohortDataDefinitionResponse",
                   "custom_event": "#/components/schemas/CustomEventDataDefinitionResponse",
                   "custom_property": "#/components/schemas/CustomPropertyDataDefinitionResponse",
-                  "event": "#/components/schemas/DataDefinitionWithoutBodyResponse",
-                  "event_property": "#/components/schemas/DataDefinitionWithoutBodyResponse",
+                  "event": "#/components/schemas/EventDataDefinitionResponse",
+                  "event_property": "#/components/schemas/EventPropertyDataDefinitionResponse",
                   "metric": "#/components/schemas/MetricDataDefinitionResponse"
                 },
                 "propertyName": "type"
               },
               "oneOf": [
                 {
-                  "$ref": "#/components/schemas/DataDefinitionWithoutBodyResponse"
+                  "$ref": "#/components/schemas/EventDataDefinitionResponse"
+                },
+                {
+                  "$ref": "#/components/schemas/EventPropertyDataDefinitionResponse"
                 },
                 {
                   "$ref": "#/components/schemas/CustomEventDataDefinitionResponse"
@@ -6176,33 +6057,8 @@
             "type": "string"
           },
           "name": {
-            "description": "The definition's name.",
             "title": "Name",
             "type": "string"
-          },
-          "event_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "description": {
             "anyOf": [
@@ -6213,18 +6069,34 @@
                 "type": "null"
               }
             ],
-            "description": "The definition's description.",
             "title": "Description"
           },
-          "hidden": {
-            "description": "Whether the definition is hidden in the UI.",
-            "title": "Hidden",
-            "type": "boolean"
+          "tags": {
+            "description": "The definition's tag names.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
           },
-          "blocked": {
-            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
-            "title": "Blocked",
-            "type": "boolean"
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/DataDefinitionOwner"
+            },
+            "title": "Owners",
+            "type": "array"
+          },
+          "created_at": {
+            "description": "When the definition was created.",
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "When the definition was last updated.",
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -6255,61 +6127,8 @@
             ],
             "description": "Who last verified the definition."
           },
-          "tags": {
-            "description": "The definition's tag names.",
-            "items": {
-              "type": "string"
-            },
-            "title": "Tags",
-            "type": "array"
-          },
-          "owners": {
-            "description": "The definition's owners.",
-            "items": {
-              "$ref": "#/components/schemas/DataDefinitionOwner"
-            },
-            "title": "Owners",
-            "type": "array"
-          },
-          "merged_into": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DataDefinitionSummary"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition this one is merged into."
-          },
-          "first_tracked_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When data for the definition was first seen.",
-            "title": "First Tracked At"
-          },
-          "created_at": {
-            "description": "When the definition was created.",
-            "format": "date-time",
-            "title": "Created At",
-            "type": "string"
-          },
-          "updated_at": {
-            "description": "When the definition was last updated.",
-            "format": "date-time",
-            "title": "Updated At",
-            "type": "string"
-          },
           "type": {
             "const": "metric",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -6365,20 +6184,14 @@
         "required": [
           "id",
           "name",
-          "event_name",
-          "display_name",
           "description",
-          "hidden",
-          "blocked",
+          "tags",
+          "owners",
+          "created_at",
+          "updated_at",
           "verified",
           "last_verified_at",
           "last_verified_by",
-          "tags",
-          "owners",
-          "merged_into",
-          "first_tracked_at",
-          "created_at",
-          "updated_at",
           "type",
           "definition"
         ],
@@ -7222,13 +7035,12 @@
         "additionalProperties": false,
         "properties": {
           "name": {
-            "description": "The definition's name.",
             "maxLength": 255,
             "minLength": 1,
             "title": "Name",
             "type": "string"
           },
-          "event_name": {
+          "description": {
             "anyOf": [
               {
                 "maxLength": 255,
@@ -7238,19 +7050,6 @@
                 "type": "null"
               }
             ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition's description.",
             "title": "Description"
           },
           "tags": {
@@ -7264,16 +7063,14 @@
             "type": "array"
           },
           "owners": {
-            "description": "The definition's owners.",
             "items": {
-              "$ref": "#/components/schemas/OwnerRef"
+              "$ref": "#/components/schemas/DataDefinitionOwnerRef"
             },
             "title": "Owners",
             "type": "array"
           },
           "type": {
             "const": "behavior",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -7313,13 +7110,12 @@
         "additionalProperties": false,
         "properties": {
           "name": {
-            "description": "The definition's name.",
             "maxLength": 255,
             "minLength": 1,
             "title": "Name",
             "type": "string"
           },
-          "event_name": {
+          "description": {
             "anyOf": [
               {
                 "maxLength": 255,
@@ -7329,19 +7125,6 @@
                 "type": "null"
               }
             ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition's description.",
             "title": "Description"
           },
           "tags": {
@@ -7355,16 +7138,14 @@
             "type": "array"
           },
           "owners": {
-            "description": "The definition's owners.",
             "items": {
-              "$ref": "#/components/schemas/OwnerRef"
+              "$ref": "#/components/schemas/DataDefinitionOwnerRef"
             },
             "title": "Owners",
             "type": "array"
           },
           "type": {
             "const": "cohort",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -7385,13 +7166,12 @@
         "additionalProperties": false,
         "properties": {
           "name": {
-            "description": "The definition's name.",
             "maxLength": 255,
             "minLength": 1,
             "title": "Name",
             "type": "string"
           },
-          "event_name": {
+          "description": {
             "anyOf": [
               {
                 "maxLength": 255,
@@ -7401,19 +7181,6 @@
                 "type": "null"
               }
             ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition's description.",
             "title": "Description"
           },
           "tags": {
@@ -7427,9 +7194,8 @@
             "type": "array"
           },
           "owners": {
-            "description": "The definition's owners.",
             "items": {
-              "$ref": "#/components/schemas/OwnerRef"
+              "$ref": "#/components/schemas/DataDefinitionOwnerRef"
             },
             "title": "Owners",
             "type": "array"
@@ -7449,7 +7215,6 @@
           },
           "type": {
             "const": "custom_event",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -7470,13 +7235,12 @@
         "additionalProperties": false,
         "properties": {
           "name": {
-            "description": "The definition's name.",
             "maxLength": 255,
             "minLength": 1,
             "title": "Name",
             "type": "string"
           },
-          "event_name": {
+          "description": {
             "anyOf": [
               {
                 "maxLength": 255,
@@ -7486,19 +7250,6 @@
                 "type": "null"
               }
             ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition's description.",
             "title": "Description"
           },
           "tags": {
@@ -7512,16 +7263,14 @@
             "type": "array"
           },
           "owners": {
-            "description": "The definition's owners.",
             "items": {
-              "$ref": "#/components/schemas/OwnerRef"
+              "$ref": "#/components/schemas/DataDefinitionOwnerRef"
             },
             "title": "Owners",
             "type": "array"
           },
           "type": {
             "const": "custom_property",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -7538,18 +7287,16 @@
         "title": "CreateCustomPropertyDataDefinitionRequest",
         "type": "object"
       },
-      "CreateDataDefinitionWithoutBodyRequest": {
+      "CreateEventDataDefinitionRequest": {
         "additionalProperties": false,
-        "description": "An event or event property, which has no definition body.",
         "properties": {
           "name": {
-            "description": "The definition's name.",
             "maxLength": 255,
             "minLength": 1,
             "title": "Name",
             "type": "string"
           },
-          "event_name": {
+          "description": {
             "anyOf": [
               {
                 "maxLength": 255,
@@ -7559,19 +7306,6 @@
                 "type": "null"
               }
             ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition's description.",
             "title": "Description"
           },
           "tags": {
@@ -7585,9 +7319,8 @@
             "type": "array"
           },
           "owners": {
-            "description": "The definition's owners.",
             "items": {
-              "$ref": "#/components/schemas/OwnerRef"
+              "$ref": "#/components/schemas/DataDefinitionOwnerRef"
             },
             "title": "Owners",
             "type": "array"
@@ -7606,11 +7339,7 @@
             "title": "Display Name"
           },
           "type": {
-            "description": "The kind of definition.",
-            "enum": [
-              "event",
-              "event_property"
-            ],
+            "const": "event",
             "title": "Type",
             "type": "string"
           }
@@ -7619,20 +7348,19 @@
           "name",
           "type"
         ],
-        "title": "CreateDataDefinitionWithoutBodyRequest",
+        "title": "CreateEventDataDefinitionRequest",
         "type": "object"
       },
-      "CreateMetricDataDefinitionRequest": {
+      "CreateEventPropertyDataDefinitionRequest": {
         "additionalProperties": false,
         "properties": {
           "name": {
-            "description": "The definition's name.",
             "maxLength": 255,
             "minLength": 1,
             "title": "Name",
             "type": "string"
           },
-          "event_name": {
+          "description": {
             "anyOf": [
               {
                 "maxLength": 255,
@@ -7642,19 +7370,6 @@
                 "type": "null"
               }
             ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition's description.",
             "title": "Description"
           },
           "tags": {
@@ -7668,16 +7383,92 @@
             "type": "array"
           },
           "owners": {
-            "description": "The definition's owners.",
             "items": {
-              "$ref": "#/components/schemas/OwnerRef"
+              "$ref": "#/components/schemas/DataDefinitionOwnerRef"
+            },
+            "title": "Owners",
+            "type": "array"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The name shown in the UI.",
+            "title": "Display Name"
+          },
+          "type": {
+            "const": "event_property",
+            "title": "Type",
+            "type": "string"
+          },
+          "event_name": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The event the property belongs to. Omit for a property of every event.",
+            "title": "Event Name"
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ],
+        "title": "CreateEventPropertyDataDefinitionRequest",
+        "type": "object"
+      },
+      "CreateMetricDataDefinitionRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "maxLength": 255,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "tags": {
+            "description": "The definition's tag names.",
+            "items": {
+              "maxLength": 175,
+              "minLength": 1,
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/DataDefinitionOwnerRef"
             },
             "title": "Owners",
             "type": "array"
           },
           "type": {
             "const": "metric",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -7730,13 +7521,15 @@
         "title": "CreateMetricDataDefinitionRequest",
         "type": "object"
       },
-      "OwnerRef": {
+      "DataDefinitionOwnerRef": {
         "additionalProperties": false,
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/OwnerType"
+            "$ref": "#/components/schemas/OwnerType",
+            "description": "Whether the owner is a user or a team."
           },
           "id": {
+            "description": "The owner's user or team ID.",
             "maxLength": 64,
             "minLength": 1,
             "title": "Id",
@@ -7747,22 +7540,19 @@
           "type",
           "id"
         ],
-        "title": "OwnerRef",
+        "title": "DataDefinitionOwnerRef",
         "type": "object"
       },
       "DataDefinitionRef": {
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/EntityType",
-            "description": "The kind of definition."
+            "$ref": "#/components/schemas/EntityType"
           },
           "id": {
-            "description": "The definition's ID.",
             "title": "Id",
             "type": "string"
           },
           "name": {
-            "description": "The definition's name.",
             "title": "Name",
             "type": "string"
           }
@@ -7812,7 +7602,7 @@
       },
       "MergeDataDefinitionRequest": {
         "additionalProperties": false,
-        "description": "Fold ``sources`` into ``canonical``, all of one ``type``. Exactly one merge per request.",
+        "description": "Fold `sources` into `canonical`, all of one `type`. Exactly one merge per request.",
         "properties": {
           "type": {
             "description": "The kind of definition to merge.",
@@ -7949,28 +7739,6 @@
         "title": "CollectionOperation",
         "type": "string"
       },
-      "DataDefinitionOwnerRef": {
-        "additionalProperties": false,
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/OwnerType",
-            "description": "Whether the owner is a user or a team."
-          },
-          "id": {
-            "description": "The owner's user or team ID.",
-            "maxLength": 64,
-            "minLength": 1,
-            "title": "Id",
-            "type": "string"
-          }
-        },
-        "required": [
-          "type",
-          "id"
-        ],
-        "title": "DataDefinitionOwnerRef",
-        "type": "object"
-      },
       "DataDefinitionOwnersPatch": {
         "additionalProperties": false,
         "properties": {
@@ -7979,7 +7747,6 @@
             "description": "Add the owners, replace the definition's owners with them, or remove them."
           },
           "values": {
-            "description": "The owners.",
             "items": {
               "$ref": "#/components/schemas/DataDefinitionOwnerRef"
             },
@@ -8024,7 +7791,7 @@
         "description": "The fields to write on the definition. A field left out is unchanged.",
         "properties": {
           "name": {
-            "description": "The definition's new name. Only custom events, custom properties, behaviors, metrics, and cohorts can be renamed.",
+            "description": "The definition's new name. Only for these types: `custom_event`, `custom_property`, `metric`, `behavior`, `cohort`.",
             "maxLength": 255,
             "minLength": 1,
             "title": "Name",
@@ -8033,6 +7800,7 @@
           "description": {
             "anyOf": [
               {
+                "maxLength": 255,
                 "type": "string"
               },
               {
@@ -8052,7 +7820,7 @@
                 "type": "null"
               }
             ],
-            "description": "The name shown in the UI. `null` clears it.",
+            "description": "The name shown in the UI. `null` clears it. Only for these types: `event`, `custom_event`, `event_property`.",
             "title": "Display Name"
           },
           "tags": {
@@ -8064,17 +7832,17 @@
             "description": "Change the definition's owners."
           },
           "hidden": {
-            "description": "Hide or unhide the definition.",
+            "description": "Hide or unhide the definition. Only for these types: `event`, `custom_event`, `event_property`.",
             "title": "Hidden",
             "type": "boolean"
           },
           "blocked": {
-            "description": "Block or unblock the definition. Blocking drops its incoming data at ingest.",
+            "description": "Block or unblock the definition. Blocking drops its incoming data at ingest. Only for these types: `event`, `event_property`.",
             "title": "Blocked",
             "type": "boolean"
           },
           "verified": {
-            "description": "Verify the definition.",
+            "description": "Verify the definition. Only for these types: `event`, `custom_event`, `event_property`, `metric`, `behavior`, `cohort`.",
             "title": "Verified",
             "type": "boolean"
           }
@@ -8085,12 +7853,10 @@
       "DataDefinitionTagResponse": {
         "properties": {
           "id": {
-            "description": "The tag's ID.",
             "title": "Id",
             "type": "string"
           },
           "name": {
-            "description": "The tag's name.",
             "title": "Name",
             "type": "string"
           },
