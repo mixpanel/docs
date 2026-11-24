@@ -2478,6 +2478,66 @@
         "title": "CursorPaginationResponse",
         "type": "object"
       },
+      "ServiceAccountActorSummary": {
+        "properties": {
+          "type": {
+            "const": "service_account",
+            "description": "The actor is a service account.",
+            "title": "Type",
+            "type": "string"
+          },
+          "id": {
+            "description": "The service account's user ID.",
+            "title": "Id",
+            "type": "string"
+          },
+          "display_name": {
+            "description": "The service account's username.",
+            "title": "Display Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "id",
+          "display_name"
+        ],
+        "title": "ServiceAccountActorSummary",
+        "type": "object"
+      },
+      "UserActorSummary": {
+        "properties": {
+          "type": {
+            "const": "user",
+            "description": "The actor is a person.",
+            "title": "Type",
+            "type": "string"
+          },
+          "id": {
+            "description": "The actor's user ID.",
+            "title": "Id",
+            "type": "string"
+          },
+          "display_name": {
+            "description": "The actor's full name, or email when no name is set.",
+            "title": "Display Name",
+            "type": "string"
+          },
+          "email": {
+            "description": "The actor's email address.",
+            "title": "Email",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "id",
+          "display_name",
+          "email"
+        ],
+        "title": "UserActorSummary",
+        "type": "object"
+      },
       "AuditLog": {
         "properties": {
           "project_id": {
@@ -3002,13 +3062,28 @@
           "last_verified_by": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/DataDefinitionVerifier"
+                "discriminator": {
+                  "mapping": {
+                    "service_account": "#/components/schemas/ServiceAccountActorSummary",
+                    "user": "#/components/schemas/UserActorSummary"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UserActorSummary"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ServiceAccountActorSummary"
+                  }
+                ]
               },
               {
                 "type": "null"
               }
             ],
-            "description": "Who last verified the definition."
+            "description": "Who last verified the definition. Null if it was never verified or the verifier is no longer in the organization.",
+            "title": "Last Verified By"
           },
           "type": {
             "const": "behavior",
@@ -3304,13 +3379,28 @@
           "last_verified_by": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/DataDefinitionVerifier"
+                "discriminator": {
+                  "mapping": {
+                    "service_account": "#/components/schemas/ServiceAccountActorSummary",
+                    "user": "#/components/schemas/UserActorSummary"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UserActorSummary"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ServiceAccountActorSummary"
+                  }
+                ]
               },
               {
                 "type": "null"
               }
             ],
-            "description": "Who last verified the definition."
+            "description": "Who last verified the definition. Null if it was never verified or the verifier is no longer in the organization.",
+            "title": "Last Verified By"
           },
           "type": {
             "const": "cohort",
@@ -3852,13 +3942,28 @@
           "last_verified_by": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/DataDefinitionVerifier"
+                "discriminator": {
+                  "mapping": {
+                    "service_account": "#/components/schemas/ServiceAccountActorSummary",
+                    "user": "#/components/schemas/UserActorSummary"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UserActorSummary"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ServiceAccountActorSummary"
+                  }
+                ]
               },
               {
                 "type": "null"
               }
             ],
-            "description": "Who last verified the definition."
+            "description": "Who last verified the definition. Null if it was never verified or the verifier is no longer in the organization.",
+            "title": "Last Verified By"
           },
           "hidden": {
             "description": "Whether the definition is hidden in the UI.",
@@ -4224,38 +4329,6 @@
         "title": "DataDefinitionSummary",
         "type": "object"
       },
-      "DataDefinitionVerifier": {
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/OwnerType",
-            "description": "Whether the verifier is a user or a team."
-          },
-          "id": {
-            "description": "The verifier's user or team ID.",
-            "title": "Id",
-            "type": "string"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The verifier's name.",
-            "title": "Display Name"
-          }
-        },
-        "required": [
-          "type",
-          "id",
-          "display_name"
-        ],
-        "title": "DataDefinitionVerifier",
-        "type": "object"
-      },
       "Event": {
         "properties": {
           "filters": {
@@ -4547,13 +4620,28 @@
           "last_verified_by": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/DataDefinitionVerifier"
+                "discriminator": {
+                  "mapping": {
+                    "service_account": "#/components/schemas/ServiceAccountActorSummary",
+                    "user": "#/components/schemas/UserActorSummary"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UserActorSummary"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ServiceAccountActorSummary"
+                  }
+                ]
               },
               {
                 "type": "null"
               }
             ],
-            "description": "Who last verified the definition."
+            "description": "Who last verified the definition. Null if it was never verified or the verifier is no longer in the organization.",
+            "title": "Last Verified By"
           },
           "blocked": {
             "description": "Whether the definition's incoming data is dropped at ingest.",
@@ -4939,13 +5027,28 @@
           "last_verified_by": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/DataDefinitionVerifier"
+                "discriminator": {
+                  "mapping": {
+                    "service_account": "#/components/schemas/ServiceAccountActorSummary",
+                    "user": "#/components/schemas/UserActorSummary"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UserActorSummary"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ServiceAccountActorSummary"
+                  }
+                ]
               },
               {
                 "type": "null"
               }
             ],
-            "description": "Who last verified the definition."
+            "description": "Who last verified the definition. Null if it was never verified or the verifier is no longer in the organization.",
+            "title": "Last Verified By"
           },
           "blocked": {
             "description": "Whether the definition's incoming data is dropped at ingest.",
@@ -6119,13 +6222,28 @@
           "last_verified_by": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/DataDefinitionVerifier"
+                "discriminator": {
+                  "mapping": {
+                    "service_account": "#/components/schemas/ServiceAccountActorSummary",
+                    "user": "#/components/schemas/UserActorSummary"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UserActorSummary"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ServiceAccountActorSummary"
+                  }
+                ]
               },
               {
                 "type": "null"
               }
             ],
-            "description": "Who last verified the definition."
+            "description": "Who last verified the definition. Null if it was never verified or the verifier is no longer in the organization.",
+            "title": "Last Verified By"
           },
           "type": {
             "const": "metric",
@@ -7796,6 +7914,82 @@
             "minLength": 1,
             "title": "Name",
             "type": "string"
+          },
+          "definition": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CustomEventDefinition"
+              },
+              {
+                "$ref": "#/components/schemas/CustomPropertyDefinition"
+              },
+              {
+                "description": "Set `type` to `event` for events counted as they happen, `funnel` for ordered steps, or `retention` for a start event and a return event.",
+                "discriminator": {
+                  "mapping": {
+                    "event": "#/components/schemas/EventBehavior",
+                    "funnel": "#/components/schemas/FunnelBehavior",
+                    "retention": "#/components/schemas/RetentionBehavior"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/EventBehavior"
+                  },
+                  {
+                    "$ref": "#/components/schemas/FunnelBehavior"
+                  },
+                  {
+                    "$ref": "#/components/schemas/RetentionBehavior"
+                  }
+                ]
+              },
+              {
+                "description": "One metric, or a formula's inputs followed by the formula, which refers to each input by its `display_name`.",
+                "items": {
+                  "description": "Set `type` to `event`, `funnel`, `retention`, `cohort`, or `formula` for a metric defined inline, or `saved_metric` for a saved metric.",
+                  "discriminator": {
+                    "mapping": {
+                      "cohort": "#/components/schemas/CohortMetric",
+                      "event": "#/components/schemas/EventMetric",
+                      "formula": "#/components/schemas/FormulaMetric",
+                      "funnel": "#/components/schemas/FunnelMetric",
+                      "retention": "#/components/schemas/RetentionMetric",
+                      "saved_metric": "#/components/schemas/SavedMetric"
+                    },
+                    "propertyName": "type"
+                  },
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/EventMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FunnelMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/RetentionMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CohortMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FormulaMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SavedMetric"
+                    }
+                  ]
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              {
+                "$ref": "#/components/schemas/CohortDefinition"
+              }
+            ],
+            "description": "Replaces the definition's whole body. Only for these types: `custom_event`, `custom_property`, `metric`, `behavior`, `cohort`.",
+            "title": "Definition"
           },
           "description": {
             "anyOf": [

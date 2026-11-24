@@ -1,7 +1,7 @@
 ---
 sidebarTitle: Protecting User Data
 title: "Protecting User Data"
-description: "Opting users out of tracking and anonymizing data"
+description: "Opt users out of tracking, disable geolocation, anonymize users, and block default properties from the data you send to Mixpanel."
 related:
   - /docs/privacy/end-user-data-management
   - /docs/tracking-best-practices/geolocation
@@ -31,7 +31,8 @@ mixpanel.opt_out_tracking();
 ```
 
 ```objc Objective-C
-Mixpanel *mixpanel = [Mixpanel sharedInstance];\n[mixpanel optOutTracking];
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
+[mixpanel optOutTracking];
 ```
 
 ```swift Swift
@@ -92,7 +93,8 @@ mixpanel.opt_in_tracking();
 ```
 
 ```objc Objective-C
-Mixpanel *mixpanel = [Mixpanel sharedInstance];\n[mixpanel optOutTracking];
+Mixpanel *mixpanel = [Mixpanel sharedInstance];
+[mixpanel optInTracking];
 ```
 
 ```swift Swift
