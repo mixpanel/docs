@@ -1,7 +1,7 @@
 ---
 sidebarTitle: iOS (Swift)
 title: "Mixpanel SDKs: iOS (Swift)"
-description: "Install and configure the Mixpanel Swift SDK for iOS via CocoaPods, Carthage, or Swift Package Manager"
+description: "Install and configure the Mixpanel Swift SDK for iOS via Swift Package Manager, Carthage, or CocoaPods (deprecated)"
 related:
   - /docs/tracking-methods/sdks/swift/swift-replay
   - /docs/tracking-methods/sdks/swift/swift-flags
@@ -28,49 +28,12 @@ If your app needs to support an older OS, stay on 6.x.
 
 ## Installing the Library
 
-You can install the Swift library by using CocoaPods, Carthage, or Swift Package Manager.
+You can install the Swift library by using Swift Package Manager (recommended), Carthage, or CocoaPods (deprecated).
 
 <Tabs>
-  <Tab title="Swift Package Manager">
+  <Tab title="Swift Package Manager (recommended)" id="swift-package-manager">
     1. In Xcode, select File \> Add Packages...
-    2. Enter the package URL for [this repository](https://github.com/mixpanel/mixpanel-swift) and select version v2.8.0 or above.
-  </Tab>
-  <Tab title="CocoaPods">
-    1. Install CocoaPods by typing the following in your command line:
-
-    ```bash
-    # install CocoaPods
-    gem install cocoapods
-    ```
-
-    2. After installing CocoaPods, create a local CocoaPods spec mirror by running the following:
-
-    ```bash
-    # Create CocoaPods spec mirror
-    pod setup
-    ```
-
-    3. Then navigate to your Xcode project directory and create a Podfile by running the following:
-
-    ```bash
-    # create Podfile in project directory
-    pod init
-    ```
-
-    4. Open the Podfile that was generated and add the Mixpanel library to your dependencies:
-
-    ```ruby Ruby
-    target 'MyApp' do
-      pod 'Mixpanel-swift'
-    end
-    ```
-
-    5. Install the Mixpanel library and create a new Xcode workspace by running the following in the Xcode project directory:
-
-    ```bash
-    // install library in your dependencies
-    pod install
-    ```
+    2. Enter the package URL for [this repository](https://github.com/mixpanel/mixpanel-swift) and select version v7.0.0 or above. If your app needs to support an older OS, select 6.x (see [Apple Platform Support](#apple-platform-support)).
   </Tab>
   <Tab title="Carthage">
     Mixpanel supports [Carthage](https://github.com/Carthage/Carthage#quick-start) to package your dependencies as a framework. Include the following dependency in your Cartfile:
@@ -79,6 +42,33 @@ You can install the Swift library by using CocoaPods, Carthage, or Swift Package
     # add Mixpanel library to your dependencies
     github "mixpanel/mixpanel-swift"
     ```
+  </Tab>
+  <Tab title="CocoaPods (deprecated)" id="cocoapods-deprecated">
+    <Warning>
+      CocoaPods support is deprecated. We recommend migrating to Swift Package Manager.
+
+      - **December 2, 2026:** CocoaPods trunk becomes read-only. Versions already published there keep installing with `pod 'Mixpanel-swift'`, but new versions are not published to trunk.
+      - **Until removal:** install newer versions directly from GitHub. Replace `X.Y.Z` with the [release](https://github.com/mixpanel/mixpanel-swift/releases) you want:
+
+        ```ruby Ruby
+        pod 'Mixpanel-swift', :git => 'https://github.com/mixpanel/mixpanel-swift.git', :tag => 'X.Y.Z'
+        ```
+
+        If `pod install` can't find a version of a Mixpanel dependency, such as `MixpanelSwiftCommon`, add that dependency from GitHub the same way:
+
+        ```ruby Ruby
+        pod 'MixpanelSwiftCommon', :git => 'https://github.com/mixpanel/mixpanel-swift-common.git', :tag => 'X.Y.Z'
+        ```
+
+      - **After November 2027:** CocoaPods support will be removed in a future major version of the SDK.
+    </Warning>
+
+    If your project already uses CocoaPods:
+
+    1. Add `pod 'Mixpanel-swift'` to your Podfile (or the `:git` line above for versions after the trunk freeze).
+    2. Run `pod install` in your Xcode project directory.
+
+    New to CocoaPods? Use [Swift Package Manager](#swift-package-manager) instead.
   </Tab>
 </Tabs>
 
