@@ -501,7 +501,8 @@
                   "docs/privacy/eu-residency",
                   "docs/privacy/in-residency",
                   "docs/privacy/end-user-data-management",
-                  "docs/privacy/compliance-status-callbacks"
+                  "docs/privacy/compliance-status-callbacks",
+                  "docs/privacy/cnil-audience-measurement"
                 ]
               },
               {

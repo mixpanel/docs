@@ -1,0 +1,97 @@
+---
+title: "CNIL audience measurement"
+description: "Set up Mixpanel to measure your audience without consent under the CNIL's audience-measurement exemption"
+related:
+  - /docs/tracking-methods/sdks/javascript
+  - /docs/privacy/protecting-user-data
+  - /docs/privacy/gdpr-compliance
+---
+
+France's data protection authority, the CNIL, lets a website measure its audience without asking visitors for consent if the measurement meets [strict conditions](https://www.cnil.fr/fr/cookies-et-autres-traceurs/regles/cookies-solutions-pour-les-outils-de-mesure-daudience). Mixpanel can be configured to fall within this exemption. Until a visitor consents, the JavaScript SDK sends only anonymous audience events. A project setting then limits what Mixpanel stores and who can see those events one by one.
+
+<Note>
+  **Your responsibility**
+
+  You are responsible for ensuring that your configuration of Mixpanel complies with all laws and regulations applicable to you. Mixpanel makes no representations or warranties that the configuration described on this page complies with any law or regulation, including the CNIL’s audience measurement exemption criteria. This documentation is not legal advice. You should consult your own legal counsel when making decisions about how you configure Mixpanel to collect and process personal information.
+
+  The CNIL doesn't certify or approve measurement tools.
+</Note>
+
+## Set up exempt measurement
+
+1. Ask [Mixpanel Support](https://mixpanel.com/get-support) to turn on CNIL exempt mode for your project. Do this before you deploy the next step.
+2. Initialize the [JavaScript SDK](/docs/tracking-methods/sdks/javascript#consent-mode) with `consent_mode: 'exempt'` and turn on [Autocapture](/docs/tracking-methods/autocapture), which produces the audience events:
+
+   ```javascript
+   mixpanel.init('YOUR_PROJECT_TOKEN', {
+       consent_mode: 'exempt',
+       autocapture: true
+   });
+   ```
+
+   Page exits are off by default in Autocapture. To measure them, use `autocapture: {page_leave: true}`.
+3. Connect your consent banner. Call `mixpanel.opt_in_tracking()` when the visitor accepts, and `mixpanel.opt_out_tracking()` when they refuse or withdraw consent. After a refusal, the visitor stays in exempt measurement.
+4. Add an objection link to your privacy policy that calls `mixpanel.object_to_tracking()`, and describe the exempt measurement there. An objection stops all tracking, exempt measurement included, until the visitor opts in. The browser's Do Not Track setting counts as an objection, unless you set `ignore_dnt: true`.
+5. Keep exempt data for 25 months or less, as the CNIL recommends. Projects created on or after September 1, 2025 keep events for 2 years. For an older project, ask Mixpanel Support to set event retention to 2 years. See the [data retention policy](/docs/privacy/gdpr-compliance#data-retention-policy).
+
+## What the SDK sends before consent
+
+Until the visitor opts in, the SDK stores nothing on the device: no cookies, local storage, or IndexedDB. Identifiers that an earlier page stored are deleted when the page loads. Calls to `track()`, profile and group methods, feature flags, and Session Replay don't run. The SDK fetches only remote settings, with the project token and SDK version.
+
+It sends only these Autocapture events, each in its own request:
+
+| Event | Mixpanel name |
+| --- | --- |
+| `$mp_web_page_view` | \[Auto\] Page View |
+| `$mp_click` | \[Auto\] Element Click |
+| `$mp_scroll` | \[Auto\] Page Scroll |
+| `$mp_page_leave` | \[Auto\] Page Leave |
+
+Each event carries only these properties, plus `$mp_exempt: true`:
+
+- `token`, `time`, `mp_lib`, `$lib_version`, `$insert_id`, and `$mp_autocapture`
+- `$os`, `$browser`, `$browser_version`, `$device`, and `$referring_domain`
+- `$current_url`, `current_page_title`, `current_domain`, `current_url_path`, and `current_url_protocol`
+- `$el_attr__href` on clicks, and `$scroll_percentage`, `$scroll_checkpoint`, and `$max_scroll_percentage` on scrolls
+
+The SDK cuts `$current_url` and `$el_attr__href` to the origin and path, without the query string or fragment. It rounds `time` down to the hour and `$browser_version` down to a whole number. No `distinct_id`, device ID, or user ID is sent.
+
+The `before_send_events` hook doesn't run on these events. The `on_track` hook runs before the SDK filters them.
+
+To send more events or properties before consent, add them to `consent_exempt_allowlist`:
+
+```javascript
+mixpanel.init('YOUR_PROJECT_TOKEN', {
+    consent_mode: 'exempt',
+    autocapture: true,
+    consent_exempt_allowlist: {events: ['$mp_submit'], properties: ['site_section']}
+});
+```
+
+<Warning>
+Anything you add must also meet the CNIL's conditions. Don't add properties that can identify a visitor, such as IDs, email addresses, or precise timestamps.
+</Warning>
+
+## What Mixpanel does with exempt events
+
+For every event with `$mp_exempt: true`, Mixpanel uses the IP address for geolocation and then discards it. It doesn't store the raw user agent or the millisecond timestamps it would otherwise add.
+
+When CNIL exempt mode is on for a project:
+
+- The **Events** page, its CSV download, **View events**, user profile activity feeds, and live events in the Mixpanel MCP server leave out exempt events.
+- JQL is turned off for the project.
+- You can't create new event pipelines from Mixpanel.
+- Mixpanel doesn't use the project's exempt events for its own purposes, such as internal volume statistics. Mixpanel Support also turns off use of your organization's data to improve Mixpanel's AI features.
+
+## How exempt events appear in reports
+
+Exempt events have no `distinct_id`, so they count toward event totals in reports such as Insights. They don't count as users, so unique user counts, Funnels, Retention, and cohorts leave them out.
+
+A visitor who opts in gets a new device ID. Their exempt events aren't linked to them.
+
+## What you're responsible for
+
+- **Exports:** the [Raw Event Export API](/reference/raw-event-export) and pipelines that already existed return exempt events. Leave them out with the filter `not (properties["$mp_exempt"] == true)`, and delete pipelines that export them.
+- **Added data:** don't use `consent_exempt_allowlist`, hooks, or other tracking to send identifying data on exempt events.
+- **Privacy policy:** describe the exempt measurement and link to the objection.
+- **Retention:** keep exempt data for 25 months or less.
