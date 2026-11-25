@@ -88,7 +88,7 @@ If events are missing at your destination, contact Mixpanel Support.
 
 ## Failed Events Log
 
-When events cannot be delivered, including after retries are exhausted, they are recorded in a **failed events log** retained in-product for debugging. Each entry is an aggregated roll-up: one row per Sync, status code, and error type, with the count of failed events in that window.
+When events cannot be delivered, including after retries are exhausted, they are recorded in a **failed events log** retained in-product for debugging. Each entry is an aggregated roll-up: one row per Sync, status code, and error type, with the count of failed events in that window. To help you debug, each entry includes a sample event and the response body from your destination.
 
 {/* PLACEHOLDER: Document how to replay failed events (manual retry, bulk replay, or export) once the flow is confirmed. */}
 
@@ -100,7 +100,7 @@ A Sync is paused when it hits a terminal failure: an authentication error (`401`
 
 ## Rate limits and backpressure
 
-When a destination returns `429 Too Many Requests`, the request is retried per the [backoff schedule](#backoff-schedule). If retries are exhausted, the events are recorded in the [failed events log](#failed-events-log). See [Alerting on failure](#alerting-on-failure) for when repeated failures pause the Sync.
+When a destination returns `429 Too Many Requests`, the request is retried after respecting the `Retry-After` header (if present, capped at 10 seconds), or per the [backoff schedule](#backoff-schedule) otherwise. If retries are exhausted, the events are recorded in the [failed events log](#failed-events-log). See [Alerting on failure](#alerting-on-failure) for when repeated failures pause the Sync.
 
 ## What to build on your side
 
