@@ -72,7 +72,7 @@ For `429` responses, the `Retry-After` header is honored when present, capped at
 - The Destination surfaces an authentication error.
 - A project admin must fix credentials or the webhook URL before restarting.
 
-Other `4xx` responses (for example `400`), except `408`, `425`, and `429`, mean the destination rejected the request, so they are not retried. The events in that request are dropped and recorded in the [failed events log](#failed-events-log). See [Alerting on failure](#alerting-on-failure) for when repeated failures pause the Sync.
+`4xx` responses where the destination rejected the request (for example `400`) are not retried. The events in that request are dropped and recorded in the [failed events log](#failed-events-log). See [Alerting on failure](#alerting-on-failure) for when repeated failures pause the Sync.
 
 ## Events that are not delivered
 
