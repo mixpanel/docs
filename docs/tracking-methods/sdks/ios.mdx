@@ -22,46 +22,12 @@ The iOS (Objective-C) SDK is open source under the [Apache 2.0 license](https://
 
 ## Installing the Library
 
-You can install the Objective-C library by using CocoaPods, Carthage, or Swift Package Manager.
+You can install the Objective-C library by using Swift Package Manager (recommended), Carthage, or CocoaPods (deprecated).
 
 <Tabs>
-  <Tab title="CocoaPods">
-    1. Install CocoaPods by typing the following in your command line:
-
-    ```bash
-    # install CocoaPods
-    gem install cocoapods
-    ```
-
-    2. After install CocoaPods, create a local CocoaPods spec mirror by running the following:
-
-    ```bash
-    # Create CocoaPods spec mirror
-    pod setup
-    ```
-
-    3. Then navigate to your Xcode project directory and create a Podfile by running the following:
-
-    ```bash
-    # create Podfile in project directory
-    pod init
-    ```
-
-    4. Open the Podfile that was generated and add the Mixpanel library to your dependencies:
-
-    ```ruby Ruby
-    # add Mixpanel library to dependencies
-    target 'MyApp' do
-      pod 'Mixpanel'
-    end
-    ```
-
-    5. Install the Mixpanel library and create a new Xcode workspace by running the following in the Xcode project directory:
-
-    ```bash
-    # install library in your dependencies
-    pod install
-    ```
+  <Tab title="Swift Package Manager (recommended)" id="swift-package-manager">
+    1. In Xcode, select File \> Add Package Dependencies...
+    2. Enter the package URL for [this repository](https://github.com/mixpanel/mixpanel-iphone) and select version v4.0.0 or later.
   </Tab>
   <Tab title="Carthage">
     Mixpanel supports [Carthage](https://github.com/Carthage/Carthage#quick-start) to package your dependencies as a framework. Include the following dependency in your Cartfile:
@@ -71,9 +37,26 @@ You can install the Objective-C library by using CocoaPods, Carthage, or Swift P
     github "mixpanel/mixpanel-iphone"
     ```
   </Tab>
-  <Tab title="Swift Package Manager">
-    1. In Xcode, select File \> Add Packages...
-    2. Enter the package URL for [this repository](https://github.com/mixpanel/mixpanel-iphone) and select version v4.0.0 or above.
+  <Tab title="CocoaPods (deprecated)" id="cocoapods-deprecated">
+    <Warning>
+      CocoaPods support is deprecated. We recommend migrating to Swift Package Manager.
+
+      - **December 2, 2026:** CocoaPods trunk becomes read-only. Versions already published there keep installing with `pod 'Mixpanel'`, but new versions are not published to trunk.
+      - **Until removal:** install newer versions directly from GitHub. Replace `vX.Y.Z` with the [release](https://github.com/mixpanel/mixpanel-iphone/releases) you want:
+
+        ```ruby Ruby
+        pod 'Mixpanel', :git => 'https://github.com/mixpanel/mixpanel-iphone.git', :tag => 'vX.Y.Z'
+        ```
+
+      - **After November 2027:** CocoaPods support will be removed in a future major version of the SDK.
+    </Warning>
+
+    If your project already uses CocoaPods:
+
+    1. Add `pod 'Mixpanel'` to your Podfile (or the `:git` line above for versions after the trunk freeze).
+    2. Run `pod install` in your Xcode project directory.
+
+    New to CocoaPods? Use [Swift Package Manager](#swift-package-manager) instead.
   </Tab>
 </Tabs>
 

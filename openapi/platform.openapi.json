@@ -126,11 +126,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Only properties of this event.",
+              "description": "Only event properties of this event. Other types are excluded.",
               "title": "Event Name"
             },
             "required": false,
-            "description": "Only properties of this event."
+            "description": "Only event properties of this event. Other types are excluded."
           },
           {
             "in": "query",
@@ -144,11 +144,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition is hidden.",
+              "description": "`true`: only hidden definitions. `false`: only those not hidden, including every definition of a type that cannot be hidden. Omit for both. Types that can be hidden: `event`, `custom_event`, `event_property`.",
               "title": "Hidden"
             },
             "required": false,
-            "description": "Whether the definition is hidden."
+            "description": "`true`: only hidden definitions. `false`: only those not hidden, including every definition of a type that cannot be hidden. Omit for both. Types that can be hidden: `event`, `custom_event`, `event_property`."
           },
           {
             "in": "query",
@@ -162,11 +162,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked.",
+              "description": "`true`: only blocked definitions. `false`: only those not blocked, including every definition of a type that cannot be blocked. Omit for both. Types that can be blocked: `event`, `event_property`.",
               "title": "Blocked"
             },
             "required": false,
-            "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked."
+            "description": "`true`: only blocked definitions. `false`: only those not blocked, including every definition of a type that cannot be blocked. Omit for both. Types that can be blocked: `event`, `event_property`."
           },
           {
             "in": "query",
@@ -174,6 +174,8 @@
             "schema": {
               "description": "Only definitions carrying one of these tags.",
               "items": {
+                "maxLength": 175,
+                "minLength": 1,
                 "type": "string"
               },
               "title": "Tag",
@@ -226,11 +228,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition has a description.",
+              "description": "`true`: only definitions with a description. `false`: only those without one. Omit for both.",
               "title": "Has Description"
             },
             "required": false,
-            "description": "Whether the definition has a description."
+            "description": "`true`: only definitions with a description. `false`: only those without one. Omit for both."
           },
           {
             "in": "query",
@@ -244,11 +246,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition has an owner.",
+              "description": "`true`: only definitions with at least one owner. `false`: only those without one. Omit for both.",
               "title": "Has Owner"
             },
             "required": false,
-            "description": "Whether the definition has an owner."
+            "description": "`true`: only definitions with at least one owner. `false`: only those without one. Omit for both."
           },
           {
             "in": "query",
@@ -262,11 +264,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition is verified.",
+              "description": "`true`: only verified definitions. `false`: only unverified ones. Omit for both.",
               "title": "Verified"
             },
             "required": false,
-            "description": "Whether the definition is verified."
+            "description": "`true`: only verified definitions. `false`: only unverified ones. Omit for both."
           },
           {
             "$ref": "#/components/parameters/ProjectIdPathParameter"
@@ -302,11 +304,7 @@
           {
             "ServiceAccountAuth": []
           }
-        ],
-        "x-release-stage": "closed-beta",
-        "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
-        }
+        ]
       },
       "post": {
         "operationId": "create_project_data_definition",
@@ -334,15 +332,18 @@
                       "cohort": "#/components/schemas/CohortDataDefinitionResponse",
                       "custom_event": "#/components/schemas/CustomEventDataDefinitionResponse",
                       "custom_property": "#/components/schemas/CustomPropertyDataDefinitionResponse",
-                      "event": "#/components/schemas/DataDefinitionWithoutBodyResponse",
-                      "event_property": "#/components/schemas/DataDefinitionWithoutBodyResponse",
+                      "event": "#/components/schemas/EventDataDefinitionResponse",
+                      "event_property": "#/components/schemas/EventPropertyDataDefinitionResponse",
                       "metric": "#/components/schemas/MetricDataDefinitionResponse"
                     },
                     "propertyName": "type"
                   },
                   "oneOf": [
                     {
-                      "$ref": "#/components/schemas/DataDefinitionWithoutBodyResponse"
+                      "$ref": "#/components/schemas/EventDataDefinitionResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/EventPropertyDataDefinitionResponse"
                     },
                     {
                       "$ref": "#/components/schemas/CustomEventDataDefinitionResponse"
@@ -387,15 +388,18 @@
                     "cohort": "#/components/schemas/CreateCohortDataDefinitionRequest",
                     "custom_event": "#/components/schemas/CreateCustomEventDataDefinitionRequest",
                     "custom_property": "#/components/schemas/CreateCustomPropertyDataDefinitionRequest",
-                    "event": "#/components/schemas/CreateDataDefinitionWithoutBodyRequest",
-                    "event_property": "#/components/schemas/CreateDataDefinitionWithoutBodyRequest",
+                    "event": "#/components/schemas/CreateEventDataDefinitionRequest",
+                    "event_property": "#/components/schemas/CreateEventPropertyDataDefinitionRequest",
                     "metric": "#/components/schemas/CreateMetricDataDefinitionRequest"
                   },
                   "propertyName": "type"
                 },
                 "oneOf": [
                   {
-                    "$ref": "#/components/schemas/CreateDataDefinitionWithoutBodyRequest"
+                    "$ref": "#/components/schemas/CreateEventDataDefinitionRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateEventPropertyDataDefinitionRequest"
                   },
                   {
                     "$ref": "#/components/schemas/CreateCustomEventDataDefinitionRequest"
@@ -431,9 +435,8 @@
           "Owner",
           "Admin"
         ],
-        "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
+          "content": "<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -497,9 +500,8 @@
         "x-roles": [
           "Owner"
         ],
-        "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">merge_events_properties</Badge> <Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge></p>\n  </div>\n</div>"
+          "content": "<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">merge_events_properties</Badge> <Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -563,9 +565,8 @@
         "x-roles": [
           "Owner"
         ],
-        "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">merge_events_properties</Badge> <Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge></p>\n  </div>\n</div>"
+          "content": "<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">merge_events_properties</Badge> <Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -602,15 +603,18 @@
                       "cohort": "#/components/schemas/CohortDataDefinitionResponse",
                       "custom_event": "#/components/schemas/CustomEventDataDefinitionResponse",
                       "custom_property": "#/components/schemas/CustomPropertyDataDefinitionResponse",
-                      "event": "#/components/schemas/DataDefinitionWithoutBodyResponse",
-                      "event_property": "#/components/schemas/DataDefinitionWithoutBodyResponse",
+                      "event": "#/components/schemas/EventDataDefinitionResponse",
+                      "event_property": "#/components/schemas/EventPropertyDataDefinitionResponse",
                       "metric": "#/components/schemas/MetricDataDefinitionResponse"
                     },
                     "propertyName": "type"
                   },
                   "oneOf": [
                     {
-                      "$ref": "#/components/schemas/DataDefinitionWithoutBodyResponse"
+                      "$ref": "#/components/schemas/EventDataDefinitionResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/EventPropertyDataDefinitionResponse"
                     },
                     {
                       "$ref": "#/components/schemas/CustomEventDataDefinitionResponse"
@@ -649,11 +653,7 @@
           {
             "ServiceAccountAuth": []
           }
-        ],
-        "x-release-stage": "closed-beta",
-        "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
-        }
+        ]
       },
       "delete": {
         "operationId": "delete_project_data_definition",
@@ -702,11 +702,7 @@
           {
             "ServiceAccountAuth": []
           }
-        ],
-        "x-release-stage": "closed-beta",
-        "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
-        }
+        ]
       },
       "patch": {
         "operationId": "patch_project_data_definition",
@@ -740,15 +736,18 @@
                       "cohort": "#/components/schemas/CohortDataDefinitionResponse",
                       "custom_event": "#/components/schemas/CustomEventDataDefinitionResponse",
                       "custom_property": "#/components/schemas/CustomPropertyDataDefinitionResponse",
-                      "event": "#/components/schemas/DataDefinitionWithoutBodyResponse",
-                      "event_property": "#/components/schemas/DataDefinitionWithoutBodyResponse",
+                      "event": "#/components/schemas/EventDataDefinitionResponse",
+                      "event_property": "#/components/schemas/EventPropertyDataDefinitionResponse",
                       "metric": "#/components/schemas/MetricDataDefinitionResponse"
                     },
                     "propertyName": "type"
                   },
                   "oneOf": [
                     {
-                      "$ref": "#/components/schemas/DataDefinitionWithoutBodyResponse"
+                      "$ref": "#/components/schemas/EventDataDefinitionResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/EventPropertyDataDefinitionResponse"
                     },
                     {
                       "$ref": "#/components/schemas/CustomEventDataDefinitionResponse"
@@ -797,11 +796,7 @@
           {
             "ServiceAccountAuth": []
           }
-        ],
-        "x-release-stage": "closed-beta",
-        "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
-        }
+        ]
       }
     },
     "/v1/projects/{project_id}/data-definition-tags": {
@@ -907,11 +902,7 @@
           {
             "ServiceAccountAuth": []
           }
-        ],
-        "x-release-stage": "closed-beta",
-        "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
-        }
+        ]
       },
       "post": {
         "operationId": "create_project_data_definition_tag",
@@ -972,9 +963,8 @@
           "Owner",
           "Admin"
         ],
-        "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
+          "content": "<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -1026,11 +1016,7 @@
           {
             "ServiceAccountAuth": []
           }
-        ],
-        "x-release-stage": "closed-beta",
-        "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
-        }
+        ]
       },
       "patch": {
         "operationId": "rename_project_data_definition_tag",
@@ -1097,9 +1083,8 @@
           "Owner",
           "Admin"
         ],
-        "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
+          "content": "<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       },
       "delete": {
@@ -1157,9 +1142,8 @@
           "Owner",
           "Admin"
         ],
-        "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
+          "content": "<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -1269,11 +1253,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Only properties of this event.",
+              "description": "Only event properties of this event. Other types are excluded.",
               "title": "Event Name"
             },
             "required": false,
-            "description": "Only properties of this event."
+            "description": "Only event properties of this event. Other types are excluded."
           },
           {
             "in": "query",
@@ -1287,11 +1271,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition is hidden.",
+              "description": "`true`: only hidden definitions. `false`: only those not hidden, including every definition of a type that cannot be hidden. Omit for both. Types that can be hidden: `event`, `custom_event`, `event_property`.",
               "title": "Hidden"
             },
             "required": false,
-            "description": "Whether the definition is hidden."
+            "description": "`true`: only hidden definitions. `false`: only those not hidden, including every definition of a type that cannot be hidden. Omit for both. Types that can be hidden: `event`, `custom_event`, `event_property`."
           },
           {
             "in": "query",
@@ -1305,11 +1289,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked.",
+              "description": "`true`: only blocked definitions. `false`: only those not blocked, including every definition of a type that cannot be blocked. Omit for both. Types that can be blocked: `event`, `event_property`.",
               "title": "Blocked"
             },
             "required": false,
-            "description": "Whether the definition is blocked. Types that cannot be blocked are never blocked."
+            "description": "`true`: only blocked definitions. `false`: only those not blocked, including every definition of a type that cannot be blocked. Omit for both. Types that can be blocked: `event`, `event_property`."
           },
           {
             "in": "query",
@@ -1317,6 +1301,8 @@
             "schema": {
               "description": "Only definitions carrying one of these tags.",
               "items": {
+                "maxLength": 175,
+                "minLength": 1,
                 "type": "string"
               },
               "title": "Tag",
@@ -1369,11 +1355,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition has a description.",
+              "description": "`true`: only definitions with a description. `false`: only those without one. Omit for both.",
               "title": "Has Description"
             },
             "required": false,
-            "description": "Whether the definition has a description."
+            "description": "`true`: only definitions with a description. `false`: only those without one. Omit for both."
           },
           {
             "in": "query",
@@ -1387,11 +1373,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition has an owner.",
+              "description": "`true`: only definitions with at least one owner. `false`: only those without one. Omit for both.",
               "title": "Has Owner"
             },
             "required": false,
-            "description": "Whether the definition has an owner."
+            "description": "`true`: only definitions with at least one owner. `false`: only those without one. Omit for both."
           },
           {
             "in": "query",
@@ -1405,11 +1391,11 @@
                   "type": "null"
                 }
               ],
-              "description": "Whether the definition is verified.",
+              "description": "`true`: only verified definitions. `false`: only unverified ones. Omit for both.",
               "title": "Verified"
             },
             "required": false,
-            "description": "Whether the definition is verified."
+            "description": "`true`: only verified definitions. `false`: only unverified ones. Omit for both."
           },
           {
             "$ref": "#/components/parameters/WorkspaceIdPathParameter"
@@ -1445,11 +1431,7 @@
           {
             "ServiceAccountAuth": []
           }
-        ],
-        "x-release-stage": "closed-beta",
-        "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
-        }
+        ]
       },
       "post": {
         "operationId": "create_workspace_data_definition",
@@ -1477,15 +1459,18 @@
                       "cohort": "#/components/schemas/CohortDataDefinitionResponse",
                       "custom_event": "#/components/schemas/CustomEventDataDefinitionResponse",
                       "custom_property": "#/components/schemas/CustomPropertyDataDefinitionResponse",
-                      "event": "#/components/schemas/DataDefinitionWithoutBodyResponse",
-                      "event_property": "#/components/schemas/DataDefinitionWithoutBodyResponse",
+                      "event": "#/components/schemas/EventDataDefinitionResponse",
+                      "event_property": "#/components/schemas/EventPropertyDataDefinitionResponse",
                       "metric": "#/components/schemas/MetricDataDefinitionResponse"
                     },
                     "propertyName": "type"
                   },
                   "oneOf": [
                     {
-                      "$ref": "#/components/schemas/DataDefinitionWithoutBodyResponse"
+                      "$ref": "#/components/schemas/EventDataDefinitionResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/EventPropertyDataDefinitionResponse"
                     },
                     {
                       "$ref": "#/components/schemas/CustomEventDataDefinitionResponse"
@@ -1530,15 +1515,18 @@
                     "cohort": "#/components/schemas/CreateCohortDataDefinitionRequest",
                     "custom_event": "#/components/schemas/CreateCustomEventDataDefinitionRequest",
                     "custom_property": "#/components/schemas/CreateCustomPropertyDataDefinitionRequest",
-                    "event": "#/components/schemas/CreateDataDefinitionWithoutBodyRequest",
-                    "event_property": "#/components/schemas/CreateDataDefinitionWithoutBodyRequest",
+                    "event": "#/components/schemas/CreateEventDataDefinitionRequest",
+                    "event_property": "#/components/schemas/CreateEventPropertyDataDefinitionRequest",
                     "metric": "#/components/schemas/CreateMetricDataDefinitionRequest"
                   },
                   "propertyName": "type"
                 },
                 "oneOf": [
                   {
-                    "$ref": "#/components/schemas/CreateDataDefinitionWithoutBodyRequest"
+                    "$ref": "#/components/schemas/CreateEventDataDefinitionRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateEventPropertyDataDefinitionRequest"
                   },
                   {
                     "$ref": "#/components/schemas/CreateCustomEventDataDefinitionRequest"
@@ -1574,9 +1562,8 @@
           "Owner",
           "Admin"
         ],
-        "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
+          "content": "<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -1640,9 +1627,8 @@
         "x-roles": [
           "Owner"
         ],
-        "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">merge_events_properties</Badge> <Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge></p>\n  </div>\n</div>"
+          "content": "<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">merge_events_properties</Badge> <Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -1706,9 +1692,8 @@
         "x-roles": [
           "Owner"
         ],
-        "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">merge_events_properties</Badge> <Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge></p>\n  </div>\n</div>"
+          "content": "<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">merge_events_properties</Badge> <Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -1745,15 +1730,18 @@
                       "cohort": "#/components/schemas/CohortDataDefinitionResponse",
                       "custom_event": "#/components/schemas/CustomEventDataDefinitionResponse",
                       "custom_property": "#/components/schemas/CustomPropertyDataDefinitionResponse",
-                      "event": "#/components/schemas/DataDefinitionWithoutBodyResponse",
-                      "event_property": "#/components/schemas/DataDefinitionWithoutBodyResponse",
+                      "event": "#/components/schemas/EventDataDefinitionResponse",
+                      "event_property": "#/components/schemas/EventPropertyDataDefinitionResponse",
                       "metric": "#/components/schemas/MetricDataDefinitionResponse"
                     },
                     "propertyName": "type"
                   },
                   "oneOf": [
                     {
-                      "$ref": "#/components/schemas/DataDefinitionWithoutBodyResponse"
+                      "$ref": "#/components/schemas/EventDataDefinitionResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/EventPropertyDataDefinitionResponse"
                     },
                     {
                       "$ref": "#/components/schemas/CustomEventDataDefinitionResponse"
@@ -1792,11 +1780,7 @@
           {
             "ServiceAccountAuth": []
           }
-        ],
-        "x-release-stage": "closed-beta",
-        "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
-        }
+        ]
       },
       "delete": {
         "operationId": "delete_workspace_data_definition",
@@ -1845,11 +1829,7 @@
           {
             "ServiceAccountAuth": []
           }
-        ],
-        "x-release-stage": "closed-beta",
-        "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
-        }
+        ]
       },
       "patch": {
         "operationId": "patch_workspace_data_definition",
@@ -1883,15 +1863,18 @@
                       "cohort": "#/components/schemas/CohortDataDefinitionResponse",
                       "custom_event": "#/components/schemas/CustomEventDataDefinitionResponse",
                       "custom_property": "#/components/schemas/CustomPropertyDataDefinitionResponse",
-                      "event": "#/components/schemas/DataDefinitionWithoutBodyResponse",
-                      "event_property": "#/components/schemas/DataDefinitionWithoutBodyResponse",
+                      "event": "#/components/schemas/EventDataDefinitionResponse",
+                      "event_property": "#/components/schemas/EventPropertyDataDefinitionResponse",
                       "metric": "#/components/schemas/MetricDataDefinitionResponse"
                     },
                     "propertyName": "type"
                   },
                   "oneOf": [
                     {
-                      "$ref": "#/components/schemas/DataDefinitionWithoutBodyResponse"
+                      "$ref": "#/components/schemas/EventDataDefinitionResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/EventPropertyDataDefinitionResponse"
                     },
                     {
                       "$ref": "#/components/schemas/CustomEventDataDefinitionResponse"
@@ -1940,11 +1923,7 @@
           {
             "ServiceAccountAuth": []
           }
-        ],
-        "x-release-stage": "closed-beta",
-        "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
-        }
+        ]
       }
     },
     "/v1/workspaces/{workspace_id}/data-definition-tags": {
@@ -2050,11 +2029,7 @@
           {
             "ServiceAccountAuth": []
           }
-        ],
-        "x-release-stage": "closed-beta",
-        "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
-        }
+        ]
       },
       "post": {
         "operationId": "create_workspace_data_definition_tag",
@@ -2115,9 +2090,8 @@
           "Owner",
           "Admin"
         ],
-        "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
+          "content": "<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -2169,11 +2143,7 @@
           {
             "ServiceAccountAuth": []
           }
-        ],
-        "x-release-stage": "closed-beta",
-        "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>"
-        }
+        ]
       },
       "patch": {
         "operationId": "rename_workspace_data_definition_tag",
@@ -2240,9 +2210,8 @@
           "Owner",
           "Admin"
         ],
-        "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
+          "content": "<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       },
       "delete": {
@@ -2300,9 +2269,8 @@
           "Owner",
           "Admin"
         ],
-        "x-release-stage": "closed-beta",
         "x-mint": {
-          "content": "<Warning>\n  <b>Closed Beta</b><br />\n  Available to a limited set of invited customers. Contact your account team to join.\n  The request and response contract may change before general availability (GA).\n</Warning>\n\n<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
+          "content": "<div class=\"pb-3\">\n  <h4 class=\"font-bold w-full border-b pb-2.5\">Permissions</h4>\n  <div class=\"prose-sm\">\n    <p>The permissions required to access this endpoint. See <a href=\"https://docs.mixpanel.com/reference/permissions\">Permissions Reference</a> for what each role grants.</p>\n    <p><b>Required Permissions: </b><Badge size=\"sm\" className=\"font-mono\">write_data_definitions</Badge></p>\n    <p><b>Granted By Role: </b><Badge size=\"sm\">Owner</Badge> <Badge size=\"sm\">Admin</Badge></p>\n  </div>\n</div>"
         }
       }
     },
@@ -2448,6 +2416,66 @@
           }
         },
         "title": "CursorPaginationResponse",
+        "type": "object"
+      },
+      "ServiceAccountActorSummary": {
+        "properties": {
+          "type": {
+            "const": "service_account",
+            "description": "The actor is a service account.",
+            "title": "Type",
+            "type": "string"
+          },
+          "id": {
+            "description": "The service account's user ID.",
+            "title": "Id",
+            "type": "string"
+          },
+          "display_name": {
+            "description": "The service account's username.",
+            "title": "Display Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "id",
+          "display_name"
+        ],
+        "title": "ServiceAccountActorSummary",
+        "type": "object"
+      },
+      "UserActorSummary": {
+        "properties": {
+          "type": {
+            "const": "user",
+            "description": "The actor is a person.",
+            "title": "Type",
+            "type": "string"
+          },
+          "id": {
+            "description": "The actor's user ID.",
+            "title": "Id",
+            "type": "string"
+          },
+          "display_name": {
+            "description": "The actor's full name, or email when no name is set.",
+            "title": "Display Name",
+            "type": "string"
+          },
+          "email": {
+            "description": "The actor's email address.",
+            "title": "Email",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "id",
+          "display_name",
+          "email"
+        ],
+        "title": "UserActorSummary",
         "type": "object"
       },
       "AuditLog": {
@@ -2912,33 +2940,8 @@
             "type": "string"
           },
           "name": {
-            "description": "The definition's name.",
             "title": "Name",
             "type": "string"
-          },
-          "event_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "description": {
             "anyOf": [
@@ -2949,18 +2952,34 @@
                 "type": "null"
               }
             ],
-            "description": "The definition's description.",
             "title": "Description"
           },
-          "hidden": {
-            "description": "Whether the definition is hidden in the UI.",
-            "title": "Hidden",
-            "type": "boolean"
+          "tags": {
+            "description": "The definition's tag names.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
           },
-          "blocked": {
-            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
-            "title": "Blocked",
-            "type": "boolean"
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/DataDefinitionOwner"
+            },
+            "title": "Owners",
+            "type": "array"
+          },
+          "created_at": {
+            "description": "When the definition was created.",
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "When the definition was last updated.",
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -2983,69 +3002,31 @@
           "last_verified_by": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/DataDefinitionVerifier"
+                "discriminator": {
+                  "mapping": {
+                    "service_account": "#/components/schemas/ServiceAccountActorSummary",
+                    "user": "#/components/schemas/UserActorSummary"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UserActorSummary"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ServiceAccountActorSummary"
+                  }
+                ]
               },
               {
                 "type": "null"
               }
             ],
-            "description": "Who last verified the definition."
-          },
-          "tags": {
-            "description": "The definition's tag names.",
-            "items": {
-              "type": "string"
-            },
-            "title": "Tags",
-            "type": "array"
-          },
-          "owners": {
-            "description": "The definition's owners.",
-            "items": {
-              "$ref": "#/components/schemas/DataDefinitionOwner"
-            },
-            "title": "Owners",
-            "type": "array"
-          },
-          "merged_into": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DataDefinitionSummary"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition this one is merged into."
-          },
-          "first_tracked_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When data for the definition was first seen.",
-            "title": "First Tracked At"
-          },
-          "created_at": {
-            "description": "When the definition was created.",
-            "format": "date-time",
-            "title": "Created At",
-            "type": "string"
-          },
-          "updated_at": {
-            "description": "When the definition was last updated.",
-            "format": "date-time",
-            "title": "Updated At",
-            "type": "string"
+            "description": "Who last verified the definition. Null if it was never verified or the verifier is no longer in the organization.",
+            "title": "Last Verified By"
           },
           "type": {
             "const": "behavior",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -3084,20 +3065,14 @@
         "required": [
           "id",
           "name",
-          "event_name",
-          "display_name",
           "description",
-          "hidden",
-          "blocked",
+          "tags",
+          "owners",
+          "created_at",
+          "updated_at",
           "verified",
           "last_verified_at",
           "last_verified_by",
-          "tags",
-          "owners",
-          "merged_into",
-          "first_tracked_at",
-          "created_at",
-          "updated_at",
           "type",
           "definition"
         ],
@@ -3282,33 +3257,8 @@
             "type": "string"
           },
           "name": {
-            "description": "The definition's name.",
             "title": "Name",
             "type": "string"
-          },
-          "event_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "description": {
             "anyOf": [
@@ -3319,18 +3269,34 @@
                 "type": "null"
               }
             ],
-            "description": "The definition's description.",
             "title": "Description"
           },
-          "hidden": {
-            "description": "Whether the definition is hidden in the UI.",
-            "title": "Hidden",
-            "type": "boolean"
+          "tags": {
+            "description": "The definition's tag names.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
           },
-          "blocked": {
-            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
-            "title": "Blocked",
-            "type": "boolean"
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/DataDefinitionOwner"
+            },
+            "title": "Owners",
+            "type": "array"
+          },
+          "created_at": {
+            "description": "When the definition was created.",
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "When the definition was last updated.",
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -3353,69 +3319,31 @@
           "last_verified_by": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/DataDefinitionVerifier"
+                "discriminator": {
+                  "mapping": {
+                    "service_account": "#/components/schemas/ServiceAccountActorSummary",
+                    "user": "#/components/schemas/UserActorSummary"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UserActorSummary"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ServiceAccountActorSummary"
+                  }
+                ]
               },
               {
                 "type": "null"
               }
             ],
-            "description": "Who last verified the definition."
-          },
-          "tags": {
-            "description": "The definition's tag names.",
-            "items": {
-              "type": "string"
-            },
-            "title": "Tags",
-            "type": "array"
-          },
-          "owners": {
-            "description": "The definition's owners.",
-            "items": {
-              "$ref": "#/components/schemas/DataDefinitionOwner"
-            },
-            "title": "Owners",
-            "type": "array"
-          },
-          "merged_into": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DataDefinitionSummary"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition this one is merged into."
-          },
-          "first_tracked_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When data for the definition was first seen.",
-            "title": "First Tracked At"
-          },
-          "created_at": {
-            "description": "When the definition was created.",
-            "format": "date-time",
-            "title": "Created At",
-            "type": "string"
-          },
-          "updated_at": {
-            "description": "When the definition was last updated.",
-            "format": "date-time",
-            "title": "Updated At",
-            "type": "string"
+            "description": "Who last verified the definition. Null if it was never verified or the verifier is no longer in the organization.",
+            "title": "Last Verified By"
           },
           "type": {
             "const": "cohort",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -3434,20 +3362,14 @@
         "required": [
           "id",
           "name",
-          "event_name",
-          "display_name",
           "description",
-          "hidden",
-          "blocked",
+          "tags",
+          "owners",
+          "created_at",
+          "updated_at",
           "verified",
           "last_verified_at",
           "last_verified_by",
-          "tags",
-          "owners",
-          "merged_into",
-          "first_tracked_at",
-          "created_at",
-          "updated_at",
           "type",
           "definition"
         ],
@@ -3898,33 +3820,8 @@
             "type": "string"
           },
           "name": {
-            "description": "The definition's name.",
             "title": "Name",
             "type": "string"
-          },
-          "event_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "description": {
             "anyOf": [
@@ -3935,18 +3832,34 @@
                 "type": "null"
               }
             ],
-            "description": "The definition's description.",
             "title": "Description"
           },
-          "hidden": {
-            "description": "Whether the definition is hidden in the UI.",
-            "title": "Hidden",
-            "type": "boolean"
+          "tags": {
+            "description": "The definition's tag names.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
           },
-          "blocked": {
-            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
-            "title": "Blocked",
-            "type": "boolean"
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/DataDefinitionOwner"
+            },
+            "title": "Owners",
+            "type": "array"
+          },
+          "created_at": {
+            "description": "When the definition was created.",
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "When the definition was last updated.",
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -3969,69 +3882,48 @@
           "last_verified_by": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/DataDefinitionVerifier"
+                "discriminator": {
+                  "mapping": {
+                    "service_account": "#/components/schemas/ServiceAccountActorSummary",
+                    "user": "#/components/schemas/UserActorSummary"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UserActorSummary"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ServiceAccountActorSummary"
+                  }
+                ]
               },
               {
                 "type": "null"
               }
             ],
-            "description": "Who last verified the definition."
+            "description": "Who last verified the definition. Null if it was never verified or the verifier is no longer in the organization.",
+            "title": "Last Verified By"
           },
-          "tags": {
-            "description": "The definition's tag names.",
-            "items": {
-              "type": "string"
-            },
-            "title": "Tags",
-            "type": "array"
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
           },
-          "owners": {
-            "description": "The definition's owners.",
-            "items": {
-              "$ref": "#/components/schemas/DataDefinitionOwner"
-            },
-            "title": "Owners",
-            "type": "array"
-          },
-          "merged_into": {
+          "display_name": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/DataDefinitionSummary"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition this one is merged into."
-          },
-          "first_tracked_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
                 "type": "string"
               },
               {
                 "type": "null"
               }
             ],
-            "description": "When data for the definition was first seen.",
-            "title": "First Tracked At"
-          },
-          "created_at": {
-            "description": "When the definition was created.",
-            "format": "date-time",
-            "title": "Created At",
-            "type": "string"
-          },
-          "updated_at": {
-            "description": "When the definition was last updated.",
-            "format": "date-time",
-            "title": "Updated At",
-            "type": "string"
+            "description": "The name shown in the UI.",
+            "title": "Display Name"
           },
           "type": {
             "const": "custom_event",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -4050,20 +3942,16 @@
         "required": [
           "id",
           "name",
-          "event_name",
-          "display_name",
           "description",
-          "hidden",
-          "blocked",
+          "tags",
+          "owners",
+          "created_at",
+          "updated_at",
           "verified",
           "last_verified_at",
           "last_verified_by",
-          "tags",
-          "owners",
-          "merged_into",
-          "first_tracked_at",
-          "created_at",
-          "updated_at",
+          "hidden",
+          "display_name",
           "type",
           "definition"
         ],
@@ -4110,33 +3998,8 @@
             "type": "string"
           },
           "name": {
-            "description": "The definition's name.",
             "title": "Name",
             "type": "string"
-          },
-          "event_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "description": {
             "anyOf": [
@@ -4147,47 +4010,7 @@
                 "type": "null"
               }
             ],
-            "description": "The definition's description.",
             "title": "Description"
-          },
-          "hidden": {
-            "description": "Whether the definition is hidden in the UI.",
-            "title": "Hidden",
-            "type": "boolean"
-          },
-          "blocked": {
-            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
-            "title": "Blocked",
-            "type": "boolean"
-          },
-          "verified": {
-            "description": "Whether the definition is verified.",
-            "title": "Verified",
-            "type": "boolean"
-          },
-          "last_verified_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When the definition was last verified.",
-            "title": "Last Verified At"
-          },
-          "last_verified_by": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DataDefinitionVerifier"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Who last verified the definition."
           },
           "tags": {
             "description": "The definition's tag names.",
@@ -4198,36 +4021,11 @@
             "type": "array"
           },
           "owners": {
-            "description": "The definition's owners.",
             "items": {
               "$ref": "#/components/schemas/DataDefinitionOwner"
             },
             "title": "Owners",
             "type": "array"
-          },
-          "merged_into": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DataDefinitionSummary"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition this one is merged into."
-          },
-          "first_tracked_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When data for the definition was first seen.",
-            "title": "First Tracked At"
           },
           "created_at": {
             "description": "When the definition was created.",
@@ -4243,7 +4041,6 @@
           },
           "type": {
             "const": "custom_property",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -4262,18 +4059,9 @@
         "required": [
           "id",
           "name",
-          "event_name",
-          "display_name",
           "description",
-          "hidden",
-          "blocked",
-          "verified",
-          "last_verified_at",
-          "last_verified_by",
           "tags",
           "owners",
-          "merged_into",
-          "first_tracked_at",
           "created_at",
           "updated_at",
           "type",
@@ -4466,12 +4254,10 @@
       "DataDefinitionSummary": {
         "properties": {
           "id": {
-            "description": "The definition's ID.",
             "title": "Id",
             "type": "string"
           },
           "name": {
-            "description": "The definition's name.",
             "title": "Name",
             "type": "string"
           }
@@ -4481,230 +4267,6 @@
           "name"
         ],
         "title": "DataDefinitionSummary",
-        "type": "object"
-      },
-      "DataDefinitionVerifier": {
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/OwnerType",
-            "description": "Whether the verifier is a user or a team."
-          },
-          "id": {
-            "description": "The verifier's user or team ID.",
-            "title": "Id",
-            "type": "string"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The verifier's name.",
-            "title": "Display Name"
-          }
-        },
-        "required": [
-          "type",
-          "id",
-          "display_name"
-        ],
-        "title": "DataDefinitionVerifier",
-        "type": "object"
-      },
-      "DataDefinitionWithoutBodyResponse": {
-        "description": "An event or event property, which has no definition body.",
-        "properties": {
-          "id": {
-            "description": "Opaque definition ID, stable across renames.",
-            "title": "Id",
-            "type": "string"
-          },
-          "name": {
-            "description": "The definition's name.",
-            "title": "Name",
-            "type": "string"
-          },
-          "event_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition's description.",
-            "title": "Description"
-          },
-          "hidden": {
-            "description": "Whether the definition is hidden in the UI.",
-            "title": "Hidden",
-            "type": "boolean"
-          },
-          "blocked": {
-            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
-            "title": "Blocked",
-            "type": "boolean"
-          },
-          "verified": {
-            "description": "Whether the definition is verified.",
-            "title": "Verified",
-            "type": "boolean"
-          },
-          "last_verified_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When the definition was last verified.",
-            "title": "Last Verified At"
-          },
-          "last_verified_by": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DataDefinitionVerifier"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "Who last verified the definition."
-          },
-          "tags": {
-            "description": "The definition's tag names.",
-            "items": {
-              "type": "string"
-            },
-            "title": "Tags",
-            "type": "array"
-          },
-          "owners": {
-            "description": "The definition's owners.",
-            "items": {
-              "$ref": "#/components/schemas/DataDefinitionOwner"
-            },
-            "title": "Owners",
-            "type": "array"
-          },
-          "merged_into": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DataDefinitionSummary"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition this one is merged into."
-          },
-          "first_tracked_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When data for the definition was first seen.",
-            "title": "First Tracked At"
-          },
-          "created_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When the definition was created. Null if the event or property has no stored definition.",
-            "title": "Created At"
-          },
-          "updated_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When the definition was last updated. Null if the event or property has no stored definition.",
-            "title": "Updated At"
-          },
-          "type": {
-            "description": "The kind of definition.",
-            "enum": [
-              "event",
-              "event_property"
-            ],
-            "title": "Type",
-            "type": "string"
-          },
-          "definition": {
-            "description": "Always null for this kind of definition.",
-            "title": "Definition",
-            "type": "null"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "event_name",
-          "display_name",
-          "description",
-          "hidden",
-          "blocked",
-          "verified",
-          "last_verified_at",
-          "last_verified_by",
-          "tags",
-          "owners",
-          "merged_into",
-          "first_tracked_at",
-          "created_at",
-          "updated_at",
-          "type",
-          "definition"
-        ],
-        "title": "DataDefinitionWithoutBodyResponse",
         "type": "object"
       },
       "Event": {
@@ -4912,6 +4474,186 @@
           "id"
         ],
         "title": "EventCustomProperty",
+        "type": "object"
+      },
+      "EventDataDefinitionResponse": {
+        "properties": {
+          "id": {
+            "description": "Opaque definition ID, stable across renames.",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "tags": {
+            "description": "The definition's tag names.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/DataDefinitionOwner"
+            },
+            "title": "Owners",
+            "type": "array"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was created. Null if the event or property has no stored definition.",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was last updated. Null if the event or property has no stored definition.",
+            "title": "Updated At"
+          },
+          "verified": {
+            "description": "Whether the definition is verified.",
+            "title": "Verified",
+            "type": "boolean"
+          },
+          "last_verified_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was last verified.",
+            "title": "Last Verified At"
+          },
+          "last_verified_by": {
+            "anyOf": [
+              {
+                "discriminator": {
+                  "mapping": {
+                    "service_account": "#/components/schemas/ServiceAccountActorSummary",
+                    "user": "#/components/schemas/UserActorSummary"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UserActorSummary"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ServiceAccountActorSummary"
+                  }
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Who last verified the definition. Null if it was never verified or the verifier is no longer in the organization.",
+            "title": "Last Verified By"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest.",
+            "title": "Blocked",
+            "type": "boolean"
+          },
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "merged_into": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DataDefinitionSummary"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The definition this one is merged into."
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The name shown in the UI.",
+            "title": "Display Name"
+          },
+          "type": {
+            "const": "event",
+            "title": "Type",
+            "type": "string"
+          },
+          "first_tracked_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When data for the event was first seen.",
+            "title": "First Tracked At"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "tags",
+          "owners",
+          "created_at",
+          "updated_at",
+          "verified",
+          "last_verified_at",
+          "last_verified_by",
+          "blocked",
+          "hidden",
+          "merged_into",
+          "display_name",
+          "type",
+          "first_tracked_at"
+        ],
+        "title": "EventDataDefinitionResponse",
         "type": "object"
       },
       "EventFrequencyPerUserMeasurement": {
@@ -5139,6 +4881,185 @@
           "name"
         ],
         "title": "EventProperty",
+        "type": "object"
+      },
+      "EventPropertyDataDefinitionResponse": {
+        "properties": {
+          "id": {
+            "description": "Opaque definition ID, stable across renames.",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "tags": {
+            "description": "The definition's tag names.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/DataDefinitionOwner"
+            },
+            "title": "Owners",
+            "type": "array"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was created. Null if the event or property has no stored definition.",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was last updated. Null if the event or property has no stored definition.",
+            "title": "Updated At"
+          },
+          "verified": {
+            "description": "Whether the definition is verified.",
+            "title": "Verified",
+            "type": "boolean"
+          },
+          "last_verified_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "When the definition was last verified.",
+            "title": "Last Verified At"
+          },
+          "last_verified_by": {
+            "anyOf": [
+              {
+                "discriminator": {
+                  "mapping": {
+                    "service_account": "#/components/schemas/ServiceAccountActorSummary",
+                    "user": "#/components/schemas/UserActorSummary"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UserActorSummary"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ServiceAccountActorSummary"
+                  }
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Who last verified the definition. Null if it was never verified or the verifier is no longer in the organization.",
+            "title": "Last Verified By"
+          },
+          "blocked": {
+            "description": "Whether the definition's incoming data is dropped at ingest.",
+            "title": "Blocked",
+            "type": "boolean"
+          },
+          "hidden": {
+            "description": "Whether the definition is hidden in the UI.",
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "merged_into": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DataDefinitionSummary"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The definition this one is merged into."
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The name shown in the UI.",
+            "title": "Display Name"
+          },
+          "type": {
+            "const": "event_property",
+            "title": "Type",
+            "type": "string"
+          },
+          "event_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The event the property belongs to. Null for a property of every event.",
+            "title": "Event Name"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "tags",
+          "owners",
+          "created_at",
+          "updated_at",
+          "verified",
+          "last_verified_at",
+          "last_verified_by",
+          "blocked",
+          "hidden",
+          "merged_into",
+          "display_name",
+          "type",
+          "event_name"
+        ],
+        "title": "EventPropertyDataDefinitionResponse",
         "type": "object"
       },
       "EventPropertyMeasurement": {
@@ -5990,15 +5911,18 @@
                   "cohort": "#/components/schemas/CohortDataDefinitionResponse",
                   "custom_event": "#/components/schemas/CustomEventDataDefinitionResponse",
                   "custom_property": "#/components/schemas/CustomPropertyDataDefinitionResponse",
-                  "event": "#/components/schemas/DataDefinitionWithoutBodyResponse",
-                  "event_property": "#/components/schemas/DataDefinitionWithoutBodyResponse",
+                  "event": "#/components/schemas/EventDataDefinitionResponse",
+                  "event_property": "#/components/schemas/EventPropertyDataDefinitionResponse",
                   "metric": "#/components/schemas/MetricDataDefinitionResponse"
                 },
                 "propertyName": "type"
               },
               "oneOf": [
                 {
-                  "$ref": "#/components/schemas/DataDefinitionWithoutBodyResponse"
+                  "$ref": "#/components/schemas/EventDataDefinitionResponse"
+                },
+                {
+                  "$ref": "#/components/schemas/EventPropertyDataDefinitionResponse"
                 },
                 {
                   "$ref": "#/components/schemas/CustomEventDataDefinitionResponse"
@@ -6176,33 +6100,8 @@
             "type": "string"
           },
           "name": {
-            "description": "The definition's name.",
             "title": "Name",
             "type": "string"
-          },
-          "event_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "display_name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The name shown in the UI.",
-            "title": "Display Name"
           },
           "description": {
             "anyOf": [
@@ -6213,18 +6112,34 @@
                 "type": "null"
               }
             ],
-            "description": "The definition's description.",
             "title": "Description"
           },
-          "hidden": {
-            "description": "Whether the definition is hidden in the UI.",
-            "title": "Hidden",
-            "type": "boolean"
+          "tags": {
+            "description": "The definition's tag names.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
           },
-          "blocked": {
-            "description": "Whether the definition's incoming data is dropped at ingest. Types that cannot be blocked always report `false`.",
-            "title": "Blocked",
-            "type": "boolean"
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/DataDefinitionOwner"
+            },
+            "title": "Owners",
+            "type": "array"
+          },
+          "created_at": {
+            "description": "When the definition was created.",
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "When the definition was last updated.",
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
           },
           "verified": {
             "description": "Whether the definition is verified.",
@@ -6247,69 +6162,31 @@
           "last_verified_by": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/DataDefinitionVerifier"
+                "discriminator": {
+                  "mapping": {
+                    "service_account": "#/components/schemas/ServiceAccountActorSummary",
+                    "user": "#/components/schemas/UserActorSummary"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UserActorSummary"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ServiceAccountActorSummary"
+                  }
+                ]
               },
               {
                 "type": "null"
               }
             ],
-            "description": "Who last verified the definition."
-          },
-          "tags": {
-            "description": "The definition's tag names.",
-            "items": {
-              "type": "string"
-            },
-            "title": "Tags",
-            "type": "array"
-          },
-          "owners": {
-            "description": "The definition's owners.",
-            "items": {
-              "$ref": "#/components/schemas/DataDefinitionOwner"
-            },
-            "title": "Owners",
-            "type": "array"
-          },
-          "merged_into": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/DataDefinitionSummary"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition this one is merged into."
-          },
-          "first_tracked_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "When data for the definition was first seen.",
-            "title": "First Tracked At"
-          },
-          "created_at": {
-            "description": "When the definition was created.",
-            "format": "date-time",
-            "title": "Created At",
-            "type": "string"
-          },
-          "updated_at": {
-            "description": "When the definition was last updated.",
-            "format": "date-time",
-            "title": "Updated At",
-            "type": "string"
+            "description": "Who last verified the definition. Null if it was never verified or the verifier is no longer in the organization.",
+            "title": "Last Verified By"
           },
           "type": {
             "const": "metric",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -6365,20 +6242,14 @@
         "required": [
           "id",
           "name",
-          "event_name",
-          "display_name",
           "description",
-          "hidden",
-          "blocked",
+          "tags",
+          "owners",
+          "created_at",
+          "updated_at",
           "verified",
           "last_verified_at",
           "last_verified_by",
-          "tags",
-          "owners",
-          "merged_into",
-          "first_tracked_at",
-          "created_at",
-          "updated_at",
           "type",
           "definition"
         ],
@@ -7222,13 +7093,12 @@
         "additionalProperties": false,
         "properties": {
           "name": {
-            "description": "The definition's name.",
             "maxLength": 255,
             "minLength": 1,
             "title": "Name",
             "type": "string"
           },
-          "event_name": {
+          "description": {
             "anyOf": [
               {
                 "maxLength": 255,
@@ -7238,19 +7108,6 @@
                 "type": "null"
               }
             ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition's description.",
             "title": "Description"
           },
           "tags": {
@@ -7264,16 +7121,14 @@
             "type": "array"
           },
           "owners": {
-            "description": "The definition's owners.",
             "items": {
-              "$ref": "#/components/schemas/OwnerRef"
+              "$ref": "#/components/schemas/DataDefinitionOwnerRef"
             },
             "title": "Owners",
             "type": "array"
           },
           "type": {
             "const": "behavior",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -7313,13 +7168,12 @@
         "additionalProperties": false,
         "properties": {
           "name": {
-            "description": "The definition's name.",
             "maxLength": 255,
             "minLength": 1,
             "title": "Name",
             "type": "string"
           },
-          "event_name": {
+          "description": {
             "anyOf": [
               {
                 "maxLength": 255,
@@ -7329,19 +7183,6 @@
                 "type": "null"
               }
             ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition's description.",
             "title": "Description"
           },
           "tags": {
@@ -7355,16 +7196,14 @@
             "type": "array"
           },
           "owners": {
-            "description": "The definition's owners.",
             "items": {
-              "$ref": "#/components/schemas/OwnerRef"
+              "$ref": "#/components/schemas/DataDefinitionOwnerRef"
             },
             "title": "Owners",
             "type": "array"
           },
           "type": {
             "const": "cohort",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -7385,13 +7224,12 @@
         "additionalProperties": false,
         "properties": {
           "name": {
-            "description": "The definition's name.",
             "maxLength": 255,
             "minLength": 1,
             "title": "Name",
             "type": "string"
           },
-          "event_name": {
+          "description": {
             "anyOf": [
               {
                 "maxLength": 255,
@@ -7401,19 +7239,6 @@
                 "type": "null"
               }
             ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition's description.",
             "title": "Description"
           },
           "tags": {
@@ -7427,9 +7252,8 @@
             "type": "array"
           },
           "owners": {
-            "description": "The definition's owners.",
             "items": {
-              "$ref": "#/components/schemas/OwnerRef"
+              "$ref": "#/components/schemas/DataDefinitionOwnerRef"
             },
             "title": "Owners",
             "type": "array"
@@ -7449,7 +7273,6 @@
           },
           "type": {
             "const": "custom_event",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -7470,13 +7293,12 @@
         "additionalProperties": false,
         "properties": {
           "name": {
-            "description": "The definition's name.",
             "maxLength": 255,
             "minLength": 1,
             "title": "Name",
             "type": "string"
           },
-          "event_name": {
+          "description": {
             "anyOf": [
               {
                 "maxLength": 255,
@@ -7486,19 +7308,6 @@
                 "type": "null"
               }
             ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition's description.",
             "title": "Description"
           },
           "tags": {
@@ -7512,16 +7321,14 @@
             "type": "array"
           },
           "owners": {
-            "description": "The definition's owners.",
             "items": {
-              "$ref": "#/components/schemas/OwnerRef"
+              "$ref": "#/components/schemas/DataDefinitionOwnerRef"
             },
             "title": "Owners",
             "type": "array"
           },
           "type": {
             "const": "custom_property",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -7538,18 +7345,16 @@
         "title": "CreateCustomPropertyDataDefinitionRequest",
         "type": "object"
       },
-      "CreateDataDefinitionWithoutBodyRequest": {
+      "CreateEventDataDefinitionRequest": {
         "additionalProperties": false,
-        "description": "An event or event property, which has no definition body.",
         "properties": {
           "name": {
-            "description": "The definition's name.",
             "maxLength": 255,
             "minLength": 1,
             "title": "Name",
             "type": "string"
           },
-          "event_name": {
+          "description": {
             "anyOf": [
               {
                 "maxLength": 255,
@@ -7559,19 +7364,6 @@
                 "type": "null"
               }
             ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition's description.",
             "title": "Description"
           },
           "tags": {
@@ -7585,9 +7377,8 @@
             "type": "array"
           },
           "owners": {
-            "description": "The definition's owners.",
             "items": {
-              "$ref": "#/components/schemas/OwnerRef"
+              "$ref": "#/components/schemas/DataDefinitionOwnerRef"
             },
             "title": "Owners",
             "type": "array"
@@ -7606,11 +7397,7 @@
             "title": "Display Name"
           },
           "type": {
-            "description": "The kind of definition.",
-            "enum": [
-              "event",
-              "event_property"
-            ],
+            "const": "event",
             "title": "Type",
             "type": "string"
           }
@@ -7619,20 +7406,19 @@
           "name",
           "type"
         ],
-        "title": "CreateDataDefinitionWithoutBodyRequest",
+        "title": "CreateEventDataDefinitionRequest",
         "type": "object"
       },
-      "CreateMetricDataDefinitionRequest": {
+      "CreateEventPropertyDataDefinitionRequest": {
         "additionalProperties": false,
         "properties": {
           "name": {
-            "description": "The definition's name.",
             "maxLength": 255,
             "minLength": 1,
             "title": "Name",
             "type": "string"
           },
-          "event_name": {
+          "description": {
             "anyOf": [
               {
                 "maxLength": 255,
@@ -7642,19 +7428,6 @@
                 "type": "null"
               }
             ],
-            "description": "The parent event of an event property.",
-            "title": "Event Name"
-          },
-          "description": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The definition's description.",
             "title": "Description"
           },
           "tags": {
@@ -7668,16 +7441,92 @@
             "type": "array"
           },
           "owners": {
-            "description": "The definition's owners.",
             "items": {
-              "$ref": "#/components/schemas/OwnerRef"
+              "$ref": "#/components/schemas/DataDefinitionOwnerRef"
+            },
+            "title": "Owners",
+            "type": "array"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The name shown in the UI.",
+            "title": "Display Name"
+          },
+          "type": {
+            "const": "event_property",
+            "title": "Type",
+            "type": "string"
+          },
+          "event_name": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The event the property belongs to. Omit for a property of every event.",
+            "title": "Event Name"
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ],
+        "title": "CreateEventPropertyDataDefinitionRequest",
+        "type": "object"
+      },
+      "CreateMetricDataDefinitionRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "maxLength": 255,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "tags": {
+            "description": "The definition's tag names.",
+            "items": {
+              "maxLength": 175,
+              "minLength": 1,
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/DataDefinitionOwnerRef"
             },
             "title": "Owners",
             "type": "array"
           },
           "type": {
             "const": "metric",
-            "description": "The kind of definition.",
             "title": "Type",
             "type": "string"
           },
@@ -7730,13 +7579,15 @@
         "title": "CreateMetricDataDefinitionRequest",
         "type": "object"
       },
-      "OwnerRef": {
+      "DataDefinitionOwnerRef": {
         "additionalProperties": false,
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/OwnerType"
+            "$ref": "#/components/schemas/OwnerType",
+            "description": "Whether the owner is a user or a team."
           },
           "id": {
+            "description": "The owner's user or team ID.",
             "maxLength": 64,
             "minLength": 1,
             "title": "Id",
@@ -7747,22 +7598,19 @@
           "type",
           "id"
         ],
-        "title": "OwnerRef",
+        "title": "DataDefinitionOwnerRef",
         "type": "object"
       },
       "DataDefinitionRef": {
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/EntityType",
-            "description": "The kind of definition."
+            "$ref": "#/components/schemas/EntityType"
           },
           "id": {
-            "description": "The definition's ID.",
             "title": "Id",
             "type": "string"
           },
           "name": {
-            "description": "The definition's name.",
             "title": "Name",
             "type": "string"
           }
@@ -7812,7 +7660,7 @@
       },
       "MergeDataDefinitionRequest": {
         "additionalProperties": false,
-        "description": "Fold ``sources`` into ``canonical``, all of one ``type``. Exactly one merge per request.",
+        "description": "Fold `sources` into `canonical`, all of one `type`. Exactly one merge per request.",
         "properties": {
           "type": {
             "description": "The kind of definition to merge.",
@@ -7949,28 +7797,6 @@
         "title": "CollectionOperation",
         "type": "string"
       },
-      "DataDefinitionOwnerRef": {
-        "additionalProperties": false,
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/OwnerType",
-            "description": "Whether the owner is a user or a team."
-          },
-          "id": {
-            "description": "The owner's user or team ID.",
-            "maxLength": 64,
-            "minLength": 1,
-            "title": "Id",
-            "type": "string"
-          }
-        },
-        "required": [
-          "type",
-          "id"
-        ],
-        "title": "DataDefinitionOwnerRef",
-        "type": "object"
-      },
       "DataDefinitionOwnersPatch": {
         "additionalProperties": false,
         "properties": {
@@ -7979,7 +7805,6 @@
             "description": "Add the owners, replace the definition's owners with them, or remove them."
           },
           "values": {
-            "description": "The owners.",
             "items": {
               "$ref": "#/components/schemas/DataDefinitionOwnerRef"
             },
@@ -8024,15 +7849,92 @@
         "description": "The fields to write on the definition. A field left out is unchanged.",
         "properties": {
           "name": {
-            "description": "The definition's new name. Only custom events, custom properties, behaviors, metrics, and cohorts can be renamed.",
+            "description": "The definition's new name. Only for these types: `custom_event`, `custom_property`, `metric`, `behavior`, `cohort`.",
             "maxLength": 255,
             "minLength": 1,
             "title": "Name",
             "type": "string"
           },
+          "definition": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CustomEventDefinition"
+              },
+              {
+                "$ref": "#/components/schemas/CustomPropertyDefinition"
+              },
+              {
+                "description": "Set `type` to `event` for events counted as they happen, `funnel` for ordered steps, or `retention` for a start event and a return event.",
+                "discriminator": {
+                  "mapping": {
+                    "event": "#/components/schemas/EventBehavior",
+                    "funnel": "#/components/schemas/FunnelBehavior",
+                    "retention": "#/components/schemas/RetentionBehavior"
+                  },
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/EventBehavior"
+                  },
+                  {
+                    "$ref": "#/components/schemas/FunnelBehavior"
+                  },
+                  {
+                    "$ref": "#/components/schemas/RetentionBehavior"
+                  }
+                ]
+              },
+              {
+                "description": "One metric, or a formula's inputs followed by the formula, which refers to each input by its `display_name`.",
+                "items": {
+                  "description": "Set `type` to `event`, `funnel`, `retention`, `cohort`, or `formula` for a metric defined inline, or `saved_metric` for a saved metric.",
+                  "discriminator": {
+                    "mapping": {
+                      "cohort": "#/components/schemas/CohortMetric",
+                      "event": "#/components/schemas/EventMetric",
+                      "formula": "#/components/schemas/FormulaMetric",
+                      "funnel": "#/components/schemas/FunnelMetric",
+                      "retention": "#/components/schemas/RetentionMetric",
+                      "saved_metric": "#/components/schemas/SavedMetric"
+                    },
+                    "propertyName": "type"
+                  },
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/EventMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FunnelMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/RetentionMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CohortMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/FormulaMetric"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SavedMetric"
+                    }
+                  ]
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              {
+                "$ref": "#/components/schemas/CohortDefinition"
+              }
+            ],
+            "description": "Replaces the definition's whole body. Only for these types: `custom_event`, `custom_property`, `metric`, `behavior`, `cohort`.",
+            "title": "Definition"
+          },
           "description": {
             "anyOf": [
               {
+                "maxLength": 255,
                 "type": "string"
               },
               {
@@ -8052,7 +7954,7 @@
                 "type": "null"
               }
             ],
-            "description": "The name shown in the UI. `null` clears it.",
+            "description": "The name shown in the UI. `null` clears it. Only for these types: `event`, `custom_event`, `event_property`.",
             "title": "Display Name"
           },
           "tags": {
@@ -8064,17 +7966,17 @@
             "description": "Change the definition's owners."
           },
           "hidden": {
-            "description": "Hide or unhide the definition.",
+            "description": "Hide or unhide the definition. Only for these types: `event`, `custom_event`, `event_property`.",
             "title": "Hidden",
             "type": "boolean"
           },
           "blocked": {
-            "description": "Block or unblock the definition. Blocking drops its incoming data at ingest.",
+            "description": "Block or unblock the definition. Blocking drops its incoming data at ingest. Only for these types: `event`, `event_property`.",
             "title": "Blocked",
             "type": "boolean"
           },
           "verified": {
-            "description": "Verify the definition.",
+            "description": "Verify the definition. Only for these types: `event`, `custom_event`, `event_property`, `metric`, `behavior`, `cohort`.",
             "title": "Verified",
             "type": "boolean"
           }
@@ -8085,12 +7987,10 @@
       "DataDefinitionTagResponse": {
         "properties": {
           "id": {
-            "description": "The tag's ID.",
             "title": "Id",
             "type": "string"
           },
           "name": {
-            "description": "The tag's name.",
             "title": "Name",
             "type": "string"
           },
