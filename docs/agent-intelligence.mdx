@@ -133,17 +133,20 @@ Mixpanel reads the OpenTelemetry GenAI semantic conventions (`gen_ai.*`). Every 
     Propose 3–6 product dimensions for the turn's root span (e.g. `surface`, `command.type`, `prompt.version`, `plan.tier`, a flag variant, or tenant IDs like `account.id` / `org.id` for B2B agents). Use stable, lowercase, dotted names with short values. Add more only after I approve.
     
     ## Phase 3: Verify (all must pass)
+    Turn `MIXPANEL_AI_TRACING_ENABLED` on in the environment you test in. It defaults to off, and no spans reach Mixpanel until it is on.
     1. Unit test: the auth header for token "abc" equals `Basic YWJjOg==`.
     2. Test with an in-memory exporter wrapped by our Mixpanel filter/shaper: every exported span has `user.id` and `gen_ai.conversation.id`; non-agent spans are dropped; renamed attributes are present; the existing exporter still receives every span unchanged.
     3. curl a single test span to the regional endpoint and get a 2xx. Use the test project if one was provided; otherwise use `user.id = "mp-ai-test"` so it's easy to find and exclude.
     4. Run a real 2+ turn conversation that includes a tool call and one forced error. Check the debug output: each turn is its own trace, all turns share a conversation ID, tokens and model are filled in, and the error is marked.
     5. All existing tests pass.
-    6. Tell me to check Agent Intelligence → Conversations in Mixpanel.
+    6. Confirm the test conversation in Mixpanel with the MCP tools `List-Agent-Intelligence-Conversations` and `Get-Agent-Intelligence-Conversation`. Check that it shows the user, model, token counts, and a cost above $0. If the Mixpanel MCP server isn't connected, list these checks for me to do by hand.
     
     ## Final report
     - Changes, by file (and any new dependencies, with pinned versions you checked exist)
     - Table of attributes sent → where each value comes from
     - Filtering rule, sampling impact, and env vars/flags added
+    - How to turn on `MIXPANEL_AI_TRACING_ENABLED` in each environment
+    - Verified in Mixpanel: yes (with link) or no (with what is missing)
     - Known gaps: unfillable attributes, models that might not have pricing, content capture status, trace≠turn caveats
     ```
   </Tab>
@@ -236,18 +239,21 @@ Mixpanel reads the OpenTelemetry GenAI semantic conventions (`gen_ai.*`). Every 
     If volume is high, add a parent-based trace sampler behind config, defaulting to 100%. Sample whole traces only, never individual spans.
     
     ## Phase 3: Verify (all must pass)
+    Turn `MIXPANEL_AI_TRACING_ENABLED` on in the environment you test in. It defaults to off, and no spans reach Mixpanel until it is on.
     1. Unit test: the auth header for token "abc" equals `Basic YWJjOg==`.
     2. Test with an in-memory exporter: a simulated 2-turn conversation with a tool call produces 2 traces; every span has `user.id` and the same `gen_ai.conversation.id`; LLM spans have the model and token counts (including the cache-token rule for our provider); a forced tool error marks its span as ERROR.
     3. Test that agent behavior and output are unchanged when tracing is disabled AND when the exporter endpoint is unreachable.
     4. curl a single test span to the regional endpoint and get a 2xx. Use the test project if one was provided; otherwise use `user.id = "mp-ai-test"` so it's easy to find and exclude.
     5. Run a real 2+ turn conversation locally and check the console exporter output.
     6. All existing tests pass.
-    7. Tell me to check Agent Intelligence → Conversations in Mixpanel.
+    7. Confirm the test conversation in Mixpanel with the MCP tools `List-Agent-Intelligence-Conversations` and `Get-Agent-Intelligence-Conversation`. Check that it shows the user, model, token counts, and a cost above $0. If the Mixpanel MCP server isn't connected, list these checks for me to do by hand.
     
     ## Final report
     - Changes, by file, and new dependencies with pinned versions
     - Table of attributes sent → where each value comes from
     - Env vars/flags added and their defaults
+    - How to turn on `MIXPANEL_AI_TRACING_ENABLED` in each environment
+    - Verified in Mixpanel: yes (with link) or no (with what is missing)
     - Known gaps: unfillable attributes, models that might not have pricing, content capture status, anything that crosses processes
     ```
   </Tab>
