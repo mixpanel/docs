@@ -72,7 +72,7 @@ For `429` responses, the `Retry-After` header is honored when present, capped at
 - The Destination surfaces an authentication error.
 - A project admin must fix credentials or the webhook URL before restarting.
 
-Other `4xx` responses (for example `400`) mean the destination rejected the request, so they are not retried. The events in that request are dropped and recorded in the [failed events log](#failed-events-log). See [Alerting on failure](#alerting-on-failure) for when repeated failures pause the Sync.
+Other `4xx` responses (for example `400`), except `408`, `425`, and `429`, mean the destination rejected the request, so they are not retried. The events in that request are dropped and recorded in the [failed events log](#failed-events-log). See [Alerting on failure](#alerting-on-failure) for when repeated failures pause the Sync.
 
 ## Events that are not delivered
 
@@ -88,7 +88,7 @@ If events are missing at your destination, contact Mixpanel Support.
 
 ## Failed Events Log
 
-When events cannot be delivered, including after retries are exhausted, they are recorded in a **failed events log** retained in-product for debugging. Each entry is an aggregated roll-up: one row per Sync, status code, and error type, with the count of failed events in that window. To help you debug, each entry includes a sample event and the response body from your destination.
+When events cannot be delivered, including after retries are exhausted, they are recorded in a **failed events log** retained in-product for debugging. Each entry is an aggregated roll-up: one row per Sync, status code, and error type, with the count of failed events in that window. To help you debug, each entry includes a sample event and, when a response was received, the response body from your destination.
 
 {/* PLACEHOLDER: Document how to replay failed events (manual retry, bulk replay, or export) once the flow is confirmed. */}
 
