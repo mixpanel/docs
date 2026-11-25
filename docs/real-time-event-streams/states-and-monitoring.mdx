@@ -22,7 +22,7 @@ Stream state is shown as a status badge on the Syncs list view.
 | --- | --- |
 | `enabled` | The Stream is actively streaming matching events. |
 | `disabled` | The Stream is manually paused by a Project Admin. Events are discarded; no backlog accumulates. |
-| `error` | The Stream was paused after a terminal failure (auth error, or non-auth 4xx after retries). An Alert is sent when a stream enters this state and streaming stops until a Project Admin re-enables the Stream. |
+| `error` | The Stream was paused after a terminal failure. See [Alerting on failure](/docs/real-time-event-streams/delivery-and-reliability#alerting-on-failure). An Alert is sent when a stream enters this state and streaming stops until a Project Admin re-enables the Stream. |
 
 <Warning>
   When a Stream is `disabled`, events matching the filter are **discarded**. Mixpanel does not accumulate a backlog to replay when the Stream is re-enabled.

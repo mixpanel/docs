@@ -66,6 +66,17 @@ Add one or more property conditions that must all be true for an event to stream
 
 {/* PLACEHOLDER: Screenshot of the property filter builder and the list of supported operators (equals, not equals, contains, etc.). */}
 
+## Request format
+
+Mixpanel sends events in batches. The max batch size (up to 500, the default) and the envelope template are configurable on the Destination, with presets for common destinations. By default, the body is a JSON array of rendered events:
+
+```json
+[
+  { "event": "Signup", "user_id": "abc" },
+  { "event": "Signup", "user_id": "def" }
+]
+```
+
 ## Webhook authentication
 
 Configure how Mixpanel authenticates outbound requests. The current authentication method is always visible on the Destination card.
