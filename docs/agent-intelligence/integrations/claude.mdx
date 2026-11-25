@@ -1,0 +1,195 @@
+---
+title: "Claude Platform"
+description: "Send OpenTelemetry traces of your Claude Messages API requests and Claude Managed Agents sessions to Mixpanel Agent Intelligence, and tie each trace to your end users."
+sidebarTitle: "Claude"
+---
+
+The Claude API can send an OpenTelemetry span for every Messages API request, model run, tool use, and Claude Managed Agents turn to Mixpanel. The spans arrive in Agent Intelligence as `$mp_ai_span` events with the model, token usage, cost, and optionally the full conversation text, tied to the user who made the request.
+
+Set up a destination in the Claude Console once, then follow the section for each way you use Claude:
+
+- [Messages API](#messages-api)
+- [Claude Managed Agents](#claude-managed-agents)
+- [Anthropic SDK](#anthropic-sdk)
+
+<Note>
+  OpenTelemetry export from the Claude API is in beta at Anthropic. See Anthropic's [OpenTelemetry docs](https://platform.claude.com/docs/en/manage-claude/opentelemetry) and [span reference](https://platform.claude.com/docs/en/api/opentelemetry/spans).
+</Note>
+
+## Before you start
+
+You need:
+
+- The admin role in your Claude Console organization
+- A Mixpanel project with Agent Intelligence, and its project token
+- An ID for each of your end users, the same value you use as `distinct_id` in Mixpanel
+
+## Connect Claude to Mixpanel
+
+1. Encode your project token followed by a colon:
+
+   ```bash
+   echo -n "YOUR_PROJECT_TOKEN:" | base64
+   ```
+
+2. In the Claude Console, open your organization's **OpenTelemetry** settings and click **Add destination**.
+3. Fill in the destination. Use the host for your project's data residency region: `ingestion-us.mixpanel.com`, `ingestion-eu.mixpanel.com` ([EU](/docs/privacy/eu-residency)), or `ingestion-in.mixpanel.com` ([India](/docs/privacy/in-residency)).
+
+   | Field | Value |
+   | :-- | :-- |
+   | **Provider** | Custom |
+   | **Name** | For example, `Mixpanel Agent Intelligence` |
+   | **OTLP endpoint URL** | `https://ingestion-us.mixpanel.com` |
+   | **Request headers** | `Authorization`: `Basic <the value from step 1>` |
+   | **Content mode** | **Full content** to read prompts and replies in Mixpanel, or **Metadata only** to send no message text |
+   | **Workspaces** | The Claude workspaces to send to this Mixpanel project |
+   | **OTLP traces endpoint URL** (under **Advanced settings**) | `https://ingestion-us.mixpanel.com/v1/ai/otel/traces` |
+   | **Maximum content size in MB** (under **Advanced settings**) | Leave the default |
+
+4. Click **Add destination**.
+
+To send different Claude workspaces to different Mixpanel projects, add a destination for each project.
+
+## Identify your users
+
+Mixpanel ties every span to a user and drops spans that have no `user.id`. Claude sets `user.id` from the W3C `baggage` header of each request: send `baggage: user.id=<your user's ID>`, and Claude adds `user.id` to that request's spans and every span under it.
+
+Set `user.id` to the user's `distinct_id` in Mixpanel, so Claude activity joins the rest of that user's events.
+
+<Warning>
+  Claude drops a `user.id` that contains an email address, so those spans never reach Mixpanel.
+</Warning>
+
+Each section below shows where to send the header.
+
+## Messages API
+
+Send the `baggage` header with every request you make on behalf of a user:
+
+```bash
+curl https://api.anthropic.com/v1/messages \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "content-type: application/json" \
+  -H "baggage: user.id=4f2a" \
+  -d '{
+    "model": "claude-opus-5-5",
+    "max_tokens": 1024,
+    "messages": [{"role": "user", "content": "Hello, Claude"}]
+  }'
+```
+
+Each request sends these spans:
+
+| Span | What it is | Useful properties |
+| :-- | :-- | :-- |
+| `anthropic.messages.create` | The request | `gen_ai.request.model`, token usage, `gen_ai.input.messages` and `gen_ai.output.messages` (Full content) |
+| `anthropic.model_request` | Each model run in the request | `gen_ai.request.model`, token usage |
+| Tool spans, such as `anthropic.tool_use web_search` | Each server tool the API runs | Tool name, arguments and result (Full content) |
+
+Messages API requests count toward users, tokens, and cost on **Agent Intelligence → Usage** and in your Mixpanel reports. They don't appear on the **Conversations** page.
+
+## Claude Managed Agents
+
+Send the `baggage` header on the request that creates the session and on every request that sends the session a message:
+
+```bash
+SESSION_ID=$(curl -s https://api.anthropic.com/v1/sessions \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-beta: managed-agents-2026-04-01" \
+  -H "content-type: application/json" \
+  -H "baggage: user.id=4f2a" \
+  -d '{"agent": "'"$AGENT_ID"'", "environment_id": "'"$ENVIRONMENT_ID"'"}' | jq -r .id)
+
+curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-beta: managed-agents-2026-04-01" \
+  -H "content-type: application/json" \
+  -H "baggage: user.id=4f2a" \
+  -d '{"events": [{"type": "user.message", "content": [{"type": "text", "text": "Summarize the open issues"}]}]}'
+```
+
+Each session thread is a conversation in **Agent Intelligence → Conversations**, and each message you send is a turn. Open a conversation to read each turn's user message and the agent's reply (Full content), with the model runs and tool uses behind it.
+
+| Span | What it is | Useful properties |
+| :-- | :-- | :-- |
+| `anthropic.sessions.create`, `anthropic.sessions.events.send` | Your requests to the session | `anthropic.session.id`, `gen_ai.agent.name` |
+| `anthropic.session.turn` | One agent turn | `gen_ai.agent.name`, `gen_ai.conversation.id`, the user's message and the agent's reply (Full content) |
+| `anthropic.model_request` | Each model run in the turn | `gen_ai.request.model`, token usage, `gen_ai.conversation.id` |
+| Tool spans, such as `anthropic.tool_use bash` | Each tool the agent uses | Tool name, arguments and result (Full content) |
+
+`gen_ai.agent.name` is the agent's name in the Claude Console, so you can compare agents in any report.
+
+## Anthropic SDK
+
+The Anthropic SDK sends the baggage in your OpenTelemetry context with each request. Install the SDK with the OpenTelemetry SDK:
+
+```bash
+pip install anthropic opentelemetry-sdk
+```
+
+Then set `user.id` in the baggage around the calls you make for a user:
+
+```python
+from anthropic import Anthropic
+from opentelemetry import baggage, context, trace
+from opentelemetry.sdk.trace import TracerProvider
+
+trace.set_tracer_provider(TracerProvider())
+client = Anthropic()
+
+token = context.attach(baggage.set_baggage("user.id", current_user.id))
+try:
+    message = client.messages.create(
+        model="claude-opus-5-5",
+        max_tokens=1024,
+        messages=[{"role": "user", "content": prompt}],
+    )
+finally:
+    context.detach(token)
+```
+
+For other languages, see Anthropic's guide to [identifying your end users](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk#identify-your-end-users).
+
+The destination you added in the Claude Console sends the API's spans to Mixpanel. You don't need to export the SDK's own spans.
+
+### Managed Agents with the SDK
+
+Mixpanel counts one trace as one turn. If your application runs the SDK inside its own spans, the SDK connects the API's spans to your trace, so send each user message from a new trace. Otherwise all messages in the session show as one turn. For example:
+
+```python
+tracer = trace.get_tracer("support-app")
+
+def send_user_message(session_id, user_id, text):
+    # Start from an empty context so the span below is a new root span, with its own trace.
+    token = context.attach(baggage.set_baggage("user.id", user_id, context.Context()))
+    try:
+        with tracer.start_as_current_span("agent_turn"):
+            client.beta.sessions.events.send(
+                session_id,
+                events=[{"type": "user.message", "content": [{"type": "text", "text": text}]}],
+            )
+    finally:
+        context.detach(token)
+```
+
+## Verify
+
+1. Send a request with the `baggage` header, in a Claude workspace that the destination covers.
+2. In the Claude Console's **OpenTelemetry** settings, check that the destination's **Delivery** column shows **Healthy**.
+3. In Mixpanel, open **Agent Intelligence → Conversations** to find a Managed Agents session, or **Agent Intelligence → Usage** to see Messages API requests.
+
+The Console's **Test** button sends a span without a `user.id`. It checks that the Console can reach Mixpanel, but the test span doesn't appear in your project.
+
+## Troubleshooting
+
+| Problem | What to check |
+| :-- | :-- |
+| **Delivery** shows **Failing** | The **OTLP traces endpoint URL** under **Advanced settings** is `https://<region host>/v1/ai/otel/traces`. The `Authorization` value is `Basic ` followed by `base64("<project token>:")`, with the trailing colon and no newline. |
+| **Delivery** is **Healthy**, but nothing appears in Mixpanel | Your requests send `baggage: user.id=…`, and the ID isn't an email address. |
+| A Managed Agents conversation shows fewer turns than messages | Send each message from a new trace. See [Managed Agents with the SDK](#managed-agents-with-the-sdk). |
+| No prompts or replies in conversations | The destination's **Content mode** is **Full content**. |
+
+Agent Intelligence handles your Claude data like the rest of your project. See [Data privacy](/docs/agent-intelligence#data-privacy).
