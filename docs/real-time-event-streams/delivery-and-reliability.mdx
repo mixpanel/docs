@@ -42,7 +42,7 @@ Transient delivery failures are retried automatically. Permanent failures are no
 
 ### Backoff schedule
 
-Up to **4 retries** (1 initial + 4 retries) with exponential backoff starting at 200ms, totaling roughly **3 seconds**:
+Up to **4 retries** (1 initial + 4 retries) with exponential backoff starting at 200ms, totaling roughly **36 seconds**:
 
 | Attempt | Delay before attempt |
 | --- | --- |
@@ -71,13 +71,13 @@ Other `4xx` responses (e.g., `400`, `404`, `422`) indicate the destination is un
 
 Mixpanel drops an event for a Sync, without retrying it, in these cases:
 
-- **Payload too large.** The rendered payload for an event is larger than **10 MB**.
+- **Payload too large.** The payload for an event is larger than **10 MB** after the Liquid template is applied.
 - **Template render error.** The Liquid payload template fails to render for an event, for example because a property value has an unexpected type. Only that event is dropped for that Sync. Other events and other Syncs are unaffected.
-- **Event too old.** The event's timestamp is more than **5 days** in the past. Use an import or backfill for historical data.
+- **Event too old.** The event's timestamp is more than **5 days** in the past. Real-Time Event Streams are for live events, so events with older timestamps, including imported historical data, are not streamed.
 
-Every other failure is retried until it succeeds, so a temporary issue on Mixpanel's side delays delivery but does not lose events.
+A temporary issue on Mixpanel's side is retried until it succeeds, so it delays delivery but does not lose events. Failures at your destination follow the [retry policy](#retry-policy) above.
 
-Liquid templates render against each event's property values, so there is no way to check in advance whether a template will fail for a given event. If events are missing at your destination, contact Mixpanel Support with the Sync name and the event's `$insert_id`.
+If events are missing at your destination, contact Mixpanel Support.
 
 ## Failed Events Log
 
