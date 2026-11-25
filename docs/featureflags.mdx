@@ -202,6 +202,29 @@ We support the following types of Flags:
   </Step>
 </Steps>
 
+### ID management and flag targeting
+
+Flags are evaluated using the ID your SDK sends, but cohort targeting is evaluated against Users in Mixpanel. How the two line up depends on your project's ID management version. See [Original ID Merge](/docs/tracking-methods/id-management/identifying-users-original) and [Simplified ID Merge](/docs/tracking-methods/id-management/identifying-users-simplified) for how each system identifies users.
+
+| ID management | How cohort targeting resolves a user |
+| --- | --- |
+| Simplified ID Merge | Each user has a single canonical ID, which is their `user_id` once identified. No additional handling is needed. |
+| Original ID Merge | Any ID in a user's identity cluster can be the canonical ID. To keep targeting deterministic, Mixpanel uses the user's most recently identified ID, based on `$identify` events from the last 90 days. If there is no `$identify` event in that window, Mixpanel falls back to the user's current canonical ID. `$alias` and `$merge` events are not considered. |
+| Legacy | Feature flags apply no special handling. |
+
+#### `identify()` only acts when the ID changes
+
+Client SDKs send an `$identify` event and reload flags only when the ID passed to `identify()` differs from the ID the SDK already has. Calling `identify()` again with the same ID does nothing: no new `$identify` event is sent and flags are not reloaded.
+
+On Original ID Merge, this affects cohort targeting. A user can open your app every day and call `identify(userId)`, but if the ID never changes, no new `$identify` events are recorded. Once the user's most recent `$identify` event is more than 90 days old, targeting falls back to their canonical ID. If that canonical ID is not the ID your SDK sends as `distinct_id`, the user may not match the cohort.
+
+To avoid this on Original ID Merge:
+
+- Call `identify()` with a stable, consistent ID for each logged-in user.
+- When evaluating flags from a server SDK, pass the same `distinct_id` your client SDKs use.
+
+Projects on Simplified ID Merge don't have this limitation. To learn about moving to it, see [Migrating to Simplified ID Merge](/docs/tracking-methods/id-management/migrating-to-simplified-id-merge-system).
+
 ### Frequently Asked Questions
 
 **How do [Data Views](/docs/data-governance/data-views-and-classification) affect feature flags?**
