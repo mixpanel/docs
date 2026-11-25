@@ -49,7 +49,7 @@ This page walks through creating a webhook Sync end to end: configuring the Dest
 
 Users select one or more event types to stream. Only matching events are forwarded; all others are discarded before entering the streaming pipeline. Filtering happens before delivery, so unmatched events do not consume retry budget or queue capacity.
 
-- You must explicitly select at least one event type.
+- You must explicitly select at least one event type, or select **All events** to stream every event.
 - You can update the selected event types at any time without recreating the Sync.
 
 {/* PLACEHOLDER: Screenshot of the event-type selector. */}
