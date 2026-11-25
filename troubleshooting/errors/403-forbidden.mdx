@@ -3,13 +3,15 @@ title: 403 Forbidden
 description: "Which Mixpanel ingestion endpoints return a 403, what the response looks like, and how it differs from a 401"
 ---
 
-A 403 means Mixpanel recognized the request but refused it. Among the ingestion endpoints, only `/track`, `/engage`, and `/groups` return a 403.
+A 403 means Mixpanel recognized the request but refused it. Among the ingestion endpoints, `/track`, `/engage`, `/groups`, and `/import` return a 403.
 
 <Note>
-  `/import` does not return a 403. It responds with 200, 400, 401, 413, or 429. If you are debugging an `/import` failure, see [401 Unauthorized](/troubleshooting/errors/401-unauthorized) for credential problems.
+  `/import` returns a 403 only when the project does not reside in the data residency region of the server the request was sent to. Its response body has a different shape from the other endpoints; see the `/import` wrong-region response below. For credential problems, see [401 Unauthorized](/troubleshooting/errors/401-unauthorized).
 </Note>
 
 ## What the Response Looks Like
+
+For `/track`, `/engage`, and `/groups`:
 
 ```json
 {
@@ -20,7 +22,21 @@ A 403 means Mixpanel recognized the request but refused it. Among the ingestion 
 
 This shape differs from the other ingestion errors: there is no `code` field.
 
-The API reference lists 403 as a possible response for these endpoints but doesn't document the specific conditions that trigger it. The checks below are the usual starting points.
+### `/import` Wrong Region
+
+For `/import`, a 403 includes a `code` field and a numeric `status`, and the `error` message names the API server to use:
+
+```json
+{
+  "code": 403,
+  "error": "project 12345 does not reside in this region; send requests to https://api.mixpanel.com/import. See https://docs.mixpanel.com/reference/overview for the API server for each data residency region",
+  "status": 0
+}
+```
+
+Send the request to the host given in the `error` message. See the [API overview](/reference/overview) for the API server for each data residency region.
+
+For `/track`, `/engage`, and `/groups`, the API reference lists 403 as a possible response but doesn't document the specific conditions that trigger it. The checks below are the usual starting points.
 
 ## 403 Compared to 401
 
