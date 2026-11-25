@@ -67,6 +67,18 @@ Other `4xx` responses (e.g., `400`, `404`, `422`) indicate the destination is un
 - The Sync is paused.
 - The error state is visible in the UI so a project admin can fix the endpoint or payload template.
 
+## Events that are not delivered
+
+Mixpanel drops an event for a Sync, without retrying it, in these cases:
+
+- **Payload too large.** The rendered payload for an event is larger than **10 MB**.
+- **Template render error.** The Liquid payload template fails to render for an event, for example because a property value has an unexpected type. Only that event is dropped for that Sync. Other events and other Syncs are unaffected.
+- **Event too old.** The event's timestamp is more than **5 days** in the past. Use an import or backfill for historical data.
+
+Every other failure is retried until it succeeds, so a temporary issue on Mixpanel's side delays delivery but does not lose events.
+
+Liquid templates render against each event's property values, so there is no way to check in advance whether a template will fail for a given event. If events are missing at your destination, contact Mixpanel Support with the Sync name and the event's `$insert_id`.
+
 ## Failed Events Log
 
 When events cannot be delivered after retries, they move to a **failed events log** retained in-product for debugging. Each entry is an aggregated roll-up per failed stream. One row per Sync + status code + error type + count of failed events in that window
