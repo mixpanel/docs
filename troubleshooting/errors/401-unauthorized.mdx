@@ -1,6 +1,6 @@
 ---
 title: 401 Unauthorized
-description: "Why Mixpanel's ingestion API returns a 401, which credentials each endpoint accepts, and how regional data residency affects authentication"
+description: "Why Mixpanel's ingestion API returns a 401, and which credentials each endpoint accepts"
 ---
 
 A 401 means Mixpanel could not authenticate the request. The credentials were missing, malformed, or not valid for the project you addressed.
@@ -38,18 +38,6 @@ From `/import`:
 
 When authenticating with a Service Account, `project_id` is required. Without it, Mixpanel cannot tell which project the credentials apply to.
 
-### Wrong Regional Endpoint
-
-Projects with EU or India data residency use different hosts. Send requests to the host that matches your project's residency.
-
-| Residency | Host |
-| --- | --- |
-| US | `api.mixpanel.com` |
-| EU | `api-eu.mixpanel.com` |
-| India | `api-in.mixpanel.com` |
-
-See [EU Residency](/docs/privacy/eu-residency) and [India Residency](/docs/privacy/in-residency).
-
 ### Malformed Basic Auth Header
 
 Basic auth expects a base64-encoded `username:password` pair. A common mistake is encoding only the username, or omitting the colon when the password is empty.
@@ -59,8 +47,6 @@ Basic auth expects a base64-encoded `username:password` pair. A common mistake i
 **Confirm the credential type** matches what the endpoint accepts, using the table above.
 
 **Check the Service Account's role** at Project Settings → Service Accounts. It must be Owner or Admin for `/import`.
-
-**Verify your project's residency** and send to the matching host.
 
 ## Related
 

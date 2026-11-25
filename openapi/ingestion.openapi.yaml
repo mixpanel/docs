@@ -132,6 +132,8 @@ paths:
           $ref: '#/components/responses/StrictInvalid'
         '401':
           $ref: '#/components/responses/StrictUnauthorized'
+        '403':
+          $ref: '#/components/responses/StrictForbidden'
         '413':
           $ref: '#/components/responses/StrictTooLarge'
         '429':
@@ -1743,6 +1745,23 @@ components:
               code: 401
               error: Invalid credentials
               status: Unauthorized
+    StrictForbidden:
+      description: A 403 response indicates that the project does not reside in this data residency region.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              error:
+                type: string
+              status:
+                type: integer
+            example:
+              code: 403
+              error: project 12345 does not reside in this region; send requests to https://api.mixpanel.com/import. See https://docs.mixpanel.com/reference/overview for the API server for each data residency region
+              status: 0
     StrictNotFound:
       description: A 404 response indicates that the entity to replace was not found.
       content:
