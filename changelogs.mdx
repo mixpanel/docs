@@ -10,6 +10,33 @@ Get all the latest updates in your inbox.
 
 <SubscribeButtonWithModal />
 
+<Update label="2026-11-25">
+  ## Ingestion API /import: 403 response for data sent to the wrong Data Residency Server
+
+  Starting **December 14, 2026**, the Ingestion API `/import` endpoint will return a `403` response code when you send data to an ingestion server that doesn't match your project's data residency.
+
+  You choose a project's data residency (US, EU, or IN) when you create the project.
+  Each residency has its own Ingestion API Server URL for the /import endpoint:
+
+  | Data residency | Ingestion API /import URL|
+  | :- | :- |
+  | US | `api.mixpanel.com/import` |
+  | EU | `api-eu.mixpanel.com/import` |
+  | IN | `api-in.mixpanel.com/import` |
+
+  As before, data sent to the wrong residency server isn't ingested. For example, events sent to `api.mixpanel.com` for an EU project don't reach that project. Until now, nothing in the response told you why, so a misconfigured implementation was easy to miss. The `403` makes it visible right away.
+
+  - **What's changing:** Only the response. Data sent to the wrong residency server still isn't ingested, just like before.
+  - **Who's affected:** Implementations that send data to a server that doesn't match the project's data residency will now see a `403` response code. If your data already reaches your project, nothing changes for you.
+  - **What to do:** If you see a `403`, check your project's residency under **Project Settings → Data Residency**, then make sure your SDK, proxy, or partner integration sends to the matching server. See the setup steps for [EU](/docs/privacy/eu-residency) and [IN](/docs/privacy/in-residency) projects.
+
+  <Note>
+    **EU projects with an extended forwarding timeline:** A small number of EU projects still have US-to-EU data forwarding under an extended timeline. While forwarding is active, these EU projects won't get a `403` for data sent to `api.mixpanel.com`. Once their extension ends, they'll get the `403` too. If we notified you about an extension, update your implementation to `api-eu.mixpanel.com` before it ends. See the [US-to-EU forwarding notice](#2026-02-20) for the timeline.
+  </Note>
+
+  [Learn more →](/reference/import-events)
+</Update>
+
 <Update label="2026-11-20">
   ## MCP Server: Plan your events in Mixpanel with tracking plans
 
